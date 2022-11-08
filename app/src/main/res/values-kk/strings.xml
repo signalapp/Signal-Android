@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Контакт туралы ақпаратты тіркеу үшін Signal қолданбасына Контактілер ашық болу керек, бірақ параметрлерде оған кіруге рұқсат берілмеген. Қолданба параметрлері мәзіріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Контактілер\" функциясын қосыңыз.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Геолокацияны тіркеу үшін Signal қолданбасына Геолокация ашық болу керек, бірақ параметрлерде оған кіруге рұқсат берілмеген. Қолданба параметрлері мәзіріне кіріп, \"Рұқсаттар\" бөлімін таңдаңыз да, \"Геолокация\" функциясын қосыңыз.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s Төлемдерді белсендірмеді </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Төлемдерді белсендіру керектігі туралы сұрау жібергіңіз келе ме?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Сұрау жіберу</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Болдырмау</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s чаты бар хаттар тарихы мен оған тиесілі тағы бір чат біріктірілді.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">%1$s деген кісіге Төлемдерді белсендіру керектігі туралы сұрау жібердіңіз</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s сіздің Төлемдерді белсендіргеніңізді қалайды. Төлемдерді тек сенімді адамдарға жіберіңіз.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Төлемдерді белсендірдіңіз</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s енді Төлемдер қабылдай алады</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s топтық қоңырауды бастады · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Бұл хабарлама жойылды.</string>
     <string name="ThreadRecord_you_deleted_this_message">Сіз бұл хабарламаны жойғансыз.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Төлемдерді белсендіру керектігі туралы сұрау жібердіңіз</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s сіздің Төлемдерді белсендіргеніңізді қалайды</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Төлемдерді белсендірдіңіз</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s енді Төлемдер қабылдай алады</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal қолданады!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Жоғалып кететін хаттар функциясы өшірулі</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Жоғалып кететін хат уақыты %1$s болып орнатылды</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Төлемдерді пайдалана беру үшін Signal-ды жаңартыңыз. Балансыңыз жаңартылмаған болуы мүмкін.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Қазір жаңарту</string>
 
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Қазір емес</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Жаңарту керек</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Төлемдерді жіберу және қабылдау үшін, сондай-ақ жаңартылған төлем балансын көру үшін жаңарту керек.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Болдырмау</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s күні сағат %3$s</string>
     <string name="PaymentsDetailsFragment__to">To</string>
     <string name="PaymentsDetailsFragment__from">From</string>
-    <string name="PaymentsDetailsFragment__information">Транзакция мәліметтері, оның ішінде төлем сомасы және транзакция уақыты –MobileCoin тіркеу кітабының бір бөлігі.</string>
+    <string name="PaymentsDetailsFragment__information">Транзакция мәліметтері, оның ішінде төлем сомасы және транзакция уақыты – MobileCoin тіркеу кітабының бір бөлігі.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Койнды тазалау ақысы</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Транзакцияны орындау үшін сіздің иелігіңіздегі койндарды біріктіру мүмкін болмаған жағдайда, \"Койнды тазалау ақысы\" алынады. Тазалаудың арқасында төлемдер жіберуге мүмкіндік аласыз.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Бұл транзакция үшін бұдан басқа мәлімет жоқ</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Қалпына келтіру сөйлемін сақтау</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Қалпына келтіру сөйлемін енгізіңіз</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Signal-дағы PIN-кодыңызды растасаңыз, Signal-ды қайта орнатқанда, балансыңыз автоматты түрде қалпына келеді. Қалпына келтіру сөйлемін пайдаланып та, балансыңызды қалпына келтіре аласыз. Қалпына келтіру сөйлемі – сізге ғана мәлім %1$d сөздік сөйлем. Оны жазып алып, қауіпсіз бір жерге сақтап қойыңыз.</item>
+        <item quantity="other">Signal-дағы PIN-кодыңызды растасаңыз, Signal-ды қайта орнатқанда, балансыңыз автоматты түрде қалпына келеді. Қалпына келтіру сөйлемін пайдаланып та, балансыңызды қалпына келтіре аласыз. Қалпына келтіру сөйлемі – сізге ғана мәлім %1$d сөздік сөйлем. Оны жазып алып, қауіпсіз бір жерге сақтап қойыңыз.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Сізде баланс бар! Қалпына келтіру сөйлемін сақтайтын уақыт. Ол – балансыңызды қалпына келтіру үшін пайдаланылатын 24 сөздік кілт.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS-хаттарды өшіру</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal-дан SMS хаттар өшірілуде...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal-дан SMS хаттар өшірілуде…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Signal-дағы \"Параметрлер\" бөлімінен SMS хаттарды кез келген уақытта өшіріп тастай аласыз.</string>
     <!-- Description for export sms preference -->
@@ -4586,7 +4586,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Толық ақпарат алу үшін қолдау көрсету қызметіне хабарласыңыз.</string>
     <string name="Subscription__contact_support">Қолдау қызметіне хабарласу</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">%1$s таңбасын алыңыз</string>
 
     <string name="SubscribeFragment__processing_payment">Төлем өңделуде…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4825,7 +4825,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Сыйлық</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
+    <string name="DonationReceiptListFragment__boost">Күшейтіңіз</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Details</string>
     <!-- Donation receipts donation type heading -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Әлі ешкім көрмеген</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Стористеріңізді кім көргенін білу үшін осы функцияны қосып қойыңыз.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Параметрлерге өту</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5588,19 +5588,19 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal-ға ай сайын %1$s аударып отырыңыз</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s таңбасын алыңыз</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal-ға %1$s аудару</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d күнге %1$s таңба алыңыз</item>
+        <item quantity="other">%2$d күнге %1$s таңба алыңыз</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Несиелік немесе дебеттік карта</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Бас тартылуда...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Бас тартылуда…</string>
 
     <!-- EOF -->
 

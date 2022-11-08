@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">เพื่อที่จะแนบข้อมูลผู้ติดต่อ Signal ต้องได้รับอนุญาตให้เข้าถึงผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">เพื่อที่จะแนบข้อมูลตำแหน่งที่ตั้ง Signal ต้องได้รับอนุญาตให้เข้าถึงตำแหน่งที่ตั้ง แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ตำแหน่งที่ตั้ง\"</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s ยังไม่ได้เปิดใช้การชำระเงิน </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">คุณต้องการส่งคำขอให้ผู้ใช้รายนี้เปิดใช้การชำระเงินหรือไม่</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">ส่งคำขอ</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">ยกเลิก</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ประวัติการส่งข้อความของคุณกับ %1$s และอีกแชทของผู้ติดต่อถูกรวมเข้าด้วยกันเรียบร้อยแล้ว</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">คุณได้ส่งคำขอให้ %1$s เปิดใช้การชำระเงินแล้ว</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ต้องการให้คุณเปิดใช้การชำระเงิน เราขอแนะนำให้ส่งเงินให้คนที่คุณไว้วางใจเท่านั้น</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">คุณเปิดใช้การชำระเงินเรียบร้อยแล้ว</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s สามารถรับการชำระเงินได้แล้ว</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ได้เริ่มการโทรแบบกลุ่ม %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
     <string name="ThreadRecord_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">คุณส่งคำขอให้เปิดใช้การชำระเงินแล้ว</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ต้องการให้คุณเปิดใช้การชำระเงิน</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">คุณเปิดใช้การชำระเงินเรียบร้อยแล้ว</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s สามารถรับการชำระเงินได้แล้ว</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s ใช้งาน Signal</string>
     <string name="ThreadRecord_disappearing_messages_disabled">ข้อความที่ลบตัวเองถูกปิดใช้งานแล้ว</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">ตั้งเวลาข้อความที่ลบตัวเองไว้ที่ %1$s</string>
@@ -2906,8 +2906,8 @@
     <string name="PaymentsHomeFragment__received_payment">การชำระเงินที่ได้รับ</string>
     <string name="PaymentsHomeFragment__processing_payment">กำลังประมวลผลการชำระเงิน</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">ไม่มีการแปลงสกุลเงินให้ใช้</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">ไม่สามารถแสดงการแปลงค่าสกุลเงินได้ ตรวจสอบการเชื่อมต่อของโทรศัพท์และลองอีกครั้ง</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">ไม่สามารถแปลงสกุลเงินได้</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">ไม่สามารถแสดงการแปลงสกุลเงินได้ ตรวจสอบการเชื่อมต่อของโทรศัพท์และลองอีกครั้ง</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">การชำระเงินไม่มีให้ใช้ในภูมิภาคของคุณ</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">ไม่สามารถเปิดใช้งานการชำระเงินได้ ลองอีกครั้งภายหลัง</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">หยุดใช้การจ่ายเงินหรือไม่?</string>
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">เชิญมาใช้ Signal</string>
     <string name="FirstInviteReminder__description">คุณสามารถเพิ่มจำนวนของข้อความเข้ารหัสที่คุณส่งโดย %1$d%%</string>
-    <string name="SecondInviteReminder__title">เพิ่มความปลอดภัยของการพูดคุยใน Signal</string>
+    <string name="SecondInviteReminder__title">Boost เพื่อเติมพลังให้ Signal</string>
     <string name="SecondInviteReminder__description">เชิญ %1$s</string>
     <string name="InsightsReminder__view_insights">ดู Insights</string>
     <string name="InsightsReminder__invite">เชิญ</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">บันทึกวลีกู้คืน</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ใส่วลีกู้คืน</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">ยอดคงเหลือของคุณจะกู้คืนมาโดยอัตโนมัติเมื่อติดตั้ง Signal อีกครั้งและยืนยันรหัส Signal PIN ของคุณ นอกจากนี้ คุณยังสามารถกู้คืนยอดคงเหลือได้โดยใช้วลีกู้คืน ซึ่งเป็นวลี %1$d คำเฉพาะสำหรับคุณเท่านั้น จดบันทึกวลีนี้และเก็บไว้ในที่ปลอดภัย</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">คุณมียอดเงินคงเหลือ! ได้เวลาบันทึกวลีกู้คืนของคุณ ซึ่งคือรหัส 24 คำที่สามารถใช้เพื่อกู้คืนยอดเงินคงเหลือของคุณได้</string>
@@ -4366,7 +4366,7 @@
     <string name="CameraFragment__failed_to_open_camera">การเปิดกล้องล้มเหลว</string>
 
     <string name="BadgesOverviewFragment__my_badges">โล่ของฉัน</string>
-    <string name="BadgesOverviewFragment__featured_badge">โล่ที่น่าสนใจ</string>
+    <string name="BadgesOverviewFragment__featured_badge">โล่ติดโปรไฟล์</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">แสดงโล่บนโปรไฟล์</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
 
@@ -4387,15 +4387,15 @@
     <string name="SubscribeFragment__currency">สกุลเงิน</string>
     <string name="SubscribeFragment__more_payment_options">ตัวเลือกการชำระเงินเพิ่มเติม</string>
     <string name="SubscribeFragment__cancel_subscription">ยกเลิกการเป็นสมาชิก</string>
-    <string name="SubscribeFragment__confirm_cancellation">ยืนยันการยกเลิก</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">คุณจะไม่ถูกเรียกเก็บเงินอีก โล่ของคุณจะถูกลบออกจากโปรไฟล์เมื่อสิ้นสุดรอบเรียกเก็บเงิน</string>
+    <string name="SubscribeFragment__confirm_cancellation">ยืนยันการยกเลิกใช่ไหม</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">คุณจะไม่ถูกเรียกเก็บเงินอีก โล่ของคุณจะถูกลบออกจากโปรไฟล์เมื่อสิ้นสุดรอบการเรียกเก็บเงิน</string>
     <string name="SubscribeFragment__not_now">ไม่ใช่ตอนนี้</string>
     <string name="SubscribeFragment__confirm">ยืนยัน</string>
     <string name="SubscribeFragment__update_subscription">อัปเดตการเป็นสมาชิก</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">การเป็นสมาชิกของคุณถูกยกเลิกแล้ว</string>
     <string name="SubscribeFragment__update_subscription_question">อัปเดตการเป็นสมาชิกหรือไม่</string>
     <string name="SubscribeFragment__update">ปรับรุ่น</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">คุณจะถูกเรียกเก็บเงินเป็นจำนวนเต็ม (%1$s) ของราคาสามาชิกใหม่ในปัจจุบัน แล้วการเป็นสมาชิกของคุณจะต่ออายุแบบรายเดือน</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">คุณจะถูกเรียกเก็บเงินเป็นจำนวนเต็ม (%1$s) ของราคาสมาชิกใหม่ในปัจจุบัน โดยการเป็นสมาชิกของคุณจะต่ออายุแบบรายเดือน</string>
 
     <string name="Subscription__s_per_month">%1$s/ต่อเดือน</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4404,21 +4404,21 @@
     <string name="Subscription__expires_s">หมดอายุ %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal เป็นแอปที่ไม่แสวงผลกำไรที่ไม่มีโฆษณาหรือผู้ลงทุน สนับสนุนจากคนที่ใช้และเห็นคุณค่าของแอปเท่านั้น บริจาครายเดือนแล้วรับโล่โปรไฟล์เพื่อแสดงการสนับสนุนของคุณ</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">บริจาคไปทำไม?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal เป็นแอปที่ไม่แสวงผลกำไรที่ไม่มีโฆษณาหรือผู้ลงทุน สนับสนุนโดยคนที่ใช้และเห็นคุณค่าของแอปเท่านั้น บริจาครายเดือนแล้วรับโล่ติดโปรไฟล์เพื่อแสดงพลังในการสนับสนุนของคุณ</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">บริจาคไปทำไม</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal มุ่งมั่นในการพัฒนาเทคโนโลยีความเป็นส่วนตัวแบบโอเพ่นซอร์สที่ป้องกันการแสดงความคิดเห็นเสรีและเปิดใช้งานการสื่อสารทั่วโลกด้วยความปลอดภัย</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">การบริจาคของคุณจะเป็นพลังให้กับสิ่งนี้และเป็นค่าใช้จ่ายในการพัฒนาและดำเนินการของแอปที่ผู้คนเป็นล้านใช้ในการติดต่อสื่อสารส่วนตัว ไม่มีโฆษณา ไม่มีตัวติดตาม และไม่ได้มาเล่นๆ</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">เงินบริจาคของคุณช่วยจ่ายค่าพัฒนาและค่าดำเนินการของแอปที่ใช้โดยผู้คนนับล้านทั่วโลก เพื่อการสื่อสารที่เป็นส่วนตัว ไม่มีโฆษณา ไม่มีการติดตาม ไม่ได้มาเล่นๆ</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ขอบคุณสำหรับการสนับสนุน!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ขอบคุณสำหรับ Bosst!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">คุณได้รับโล่ %1$s ! แสดงโล่บนโปรไฟล์คุณเพื่อสร้างการรับรู้การบริจาคของคุณให้กับ Signal</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">คุณได้รับโล่ Boost! แสดงโล่นี้บนโปรไฟล์เพื่อสร้างการรับรู้การบริจาคของคุณให้กับ Signal</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ขอบคุณสำหรับการ Boost!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">คุณได้รับโล่ %1$s! แสดงโล่นี้บนหน้าโปรไฟล์ของคุณเพื่อกระตุ้นการรับรู้เรื่องการบริจาคให้กับ Signal</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">คุณได้รับโล่ Boost! แสดงโล่นี้บนหน้าโปรไฟล์ของคุณเพื่อกระตุ้นการรับรู้เรื่องการบริจาคให้กับ Signal</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">คุณยังสามารถ</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">เป็นผู้สนับสนุนรายเดือน</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">แสดงบนโปรไฟล์</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">สร้างโล่ที่น่าสนใจ</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ใช้เป็นโล่ติดโปรไฟล์</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">ดำเนินการต่อ</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">เมื่อคุณมีโล่มากกว่าหนึ่งอัน คุณสามารถเลือกได้หนึ่งอันเพื่อแสดงให้ผู้อื่นเห็นบนโปรไฟล์</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">เมื่อคุณมีโล่หลายอัน คุณสามารถเลือกหนึ่งในนั้นเป็นโล่ติดโปรไฟล์เพื่อแสดงให้คนอื่นๆ เห็นได้</string>
 
     <string name="BecomeASustainerFragment__get_badges">รับโล่สำหรับแสดงบนโปรไฟล์ของคุณด้วยการสนับสนุน Signal</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal เป็นแอปไม่แสวงผลกำไรที่ไม่มีโฆษณาหรือนักลงทุน สนับสนุนโดยคนแบบคุณเท่านั้น</string>
@@ -4433,14 +4433,14 @@
     <string name="ManageDonationsFragment__my_support">การสนับสนุนของฉัน</string>
     <string name="ManageDonationsFragment__manage_subscription">จัดการการเป็นสมาชิก</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จการบริจาค</string>
+    <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จรับเงินบริจาค</string>
     <string name="ManageDonationsFragment__badges">โล่</string>
     <string name="ManageDonationsFragment__subscription_faq">คำถามที่พบบ่อยเกี่ยวกับการเป็นสมาชิก</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">ข้อผิดพลาดการเป็นสมาชิก</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">ข้อผิดพลาดในการสมัครสมาชิก</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">วิธีอื่นๆ ในการมอบ</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">ให้ของขวัญโล่</string>
+    <string name="ManageDonationsFragment__gift_a_badge">ให้โล่เป็นของขวัญ</string>
 
     <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
     <string name="Boost__one_time_contribution">การบริจาคครั้งเดียว</string>
@@ -4456,9 +4456,9 @@
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">โล่ Boost หมดอายุแล้ว</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ยกเลิกการบริจาครายเดือน</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ยกเลิกการบริจาครายเดือนแล้ว</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">โล่ Boost ของคุณหมดอายุแล้ว และจะไม่ปรากฏบนโปรไฟล์คุณอีกต่อไป</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">โล่ Boost ของคุณหมดอายุแล้ว และจะไม่แสดงบนโปรไฟล์คุณอีกต่อไป</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">คุณสามารถเปิดใช้งานโล่ Boost ได้ใหม่เป็นเวลา 30 วันด้วยการบริจาคหนึ่งครั้ง</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">คุณสามารถใช้ Signal ต่อไปได้ แต่หากต้องการสนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ให้ลองพิจารณาการเป็นผู้สนับสนุนด้วยการบริจาครายเดือน</string>
@@ -4466,9 +4466,9 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">เพิ่ม Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ไม่ใช่ตอนนี้</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">การบริจาครายเดือนของคุณจะถูกยกเลิกโดยอัตโนมัติ เพราะว่าคุณไม่มีการเคลื่อนไหวมาเป็นระยะเวลานาน โล่ %1$sของคุณจะไม่ปรากฎบนโปรไฟล์อีกต่อไป</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">การบริจาครายเดือนของคุณถูกยกเลิกโดยอัตโนมัติ เนื่องจากคุณไม่มีการเคลื่อนไหวมาเป็นระยะเวลานาน โล่ %1$s ของคุณจะไม่แสดงบนโปรไฟล์อีกต่อไป</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">การบริจาครายเดือนของคุณยกเลิกเพราะเราไม่สามารถดำเนินการชำระเงินได้ โล่ของคุณจะไม่ปรากฏบนโปรไฟล์อีกต่อไป</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">การบริจาครายเดือนของคุณถูกยกเลิกเนื่องจากเราไม่สามารถดำเนินการชำระเงินได้ โล่ของคุณจะไม่แสดงบนโปรไฟล์อีกต่อไป</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">การบริจาครายเดือนของคุณถูกยกเลิก %1$s โล่ %2$s ของคุณจะไม่แสดงบนโปรไฟล์อีกต่อไป</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">คุณสามารถใช้ Signal ต่อไปได้ แต่หากต้องการสนับสนุนแอปและเปิดใช้งานโล่อีกครั้ง ให้ต่ออายุตอนนี้</string>
@@ -4489,8 +4489,8 @@
     <string name="DonationsErrors__error_processing_payment">การดำเนินการชำระเงินมีข้อผิดพลาด</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">การดำเนินการชำระเงินมีข้อผิดพลาด %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">โล่ของคุณไม่สามารถเพิ่มไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงิน กรุณาติดต่อฝ่ายสนับสนุน</string>
-    <string name="DonationsErrors__your_payment">การชำระเงินของคุณไม่สามารถดำเนินการได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">ไม่สามารถเพิ่มโล่ไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงินแล้ว กรุณาติดต่อฝ่ายสนับสนุน</string>
+    <string name="DonationsErrors__your_payment">ไม่สามารถดำเนินการชำระเงินของคุณได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
     <string name="DonationsErrors__still_processing">ยังดำเนินการอยู่</string>
     <string name="DonationsErrors__couldnt_add_badge">เพิ่มโล่ไม่ได้</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4498,16 +4498,16 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">ไม่สามารถตรวจยืนยันการตอบสนองเซิร์ฟเวอร์ได้ กรุณาติดต่อฝ่ายสนับสนุน</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">การส่งโล่ของขวัญล้มเหลว</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">ส่งโล่ของขวัญไม่สำเร็จ</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">ไม่สามารถส่งโล่ของขวัญได้ กรุณาติดต่อฝ่ายสนับสนุน</string>
-    <string name="DonationsErrors__your_badge_could_not">โล่ของคุณไม่สามารถเพิ่มไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงิน กรุณาติดต่อฝ่ายสนับสนุน</string>
+    <string name="DonationsErrors__your_badge_could_not">ไม่สามารถเพิ่มโล่ไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงินแล้ว กรุณาติดต่อฝ่ายสนับสนุน</string>
     <string name="DonationsErrors__your_payment_is_still">การชำระเงินของคุณยังคงดำเนินการอยู่ อาจจะใช้เวลาสักครู่ ขึ้นอยู่กับการสัญญาณอินเทอร์เน็ตของคุณ</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ไม่สามารถใช้งานได้</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">คุณต้องตั้งค่า Google Pay เพื่อบริจาคผ่านในตัวแอป</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">การยกเลิกสมาชิกล้มเหลว</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">การจะยกเลิกสมาชิกต้องมีการเชื่อมต่ออินเทอร์เน็ต</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">อุปกรณ์ของคุณไม่รองรับ Google Pay คุณจึงไม่สามารถสมัครเพื่อรับโล่ได้ แต่คุณสามารถสนับสนุน Signal ได้ด้วยการบริจารบนเว็บไซต์ของเรา</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">ยกเลิกการเป็นสมาชิกไม่สำเร็จ</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">คุณต้องเชื่อมต่ออินเทอร์เน็ตจึงจะยกเลิกการเป็นสมาชิกได้</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">อุปกรณ์ของคุณไม่รองรับ Google Pay คุณจึงไม่สามารถสมัครเพื่อรับโล่ได้ แต่คุณสามารถสนับสนุน Signal ได้ด้วยการบริจาคบนเว็บไซต์ของเรา</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">เครือข่ายมีข้อผิดพลาด ตรวจสอบการเชื่อมต่อแล้วลองใหม่อีกครั้ง</string>
     <string name="NetworkFailure__retry">ลองใหม่</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4732,7 +4732,7 @@
     <!-- Donation receipts list end note -->
     <string name="DonationReceiptListFragment__if_you_have">ถ้าคุณติดตั้ง Signal ใหม่ ใบเสร็จจากการบริจาคก่อนหน้านี้จะไม่สามารถใช้งานได้</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">ใบเสร็จการบริจาค</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">ใบเสร็จรับเงินบริจาค</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">ยอดเงิน</string>
     <!-- Donation receipts thanks -->
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ยังไม่มีคนดู</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">เปิดใช้ตัวเลือกการแจ้งว่าอ่านแล้ว เพื่อแสดงว่าใครดูสตอรี่ของคุณ</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ไปที่การตั้งค่า</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5107,9 +5107,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">ขอบคุณสำหรับการสนับสนุน!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">คุณได้รับโล่ของขวัญจาก %1$s! ช่วย Signal สร้างการรับรู้ด้วยการแสดงโล่นี้บนโปรไฟล์ของคุณ</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">คุณได้รับโล่ของขวัญจาก %1$s! ช่วย Signal ในการกระตุ้นการรับรู้เรื่องการบริจาคด้วยการแสดงโล่นี้บนโปรไฟล์ของคุณ</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">คุณได้ให้โล่ของขวัญกับ %1$s เมื่อคุณรับ เขาจะได้รับตัวเลือกให้แสดงหรือซ่อนโล่</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">คุณได้ให้โล่ของขวัญกับ %1$s โดยผู้รับสามารถเลือกได้ว่าจะแสดงหรือซ่อนโล่</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">แลกเปลี่ยน</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5119,11 +5119,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">คุณสามารถแลกโล่ได้ภายหลัง</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">คุณได้ให้โล่ของขวัญกับ %1$s เมื่อคุณรับ เขาจะได้รับตัวเลือกให้แสดงหรือซ่อนโล่</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">คุณได้ให้โล่ของขวัญกับ %1$s โดยผู้รับสามารถเลือกได้ว่าจะแสดงหรือซ่อนโล่</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">โล่ของขวัญคุณหมดอายุแล้ว</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">โล่ของขวัญหมดอายุแล้ว</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">โล่ของขวัญคุณหมดอายุแล้ว และคนอื่นจะไม่สามารถมองเห็นโล่บนโปรไฟล์ของคุณได้อีกต่อไป</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">โล่ของขวัญหมดอายุแล้ว และคนอื่นจะไม่สามารถมองเห็นโล่บนโปรไฟล์ของคุณได้อีกต่อไป</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">เพื่อสนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณต่อไป ได้โปรดพิจารณาการเป็นผู้สนับสนุนรายเดือน</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5470,7 +5470,7 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">บริจาค %1$s ให้ Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">รับโล่ %1$s เป็นเวลา %2$d วัน</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">บัตรเครดิตหรือบัตรเดบิต</string>

@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal се нуждае от достъп до контактите Ви, за да може да прикачва информация за тях, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Контакти\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal се нуждае от достъп до местоположението Ви, за да може да го прикачва, но той му е отказан. Моля, отидете на настройки в менюто и изберете \"Разрешения\" и \"Местоположение\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s няма активирани Плащания </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Искате ли да изпратите заявка на потребителя да активира Плащанията?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Изпращане на заявка</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Отказ</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Хронологията на съобщенията между вас и %1$s и друг чат със същия контакт беше слята.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Изпратихте на %1$s заявка за активиране на Плащания</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s иска да активирате Плащанията. Пращайте плащания само на доверени хора.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Вие активирахте Плащания</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s вече може да приема Плащания</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s започна групов разговор · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Това съобщение беше изтрито.</string>
     <string name="ThreadRecord_you_deleted_this_message">Изтрихте това съобщение.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Изпратихте заявка за активиране на Плащания</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s иска да активирате Плащания</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Вие активирахте Плащания</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s вече може да приема Плащания</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s е в Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Изчезващите съобщения са деактивирани</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за изчезване на съобщенията е %1$s</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Актуализирайте Signal, за да продължите да използвате плащания. Възможно е балансът ви да не е актуален.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Обнови сега</string>
 
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">Преглед</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Съобщенията ще изчезват след %1$s когато им пишете.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Дари</string>
+    <string name="ConversationUpdateItem_donate">Дарете</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Send Payment</string>
     <!-- Update item button text to activate payments -->
@@ -2712,7 +2712,7 @@
     <string name="preferences__slow">Бавно</string>
     <string name="preferences__help">Помощ</string>
     <string name="preferences__advanced">Допълнителни</string>
-    <string name="preferences__donate_to_signal">Дари на Signal</string>
+    <string name="preferences__donate_to_signal">Дарете на Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">Еднократно дарение</string>
     <string name="preferences__privacy">Поверителност</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Не сега</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Необходима е актуализация</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Необходима е актуализация, за да продължите да изпращате и получавате плащания и да виждате актуалния си платежен баланс.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Отказ</string>
     <!-- Alert dialog button to update now -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Запазване на фраза за възстановяване</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Въвеждане на фразата за възстановяване</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Балансът ви ще се възстанови автоматично при преинсталиране на Signal, ако потвърдите PIN кода на Signal. Също така можете да възстановите баланса си с помощта на фраза за възстановяване, която представлява уникална за вас фраза от %1$d дума. Запишете я и я съхранявайте на сигурно място.</item>
+        <item quantity="other">Балансът ви ще се възстанови автоматично при преинсталиране на Signal, ако потвърдите PIN кода на Signal. Също така можете да възстановите баланса си с помощта на фраза за възстановяване, която представлява уникална за вас фраза от %1$d думи. Запишете я и я съхранявайте на сигурно място.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Имате баланс! Време е да запазите своята фраза за възстановяване. Тя представлява ключ от 24 думи, който можете да използвате, за да възстановите баланса си.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Премахнете SMS съобщенията</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Премахване на SMS съобщения от Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Премахване на SMS съобщения от Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Можете да премахнете SMS съобщения от Signal в „Настройки“ по всяко време.</string>
     <!-- Description for export sms preference -->
@@ -4220,11 +4220,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Селектор за долен ръб</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Дари на Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Дарете на Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal се движи от хора като вас. Дарявайте всеки месец, за да получите значка.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Дари</string>
+    <string name="Donate2022Q2Megaphone_donate">Дарете</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Не сега</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal съществува благодарение на хора като вас. Дарете и получете значка.</string>
     <string name="BecomeASustainerMegaphone__not_now">Не сега</string>
-    <string name="BecomeASustainerMegaphone__donate">Дари</string>
+    <string name="BecomeASustainerMegaphone__donate">Дарете</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Емоджи</string>
@@ -4528,7 +4528,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal е организация с нестопанска цел, без рекламодатели или инвеститори, подкрепяна само от хора като вас.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Дари на Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Дарете на Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Още</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4586,7 +4586,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Моля, свържете се с отдела за поддръжка за повече информация.</string>
     <string name="Subscription__contact_support">Връзка с отдела за поддръжка</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Вземете значка %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Обработка на плащането…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Все още няма гледания</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Включете разписките за прочитане, за да разберете кой е видял историите ви.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Отидете на настройки</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5222,7 +5222,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Получихте значка за подарък от %1$s! Помогнете на Signal да повиши осведомеността, като покажете тази значка на профила си.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Подарихте значка на %1$s. Когато потребителят я приеме, ще получи даден избор дали да покаже или да скрие значката си.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Подарихте значка на %1$s. Когато потребителят я приеме, ще има избор дали да покаже или да скрие значката си.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Осребряване</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,7 +5232,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Можете да осребрите значката си по-късно.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарихте значка на %1$s. Когато потребителят я приеме, ще получи избор дали да я покаже, или скрие.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарихте значка на %1$s. Когато потребителят я приеме, ще има избор дали да покаже или да скрие значката си.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Вашата значка за подарък е изтекла</string>
     <!-- Expired gift sheet top description text -->
@@ -5588,13 +5588,13 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Дарявайте %1$s/месец на Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Вземете значка %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Дарете %1$s на Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Получете значка „%1$s“ за %2$d ден</item>
+        <item quantity="other">Получете значка „%1$s“ за %2$d дни</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Кредитна или дебитна карта</string>

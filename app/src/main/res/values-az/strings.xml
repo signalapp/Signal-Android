@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, əlaqə məlumatlarını əlavə etmək üçün Əlaqələrə müraciət icazəsi tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələr menyusunda \"İcazələr\"i seçib \"Əlaqələr\"i fəallaşdırın.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, yerləşmə məlumatlarını əlavə etmək üçün Yerləşməyə müraciət icazəsi tələb edir, ancaq bu icazə birdəfəlik rədd edilib. Zəhmət olmasa tətbiq tənzimləmələr menyusunda \"İcazələr\"i seçib \"Yerləşmə\"ni fəallaşdırın.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s aktiv Ödənişlərə malik deyil </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Ona aktiv Ödənişlər üçün bir sorğu göndərmək istəyirsiniz?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Bir sorğu göndər</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">İmtina</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">%1$d qoşma yaddaşda saxlanılır</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Qoşma yaddaş faylında saxlanılır...</item>
-        <item quantity="other">%1$d qoşma yaddaş faylında saxlanılır...</item>
+        <item quantity="one">Qoşma yaddaş faylında saxlanılır…</item>
+        <item quantity="other">%1$d qoşma yaddaş faylında saxlanılır…</item>
     </plurals>
     <string name="ConversationFragment_pending">Gözlənilir…</string>
     <string name="ConversationFragment_push">Verilənlər (Signal)</string>
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ilə olan mesaj tarixçəniz və ona aid digər bir söhbət birləşdirildi.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Siz %1$s adlı istifadəçiyə Ödənişləri aktivləşdirmə sorğusu göndərdiniz</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s sizdən Ödənişləri aktivləşdirmənizi istəyir. Ödənişləri yalnız etibar etdiyiniz şəxslərə göndərin.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ödənişləri aktivləşdirdiniz</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s artıq Ödənişləri qəbul edə bilər</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s bir qrup zəngi başlatdı · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Bu mesaj silindi.</string>
     <string name="ThreadRecord_you_deleted_this_message">Bu mesajı sildiniz.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Ödənişləri aktivləşdirmə sorğusu göndərdiniz</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s sizdən Ödənişləri aktivləşdirmənizi istəyir</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ödənişləri aktivləşdirdiniz</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s artıq Ödənişləri qəbul edə bilər</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s artıq Signal-dadır!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Yox olan mesajlar sıradan çıxarıldı</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Yox olan mesaj vaxtı %1$s olaraq tənzimləndi</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Ödənişlərdən istifadəyə davam etmək üçün Signal-ı aktivləşdirin. Balansınız yenilənməmiş ola bilər.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">İndi yenilə</string>
 
@@ -2598,7 +2598,7 @@
         <item>Rəy</item>
         <item>Digər</item>
         <item>Ödənişlər (MobileCoin)</item>
-        <item>İanələr &amp; Nişanlar</item>
+        <item>İanələr və Nişanlar</item>
         <item>SMS ixracı</item>
     </string-array>
 
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Alındı</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Budur, ödənişlər (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gizliliyə fokuslanmış yeni rəqəmsal pul vahidi olan MobileCoin göndərmək və almaq üçün Signal istifadə edin. Başlatmaq üçün aktivləşdirin.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Məxfiliyə əsaslanan yeni rəqəmsal pul vahidi olan MobileCoin göndərmək və almaq üçün Signal-dan istifadə edin. Başlatmaq üçün aktivləşdirin.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ödənişləri aktivləşdir</string>
     <string name="PaymentsHomeFragment__activating_payments">Ödənişlər aktivləşdirilir…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Ödəniş hesabını geri yüklə</string>
@@ -2993,7 +2993,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Ödəniş emal olunur</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Pul vahidinin çevrilməsi əlçatmazdır</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Pul vahidinin çevrilməsi görüntülənə bilmir. Telefonunuzun bağlantısını yoxlayıb yenidən sınayın.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Pul vahidinin çevrilməsini göstərmək mümkün deyil. Telefonunuzun bağlantısını yoxlayıb yenidən cəhd edin.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödənişlər bölgənizdə əlçatmazdır.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Ödənişlər fəallaşdırıla bilmir. Daha sonra yenidən sınayın.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Ödənişlər deaktiv edilsin?</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">İndi yox</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Yeniləmə tələb olunur</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Ödənişləri göndərməyə və almağa davam etmək, o cümlədən yenilənmiş ödəniş balansınıza baxmaq üçün yeniləmə tələb olunur.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">İmtina</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$s , %3$s %1$s</string>
     <string name="PaymentsDetailsFragment__to">Alıcı</string>
     <string name="PaymentsDetailsFragment__from">Göndərən</string>
-    <string name="PaymentsDetailsFragment__information">Ödəniş miqdarı və əməliyyat vaxtını ehtiva edən əməliyyat təfsilatları, MobileCoin Ledger-in bir hissəsidir.</string>
+    <string name="PaymentsDetailsFragment__information">Ödəniş miqdarı və əməliyyat vaxtını əhatə edən əməliyyat təfərrüatları MobileCoin Ledger-in bir hissəsidir.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Xırda pul təmizləmə haqqı</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Sahib olduğunuz xırda pullar, bir əməliyyatı tamamlamaq üçün birləşdirilə bilməyəndə \"Xırda pul təmizləmə haqqı\" tutulur. Təmizləmə, ödəniş göndərməyə davam etməyinizi təmin edir.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Bu əməliyyatla bağlı əlavə məlumat yoxdur</string>
@@ -3156,7 +3156,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s - %2$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">Pul vahidini tənzimlə</string>
+    <string name="SetCurrencyFragment__set_currency">Pul vahidi təyin edin</string>
     <string name="SetCurrencyFragment__all_currencies">Bütün pul vahidləri</string>
 
     <!-- **************************************** -->
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Signal-a dəvət edin</string>
     <string name="FirstInviteReminder__description">Göndərilən şifrəli mesajlarınızın sayını %1$d%% artıra bilərsiniz.</string>
-    <string name="SecondInviteReminder__title">Signal-ınızı gücləndirin</string>
+    <string name="SecondInviteReminder__title">Signal-ı gücləndirin</string>
     <string name="SecondInviteReminder__description">%1$s əlaqəsini dəvət edin</string>
     <string name="InsightsReminder__view_insights">Təhlillərə baxın</string>
     <string name="InsightsReminder__invite">Dəvət et</string>
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin haqqında</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin, gizliliyə fokuslanmış yeni bir rəqəmsal pul vahididir.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin məxfiliyə əsaslanan yeni rəqəmsal pul vahididir.</string>
     <string name="payment_info_card_adding_funds">Pul əlavə etmə</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin-i pulqabı ünvanınıza göndərərək Signal-da istifadə etmək üçün pul əlavə edə bilərsiniz.</string>
     <string name="payment_info_card_cashing_out">Nağdlaşdırma</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Bərpa parolunu yaddaşda saxlayın</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Bərpa parolunu daxil edin</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Signal PIN kodunuzu təsdiqləmisinizsə, Signal-ı yenidən quraşdıranda balansınız avtomatik bərpa olunacaq. Həmçinin sizə məxsus %1$d sözdən ibarət bir bərpa parolundan istifadə edərək balansınızı yenidən bərpa edə bilərsiniz. Bunu bir yerə qeyd edərək etibarlı şəkildə saxlayın.</item>
+        <item quantity="other">Signal PIN kodunuzu təsdiqləmisinizsə, Signal-ı yenidən quraşdıranda balansınız avtomatik bərpa olunacaq. Həmçinin sizə məxsus %1$d sözdən ibarət bir bərpa parolundan istifadə edərək balansınızı yenidən bərpa edə bilərsiniz. Bunu bir yerə qeyd edərək etibarlı şəkildə saxlayın.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Balans əldə etdiniz! Bərpa parolunu yaddaşda saxlamaq vaxtıdır— balansınızı bərpa etmək üçün 24 sözdən ibarət bir şifrə.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını sil</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mesajları Signal-dan silinir...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">SMS mesajları Signal-dan silinir…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Parametrlərə keçərək Signal-dan SMS mesajlarını istədiyiniz vaxt silə bilərsiniz.</string>
     <!-- Description for export sms preference -->
@@ -4245,7 +4245,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bir dəstəkçi olun</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal, sizin kimi insanların sayəsində güclənir. İanə verin və bir profil nişanı əldə edin.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal sizin kimi insanların sayəsində güclənir. İanə verin və bir profil nişanı əldə edin.</string>
     <string name="BecomeASustainerMegaphone__not_now">İndi yox</string>
     <string name="BecomeASustainerMegaphone__donate">İanə ver</string>
 
@@ -4471,7 +4471,7 @@
 
     <string name="BadgesOverviewFragment__my_badges">Nişanlarım</string>
     <string name="BadgesOverviewFragment__featured_badge">Xüsusi nişan</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Profildə görüntülənən nişanlar</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Profildə görünən nişanlar</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profil yenilənmədi</string>
 
 
@@ -4490,39 +4490,39 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal-ı dəstəkləyən cəmiyyətə qoşularaq verilənləriniz üçün yox, sizin üçün hazırlanmış texnologiyaya dəstək verin.</string>
     <string name="SubscribeFragment__currency">Pul vahidi</string>
     <string name="SubscribeFragment__more_payment_options">Daha çox ödəniş seçimləri</string>
-    <string name="SubscribeFragment__cancel_subscription">Abunəlikdən imtina</string>
-    <string name="SubscribeFragment__confirm_cancellation">İmtinanı təsdiqləyirsiniz?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Təkrar ödəniş alınmayacaq. Nişanınız, faktura dövrünün sonunda profilinizdən çıxarılacaq.</string>
+    <string name="SubscribeFragment__cancel_subscription">Abunəliyi ləğv et</string>
+    <string name="SubscribeFragment__confirm_cancellation">Ləğvetmə təsdiqlənsin?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Sizdən təkrar ödəniş tələb edilməyəcək. Nişanınız faktura dövrünün sonunda profilinizdən çıxarılacaq.</string>
     <string name="SubscribeFragment__not_now">İndi yox</string>
     <string name="SubscribeFragment__confirm">Təsdiqlə</string>
     <string name="SubscribeFragment__update_subscription">Abunəliyi yenilə</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abunəlikdən imtina edildi.</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abunəliyiniz ləğv olundu.</string>
     <string name="SubscribeFragment__update_subscription_question">Abunəlik yenilənsin?</string>
     <string name="SubscribeFragment__update">Yenilə</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bu gün yeni abunəlik haqqı (%1$s) sizdən tutulacaq. Abunəlik aylıq yenilənəcək.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bu gün sizdən yeni abunəlik haqqı (%1$s) tələb ediləcək. Abunəliyiniz aylıq yenilənəcək.</string>
 
     <string name="Subscription__s_per_month">%1$s/ay</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Yenilənir %1$s</string>
+    <string name="Subscription__renews_s">%1$s yenilənir</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Abunəliyin bitmə vaxtı: %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Hər ay müntəzəm olaraq ianə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal reklam verəni və ya investoru olmayan, yalnız onu istifadə edən və ona dəyər verən insanlar tərəfindən dəstəklənən qeyri-kommersiya təşkilatıdır. Müntəzəm şəkildə aylıq ianə verin və dəstəyinizi paylaşmaq üçün bir profil nişanı alın.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Niyə ianə verməliyəm?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, azad ifadəni qoruyan və güvənli qlobal ünsiyyətə imkan verən açıq mənbəli gizlilik texnologiyasını inkişaf etdirmək missiyasına sadiqdir.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">İanəniz, bu niyyətə xidmət edir və özəl ünsiyyət üçün milyonlarla insan tərəfindən istifadə olunan tətbiqin inkişafı və əməliyyat xərclərini qarşılayır. Reklam yoxdur. İzləmə yoxdur. Zarafat yoxdur.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">İanəniz bu niyyətə xidmət edir və şəxsi ünsiyyət üçün milyonlarla insan tərəfindən istifadə olunan tətbiqin inkişafı və əməliyyat xərclərini qarşılayır. Reklamsız. Nəzarətsiz. Yalansız.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Gücləndirmə üçün təşəkkürlər!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s nişanını qazandınız! Signal-a ianə verilməsi üzrə fərqindəlik yaratmaq üçün bu nişanı profilinizdə nümayiş etdirin.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Gücləndirmə işanını qazandınız! Signal-a ianə verilməsi üzrə fərqindəlik yaratmaq üçün bu nişanını profilinizdə nümayiş etdirin.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Stimul üçün təşəkkürlər!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s nişanını qazandınız! Signal-a ianə ilə əlaqəli maarifləndirmə üçün bu nişanı profilinizdə nümayiş etdirin.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Stimul nişanını qazandınız! Signal-a ianə ilə əlaqəli maarifləndirmə üçün bu nişanını profilinizdə nümayiş etdirin.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Həmçinin</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylıq bir Dəstəkçi ola bilərsiniz.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profildə görüntülə</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Xüsusi nişan hazırla</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Davam et</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olanda, profilinizdə başqalarının görməsi üçün birini seçə bilərsiniz.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bir neçə nişana sahib olduğunuz zaman, profilinizdə başqalarının görməsi üçün onlardan birini seçə bilərsiniz.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Signal-ı dəstəkləyərək profiliniz üçün nişanlar qazanın.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal, reklamları və ya investoru olmayan və yalnız sizin kimi insanlardan dəstək alan qeyri-kommersiya təşkilatıdır.</string>
@@ -4539,48 +4539,48 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">İanə qəbzləri</string>
     <string name="ManageDonationsFragment__badges">Nişanlar</string>
-    <string name="ManageDonationsFragment__subscription_faq">Abunəlik üçün TSS</string>
+    <string name="ManageDonationsFragment__subscription_faq">Abunəliklə əlaqəli Tez-tez verilən suallar</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Abunəlik alma xətası.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Digər metodlar</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Bir nişan hədiyyə et</string>
 
-    <string name="Boost__enter_custom_amount">Özəl məbləğ daxil edin</string>
+    <string name="Boost__enter_custom_amount">Xüsusi məbləğ daxil et</string>
     <string name="Boost__one_time_contribution">Birdəfəlik töhfə</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal gücləndirməsi əlavə et</string>
+    <string name="MySupportPreference__add_a_signal_boost">Signal Stimul əlavə et</string>
     <string name="MySupportPreference__s_per_month">%1$s/ay</string>
-    <string name="MySupportPreference__renews_s">Yenilənir %1$s</string>
+    <string name="MySupportPreference__renews_s">%1$s yenilənir</string>
     <string name="MySupportPreference__processing_transaction">Əməliyyat emal edilir…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Nişan əlavə edilə bilmir. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Nişan əlavə etmək mümkün olmadı. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Gücləndirmə nişanının müddəti bitdi</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Stimul nişanının müddəti bitdi</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Aylıq ianə ləğv edildi</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Gücləndirmə nişanınızın müddəti bitdi, artıq profilinizdə görünmür.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Gücləndirmə nişanını növbəti 30 gün üçün təksəfərlik töhfə ilə təkrar aktivləşdirə bilərsiniz.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Stimul nişanınızın müddəti bitdi və artıq profilinizdə görünmür.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Stimul nişanını növbəti 30 gün üçün birdəfəlik ianə edərək yenidən aktivləşdirə bilərsiniz.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq sizin üçün qurulmuş texnologiyanı dəstəkləmək üçün aylıq ianə verərək dəstəkçi olmağı düşünməyinizi istərdik.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal-dan istifadəyə davam edə bilərsiniz, ancaq sizin üçün qurulmuş texnologiyanı dəstəkləmək məqsədilə aylıq ianə verərək davamlı dəstəkçi olmağı da nəzərə ala bilərsiniz.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bir dəstəkçi olun</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Bir Gücləndirmə əlavə et</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Bir Stimul əlavə et</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">İndi yox</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Uzun müddət aktiv olmadığınız üçün təkrarlanan aylıq ianəniz avtomatik olaraq ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Uzun müddət aktiv olmadığınız üçün təkrarlanan aylıq ianəniz avtomatik ləğv edildi. %1$s nişanınız artıq profilinizdə görünmür.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ödənişinizi emal edə bilmədiyimizə görə təkrarlanan aylıq ianəniz ləğv edildi. Artıq nişanınız profilinizdə görünmür.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Təkrarlanan aylıq ianəniz ləğv edildi. %1$s Sizin %2$s nişanınız artıq profilinizdə görünmür.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-ı istifadə etməyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktiv etmək üçün abunəliyi indi yeniləyin.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal-dan istifadəyə davam edə bilərsiniz, ancaq tətbiqi dəstəkləmək və nişanınızı təkrar aktivləşdirmək üçün abunəliyi indi yeniləyin.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Abunəliyi yenilə</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Play-ə keç</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Abunəlik ödənişi emal edilə bilmir</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Abunəlik ödənişini emal etmək mümkün deyil</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal Dəstəkçi ödənişinizi almaqda çətinlik çəkirik. Ödəniş metodunuzun güncəl olduğuna əmin olun. Əgər deyilsə, Google Play-də yeniləyin. Signal, bir neçə gün sonra ödənişi yenidən emal etməyə çalışacaq.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Bunu təkrar göstərmə</string>
 
@@ -4593,25 +4593,25 @@
     <string name="DonationsErrors__error_processing_payment">Ödəniş emal xətası</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Ödəniş emal xətası. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Nişanınız hesabınıza əlavə edilə bilmədi, ancaq sizdən ödəniş alınmış ola bilər. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
-    <string name="DonationsErrors__your_payment">Ödənişiniz emal edilə bilmədi və sizdən ödəniş alınmadı. Zəhmət olmasa yenidən sınayın.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Nişanınızı hesabınıza əlavə etmək mümkün olmadı, ancaq sizdən ödəniş alınmış ola bilər. Dəstək xidməti ilə əlaqə saxlayın.</string>
+    <string name="DonationsErrors__your_payment">Ödənişinizi emal etmək mümkün olmadı və sizdən ödəniş alınmadı. Yenidən cəhd edin.</string>
     <string name="DonationsErrors__still_processing">Hələ də emal olunur</string>
-    <string name="DonationsErrors__couldnt_add_badge">Nişan əlavə edilə bilmir</string>
+    <string name="DonationsErrors__couldnt_add_badge">Nişan əlavə etmək mümkün olmadı</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Nişan təsdiqlənmədi</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Serverin cavabı təsdiqlənə bilmədi. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Hədiyyə göndərilmədi</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Hədiyyə nişan göndərilmədi</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Hədiyyə göndərilə bilmədi. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
-    <string name="DonationsErrors__your_badge_could_not">Nişanınız hesabınıza əlavə edilə bilmədi, ancaq sizdən ödəniş alınmış ola bilər. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Hədiyyə nişanı göndərmək mümkün olmadı. Dəstək xidməti ilə əlaqə saxlayın.</string>
+    <string name="DonationsErrors__your_badge_could_not">Nişanınızı hesabınıza əlavə etmək mümkün olmadı, ancaq sizdən ödəniş alınmış ola bilər. Dəstək xidməti ilə əlaqə saxlayın.</string>
     <string name="DonationsErrors__your_payment_is_still">Ödənişiniz emal olunur. Bu, bağlantınızdan asılı olaraq bir neçə dəqiqə çəkə bilər.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay əlçatmazdır</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Tətbiq daxilində ianə etmək üçün \"Google Pay\"i quraşdırmalısınız.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abunəlik ləğvi üçün internet bağlantısı tələb olunur.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazınız, \"Google Pay\"i dəstəkləmir, ona görə də, nişan qazanmaq üçün abunə ola bilməzsiniz. Veb saytımızdan ianə edərək Signal-a dəstək ola bilərsiniz.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazınız \"Google Pay\"i dəstəkləmir, buna görə də, nişan qazanmaq üçün abunə ola bilməzsiniz. Veb saytımızdan ianə edərək Signal-a yenə də dəstək ola bilərsiniz.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Şəbəkə xətası. Bağlantınızı yoxlayıb yenidən sınayın.</string>
     <string name="NetworkFailure__retry">Yenidən sına</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4825,7 +4825,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Hədiyyə</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Gücləndirmə</string>
+    <string name="DonationReceiptListFragment__boost">Stimul</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Təfsilatlar</string>
     <!-- Donation receipts donation type heading -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Hələ ki, baxış yoxdur</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Hekayələrinizə baxanları görmək üçün oxunma bildirişlərini aktivləşdirin.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Parametrlərə keçin</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5198,7 +5198,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Bir nişan hədiyyə et</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal üçün onun adına ianə edərək kiməsə nişan hədiyyə edin. Profil fotosunda nümayiş etdirmək üçün bir nişan alacaq.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal üçün birinin adından ianə edərək ona nişan hədiyyə edin. O, profil fotosunda nümayiş etdirəcəyi bir nişan alacaq.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Növbəti</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5222,7 +5222,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s sizə bir hədiyyə nişanı göndərdi! Bu nişanı profilinizdə nümayiş etdirərək Signal-ın fərqindəlik yaratmasına kömək edin.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s üçün bir nişan hədiyyə etdiniz. Qəbul ediləndə ona nişanı göstərmə və ya gizlətmə seçimi təqdim olunur.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s üçün bir nişan hədiyyə etdiniz. Qəbul edildikdən sonra ona nişanı göstərmə və ya gizlətmə seçimi təqdim olunur.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Al</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,11 +5232,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Hədiyyənizi daha sonra ala bilərsiniz.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s üçün bir nişan hədiyyə etdiniz. Qəbul ediləndə ona nişanı göstərmə və ya gizlətmə seçimi təqdim olunur.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s üçün bir nişan hədiyyə etdiniz. Qəbul edildikdən sonra ona nişanı göstərmə və ya gizlətmə seçimi təqdim olunur.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hədiyyə nişanınızın müddəti bitdi</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Hədiyyə nişanınızın müddəti bitdi, artıq profilinizdə digərlərinə görünmür.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Hədiyyə nişanınızın müddəti bitdi, artıq profilinizdə görünmür.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal-a %1$s ianə verin</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d günlük %1$s nişanı əldə edin</item>
+        <item quantity="other">%2$d günlük %1$s nişanı əldə edin</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredit və ya debet kartı</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Ləğv edilir...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Ləğv edilir…</string>
 
     <!-- EOF -->
 

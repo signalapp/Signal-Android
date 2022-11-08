@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal krever tillatelse fra systemet for å kunne legge til kontaktinformasjon, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Kontakter».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal krever tillatelse fra systemet for å kunne legge til posisjonsdata, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Posisjon».</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s har ikke aktivert betalinger </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Vil du sende vedkommende en forespørsel om å aktivere betalinger?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Send forespørsel</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Avbryt</string>
 
@@ -135,7 +135,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Bidragsbeløp: %1$s</string>
+    <string name="CreditCardFragment__donation_amount_s">Pengebeløp: %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">Skriv inn kortinformasjonen din nedenfor</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Meldingsloggen din med %1$s har blitt slått sammen med en annen samtale som tilhørte vedkommende.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Du har sendt en forespørsel til %1$s om å aktivere betalinger</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vil at du skal aktivere betalinger. Send kun betalinger til personer du stoler på.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Du har aktivert betalinger</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s kan nå motta betalinger</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Denne meldingen ble slettet.</string>
     <string name="ThreadRecord_you_deleted_this_message">Du slettet denne meldingen.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Du har sendt en forespørsel om å aktivere betalinger</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vil at du skal aktivere betalinger</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Du har aktivert betalinger</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s kan nå motta betalinger</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s er på Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Tidsavgrensede meldinger deaktivert</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Utløpstiden for meldinger endret til %1$s</string>
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">Vis</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Utløpstiden for meldinger blir satt til %1$s når du melder dem.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Donér</string>
+    <string name="ConversationUpdateItem_donate">Gi penger</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Send Betaling</string>
     <!-- Update item button text to activate payments -->
@@ -2598,7 +2598,7 @@
         <item>Tilbakemelding</item>
         <item>Annet</item>
         <item>Betalinger (MobileCoin)</item>
-        <item>Pengegaver og merker</item>
+        <item>Pengebeløp og merker</item>
         <item>Eksporter SMS</item>
     </string-array>
 
@@ -2712,7 +2712,7 @@
     <string name="preferences__slow">Langsomt</string>
     <string name="preferences__help">Hjelp</string>
     <string name="preferences__advanced">Avansert</string>
-    <string name="preferences__donate_to_signal">Donér til Signal</string>
+    <string name="preferences__donate_to_signal">Gi penger til Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">Engangsbeløp</string>
     <string name="preferences__privacy">Personvern</string>
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s på %3$s</string>
     <string name="PaymentsDetailsFragment__to">Til</string>
     <string name="PaymentsDetailsFragment__from">Fra</string>
-    <string name="PaymentsDetailsFragment__information">Transaksjonsinformasjonen, inkludert betalingsbeløp og transaksjonstid, finner du i din MobileCoin-hovedbok.</string>
+    <string name="PaymentsDetailsFragment__information">Transaksjonsinformasjonen, inkludert betalingsbeløp og transaksjonstidspunkt, finner du i MobileCoin-hovedboken.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Myntoppryddingsgebyr</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Myntoppryddingsgebyr\" belastes når myntene i din besittelse ikke kan kombineres for å fullføre en transaksjon. Oppryddingen vil tillate deg å fortsette å sende betalinger.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Det finnes ikke mer informasjon om denne transaksjonen</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Inviter til Signal</string>
     <string name="FirstInviteReminder__description">Du kan øke antallet krypterte meldinger du sender av %1$d%%</string>
-    <string name="SecondInviteReminder__title">Styrk ditt Signal</string>
+    <string name="SecondInviteReminder__title">Gi Signal en Boost-gave</string>
     <string name="SecondInviteReminder__description">Inviter %1$s</string>
     <string name="InsightsReminder__view_insights">Se Innsikt</string>
     <string name="InsightsReminder__invite">Inviter</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Sletter kontoen …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutter abonnementet …</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutter abonnementet …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Dette kan ta et par minutter, avhengig av hvor mange grupper du er med i</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Lagre gjenopprettingsfrasen</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Skriv inn gjenopprettingsfrasen</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Saldoen din gjenopprettes automatisk når du installerer Signal på nytt og bekrefter med PIN-koden din. Du kan også gjenopprette saldoen din med en gjenopprettingsfrase, som er en setning på %1$d ord som du velger selv. Skriv den ned og oppbevar den på et trygt sted.</item>
+        <item quantity="other">Saldoen din gjenopprettes automatisk når du installerer Signal på nytt og bekrefter med PIN-koden din. Du kan også gjenopprette saldoen din med en gjenopprettingsfrase, som er en setning på %1$d ord som du velger selv. Skriv den ned og oppbevar den på et trygt sted.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du har penger på kontoen din! Det er på tide å lage en gjenopprettingsfrase som du kan bruke til å få tilgang til kontoen din.</string>
@@ -4220,11 +4220,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Nedre velger</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Donér til Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Gi penger til Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal drives av folk som deg. Gi månedlige donasjoner og få et giveremblem.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal drives av personer som deg. Gi månedlige pengebeløp og få et merke.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Donér</string>
+    <string name="Donate2022Q2Megaphone_donate">Gi penger</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Ikke nå</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drives av personer som deg. Gi penger og få et merke.</string>
     <string name="BecomeASustainerMegaphone__not_now">Ikke nå</string>
-    <string name="BecomeASustainerMegaphone__donate">Donér</string>
+    <string name="BecomeASustainerMegaphone__donate">Gi penger</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Samtalen er satt på lydløs for alltid</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonnummeret er kopiert til utklippstavlen.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
-    <string name="ConversationSettingsFragment__get_badges">Få merker til profilen din ved å støtte Signal. Trykk på et merke for å lese mer.</string>
+    <string name="ConversationSettingsFragment__get_badges">Få merker på profilen din ved å støtte Signal. Trykk på et merke for å lese mer.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Legg til medlemmer</string>
@@ -4491,13 +4491,13 @@
     <string name="SubscribeFragment__currency">Valuta</string>
     <string name="SubscribeFragment__more_payment_options">Flere betalingsalternativer</string>
     <string name="SubscribeFragment__cancel_subscription">Avslutt abonnementet</string>
-    <string name="SubscribeFragment__confirm_cancellation">Bekrefte kanselleringen?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Betalingen vil ikke trekkes igjen. Merket fjernes fra profilen din på slutten av faktureringsperioden.</string>
+    <string name="SubscribeFragment__confirm_cancellation">Vil du bekrefte avslutningen?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Betalingen trekkes ikke igjen. Merket fjernes fra profilen din ved utløpet faktureringsperiode.</string>
     <string name="SubscribeFragment__not_now">Ikke nå</string>
     <string name="SubscribeFragment__confirm">Bekreft</string>
     <string name="SubscribeFragment__update_subscription">Oppdater abonnementet</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonnementet ditt er sagt opp.</string>
-    <string name="SubscribeFragment__update_subscription_question">Oppdatere abonnementet?</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonnementet ditt er avsluttet.</string>
+    <string name="SubscribeFragment__update_subscription_question">Vil du oppdatere abonnementet?</string>
     <string name="SubscribeFragment__update">Oppdater</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Hele prisen for abonnementet (%1$s) trekkes i dag. Abonnementet ditt fornyes månedlig.</string>
 
@@ -4508,13 +4508,13 @@
     <string name="Subscription__expires_s">Utløper %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal er en ideell organisasjon uten annonsører og investorer som drives kun av folk som bruker appen og setter pris på den. Gi et månedlig pengebeløp og få et profilmerke som viser at du er en av Signals støttespillere.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Hvorfor donere?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal er en ideell organisasjon uten annonsører og investorer som drives kun av personer som bruker appen og setter pris på den. Gi et månedlig pengebeløp og få et profilmerke som viser at du er en av Signals støttespillere.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Hvorfor gi penger?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal er opptatt av å utvikle personvernsteknologi med åpen kilde som gjør det mulig å uttrykke seg fritt og trygt på global skala.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Pengebeløpet ditt styrker denne saken og hjelper oss med å betale for utviklingen og driften av en app som millioner av mennesker bruker for å kommunisere privat. Ingen annonser. Ingen sporing. Ingen spøk.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Takk for støtten!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for gaven!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Takk for Boost-gaven!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått et %1$s-merke! Vis frem merket i profilen din for å oppmuntre andre til å gi penger til Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått et Boost-merke! Vis frem merket i profilen din for å oppmuntre andre til å gi penger til Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan også</string>
@@ -4522,13 +4522,13 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vis på profilen</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Vis frem som utvalgt merke</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Fortsett</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som vises frem på profilen din.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Få merker til profilen din ved å støtte Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Få merker på profilen din ved å støtte Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal er en ideell organisasjon uten annonsører og investorer som drives kun av folk som deg.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Donér til Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Gi penger til Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Mer</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4549,7 +4549,7 @@
     <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
     <string name="Boost__one_time_contribution">Engangsbeløp</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Legg til en Signal-gave</string>
+    <string name="MySupportPreference__add_a_signal_boost">Legg til en Boost-gave i Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s per måned</string>
     <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
     <string name="MySupportPreference__processing_transaction">Transaksjonen behandles …</string>
@@ -4567,14 +4567,14 @@
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsette å bruke Signal, men hvis du ønsker å støtte teknologi som er utviklet for deg, kan du bli en av våre støttespillere ved å gi et månedlig pengebeløp.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en støttespiller</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Legg til en boost</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Legg til en Boost-gave</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Det månedlige pengebeløpet ditt ble stoppet fordi du var inaktiv for lenge. %1$s-merket ditt vises ikke lenger på profilen din.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Det månedlige pengebeløpet ditt ble automatisk avsluttet fordi du var inaktiv for lenge. %1$s-merket ditt vises ikke lenger på profilen din.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Det månedlige pengebeløpet ditt ble stoppet fordi vi ikke kunne behandle betalingen din. Merket ditt vises ikke lenger på profilen din.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Det månedlige pengebeløpet ditt ble avsluttet fordi vi ikke kunne behandle betalingen din. Merket ditt vises ikke lenger på profilen din.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Det månedlige pengebeløpet ditt ble stoppet. %1$s %2$s-merket ditt vises ikke lenger på profilen din.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Det månedlige pengebeløpet ditt ble avsluttet. %1$s %2$s-merket ditt vises ikke lenger på profilen din.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsatt bruke Signal, men hvis du vil støtte appen og beholde merket ditt, må du fornye abonnementet nå.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Forny abonnementet</string>
     <!-- Button label to send user to Google Pay website -->
@@ -4593,7 +4593,7 @@
     <string name="DonationsErrors__error_processing_payment">Feil ved behandling av betaling</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Feil ved behandling av betaling. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Merket kunne ikke legges til i kontoen din, men betalingen kan ha gått gjennom. Ta kontakt med kundestøtten vår.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Merket kunne ikke legges til i kontoen din, men du kan ha blitt belastet. Ta kontakt med brukerstøtten vår.</string>
     <string name="DonationsErrors__your_payment">Betalingen kunne ikke behandles, og kontoen din har ikke blitt belastet. Prøv igjen.</string>
     <string name="DonationsErrors__still_processing">Under behandling</string>
     <string name="DonationsErrors__couldnt_add_badge">Kunne ikke legge til merket</string>
@@ -4604,13 +4604,13 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Kunne ikke sende gavemerket</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Kunne ikke sende gavemerket. Ta kontakt med kundestøtten vår.</string>
-    <string name="DonationsErrors__your_badge_could_not">Merket kunne ikke legges til i kontoen din, men betalingen kan ha gått gjennom. Ta kontakt med kundestøtten vår.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Kunne ikke sende gavemerket. Ta kontakt med brukerstøtten vår.</string>
+    <string name="DonationsErrors__your_badge_could_not">Merket kunne ikke legges til i kontoen din, men du kan ha blitt belastet. Ta kontakt med brukerstøtten vår.</string>
     <string name="DonationsErrors__your_payment_is_still">Betalingen behandles fremdeles. Dette kan ta et par minutter avhengig av internettilkoblingen din.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay er ikke tilgjengelig</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Du har koblet til Google Pay for å gi penger i appen.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Kunne ikke avslutte abonnementet</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må være koblet til internett for å si opp abonnementet.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Du må være koblet til internett for å kunne avslutte abonnementet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Enheten din støtter ikke Google Pay, så du kan ikke abonnere for å få et merke. Du kan fremdeles støtte Signal ved å gi et pengebeløp via nettsiden vår.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Nettverksfeil. Sjekk internettilkoblingen din og prøv igjen.</string>
     <string name="NetworkFailure__retry">Prøv på nytt</string>
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Del kvittering</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Kvitteringer for tidligere pengebeløp vil ikke være tilgjengelig hvis du har lastet ned Signal-appen på nytt.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Kvitteringer for tidligere pengebeløp vil ikke være tilgjengelig hvis du har installert Signal-appen på nytt.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Kvittering for pengebeløp</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ingen visninger ennå</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Slå på lesebekreftelser for å se hvem som har sett storyene dine.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Gå til innstillinger</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Gi %1$s til Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Få et %1$s-merke i %2$d dag</item>
+        <item quantity="other">Få et %1$s-merke i %2$d dager</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredittkort eller debetkort</string>

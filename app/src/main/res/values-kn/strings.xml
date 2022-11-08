@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">ಸಂಪರ್ಕ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಸಂಪರ್ಕಗಳ ಅನುಮತಿ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಅಪ್ಲಿಕೇಶನ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸಂಪರ್ಕಗಳು\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ಸ್ಥಳ ಮಾಹಿತಿಯನ್ನು ಲಗತ್ತಿಸಲು Signal ಗೆ ಸ್ಥಳ ಅನುಮತಿಯ ಅಗತ್ಯವಿರುತ್ತದೆ, ಆದರೆ ಅದನ್ನು ಶಾಶ್ವತವಾಗಿ ನಿರಾಕರಿಸಲಾಗಿದೆ. ದಯವಿಟ್ಟು ಆ್ಯಪ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳ ಮೆನುಗೆ ಮುಂದುವರಿಯಿರಿ, \"ಅನುಮತಿಗಳು\" ಆಯ್ಕೆಮಾಡಿ ಮತ್ತು \"ಸ್ಥಳ\" ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s ಅವರು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿಲ್ಲ </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ಅವರಿಗೆ ವಿನಂತಿಯನ್ನು ಕಳುಹಿಸಲು ಬಯಸುತ್ತೀರಾ?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">ವಿನಂತಿ ಕಳುಹಿಸಿ</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">ರದ್ದುಮಾಡಿ</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">%1$d ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">ಸ್ಟೊರೇಜ್ ಗೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</item>
-        <item quantity="other">ಸ್ಟೊರೇಜ್ %1$d ಗೆ ಲಗತ್ತುಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ...</item>
+        <item quantity="one">ಸ್ಟೋರೇಜ್‍ ಗೆ ಲಗತ್ತನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…</item>
+        <item quantity="other">ಸ್ಟೋರೇಜ್‍ ಗೆ %1$d ಲಗತ್ತುಗಳನ್ನು ಉಳಿಸಲಾಗುತ್ತಿದೆ…</item>
     </plurals>
     <string name="ConversationFragment_pending">ಬಾಕಿ ಇದೆ…</string>
     <string name="ConversationFragment_push">ದತ್ತಾಂಶ (Signal)</string>
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s ಅವರ ಮೆಸೇಜ್ ಅನ್ನು ಡೆಲಿವರಿ ಮಾಡಲಾಗದು</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s ಅವರು ತಮ್ಮ ಫೋನ್ ನಂಬರ್ ಬದಲಾಯಿಸಿದ್ದಾರೆ.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ಹೊಸ ಫೀಚರ್ ಇಷ್ಟವಾಯಿತೇ? ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆಯೊಂದಿಗೆ Signal ಬೆಂಬಲಿಸಿ ನೆರವಾಗಿ.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ಈ ಹೊಸ ಫೀಚರ್ ಇಷ್ಟವಾಯಿತೇ? ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆಯೊಂದಿಗೆ Signal ಬೆಂಬಲಿಸಲು ಸಹಾಯ ಮಾಡಿ.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಅವರ ನಂಬರ್ %2$s ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಅವರಿಗೆ ಸೇರಿದ ಬೇರೊಂದು ಚಾಟ್ ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು %1$s ಅವರಿಗೆ ವಿನಂತಿ ಕಳುಹಿಸಿದ್ದೀರಿ</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">ನೀವು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕೆಂದು %1$s ಅವರು ಬಯಸುತ್ತಾರೆ. ನೀವು ವಿಶ್ವಾಸ ಹೊಂದಿರುವವರಿಗೆ ಮಾತ್ರ ಪಾವತಿಗಳನ್ನು ಕಳುಹಿಸಿ.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">ನೀವು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s ಅವರು ಈಗ ಪಾವತಿಗಳನ್ನು ಸ್ವೀಕರಿಸಬಹುದು</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ಅವರು ಗ್ರೂಪ್ ಕಾಲ್ ಆರಂಭಿಸಿದ್ದಾರೆ · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಲಾಗಿದೆ.</string>
     <string name="ThreadRecord_you_deleted_this_message">ನೀವು ಈ ಸಂದೇಶವನ್ನು ಅಳಿಸಿದಿರಿ</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು ವಿನಂತಿ ಕಳುಹಿಸಿದ್ದೀರಿ</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">ನೀವು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಬೇಕೆಂದು %1$s ಅವರು ಬಯಸುತ್ತಾರೆ</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">ನೀವು ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿದ್ದೀರಿ</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s ಅವರು ಈಗ ಪಾವತಿಗಳನ್ನು ಸ್ವೀಕರಿಸಬಹುದು</string>
     <string name="ThreadRecord_s_is_on_signal">%1$sರವರು Signal ಸೇರಿದ್ದಾರೆ!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">ಕಣ್ಮರೆಯಾಗುವ ಸಂದೇಶಗಳು ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">ಕಣ್ಮರೆಯಾಗುತ್ತಿರುವ ಸಂದೇಶ ಸಮಯ %1$s ಕ್ಕೆ ಹೊಂದಿಸಲಾಗಿದೆ</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">ಪಾವತಿಗಳ ಬಳಕೆ ಮುಂದುವರಿಸಲು Signal ನವೀಕರಿಸಿ. ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅಪ್‌ಟುಡೇಟ್ ಇಲ್ಲದಿರಬಹುದು.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">ಈಗ ನವೀಕರಿಸಿ</string>
 
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">ತೋರಿಸು</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">ನೀವು ಅವರಿಗೆ ಮೆಸೇಜ್ ಮಾಡಿದಾಗ ಮರೆಯಾಗುವ ಮೆಸೇಜ್‌ ಸಮಯವನ್ನು %1$s ಗೆ ನಿಗದಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">ದಾನ ಮಾಡಿ</string>
+    <string name="ConversationUpdateItem_donate">ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">ಪೇಮೆಂಟ್‌ ಕಳುಹಿಸಿ</string>
     <!-- Update item button text to activate payments -->
@@ -2712,7 +2712,7 @@
     <string name="preferences__slow">ನಿಧಾನ</string>
     <string name="preferences__help">ಸಹಾಯ</string>
     <string name="preferences__advanced">ಸುಧಾರಿತ</string>
-    <string name="preferences__donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
+    <string name="preferences__donate_to_signal">Signal ಗೆ ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">ಒಂದು ಬಾರಿಯ ದೇಣಿಗೆ</string>
     <string name="preferences__privacy">ಖಾಸಗಿತನ</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ಈಗಲ್ಲ</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">ಅಪ್ಡೇಟ್ ಆಗಬೇಕಾಗಿದೆ</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">ಪಾವತಿಗಳನ್ನು ಕಳುಹಿಸುವುದು ಮತ್ತು ಸ್ವೀಕರಿಸುವುದನ್ನು ಮುಂದುವರಿಸಲು ಮತ್ತು ನಿಮ್ಮ ಅಪ್‌ಟುಡೇಟ್ ಪಾವತಿ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ವೀಕ್ಷಿಸಲು ಅಪ್ಡೇಟ್ ಬೇಕಾಗಿದೆ.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">ರದ್ದುಮಾಡಿ</string>
     <!-- Alert dialog button to update now -->
@@ -3156,7 +3156,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%2$s ರಲ್ಲಿ %1$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">ಕರೆನ್ಸಿ ನಿಗದಿಸಿ</string>
+    <string name="SetCurrencyFragment__set_currency">ಕರೆನ್ಸಿ ಹೊಂದಿಸಿ</string>
     <string name="SetCurrencyFragment__all_currencies">ಎಲ್ಲ ಕರೆನ್ಸಿಗಳು</string>
 
     <!-- **************************************** -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಉಳಿಸಿ</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ನಮೂದಿಸಿ</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">ನಿಮ್ಮ Signal PIN ಅನ್ನು ನೀವು ದೃಢೀಕರಿಸಿದರೆ Signal ಅನ್ನು ನೀವು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ. ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ಕೂಡಾ ನೀವು ರಿಸ್ಟೋರ್ ಮಾಡಬಹುದು. ಇದು %1$d-ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ಇದನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳಿ ಮತ್ತು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಶೇಖರಿಸಿಡಿ.</item>
+        <item quantity="other">ನಿಮ್ಮ Signal PIN ಅನ್ನು ನೀವು ದೃಢೀಕರಿಸಿದರೆ Signal ಅನ್ನು ನೀವು ಪುನಃ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿದಾಗ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ. ರಿಕವರಿ ಪದಗುಚ್ಛವನ್ನು ಬಳಸಿ ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ಅನ್ನು ಕೂಡಾ ನೀವು ರಿಸ್ಟೋರ್ ಮಾಡಬಹುದು. ಇದು %1$d-ಶಬ್ದದ ಪದಗುಚ್ಛವಾಗಿದ್ದು ನಿಮಗೆ ವಿಶಿಷ್ಟವಾಗಿದೆ. ಇದನ್ನು ಬರೆದಿಟ್ಟುಕೊಳ್ಳಿ ಮತ್ತು ಸುರಕ್ಷಿತ ಸ್ಥಳದಲ್ಲಿ ಶೇಖರಿಸಿಡಿ.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">ನೀವು ಬ್ಯಾಲೆನ್ಸ್ ಒಂದನ್ನು ಪಡೆದಿದ್ದೀರಿ! ನಿಮ್ಮ ರಿಕವರಿ ಪದಗುಚ್ಛ ಸೇವ್ ಮಾಡಲು ಸಮಯ—ನಿಮ್ಮ ಬ್ಯಾಲೆನ್ಸ್ ರೀಸ್ಟೋರ್ ಮಾಡಲು 24-ಪದದ ಒಂದು ಕೀಯನ್ನು ನೀವು ಬಳಸಬಹುದು.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಿ</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal ನಿಂದ ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತಿದೆ...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal ನಿಂದ ಎಸ್ಎಂಎಸ್ ಸಂದೇಶಗಳನ್ನು ತೆಗೆದುಹಾಕಲಾಗುತ್ತಿದೆ…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">ನೀವು ಯಾವುದೇ ವೇಳೆಯಲ್ಲೂ ಸೆಟ್ಟಿಂಗ್‍ಗಳಿಂದ SMS ಮೆಸೇಜ್ ಗಳನ್ನು Signal ನಿಂದ ತೆಗೆದುಹಾಕಬಬಹುದು.</string>
     <!-- Description for export sms preference -->
@@ -4220,11 +4220,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">ಬಾಟಮ್ ಎಡ್ಜ್‌ ಸೆಲೆಕ್ಟರ್</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ಗೆ ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ಅನ್ನು ನಿಮ್ಮಂತಹ ಜನರಿಂದ ನಡೆಸಲಾಗುತ್ತಿದೆ. ಪ್ರತಿತಿಂಗಳೂ ಕೊಡುಗೆ ನೀಡಿ ಮತ್ತು ಒಂದು ಬ್ಯಾಡ್ಜ್ ಸ್ವೀಕರಿಸಿ.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">ದಾನ ಮಾಡಿ</string>
+    <string name="Donate2022Q2Megaphone_donate">ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">ಈಗಲ್ಲ</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ಗೆ ನಿಮ್ಮಂತಹ ಜನರೇ ಜೀವಾಳ. ದೇಣಿಗೆ ನೀಡಿ ಮತ್ತು ಒಂದು ಬ್ಯಾಡ್ಜ್‌ ಪಡೆಯಿರಿ.</string>
     <string name="BecomeASustainerMegaphone__not_now">ಈಗಲ್ಲ</string>
-    <string name="BecomeASustainerMegaphone__donate">ದಾನ ಮಾಡಿ</string>
+    <string name="BecomeASustainerMegaphone__donate">ದೇಣಿಗೆ ನೀಡಿ</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">ಎಮೋಜಿ</string>
@@ -4478,7 +4478,7 @@
     <string name="BadgeSelectionFragment__select_badges">ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">ಪ್ರಿವ್ಯೂ</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">ಬ್ಯಾಡ್ಜ್‌ ಅನ್ನು ಆಯ್ಕೆ ಮಾಡಿ</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">ಬ್ಯಾಡ್ಜ್ ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">ನೀವು ಒಂದು ಬ್ಯಾಡ್ಜ್ ಆಯ್ಕೆ ಮಾಡಬೇಕು</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ಪ್ರೊಫೈಲ್ ಅಪ್ಡೇಟ್ ಮಾಡಲು ವಿಫಲವಾಗಿದೆ</string>
 
@@ -4528,7 +4528,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ಎಂಬುದು ಒಂದು ಲಾಭ ರಹಿತ ಸಂಸ್ಥೆಯಾಗಿದ್ದು, ಜಾಹೀರಾತುದಾರರು ಅಥವಾ ಹೂಡಿಕೆದಾರರನ್ನು ಹೊಂದಿಲ್ಲ, ಕೇವಲ ನಿಮ್ಮಂತಹ ಜನರಿಂದ ಬೆಂಬಲಿತವಾಗಿದೆ.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Signal ಗೆ ದಾನ ಮಾಡಿ</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Signal ಗೆ ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">ಇನ್ನಷ್ಟು</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4586,7 +4586,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">ಹೆಚ್ಚಿನ ಮಾಹಿತಿಗಾಗಿ ದಯವಿಟ್ಟು ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
     <string name="Subscription__contact_support">ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">%1$s ಬ್ಯಾಡ್ಜ್ ಪಡೆಯಿರಿ</string>
 
     <string name="SubscribeFragment__processing_payment">ಪೇಮೆಂಟ್ ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4596,7 +4596,7 @@
     <string name="DonationsErrors__your_badge_could_not_be_added">ನಿಮ್ಮ ಖಾತೆಗೆ ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ಸೇರಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ಆದರೆ ನಿಮಗೆ ಶುಲ್ಕ ವಿಧಿಸಿರಬಹುದು. ದಯವಿಟ್ಟು ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
     <string name="DonationsErrors__your_payment">ನಿಮ್ಮ ಪಾವತಿಯನ್ನು ಪ್ರಕ್ರಿಯೆಗೊಳಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ ಮತ್ತು ನಿಮಗೆ ಶುಲ್ಕ ವಿಧಿಸಲಾಗಿಲ್ಲ. ದಯವಿಟ್ಟು ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <string name="DonationsErrors__still_processing">ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಯಲ್ಲಿದೆ</string>
-    <string name="DonationsErrors__couldnt_add_badge">ಬ್ಯಾಡ್ಜ್ ಸೇರಿಸಲು ಆಗಲಿಲ್ಲ.</string>
+    <string name="DonationsErrors__couldnt_add_badge">ಬ್ಯಾಡ್ಜ್ ಸೇರಿಸಲು ಆಗಲಿಲ್ಲ</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ಮೌಲ್ಯೀಕರಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4609,7 +4609,7 @@
     <string name="DonationsErrors__your_payment_is_still">ನಿಮ್ಮ ಪಾವತಿ ಇನ್ನೂ ಪ್ರಕ್ರಿಯೆಗೊಳ್ಳುತ್ತಿದೆ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಅವಲಂಬಿಸಿಕೊಂಡು ಇದು ಕೆಲವು ನಿಮಿಷಗಳನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ಲಭ್ಯವಿಲ್ಲ</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">ಆ್ಯಪ್‌ನಲ್ಲಿ ದೇಣಿಗೆ ನೀಡಲು Google Pay ಅನ್ನು ನೀವು ಸೆಟಪ್ ಮಾಡಬೇಕು.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">ಚಂದಾ ರದ್ದುಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">ಚಂದಾ ರದ್ದುಗೊಳಿಸಲು ವಿಫಲವಾಗಿದೆ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ಚಂದಾ ರದ್ದತಿಗೆ ಇಂಟರ್ನೆಟ್ ಸಂಪರ್ಕ ಬೇಕಾಗುತ್ತದೆ.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ನಿಮ್ಮ ಸಾಧನವು Google Pay ಅನ್ನು ಬೆಂಬಲಿಸುವುದಿಲ್ಲ, ಹಾಗಾಗಿ ಬ್ಯಾಡ್ಜ್ ಗಳಿಸಲು ನೀವು ಚಂದಾ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ನಮ್ಮ ವೆಬ್‍‌ಸೈಟ್‌ನಲ್ಲಿ ದೇಣಿಗೆ ನೀಡುವ ಮೂಲಕ ಈಗಲೂ ನೀವು Signal ಅನ್ನು ಬೆಂಬಲಿಸಬಹುದು.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ನೆಟ್‌ವರ್ಕ್ ದೋಷ. ನಿಮ್ಮ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
@@ -4624,7 +4624,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">ನೆಟ್‌ವರ್ಕ್ ದೋಷದ ಕಾರಣದಿಂದ ನಿಮ್ಮ ಗಿಫ್ಟ್ ಅನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ಕನೆಕ್ಷನ್ ಪರಿಶೀಲಿಸಿ ಹಾಗೂ ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">ಬ್ಯಾಡ್ಜ್ ಉಡುಗೊರೆ ನೀಡಿ</string>
+    <string name="GiftMessageView__gift_badge">ಉಡುಗೊರೆ ಬ್ಯಾಡ್ಜ್</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">%1$d ತಿಂಗಳಲ್ಲಿ ಕೊನೆಗೊಳ್ಳುತ್ತದೆ</item>
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">ರಸೀದಿ ಹಂಚಿಕೊಳ್ಳಿ</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">ನೀವು ಮರುಸ್ಥಾಪಿಸಿದ Signal ಅನ್ನು ಹೊಂದಿದ್ದರೆ, ಹಿಂದಿನ ದೇಣಿಗೆಗಳ ರಸೀದಿಗಳು ಲಭ್ಯವಿರುವುದಿಲ್ಲ.</string>
+    <string name="DonationReceiptListFragment__if_you_have">ನೀವು Signal ಅನ್ನು ಮರು ಇನ್‍ಸ್ಟಾಲ್ ಮಾಡಿದ್ದಲ್ಲಿ, ಹಿಂದಿನ ದೇಣಿಗೆಗಳ ರಸೀದಿಗಳು ಲಭ್ಯವಿರುವುದಿಲ್ಲ.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">ದೇಣಿಗೆ ರಸೀದಿ</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ಇನ್ನೂ ಯಾವುದೇ ವೀಕ್ಷಣೆಗಳಿಲ್ಲ</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ನಿಮ್ಮ ಸ್ಟೋರೀಸ್ ಯಾರು ವೀಕ್ಷಿಸಿದ್ದಾರೆಂದು ನೋಡಲು ರೀಡ್ ರೆಸಿಪ್ಟ್ಸ್ ಸಕ್ರಿಯಗೊಳಿಸಿ.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5198,7 +5198,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">ಬ್ಯಾಡ್ಜ್ ಉಡುಗೊರೆ ನೀಡಿ</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal ಗೆ ಯಾರಾದರ ಹೆಸರಲ್ಲಿ ದೇಣಿಗೆ ನೀಡುವ ಮೂಲಕ ಅವರಿಗೆ ಬ್ಯಾಡ್ಜ್ ಉಡುಗೊರೆ ನೀಡಿ. ಅವರು ತಮ್ಮ ಪ್ರೊಫೈಲ್‌ ಫೊಟೋದೊಂದಿಗೆ ಪ್ರದರ್ಶಿಸಲು ಒಂದು ಬ್ಯಾಡ್ಜ್ ಪಡೆಯುತ್ತಾರೆ.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal ಗೆ ಒಬ್ಬರ ಹೆಸರಲ್ಲಿ ದೇಣಿಗೆ ನೀಡುವ ಮೂಲಕ ಅವರಿಗೆ ಬ್ಯಾಡ್ಜ್ ಉಡುಗೊರೆ ನೀಡಿ. ಅವರು ತಮ್ಮ ಪ್ರೊಫೈಲ್‌ ಫೊಟೋದೊಂದಿಗೆ ಪ್ರದರ್ಶಿಸಲು ಒಂದು ಬ್ಯಾಡ್ಜ್ ಪಡೆಯುತ್ತಾರೆ.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">ಮುಂದೆ</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5230,13 +5230,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">ಉಡುಗೊರೆ ರೀಡೀಮ್ ಮಾಡಲಾಗುತ್ತಿದೆ…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ನಂತರ ನೀವು ರೀಡೀಮ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">ನಿಮ್ಮ ಬ್ಯಾಡ್ಜ್ ಅನ್ನು ನಂತರ ನೀವು ರೀಡೀಮ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s ಅವರಿಗೆ ನೀವೊಂದು ಬ್ಯಾಡ್ಜ್ ಉಡುಗೊರೆ ನೀಡಿದ್ದೀರಿ. ಅವರು ಸ್ವೀಕರಿಸಿದಾಗ, ತಮ್ಮ ಬ್ಯಾಡ್ಜ್ ತೋರಿಸಲು ಅಥವಾ ಮರೆಮಾಡಲು ಅವರಿಗೊಂಡು ಅವಕಾಶ ನೀಡಲಾಗುತ್ತದೆ.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ನಿಮ್ಮ ಉಡುಗೊರೆ ಬ್ಯಾಡ್ಜ್ ಅವಧಿ ಮೀರಿದೆ</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">ನಿಮ್ಮ ಉಡುಗೊರೆ ಬ್ಯಾಡ್ಜ್ ಅವಧಿ ಮೀರಿದೆ ಮತ್ತು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಇನ್ನು ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">ನಿಮ್ಮ ಉಡುಗೊರೆ ಬ್ಯಾಡ್ಜ್ ಅವಧಿ ಮೀರಿದೆ ಮತ್ತು ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ನಲ್ಲಿ ಇನ್ನು ಬೇರೆಯವರಿಗೆ ಕಾಣಿಸುವುದಿಲ್ಲ.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">ನಿಮಗಾಗಿ ನಿರ್ಮಿಸಿದ ತಂತ್ರಜ್ಞಾನಕ್ಕೆ ಬೆಂಬಲ ನೀಡುವುದನ್ನು ಮುಂದುವರಿಸಲು, ದಯವಿಟ್ಟು ಮಾಸಿಕ ಸಸ್ಟೈನರ್ ಆಗುವುದನ್ನು ಪರಿಗಣಿಸಿ.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5588,19 +5588,19 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal ಗೆ ತಿಂಗಳಿಗೆ %1$s ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s ಬ್ಯಾಡ್ಜ್ ಪಡೆಯಿರಿ</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal ಗೆ %1$s ದೇಣಿಗೆ ನೀಡಿ</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d ದಿನಕ್ಕೆ %1$s ಬ್ಯಾಡ್ಜ್ ಪಡೆಯಿರಿ</item>
+        <item quantity="other">%2$d ದಿನಗಳಿಗೆ %1$s ಬ್ಯಾಡ್ಜ್ ಪಡೆಯಿರಿ</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ಕ್ರೆಡಿಟ್ ಅಥವಾ ಡೆಬಿಟ್ ಕಾರ್ಡ್</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">ರದ್ದುಗೊಳಿಸಲಾಗುತ್ತಿದೆ…</string>
 
     <!-- EOF -->
 

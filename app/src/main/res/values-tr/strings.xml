@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, iletişim bilgilerini eklemek için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Konum\"u etkinleştirin.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s Ödemeleri etkinleştirmedi </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Ödemeleri etkinleştirmesi için bir istek göndermek istiyor musun?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">İstek gönder</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">İptal</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ile olan mesaj geçmişin ve onlara ait başka bir sohbet birleştirildi.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Ödemeleri etkinleştirmek için %1$s alıcısına bir istek gönderdin</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ödemeleri etkinleştirmeni istiyor. Yalnızca güvendiğin kişilere ödeme gönder.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ödemeleri etkinleştirdin</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s artık Ödemeleri kabul edebilir</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s grup araması başlattı · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Bu ileti silindi.</string>
     <string name="ThreadRecord_you_deleted_this_message">Bu iletiyi sildiniz.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Ödemeleri etkinleştirmek için bir istek gönderdin</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s Ödemeleri etkinleştirmeni istiyor</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ödemeleri etkinleştirdin</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s artık Ödemeleri kabul edebilir</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal\'e katıldı!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Kaybolan iletiler devre dışı</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Kaybolan ileti süresi %1$s olarak ayarlandı</string>
@@ -1944,7 +1944,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Bir hediye gönderdiniz</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Bir hediye rozeti kullandınız</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Bir hediye rozeti kullandın</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Hikayene %1$s tepki verdi</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">Görüntüle</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Kişiye ileti gönderdiğinizde kaybolan ileti süresi %1$s olarak ayarlanacaktır.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Bağış yapın</string>
+    <string name="ConversationUpdateItem_donate">Bağış yap</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Ödeme Gönder</string>
     <!-- Update item button text to activate payments -->
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Alındı</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Ödemeler tanıtımı (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Yeni gizlilik odaklı dijital para birimi MobileCoin\'i alıp göndermek için Signal\'i kullanın. Başlamak için etkinleştirin.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Yeni gizlilik odaklı dijital para birimi MobileCoin\'i alıp göndermek için Signal\'i kullan. Başlamak için etkinleştir.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ödemeleri Etkinleştir</string>
     <string name="PaymentsHomeFragment__activating_payments">Ödemeler etkinleştiriliyor…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Ödemeler hesabını geri getir</string>
@@ -2993,7 +2993,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Ödeme işleniyor</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Para birimi dönüşümü mevcut değil</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Para birimi dönüşümü görüntülenemiyor. Telefonunuzun bağlantısını denetleyin ve tekrar deneyin.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Para birimi dönüşümü görüntülenemiyor. Telefonunun bağlantısını denetle ve tekrar dene.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ödemeler bölgenizde mevcut değil.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Ödemeler etkinleştirilemiyor. Lütfen daha sonra tekrar deneyin.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Ödemeler devre dışı bırakılsın mı?</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Signal\'e davet et</string>
     <string name="FirstInviteReminder__description">Gönderilen şifreli iletilerinizi %%%1$d oranında arttırabilirsiniz</string>
-    <string name="SecondInviteReminder__title">Signal\'inizi güçlendirin</string>
+    <string name="SecondInviteReminder__title">Signal\'ini güçlendir</string>
     <string name="SecondInviteReminder__description">%1$s kişisini davet et</string>
     <string name="InsightsReminder__view_insights">İçgörüleri Görüntüle</string>
     <string name="InsightsReminder__invite">Davet et</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Hesap Siliniyor…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Aboneliğiniz iptal ediliyor…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Aboneliğin iptal ediliyor…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Bulunduğunuz grup sayısına bağlı olarak bu işlem birkaç dakika sürebilir.</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Kurtarma ifadesini kaydet</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Kurtarma parolasını girin</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Signal\'i yeniden kurduğunda Signal PIN\'ini doğruladığında bakiyen otomatik olarak kurtarılacaktır. Bakiyeni ayrıca bir kurtarma parolası ile de geri alabilirsin. Kurtarma parolası %1$d kelimelik ve sana özgü bir ifadedir. Bir yere yaz ve güvenli bir şekilde sakla.</item>
+        <item quantity="other">Signal\'i yeniden kurduğunda Signal PIN\'ini doğruladığında bakiyen otomatik olarak kurtarılacaktır. Bakiyeni ayrıca bir kurtarma parolası ile de geri alabilirsin. Kurtarma parolası %1$d kelimelik ve sana özgü bir ifadedir. Bir yere yaz ve güvenli bir şekilde sakla.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Bir bakiyen var! Kurtarma ifadeni kaydetme zamanı—bakiyeni geri yüklemek için kullanabileceğin 24 kelimelik bir anahtar.</string>
@@ -4224,7 +4224,7 @@
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal gücünü senin gibi insanlardan alıyor. Aylık bağışta bulun ve bir rozet kazan.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Bağış yapın</string>
+    <string name="Donate2022Q2Megaphone_donate">Bağış yap</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Şimdi değil</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal gücünü senin gibi insanlardan alıyor. Bağışta bulun ve bir rozet kazan.</string>
     <string name="BecomeASustainerMegaphone__not_now">Şimdi değil</string>
-    <string name="BecomeASustainerMegaphone__donate">Bağış yapın</string>
+    <string name="BecomeASustainerMegaphone__donate">Bağış yap</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Konuşma sonsuza kadar sessiz yapıldı</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefon numarası panoya kopyalandı</string>
     <string name="ConversationSettingsFragment__phone_number">Telefon numarası</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan. Daha fazlasını öğrenmek için bir rozete dokun.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal\'i destekleyerek profilin için rozet kazan. Daha fazlasını öğrenmek için bir rozete dokun.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Üye ekle</string>
@@ -4471,15 +4471,15 @@
 
     <string name="BadgesOverviewFragment__my_badges">Rozetlerim</string>
     <string name="BadgesOverviewFragment__featured_badge">Öne çıkan rozet</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Rozetleri profilinizde gösterin</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Rozetleri profilinde göster</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profil güncellenemedi</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Rozetleri seçin</string>
+    <string name="BadgeSelectionFragment__select_badges">Rozetleri seç</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Ön izleme</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Bir rozet seçin</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bir rozet seçmelisiniz</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Bir rozet seç</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bir rozet seçmelisin</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profil güncellenemedi</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Destekleyin</string>
@@ -4492,7 +4492,7 @@
     <string name="SubscribeFragment__more_payment_options">Diğer Ödeme Seçenekleri</string>
     <string name="SubscribeFragment__cancel_subscription">Aboneliği iptal et</string>
     <string name="SubscribeFragment__confirm_cancellation">İptal edilsin mi?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Bir daha faturalandırılmayacaksınız. Rozetiniz fatura döneminizin sonunda profilinizden kaldırılacaktır.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Bir daha faturalandırılmayacaksın. Rozetin fatura döneminin sonunda profilinden kaldırılacaktır.</string>
     <string name="SubscribeFragment__not_now">Şimdi değil</string>
     <string name="SubscribeFragment__confirm">Onayla</string>
     <string name="SubscribeFragment__update_subscription">Aboneliği Güncelle</string>
@@ -4508,23 +4508,23 @@
     <string name="Subscription__expires_s">%1$s tarihinde sona eriyor</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklamvereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yapın ve desteğinizi gösteren bir profil rozeti alın.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklam vereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yap ve desteğini gösteren bir profil rozeti al.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Neden Bağış Yapılmalı?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi mümkün kılan, açık kaynak gizlilik teknolojisi geliştirmeye adanmıştır.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Bağışınız bu amacı besliyor ve milyonlarca kişi tarafından özel iletişim için kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için ödeme yapıyor. Reklamsız. İzleyici yok. Şaka yapmıyoruz.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Bağışın bu amacı besliyor ve milyonlarca kişi tarafından özel iletişim için kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için ödeme yapıyor. Reklamsız. İzleyici yok. Şaka yapmıyoruz.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Boost için teşekkürler!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s rozet kazandınız! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinizde sergileyin.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Öne çıkarma rozeti kazandınız! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinizde sergileyin.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s rozet kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Öne çıkarma rozeti kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Aynı zamanda</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylık bir Destekçi ol.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Öne çıkarılan rozet seçin</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Öne çıkarılan rozet seç</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Devam Et</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Birden fazla rozetiniz olduğunda, profilinizde başkalarının görmesi için birini seçebilirsiniz.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Birden fazla rozetin olduğunda, profilinde başkalarının görmesi için birini seçebilirsin.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signal\'ı destekleyerek profilin için rozet kazan.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal\'i destekleyerek profilin için rozet kazan.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal reklam almaz, sponsoru yoktur ve kâr amacı gütmez; sadece senin gibi gönüllüler tarafından destekleniyor.</string>
 
     <!-- Button label for creating a donation -->
@@ -4540,16 +4540,16 @@
     <string name="ManageDonationsFragment__donation_receipts">Bağış Makbuzları</string>
     <string name="ManageDonationsFragment__badges">Rozetler</string>
     <string name="ManageDonationsFragment__subscription_faq">Abonelik SSS</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Abonelik alınamadı</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Abonelik alınamadı.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Vermenin diğer yolları</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Bir rozet hediye et</string>
 
-    <string name="Boost__enter_custom_amount">Farklı Miktar Gir</string>
+    <string name="Boost__enter_custom_amount">Farklı Bir Miktar Gir</string>
     <string name="Boost__one_time_contribution">Tek seferlik bağış</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal Arttırıcı ekleyin</string>
+    <string name="MySupportPreference__add_a_signal_boost">Bir Signal Boost ekle</string>
     <string name="MySupportPreference__s_per_month">%1$s/ay</string>
     <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
     <string name="MySupportPreference__processing_transaction">İşlem gerçekleştiriliyor…</string>
@@ -4562,20 +4562,20 @@
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Aylık Bağış İptal Edildi</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Öne çıkarma rozetinizin süresi doldu ve artık profilinizde görünmüyor.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Öne çıkarma rozetinin süresi doldu ve artık profilinde görünmüyor.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bir seferlik bir katkıyla Boost rozetini ilave 30 gün için yeniden etkinleştirebilirsin.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal\'i kullanmaya devam edebilirsiniz, ancak sizin için geliştirilen teknolojiyi desteklemek için aylık bağış yaparak destekçi olmayı düşünebilirsiniz.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal\'i kullanmaya devam edebilirsin, ancak senin için geliştirilen teknolojiyi desteklemek için aylık bağış yaparak destekçi olmayı düşünebilirsin.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekçi Ol</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost Ekle</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Çok uzun süre hareketsiz kaldığınız için yinelenen aylık bağışınız otomatik olarak iptal edildi. %1$s rozetiniz artık profilinizde görünmüyor.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Çok uzun süre hareketsiz kaldığın için yinelenen aylık bağışın otomatik olarak iptal edildi. %1$s rozetin artık profilinde görünmüyor.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ödemenizi işleme koyamadığımız için yinelenen aylık bağışınız iptal edildi. Rozetiniz artık profilinizde görünmüyor.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ödemeni işleme koyamadığımız için yinelenen aylık bağışın iptal edildi. Rozetin artık profilinde görünmüyor.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Her ay tekrar eden aylık bağışın iptal edildi. %1$s %2$s rozetin artık profilinde görüntülenemiyor.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'ı kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'i kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Aboneliği yenile</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay\'e git</string>
@@ -4593,25 +4593,25 @@
     <string name="DonationsErrors__error_processing_payment">Ödemenin işlenmesinde hata</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Ödemenin işlenmesinde hata. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Rozetiniz hesabınıza eklenemedi fakat ücret ödenmiş olabilir. Lütfen destek ekibiyle iletişime geçin.</string>
-    <string name="DonationsErrors__your_payment">Ödemeniz işlenemedi ve sizden ödeme alınmadı. Lütfen tekrar deneyin.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Rozetin hesabına eklenemedi fakat ücret ödenmiş olabilir. Lütfen destek ekibiyle iletişime geç.</string>
+    <string name="DonationsErrors__your_payment">Ödemen işlenemedi ve senden ödeme alınmadı. Lütfen tekrar dene.</string>
     <string name="DonationsErrors__still_processing">İşlem sürüyor</string>
     <string name="DonationsErrors__couldnt_add_badge">Rozet eklenemedi</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Doğrulama rozeti başarısız</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Rozet doğrulanamadı</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Sunucu yanıtı doğrulanamadı. Lütfen destek ile iletişime geçin.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Hediye rozet gönderimi başarısız</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Hediye rozeti gönderilemedi. Lütfen destek ile iletişime geçin.</string>
-    <string name="DonationsErrors__your_badge_could_not">Rozetin hesabına eklenemedi, ancak senden ücret alınmış olabilir. Lütfen destek ekibiyle iletişime geç.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Hediye rozeti gönderilemedi. Lütfen destek ile iletişime geç.</string>
+    <string name="DonationsErrors__your_badge_could_not">Rozetin hesabına eklenemedi fakat ücret ödenmiş olabilir. Lütfen destek ekibiyle iletişime geç.</string>
     <string name="DonationsErrors__your_payment_is_still">Ödemen hâlâ işleniyor. Bu, bağlantına bağlı olarak birkaç dakika sürebilir.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Kullanılamıyor</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurmanız gerekir.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Uygulama içi bağış yapmak için Google Pay\'i kurman gerekir.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Abonelik iptal edilemedi</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Abonelik iptali için internet bağlantısı gerekir.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazın Google Pay\'i desteklemiyor, bu yüzden abone olup rozet kazanamazsın. Yine de websitemizden bağışta bulunarak Signal\'ı destekleyebilirsin.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Cihazın Google Pay\'i desteklemiyor, bu yüzden abone olup rozet kazanamazsın. Yine de web sitemizden bağışta bulunarak Signal\'i destekleyebilirsin.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ağ hatası. Bağlantınızı kontrol edip tekrar deneyin.</string>
     <string name="NetworkFailure__retry">Tekrar dene</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Makbuzu paylaş</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Signal\'i yeniden yüklediyseniz, önceki bağışların makbuzları mevcut olmayacaktır.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Signal\'i yeniden yüklediysen, önceki bağışların makbuzları mevcut olmayacaktır.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Bağış makbuzu</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Henüz görülme yok</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Hikayelerini kimlerin görüntülediğini görmek için okundu bilgisini etkinleştir.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Ayarlara git</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5198,7 +5198,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Bir Rozet Hediye Et</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal\'e kendi adına bağışta bulunarak birine rozet hediye edin. Profil fotoğraflarında göstermeleri için bir rozet alacaklar.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal\'e kendi adına bağışta bulunarak birine rozet hediye et. Profil fotoğraflarında göstermeleri için bir rozet alacaklar.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">İleri</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Desteğin için teşekkürler!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s\'ten bir hediye rozeti aldınız! Bu rozeti profilinizde sergileyerek Signal\'in farkındalık oluşturmasına yardımcı olun.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s\'ten bir hediye rozeti aldın! Bu rozeti profilinde sergileyerek Signal\'in farkındalık oluşturmasına yardımcı ol.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s\'e bir rozet hediye ettiniz. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s\'e bir rozet hediye ettin. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Ödeme</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5230,13 +5230,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Hediye ödeniyor…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Rozetinizi daha sonra ödeyebilirsiniz.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Rozetini daha sonra ödeyebilirsin.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$se bir rozet hediye ettiniz. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s\'e bir rozet hediye ettin. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hediye rozetinizin süresi doldu.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hediye rozetinin süresi doldu</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Hediye rozetinizin süresi doldu ve artık profilinizde başkaları tarafından görüntülenemez.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Hediye rozetinin süresi doldu ve artık profilinde başkaları tarafından görüntülenemez.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Senin için geliştirilen teknolojiyi desteklemeye devam etmek için, lütfen aylık Destekçi olmayı düşün.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5586,15 +5586,15 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal\'a ayda %1$s bağış yap</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal\'e ayda %1$s bağış yap</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">Bir %1$s rozeti al</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal\'a %1$s bağış yap</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal\'e %1$s bağış yap</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d gün boyunca %1$s rozeti kazan</item>
+        <item quantity="other">%2$d gün boyunca %1$s rozeti kazan</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredi veya banka kartı</string>

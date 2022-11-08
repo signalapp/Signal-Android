@@ -108,11 +108,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal zahtijeva dopuštenje za kontakte kako bi priložio podatke o kontaktu, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Kontakti\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal zahtijeva dopuštenje za lokaciju kako bi priložio lokaciju, ali je trajno odbijen. Otvorite postavke aplikacije, odaberite \"Dozvole\" i omogućite \"Lokacija\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">Korisnik %1$s nije omogućio Plaćanja </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Želite li korisniku poslati zahtjev za omogućavanje plaćanja?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Pošalji zahtjev</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Poništi</string>
 
@@ -1017,7 +1017,7 @@
     <string name="ManageProfileFragment_your_name">Vaše ime</string>
     <string name="ManageProfileFragment_your_username">Vaše korisničko ime</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Neuspješno postavljanje slike profila</string>
-    <string name="ManageProfileFragment_badges">Bedževi</string>
+    <string name="ManageProfileFragment_badges">Značke</string>
     <string name="ManageProfileFragment__edit_photo">Uredi fotografiju</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Korisničko ime je kreirano</string>
@@ -1536,13 +1536,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Povijest vašeg razgovora s korisnikom %1$s sada je povezana s drugim razgovorom s istim korisnikom.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Poslali ste korisniku %1$s zahtjev za omogućavanje Plaćanja</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s želi da omogućite Plaćanja. Uplate šaljite samo osobama kojima vjerujete.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Omogućili ste Plaćanja</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s sada može prihvaćati uplate</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s je započeo/la grupni poziv · %2$s</string>
@@ -2062,13 +2062,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ova poruka je izbrisana.</string>
     <string name="ThreadRecord_you_deleted_this_message">Izbrisali ste ovu poruku.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Poslali ste zahtjev za omogućavanje Plaćanja</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s želi da omogućite Plaćanja</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Omogućili ste Plaćanja</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s sada može prihvaćati uplate</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s se pridružio/la Signalu!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Poruke koje nestaju su onemogućene</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Postavljeno je da poruke nestaju za %1$s</string>
@@ -2768,7 +2768,7 @@
         <item>Povratne informacije</item>
         <item>Ostalo</item>
         <item>Plaćanja (MobileCoin)</item>
-        <item>Donacije &amp; značke</item>
+        <item>Donacije i značke</item>
         <item>Izvoz SMS poruka</item>
     </string-array>
 
@@ -3155,7 +3155,7 @@
     <string name="PaymentsHomeFragment__sent_s">Poslao/la %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Primljeno %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Prenesi na burzu</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Pretvorba valute</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Konverzija valute</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Onemogući plaćanja</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Fraza za oporavak</string>
     <string name="PaymentsHomeFragment__help">Pomoć</string>
@@ -3164,8 +3164,8 @@
     <string name="PaymentsHomeFragment__received_payment">Zaprimljena uplata</string>
     <string name="PaymentsHomeFragment__processing_payment">Obrada uplate</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Pretvorba valute nije dostupna</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nije moguće prikazati pretvorbu valute. Provjerite internetsku vezu i pokušajte ponovo.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Konverzija valute nije dostupna</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Nije moguće prikazati konverziju valute. Provjerite internetsku vezu i pokušajte ponovno.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Plaćanja nisu dostupna u vašoj regiji.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Neuspješno omogućavanje plaćanja. Pokušajte ponovno kasnije.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Onemogući plaćanja?</string>
@@ -3242,7 +3242,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s dana %2$s u %3$s</string>
     <string name="PaymentsDetailsFragment__to">Za</string>
     <string name="PaymentsDetailsFragment__from">Od</string>
-    <string name="PaymentsDetailsFragment__information">Pojedinosti o prijenosu kao i iznos uplate i vrijeme prijenosa su dio MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">Pojedinosti o prijenosu kao i iznos uplate i vrijeme prijenosa dio su MobileCoin Ledgera.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Naknada za čišćenje novčića</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Naknada za čišćenje novčića naplaćuje se kada se novčići u vašem posjedu ne mogu kombinirati za dovršetak transakcije. Čišćenje će vam omogućiti da i dalje šaljete uplate.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Nema dodatnih pojedinosti za ovu transakciju</string>
@@ -3302,7 +3302,7 @@
     <string name="ConfirmPayment__error_getting_fee">Pogreška prilikom dohvata naknade</string>
     <string name="ConfirmPayment__estimated_s">Procijenjeno %1$s</string>
     <string name="ConfirmPayment__to">Za</string>
-    <string name="ConfirmPayment__total_amount">Ukupni iznos</string>
+    <string name="ConfirmPayment__total_amount">Ukupan iznos</string>
     <string name="ConfirmPayment__balance_s">Stanje: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Slanje uplate…</string>
     <string name="ConfirmPayment__processing_payment">Obrada uplate…</string>
@@ -3328,7 +3328,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s u %2$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">Postavi valutu</string>
+    <string name="SetCurrencyFragment__set_currency">Postavite valutu</string>
     <string name="SetCurrencyFragment__all_currencies">Sve valute</string>
 
     <!-- **************************************** -->
@@ -4114,10 +4114,10 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Spremi frazu za oporavak</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Unesite frazu za oporavak</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Račun će se automatski vratiti kada ponovo instalirate Signal ako potvrdite svoj Signal PIN. Stanje možete vratiti i pomoću fraze za oporavak koja je za vas jedinstvena fraza od %1$d riječi. Zapišite je i spremite na sigurno mjesto.</item>
+        <item quantity="few">Račun će se automatski vratiti kada ponovo instalirate Signal ako potvrdite svoj Signal PIN. Stanje možete vratiti i pomoću fraze za oporavak koja je za vas jedinstvena fraza od %1$d riječi. Zapišite je i spremite na sigurno mjesto.</item>
+        <item quantity="many">Račun će se automatski vratiti kada ponovo instalirate Signal ako potvrdite svoj Signal PIN. Stanje možete vratiti i pomoću fraze za oporavak koja je za vas jedinstvena fraza od %1$d riječi. Zapišite je i spremite na sigurno mjesto.</item>
+        <item quantity="other">Račun će se automatski vratiti kada ponovo instalirate Signal ako potvrdite svoj Signal PIN. Stanje možete vratiti i pomoću fraze za oporavak koja je za vas jedinstvena fraza od %1$d riječi. Zapišite je i spremite na sigurno mjesto.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Imate nešto na stanju! Vrijeme je da spremite svoju frazu za oporavak—lozinku od 24 riječi koju možete koristiti za oporavak vašeg stanja.</string>
@@ -4445,7 +4445,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Postanite pretplatnik</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal podržavaju ljudi poput Vas. Donirajte i osvojite svoju značku.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal podržavaju ljudi poput vas. Donirajte i osvojite svoju značku.</string>
     <string name="BecomeASustainerMegaphone__not_now">Ne sada</string>
     <string name="BecomeASustainerMegaphone__donate">Doniraj</string>
 
@@ -4679,7 +4679,7 @@
 
     <string name="BadgesOverviewFragment__my_badges">Moje značke</string>
     <string name="BadgesOverviewFragment__featured_badge">Istaknuta značka</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite bedževe na svom profilu</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Prikažite značke na svom profilu</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Ažuriranje profila nije uspjelo</string>
 
 
@@ -4700,7 +4700,7 @@
     <string name="SubscribeFragment__more_payment_options">Više opcija plaćanja</string>
     <string name="SubscribeFragment__cancel_subscription">Otkažite pretplatu</string>
     <string name="SubscribeFragment__confirm_cancellation">Potvrditi otkazivanje?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Više vam neće biti naplaćeno. Vaša će značka biti uklonjena s vašeg profila na kraju razdoblja naplate.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Iznos vam neće biti ponovno naplaćen. Vaša će značka biti uklonjena s vašeg profila na kraju razdoblja naplate.</string>
     <string name="SubscribeFragment__not_now">Ne sada</string>
     <string name="SubscribeFragment__confirm">Potvrdi</string>
     <string name="SubscribeFragment__update_subscription">Nadogradnja pretplate</string>
@@ -4716,21 +4716,21 @@
     <string name="Subscription__expires_s">Istječe %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je neprofitna organizacija bez oglasa i investitora koju podržavaju samo ljudi koji ga koriste i cijene. Donirajte na mjesečnoj bazi kako biste dobili svoj bedž profila u znak vaše potpore projektu.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je neprofitna organizacija bez oglasa i investitora koju podržavaju samo ljudi koji ga koriste i cijene. Donirajte na mjesečnoj bazi kako biste dobili značku na svom profilu u znak vaše potpore projektu.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zašto donirati?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal se zalaže za razvoj tehnologije privatnosti otvorenog koda koja štiti slobodu izražavanja i omogućuje sigurnu globalnu komunikaciju.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Vaša donacija podupire ovaj cilj i financira razvoj i rad aplikacije koju milijuni korisnika koriste za privatnu komunikaciju. Bez reklama. Bez praćenja. Bez šale.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Hvala vam na podršci!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Hvala vam na uplati!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Osvojili ste %1$s značku! Prikažite je na svom profilu kako biste kako biste potakli druge da doniraju Signalu.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Osvojili ste značku podrške! Prikažite je na svom profilu kako biste kako biste potakli druge da doniraju Signalu.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Osvojili ste značku %1$s! Prikažite je na svom profilu kako biste kako biste potaknuli druge da doniraju Signalu.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Osvojili ste značku podrške! Prikažite je na svom profilu kako biste kako biste potaknuli druge da doniraju Signalu.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Možete i</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">postati mjesečni pretplatnik.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Prikaži bedž na svom profilu</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Istakni ovu značku</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Nastavi</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kada imate više od jedne značke, možete odabrati koju želite istaknuti kako bi ju drugi mogli vidjeti na vašem profilu.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kada imate više od jedne značke, možete odabrati koju želite istaknuti kako bi je drugi mogli vidjeti na vašem profilu.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Osvojite značke za svoj profil podržavajući Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je neprofitna organizacija bez oglašivača ili investitora, koju podržavaju samo ljudi poput vas.</string>
@@ -4746,15 +4746,15 @@
     <string name="ManageDonationsFragment__manage_subscription">Upravljanje pretplatom</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Potvrde o donacijama</string>
-    <string name="ManageDonationsFragment__badges">Bedževi</string>
-    <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja</string>
+    <string name="ManageDonationsFragment__badges">Značke</string>
+    <string name="ManageDonationsFragment__subscription_faq">Najčešća pitanja o pretplati</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Pogreška pri aktivaciji pretplate.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Druge opcije doniranja</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Poklonite značku</string>
 
-    <string name="Boost__enter_custom_amount">Unesi prilagođeni iznos</string>
+    <string name="Boost__enter_custom_amount">Unesi drugi iznos</string>
     <string name="Boost__one_time_contribution">Jednokratna donacija</string>
 
     <string name="MySupportPreference__add_a_signal_boost">Dodaj Signal Boost</string>
@@ -4768,7 +4768,7 @@
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Značka podrška je istekla</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mjesečna donacija otkazana</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mjesečna donacija je otkazana</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Značka podrške je istekla i ne prikazuje se više na vašem profilu.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Možete ponovno aktivirati značku podrške na dodatnih 30 dana jednokratnom donacijom.</string>
@@ -4778,17 +4778,17 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dodaj Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ne sada</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša pretplata je automatski otkazana jer ste dugo bili neaktivni. Vaša %1$sznačka se više ne prikazuje na vašem profilu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Vaša pretplata je automatski otkazana jer ste dugo bili neaktivni. Vaša značka %1$s više se ne prikazuje na vašem profilu.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Vaša mjesečna pretplata je otkazana jer nije bilo moguće obraditi uplatu. Vaša značka više se ne prikazuje na vašem profilu.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Vaša mjesečna pretplata je otkazana. %1$s Vaša %2$s značka više se ne prikazuje na vašem profilu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti koristiti Signal, ali ako želite podržati aplikaciju i ponovno aktivirati svoju značku, obnovite pretplatu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Vaša mjesečna pretplata je otkazana. %1$s Vaša značka %2$s više se ne prikazuje na vašem profilu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Možete nastaviti koristiti Signal, ali ako želite podržati aplikaciju i ponovno aktivirati svoju značku, bit će potrebno obnoviti pretplatu.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovi pretplatu</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Otvori Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Plaćanje pretplate nije moguće obraditi</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nije moguće provesti plaćanje pretplate</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Imamo problema s naplatom vaše uplate za program Signal pretplatnici. Provjerite je li vaš način plaćanja ažuran. Ako nije, ažurirajte ga u Google Payu. Signal će ponovno pokušati obraditi uplatu za nekoliko dana.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ne prikazuj ponovno</string>
 
@@ -4801,7 +4801,7 @@
     <string name="DonationsErrors__error_processing_payment">Pogreška pri obradi plaćanja</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Pogreška pri obradi plaćanja. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte podršku.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte korisničku podršku.</string>
     <string name="DonationsErrors__your_payment">Vašu transakciju nije bilo moguće obraditi te vam se iznos neće naplatiti. Molimo pokušajte ponovno.</string>
     <string name="DonationsErrors__still_processing">Obrada u tijeku</string>
     <string name="DonationsErrors__couldnt_add_badge">Nije moguće dodati značku</string>
@@ -4812,14 +4812,14 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Slanje značke na poklon nije uspjelo</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Nije moguće poslati značku. Molimo kontaktirajte podršku.</string>
-    <string name="DonationsErrors__your_badge_could_not">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte podršku.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Nije moguće poslati značku. Molimo kontaktirajte korisničku podršku.</string>
+    <string name="DonationsErrors__your_badge_could_not">Vašu značku nije bilo moguće dodati na vaš profil, ali možda vam je naplaćena. Molimo kontaktirajte korisničku podršku.</string>
     <string name="DonationsErrors__your_payment_is_still">Vaša se uplata još uvijek obrađuje. To može potrajati nekoliko minuta ovisno o vašoj vezi.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay nije dostupan</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Morate postaviti Google Pay za donacije unutar aplikacije.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Otkazivanje pretplate nije uspjelo</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Za otkazivanje pretplate potrebna je internetska veza.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay, stoga se ne možete pretplatiti i osvojiti značku. I dalje možete podržati Signal donacijom na našoj web stranici.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaš uređaj ne podržava Google Pay, stoga se ne možete pretplatiti i osvojiti značku. I dalje možete podržati Signal donacijom na našoj internetskoj stranici.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Pogreška mreže. Provjerite vezu i pokušajte ponovno.</string>
     <string name="NetworkFailure__retry">Pokušajte ponovno</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -5155,7 +5155,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Još nema pregleda</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Omogućite potvrde čitanja da biste vidjeli tko je pogledao vaše priče.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Otvori postavke</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5448,7 +5448,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Dobili ste značku na poklon od korisnika %1$s! Pomozite Signalu da podigne svijest prikazivanjem ove značke na vašem profilu.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Poklonili ste značku korisniku %1$s. Kad ju prihvati, moći će izabrati hoće li ju prikazati ili sakriti.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Poklonili ste značku korisniku %1$s. Kad je prihvati, moći će izabrati hoće li je prikazati ili sakriti.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Preuzmi</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5458,7 +5458,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Značku možete preuzeti kasnije.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Poklonili ste značku korisniku %1$s. Kad ju prihvati, moći će izabrati hoće li ju prikazati ili sakriti.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Poklonili ste značku korisniku %1$s. Kad je prihvati, moći će izabrati hoće li je prikazati ili sakriti.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Značka koju ste dobili na poklon je istekla</string>
     <!-- Expired gift sheet top description text -->
@@ -5839,10 +5839,10 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donirajte %1$s Signalu</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Osvojite značku %1$s na %2$d dan</item>
+        <item quantity="few">Osvojite značku %1$s na %2$d dana</item>
+        <item quantity="many">Osvojite značku %1$s na %2$d dana</item>
+        <item quantity="other">Osvojite značku %1$s na %2$d dana</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kreditna ili debitna kartica</string>

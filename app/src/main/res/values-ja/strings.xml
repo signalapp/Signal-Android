@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">連絡先情報を添付するには、Signalに連絡先へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「連絡先」を有効にしてください。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">位置情報を添付するには、Signalに位置情報へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「位置情報」を有効にしてください。</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s さんは決済機能を有効にしていません </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">決済機能を有効にするリクエストを送信しますか？</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">リクエストを送信する</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">キャンセル</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s さんとのメッセージ履歴と、同じ人との別のチャットが統合されました。</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">決済機能を有効にするリクエストを %1$s さんに送信しました</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s さんが、決済機能を有効にすることを求めています。信頼する人にのみ送金してください。</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">決済機能を有効にしました</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s さんが決済機能を有効にしました</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">このメッセージは削除されました。</string>
     <string name="ThreadRecord_you_deleted_this_message">メッセージを削除しました。</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">決済機能を有効にするリクエストを送信しました</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s さんがあなたに決済機能を有効にすることを求めています</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">決済機能を有効にしました</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s さんが決済機能を有効にしました</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s がSignalに登録しました！</string>
     <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージのタイマーが%1$sに設定されました</string>
@@ -2884,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">着金</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">決済機能 (ベータ) のご紹介</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨、MobileCoinを送受信できます。利用するには機能を有効化してください。</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨であるMobileCoinを送受信できます。利用するには機能を有効化してください。</string>
     <string name="PaymentsHomeFragment__activate_payments">決済機能を有効化</string>
     <string name="PaymentsHomeFragment__activating_payments">決済機能を有効化しています…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">決済口座を復元</string>
@@ -2984,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s (%2$s %3$s)</string>
     <string name="PaymentsDetailsFragment__to">送金先</string>
     <string name="PaymentsDetailsFragment__from">送金元</string>
-    <string name="PaymentsDetailsFragment__information">決済金額や時刻などの取引の詳細は、MobileCoin台帳の一部です。</string>
+    <string name="PaymentsDetailsFragment__information">決済金額や決済時刻などの取引の詳細は、MobileCoin台帳に記載されます。</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">コインクリーンアップ手数料</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">「コインクリーンアップ手数料」は、お手持ちのコインを組み合わせて取引を完了できない場合に発生します。クリーンアップすることで、送金を続けることができます。</string>
     <string name="PaymentsDetailsFragment__no_details_available">この取引にこれ以上の情報はありません</string>
@@ -3044,7 +3044,7 @@
     <string name="ConfirmPayment__error_getting_fee">手数料取得エラー</string>
     <string name="ConfirmPayment__estimated_s">概算 %1$s</string>
     <string name="ConfirmPayment__to">宛先</string>
-    <string name="ConfirmPayment__total_amount">合計</string>
+    <string name="ConfirmPayment__total_amount">合計金額</string>
     <string name="ConfirmPayment__balance_s">残高: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">決済を送信しています…</string>
     <string name="ConfirmPayment__processing_payment">決済を処理しています…</string>
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">Signalへの招待</string>
     <string name="FirstInviteReminder__description">暗号化された送信メッセージの数を%1$d%%増やすことができます</string>
-    <string name="SecondInviteReminder__title">あなたのSignalをブースト</string>
+    <string name="SecondInviteReminder__title">Signalをブーストしてください</string>
     <string name="SecondInviteReminder__description">%1$s を招待しましょう</string>
     <string name="InsightsReminder__view_insights">統計を見る</string>
     <string name="InsightsReminder__invite">招待する</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">リカバリーフレーズを保存する</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">リカバリーフレーズの入力</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Signalの再インストール時にSignal PINを確認すると、残高は自動で復元されます。また、あなた固有の%1$d語のリカバリーフレーズを使って、残高を復元することもできます。リカバリーフレーズは、書きとめて安全な場所に保管してください。</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">残高があります！残高を復元するためのキーとなる、24単語のリカバリーフレーズを保存しましょう。</string>
@@ -4145,7 +4145,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりませんか</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signalは、あなたのようなユーザーの皆様によって支えられています。 ぜひ寄付をして、バッジを手に入れましょう。</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signalは、ユーザーの皆様によって支えられています。ぜひ寄付をして、バッジを手に入れましょう。</string>
     <string name="BecomeASustainerMegaphone__not_now">今はしない</string>
     <string name="BecomeASustainerMegaphone__donate">寄付する</string>
 
@@ -4371,7 +4371,7 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">バッジの選択</string>
+    <string name="BadgeSelectionFragment__select_badges">バッジを選択してください</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">プレビュー</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジを選択してください</string>
@@ -4386,12 +4386,12 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signalを支えるコミュニティに参加して、データのためではなく、あなたのために作られた技術をサポートしてください。</string>
     <string name="SubscribeFragment__currency">通貨</string>
     <string name="SubscribeFragment__more_payment_options">その他の決済方法</string>
-    <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
-    <string name="SubscribeFragment__confirm_cancellation">解除しますか？</string>
+    <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除する</string>
+    <string name="SubscribeFragment__confirm_cancellation">本当に解除しますか？</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">再度課金されることはありません。課金期間が終了すると、バッジがプロフィールから削除されます。</string>
     <string name="SubscribeFragment__not_now">あとで</string>
     <string name="SubscribeFragment__confirm">解除する</string>
-    <string name="SubscribeFragment__update_subscription">サブスクリプションを更新</string>
+    <string name="SubscribeFragment__update_subscription">サブスクリプションを更新する</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションは解除されました。</string>
     <string name="SubscribeFragment__update_subscription_question">サブスクリプションを更新しますか？</string>
     <string name="SubscribeFragment__update">更新する</string>
@@ -4407,11 +4407,11 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、ユーザの皆様の寄付によって成り立っています。毎月の定期的な寄付をしていただくと、寄付をしたことを他のユーザに知らせることができる、プロフィールバッジをプレゼントします。</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">寄付をお願いする理由</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signalは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー保護技術の開発に取り組んでいます。</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">あなたの寄付がこの理念を支え、何百万人もの人々がプライベートなコミュニケーションに使っているアプリの開発と運営に充てられているのです。広告なし。トラッカーなし。本当です。</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">あなたの寄付はこの理念を支え、何百万人もの人々がプライベートなコミュニケーションに使っているアプリの開発と運営に充てられます。広告なし。トラッカーなし。本当です。</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$sバッジを獲得しました！ このバッジをプロフィールに表示することで、Signalへの寄付を認知してもらうことができます。</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$sバッジを獲得しました！ このバッジをプロフィールに表示することで、Signalへの寄付を知ってもらいましょう。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ブーストバッジを獲得しました！このバッジをプロフィールに表示して、Signalへの寄付を知ってもらいましょう。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">また、</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
@@ -4420,7 +4420,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">続ける</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。</string>
+    <string name="BecomeASustainerFragment__get_badges">Signalをサポートして、プロフィールにバッジをつけましょう。</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signalは広告主や投資家を持たない非営利団体で、ユーザーの皆様によって支えられています。</string>
 
     <!-- Button label for creating a donation -->
@@ -4431,11 +4431,11 @@
     <string name="ManageDonationsFragment__receipts">受領書</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">マイサポート</string>
-    <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
+    <string name="ManageDonationsFragment__manage_subscription">サブスクリプションを管理する</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">寄付の領収書</string>
     <string name="ManageDonationsFragment__badges">バッジ</string>
-    <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
+    <string name="ManageDonationsFragment__subscription_faq">サブスクリプションに関するよくある質問</string>
     <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">その他の支援の方法</string>
@@ -4445,7 +4445,7 @@
     <string name="Boost__enter_custom_amount">金額を入力してください</string>
     <string name="Boost__one_time_contribution">1回限りの寄付</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
+    <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加する</string>
     <string name="MySupportPreference__s_per_month">%1$s/月</string>
     <string name="MySupportPreference__renews_s">更新 %1$s</string>
     <string name="MySupportPreference__processing_transaction">処理しています…</string>
@@ -4454,25 +4454,25 @@
     <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ブーストバッジが失効しました</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ブーストバッジの有効期限が切れています</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">月々の寄付をキャンセル</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">毎月の寄付がキャンセルされました</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">ブーストバッジの有効期限が切れたため、プロフィールには表示されません。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジを再度30日間有効にすることができます。</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signalを使い続けることはできますが、あなたのために作られたテクノロジーを支援するため、毎月寄付するサポーターになることを検討してください。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signalを使い続けることはできますが、ユーザーのために作られたテクノロジーを支援するため、毎月寄付するサステナになることを検討してください。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになりませんか</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加する</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">長期間活動を停止していたため、毎月の定期的な寄付が自動的にキャンセルされました。あなたの%1$sバッジはプロフィールに表示されなくなります。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">長い間ご利用がなかったため、毎月の定期的な寄付が自動的にキャンセルされました。%1$sバッジはプロフィールに表示されなくなっています。</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">決済処理が出来なかったため、毎月の定期的な寄付は解除されました。 バッジはプロフィールに表示されなくなります。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">決済処理が出来なかったため、毎月の定期的な寄付は解除されました。バッジはプロフィールに表示されなくなります。</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">毎月の定期的な寄付は解除されました。 %1$s%2$sバッジはプロフィールに表示されなくなります。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは今後も利用できますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新する</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Payを開く</string>
 
@@ -4489,8 +4489,8 @@
     <string name="DonationsErrors__error_processing_payment">決済の処理中にエラーが発生しました</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。%1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
-    <string name="DonationsErrors__your_payment">決済処理ができず、課金しませんでした。あとで再度試してください。</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__your_payment">決済処理ができず、課金されていません。再度試してください。</string>
     <string name="DonationsErrors__still_processing">処理を継続しています</string>
     <string name="DonationsErrors__couldnt_add_badge">バッジを追加できませんでした</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4500,20 +4500,20 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">ギフトバッジの送信に失敗しました</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">ギフトバッジを送信できませんでした。サポートにお問い合わせください。</string>
-    <string name="DonationsErrors__your_badge_could_not">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">ギフトバッジを送信できませんでした。サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__your_badge_could_not">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。サポートまでお問い合わせください。</string>
     <string name="DonationsErrors__your_payment_is_still">あなたの決済はまだ処理が続いています。接続状況によっては数分かかる場合があります。</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Payを利用できません</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">アプリ内でご寄付いただくには、Google Payを設定してください。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">サブスクリプションを解除できませんでした</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">サブスクリプションを解除するには、インターネット接続が必要です。</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">お使いの端末がGoogle Payに対応していないため、バッジを獲得できるサブスクリプションができません。Signalのウェブサイトで寄付ただくことも可能です。</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">お使いの端末がGoogle Payに対応していないため、バッジを獲得できるサブスクリプションができません。ウェブサイトから寄付してただくことでSignalをサポートしていただくことができます。</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ネットワークエラー。インターネット接続を確認して再度試してください。</string>
     <string name="NetworkFailure__retry">再試行</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">ギフトを送信できません</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">この受取人はギフトバッジを受け取ることができないバージョンのSignalを使用しています。最新バージョンにアップデートすると、ギフトを受け取れるようになります。</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">この受取人はギフトバッジを受け取ることができないSignalのバージョンを使用しています。最新バージョンにアップデートすると、ギフトを受け取れるようになります。</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">ギフトを送信できませんでした</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
@@ -4730,7 +4730,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">領収書を共有</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Signalをインストールし直すと、過去の寄付の領収書を表示できなくなります。</string>
+    <string name="DonationReceiptListFragment__if_you_have">Signalを再インストールすると、過去にした寄付の領収書を入手できなくなります。</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">寄付の領収書</string>
     <!-- Donation receipts amount title -->
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">閲覧 なし</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">既読を有効にすると、誰があなたのストーリーを見たのかがわかります。</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">設定へ</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5085,7 +5085,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">バッジを贈る</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">その人の名前でSignalに寄付をすると、バッジをプレゼントすることができます。その人のプロフィール写真にバッジが表示されます。</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">その人の名前でSignalに寄付をすると、バッジを贈ることができます。その人のプロフィール写真にバッジが表示されます。</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">次へ</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5097,7 +5097,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">プレゼントは1on1のメッセージで相手に届きます。下にメッセージを追加してください。</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">1回の寄付</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">1回限りの寄付</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">メッセージを追加してください</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5107,9 +5107,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">ご支援をありがとうございます！</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sからギフトバッジを受け取りました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sさんからギフトバッジを受け取りました！このバッジをプロフィールに表示して、Signalへの関心度を深めることにお役立てください。</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$sにバッジをプレゼントしました。 承認すると、相手はバッジの表示・非表示を選択できるようになります。</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$sさんにバッジをプレゼントしました。相手が受け取ると、相手はバッジの表示・非表示を選択できるようになります。</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">交換</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5119,15 +5119,15 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">バッジは後で交換することが可能です。</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$sにバッジをプレゼントしました。 承認すると、相手はバッジの表示・非表示を選択できるようになります。</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$sさんにバッジをプレゼントしました。相手が受け取ると、相手はバッジの表示・非表示を選択できるようになります。</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ギフトバッジが失効しました</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ギフトバッジの有効期限が切れました</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">あなたのギフトバッジは有効期限が切れたため、プロフィールには表示されません。</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">ギフトバッジの有効期限が切れたため、プロフィールに表示されなくなりました。</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">毎月の寄付をする</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">月々の寄付をする</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">今はしない</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5463,14 +5463,14 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signalに %1$s／月を寄付する</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signalに %1$s円／月を寄付する</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$sバッジを獲得しましょう</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signalに %1$sを寄付する</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signalに %1$s円を寄付する</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">%2$d 日間%1$sバッジを獲得しましょう</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">クレジットカードまたはデビットカード</string>

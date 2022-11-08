@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee luvan käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee luvan käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s ei ole aktivoinut Signal-maksuja </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Haluatko lähettää vastaanottajalle Signal-maksujen aktivointipyynnön?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Lähetä pyyntö</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Peruuta</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Viestihistoriasi yhteystiedon %1$s kanssa ja toinen siihen kuulunut keskustelu on yhdistetty.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Lähetit käyttäjälle %1$s Signal-maksujen aktivointipyynnön</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s haluaa sinun aktivoivan Signal-maksut. Lähetä maksuja vain henkilöille, joihin luotat.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Olet aktivoinut Signal-maksut</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s voi nyt hyväksyä maksuja</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Tämä viesti poistettiin.</string>
     <string name="ThreadRecord_you_deleted_this_message">Poistit tämän viestin.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Lähetit Signal-maksujen aktivointipyynnön</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s haluaa sinun aktivoivan Signal-maksut</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Olet aktivoinut Signal-maksut</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s voi nyt hyväksyä maksuja</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s käyttää Signalia!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %1$s</string>
@@ -1944,7 +1944,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Lähetit lahjan</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjaksi saadun kunniamerkin</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjamerkin</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Lähetti reaktion %1$s tarinaasi</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Esittelyssä maksut (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla se käyttöön.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta, jota voit lähettää ja vastaanottaa Signalissa. Aloita ottamalla se käyttöön.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Palauta maksutili</string>
@@ -2993,7 +2993,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Käsitellään maksua</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnosta ei voida näyttää. Tarkista puhelimen verkkoyhteys ja yritä uudelleen.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksutoiminto ei ole saatavilla alueellasi.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Maksutoiminnon käyttöönotto epäonnistui. Yritä myöhemmin uudelleen.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s klo %3$s</string>
     <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
     <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
-    <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot, mm. summa ja aika tallennetaan MobileCoiniin.</string>
+    <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot, mukaan lukien maksun summa ja aika, tallennetaan MobileCoiniin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Kolikoiden siivousmaksu</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, summasta peritään kolikoiden siivousmaksu. Siivouksen jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Siirrosta ei ole saatavilla lisätietoja</string>
@@ -3130,7 +3130,7 @@
     <string name="ConfirmPayment__error_getting_fee">Virhe summan vastaanotossa</string>
     <string name="ConfirmPayment__estimated_s">Arvio %1$s</string>
     <string name="ConfirmPayment__to">Vastaanottaja:</string>
-    <string name="ConfirmPayment__total_amount">Yhteensä</string>
+    <string name="ConfirmPayment__total_amount">Kokonaissumma</string>
     <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Lähetetään maksua…</string>
     <string name="ConfirmPayment__processing_payment">Käsitellään maksua…</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Tallenna palautuslause</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Syötä palautuslause</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Tilin saldo palautetaan automaattisesti, kun asennat Signalin uudelleen ja vahvistat Signalin PIN-koodin. Voit palauttaa saldon myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</item>
+        <item quantity="other">Tilin saldo palautetaan automaattisesti, kun asennat Signalin uudelleen ja vahvistat Signalin PIN-koodin. Voit palauttaa saldon myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Sinulla on saldoa! On aika tallentaa palautuslause – 24 sanan mittainen avain, jonka avulla voit palauttaa saldosi.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Poista tekstiviestit</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Poistetaan tekstiviestejä Signalista...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Poistetaan tekstiviestejä Signalista…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Voit poistaa tekstiviestejä Signalista asetuksissa milloin tahansa.</string>
     <!-- Description for export sms preference -->
@@ -4475,11 +4475,11 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Valitse merkki</string>
+    <string name="BadgeSelectionFragment__select_badges">Valitse merkit</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Valitse merkki</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Valitse merkki</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Sinun on valittava merkki</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
@@ -4490,16 +4490,16 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Tue teknologiaa, joka on rakennettu sinua varten, ei datan tarpeisiin. Liity yhteisöön, joka pitää Signalia yllä.</string>
     <string name="SubscribeFragment__currency">Valuutta</string>
     <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
-    <string name="SubscribeFragment__cancel_subscription">Peru tilaus</string>
+    <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
     <string name="SubscribeFragment__confirm_cancellation">Vahvistetaanko peruutus?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkki poistetaan profiilistasi laskutusjaksosi lopussa.</string>
     <string name="SubscribeFragment__not_now">Ei nyt</string>
     <string name="SubscribeFragment__confirm">Vahvista</string>
     <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruttu.</string>
-    <string name="SubscribeFragment__update_subscription_question">Päivitä tilaus?</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruutettu.</string>
+    <string name="SubscribeFragment__update_subscription_question">Päivitetäänkö tilaus?</string>
     <string name="SubscribeFragment__update">Päivitä</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sinulta veloitetaan uuden tilauksen täysi summa (%1$s) tänään. Tilaus uusiutuu kuukausittain.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sinulta veloitetaan uuden tilauksen kokonaissumma (%1$s) tänään. Tilaus uusiutuu kuukausittain.</string>
 
     <string name="Subscription__s_per_month">%1$s / kk</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4515,8 +4515,8 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos Boostista!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Olet ansainnut %1$s -merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoituksista.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Olet ansainnut Boost-merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoituksista.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Olet ansainnut %1$s-merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoittamisesta.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Olet ansainnut Boost-merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoittamisesta.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Voit myös</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ryhtyä kuukausittaiseksi tukijaksi.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
@@ -4540,7 +4540,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Lahjoituskuitit</string>
     <string name="ManageDonationsFragment__badges">Merkit</string>
     <string name="ManageDonationsFragment__subscription_faq">Tilausten yleiset kysymykset</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta noudettaessa.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hankittaessa.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Muut lahjoitustavat</string>
     <!-- Preference label to launch badge gifting -->
@@ -4558,9 +4558,9 @@
     <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Kunniamerkki on erääntynyt</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-merkki on vanhentunut</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kuukausilahjoitus peruttu</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kuukausilahjoitus peruutettu</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Boost-merkkisi on vanhentunut, eikä se enää näy profiilissasi.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Voit aktivoida Boost-merkkisi uudelleen 30 päiväksi kertalahjoituksella.</string>
@@ -4570,17 +4570,17 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lisää Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska et ole ollut aktiivinen pitkään aikaan. Merkki %1$s ei näy enää profiilissasi.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska et ole ollut aktiivinen pitkään aikaan. %1$s-merkki ei näy enää profiilissasi.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska maksuasi ei voitu käsitellä. Merkki ei näy enää profiilissasi.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Toistuva kuukausittainen lahjoituksesi peruutettiin. %1$s Merkki %2$s ei näy enää profiilissasi.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkin uudelleen, uudista lahjoitus nyt.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uudista tilaus</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Toistuva kuukausittainen lahjoituksesi peruutettiin. %1$s %2$s-merkki ei näy enää profiilissasi.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkin uudelleen, uusi lahjoitus nyt.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uusi tilaus</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Siirry Google Payhin</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tilauksen maksua ei voitu käsitellä</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tilauksen maksua ei voida käsitellä</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal tukija -tilauksen maksun veloituksessa on ongelmia. Varmista, että maksutapasi on ajan tasalla. Jos näin ei ole, päivitä se Google Payssa. Signal yrittää veloitusta uudelleen muutaman päivän kuluessa.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Älä näytä tätä uudelleen</string>
 
@@ -4594,7 +4594,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Virhe käsiteltäessä maksua. %1$s</string>
     <string name="DonationsErrors__your_badge_could_not_be_added">Merkkiä ei voitu lisätä tilillesi, mutta sinua on silti ehkä veloitettu. Ota yhteyttä tukeen.</string>
-    <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään, eikä sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
+    <string name="DonationsErrors__your_payment">Maksua ei voitu käsitellä, eikä sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
     <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
     <string name="DonationsErrors__couldnt_add_badge">Merkkiä ei voitu lisätä</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4610,7 +4610,7 @@
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruutus epäonnistui</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii Internet-yhteyden.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii internet-yhteyden.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Laitteesi ei tue Google Payta, joten et voi tehdä tilausta ansaitaksesi merkin. Voit silti tukea Signalia tekemällä lahjoituksen verkkosivustomme kautta.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
     <string name="NetworkFailure__retry">Yritä uudelleen</string>
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ota lukukuittaukset käyttöön nähdäksesi, kuka on nähnyt tarinasi.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Siirry asetuksiin</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,7 +5194,7 @@
         <item quantity="other">%1$s · %2$d päivän voimassaolo</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Lähetä merkki lahjaksi</string>
+    <string name="GiftRowItem__send_a_gift_badge">Lähetä lahjamerkki</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Lahjoita merkki</string>
     <!-- Description text on start fragment for gifting a badge -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Kiitämme tuestasi!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Olet saanut lahjaksi merkin käyttäjältä %1$s! Auta Signalia lisäämään tietoisuutta näyttämällä tämä merkki profiilissasi.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Olet saanut lahjamerkin käyttäjältä %1$s! Auta Signalia lisäämään tietoisuutta näyttämällä tämä merkki profiilissasi.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Olet lahjoittanut merkin henkilölle %1$s. Kun hän/he saavaat sen, he voivat joko näyttää tai piilottaa merkin.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Olet lahjoittanut merkin henkilölle %1$s. Kun vastaanottaja hyväksyy lahjan, hän voi joko näyttää tai piilottaa merkin.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Lunasta</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,15 +5232,15 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Voit lunastaa merkkisi myöhemmin.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Olet lahjoittanut merkin henkilölle %1$s. Kun hän/he saavaat sen, he voivat joko näyttää tai piilottaa merkin.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Olet lahjoittanut merkin henkilölle %1$s. Kun vastaanottaja hyväksyy lahjan, hän voi joko näyttää tai piilottaa merkin.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Lahjamerkkisi on vanhentunut</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lahjamerkkisi on vanhentunut ja se ei ole enää näkyvillä toisille profiilissasi.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lahjamerkkisi on vanhentunut, eikä se näy enää muille profiilissasi.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Harkitse kuukausittaiseksi tukijaksi ryhtymistä, jos haluat jatkaa sinun tarpeisiisi kehitetyn teknologian tukemista.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tee kuukausittainen lahjoitus</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tee kuukausilahjoitus</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Ei nyt</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Lahjoita Signalille %1$s</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Hanki %1$s-merkki %2$d päiväksi</item>
+        <item quantity="other">Hanki %1$s-merkki %2$d päiväksi</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Luotto- tai pankkikortti</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Perutaan...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Peruutetaan…</string>
 
     <!-- EOF -->
 

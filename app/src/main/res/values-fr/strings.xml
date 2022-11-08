@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal exige l’autorisation Contacts afin de joindre des coordonnées de contact, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Contacts ».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal exige l’autorisation Position afin de joindre une position géographique, mais elle a été refusée définitivement. Veuillez accéder au menu des paramètres des applis, sélectionner « Autorisations » et activer « Position ».</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s n’a pas activé les paiements </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Souhaitez-vous leur envoyer une demande d’activation des paiements ?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Envoyer une demande</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Annuler</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">L\'historique de vos messages avec %1$s et une autre conversation que cette personne a créée ont été fusionnés.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements Envoyer des paiements uniquement aux personnes en qui vous avez confiance.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Vous avez activé les paiements</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s accepte désormais les paiements</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s a lancé un appel de groupe · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé.</string>
     <string name="ThreadRecord_you_deleted_this_message">Vous avez supprimé ce message.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à {0}</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Vous avez activé les paiements</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s accepte désormais les paiements</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s est sur Signal.</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Les messages éphémères sont désactivés</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">L’expiration des messages éphémères a été définie à %1$s</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Enregistrer une phrase de récupération</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre NIP Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mot qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
+        <item quantity="other">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre NIP Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mots qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
@@ -4491,15 +4491,15 @@
     <string name="SubscribeFragment__currency">Devise</string>
     <string name="SubscribeFragment__more_payment_options">Plus d’options de paiement</string>
     <string name="SubscribeFragment__cancel_subscription">Annuler l’abonnement</string>
-    <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
+    <string name="SubscribeFragment__confirm_cancellation">Confirmer l’annulation ?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Vous ne serez plus facturé. Votre macaron sera supprimé de votre profil à la fin de votre période de facturation.</string>
     <string name="SubscribeFragment__not_now">Pas maintenant</string>
     <string name="SubscribeFragment__confirm">Confirmer</string>
     <string name="SubscribeFragment__update_subscription">Mettre à jour l’abonnement</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Votre abonnement a été annulé.</string>
-    <string name="SubscribeFragment__update_subscription_question">Mettre l’abonnement à jour ?</string>
+    <string name="SubscribeFragment__update_subscription_question">Mettre l’abonnement à jour ?</string>
     <string name="SubscribeFragment__update">Mise à jour</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Le montant total (%1$s) du prix du nouvel abonnement vous sera facturé aujourd\'hui. Votre abonnement sera renouvelé tous les mois.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Le montant total (%1$s) du prix du nouvel abonnement vous sera facturé aujourd’hui. Votre abonnement sera renouvelé tous les mois.</string>
 
     <string name="Subscription__s_per_month">%1$s/mois</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4508,7 +4508,7 @@
     <string name="Subscription__expires_s">Expire le %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenue uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un macaron de profil pour afficher votre soutien.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par les gens qui l’utilisent et l’apprécient. Faites un don mensuel récurrent et recevez un macaron de profil pour afficher votre soutien.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Pourquoi faire un don ?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal s’engage à développer une technologie ouverte de protection de la vie privée et des données personnelles, qui protège la liberté d’expression et permet une communication sécurisée à l’échelle planétaire.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Votre contribution alimente cette cause et permet de financer le développement et le fonctionnement d’une appli utilisée par des millions de personnes pour des communications confidentielles et protégées. Aucune publicité, aucun traqueur, vraiment.</string>
@@ -4535,12 +4535,12 @@
     <string name="ManageDonationsFragment__receipts">Reçus</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Mon soutien</string>
-    <string name="ManageDonationsFragment__manage_subscription">Gérer l\'abonnement</string>
+    <string name="ManageDonationsFragment__manage_subscription">Gérer l’abonnement</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Reçus de don</string>
     <string name="ManageDonationsFragment__badges">Macarons</string>
     <string name="ManageDonationsFragment__subscription_faq">FAQ Abonnement</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l\'abonnement</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Erreur de lecture de l’abonnement</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Autres moyens de donner</string>
     <!-- Preference label to launch badge gifting -->
@@ -4554,7 +4554,7 @@
     <string name="MySupportPreference__renews_s">Renouvellement %1$s</string>
     <string name="MySupportPreference__processing_transaction">Traitement de la transaction…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Impossible d\'ajouter un macaron. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Impossible d’ajouter un macaron. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Veuillez contacter l’assistance.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
@@ -4570,12 +4570,12 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Donner un Coup de pouce</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Pas maintenant</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Votre don mensuel récurrent a été automatiquement annulé car vous êtes resté inactif trop longtemps. Votre maracon %1$s n’est plus visible sur votre profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Votre don mensuel récurrent a été automatiquement annulé car vous êtes resté inactif trop longtemps. Votre macaron %1$s n’est plus visible sur votre profil.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Votre don mensuel a automatiquement été résilié car nous n’avons pas pu traiter votre paiement. Votre macaron n’est plus visible sur votre profil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Votre don mensuel récurrent a été automatiquement annulé. %1$s Votre macaron %2$s n\'est plus affiché sur votre profil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal, mais pour soutenir l\'appli t réactiver votre macaron, renouvelez maintenant.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Votre don mensuel récurrent a été automatiquement annulé. %1$s Votre macaron %2$s n’est plus affiché sur votre profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Vous pouvez continuer à utiliser Signal. Cependant, afin de soutenir l’appli et réactiver votre macaron, veuillez renouveler votre abonnement.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renouveler l’abonnement</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Allez sur Google Pay</string>
@@ -4593,18 +4593,18 @@
     <string name="DonationsErrors__error_processing_payment">Erreur de traitement du paiement</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Erreur de traitement du paiement. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Votre macaron n\'a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d\'assistance.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Votre macaron n’a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d’assistance.</string>
     <string name="DonationsErrors__your_payment">Votre paiement n’a pas pu être traité et vous n’avez pas été débité. Veuillez réessayer.</string>
     <string name="DonationsErrors__still_processing">En cours de traitement</string>
-    <string name="DonationsErrors__couldnt_add_badge">Impossible d\'ajouter le macaron</string>
+    <string name="DonationsErrors__couldnt_add_badge">Impossible d’ajouter le macaron</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Échec de la validation du macaron</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Impossible de valider la réponse du serveur. Contactez l\'assistance.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Échec lors de l\'envoi du macaron cadeau</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Échec lors de l’envoi du macaron cadeau</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Impossible d\'envoyer le macaron cadeau. Contactez l\'assistance.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Impossible d’envoyer le macaron cadeau. Contactez l’assistance.</string>
     <string name="DonationsErrors__your_badge_could_not">Votre macaron n’a pas pu être ajouté à votre compte, mais vous avez peut-être été facturé. Veuillez contacter le service d’assistance.</string>
     <string name="DonationsErrors__your_payment_is_still">Votre paiement est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponible</string>
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activer les accusés de lecture pour savoir qui a consulté vos stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Rendez-vous dans les Paramètres</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5222,7 +5222,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Vous avez reçu un macaron cadeau de la part de %1$s ! Aidez Signal à se faire connaître en affichant ce macaron sur votre profil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Vous avez offert un macaron à %1$s. Une fois votre cadeau accepté, votre destinataire pourra choisir d\'afficher ou de masquer son macaron.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Vous avez offert un macaron à %1$s. Une fois votre cadeau accepté, votre destinataire pourra choisir d’afficher ou de masquer son macaron.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Échanger</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,7 +5232,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Vous pouvez accepter votre macaron plus tard.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Vous avez offert un macaron à %1$s. Une fois votre cadeau accepté, votre destinataire pourra choisir d\'afficher ou de masquer son macaron.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Vous avez offert un macaron à %1$s. Une fois votre cadeau accepté, votre destinataire pourra choisir d’afficher ou de masquer son macaron.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Votre macaron a expiré</string>
     <!-- Expired gift sheet top description text -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Faire un don de %1$s à Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Obtenez un macaron %1$s pour %2$d jour</item>
+        <item quantity="other">Obtenez un macaron %1$s pour %2$d jours</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Carte de crédit ou de débit</string>

@@ -109,11 +109,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Tá gá ag Signal le cead teagmhálaí chun eolas teagmhálaí a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Teagmhálaí\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Tá gá ag Signal le cead áite i gcomhair do áit a cheangail, ach ní ceadaítear é go deo. Lean ar aghaidh, le do thoil, go socruithe aipe, roghnaigh \"Ceadanna\", agus cumasaigh \"Áit\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">Níor ghníomhachtaigh %1$s Íocaíochtaí </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Ar mhaith leat iarratas a sheoladh chun Íocaíochtaí a ghníomhachtú?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Seol iarratas</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Cuir ar ceal</string>
 
@@ -122,7 +122,7 @@
     <string name="AttachmentUploadJob_compressing_video_start">Ag comhbhrúigh an fhíseáin…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Ag dearbháil an bhfuil teachtaireachtaí ann...</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Seiceáil le haghaidh teachtaireachtaí…</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Úsáideoirí Bactha</string>
@@ -138,7 +138,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Méid airgid le bronnadh: %1$s</string>
+    <string name="CreditCardFragment__donation_amount_s">Méid airgid le tabhairt: %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">Cuir isteach faisnéis do chárta thíos</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -455,11 +455,11 @@
         <item quantity="other">Saving %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Saving attachment to storage…</item>
-        <item quantity="two">Saving %1$d attachments to storage…</item>
-        <item quantity="few">Saving %1$d attachments to storage…</item>
-        <item quantity="many">Saving %1$d attachments to storage…</item>
-        <item quantity="other">Saving %1$d attachments to storage…</item>
+        <item quantity="one">Ceangaltán á shábháil sa stóras…</item>
+        <item quantity="two">%1$d cheangaltán á sábháil sa stóras…</item>
+        <item quantity="few">%1$d cheangaltán á sábháil sa stóras…</item>
+        <item quantity="many">%1$d gceangaltán á sábháil sa stóras…</item>
+        <item quantity="other">%1$d ceangaltán á sábháil sa stóras…</item>
     </plurals>
     <string name="ConversationFragment_pending">Ar feitheamh…</string>
     <string name="ConversationFragment_push">Sonraí (Signal)</string>
@@ -681,9 +681,9 @@
     <string name="BackupsPreferenceFragment__turn_off">Múch</string>
     <string name="BackupsPreferenceFragment__to_restore_a_backup">"To restore a backup, install a new copy of Signal. Open the app and tap Restore backup, then locate a backup file. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Foghlaim tuilleadh</string>
-    <string name="BackupsPreferenceFragment__in_progress">Ar siúl...</string>
+    <string name="BackupsPreferenceFragment__in_progress">Ar bun…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
-    <string name="BackupsPreferenceFragment__verifying_backup">Tá an cúltaca á fhíorú...</string>
+    <string name="BackupsPreferenceFragment__verifying_backup">Cúltaca á fhíorú…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d go dtí seo…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% so far…</string>
@@ -1193,7 +1193,7 @@
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Comhroinn</string>
     <string name="InviteActivity_share_with_contacts">Comhroinn le teagmhálaithe é</string>
-    <string name="InviteActivity_share_via">Comhroinn trí...</string>
+    <string name="InviteActivity_share_via">Comhroinn trí…</string>
 
     <string name="InviteActivity_cancel">Cealaigh</string>
     <string name="InviteActivity_sending">Ag seoladh…</string>
@@ -1588,19 +1588,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">A message from %1$s couldn\'t be delivered</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s changed their phone number.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Like this new feature? Help support Signal with a one-time donation.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">An maith leat an ghné nua seo? Cuidigh le tacú le Signal le tabhartas aonuaire.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus uimhir an duine sin %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus comhrá eile ar leis an duine sin é.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Sheol tú iarratas chuig %1$s chun Íocaíochtaí a ghníomhachtú</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">Iarrann %1$s ort Íocaíochtaí a ghníomhachtú. Ná seol íocaíochtaí ach chuig daoine a bhfuil muinín agat astu.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ghníomhachtaigh tú Íocaíochtaí</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">Is féidir le %1$s glacadh le híocaíochtaí anois</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -1835,10 +1835,10 @@
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapáil anseo chun fís a chur ar siúl</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">Chun glaoch ar %1$s, ní mór do Signal cead a bheith aige chun do cheamara a rochtain</string>
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
-    <string name="WebRtcCallActivity__calling">Ag glaoch...</string>
+    <string name="WebRtcCallActivity__calling">Glaoch…</string>
     <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Tá an grúpa ró-mhór le glao a chur ar na rannpháirtithe.</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">Ag ceangal arís...</string>
+    <string name="WebRtcCallActivity__reconnecting">Athnascadh…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
     <string name="WebRtcCallActivity__bluetooth_permission_denied">Bluetooth permission denied</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
@@ -1857,8 +1857,8 @@
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">The maximum number of %1$d participants has been reached for this call. Try again later.</string>
     <string name="WebRtcCallView__view_participants_list">Breathnaigh ar na daoine atá ann</string>
     <string name="WebRtcCallView__your_video_is_off">Tá d\'fhíseán múchta</string>
-    <string name="WebRtcCallView__reconnecting">Ag ceangal arís...</string>
-    <string name="WebRtcCallView__joining">Joining…</string>
+    <string name="WebRtcCallView__reconnecting">Athnascadh…</string>
+    <string name="WebRtcCallView__joining">Dul isteach…</string>
     <string name="WebRtcCallView__disconnected">Dícheangailte</string>
 
     <string name="WebRtcCallView__signal_will_ring_s">Cuirfidh Signal glao ar %1$s</string>
@@ -2135,13 +2135,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Scriosadh an teachtaireacht seo.</string>
     <string name="ThreadRecord_you_deleted_this_message">Scrios tú an teachtaireacht seo.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Sheol tú iarratas chun Íocaíochtaí a ghníomhachtú</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">Iarrann %1$s ort Íocaíochtaí a ghníomhachtú</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ghníomhachtaigh tú Íocaíochtaí</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">Is féidir le %1$s glacadh le híocaíochtaí anois</string>
     <string name="ThreadRecord_s_is_on_signal">Tá %1$s ar Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Díchumasaíodh teachtaireachtaí gearrshaolacha</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Shocraíodh go imeoidh teachtaireachtaí as amharc tar éis %1$s.</string>
@@ -2163,7 +2163,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">You sent a gift</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">You redeemed a gift badge</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">D’fhuascail tú suaitheantas bronntanais</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Tugadh freagairt %1$s do do scéal</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2853,7 +2853,7 @@
         <item>Aiseolas</item>
         <item>Eile</item>
         <item>Íocaíochtaí (MobileCoin)</item>
-        <item>Donations &amp; Badges</item>
+        <item>Tabhartais &amp; Suaitheantais</item>
         <item>Easpórtáil SMS</item>
     </string-array>
 
@@ -2970,9 +2970,9 @@
     <string name="preferences__slow">Mall</string>
     <string name="preferences__help">Cabhair</string>
     <string name="preferences__advanced">Ardroghanna</string>
-    <string name="preferences__donate_to_signal">Bronn airgead ar Signal</string>
+    <string name="preferences__donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Deontas Aonuaire</string>
+    <string name="preferences__one_time_donation">Tabhartas Aonuaire</string>
     <string name="preferences__privacy">Príobháideachas</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Scéalta</string>
@@ -3053,7 +3053,7 @@
     <string name="preferences_advanced__disable_signal_built_in_emoji_support">Disable Signal\'s built-in emoji support</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Relay all calls through the Signal server to avoid revealing your IP address to your contact. Enabling will reduce call quality.</string>
     <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
-    <string name="preferences_app_protection__who_can">Cé ar féidir leo...</string>
+    <string name="preferences_app_protection__who_can">Cé ar féidir leo…</string>
     <string name="preferences_app_protection__app_access">Riochtain aipe</string>
     <string name="preferences_app_protection__communication">Cumarsáid</string>
     <!-- Privacy settings payments section title -->
@@ -3228,9 +3228,9 @@
     <string name="PaymentsAllActivityFragment__received">Faighte</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducing Payments (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Use Signal to send and receive MobileCoin, a new privacy focused digital currency. Activate to get started.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Úsáid Signal chun MobileCoin a sheoladh agus a fháil, airgeadra digiteach úrnua atá dírithe ar phríobháideachas. Gníomhachtaigh chun tosú air.</string>
     <string name="PaymentsHomeFragment__activate_payments">Gníomhachtaigh Íocaíochtaí</string>
-    <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú...</string>
+    <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Restore payments account</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">No recent activity yet</string>
     <string name="PaymentsHomeFragment__pending_requests">Pending requests</string>
@@ -3241,7 +3241,7 @@
     <string name="PaymentsHomeFragment__sent_s">Seoladh %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Faighte %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Transfer to Exchange</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Currency Conversion</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Comhshó airgeadra</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Deactivate Payments</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Recovery phrase</string>
     <string name="PaymentsHomeFragment__help">Cabhair</string>
@@ -3250,8 +3250,8 @@
     <string name="PaymentsHomeFragment__received_payment">Received Payment</string>
     <string name="PaymentsHomeFragment__processing_payment">Processing payment</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Currency conversion not available</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Can\'t display currency conversion. Check your phone\'s connection and try again.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Níl comhshó airgeadra ar fáil</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Ní féidir comhshó airgeadra a thaispeáint. Seiceáil nasc do ghutháin agus triail arís.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Payments is not available in your region.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Could not enable payments. Try again later.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Deactivate Payments?</string>
@@ -3328,7 +3328,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ar %2$s ar %3$s</string>
     <string name="PaymentsDetailsFragment__to">Chuig</string>
     <string name="PaymentsDetailsFragment__from">Ó</string>
-    <string name="PaymentsDetailsFragment__information">Transaction details including the payment amount and time of transaction are part of the MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">Tá sonraí idirbhirt, méid na híocaíochta agus am an idirbhirt san áireamh, mar chuid de MobileCoin Ledger.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin Cleanup Fee</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin cleanup fee” is charged when the coins in your possession can not be combined to complete a transaction. Cleanup will allow you to continue sending payments.</string>
     <string name="PaymentsDetailsFragment__no_details_available">No further details available for this transaction</string>
@@ -3388,7 +3388,7 @@
     <string name="ConfirmPayment__error_getting_fee">Error getting fee</string>
     <string name="ConfirmPayment__estimated_s">Estimated %1$s</string>
     <string name="ConfirmPayment__to">Chuig</string>
-    <string name="ConfirmPayment__total_amount">Total Amount</string>
+    <string name="ConfirmPayment__total_amount">Méid iomlán</string>
     <string name="ConfirmPayment__balance_s">Iarmhéid: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Submitting payment…</string>
     <string name="ConfirmPayment__processing_payment">Processing payment…</string>
@@ -3585,7 +3585,7 @@
 
     <string name="FirstInviteReminder__title">Tabhair cuireadh chuig Signal</string>
     <string name="FirstInviteReminder__description">You could increase the number of encrypted messages you send by %1$d%%</string>
-    <string name="SecondInviteReminder__title">Feabhsaigh do Shignal</string>
+    <string name="SecondInviteReminder__title">Spreag do Signal</string>
     <string name="SecondInviteReminder__description">Tabhair cuireadh do %1$s</string>
     <string name="InsightsReminder__view_insights">View Insights</string>
     <string name="InsightsReminder__invite">Tabhair cuireadh</string>
@@ -3626,7 +3626,7 @@
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Your PIN was not saved. We\'ll prompt you to create a PIN later.</string>
     <string name="ConfirmKbsPinFragment__pin_created">Cruthaíodh an UAP.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-enter your PIN</string>
-    <string name="ConfirmKbsPinFragment__creating_pin">UAP á cruthú...</string>
+    <string name="ConfirmKbsPinFragment__creating_pin">UAP á cruthú…</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Seo dhuit UAPanna</string>
@@ -3765,9 +3765,9 @@
     <string name="BackupDialog_verify">Deimhnigh</string>
     <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">You successfully entered your backup passphrase</string>
     <string name="BackupDialog_passphrase_was_not_correct">Passphrase was not correct</string>
-    <string name="LocalBackupJob_creating_signal_backup">Creating Signal backup…</string>
+    <string name="LocalBackupJob_creating_signal_backup">Cúltaca Signal á chruthú…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
-    <string name="LocalBackupJob_verifying_signal_backup">Cúltaca Signal á fhíorú...</string>
+    <string name="LocalBackupJob_verifying_signal_backup">Cúltaca Signal á fhíorú…</string>
     <string name="LocalBackupJobApi29_backup_failed">Theip ar an gCúltaca</string>
     <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Your backup directory has been deleted or moved.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Tá do chomhad cúltaca rómhór le stóráil san imleabhar seo.</string>
@@ -3842,7 +3842,7 @@
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tap Transfer Account and then Continue on both devices"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparing to connect to old Android device…</string>
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Nascadh le seanghléas Android á ullmhú…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Taking a moment, should be ready soon</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Waiting for old Android device to connect…</string>
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal needs the location permission to discover and connect to your old Android device.</string>
@@ -3891,7 +3891,7 @@
     <string name="DeviceTransferSetup__try_again">Féach arís é</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Ag feitheamh leis an ngléas eile</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Cnag Lean Ar Aghaidh ar do ghléas eile chun tús a chur leis an aistriú.</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Cnag Lean Ar Aghaidh ar do ghléas eile...</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tapáil Lean Ar Aghaidh ar do ghléas eile…</string>
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ní féidir aistriú ó leaganacha níos nua de Signal</string>
@@ -3935,12 +3935,12 @@
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Aistriú cuntais</string>
-    <string name="DeviceToDeviceTransferService_status_ready">Preparing to connect to your other Android device…</string>
-    <string name="DeviceToDeviceTransferService_status_starting_up">Preparing to connect to your other Android device…</string>
-    <string name="DeviceToDeviceTransferService_status_discovery">Searching for your other Android device…</string>
-    <string name="DeviceToDeviceTransferService_status_network_connected">Connecting to your other Android device…</string>
+    <string name="DeviceToDeviceTransferService_status_ready">Nascadh le do ghléas eile Android á ullmhú…</string>
+    <string name="DeviceToDeviceTransferService_status_starting_up">Nascadh le do ghléas eile Android á ullmhú…</string>
+    <string name="DeviceToDeviceTransferService_status_discovery">Do ghléas eile Android á chuardach…</string>
+    <string name="DeviceToDeviceTransferService_status_network_connected">Nascadh le do ghléas eile Android…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verification required</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">Tá an cuntas á aistriú...</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Tá an cuntas á aistriú…</string>
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Complete registration on your new device</string>
@@ -4085,11 +4085,11 @@
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Failed to delete local data. You can manually clear it in the system application settings.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Launch App Settings</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Leaving groups…</string>
+    <string name="DeleteAccountFragment__leaving_groups">Imeacht as grúpaí…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
-    <string name="DeleteAccountFragment__deleting_account">Cuntas á scriosadh...</string>
+    <string name="DeleteAccountFragment__deleting_account">Cuntas á scriosadh…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Do shíntiús á chur ar ceal…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Depending on the number of groups you\'re in, this might take a few minutes</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -4172,7 +4172,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Maidir le MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is a new privacy focused digital currency.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">Airgeadra digiteach úrnua atá dírithe ar phríobháideachas is ea MobileCoin.</string>
     <string name="payment_info_card_adding_funds">Adding Funds</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">You can add funds for use in Signal by sending MobileCoin to your wallet address.</string>
     <string name="payment_info_card_cashing_out">Cashing out</string>
@@ -4211,11 +4211,11 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Sábháil frása athshlánaithe</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter Recovery Phrase</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="two">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="two">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="few">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="many">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d bhfocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="other">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d focal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tá iarmhéid agat! Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
@@ -4386,7 +4386,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remove SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Teachtaireachtaí SMS á mbaint ó Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Teachtaireachtaí SMS á mbaint ó Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Is féidir leat teachtaireachtaí SMS a bhaint ó Signal sna Socruithe am ar bith.</string>
     <!-- Description for export sms preference -->
@@ -4399,7 +4399,7 @@
     <!-- NotificationsSettingsFragment -->
     <string name="NotificationsSettingsFragment__messages">Teachtaireachtaí</string>
     <string name="NotificationsSettingsFragment__calls">Glaonna</string>
-    <string name="NotificationsSettingsFragment__notify_when">Fógraigh nuair a...</string>
+    <string name="NotificationsSettingsFragment__notify_when">Cuir in iúl nuair…</string>
     <string name="NotificationsSettingsFragment__contact_joins_signal">Contact Joins Signal</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Notification profiles</string>
@@ -4520,9 +4520,9 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Bronn airgead ar Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal is powered by people like you. Donate monthly and receive a badge.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Tá Signal arna chumhachtú ag daoine amhail tusa. Tabhair airgead gach mí agus faigh suaitheantas.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Tabhair airgead</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4545,7 +4545,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal is powered by people like you. Donate and receive a badge.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Tá Signal arna chumhachtú ag daoine amhail tusa. Tabhair airgead agus faigh suaitheantas.</string>
     <string name="BecomeASustainerMegaphone__not_now">Ní anois</string>
     <string name="BecomeASustainerMegaphone__donate">Tabhair airgead</string>
 
@@ -4602,7 +4602,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Uimhir Ghutháin</string>
-    <string name="ConversationSettingsFragment__get_badges">Get badges for your profile by supporting Signal. Tap on a badge to learn more.</string>
+    <string name="ConversationSettingsFragment__get_badges">Faigh suaitheantais do do phróifíl trí thacú le Signal. Tapáil ar shuaitheantas chun tuilleadh a fhail amach.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Cuir baill leis</string>
@@ -4781,17 +4781,17 @@
 
     <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
 
-    <string name="BadgesOverviewFragment__my_badges">My Badges</string>
-    <string name="BadgesOverviewFragment__featured_badge">Featured Badge</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Display badges on profile</string>
+    <string name="BadgesOverviewFragment__my_badges">Mo shuaitheantais</string>
+    <string name="BadgesOverviewFragment__featured_badge">Suaitheantas faoi thrácht</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Taispeáin suaitheantais ar an bpróifíl</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Failed to update profile</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Select badges</string>
+    <string name="BadgeSelectionFragment__select_badges">Roghnaigh suaitheantais</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Réamhamharc</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Select a Badge</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">You must select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Roghnaigh suaitheantas</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ní mór duit suaitheantas a roghnú</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
@@ -4800,143 +4800,143 @@
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Support technology that is built for you—not for your data—by joining the community of people that sustain it.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Support technology that is built for you, not for your data, by joining the community that sustains Signal.</string>
-    <string name="SubscribeFragment__currency">Currency</string>
+    <string name="SubscribeFragment__currency">Airgeadra</string>
     <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
-    <string name="SubscribeFragment__cancel_subscription">Cancel Subscription</string>
-    <string name="SubscribeFragment__confirm_cancellation">Confirm Cancellation?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">You won\'t be charged again. Your badge will be removed from your profile at the end of your billing period.</string>
+    <string name="SubscribeFragment__cancel_subscription">Cuir Síntiús ar Ceal</string>
+    <string name="SubscribeFragment__confirm_cancellation">Deimhnigh Cur ar Ceal?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Ní ghearrfar táillí ort athuair. Bainfear an suaitheantas ó do phróifíl ag deireadh do thréimhse billeála.</string>
     <string name="SubscribeFragment__not_now">Ní anois</string>
     <string name="SubscribeFragment__confirm">Deimhnigh</string>
-    <string name="SubscribeFragment__update_subscription">Update Subscription</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been cancelled.</string>
-    <string name="SubscribeFragment__update_subscription_question">Update Subscription?</string>
+    <string name="SubscribeFragment__update_subscription">Nuashonraigh Síntiús</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tá do shíntiús curtha ar ceal.</string>
+    <string name="SubscribeFragment__update_subscription_question">Nuashonraigh síntiús?</string>
     <string name="SubscribeFragment__update">Nuashonraigh</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) of the new subscription price today. Your subscription will renew monthly.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Gearrfar méid iomlán an tsíntiúis nua ort inniu, (%1$s). Déanfar do shíntiús a athnuachan gach mí.</string>
 
     <string name="Subscription__s_per_month">%1$s/month</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Athnuachan %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">As feidhm %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal is a nonprofit with no advertisers or investors, sustained only by the people who use and value it. Make a recurring monthly donation and receive a profile badge to share your support.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Why Donate?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Cuideachta neamhbhrabúis is ea Signal nach bhfuil aon fhógróirí ná infheisteoirí aige; é cothaithe ag na daoine amháin a úsáideann é agus a bhfuil meas acu air. Tabhair airgead ar bhonn míosúil agus faigh suaitheantas próifíle chun do thacaíocht a chomhroinnt.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">An Fáth le Tabhartas?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal is committed to developing open source privacy technology that protects free expression and enables secure global communication.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Your donation fuels this cause and pays for the development and operations of an app used by millions for private communication. No ads. No trackers. No kidding.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Spreagann do thabhartas an chúis seo agus íocann as forbairt agus oibríochtaí aip a úsáideann na milliúin don chumarsáid phríobháideach. Gan fógraí. Gan rianairí. I ndáiríre.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Go raibh maith agat as do thacaíocht!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Thanks for the Boost!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">You\'ve earned %1$s badge! Display this badge on your profile to build awareness for donating to Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">You\'ve earned a Boost badge! Display this badge on your profile to build awareness for donating to Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">GRMA as an Spreagadh!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Tá suaitheantas %1$s tuillte agat! Taispeáin an suaitheantas seo ar do phróifíl chun feasacht a mhéadú faoi airgead a thabhairt do Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Tá suaitheantas Spreagtha tuillte agat! Taispeáin an suaitheantas seo ar do phróifíl chun feasacht a mhéadú faoi airgead a thabhairt do Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">You can also</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">become a monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make Featured Badge</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Déan suaitheantas faoi thrácht</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Ar Aghaidh</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">When you have more than one badge, you can choose one to feature for others to see on your profile.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Nuair a bhíonn níos mó ná suaitheantas amháin agat, is féidir leat ceann a roghnú le cur faoi thrácht, infheicthe ar do phróifíl.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Get badges for your profile by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Faigh suaitheantais do do phróifíl trí thacú le Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Bronn airgead ar Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Tuilleadh</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">Receipts</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">My Support</string>
-    <string name="ManageDonationsFragment__manage_subscription">Manage Subscription</string>
+    <string name="ManageDonationsFragment__manage_subscription">Bainistigh síntiús</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
+    <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
-    <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
+    <string name="ManageDonationsFragment__subscription_faq">CCanna maidir le Síntiúis</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Earráid le síntiús a fháil.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other Ways to Give</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Gift a Badge</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Bronn suaitheantas</string>
 
-    <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
+    <string name="Boost__enter_custom_amount">Cuir isteach Méid Saincheaptha</string>
     <string name="Boost__one_time_contribution">One-time contribution</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Add a Signal Boost</string>
+    <string name="MySupportPreference__add_a_signal_boost">Cuir Spreagadh Signal leis</string>
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
-    <string name="MySupportPreference__renews_s">Renews %1$s</string>
+    <string name="MySupportPreference__renews_s">Athnuachan %1$s</string>
     <string name="MySupportPreference__processing_transaction">Processing transaction…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Couldn\'t add badge. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Níorbh fhéidir suaitheantas a chur leis. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Please contact support.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost Badge Expired</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Suaitheantas Spreagtha As Feidhm</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Monthly Donation Cancelled</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Tabhartas Míosúil Curtha ar Ceal</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Your Boost badge has expired and is no longer visible on your profile.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">You can reactivate your Boost badge for another 30 days with a one-time contribution.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Tá do shuaitheantas Spreagtha imithe as feidhm agus níl sé infheicthe ar do phróifíl a thuilleadh.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Is féidir leat do shuaitheantas Spreagtha a athghníomhachtú ar feadh 30 lá eile le híocaíocht aonuaire.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Is féidir leat leanúint le húsáid Signal ach chun tacú leis an teicneolaíocht atá á dtógáil duitse, smaoinigh faoi dheonú uair sa mhí mar chothaitheoir.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Is féidir leat leanúint le húsáid Signal ach chun tacú leis an teicneolaíocht atá á dtógáil duitse, smaoinigh faoi thabhartas uair sa mhí mar chothaitheoir.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Add a Boost</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Cuir Spreagadh Leis</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ní anois</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Your recurring monthly donation was automatically cancelled because you were inactive for too long. Your %1$s badge is no longer visible on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Cuireadh do thabhartas míosúil athfhillteach ar ceal go huathoibríoch toisc go raibh tú neamhghníomhach tamall ró-fhada. Níl do shuaitheantas %1$s infheicthe ar do phróifíl a thuilleadh.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Your recurring monthly donation was cancelled because we couldn\'t process your payment. Your badge is no longer visible on your profile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Cuireadh do thabhartas míosúil athfhillteach ar ceal mar níorbh fhéidir linn d\'íocaíocht a phróiseáil. Níl do shuaitheantas infheicthe ar do phróifíl a thuilleadh.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Your recurring monthly donation was cancelled. %1$s Your %2$s badge is no longer visible on your profile.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">You can keep using Signal but to support the app and reactivate your badge, renew now.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew Subscription</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Cuireadh do thabhartas míosúil athfhillteach ar ceal. %1$s Níl do shuaitheantas %2$s infheicthe ar do phróifíl a thuilleadh.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Tig leat leanúint le húsáid Signal ach chun tacú leis an aip agus do shuaitheantas a athghníomhachtú, athnuaigh anois.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Athnuaigh síntiús</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Can\'t process subscription payment</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ní féidir íocaíocht an tsíntiúis a phróiseáil</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">We\'re having trouble collecting your Signal Sustainer payment. Make sure your payment method is up to date. If it isn\'t, update it in Google Pay. Signal will try to process the payment again in a few days.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Don\'t show this again</string>
 
     <string name="Subscription__please_contact_support_for_more_information">Please contact support for more information.</string>
     <string name="Subscription__contact_support">Déan Teagmháil le Foireann Tacaíochta Signal</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Faigh suaitheantas %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Processing payment…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Error Processing Payment</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Error processing payment. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Your badge could not be added to your account, but you may have been charged. Please contact support.</string>
-    <string name="DonationsErrors__your_payment">Your payment couldn\'t be processed and you have not been charged. Please try again.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
+    <string name="DonationsErrors__your_payment">Níorbh fhéidir d\'íocaíocht a phróiseáil agus níor gearradh aon táille ort. Triail arís.</string>
     <string name="DonationsErrors__still_processing">Still Processing</string>
-    <string name="DonationsErrors__couldnt_add_badge">Couldn\'t Add Badge</string>
+    <string name="DonationsErrors__couldnt_add_badge">Níor fhéidir suaitheantas a chur leis</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Theip ar bhailíochtú an tsuaitheantais</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Could not validate server response. Please contact support.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Failed to send gift badge</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Theip ar sheoladh an tsuaitheantais bhronntanais</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Could not send gift badge. Please contact support.</string>
-    <string name="DonationsErrors__your_badge_could_not">Your badge could not be added to your account, but you may have been charged. Please contact support.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Níorbh fhéidir suaitheantas bronntanais a sheoladh. Déan teagmháil leis an bhfoireann tacaíochta.</string>
+    <string name="DonationsErrors__your_badge_could_not">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">You have to set up Google Pay to donate in-app.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Subscription cancellation requires an internet connection.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, so you can\'t subscribe to earn a badge. You can still support Signal by making a donation on our website.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Beidh ort Google Pay a shocrú chun airgead a thabhairt in-aip.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Theip ar chur an tsíntiúis ar ceal</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc idirlín chun an síntiús a chur ar ceal.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Tig leat tacú le Signal fós trí airgead a thabhairt ar ár láithreán Gréasáin.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. Check your connection and try again.</string>
     <string name="NetworkFailure__retry">Bain triail eile as</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">Ní féidir bronntanas a sheoladh</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Ní féidir le leagan Signal an fhaighteora suaitheantais bronntanais a fháil. Beidh ar an bhfaighteoir an leagan Signal is déanaí a fháil chun bheith in ann bronntanais a fháil.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Tá leagan de Signal á úsáid ag an bhfaighteoir nach bhfuil in ann suaitheantais bronntanais a fháil. Beidh ar an bhfaighteoir bronntanais a fháil ar nuashonrú chuig an leagan is déanaí.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">Níorbh fhéidir bronntanas a sheoladh</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__please_check_your_network_connection">Níorbh fhéidir do bhronntanas a sheoladh toisc go bhfuil earráid líonra ann. Seiceáil do nasc agus triail arís.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Suaitheantas Bronntanais</string>
+    <string name="GiftMessageView__gift_badge">Suaitheantas bronntanais</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">Lasts for %1$d month</item>
@@ -5140,21 +5140,21 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Bronntanas</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
+    <string name="DonationReceiptListFragment__boost">Spreag</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Mionsonraí</string>
     <!-- Donation receipts donation type heading -->
-    <string name="DonationReceiptDetailsFragment__donation_type">Donation type</string>
+    <string name="DonationReceiptDetailsFragment__donation_type">Cineál tabhartais</string>
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">Date paid</string>
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Share Receipt</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">If you have reinstalled Signal, receipts from previous donations will not be available.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Má tá Signal athshuiteáilte agat, ní bheidh admhálacha ó thabhartais roimhe seo ar fáil.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Donation receipt</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Admháil tabhartais</string>
     <!-- Donation receipts amount title -->
-    <string name="DonationReceiptDetailsFragment__amount">Amount</string>
+    <string name="DonationReceiptDetailsFragment__amount">Méid</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Thank you for supporting Signal. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. If you’re a resident of the United States, please retain this receipt for your tax records. Signal Technology Foundation is a tax–exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82–4506840.</string>
     <!-- Donation receipt type -->
@@ -5185,15 +5185,15 @@
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Cuir ar aghaidh</string>
     <!-- Context menu option to share a story -->
-    <string name="StoriesLandingItem__share">Share…</string>
+    <string name="StoriesLandingItem__share">Comhroinn…</string>
     <!-- Context menu option to go to story chat -->
     <string name="StoriesLandingItem__go_to_chat">Go to Chat</string>
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Eolas</string>
     <!-- Label when a story is pending sending -->
-    <string name="StoriesLandingItem__sending">Á seoladh...</string>
+    <string name="StoriesLandingItem__sending">Seoladh…</string>
     <!-- Label when multiple stories are pending sending -->
-    <string name="StoriesLandingItem__sending_d">Sending %1$d…</string>
+    <string name="StoriesLandingItem__sending_d">%1$d a sheoladh…</string>
     <!-- Label when a story fails to send due to networking -->
     <string name="StoriesLandingItem__send_failed">Theip ar an seoladh</string>
     <!-- Label when a story fails to send due to identity mismatch -->
@@ -5263,7 +5263,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Níl aon amharc ann fós</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Cumasaigh admhálacha léite chun na daoine a d\'fhéach ar do scéalta a fheiceáil.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Socruithe</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5315,7 +5315,7 @@
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__share_with_all_connections">Share with all connections</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_except">All except…</string>
+    <string name="MyStorySettingsFragment__all_except">Gach duine seachas…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Folaigh do scéal ó dhaoine ar leith</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
@@ -5327,7 +5327,7 @@
         <item quantity="other">%1$d people excluded</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">Only share with…</string>
+    <string name="MyStorySettingsFragment__only_share_with">Ná comhroinn ach le…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with_selected_people">Ná comhroinn ach le daoine roghnaithe</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
@@ -5401,9 +5401,9 @@
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Cuir isteach nasc bailí.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
-    <string name="ChangeMyStoryMembershipFragment__all_except">All except…</string>
+    <string name="ChangeMyStoryMembershipFragment__all_except">Gach duine seachas…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">Only share with…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">Ná comhroinn ach le…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Déanta</string>
     <!-- Dialog title for removing a group story -->
@@ -5533,11 +5533,11 @@
         <item quantity="other">%1$s · %2$d day duration</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Send a Gift Badge</string>
+    <string name="GiftRowItem__send_a_gift_badge">Seol suaitheantas bronntanais</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Gift a Badge</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Bronn Suaitheantas</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Gift someone a badge by making a donation to Signal in their name. They\'ll get a badge to display on their profile photo.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Bronn suaitheantas ar dhuine trí airgead a thabhairt do Signal ar a shon. Gheobhaidh an duine suaitheantas le taispeáint ar an grianghraf próifíle aige/aici.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Ar Aghaidh</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5549,7 +5549,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Your gift will be sent in a 1 on 1 message to the recipient. Add your own message below.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Deontas Aonuaire</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Tabhartas Aonuaire</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Cuir teachtaireacht leis</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5559,9 +5559,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Go raibh maith agat as do thacaíocht!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">You\'ve received a gift badge from %1$s! Help Signal build awareness by displaying this badge on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Fuair tú suaitheantas bronntanais ó %1$s! Cabhraigh le Signal feasacht a mhéadú tríd an suaitheantas seo a thaispeáint ar do phróifíl.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">You\'ve gifted a badge to %1$s. When they accept, they\'ll be given a choice to show or hide their badge.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Thug tú suaitheantas mar bhronntanas do %1$s. Nuair a ghlactar leis, tabharfar an rogha an suaitheantas a thaispeáint nó a fholú.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Redeem</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5569,17 +5569,17 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Redeeming gift…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">You can redeem your badge later.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Beidh tú in ann do shuaitheantas a fhuascailt ar ball.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">You\'ve gifted a badge to %1$s. When they accept, they\'ll be given a choice to show or hide their badge.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Thug tú suaitheantas mar bhronntanas do %1$s. Nuair a ghlactar leis, tabharfar an rogha an suaitheantas a thaispeáint nó a fholú.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Tá Do Shuaitheantas Bronntanais Imithe As Feidhm</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Tá do shuaitheantas bronntanais imithe as feidhm</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Your gift badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Tá do shuaitheantas bronntanais imithe as feidhm agus níl sé infheicthe ag daoine eile ar do phróifíl a thuilleadh.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">To continue supporting technology that is built for you, please consider becoming a monthly Sustainer.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tabhair Deonú Míosúil</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tabhair tabhartas míosúil</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Ní anois</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5725,9 +5725,9 @@
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Gach Teagmhálaí Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_except">All except…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_except">Gach duine seachas…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Only share with…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Ná comhroinn ach le…</string>
 
     <!-- Story info header sent heading -->
     <string name="StoryInfoHeader__sent">Seolta</string>
@@ -5955,18 +5955,18 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Bronn %1$s/mí ar Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Tabhair %1$s/mí do Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Faigh suaitheantas %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Bronn %1$s ar Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Tabhair %1$s do Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="two">Get a %1$s badge for %2$d days</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Faigh suaitheantas %1$s go ceann %2$d lae</item>
+        <item quantity="two">Faigh suaitheantas %1$s go ceann %2$d lá</item>
+        <item quantity="few">Faigh suaitheantas %1$s go ceann %2$d lá</item>
+        <item quantity="many">Faigh suaitheantas %1$s go ceann %2$d lá</item>
+        <item quantity="other">Faigh suaitheantas %1$s go ceann %2$d lá</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Cárta creidmheasa nó dochair</string>

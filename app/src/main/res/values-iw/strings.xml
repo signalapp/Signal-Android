@@ -108,11 +108,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal דורש הרשאת אנשי קשר על מנת לצרף מידע איש קשר, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"אנשי קשר\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal דורש הרשאת מיקום על מנת לצרף מיקום, אבל היא נדחתה לצמיתות. אנא המשך אל תפריט הגדרות היישום, בחר \"הרשאות\" ואפשר את \"מיקום\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s לא הפעיל/ה תשלומים </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">רוצה לשלוח להם בקשה להפעיל תשלומים?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">שליחת בקשה</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">בטל</string>
 
@@ -1530,19 +1530,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">הודעה מאת %1$s לא יכלה להימסר</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s שינה/שינתה את המספר שלו/שלה.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">אהבת את הפיצ׳ר החדש הזה? אפשר לסייע ולתמוך ב-Signal באמצעות תרומה חד-פעמית.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">אהבת את הפיצ׳ר החדש הזה? אפשר לסייע ולתמוך ב–Signal באמצעות תרומה חד פעמית.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">היסטוריית ההודעות שלך עם %1$s והמספר שלו/ה %2$s מוזגו יחד.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">היסטוריית ההודעות שלך עם %1$s וצ׳אט נוסף ששייך אליו/ה מוזגו יחד.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">שלחת ל%1$s בקשה להפעיל תשלומים</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s רוצה לבקש ממך להפעיל תשלומים. שלח תשלומים רק לאנשים שאתה סומך עליהם.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">הפעלת תשלומים</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">ל%1$s יש אפשרות לקבל תשלומים עכשיו</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s התחיל/ה שיחה קבוצתית · %2$s</string>
@@ -2062,13 +2062,13 @@
     <string name="ThreadRecord_this_message_was_deleted">הודעה זו נמחקה.</string>
     <string name="ThreadRecord_you_deleted_this_message">מחקת הודעה זו.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">שלחת בקשה להפעלת תשלומים</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s רוצה לבקש ממך להפעיל תשלומים</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">הפעלת תשלומים</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">ל%1$s יש אפשרות לקבל תשלומים עכשיו</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s נמצא ב־Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">הודעות נעלמות הושבתו</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">זמן הודעות נעלמות הוגדר אל %1$s</string>
@@ -2090,7 +2090,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">שלחת שי</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">מימשת תג שי</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">מימשת תג מתנה</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">הגיב/ה %1$s לסטורי שלך</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2440,7 +2440,7 @@
     <string name="ConversationUpdateItem_view">הצג</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">הזמן של ההודעות הנעלמות יוגדר אל %1$s כאשר אתה מתכתב עם הצד השני.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">תרום</string>
+    <string name="ConversationUpdateItem_donate">ביצוע תרומה</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">שלח תשלום</string>
     <!-- Update item button text to activate payments -->
@@ -2884,9 +2884,9 @@
     <string name="preferences__slow">איטי</string>
     <string name="preferences__help">עזרה</string>
     <string name="preferences__advanced">מתקדם</string>
-    <string name="preferences__donate_to_signal">תרום אל Signal</string>
+    <string name="preferences__donate_to_signal">ביצוע תרומה ל–Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">תרומה חד־פעמית</string>
+    <string name="preferences__one_time_donation">תרומה חד פעמית</string>
     <string name="preferences__privacy">פרטיות</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">סטוריז</string>
@@ -3142,7 +3142,7 @@
     <string name="PaymentsAllActivityFragment__received">התקבל</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">היכרות עם תשלומים (בטא)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">השתמש ב־Signal כדי לשלוח ולקבל MobileCoin, מטבע דיגיטלי חדש ממוקד פרטיות. הפעל כדי להתחיל.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">משתמשים ב–Signal כדי לשלוח ולקבל MobileCoin, מטבע דיגיטלי חדש ממוקד פרטיות. אפשר להפעיל כדי להתחיל.</string>
     <string name="PaymentsHomeFragment__activate_payments">הפעל תשלומים</string>
     <string name="PaymentsHomeFragment__activating_payments">מפעיל תשלומים…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">שחזר חשבון תשלומים</string>
@@ -3165,7 +3165,7 @@
     <string name="PaymentsHomeFragment__processing_payment">מעבד תשלום</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">המרת מטבע אינה זמינה</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">לא ניתן להציג המרת מטבע. בדוק את החיבור של הטלפון שלך ונסה שוב.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">לא ניתן להציג המרת מטבע. יש לבדוק את החיבור לרשת ולנסות שוב.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">תשלומים אינם זמינים באזור שלך.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">לא היה ניתן לאפשר תשלומים. נסה שוב מאוחר יותר.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">לבטל הפעלת תשלומים?</string>
@@ -3242,7 +3242,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s בתאריך %2$s בשעה %3$s</string>
     <string name="PaymentsDetailsFragment__to">אל</string>
     <string name="PaymentsDetailsFragment__from">מאת</string>
-    <string name="PaymentsDetailsFragment__information">פרטי עסקה כולל סכום התשלום וזמן העסקה הם חלק מן MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">פרטי עסקה כולל סכום התשלום וזמן העסקה הם חלק מ–MobileCoin Ledger.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">עמלת ניקוי מטבעות</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"עמלת ניקוי מטבעות\" מחויבת כאשר המטבעות בחזקתך אינם יכולים להתאחד כדי להשלים עסקה. ניקוי יתיר לך להמשיך לשלוח תשלומים.</string>
     <string name="PaymentsDetailsFragment__no_details_available">אין פרטים נוספים זמינים עבור עסקה זו</string>
@@ -3328,7 +3328,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s בשעה %2$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">הגדר מטבע</string>
+    <string name="SetCurrencyFragment__set_currency">הגדרת מטבע</string>
     <string name="SetCurrencyFragment__all_currencies">כל המטבעות</string>
 
     <!-- **************************************** -->
@@ -3498,7 +3498,7 @@
 
     <string name="FirstInviteReminder__title">הזמן אל Signal</string>
     <string name="FirstInviteReminder__description">אתה יכול להגדיל את מספר ההודעות המוצפנות שאתה שולח ב־%1$d%%</string>
-    <string name="SecondInviteReminder__title">המרץ את Signal שלך</string>
+    <string name="SecondInviteReminder__title">מתן בוסט ל–Signal שלך</string>
     <string name="SecondInviteReminder__description">הזמן את %1$s</string>
     <string name="InsightsReminder__view_insights">הצג תובנות</string>
     <string name="InsightsReminder__invite">הזמן</string>
@@ -3993,7 +3993,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">מוחק חשבון…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">מבטל את המינוי שלך…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">מבטלים את המנוי שלך…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">תלוי במספר הקבוצות שאתה נמצא בהן, זה עשוי לקחת מספר דקות</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -4075,7 +4075,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">על אודות MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin הוא מטבע דיגיטלי חדש ממוקד פרטיות.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin הוא מטבע דיגיטלי ממוקד פרטיות חדש.</string>
     <string name="payment_info_card_adding_funds">הוספת כספים</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">אתה יכול להוסיף כספים לשימוש ב־Signal ע״י שליחת MobileCoin אל כתובת הארנק שלך.</string>
     <string name="payment_info_card_cashing_out">פדיון</string>
@@ -4114,10 +4114,10 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">שמירת משפט שחזור סיסמה</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">הכנס משפט השבה</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="two">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">היתרה שלך תשוחזר באופן אוטומטי בעת התקנה מחדש של Signal לאחר אישור קוד PIN של Signal שלך. אפשר גם לשחזר את היתרה שלך באמצעות שימוש במשפט שחזור, שהוא משפט בן מילה %1$d ייחודי לך. כדאי לכתוב אותו ולאחסן אותו במקום בטוח.</item>
+        <item quantity="two">היתרה שלך תשוחזר באופן אוטומטי בעת התקנה מחדש של Signal לאחר אישור קוד PIN של Signal שלך. אפשר גם לשחזר את היתרה שלך באמצעות שימוש במשפט שחזור, שהוא משפט בן %1$d מילים ייחודי לך. כדאי לכתוב אותו ולאחסן אותו במקום בטוח.</item>
+        <item quantity="many">היתרה שלך תשוחזר באופן אוטומטי בעת התקנה מחדש של Signal לאחר אישור קוד PIN של Signal שלך. אפשר גם לשחזר את היתרה שלך באמצעות שימוש במשפט שחזור, שהוא משפט בן %1$d מילים ייחודי לך. כדאי לכתוב אותו ולאחסן אותו במקום בטוח.</item>
+        <item quantity="other">היתרה שלך תשוחזר באופן אוטומטי בעת התקנה מחדש של Signal לאחר אישור קוד PIN של Signal שלך. אפשר גם לשחזר את היתרה שלך באמצעות שימוש במשפט שחזור, שהוא משפט בן %1$d מילים ייחודי לך. כדאי לכתוב אותו ולאחסן אותו במקום בטוח.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">יש לך מאזן! הגיע הזמן לשמור את משפט שחזור הסיסמה שלך—סיסמה בעלת 24 מילים שאפשר להשתמש בה כדי לשחזר את המאזן הכספי שלך.</string>
@@ -4420,11 +4420,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">בוחר קצה תחתון</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">תרום אל Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">ביצוע תרומה ל–Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ממונע על ידי אנשים כמוך. תרום מדי חודש וקבל תג.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal מופעלת בעזרת אנשים כמוך. אפשר לתרום מדי חודש ולקבל תג.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">תרום</string>
+    <string name="Donate2022Q2Megaphone_donate">ביצוע תרומה</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">לא עכשיו</string>
 
@@ -4445,9 +4445,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">הפוך אל מחזיק</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ממונע על ידי אנשים כמוך. תרום וקבל תג.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal מופעלת בעזרת אנשים כמוך. אפשר לתרום ולקבל תג.</string>
     <string name="BecomeASustainerMegaphone__not_now">לא עכשיו</string>
-    <string name="BecomeASustainerMegaphone__donate">תרום</string>
+    <string name="BecomeASustainerMegaphone__donate">ביצוע תרומה</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">אימוג’י</string>
@@ -4502,7 +4502,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">שיחות מושתקות לתמיד</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">מספר טלפון הועתק אל לוח הגזירה.</string>
     <string name="ConversationSettingsFragment__phone_number">מספר טלפון</string>
-    <string name="ConversationSettingsFragment__get_badges">השג תגים עבור הפרופיל שלך ע״י תמיכה ב־Signal. הקש על תג כדי ללמוד עוד.</string>
+    <string name="ConversationSettingsFragment__get_badges">משיגים תגים לפרופיל שלך באמצעות תמיכה ב–Signal. אפשר ללחוץ על תג למידע נוסף.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">הוסף חברי קבוצה</string>
@@ -4678,16 +4678,16 @@
     <string name="CameraFragment__failed_to_open_camera">נכשל בפתיחת מצלמה</string>
 
     <string name="BadgesOverviewFragment__my_badges">התגים שלי</string>
-    <string name="BadgesOverviewFragment__featured_badge">תג בולט</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">הצג תגים בפרופיל שלי</string>
+    <string name="BadgesOverviewFragment__featured_badge">תג פרופיל</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">הצגת תגים בפרופיל שלי</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">בחר תגים</string>
+    <string name="BadgeSelectionFragment__select_badges">בחירת תגים</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">תצוגה מקדימה</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">בחר תג</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">אתה חייב לבחור תג</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">בחירת תג</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">חובה לבחור תג</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">נכשל בעדכון פרופיל</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">הפוך אל מחזיק</string>
@@ -4698,93 +4698,93 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">תמוך בטכנולוגיה שנבנתה עבורך, לא עבור הנתונים שלך, ע״י הצטרפות אל הקהילה שמחזיקה את Signal.</string>
     <string name="SubscribeFragment__currency">מטבע</string>
     <string name="SubscribeFragment__more_payment_options">עוד אפשרויות תשלום</string>
-    <string name="SubscribeFragment__cancel_subscription">בטל מינוי</string>
+    <string name="SubscribeFragment__cancel_subscription">ביטול מנוי</string>
     <string name="SubscribeFragment__confirm_cancellation">לאשר ביטול?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">לא תחויב שוב. התג שלך יוסר מהפרופיל שלך בסוף תקופת החיוב שלך.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">לא נחייב אותך שוב. התג שלך יוסר מהפרופיל שלך בסוף תקופת החיוב שלך.</string>
     <string name="SubscribeFragment__not_now">לא עכשיו</string>
     <string name="SubscribeFragment__confirm">אשר</string>
-    <string name="SubscribeFragment__update_subscription">עדכן מינוי</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">המינוי שלך בוטל.</string>
-    <string name="SubscribeFragment__update_subscription_question">לעדכן מינוי?</string>
+    <string name="SubscribeFragment__update_subscription">עדכון מנוי</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">המנוי שלך בוטל.</string>
+    <string name="SubscribeFragment__update_subscription_question">לעדכן מנוי?</string>
     <string name="SubscribeFragment__update">עדכן</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">תחויב בסכום המלא (%1$s) של המחיר של המינוי החדש. המינוי שלך יחודש באופן חודשי.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">נחייב אותך בסכום המלא (%1$s) של מחיר של המנוי החדש היום. המנוי שלך מתחדש באופן חודשי.</string>
 
     <string name="Subscription__s_per_month">%1$s/חודש</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">מתחדש %1$s</string>
+    <string name="Subscription__renews_s">מתחדש ב–%1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">תאריך תפוגה: %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal הוא ללא מטרות רווח בלי מפרסמים או משקיעים, מוחזק רק ע״י האנשים שמשתמשים בו ומעריכים אותו. בצע תרומה חודשית חוזרת וקבל תג פרופיל כדי לשתף את התמיכה שלך.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal היא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, והיא נתמכת רק על ידי האנשים שמשתמשים בה ומעריכים אותה. אפשר לבצע תרומה חודשית חוזרת ולקבל תג פרופיל כדי לשתף אחרים שתמכת בנו.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">למה לתרום?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal מחויב לפתח טכנולוגית פרטיות בקוד פתוח אשר מגינה על חופש ביטוי ומאפשרת תקשורת עולמית מאובטחת.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">התרומה שלך מתדלקת את המטרה הזאת ומשלמת עבור הפיתוח והפעולות של יישום שנמצא בשימוש ע״י מיליוני אנשים למען תקשורת פרטית. ללא פרסומות. ללא עוקבנים. ללא שטויות.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">התרומה שלך תומכת במטרה הזאת ומסייעת לשלם עבור הפיתוח והתפעול של אפליקציה שמשתמשים בה מיליוני אנשים למען תקשורת פרטית. בלי פרסומות. בלי מעקב. בלי שטויות.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">תודה על התמיכה שלך!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על התמריץ!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">הרווחת תג %1$s! הצג את התג הזה בפרופיל שלך כדי לעלות מודעות לגבי תרומה אל Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">הרווחת תג תמריץ! הצג את התג הזה בפרופיל שלך כדי לעלות מודעות לגבי תרומה אל Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">תודה על הבוסט!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">הרווחת תג %1$s! אפשר להציג את התג הזה בפרופיל שלך כדי להעלות מודעות לגבי תרומה ל–Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">הרווחת תג בוסט! אפשר להציג את התג הזה בפרופיל שלך כדי לעלות מודעות לגבי תרומה ל–Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">אתה גם יכול</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">הפוך אל מחזיק חודשי.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">הצג בפרופיל</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">עשה תג בולט</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">הצג תג בפרופיל</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">המשך</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">כשיהיו לך יותר מתג אחד, תוכל לבחור אחד להבליט כדי שאחרים יראו בפרופיל שלך.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">כשיהיה לך יותר מתג אחד, תהיה לך אפשרות לבחור אחד להציג בפרופיל כדי שאחרים יראו אותו.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">השג תגים עבור הפרופיל שלך ע״י תמיכה ב־Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">משיגים תגים עבור הפרופיל שלך באמצעות תמיכה ב–Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal הוא ארגון ללא מטרות רווח בלי מפרסמים או משקיעים, שנתמך רק ע״י אנשים כמוך.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">תרום אל Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">ביצוע תרומה ל–Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">עוד</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">קבלות</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">התמיכה שלי</string>
-    <string name="ManageDonationsFragment__manage_subscription">נהל מינוי</string>
+    <string name="ManageDonationsFragment__manage_subscription">ניהול מנוי</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">קבלות תרומה</string>
+    <string name="ManageDonationsFragment__donation_receipts">קבלות על תרומות</string>
     <string name="ManageDonationsFragment__badges">תגים</string>
-    <string name="ManageDonationsFragment__subscription_faq">שאלות נפוצות של מינוי</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">שגיאה בהשגת מינוי.</string>
+    <string name="ManageDonationsFragment__subscription_faq">שאלות נפוצות בנושא מנוי</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">שגיאה בהשגת מנוי.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">דרכים אחרות לתת</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">תן תג כשי</string>
+    <string name="ManageDonationsFragment__gift_a_badge">הענקת תג במתנה</string>
 
-    <string name="Boost__enter_custom_amount">הכנס סכום מותאם אישית</string>
+    <string name="Boost__enter_custom_amount">הכנסת סכום מותאם אישית</string>
     <string name="Boost__one_time_contribution">תרומה חד־פעמית</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">הוסף תמריץ Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">הוספת בוסט של Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/חודש</string>
-    <string name="MySupportPreference__renews_s">מתחדש %1$s</string>
+    <string name="MySupportPreference__renews_s">מתחדש ב–%1$s</string>
     <string name="MySupportPreference__processing_transaction">מעבד עסקה…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">לא היה ניתן להוסיף תג. %1$s</string>
     <string name="MySupportPreference__please_contact_support">אנא צור קשר עם התמיכה.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">תג תמריץ פג</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">פג התוקף של תג בוסט</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">תרומה חודשית בוטלה</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">תג התמריץ שלך פג והוא אינו גלוי יותר בפרופיל שלך.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">אתה יכול להפעיל מחדש את תג התמריץ שלך למשך 30 ימים נוספים עם תרומה חד־פעמית.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">אפשר להפעיל מחדש את תג הבוסט שלך למשך 30 ימים נוספים עם תרומה חד פעמית.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך בטכנולוגיה שנבנתה עבורך, שקול להפוך אל מחזיק חודשי ע״י ביצוע תרומה חודשית.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">אפשר להמשיך להשתמש ב–Signal אבל כדי לתמוך בטכנולוגיה שנבנתה עבורכם, נשמח אם תשקלו להפוך לתומכים באמצעות ביצוע תרומה חודשית.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">הפוך אל מחזיק</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">הוסף תמריץ</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">הוספת בוסט</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">לא עכשיו</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">התרומה החודשית המחזורית שלך בוטלה באופן אוטומטי מאחר שהיית בלתי פעיל למשך זמן רב. תג ה%1$s שלך אינו גלוי יותר בפרופיל שלך.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">התרומה החודשית החוזרת שלכם בוטלה באופן אוטומטי כי לא הייתם פעילים למשך זמן רב. תג ה%1$s שלכם לא גלוי יותר בפרופיל שלך.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">התרומה החודשית המחזורית שלך בוטלה מאחר שלא יכולנו לעבד את התשלום שלך. התג שלך אינו גלוי יותר בפרופיל שלך.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">התרומה החודשית החוזרת שלך בוטלה כי לא יכולנו לעבד את התשלום שלך. התג שלך לא גלוי יותר בפרופיל שלך.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">התרומה החודשית החוזרת שלך בוטלה. %1$s תג ה%2$s לא גלוי יותר בפרופיל שלך.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אתה יכול להמשיך להשתמש ב־Signal אבל כדי לתמוך ביישום ולהפעיל מחדש את התג שלך, חדש עכשיו.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חדש מינוי</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">אפשר להמשיך להשתמש ב–Signal אבל כדי לתמוך באפליקציה ולהפעיל מחדש את התג שלך, צריך לחדש עכשיו.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">חידוש מנוי</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">לך אל Google Pay</string>
 
@@ -4794,32 +4794,32 @@
 
     <string name="Subscription__please_contact_support_for_more_information">אנא צור קשר עם התמיכה לעוד מידע.</string>
     <string name="Subscription__contact_support">צור קשר עם תמיכה</string>
-    <string name="Subscription__get_a_s_badge">קבל תג %1$s</string>
+    <string name="Subscription__get_a_s_badge">קבלת תג %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">מעבד תשלום…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">שגיאה בעיבוד תשלום</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">שגיאה בעיבוד תשלום. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">התג שלך לא היה יכול להתווסף אל החשבון שלך, אבל ייתכן שחויבת. אנא צור קשר עם התמיכה.</string>
-    <string name="DonationsErrors__your_payment">התשלום שלך לא היה יכול להיות מעובד ולא חויבת. אנא נסה שוב.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">התג שלך לא יכול היה להתווסף לחשבון שלך, אבל ייתכן שחויבת. כדאי ליצור קשר עם התמיכה.</string>
+    <string name="DonationsErrors__your_payment">לא ניתן היה לעבד את התשלום שלך ולא חויבת. כדאי לנסות שוב.</string>
     <string name="DonationsErrors__still_processing">עדין מעבד</string>
-    <string name="DonationsErrors__couldnt_add_badge">לא היה ניתן להוסיף תג</string>
+    <string name="DonationsErrors__couldnt_add_badge">לא הייתה אפשרות להוסיף תג</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">נכשל בבדיקת תקפות תג</string>
+    <string name="DonationsErrors__failed_to_validate_badge">אימות התג נכשל</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">לא היה ניתן לבדוק תקפות תגובת שרת. אנא צור קשר עם התמיכה.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">נכשל בשליחת תג שי</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">שליחת תג מתנה נכשלה</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">לא היה ניתן לשלוח תג שי. אנא צור קשר עם התמיכה.</string>
-    <string name="DonationsErrors__your_badge_could_not">התג שלך לא היה יכול להתווסף אל החשבון שלך, אבל ייתכן שחויבת. אנא צור קשר עם התמיכה.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">לא הייתה אפשרות לשלוח תג מתנה. כדאי ליצור קשר עם התמיכה.</string>
+    <string name="DonationsErrors__your_badge_could_not">לא הייתה אפשרות להוסיף את התג שלך לחשבון שלך, אבל ייתכן שחויבת. כדאי ליצור קשר עם התמיכה.</string>
     <string name="DonationsErrors__your_payment_is_still">התשלום שלך עדין מעובד. זה יכול לקחת מספר דקות בהתאם לחיבור שלך.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay לא זמין</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">אתה חייב להגדיר את Google Pay כדי לתרום בתוך יישום.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">נכשל בביטול מינוי</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ביטול מינוי דורש חיבור אינטרנט.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">המכשיר שלך לא תומך ב־Google Pay, כך שאתה לא יכול להירשם כמנוי כדי להרוויח תג. אתה עדין יכול לתמוך ב־Signal ע״י ביצוע תרומה באתר שלנו.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">חובה להגדיר את Google Pay כדי לבצע תרומה בתוך האפליקציה.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">ביטול המנוי נכשל</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ביטול מנוי דורש חיבור לאינטרנט.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">המכשיר שלך לא תומך ב–Google Pay, כך שאין לך אפשרות להירשם כמנוי כדי להרוויח תג. עדיין אפשר לתמוך ב–Signal באמצעות ביצוע תרומה באתר שלנו.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">שגיאת רשת. בדוק את החיבור שלך ונסה שוב.</string>
     <string name="NetworkFailure__retry">נסה שוב</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4832,7 +4832,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">לא הצלחנו לשלוח את המתנה שלך בגלל שגיאת רשת. כדאי לבדוק את החיבור ולנסות שוב.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">תג שי</string>
+    <string name="GiftMessageView__gift_badge">תג מתנה</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">נמשך %1$d חודש</item>
@@ -5035,7 +5035,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">שי</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">תמריץ</string>
+    <string name="DonationReceiptListFragment__boost">בוסט</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">פרטים</string>
     <!-- Donation receipts donation type heading -->
@@ -5047,7 +5047,7 @@
     <!-- Donation receipts list end note -->
     <string name="DonationReceiptListFragment__if_you_have">אם התקנת מחדש את Signal, קבלות מתרומות קודמות לא יהיו זמינות.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">קבלת תרומה</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">קבלה על תרומה</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">סכום</string>
     <!-- Donation receipts thanks -->
@@ -5155,7 +5155,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">אין צפיות עדין</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ניתן לאפשר אישורי קריאה כדי לראות מי צפה בסטוריז שלך.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">מעבר להגדרות</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5420,11 +5420,11 @@
         <item quantity="other">%1$s · למשך %2$d ימים</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">שלח תג שי</string>
+    <string name="GiftRowItem__send_a_gift_badge">שליחת תג מתנה</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">תן תג כשי</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">הענקת תג במתנה</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">תן תג כשי למישהו ע״י ביצוע תרומה אל Signal בשמו. הוא יקבל תג להציג אותו בתמונת הפרופיל שלו.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">אפשר להעניק למישהו או מישהי תג במתנה באמצעות ביצוע תרומה ל–Signal בשמם. הוא או היא יקבלו תג להציג בתמונת הפרופיל.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">הבא</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5436,7 +5436,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">השי שלך יישלח בהודעה 1 על 1 אל המקבל. הוסף הודעה משלך למטה.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">תרומה חד־פעמית</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">תרומה חד פעמית</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">הוסף הודעה</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5446,9 +5446,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">תודה על התמיכה שלך!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">קיבלת תג שי מאת %1$s! עזור אל Signal לבנות מוּדָעוּת ע״י הצגת התג הזה בפרופיל שלך.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">קיבלת תג מתנה מ%1$s! אפשר לעזור ל–Signal להעלאות מודעות באמצעות הצגת התג הזה בפרופיל שלך.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">נתת תג כשי אל %1$s. כשהוא/היא יסכים/תסכים, תינתן לו/לה בחירה להראות או להסתיר את התג שלו/שלה.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">נתת תג במתנה ל%1$s. כשהוא או היא יקבלו אותו, תהיה להם אפשרות להראות או להסתיר את התג.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">ממש</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5456,17 +5456,17 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">מממש שי…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">אתה יכול לממש את התג שלך מאוחר יותר.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">אפשר לממש את התג שלך מאוחר יותר.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">נתת תג כשי אל %1$s. כשהוא/היא יסכים/תסכים, תינתן לו/לה בחירה להראות או להסתיר את התג שלו/שלה.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">נתת תג במתנה ל%1$s. כשהוא או היא יקבלו אותו, תהיה להם אפשרות להראות או להסתיר את התג.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">תג השי שלך פג</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">פג התוקף של תג המתנה שלך</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">תג השי שלך פג והוא אינו גלוי יותר אל אחרים בפרופיל שלך.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">תג המתנה שלך פג תוקף והוא לא גלוי יותר לאחרים בפרופיל שלך.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">כדי להמשיך לתמוך בטכנולוגיה שנבנתה עבורך, אנא שקול להפוך למחזיק חודשי.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">בצע תרומה חודשית</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">ביצוע תרומה חודשית</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">לא עכשיו</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5834,15 +5834,15 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">תרומה של %1$s/בחודש ל–Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">קבל תג %1$s</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">קבלת תג %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">תרומה של %1$s ל–Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="two">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">קבלת תג %1$s למשך יום %2$d</item>
+        <item quantity="two">קבלת תג %1$s למשך יומיים</item>
+        <item quantity="many">קבלת תג %1$s למשך %2$d ימים</item>
+        <item quantity="other">קבלת תג %1$s למשך %2$d ימים</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">כרטיס אשראי או דביט</string>

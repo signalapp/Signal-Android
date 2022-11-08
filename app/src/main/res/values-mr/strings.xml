@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">संपर्क माहिती संलग्न करण्यासाठी Signal ला संपर्क परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संपर्क\" सक्षम करा.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">स्थान संलग्न करण्यासाठी Signal ला स्थान परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"स्थान\" सक्षम करा.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s ने पेमेंट्स सक्रिय केलेले नाहीत </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">तुम्ही त्यांंना पेमेंट्स सक्रिय करण्यासाठी त्यांना विनंती करू इच्छिता?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">विनंती पाठवा</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">रद्द करा</string>
 
@@ -135,7 +135,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">देणगी रक्कम: %1$s</string>
+    <string name="CreditCardFragment__donation_amount_s">देणगीची रक्कम: %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">खाली आपली कार्ड माहिती प्रविष्ट करा</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -939,7 +939,7 @@
     <string name="ManageProfileFragment_your_name">आपले नाव</string>
     <string name="ManageProfileFragment_your_username">आपले वापरकर्तानाव</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट करण्यात अयशस्वी</string>
-    <string name="ManageProfileFragment_badges">बॅजेस्</string>
+    <string name="ManageProfileFragment_badges">बॅजेस</string>
     <string name="ManageProfileFragment__edit_photo">फोटो संपादित करा</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">वापरकर्तानाव तयार केले</string>
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s कडील संदेश डिलिव्हर केला जाऊ शकला नाही</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s यांनी त्यांचा फोन नंबर बदलला.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">हे नवीन वैशिष्ट्य आवडले? एक-वेळ देणगी देऊन सपोर्ट Signal ला मदत करा.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">हे नवीन वैशिष्ट्य आवडले? एक-वेळ देणगी देऊन Signal ला समर्थन करण्यास मदत करा.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">आपला %1$s यांच्यासह असलेला संदेश इतिहास आणि त्यांचा नंबर %2$s एकत्रित करण्यात आला आहे.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">आपला %1$s यांच्यासह संदेश इतिहास आणि त्यांच्याशी संबंधित असलेले अन्य चॅट एकत्रित करण्यात आले आहेत.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">आपण %1$s ना पेमेंट्स सक्रिय करण्याची विनंती पाठवली आहे</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ची आपण पेमेंट्स सक्रिय करावे अशी इच्छा आहे. फक्त आपण विश्वास ठेवत असलेल्या लोकांनाच पेमेंट्स पाठवा.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">आपण पेमेंट्स सक्रिय केले आहे</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s आता पेमेंट्स स्विकारु शकतात</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ने गट कॉल चालू केला · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">हा संदेश हटविला गेला.</string>
     <string name="ThreadRecord_you_deleted_this_message">आपण हा संदेश हटविला.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">आपण पेमेंट्स सक्रिय करण्याची विनंती पाठवली आहे</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ची आपण पेमेंट्स सक्रिय करावे अशी इच्छा आहे</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">आपण पेमेंट्स सक्रिय केले आहे</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s आता पेमेंट्स स्विकारु शकतात</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal वर आहे!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">हरवणारे संदेश अक्षम केले</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">हरवणारा संदेश वेळ %1$s वर सेट केली</string>
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">बघा</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">आपण त्यांना संदेश पाठवल्यावर हरवणाऱ्या संदेशाची वेळ %1$s वर सेट केली गेली जाईल.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">दान करा</string>
+    <string name="ConversationUpdateItem_donate">देणगी द्या</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">पेमेंट पाठवा</string>
     <!-- Update item button text to activate payments -->
@@ -2598,7 +2598,7 @@
         <item>अभिप्राय</item>
         <item>इतर</item>
         <item>पेमेंट्स (मोबाईलकॉईन)</item>
-        <item>देणगी &amp; बॅजेस</item>
+        <item>देणगी व बॅजेस</item>
         <item>SMS एक्सपोर्ट करा</item>
     </string-array>
 
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">प्राप्त झाले</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">सादर करत आहे पेमेंट (बीटा)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">नवीन गोपनीयता केंद्रित डिजिटल चलन, MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी Signal वापरा. चालू करण्यासाठी सक्रिय करा.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">नवीन गोपनीयता केंद्रित डिजिटल चलन, MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी Signal वापरा. सुरू करण्यासाठी सक्रिय करा.</string>
     <string name="PaymentsHomeFragment__activate_payments">पेमेंट सक्रिय करा</string>
     <string name="PaymentsHomeFragment__activating_payments">पेमेंट सक्रिय करत आहे…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">पेमेंट खाते पुनर्स्थापित करा</string>
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%2$s वर %1$s वर %3$s</string>
     <string name="PaymentsDetailsFragment__to">यांना</string>
     <string name="PaymentsDetailsFragment__from">याकडून</string>
-    <string name="PaymentsDetailsFragment__information">व्यवहार तपशील ज्यात पेमेंट रक्कम आणि व्यवहाराची वेळ हे MobileCoin लेजरचा एक भाग आहेत.</string>
+    <string name="PaymentsDetailsFragment__information">पेमेंट रक्कम आणि व्यवहाराची वेळ समाविष्ट असलेला व्यवहाराचा तपशील, हे MobileCoin लेजरचा एक भाग आहेत.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">कॉइन सफाई फी</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">आपल्याकडील कॉइन व्यव्हार पूर्ण करण्यासाठी वापरले जाऊ शकत नसल्यास \"कॉइन सफाई फी\" चार्ज केली जाते. सफाई आपल्याला पेमेंट पाठवण्यासाठी अनुमती देते.</string>
     <string name="PaymentsDetailsFragment__no_details_available">या व्यवहारासाठी कुठलाही पुढचा तपशील उपलब्ध नाही</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Signal वर आमंत्रित करा</string>
     <string name="FirstInviteReminder__description">आपण पाठवणारे एन्क्रिप्टेड संदेश आपण %1$d%% ने वाढवू शकता</string>
-    <string name="SecondInviteReminder__title">आपला Signal बूस्ट करा</string>
+    <string name="SecondInviteReminder__title">आपल्या Signal ला बूस्ट करा</string>
     <string name="SecondInviteReminder__description">%1$s ला आमंत्रित करा</string>
     <string name="InsightsReminder__view_insights">ईन्साईट बघा</string>
     <string name="InsightsReminder__invite">आमंत्रित करा</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">खाते हटवत आहे…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">आपले सब्स्क्रिप्शन रद्द करत आहे…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">आपले सदस्यत्व रद्द करत आहे(…)</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">आपण किती गटांमध्ये आहात यावर अवलंबून, यास काही मिनिटे लागू शकतात</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin बद्दल</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin हे नवीन गोपनीयता केंद्रित डिजिटल चलन आहे.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin हे एक नवीन गोपनीयता केंद्रित डिजिटल चलन आहे.</string>
     <string name="payment_info_card_adding_funds">फंड जोडत आहे</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">तुम्ही तुमच्या वॉलेट पत्त्यावर MobileCoin पाठवून Signal मध्ये वापरासाठी निधी जोडू शकता.</string>
     <string name="payment_info_card_cashing_out">फंड काढत आहे</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">पुनर्प्राप्त वाक्यांश जतन करा</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">रिकव्हरी फ्रेझ प्रविष्ट करा</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">आपल्या Signal PIN ची आपण पुष्टी केल्यास, आपली शिल्लक स्वयंचलितपणे पुनर्स्थापित होईल. आपण रिकव्हरी संकल्पना वापरून देखील आपली शिल्लक पुनर्स्थापित करू शकता, जी आपल्यासाठी एक %1$d-शब्द अद्वितीय संकल्पना असेल. ती लिहून एका सुरक्षित ठिकाणी ठेवा.</item>
+        <item quantity="other">आपल्या Signal PIN ची आपण पुष्टी केल्यास, आपली शिल्लक स्वयंचलितपणे पुनर्स्थापित होईल. आपण रिकव्हरी संकल्पना वापरून देखील आपली शिल्लक पुनर्स्थापित करू शकता, जी आपल्यासाठी एक %1$d-शब्द अद्वितीय संकल्पना असेल. ती लिहून एका सुरक्षित ठिकाणी ठेवा.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">आपण संतुलन साधले आहे! आपला पुनर्प्राप्त वाक्यांश जतन करण्यासाठी वेळ—एक 24-शब्दांची की संतुलन पुर्नस्थित करण्यासाठी वापरू शकता.</string>
@@ -4222,9 +4222,9 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ला देणगी द्या</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal तुमच्यासारख्या लोकांच्या मदतीने चालते. दर महिन्याला दान करा आणि एक बॅज मिळवा.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal आपल्यासारख्या लोकांच्या मदतीने चालते. दर महिन्याला देणगी द्या आणि एक बॅज प्राप्त करा.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">दान करा</string>
+    <string name="Donate2022Q2Megaphone_donate">देणगी द्या</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">आता नाही</string>
 
@@ -4245,9 +4245,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">सस्टेनर बना</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. देणगी द्या आणि प्रोफाइल बॅज प्राप्त करा.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal आपल्यासारख्या लोकांद्वारे समर्थित आहे. देणगी द्या आणि एक बॅज प्राप्त करा.</string>
     <string name="BecomeASustainerMegaphone__not_now">आता नाही</string>
-    <string name="BecomeASustainerMegaphone__donate">दान करा</string>
+    <string name="BecomeASustainerMegaphone__donate">देणगी द्या</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">ईमोजी</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">संभाषण कायमचे म्यूट केले गेले</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">फोन नंबर क्लिपबोर्डवर कॉपी केले गेले.</string>
     <string name="ConversationSettingsFragment__phone_number">फोन नंबर</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal ला सपोर्ट करून तुमच्या प्रोफाइलसाठी बॅज मिळवा. अधिक जाणून घेण्यासाठी बॅजवर टॅप करा.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal ला समर्थन करून आपल्या प्रोफाइलसाठी बॅज मिळवा. अधिक जाणून घेण्यासाठी बॅज वर टॅप करा.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">सदस्य जोडा</string>
@@ -4469,17 +4469,17 @@
 
     <string name="CameraFragment__failed_to_open_camera">कॅमेरा उघडण्यात अयशस्वी</string>
 
-    <string name="BadgesOverviewFragment__my_badges">आपले बॅजेेस्</string>
+    <string name="BadgesOverviewFragment__my_badges">माझे बॅजेस</string>
     <string name="BadgesOverviewFragment__featured_badge">वैशिष्ट्यीकृत बॅज</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">बॅज प्रोफाइलवर दाखवा</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">बॅजेस् प्रोफाइलवर दाखवा</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">बॅजेस् निवडा</string>
+    <string name="BadgeSelectionFragment__select_badges">बॅजेस निवडा</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">बॅज निवडा</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपण बॅज निवडणे आवश्यक आहे</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपणाला एक बॅज निवडणे आवश्यक आहे</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
@@ -4490,41 +4490,41 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
     <string name="SubscribeFragment__currency">चलन</string>
     <string name="SubscribeFragment__more_payment_options">अधिक पेमेंट पर्याय</string>
-    <string name="SubscribeFragment__cancel_subscription">सब्स्क्रिप्शन रद्द करा</string>
+    <string name="SubscribeFragment__cancel_subscription">सदस्यत्व रद्द करा</string>
     <string name="SubscribeFragment__confirm_cancellation">रद्द करण्याची पुष्टी करायची ?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">तुमच्याकडून पुन्हा शुल्क आकारले जाणार नाही. तुमचा बिलिंग कालावधी संपल्यावर तुमचा बॅज तुमच्या प्रोफाइलमधून काढून टाकला जाईल.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">आपणाकडून पुन्हा शुल्क आकारले जाणार नाही. आपला बिलिंग कालावधी संपल्यावर आपला बॅज आपल्या प्रोफाइलमधून काढून टाकला जाईल.</string>
     <string name="SubscribeFragment__not_now">आता नाही</string>
     <string name="SubscribeFragment__confirm">पुष्टी करा</string>
-    <string name="SubscribeFragment__update_subscription">सब्स्क्रिप्शन अद्ययावत करा</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">आपले सब्स्क्रिप्शन रद्द केले</string>
-    <string name="SubscribeFragment__update_subscription_question">सब्स्क्रिप्शन अद्ययावत करायचे ?</string>
+    <string name="SubscribeFragment__update_subscription">सदस्यत्व अद्ययावत करा</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">आपले सदस्यत्व रद्द करण्यात आले.</string>
+    <string name="SubscribeFragment__update_subscription_question">सदस्यत्व अद्ययावत करायचे ?</string>
     <string name="SubscribeFragment__update">अद्यतन</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">तुमच्याकडून आज नवीन सब्स्क्रिप्शनची संपूर्ण रक्कम ( %1$s ) आकारली जाईल. तुमच्या सब्स्क्रिप्शनचे मासिक नूतनीकरण होईल .</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">आपणाकडून आज नवीन सदस्यत्वाची पूर्ण रक्कम (%1$s)आकारली जाईल. आपल्या सदस्यत्वाचे मासिक नूतनीकरण होईल .</string>
 
     <string name="Subscription__s_per_month">%1$s/महिना</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">नूतनीकरण %1$s</string>
+    <string name="Subscription__renews_s">%1$s नी नूतनीकरण केले</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">%1$s ला कालबाह्य</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ही एक विना - नफा संस्था आहे ज्यामध्ये कोणतेही जाहिरातदार किंवा गुंतवणूकदार नसतात, केवळ ते वापरणाऱ्या आणि मूल्यवान लोकांद्वारे टिकून राहते. आवर्ती मासिक देणगी द्या आणि तुमचे समर्थन सामायिक करण्यासाठी प्रोफाइल बॅज मिळवा.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ही एक विनानफा संस्था आहे ज्यामध्ये कोणतेही जाहिरातदार किंवा गुंतवणूकदार नाहीत, जिला केवळ ते वापरणाऱ्या आणि जे त्याचे मूल्य जाणतात त्यांच्या द्वारे आधार दिला आहे. आवर्ती मासिक देणगी द्या आणि आपले समर्थन सामायिक करण्यास प्रोफाइल बॅज मिळवा.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">देणगी का द्यायची?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">मुक्त अभिव्यक्तीचे संरक्षण करणारे आणि सुरक्षित जागतिक संचार सक्षम करणारे मुक्त स्रोत गोपनीयता तंत्रज्ञान विकसित करण्यासाठी Signal वचनबद्ध आहे.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">आपली देणगी या कारणाला चालना देते आणि खाजगी संचारासाठी लाखो लोक वापरत असलेल्या अॅपच्या विकासासाठी आणि कार्यासाठी पैसे देतात. जाहिराती नाहीत. ट्रॅकर्स नाहीत. चेष्टा नाही.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">आपली देणगी या कारणाला चालना देते आणि खाजगी परस्परसंवादासाठी लाखो लोक वापरत असलेल्या अ‍ॅपच्या विकासासाठी आणि कार्यासाठी पैसे देते. जाहिराती नाहीत. ट्रॅकर्स नाहीत. पोरकटपणा नाही.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद !</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">आपण %1$s बॅज मिळवला आहे! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">आपण बूस्ट बॅज मिळवला आहे! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">बूस्ट साठी धन्यवाद!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">आपण %1$s बॅज मिळवला! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">आपण एक बूस्ट बॅज मिळवला! Signal ला देणगी देण्याची जागरूकता निर्माण करण्यासाठी हा बॅज आपल्या प्रोफाइलवर प्रदर्शित करा.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">आपण सुद्धा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">मासिक सस्टेनर व्हा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">प्रोफाइलवर दाखवा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">वैशिष्ट्यीकृत बॅज बनवा</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">सुरू ठेवा</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">जेव्हा तुमच्याकडे एकापेक्षा जास्त बॅज असतील, तेव्हा तुम्ही तुमच्या प्रोफाईलवर इतरांना पाहण्यासाठी एक निवडू शकता.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">आपणाकडे एकापेक्षा जास्त बॅज असल्यास आपल्या प्रोफाइलवर इतरांना पाहण्यासाठी आपण एक वैशिष्ट्य निवडू शकता.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signal ला सपोर्ट करून आपल्या प्रोफाइलसाठी बॅज मिळवा.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal ला समर्थन करून आपल्या प्रोफाइलसाठी बॅज मिळवा.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
 
     <!-- Button label for creating a donation -->
@@ -4535,23 +4535,23 @@
     <string name="ManageDonationsFragment__receipts">पावत्या</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
-    <string name="ManageDonationsFragment__manage_subscription">सब्स्क्रिप्शन व्यवस्थापित करा</string>
+    <string name="ManageDonationsFragment__manage_subscription">सदस्यत्व व्यवस्थापित करा</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">देणगी पावत्या</string>
-    <string name="ManageDonationsFragment__badges">बॅजेस्</string>
-    <string name="ManageDonationsFragment__subscription_faq">सब्स्क्रिप्शन बद्दल वारंवार विचारले जाणारे प्रश्न</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">सब्स्क्रिप्शन मिळविण्यात त्रुटी.</string>
+    <string name="ManageDonationsFragment__donation_receipts">देणगीच्या पावत्या</string>
+    <string name="ManageDonationsFragment__badges">बॅजेस</string>
+    <string name="ManageDonationsFragment__subscription_faq">सदस्यत्वाबद्दल वारंवार विचारले जाणारे प्रश्न</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">सदस्यत्व मिळविण्यात त्रुटी.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">देणगी देण्याचे इतर मार्ग</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">एक बॅज भेट द्या</string>
 
-    <string name="Boost__enter_custom_amount">कस्टम रक्कम प्रविष्ट करा</string>
+    <string name="Boost__enter_custom_amount">सानुकूल रक्कम प्रविष्ट करा</string>
     <string name="Boost__one_time_contribution">एक वेळचे योगदान</string>
 
     <string name="MySupportPreference__add_a_signal_boost">Signal बूस्ट जोडा</string>
     <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
-    <string name="MySupportPreference__renews_s">नूतनीकरण %1$s</string>
+    <string name="MySupportPreference__renews_s">%1$s नी नूतनीकरण केले</string>
     <string name="MySupportPreference__processing_transaction">ट्रांझ्याक्शन प्रक्रिया करत आहे…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">बॅज जोडता आला नाही. %1$s</string>
@@ -4560,58 +4560,58 @@
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">बूस्ट बॅज कालबाह्य झाला</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">मासिक देणगी रद्द</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">मासिक देणगी रद्द केली</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर दिसणार नाही.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण आपला बूस्ट बॅज आणखी ३० दिवसांसाठी एक-वेळच्या योगदानासह पुन्हा सक्रिय करू शकता.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">आपला बूस्ट बॅज कालबाह्य झाला आहे आणि यापुढे तो आपल्या प्रोफाइलवर दिसणार नाही.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">आपण एक-वेळच्या योगदानाने आपला बूस्ट बॅज आणखी 30 दिवसांसाठी पुन्हा सक्रिय करू शकता.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">आपण Signal वापरणे सुरू ठेवू शकता परंतु आपल्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करण्यासाठी, मासिक देणगी देऊन सस्टेनर होण्याचा विचार करा.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">आपण Signal वापरणे सुरू ठेवू शकता परंतु आपल्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करण्यासाठी, मासिक देणगी देऊन निर्वाहक होण्याचा विचार करा.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">बूस्ट जोडा</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">आता नाही</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">आपले आवर्ती मासिक देणगी आपोआप रद्द झाले कारण आपण खूप काळ निष्क्रिय होता. आपला %1$s बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">आपण खूप काळ निष्क्रिय असल्यामुळे आपली आवर्ती मासिक देणगी आपोआप रद्द झाली. यापुढे आपल्या प्रोफाइलवर आपला %1$s बॅज दिसणार नाही.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">आपली आवर्ती मासिक देणगी रद्द करण्यात आली कारण आम्ही आपल्या पेमेंटवर प्रक्रिया करू शकलो नाही. आपला बॅज यापुढे आपल्या प्रोफाईलवर दिसणार नाही.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">आम्ही आपल्या पेमेंटवर प्रक्रिया करू शकत नसल्याने आपली आवर्ती मासिक देणगी रद्द करण्यात आली. यापुढे आपल्या प्रोफाइलवर आपला बॅज दिसणार नाही.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">आपली आवर्ती मासिक देणगी रद्द करण्यात आली. %1$s आपला %2$s बॅज यापुढे आपल्या प्रोफाईल वर दृश्यमान होणार नाही.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपण Signal वापरणे सुरू ठेवू शकता परंतु अॅपला समर्थन देण्यासाठी आणि तुमचा बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">सब्स्क्रिप्शन नूतनीकरण करा</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">आपली आवर्ती मासिक देणगी रद्द करण्यात आली. यापुढे आपल्या प्रोफाइलवर %1$s आपला %2$s बॅज दृश्यमान होणार नाही.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">आपण Signal वापरणे सुरू ठेवू शकता परंतु अ‍ॅपला समर्थन देण्यासाठी आणि आपला बॅज पुन्हा सक्रिय करण्यासाठी, आता नूतनीकरण करा.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">सदस्यत्वाचे नूतनीकरण करा</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay वर जा</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">सब्स्क्रिप्शन पेमेंटवर प्रक्रिया करू शकत नाही</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">सदस्यत्व पेमेंट वर प्रक्रिया करू शकत नाही</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">आपले Signal सस्टेनर पेमेंट गोळा करण्यात आम्हाला समस्या येत आहे. आपली पेमेंट पद्धत अद्ययावत असल्याची खात्री करा. तसे नसल्यास, ते Google Pay मध्ये अपडेट करा. Signal काही दिवसात पुन्हा पेमेंटवर प्रक्रिया करण्याचा प्रयत्न करेल.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">हे पुन्हा दाखवू नका</string>
 
     <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
     <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
-    <string name="Subscription__get_a_s_badge">%1$s बॅज मिळवा</string>
+    <string name="Subscription__get_a_s_badge">एक %1$s बॅज मिळवा</string>
 
     <string name="SubscribeFragment__processing_payment">पेमेंटची प्रक्रिया करत आहे…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">पेमेंट प्रक्रिया करताना त्रुटी आली</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">पेमेंट प्रक्रिया करताना त्रुटी आली. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
-    <string name="DonationsErrors__your_payment">तुमची पेमेंट प्रक्रिया पुर्ण नाही केली जाऊ शकली आणि तुमच्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">आपला बॅज आपल्या खात्याला जोडला जाऊ शकत नाही, परंतु आपल्याकडून शुल्क आकारले गेले असल्यास, कृपया सपोर्टशी संपर्क साधा.</string>
+    <string name="DonationsErrors__your_payment">आपल्या पेमेंट वर प्रक्रिया केली जाऊ शकले नाही आणि आपल्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
     <string name="DonationsErrors__still_processing">अजूनही प्रक्रिया करत आहे</string>
     <string name="DonationsErrors__couldnt_add_badge">बॅज जोडता आला नाही</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">बॅज प्रमाणित करण्यात अयशस्वी</string>
+    <string name="DonationsErrors__failed_to_validate_badge">बॅज प्रमाणित करणे अयशस्वी झाले</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">सर्व्हर प्रतिसाद प्रमाणित करू शकलो नाही. कृपया सपोर्टशी संपर्क साधा.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">भेट बॅज पाठवण्यात अयशस्वी</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">भेट बॅज पाठवणे अयशस्वी झाले</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">भेट बॅज पाठवू शकलो नाही. कृपया सपोर्टशी संपर्क साधा.</string>
-    <string name="DonationsErrors__your_badge_could_not">तुमचा बॅज तुमच्या खात्यात जोडला जाऊ शकला नाही, परंतु तुमच्याकडून शुल्क आकारले गेले असेल. कृपया सपोर्टशी संपर्क साधा.</string>
+    <string name="DonationsErrors__your_badge_could_not">आपला बॅज आपल्या खात्याला जोडला जाऊ शकत नाही, परंतु आपल्याकडून शुल्क आकारले गेले असल्यास, कृपया सपोर्टशी संपर्क साधा.</string>
     <string name="DonationsErrors__your_payment_is_still">आपली पेमेंट प्रक्रिया अजूनही चालू आहे. आपल्या कनेक्शन नुसार यास काही मिनिटे लागू शकतात.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अॅपमधील देणगी देण्यासाठी तुम्हाला Google Pay सेटअप करावे लागेल.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">सब्स्क्रिप्शन रद्द करण्यात अयशस्वी</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सब्स्क्रिप्शन रद्द करण्यासाठी इंटरनेट कनेक्शन आवश्यक आहे.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपले डिव्हाइस Google Pay ला सपोर्ट करत नाही, त्यामुळे आपण बॅज मिळवण्यासाठी सब्स्क्राइब शकत नाही. आपण अजूनही आमच्या वेबसाइटवर देणगी देऊन Signal ला समर्थन देऊ शकता.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अ‍ॅपमये देणगी देण्यास आपणाला Google Pay सेटअप करावे लागेल.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">सदस्यत्व रद्द करणे अयशस्वी झाले</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सदस्यत्व रद्द करण्यास इंटरनेट कनेक्शन आवश्यक आहे.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपले डिव्हाइस Google Pay ला सपोर्ट करत नाही, त्यामुळे आपण बॅज मिळवण्यास सदस्यत्व घेऊ शकत नाही. आपण अजूनही आमच्या वेबसाइटवर देणगी देऊन Signal ला समर्थन देऊ शकता.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">नेटवर्क त्रुटी. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <string name="NetworkFailure__retry">पुन्हा प्रयत्न करा</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4825,17 +4825,17 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">भेट</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">बूस्ट</string>
+    <string name="DonationReceiptListFragment__boost">बूस्ट करा</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">तपशील</string>
     <!-- Donation receipts donation type heading -->
-    <string name="DonationReceiptDetailsFragment__donation_type">देणगी प्रकार</string>
+    <string name="DonationReceiptDetailsFragment__donation_type">देणगीचा प्रकार</string>
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">तारीख भरली</string>
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">पावती शेअर करा</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">आपण जर Signal पुन्हा स्थापित केले असल्यास, मागील देणगीच्या पावत्या उपलब्ध होणार नाहीत.</string>
+    <string name="DonationReceiptListFragment__if_you_have">आपण Signal ला पुन्हा स्थापित केले असल्यास, मागील देणगीच्या पावत्या उपलब्ध होणार नाहीत.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">देणगीची पावती</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">अद्याप कोणतीही दृश्ये नाहीत</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">आपल्या स्टोरीज कोणी पाहिल्या आहेत ते पाहण्यासाठी वाचल्याची पोच सक्षम करा.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">सेटिंग्ज वर जा</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · %2$d दिवसांचा कालावधी</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">भेट बॅज पाठवा</string>
+    <string name="GiftRowItem__send_a_gift_badge">एक भेट बॅज पाठवा</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">एक बॅज भेट करा </string>
+    <string name="GiftFlowStartFragment__gift_a_badge">एक बॅज भेट करा</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">एखाद्याला आपण त्यांच्या नावाने Signal ला देणगी देऊन बॅज भेट द्या . त्यांना त्यांच्या प्रोफाइल फोटोवर प्रदर्शित करण्यासाठी एक बॅज मिळेल.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">आपण एखाद्याच्या नावाने Signal ला देणगी देऊन त्याला बॅज भेट द्या. त्यांना त्यांच्या प्रोफाइल फोटोवर प्रदर्शित करण्यासाठी एक बॅज मिळेल.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">पुढे</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">आपल्या समर्थनासाठी धन्यवाद !</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s कडून आपल्याला एक भेट बॅज मिळाला आहे ! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s कडून आपल्याला एक भेट बॅज मिळाला आहे! आपल्या प्रोफाइलवर हा बॅज प्रदर्शित करून जागरूकता निर्माण करण्यासाठी Signal ला मदत करा.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा न दाखवण्याचा पर्याय दिला जाईल.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा लपवण्याचा पर्याय दिला जाईल.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">रिडीम करा</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,11 +5232,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">आपण आपला बॅज नंतर रिडीम करू शकता.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा न दाखवण्याचा पर्याय दिला जाईल.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">आपण %1$s ला एक बॅज भेट दिला आहे. तो स्वीकारल्यावर, त्यांना त्यांचा बॅज दाखवण्याचा किंवा लपवण्याचा पर्याय दिला जाईल.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">आपला भेट बॅज कालबाह्य झाला आहे</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">आपला भेट बॅज कालबाह्य झाला आहे आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">आपला भेट बॅज कालबाह्य झाला, आणि तो यापुढे आपल्या प्रोफाइलवर इतरांना दिसणार नाही.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">तुमच्यासाठी तयार केलेल्या तंत्रज्ञानाचे समर्थन करणे सुरू ठेवण्यासाठी, कृपया मासिक सस्टेनर बनण्याचा विचार करा.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5444,8 +5444,8 @@
     <string name="ExportingSmsMessagesFragment__this_may_take_awhile">याला काही वेळ लागू शकतो</string>
     <!-- Progress indicator for export -->
     <plurals name="ExportingSmsMessagesFragment__exporting_d_of_d">
-        <item quantity="one">%1$d पैकी %2$d एक्सपोर्ट करत आहे…</item>
-        <item quantity="other">%1$d पैकी %2$d एक्सपोर्ट करत आहे...</item>
+        <item quantity="one">%1$d पैकी %2$d एक्सपोर्ट करत आहे(…)</item>
+        <item quantity="other">%1$d पैकी %2$d ना एक्सपोर्ट करत आहे(…)</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
     <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">कदाचित आपल्याकडे पुरेशी डिस्क स्पेस नसेल</string>
@@ -5588,13 +5588,13 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal ला %1$s/महिना देणगी द्या</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s बॅज मिळवा</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">एक %1$s बॅज मिळवा</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal %1$s ला देणगी द्या</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%1$s बॅज %2$d दिवसासाठी मिळवा</item>
+        <item quantity="other">%1$s बॅज %2$d दिवसांसाठी मिळवा</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">क्रेडिट किंवा डेबिट कार्ड</string>

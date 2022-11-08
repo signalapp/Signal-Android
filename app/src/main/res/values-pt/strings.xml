@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">O Signal requer permissão de acesso aos contactos para anexar os dados do contacto, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações no menu do telemóvel, selecione a aplicação Signal e em \"Permissões\" ative \"Contactos\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">O Signal requer permissão de acesso à localização para poder anexar uma localização, mas esta foi negada permanentemente. Por favor aceda às definições das aplicações no menu do telemóvel, selecione a aplicação Signal e nas \"Permissões\" ative a \"Localização\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s não ativou os Pagamentos. </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Quer enviar-lhe um pedido para ativar os Pagamentos?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Enviar pedido</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Cancelar</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">O seu histórico de mensagens com %1$s e outra conversa com esta pessoa foram juntados.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Enviou a %1$s um pedido para ativar os Pagamentos</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s quer que você ative os Pagamentos. Envie pagamentos apenas a pessoas em quem confia.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ativou os Pagamentos</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s pode agora aceitar Pagamentos</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou uma chamada em grupo · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Esta mensagem foi eliminada.</string>
     <string name="ThreadRecord_you_deleted_this_message">Eliminou esta mensagem.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Enviou um pedido para ativar os Pagamentos</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s quer que você ative os Pagamentos</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ativou os Pagamentos</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s pode agora aceitar Pagamentos</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s está no Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Destruição de mensagens desativada</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">O tempo a decorrer até que as mensagens sejam destruídas está definido para %1$s</string>
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Recebida</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introdução aos pagamentos (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilize o Signal para enviar e receber MobileCoin, uma nova privacidade focada na moeda digital. Ative para começar a utilizar.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilize o Signal para enviar e receber MobileCoin, uma nova moeda digital focada na privacidade. Ative para começar a utilizar.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ativar os pagamentos</string>
     <string name="PaymentsHomeFragment__activating_payments">A ativar pagamentos…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Restaurar a conta de pagamentos</string>
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s em %2$s às %3$s</string>
     <string name="PaymentsDetailsFragment__to">Para</string>
     <string name="PaymentsDetailsFragment__from">De</string>
-    <string name="PaymentsDetailsFragment__information">Os detalhes de pagamento incluindo o montante de pagamento e o horário da transação, são parte da MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">Os detalhes de pagamento incluindo o montante de pagamento e o horário da transação são parte do Ledger da MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Taxa de limpeza de moedas</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">É cobrada uma \"taxa de limpeza de moedas\" que se encontra na sua posse não podem ser combinadas para completar a transação. A limpeza irá permitir-lhe que continue a enviar pagamentos.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Sem mais detalhes relevantes para esta transação</string>
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Acerca da MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin é uma privacidade nova focada em moeda digital.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">A MobileCoin é uma nova moeda digital focada na privacidade.</string>
     <string name="payment_info_card_adding_funds">Adicionando fundos</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Você pode adicionar fundos para utilizar no Signal ao adicionar a MobileCoin ao seu endereço de carteira.</string>
     <string name="payment_info_card_cashing_out">Tirar dinheiro</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Guardar frase de recuperação</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introduzir a frase de recuperação</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">O seu saldo será restaurado automaticamente quando reinstalar o Signal, se confirmar o PIN do Signal. Também pode restaurar o seu saldo utilizando uma frase de recuperação, que é uma frase única para si com %1$d palavra. Anote-a e guarde-a num local seguro.</item>
+        <item quantity="other">O seu saldo será restaurado automaticamente quando reinstalar o Signal, se confirmar o PIN do Signal. Também pode restaurar o seu saldo utilizando uma frase de recuperação, que é uma frase única para si com %1$d palavras. Anote-a e guarde-a num local seguro.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tem saldo! É altura de guardar a sua frase de recuperação—uma chave de 24 palavras que pode usar para restaurar o seu saldo.</string>
@@ -4245,7 +4245,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Torne-se num Apoiante</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">O Signal é mantido por pessoas como você. Doe e receba um crachá.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">O Signal é mantido por pessoas como você. Faça uma doação e receba um crachá.</string>
     <string name="BecomeASustainerMegaphone__not_now">Agora não</string>
     <string name="BecomeASustainerMegaphone__donate">Doar</string>
 
@@ -4492,7 +4492,7 @@
     <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
     <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
     <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Você não será cobrado novamente. O seu crachá será removido do seu perfil no final do seu período de faturação</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Não será cobrado novamente. O seu crachá será removido do seu perfil no final do período de faturação</string>
     <string name="SubscribeFragment__not_now">Agora não</string>
     <string name="SubscribeFragment__confirm">Confirmar</string>
     <string name="SubscribeFragment__update_subscription">Atualizar assinatura</string>
@@ -4503,7 +4503,7 @@
 
     <string name="Subscription__s_per_month">%1$s/mês</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renovações %1$s</string>
+    <string name="Subscription__renews_s">Renova a %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Expira a %1$s</string>
 
@@ -4511,18 +4511,18 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas pelas pessoas que a utilizam e valorizam. Faça uma doação mensal recorrente e receba um crachá de perfil para partilhar o seu apoio.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Porquê doar?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">O Signal está empenhado em desenvolver tecnologia de privacidade de código aberto que protege a liberdade de expressão e permite uma comunicação global segura.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">A sua doação alimenta essa causa e paga pelo desenvolvimento e operação de uma aplicação utilizada por milhões para comunicação privada. Sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">A sua doação apoia esta causa e paga pelo desenvolvimento e operação de uma aplicação utilizada por milhões para comunicação privada. Sem anúncios. Sem rastreadores. Sem brincadeiras.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Obrigado pelo seu Apoio!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Apoio!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Você ganhou o crachá %1$s! Exiba este crachá no seu perfil para criar a consciencialização de doar ao Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Você ganhou um crachá de \'Apoio\'! Exiba este crachá no seu perfil para criar a consciencialização de doar ao Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Obrigado pelo seu Boost!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Ganhou o crachá de %1$s! Exiba este crachá no seu perfil para ajudar a que os outros doem ao Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Ganhou um crachá de Boost! Exiba este crachá no seu perfil para ajudar a que os outros doem ao Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Também pode</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">torne-se num Apoiante do Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Exibir no perfil</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Definir como crachá de destaque</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continuar</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando tem mais do que um crachá, você pode escolher apresentar um para para que outras pessoas o vejam no seu perfil.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando tem mais do que um crachá, pode escolher apresentar um deles para para que outras pessoas o vejam no seu perfil.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Obtenha crachás para o seu perfil ao apoiar o Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal é uma organização sem fins lucrativos, sem anunciantes ou investidores, sustentada apenas por pessoas como você.</string>
@@ -4558,24 +4558,24 @@
     <string name="MySupportPreference__please_contact_support">Por favor, entre em contacto com o suporte.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Crachá de Apoio expirado</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Crachá de Boost expirado</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Doação mensal cancelada</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">O seu crachá de Apoio expirou e deixou de ser visível no seu perfil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pode reativar o seu crachá de Apoio por mais 30 dias com uma contribuição única.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">O seu crachá de Boost expirou e deixou de ser visível no seu perfil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pode reativar o seu crachá de Boost por mais 30 dias com uma contribuição única.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pode continuar a utilizar o Signal mas, para apoiar a tecnologia que foi criada para si, considere tornar-se num apoiante fazendo uma doação mensal.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pode continuar a utilizar o Signal, mas para apoiar a tecnologia que foi criada para si considere tornar-se apoiante fazendo uma doação mensal.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num Apoiante</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Apoiar o Signal</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora não</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A sua doação mensal recorrente foi cancelada automaticamente porque se encontra inativa à muito tempo. O seu crachá %1$s deixou de estar visível no seu perfil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A sua doação mensal recorrente foi cancelada automaticamente porque se encontra inativa há muito tempo. O seu crachá de %1$s deixou de estar visível no seu perfil.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A sua doação mensal recorrente foi cancelada porque o seu pagamento não pode ser processado. O seu crachá deixou de estar visível no seu perfil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A sua doação mensal recorrente foi cancelada porque o seu pagamento não pôde ser processado. O seu crachá deixou de estar visível no seu perfil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">A tua doação mensal recorrente foi cancelada. %1$s O chachá de %2$s já não está visível no teu perfil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pode continuar a utilizar o Signal mas, para apoiar a aplicação e reativar o seu crachá, renove agora.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">A sua doação mensal recorrente foi cancelada. %1$s O crachá de %2$s já não está visível no seu perfil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pode continuar a utilizar o Signal, mas renove agora para apoiar a app e reativar o seu crachá.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renovar assinatura</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Ir para o Google Pay</string>
@@ -4586,7 +4586,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
     <string name="Subscription__contact_support">Contactar o Suporte</string>
-    <string name="Subscription__get_a_s_badge">Obter um crachá %1$s</string>
+    <string name="Subscription__get_a_s_badge">Obter um crachá de %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">A processar pagamento…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4594,7 +4594,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Erro ao processar o pagamento. %1$s</string>
     <string name="DonationsErrors__your_badge_could_not_be_added">Não foi possível adicionar o seu crachá à sua conta, mas poderá ter sido debitado dinheiro. Entre em contacto com a equipa de suporte.</string>
-    <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Por favor, tente novamente.</string>
+    <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Tente novamente.</string>
     <string name="DonationsErrors__still_processing">Ainda a processar</string>
     <string name="DonationsErrors__couldnt_add_badge">Não foi possível adicionar o crachá</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4604,14 +4604,14 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Falha ao tentar enviar o crachá de oferta</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Não foi possível enviar o crachá de oferta. Por favor contacte o suporte.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Não foi possível enviar o crachá de oferta. Contacte a equipa de suporte.</string>
     <string name="DonationsErrors__your_badge_could_not">Não foi possível adicionar o seu crachá à sua conta, mas poderá ter sido debitado dinheiro. Entre em contacto com a equipa de suporte.</string>
     <string name="DonationsErrors__your_payment_is_still">O seu pagamento ainda está a ser processado. Isto poderá demorar alguns minutos, dependendo da sua ligação.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações in-app.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações na app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura exige que esteja disponível uma ligação à internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Seu aparelho não é compatível com Google Pay, como tal você não pode subscrever para ganhar um crachá. Você ainda pode apoiar o Signal fazendo uma doação no nosso site.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura requere ligação à internet.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">O seu dispositivo não é compatível com o Google Pay, como tal você não pode subscrever para ganhar um crachá. Ainda pode apoiar o Signal fazendo uma doação no nosso site.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erro na rede. Verifique a sua ligação e tente novamente.</string>
     <string name="NetworkFailure__retry">Tentar novamente</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4624,7 +4624,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">O seu presente não foi enviado devido a um erro de rede. Verifique a sua ligação e tente outra vez.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Oferta de crachá</string>
+    <string name="GiftMessageView__gift_badge">Crachá de presente</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">Dura durante %1$d mês</item>
@@ -4825,7 +4825,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Oferta</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Apoio</string>
+    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Detalhes</string>
     <!-- Donation receipts donation type heading -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ainda não existem visualizações</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ative as confirmações de leitura para saber quem viu as suas histórias.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Vá às definições</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · duração de %2$d dias</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Enviar um crachá de oferta</string>
+    <string name="GiftRowItem__send_a_gift_badge">Enviar um crachá de presente</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Oferta de \'Crachá\'</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Oferecer um Crachá</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Ofereça a alguém um crachá ao fazer uma doação ao Signal no nome dessa pessoa. Essa pessoa irá obter um crachá para exibir na fotografia de perfil dela.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Ofereça a alguém um crachá ao fazer uma doação ao Signal no nome dessa pessoa. Essa pessoa irá obter um crachá para exibir na sua fotografia de perfil.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Seguinte</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Obrigado pelo seu apoio!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s enviou-lhe um crachá de oferta! Ajude o Signal a aumentar a conscientização exibindo este crachá no seu perfil.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s enviou-lhe um crachá de presente! Ajude o Signal a espalhar a mensagem exibindo este crachá no seu perfil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Você ofereceu um crachá a %1$s. Quando ele(a) aceitar terá a hipótese dde escolher que o crachá fique ou não visível.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Ofereceu um crachá a %1$s. Quando este for aceite haverá a opção de o exibir ou ocultar.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Resgatar</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,11 +5232,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Poderá resgatar o seu crachá mais tarde.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Você ofereceu um crachá a %1$s. Quando ele(a) aceitar terá a hipótese dde escolher que o crachá fique ou não visível.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Ofereceu um crachá a %1$s. Quando este for aceite haverá a opção de o exibir ou ocultar.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">A sua oferta expirou</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">O seu crachá de oferta expirou, e deixou de estar visível (para outras pessoas) no seu perfil.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">O seu crachá de oferta expirou e deixou de estar visível para outras pessoas no seu perfil.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Para continuar a suportar a tecnologia que foi construída para si, considere ser um Apoiante mensal.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5588,13 +5588,13 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Doar %1$s/mês ao Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Obter um crachá %1$s</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Obter um crachá de %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Doar %1$s ao Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Recebe um crachá %1$s durante %2$d dia</item>
+        <item quantity="other">Recebe um crachá %1$s durante %2$d dias</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Cartão de crédito ou débito</string>

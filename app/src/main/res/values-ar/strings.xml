@@ -110,11 +110,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">يحتاج Signal إلى إذن الوصول لِ جهات الاتصال من أجل إرفاق بيانات جهة اتصال، لكن الإذن لم يُمنح بشكل دائم. الّرجاء زيارة قائمة إعدادات التطبيق، واختيار \"الأذونات\"، ومن ثم تفعيل \"جهات الاتصال\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">يحتاج Signal إلى إذن الوصول إلى الموقع من أجل إرفاق الموقع الجغرافي ولكن تم إيقاف الإذن على نحو دائم. يرجى زيارة قائمة إعدادات التطبيق ثم اختيار \"الأذونات\" وتفعيل \"الموقع\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">لم يُفعّل %1$s عمليات الدفع </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">هل تُريد أن ترسل لهم طلبًا لتفعيل عمليات الدفع؟</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">إرسال طلب</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">إلغاء</string>
 
@@ -1652,13 +1652,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">تمّ دمج سِجّل رسائلك مع %1$s ودردشة أخرى تخصه.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">أرسلت لـ %1$s طلبًا لتفعيل عمليات الدفع</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">يريدك %1$s أن تُفعّل عمليات الدفع. أرسل عمليات الدفع فقط للأشخاص الذين تثق بهم.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">لقد فعّلت عمليات الدفع</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">يُمكن لـ %1$s قبول عمليات الدفع الآن</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">قام العضو %1$s ببدء مكالمة جماعية · %2$s</string>
@@ -2208,13 +2208,13 @@
     <string name="ThreadRecord_this_message_was_deleted">حُذفَت هذه الرسالة.</string>
     <string name="ThreadRecord_you_deleted_this_message">لقد حذفت هذه الرسالة.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">أرسلت طلبًا لتفعيل عمليات الدفع</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">يُريدك %1$s أن تُفعّل عمليات الدفع</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">لقد فعّلت عمليات الدفع</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">يُمكن لـ %1$s قبول عمليات الدفع الآن</string>
     <string name="ThreadRecord_s_is_on_signal">%1$sمتواجد على Signal !</string>
     <string name="ThreadRecord_disappearing_messages_disabled">الرسائل المختفية غير مفعّلة</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">ضبط توقيت إخفاء الرسائل إلى %1$s</string>
@@ -2236,7 +2236,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">لقد أرسلت هدية</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">لقد استرددت الشارة المُهداة</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">لقد استردَدت الشارة المُهداة</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">تفاعل %1$s مع قِصتك</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2596,7 +2596,7 @@
     <string name="ConversationUpdateItem_view">إظهار</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">بعض ضبط المهلة، سوف تختفي رسائلك التي سوف يجري إرسالها بعد انقضاء %1$s.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">تبرع</string>
+    <string name="ConversationUpdateItem_donate">تبرّع</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">إرسال مدفوعات</string>
     <!-- Update item button text to activate payments -->
@@ -3314,7 +3314,7 @@
     <string name="PaymentsAllActivityFragment__received">تمَّ الاستلام</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">مقدمة حول الدفوعات (الإصدار التجريبي)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">استخدم Signal لإرسال واستلام MobileCoin، العملة الرقمية الجديدة التي تركز على الخصوصي. عليك بتفعيلها للبدء بالاستخدام.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">استخدم Signal لإرسال واستلام MobileCoin، عُملة رقمية جديدة ترتكز على الخصوصية. يُرجى تفعيلها للبدء بالاستخدام.</string>
     <string name="PaymentsHomeFragment__activate_payments">تفعيل الدفوعات</string>
     <string name="PaymentsHomeFragment__activating_payments">يجري تفعيل الدفوعات…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">استعادة حساب الدفوعات</string>
@@ -3336,8 +3336,8 @@
     <string name="PaymentsHomeFragment__received_payment">المبلغ المُستلَم</string>
     <string name="PaymentsHomeFragment__processing_payment">تجري معالجة الدفوعات</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">غير متاح تحويل العملة</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">لا يمكن عرض تحويل العملات. يُرجى التحقق من اتصال هاتفك بالانترنت ثم إعادة المحاولة.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">تحويل العملة غير متاح</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">لا يُمكن عرض تحويل العملات. يُرجى التحقّق من اتصال هاتفك بالأنترنت ثم إعادة المحاولة.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">إن الدفوعات عير متاحة في منطقتك.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">لا يمكن تفعيل الدفوعات. يُرجى إعادة المحاولة لاحقا.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">تعطيل المدفوعات؟</string>
@@ -3414,7 +3414,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s، بتاريخ %2$s على الساعة %3$s</string>
     <string name="PaymentsDetailsFragment__to">إلى</string>
     <string name="PaymentsDetailsFragment__from">مِن</string>
-    <string name="PaymentsDetailsFragment__information">تتضمن تفاصيل المعاملات في دفتر حسابات MobileCoin، مبالغ الدفوعات وتاريخ المعاملة.</string>
+    <string name="PaymentsDetailsFragment__information">ستجد تفاصيل المعاملات بما في ذلك مبالغ الدفوعات وتاريخ المعاملة متضمنة في دفتر حسابات MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">رسوم تنظيف العملة</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">يتم فرض ”رسوم تنظيف العملة“ عندما يتعذر دمج العملات التي بحوزتك لإتمام معاملة. سيسمح لك التنظيف بمواصلة إرسال الدفوعات.</string>
     <string name="PaymentsDetailsFragment__no_details_available">لا وجود لأي تفاصيل أخرى متاحة حول هذه المعاملة</string>
@@ -3672,7 +3672,7 @@
 
     <string name="FirstInviteReminder__title">ادعُ إلى Signal</string>
     <string name="FirstInviteReminder__description">يمكنك زيادة عدد الرسائل المُعمَّاة التي ترسلها بنسبة %1$d%%</string>
-    <string name="SecondInviteReminder__title">قم بتقوية Signal</string>
+    <string name="SecondInviteReminder__title">قم بتعزيز Signal الخاص بك</string>
     <string name="SecondInviteReminder__description">أرسل دعوة لِ %1$s</string>
     <string name="InsightsReminder__view_insights">اعرض الرؤى</string>
     <string name="InsightsReminder__invite">أرسل دعوة</string>
@@ -4185,7 +4185,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">يَجري حَذفُ الحِساب…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">يجري إلغاء اشتراكك…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">جارٍ إلغاء اشتراكك…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">قد يتطلب هذا بضع دقائق، بناءا على عدد المجموعات التي لديك عضوية فيها.</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -4269,7 +4269,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">حَول MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">إن MobileCoin عملة رقمية جديدة ترتكز على الخصوصية.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">إن MobileCoin عُملة رقمية جديدة ترتكز على الخصوصية.</string>
     <string name="payment_info_card_adding_funds">إضافة مبالغ</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">يمكنك إضافة المبالغ لاستخدامها في Signal عبر إرسال MobileCoin إلى عنوان محفظتك.</string>
     <string name="payment_info_card_cashing_out">صرف المبالغ</string>
@@ -4308,12 +4308,12 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">حفظ جملة الاستعادة</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">إدخال جملة الاستعادة</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="zero">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="two">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="zero">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
+        <item quantity="one">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
+        <item quantity="two">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمات فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
+        <item quantity="few">سَتستعيد رصيدك تلقائيا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمات فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
+        <item quantity="many">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
+        <item quantity="other">سَتستعيد رصيدك تلقائيًا فور الانتهاء من إعادة تثبيت Signal، وذلك إذا قمت بتأكيد ال‫رقم التعريفي الشخصي‬ لـ Signal. يمكنك أيضًا استعادة حسابك باستخدام جملة الاستعادة، والتي تتكون من %1$d كلمة فريدة خاصك بك فقط. يُرجى كتابتها ثم حفظها في مكان آمن.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">لديك رصيد! حان وقت حفظ جملة الاستعادة الخاصة بك—مفتاح من 24 كلمة يُمكنك استخدامه لاستعادة رصيدك.</string>
@@ -4622,7 +4622,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">تبرَّع لـ Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">تستمد Signal قوتها من أشخاص مثلك. تبرّع شهريًا واحصل على وسام.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">تستمد Signal قوتها من أشخاص مثلك. تبرّع شهريًا واحصل على شارة.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">تبرع</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4645,7 +4645,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">كن من الداعمين</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">إن Signal مدعوم بفضل أفراد مثلك. يُرجى التبرع للحصول على الشارة.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">إن Signal مدعوم بفضل أفراد مثلك. يُرجى التبرع للحصول على شارة.</string>
     <string name="BecomeASustainerMegaphone__not_now">ليس الآن</string>
     <string name="BecomeASustainerMegaphone__donate">تبرع</string>
 
@@ -4702,7 +4702,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">كُتمَت المحادثة للأبد</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">لقد نُسخ رقم الهاتف إلى الحافظة.</string>
     <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
-    <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لملفك الشخص عبر دعم Signal. يكفي لمس الشارة للتعرف على المزيد.</string>
+    <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لحسابك الشخصي عبر دعم Signal. يكفي النقر على شارة لمعرفة المزيد.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
@@ -4886,8 +4886,8 @@
     <string name="CameraFragment__failed_to_open_camera">فشل تشغيل الكاميرا</string>
 
     <string name="BadgesOverviewFragment__my_badges">شاراتي</string>
-    <string name="BadgesOverviewFragment__featured_badge">شارة مميزة</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">عرض الشارات على الملف الشخصي</string>
+    <string name="BadgesOverviewFragment__featured_badge">شارة مُميزة</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">عرض الشارات على الحساب الشخصي</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">فشل تحديث الملف الشخصي</string>
 
 
@@ -4904,43 +4904,43 @@
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">دعم التكنولوجيا المصممة لك - وليس لبياناتك - من خلال الانضمام إلى مجتمع الأشخاص الذين يدعمونها.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">يُرجى دعم التكنولوجيا المبنية لأجلك، لا لأجل بياناتك، وذلك عبر الانضمام إلى المجتمع الداعم لـ Signal.</string>
-    <string name="SubscribeFragment__currency">العملة</string>
+    <string name="SubscribeFragment__currency">عملة</string>
     <string name="SubscribeFragment__more_payment_options">المزيد من خيارات الدفع</string>
     <string name="SubscribeFragment__cancel_subscription">إلغاء الاشتراك</string>
     <string name="SubscribeFragment__confirm_cancellation">تأكيد الإلغاء؟</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم محاسبتك مرة أخرى. ستتم إزالة شارتك من ملفك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">لن يتم خصم المبلغ مرة أخرى. سَتتم إزالة شارتك من حسابك الشخصي في نهاية المدة الزمنية لإعداد الفواتير.</string>
     <string name="SubscribeFragment__not_now">ليس الآن</string>
     <string name="SubscribeFragment__confirm">تأكيد</string>
     <string name="SubscribeFragment__update_subscription">تحديث الاشتراك</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">تم إلغاء اشتراكك.</string>
     <string name="SubscribeFragment__update_subscription_question">تحديث الاشتراك؟</string>
     <string name="SubscribeFragment__update">تحديث التطبيق</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ستدفع كامل مبلغ (%1$s) من سعر الاشتراك الجديد اليوم. وسيتجدد اشتراكك الجديد شهرياً.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">سَتدفع مبلغ (%1$s) بالكامل من سعر الاشتراك الجديد اليوم. وسَيتجدد اشتراكك الجديد شهرياً.</string>
 
     <string name="Subscription__s_per_month">%1$s شهرياً</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">يجدد %1$s</string>
+    <string name="Subscription__renews_s">تجديد %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">سَتنتهي الصلاحية في %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">إن Signal غير ربحي، وبلا إعلانات ولا مستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويقدرونه. نرجو منك التبرع بشكل شهري للحصول على شارة في حسابك لأجل مشاركة دعمك لنا مع الآخرين.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">إن Signal غير ربحي، وبلا إعلانات ولا مُستثمرين، يدعمه فقط الأشخاص الذين يستخدمونه ويُقدرونه. نرجو منك التبرع شهريًا للحصول على شارة في حسابك لمشاركة دعمك لنا مع الآخرين.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">لِماذا أتبرع؟</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">إن Signal ملتزم بتطوير تكنولوجيا الخصوصية مفتوحة المصدر، والتي تحمي حرية التعبير وتُمكِّن التواصل العالمي الآمن.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">إن مساهماتك تُقوِّي هذه القضية وتُموِّل تطوير التطبيق وسير عمله للملايين من الناس لحماية خصوصية اتصالاتهم. إذ ليست فيه الإعلانات، ولا أي متعقبات. نحن حقا لا نمزح في ذلك.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">إن مساهماتك تُقوِّي هذه القضية وتُموِّل تطوير التطبيق وسير عمله للملايين من الناس لحماية خصوصية اتصالاتهم. إذ لا يحتوي على إعلانات ولا أي متعقبات. نحن حقًا لا نستخف بهذه الأمور.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">شكراً على الدعم!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">لقد حصلت باستحقاق على %1$s شارات ! يمكنك عرض هذه الشارة في حسابك لتحفيز الوعي بضرورة التبرع لـ Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">لقد حصلت باستحقاق على شارة التعزيز ! يمكنك عرض هذه الشارة في حسابك لتحفيز الوعي بضرورة التبرع لـ Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">لقد حصلت باستحقاق على %1$s شارات! يُمكنك عرض هذه الشارة في حسابك لنشر الوعي بضرورة التبرع لـ Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">لقد حصلت باستحقاق على شارة الدعم! يُمكنك عرض هذه الشارة في حسابك لنشر الوعي بضرورة التبرع لـ Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">يُمكنك أيضاً</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعماً شهرياً.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">اصنع شارة مميزة</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">واصل</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يمكنك اختيار واحدة لتمييزها ليراها الآخرين في ملفك الشخصي.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">عندما يكون لديك أكثر من شارة واحدة، يُمكنك اختيار واحدة لإظهارها ليراها الآخرين في حسابك الشخصي.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">احصل على شارات لملفك الشخصي عن طريق دعم Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">احصل على شارات لحسابك الشخصي عن طريق دعم Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">إن Signal غير ربحي بلا إعلانات أو مستثمرين، ويدعمه فقط أشخاص مثلك.</string>
 
     <!-- Button label for creating a donation -->
@@ -4953,7 +4953,7 @@
     <string name="ManageDonationsFragment__my_support">دعمي</string>
     <string name="ManageDonationsFragment__manage_subscription">إدارة الاشتراك</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">وصولات التبرعات</string>
+    <string name="ManageDonationsFragment__donation_receipts">إيصالات التبرعات</string>
     <string name="ManageDonationsFragment__badges">شارات</string>
     <string name="ManageDonationsFragment__subscription_faq">الأسئلة الشائعة حول الاشتراك</string>
     <string name="ManageDonationsFragment__error_getting_subscription">خطأ في الحصول على الاشتراك.</string>
@@ -4965,38 +4965,38 @@
     <string name="Boost__enter_custom_amount">إدخال مَبلَغ مُخَصَّص</string>
     <string name="Boost__one_time_contribution">مساهمة لمرة واحدة</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">دعم Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">إضافة دعم Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/شهر</string>
-    <string name="MySupportPreference__renews_s">يجدد %1$s</string>
+    <string name="MySupportPreference__renews_s">تجديد %1$s</string>
     <string name="MySupportPreference__processing_transaction">تجري معالجة المعاملة…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">تعذّر إضافة الشارة. %1$s</string>
     <string name="MySupportPreference__please_contact_support">يُرجى الاتصال بفريق الدعم.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">لقد نفذت صلاحية شارة التعزيز</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">لقد نفذت صلاحية شارة الدعم</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">لقد تم إلغاء التبرعات الشهرية</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">تم إلغاء التبرعات الشهرية</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">لقد نفذت صلاحية شارة التعزيز لديك، لذلك لم تعد ظاهرة في حسابك.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يوماً آخرين بالمساهمة لمرة واحدة.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">لقد نفذت صلاحية شارة الدعم الخاصة بك، لذلك لم تعد ظاهرة في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">يُمكنك إعادة تفعيل شارة الدعم الخاصة بك لمدة 30 يوماً أخرى بمساهمة لمرة واحدة.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">يمكنك الاستمرار في استخدام Signal، لكن لدعم التكنولوجيا التي بُنيَت لأجلك، نطلب منك الانضمام لفئة الداعمين، وذلك عبر التبرع لنا شهريا.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التكنولوجيا التي بُنيَت لأجلك، نطلب منك الانضمام لفئة الداعمين، وذلك عبر التبرّع لنا شهريًا.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">كن من الداعمين</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">أضف دعماً</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ليس الآن</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">لقد تم إلغاء تبرعك الشهري الدوري تلقائيا، بسبب طول غياب نشاطك لفترة طويلة. لن تظهر بعد ذلك شارة %1$s في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">لقد تم إلغاء تبرعك الشهري الدوري تلقائيًا، بسبب غياب نشاطك لفترة طويلة. لم تعد تظهر شارة %1$s في حسابك.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">لقد تم إلغاء تبرعك الشهري الدوري تلقائيا، لأنه تعذر علينا معالجة دفوعاتك. لن تظهر بعد ذلك شارتك في حسابك.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">لقد تم إلغاء تبرعك الشهري الدوري تلقائيًا، لأنه تعذر علينا معالجة عمليات الدفع الخاصة بك. لم تعد تظهر شارتك في حسابك.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">تمّ إلغاء تبرعك الشهري الدوري. %1$s لم تعد %2$s شارتك تظهر على حسابك الشخصي.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن لدعم التطبيق وإعادة تفعيل شارتك، جدد الآن.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">يُمكنك الاستمرار في استخدام Signal، ولكن يُرجى التجديد الآن لدعم التطبيق وإعادة تفعيل شارتك.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">إعادة الاشتراك</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">انتقل الى Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">لقد تعذرت معالجة دفوعات اشتراكك</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">لقد تعذرت معالجة عمليات دفع اشتراكك</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">‫إننا نواجه مشاكل في جمع دفوعات دعمك Signal. يُرجى التأكد من أن طريقة قيامك بالدفوعات حديثة. إن لم تكن كذلك، يُرجى تحديثها في Google Pay. سوف يحاول معالجة دفوعاتك لاحقا خلال بضع أيام.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">لا تظهر هذا مجدداً</string>
 
@@ -5009,8 +5009,8 @@
     <string name="DonationsErrors__error_processing_payment">حدث خطأ أثناء معالجة عملية الدفع</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">حدث خطأ أثناء معالجة عملية الدفع. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">تعذّر إضافة شارتك إلى حسابك، ولكن قد تكون تحملت التكلفة. يُرجى التواصل مع الدعم.</string>
-    <string name="DonationsErrors__your_payment">تعذرت معالجة دفعتك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
+    <string name="DonationsErrors__your_payment">تعذرت معالجة عملية دفعك ولم يتم تحصيل رسوم منك. حاول مرة اخرى.</string>
     <string name="DonationsErrors__still_processing">ما زال قيد المعالجة</string>
     <string name="DonationsErrors__couldnt_add_badge">تعذّر إضافة الشارة</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -5018,29 +5018,29 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">تعذّر التحقّق من استجابة الخادم. يرجى الاتصال بالدعم.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">تعذّر إرسال الشارة المُهداة</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">تعذّر إرسال الشارة الهدية</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">تعذّر إرسال الشارة المُهداة. يرجى الاتصال بالدعم.</string>
-    <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن قد تكون تحملت التكلفة. يُرجى التواصل مع الدعم.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">تعذّر إرسال شارة هدية. يُرجى الاتصال بالدعم.</string>
+    <string name="DonationsErrors__your_badge_could_not">تعذّر إضافة شارتك إلى حسابك، ولكن يُمكن أن المبلغ قد خُصم من حسابك. يُرجى التواصل مع قسم الدعم.</string>
     <string name="DonationsErrors__your_payment_is_still">ما زالت عملية الدفع الخاصة بك قيد المعالجة. قد يستغرق الأمر بضع دقائق وفقاً لاتصال شبكتك.</string>
     <string name="DonationsErrors__google_pay_unavailable">خدمة Google Pay غير متوفرة</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">يجب عليك إعداد Google Pay للتبرع داخل التطبيق.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">فشل إلغاء الاشتراك</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">يتطلب إلغاء الاشتراك اتصالاً بالإنترنت.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لربح شارة. ما زال يُمكنك دعم Signal بالتبرع على موقعنا الإلكتروني.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">لا يدعم جهازك Google Pay، لذلك لا يُمكنك الاشتراك لِربح شارة. ما زال يُمكنك دعم Signal بالتبرع على موقعنا الإلكتروني.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">لقد حدث خطأ في الشبكة. يُرجى التحقق من اتصالك بالانترنت ثم المحاولة مرة أخرى.</string>
     <string name="NetworkFailure__retry">إعادة المُحاولة</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">لا يمكن إرسال الهدية</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">يَستخدم هذا المُستلم إصدارًا من Signal لا يمكنه تلقي الشارات المُهداة. سيتمكن من تلقي الهدايا عند التحديث إلى آخَر إصدار.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">يَستخدم هذا المُستلم إصدارًا من Signal لا يُمكنه تلقّي الشارات الهدية. سَيتمكن من تلقي الهدايا عند التحديث إلى آخَر إصدار.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">تعذّر إرسال الهدية</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__please_check_your_network_connection">تعذّر إرسال هديتك بسبب خطأ في الشبكة. تحقّق من الاتصال وحاول مرة أخرى.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">شارة مُهداة</string>
+    <string name="GiftMessageView__gift_badge">شارة مهدية</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="zero">تدوم لـ %1$d أشهر</item>
@@ -5245,19 +5245,19 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">هدية</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">معزز</string>
+    <string name="DonationReceiptListFragment__boost">دعم</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">التفاصيل</string>
     <!-- Donation receipts donation type heading -->
-    <string name="DonationReceiptDetailsFragment__donation_type">صنف التبرع</string>
+    <string name="DonationReceiptDetailsFragment__donation_type">صنف التبرّع</string>
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">تاريخ الدفع</string>
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">مشاركة الوصولات</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">إذا أعدت تثبيت Signal، فلن تصبح وصولات التبرعات السابقة متاحة.</string>
+    <string name="DonationReceiptListFragment__if_you_have">إذا أعدت تثبيت Signal، فلن تصبح إيصالات التبرعات السابقة متاحة.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">وصولات التبرعات</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">إيصال تبرّع</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">المبلغ</string>
     <!-- Donation receipts thanks -->
@@ -5371,7 +5371,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">لا مشاهدة حاليا</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">فًعّل إيصالات القراءة لرؤية من شاهد قصصك.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">الانتقال إلى الإعدادات</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5646,11 +5646,11 @@
         <item quantity="other">%1$s · لمدة %2$d أيام</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">أرسل شارة مُهداة</string>
+    <string name="GiftRowItem__send_a_gift_badge">أرسل شارة هدية</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">أهدِ شارة</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">أهدِ شارة لشخص ما عن طريق تقديم تبرّع إلى Signal باسمهم. سيتلقون شارة لِعرضها على حسابهم الشخصي.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">أهدِ شارة لِشخص ما عن طريق تقديم تبرّع إلى Signal باسمهم. سيتلقّون شارة لِعرضها على حسابهم الشخصي.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">التالي</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5672,9 +5672,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">شكراً لدعمك!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">لقد تلقّيت شارة مُهداة من %1$s! ساعد Signal في بناء الوعي من خلال عرض هذه الشارة على حسابك الشخصي.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">لقد تلقّيتَ شارة هدية من %1$s! ساعد Signal في بناء الوعي من خلال عرض هذه الشارة على حسابك الشخصي.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">لقد أهديت شارة لـ %1$s. عندما يقبلونها، سَيتم منحهم خيار إظهار أو إخفاء شارتهم.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">لقد أهديت شارة لـ %1$s. عندما قبولها، سَيتم منحهم خيار إظهار أو إخفاء شارتهم.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">قبول الهدية</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5684,11 +5684,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">يُمكنك استرداد شارتك لاحقًا.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">لقد أهديت شارة لـ %1$s. عندما يقبلونها، سيتم منحهم خيار إظهار أو إخفاء شارتهم.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">لقد أهديت شارة لـ %1$s. عندما قبولها، سَيتم منحهم خيار إظهار أو إخفاء شارتهم.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">انتهت صلاحية شارتك المُهداة</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">انتهت صلاحية شارتك الهدية</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">انتهت صلاحية شارتك المُهداة ولم تعد تظهر للآخرين على حسابك الشخصي.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">انتهت صلاحية شارتك الهدية ولم تعد تظهر للآخرين على حسابك الشخصي.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">للاستمرار في استخدام تكنولوجيا تمّ إنشاؤها من أجلك، يُرجى النظر في أن تصبح داعماً بشكل شهري.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -6085,12 +6085,12 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">تبرّع بـ %1$s لـ Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="zero">Get a %1$s badge for %2$d days</item>
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="two">Get a %1$s badge for %2$d days</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="zero">احصل على شارة %1$s لمدة %2$d يوم</item>
+        <item quantity="one">احصل على شارة %1$s لمدة %2$d يوم</item>
+        <item quantity="two">احصل على شارة %1$s لمدة %2$d يومين</item>
+        <item quantity="few">احصل على شارة %1$s لمدة %2$d أيام</item>
+        <item quantity="many">احصل على شارة %1$s لمدة %2$d يومًا</item>
+        <item quantity="other">احصل على شارة %1$s لمدة %2$d يوم</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">بطاقة الائتمان أو الخصم</string>

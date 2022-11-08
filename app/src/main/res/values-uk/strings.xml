@@ -108,11 +108,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal потребує дозволу \"Контакти\", щоб прикріпити контакт, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Контакти\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal потребує дозволу \"Геодані\", щоб прикріпити дані про розташування, але наразі доступу немає. Будь ласка, перейдіть до налаштувань додатку, оберіть \"Дозволи\", та увімкніть \"Геодані\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s не активував/-ла платежі </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Ви хочете надіслати користувачу запит на активацію платежів?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Надіслати запит</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Скасувати</string>
 
@@ -137,7 +137,7 @@
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Сума внеску: %1$s</string>
+    <string name="CreditCardFragment__donation_amount_s">Сума доната: %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">Введіть дані банківської картки нижче</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -1017,7 +1017,7 @@
     <string name="ManageProfileFragment_your_name">Ваше ім\'я</string>
     <string name="ManageProfileFragment_your_username">Ваше ім\'я користувача</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Не вдалось встановити фото профілю</string>
-    <string name="ManageProfileFragment_badges">Емблеми</string>
+    <string name="ManageProfileFragment_badges">Значки</string>
     <string name="ManageProfileFragment__edit_photo">Редагувати фото</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Ім’я користувача створено</string>
@@ -1530,19 +1530,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Повідомлення від %1$s неможливо доставити</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s змінив номер телефону.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Подобається нова функція? Підтримайте Signal за допомогою разового внеску.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Подобається нова функція? Підтримайте Signal за допомогою разового доната.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Об’єднано вашу історію повідомлень із користувачем %1$s і номером %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Об’єднано вашу історію повідомлень із користувачем %1$s й іншим чатом, який належить йому.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Ви надіслали користувачу %1$s запит на активацію платежів</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s хоче, щоб ви активували платежі. Надсилайте платежі лише тим людям, яким ви довіряєте.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ви активували платежі</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s тепер може приймати платежі</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s розпочав груповий дзвінок · %2$s</string>
@@ -2062,13 +2062,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Це повідомлення було видалено.</string>
     <string name="ThreadRecord_you_deleted_this_message">Ви видалили це повідомлення.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Ви надіслали запит на активацію платежів</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s хоче, щоб ви активували платежі</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ви активували платежі</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s тепер може приймати платежі</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s приєднався до Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Зникаючі повідомлення заборонені</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Час зникнення повідомлень встановлено на %1$s</string>
@@ -2090,7 +2090,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Ви відправили подарунок</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Ви придбали емблему у подарунок</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Ви активували подарунковий значок</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Реакція %1$s на вашу сторі</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2440,7 +2440,7 @@
     <string name="ConversationUpdateItem_view">Детальніше</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Час зникання повідомлення буде встановлено на %1$s, коли ви його відправите їм.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Дарувати</string>
+    <string name="ConversationUpdateItem_donate">Задонатити</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Надіслати платіж</string>
     <!-- Update item button text to activate payments -->
@@ -2886,7 +2886,7 @@
     <string name="preferences__advanced">Розширені</string>
     <string name="preferences__donate_to_signal">Підтримати Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Разовий внесок</string>
+    <string name="preferences__one_time_donation">Разовий донат</string>
     <string name="preferences__privacy">Приватність</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Сторіз</string>
@@ -3142,7 +3142,7 @@
     <string name="PaymentsAllActivityFragment__received">Одержано</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Представляємо платежі (Бета)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Використовуйте Signal для переказу та отримання MobileCoin — нової цифрової валюти, націленої на безпеку. Увімкніть, щоб почати.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Використовуйте Signal для переказу та отримання MobileCoin, нової цифрової валюти, націленої на безпеку. Увімкніть, щоб почати.</string>
     <string name="PaymentsHomeFragment__activate_payments">Увімкнути платежі</string>
     <string name="PaymentsHomeFragment__activating_payments">Вмикаємо платежі…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Відновити платіжний обліковий запис</string>
@@ -3155,7 +3155,7 @@
     <string name="PaymentsHomeFragment__sent_s">Відправлено %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Отримано %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Перекажіть на обмін</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Курс обміну валюти</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Конвертування валюти</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Вимкнути платежі</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Кодова фраза</string>
     <string name="PaymentsHomeFragment__help">Допомога</string>
@@ -3164,8 +3164,8 @@
     <string name="PaymentsHomeFragment__received_payment">Отриманий платіж</string>
     <string name="PaymentsHomeFragment__processing_payment">Обробка платежу</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Обмін валют недоступний</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не вдалось відобразити курс обміну валют. Перевірте з’єднання телефону та повторіть спробу.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Конвертування валюти недоступно</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Не вдалось відобразити конвертування валюти. Перевірте з’єднання телефону і повторіть спробу.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Платежі недоступні у вашому регіоні.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Не вдалося увімкнути платежі. Спробуйте пізніше.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Вимкнути платежі?</string>
@@ -3242,7 +3242,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s%2$s в %3$s</string>
     <string name="PaymentsDetailsFragment__to">Кому</string>
     <string name="PaymentsDetailsFragment__from">Від</string>
-    <string name="PaymentsDetailsFragment__information">Деталі транзакції, зокрема сума платежу та час транзакції, є частиною особового рахунку MobileCoin.</string>
+    <string name="PaymentsDetailsFragment__information">Деталі транзакції, зокрема сума платежу і час транзакції, є частиною особового рахунку MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Плата за очищення монет</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">«Плата за очищення монет» стягується коли ваші монети неможливо сполучити для завершення транзакції. Очищення дозволить надсилати платежі далі.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Деталі цієї транзакції недоступні</string>
@@ -3302,7 +3302,7 @@
     <string name="ConfirmPayment__error_getting_fee">Помилка отримання комісії</string>
     <string name="ConfirmPayment__estimated_s">Приблизно %1$s</string>
     <string name="ConfirmPayment__to">Кому</string>
-    <string name="ConfirmPayment__total_amount">Загальний баланс</string>
+    <string name="ConfirmPayment__total_amount">Загальна сума</string>
     <string name="ConfirmPayment__balance_s">Баланс: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Платіж відправляється…</string>
     <string name="ConfirmPayment__processing_payment">Обробка платежу…</string>
@@ -3328,7 +3328,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s в %2$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">Обрати валюту</string>
+    <string name="SetCurrencyFragment__set_currency">Встановити валюту</string>
     <string name="SetCurrencyFragment__all_currencies">Усі валюти</string>
 
     <!-- **************************************** -->
@@ -3498,7 +3498,7 @@
 
     <string name="FirstInviteReminder__title">Запросити до Signal</string>
     <string name="FirstInviteReminder__description">Ви могли б збільшити кількість відправлених вами зашифрованих повідомлень на %1$d%%</string>
-    <string name="SecondInviteReminder__title">Поліпшіть свій Signal</string>
+    <string name="SecondInviteReminder__title">Покращіть Signal</string>
     <string name="SecondInviteReminder__description">Запросити %1$s</string>
     <string name="InsightsReminder__view_insights">Показати Висновки</string>
     <string name="InsightsReminder__invite">Запросити</string>
@@ -3993,7 +3993,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Видаляємо обліковий запис…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Скасування вашої передплати…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Скасування передплати…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">В залежності від кількості груп це може зайняти декілька хвилин</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -4114,10 +4114,10 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Збережіть кодову фразу</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ввести кодову фразу</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слова і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
+        <item quantity="few">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слів і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
+        <item quantity="many">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слів і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
+        <item quantity="other">Ваш баланс автоматично відновиться, коли ви знову встановите Signal та підтвердите свій PIN-код Signal. Ви також можете відновити баланс за допомогою кодової фрази, яка складається з %1$d слова і яку знаєте лише ви. Запишіть її та зберігайте у надійному місці.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Ви маєте баланс! Час зберегти кодову фразу — ключ із 24 слів, за допомогою якого можна відновити свій баланс.</string>
@@ -4420,11 +4420,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Селектор нижнього краю</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Підтримати Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Задонатити Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal працює завдяки таким людям, як ви. Зробіть місячний внесок та отримайте емблему.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal працює завдяки таким людям, як ви. Зробіть місячний донат і отримайте значок.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Дарувати</string>
+    <string name="Donate2022Q2Megaphone_donate">Задонатити</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Не зараз</string>
 
@@ -4445,9 +4445,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Стати підтримувачем</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal працює завдяки таким людям, як ви. Зробіть внесок та отримайте відзнаку.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal працює завдяки таким людям, як ви. Зробіть донат і отримайте значок.</string>
     <string name="BecomeASustainerMegaphone__not_now">Не зараз</string>
-    <string name="BecomeASustainerMegaphone__donate">Дарувати</string>
+    <string name="BecomeASustainerMegaphone__donate">Задонатити</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Емоджі</string>
@@ -4677,22 +4677,22 @@
 
     <string name="CameraFragment__failed_to_open_camera">Не вдалось відкрити камеру</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Мої емблеми</string>
-    <string name="BadgesOverviewFragment__featured_badge">Запропоновані емблеми</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Показувати емблеми в обліковому записі</string>
+    <string name="BadgesOverviewFragment__my_badges">Мої значки</string>
+    <string name="BadgesOverviewFragment__featured_badge">Обраний значок</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Показувати значки в профілі</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Не вдалось оновити обліковий запис</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Обрати емблеми</string>
+    <string name="BadgeSelectionFragment__select_badges">Вибрати значки</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Попередній перегляд</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Обрати емблему</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ви маєте обрати емблему</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Вибрати значок</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ви маєте обрати значок</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не вдалось оновити обліковий запис</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стати підтримувачем</string>
 
-    <string name="ImageView__badge">Емблема</string>
+    <string name="ImageView__badge">Значок</string>
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Підтримайте технологію, що побудована для вас, а не для ваших даних, долучившись до спільноти людей, які підтримують її.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Підтримайте технологію, що побудована для вас, а не для ваших даних, долучившись до спільноти, яка підтримує Signal.</string>
@@ -4700,7 +4700,7 @@
     <string name="SubscribeFragment__more_payment_options">Більше опцій для сплати</string>
     <string name="SubscribeFragment__cancel_subscription">Скасувати передплату</string>
     <string name="SubscribeFragment__confirm_cancellation">Підтвердити скасування?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Плата більше не стягуватиметься. Вашу емблему буде видалено з облікового запису після закінчення строку дії підписки.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Плата більше не стягуватиметься. Ваш значок буде вилучено з профілю після закінчення періоду передплати.</string>
     <string name="SubscribeFragment__not_now">Не зараз</string>
     <string name="SubscribeFragment__confirm">Підтвердження</string>
     <string name="SubscribeFragment__update_subscription">Оновити передплату</string>
@@ -4716,27 +4716,27 @@
     <string name="Subscription__expires_s">Термін дії минає %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal — некомерційний, без рекламодавців чи інвесторів, підтримуваний лише людьми, які ним користуються та цінують. Зробіть регулярний щомісячний внесок та отримайте відзнаку профілю, повідомляючи про свою підтримку.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Навіщо робити внески?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal є некомерційною організацією, яка не має рекламодавців та інвесторів. Ми працюємо лише завдяки людям, які цінують і підтримують нас. Зробіть регулярний щомісячний донат і отримайте значок профілю, щоб розказати про свою підтримку.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Навіщо донатити?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal прагне розвивати технологію конфіденційності з відкритим вихідним кодом, яка захищає свободу слова і забезпечує безпечне глобальне спілкування.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Ваш внесок сприяє цій справі й оплачує розробку й роботу застосунку, який використовується мільйонами для приватного спілкування. Без реклами. Без трекерів. Без жартів.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Ваш донат допомагає нашій справі й оплачує розробку й роботу застосунку, який використовується мільйонами для приватного спілкування. Без реклами. Без трекерів. Без жартів.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Дякуємо за вашу підтримку!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Дякуємо за пришвидшення!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Дякуємо за підтримку!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Ви заробили значок %1$s! Увімкніть його відображення в профілі, щоб інші користувачі дізналися про допомогу для Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Ви заробили Значок підтримки! Увімкніть його відображення в профілі, щоб інші користувачі дізналися про допомогу для Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Ви також можете</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">стати підтримувачем щомісячно.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показувати в обліковому записі</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Створити головний значок</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Обрати значок</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Продовжити</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Коли у вас більше однієї емблеми, ви можете обирати, яку саме демонструвати у своєму обліковому записі.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Коли ви маєте більше одного значка, ви можете обирати, який саме відображати у своєму профілі.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Отримайте емблеми для свого облікового запису підтримуючи Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Отримайте значки для свого профілю, підтримуючи Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — неприбутковий, без рекламодавців чи інвесторів, що підтримується лише такими людьми, як ви.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Підтримати Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Задонатити Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Більше</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4746,36 +4746,36 @@
     <string name="ManageDonationsFragment__manage_subscription">Керувати передплатою</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Квитанція внеску</string>
-    <string name="ManageDonationsFragment__badges">Емблеми</string>
-    <string name="ManageDonationsFragment__subscription_faq">Підписка ЧАП</string>
+    <string name="ManageDonationsFragment__badges">Значки</string>
+    <string name="ManageDonationsFragment__subscription_faq">Поширені запитання про передплату</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Помилка отримання передплати.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Інші типи внесків</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Подарувати емблему</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Подарувати значок</string>
 
-    <string name="Boost__enter_custom_amount">Власна сума</string>
+    <string name="Boost__enter_custom_amount">Інша сума</string>
     <string name="Boost__one_time_contribution">Одноразовий внесок</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Додати Signal пришвидшення</string>
+    <string name="MySupportPreference__add_a_signal_boost">Продовжити сприяти розвитку Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/місяць</string>
     <string name="MySupportPreference__renews_s">Оновлюється %1$s</string>
     <string name="MySupportPreference__processing_transaction">Обробка транзакції…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Не вдалось додати емблему. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Не вдалося додати значок. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Будь ласка, зверніться до служби підтримки.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Термін дії Значка підтримки скінчився</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Щомісячний внесок скасовано</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Щомісячний донат скасовано</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Термін дії вашого Значка підтримки скінчився, тож він більше не відображається в профілі.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ви можете повторно активувати свій значок Boost ще на 30 днів за допомогою одноразового внеску.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ви можете повторно активувати Значок підтримки ще на 30 днів, зробивши одноразовий внесок.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Ви можете і надалі користуватися Signal, але ми були би дуже вдячні, якщо б ви зробили місячний донат. Так ви допоможете нам підтримувати застосунок для вас.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стати прихильником</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Додати пришвидшення</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Сприяти розвитку</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не зараз</string>
     <!-- Copy displayed when badge expires after user inactivity -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Регулярний щомісячний донат було автоматично скасовано, тому що ви занадто довго не були онлайн. Ваш значок %1$s більше не відображається в профілі.</string>
@@ -4783,7 +4783,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Регулярний щомісячний донат було скасовано, тому що ми не змогли обробити ваш платіж. Ваш значок більше не відображається в профілі.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Регулярний щомісячний донат було скасовано. %1$s Ваш значок %2$s більше не відображається в профілі.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal, але щоб підтримати застосунок та повторно активувати свій значок, поновіть зараз.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Ви можете продовжувати використовувати Signal, але щоб підтримати застосунок і повторно активувати свій значок, ви можете поновити передплату.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Поновити передплату</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">До Google Pay</string>
@@ -4794,45 +4794,45 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Будь ласка, зв\'яжіться з підтримкою для додаткової інформації.</string>
     <string name="Subscription__contact_support">Зверніться в службу підтримки</string>
-    <string name="Subscription__get_a_s_badge">Отримати відзнаку %1$s</string>
+    <string name="Subscription__get_a_s_badge">Отримати значок %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Обробка платежу…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Помилка обробки платежу</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Помилка обробки платежу. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Емблему не вдалося додати до вашого облікового запису, але, можливо, з вас було стягнуто плату. Зверніться до служби підтримки.</string>
-    <string name="DonationsErrors__your_payment">Не вдалося обробити ваш платіж, і з вас не стягнуто кошти. Будь ласка, спробуйте ще раз.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Не вдалося додати значок до вашого профілю, але, можливо, з вас було стягнуто плату. Будь ласка, зверніться до служби підтримки.</string>
+    <string name="DonationsErrors__your_payment">Не вдалося обробити ваш платіж. Кошти не було стягнуто. Будь ласка, спробуйте ще раз.</string>
     <string name="DonationsErrors__still_processing">Ще обробляється</string>
-    <string name="DonationsErrors__couldnt_add_badge">Не вдалось додати емблему</string>
+    <string name="DonationsErrors__couldnt_add_badge">Не вдалося додати значок</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Не вдалося перевірити значок</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Не вдалося перевірити відповідь сервера. Будь ласка, зв\'яжіться зі службою підтримки.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Не вдалось відправити емблему у подарунок</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Не вдалось надіслати подарунковий значок</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">Не вдалося надіслати подарунковий значок. Будь ласка, зв\'яжіться зі службою підтримки.</string>
-    <string name="DonationsErrors__your_badge_could_not">Емблему не вдалося додати до вашого облікового запису, але, можливо, з вас було стягнуто плату. Зверніться до служби підтримки.</string>
+    <string name="DonationsErrors__your_badge_could_not">Не вдалося додати значок до вашого профілю, але, можливо, з вас було стягнуто плату. Будь ласка, зверніться до служби підтримки.</string>
     <string name="DonationsErrors__your_payment_is_still">Ваш платіж ще обробляється. Це може зайняти декілька хвилин в залежності від швидкості інтернету.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступний</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Щоб пожертвувати в застосунку, потрібно налаштувати Google Pay.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалось скасувати передплату</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Скасування передплати потребує інтернет з\'єднання.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваш пристрій не підтримує Google Pay, тому ви не можете підписатися, щоб отримати значок. Ви все ще можете підтримати Signal, зробивши пожертву на нашому веб-сайті.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Щоб задонатити в застосунку, потрібно налаштувати Google Pay.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Не вдалося скасувати передплату</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для скасування передплати потрібне підключення до інтернету.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваш пристрій не підтримує Google Pay, тому ви не можете оформити передплату, щоб отримати значок. Ви все ще можете підтримати Signal, зробивши пожертву на нашому вебсайті.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Помилка мережі. Перевірте з\'єднання та спробуйте ще.</string>
     <string name="NetworkFailure__retry">Повторити</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">Не вдається надіслати подарунок</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Отримувач використовує застарілу версію Signal і зможе отримати подарунковий значок, коли оновить версію Signal до останньої.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Одержувач використовує застарілу версію Signal і зможе отримати подарунковий значок, тільки коли оновить версію Signal до останньої.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">Не вдалося надіслати подарунок</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__please_check_your_network_connection">Подарунок не вдалося надіслати через помилку мережі. Перевірте підключення і спробуйте ще раз.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Емблема у подарунок</string>
+    <string name="GiftMessageView__gift_badge">Подарунковий значок</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">Діє протягом %1$d місяця</item>
@@ -5035,7 +5035,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Подарунок</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
+    <string name="DonationReceiptListFragment__boost">Підтримка</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Деталі</string>
     <!-- Donation receipts donation type heading -->
@@ -5045,9 +5045,9 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Поділитись квитанцією</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Якщо ви перевстановлювали Signal, квитанції попередніх внесків не будуть доступні.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Якщо ви перевстановлювали Signal, квитанції попередніх донатів не будуть доступні.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Квитанція внеску</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Квитанція про донат</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Сума</string>
     <!-- Donation receipts thanks -->
@@ -5155,7 +5155,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ще немає переглядів</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Увімкніть сповіщення про перегляд, аби знати, хто переглянув ваші сторіз.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Перейдіть до налаштувань</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5422,9 +5422,9 @@
     <!-- Tagline for gift row items -->
     <string name="GiftRowItem__send_a_gift_badge">Надішліть подарунковий значок</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Подарувати емблему</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Подаруйте значок</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Подаруйте комусь значок, зробивши пожертву Signal від імені цих людей. Вони отримають особливий значок, який відображатиметься на фото їх профілей.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Подаруйте комусь значок, зробивши пожертву Signal від імені цієї людини. Користувач отримає особливий значок, який відображатиметься на фото профілю.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Далі</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5436,7 +5436,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Ваш подарунок надсилатиметься отримувачу в особистому повідомленні. Додайте текст повідомлення нижче.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Зробити один внесок</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Разовий донат</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Додати повідомлення</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5448,7 +5448,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s дарує вам значок! Покажіть його в профілі, щоб інші користувачі дізналися про допомогу для Signal.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Подарунок надіслано. Одержувач — %1$s. Коли подарунок буде прийнято, одержувач зможе відобразити значок у своєму профілі.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Подарунок надіслано. Одержувач – %1$s. Коли подарунок буде прийнято, одержувач зможе відобразити значок у своєму профілі.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Активувати</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5458,7 +5458,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Ви можете активувати значок пізніше.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарунок надіслано. Одержувач — %1$s. Коли подарунок буде прийнято, одержувач зможе відобразити значок у своєму профілі.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Подарунок надіслано. Одержувач – %1$s. Коли подарунок буде прийнято, одержувач зможе відобразити значок у своєму профілі.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Термін дії подарункового значка закінчився</string>
     <!-- Expired gift sheet top description text -->
@@ -5466,7 +5466,7 @@
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Щоб продовжувати підтримувати технологію, створену для вас, будь ласка, обміркуйте можливість стати щомісячним Прихильником.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Зробити щомісячний внесок</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Зробити щомісячний донат</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Не зараз</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5834,15 +5834,15 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Задонатити Signal %1$s/місяць</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Отримати відзнаку %1$s</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Отримати значок %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Задонатити Signal %1$s</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Отримайте значок %1$s на %2$d день</item>
+        <item quantity="few">Отримайте значок %1$s на %2$d дні</item>
+        <item quantity="many">Отримайте значок %1$s на %2$d днів</item>
+        <item quantity="other">Отримайте значок %1$s на %2$d дня</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Кредитна або дебетова картка</string>

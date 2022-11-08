@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">საკონტაქტო ინფორმაციის მისაბმელად Signal-ს კონტაქტებზე წვდომის უფლება სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"კონტაქტები\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ადგილმდებარეობის საჩვენებლად Signal-ს ადგილმდებარეობაზე წვდომის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, გადახვიდე აპის პარამეტრების მენიუში, აირჩიო \"უფლებები\" და ჩართო \"ადგილმდებარეობა\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s-ს ტრანზაქციები არ გაუაქტიურებია </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">გსურს მას მოთხოვნა გაუგზავნო, რომ ტრანზაქციები გაააქტიუროს?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">მოთხოვნის გაგზავნა</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">გაუქმება</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">ინახება %1$d მიმაგრება</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">დანართს მეხსიერებაში ვინახავთ...</item>
-        <item quantity="other">%1$d დანართს მეხსიერებაში ვინახავთ...</item>
+        <item quantity="one">დანართს მეხსიერებაში ვინახავთ…</item>
+        <item quantity="other">%1$d დანართს მეხსიერებაში ვინახავთ…</item>
     </plurals>
     <string name="ConversationFragment_pending">მოლოდინის რეჟიმში…</string>
     <string name="ConversationFragment_push">მონაცემები (Signal)</string>
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-სთან შენი მიმოწერის ისტორია და სხვა ჩატი, რომელიც მას ეკუთვნოდა, გაერთიანდა.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">შენ გაუგზავნე მოთხოვნა %1$s-ს, რომ ტრანზაქციები გაააქტიუროს</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s-ს სურს, რომ ტრანზაქციები გაააქტიურო. ტრანზაქციები მხოლოდ იმ ადამიანებს გაუგზავნე, რომლებსაც ენდობი.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">შენ გაააქტიურე ტრანზაქციები</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s-ს უკვე შეუძლია ტრანზაქციები მიიღოს</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s-მა ჯგუფური ზარი წამოიწყო · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">ეს შეტყობინება იქნა წაშლილი.</string>
     <string name="ThreadRecord_you_deleted_this_message">თქვენ წაშალეთ ეს შეტყობინება.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">შენ გაუგზავნე ტრანზაქციების გაააქტიურების მოთხოვნა</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s-ს სურს, რომ ტრანზაქციები გაააქტიურო.</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">შენ გაააქტიურე ტრანზაქციები</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s-ს უკვე შეუძლია ტრანზაქციები მიიღოს</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal-ზეა!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">გაქრობადი შეტყობინებები გამორთულია</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">გაქრობადი შეტყობინების დრო დაყენებულია %1$s-ზე</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">განაახლე Signal-ი, რათა ტრანზაქციების გამოყენება განაგრძო. შეიძლება, შენი ბალანსი არ იყოს განახლებული.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">განაახლე ახლავე</string>
 
@@ -2284,9 +2284,9 @@
     <string name="ConversationUpdateItem_view">View</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">გაქრობადი შეტყობინების დრო %1$s-ზე დაყენდება, როცა მას შეტყობინებას გაუგზავნი.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">გაიღე შემოწირულობა</string>
+    <string name="ConversationUpdateItem_donate">გააკეთე დონაცია</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">გააგზავნე ტრანზაქცია</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">ტრანზაქციების აქტივაცია</string>
 
@@ -2666,9 +2666,9 @@
     <string name="preferences__pref_use_address_book_photos">მისამართების წიგნაკის ფოტოების გამოყენება</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">აჩვენე საკონტაქტო ფოტოები შენი მისამართების წიგნიდან, თუ ეს შესაძლებელია</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">შეინახე დადუმებული ჩატები არქივში</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ახალი შეტყობინების მიღებისას, დაარქივებული დადუმებული ჩატები არქივში დარჩება.</string>
     <string name="preferences__generate_link_previews">ბმულსი წინასწარი ნახვის გენერირება</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">მიიღე ბმულის წინასწარი ნახვა შენს მიერ გაგზავნილი შეტყობინებებისთვის პირდაპირ ვებსაიტებიდან.</string>
     <string name="preferences__choose_identity">იდენტობის არჩევა</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ახლა არა</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">საჭიროა განახლება</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">განახლება საჭიროა ტრანზაქციების გაგზავნისა და მიღების გასაგრძელებლად და შენი განახლებული ტრანზაქციის ბალანსის სანახავად.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">გაუქმება</string>
     <!-- Alert dialog button to update now -->
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin-ის შესახებ</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin-ი არის ახალი კონფიდენციალურობაზე ორიენტირებული ციფრული ვალუტა.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin-ი არის კონფიდენციალურობაზე ორიენტირებული ახალი ციფრული ვალუტა.</string>
     <string name="payment_info_card_adding_funds">თანხის დამატება</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">შეგიძლია Signal-ში გამოსაყენებლად თანხა დაამატო MobileCoin-ის შენი საფულის მისამართზე გაგზავნით.</string>
     <string name="payment_info_card_cashing_out">განაღდება</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">შეინახე აღდგენის ფრაზა</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">შეიყვანე აღდგენის ფრაზა</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">შენი ბალანსი ავტომატურად აღდგება Signal-ის ხელახლა ინსტალაციისას, თუ დაადასტურებ Signal-ის შენს პინ-კოდს. ასევე შეგიძლია აღადგინო შენი ბალანსი აღდგენის ფრაზის გამოყენებით, რომელიც შენთვის უნიკალური %1$d-სიტყვიანი ფრაზაა. ჩაიწერე და შეინახე ის უსაფრთხო ადგილას.</item>
+        <item quantity="other">შენი ბალანსი ავტომატურად აღდგება Signal-ის ხელახლა ინსტალაციისას, თუ დაადასტურებ Signal-ის შენს პინ-კოდს. ასევე შეგიძლია აღადგინო შენი ბალანსი აღდგენის ფრაზის გამოყენებით, რომელიც შენთვის უნიკალური %1$d-სიტყვიანი ფრაზაა. ჩაიწერე და შეინახე ის უსაფრთხო ადგილას.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">ბალანსი გაქვს! დროა შენი აღდგენის ფრაზა შეინახო—24-სიტყვიანი პაროლი, რომლის გამოყენებაც ბალანსის აღსადგენად შეგიძლია.</string>
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal-ი შენნაირ ხალხზე დგას. გააკეთე დონაცია და მიიღე ემბლემა.</string>
     <string name="BecomeASustainerMegaphone__not_now">ახლა არა</string>
-    <string name="BecomeASustainerMegaphone__donate">დონაციის გაკეთება</string>
+    <string name="BecomeASustainerMegaphone__donate">გააკეთე დონაცია</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4503,7 +4503,7 @@
 
     <string name="Subscription__s_per_month">%1$s/თვეში</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">განახლდება %1$s-ს</string>
+    <string name="Subscription__renews_s">განახლდება %1$s-ში</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">ვადის ამოწურვამდე დარჩა %1$s</string>
 
@@ -4511,20 +4511,20 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal-ი არის არაკომერციული ორგანიზაცია რეკლამის განმთავსებლების ან ინვესტორების გარეშე, რომელსაც მხარს უჭერენ მხოლოდ ის ადამიანები, რომლებიც იყენებენ და აფასებენ მას. განახორციელე განმეორებადი ყოველთვიური დონაციები და მიიღე პროფილის ემბლემა შენი მხარდაჭერის გასაზიარებლად.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">რატომ უნდა გააკეთო დონაცია?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal-ის მოწოდებაა განავითაროს ღია კოდის კონფიდენციალურობის ტექნოლოგია, რომელიც იცავს გამოხატვის თავისუფლებას და უზრუნველყოფს უსაფრთხო გლობალურ კომუნიკაციას.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">შენი დონაცია ხელს უწყობს ამ საქმეს და ხმარდება ამ აპის შემუშავებისა და ფუნქციონირების საფასურს, რომელსაც მილიონობით ადამიანი იყენებს პირადი კომუნიკაციისთვის. რეკლამის გარეშე. ტრექერების გარეშე. ხუმრობის გარეშე.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">შენი დონაცია ხელს უწყობს ამ საქმეს და ფარავს ამ აპის შემუშავებისა და ფუნქციონირების საფასურს, რომელსაც მილიონობით ადამიანი იყენებს პირადი კომუნიკაციისთვის. რეკლამის გარეშე. ტრექერების გარეშე. ხუმრობის გარეშე.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">მადლობას გიხდით მხარდაჭერისთვის!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">მადლობას გიხდით ბუსტისთვის!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">მადლობა ბუსტისთვის!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">შენ მიიღე %1$s ემბლემა! აჩვენე ეს ემბლემა შენს პროფილზე, რათა ხელი შეუწყო Signal-ისთვის დონაციების ზრდას.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">შენ მოიპოვე ბუსტის ემბლემა! აჩვენე ეს ემბლემა შენს პროფილზე, რათა ხელი შეუწყო Signal-ისთვის დონაციების ზრდას.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">ასევე შეგიძლია</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">გახდი ყოველთვიური მხარდამჭერი.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">პროფილზე ჩვენება</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">გამორჩეული ემბლემის გაკეთება</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">გამოსაჩენი ემბლემის არჩევა</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">გაგრძელება</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">როცა ერთზე მეტი ემბლემა გაქვს, შეგიძლია აირჩიო რომელი იქნება ხილვადი სხვებისთვის შენს პროფილზე .</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">როცა ერთზე მეტი ემბლემა გაქვს, შეგიძლია აირჩიო რომელი იქნება ხილვადი სხვებისთვის შენს პროფილზე.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">მიიღე ემბლემები შენს პროფილზე Signal-ის მხარდაჭერით.</string>
+    <string name="BecomeASustainerFragment__get_badges">მიიღე ემბლემები შენი პროფილისთვის Signal-ის მხარდაჭერით.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal-ი არაკომერციული ორგანიზაციაა, რომელიც მხოლოდ შენნაირ ხალხზე დგას, რეკლამის დამკვეთებისა და ინვესტორების გარეშე.</string>
 
     <!-- Button label for creating a donation -->
@@ -4540,18 +4540,18 @@
     <string name="ManageDonationsFragment__donation_receipts">დონაციის ქვითრები</string>
     <string name="ManageDonationsFragment__badges">ემბლემები</string>
     <string name="ManageDonationsFragment__subscription_faq">გამოწერის FAQ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">გამოწერის მიღებისას მოხდა ხარვეზი.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">გამოწერის ჩართვისას მოხდა ხარვეზი.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">გაცემის სხვა გზები</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">ემბლემის გაჩუქება</string>
+    <string name="ManageDonationsFragment__gift_a_badge">ემბლემის ჩუქება</string>
 
-    <string name="Boost__enter_custom_amount">ჩაწერეთ სასურველი თანხა</string>
+    <string name="Boost__enter_custom_amount">ჩაწერე სასურველი თანხა</string>
     <string name="Boost__one_time_contribution">ერთჯერადი კონტრიბუცია</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal-ის ბუსტის დამატება</string>
+    <string name="MySupportPreference__add_a_signal_boost">დაბუსტე Signal-ი</string>
     <string name="MySupportPreference__s_per_month">%1$s/თვე</string>
-    <string name="MySupportPreference__renews_s">განახლდება %1$s-ს</string>
+    <string name="MySupportPreference__renews_s">განახლდება %1$s-ში</string>
     <string name="MySupportPreference__processing_transaction">ვამუშავებთ ტრანზაქციას…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">ემბლემის დამატება ვერ მოხერხდა. %1$s</string>
@@ -4567,7 +4567,7 @@
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">შეგიძლია Signal-ის გამოყენება გააგრძელო, მაგრამ შენთვის შექმნილი ტექნოლოგიის დასახმარებლად, შენ გაქვს შესაძლებლობა მისი მხარდამჭერი გახდე ყოველთვიური დონაციების გაკეთებით.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">გახდი მხარდამჭერი</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ბუსტის დამატება</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">დაბუსტე</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ახლა არა</string>
     <!-- Copy displayed when badge expires after user inactivity -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">შენი განმეორებადი ყოველთვიური დონაცია ავტომატურად გაუქმდა, რადგან ძალიან დიდი ხნის განმავლობაში უმოქმედო იყავი. შენი %1$s ემბლემა აღარ ჩანს შენს პროფილზე.</string>
@@ -4593,7 +4593,7 @@
     <string name="DonationsErrors__error_processing_payment">ტრანზაქციის დამუშავებისას ხარვეზი მოხდა</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">ტრანზაქციის დამუშავებისას მოხდა ხარვეზი. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">შენი ემბლემა ვერ დაემატება შენს ფროფილს, მაგრამ შესაძლოა თანხა ჩამოგეჭრა. გთხოვთ, მხარდაჭერის გუნდს დაუკავშირდე.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">შენი ემბლემა ვერ დაემატება შენს ფროფილს, მაგრამ შესაძლოა თანხა ჩამოგეჭრა. გთხოვთ მხარდაჭერის გუნდს დაუკავშირდე.</string>
     <string name="DonationsErrors__your_payment">შენი ტრანზაქცია ვერ დამუშავდა და თანხა არ ჩამოგეჭრა. გთხოვთ კიდევ სცადო.</string>
     <string name="DonationsErrors__still_processing">ისევ ვამუშავებთ</string>
     <string name="DonationsErrors__couldnt_add_badge">ემბლემის დამატება ვერ მოხერხდა</string>
@@ -4605,7 +4605,7 @@
     <string name="DonationsErrors__failed_to_send_gift_badge">ემბლემის საჩუქრად გაგზავნა ვერ მოხერხდა</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">ემბლემის საჩუქრად გაგზავნა ვერ მოხერხდა. გთხოვთ მხარდაჭერის გუნდს დაუკავშირდე.</string>
-    <string name="DonationsErrors__your_badge_could_not">შენი ბეჯი ვერ დაემატა შენს პროფილზე, მაგრამ შესაძლოა თანხა ჩამოგეჭრას. გთხოვთ, მხარდაჭერის გუნდს დაუკავშირდე.</string>
+    <string name="DonationsErrors__your_badge_could_not">შენი ემბლემა ვერ დაემატება შენს ფროფილს, მაგრამ შესაძლოა თანხა ჩამოგეჭრა. გთხოვთ მხარდაჭერის გუნდს დაუკავშირდე.</string>
     <string name="DonationsErrors__your_payment_is_still">შენი ტრანზაქცია ჯერ კიდევ მუშავდება. ამას შეიძლება რამოდენიმე წუთი დასჭირდეს, რაც შენს ინტერნეტ კავშირზეა დამოკიდებული.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay მიუწვდომელია</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">აპიდან დონაციის გასაკეთებლად Google Pay უნდა დააყენო.</string>
@@ -4624,7 +4624,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">შენი საჩუქარი ქსელის შეცდომის გამო ვერ გაიგზავნა. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">ემბლემის ჩუქება</string>
+    <string name="GiftMessageView__gift_badge">სასაჩუქრე ემბლემა</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">გრძელდება %1$d თვით</item>
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ნახვები ჯერ არაა</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">ჩართე წაკითხვის დადასტურება, რომ გამოგიჩნდეს ვინ ნახა შენი Stories-ები.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">შედი პარამეტრებში</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5196,9 +5196,9 @@
     <!-- Tagline for gift row items -->
     <string name="GiftRowItem__send_a_gift_badge">სასაჩუქრე ემბლემის გაგზავნა</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">ემბლემის საჩუქრად გაგზავნა</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">ემბლემის ჩუქება</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">აჩუქე ვინმეს ემბლემა მისი სახელით Signal-ისთვის დონაციის გაკეთებით. ის ამ ემბლემას თავის პროფილის ფოტოზე გამოსატანად მიიღებს.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">აჩუქე ვინმეს ემბლემა Signal-ისთვის მისი სახელით დონაციის გაკეთებით. ის ამ ემბლემას თავის პროფილის ფოტოზე გამოსატანად მიიღებს.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">შემდეგი</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5230,7 +5230,7 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">მიმდინარეობს საჩუქრის მიღება…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">შეგიძლია შენი ემბლემა მოგვიანებით მიიღო.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">შეგიძლია შენი ემბლემა მოგვიანებით გამოიყენო.</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s-ს ემბლემა აჩუქე. როცა ამას დაადასტურებს, მას მიეცემა არჩევანი, აჩვენოს ან დამალოს ემბლემა.</string>
     <!-- Expired gift sheet title -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">გააკეთე დონაცია %1$s Signal-ისთვის</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">მიიღე %1$s ემბლემა %2$d დღით</item>
+        <item quantity="other">მიიღე %1$s ემბლემა %2$d დღით</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">საკრედიტო ან სადებეტო ბარათი</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">ვაუქმებთ...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">ვაუქმებთ…</string>
 
     <!-- EOF -->
 

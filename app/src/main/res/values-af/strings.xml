@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal benodig toestemming vir Kontakte om kontakinligting aan te heg, maar dit is permanent geweier. Gaan asseblief na die programinstellingsmenu, kies \"Toestemmings\" en aktiveer \"Kontakte\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal benodig toestemming vir Plek om \'n plek aan te heg, maar dit is permanent geweier. Gaan asseblief na die programinstellingsmenu, kies \"Toestemmings\" en aktiveer \"Plek\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s het nie Betalings geaktiveer nie </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Wil jy vir hulle \'n versoek stuur om Betalings te aktiveer?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Stuur versoek</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Kanselleer</string>
 
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">’n Boodskap van %1$s kon nie afgelewer word nie</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s het hul telefoonnommer verander.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Hou jy van hierdie funksie? Ondersteun Signal met \'n eenmalige skenking.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Hou jy van hierdie nuwe kenmerk? Help om Signal te ondersteun met \'n eenmalige skenking.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Jou boodskapgeskiedenis met %1$s en hul nommer %2$s is saamgevoeg.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jou boodskapgeskiedenis met %1$s en \'n ander klets wat aan hulle behoort het, is saamgevoeg.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Jy het vir %1$s \'n versoek gestuur om Betalings te aktiveer</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wil hê jy moet betalings aktiveer. Stuur slegs betalings aan mense wat jy vertrou.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Jy het Betalings geaktiveer</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s kan nou Betalings aanvaar</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s het ’n groepoproep begin · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Hierdie boodskap is geskrap</string>
     <string name="ThreadRecord_you_deleted_this_message">Jy het hierdie boodskap geskrap</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Jy het \'n versoek gestuur om Betalings te aktiveer</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wil hê jy moet Betalings aktiveer</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Jy het Betalings geaktiveer</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s kan nou Betalings aanvaar</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s is op Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Verdwynboodskappe gedeaktiveer</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Verdwynboodskaptyd is ingestel op %1$s</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Doen opdatering van Signal om voort te gaan om betalings te gebruik. Jou saldo is moontlik nie op datum nie.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Werk nou by</string>
 
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Ontvang</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Ons stel bekend: Betalings (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gebruik Signal om MobileCoin, ’n nuwe privaatheidsgefokusde digitale geldeenheid, te stuur en ontvang. Aktiveer om te begin.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gebruik Signal om MobileCoin, ’n nuwe privaatheidsgefokusde digitale geldeenheid, te stuur en te ontvang. Aktiveer om te begin.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktiveer betalings</string>
     <string name="PaymentsHomeFragment__activating_payments">Besig om betalings te aktiveer…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Herstel betalingsrekening</string>
@@ -2983,7 +2983,7 @@
     <string name="PaymentsHomeFragment__sent_s">%1$s gestuur</string>
     <string name="PaymentsHomeFragment__received_s">%1$s ontvang</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Plaas oor na valuta-omskakelaar</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Valuta-omskakeling</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Valuta-omsetting</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Deaktiveer betalings</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Herwinfrase</string>
     <string name="PaymentsHomeFragment__help">Hulp</string>
@@ -2992,8 +2992,8 @@
     <string name="PaymentsHomeFragment__received_payment">Betaling ontvang</string>
     <string name="PaymentsHomeFragment__processing_payment">Betaling word verwerk…</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuta-omskakeling nie beskikbaar nie</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan nie valuta-omskakeling vertoon nie. Kontroleer jou foon se verbinding en probeer weer.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuta-omsetting nie beskikbaar nie</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan nie valuta-omsetting vertoon nie. Kontroleer jou foon se verbinding en probeer weer.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalings nie in jou streek beskikbaar nie.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Kon nie betalings aktiveer nie. Probeer later weer.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Deaktiveer betalings?</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Nie nou nie</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Opdatering benodig</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">\'n Opdatering is nodig om voort te gaan om betalings te stuur en te ontvang, en om jou opgedateerde betalingsaldo te sien.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Kanselleer</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s op %2$s om %3$s</string>
     <string name="PaymentsDetailsFragment__to">Aan</string>
     <string name="PaymentsDetailsFragment__from">Van</string>
-    <string name="PaymentsDetailsFragment__information">Transaksiedetails insluitend die betaalbedrag en transaksietyd is deel van die MobileCoin-grootboek.</string>
+    <string name="PaymentsDetailsFragment__information">Transaksiebesonderhede, wat die betalingsbedrag en transaksietyd insluit, is deel van die MobileCoin-grootboek.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Muntskoonmaakfooi</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">’n “Muntskoonmaakfooi” word gehef wanneer die munte in jou besit nie gekombineer kan word om ’n transaksie te voltooi nie. Skoonmaak sal jou toelaat om steeds betalings te stuur.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Geen verdere besonderhede vir hierdie transaksie beskikbaar nie</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Stoor herwinfrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Voer herwinfrase in</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Jou saldo sal outomaties teruggestel word wanneer jy Signal herinstalleer as jy jou Signal-PIN bevestig. Jy kan ook jou saldo terugstel deur ’n herwinfrase te gebruik, ’n %1$d-woordfrase wat uniek is aan jou. Skryf dit neer en bewaar dit op \'n veilige plek.</item>
+        <item quantity="other">Jou saldo sal outomaties teruggestel word wanneer jy Signal herinstalleer as jy jou Signal-PIN bevestig. Jy kan ook jou saldo terugstel deur ’n herwinfrase te gebruik, ’n %1$d-woordfrase wat uniek is aan jou. Skryf dit neer en bewaar dit op \'n veilige plek.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Jy het \'n beskikbare saldo! Dis tyd om jou herwinfrase te stoor—\'n sleutel van 24 woorde wat jy kan gebruik om jou saldo te herwin.</string>
@@ -4222,7 +4222,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Skenk aan Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal word gedryf deur mense soos jy. Skenk maandeliks en ontvang \'n kenteken.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal word gedryf deur mense soos jy. Skenk maandeliks en ontvang \'n wapen.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Skenk</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4490,20 +4490,20 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Steun die tegnologie wat vir jou, nie vir jou data nie, gebou is deur aan te sluit by die gemeenskap wat Signal onderhou.</string>
     <string name="SubscribeFragment__currency">Geldeenheid</string>
     <string name="SubscribeFragment__more_payment_options">Nog betaalopsies</string>
-    <string name="SubscribeFragment__cancel_subscription">Kanselleer intekening</string>
-    <string name="SubscribeFragment__confirm_cancellation">Bevestig kansellasie?</string>
+    <string name="SubscribeFragment__cancel_subscription">Kanselleer Intekening</string>
+    <string name="SubscribeFragment__confirm_cancellation">Bevestig Kansellasie?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Jy sal nie weer gefaktureer word nie. Jou wapen sal aan die einde van jou faktureringstydperk van jou profiel verwyder word.</string>
     <string name="SubscribeFragment__not_now">Nie nou nie</string>
     <string name="SubscribeFragment__confirm">Bevestig</string>
-    <string name="SubscribeFragment__update_subscription">Werk intekening by</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Jou intekening is gekanselleer</string>
-    <string name="SubscribeFragment__update_subscription_question">Werk intekening by?</string>
+    <string name="SubscribeFragment__update_subscription">Doen opdatering van Intekening</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Jou intekening is gekanselleer.</string>
+    <string name="SubscribeFragment__update_subscription_question">Doen opdatering van intekening?</string>
     <string name="SubscribeFragment__update">Werk by</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Die volle bedrag (%1$s) van die nuwe intekeningprys sal vandag gehef word. Jou intekening sal maandeliks hernieu.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Die volle bedrag (%1$s) van die nuwe intekeningprys sal vandag gehef word. Jou intekening sal maandeliks hernu word.</string>
 
     <string name="Subscription__s_per_month">%1$s/maand</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Hernieu %1$s</string>
+    <string name="Subscription__renews_s">Hernu %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Verstryk %1$s</string>
 
@@ -4522,7 +4522,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Vertoon op profiel</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Maak vertoonwapen</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Gaan voort</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wanneer jy meer as een wapen het, kan jy een kies om te vertoon sodat ander dit op jou profielprent kan sien.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Wanneer jy meer as een wapen het, kan jy een kies om te vertoon sodat ander dit op jou profiel kan sien.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Kry wapens vir jou profiel deur Signal te ondersteun.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is ’n niewinsgewende organisasie sonder adverteerders of beleggers en word slegs deur mense soos jy ondersteun.</string>
@@ -4539,19 +4539,19 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Skenkingskwitansies</string>
     <string name="ManageDonationsFragment__badges">Wapens</string>
-    <string name="ManageDonationsFragment__subscription_faq">Intekening Gereelde Vrae</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Fout met die verkryging van jou inskrywing</string>
+    <string name="ManageDonationsFragment__subscription_faq">Gereelde Vrae oor Intekening</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Kon nie intekening kry nie.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Ander maniere om te gee</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Gee ’n wapen as geskenk</string>
 
-    <string name="Boost__enter_custom_amount">Voer eie bedrag in</string>
+    <string name="Boost__enter_custom_amount">Voer Eie Bedrag in</string>
     <string name="Boost__one_time_contribution">Eenmalige bydrae</string>
 
     <string name="MySupportPreference__add_a_signal_boost">Voeg ’n Signal-hupstoot by</string>
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
-    <string name="MySupportPreference__renews_s">Hernieu %1$s</string>
+    <string name="MySupportPreference__renews_s">Hernu %1$s</string>
     <string name="MySupportPreference__processing_transaction">Transaksie word verwerk…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Kon nie wapen byvoeg nie. %1$s</string>
@@ -4562,21 +4562,21 @@
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Maandelikse Skenking Gekanselleer</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jou Hupstoot-wapen het verval en is nie meer sigbaar op jou profiel nie.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Jou Hupstoot-wapen het verval en is nie meer op jou profiel sigbaar nie.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jy kan jou Hupstoot-wapen met ’n eenmalige bydrae vir nog 30 dae heraktiveer.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Jy kan Signal aanhou gebruik, maar om tegnologie te ondersteun wat vir jou gebou is, oorweeg dit om \'n onderhouer te word deur \'n maandelikse skenking te maak.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Word ’n onderhouer</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Voeg ’n Hupstoot toe</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Voeg ’n Hupstoot by</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie nou nie</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Jou herhalende maandelikse skenking is outomaties gekanselleer omdat jy vir te lank onakfief was. Jou %1$s-wapen is nie meer op jou profiel sigbaar nie.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Jou herhalende maandelikse skenking is outomaties gekanselleer omdat jy vir te lank onaktief was. Jou %1$s-wapen is nie meer op jou profiel sigbaar nie.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Jou herhalende maandelikse skenking is gekanselleer omdat ons nie jou betaling kon verwerk nie. Jou wapen is nie meer op jou profiel sigbaar nie.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Jou herhalende maandelikse skenking is gekanselleer. %1$s Jou %2$s-wapen is nie meer op jou profiel sigbaar nie.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Jy kan steeds Signal gebruik, maar om die toepassing te ondersteun en jou wapen te behou moet jy nou hernieu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Hernieu intekening</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Jy kan steeds Signal gebruik, maar om die toepassing te ondersteun en jou wapen te heraktiveer moet jy nou hernu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Hernu intekening</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Gaan na Google Pay</string>
 
@@ -4593,31 +4593,31 @@
     <string name="DonationsErrors__error_processing_payment">Kon nie betaling verwerk nie</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Kon nie betaling verwerk nie. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Jou wapen kon nie tot jou rekening toegevoeg word nie, maar \'n betaling het dalk teen jou deurgegaan. Kontak asb. ondersteuning.</string>
-    <string name="DonationsErrors__your_payment">Jou betaling kon nie verwerk word nie en geen geld is oorgedra nie. Probeer asb. weer.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Jou wapen kon nie by jou rekening gevoeg word nie, maar \'n betaling is dalk van jou gehef. Kontak asb. ondersteuning.</string>
+    <string name="DonationsErrors__your_payment">Jou betaling kon nie verwerk word nie en geen betaling is van jou gehef nie. Probeer asb. weer.</string>
     <string name="DonationsErrors__still_processing">Steeds besig om te verwerk</string>
-    <string name="DonationsErrors__couldnt_add_badge">Kon nie wapen toevoeg nie</string>
+    <string name="DonationsErrors__couldnt_add_badge">Kon nie wapen byvoeg nie</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__failed_to_validate_badge">Kon nie geldigheid van wapen bevestig nie</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Kon nie geldigheid van bedienerrespons bevestig nie. Kontak asseblief die steundiens.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Kon nie geskenkwapen stuur nie.</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Kon nie geskenkwapen stuur nie</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Kon nie geskenkwapen bevestig nie. Kontak asseblief die steundiens.</string>
-    <string name="DonationsErrors__your_badge_could_not">Jou wapen kon nie tot jou rekening toegevoeg word nie, maar \'n betaling het dalk teen jou deurgegaan. Kontak asb. ondersteuning.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Kon nie geskenkwapen stuur nie. Kontak asseblief ondersteuning.</string>
+    <string name="DonationsErrors__your_badge_could_not">Jou wapen kon nie by jou rekening gevoeg word nie, maar \'n betaling is dalk van jou gehef. Kontak asb. ondersteuning.</string>
     <string name="DonationsErrors__your_payment_is_still">Jou betaling word nog verwerk. Dit kan ’n paar minute duur afhangend van jou verbinding.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay nie beskikbaar nie</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Jy moet Google Pay opstel om in die toepassing te skenk.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Jy moet Google Pay opstel om skenkings binne die toepassing te maak.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Kon nie intekening kanselleer nie</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Intekeningkansellasie vereis ’n internetverbinding.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jou toestel ondersteun nie Google Pay nie. Jy kan dus nie inteken om ’n wapen te verdien nie. Jy kan Signal steeds steun deur ’n skenking op ons webwerf te maak.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Jou toestel ondersteun nie Google Pay nie. Jy kan dus nie inteken om ’n wapen te verdien nie. Jy kan Signal steeds ondersteun deur ’n skenking op ons webwerf te maak.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Gaan jou verbinding na en probeer weer.</string>
     <string name="NetworkFailure__retry">Probeer weer</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">Kan nie geskenk stuur nie</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Hierdie ontvanger gebruik \'n weergawe van Signal wat nie geskenkwapens kan ontvang nie. Hulle sal geskenke kan ontvang wanneer hulle \'n bywerking na die jongste weergawe doen.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Hierdie ontvanger gebruik \'n weergawe van Signal wat nie geskenkwapens kan ontvang nie. Hulle sal geskenke kan ontvang wanneer hulle na die jongste weergawe opdateer.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">Kon nie geskenk stuur nie</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Nog geen kykslae nie</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktiveer leesbewyse om te sien wie het na jou stories gekyk.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Gaan na instellings</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · %2$d dae lank</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Stuur \'n Geskenkwapen</string>
+    <string name="GiftRowItem__send_a_gift_badge">Stuur \'n geskenkwapen</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Gee ’n Wapen as Geskenk</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Gee vir iemand \'n wapen as geskenk deur in hulle naam \'n skenking aan Signal te maak. Hulle sal \'n wapen kry om op hulle profielfoto te vertoon.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Gee iemand \'n wapen as geskenk deur in hulle naam \'n skenking aan Signal te maak. Hulle sal \'n wapen kry om op hulle profielfoto te vertoon.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Volgende</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Skenk %1$s aan Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Kry \'n %1$s-wapen vir %2$d dag</item>
+        <item quantity="other">Kry \'n %1$s-wapen vir %2$d dae</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Krediet- of debietkaart</string>

@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需“通讯录”权限，来发送通讯录信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“通讯录”。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需“位置”权限，来发送位置信息，但是该权限已永久禁用。请访问应用设置菜单，选择“权限”并启用“位置”。</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s还未激活付款 </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">要给对方发送激活付款请求吗？</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">发送请求</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">取消</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">您与%1$s的消息记录和属于对方的其他聊天信息已合并。</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">您给%1$s发送了激活付款请求</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s希望您激活付款。只给信任的人发送付款。</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">您已激活付款</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s现在可以接受付款啦</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s发起了群组通话 · %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">消息已删除。</string>
     <string name="ThreadRecord_you_deleted_this_message">您删除了此消息。</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">您发送了激活付款请求</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s希望您激活付款</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">您已激活付款</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s现在可以接受付款啦</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s 加入 Signal！</string>
     <string name="ThreadRecord_disappearing_messages_disabled">已禁用阅后即焚</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">设置阅后即焚消失时间为 %1$s</string>
@@ -2206,7 +2206,7 @@
     <string name="ConversationUpdateItem_view">查看</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">在您向他们发送消息时，限时消息时间将设置为 %1$s。</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">捐赠</string>
+    <string name="ConversationUpdateItem_donate">捐款</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">发送付款</string>
     <!-- Update item button text to activate payments -->
@@ -2626,7 +2626,7 @@
     <string name="preferences__slow">缓慢</string>
     <string name="preferences__help">帮助</string>
     <string name="preferences__advanced">高级</string>
-    <string name="preferences__donate_to_signal">捐赠 Signal</string>
+    <string name="preferences__donate_to_signal">捐款给 Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">单次捐款</string>
     <string name="preferences__privacy">隐私</string>
@@ -2884,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">接收</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">推出付款功能（Beta 版）</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">使用 Signal 收发 MobileCoin，一种关注隐私的新数字货币。请激活开始使用。</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">使用 Signal 收发 MobileCoin，这是一种注重隐私的新款数字货币。激活以开始使用。</string>
     <string name="PaymentsHomeFragment__activate_payments">激活付款</string>
     <string name="PaymentsHomeFragment__activating_payments">正在激活付款…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">还原付款帐户</string>
@@ -2907,7 +2907,7 @@
     <string name="PaymentsHomeFragment__processing_payment">正在处理付款</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">货币转换不可用</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">无法显示货币转换。请检查手机连接，然后重试。</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">无法显示货币转换。请检查手机的网络连接并重试。</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">您所在地区付款不可用。</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">无法启用付款，请稍后重试。</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">是否停用付款？</string>
@@ -2984,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s 在 %2$s 于 %3$s</string>
     <string name="PaymentsDetailsFragment__to">至</string>
     <string name="PaymentsDetailsFragment__from">来自</string>
-    <string name="PaymentsDetailsFragment__information">交易，包括付款金额和交易时间，是 MobileCoin 账本的一部分。</string>
+    <string name="PaymentsDetailsFragment__information">交易详情（包括付款金额和交易时间）是 MobileCoin 账簿的一部分。</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">货币清理费</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">当您拥有的货币无法合并以完成交易时，将收取“货币清理费”。清理后可继续发送付款。</string>
     <string name="PaymentsDetailsFragment__no_details_available">该交易无更多详情可用</string>
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">邀请加入 Signal</string>
     <string name="FirstInviteReminder__description">可增加发送的加密消息数量：%1$d%%</string>
-    <string name="SecondInviteReminder__title">提升 Signal 得分</string>
+    <string name="SecondInviteReminder__title">给 Signal 随手捐</string>
     <string name="SecondInviteReminder__description">邀请 %1$s</string>
     <string name="InsightsReminder__view_insights">查看“见解”</string>
     <string name="InsightsReminder__invite">邀请</string>
@@ -3705,7 +3705,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">正在删除账户…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的定期捐款…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的定期捐款……</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">这可能需要数分钟，根据您所在的群组人数而定</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3784,7 +3784,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">关于 MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一种关注隐私的新数字货币。</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一种注重隐私的新款数字货币。</string>
     <string name="payment_info_card_adding_funds">正在添加资金</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">通过将 MobileCoin 发送至钱包地址，即可在 Signal 中添加并使用资金。</string>
     <string name="payment_info_card_cashing_out">兑现</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">保存恢复短语</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">输入恢复短语</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">重新安装 Signal 并确认 Signal PIN 码后，您的余额将自动恢复。另外您也可以使用恢复短语来恢复您的余额。恢复短语是一个对您具有唯一性的 %1$d 词短语。请将其记下并妥善保存。</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">您还有一部分余额！是时候保存您的恢复短语了——这是一个 24 字/词的密钥，可以用来恢复您的余额。</string>
@@ -4120,11 +4120,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">下边缘选择器</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">捐赠 Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">捐款给 Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal之所以强大，是因为有千千万万像您一样的有识之士的鼎力支持。每月向Signal捐款，收获一枚奖章。</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal 全仰仗您及其他热心用户的支持来维持运营。每月给 Signal 捐款，收获一枚徽章。</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">捐赠</string>
+    <string name="Donate2022Q2Megaphone_donate">捐款</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">稍后再说</string>
 
@@ -4145,9 +4145,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">成为定期捐款人</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal 的运营全仰仗您及其他热心用户的支持。赶快捐款并获取徽章吧。</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal 全仰仗您及其他热心用户的支持来维持运营。赶快捐款并获取徽章吧。</string>
     <string name="BecomeASustainerMegaphone__not_now">稍后再说</string>
-    <string name="BecomeASustainerMegaphone__donate">捐赠</string>
+    <string name="BecomeASustainerMegaphone__donate">捐款</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">表情符号</string>
@@ -4202,7 +4202,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">已永久静音对话</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
     <string name="ConversationSettingsFragment__phone_number">手机号码</string>
-    <string name="ConversationSettingsFragment__get_badges">欢迎给 Signal 捐款，在个人资料上显示捐款徽章。点击徽章了解详情。</string>
+    <string name="ConversationSettingsFragment__get_badges">欢迎给 Signal 捐款，在个人资料中显示捐款徽章。点击徽章了解详情。</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">添加成员</string>
@@ -4388,10 +4388,10 @@
     <string name="SubscribeFragment__more_payment_options">更多付款选项</string>
     <string name="SubscribeFragment__cancel_subscription">取消定期捐款</string>
     <string name="SubscribeFragment__confirm_cancellation">确定要取消吗？</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">之后您不会再被扣款。您的徽章将会在期满后从您的个人资料中移除。</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">之后您不会再被扣款。您的徽章将会在到期后从您的个人资料中移除。</string>
     <string name="SubscribeFragment__not_now">稍后再说</string>
     <string name="SubscribeFragment__confirm">确认</string>
-    <string name="SubscribeFragment__update_subscription">更新定期捐款计划</string>
+    <string name="SubscribeFragment__update_subscription">更新定期捐款</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">您的定期捐款已取消。</string>
     <string name="SubscribeFragment__update_subscription_question">要更新定期捐款计划吗？</string>
     <string name="SubscribeFragment__update">更新</string>
@@ -4404,13 +4404,13 @@
     <string name="Subscription__expires_s">%1$s到期</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal 是一个无广告商或投资方的非盈利机构，全凭使用和珍视 Signal 的用户提供赞助。赶快给 Signal 定期捐款吧，您将会获得一个捐款徽章，并将其显示在个人资料中，让大家都能看到您的支持。</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal 是一个无广告商或投资方的非盈利组织，全凭使用和珍视 Signal 的用户提供赞助。赶快给 Signal 定期捐款吧，您将会获得一个捐款徽章，并将其显示在个人资料中，让大家都能看到您的支持。</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">为什么捐赠？</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力于开发开源隐私技术，以保护自由表达，实现全球安全通信。</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">您的捐款将助力我们实现这一目标，为 Signal 应用的开发和运营提供资金，让数百万用户能够拥有一个私密通信平台。我们不打广告，不跟踪用户数据，不空谈阔论。</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">感谢您的支持！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">感谢您的赞助！</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">感谢您的捐款！</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">您已获得%1$s徽章。赶快在您的个人资料中显示此徽章吧，号召更多人赞助 Signal。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">您已获得一个随手捐徽章。赶快在您的个人资料中显示此徽章吧，号召更多人赞助 Signal。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您还可以</string>
@@ -4424,7 +4424,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 是一个非盈利机构，没有广告商或投资方，仅凭您和千千万万的用户提供赞助。</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">捐赠 Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">捐款给 Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">更多</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4470,8 +4470,8 @@
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">由于我们无法处理您的付款，您的每月定期捐款已自动取消。您的个人资料已不再显示您的徽章。</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">您的每月定期捐款已自动取消。您的个人资料已不再显示%1$s您的%2$s徽章。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可以继续使用 Signal，如果您要支持我们的应用并重新激活您的徽章，请立即为您的定期捐款续期吧。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">您的每月定期捐款已自动取消。%1$s 您的个人资料已不再显示您的%2$s徽章。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可以继续使用 Signal，但如果您要支持我们的应用并重新激活您的徽章，请立即为您的定期捐款续期吧。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">定期捐款续期</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">前往 Google Pay</string>
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">未有浏览</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">启用已读回执功能，看看谁浏览了您的动态。</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">前往设置</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5107,7 +5107,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">感谢您的支持！</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">您收到了%1$s赠送的礼品徽章！请在您的个人资料中显示此徽章，号召大家一起赞助 Signal 吧。</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">您收到了%1$s赠送的礼品徽章！在您的个人资料中显示此徽章，号召大家一起赞助 Signal 吧。</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">您给%1$s赠送了一个徽章。对方领取徽章后可以选择显示或隐藏徽章。</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -5470,7 +5470,7 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">给 Signal 捐款 %1$s</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">获得一个为期 %2$d 天的%1$s徽章</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">信用卡或借记卡</string>

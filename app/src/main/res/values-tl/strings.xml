@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Kailangan ng Signal ng pahintulot sa Mga Kontak upang makapaglakip ng impormasyon ng kontak, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"mga Pahintulot\", at i-enable ang \"Mga Kontak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Kailangan ng Signal ng pahintulot sa Lokasyon upang makapaglakip ng lokasyon, ngunit permanente itong ipinagbabawal. Pumunta sa app settings menu, piliin ang \"Mga Pahintulot\", at i-enable ang \"Lokasyon\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">Hindi pa na-activate ni %1$s ang Payments </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Gusto mo bang mag-send ng request sa kanya na i-activate ang Payments?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Mag-send ng request</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Kanselahin</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">Sine-save ang %1$d attachments</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Sine-save ang attachment sa storage...</item>
-        <item quantity="other">Sine-save ang %1$d attachments sa storage...</item>
+        <item quantity="one">Sine-save ang attachment sa storage…</item>
+        <item quantity="other">Sine-save ang %1$d attachments sa storage…</item>
     </plurals>
     <string name="ConversationFragment_pending">Nakabinbin…</string>
     <string name="ConversationFragment_push">Data (Signal)</string>
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ang message mula kay %1$s ay hindi ma-deliver.</string>
     <string name="MessageRecord_s_changed_their_phone_number">Pinalitan ni %1$s ang kanyang phone number.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Like this new feature? Suportahan ang Signal sa pamamagitan ng one-time donation.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Nagustuhan mo ba bagong feature na ito? Suportahan ang Signal sa pamamagitan ng one-time donation.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Pinagsama na ang inyong message history ni %1$s at ang kanyang number na %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Pinagsama na ang iyong message history ni %1$s at isa pa niyang chat.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Nag-send ka ng request kay %1$s para i-activate ang Payments</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">Gusto ni %1$s na i-activate mo ang Payments. Mag-send lang ng payment sa mga taong pinagkakatiwalaan mo.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Na-activate mo na ang Payments</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">Makakatanggap na si %1$s ng Payments</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Sinimulan ni %1$s ang group call · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ang mensaheng ito ay nabura na.</string>
     <string name="ThreadRecord_you_deleted_this_message">Binura mo ang mensaheng ito.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Nag-send ka ng request para i-activate ang Payments</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">Gusto ni %1$s na i-activate mo ang Payments.</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Na-activate mo na ang Payments</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">Makakatanggap na si %1$s ng Payments</string>
     <string name="ThreadRecord_s_is_on_signal">Nasa Signal si %1$s!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Naka-disable ang mga naglalahong mensahe</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Nakatakda ang oras ng naglalahong mensahe sa %1$s</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">I-update ang Signal app para patuloy na magamit ang payments. Maaaring hindi updated ang balance mo.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">I-update na</string>
 
@@ -2286,7 +2286,7 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Mag-donate</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send payment</string>
+    <string name="ConversationUpdateItem_send_payment">Mag-send ng payment</string>
     <!-- Update item button text to activate payments -->
     <string name="ConversationUpdateItem_activate_payments">I-activate ang Payments</string>
 
@@ -2666,9 +2666,9 @@
     <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">I-display ang contact photos mula sa address book mo kung available</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Panatilihin sa Archive ang Muted Chats</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mananatili sa archive ang muted chats kahit may bagong message na dumating.</string>
     <string name="preferences__generate_link_previews">Mag-generate ng link previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">I-retrieve ang link previews directly from websites for messages you send.</string>
     <string name="preferences__choose_identity">Pumili ng pagkakakilanlan</string>
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Natanggap na</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Introducing payments (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gamitin ang Signal para mag-send at mag-receive ng MobileCoin, isang privacy-focused digital currency. Activate to get started.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gamitin ang Signal para mag-send at mag-receive ng MobileCoin, isang privacy-focused digital currency. I-activate para magsimula.</string>
     <string name="PaymentsHomeFragment__activate_payments">I-activate ang Payments</string>
     <string name="PaymentsHomeFragment__activating_payments">Activating payments…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">I-restore ang payments account</string>
@@ -2993,7 +2993,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Processing payment</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Hindi available ang currency conversion</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Hindi ma-display ang currency conversion. Tignan ang iyong internet connection at subukan ulit.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Hindi ma-display ang currency conversion. Tignan ang internet connection sa phone mo at subukan ulit.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ang Payments ay hindi available sa iyong region.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Hindi ma-enable ang payments. Subukan ulit mamaya.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Gusto mo bang i-deactivate ang Payments?</string>
@@ -3022,7 +3022,7 @@
     <!-- Alert dialog title which shows up to update app to send payments -->
     <string name="PaymentsHomeFragment__update_required">Update required</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Kinakailangang i-update ang Signal app para patuloy na makapag-send at maka-receive ng payments, at para makita mo rin ang iyong updated na payment balance.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Kanselahin</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s on %2$s at %3$s</string>
     <string name="PaymentsDetailsFragment__to">To</string>
     <string name="PaymentsDetailsFragment__from">From</string>
-    <string name="PaymentsDetailsFragment__information">Ang transaction details including the payment amount and time of transaction ay part ng MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__information">Ang transaction details gaya ng payment amount at oras ng transaction ay parte ng MobileCoin Ledger.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin cleanup fee</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">A \"coin cleanup fee\" is charged kapag ang coins na pagmamay-ari mo ay hindi pwedeng i-combine to complete a transaction. Patuloy kang makakapag-send ng payments sa pamamagitan ng cleanup.</string>
     <string name="PaymentsDetailsFragment__no_details_available">No further details available para sa transaction na ito</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Imbitahan sa Signal</string>
     <string name="FirstInviteReminder__description">Maaari mong paramihin ang mga encrypted na mensaheng iyong ipinapadala sa pamamagitan ng %1$d%%</string>
-    <string name="SecondInviteReminder__title">Palakasin ang iyong Signal</string>
+    <string name="SecondInviteReminder__title">I-boost ang iyong Signal</string>
     <string name="SecondInviteReminder__description">Imbitahan si %1$s</string>
     <string name="InsightsReminder__view_insights">Tingnan ang Insights</string>
     <string name="InsightsReminder__invite">Imbitahan</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Deleting account…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Canceling your subscription…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Kina-cancel ang subscription mo…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">This might take a few minutes, depende sa number of groups na kasama ka</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">I-save ang recovery phrase</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Kapag ni-reinstall mo ang Signal, automatic na mare-restore ang balance mo pagkatapos mong i-confirm mo ang Signal PIN mo. Pwede mo ring i-restore ang iyong balance gamit ang recovery phrase, isang %1$d-word phrase na unique sa \'yo. Isulat ito at itago sa isang ligtas na lugar.</item>
+        <item quantity="other">Kapag ni-reinstall mo ang Signal, automatic na mare-restore ang balance mo pagkatapos mong i-confirm mo ang Signal PIN mo. Pwede mo ring i-restore ang iyong balance gamit ang recovery phrase, isang %1$d-word phrase na unique sa \'yo. Isulat ito at itago sa isang ligtas na lugar.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">May balance ka! Oras na para i-save ang iyong recovery phrase—isang 24-word key na magagamit mo para ma-restore ang iyong balance.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Tanggalin ang SMS messages</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Inaalis ang SMS messages mula sa Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Inaalis ang SMS messages mula sa Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pwede mong tanggalin ang SMS message mula sa Signal sa Settings anumang oras.</string>
     <!-- Description for export sms preference -->
@@ -4222,7 +4222,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Mag-donate sa Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Tumatakbo ang Signal sa tulong ng mga taong katulad mo. Mag-donate buwan-buwan at makatanggap ng badge.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal is powered by people like you. Mag-donate monthly para maka-receive ng badge.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Mag-donate</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Numero ng telepono</string>
-    <string name="ConversationSettingsFragment__get_badges">Get badges for your profile sa pamamagitan ng pagsuporta sa Signal. I-tap ang badge to learn more.</string>
+    <string name="ConversationSettingsFragment__get_badges">Makakuha ng badges para sa profile mo sa pamamagitan ng pagsuporta sa Signal. I-tap ang isang badge para matuto pa tungkol dito.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Magdagdag ng mga kasapi</string>
@@ -4492,39 +4492,39 @@
     <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
     <string name="SubscribeFragment__cancel_subscription">I-cancel ang Subscription</string>
     <string name="SubscribeFragment__confirm_cancellation">Gusto mo bang i-confirm ang Cancellation?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">You won\'t be charged again. Matatanggal ang iyong badge mula sa profile mo pagkatapos ng iyong billing period.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Hindi ka na ulit sisingilin. Matatanggal ang badge mo mula sa profile mo pagkatapos ng iyong billing period.</string>
     <string name="SubscribeFragment__not_now">Hindi ngayon</string>
     <string name="SubscribeFragment__confirm">Kumpirmahin</string>
     <string name="SubscribeFragment__update_subscription">I-update ang Subscription</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Your subscription has been canceled.</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Cancelled na ang iyong subscription.</string>
     <string name="SubscribeFragment__update_subscription_question">Gusto mo bang i-update ang subscription?</string>
     <string name="SubscribeFragment__update">I-update</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">You will be charged the full amount (%1$s) ng new subscription price today. Magre-renew monthly ang iyong subscription.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sisingilin ka ng full amount (%1$s) ng bagong subscription price ngayon. Magre-renew monthly ang iyong subscription.</string>
 
     <string name="Subscription__s_per_month">%1$s/month</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Mare-renew sa %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Mage-expire sa %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Ang Signal ay isang nonprofit na walang advertisers o investors, sustained only by the use and value it. Magbigay ng recurring monthly donation at makatanggap ng profile badge para i-share ang iyong suporta.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Ang Signal ay isang nonprofit na walang advertisers o investors, at sinusuportahan lang sa pamamagitan ng mga taong gumagamit at nagpapahalaga dito. Magbigay ng monthly donation at makatanggap ng profile badge para i-share ang iyong suporta.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Why Donate?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Ang Signal ay committed sa pag-develop ng isang open source privacy technology na nagpoprotekta sa free expression at nage-enable ng isang secure na global communication.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Your donation helps this cause, as well as the development and operations of an app that is being used by millions for private communication. Walang ads. Walang trackers. Walang halong biro.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Ang iyong donation ay isang malaking tulong sa layuning ito pati na rin sa gastos ng pag-develop at pag-operate ng isang app na ginagamit ng milyun-milyong tao para sa private communication. Walang ads. Walang trackers. Walang halong biro.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Maraming salamat sa iyong Support!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Maraming salamat sa Pag-boost!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">You\'ve earned %1$s badge! I-display ang badge na ito sa profile mo para ma-share sa iba ang pag-donate mo sa Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">You\'ve earned a Boost badge! I-display ang badge na ito sa profile mo para ma-share sa iba ang pag-donate mo sa Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Nakakuha ka ng %1$s badge! I-display ang badge na ito sa profile mo para malaman ng iba ang tungkol sa pag-donate sa Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Nakakuha ka ng isang Boost badge! I-display ang badge na ito sa profile mo para malaman ng iba ang tungkol sa pag-donate sa Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Pwede ka ring</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maging isang monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">I-display sa Profile</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Make featured badge</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Gawing featured badge</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Magpatuloy</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kapag ang badge mo ay more than one, pwede kang pumili ng isang badge to feature na makikita nila sa profile mo.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kapag higit sa isa ang iyong badge, pwede kang pumili ng isa na gusto mong i-feature para makita ito ng iba sa profile mo.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Kumuha ng badges para sa profile mo by supporting Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Makakuha ng badges para sa profile mo sa pamamagitan ng pagsuporta sa Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Ang Signal ay isang nonprofit na walang advertisers o investors, supported only by people like you.</string>
 
     <!-- Button label for creating a donation -->
@@ -4540,43 +4540,43 @@
     <string name="ManageDonationsFragment__donation_receipts">Donation Receipts</string>
     <string name="ManageDonationsFragment__badges">Badges</string>
     <string name="ManageDonationsFragment__subscription_faq">Subscription FAQ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Error getting subscription.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Nagkaproblema sa pagkuha ng subscription.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other ways to give</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Mag-gift ng badge</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Magregalo ng Badge</string>
 
-    <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
+    <string name="Boost__enter_custom_amount">Maglagay ng Custom Amount</string>
     <string name="Boost__one_time_contribution">One-time contribution</string>
 
     <string name="MySupportPreference__add_a_signal_boost">Mag-add ng Signal Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
-    <string name="MySupportPreference__renews_s">Renews %1$s</string>
+    <string name="MySupportPreference__renews_s">Mare-renew sa %1$s</string>
     <string name="MySupportPreference__processing_transaction">Processing transaction…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Hindi ma-add ang badge. %1$s</string>
     <string name="MySupportPreference__please_contact_support">I-contact ang support.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost Badge Expired</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Expired na ang Boost Badge</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Monthly Donation Canceled</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kinancel ang Monthly Donation</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Expired na ang iyong Boost badge at hindi na ito visible sa profile mo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pwede mong i-reactivate ang iyong Boost badge for another 30 days sa pamamagitan ng one-time contribution.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Expired na ang iyong Boost badge at hindi na ito makikita sa profile mo.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Pwede mong i-reactivate ang iyong Boost badge nang dagdag na 30 araw sa pamamagitan ng one-time contribution.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pwede mo pa ring gamitin ang Signal app pero para masuportahan ang technology that is built for you, consider becoming a sustainer sa pamamagitan ng pagbibigay ng monthly donation.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Pwede mo pa ring gamitin ang Signal app pero para masuportahan ang technology na ginawa para sa\'yo, inaanyayahan ka naming magbigay ng monthly donation.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Mag-add ng Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Hindi ngayon</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Ang iyong recurring monthly donation ay automatically canceled dahil matagal kang inactive. Ang iyong %1$s badge ay hindi na visible sa profile mo.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Automatic na na-cancel ang iyong monthly donation dahil matagal kang naging inactive. Ang iyong %1$s badge ay hindi na makikita sa profile mo.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ang iyong recurring monthly donation ay canceled dahil hindi namin ma-process ang payment mo. Ang iyong badge ay hindi na visible sa profile mo.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Na-cancel ang iyong monthly donation dahil hindi namin ma-process ang payment mo. Ang iyong badge ay hindi na makikita sa profile mo.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Ang iyong recurring monthly donation ay canceled. %1$s Ang iyong %2$s badge ay hindi na visible sa profile mo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pwede mo pa ring gamitin ang Signal pero para masuportahan ang app at ma-reactivate ang iyong badge, mag-renew now.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Renew subscription</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Na-cancel ang iyong monthly donation. %1$s Ang iyong %2$s badge ay hindi na makikita sa profile mo.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Pwede mo pa ring gamitin ang Signal, pero para masuportahan ang app at ma-reactivate ang iyong badge, mag-renew na ngayon.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">I-renew ang subscription</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
 
@@ -4593,31 +4593,31 @@
     <string name="DonationsErrors__error_processing_payment">Error processing payment</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Error processing payment. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Hindi ma-add ang badge sa iyong account, pero baka na-charge ito sa\'yo. Please contact support.</string>
-    <string name="DonationsErrors__your_payment">Hindi ma-process ang iyong payment at hindi ito na-charge sa account mo. Please try again.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Hindi ma-add ang badge mo sa iyong account, pero baka na-charge ang account mo. Paki contact ang support.</string>
+    <string name="DonationsErrors__your_payment">Hindi ma-process ang iyong payment at hindi ka na-charge. Paki subukan ulit.</string>
     <string name="DonationsErrors__still_processing">Still processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Hindi ma-add ang badge</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Failed to validate badge</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Hindi na-validate ang badge</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Hindi ma-validate ang server response. Please contact support.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Failed to send gift badge</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Hindi na-send ang gift badge</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Hindi ma-send ang gift badge. Please contact support.</string>
-    <string name="DonationsErrors__your_badge_could_not">Hindi ma-add ang badge sa iyong account, pero baka na-charge ito sa account mo. Please contact support.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Hindi ma-send ang gift badge. Paki contact ang support.</string>
+    <string name="DonationsErrors__your_badge_could_not">Hindi ma-add ang badge mo sa iyong account, pero baka na-charge ang account mo. Paki contact ang support.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depende sa internet connection mo.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Kailangan mong i-set up ang Google Pay to donate in-app.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Failed to cancel subscription</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Ang subscription cancellation ay nangangailangan ng internet connection.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Your device doesn\'t support Google Pay, kaya hindi ka makapag-subscribe to earn a badge. Pwede mo pa ring suportahan ang Signal by making a donation sa aming website.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Kailangan mong i-set up ang Google Pay para makapag-donate in-app.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Hindi na-cancel ang subscription</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Kailangan ng internet connection ang subscription cancellation.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Hindi suportado ng device mo ang Google Pay, kaya hindi ka makapag-subscribe para makakuha ng badge. Pwede mo pa ring suportahan ang Signal sa pamamagitan ng pag-donate sa aming website.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. I-check ang iyong internet connection at subukan ulit.</string>
     <string name="NetworkFailure__retry">Subukang muli</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">Hindi maipadala ang gift</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Ang taong padadalhan mo ay gumagamit ng version ng Signal na hindi makakatanggap ng gift badges. Matatanggap niya lang ito kapag nag-update siya sa pinakabagong version ng app.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Gumagamit ng version ng Signal na hindi makakatanggap ng gift badges ang taong padadalhan mo. Matatanggap niya lang ito kapag nag-update siya sa pinakabagong version ng app.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">Hindi maipadala ang gift</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Share receipt</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Kung ni-reinstall mo ang Signal app, ang receipts mula sa previous donations ay hindi na available.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Kung ni-reinstall mo ang Signal app, hindi na available ang receipts mula sa previous donations.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Donation receipt</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Wala pang views</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">I-enable ang read receipts para makita kung sinong nag-view ng stories mo.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Pumunta sa settings</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5198,7 +5198,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Magregalo ng Badge</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Magregalo ng badge sa isang user sa pamamagitan ng pabibigay ng donasyon sa Signal na nakapangalan sa kanya. Makakakuha siya ng badge na pwedeng i-display sa kanyang profile photo.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Magregalo ng badge sa isang user sa pamamagitan ng pag-donate sa Signal na nakapangalan sa kanya. Makakakuha siya ng badge na pwedeng i-display sa kanyang profile photo.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Susunod</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Maraming salamat sa iyong suporta!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Nakatanggap ka ng isang gift badge mula kay %1$s! Tulungan ang Signal na makapag-build ng awareness sa iba pang users sa pamamagitan ng pag-display ng badge na ito sa profile mo.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Nakatanggap ka ng isang gift badge mula kay %1$s! Tulungan ang Signal na gawing mas aware ang iba pang users sa pamamagitan ng pag-display ng badge na ito sa profile mo.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Nagregalo ka ng isang badge kay %1$s. Kapag tinanggap niya ito, mabibigyan sila ng choice na ipakita o itago ang kanyang natanggap na badge.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Nagregalo ka ng isang badge kay %1$s. Kapag tinanggap niya ito, mabibigyan siya ng choice na ipakita o itago ang kanyang natanggap na badge.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">I-redeem</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,11 +5232,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Maaari mong i-redeem ang iyong badge mamaya.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Nagregalo ka ng isang badge kay %1$s. Kapag tinanggap niya ito, mabibigyan sila ng choice na ipakita o itago ang kanyang natanggap na badge.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Nagregalo ka ng isang badge kay %1$s. Kapag tinanggap niya ito, mabibigyan siya ng choice na ipakita o itago ang kanyang natanggap na badge.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Expired na ang iyong gift badge</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Ang iyong gift badge ay expired na, at hindi na ito makikita ng iba sa profile mo.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Expired na ang iyong gift badge, at hindi na ito makikita ng iba sa profile mo.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Para patuloy na masuportahan ang technology na inibuo para sa\'yo, i-consider ang pagiging isang monthly Sustainer.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Mag-donate ng %1$s sa Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Kumuha ng %1$s badge sa loob ng %2$d day</item>
+        <item quantity="other">Kumuha ng %1$s badge sa loob ng %2$d days</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit o debit card</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Kina-cancel...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Kina-cancel…</string>
 
     <!-- EOF -->
 

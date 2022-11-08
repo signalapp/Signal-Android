@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal heeft toegang nodig tot de contacten om contactinformatie in Signal weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s heeft Betalingen niet geactiveerd </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Wil je ze een verzoek sturen om Betalingen te activeren?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Stuur verzoek</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Annuleren</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">%1$d bijlagen opslaan</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Bijlage opslaan in lokale opslag...</item>
-        <item quantity="other">%1$d bijlagen opslaan in lokale opslag...</item>
+        <item quantity="one">Bijlage opslaan in lokale opslag…</item>
+        <item quantity="other">%1$d bijlagen opslaan in lokale opslag…</item>
     </plurals>
     <string name="ConversationFragment_pending">In afwachting …</string>
     <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Je berichtengeschiedenis met %1$s en een andere chat met hen zijn samengevoegd.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Je hebt %1$s een verzoek gestuurd om Betalingen te activeren</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wil graag dat je Betalingen activeert. Stuur alleen betalingen naar mensen die je vertrouwt.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Je hebt Betalingen geactiveerd</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s kan nu Betalingen accepteren</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Dit bericht is gewist.</string>
     <string name="ThreadRecord_you_deleted_this_message">Je hebt dit bericht gewist.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Je hebt een verzoek gestuurd om Betalingen te activeren</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wil graag dat je Betalingen activeert</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Je hebt Betalingen geactiveerd</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s kan nu Betalingen accepteren</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s is bereikbaar via Signal.</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Verlopende berichten uitgeschakeld</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Verlopende berichten op %1$s ingesteld</string>
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s op %2$s om %3$s</string>
     <string name="PaymentsDetailsFragment__to">Naar</string>
     <string name="PaymentsDetailsFragment__from">Van</string>
-    <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails, waaronder de hoeveelheid en het tijdstip van de betaling, zijn onderdeel van het kasboek van MobileCoin.</string>
+    <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails, waaronder de hoeveelheid en het tijdstip van de betaling, zijn onderdeel van het kasboek van MobileCoin Ledger.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd to de nieuwe gewenste overschrijving. Door deze samenvoegingskosten kunnen je toch een nieuwe overschrijvingen maken.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze overschrijving</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Registratie aan het opzeggen en alle gegevens aan het wissen …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Maandelijkse donaties aan het stopzetten …</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Maandelijkse donaties aan het stopzetten…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit een aantal minuten duren</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Herstelzin opslaan</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
+        <item quantity="other">Je krediet wordt automatisch hersteld als je bij het opnieuw installeren van de Signal-app je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Je hebt krediet. Tijd om je herstelzin op te slaan.—Dit is een wachtwoord van 24 woorden die je kunt gebruiken om je krediet te herstellen.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Sms\'jes verwijderen</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Sms\'jes verwijderen van Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Sms\'jes verwijderen van Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Je kunt sms\'jes te allen tijde uit Signal verwijderen via de instellingen.</string>
     <!-- Description for export sms preference -->
@@ -4508,7 +4508,7 @@
     <string name="Subscription__expires_s">Verloopt %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef maandelijks donaties en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef maandelijks donaties en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal steunt.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Waarom zou ik doneren?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van expressie wordt gewaarborgd en waarmee beveiligde communicatie over de hele wereld mogelijk wordt gemaakt.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
@@ -4516,7 +4516,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Je hebt een ‘%1$s’-badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Je hebt een ‘eenmalige donateur’-badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Je hebt een Boost-badge verdiend. Als je deze laat zien op je profiel dan leren via jou andere mensen dat Signal afhankelijk is van donaties.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
@@ -4549,7 +4549,7 @@
     <string name="Boost__enter_custom_amount">Een zelfgekozen bedrag invullen</string>
     <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
+    <string name="MySupportPreference__add_a_signal_boost">Geef Signal een Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
     <string name="MySupportPreference__processing_transaction">Overschrijving aan het verwerken …</string>
@@ -4558,12 +4558,12 @@
     <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je ‘eenmalige donateur’-badge is verlopen</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Je Boost-badge is verlopen</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Je maandelijkse donatie is geannuleerd</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je ‘eenmalige donateur’-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je ‘Eenmalige donateur’-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Je Boost-badge is verlopen en is daarom niet langer zichtbaar op je profiel</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je Boost-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Je kunt Signal blijven gebruiken, maar als je Signal wilt blijven steunen overweeg dan om een maandelijkse donateur te worden.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
@@ -4593,7 +4593,7 @@
     <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
     <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
     <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
     <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
@@ -4604,8 +4604,8 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Het verzenden van een cadeau-badge is mislukt</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Kon een cadeau-badge niet verzenden. Neem contact op met ondersteuning.</string>
-    <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Kon een cadeau-badge niet verzenden. Neem contact op met support.</string>
+    <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met support.</string>
     <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal-app donaties te kunnen doen.</string>
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Afschrift doorsturen</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Als je de Signal-app opnieuw hebt geïnstalleerd dan zijn afschriften van eerdere donaties niet beschikbaar.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Als je de Signal-app opnieuw hebt geïnstalleerd, zijn afschriften van eerdere donaties niet beschikbaar.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Donatie-afschrift</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Nog door niemand gezien</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Zet leesbevestigingen aan om te zien wie je verhalen heeft bekeken.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Ga naar instellingen</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4974,8 +4974,8 @@
     <string name="MyStorySettingsFragment__my_story">Mijn verhaal</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
-        <item quantity="one">Door %1$d persoon gezien</item>
-        <item quantity="other">Door %1$d personen gezien</item>
+        <item quantity="one">%1$d kijker</item>
+        <item quantity="other">%1$d kijkers</item>
     </plurals>
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">Weergeven</string>
@@ -5198,7 +5198,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Geef een badge cadeau</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Je kunt iemand een badge cadeau doen door voor hem of haar een donatie te doen. Hij of zij krijgt dan een badge en kan zelf kiezen of hij of zij die op zijn of haar profiel wil weergeven.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Je kunt iemand een badge cadeau doen door voor diegene een donatie te doen. Deze persoon krijgt dan een badge en kan er zelf voor kiezen die te weergeven op zijn/haar profiel.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Volgende</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5222,7 +5222,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Je hebt een cadeau-badge gekregen van %1$s. Je kunt er voor kiezen deze naast je profielfoto weer te geven om te helpen bewustwording te creëren voor het feit dat Signal mogelijk wordt gemaakt door donaties.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Je hebt een badge cadeau gedaan aan %1$s. Als hij of zij de badge in ontvangt neemt dan kan hij of zij kiezen of hij of zij die wil weergeven op zijn of haar profiel.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Je hebt een badge cadeau gedaan aan %1$s. Als diegene de badge in ontvangst neemt, dan kan hij/zij ervoor kiezen om die te weergeven op zijn/haar profiel.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">In ontvangst nemen</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,7 +5232,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Je kunt je badge later in ontvangt nemen.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Je hebt een badge cadeau gedaan aan %1$s. Als hij of zij de badge in ontvangt neemt dan kan hij of zij kiezen of hij of zij die wil weergeven op zijn of haar profiel.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Je hebt een badge cadeau gedaan aan %1$s. Als diegene de badge in ontvangst neemt, dan kan hij/zij ervoor kiezen om die te weergeven op zijn/haar profiel.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Je cadeau-badge is verlopen</string>
     <!-- Expired gift sheet top description text -->
@@ -5247,13 +5247,13 @@
     <string name="ContactSearchItems__only_share_with">Alleen delen met</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="one">Aangepast verhaal · Door %1$d persoon gezien</item>
-        <item quantity="other">Aangepast verhaal · Door %1$d personen gezien</item>
+        <item quantity="one">Aangepast verhaal · %1$d kijker</item>
+        <item quantity="other">Aangepast verhaal · %1$d kijkers</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
-        <item quantity="one">Groepsverhaal · door %1$d persoon gezien</item>
-        <item quantity="other">Groepsverhaal · door %1$d personen gezien</item>
+        <item quantity="one">Groepsverhaal · %1$d kijker</item>
+        <item quantity="other">Groepsverhaal · %1$d kijkers</item>
     </plurals>
     <!-- Label under name for groups -->
     <plurals name="ContactSearchItems__group_d_members">
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Doneer %1$s aan Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Krijg een %1$s badge voor %2$d dag</item>
+        <item quantity="other">Krijg een %1$s badge voor %2$d dagen</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Creditcard of betaalkaart</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Annuleren...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Annuleren…</string>
 
     <!-- EOF -->
 

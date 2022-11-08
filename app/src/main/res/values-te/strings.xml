@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">సంప్రదింపు సమాచారాన్ని అటాచ్ చేయడానికి Signal కాంటాక్ట్స్ అనుమతి అవసరం, కానీ అది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తన సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"పరిచయాలు\" ప్రారంభించండి.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">ఒక స్థానాన్ని అటాచ్ చేయడానికి Signalకి నగర అనుమతి అవసరం, కానీ ఇది శాశ్వతంగా తిరస్కరించబడింది. దయచేసి అనువర్తనం సెట్టింగ్ల మెనుకి కొనసాగండి, \"అనుమతులు\" ఎంచుకోండి మరియు \"స్థానం\" ని ప్రారంభించండి.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s చెల్లింపులను యాక్టివేట్ చేయలేదు </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">చెల్లింపులను యాక్టివేట్ చేయడానికి వారికి ఒక అభ్యర్థనను మీరు పంపదలచారా?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">అభ్యర్థనను పంపండి</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">రద్దు</string>
 
@@ -939,7 +939,7 @@
     <string name="ManageProfileFragment_your_name">మీ పేరు</string>
     <string name="ManageProfileFragment_your_username">మీ వినియోగదారు పేరు</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">అవతార్ సెట్ చేయడంలో విఫలమైంది</string>
-    <string name="ManageProfileFragment_badges">బ్యాడ్జీలు</string>
+    <string name="ManageProfileFragment_badges">బ్యాడ్జిలు</string>
     <string name="ManageProfileFragment__edit_photo">ఫోటోని ఎడిట్ చేయండి</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">యూజర్‌నేమ్ సృష్టించబడింది</string>
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s నుంచి సందేశాన్ని డెలివరీ చేయలేం</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s వారి ఫోన్ నెంబర్‌ని మార్చారు.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ఈ ఫీచర్ నచ్చిందా? ఒక్కసారి విరాళంతో Signal కు మద్దతు ఇవ్వడానికి సాయపడండి.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ఈ కొత్త ఫీచర్ నచ్చిందా? ఒక్కసారి విరాళంతో Signal కు మద్దతు ఇవ్వడానికి సహాయపడండి.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటి నంబరు %2$s విలీనం చేయబడ్డాయి.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటికి సంబంధించిన మరో చాట్ విలీనం చేయబడ్డాయి.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">చెల్లింపులను యాక్టివేట్ చేయడానికి మీరు %1$s కు ఒక అభ్యర్థనను పంపారు</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">మీరు చెల్లింపులను యాక్టివేట్ చేయాలని %1$s కోరుకుంటున్నారు. మీరు విశ్వసించే వ్యక్తులకు మాత్రమే చెల్లింపులను పంపండి.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">మీరు చెల్లింపులను యాక్టివేట్ చేశారు</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s ఇప్పుడు చెల్లింపులను అంగీకరించవచ్చు.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s సమూహ కాల్ ప్రారంభించారు. %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">ఈ సందేశం తొలగించబడింది.</string>
     <string name="ThreadRecord_you_deleted_this_message">మీరు ఈ సందేశాన్ని తొలగించారు.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">చెల్లింపులను యాక్టివేట్ చేయడానికి మీరు ఒక అభ్యర్థనను పంపారు</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">మీరు చెల్లింపులను యాక్టివేట్ చేయాలని %1$s కోరుకుంటున్నారు</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">మీరు చెల్లింపులను యాక్టివేట్ చేశారు</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s ఇప్పుడు చెల్లింపులను అంగీకరించవచ్చు.</string>
     <string name="ThreadRecord_s_is_on_signal">1%1$s Signal ఉంది!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">కనుమరుగవుతున్న సందేశాలు నిలిపివేయబడ్డాయి</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">కనుమరుగవుథున సంధెషం కొరకు సమయం కుర్చుత కొసం %1$s</string>
@@ -1944,7 +1944,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">మీరు ఒక బహుమతిని పంపారు</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">మీరు ఒక గిఫ్ట్ బ్యాడ్జీని రీడిమ్ చేసుకున్నారు</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">మీరు ఒక బహుమతి బ్యాడ్జిని రిడీమ్ చేసుకున్నారు</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">మీ స్టోరీకు %1$s ప్రతిస్పందించారు</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">చెల్లింపులను ఉపయోగించడం కొనసాగించడానికి Signal ను అప్‌డేట్ చేయండి. మీ బ్యాలెన్స్ అప్-టు-డేట్‌గా ఉండకపోవచ్చు.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
 
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">వీక్షణ</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">మీరు వారికి సందేశాన్ని పంపేటప్పుడు సందేశం అదృశ్యం అయ్యే సమయాన్ని మీరు %1$sకు సెట్ చేశారు.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">విరాళమిచ్చు</string>
+    <string name="ConversationUpdateItem_donate">విరాళం ఇవ్వండి</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">చెల్లింపు పంపండి</string>
     <!-- Update item button text to activate payments -->
@@ -2598,7 +2598,7 @@
         <item>ఫీడ్‌బ్యాక్</item>
         <item>ఇతర</item>
         <item>చెల్లింపులు (MobileCoin)</item>
-        <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
+        <item>విరాళాలు &amp; బ్యాడ్జిలు</item>
         <item>SMS ఎగుమతి</item>
     </string-array>
 
@@ -2712,7 +2712,7 @@
     <string name="preferences__slow">మెల్లిగా</string>
     <string name="preferences__help">సహాయం</string>
     <string name="preferences__advanced">ఆధునిక</string>
-    <string name="preferences__donate_to_signal">Signal కు దానం చేయండి</string>
+    <string name="preferences__donate_to_signal">Signal కు విరాళం ఇవ్వండి</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">ఒక్కసారి విరాళం</string>
     <string name="preferences__privacy">గోప్యత</string>
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">అందుకున్న</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">పేమెంట్‌లను పరిచయం చేస్తోంది (బీటా)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">క్రొత్త గోప్యతా దృష్టి డిజిటల్ కరెన్సీ అయిన MobileCoin న్ పంపడానికి మరియు స్వీకరించడానికి Signal ఉపయోగించండి. ప్రారంభించడానికి సక్రియం చేయండి.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">కొత్త గోప్యతా దృష్టి గల డిజిటల్ కరెన్సీ అయిన MobileCoin పంపడానికి మరియు అందుకోవడానికి Signal ను ఉపయోగించండి. ప్రారంభించడానికి యాక్టివేట్ చేయండి.</string>
     <string name="PaymentsHomeFragment__activate_payments">చెల్లింపులను సక్రియం చేయండి</string>
     <string name="PaymentsHomeFragment__activating_payments">పేమెంట్‌లను యాక్టివేట్ చేస్తోంది…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">పేమెంట్‌ల ఖాతాను పునరుద్ధరించు</string>
@@ -2983,7 +2983,7 @@
     <string name="PaymentsHomeFragment__sent_s">%1$sపంపబడింది</string>
     <string name="PaymentsHomeFragment__received_s">%1$s అందుకున్నారు</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">ఎక్స్ఛేంజ్‌కు బదిలీ చేయండి</string>
-    <string name="PaymentsHomeFragment__currency_conversion">కరెన్సీ కన్వర్షన్</string>
+    <string name="PaymentsHomeFragment__currency_conversion">కరెన్సీ మార్పిడి</string>
     <string name="PaymentsHomeFragment__deactivate_payments">పేమెంట్‌లను డీయాక్టివేట్ చేయండి</string>
     <string name="PaymentsHomeFragment__recovery_phrase">రికవరీ పదబంధం</string>
     <string name="PaymentsHomeFragment__help">సహాయం</string>
@@ -2992,8 +2992,8 @@
     <string name="PaymentsHomeFragment__received_payment">పేమెంట్ అందుకోబడింది</string>
     <string name="PaymentsHomeFragment__processing_payment">పేమెంట్ ప్రాసెస్ చేస్తోంది</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">కరెన్సీ కన్వర్షన్ లభ్యం కావడం లేదు</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">కరెన్సీ కన్వర్షన్‌ను ప్రదర్శించలేదు. మీ ఫోన్ కనెక్షన్‌ని చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">కరెన్సీ మార్పిడి అందుబాటులో లేదు</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">కరెన్సీ మార్పిడిని ప్రదర్శించలేము. మీ ఫోన్ కనెక్షన్‌ను తనిఖీ చేసి, మళ్ళీ ప్రయత్నించండి.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">మీ ప్రాంతంలో పేమెంట్‌లు లభ్యం కావడం లేదు.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">పేమెంట్‌లను ప్రారంభించలేకపోయింది. తరువాత మళ్లీ ప్రయత్నించండి.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">చెల్లింపులను నిష్క్రియం చేయండి?</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ఇప్పుడు కాదు</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">అప్‌డేట్ అవసరం</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">చెల్లింపులను పంపడం మరియు అందుకోవడం కొనసాగించడానికి, మరియు మీ అప్-టు-డేట్ చెల్లింపు బ్యాలెన్స్ చూడటానికి ఒక అప్‌డేట్ అవసరం.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">రద్దు</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %3$s వద్ద %2$sపై ఉన్నారు</string>
     <string name="PaymentsDetailsFragment__to">ఎవరికి</string>
     <string name="PaymentsDetailsFragment__from">ఎవరి నుండి</string>
-    <string name="PaymentsDetailsFragment__information">చెల్లింపు మొత్తం మరియు లావాదేవీల సమయంతో సహా లావాదేవీ వివరాలు MobileCoin లెడ్జర్‌లో భాగం.</string>
+    <string name="PaymentsDetailsFragment__information">చెల్లింపు మొత్తం మరియు లావాదేవీ సమయంతో సహా లావాదేవీ వివరాలు MobileCoin లెడ్జర్‌లో భాగం.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">కాయిన్ క్లీన్‌అప్ ఫీజు</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">లావాదేవీని పూర్తి చేయడానికి మీ వద్ద ఉన్న నాణేలను కలపలేనప్పుడు “కాయిన్ క్లీనప్ ఫీజు” వసూలు చేయబడుతుంది. చెల్లింపులు పంపడం కొనసాగించడానికి క్లీనప్ మిమ్మల్ని అనుమతిస్తుంది.</string>
     <string name="PaymentsDetailsFragment__no_details_available">ఈ లావాదేవీల కొరకు తదుపరి వివరాలు లభ్యం కావడం లేదు</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Signal కు ఆహ్వానించండి</string>
     <string name="FirstInviteReminder__description">మీరు %1$d%% ద్వారా పంపిన గుప్తీకరించిన సందేశాల సంఖ్యను పెంచవచ్చు</string>
-    <string name="SecondInviteReminder__title">మీ Signal పెంచండి</string>
+    <string name="SecondInviteReminder__title">మీ Signal ను బూస్ట్ చేయండి</string>
     <string name="SecondInviteReminder__description">ఆహ్వానించండి %1$s</string>
     <string name="InsightsReminder__view_insights">అంతర్దృష్టి వీక్షించండి</string>
     <string name="InsightsReminder__invite">ఆహ్వానించండి</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">ఖాతాను డిలీట్ చేస్తోంది…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">మీ సబ్‌స్క్రిప్షన్‌ను క్యాన్సిల్ చేస్తోంది…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">మీ సబ్‌స్క్రిప్షన్‌ను రద్దు చేస్తోంది…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">మీరు ఉన్న గ్రూపుల సంఖ్య ఆధారంగా, దీనికి కొన్ని నిమిషాలు పట్టవచ్చు</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin గురించి</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin కొత్త గోప్యతా దృష్టి డిజిటల్ కరెన్సీ.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin కొత్త గోప్యతా దృష్టి గల డిజిటల్ కరెన్సీ.</string>
     <string name="payment_info_card_adding_funds">ఫండ్స్‌ని జోడించడం</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">మీ వాలెట్ చిరునామాకు MobileCoin పంపడం ద్వారా మీరు Signalలో ఉపయోగం కోసం నిధులను జోడించవచ్చు.</string>
     <string name="payment_info_card_cashing_out">క్యాష్ అవుట్</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">రికవరీ పదబంధాన్ని సేవ్ చేయండి</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">రికవరీ దశను నమోదు చేయండి</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">మీరు Signal ను తిరిగి ఇన్‌స్టాల్ చేసినప్పుడు, మీరు మీ Signal PIN ను ధృవీకరిస్తే మీ బ్యాలెన్స్ ఆటోమేటిక్‌గా పునరుద్ధరించబడుతుంది. రికవరీ పదబంధాన్ని ఉపయోగించి కూడా మీరు మీ బ్యాలెన్స్‌ను పునరుద్ధరించవచ్చు, ఇది మీకు ప్రత్యేకమైన %1$d- పదబంధము. దీనిని రాసుకొని, ఒక సురక్షితమైన ప్రదేశంలో భద్రపరచండి.</item>
+        <item quantity="other">మీరు Signal ను తిరిగి ఇన్‌స్టాల్ చేసినప్పుడు, మీరు మీ Signal PIN ను ధృవీకరిస్తే మీ బ్యాలెన్స్ ఆటోమేటిక్‌గా పునరుద్ధరించబడుతుంది. రికవరీ పదబంధాలను ఉపయోగించి కూడా మీరు మీ బ్యాలెన్స్‌ను పునరుద్ధరించవచ్చు, ఇవి మీకు ప్రత్యేకమైన %1$d- పదబంధములు. వీటిని రాసుకొని, ఒక సురక్షితమైన ప్రదేశంలో భద్రపరచండి.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">మీకు బ్యాలెన్స్ ఉంది! మీ రికవరీ పదబంధాన్ని సేవ్ చేసే సమయం—మీ బ్యాలెన్స్‌ను పునరుద్ధరించడానికి మీరు ఉపయోగించగల 24-పదాల కీ.</string>
@@ -4220,11 +4220,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">బాటమ్ ఎడ్జ్ సెలక్టర్</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal కు దానం చేయండి</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal కు విరాళం ఇవ్వండి</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal మీలాంటి వ్యక్తుల సహాయంతో పని చేస్తుంది. నెలవారీగా విరాళం ఇవ్వండి మరియు ఒక బ్యాడ్జిని పొందండి.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">విరాళమిచ్చు</string>
+    <string name="Donate2022Q2Megaphone_donate">విరాళం ఇవ్వండి</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">ఇప్పుడు కాదు</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal మీలాంటి వ్యక్తుల సహాయంతో పని చేస్తుంది. విరాళం ఇవ్వండి మరియు ఒక బ్యాడ్జిని పొందండి.</string>
     <string name="BecomeASustainerMegaphone__not_now">ఇప్పుడు కాదు</string>
-    <string name="BecomeASustainerMegaphone__donate">విరాళమిచ్చు</string>
+    <string name="BecomeASustainerMegaphone__donate">విరాళం ఇవ్వండి</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">ఎమోజి</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">సంభాషణ శాశ్వతంగా మ్యూట్ చేయబడింది</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ఫోన్ నెంబర్ క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <string name="ConversationSettingsFragment__phone_number">ఫోను నంబరు</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జీ మీద తట్టండి.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జిలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జి మీద తట్టండి.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
@@ -4469,162 +4469,162 @@
 
     <string name="CameraFragment__failed_to_open_camera">కెమెరాని ఓపెన్ చేయడం విఫలమైంది</string>
 
-    <string name="BadgesOverviewFragment__my_badges">నా బ్యాడ్జీలు</string>
-    <string name="BadgesOverviewFragment__featured_badge">ఫీచర్డ్ బ్యాడ్జీ</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">ప్రొఫైల్‌పై బ్యాడ్జీలను ప్రదర్శించండి</string>
+    <string name="BadgesOverviewFragment__my_badges">నా బ్యాడ్జిలు</string>
+    <string name="BadgesOverviewFragment__featured_badge">ఫీచర్డ్ బ్యాడ్జి</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">ప్రొఫైల్‌పై బ్యాడ్జిలను ప్రదర్శించండి</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">ప్రొఫైల్‌ని అప్‌డేట్ చేయడం విఫలమైంది</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">బ్యాడ్జీలను ఎంచుకోండి</string>
+    <string name="BadgeSelectionFragment__select_badges">బ్యాడ్జిలను ఎంచుకోండి</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">పూర్వప్రదర్శన</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">బ్యాడ్జీని ఎంచుకోండి</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">మీరు విధిగా బ్యాడ్జీని ఎంచుకోవాలి</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">బ్యాడ్జిని ఎంచుకోండి</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">మీరు తప్పకుండా ఒక బ్యాడ్జిని ఎంచుకోవాలి</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ప్రొఫైల్‌ని అప్‌డేట్ చేయడం విఫలమైంది</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">పోషకుడు అవ్వండి</string>
 
-    <string name="ImageView__badge">బ్యాడ్జీ</string>
+    <string name="ImageView__badge">బ్యాడ్జి</string>
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">దానిని చిరకాలం ఉండేలా చేసే వ్యక్తుల కమ్యూనిటీలో చేరడం ద్వారా, మీ డేటా కొరకు కాకుండా, మీ కొరకు రూపొందించిన టెక్నాలజీకి మద్దతు ఇవ్వండి.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal ను చిరకాలం ఉండేలా చేసే కమ్యూనిటీలో చేరడం ద్వారా, మీ డేటా కొరకు కాకుండా, మీ కొరకు రూపొందించిన టెక్నాలజీకి మద్దతు ఇవ్వండి.</string>
     <string name="SubscribeFragment__currency">కరెన్సీ</string>
     <string name="SubscribeFragment__more_payment_options">మరిన్ని పేమెంట్ ఆప్షన్‌లు</string>
-    <string name="SubscribeFragment__cancel_subscription">సబ్‌స్క్రిప్షన్‌ని రద్దు చేయండి</string>
-    <string name="SubscribeFragment__confirm_cancellation">క్యాన్సిలేషన్‌ని రద్దు చేయాలా?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">మీకు మళ్లీ ఛార్జ్ చేయబడదు. మీ బిల్లింగ్ పీరియడ్ ముగిసిన తరువాత మీ ప్రొఫైల్ నుంచి మీ బ్యాడ్జీ తొలగించబడుతుంది.</string>
+    <string name="SubscribeFragment__cancel_subscription">సబ్‌స్క్రిప్షన్‌ను రద్దు చేయండి</string>
+    <string name="SubscribeFragment__confirm_cancellation">రద్దును నిర్ధారించేదా?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">మీకు మళ్ళీ ఛార్జీ విధించబడదు. మీ బిల్లింగ్ కాలవ్యవధి ముగింపులో మీ ప్రొఫైల్ నుంచి మీ బ్యాడ్జి తొలగించబడుతుంది.</string>
     <string name="SubscribeFragment__not_now">ఇప్పుడు కాదు</string>
     <string name="SubscribeFragment__confirm">నిర్ధారించండి</string>
-    <string name="SubscribeFragment__update_subscription">సబ్‌స్క్రిప్షన్‌ని అప్‌డేట్ చేయండి</string>
+    <string name="SubscribeFragment__update_subscription">సబ్‌స్క్రిప్షన్‌ను అప్‌డేట్ చేయండి</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">మీ సబ్‌స్క్రిప్షన్ రద్దు చేయబడింది.</string>
-    <string name="SubscribeFragment__update_subscription_question">సబ్‌స్క్రిప్షన్‌ని అప్‌డేట్ చేయాలా?</string>
+    <string name="SubscribeFragment__update_subscription_question">సబ్‌స్క్రిప్షన్‌ను అప్‌డేట్ చేసేదా?</string>
     <string name="SubscribeFragment__update">నవీకరణ</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ఇవాళ మీకు కొత్త సబ్‌స్క్రిప్షన్ యొక్క పూర్తి మొత్తం (%1$s) ఛార్జ్ చేయబడుతుంది. మీ సబ్‌స్క్రిప్షన్ ప్రతినెలా రెన్యువల్ అవుతుంది.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">ఇవాళ మీకు కొత్త సబ్‌స్క్రిప్షన్ యొక్క పూర్తి మొత్తం (%1$s) ఛార్జీ విధించబడుతుంది. మీ సబ్‌స్క్రిప్షన్ నెలవారీగా పునరుద్ధరించబడుతుంది.</string>
 
     <string name="Subscription__s_per_month">%1$s/నెల</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">%1$s రెన్యువల్ చేస్తుంది</string>
+    <string name="Subscription__renews_s">%1$s ను పునరుద్ధరిస్తుంది</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">%1$s న గడువు ముగుస్తుంది</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ఎలాంటి ప్రకటనదారులు లేదా పెట్టుబడిదారులు లేని లాభాపేక్ష లేని సంస్థ, దీనిని ఉపయోగించి, దానికి విలువను ఇచ్చే వక్తుల ద్వారా మాత్రమే కొనసాగుతోంది. ప్రతి నెలవారీ విరాళం ఇవ్వండి, మీ మద్దతును పంచుకోవడానికి ప్రొఫైల్ బ్యాడ్జీని అందుకోండి.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ఎందుకు దానం చేయాలి?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ఎలాంటి ప్రకటనదారులు లేదా పెట్టుబడిదారులు లేని ఒక లాభాపేక్ష లేని సంస్థ, దీనిని ఉపయోగించి మరియు విలువను ఇచ్చే వ్యక్తుల ద్వారా మాత్రమే కొనసాగుతోంది. పునరావృతమయ్యే నెలవారీ విరాళం ఇవ్వండి మరియు మీ మద్దతును పంచుకోవడానికి ఒక ప్రొఫైల్ బ్యాడ్జిని అందుకోండి.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ఎందుకు విరాళం ఇవ్వాలి?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">భావవ్యక్తీకరణను సంరక్షించే మరియు సురక్షితమైన గ్లోబల్ కమ్యూనికేషన్‌లను అందించే ఓపెన్ సోర్స్ ప్రైవసీ టెక్నాలజీని అభివృద్ధి చేయడానికి Signal కట్టుబడి ఉంది.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">మీ విరాళాలు దీనికి దోహదపడతాయి, ప్రైవేట్ కమ్యూనికేషన్ కొరకు మిలియన్‌లు ఉపయోగించే యాప్ అభివృద్ధి మరియు ఆపరేషన్‌లకు చెల్లించడానికి దోహదపడుతుంది. ఎలాంటి ప్రకటనలు లేవు. ఎలాంటి ట్రాకర్‌లు లేదు. ఎలాంటి జోక్ లేదు.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">మీ విరాళం ఈ కారణానికి ఊపిరి పోస్తుంది మరియు ప్రైవేట్ కమ్యూనికేషన్ కొరకు మిలియన్ల కొద్ది ప్రజలచే ఉపయోగించబడే యాప్ అభివృద్ధి మరియు కార్యకలాపాలకు చెల్లించడానికి దోహదపడుతుంది. ఎలాంటి ప్రకటనలు లేవు. ఎలాంటి ట్రాకర్లు లేవు. ఎలాంటి తమాషా లేదు.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">మీ మద్దతుకు ధన్యవాదాలు!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">బూస్ట్ కొరకు ధన్యవాదాలు!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">మీరు %1$s బ్యాడ్జీని పొందారు! Signal కొరకు విరాళం ఇవ్వడానికి అవగాహన పెంపొందించడానికి మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జీని ప్రదర్శించండి.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">మీరు బూస్ట్ బ్యాడ్జీని సంపాదించారు! Signal కొరకు విరాళం ఇవ్వడానికి అవగాహన పెంపొందించడానికి మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జీని ప్రదర్శించండి.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">మీరు %1$s బ్యాడ్జిని సంపాదించారు! Signal కొరకు విరాళం ఇవ్వడానికి అవగాహన పెంపొందించడానికి మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జిని ప్రదర్శించండి.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">మీరు బూస్ట్ బ్యాడ్జిని సంపాదించారు! Signal కొరకు విరాళం ఇవ్వడానికి అవగాహన పెంపొందించడానికి మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జిని ప్రదర్శించండి.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">మీరు కూడా</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">నెలవారీ పోషకులు అవ్వండి.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ప్రొఫైల్‌పై ప్రదర్శించు</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ఫీచర్డ్ బ్యాడ్జీని రూపొందించండి</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ఫీచర్డ్ బ్యాడ్జిని తయారు చేయండి</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">కొనసాగు</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">మీకు ఒకటి కంటే ఎక్కువ బ్యాడ్జీలు ఉన్నట్లయితే, మీ ప్రొఫైల్ లో ఇతరులు చూడటం కొరకు ఫీచర్ చేయడానికి మీరు ఒకదాన్ని ఎంచుకోవచ్చు.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">మీకు ఒకటి కంటే ఎక్కువ బ్యాడ్జిలు ఉన్నప్పుడు, మీ ప్రొఫైల్‌లో ఇతరులు చూడటానికి ఫీచర్ చేయడానికి మీరు ఒకదాన్ని ఎంచుకోవచ్చు.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signal కు మద్దతు అందించడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal కు మద్దతు అందించడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జిలను పొందండి.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ఎలాంటి ప్రకటనదారులు లేదా పెట్టుబడిదారులు లేని లాభాపేక్ష లేని సంస్థ, కేవలం మీలాంటి వ్యక్తులు మాత్రమే మద్దతు అందిస్తున్నారు.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Signal కు దానం చేయండి</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Signal కు విరాళం ఇవ్వండి</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">మరింత</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">రసీదులు</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">My Support</string>
-    <string name="ManageDonationsFragment__manage_subscription">సబ్‌స్క్రిప్షన్‌ని నిర్వహించండి</string>
+    <string name="ManageDonationsFragment__manage_subscription">సబ్‌స్క్రిప్షన్‌ను నిర్వహించండి</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">విరాళం రసీదులు</string>
-    <string name="ManageDonationsFragment__badges">బ్యాడ్జీలు</string>
+    <string name="ManageDonationsFragment__badges">బ్యాడ్జిలు</string>
     <string name="ManageDonationsFragment__subscription_faq">సబ్‌స్క్రిప్షన్ FAQ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">సబ్‌స్క్రిప్షన్‌ని పొందడంలో దోషం.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">సబ్‌స్క్రిప్షన్‌ని పొందడంలో లోపం.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">ఇవ్వడానికి ఇతర మార్గాలు</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">బ్యాడ్జీని బహుమతిని ఇవ్వండి</string>
+    <string name="ManageDonationsFragment__gift_a_badge">బ్యాడ్జిని బహుమతిగా ఇవ్వండి</string>
 
-    <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని నమోదు చేయండి</string>
+    <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని ఎంటర్ చేయండి</string>
     <string name="Boost__one_time_contribution">ఒక్కసారి కంట్రిబ్యూషన్</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal బూస్ట్ జోడించండి</string>
+    <string name="MySupportPreference__add_a_signal_boost">Signal బూస్ట్‌ను జోడించండి</string>
     <string name="MySupportPreference__s_per_month">%1$s/నెల</string>
-    <string name="MySupportPreference__renews_s">%1$s రెన్యువల్ చేస్తుంది</string>
+    <string name="MySupportPreference__renews_s">%1$s ను పునరుద్ధరిస్తుంది</string>
     <string name="MySupportPreference__processing_transaction">లావాదేవీని ప్రాసెస్ చేస్తోంది…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">బ్యాడ్జీని జోడించలేదు. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">బ్యాడ్జిని జోడించలేక పోయాను. %1$s</string>
     <string name="MySupportPreference__please_contact_support">దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">బూస్ట్ బ్యాడ్జీ గడువు తీరింది</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">బూస్ట్ బ్యాడ్జి గడువు తీరింది</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">నెలవారీ విరాళం రద్దు చేయబడింది</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">మీ బూస్ట్ బ్యాడ్జీ గడువు తీరింది మరియు అది మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ఒక్కసారి కంట్రిబ్యూషన్‌తో మీరు మీ బూస్ట్ బ్యాడ్జీని మరో 30 రోజులపాటు రీయాక్టివేట్ చేయవచ్చు.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">మీ బూస్ట్ బ్యాడ్జి గడువు తీరింది మరియు మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">ఒక్కసారి సహకారంతో మీరు మీ బూస్ట్ బ్యాడ్జిని మరో 30 రోజులపాటు రీయాక్టివేట్ చేయవచ్చు.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">మీరు Signal ను ఉపయోగించడం కొనసాగించవచ్చు, కానీ మీకోసం రూపొందించిన టెక్నాలజీకి మద్దతు ఇవ్వడానికి, నెలవారీ విరాళం ఇవ్వడం ద్వారా పోషకులు అవ్వండి.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">మీరు Signal ను ఉపయోగించడం కొనసాగించవచ్చు, కానీ మీకోసం రూపొందించిన సాంకేతికతకు మద్దతు ఇవ్వడానికి, నెలవారీ విరాళం ఇవ్వడం ద్వారా విరాళకర్తగా అయ్యేందుకు పరిగణించండి.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">పోషకుడు అవ్వండి</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">బూస్ట్ జోడించండి</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ఇప్పుడు కాదు</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">మీరు చాలాకాలంగా ఇన్‌యాక్టివ్‌గా ఉండటం వల్ల మీ నెలవారీ పునరావృత విరాళం ఆటోమేటిక్‌గా రద్దు చేయబడింది. మీ %1$s బ్యాడ్జీ మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">మీరు చాలాకాలంగా ఇనాక్టివ్‌గా ఉండటం వల్ల మీ పునరావృత నెలవారీ విరాళం ఆటోమేటిక్‌గా రద్దు చేయబడింది. మీ %1$s బ్యాడ్జి మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">మేం మీ పేమెంట్‌ని ప్రాసెస్ చేయలేకపోవడం వల్ల, మీ నెలవారీ రికరింగ్ విరాళం రద్దు చేయబడింది. మీ బ్యాడ్జీ ఇక ఏమాత్రం మీ ప్రొఫైల్‌పై కనిపించదు.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">మేము మీ చెల్లింపును ప్రాసెస్ చేయలేకపోవడం వల్ల, మీ పునరావృత నెలవారీ విరాళం రద్దు చేయబడింది. మీ బ్యాడ్జి మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">మీ నెలవారీ పునరావృత విరాళం రద్దు చేయబడింది. %1$s మీ %2$s బ్యాడ్జీ మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">మీరు Signal ను ఇంకా ఉపయోగించడం కొనసాగించవచ్చు, యాప్‌కు సపోర్ట్ చేయడానికి మరియు మీ బ్యాడ్జీని రీయాక్టివేట్ చేయడానికి, ఇప్పుడు రెన్యువల్ చేయండి.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">సబ్‌స్క్రిప్షన్‌ను రెన్యువల్ చేయండి</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">మీ పునరావృత నెలవారీ విరాళం రద్దు చేయబడింది. %1$s మీ %2$s బ్యాడ్జి మీ ప్రొఫైల్‌పై ఇక ఏమాత్రం కనిపించదు.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">మీరు Signal ను ఉపయోగించడం కొనసాగించవచ్చు కానీ యాప్‌కు సపోర్ట్ చేయడానికి మరియు మీ బ్యాడ్జిని రీయాక్టివేట్ చేయడానికి, ఇప్పుడు పునరుద్ధరించండి.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">సబ్‌స్క్రిప్షన్‌ను పునరుద్ధరించండి</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay కు వెళ్లండి</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">సబ్‌స్క్రిప్షన్ పేమెంట్‌ని ప్రాసెస్ చేయలేదు</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">సబ్‌స్క్రిప్షన్ చెల్లింపును ప్రాసెస్ చేయలేము</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">మీ Signal పోషకుడి పేమెంట్‌ని కలెక్ట్ చేసుకోవడంలో మాకు సమస్య ఉంది. మీ చెల్లింపు విధానం అప్ టూ డేట్‌గా ఉన్నట్లుగా దయచేసి ధృవీకరించుకోండి. ఒకవేళ ఇది లేనట్లయితే, దానిని Google Payలో అప్‌డేట్ చేయండి. Signal కొన్నిరోజుల్లో మళ్లీ చెల్లింపును ప్రాసెస్ చేయడానికి ప్రయత్నిస్తుంది.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">దీనిని మళ్లీ చూపించవద్దు</string>
 
     <string name="Subscription__please_contact_support_for_more_information">మరింత సమాచారం కొరకు దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
     <string name="Subscription__contact_support">మద్దతును సంప్రదించండి</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">%1$s బ్యాడ్జిని పొందండి</string>
 
     <string name="SubscribeFragment__processing_payment">పేమెంట్ ప్రాసెస్ చేస్తోంది…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">పేమెంట్‌ని ప్రాసెస్ చేయడంలో దోషం.</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">పేమెంట్ ప్రాసెస్ చేయడంలో దోషం. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">మీ బ్యాడ్జీని మీ అకౌంట్‌కు జోడించలేం, కానీ, మీకు ఛార్జ్ చేయబడవచ్చు. దయచేసి సపోర్ట్‌ను సంప్రదించండి.</string>
-    <string name="DonationsErrors__your_payment">మీ పేమెంట్ ప్రాసెస్ చేయబడదు మరియు మీకు ఛార్జ్ చేయబడదు. దయచేసి మళ్లీ ప్రయత్నించండి.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">మీ బ్యాడ్జి మీ ఖాతాకు జోడించబడలేదు, కానీ మీకు ఛార్జ్ విధంచబడి ఉండవచ్చు. దయచేసి మద్దతును సంప్రదించండి.</string>
+    <string name="DonationsErrors__your_payment">మీ పేమెంట్ ప్రాసెస్ చేయబడలేదు మరియు మీకు ఛార్జ్ చేయబడదు. దయచేసి మళ్ళీ ప్రయత్నించండి.</string>
     <string name="DonationsErrors__still_processing">ఇంకా ప్రాసెసింగ్ చేస్తోంది</string>
-    <string name="DonationsErrors__couldnt_add_badge">బ్యాడ్జీని జోడించలేదు</string>
+    <string name="DonationsErrors__couldnt_add_badge">బ్యాడ్జిని జోడించలేక పోయాను</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">బ్యాడ్జీని ధృవీకరించడం విఫలమైంది</string>
+    <string name="DonationsErrors__failed_to_validate_badge">బ్యాడ్జిని చెల్లుబాటు చేయడంలో విఫలమైంది</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">సర్వీర్ ప్రతిస్పందనను వాలిడేట్ చేయలేకపోయింది. దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">గిఫ్ట్ బ్యాడ్జీని పంపడం విఫలమైంది.</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">బహుమతి బ్యాడ్జిని పంపడంలో విఫలమైంది</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">గిఫ్ట్ బ్యాడ్జీని పంపలేకపోయింది. దయచేసి సపోర్ట్‌ని సంప్రదించండి.</string>
-    <string name="DonationsErrors__your_badge_could_not">మీ బ్యాడ్జీని మీ అకౌంట్‌కు జోడించలేం, కానీ, మీకు ఛార్జ్ చేయబడవచ్చు. దయచేసి సపోర్ట్‌ను సంప్రదించండి.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">బహుమతి బ్యాడ్జిని పంపలేకపోయింది. దయచేసి మద్దతును సంప్రదించండి.</string>
+    <string name="DonationsErrors__your_badge_could_not">మీ బ్యాడ్జి మీ ఖాతాకు జోడించబడలేదు, కానీ మీకు ఛార్జ్ విధంచబడి ఉండవచ్చు. దయచేసి మద్దతును సంప్రదించండి.</string>
     <string name="DonationsErrors__your_payment_is_still">మీ పేమెంట్ ఇంకా ప్రాసెసింగ్‌లో ఉంది. మీ కనెక్షన్‌పై ఆధారపడి దీనికి కొన్ని నిమిషాలు పట్టవచ్చు.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay లభ్యం కావడం లేదు</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">డొనేట్ చేయడానికి యాప్‌లో మీరు Google Payని సెటప్ చేయాల్సి ఉంటుంది.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">సబ్‌స్క్రిప్షన్ రద్దు చేయడం విఫలమైంది</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">సబ్‌స్క్రిప్షన్ రద్దు చేయాలనే అభ్యర్ధనకు ఇంటర్నెట్ కనెక్షన్ అవసరం.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">మీ పరికరం Google Payకు మద్దతు ఇవ్వదు, అందువల్ల బ్యాడ్జీని సంపాదించడానికి మీరు సబ్‌స్క్రైబ్ చేసుకోలేరు. అయితే మా వెబ్‌సైట్‌పై విరాళం ఇవ్వడం ద్వారా మీరు Signal కు మద్దతను అందించవచ్చు.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">విరాళం ఇవ్వడానికి యాప్‌లో మీరు Google Pay ను సెటప్ చేయాల్సి ఉంటుంది.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">సబ్‌స్క్రిప్షన్ రద్దు చేయడంలో విఫలమైంది</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">సబ్‌స్క్రిప్షన్ రద్దుకు ఇంటర్నెట్ కనెక్షన్ అవసరం.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">మీ పరికరం Google Pay కు మద్దతు ఇవ్వదు, అందువల్ల బ్యాడ్జిని సంపాదించడానికి మీరు సబ్‌స్క్రైబ్ చేసుకోలేరు. అయితే మా వెబ్‌సైట్‌లో విరాళం ఇవ్వడం ద్వారా మీరు ఇంకా Signal కు మద్దతను ఇవ్వచ్చు.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">నెట్‌వర్క్ దోషం. మీ కనెక్షన్ చెక్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
     <string name="NetworkFailure__retry">మళ్ళీ ప్రయత్నించు</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">బహుమతిని పంపలేదు</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">ఈ గ్రహీత గిఫ్ట్ బ్యాడ్జీని అందుకోలేని Signal వెర్షన్‌ని ఉపయోగిస్తున్నారు. వారు తాజా సంస్కరణకు అప్‌డేట్ చేసినప్పుడు బహుమతులను పొందగలుగుతారు.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">ఈ గ్రహీత బహుమతి బ్యాడ్జిలను అందుకోలేని Signal వెర్షన్‌ను ఉపయోగిస్తున్నారు. వారు తాజా వెర్షన్‌కు అప్‌డేట్ చేసినప్పుడు వారు బహుమతులను పొందగలుగుతారు.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">బహుమతిని పంపలేకపోయారు</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__please_check_your_network_connection">నెట్‌వర్క్ దోషం కారణంగా మీ బహుమతిని పంపలేకపోయింది. మీ కనెక్షన్‌ని తనిఖీ చేయండి మరియు మళ్లీ ప్రయత్నించండి.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">గిఫ్ట్ బ్యాడ్జీ</string>
+    <string name="GiftMessageView__gift_badge">బహుమతి బ్యాడ్జి</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">%1$d నెలపాటు ఉంటుంది</item>
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">రసీదును పంచుకోండి</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">మీరు Signal ని తిరిగి ఇన్‌స్టాల్ చేసినట్లయితే, ఇంతకు ముందు విరాళాల నుంచి రసీదులు లభ్యం కావు.</string>
+    <string name="DonationReceiptListFragment__if_you_have">ఒకవేళ మీరు Signal ను తిరిగి ఇన్‌స్టాల్ చేసినట్లయితే, ఇంతకు ముందు విరాళాల నుంచి రసీదులు లభ్యం కావు.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">విరాళం రసీదు</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ఇంకా ఎలాంటి వీక్షణలు లేవు</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">మీ స్టోరీలను ఎవరు వీక్షించారనేది చూడటానికి రీడ్ రిసిప్ట్స్ ప్రారంభించండి.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · %2$d రోజుల కాలవ్యవధి</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">గిఫ్ట్ బ్యాడ్జీని పంపండి</string>
+    <string name="GiftRowItem__send_a_gift_badge">బహుమతి బ్యాడ్జిని పంపండి</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">బ్యాడ్జీని బహుమతిని ఇవ్వండి</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">బ్యాడ్జిని బహుమతిగా ఇవ్వండి</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal కు వారి పేరిట విరాళం ఇవ్వడం ద్వారా ఎవరికైనా ఒక బ్యాడ్జీని బహుమతిగా ఇవ్వండి. వారి ప్రొఫైల్ ఫోటోపై ప్రదర్శించడానికి వారు ఒక బ్యాడ్జీని పొందుతారు.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Signal కు వారి పేరిట విరాళం ఇవ్వడం ద్వారా ఎవరికైనా ఒక బ్యాడ్జిని బహుమతిగా ఇవ్వండి. వారి ప్రొఫైల్ ఫోటోపై ప్రదర్శించడానికి వారు ఒక బ్యాడ్జిని పొందుతారు.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">తరువాత</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">మీ సపోర్ట్‌కు ధన్యవాదాలు!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">మీరు %1$s నుంచి గిఫ్ట్ కార్డ్‌ను అందుకున్నారు! మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జీని ప్రదర్శించడం ద్వారా అవగాహన కల్పించేందుకు Signal కు సాయపడండి.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">మీరు %1$s నుంచి ఒక బహుమతి బ్యాడ్జిని అందుకున్నారు! మీ ప్రొఫైల్‌పై ఈ బ్యాడ్జిని ప్రదర్శించడం ద్వారా అవగాహన పెంపొందించేందుకు Signal కు సహాయపడండి.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">మీరు %1$sకు బ్యాడ్జీని బహుమతిగా ఇచ్చారు. వారు ఆమోదించినప్పుడు, వారికి బ్యాడ్జీని చూపించడం లేదా దాచిపెట్టాలని ఎంపిక ఇవ్వబడుతుంది.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">మీరు %1$sకు బ్యాడ్జిని బహుమతిగా ఇచ్చారు. వారు అంగీకరించినప్పుడు, వారి బ్యాడ్జిని చూపించేందుకు లేదా దాచిపెట్టేందుకు వారికి ఎంపిక ఇవ్వబడుతుంది.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">రీడిమ్</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5230,13 +5230,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">బహుమతిని రీడిమ్ చేస్తోంది…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">మీరు తరువాత మీ బ్యాడ్జీని రీడిమ్ చేయవచ్చు.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">మీరు తరువాత మీ బ్యాడ్జిని రిడీమ్ చేయవచ్చు.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">మీరు %1$sకు బ్యాడ్జీని బహుమతిగా ఇచ్చారు. వారు ఆమోదించినప్పుడు, వారికి బ్యాడ్జీని చూపించడం లేదా దాచిపెట్టాలని ఎంపిక ఇవ్వబడుతుంది.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">మీరు %1$sకు బ్యాడ్జిని బహుమతిగా ఇచ్చారు. వారు అంగీకరించినప్పుడు, వారి బ్యాడ్జిని చూపించేందుకు లేదా దాచిపెట్టేందుకు వారికి ఎంపిక ఇవ్వబడుతుంది.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">మీ గిఫ్ట్ బ్యాడ్జీ గడువు తీరింది</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">మీ బహుమతి బ్యాడ్జి గడువు తీరింది</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">మీ గిఫ్ట్ బ్యాడ్జీ గడువు తీరింది, మరియు మీ ప్రొఫైల్‌పై ఇతరులకు ఇక ఏమాత్రం కనిపించదు.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">మీ బహుమతి బ్యాడ్జి గడువు తీరింది, మరియు మీ ప్రొఫైల్‌పై ఇతరులకు ఇక ఏమాత్రం కనిపించదు.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">మీ కొరకు రూపొందించిన టెక్నాలజీకి మద్దతు ఇవ్వడాన్ని కొనసాగించేందుకు, దయచేసి నెలవారీ పోషకులు అవ్వండి.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5588,13 +5588,13 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal కు %1$s/నెలకు విరాళం ఇవ్వండి</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s బ్యాడ్జిని పొందండి</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal కు %1$s విరాళం ఇవ్వండి</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d రోజుకు %1$s బ్యాడ్జిని పొందండి</item>
+        <item quantity="other">%2$d రోజులకు %1$s బ్యాడ్జిని పొందండి</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">క్రెడిట్ లేదా డెబిట్ కార్డు</string>

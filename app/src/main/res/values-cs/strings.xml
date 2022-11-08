@@ -108,11 +108,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal potřebuje oprávnění pro přístup ke kontaktům, aby mohl připojit informace o kontaktu, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Kontakty\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal potřebuje oprávnění pro přístup k poloze, aby mohl připojit informace o poloze, ale toto oprávnění je nyní zakázáno. Prosím pokračujte do menu nastavení aplikací, vyberte \"Oprávnění\" a povolte \"Poloha\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s nemá aktivované Platby </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Chcete mu/jí poslat žádost, aby si Platby aktivoval/a?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Poslat žádost</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Storno</string>
 
@@ -1536,13 +1536,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Historie vašich zpráv s uživatelem %1$s a další konverzace s ním byly sloučeny.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Odeslali jste žádost %1$s, aby si aktivoval/a Platby</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vás žádá, abyste si aktivovali Platby. Platby posílejte jen lidem, kterým důvěřujete.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Platby máte aktivované</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s teď může přijímat Platby</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s zahájil skupinový hovor · %2$s</string>
@@ -2062,13 +2062,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Tato zpráva byla smazána.</string>
     <string name="ThreadRecord_you_deleted_this_message">Smazali jste tuto zprávu.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Odeslali jste žádost o aktivaci Platby</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vás žádá, abyste si aktivovali Platby</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Platby máte aktivované</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s teď může přijímat Platby</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s má Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Mizející zprávy jsou zakázané</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Čas zmizení zprávy nastaven na %1$s</string>
@@ -2440,7 +2440,7 @@
     <string name="ConversationUpdateItem_view">Zobrazit</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Čas zmizení zprávy bude nastaven na %1$s, když jim pošlete zprávu.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Sponzorujte</string>
+    <string name="ConversationUpdateItem_donate">Přispějte</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Odeslat platbu</string>
     <!-- Update item button text to activate payments -->
@@ -3142,7 +3142,7 @@
     <string name="PaymentsAllActivityFragment__received">Přijato</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Představujeme platby (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Pomocí Signal můžete odesílat a přijímat MobileCoin, novou digitální měnu zaměřenou na soukromí. Aktivujte a začněte.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Pomocí Signal můžete odesílat a přijímat MobileCoin, novou digitální měnu zaměřenou na soukromí. Stačí aktivovat a můžete začít.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivovat platby</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktivuji platby…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Obnovit platební účet</string>
@@ -3164,7 +3164,7 @@
     <string name="PaymentsHomeFragment__received_payment">Přijatá platba</string>
     <string name="PaymentsHomeFragment__processing_payment">Zpracovávám platbu</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Převod měny není dostupný</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Převod měny není dispozici</string>
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">Převod měny nelze zobrazit. Zkontrolujte připojení telefonu a zkuste to znovu.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Platby nejsou ve vašem regionu dostupné.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Nepodařilo se povolit platby. Zkuste to znovu.</string>
@@ -3302,7 +3302,7 @@
     <string name="ConfirmPayment__error_getting_fee">Chyba při získávání poplatku</string>
     <string name="ConfirmPayment__estimated_s">Odhadováno %1$s</string>
     <string name="ConfirmPayment__to">Komu</string>
-    <string name="ConfirmPayment__total_amount">Celkové množství</string>
+    <string name="ConfirmPayment__total_amount">Celková částka</string>
     <string name="ConfirmPayment__balance_s">Zůstatek: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Odesílání platby…</string>
     <string name="ConfirmPayment__processing_payment">Zpracovávání platby…</string>
@@ -4075,7 +4075,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">O MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nová měna zaměřená na soukromí.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin je nová digitální měna zaměřená na soukromí.</string>
     <string name="payment_info_card_adding_funds">Přidávám prostředky</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Prostředky pro použití v Signal můžete přidat zasláním MobileCoin na adresu vaší peněženky.</string>
     <string name="payment_info_card_cashing_out">Vyplacení</string>
@@ -4114,10 +4114,10 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Uložte si frázi pro obnovení</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Zadat obnovovací frázi</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Váš zůstatek se automaticky obnoví, když po opětovné instalaci aplikace Signal potvrdíte svůj Signal PIN. Zůstatek můžete obnovit také pomocí obnovovací fráze, což je jedinečná %1$dslovná fráze. Zapište si ji a uložte na bezpečném místě.</item>
+        <item quantity="few">Váš zůstatek se automaticky obnoví, když po opětovné instalaci aplikace Signal potvrdíte svůj Signal PIN. Zůstatek můžete obnovit také pomocí obnovovací fráze, což je jedinečná %1$dslovná fráze. Zapište si ji a uložte na bezpečném místě.</item>
+        <item quantity="many">Váš zůstatek se automaticky obnoví, když po opětovné instalaci aplikace Signal potvrdíte svůj Signal PIN. Zůstatek můžete obnovit také pomocí obnovovací fráze, což je jedinečná %1$dslovná fráze. Zapište si ji a uložte na bezpečném místě.</item>
+        <item quantity="other">Váš zůstatek se automaticky obnoví, když po opětovné instalaci aplikace Signal potvrdíte svůj Signal PIN. Zůstatek můžete obnovit také pomocí obnovovací fráze, což je jedinečná %1$dslovná fráze. Zapište si ji a uložte na bezpečném místě.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Máte zůstatek! Je ideální čas nastavit si frázi pro obnovení – klíč o 24 slovech, který vám pomůže obnovit zůstatek.</string>
@@ -4422,9 +4422,9 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Podpořte Signal finančně</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal je aplikace, za kterou stojí lidé jako jste vy. Podpořte ji každý měsíc a získejte odznak.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Sponzorujte</string>
+    <string name="Donate2022Q2Megaphone_donate">Přispějte</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Teď ne</string>
 
@@ -4445,9 +4445,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Staňte se podporovatelem</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal je aplikace, za kterou stojí lidé jako vy. Prokažte jim dnes svoji podporu!</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal je aplikace, za kterou stojí lidé jako jste vy. Přispějte a získejte odznak.</string>
     <string name="BecomeASustainerMegaphone__not_now">Teď ne</string>
-    <string name="BecomeASustainerMegaphone__donate">Sponzorujte</string>
+    <string name="BecomeASustainerMegaphone__donate">Přispějte</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Smajlíky</string>
@@ -4502,7 +4502,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Konverzace ztlumena navždy</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonní číslo zkopírováno do schránky.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonní číslo</string>
-    <string name="ConversationSettingsFragment__get_badges">Získejte odznaky pro svůj profil, když podpoříte Signal. Klepnutím na odznak se dozvíte více.</string>
+    <string name="ConversationSettingsFragment__get_badges">Získejte odznaky pro svůj profil tím, že podpoříte Signal. Klepnutím na odznak se dozvíte více.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Přidávat členy</string>
@@ -4677,7 +4677,7 @@
 
     <string name="CameraFragment__failed_to_open_camera">Nepodařilo se otevřít kameru</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Mé odznaky</string>
+    <string name="BadgesOverviewFragment__my_badges">Moje odznaky</string>
     <string name="BadgesOverviewFragment__featured_badge">Doporučený odznak</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Zobrazení odznaků na profilu</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Nepodařilo se aktualizovat profil</string>
@@ -4707,24 +4707,24 @@
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Vaše předplatné bylo zrušeno.</string>
     <string name="SubscribeFragment__update_subscription_question">Aktualizovat předplatné?</string>
     <string name="SubscribeFragment__update">Aktualizovat</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtována plná částka (%1$s) nového předplatného. Vaše předplatné bude obnoveno každý měsíc.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude účtována plná částka (%1$s) nového předplatného. Vaše předplatné se bude obnovovat každý měsíc.</string>
 
     <string name="Subscription__s_per_month">%1$s/měsíc</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Obnova %1$s</string>
+    <string name="Subscription__renews_s">Obnovení %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Vyprší %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je nezisková organizace bez inzerentů a investorů, kterou živí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, abyste se podělili o svou podporu.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal je nezisková organizace bez inzerentů a investorů, za kterou stojí pouze lidé, kteří ji používají a oceňují. Přispívejte pravidelně každý měsíc a získejte profilový odznak, kterým vyjádříte svou podporu.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Proč přispět?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Společnost Signal se zavázala vyvíjet open source technologii ochrany soukromí, která chrání svobodu projevu a umožňuje bezpečnou globální komunikaci.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Svým příspěvkem podpoříte tento účel a zaplatíte vývoj a provoz aplikace, kterou používají miliony lidí pro soukromou komunikaci. Bez reklamy. Bez sledování. Beze srandy.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Svým příspěvkem podpoříte tento účel a přispějte na vývoj a provoz aplikace, kterou používají miliony lidí pro soukromou komunikaci. Bez reklamy. Bez sledování. Bez triků.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Díky za vaši podporu!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Díky za Boost!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Získali jste %1$s odznak. Zobrazte tento odznak na svém profilu a zvyšte povědomí o dárcovství ve službě Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Získali jste Boost odznak. Zobrazte tento odznak na svém profilu a zvyšte povědomí o dárcovství ve službě Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Získali jste odznak Boost. Zobrazte tento odznak na svém profilu a zvyšte povědomí o dárcovství ve službě Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Můžete také</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">stát se měsíčním podporovatelem.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Zobrazit v profilu</string>
@@ -4732,7 +4732,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Pokračovat</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Pokud máte více odznaků, můžete si jeden z nich vybrat, aby ho ostatní viděli na vašem profilu.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil za podporu Signalu.</string>
+    <string name="BecomeASustainerFragment__get_badges">Získejte odznaky pro svůj profil tím, že podpoříte Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal je nezisková organizace fungující bez reklam a investorů, kterou podporují pouze lidé jako vy.</string>
 
     <!-- Button label for creating a donation -->
@@ -4745,7 +4745,7 @@
     <string name="ManageDonationsFragment__my_support">Má podpora</string>
     <string name="ManageDonationsFragment__manage_subscription">Spravovat předplatné</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Doklady o příspěvku</string>
+    <string name="ManageDonationsFragment__donation_receipts">Potvrzení o příspěvku</string>
     <string name="ManageDonationsFragment__badges">Odznaky</string>
     <string name="ManageDonationsFragment__subscription_faq">Často kladené dotazy k předplatnému</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Chyba při získávání předplatného.</string>
@@ -4754,36 +4754,36 @@
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Darujte odznak</string>
 
-    <string name="Boost__enter_custom_amount">Zadat vlastní výši</string>
+    <string name="Boost__enter_custom_amount">Zadat vlastní částku</string>
     <string name="Boost__one_time_contribution">Jednorázový příspěvek</string>
 
     <string name="MySupportPreference__add_a_signal_boost">Přidat Signal Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/měsíc</string>
-    <string name="MySupportPreference__renews_s">Obnova %1$s</string>
+    <string name="MySupportPreference__renews_s">Obnovení %1$s</string>
     <string name="MySupportPreference__processing_transaction">Zpracovávání transakce…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Nezdařilo se přidat odznak.%1$s</string>
     <string name="MySupportPreference__please_contact_support">Prosím kontaktujte podporu.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost odznak vypršel</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Platnost odznaku Boost vypršela</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Měsíční příspěvek zrušen</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Platnost vašeho odznaku Boost vypršela a již není pro ostatní na vašem profilu viditelný.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Jednorázovým příspěvkem si můžete odznak Boost znovu aktivovat na dalších 30 dní.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Platnost vašeho odznaku Boost vypršela a odznak již není a vašem profilu viditelný.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Odznak Boost si můžete znovu aktivovat na dalších 30 dní jednorázovým příspěvkem.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signál můžete používat i nadále, ale abyste podpořili technologii, která je vytvořena pro vás, zvažte možnost stát se podporovatelem měsíčním příspěvkem.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signál můžete používat i nadále, ale abyste podpořili technologii, která je vytvořena pro vás, zvažte zda se nestát stálým členem a přispívat měsíčně.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte se podporovatelem</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat Boost</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Přidat odznak Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Teď ne</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Váš pravidelný měsíční příspěvek byl automaticky zrušen, protože jste byli příliš dlouho neaktivní. Váš %1$s odznak již není viditelný na vašem profilu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Váš pravidelný měsíční příspěvek byl automaticky zrušen, protože jste byli příliš dlouho neaktivní. Váš odznak %1$s již není na vašem profilu viditelný.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Váš pravidelný měsíční příspěvek byl zrušen, protože jsme nemohli zpracovat vaši platbu. Váš odznak již není na vašem profilu viditelný.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Váš pravidelný měsíční finanční příspěvek byl zrušen. %1$s Váš odznak %2$s se vám už na profilu nebude zobrazovat.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte předplatné nyní.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Váš pravidelný měsíční finanční příspěvek byl zrušen. %1$s Váš odznak %2$s již není na vašem profilu viditelný.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Aplikaci Signal můžete používat i nadále, ale abyste ji podpořili a znovu aktivovali svůj odznak, obnovte nyní předplatné.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Obnovit předplatné</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Jít do Google Pay</string>
@@ -4804,20 +4804,20 @@
     <string name="DonationsErrors__your_badge_could_not_be_added">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
     <string name="DonationsErrors__your_payment">Vaše platba nemohla být zpracována a nebyla vám účtována. Zkuste to prosím znovu.</string>
     <string name="DonationsErrors__still_processing">Stále zpracovávám</string>
-    <string name="DonationsErrors__couldnt_add_badge">Nezdařilo se přidat odznak</string>
+    <string name="DonationsErrors__couldnt_add_badge">Odznak se nepodařilo přidat</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Nepodařilo se ověřit odznak</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Odznak se nepodařilo ověřit</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Nepodařilo se ověřit odpověď serveru. Kontaktujte prosím podporu.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Nepodařilo se odeslat dárkový odznak</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Dárkový odznak se nepodařilo odeslat</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Nelze odeslat dárkový odznak. Kontaktujte prosím podporu.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Dárkový odznak se nepodařilo odeslat. Kontaktujte prosím podporu.</string>
     <string name="DonationsErrors__your_badge_could_not">Váš odznak se nepodařilo přidat k vašemu účtu, ale platba pravděpodobně proběhla. Kontaktujte prosím podporu.</string>
     <string name="DonationsErrors__your_payment_is_still">Vaše platba se stále zpracovává. To může trvat několik minut v závislosti na vašem připojení.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay není dostupné</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musíte si nastavit Google Pay, abyste mohli přispět v rámci aplikace.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného selhalo</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Pro darování v aplikaci musíte nastavit službu Google Pay.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Zrušení předplatného se nepodařilo</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušení předplatného vyžaduje aktivní připojení k internetu.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zařízení nepodporuje službu Google Pay, takže se nemůžete přihlásit k odběru a získat odznak. Přesto můžete Signal podpořit příspěvkem na našich webových stránkách.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba sítě. Zkontrolujte připojení a zkuste to znovu.</string>
@@ -5045,9 +5045,9 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Sdílet doklad</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Pokud jste znovu nainstalovali aplikaci Signal, účtenky za předchozí dary nebudou k dispozici.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Pokud jste aplikaci Signal přeinstalovali, nebudou potvrzení o předchozích darech k dispozici.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Doklad o příspěvku</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Potvrzení o příspěvku</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Částka</string>
     <!-- Donation receipts thanks -->
@@ -5155,7 +5155,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Zatím žádná zobrazení</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Povolte potvrzení o přečtení, abyste viděli, kdo si prohlížel vaše příběhy.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Přejít do nastavení</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5424,7 +5424,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Darujte odznak</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Darujte někomu odznak tím, že jeho jménem přispějete na organizaci Signal. Dostane odznak, který se zobrazí na jeho profilové fotografii.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Darujte někomu odznak tím, že jeho jménem přispějete na službu Signal. Dostane odznak, který se zobrazí na jeho profilové fotografii.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Další</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5446,9 +5446,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Díky za vaši podporu!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Obdrželi jste dárkový odznak od %1$s! Pomozte společnosti Signal budovat povědomí tím, že si tento odznak zobrazíte na svém profilu.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Obdrželi jste dárkový odznak od %1$s! Pomozte službě Signal budovat povědomí o ní tím, že si tento odznak zobrazíte na svém profilu.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda si chce odznak zobrazit nebo skrýt.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda ho chce zobrazit nebo skrýt.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Uplatnit</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5456,9 +5456,9 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Uplatňují dárek…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Odznak můžete uplatnit později.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Svůj odznak můžete uplatnit později.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda si chce odznak zobrazit nebo skrýt.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Darovali jste odznak uživateli %1$s. Když jej přijme, dostane na výběr, zda ho chce zobrazit nebo skrýt.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Platnost vašeho dárkového odznaku vypršela</string>
     <!-- Expired gift sheet top description text -->
@@ -5839,10 +5839,10 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Přispějte %1$s aplikaci Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Získejte odznak %1$s na %2$d den</item>
+        <item quantity="few">Získejte odznak %1$s na %2$d dny</item>
+        <item quantity="many">Získejte odznak %1$s na %2$d dní</item>
+        <item quantity="other">Získejte odznak %1$s na %2$d dní</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kreditní nebo debetní karta</string>

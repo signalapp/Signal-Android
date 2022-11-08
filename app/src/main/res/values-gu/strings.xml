@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">સંપર્ક માહિતીને જોડવા માટે Signal ને સંપર્કોની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ મેનૂ પર ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"સંપર્કો\" સક્ષમ કરો.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">કોઈ સ્થળ જોડવા માટે Signal ને સ્થાનની પરવાનગીની જરૂર હોય છે, પરંતુ તે કાયમી ધોરણે નામંજૂર કરવામાં આવી છે. કૃપા કરીને એપ્લિકેશન સેટિંગ્સ મેનૂ પર ચાલુ રાખો, \"પરવાનગી\" પસંદ કરો અને \"સ્થાન\" સક્ષમ કરો.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$sએ પેમેન્ટ સક્રિય કરેલ નથી </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">શું તમે તેમને પેમેન્ટ સક્રિય કરવા માટે વિનંતી મોકલવા માંગો છો?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">વિનંતી મોકલો</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">રદ કરો</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">%1$d જોડાણો સેવ કરી રહ્યા છે</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">સ્ટોરેજમાં જોડાણ સેવ થઈ રહ્યાં છે...</item>
-        <item quantity="other">સ્ટોરેજમાં %1$d જોડાણો સેવ થઈ રહ્યાં છે...</item>
+        <item quantity="one">સ્ટોરેજમાં જોડાણ સેવ થઈ રહ્યાં છે…</item>
+        <item quantity="other">સ્ટોરેજમાં %1$d જોડાણો સેવ થઈ રહ્યાં છે…</item>
     </plurals>
     <string name="ConversationFragment_pending">બાકી</string>
     <string name="ConversationFragment_push">તારીખ (Signal)</string>
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s તરફથી મેસેજ પહોંચાડી શકાયો નથી</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$sએ તેમનો ફોન નંબર બદલ્યો.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">આ નવી સુવિધા ગમી? Signalને એક-વખતના યોગદાન સાથે સહયોગ આપવામાં મદદ કરો.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">આ નવી સુવિધા ગમી? Signalને એક-વખતના દાન સાથે સહયોગ આપવામાં મદદ કરો.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s સાથેની તમારી મેસેજ હિસ્ટ્રી અને તેમનો નંબર %2$s ભેગા કરી દેવામાં આવ્યા છે.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s સાથેની તમારી મેસેજ હિસ્ટ્રી અને તેમની સાથેની બીજી ચેટને ભેગી કરી દેવામાં આવી છે.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">તમે %1$sને પેમેન્ટ સક્રિય કરવા વિનંતી મોકલી</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ઇચ્છે છે કે તમે પેમેન્ટ સક્રિય કરો. તમને ભરોસો હોય તેવા લોકોને જ પેમેન્ટ મોકલો.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">તમે પેમેન્ટ સક્રિય કર્યું</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s હવે પેમેન્ટ સ્વીકારી શકે છે</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s એ ગ્રુપ કૉલ શરૂ કર્યો · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">આ મેસેજ કાઢી નાખ્યો હતો.</string>
     <string name="ThreadRecord_you_deleted_this_message">તમે આ મેસેજ કાઢી નાખ્યો.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">તમે પેમેન્ટ સક્રિય કરવા એક વિનંતી મોકલી</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ઇચ્છે છે કે તમે પેમેન્ટ સક્રિય કરો</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">તમે પેમેન્ટ સક્રિય કર્યું</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s હવે પેમેન્ટ સ્વીકારી શકે છે</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal પર છે|</string>
     <string name="ThreadRecord_disappearing_messages_disabled">અદૃશ્ય થઈ રહેલા સંદેશાઓ અક્ષમ છે</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">અદૃશ્ય થઈ રહેલા મેસેજ નો સમય %1$s પર સેટ કર્યો છે</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">રિકવરી ફ્રેઝ સેવ કરો</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">રિકવરી ફ્રેઝ દાખલ કરો</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">જો તમે તમારા Signal પિનની પુષ્ટિ કરો છો તો તમે Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારું બેલેન્સ આપોઆપ રિસ્ટોર થશે. તમે રિકવરી ફ્રેઝનો ઉપયોગ કરીને પણ તમારું બેલેન્સ રિસ્ટોર કરી શકો છો, જે તમારા માટે અનન્ય %1$d શબ્દોનો ફ્રેઝ છે. તેને લખીને સલામત સ્થળે સંગ્રહ કરો.</item>
+        <item quantity="other">જો તમે તમારા Signal પિનની પુષ્ટિ કરો છો તો તમે Signal ને ફરીથી ઇન્સ્ટોલ કરો ત્યારે તમારું બેલેન્સ આપોઆપ રિસ્ટોર થશે. તમે રિકવરી ફ્રેઝનો ઉપયોગ કરીને તમારું બેલેન્સ પણ રિસ્ટોર કરી શકો છો, જે તમારા માટે અનન્ય %1$d શબ્દોનો ફ્રેઝ છે. તેને લખીને સલામત સ્થળે સંગ્રહ કરો.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">તમને બેલેન્સ મળ્યું છે! સમય છે તમારા રિકવરી ફ્રેઝને સેવ કરવાનો — જે એક 24-શબ્દની કી છે અને તેનો ઉપયોગ તમે તમારું બેલેન્સ પુનઃસ્થાપિત કરવા માટે કરી શકો છો.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS મેસેજ દૂર કરો</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signalમાંથી SMS મેસેજ દૂર કરીએ છીએ...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signalમાંથી SMS મેસેજ દૂર કરીએ છીએ…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">તમે કોઈપણ સમયે સેટિંગ્સમાં Signalમાંથી SMS મેસેજ દૂર કરી શકો છો.</string>
     <!-- Description for export sms preference -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">હજી કોઈ દ્રશ્યો નથી</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">તમારી સ્ટોરી કોણે જોઈ છે તે જોવા વાંચી લીધાનું નિશાન સક્ષમ કરો.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">સેટિંગ્સ પર જાઓ</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal માટે %1$s નું દાન કરો</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">%2$d દિવસ માટે %1$s બૅજ મેળવો</item>
+        <item quantity="other">%2$d દિવસ માટે %1$s બૅજ મેળવો</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ક્રેડિટ અથવા ડેબિટ કાર્ડ</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">રદ કરી રહ્યાં છીએ...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">રદ કરી રહ્યાં છીએ…</string>
 
     <!-- EOF -->
 

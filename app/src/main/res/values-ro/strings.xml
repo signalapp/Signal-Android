@@ -107,11 +107,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal are nevoie de permisiunea pentru Contacte pentru a putea atașa informații despre contacte, dar i-a fost refuzat accesul permanent. Te rugăm continuă în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \"Contacte\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal are nevoie de permisiunea pentru Locație pentru a putea atașa o locație dar i-a fost refuzat accesul permanent. Te rugăm continuă în meniul de setări al aplicației, selectează \"Permisiuni\" și activează \'Locație\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s nu a activat Plățile </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Vrei să le trimitem o cerere pentru a activa Plățile?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Trimite cererea</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Anulează</string>
 
@@ -1478,13 +1478,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Istoricul mesajelor tale cu %1$s și altă conversație care le aparținea au fost unite.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">I-ai trimis lui %1$s o cerere de activare a Plăților</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vrea să activezi Plăți. Trimite plăți doar persoanelor în care ai încredere.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ai activat Plăți</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s poate să accepte acum Plăți</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s a început un apel de grup · %2$s</string>
@@ -1989,13 +1989,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Acest mesaj a fost șters.</string>
     <string name="ThreadRecord_you_deleted_this_message">Ai șters acest mesaj.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Ai trimis o cerere să activezi Plăți</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vrea să activezi Plăți</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ai activat Plăți</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s poate să accepte acum Plăți</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s folosește Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Dispariția mesajelor a fost dezactivată</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Timpul setat pentru dispariția mesajelor este de %1$s</string>
@@ -2362,7 +2362,7 @@
     <string name="ConversationUpdateItem_view">Vizualizare</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Timpul de dispariție a mesajului va fi setat la %1$s în momentul în care trimiți un mesaj.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Donați</string>
+    <string name="ConversationUpdateItem_donate">Donează</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Trimite plata</string>
     <!-- Update item button text to activate payments -->
@@ -2798,7 +2798,7 @@
     <string name="preferences__slow">Încet</string>
     <string name="preferences__help">Ajutor</string>
     <string name="preferences__advanced">Avansat</string>
-    <string name="preferences__donate_to_signal">Donați pentru Signal</string>
+    <string name="preferences__donate_to_signal">Donează pentru Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">Donație unică</string>
     <string name="preferences__privacy">Confidențialitate</string>
@@ -3056,7 +3056,7 @@
     <string name="PaymentsAllActivityFragment__received">Primit</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Îți prezentăm plăți (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Utilizează Signal pentru a trimite și primi MobileCoin, o nouă monedă digitală axată pe confidențialitate. Activează pentru a începe.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Folosește Signal și trimite și primește MobileCoin, o nouă monedă digitală axată pe confidențialitate. Activează pentru a începe.</string>
     <string name="PaymentsHomeFragment__activate_payments">Activare Plăți</string>
     <string name="PaymentsHomeFragment__activating_payments">Se activează plățile…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Restaurează contul de plăți</string>
@@ -4017,9 +4017,9 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Salvează fraza de recuperare</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Introdu fraza de recuperare</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Soldul tău va fi restituit automat când reinstalezi Signal dacă confirmi PIN-ul Signal. De asemenea îți poți recupera soldul utilizând o frază de recuperare, aceasta este formată din %1$d cuvânt și este unică pentru tine. Ar trebui să o scrii pe hârtie și să o păstrezi într-un loc sigur.</item>
+        <item quantity="few">Soldul tău va fi restituit automat când reinstalezi Signal dacă confirmi PIN-ul Signal. De asemenea îți poți recupera soldul utilizând o frază de recuperare, aceasta este formată din %1$d cuvinte și este unică pentru tine. Ar trebui să o scrii pe hârtie și să o păstrezi într-un loc sigur.</item>
+        <item quantity="other">Soldul tău va fi restituit automat când reinstalezi Signal dacă confirmi PIN-ul Signal. De asemenea îți poți recupera soldul utilizând o frază de recuperare, aceasta este formată din %1$d de cuvinte și este unică pentru tine. Ar trebui să o scrii pe hârtie și să o păstrezi într-un loc sigur.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Ai sold! E timpul să salvezi fraza de recuperare—o cheie de 24 de cuvinte pe care le poți folosi ca să restaurezi echilibrul.</string>
@@ -4324,7 +4324,7 @@
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal se bazează pe oameni ca tine. Donează lunar și vei primi o insignă.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Donați</string>
+    <string name="Donate2022Q2Megaphone_donate">Donează</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Nu acum</string>
 
@@ -4347,7 +4347,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal este susținut de oameni ca tine. Donează și primești o insignă.</string>
     <string name="BecomeASustainerMegaphone__not_now">Nu acum</string>
-    <string name="BecomeASustainerMegaphone__donate">Donați</string>
+    <string name="BecomeASustainerMegaphone__donate">Donează</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4603,7 +4603,7 @@
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Abonamentul tău a fost anulat.</string>
     <string name="SubscribeFragment__update_subscription_question">Actualizezi abonamentul?</string>
     <string name="SubscribeFragment__update">Actualizează</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Vei fi taxat astăzi cu prețul integral al noului abonament (%1$s). Abonamentul tău se va reînnoi lunar.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Vei fi taxat/ă astăzi cu prețul integral al noului abonament (%1$s). Abonamentul tău se va reînnoi lunar.</string>
 
     <string name="Subscription__s_per_month">%1$s/lună</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4613,7 +4613,7 @@
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal este o organizație non-profit, fără agenți de publicitate sau investitori, susținută doar de oamenii care o folosesc și o apreciază. Fă o donație lunară recurentă și primești o insignă de profil pentru a-ți împărtăși sprijinul.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">De ce să Donezi?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">De ce să donezi?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal este dedicat dezvoltării de tehnologii open source pentru confidențialitate care protejează libertatea de exprimare și permit o comunicare globală sigură</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Donația ta susține această cauză și plătește pentru dezvoltarea și funcționarea unei aplicații folosite de milioane de oameni pentru comunicații private. Fără reclame. Fără elemente de urmărire. Pe bune.</string>
 
@@ -5047,7 +5047,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Nicio vizualizare încă</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activează confirmările de citire ca să știi cine ți-a văzut poveștile.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Mergi la setări</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5716,9 +5716,9 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donează %1$s către Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Primește o insignă %1$s pentru %2$d zi</item>
+        <item quantity="few">Primește o insignă %1$s pentru %2$d zile</item>
+        <item quantity="other">Primește o insignă %1$s pentru %2$d de zile</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Card de credit sau debit</string>

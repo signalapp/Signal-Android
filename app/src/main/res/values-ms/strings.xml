@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal memerlukan kebenaran Kenalan untuk melampirkan maklumat hubungan, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Kenalan\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal memerlukan kebenaran Lokasi untuk melampirkan lokasi, tetapi telah ditolak secara kekal. Sila terus ke menu tetapan aplikasi, pilih \"Kebenaran\", dan dayakan \"Lokasi\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s belum mengaktifkan Pembayaran </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Adakah anda mahu menghantar permintaan kepada mereka untuk mengaktifkan Pembayaran?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Hantar permintaan</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Batal</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Sejarah mesej anda dengan %1$s dan sembang lain milik mereka telah digabungkan.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Anda telah meminta %1$s untuk mengaktifkan Pembayaran</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s mahu anda mengaktifkan Pembayaran. Hanya hantar pembayaran kepada orang yang anda percaya.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Anda telah mengaktifkan Pembayaran</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s kini boleh menerima Pembayaran</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s telah memulakan panggilan kumpulan · %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Mesej ini telah dipadam.</string>
     <string name="ThreadRecord_you_deleted_this_message">Anda memadam mesej ini.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Anda telah menghantar permintaan untuk mengaktifkan Pembayaran</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s mahu anda mengaktifkan Pembayaran</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Anda telah mengaktifkan Pembayaran</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s kini boleh menerima Pembayaran</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s ada di Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Mesej hilang dinyahdayakan</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempoh masa mesej hilang ditetapkan kepada %1$s</string>
@@ -2626,7 +2626,7 @@
     <string name="preferences__slow">Lambat</string>
     <string name="preferences__help">Bantu</string>
     <string name="preferences__advanced">Lanjutan</string>
-    <string name="preferences__donate_to_signal">Sumbang kepada Signal</string>
+    <string name="preferences__donate_to_signal">Derma kepada Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">Derma Sekali</string>
     <string name="preferences__privacy">Privasi</string>
@@ -2884,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">Diterima</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Memperkenalkan pembayaran (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gunakan Signal untuk menghantar dan menerima MobileCoin, mata wang digital yang tertumpu pada privasi. Aktifkan untuk memulakan.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Gunakan Signal untuk menghantar dan menerima MobileCoin, mata wang digital yang mementingkan privasi. Aktifkan untuk bermula.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktifkan Pembayaran</string>
     <string name="PaymentsHomeFragment__activating_payments">Mengaktifkan pembayaran…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Pulihkan akaun pembayaran</string>
@@ -3784,7 +3784,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Mengenai MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin merupakan mata wang digital yang tertumpu pada privasi.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin merupakan mata wang digital yang mementingkan privasi.</string>
     <string name="payment_info_card_adding_funds">Menambah dana</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Anda boleh menambah dana untuk digunakan dalam Signal dengan menghantar MobileCoin ke alamat dompet anda.</string>
     <string name="payment_info_card_cashing_out">Mengeluarkan wang</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Masukkan frasa pemulihan</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Baki anda akan dipulihkan secara automatik apabila anda memasang semula Signal dan mengesahkan PIN Signal anda. Anda juga dapat memulihkan baki anda menggunakan frasa pemulihan, yang merupakan frasa %1$d perkataan yang unik untuk anda. Catatkannya dan simpan di tempat yang selamat.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Anda mempunyai baki! Masa untuk menyimpan frasa pemulihan anda—kunci 24 perkataan yang anda boleh gunakan untuk menyimpan baki anda.</string>
@@ -4120,9 +4120,9 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Pemilih tepi bawah</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Sumbang kepada Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Derma kepada Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang-orang seperti anda. Beri sumbangan setiap bulan dan terima lencana.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal dikuasakan oleh orang-orang seperti anda. Beri derma setiap bulan dan terima lencana.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Derma</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4202,7 +4202,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Perbualan diredam selama-lamanya</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Nombor telefon telah disalin ke papan keratan.</string>
     <string name="ConversationSettingsFragment__phone_number">Nombor telefon</string>
-    <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal. Tekan pada lencana untuk mempelajari lebih lanjut.</string>
+    <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana untuk profil anda dengan menyokong Signal. Tekan pada lencana untuk mengetahui lebih lanjut.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Tambah ahli</string>
@@ -4384,7 +4384,7 @@
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Teknologi sokongan yang dibina untuk anda—bukan untuk data anda—dengan menyertai komuniti orang yang mengekalkannya.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Sokong teknologi yang dibina untuk anda, bukan untuk data anda, dengan menyertai komuniti yang memelihara Signal.</string>
-    <string name="SubscribeFragment__currency">Matawang</string>
+    <string name="SubscribeFragment__currency">Mata Wang</string>
     <string name="SubscribeFragment__more_payment_options">Lebih Banyak Pilihan Pembayaran</string>
     <string name="SubscribeFragment__cancel_subscription">Batal Langganan</string>
     <string name="SubscribeFragment__confirm_cancellation">Sahkan Pembatalan?</string>
@@ -4392,8 +4392,8 @@
     <string name="SubscribeFragment__not_now">Bukan sekarang</string>
     <string name="SubscribeFragment__confirm">Sahkan</string>
     <string name="SubscribeFragment__update_subscription">Kemas Kini Langganan</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan anda telah dibatalkan</string>
-    <string name="SubscribeFragment__update_subscription_question">Kemas kini langganan</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan anda telah dibatalkan.</string>
+    <string name="SubscribeFragment__update_subscription_question">Kemas kini langganan?</string>
     <string name="SubscribeFragment__update">Kemas Kini</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan jumlah penuh (%1$s) daripada harga langganan baharu hari ini. Langganan anda akan diperbaharui setiap bulan.</string>
 
@@ -4404,15 +4404,15 @@
     <string name="Subscription__expires_s">Tamat tempoh pada %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal adalah tanpa untung dengan tiada pengiklan atau pelabur, ditampung oleh orang yang menggunakan dan menghargainya. Buat derma bulanan berulang dan terima lencana profil untuk berkongsi sokongan anda.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal adalah aplikasi tidak berasaskan keuntungan, tanpa pengiklan atau pelabur, ditampung oleh orang yang menggunakan dan menghargainya. Buat derma bulanan secara berulang dan terima lencana profil sebagai tanda sokongan anda.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Mengapa Menderma?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal komited untuk membangunkan teknologi privasi sumber terbuka yang melindungi ungkapan bebas dan membolehkan komunikasi global yang selamat.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Derma anda menampung tujuan ini dan membayar perkembangan dan operasi aplikasi yang digunakan oleh berjuta orang untuk komuikasi peribadi. Tiada iklan. Tiada penjejak. Tiada penipuan.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Derma anda menampung tujuan ini dan membayar pembangunan dan operasi aplikasi yang digunakan oleh berjuta orang untuk komunikasi peribadi. Tiada iklan. Tiada penjejak. Tiada penipuan.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih atas Sokongan anda!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Boost!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Anda telah menerima lencana %1$s! Paparkan lencana ini pada profil anda untuk membina kesedaran kerana menderma kepada Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Anda telah menerima lencana Boost! Paparkan lencana ini pada profil anda untuk membina kesedaran kerana menderma kepada Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Anda telah menerima lencana %1$s! Paparkan lencana ini pada profil anda bagi membina kesedaran untuk menderma kepada Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Anda telah menerima lencana Boost! Paparkan lencana ini pada profil anda bagi membina kesedaran untuk menderma kepada Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga boleh</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">jadilah Sustainer bulanan.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pamerkan di Profil</string>
@@ -4424,7 +4424,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah organisasi bukan untung tanpa pengiklan atau pelabur, hanya disokong oleh orang ramai seperti anda.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Sumbang kepada Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Derma kepada Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Lagi</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4459,7 +4459,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Derma Bulanan Dibatalkan</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost anda telah tamat tempoh dan tidak lagi kelihatan pada profil anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda boleh mengaktifkan semula lencana Boost anda selama 30 hari lagi dengan satu sumbangan derma.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda boleh mengaktifkan semula lencana Boost anda selama 30 hari lagi dengan satu derma.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Anda masih boleh menggunakan Signal untuk menyokong teknologi yang dibina untuk anda, pertimbangkan untuk menjadi penderma dengan membuat derma bulanan.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Sustainer</string>
@@ -4470,8 +4470,8 @@
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Derma bulanan berulang anda telah dibatalkan kerana kami tidak boleh memproses pembayaran anda. Lencana anda tidak lagi kelihatan pada profil anda.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Derma bulanan berulang anda telah dibatalkan.%1$s lencana %2$s anda tidak lagi kelihatan pada profil anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal tetapi untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Derma bulanan berulang anda telah dibatalkan. %1$s Lencana %2$s anda tidak lagi kelihatan pada profil anda.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda boleh terus menggunakan Signal untuk menyokong aplikasi dan mengaktifkan semula lencana anda, sila perbaharui sekarang.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbaharui langganan</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pergi ke Google Pay</string>
@@ -4489,25 +4489,25 @@
     <string name="DonationsErrors__error_processing_payment">Ralat memproses pembayaran</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Ralat memproses pembayaran. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi pusat bantuan.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi sokongan.</string>
     <string name="DonationsErrors__your_payment">Pembayaran anda tidak dapat diproses dan anda belum dicaj. Sila cuba lagi.</string>
     <string name="DonationsErrors__still_processing">Masih sedang diproses</string>
     <string name="DonationsErrors__couldnt_add_badge">Tidak dapat menambah lencana</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Gagal untuk mengesahkan lencana</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Gagal mengesahkan lencana</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Tidak boleh mengesahkan respons pelayan. Sila hubungi sokongan.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Gagal menghantar lencana hadiah</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">Tidak boleh menghantar lencana hadiah. Sila hubungi sokongan.</string>
-    <string name="DonationsErrors__your_badge_could_not">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi pusat bantuan.</string>
+    <string name="DonationsErrors__your_badge_could_not">Lencana anda tidak dapat ditambahkan ke akaun anda, tetapi anda mungkin telah dikenakan bayaran. Sila hubungi sokongan.</string>
     <string name="DonationsErrors__your_payment_is_still">Bayaran anda masih diproses. Ini boleh mengambil masa beberapa minit bergantung kepada sambungan anda.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda perlu memasang Google Pay untuk menderma dalam aplikasi.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Peranti anda tidak menyokong penggunaan Google Pay, oleh itu anda tidak boleh melanggan untuk mendapatkan lencana. Anda masih boleh menyokong Signal dengan memberikan derma di halaman web kami.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Peranti anda tidak menyokong penggunaan Google Pay, oleh itu anda tidak boleh melanggan untuk mendapatkan lencana. Anda masih boleh menyokong Signal dengan menderma di laman web kami.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ralat rangkaian. Periksa sambungan anda dan cuba lagi.</string>
     <string name="NetworkFailure__retry">Cuba Semula</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4730,7 +4730,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Kongsi resit</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Jika anda telah menyahpasang Signal, resit daripada derma terdahulu tidak akan tersedia.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Jika anda memasang semula Signal, resit daripada derma terdahulu tidak akan tersedia.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Resit derma</string>
     <!-- Donation receipts amount title -->
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Tiada tontonan lagi</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Dayakan resit baca untuk lihat siapa yang telah menonton cerita anda.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Pergi ke tetapan</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5085,7 +5085,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Hadiahkan Lencana</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Hadiahkan seseorang lencana dengan membuat derma kepada Signal atas nama mereka. Mereka akan menerima lencana untuk dipaparkan pada foto profil mereka.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Hadiahkan lencana kepada seseorang dengan menderma kepada Signal atas nama mereka. Mereka akan menerima lencana untuk dipaparkan pada foto profil mereka.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Seterusnya</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5109,7 +5109,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Anda telah menerima lencana hadiah daripada %1$s! Bantu Signal untuk membina kesedaran dengan memaparkan lencana ini pada profil anda.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima, mereka akan diberikan pilihan untuk menunjukkan atau menyembunyikan lencana mereka.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima lencana, mereka boleh memilih untuk menunjukkan atau menyembunyikan lencana mereka.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Tebus</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5119,7 +5119,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Anda boleh menebus lencana anda nanti.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima, mereka akan diberikan pilihan untuk menunjukkan atau menyembunyikan lencana mereka.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah menghadiahkan lencana kepada %1$s. Apabila mereka menerima lencana, mereka boleh memilih untuk menunjukkan atau menyembunyikan lencana mereka.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Lencana hadiah anda telah tamat tempoh</string>
     <!-- Expired gift sheet top description text -->
@@ -5470,7 +5470,7 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Derma %1$s kepada Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">Dapatkan lencana %1$s selama %2$d hari</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kad kredit atau debit</string>

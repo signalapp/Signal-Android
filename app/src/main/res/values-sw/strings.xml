@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal inahitaji idhini ya Mawasiliano ili kuunganisha maelezo ya mawasiliano, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Mawasiliano\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal inahitaji ruhusa ya Eneo ili kuunganisha mahali, lakini imekataliwa kabisa. Tafadhali endelea kwenye orodha ya mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Eneo\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s hajaamilisha Malipo </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Unataka kuwatumia maombi ili waamilishe Malipo?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Tuma maombi</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Ghairi</string>
 
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ujumbe kutoka %1$s haukuweza kuwasilishwa</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s amebadili namba yake ya simu.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Umependelea kipengele hiki kipya? Saidia kuiunga mkono Signal na mchango wa mara moja.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Umependelea kipengele hiki kipya? Saidia kuiunga mkono Signal kwa mchango wa mara moja.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Historia ya jumbe zako na %1$s na nambari zao %2$s zimeunganishwa.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Historia ya jumbe zako na %1$s na gumzo lao lingine zimeunganishwa.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Umemtumia %1$s ombi la kuamilisha Malipo</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s anataka kuamilisha Malipo. Tuma malipo kwa watu unaowaamini tu.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Umeamilisha Malipo</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s sasa anaweza kupokea Malipo</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ameanzisha mazungumzo ya simu ya kikundi · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ujumbe huu umefutwa</string>
     <string name="ThreadRecord_you_deleted_this_message">Umefuta ujumbe huu.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Umemtumia ombi la kuamilisha Malipo</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s anataka kuamilisha Malipo</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Umeamilisha Malipo</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s sasa anaweza kupokea Malipo</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s yupo Signal</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Jumbe zinazopotea zimelemazwa</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Muda wa jumbe zinazopotea umewekwa kwa 1%1$s</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Sasisha Signal ili kuendelea kutumia malipo. Salio lako linaweza lisiwe la hivi sasa.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Sasisha sasa</string>
 
@@ -2970,7 +2970,7 @@
     <string name="PaymentsAllActivityFragment__received">Umepokewa</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Tunakuletea malipo (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Tumia Signal kutuma na kupokea MobileCoin, sarafu mpya dijitali inayozingatia faragha. Wezesha ili uanze.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Tumia Signal kutuma na kupokea MobileCoin, sarafu mpya ya kidijitali inayozingatia faragha. Wezesha ili uanze.</string>
     <string name="PaymentsHomeFragment__activate_payments">Wezesha Malipo</string>
     <string name="PaymentsHomeFragment__activating_payments">Unawezesha malipo…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Rejesha akaunti ya malipo</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Sio kwa Sasa</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Sasisho linahitajika</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Sasisho linahitajika ili kuendelea kutuma na kupokea malipo, na kuangalia salio lako la hivi sasa.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Ghairi</string>
     <!-- Alert dialog button to update now -->
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">Kuhusu MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ni sarafu mpya dijitali inayozingatia faragha.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin ni sarafu mpya ya kidijitali inayozingatia faragha.</string>
     <string name="payment_info_card_adding_funds">Kuongeza fedha</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Unaweza kuongeza pesa za matumizi katika Signal kwa kutuma MobileCoin kwenye anwani yako ya mkoba.</string>
     <string name="payment_info_card_cashing_out">Kutoa pesa</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Hifadhi sentensi ya urejesho</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Weka maneno ya kurejesha</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Salio lako litarejeshwa kiotomatiki utakaposakinisha tena Signal ikiwa utathibitisha PIN yako ya Signal. Unaweza pia kurejesha salio lako ukitumia maneno ya kurejesha, ambayo ni maneno %1$d-maalum kwako. Liandike na ulihifadhi mahali salama.</item>
+        <item quantity="other">Salio lako litarejeshwa kiotomatiki utakaposakinisha tena Signal ikiwa utathibitisha PIN yako ya Signal. Unaweza pia kurejesha salio lako ukitumia maneno ya kurejesha, ambayo ni maneno %1$d maalum kwako. Yaandike na kuyahifadhi mahali salama.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Una salio! Muda wa kuhifadhi kauli yako ya urejesho—neno siri lenye maneno 24 unaloweza kutumia kurejesha salio lako.</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Mazungumzo yamenyamazishwa daima</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Umenakili nambari ya simu kwenye ubao wa kunakili.</string>
     <string name="ConversationSettingsFragment__phone_number">Nambari ya simu</string>
-    <string name="ConversationSettingsFragment__get_badges">Pata beji z wasifu wako kwa kuiunga mkono Signal. Bonyeza beji ili kujifunza zaidi.</string>
+    <string name="ConversationSettingsFragment__get_badges">Pata beji za wasifu wako kwa kuiunga mkono Signal. Bonyeza beji ili kujifunza zaidi.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Ongeza wanachama</string>
@@ -4499,7 +4499,7 @@
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Usajili wako umeghairiwa.</string>
     <string name="SubscribeFragment__update_subscription_question">Sasisha usajili wako?</string>
     <string name="SubscribeFragment__update">Sasisha</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Utatozwa kiwango chote (%1$s) cha bei ya usajili mpya leo. Usajili wako utahuishwa upya kila mwezi.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Utatozwa kiwango kamili (%1$s) cha bei ya usajili mpya leo. Usajili wako utahuishwa upya kila mwezi.</string>
 
     <string name="Subscription__s_per_month">%1$s/mwezi</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4508,10 +4508,10 @@
     <string name="Subscription__expires_s">Inakwisha muda %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ni bila faida, haina matangazo au wawekezaji, inachangiwa tu na watu wanaoitumia na kuithamini. Toa mchango wa kila mwezi na upate beji katika wasifu wako ili kushiriki kutuunga mkono.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal ni shirika lisilo la kibiashara, halina matangazo au wawekezaji, linaendelezwa tu na watu wanaoitumia na kuithamini. Toa mchango wa kila mwezi na upate beji katika wasifu wako ili kushiriki kutuunga mkono.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Kwa Nini Uchangie?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal imedhamiria kutengeneza teknolojia ya faragha ya chanzo wazi inayolinda kujieleza kwa uhuru na kuwezesha mawasiliano salama duniani kote.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mchango wako huchochea mradi huu na hulipia utengenezaji na uendeshaji wa programu inayotumiwa na mamilioni kwa ajili ya mawasiliano ya faragha. Hamna matangazo. Hakuna wafuatilizi. Hakuna kutania.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Mchango wako huchochea mradi huu na hulipia utengenezaji na uendeshaji wa programu inayotumiwa na mamilioni kwa ajili ya mawasiliano ya faragha. Hamna matangazo. Hakuna wafuatilizi. Hakuna utani.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Asante kwa kutuunga mkono!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Asante kwa Boost!</string>
@@ -4520,9 +4520,9 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Unaweza pia</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Kuwa Mfadhili wa kila mwezi.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Onyesha kwenye Wasifu</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Tengeneza Beji ya inayoangaziwa</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Tengeneza Beji inayoangaziwa</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Endelea</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Unapokuwa na zaidi ya beji moja, unaweza kachagua moja ya kuangazia ili wengine waione kwenye wasifu wako.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Unapokuwa na zaidi ya beji moja, unaweza kuchagua moja ya kuangazia ili wengine waione kwenye wasifu wako.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Pata beji za wasifu wako kwa kuiunga mkono Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ni bila faida, bila matangazo au wawekezaji, inawezeshwa na watu kama wewe.</string>
@@ -4554,27 +4554,27 @@
     <string name="MySupportPreference__renews_s">Kuhuishwa %1$s</string>
     <string name="MySupportPreference__processing_transaction">Inachakata muamala…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Imeshindwa kuongeza beji.%1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Imeshindwa kuongeza beji. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Tafadhali wasiliana na Msaada.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Beji ya Boost imekwisha muda</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Beji ya Boost Imekwisha Muda</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Mchango wa Kila Mwezi Umeghairishwa</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Beji yako ya Boost imekwisha muda na haionekani tena kwenye wasifu wako.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Unaweza kuanzisha upya beji yako ya Boost kwa siku zingine 30 kwa mchango wa mara moja.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Unaweza kuamilisha tena beji yako ya Boost kwa siku zingine 30 kwa mchango wa mara moja.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Unaweza kuendelea kutumia Signal lakini ili kuunga mkono teknolojia iliyotengenezwa kwa ajili yako, zingatia kuwa mfadhili kwa kutoa mchango wa kila mwezi.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Kuwa Mfadhili</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Ongeza Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Sio sasa</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Mchango wako wa kila mwezi umeghairishwa kwa sababu umekuwa kimya kwa muda mrefu. Beji yako ya %1$s haionekani tena kwenye wasifu wako.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Mchango wako wa kujirudia kila mwezi umeghairishwa kiotomatiki kwa sababu umekuwa kimya kwa muda mrefu. Beji yako ya %1$s haionekani tena kwenye wasifu wako.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Mchango wako wa kujirudia rudia kila mwezi umeghairishwa kwa sababu tumeshindwa kuchakata malipo yako. Beji yako haionekani tena kwenye wasifu wako.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Mchango wako wa kujirudia kila mwezi umeghairishwa kwa sababu tumeshindwa kuchakata malipo yako. Beji yako haionekani tena kwenye wasifu wako.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Mchango wako wa kujirudia kila mwezi umeghairishwa. %1$s beji yako ya %2$s haionekani tena kwenye wasifu wako.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Mchango wako wa kujirudia kila mwezi umeghairishwa. %1$s Beji yako ya %2$s haionekani tena kwenye wasifu wako.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Unaweza kuendelea kutumia Signal lakini ili kuunga mkono programu na kuanzisha upya beji yako, itengeneze upya sasa.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Tengeneza upya usajili wako</string>
     <!-- Button label to send user to Google Pay website -->
@@ -4608,7 +4608,7 @@
     <string name="DonationsErrors__your_badge_could_not">Beji yako haijaweza kuongezwa kwenye akaunti yako, lakini huenda ukawa umetozwa. Tafadhali wasiliana na msaada.</string>
     <string name="DonationsErrors__your_payment_is_still">Malipo yako yangali yanachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemea muunganisho wa mtandao wako.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Haipatikani</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ni lazima uwe na Google Pay ili kuichangia ndani ya programu.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ni lazima uwe na Google Pay ili kuchangia ndani ya programu.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Imeshindwa kughairi usajili</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Kughairi usajili kunahitaji muunganisho wa mtandao.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Kifaa chako hakiegemezi Google Pay, kwa hivyo huwezi kujiandikisha ili kupata beji. Unaweza kuiunga mkono Signal kwa kutoa mchango kwenye tovuti yetu.</string>
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Hakuna watazamaji bado</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Wezesha risiti za kusoma kuona nani ameangalia stori zako.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Nenda kwenye mipangilio</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Changia %1$s kwa Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Pata beji ya %1$s kwa siku %2$d</item>
+        <item quantity="other">Pata beji za %1$s kwa siku %2$d</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kadi ya mkopo au fedha taslimu</string>

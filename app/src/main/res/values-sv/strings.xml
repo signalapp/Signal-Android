@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s har inte aktiverat betalningar </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Vill du skicka hen en begäran om att aktivera betalningar?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Skicka begäran</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Avbryt</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Din meddelandehistorik med %1$s och en annan chatt som tillhörde dem har slagits samman.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Du har skickat en begäran till %1$s om att aktivera betalningar</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vill att du ska aktivera betalningar. Skicka bara betalningar till personer du litar på.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Du har aktiverat betalningar</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s kan nu ta emot betalningar</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Detta meddelande togs bort.</string>
     <string name="ThreadRecord_you_deleted_this_message">Du tog bort detta meddelande.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Du har skickat en begäran om att aktivera betalningar</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vill att du aktiverar betalningar</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Du har aktiverat betalningar</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s kan nu ta emot betalningar</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s finns på Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %1$s</string>
@@ -2598,7 +2598,7 @@
         <item>Återkoppling</item>
         <item>Övrigt</item>
         <item>Betalningar (MobileCoin)</item>
-        <item>Donationer &amp; märken</item>
+        <item>Donationer och märken</item>
         <item>Sms-export</item>
     </string-array>
 
@@ -2983,7 +2983,7 @@
     <string name="PaymentsHomeFragment__sent_s">Skickat %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Mottagen %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Överför till växling</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Valutaväxling</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Valutaomvandling</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Inaktivera betalningar</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Återställningsfras</string>
     <string name="PaymentsHomeFragment__help">Hjälp</string>
@@ -2992,7 +2992,7 @@
     <string name="PaymentsHomeFragment__received_payment">Mottagen betalning</string>
     <string name="PaymentsHomeFragment__processing_payment">Bearbetar betalning</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomvandling inte tillgängligt</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomvandling är inte tillgängligt</string>
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">Det går inte att visa valutaomvandling. Kontrollera din telefons anslutning och försök igen.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalningar är inte tillgängliga i din region.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Det gick inte att aktivera betalningar. Försök igen senare.</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Tar bort konto…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutar ditt abonnemang…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutar ditt abonnemang …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Beroende på antalet grupper du är med i kan detta ta några minuter</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Spara återställningsfras</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ange återställningsfras</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Ditt saldo återställs automatiskt när du ominstallerar Signal om du bekräftar din Signal-pinkod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</item>
+        <item quantity="other">Ditt saldo återställs automatiskt när du ominstallerar Signal om du bekräftar din Signal-pinkod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du har ett saldo. Det är dags att spara din återställningsfras – en nyckel på 24 ord som du kan använda för att återställa saldot.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Ta bort sms</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Tar bort sms från Signal ...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Tar bort sms från Signal …</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Du kan när som helst ta bort sms från Signal i Inställningar.</string>
     <!-- Description for export sms preference -->
@@ -4245,7 +4245,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en upprätthållare</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drivs av människor som du. Bidra och få ett märke.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drivs av människor som du. Donera och få ett märke.</string>
     <string name="BecomeASustainerMegaphone__not_now">Inte nu</string>
     <string name="BecomeASustainerMegaphone__donate">Donera</string>
 
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierat telefonnummer till urklipp.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
-    <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att lära dig mer.</string>
+    <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att läsa mer.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
@@ -4516,7 +4516,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått %1$s märket! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått ett Boost märke! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått ett Boost-märke! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan också</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en månatlig upprätthållare.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Visa på profilen</string>
@@ -4540,7 +4540,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Donationskvitton</string>
     <string name="ManageDonationsFragment__badges">Märken</string>
     <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om abonnemang</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att hämta prenumerationen.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Andra sätt att ge</string>
     <!-- Preference label to launch badge gifting -->
@@ -4549,7 +4549,7 @@
     <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
     <string name="Boost__one_time_contribution">Engångsbidrag</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal Boost</string>
+    <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/månad</string>
     <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
     <string name="MySupportPreference__processing_transaction">Bearbetar transaktion…</string>
@@ -4558,24 +4558,24 @@
     <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost märke gick ut</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-märket har upphört att gälla</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månatlig donation avbruten</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ditt Boost märke har gått ut och är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ditt Boost-märke har upphört att gälla och är inte längre synligt på din profil.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsätta att använda Signal men för att stöda teknik byggd för dig, överväg att bli en upprätthållare genom att göra en månatlig donation.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsätta att använda Signal men för att stödja teknik byggd för dig, överväg att bli en upprätthållare genom att göra en månatlig donation.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din månatliga donation var automatiskt avbruten för att du var inaktiv för länge. Ditt %1$s märke är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din återkommande månatliga donation avbröts automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke visas inte längre i din profil.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din månatliga donation var avbruten för att vi inte kunde bearbeta din betalning. Ditt märke är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din återkommande månatliga donation avbröts eftersom vi inte kunde behandla din betalning. Ditt märke visas inte längre i din profil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Din återkommande månatliga donation avbröts. %1$s Ditt %2$s-märke är inte längre synligt på din profil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stödja appen och återaktivera ditt märke, förnya nu.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Gå till Google Pay</string>
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Inga visningar ännu</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivera läskvitton för att se vem som har visat dina stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Gå till inställningar</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,14 +5593,14 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donera %1$s till Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Få ett %1$s-märke i %2$d dag</item>
+        <item quantity="other">Få ett %1$s-märke i %2$d dagar</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Betalkort</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Avbryter ...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Avbryter …</string>
 
     <!-- EOF -->
 

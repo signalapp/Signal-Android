@@ -108,11 +108,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal wymaga pozwolenia na dostęp do kontaktów w celu dołączenia informacji o kontaktach, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal wymaga pozwolenia na dostęp do lokalizacji w celu załączenia lokalizacji w wiadomościach, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Lokalizacja\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s nie aktywował(a) płatności </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Wysłać tej osobie prośbę o aktywację płatności?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Wyślij prośbę</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Anuluj</string>
 
@@ -449,10 +449,10 @@
         <item quantity="other">Zapisywanie %1$d załączników</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Zapisywanie załącznika na dysku...</item>
-        <item quantity="few">Zapisywanie %1$d załączników na dysku...</item>
-        <item quantity="many">Zapisywanie %1$d załączników na dysku...</item>
-        <item quantity="other">Zapisywanie %1$d załączników na dysku...</item>
+        <item quantity="one">Zapisywanie załącznika na dysku…</item>
+        <item quantity="few">Zapisywanie %1$d załączników na dysku…</item>
+        <item quantity="many">Zapisywanie %1$d załączników na dysku…</item>
+        <item quantity="other">Zapisywanie %1$d załączników na dysku…</item>
     </plurals>
     <string name="ConversationFragment_pending">Oczekiwanie…</string>
     <string name="ConversationFragment_push">Dane (Signal)</string>
@@ -1536,13 +1536,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Twoja historia wiadomości z %1$s i należącą do niego/niej inną rozmową została połączona.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">%1$s otrzymał(a) od Ciebie prośbę o aktywację płatności</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s prosi Cię o aktywację płatności. Wysyłaj płatności tylko zaufanym osobom.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Aktywowano płatności</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">Od teraz %1$s przyjmuje płatności</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s rozpoczął(ęła) połączenie grupowe · %2$s</string>
@@ -2062,13 +2062,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ta wiadomość została usunięta.</string>
     <string name="ThreadRecord_you_deleted_this_message">Skasowałeś(aś) tę wiadomość.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Wysłano prośbę o aktywację płatności</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s prosi Cię o aktywację płatności</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Aktywowano płatności</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">Od teraz %1$s przyjmuje płatności</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s jest w Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Znikające wiadomości zostały wyłączone</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Czas znikania wiadomości ustawiony na %1$s</string>
@@ -2440,7 +2440,7 @@
     <string name="ConversationUpdateItem_view">Zobacz</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Czas znikania wiadomości będzie ustawiony na %1$s, gdy wyślesz wiadomość.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Podaruj</string>
+    <string name="ConversationUpdateItem_donate">Wpłać darowiznę</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Wyślij płatność</string>
     <!-- Update item button text to activate payments -->
@@ -2884,9 +2884,9 @@
     <string name="preferences__slow">Wolno</string>
     <string name="preferences__help">Pomoc</string>
     <string name="preferences__advanced">Zaawansowane</string>
-    <string name="preferences__donate_to_signal">Datek na Signal</string>
+    <string name="preferences__donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Datek jednorazowy</string>
+    <string name="preferences__one_time_donation">Jednorazowa darowizna</string>
     <string name="preferences__privacy">Prywatność</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Relacje</string>
@@ -4114,10 +4114,10 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Zapisz frazę odzyskiwania</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Podaj hasło odzyskiwania</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="few">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="many">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$d słowa, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</item>
+        <item quantity="few">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$d słów, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</item>
+        <item quantity="many">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$d słów, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</item>
+        <item quantity="other">Twoje konto zostanie automatycznie przywrócone przy ponownej instalacji Signal, jeśli potwierdzisz swój PIN Signal. Możesz też przywrócić swoje środki, używając hasła odzyskiwania, które jest Twoim, złożonym z %1$d słów, unikalnym hasłem. Zapisz je i przechowuj w bezpiecznym miejscu.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Masz równowagę! Czas zapisać frazę odzyskiwania — 24-wyrazowy klucz, którego możesz użyć do przywrócenia równowagi.</string>
@@ -4420,11 +4420,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Dolny selektor</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Datek na Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim, jak Ty. Przekaż comiesięczny datek i otrzymaj odznakę.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal funkcjonuje dzięki ludziom takim, jak Ty. Przekaż comiesięczną darowiznę i otrzymaj odznakę.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Podaruj</string>
+    <string name="Donate2022Q2Megaphone_donate">Wpłać darowiznę</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Nie teraz</string>
 
@@ -4447,7 +4447,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal funkcjonuje dzięki ludziom takim, jak Ty. Wesprzyj nas i otrzymaj odznakę.</string>
     <string name="BecomeASustainerMegaphone__not_now">Nie teraz</string>
-    <string name="BecomeASustainerMegaphone__donate">Podaruj</string>
+    <string name="BecomeASustainerMegaphone__donate">Wpłać darowiznę</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emotikony</string>
@@ -4700,7 +4700,7 @@
     <string name="SubscribeFragment__more_payment_options">Więcej opcji płatności</string>
     <string name="SubscribeFragment__cancel_subscription">Anuluj subskrypcję</string>
     <string name="SubscribeFragment__confirm_cancellation">Potwierdzić anulowanie?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Nie zostaną pobrane od Ciebie żadne, kolejne środki. Twoja odznaka zostanie usunięta z Twojego profilu, wraz z końcem okresu rozliczeniowego.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Nie zostaną pobrane od Ciebie żadne, kolejne środki. Twoja odznaka zostanie usunięta z Twojego profilu wraz z końcem okresu rozliczeniowego.</string>
     <string name="SubscribeFragment__not_now">Nie teraz</string>
     <string name="SubscribeFragment__confirm">Potwierdź</string>
     <string name="SubscribeFragment__update_subscription">Uaktualnij subskrypcję</string>
@@ -4716,27 +4716,27 @@
     <string name="Subscription__expires_s">Wygasa %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi, którzy używają i cenią naszą aplikację. Rozpocznij subskrypcję z comiesięczną opłatą, aby otrzymać odznakę profilową, dzięki której pochwalisz się swoim wsparciem.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Po co składać datek?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi, którzy używają i cenią naszą aplikację. Rozpocznij subskrypcję z comiesięczną darowizną, aby otrzymać odznakę profilową, dzięki której pochwalisz się swoim wsparciem.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Po co wpłacać darowiznę?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal jest oddany misji rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Twoja dotacja pomoże tej sprawie i pozwoli opłacić dalszy rozwój i funkcjonowanie aplikacji, której miliony osób na całym świecie używają do prywatnej komunikacji. Bez reklam. Bez śledzenia. Bez ściemy.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Twoja darowizna pomoże naszej sprawie i pozwoli opłacić dalszy rozwój i funkcjonowanie aplikacji, której miliony osób na całym świecie używają do prywatnej komunikacji. Bez reklam. Bez śledzenia. Bez ściemy.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dziękujemy za datek!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Otrzymałeś(aś) odznakę %1$s! Wyświetl ją na swoim profilu, aby budować świadomość możliwości składania datków na Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Otrzymałeś(aś) odznakę Wsparcie! Wyświetl ją na swoim profilu, aby budować świadomość możliwości składania datków na Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Dziękujemy za darowiznę!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Otrzymałeś(aś) odznakę %1$s! Wyświetl ją na swoim profilu, aby budować świadomość możliwości wpłacania darowizn na rzecz Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Otrzymałeś(aś) odznakę za wsparcie! Wyświetl ją na swoim profilu, aby budować świadomość możliwości wpłacania darowizn na rzecz Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Możesz również</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">zostać comiesięcznym wspierającym.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pokaż w profilu</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Kontynuuj</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej, niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Datek na Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Wpłać darowiznę na rzecz Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Więcej</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4745,7 +4745,7 @@
     <string name="ManageDonationsFragment__my_support">Moje wsparcie</string>
     <string name="ManageDonationsFragment__manage_subscription">Zarządzaj subskrypcją</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Faktury za dotację</string>
+    <string name="ManageDonationsFragment__donation_receipts">Pokwitowania za darowiznę</string>
     <string name="ManageDonationsFragment__badges">Odznaki</string>
     <string name="ManageDonationsFragment__subscription_faq">FAQ subskrypcji</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Błąd subskrypcji.</string>
@@ -4766,14 +4766,14 @@
     <string name="MySupportPreference__please_contact_support">Skontaktuj się z pomocą techniczną.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Odznaka Wsparcie wygasła</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Odznaka za wsparcie wygasła</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Comiesięczny datek został anulowany</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Comiesięczna darowizna została anulowana</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Twoja odznaka Wsparcie wygasła i nie jest już widoczna w Twoim profilu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę Wsparcie na kolejne 30 dni, dzięki jednorazowemu datkowi.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Twoja odznaka za wsparcie wygasła i nie jest już widoczna w Twoim profilu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę za wsparcie na kolejne 30 dni dzięki jednorazowej darowiźnie.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Możesz nadal korzystać z Signal, ale rozważ comiesięczny datek, aby wspierać technologię stworzoną dla Ciebie.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Możesz nadal korzystać z Signal, ale rozważ comiesięczną darowiznę, aby wspierać technologię stworzoną dla Ciebie.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Wesprzyj</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
@@ -4783,7 +4783,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Twoja comiesięczna subskrypcja została anulowana, gdyż nie udało nam się przetworzyć Twojej płatności. Twoja odznaka nie jest już widoczna w Twoim profilu.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Twoja comiesięczna darowizna została anulowana. %1$s Twoja odznaka %2$s nie jest już widoczna na profilu.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, złóż datek.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Możesz nadal korzystać z Signal, ale jeśli chcesz wesprzeć aplikację i ponownie uaktywnić swoją odznakę, wpłać darowiznę.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Odnów subskrypcję</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Przejdź do Google Pay</string>
@@ -4819,7 +4819,7 @@
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Musisz skonfigurować Google Pay, aby móc płacić w aplikacji.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Nie udało się anulować subskrypcji</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulowanie subskrypcji wymaga połączenia z internetem.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Twoje urządzenie nie obsługuje Google Pay, więc nie możesz użyć subskrypcji, aby otrzymać odznakę. Wciąż możesz wesprzeć Signal datkiem, korzystając z naszej strony internetowej.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Twoje urządzenie nie obsługuje Google Pay, więc nie możesz użyć subskrypcji, aby otrzymać odznakę. Wciąż możesz wesprzeć Signal darowizną, korzystając z naszej strony internetowej.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <string name="NetworkFailure__retry">Ponów</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -5039,15 +5039,15 @@
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Szczegóły</string>
     <!-- Donation receipts donation type heading -->
-    <string name="DonationReceiptDetailsFragment__donation_type">Rodzaj dotacji</string>
+    <string name="DonationReceiptDetailsFragment__donation_type">Rodzaj darowizny</string>
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">Data zapłaty</string>
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Udostępnij fakturę</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Jeśli ponownie zainstalowałeś(aś) Signal, faktury dla poprzednich datków nie będą dostępne.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Jeśli ponownie zainstalowałeś(aś) Signal, pokwitowania za poprzednie darowizny nie będą dostępne.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Faktura za dotację</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Pokwitowanie za darowiznę</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Kwota</string>
     <!-- Donation receipts thanks -->
@@ -5155,7 +5155,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Brak odsłon</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Włącz potwierdzenie przeczytania, aby sprawdzać, kto wyświetlił Twoje relacje.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Przejdź do ustawień</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5424,7 +5424,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Podaruj odznakę</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Podaruj komuś odznakę, dokonując datku na Signal w imieniu odbiorcy. Otrzyma on odznakę do wyświetlenia na zdjęciu profilowym.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Podaruj komuś odznakę, wpłacając darowiznę na rzecz Signal w imieniu odbiorcy. Otrzyma on odznakę do wyświetlenia na zdjęciu profilowym.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Dalej</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5436,7 +5436,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Twój prezent zostanie wysłany odbiorcy w wiadomości indywidualnej. Poniżej możesz dodać własną wiadomość.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Datek jednorazowy</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Darowizna jednorazowa</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Dodaj wiadomość</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5448,7 +5448,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Otrzymałeś(aś) odznakę w prezencie od %1$s! Pomóż Signal zbudować świadomość, wyświetlając ją na swoim profilu.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Wysłałeś(aś) odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlić lub ukryć swoją odznakę.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Wysłałeś odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlenia lub ukrycia swojej odznaki.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Odbierz</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5458,7 +5458,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Możesz odebrać swoją odznakę później.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Wysłałeś odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlić lub ukryć swoją odznakę.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Wysłałeś odznakę do %1$s. Gdy odbiorca ją przyjmie, będzie mieć możliwość wyświetlenia lub ukrycia swojej odznaki.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Twoja podarowana odznaka wygasła</string>
     <!-- Expired gift sheet top description text -->
@@ -5466,7 +5466,7 @@
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich danych, rozważ miesięczną subskrypcję.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Złóż comiesięczny datek</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Przekaż comiesięczną darowiznę</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Nie teraz</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5836,13 +5836,13 @@
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">Zdobądź odznakę %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Przekaż %1$s na rzecz Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Wpłać darowiznę %1$s na rzecz Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="few">Get a %1$s badge for %2$d days</item>
-        <item quantity="many">Get a %1$s badge for %2$d days</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Zdobądź odznakę %1$s na %2$d dzień</item>
+        <item quantity="few">Zdobądź odznakę %1$s na %2$d dni</item>
+        <item quantity="many">Zdobądź odznakę %1$s na %2$d dni</item>
+        <item quantity="other">Zdobądź odznakę %1$s na %2$d dni</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Karta kredytowa lub debetowa</string>

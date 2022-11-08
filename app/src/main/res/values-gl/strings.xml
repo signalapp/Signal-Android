@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal require permiso para poder anexar información dos contactos, pero este denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Contactos».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal require permiso para poder anexar a localización, pero este denegouse de forma permanente. Vai a configuración da aplicación, selecciona «Permisos» e activa «Localización».</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s non activou os Pagamentos </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Queres enviarlles unha invitación para activar os Pagamentos?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Enviar solicitude</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Cancelar</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">O teu historial de mensaxes con %1$s e outra conversa que lle pertencía uníronse.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Enviaches unha invitación a %1$s para activar os Pagamentos</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s quere que actives os Pagamentos. Só podes enviar pagamentos ás persoas nas que confíes.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Activaches os Pagamentos</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s agora pode aceptar Pagamentos</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s iniciou unha chamada en grupo · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Eliminouse a mensaxe.</string>
     <string name="ThreadRecord_you_deleted_this_message">Eliminaches esta mensaxe.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Enviaches unha invitación para activar os Pagamentos</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s quere que actives os Pagamentos</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Activaches os Pagamentos</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s agora pode aceptar Pagamentos</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s está en Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Desaparición das mensaxes desactivada</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desaparición das mensaxes establecida en%1$s</string>
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Actualiza Signal para continuar empregando Pagamentos. Pode que o teu saldo non estea actualizado.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Actualiza</string>
 
@@ -2598,7 +2598,7 @@
         <item>Comentarios</item>
         <item>Outros</item>
         <item>Pagamentos (MobileCoin)</item>
-        <item>Donativos &amp; Insignias</item>
+        <item>Donativos e insignias</item>
         <item>Exportar mensaxes SMS</item>
     </string-array>
 
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Agora non</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Actualización necesaria</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Necesítase actualizar a aplicación para continuar enviando e recibindo pagamentos, e para ver o teu saldo de pagamentos actualizado.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Cancelar</string>
     <!-- Alert dialog button to update now -->
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Convidar a Signal</string>
     <string name="FirstInviteReminder__description">Podes aumentar o número de mensaxes cifradas que envías por %1$d %%</string>
-    <string name="SecondInviteReminder__title">Pular polo seu Signal</string>
+    <string name="SecondInviteReminder__title">Dálle un empurrón ao teu Signal</string>
     <string name="SecondInviteReminder__description">Convidar a %1$s</string>
     <string name="InsightsReminder__view_insights">Ver Estatísticas</string>
     <string name="InsightsReminder__invite">Convidar</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Gardar frase de recuperación</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Inserir frase de recuperación</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">O teu saldo restablecerase automaticamente cando volvas instalar Signal se confirmas o teu código PIN de Signal. Tamén podes recuperar o teu saldo empregando unha frase de recuperación, que é unha frase de %1$d palabra única para ti. Escríbea e gárdaa nun lugar seguro.</item>
+        <item quantity="other">O teu saldo restablecerase automaticamente cando volvas instalar Signal se confirmas o teu código PIN de Signal. Tamén podes recuperar o teu saldo empregando unha frase de recuperación, que é unha frase de %1$d palabras única para ti. Escríbea e gárdaa nun lugar seguro.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tes saldo! Hora de gardar a túa frase de recuperación: unha clave de 24 palabras que podes empregar para recuperar o teu saldo.</string>
@@ -4092,7 +4092,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Eliminar mensaxes SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Eliminando mensaxes SMS de Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Eliminando mensaxes SMS de Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Podes eliminar as mensaxes SMS de Signal na Configuración en calquera momento.</string>
     <!-- Description for export sms preference -->
@@ -4245,7 +4245,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Forma parte do noso plan de doantes</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal existe gracias a persoas coma ti. Doa e recibe unha insignia.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal existe grazas a persoas coma ti. Doa e recibe unha insignia.</string>
     <string name="BecomeASustainerMegaphone__not_now">Agora non</string>
     <string name="BecomeASustainerMegaphone__donate">Doar</string>
 
@@ -4496,7 +4496,7 @@
     <string name="SubscribeFragment__not_now">Agora non</string>
     <string name="SubscribeFragment__confirm">Confirmar</string>
     <string name="SubscribeFragment__update_subscription">Actualizar subscrición</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">A túa subscrición cancelouse</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">A túa subscrición cancelouse.</string>
     <string name="SubscribeFragment__update_subscription_question">Actualizar subscrición?</string>
     <string name="SubscribeFragment__update">Actualizar</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Cobraráseche a cantidade total (%1$s) da nova subscrición hoxe mesmo. A túa subscrición renovarase cada mes.</string>
@@ -4511,16 +4511,16 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal é unha organización sen fins de lucro que non conta con anunciantes ou investidores. Só contamos con persoas que a utilizan e a valoran. Envía un donativo mensual para compartir o teu apoio e recibe unha insignia no teu perfil.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Por que facer unha doazón?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal comprometeuse a desenvolver tecnoloxías con alta protección da privacidade e de código aberto que protexa a liberdade de expresión e permita unha comunicación global segura.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">O teu donativo apoia esta causa e permite o desenvolvemento e operacións dunha aplicación que usan millóns de persoas para comunicarse de maneira privada. Sen anuncios, sen rastreadores, sen mentiras.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">O teu donativo apoia esta causa e permite o desenvolvemento e operacións dunha aplicación que usan millóns de persoas para comunicarse de maneira privada. Sen anuncios, sen rastrexadores, sen mentiras.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Grazas pola túa axuda!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazas polo Empurrón!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazas polo empurrón!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Gañaches a insignia %1$s! Mostra esta insignia no teu perfil para fomentar a concienciación e apoiar a Signal mediante donativos.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Gañaches unha insignia de Empurrón! Mostra esta insignia no teu perfil para fomentar a concienciación e apoiar a Signal mediante donativos.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Tamén podes</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">formar parte do plan de doantes mensuais.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostrar no perfil</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Seleccionar como insigna para mostrar</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Seleccionar como insignia para mostrar</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continuar</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Cando reúnas máis dunha insignia, poderás elixir unha para mostrar no teu perfil.</string>
 
@@ -4540,7 +4540,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Comprobantes dos donativos</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
     <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre a subscrición</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Erro ao subscribirse</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Erro ao subscribirse.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Apoiar doutra maneira</string>
     <!-- Preference label to launch badge gifting -->
@@ -4549,7 +4549,7 @@
     <string name="Boost__enter_custom_amount">Inserir cantidade personalizada</string>
     <string name="Boost__one_time_contribution">Doazón puntual</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Engade un Empurrón a Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">Dar un empurrón a Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/mes</string>
     <string name="MySupportPreference__renews_s">Renóvase o %1$s</string>
     <string name="MySupportPreference__processing_transaction">Procesando transacción…</string>
@@ -4562,12 +4562,12 @@
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Cancelar donativo mensual</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A túa insignia de Empurrón venceu e xa non aparece no teu perfil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A túa insignia de Empurrón caducou e xa non aparece no teu perfil.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Podes reactivar a túa insignia de Empurrón durante 30 días máis cun donativo puntual.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Podes seguir empregando Signal. pero para apoiar as tecnoloxías que se centran en ti, considera formar parte do noso plan de doantes mensuais.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Podes seguir empregando Signal, pero para apoiar as tecnoloxías que se centran en ti, considera formar parte do noso plan de doantes mensuais.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Forma parte do noso plan de doantes</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Engadir Empurrón</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Dar empurrón</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Agora non</string>
     <!-- Copy displayed when badge expires after user inactivity -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Cancelouse o teu donativo mensual automaticamente debido á inactividade prolongada. A túa insignia %1$s xa non aparece no teu perfil.</string>
@@ -4586,7 +4586,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Contacta co centro de axuda para obter máis información.</string>
     <string name="Subscription__contact_support">Contactar coa Axuda</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Consegue a insignia %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Procesando pagamento…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Compartir comprobante</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Se volviches a instalar Signal, os comprobantes de donativos anteriores non estarán dispoñibles.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Se volviches instalar Signal, os comprobantes de donativos anteriores non estarán dispoñibles.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Comprobante de donativo</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Sen visualizacións</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Activar confirmacións de lectura para ver quen viu as túas historias.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Ir a Configuración</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5220,7 +5220,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Gracias polo teu apoio!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Recibiches unha insignia de regalo de %1$s! Axuda a Signal a concienciar ás persoas ao mostrar esta insignia no teu perfil.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Recibiches unha insignia de regalo de %1$s! Axuda a Signal a concienciar as persoas ao mostrar esta insignia no teu perfil.</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Regalácheslle unha insignia a %1$s! Cando a acepte, poderá escoller se quere amosala ou ocultala.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -5588,19 +5588,19 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Doar %1$s/mes a Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Consegue a insignia %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Doar %1$s a Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Consegue a insignia %1$s durante %2$d día</item>
+        <item quantity="other">Consegue a insignia %1$s durante %2$d días</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Tarxeta de débito ou crédito</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelando...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Cancelando…</string>
 
     <!-- EOF -->
 

@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal aplikazioak Kontaktuetarako baimena behar du kontaktuak atzitu ahal izateko, baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kontaktuak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal aplikazioak Kokapenerako baimena behar du kokalekuak bidali ahal izateko baina ukatu egin diozu. Joan aplikazioaren ezarpenetara, aukeratu \"Baimenak\" eta aktibatu \"Kokalekua\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s(e)k ez ditu aktibatu ordainketak </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Ordainketak aktibatzeko eskaera bat bidali nahi diozu?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Bidali eskaera</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Utzi</string>
 
@@ -1414,19 +1414,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Ezin izan da entregatu %1$s(r)en mezu bat</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s(e)k bere telefono zenbakia aldatu du.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Eginbide berri hau gustuko duzu? Lagundu Signal-i aldi bateko dohaintza batekin.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Eginbide berri hau gustatzen zaizu? Lagundu Signal-i dohaintza puntual batekin.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s(r)ekin eta %2$s zenbakiarekin izandako mezuen historiak bateratu egin dira.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s(r)ekin izandako mezuen historia eta hari zegokion beste txat bat bateratu egin dira.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Ordainketak aktibatzeko eskaera bat bidali diozu %1$s(r)i</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s(e)k ordainketak aktibatzea nahi du. Bidali ordainketak konfiantzazko pertsonei soilik.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Ordainketak aktibatu dituzu</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s(e)k orain ordainketak onar ditzake</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s erabiltzaileak talde-deia hasi du %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Mezu hau ezabatu da.</string>
     <string name="ThreadRecord_you_deleted_this_message">Mezu hau ezabatu duzu.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Ordainketak aktibatzeko eskaera bat bidali duzu</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s(e)k ordainketak aktibatzea nahi du</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Ordainketak aktibatu dituzu</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s(e)k orain ordainketak onar ditzake</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s Signal-en dago!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Mezuen desagerpena ezgaituta dago</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Desagertzen diren mezuen denbora %1$s-tan ezarrita</string>
@@ -1944,7 +1944,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Opari bat bidali duzu</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat eskatu duzu</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat ireki duzu</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">%1$s emojiarekin erreakzionatu du zure istorioa ikustean</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2152,7 +2152,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Eguneratu Signal ordainketak erabiltzen jarraitzeko. Baliteke saldoa eguneratuta ez egotea.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Eguneratu orain</string>
 
@@ -2284,7 +2284,7 @@
     <string name="ConversationUpdateItem_view">Ikusi</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Mezuak bidaltzen dizkiozunean, %1$s-an ezarriko da desagertzen diren mezuen tenporizadorea.</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">Dohaintza egin</string>
+    <string name="ConversationUpdateItem_donate">Egin dohaintza</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">Send Payment</string>
     <!-- Update item button text to activate payments -->
@@ -2712,9 +2712,9 @@
     <string name="preferences__slow">Motela</string>
     <string name="preferences__help">Laguntza</string>
     <string name="preferences__advanced">Aurreratua</string>
-    <string name="preferences__donate_to_signal">Signal-i dohaintza eman</string>
+    <string name="preferences__donate_to_signal">Egin dohaintza Signal-i</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Aldi bakarreko dohaintza</string>
+    <string name="preferences__one_time_donation">Dohaintza puntuala</string>
     <string name="preferences__privacy">Pribatutasuna</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Istorioak</string>
@@ -2983,7 +2983,7 @@
     <string name="PaymentsHomeFragment__sent_s">Bidaltze-data: %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Jasotze-data: %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Transferitu truke-plataforma batera</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Dibisa-trukea</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Dibisa-bihurketa</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Desaktibatu ordainketak</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Berreskuratze-esaldia</string>
     <string name="PaymentsHomeFragment__help">Laguntza</string>
@@ -2992,8 +2992,8 @@
     <string name="PaymentsHomeFragment__received_payment">Jasotako ordainketa</string>
     <string name="PaymentsHomeFragment__processing_payment">Ordainketa prozesatzen</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Dibisa-trukea ez dago erabilgarri</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Ezin da bistaratu dibisa-trukea. Egiaztatu telefonoaren konexioa eta saiatu berriro.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Dibisa-bihurketa ez dago erabilgarri</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Ezin da bistaratu dibisa-bihurketa. Egiaztatu telefonoa konektatuta dagoela eta saiatu berriro.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Ordainketak eginbidea ez dago erabilgarri zure lurraldean.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Ezin izan dira gaitu ordainketak. Saiatu geroago.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Ordainketak eginbidea desaktibatu nahi duzu?</string>
@@ -3020,9 +3020,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Orain ez</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Eguneratu behar da</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Ordainketak bidaltzen eta jasotzen jarraitzeko eta ordainketa-saldo eguneratua ikusteko, aplikazioa eguneratu behar da.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Utzi</string>
     <!-- Alert dialog button to update now -->
@@ -3070,7 +3070,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s(e)k (%2$s, %3$s)</string>
     <string name="PaymentsDetailsFragment__to">Hartzailea:</string>
     <string name="PaymentsDetailsFragment__from">Igorlea:</string>
-    <string name="PaymentsDetailsFragment__information">Transakzioaren xehetasunak (ordainketaren zenbatekoa, eta transakzioaren data eta ordua barne) MobileCoin Ledger-en parte dira.</string>
+    <string name="PaymentsDetailsFragment__information">Transakzioaren xehetasunak (ordainketaren zenbatekoa, eta transakzioaren data eta ordua barne) MobileCoin-en liburu nagusian ageri dira.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Txanponak garbitzeko komisioa</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Txanponen garbiketa\" kobratuko da zure jabetzako txanponak ezin direnean konbinatu transakzio bat burutzeko. Garbiketak ordainketak bidaltzen jarraitzen utziko dizu.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Ez dago xehetasun gehiagorik trakzio honetarako.</string>
@@ -3130,7 +3130,7 @@
     <string name="ConfirmPayment__error_getting_fee">Akatsa ordainketa hartzean</string>
     <string name="ConfirmPayment__estimated_s">%1$sestimatua</string>
     <string name="ConfirmPayment__to">Hartzailea:</string>
-    <string name="ConfirmPayment__total_amount">Kopuru totala</string>
+    <string name="ConfirmPayment__total_amount">Zenbatekoa, guztira</string>
     <string name="ConfirmPayment__balance_s">Balantzea: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Ordainketa bidaltzen…</string>
     <string name="ConfirmPayment__processing_payment">Ordainketa prozesatzen…</string>
@@ -3156,7 +3156,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s %2$sn</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">Ezarri moneta</string>
+    <string name="SetCurrencyFragment__set_currency">Ezarri dibisa</string>
     <string name="SetCurrencyFragment__all_currencies">Moneta guztiak</string>
 
     <!-- **************************************** -->
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Gonbidatu Signal erabiltzera</string>
     <string name="FirstInviteReminder__description">Enkriptatuta bidaltzen dituzun mezu kopurua %% %1$d handitu zenezake</string>
-    <string name="SecondInviteReminder__title">Zure Signal Bizkortu</string>
+    <string name="SecondInviteReminder__title">Egin dohaintza bat Signal-i</string>
     <string name="SecondInviteReminder__description">%1$s gonbidatu</string>
     <string name="InsightsReminder__view_insights">Estatistikak Ikusi</string>
     <string name="InsightsReminder__invite">Gonbidatu</string>
@@ -3801,7 +3801,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Kontua ezabatzen…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Zure harpidetza bertan behera uzten…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Harpidetza bertan behera uzten…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Parte hartzen ari zaren talde kopuruaren arabera, minutu batzuk behar izan ditzake</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3881,7 +3881,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin-i buruz</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin pribatutasunera bideratutako moneta digital berria da.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin pribatutasunean ardaztutako dibisa digital berri bat da.</string>
     <string name="payment_info_card_adding_funds">Funtsak gehitzen</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Signal-en erabiltzeko funtsak gehi ditzakezu MobileCoin zure diru-zorroaren helbidera bidalita.</string>
     <string name="payment_info_card_cashing_out">Kobratzen</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Gorde berreskuratze-esaldia</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Sartu berreskuratzeko esaldia</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Signal-eko PINa berresten baduzu, saldoa automatikoki berrezarriko da Signal berriro instalatzen duzunean. Halaber, saldoa berrezartzeko berreskuratze-esaldi bat erabil dezakezu (hau da, zuk bakarrik darabilzun %1$d hitzeko esaldi bat). Idatzi eta gorde ezazu leku seguru batean.</item>
+        <item quantity="other">Signal-eko PINa berresten baduzu, saldoa automatikoki berrezarriko da Signal berriro instalatzen duzunean. Halaber, saldoa berrezartzeko berreskuratze-esaldi bat erabil dezakezu (hau da, zuk bakarrik darabilzun %1$d hitzeko esaldi bat). Idatzi eta gorde ezazu leku seguru batean.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Saldoa duzu! Gorde berreskuratze-esaldi bat; hots, saldoa berrezartzeko erabil daitekeen 24 hitzeko gako bat.</string>
@@ -4220,11 +4220,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Beheko ertzaren hautatzailea</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal-i dohaintza eman</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Egin dohaintza bat Signal-i</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal zure moduko jendeari esker da posible. Egin dohaintzak hilero eta jaso bereizgarri bat.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Dohaintza egin</string>
+    <string name="Donate2022Q2Megaphone_donate">Egin dohaintza</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Orain ez</string>
 
@@ -4247,7 +4247,7 @@
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal zure moduko jendeari esker da posible. Lagundu eta jaso bereizgarri bat.</string>
     <string name="BecomeASustainerMegaphone__not_now">Orain ez</string>
-    <string name="BecomeASustainerMegaphone__donate">Dohaintza egin</string>
+    <string name="BecomeASustainerMegaphone__donate">Egin dohaintza</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Elkarrizketa isilduta betirako</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefono-zenbakia arbelean kopiatu da.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefono zenbakia</string>
-    <string name="ConversationSettingsFragment__get_badges">Lortu profilerako bereizgarriak Signal-i lagunduta. Bereizgarri bati buruzko informazio gehiago lortzeko, saka ezazu.</string>
+    <string name="ConversationSettingsFragment__get_badges">Lortu zure profilerako bereizgarriak Signal-i lagunduz. Sakatu bereizgarri bat gehiago jakiteko.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Gehitu kideak</string>
@@ -4488,18 +4488,18 @@
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Lagundu zuretzako eraikitako teknologia sostengatzen—ez zure datuei begira—sostengatzen duten pertsonen komunitatera batuz.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Lagundu zuretzako eraikitako teknologia sostengatzen, ez zure datuei begira, sostengatzen duten pertsonen komunitatera batuz.</string>
-    <string name="SubscribeFragment__currency">Moneta</string>
+    <string name="SubscribeFragment__currency">Dibisa</string>
     <string name="SubscribeFragment__more_payment_options">Ordaintzeko aukera gehiago</string>
     <string name="SubscribeFragment__cancel_subscription">Ezereztu harpidetza</string>
-    <string name="SubscribeFragment__confirm_cancellation">Ezeztapena berretsi?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Ez zaizu berriro kobratuko. Zure bereizgarria zure profiletik kenduko da fakturazio epea amaitzean.</string>
+    <string name="SubscribeFragment__confirm_cancellation">Bertan behera uzteko ekintza berretsi nahi duzu?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Ez zaizu berriro kobratuko. Bereizgarria profiletik kenduko da fakturazio epea amaitzean.</string>
     <string name="SubscribeFragment__not_now">Orain ez</string>
     <string name="SubscribeFragment__confirm">Onartu</string>
     <string name="SubscribeFragment__update_subscription">Eguneratu harpidetza</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Zure harpidetza bertan behera utzi da.</string>
-    <string name="SubscribeFragment__update_subscription_question">Eguneratu harpidetza?</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Harpidetza bertan behera utzi da.</string>
+    <string name="SubscribeFragment__update_subscription_question">Harpidetza eguneratu nahi duzu?</string>
     <string name="SubscribeFragment__update">Eguneratu</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Harpidetza berriaren prezioaren zenbateko osoa (%1$s) kobratuko zaizu gaur. Zure harpidetza hilero berrituko da.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Harpidetza berriaren prezioaren zenbateko osoa (%1$s) kobratuko zaizu gaur. Harpidetza hilero berrituko da.</string>
 
     <string name="Subscription__s_per_month">%1$s/hilabetea</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4508,27 +4508,27 @@
     <string name="Subscription__expires_s">Iraungitze-data: %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal irabazi-asmorik gabeko iragarlerik edo inbertitzailerik gabekoa da, erabiltzen eta baloratzen duten pertsonek soilik sostengatzen dute. Egin hilero behin eta berriz dohaintza bat eta jaso profileko bereizgarri bat zure laguntza partekatzeko.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zergatik egin dohaintza</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal irabazi-asmorik gabeko erakunde bat da, eta ez du ez iragarlerik, ez inbertitzailerik. Erabiltzen eta baloratzen duten pertsonek soilik sostengatzen dute. Egin dohaintza bat hilero eta jaso profilerako bereizgarri bat, laguntza ematen duzula erakusteko.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Zergatik egin dohaintza?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal-ek adierazpen askea babesten duen eta komunikazio global segurua ahalbidetzen duen kode irekiko pribatutasun teknologia garatzeko konpromisoa hartu du.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Zure dohaintzak kausa hau sustatzen du eta milioika komunikazio pribaturako erabiltzen duten aplikazio baten garapena eta eragiketak ordaintzen ditu. Iragarkirik ez. arakatzailerik ez. Txantxarik gabe.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Zure dohaintzek kausa hau ahalbidetzen dute. Milioika lagunek erabiltzen dute aplikazio hau komunikazio pribaturako, eta hura garatzeko eta denon eskura jartzeko kostuak ordaintzen dira dohaintzen bidez. Iragarkirik gabe. Jarraipen-tresnarik gabe. Benetan.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Eskerrik asko zure laguntzagatik!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Eskerrik asko zure bultzadagatik!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s bereizgarria irabazi duzu! Erakutsi bereizgarri hau zure profilean Signal-i dohaintza egiteko kontzientzia pizteko.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Bultzada bereizgarria irabazi duzu! Erakutsi bereizgarri hau zure profilean Signal-i dohaintza egiteko kontzientzia pizteko.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Eskerrik asko dohaintzarengatik!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s bereizgarria irabazi duzu! Erakuts ezazu profilean, Signal-i dohaintzak egitera animatzeko beste erabiltzaileak.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Emaile-bereizgarri bat irabazi duzu! Erakuts ezazu zure profilean, Signal-i dohaintzak egitera animatzeko beste erabiltzaileak.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Honakoa ere egin dezakezu</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Bilaka zaitez hileroko sostengatzaile</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Erakutsi profilean</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Sortu bereizgarri aipagarria</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ezarri nabarmendutako bereizgarri gisa</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Jarraitu</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bereizgarri bat baino gehiago dituzunean, besteek zure profilean ikus dezaten agertzeko bat aukera dezakezu.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Bereizgarri bat baino gehiago dituzunean, bat nabarmen dezakezu, beste erabiltzaileek zure profilean ikus dezaten.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Lortu bereizgarriak zure profilerako Signal-en laguntzarekin.</string>
+    <string name="BecomeASustainerFragment__get_badges">Lortu profilerako bereizgarriak Signal-i lagunduta.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irabazi-asmorik gabeko iragarlerik edo inbertitzailerik gabekoa da, zu bezalako pertsonek soilik sostengatzen dute.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Signal-i dohaintza eman</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Signal-i dohaintza egin</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Gehiago</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4537,56 +4537,56 @@
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">Kudeatu harpidetza</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Dohaintza ordainagiriak</string>
+    <string name="ManageDonationsFragment__donation_receipts">Dohaintzen ordainagiriak</string>
     <string name="ManageDonationsFragment__badges">Bereizgarriak</string>
-    <string name="ManageDonationsFragment__subscription_faq">FAQ harpidetza</string>
+    <string name="ManageDonationsFragment__subscription_faq">Harpidetzari buruz maiz egiten diren galderak</string>
     <string name="ManageDonationsFragment__error_getting_subscription">Errore bat gertatu da harpidetza eskuratzean.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Emateko beste modu batzuk</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">Oparitu bereizgarri bat</string>
 
-    <string name="Boost__enter_custom_amount">Sartu zenbateko pertsonalizatua</string>
+    <string name="Boost__enter_custom_amount">Adierazi zenbateko pertsonalizatu bat</string>
     <string name="Boost__one_time_contribution">Behin-behineko ekarpena</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Gehitu Signal bultzada</string>
+    <string name="MySupportPreference__add_a_signal_boost">Egin dohaintza bat Signal-i</string>
     <string name="MySupportPreference__s_per_month">%1$s/hilabete</string>
-    <string name="MySupportPreference__renews_s">%1$s berritzen du</string>
+    <string name="MySupportPreference__renews_s">Berritze-data: %1$s</string>
     <string name="MySupportPreference__processing_transaction">Transakzioa prozesatzen…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Ezin izan da bereizgarria gehitu.%1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Ezin izan da gehitu bereizgarria. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Mesedez, jarri harremanetan laguntzarekin.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Bultzada bereizgarria iraungi da</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Emaile-bereizgarria iraungi egin da</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Hileko dohaintza bertan behera</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Hileko dohaintza bertan behera utzi da</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Zure bultzad bereizgarria iraungi da eta jada ez dago ikusgai zure profilean.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Zure bultzada bereizgarria beste 30 egunez berriro aktiba dezakezu ekarpen bakarrarekin.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Emaile-bereizgarria iraungi egin da, eta jada ez dago ikusgai profilean.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Ekarpen puntual bat eginda, beste 30 egunez aktiba dezakezu emaile-bereizgarria.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal erabiltzen jarraitu dezakezu, zuretzat eraikitako teknologiari laguntzeko, kontuan hartu sustatzaile bihurtzea hilero dohaintza bat eginez.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal erabiltzen jarrai dezakezu, baina, zuretzat eraikitako teknologiari laguntzeko, hilero dohaintza bat eginez dohaintza-emaile bihurtzea eskertuko genizuke.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bilaka zaitez sostengatzaile</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Gehitu bultzada bat</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Egin dohaintza bat</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Orain ez</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Zure hileroko dohaintza automatikoki bertan behera utzi da, denbora gehiegi egon zarelako inaktibo. Zure %1$s bereizgarria jada ez da ikusgai zure profilean.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Hileroko dohaintza bertan behera utzi da automatikoki, denbora gehiegi egon baitzara inaktibo. %1$s bereizgarria jada ez dago ikusgai profilean.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Zure hileroko dohaintza bertan behera utzi da, ezin izan dugulako prozesatu ordainketa. Zure bereizgarria jada ez da ikusgai zure profilean.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Hileroko dohaintza bertan behera utzi da, ezin izan dugulako prozesatu ordainketa. Bereizgarria jada ez dago ikusgai profilean.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Hileroko dohaintza bertan behera utzi da .%1$sZure %2$sbereizgarriak profilean ikusgai egoteari utziko dio.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu baina aplikazioa onartzeko eta bereizgarria berriro aktibatzeko, berritu orain.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Eguneratu harpidetza</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Hileroko dohaintza bertan behera utzi da. %1$s Aurrerantzean, %2$s bereizgarria ez da ikusgai egongo profilean.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal erabiltzen jarrai dezakezu, baina aplikazioari laguntzeko eta bereizgarria berriro aktibatzeko, berritu harpidetza.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Berritu harpidetza</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Joan Google Play-ra</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ezin da harpidetzaren ordainketa prozesatu</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Ezin da prozesatu harpidetzaren ordainketa</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Arazoak ditugu Signal sostengatzaile ordainketa kobratzeko. Ziurtatu ordainketa-metodoa eguneratuta dagoela. Hala ez bada, eguneratu Google Pay-n. Signal ordainketa berriro prozesatzen saiatuko da egun batzuk barru.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ez erakutsi hau berriro</string>
 
     <string name="Subscription__please_contact_support_for_more_information">Mesedez, jarri harremanetan laguntzarekin informazio gehiago lortzeko.</string>
     <string name="Subscription__contact_support">Harremanetan jarri laguntza taldearekin</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Lortu %1$s bereizgarria</string>
 
     <string name="SubscribeFragment__processing_payment">Ordainketa prozesatzen…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4598,7 +4598,7 @@
     <string name="DonationsErrors__still_processing">Oraindik prozesatzen</string>
     <string name="DonationsErrors__couldnt_add_badge">Ezin izan da bereizgarria gehitu.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Ezin izan da baliozkotu bereizgarria</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Ezin izan da bereizgarria baliozkotu</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Ezin izan da zerbitzariaren erantzuna balioztatu. Mesedez, jarri harremanetan laguntzarekin.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
@@ -4609,9 +4609,9 @@
     <string name="DonationsErrors__your_payment_is_still">Zure ordainketa prozesatzen ari da oraindik. Minutu batzuk iraun ditzake zure konexioaren arabera.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ez dago erabilgarri</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Google Pay konfiguratu behar duzu aplikazioan dohaintza egiteko.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da bertan behera utzi harpidetza</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da harpidetza bertan behera utzi</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Harpidetza bertan behera uzteko Interneteko konexioa behar da.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Zure gailuak ez du Google Pay onartzen, beraz, ezin zara harpidetu bereizgarria irabazteko. Hala ere, Signal lagundu dezakezu gure webgunean dohaintza bat eginez.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Zure gailuak ez du Google Pay onartzen, beraz, ezin zara harpidetu bereizgarria irabazteko. Hala ere, Signal-i lagundu diezaiokezu gure webgunean dohaintza bat eginez.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
     <string name="NetworkFailure__retry">Berriro saiatu</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4825,7 +4825,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Oparia</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Bultzada</string>
+    <string name="DonationReceiptListFragment__boost">Dohaintza</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Xehetasunak</string>
     <!-- Donation receipts donation type heading -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ikustaldirik ez oraindik</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Istorioak nork ikusi dituen jakiteko, gaitu irakurragiriak.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Joan ezarpenetara</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Eman %1$s Signal-i</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Lortu %1$s bereizgarria egun %2$dez</item>
+        <item quantity="other">Lortu %1$s bereizgarria %2$d egunez</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kreditu- edo zordunketa-txartela</string>

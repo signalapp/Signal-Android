@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal cần quyền truy cập Danh bạ để đính kèm thông tin liên lạc nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Danh bạ\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal cần quyền truy cập Vị trí để đính kèm vị trí, nhưng đã bị từ chối vĩnh viễn. Vui lòng mở cài đặt ứng dụng, chọn \"Quyền\" và bật \"Vị trí\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s chưa bật tính năng Thanh toán </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Bạn có muốn gửi yêu cầu bật tính năng Thanh toán?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Gửi yêu cầu</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Hủy</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Lịch sử tin nhắn của bạn với %1$s và một cuộc trò chuyện khác của liên hệ này đã được hợp nhất.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Bạn đã gửi cho %1$s một yêu cầu bật tính năng Thanh toán</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s muốn bạn bật tính năng Thanh toán. Chỉ gửi khoản thanh toán đến những người bạn tin tưởng.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Bạn đã bật tính năng Thanh toán</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s giờ đã có thể nhận Thanh toán</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s đã bắt đầu cuộc gọi nhóm · %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Tin nhắn này đã bị xóa.</string>
     <string name="ThreadRecord_you_deleted_this_message">Bạn đã xóa tin nhắn này.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Bạn đã gửi một yêu cầu bật tính năng Thanh toán</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s muốn bạn bật tính năng Thanh toán</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Bạn đã bật tính năng Thanh toán</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s giờ đã có thể nhận Thanh toán</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s đang sử dụng Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Tin nhắn tự hủy đã được vô hiệu hóa</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tin nhắn sẽ tự hủy sau %1$s</string>
@@ -2897,7 +2897,7 @@
     <string name="PaymentsHomeFragment__sent_s">Đã gửi %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Đã nhận %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Chuyển để trao đổi</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Chuyển đổi tỉ giá</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Chuyển đổi tiền tệ</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Huỷ kích hoạt thanh toán</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Cụm từ khôi phục</string>
     <string name="PaymentsHomeFragment__help">Hỗ trợ</string>
@@ -2906,8 +2906,8 @@
     <string name="PaymentsHomeFragment__received_payment">Thanh toán đã nhận</string>
     <string name="PaymentsHomeFragment__processing_payment">Thanh toán đang xử lý</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Chuyển đổi tỉ giá không có</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Không thể hiện chuyển đổi tỉ giá. Kiểm tra kết nối của điện thoại của bạn và thử lại.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Chuyển đổi tiền tệ không có</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Không thể hiện chuyển đổi tiền tệ. Kiểm tra kết nối của điện thoại của bạn và thử lại.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Thanh toán không có sẵn trong khu vực của bạn.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Không thể bật thanh toán. Thử lại sau.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Huỷ kích hoạt Thanh toán?</string>
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">Mời dùng Signal</string>
     <string name="FirstInviteReminder__description">Bạn có thể tăng %1$d%% số lượng tin nhắn mã hóa gửi đi.</string>
-    <string name="SecondInviteReminder__title">Tăng tỉ lệ Signal</string>
+    <string name="SecondInviteReminder__title">Ủng hộ cho Signal</string>
     <string name="SecondInviteReminder__description">Mời %1$s</string>
     <string name="InsightsReminder__view_insights">Xem Phân tích</string>
     <string name="InsightsReminder__invite">Mời</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Lưu cụm từ khôi phục</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Nhập vào cụm từ khôi phục</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Số dư của bạn sẽ tự động khôi phục khi bạn cài đặt lại Signal nếu như bạn xác minh mã PIN Signal của mình. Bạn cũng có thể khôi phục số dư của bạn qua sử dụng một cụm từ khôi phục, và đây là một cụm từ gồm %1$d từ chỉ riêng cho bạn. Ghi nó lại và lưu giữ nó ở một nơi an toàn.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Bạn đã nhận được số dư! Đã đến lúc lưu cụm từ khôi phục—cụm 24 từ này giống như chìa khóa giúp bạn khôi phục số dư của mình.</string>
@@ -4122,7 +4122,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Ủng hộ Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal được thúc đẩy nhờ vào những cá nhân như bạn. Quyên góp hằng tháng và nhận một huy hiệu.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal được thúc đẩy nhờ vào những cá nhân như bạn. Ủng hộ hàng tháng và nhận một huy hiệu.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Ủng hộ</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4202,7 +4202,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Cuộc trò chuyện tắt tiếng vĩnh viễn</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Đã sao chép số điện thoại vào bảng kẹp.</string>
     <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
-    <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal. Bấm vào huy hiệu để biết thêm chi tiết.</string>
+    <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal. Bấm vào huy hiệu để biết thêm chi tiết.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
@@ -4384,22 +4384,22 @@
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Hỗ trợ technology được xây dựng cho bạn - không phải để lấy dữ liệu của bạn - bằng cách tham gia cộng đồng những người duy trì nó.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Hỗ trợ technology được xây dựng cho bạn - không phải để lấy dữ liệu của bạn - bằng cách tham gia cộng đồng duy trì Signal</string>
-    <string name="SubscribeFragment__currency">Khoản quyên góp</string>
+    <string name="SubscribeFragment__currency">Tiền tệ</string>
     <string name="SubscribeFragment__more_payment_options">Thêm lựa chọn thanh toán</string>
-    <string name="SubscribeFragment__cancel_subscription">Hũy bỏ Quyên góp</string>
-    <string name="SubscribeFragment__confirm_cancellation">Xác nhận hủy bỏ?</string>
+    <string name="SubscribeFragment__cancel_subscription">Hủy Gói Ủng hộ</string>
+    <string name="SubscribeFragment__confirm_cancellation">Xác nhận hủy?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Bạn sẽ không thể thay đổi quyết định này. Huy hiệu của bạn sẽ được gỡ bỏ khỏi hồ sơ cá nhân khi hết thời hạn.</string>
     <string name="SubscribeFragment__not_now">Để sau</string>
     <string name="SubscribeFragment__confirm">Xác nhận</string>
-    <string name="SubscribeFragment__update_subscription">Cập nhật quyên góp</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Việc quyên góp của bạn đã được hủy bỏ.</string>
-    <string name="SubscribeFragment__update_subscription_question">Cập nhật quyên góp?</string>
+    <string name="SubscribeFragment__update_subscription">Cập nhật Gói Ủng hộ</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Gói ủng hộ của bạn đã được hủy bỏ.</string>
+    <string name="SubscribeFragment__update_subscription_question">Cập nhật gói ủng hộ?</string>
     <string name="SubscribeFragment__update">Cập nhật</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bạn sẽ bị mất tất cả số tiền (%1$s) trong lần quyên góp hôm nay. Việc quyên góp của bạn sẽ được gia hạn vào mỗi tháng.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bạn sẽ được tính toàn bộ giá (%1$s) của giá gói ủng hộ hôm nay. Gói ủng hộ của bạn sẽ được gia hạn mỗi tháng.</string>
 
     <string name="Subscription__s_per_month">%1$s/tháng</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Làm mới %1$s</string>
+    <string name="Subscription__renews_s">Gia hạn %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Hết hạn vào ngày %1$s</string>
 
@@ -4410,7 +4410,7 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Khoản ủng hộ của bạn giúp chúng tôi theo đuổi mục tiêu này và giúp chi trả cho chi phí phát triển và vận hành của một ứng dụng được tin dùng bởi hàng triệu người với mục đích giao tiếp riêng tư, bảo mật. Không quảng cáo. Không trình theo dõi. Không bông đùa.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Cảm ơn bạn đã đóng góp!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã quyên góp!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Cảm ơn bạn đã Ủng hộ!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Bạn nhận được huy hiệu %1$s! Hiển thị huy hiệu này trên hồ sơ của bạn để mọi người biết về việc ủng hộ cho Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Bạn nhận được huy hiệu Nhà Ủng hộ! Hiển thị huy hiệu này trên hồ sơ của bạn để mọi người biết về việc ủng hộ cho Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Bạn cũng có thể</string>
@@ -4420,7 +4420,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Tiếp tục</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Khi bạn có nhiều hơn một huy hiệu. bạn có thể chọn huy hiệu mặc định mà mọi người sẽ nhìn thấy trên hồ sơ của bạn.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hổ trở cho Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal là một ứng dụng phi lợi nhuận, không có quảng cao cũng như nhà đầu tư nào. Nó chỉ được duy trì và phát triển bỡi hàng triệu người dùng như bạn mà thôi.</string>
 
     <!-- Button label for creating a donation -->
@@ -4431,12 +4431,12 @@
     <string name="ManageDonationsFragment__receipts">Biên lai</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Hổ trợ của tôi</string>
-    <string name="ManageDonationsFragment__manage_subscription">Quản lý Quyên góp</string>
+    <string name="ManageDonationsFragment__manage_subscription">Quản lý Gói Ủng hộ</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Biên lai các khoản ủng hộ</string>
     <string name="ManageDonationsFragment__badges">Huy hiệu</string>
-    <string name="ManageDonationsFragment__subscription_faq">FAQ Quyên góp</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Lỗi nhận quyên góp.</string>
+    <string name="ManageDonationsFragment__subscription_faq">Câu hỏi thường gặp về Gói Ủng hộ</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Lỗi đăng ký gói ủng hộ.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Các cách ủng hộ khác</string>
     <!-- Preference label to launch badge gifting -->
@@ -4445,25 +4445,25 @@
     <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
     <string name="Boost__one_time_contribution">Quyên góp một lần</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Thêm vào một phần quyên góp cho Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">Thêm khoản Ủng hộ cho Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/tháng</string>
-    <string name="MySupportPreference__renews_s">Làm mới %1$s</string>
+    <string name="MySupportPreference__renews_s">Gia hạn %1$s</string>
     <string name="MySupportPreference__processing_transaction">Đang xử lý giao dịch…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Không thể thêm huy hiệu. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Huy hiệu Ủng hộ đã hết hạn</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Huy hiệu Nhà Ủng hộ đã hết hạn</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Khoản Ủng hộ hàng tháng đã hủy</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Huy hiệu Nhà Ủng hộ của bạn đã hết hạn và không còn hiển thị trên hồ sơ.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bạn có thể tái kích hoạt huy hiệu quyên góp của mình trong 30 ngày chỉ với một lần quyên góp.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bạn có thể tái kích hoạt huy hiệu Nhà Ủng hộ của mình trong 30 ngày chỉ với một lần ủng hộ.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Bạn có thể tiếp tục sử dụng Signal nhưng để hỗ trợ cho nền tảng công nghệ được xây dựng cho bạn, hãy cân nhắc việc trở thành một nhà ủng hộ bằng việc ủng hộ hàng tháng.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Trở thành người quyên góp</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm quyên góp</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Thêm khoản Ủng hộ</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Để sau</string>
     <!-- Copy displayed when badge expires after user inactivity -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Khoản ủng hộ hàng tháng của bạn đã được tự động hủy vì bạn đã không hoạt động trong thời gian quá dài. Huy hiệu %1$s của bạn không còn hiển thị trên hồ sơ.</string>
@@ -4471,8 +4471,8 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Khoản ủng hộ hàng tháng của bạn đã được tự động hủy vì chúng tôi không thể xử lý được khoản thanh toán. Huy hiệu của bạn không còn hiển thị trên hồ sơ.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Khoản ủng hộ hàng tháng của bạn đã được tự động hủy. %1$s Huy hiệu %2$s của bạn không còn hiển thị trên hồ sơ.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục quyên góp ủng hộ cho ứng dụng và nhận lại huy hiệu của mình thì bạn cần đăng ký lại.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Đăng ký lại quyên góp</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Bạn vẫn có thể tiếp tục dùng Signal, nhưng nếu bạn muốn tiếp tục hỗ trợ ứng dụng và nhận lại huy hiệu, bạn cần gia hạn.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Gia hạn Gói Ủng hộ</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Truy cập Google Pay</string>
 
@@ -4501,13 +4501,13 @@
     <string name="DonationsErrors__failed_to_send_gift_badge">Gửi huy hiệu quà tặng không thành công</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">Không thể gửi huy hiệu quà tặng. Vui lòng liên hệ bộ phận hỗ trợ.</string>
-    <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hổ trợ.</string>
+    <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</string>
     <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay không dùng được</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Bạn phải cài đặt Google Pay để quyên góp trong ứng dụng.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Không thể hủy đăng ký quyên góp</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Để hủy đăng ký quyên góp, thiết bị cần kết nối internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hổ trợ Google Pay, vì vậy bạn không thể đăng ký quyên góp và nhận huy hiệu trên thiết bị này. Bạn vẫn có thể đống góp cho Signal trên trang Web của chúng tôi.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Bạn phải cài đặt Google Pay để ủng hộ trong ứng dụng.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Hủy gói ủng hộ không thành công</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Để hủy gói ủng hộ, thiết bị cần kết nối internet.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Thiết bị của bạn không hỗ trợ Google Pay, vì vậy bạn không thể đăng ký ủng hộ để nhận huy hiệu. Bạn vẫn có thể gửi khoản ủng hộ cho Signal trên trang Web của chúng tôi.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
     <string name="NetworkFailure__retry">Thử lại</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Chưa có lượt xem</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Bật thông báo đã xem để biết ai đã xem story của bạn.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Đến mục cài đặt</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5470,7 +5470,7 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Ủng hộ %1$s cho Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">Nhận huy hiệu %1$s có thời hạn %2$d ngày</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Thẻ tín dụng hoặc ghi nợ</string>

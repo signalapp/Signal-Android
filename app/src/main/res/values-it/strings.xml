@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal richiede l\'autorizzazione alla lettura dei contatti per allegare le informazioni di contatto, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Contatti\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal richiede l\'autorizzazione alla geolocalizzazione per allegare una posizione, ma questa è stata negata in modo permanente. Si prega di aprire il menu delle impostazioni dell\'app, selezionare \"Autorizzazioni\" e abilitare \"Posizione\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s non ha attivato la funzione per i pagamenti </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Vuoi inviare a questo utente una richiesta per l\'attivazione dei pagamenti?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Invia richiesta</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Annulla</string>
 
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">La tua cronologia dei messaggi con %1$s è stata collegata a un\'altra sua chat.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Hai inviato a %1$s una richiesta per l\'attivazione della funzione dei pagamenti</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ti ha inviato una richiesta per farti attivare la funzione dei pagamenti. Ricorda di inviare pagamenti solo alle persone di cui ti fidi.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Hai attivato la funzione per i pagamenti</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">Ora %1$s può accettare e ricevere i pagamenti</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s ha iniziato una chiamata di gruppo · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Questo messaggio è stato eliminato.</string>
     <string name="ThreadRecord_you_deleted_this_message">Hai eliminato questo messaggio.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Hai inviato una richiesta per l\'attivazione della funzione dei pagamenti</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ti ha inviato una richiesta per farti attivare la funzione dei pagamenti</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Hai attivato la funzione per i pagamenti</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">Ora %1$s può accettare e ricevere i pagamenti</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s è su Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Messaggi a scomparsa disabilitati</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tempo di scomparsa dei messaggi impostato a %1$s</string>
@@ -2714,7 +2714,7 @@
     <string name="preferences__advanced">Avanzate</string>
     <string name="preferences__donate_to_signal">Dona a Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Donazione unica</string>
+    <string name="preferences__one_time_donation">Donazione singola</string>
     <string name="preferences__privacy">Privacy</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Storie</string>
@@ -2993,7 +2993,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Pagamento in elaborazione</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Conversione valuta non disponibile</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Impossibile visualizzare la conversione valuta. Controlla la connessione del tuo telefono e riprova.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Impossibile visualizzare la conversione della valuta. Controlla la connessione del tuo telefono e riprova.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">I pagamenti non sono disponibili nella tua regione.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Impossibile abilitare i pagamenti. Riprova più tardi.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Disattivare pagamenti?</string>
@@ -3324,7 +3324,7 @@
 
     <string name="FirstInviteReminder__title">Invita a Signal</string>
     <string name="FirstInviteReminder__description">Puoi aumentare il numero di messaggi criptati che hai inviato del %1$d%%</string>
-    <string name="SecondInviteReminder__title">Aumenta il tuo Signal</string>
+    <string name="SecondInviteReminder__title">Dai un Boost a Signal</string>
     <string name="SecondInviteReminder__description">Invita %1$s</string>
     <string name="InsightsReminder__view_insights">Visualizza statistiche</string>
     <string name="InsightsReminder__invite">Invita</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Salva la frase di recupero</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Inserisci la frase di recupero</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Il tuo saldo verrà ripristinato automaticamente quando reinstalli Signal se confermi il tuo PIN di Signal. Puoi anche ripristinare il tuo saldo usando una frase di recupero, che è una frase composta da %1$d parola, che hai solo tu. Scrivila e conservala in un luogo sicuro.</item>
+        <item quantity="other">Il tuo saldo verrà ripristinato automaticamente quando reinstalli Signal se confermi il tuo PIN di Signal. Puoi anche ripristinare il tuo saldo usando una frase di recupero, che è una frase di %1$d parole, che hai solo tu. Scrivila e conservala in un luogo sicuro.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Hai un saldo! Ora devi salvare la tua frase di recupero: una chiave di sicurezza lunga 24 parole per ripristinare il tuo saldo.</string>
@@ -4475,7 +4475,7 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Impossibile aggiornare il profilo</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Seleziona badge</string>
+    <string name="BadgeSelectionFragment__select_badges">Seleziona i badge</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Anteprima</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Seleziona un badge</string>
@@ -4491,13 +4491,13 @@
     <string name="SubscribeFragment__currency">Valuta</string>
     <string name="SubscribeFragment__more_payment_options">Altre opzioni di pagamento</string>
     <string name="SubscribeFragment__cancel_subscription">Annulla contributo</string>
-    <string name="SubscribeFragment__confirm_cancellation">Confermare cancellazione?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Non ti verrà addebitato di nuovo. Il tuo badge sarà rimosso dal tuo profilo alla fine del periodo di fatturazione.</string>
+    <string name="SubscribeFragment__confirm_cancellation">Confermare la cancellazione?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">I tuoi addebiti verranno interrotti. Il badge sarà rimosso dal tuo profilo alla fine del periodo di fatturazione.</string>
     <string name="SubscribeFragment__not_now">Non ora</string>
     <string name="SubscribeFragment__confirm">Conferma</string>
     <string name="SubscribeFragment__update_subscription">Aggiorna contributo</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Il tuo contributo è stato cancellato.</string>
-    <string name="SubscribeFragment__update_subscription_question">Aggiornare contributo?</string>
+    <string name="SubscribeFragment__update_subscription_question">Vuoi aggiornare il contributo?</string>
     <string name="SubscribeFragment__update">Aggiorna</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ti verrà addebitato l\'intero importo (%1$s) del nuovo prezzo del contributo oggi. Il tuo contributo si rinnoverà mensilmente.</string>
 
@@ -4508,19 +4508,19 @@
     <string name="Subscription__expires_s">Scade in data: %1$s</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal è una non profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Dai una donazione mensile ricorrente e ricevi un badge del profilo per condividere il tuo sostegno.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal è una non profit senza inserzionisti o investitori, sostenuta solo dalle persone che la usano e la apprezzano. Fai una donazione mensile ricorrente e ricevi un badge sul profilo per condividere il tuo sostegno.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Perché donare?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Il team di Signal è impegnato nella sua missione di sviluppare tecnologia open source per la privacy che protegga la libera espressione e consenta comunicazioni sicure in tutto il mondo.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">La tua donazione alimenta questa causa e paga lo sviluppo e le operazioni di un\'applicazione usata da milioni di persone per la comunicazione privata. Nessuna pubblicità. Nessun tracciamento. Nessuno scherzo.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">La tua donazione alimenta questa causa e paga lo sviluppo e le operazioni di un\'applicazione usata da milioni di persone per la comunicazione privata. Nessuna pubblicità. Nessun tracciamento. Davvero.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Grazie per il tuo supporto!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Grazie per il Boost!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Hai guadagnato un badge %1$s! Mostra questo badge sul tuo profilo per far conoscere le donazioni a Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Hai guadagnato un badge Boost! Mostra questo badge sul tuo profilo per far conoscere le donazioni a Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Hai guadagnato un badge %1$s! Mostralo sul tuo profilo per far girare la voce sulle donazioni a Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Hai guadagnato un badge Boost! Mostralo sul tuo profilo per far girare la voce sulle donazioni a Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Puoi anche</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">diventare un sostenitore mensile.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Mostra sul profilo</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Rendi badge in evidenza</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Metti il badge in evidenza</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Continua</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Quando hai più di un badge, puoi sceglierne uno da mostrare agli altri sul tuo profilo.</string>
 
@@ -4565,17 +4565,17 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Il tuo badge Boost è scaduto e non è più visibile sul tuo profilo.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Puoi riattivare il tuo badge Boost per altri 30 giorni con un contributo una tantum.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Puoi continuare a usare Signal, ma per sostenere una tecnologia costruita per te, considera di diventare un sostenitore facendo una donazione mensile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Puoi continuare a usare Signal, ma puoi scegliere di effettuare una donazione mensile per sostenere una tecnologia costruita per te.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Diventa un sostenitore</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Aggiungi un Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Non ora</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">La tua donazione mensile ricorrente è stata automaticamente cancellata perché sei stato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">La tua donazione mensile ricorrente è stata cancellata automaticamente perché il tuo profilo è risultato inattivo per troppo tempo. Il tuo badge %1$s non è più visibile sul tuo profilo.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">La tua donazione mensile ricorrente è stata cancellata perché non abbiamo potuto elaborare il tuo pagamento. Il tuo badge non è più visibile sul tuo profilo.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">La tua donazione mensile ricorrente è stata annullata. %1$s Il tuo badge %2$s non è più visibile sul tuo profilo.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma per sostenere l\'app e riattivare il tuo badge, rinnova ora.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Puoi continuare a usare Signal ma, se vuoi, puoi rinnovare il tuo contributo per sostenere l\'app e riattivare il tuo badge.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Rinnova contributo</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Vai a Google Pay</string>
@@ -4593,31 +4593,31 @@
     <string name="DonationsErrors__error_processing_payment">Errore nell\'elaborazione del pagamento</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Errore nell\'elaborazione del pagamento. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
-    <string name="DonationsErrors__your_payment">Il tuo pagamento non ha potuto essere elaborato e non ti è stato addebitato. Si prega di riprovare.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Il tuo badge non può essere aggiunto al tuo account, ma potresti aver ricevuto l\'addebito. Contatta l\'assistenza.</string>
+    <string name="DonationsErrors__your_payment">Non siamo riusciti ad elaborare il pagamento e l\'importo non ti è stato addebitato. Prova di nuovo.</string>
     <string name="DonationsErrors__still_processing">Ancora in fase di elaborazione</string>
     <string name="DonationsErrors__couldnt_add_badge">Non è stato possibile aggiungere il badge</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Fallita la validazione del badge</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Validazione del badge non riuscita</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Impossibile validare la risposta del server. Si prega di contattare il supporto.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Fallito l\'invio del badge regalo</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Invio del badge regalo non riuscito</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Impossibile inviare il badge regalo. Si prega di contattare il supporto.</string>
-    <string name="DonationsErrors__your_badge_could_not">Il tuo badge non può essere aggiunto al tuo account, ma potrebbe esserti stato addebitato. Contatta l\'assistenza.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Impossibile inviare il badge regalo. Contatta l\'assistenza.</string>
+    <string name="DonationsErrors__your_badge_could_not">Il badge non può essere aggiunto al tuo account, ma potresti aver ricevuto l\'addebito. Contatta l\'assistenza.</string>
     <string name="DonationsErrors__your_payment_is_still">Il tuo pagamento è ancora in fase di elaborazione. Questo può richiedere alcuni minuti a seconda della tua connessione.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay non disponibile</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Devi impostare Google Pay per donare all\'interno dell\'app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Impossibile annullare il contributo</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L\'annullamento del contributo richiede una connessione a Internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Il tuo dispositivo non supporta Google Pay, quindi non puoi contribuire per guadagnare un badge. Puoi comunque sostenere Signal facendo una donazione sul nostro sito web.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Il tuo dispositivo non supporta Google Pay, quindi non puoi donare e, di conseguenza, ricevere il badge. Puoi comunque sostenere Signal facendo una donazione sul nostro sito web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Errore di rete. Controlla la tua connessione e riprova.</string>
     <string name="NetworkFailure__retry">Riprova</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">Impossibile inviare il regalo</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">Il destinatario che hai scelto sta usando una versione di Signal che non supporta il regalo dei Badge. Potrà ricevere regali solo dopo aver effettuato l\'aggiornamento più recente.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">Il destinatario che hai scelto sta usando una versione di Signal che non supporta i badge regalo. Potrà ricevere regali solo dopo aver effettuato l\'aggiornamento più recente.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">Non è stato possibile inviare il regalo</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ancora nessuna visualizzazione</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Attiva le Conferme di lettura per sapere chi ha visto le tue Storie.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Vai alle Impostazioni</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5593,8 +5593,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Dona %1$s a Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Ricevi un badge Signal %1$s per %2$d giorno</item>
+        <item quantity="other">Ricevi un badge Signal %1$s per %2$d giorni</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Carta di credito o di debito</string>

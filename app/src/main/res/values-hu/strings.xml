@@ -106,11 +106,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">A Signalnak szüksége van a Névjegyek engedélyre, hogy névjegy információt csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Névjegyek\"-et.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">A Signalnak szüksége van a Helyadatok engedélyre, hogy helyzetet csatolhasson, de ez jelenleg meg van tagadva. Kérlek menj az alkalmazásbeállításokhoz, válaszd az \"Engedélyek\"-et és engedélyezd a \"Helyadatok\"-at.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s nem aktiválta a Kifizetéseket </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Szeretnél kérelmet küldeni neki a Kifizetések aktiválására?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Kérelem küldése</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Mégse</string>
 
@@ -437,8 +437,8 @@
         <item quantity="other">%1$d db melléklet mentése</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
-        <item quantity="one">Melléklet mentése a háttértárba...</item>
-        <item quantity="other">%1$d db melléklet mentése a háttértárba...</item>
+        <item quantity="one">%1$d db melléklet mentése a háttértárba…</item>
+        <item quantity="other">%1$d db melléklet mentése a háttértárba…</item>
     </plurals>
     <string name="ConversationFragment_pending">Folyamatban…</string>
     <string name="ConversationFragment_push">Adat (Signal)</string>
@@ -1420,13 +1420,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s és a hozzá tartozó csevegés üzenetelőzményei egyesítésre kerültek.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Kérelmet küldtél %1$s részére a Kifizetések aktiválására</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s azt szeretné, hogy aktiváld a Kifizetéseket. Csak azoknak küldj kifizetéseket, akikben megbízol.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Aktiváltad a Kifizetéseket</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s mostantól fogadhat Kifizetéseket</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s csoport hívást indított · %2$s</string>
@@ -1916,13 +1916,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ez az üzenet ki lett törölve.</string>
     <string name="ThreadRecord_you_deleted_this_message">Általad törölt üzenet.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Kérelmet küldtél a Kifizetések aktiválására</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s azt szeretné, hogy aktiváld a Kifizetéseket</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Aktiváltad a Kifizetéseket</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s mostantól fogadhat Kifizetéseket</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s elérhető a Signalon!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Eltűnő üzenetek letiltva</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Eltűnő üzenet ideje beállítva erre: %1$s</string>
@@ -2983,7 +2983,7 @@
     <string name="PaymentsHomeFragment__sent_s">Küldve %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Beérkezett %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Átutalás a tőzsdére</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Pénznem konverzió</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Valutaváltás</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Fizetések kikapcsolása</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Helyreállítási mondat</string>
     <string name="PaymentsHomeFragment__help">Súgó</string>
@@ -2992,8 +2992,8 @@
     <string name="PaymentsHomeFragment__received_payment">Beérkezett fizetés</string>
     <string name="PaymentsHomeFragment__processing_payment">Fizetés feldolgozása</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">A devizaátváltás nem érhető el</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Sikertelen a devizaváltó megjelenítése. Ellenőrizd a telefonod kapcsolatát, majd próbáld újra!</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">A valutaátváltás nem érhető el</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">A valutaváltó megjelenítése sikertelen. Ellenőrizd a telefonod kapcsolatát, majd próbáld újra!</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">A Fizetések nem érhető el a régiódban.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Sikertelen a fizetések engedélyezése. Próbáld újra később!</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Kikapcsolod a Fizetéseket?</string>
@@ -3920,8 +3920,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Helyreállítási mondat mentése</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Helyreállítási mondat megadása</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="one">Az egyenleged automatikusan helyreáll, amikor újratelepíted a Signalt, amennyiben megadod a Signal PIN kódodat. Továbbá helyreállíthatod egyenlegedet a helyreállítási mondat használatával is, ami egy %1$d szóból álló, számodra egyedi mondat. Jegyezd fel, és tárold biztonságos helyen!</item>
+        <item quantity="other">Az egyenleged automatikusan helyreáll, amikor újratelepíted a Signalt, amennyiben megadod a Signal PIN kódodat. Továbbá helyreállíthatod egyenlegedet a helyreállítási mondat használatával is, ami egy %1$d szóból álló, számodra egyedi mondat. Jegyezd fel, és tárold biztonságos helyen!</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Van egyenleged! Itt az ideje, hogy elmentsd a helyreállítási mondatod—egy 24 szavas kulcsszót, amellyel helyreállíthatod az egyenleged.</string>
@@ -4222,9 +4222,9 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Adomány a Signal számára</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">A Signalt az olyan emberek tartják működésben, mint Te. Küldj havi támogatást, amiért cserébe egy kitűzőt adunk!</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">A Signalt hozzád hasonló emberek működtetik. Küldj havi támogatást, amiért cserébe egy jelvényt adunk!</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">Támogatás</string>
+    <string name="Donate2022Q2Megaphone_donate">Adományozás</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">Később</string>
 
@@ -4245,9 +4245,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Válj Fenntartóvá!</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">A Signalt hozzád hasonló emberek működtetik. Adományoddal kitűzőhöz juthatsz.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">A Signalt hozzád hasonló emberek működtetik. Küldj támogatást, amiért cserébe egy jelvényt adunk!</string>
     <string name="BecomeASustainerMegaphone__not_now">Később</string>
-    <string name="BecomeASustainerMegaphone__donate">Támogatás</string>
+    <string name="BecomeASustainerMegaphone__donate">Adományozás</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Beszélgetés némítva örökké</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefonszám másolva a vágólapra.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonszám</string>
-    <string name="ConversationSettingsFragment__get_badges">Szerezz kitűzőket profilképedre a Signal anyagi támogatásával. Koppints az egyik kitűzőre a további tudnivalókért!</string>
+    <string name="ConversationSettingsFragment__get_badges">Szerezz jelvényeket a profilképedre a Signal támogatásával. Koppints az egyik jelvényre a további tudnivalókért!</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Tagok hozzáadása</string>
@@ -4475,7 +4475,7 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Nem sikerült a profil frissítése</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Jelvény választása</string>
+    <string name="BadgeSelectionFragment__select_badges">Jelvény kiválasztása</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Előnézet</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Válassz egy jelvényt</string>
@@ -4492,31 +4492,31 @@
     <string name="SubscribeFragment__more_payment_options">További fizetési lehetőség</string>
     <string name="SubscribeFragment__cancel_subscription">Előfizetés megszüntetése</string>
     <string name="SubscribeFragment__confirm_cancellation">Biztosan megszünteted?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Nem vonunk le több támogatást a jövőben. Jelvényed a számlázási ciklus végig megmarad.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Nem vonunk le több adományt a jövőben. Jelvényed a számlázási ciklus végig megmarad.</string>
     <string name="SubscribeFragment__not_now">Később</string>
     <string name="SubscribeFragment__confirm">Megerősítés</string>
     <string name="SubscribeFragment__update_subscription">Előfizetés módosítása</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Előfizetésed megszüntettük.</string>
     <string name="SubscribeFragment__update_subscription_question">Frissíted előfizetésed?</string>
     <string name="SubscribeFragment__update">Frissítés</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">A következő teljes árú előfizetői díj (%1$s) ma kerül levonásra. Az új előfizetésed havonta fog megújulni.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Az új előfizetési díj teljes összege (%1$s) ma kerül levonásra. Az új előfizetésed havonta fog megújulni.</string>
 
     <string name="Subscription__s_per_month">%1$s/hó</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Megújul: %1$s</string>
+    <string name="Subscription__renews_s">Megújul ekkor: %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">%1$s dátummal lejár</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe kitűzőt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás. Indíts havi, rendszeres támogatást, és cserébe jelvényt kapsz profilképedre, amivel láthatóvá teheted támogatásodat.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Miért támogassam?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">A Signal csapata elkötelezett, hogy nyílt forrású fejlesztéseivel előmozdítsa a privát technológiák térnyerését, amelyek a szólásszabadságot és a biztonságos globális kommunikáció elterjedését biztosítják.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Adományoddal nem csak az ügyet segíted, hanem egy olyan app fejlesztésére és üzemeltetésére fordítjuk, amelyet mára milliók használnak titkosított kommunikációra. Nincs reklám. Nincs követés. Nincs trükk.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Adományoddal nem csak az ügyet segíted, hanem egy olyan app fejlesztésére és üzemeltetéséhez is hozzájárulsz, amelyet mára milliók használnak titkosított kommunikációra. Nincs reklám. Nincs követés. Nincs trükk.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Köszönjük a támogatásodat!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Köszönet a Löketért!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Elnyerted a %1$s kitűzőt. Ha kitűzöd a jelvényt profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Elnyerted a Löket kitűzőt. Ha kitűzöd a jelvényt profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Köszönet a Boost-ért!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Elnyerted a(z) %1$s jelvényt. Ha kitűzöd a jelvényt a profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Elnyerted a Boost-jelvényt. Ha kitűzöd a jelvényt a profilképedre, azzal felhívod más felhasználók figyelmét arra, hogy ők is adományozhatnak.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">De ezen kívül</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">havi Fenntartóvá is válhatsz.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Megjelenítés profilképen</string>
@@ -4524,7 +4524,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Folytatás</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Ha egynél több jelvényed van, kiválaszthatod, hogy melyiket tűzöd ki a profilképedre.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Szerezz kitűzőket profilképedre a Signal anyagi támogatásával.</string>
+    <string name="BecomeASustainerFragment__get_badges">Támogasd a Signalt, és szerezz jelvényeket a profilképedre!</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">A Signal egy nonprofit, hirdetők és befektetők nélküli, kizárólag felhasználók és rajongók által fenntartott alkalmazás.</string>
 
     <!-- Button label for creating a donation -->
@@ -4537,42 +4537,42 @@
     <string name="ManageDonationsFragment__my_support">Támogatásaim</string>
     <string name="ManageDonationsFragment__manage_subscription">Előfizetés kezelése</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Adomány nyugták</string>
+    <string name="ManageDonationsFragment__donation_receipts">Adományt igazoló nyugták</string>
     <string name="ManageDonationsFragment__badges">Jelvények</string>
     <string name="ManageDonationsFragment__subscription_faq">Előfizetés GYIK</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Előfizetés lekérdezése sikertelen.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Az adományozás egyéb módjai</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Kitűző ajándékozása</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Jelvény ajándékozása</string>
 
-    <string name="Boost__enter_custom_amount">Egyedi összeg</string>
+    <string name="Boost__enter_custom_amount">Egyedi összeg megadása</string>
     <string name="Boost__one_time_contribution">Egyszeri hozzájárulás</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Új Signal Löket</string>
+    <string name="MySupportPreference__add_a_signal_boost">Új Signal Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/hó</string>
-    <string name="MySupportPreference__renews_s">Megújul: %1$s</string>
+    <string name="MySupportPreference__renews_s">Megújul ekkor: %1$s</string>
     <string name="MySupportPreference__processing_transaction">Tranzakció folyamatban…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Kitűző hozzáadása sikertelen. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Jelvény hozzáadása sikertelen. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Kérjük vedd fel a kapcsolatot a Támogatási Központtal!</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">A Lőket kitűző érvényessége lejárt</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">A Boost-jelvény érvényessége lejárt</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Havi támogatás visszavonva</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A Löket kitűződ érvényessége lejárt, így már nem jelenik meg a profilodon.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a \"Löket\" kitűzőt újabb 30 napra.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">A Boost-jelvényed érvényessége lejárt, így már nem jelenik meg a profilodon.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Egy egyszeri hozzájárulással újraaktiválhatod a Boost-jelvényed újabb 30 napra.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Továbbra is használhatod a Signalt, de ha hosszabb távon is szívesen támogatnál egy kifejezetten számodra fejlesztett technológiát, akkor kérjük fontold meg a havi rendszerességgel történő támogatást.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Továbbra is használhatod a Signalt, de ha hosszabb távon is szívesen támogatnál egy kifejezetten számodra fejlesztett technológiát, akkor kérjük, fontold meg a havi rendszerességgel történő támogatást.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Válj Fenntartóvá</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Új Löket</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Új Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Később</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert túl sokáig voltál inaktív. A %1$s kitűző már nem látható profilodon.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert túl sokáig voltál inaktív. A(z) %1$s jelvény már nem látható profilodon.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert nem tudtuk végrehajtani a fizetési tranzakciót. A kitűző már nem látható profilodon.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">A havi adományaidra vonatkozó megállapodást automatikusan töröltük, mert nem tudtuk végrehajtani a fizetési tranzakciót. A jelvény már nem látható profilodon.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Az ismétlődő havi adományod töröltük. %1$s A(z) %2$s jelvényed már nem látható a profilodon.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Természetesen továbbra is használhatod a Signalt, de az alkalmazás támogatásához és jelvényed újraaktiválásához el kell végezned az előfizetés megújítását.</string>
@@ -4586,32 +4586,32 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Kérünk lépj kapcsolatba a Támogatási Központtal.</string>
     <string name="Subscription__contact_support">Kapcsolatfelvétel a támogatással</string>
-    <string name="Subscription__get_a_s_badge">Szerezz egy %1$s kitűzőt</string>
+    <string name="Subscription__get_a_s_badge">Szerezz egy %1$s jelvényt</string>
 
     <string name="SubscribeFragment__processing_payment">Fizetés feldolgozása…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Hiba történt a fizetés feldolgozása során</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Hiba történt a fizetés feldolgozása során. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Nem tudtuk kitűződet a fiókodhoz rendelni, pedig elkézelhető, hogy a fizetés sikeres volt. Kérjük vedd fel a kapcsolatot a Támogatási Központtal!</string>
-    <string name="DonationsErrors__your_payment">Fizetésed feldolgozása sikertelen, nem került összeg levonásra. Kérjük próbáld újra!</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Nem tudtuk a jelvényed a fiókodhoz rendelni, pedig elképzelhető, hogy a fizetés sikeres volt. Kérjük, vedd fel a kapcsolatot a Támogatási Központtal!</string>
+    <string name="DonationsErrors__your_payment">Fizetésed feldolgozása sikertelen, nem került összeg levonásra. Kérjük, próbáld újra!</string>
     <string name="DonationsErrors__still_processing">Még dolgozunk</string>
-    <string name="DonationsErrors__couldnt_add_badge">Kitűző hozzáadása sikertelen.</string>
+    <string name="DonationsErrors__couldnt_add_badge">Jelvény hozzáadása sikertelen.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Nem sikerült ellenőrizni a kitűzőhöz való jogosultságodat.</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Nem sikerült ellenőrizni a jelvényhez való jogosultságodat.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Nem sikerült meggyőződni a kiszolgáló válaszának hitelességéről. Kérlek vedd fel a kapcsolatot a támogatással!</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Nem sikerült elküldeni az ajándék kitűzőt</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Nem sikerült elküldeni az ajándék jelvényt</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Nem sikerült elküldeni az ajándék kitűzőt. Kérlek vedd fel a kapcsolatot a támogatással!</string>
-    <string name="DonationsErrors__your_badge_could_not">Nem tudtuk a kitűződet a fiókodhoz rendelni, miközben lehet, hogy fizettél. Kérjük vedd fel a kapcsolatot a Támogatási Központtal.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Nem sikerült elküldeni az ajándék jelvényt. Kérjük, vedd fel a kapcsolatot az Ügyfélszolgálattal!</string>
+    <string name="DonationsErrors__your_badge_could_not">Nem tudtuk a jelvényed a fiókodhoz rendelni, pedig elképzelhető, hogy a fizetés sikeres volt. Kérjük, vedd fel a kapcsolatot az Ügyfélszolgálattal!</string>
     <string name="DonationsErrors__your_payment_is_still">A fizetés feldolgozása folyamatban. Ez a kapcsolatod sebességétől függően eltarthat egy ideig.</string>
     <string name="DonationsErrors__google_pay_unavailable">A Google Pay nem érhető el</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Alkalmazáson belüli adományozáshoz a Google Pay beállítása szükséges.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Előfizetés törlése sikertelen</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Az előfizetés törlése internet kapcsolatot igényel.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Az eszközöd nem támogatja a Google Pay-t, így nem tudsz előfizetést indítani kitűző elnyeréséért. Alternatívaként továbbra is adományozhatsz a Signal számára weboldalunkon.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Az előfizetés törlése internetkapcsolatot igényel.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Az eszközöd nem támogatja a Google Pay-t, így nem tudsz előfizetést indítani jelvény elnyeréséért. Alternatívaként továbbra is adományozhatsz a Signal számára weboldalunkon.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hálózati hiba. Ellenőrizd a hálózati kapcsolatot és próbáld újra!</string>
     <string name="NetworkFailure__retry">Újra</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4624,7 +4624,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">Az ajándék küldése hálózati hiba miatt sikertelen. Ellenőrizd a kapcsolatot, majd próbáld újra!</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Ajándék kitűző</string>
+    <string name="GiftMessageView__gift_badge">Ajándék jelvény</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">%1$d hónapig érvényes</item>
@@ -4825,7 +4825,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Ajándék</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Lökés</string>
+    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Részletek</string>
     <!-- Donation receipts donation type heading -->
@@ -4835,7 +4835,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Nyugta megosztása</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Ha újratelepítetted a Signalt, korábbi adományaid nyugtái nem lesznek elérhetőek.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Ha újratelepítetted a Signalt, korábbi adományaid nyugtái nem lesznek elérhetők.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Adomány nyugta</string>
     <!-- Donation receipts amount title -->
@@ -4939,7 +4939,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Még nem látta senki</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Engedélyezd az Olvasási értesítéseket, hogy lásd, kik nézték meg a Történeteidet!</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Ugrás a Beállításokhoz</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · %2$d napi időtartam</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Ajándék kitűző küldése</string>
+    <string name="GiftRowItem__send_a_gift_badge">Ajándék jelvény küldése</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Kitűző ajándékozása</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Jelvény ajándékozása</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Ajándékozz egy kitűzőt valakinek úgy, hogy a nevükben adományozol a Signal részére. Az adományért cserébe egy kitűzőt kapnak, amit a profilképükre tűzhetnek ki.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Ajándékozz egy jelvényt valakinek úgy, hogy a nevében adományozol a Signal részére. Az adott személy az adományért cserébe egy jelvényt kap, amit kitűzhet a profilképére.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Tovább</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Köszönjük a támogatásodat!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Ajándék kitűzőt kaptál %1$s felhasználótól. Segíts a Signalnak azzal, hogy kitűzöd az ajándékot profilképedre!</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Ajándék jelvényt kaptál %1$s felhasználótól. Segíts a Signalnak azzal, hogy kitűzöd az ajándékot a profilképedre!</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Kitűzőt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jelvényt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Beváltás</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5230,13 +5230,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Ajándék beváltása…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">A kitűzőt később is beválthatod.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">A jelvényt később is beválthatod.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Kitűzőt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jelvényt ajándékoztál %1$s részére. Amikor elfogadja, lehetősége lesz kitűzni vagy elrejteni azt.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Az ajándék kitűződ érvényessége lejárt</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Az ajándék jelvényed érvényessége lejárt</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Az ajándék kitűződ érvényessége lejárt, így már nem jelenik meg a profilképeden.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Az ajándék jelvényed érvényessége lejárt, így már nem jelenik meg a profilképeden.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Ha továbbra is támogatnád ezt a technológiát, amelyet számodra fejlesztettünk, kérjük fontold meg a havi Fenntartóvá válást.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5588,13 +5588,13 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Adományozz %1$s összeget havonta a Signalnak</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Szerezz egy %1$s kitűzőt</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Szerezz egy %1$s jelvényt</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Adományozz %1$s összeget a Signalnak</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="one">Szerezz %1$s jelvényt %2$d napra</item>
+        <item quantity="other">Szerezz %1$s jelvényt %2$d napra</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Hitel- vagy betéti kártya</string>

@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal에서 연락처 정보를 첨부하려면 연락처 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'연락처\' 항목을 허용해 주세요.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal에서 위치 정보를 첨부하려면 위치 접근 권한이 필요하지만 현재 거부되어 있습니다. 앱 설정 메뉴에서 \'권한\'을 선택한 후 \'위치\' 항목을 허용해 주세요.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s 님이 결제를 아직 활성화하지 않았습니다. </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">결제를 활성화해달라는 요청을 보낼까요?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">요청 보내기</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">취소</string>
 
@@ -1356,19 +1356,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s 님의 메시지를 전달할 수 없습니다.</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">새로운 기능이 마음에 드시나요? 1회성 기부로 Signal을 지원해 주세요.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">새로운 기능이 마음에 드시나요? 일회성 기부로 Signal을 지원해 주세요.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s 님과 해당 사용자 번호 %2$s의 메시지 기록을 병합했습니다.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s 님과의 메시지 기록과 해당 사용자가 속하는 다른 채팅의 메시지 기록을 병합했습니다.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">%1$s 님에게 결제를 활성화해달라는 요청을 보냈습니다.</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s 님에게서 결제를 활성화해달라는 요청이 왔습니다. 결제는 신뢰할 수 있는 사람에게만 보내주세요.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">결제를 활성화했습니다.</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s 님이 그룹 통화를 시작했습니다(%2$s).</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
     <string name="ThreadRecord_you_deleted_this_message">이 메시지를 삭제했습니다.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">결제를 활성화해달라는 요청을 보냈습니다.</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s 님에게서 결제를 활성화해달라는 요청을 받았습니다.</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">결제를 활성화했습니다.</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s 님이 이제 결제를 수락할 수 있습니다.</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s 님이 온라인입니다!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">사라지는 메시지 기능이 비활성화됨</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">사라지는 메시지 시간을 %1$s(으)로 설정했습니다.</string>
@@ -2626,9 +2626,9 @@
     <string name="preferences__slow">느리게</string>
     <string name="preferences__help">도움</string>
     <string name="preferences__advanced">고급</string>
-    <string name="preferences__donate_to_signal">시그널에 기부하기</string>
+    <string name="preferences__donate_to_signal">Signal에 기부</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">1회 후원</string>
+    <string name="preferences__one_time_donation">일회성 기부</string>
     <string name="preferences__privacy">개인 정보</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">스토리</string>
@@ -2884,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">받은 시간</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">결제 소개(베타)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal을 사용하여 개인 정보에 중점을 둔 새로운 디지털 통화인 MobileCoin을 보내고 받으세요. 시작하려면 활성화하세요.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal을 사용하여 개인정보 보호에 중점을 둔 새로운 디지털 통화인 MobileCoin을 보내고 받으세요. 지금 활성화하여 시작해 보세요.</string>
     <string name="PaymentsHomeFragment__activate_payments">결제 활성화</string>
     <string name="PaymentsHomeFragment__activating_payments">결제 활성화 중…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">결제 계정 복원</string>
@@ -2984,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s, %2$s, %3$s</string>
     <string name="PaymentsDetailsFragment__to">받는이:</string>
     <string name="PaymentsDetailsFragment__from">보낸이:</string>
-    <string name="PaymentsDetailsFragment__information">지불 금액 및 거래 시간을 포함한 거래 세부 정보는 MobileCoin Ledger의 일부입니다.</string>
+    <string name="PaymentsDetailsFragment__information">지불 금액 및 거래 시간을 비롯한 거래 세부 정보는 MobileCoin Ledger의 일부입니다.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">코인 정리 수수료</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">보유하고 있는 코인을 합산하여 거래를 완료할 수 없는 경우 \'코인 정리 수수료\'가 부과됩니다. 정리를 통해 계속 지불할 수 있습니다.</string>
     <string name="PaymentsDetailsFragment__no_details_available">이 거래에 대해 사용할 수 있는 추가 세부정보가 없습니다.</string>
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">Signal로 초대</string>
     <string name="FirstInviteReminder__description">내가 보낸 암호화 메시지 수를 %1$d%%나 올릴 수 있습니다.</string>
-    <string name="SecondInviteReminder__title">Signal 부스트</string>
+    <string name="SecondInviteReminder__title">Signal에 부스트를 추가하세요.</string>
     <string name="SecondInviteReminder__description">%1$s 초대</string>
     <string name="InsightsReminder__view_insights">인사이트 보기</string>
     <string name="InsightsReminder__invite">초대</string>
@@ -3784,7 +3784,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">모바일 코인 소개</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin은 새로운 개인 정보 보호 중심의 디지털 통화입니다.</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin은 새로운 개인정보 보호 중심의 디지털 통화입니다.</string>
     <string name="payment_info_card_adding_funds">자금 추가</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">MobileCoin을 지갑 주소로 전송하여 Signal에서 사용할 자금을 추가할 수 있습니다.</string>
     <string name="payment_info_card_cashing_out">현금화</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">복구 문구 저장</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">복구 코드를 입력하기</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Signal PIN을 확인하면 Signal을 다시 설치할 때 잔액이 자동으로 복원됩니다. 사용자별로 고유한 %1$d개 단어로 구성된 복구 문구를 사용하여 잔액을 복원할 수도 있습니다. 안전한 곳에 적어 두고 보관하세요.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">잔액이 있습니다! 24개 단어 키인 복구 문구를 저장하세요. 해당 문구를 사용하여 잔액을 복구할 수 있습니다.</string>
@@ -3994,7 +3994,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS 메시지 제거</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal에서 SMS 메시지를 제거하는 중...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Signal에서 SMS 메시지를 제거하는 중…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">언제든 Signal 설정에서 SMS 메시지를 제거할 수 있습니다.</string>
     <!-- Description for export sms preference -->
@@ -4120,9 +4120,9 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">하단 가장자리 선택기</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal에 후원</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal에 기부</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal은 여러분의 지지를 통해 힘을 얻습니다. 매월 기부하고 배지를 받으세요.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal은 여러분과 같은 사용자의 기여로 운영됩니다. 매월 기부하고 배지를 받으세요.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">기부</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4202,7 +4202,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">대화가 영원히 음소거됨</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">전화번호를 클립보드에 복사했습니다.</string>
     <string name="ConversationSettingsFragment__phone_number">전화번호</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal을 지원하여 배지를 받으세요. 배지를 탭하여 자세히 알아보세요.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal을 후원하고 배지를 받으세요. 배지를 탭하여 자세히 알아보세요.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">멤버 추가</string>
@@ -4405,12 +4405,12 @@
 
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal은 광고주와 투자자 없이 우리 앱을 사용하고 지지하는 사용자의 기여로만 운영됩니다. 월간 기부를 통해 배지를 받고 앱에 대한 지지를 공유하세요.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">왜 기부해야 합니까?</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Signal에 기부해야 하는 이유</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal은 표현의 자유를 보호하고 안전한 글로벌 커뮤니케이션을 지원하는 오픈 소스 프라이버시 기술을 개발하기 위해 최선을 다하고 있습니다.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">여러분의 기부금은 이러한 Signal의 사명을 달성하고 수백만 사용자가 개인 커뮤니케이션에 사용하는 Signal 앱의 개발비와 운영비를 충당하는 데 쓰입니다. 이제 광고와 트래커에서 자유로운 앱을 즐기세요.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">여러분의 지지와 성원에 감사드립니다!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Boost, 감사합니다!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">부스트를 이용해 주셔서 감사합니다!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s 배지를 획득했습니다! 이 배지를 프로필에 표시하여 Signal 기부에 대해 널리 알려주세요.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">부스트 배지를 획득했습니다! 이 배지를 프로필에 표시하여 Signal 기부에 대해 널리 알려주세요.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">다른 기여 방법</string>
@@ -4420,11 +4420,11 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">계속</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">배지가 여러 개 있는 경우 프로필에 표시하고 싶은 배지를 선택하여 등록할 수 있습니다.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">프로필 배지를 받아 Signal을 지지해 주세요.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal을 지지하여 프로필 배지를 받으세요.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal은 광고주나 투자자 없이 오로지 사용자의 기여로 운영되는 비영리 단체입니다.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">시그널에 기부하기</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Signal에 기부</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">더 보기</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4435,7 +4435,7 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">기부 영수증</string>
     <string name="ManageDonationsFragment__badges">배지</string>
-    <string name="ManageDonationsFragment__subscription_faq">구독 관련 FAQ</string>
+    <string name="ManageDonationsFragment__subscription_faq">구독 FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">구독을 설정하는 도중 오류가 발생했습니다.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">다른 기여 방법</string>
@@ -4459,19 +4459,19 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">월간 기부 취소함</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">부스트 배지가 만료되어 더 이상 프로필에 표시되지 않습니다.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1회성 기부를 통해 부스트 배지를 다음 30일 동안 재활성화하세요.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">일회성 기부를 통해 부스트 배지를 다음 30일 동안 재활성화하세요.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal을 계속 사용할 수는 있지만 사용자를 위해 설계된 Signal의 기술을 지지하고 싶다면 월간 기부를 통해 기여자가 되어주세요.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">후원자가 되세요</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">부스트 추가</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">나중에</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">오랫동안 활동 기록이 없어 월간 정기 기부가 자동으로 취소되었습니다. %1$s 배지가 더는 프로필에 표시되지 않습니다.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">오랫동안 활동 기록이 없어 월간 기부가 자동으로 취소되었습니다. %1$s 배지가 더는 프로필에 표시되지 않습니다.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">결제를 처리할 수 없어 월간 정기 기부가 취소되었습니다. 배지가 더는 프로필에 표시되지 않습니다.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">결제를 처리할 수 없어 월간 기부를 취소했습니다. 배지가 더는 프로필에 표시되지 않습니다.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">월간 정기 기부가 취소되었습니다. %1$s %2$s 배지가 더는 프로필에 표시되지 않습니다.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal을 계속 사용할 수는 있지만 앱을 지지하고 배지를 재활성화려면 지금 갱신하세요.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">월간 기부를 취소했습니다. %1$s %2$s 배지가 더는 프로필에 표시되지 않습니다.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal을 계속 사용할 수는 있지만 앱을 지지하고 배지를 재활성화하려면 지금 갱신하세요.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">구독 갱신</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay로 이동</string>
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">아직 아무도 조회 안 함</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">내 스토리를 본 사람을 확인하려면 수신 확인을 활성화하세요.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">설정으로 이동</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5097,7 +5097,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">선물은 상대방에게 1:1 메시지로 전송됩니다. 나만의 메시지를 아래에 추가하세요.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">1회성 기부</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">일회성 기부</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">메시지 추가</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5127,7 +5127,7 @@
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">사용자를 위해 설계된 기술을 계속 지원하고 싶다면 Signal의 월간 기여자가 되어주세요.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">매달 정기후원하기</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">월간 기부하기</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">나중에</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5470,13 +5470,13 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal에 %1$s 기부</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">%2$d일 동안 %1$s 배지 사용 가능</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">신용 또는 직불 카드</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">취소하는 중...</string>
+    <string name="StripePaymentInProgressFragment__cancelling">취소하는 중…</string>
 
     <!-- EOF -->
 

@@ -105,11 +105,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">အဆက်အသွယ်များ၏ အချက်အလက်များကို ပို့နိုင်ရန်အတွက် အဆက်အသွယ်များ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟုရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ အဆက်အသွယ်များကို ခွင့်ပြုပေးပါ။</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">မိမိ၏ တည်နေရာကို ပို့နိုင်ရန် တည်နေရာ ခွင့်ပြုချက်ကို Signal မှ ရရန်လိုအပ်သည်။ သို့သော် အမြဲတမ်းအတွက် ခွင့်မပြုပါဟု ရွေးထားပြီး ဖြစ်နေသဖြင့် အက်ပ် စက်တင်မီနူးသို့သွား၍ ခွင့်ပြုချက်များကို ရွေးချယ်ကာ တည်နေရာကို ခွင့်ပြုပေးပါ။</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s သည် ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ထားခြင်း မရှိသေးပါ </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">၎င်းတို့ထံ ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ရန် တောင်းဆိုချက် ပေးပို့လိုပါသလား။</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">တောင်းဆိုချက် ပို့ရန်</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">မလုပ်တော့ပါ</string>
 
@@ -1362,13 +1362,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s နှင့် သင်၏ မက်ဆေ့ချ်မှတ်တမ်း၊ ၎င်းတို့နှင့် သက်ဆိုင်သည့် အခြား ချက်(တ်)ကို ပေါင်းစည်းထားပါသည်။</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">%1$s ထံ ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ရန် တောင်းဆိုချက် ပို့ထားပါသည်</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s သည် သင့်အား ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်စေလိုပါသည်။ သင်ယုံကြည်ရသူများထံသာ ငွေပေးချေမှုများ ပို့ပါ။</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ထားပါသည်</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">ယခုအခါ %1$s သည် ငွေပေးချေမှုများကို လက်ခံနိုင်ပါသည်</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s သည် အဖွဲ့လိုက်ခေါ်ဆိုမှု စခဲ့ပါသည် · %2$s</string>
@@ -1843,13 +1843,13 @@
     <string name="ThreadRecord_this_message_was_deleted">၎င်းမက်ဆေ့ချ်ကို ဖျက်ခဲ့ပါသည်။</string>
     <string name="ThreadRecord_you_deleted_this_message">သင်သည် ဤမက်ဆေ့ချ်ကို ဖျက်လိုက်ပါပြီ။</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ရန် တောင်းဆိုချက် ပို့ထားပါသည်</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s သည် သင့်အား ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်စေလိုပါသည်</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">ငွေပေးချေမှုများကို သက်ဝင်လုပ်ဆောင်ထားပါသည်</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">ယခုအခါ %1$s သည် ငွေပေးချေမှုများကို လက်ခံနိုင်ပါသည်</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s က Signal တွင်ရှိသည်!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">မက်ဆေ့ချ်များ ပျောက်ကွယ်ခြင်းကို ပိတ်ထားပါသည်</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">စာများသည် %1$s အတွင်းပျောက်သွားရန် ချိန်ညှိထားသည်။</string>
@@ -2077,7 +2077,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">ငွေပေးချေမှုများကို ဆက်သုံးရန် Signal ကို အပ်ဒိတ်လုပ်ပါ။ သင့်လက်ကျန်ငွေသည် အပ်ဒိတ် မဖြစ်ပါ။</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">ယခု Update လုပ်ပါ။</string>
 
@@ -2206,7 +2206,7 @@
     <string name="ConversationUpdateItem_view">ကြည့်မယ်</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">၎င်းတို့ထံ မက်ဆေ့ချ် ပို့ချိန်တွင် ပျောက်သွားမည့် မက်ဆေ့ချ် အချိန်ကို %1$s အဖြစ် သတ်မှတ်သွားပါမည်။</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">လှူဒါန်းပါ</string>
+    <string name="ConversationUpdateItem_donate">လှူဒါန်းရန်</string>
     <!-- Update item button text to send payment -->
     <string name="ConversationUpdateItem_send_payment">ငွေပေးချေမှု ပေးပို့မယ်</string>
     <!-- Update item button text to activate payments -->
@@ -2626,7 +2626,7 @@
     <string name="preferences__slow">အနှေး</string>
     <string name="preferences__help">အကူအညီ</string>
     <string name="preferences__advanced">အဆင့်မြင့်</string>
-    <string name="preferences__donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
+    <string name="preferences__donate_to_signal">Signal ကို လှူဒါန်းရန်</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">တစ်ကြိမ် လှူဒါန်းမှု</string>
     <string name="preferences__privacy">ကိုယ်ရေးအချက်အလက်များ လုံခြုံမှု</string>
@@ -2884,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">လက်ခံရရှိပြီး</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">ငွေပေးချေမှုများ (စမ်းသပ်သည့် Beta ဗားရှင်း) မိတ်ဆက်ပါသည်</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal သုံး၍ MobileCoin ပေးပို့လက်ခံလိုက်ပါ၊​ ၎င်းသည် ပုဂ္ဂိုလုံခြုံရေး အလေးထားသော ဒစ်ဂျစ်တယ်ငွေကြေး ဖြစ်ပါသည်။ ဖွင့်၍ စတင်သုံးလိုက်ပါ။</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signal သုံး၍ လုံခြုံရေးအလေးပေး ဒစ်ဂျစ်တယ်ငွေကြေးအသစ် MobileCoin ကို ပေးပို့လက်ခံလိုက်ပါ။ စတင်သုံးရန် ဖွင့်ပါ။</string>
     <string name="PaymentsHomeFragment__activate_payments">ငွေပေးချေမှုများ ဖွင့်မယ်</string>
     <string name="PaymentsHomeFragment__activating_payments">ငွေပေးချေမှုများ ဖွင့်နေသည်…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">ငွေပေးချမှုလုပ်သည့် အကောင့် ပြန်ရယူမယ်</string>
@@ -2934,9 +2934,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">ယခု မလုပ်ပါ</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">အပ်ဒိတ် လိုအပ်ပါသည်</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">ငွေပေးချေမှုများ ပို့ရန် သို့မဟုတ် လက်ခံရန်အတွက် ဆက်လက်လုပ်ဆောင်ရန်နှင့် သင်၏ ငွေပေးချေမှု လက်ကျန်ငွေကို ကြည့်ရန် အပ်ဒိတ်လိုအပ်ပါသည်။</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">မလုပ်တော့ပါ</string>
     <!-- Alert dialog button to update now -->
@@ -2984,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s ကို %2$s ၊ %3$s အချိန်တွင်</string>
     <string name="PaymentsDetailsFragment__to">သို့</string>
     <string name="PaymentsDetailsFragment__from">မှ</string>
-    <string name="PaymentsDetailsFragment__information">ငွေပေးချေမှု ငွေပမာဏ နှင့် လုပ်ဆောင်သည့်အချိန် အပါအဝင် ငွေပေးငွေယူသည့် အသေးစိတ်အချက်အလက်များသည် MobileCoin စာအုပ်စာရင်း၏ အစိတ်အပိုင်းတစ်ခု ဖြစ်ပါသည်။</string>
+    <string name="PaymentsDetailsFragment__information">ငွေပေးချေမှု ငွေပမာဏနှင့် လုပ်ဆောင်သည့်အချိန် အပါအဝင် ငွေပေးငွေယူသည့် အသေးစိတ်အချက်အလက်များသည် MobileCoin စာအုပ်စာရင်း၏ အစိတ်အပိုင်းတစ်ခု ဖြစ်ပါသည်။</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">အကြွေစေ့ရှင်းရေးအခကြေး</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">ငွေပေးချေမှု လုပ်ဆောင်ရန် သင့်လက်ထဲတွင်ရှိသော အကြွေစေ့များကိုပေါင်းစပ်သော်လည်း မလုံလောက်မှုဖြစ်ခဲ့လျှင် \"အကြွေစေ့ရှင်းရေးအခကြေး\" ကို ကောက်ခံယူပါမည်။ ရှင်းခြင်းဖြင့် ငွေပေးချေမှုများ ဆက်လက် ပေးပို့နိုင်ပါမည်။</string>
     <string name="PaymentsDetailsFragment__no_details_available">၎င်းငွေပေးချေမှုအတွက် အခြားအချက်အလက်များ မရရှိနိုင်ပါ</string>
@@ -3070,7 +3070,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s ကို %2$s ဖြင့်</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">ငွေကြေး သတ်မှတ်မယ်</string>
+    <string name="SetCurrencyFragment__set_currency">ငွေကြေး သတ်မှတ်ရန်</string>
     <string name="SetCurrencyFragment__all_currencies">ငွေကြေးများ အားလုံး</string>
 
     <!-- **************************************** -->
@@ -3237,7 +3237,7 @@
 
     <string name="FirstInviteReminder__title">Signal သို့ ဖိတ်ခေါ်မည်</string>
     <string name="FirstInviteReminder__description">သင်ပေးပို့သည့် ကုဒ်ဖြင့်ဝှက်ထားသော မက်ဆေ့ချ်အရေအတွက်ကို %1$d %% ထက်တိုးမြှင့်နိုင်ပါသည်</string>
-    <string name="SecondInviteReminder__title">သင်၏ Signal ကိုမြှင့်တင်ပါ</string>
+    <string name="SecondInviteReminder__title">သင်၏ Signal ကို Boost လုပ်ပါ</string>
     <string name="SecondInviteReminder__description">%1$s ကို ဖိတ်ခေါ်မယ်</string>
     <string name="InsightsReminder__view_insights">ထင်မြင်ချက်များ (Insights) ကိုကြည့်မယ်</string>
     <string name="InsightsReminder__invite">ဖိတ်ခေါ်မယ်</string>
@@ -3784,7 +3784,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">MobileCoin အကြောင်း</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin သည် ပုဂ္ဂိုလ်လုံခြုံရေးကို အလေးထားသော ဒစ်ဂျစ်တယ်ငွေကြေးအသစ် ဖြစ်ပါသည်။</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin သည် လုံခြုံရေးအလေးပေး ဒစ်ဂျစ်တယ်ငွေကြေးအသစ် ဖြစ်ပါသည်။</string>
     <string name="payment_info_card_adding_funds">ငွေဖြည့်နေသည်</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">သင့် ပိုက်ဆံအိတ် wallet လိပ်စာသို့ MobileCoin ပို့၍ Signal တွင် သုံးရန် ငွေဖြည့်နိုင်ပါသည်။</string>
     <string name="payment_info_card_cashing_out">ငွေထုတ်ယူခြင်း</string>
@@ -3823,7 +3823,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">ပြန်လည်ရယူရေး စကားစုကို သိမ်းရန်</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">ပြန်လည်ရယူ စာပုဒ်တိုကို ရိုက်ထည့်ပါ</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="other">Signal ပြန်တင်သွင်းသည့်အချိန်တွင် သင့် Signal PIN ကို အတည်ပြုခဲ့လျှင် သင့် လက်ကျန်ငွေကို အလိုအလျောက်ပြန်လည် ရရှိပါမည်။ ပြန်လည်ရယူရန် စာပုဒ်တိုဖြင့်လည်း သင့်လက်ကျန်ငွေကို ပြန်ရယူနိုင်ပါသည်။ ၎င်းသည် သင့်အတွက်ထူးခြားသော စကားလုံး %1$d လုံးရှိသော စာပုဒ်တိုဖြစ်ပါသည်။ ရေးမှတ်ထားပြီး လုံခြုံသောတစ်နေရာတွင် သိမ်းထားပါ။</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">လက်ကျန်ငွေ ရရှိထားပါသည်။ သင်၏ လက်ကျန်ငွေကို ပြန်လည်ရယူရန် သုံးနိုင်သည့် ပြန်လည်ရယူရေး စကားစု—စာလုံး 24 လုံးပါ ကီး ကို သိမ်းရန် အချိန်ကျပါပြီ။</string>
@@ -4120,11 +4120,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Bottom Edge Selector</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ကို လှူဒါန်းရန်</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ကိုသင့်လိုသူများက အားဖြည့်ကူညီပေးထားပါသည်။ လစဉ်လှူဒါန်းပြီး တံဆိပ်ရယူလိုက်ပါ။</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ကိုသင့်လိုသူများက အားဖြည့်ကူညီပေးထားပါသည်။ လစဉ်လှူဒါန်းပြီး ဘဲ့ဂျ်တစ်ခု ရယူလိုက်ပါ။</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">လှူဒါန်းပါ</string>
+    <string name="Donate2022Q2Megaphone_donate">လှူဒါန်းရန်</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
 
@@ -4145,9 +4145,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">ပါဝင်အားဖြည့်သူ ဖြစ်စေရန်</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ကို သင့်ကဲ့သို့သော လူများက အားဖြည့်ကူညီပေးထားပါသည်။ လှူဒါန်းပြီး ဘဲ့ဂျ်တစ်ခု ရယူပါ။</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ကိုသင့်လိုသူများက အားဖြည့်ကူညီပေးထားပါသည်။ လှူဒါန်းပြီး ဘဲ့ဂျ်တစ်ခု ရယူလိုက်ပါ။</string>
     <string name="BecomeASustainerMegaphone__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
-    <string name="BecomeASustainerMegaphone__donate">လှူဒါန်းပါ</string>
+    <string name="BecomeASustainerMegaphone__donate">လှူဒါန်းရန်</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">အီမိုဂျိ</string>
@@ -4424,7 +4424,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ သင်ကဲ့သို့သော သူများနှင့်သာ ပံ့ပိုးလုပ်ဆောင်သည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Signal ကိုလှူဒါန်းပါ</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Signal ကို လှူဒါန်းရန်</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">နောက်ထပ်</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4482,7 +4482,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">နောက်ထပ် အချက်အလက်များအတွက် အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
     <string name="Subscription__contact_support">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ပါ</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">%1$s ဘဲ့ဂျ် ရယူရန်</string>
 
     <string name="SubscribeFragment__processing_payment">ငွေပေးချေမှု လုပ်ဆောင်နေသည်…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4720,7 +4720,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">လက်ဆောင်</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
+    <string name="DonationReceiptListFragment__boost">Boost လုပ်ရန်</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">အသေးစိတ်အချက်အလက်များ</string>
     <!-- Donation receipts donation type heading -->
@@ -4831,7 +4831,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ကြည့်ရှုမှုများ မရှိသေးပါ</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">သင့်စတိုရီများအား ကြည့်ပြီးသူများကို မြင်နိုင်ရန် ဖတ်ပြီးကြောင်းညွှန်ပြမှုကို ဖွင့်ပါ။</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5097,7 +5097,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">သင့်လက်ဆောင်ကို လက်ခံသူထံ တစ်ဦးချင်း ၁-၁ မက်ဆေ့ချ်ဖြင့် ပေးပို့သွားပါမည်။ သင့်ကိုယ်ပိုင်မက်ဆေ့ချ်ကို အောက်တွင် ပေါင်းထည့်ပါ။</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">တစ်ကြိမ် လှူဒါန်းမှု</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">တစ်ကြိမ်စာ လှူဒါန်းမှု</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">မက်ဆေ့ချ် ပေါင်းထည့်ရန်</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5465,12 +5465,12 @@
     <!-- Sheet title when subscribing -->
     <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signal သို့ တစ်လလျှင် %1$s လှူဒါန်းရန်</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$s ဘဲ့ဂျ် ရယူရန်</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signal သို့ %1$s လှူဒါန်းရန်</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="other">%1$s ဘဲ့ဂျ်ကို %2$d ရက်စာ ရယူပါ</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ခရက်ဒစ် သို့မဟုတ် ဒက်ဘစ်ကတ်</string>

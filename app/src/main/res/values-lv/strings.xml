@@ -107,11 +107,11 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal nepieciešama atļauja pieejai pie Kontaktiem, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Kontakti\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal nepieciešama atļauja pieejai pie atrašanās vietas pakalpojumiem, bet tā ir liegta. Dodieties uz lietotnes iestatījumiem, izvēlieties \"Atļaujas\" un iespējojiet \"Atrašanās vieta\".</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s hasn\'t activated Payments </string>
+    <string name="AttachmentManager__not_activated_payments">Lietotājs %1$s nav aktivizējis maksājumus </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Do you want to send them a request to activate Payments?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Vai vēlaties nosūtīt lietotājam pieprasījumu aktivizēt maksājumus?</string>
     <!-- Alert dialog button to send request -->
-    <string name="AttachmentManager__send_request">Send request</string>
+    <string name="AttachmentManager__send_request">Nosūtīt pieprasījumu</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">Atcelt</string>
 
@@ -1478,13 +1478,13 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jūsu ziņu vēsture ar lietotāju %1$s un citu šī lietotāja sarunu ir apvienota.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">You sent %1$s a request to activate Payments</string>
+    <string name="MessageRecord_you_sent_request">Jūs nosūtījāt lietotājam %1$s pieprasījumu aktivizēt maksājumus</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments. Only send payments to people you trust.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vēlas, lai jūs aktivizētu maksājumus. Sūtiet maksājumus tikai personām, kurām uzticaties.</string>
     <!-- Message to inform user that payments was activated-->
-    <string name="MessageRecord_you_activated_payments">You activated Payments</string>
+    <string name="MessageRecord_you_activated_payments">Jūs aktivizējāt maksājumus</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="MessageRecord_can_accept_payments">%1$s tagad var pieņemt maksājumus</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s sāka grupas zvanu · %2$s</string>
@@ -1989,13 +1989,13 @@
     <string name="ThreadRecord_this_message_was_deleted">Ziņa ir izdzēsta.</string>
     <string name="ThreadRecord_you_deleted_this_message">Jūs izdzēsāt ziņu.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">You sent a request to activate Payments</string>
+    <string name="ThreadRecord_you_sent_request">Jūs nosūtījāt pieprasījumu aktivizēt maksājumus</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s wants you to activate Payments</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vēlas, lai jūs aktivizētu maksājumus.</string>
     <!-- Displayed in the notification when the user activates payments -->
-    <string name="ThreadRecord_you_activated_payments">You activated Payments</string>
+    <string name="ThreadRecord_you_activated_payments">Jūs aktivizējāt maksājumus</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
-    <string name="ThreadRecord_can_accept_payments">%1$s can now accept Payments</string>
+    <string name="ThreadRecord_can_accept_payments">%1$s tagad var pieņemt maksājumus</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s lieto Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Gaistošās ziņas atspējotas</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Gaistošo ziņu laiks iestatīts uz %1$s</string>
@@ -2017,7 +2017,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Jūs nosūtījāt dāvanu</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Jūs izpirkāt dāvanas nozīmīti</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Jūs izmantojāt dāvanas nozīmīti</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Lietotāja reakcija uz jūsu stāstu: %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2227,7 +2227,7 @@
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
-    <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>
+    <string name="EnclaveFailureReminder_update_signal">Atjauniniet Signal, lai turpinātu izmantot maksājumus. Jūsu bilance var nebūt atjaunināta.</string>
     <!-- Banner button to update now -->
     <string name="EnclaveFailureReminder_update_now">Aktualizēt tagad</string>
 
@@ -3106,9 +3106,9 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Ne tagad</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Update required</string>
+    <string name="PaymentsHomeFragment__update_required">Nepieciešams atjauninājums</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">An update is required to continue sending and receiving payments, and to view your up-to-date payment balance.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Lai turpinātu maksājumu sūtīšanu un saņemšanu, kā arī skatītu atjaunināto maksājumu bilanci, ir nepieciešams atjauninājums.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Atcelt</string>
     <!-- Alert dialog button to update now -->
@@ -3897,7 +3897,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Dzēš kontu…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Atceļu jūsu abonementu…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Atceļam jūsu abonementu…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Atkarībā no grupu skaita, kurās jūs esat, tas var aizņemt dažas minūtes</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -4017,9 +4017,9 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Saglabāt atgūšanas frāzi</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ievadiet atkopšanas frāzi</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="zero">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="one">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
-        <item quantity="other">Your balance will automatically restore when you reinstall Signal if you confirm your Signal PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</item>
+        <item quantity="zero">Jūsu bilance tiks automātiski atjaunota, atkārtoti instalējot Signal, ja apstiprināsiet savu lietotnes Signal PIN. Bilanci var arī atjaunot, izmantojot atkopšanas frāzi, kas ir tikai jums raksturīgs %1$d vārdu savienojums. Pierakstiet to un glabājiet drošā vietā.</item>
+        <item quantity="one">Jūsu bilance tiks automātiski atjaunota, atkārtoti instalējot Signal, ja apstiprināsiet savu lietotnes Signal PIN. Bilanci var arī atjaunot, izmantojot atkopšanas frāzi, kas ir tikai jums raksturīgs %1$d vārdu savienojums. Pierakstiet to un glabājiet drošā vietā.</item>
+        <item quantity="other">Jūsu bilance tiks automātiski atjaunota, atkārtoti instalējot Signal, ja apstiprināsiet savu lietotnes Signal PIN. Bilanci var arī atjaunot, izmantojot atkopšanas frāzi, kas ir tikai jums raksturīgs %1$d vārdu savienojums. Pierakstiet to un glabājiet drošā vietā.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Jums ir atlikums! Laiks saglabāt atgūšanas frāzi — 24 vārdu atslēgu, ar kuru varat atjaunot savu atlikumu.</string>
@@ -4596,7 +4596,7 @@
     <string name="SubscribeFragment__more_payment_options">Vairāk maksājumu iespēju</string>
     <string name="SubscribeFragment__cancel_subscription">Atcelt abonementu</string>
     <string name="SubscribeFragment__confirm_cancellation">Apstiprināt atcelšanu?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">No Jums vairs netiks iekasēta maksa. Jūsu nozīmīte tiks noņemta no jūsu profila norēķinu perioda beigās.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">No jums vairs netiks iekasēta maksa. Nozīmīte tiks noņemta no jūsu profila norēķinu perioda beigās.</string>
     <string name="SubscribeFragment__not_now">Ne tagad</string>
     <string name="SubscribeFragment__confirm">Apstiprināt</string>
     <string name="SubscribeFragment__update_subscription">Atjaunināt abonementu</string>
@@ -4619,16 +4619,16 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Pateicamies par jūsu atbalstu!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Pateicamies par Atbalstu!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Jūs ieguvāt %1$s nozīmīti! Pievienojiet nozīmīti uz sava profila, lai veicinātu izpratni par ziedošanu Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Jūs ieguvāt Atbalsta nozīmīti! Pievienojiet nozīmīti uz sava profila, lai veicinātu izpratni par ziedošanu Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Jūs ieguvāt %1$s nozīmīti! Pievienojiet nozīmīti savam profilam, lai veicinātu izpratni par ziedošanu Signal.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Jūs ieguvāt Atbalsta nozīmīti! Pievienojiet nozīmīti savam profilam, lai veicinātu izpratni par ziedošanu Signal.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Jūs varat arī</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Kļūstiet par ikmēneša Uzturētāju</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Rādīt profilā</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Izveidot izcelto nozīmīti</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Turpināt</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad Jums ir vairāk kā viena nozīmīte, jūs varat izvēlēties vienu, kuru izcelt un ļaut citiem apskatīt jūsu profilā.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kad jums ir vairāk kā viena nozīmīte, jūs varat izvēlēties vienu, kuru izcelt un ļaut citiem apskatīt Jūsu profilā.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Iegūstiet nozīmītes jūsu profilam atbalstot Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Iegūstiet nozīmītessavam profilam, atbalstot Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irr bezpeļņas organizācija bez reklāmdevējiem vai investoriem, kuru uztur tikai cilvēki kā jūs.</string>
 
     <!-- Button label for creating a donation -->
@@ -4690,7 +4690,7 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Lūdzu, sazinieties ar tehnisko atbalstu, lai saņemtu vairāk informācijas.</string>
     <string name="Subscription__contact_support">Sazināties ar atbalstu</string>
-    <string name="Subscription__get_a_s_badge">Get a %1$s badge</string>
+    <string name="Subscription__get_a_s_badge">Iegūstiet %1$s nozīmīti</string>
 
     <string name="SubscribeFragment__processing_payment">Maksājums tiek apstrādāts…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
@@ -4698,7 +4698,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Kļūda apstrādājot maksājumu. %1$s</string>
     <string name="DonationsErrors__your_badge_could_not_be_added">Jūsu nozīmīti nevarēja pievienot jūsu kontam, tomēr iespējams, ka no jums tika iekasēta maksa. Lūdzu, sazinieties ar tehnisko atbalstu.</string>
-    <string name="DonationsErrors__your_payment">Jūsu maksājumu neizdevās apstrādāt, un no Jums nekas netika iekasēts. Lūdzu, mēģiniet vēlreiz.</string>
+    <string name="DonationsErrors__your_payment">Jūsu maksājumu neizdevās apstrādāt, un no jums nekas netika iekasēts. Lūdzu, mēģiniet vēlreiz.</string>
     <string name="DonationsErrors__still_processing">Vēl apstrādā</string>
     <string name="DonationsErrors__couldnt_add_badge">Nevarēja pievienot nozīmīti</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4940,7 +4940,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Kopīgot kvīti</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Ja jūs esat pārinstalējis Signal, kvītis no iepriekš veiktajiem ziedojumiem nebūs pieejamas.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Ja pārinstalējāt Signal, kvītis no iepriekš veiktajiem ziedojumiem nebūs pieejamas.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Ziedojuma kvīts</string>
     <!-- Donation receipts amount title -->
@@ -5047,7 +5047,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Vēl nav skatījumu</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ieslēdziet lasīšanas apliecinājumus, lai uzzinātu, kuri lietotāji ir redzējuši jūsu stāstus.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Atvērt iestatījumus</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5311,7 +5311,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Dāvināt nozīmīti</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Uzdāviniet kādam nozīmīti veicot ziedojumu Signal viņu vārdā. Viņi saņems nozīmiti, kuru varēs pievienot savam profila attēlam.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Uzdāviniet kādam nozīmīti, veicot ziedojumu Signal šīs personas vārdā. Saņēmējs varēs pievienot nozīmīti savam profila attēlam.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Tālāk</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5333,9 +5333,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Paldies par jūsu atbalstu!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jūs saņēmāt dāvanu nozīmīti no %1$s! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti jūsu profilam.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Jūs saņēmāt dāvanu nozīmīti no %1$s! Palīdziet Signal vairot izpratni, pievienojot šo nozīmīti savam profilam.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jūs uzdāvinājāt nozīmīti %1$s. Kad viņi to akceptēs, viņi varēs izvēlēties, rādīt vai paslēpt viņu nozīmīti.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Jūs uzdāvinājāt nozīmīti %1$s. Kad tā tiks akceptēta, šī persona varēs izvēlēties, rādīt vai paslēpt savu nozīmīti.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Izpirkt</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5345,7 +5345,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Jūs varat izpirkt savu nozīmīti vēlāk.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jūs uzdāvinājāt nozīmīti %1$s. Kad viņi to akceptēs, viņi varēs izvēlēties, rādīt vai paslēpt viņu nozīmīti.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Jūs uzdāvinājāt nozīmīti %1$s. Kad tā tiks akceptēta, šī persona varēs izvēlēties, rādīt vai paslēpt savu nozīmīti.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Jūsu dāvanu nozīmītei beidzies termiņš</string>
     <!-- Expired gift sheet top description text -->
@@ -5716,9 +5716,9 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Ziedot Signal %1$s</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="zero">Get a %1$s badge for %2$d days</item>
-        <item quantity="one">Get a %1$s badge for %2$d day</item>
-        <item quantity="other">Get a %1$s badge for %2$d days</item>
+        <item quantity="zero">Iegūstiet %1$s nozīmīti uz %2$d dienām</item>
+        <item quantity="one">Iegūstiet %1$s nozīmīti uz %2$d dienu</item>
+        <item quantity="other">Iegūstiet %1$s nozīmīti uz %2$d dienām</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredītkarte vai debetkarte</string>
