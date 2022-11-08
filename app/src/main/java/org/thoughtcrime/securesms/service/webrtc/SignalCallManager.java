@@ -743,13 +743,13 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID uuid, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
-      GroupId.V2                          groupId = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      Optional<GroupDatabase.GroupRecord> group   = SignalDatabase.groups().getGroup(groupId);
+      GroupId.V2                groupId = GroupId.v2(new GroupIdentifier(groupIdBytes));
+      GroupDatabase.GroupRecord group   = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
-      if (group.isPresent()) {
-        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.get().getRecipientId()), groupId, ringId, uuid, ringUpdate));
+      if (group != null && group.isActive() && !Recipient.resolved(group.getRecipientId()).isBlocked()) {
+        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, uuid, ringUpdate));
       } else {
-        Log.w(TAG, "Unable to ring unknown group.");
+        Log.w(TAG, "Unable to ring unknown/inactive/blocked group.");
       }
     } catch (InvalidInputException e) {
       Log.w(TAG, "Unable to ring group due to invalid group id", e);
