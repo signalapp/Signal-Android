@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier.ReminderReceiver
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper
+import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
@@ -119,6 +120,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     reminderCount: Int,
     defaultBubbleState: BubbleState
   ) {
+    NotificationChannels.ensureCustomChannelConsistency(context)
+
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
     val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy
     val notificationConfigurationChanged: Boolean = currentLockStatus != previousLockedStatus || currentPrivacyPreference != previousPrivacyPreference
