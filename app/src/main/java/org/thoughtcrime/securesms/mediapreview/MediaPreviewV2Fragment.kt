@@ -258,8 +258,15 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       MediaPreviewPlayerControlView.MediaMode.fromString(currentItem.contentType)
     }
     binding.mediaPreviewPlaybackControls.setMediaMode(mediaType)
-    binding.mediaPreviewPlaybackControls.setShareButtonListener { share(currentItem) }
-    binding.mediaPreviewPlaybackControls.setForwardButtonListener { forward(currentItem) }
+    val videoMediaPreviewFragment: VideoMediaPreviewFragment? = currentFragment as? VideoMediaPreviewFragment
+    binding.mediaPreviewPlaybackControls.setShareButtonListener {
+      videoMediaPreviewFragment?.pause()
+      share(currentItem)
+    }
+    binding.mediaPreviewPlaybackControls.setForwardButtonListener {
+      videoMediaPreviewFragment?.pause()
+      forward(currentItem)
+    }
     currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
   }
 
