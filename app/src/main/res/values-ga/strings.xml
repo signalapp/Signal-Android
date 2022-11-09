@@ -1600,7 +1600,7 @@
     <!-- Message to inform user that payments was activated-->
     <string name="MessageRecord_you_activated_payments">Ghníomhachtaigh tú Íocaíochtaí</string>
     <!-- Message to inform sender that recipient can now accept payments -->
-    <string name="MessageRecord_can_accept_payments">Is féidir le %1$s glacadh le híocaíochtaí anois</string>
+    <string name="MessageRecord_can_accept_payments">Is féidir le %1$s glacadh le hÍocaíochtaí anois</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -2379,7 +2379,7 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Nuashonraigh Signal chun leanúint le húsáid íocaíochtaí. Seans nach bhfuil d’iarmhéid cothrom le dáta.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Nuashonraigh anois é</string>
+    <string name="EnclaveFailureReminder_update_now">Nuashonraigh anois</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">To answer the call, give Signal access to your microphone.</string>
@@ -2520,9 +2520,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Tabhair airgead</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send Payment</string>
+    <string name="ConversationUpdateItem_send_payment">Seol íocaíocht</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Gníomhachtaigh Íocaíochtaí</string>
+    <string name="ConversationUpdateItem_activate_payments">Gníomhachtaigh íocaíochtaí</string>
 
 
     <!-- audio_view -->
@@ -2924,9 +2924,9 @@
     <string name="preferences__pref_use_address_book_photos">Use address book photos</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Taispeáin grianghraif na dteagmhálacha ó do leabhar seoltaí má tá siad ar fáil</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Keep Muted Chats Archived</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Coinnigh Comhráite Balbhaithe sa Chartlann</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Muted chats that are archived will remain archived when a new message arrives.</string>
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe atá curtha i gcartlann sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <string name="preferences__generate_link_previews">Generate Link Previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
     <string name="preferences__choose_identity">Roghnaigh céannacht</string>
@@ -3278,13 +3278,13 @@
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Ná bac leis anois</string>
     <!-- Alert dialog title which shows up to update app to send payments -->
-    <string name="PaymentsHomeFragment__update_required">Nuashonrú De Dhíth</string>
+    <string name="PaymentsHomeFragment__update_required">Nuashonrú de dhíth</string>
     <!-- Alert dialog description that app update is required to send payments-->
-    <string name="PaymentsHomeFragment__an_update_is_required">Tá nuashonrú ag teastáil chun leanúint le híocaíochtaí a sheoladh agus a fháil, agus chun féachaint ar d\'iarmhéid íocaíochta atá cothrom le dáta.</string>
+    <string name="PaymentsHomeFragment__an_update_is_required">Tá nuashonrú de dhíth chun leanúint le híocaíochtaí a sheoladh agus a fháil, agus chun féachaint ar d\'iarmhéid íocaíochta atá cothrom le dáta.</string>
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Cuir ar ceal</string>
     <!-- Alert dialog button to update now -->
-    <string name="PaymentsHomeFragment__update_now">Nuashonraigh anois é</string>
+    <string name="PaymentsHomeFragment__update_now">Nuashonraigh anois</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3891,7 +3891,7 @@
     <string name="DeviceTransferSetup__try_again">Féach arís é</string>
     <string name="DeviceTransferSetup__waiting_for_other_device">Ag feitheamh leis an ngléas eile</string>
     <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Cnag Lean Ar Aghaidh ar do ghléas eile chun tús a chur leis an aistriú.</string>
-    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tapáil Lean Ar Aghaidh ar do ghléas eile…</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tapáil Ar Aghaidh ar do ghléas eile…</string>
 
     <!-- NewDeviceTransferFragment -->
     <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Ní féidir aistriú ó leaganacha níos nua de Signal</string>
@@ -3940,7 +3940,7 @@
     <string name="DeviceToDeviceTransferService_status_discovery">Do ghléas eile Android á chuardach…</string>
     <string name="DeviceToDeviceTransferService_status_network_connected">Nascadh le do ghléas eile Android…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verification required</string>
-    <string name="DeviceToDeviceTransferService_status_service_connected">Tá an cuntas á aistriú…</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Cuntas á aistriú…</string>
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Complete registration on your new device</string>
@@ -4211,11 +4211,11 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Sábháil frása athshlánaithe</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter Recovery Phrase</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
-        <item quantity="two">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
-        <item quantity="few">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
-        <item quantity="many">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d bhfocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
-        <item quantity="other">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Tig leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d focal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="one">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Is féidir leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="two">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Is féidir leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="few">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Is féidir leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d fhocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="many">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Is féidir leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d bhfocal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
+        <item quantity="other">Aischuirfear d\'iarmhéid go huathoibríoch nuair a athshuiteálann tú Signal má dheimhníonn tú d\'UAP Signal. Is féidir leat d\'iarmhéid a aischur le frasa aisghabhála, frása %1$d focal atá uathúil duitse. Scríobh síos é agus stóráil in áit shábháilte é.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Tá iarmhéid agat! Tá sé in am duit do fhrása athshlánaithe a shábháil – eochair 24 focal is féidir leat a úsáid chun d\'iarmhéid a aischur.</string>
@@ -4522,7 +4522,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Tá Signal arna chumhachtú ag daoine amhail tusa. Tabhair airgead gach mí agus faigh suaitheantas.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Tá Signal á chumhachtú ag daoine amhail tusa. Tabhair airgead gach mí agus faigh suaitheantas.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Tabhair airgead</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4545,7 +4545,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Become a Sustainer</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Tá Signal arna chumhachtú ag daoine amhail tusa. Tabhair airgead agus faigh suaitheantas.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Tá Signal á chumhachtú ag daoine amhail tusa. Tabhair airgead agus faigh suaitheantas.</string>
     <string name="BecomeASustainerMegaphone__not_now">Ní anois</string>
     <string name="BecomeASustainerMegaphone__donate">Tabhair airgead</string>
 
@@ -4811,7 +4811,7 @@
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tá do shíntiús curtha ar ceal.</string>
     <string name="SubscribeFragment__update_subscription_question">Nuashonraigh síntiús?</string>
     <string name="SubscribeFragment__update">Nuashonraigh</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Gearrfar méid iomlán an tsíntiúis nua ort inniu, (%1$s). Déanfar do shíntiús a athnuachan gach mí.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Gearrfar méid iomlán an tsíntiúis nua ort inniu, %1$s. Déanfar do shíntiús a athnuachan gach mí.</string>
 
     <string name="Subscription__s_per_month">%1$s/month</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
@@ -4823,7 +4823,7 @@
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Cuideachta neamhbhrabúis is ea Signal nach bhfuil aon fhógróirí ná infheisteoirí aige; é cothaithe ag na daoine amháin a úsáideann é agus a bhfuil meas acu air. Tabhair airgead ar bhonn míosúil agus faigh suaitheantas próifíle chun do thacaíocht a chomhroinnt.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">An Fáth le Tabhartas?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal is committed to developing open source privacy technology that protects free expression and enables secure global communication.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Spreagann do thabhartas an chúis seo agus íocann as forbairt agus oibríochtaí aip a úsáideann na milliúin don chumarsáid phríobháideach. Gan fógraí. Gan rianairí. I ndáiríre.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Spreagann do thabhartas an chúis seo agus íocann sé as forbairt agus oibríochtaí aip a úsáideann na milliúin don chumarsáid phríobháideach. Gan fógraí. Gan rianairí. I ndáiríre.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Go raibh maith agat as do thacaíocht!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">GRMA as an Spreagadh!</string>
@@ -4832,7 +4832,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">You can also</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">become a monthly Sustainer.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Display on Profile</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Déan suaitheantas faoi thrácht</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Déan suaitheantas faoi thrácht de</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Ar Aghaidh</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Nuair a bhíonn níos mó ná suaitheantas amháin agat, is féidir leat ceann a roghnú le cur faoi thrácht, infheicthe ar do phróifíl.</string>
 
@@ -4887,7 +4887,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Cuireadh do thabhartas míosúil athfhillteach ar ceal mar níorbh fhéidir linn d\'íocaíocht a phróiseáil. Níl do shuaitheantas infheicthe ar do phróifíl a thuilleadh.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Cuireadh do thabhartas míosúil athfhillteach ar ceal. %1$s Níl do shuaitheantas %2$s infheicthe ar do phróifíl a thuilleadh.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Tig leat leanúint le húsáid Signal ach chun tacú leis an aip agus do shuaitheantas a athghníomhachtú, athnuaigh anois.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Is féidir leanúint le húsáid Signal ach chun tacú leis an aip agus do shuaitheantas a athghníomhachtú, athnuaigh anois.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Athnuaigh síntiús</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Go to Google Pay</string>
@@ -4920,10 +4920,10 @@
     <string name="DonationsErrors__your_badge_could_not">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Unavailable</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Beidh ort Google Pay a shocrú chun airgead a thabhairt in-aip.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Beidh ort Google Pay a shocrú chun airgead a thabhairt ionaipe.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Theip ar chur an tsíntiúis ar ceal</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc idirlín chun an síntiús a chur ar ceal.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Tig leat tacú le Signal fós trí airgead a thabhairt ar ár láithreán Gréasáin.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc Idirlín chun an síntiús a chur ar ceal.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Is féidir leat tacú le Signal fós trí airgead a thabhairt ar ár suíomh gréasáin.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Network error. Check your connection and try again.</string>
     <string name="NetworkFailure__retry">Bain triail eile as</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -5537,7 +5537,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Bronn Suaitheantas</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Bronn suaitheantas ar dhuine trí airgead a thabhairt do Signal ar a shon. Gheobhaidh an duine suaitheantas le taispeáint ar an grianghraf próifíle aige/aici.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Bronn suaitheantas ar dhuine trí airgead a thabhairt do Signal ar a shon. Gheobhaidh an duine suaitheantas le taispeáint ar an ngrianghraf próifíle aige/aici.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Ar Aghaidh</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5549,7 +5549,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Your gift will be sent in a 1 on 1 message to the recipient. Add your own message below.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Tabhartas Aonuaire</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Tabhartas aonuaire</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Cuir teachtaireacht leis</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->

@@ -1944,7 +1944,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Opari bat bidali duzu</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat ireki duzu</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Opari-berreizgarri bat eskatu duzu</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">%1$s emojiarekin erreakzionatu du zure istorioa ikustean</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2154,7 +2154,7 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Eguneratu Signal ordainketak erabiltzen jarraitzeko. Baliteke saldoa eguneratuta ez egotea.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Eguneratu orain</string>
+    <string name="EnclaveFailureReminder_update_now">Eguneratu</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Deiari erantzuteko, eman Signal-i mikrofonoa atzitzeko baimena.</string>
@@ -2286,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Egin dohaintza</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Send Payment</string>
+    <string name="ConversationUpdateItem_send_payment">Bidali ordainketa</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Aktibatu Ordainketak</string>
+    <string name="ConversationUpdateItem_activate_payments">Aktibatu ordainketak</string>
 
 
     <!-- audio_view -->
@@ -2666,7 +2666,7 @@
     <string name="preferences__pref_use_address_book_photos">Erabili kontaktuen-zerrendako irudiak</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Erakutsi sistemaren kontaktuen irudiak, baldin badaude</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Utzi txat mututuak artxibatuta</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Mantendu txat mututuak artxibatuta</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Mezu berriak jasotzean, artxibatutako txat mututuek artxibatuta jarraituko dute.</string>
     <string name="preferences__generate_link_previews">Sortu esteken aurrebistak</string>
@@ -2712,7 +2712,7 @@
     <string name="preferences__slow">Motela</string>
     <string name="preferences__help">Laguntza</string>
     <string name="preferences__advanced">Aurreratua</string>
-    <string name="preferences__donate_to_signal">Egin dohaintza Signal-i</string>
+    <string name="preferences__donate_to_signal">Egin dohaintza bat Signal-i</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">Dohaintza puntuala</string>
     <string name="preferences__privacy">Pribatutasuna</string>
@@ -3026,7 +3026,7 @@
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Utzi</string>
     <!-- Alert dialog button to update now -->
-    <string name="PaymentsHomeFragment__update_now">Eguneratu orain</string>
+    <string name="PaymentsHomeFragment__update_now">Eguneratu</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -4478,7 +4478,7 @@
     <string name="BadgeSelectionFragment__select_badges">Hautatu bereizgarriak</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Aurrebista</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Hautatu bereizgarria</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Hautatu bereizgarri bat</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Bereizgarri bat hautatu behar duzu</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Ezin izan da eguneratu profila</string>
 
@@ -4503,7 +4503,7 @@
 
     <string name="Subscription__s_per_month">%1$s/hilabetea</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">%1$s berritzen du</string>
+    <string name="Subscription__renews_s">Berritze-data: %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Iraungitze-data: %1$s</string>
 
@@ -4528,7 +4528,7 @@
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal irabazi-asmorik gabeko iragarlerik edo inbertitzailerik gabekoa da, zu bezalako pertsonek soilik sostengatzen dute.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Signal-i dohaintza egin</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Egin dohaintza bat Signal-i</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Gehiago</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4593,25 +4593,25 @@
     <string name="DonationsErrors__error_processing_payment">Errorea ordainketa prozesatzean</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Errorea ordainketa prozesatzean. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Zure bereizgarria ezin izan da gehitu zure kontuan, baina baliteke kobratu izana. Mesedez, jarri harremanetan laguntzarekin.</string>
-    <string name="DonationsErrors__your_payment">Ezin izan da prozesatu ordainketa, eta ez zaizu ezer kobratu. Mesedez saiatu berriro.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Ezin izan da gehitu bereizgarria kontuan, baina baliteke kobratu izatea. Jarri harremanetan laguntza-zerbitzuarekin.</string>
+    <string name="DonationsErrors__your_payment">Ezin izan da prozesatu ordainketa, eta ez zaizu ezer kobratu. Saiatu berriro.</string>
     <string name="DonationsErrors__still_processing">Oraindik prozesatzen</string>
-    <string name="DonationsErrors__couldnt_add_badge">Ezin izan da bereizgarria gehitu.</string>
+    <string name="DonationsErrors__couldnt_add_badge">Ezin izan da gehitu bereizgarria.</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Ezin izan da bereizgarria baliozkotu</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Ezin izan da baliozkotu bereizgarria</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Ezin izan da zerbitzariaren erantzuna balioztatu. Mesedez, jarri harremanetan laguntzarekin.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Ezin izan da bidali opariaren bereizgarria</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Ezin izan da bidali opari-bereizgarria</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Ezin izan da opariaren bereizgarria bidali. Mesedez, jarri harremanetan laguntzarekin.</string>
-    <string name="DonationsErrors__your_badge_could_not">Zure bereizgarria ezin izan da gehitu zure kontuan, baina baliteke kobratu izana. Mesedez, jarri harremanetan laguntzarekin.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Ezin izan da bidali opari-bereizgarria. Jarri harremanetan laguntza-zerbitzuarekin.</string>
+    <string name="DonationsErrors__your_badge_could_not">Ezin izan da gehitu bereizgarria kontuan, baina baliteke kobratu izatea. Jarri harremanetan laguntza-zerbitzuarekin.</string>
     <string name="DonationsErrors__your_payment_is_still">Zure ordainketa prozesatzen ari da oraindik. Minutu batzuk iraun ditzake zure konexioaren arabera.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ez dago erabilgarri</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Google Pay konfiguratu behar duzu aplikazioan dohaintza egiteko.</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da harpidetza bertan behera utzi</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Harpidetza bertan behera uzteko Interneteko konexioa behar da.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Zure gailuak ez du Google Pay onartzen, beraz, ezin zara harpidetu bereizgarria irabazteko. Hala ere, Signal-i lagundu diezaiokezu gure webgunean dohaintza bat eginez.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Google Pay konfiguratu behar duzu dohaintza aplikazioan egiteko.</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">Ezin izan da bertan behera utzi harpidetza</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Harpidetza bertan behera uzteko, Internetera konektatuta egon behar duzu.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Zure gailua ez da bateragarria Google Pay-rekin; beraz, ezin zara harpidetu bereizgarri bat irabazteko. Hala ere, Signal-i lagundu diezaiokezu, gure webgunean dohaintza bat eginez.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Sareko errorea. Egiaztatu konexioa eta saiatu berriro.</string>
     <string name="NetworkFailure__retry">Berriro saiatu</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4624,7 +4624,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">Sarearen errore bat dela eta, ezin izan da bidali oparia. Egiaztatu konexioa eta saiatu berriro.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Opari bereizgarria</string>
+    <string name="GiftMessageView__gift_badge">Opari-bereizgarria</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">Hilabete %1$d irauten du</item>
@@ -5194,11 +5194,11 @@
         <item quantity="other">%1$s · %2$d eguneko iraupena</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Opari-berreizgarri bat bidali</string>
+    <string name="GiftRowItem__send_a_gift_badge">Bidali opari-berreizgarri bat</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Oparitu bereizgarri bat</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Eman norbaiti bereizgarri bat haren izenean dohaintza bat eginez Signal-i. Bereizgarri bat jasoko du, profileko argazkian erakuts dezan.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Eman bereizgarri bat norbaiti, Signal-i dohaintza bat eginez haren izenean. Bereizgarri bat jasoko du, profileko argazkian erakuts dezan.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Hurrengoa</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5210,7 +5210,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Zure oparia batetik baterako mezu batean bidaliko zaio hartzaileari. Gehitu zure mezua behean.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Aldi bakarreko dohaintza</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Dohaintza puntuala</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Gehitu mezu bat</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Eskerrik asko zure laguntzagatik!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sren opari-bereizgarri bat jaso duzu! Lagundu Signal-i kontzientzia sortzen, bereizgarri hau zure profilean erakutsiz.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s(r)en opari-bereizgarri bat jaso duzu! Erakutsi bereizgarri hau zure profilean eta lagundu Signal-i kontzientzia sortzen.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$si bereizgarri bat oparitu diozu. Onartzen dutenean, bereizgarria erakusteko edo ezkutatzeko aukera izango dute.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Bereizgarri bat oparitu diozu %1$s(r)i. Onartzen duenean, bereizgarria erakusteko edo ezkutatzeko aukera izango du.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Berreskuratu</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5230,17 +5230,17 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Oparia trukatzen…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Zure bereizgarria geroago erabil dezakezu.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Bereizgarria geroago eska dezakezu.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$si bereizgarri bat oparitu diozu. Onartzen dutenean, bereizgarria erakusteko edo ezkutatzeko aukera izango dute.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Bereizgarri bat oparitu diozu %1$s(r)i. Onartzen duenean, bereizgarria erakusteko edo ezkutatzeko aukera izango du.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Zure opariaren bereizgarria iraungi egin da</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Zure opari-bereizgarria iraungi egin da</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Zure opariaren bereizgarria iraungi egin da eta jada besteek ez dute ikusiko zure profilean.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Zure opari-bereizgarria iraungi egin da, eta aurrerantzean beste erabiltzaileek ez dute ikusiko zure profilean.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Zuretzat eraikitako teknologia onartzen jarraitzeko, kontuan hartu hileroko sostengatzaile bihurtzea.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Egin hileroko dohaintza</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Egin hilean dohaintza bat</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Orain ez</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5586,15 +5586,15 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Eman %1$s hilabetean Signal-i</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Eman hilean %1$s Signal-i</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Get a %1$s badge</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Lortu %1$s bereizgarri bat</string>
     <!-- Sheet title when giving a one-time donation -->
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Eman %1$s Signal-i</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Lortu %1$s bereizgarria egun %2$dez</item>
-        <item quantity="other">Lortu %1$s bereizgarria %2$d egunez</item>
+        <item quantity="one">Lortu %1$s bereizgarri bat %2$d egunez</item>
+        <item quantity="other">Lortu %1$s bereizgarri bat %2$d egunez</item>
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kreditu- edo zordunketa-txartela</string>

@@ -106,7 +106,7 @@
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal, iletişim bilgilerini eklemek için Kişiler iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Kişiler\"i etkinleştirin.</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal, konum bilgisi eklemek için Konum iznine ihtiyaç duyar, fakat bu izin kalıcı olarak reddedilmiş. Lütfen uygulama ayarları menüsüne girip \"İzinler\" kısmını seçin, ve \"Konum\"u etkinleştirin.</string>
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s Ödemeleri etkinleştirmedi </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s, Ödemeleri etkinleştirmedi </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Ödemeleri etkinleştirmesi için bir istek göndermek istiyor musun?</string>
     <!-- Alert dialog button to send request -->
@@ -1420,7 +1420,7 @@
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ile olan mesaj geçmişin ve onlara ait başka bir sohbet birleştirildi.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
-    <string name="MessageRecord_you_sent_request">Ödemeleri etkinleştirmek için %1$s alıcısına bir istek gönderdin</string>
+    <string name="MessageRecord_you_sent_request">Ödemeleri etkinleştirmek için %1$s adlı kişiye bir istek gönderdin</string>
     <!-- Request message from recipient to activate payments -->
     <string name="MessageRecord_wants_you_to_activate_payments">%1$s ödemeleri etkinleştirmeni istiyor. Yalnızca güvendiğin kişilere ödeme gönder.</string>
     <!-- Message to inform user that payments was activated-->
@@ -1918,7 +1918,7 @@
     <!-- Displayed in the notification when the user sends a request to activate payments -->
     <string name="ThreadRecord_you_sent_request">Ödemeleri etkinleştirmek için bir istek gönderdin</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
-    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s Ödemeleri etkinleştirmeni istiyor</string>
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s, Ödemeleri etkinleştirmeni istiyor</string>
     <!-- Displayed in the notification when the user activates payments -->
     <string name="ThreadRecord_you_activated_payments">Ödemeleri etkinleştirdin</string>
     <!-- Displayed in the notification when the recipient can accept payments -->
@@ -2286,9 +2286,9 @@
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Bağış yap</string>
     <!-- Update item button text to send payment -->
-    <string name="ConversationUpdateItem_send_payment">Ödeme Gönder</string>
+    <string name="ConversationUpdateItem_send_payment">Ödeme gönder</string>
     <!-- Update item button text to activate payments -->
-    <string name="ConversationUpdateItem_activate_payments">Ödemeleri Etkinleştir</string>
+    <string name="ConversationUpdateItem_activate_payments">Ödemeleri etkinleştir</string>
 
 
     <!-- audio_view -->
@@ -2666,7 +2666,7 @@
     <string name="preferences__pref_use_address_book_photos">Rehber fotoğraflarını kullan</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Eğer varsa rehberdeki kişi fotoğraflarını göster</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
-    <string name="preferences__pref_keep_muted_chats_archived">Sessize Alınmış Sohbetleri Arşivde Tutun</string>
+    <string name="preferences__pref_keep_muted_chats_archived">Sessize Alınmış Sohbetleri Arşivde Tut</string>
     <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arşivlenerek sessize alınan sohbetler, yeni bir mesaj geldiğinde arşivlenmiş olarak kalır.</string>
     <string name="preferences__generate_link_previews">Bağlantı önizlemelerini oluştur</string>
@@ -3920,7 +3920,7 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Kurtarma ifadesini kaydet</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Kurtarma parolasını girin</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Signal\'i yeniden kurduğunda Signal PIN\'ini doğruladığında bakiyen otomatik olarak kurtarılacaktır. Bakiyeni ayrıca bir kurtarma parolası ile de geri alabilirsin. Kurtarma parolası %1$d kelimelik ve sana özgü bir ifadedir. Bir yere yaz ve güvenli bir şekilde sakla.</item>
+        <item quantity="one">Signal\'i yeniden kurduğunda Signal PIN\'ini doğrularsan bakiyen otomatik olarak kurtarılacaktır. Bakiyeni ayrıca bir kurtarma parolası ile de geri alabilirsin. Kurtarma parolası %1$d kelimelik ve sana özgü bir ifadedir. Bir yere yaz ve güvenli bir şekilde sakla.</item>
         <item quantity="other">Signal\'i yeniden kurduğunda Signal PIN\'ini doğruladığında bakiyen otomatik olarak kurtarılacaktır. Bakiyeni ayrıca bir kurtarma parolası ile de geri alabilirsin. Kurtarma parolası %1$d kelimelik ve sana özgü bir ifadedir. Bir yere yaz ve güvenli bir şekilde sakla.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
@@ -4496,27 +4496,27 @@
     <string name="SubscribeFragment__not_now">Şimdi değil</string>
     <string name="SubscribeFragment__confirm">Onayla</string>
     <string name="SubscribeFragment__update_subscription">Aboneliği Güncelle</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Aboneliğiniz iptal edildi.</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Aboneliğin iptal edildi.</string>
     <string name="SubscribeFragment__update_subscription_question">Abonelik güncellensin mi?</string>
     <string name="SubscribeFragment__update">Güncelle</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Bugün yeni abonelik ücretinin tam tutarıyla (%1$s) ücretlendirileceksin. Aboneliğin aylık olarak yenilenecek.</string>
 
     <string name="Subscription__s_per_month">%1$s/ay</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Yenilenme %1$s</string>
+    <string name="Subscription__renews_s">%1$s tarihinde yenilenir</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">%1$s tarihinde sona eriyor</string>
 
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklam vereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kar amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yap ve desteğini gösteren bir profil rozeti al.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal, reklam vereni veya yatırımcıları olmayan, yalnızca onu kullanan ve değer veren kişiler tarafından sürdürülen kâr amacı gütmeyen bir kuruluştur. Yinelenen bir aylık katkı yap ve desteğini gösteren bir profil rozeti al.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Neden Bağış Yapılmalı?</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal, ifade özgürlüğünü koruyan ve güvenli küresel iletişimi mümkün kılan, açık kaynak gizlilik teknolojisi geliştirmeye adanmıştır.</string>
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Bağışın bu amacı besliyor ve milyonlarca kişi tarafından özel iletişim için kullanılan bir uygulamanın geliştirilmesi ve işletilmesi için ödeme yapıyor. Reklamsız. İzleyici yok. Şaka yapmıyoruz.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Desteğiniz için teşekkürler!</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Boost için teşekkürler!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s rozet kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Öne çıkarma rozeti kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$s rozeti kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Boost rozeti kazandın! Signal\'e bağış yapma konusunda farkındalık oluşturmak için bu rozeti profilinde sergile.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Aynı zamanda</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">aylık bir Destekçi ol.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Profilde Göster</string>
@@ -4551,21 +4551,21 @@
 
     <string name="MySupportPreference__add_a_signal_boost">Bir Signal Boost ekle</string>
     <string name="MySupportPreference__s_per_month">%1$s/ay</string>
-    <string name="MySupportPreference__renews_s">Yenilenme %1$s</string>
+    <string name="MySupportPreference__renews_s">%1$s tarihinde yenilenir</string>
     <string name="MySupportPreference__processing_transaction">İşlem gerçekleştiriliyor…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Rozet eklenemedi. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Lütfen destek ekibiyle iletişime geç.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Öne Çıkarma Rozetinin Süresi Doldu</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost Rozetinin Süresi Doldu</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Aylık Bağış İptal Edildi</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Öne çıkarma rozetinin süresi doldu ve artık profilinde görünmüyor.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Boost rozetinin süresi doldu ve artık profilinde görünmüyor.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Bir seferlik bir katkıyla Boost rozetini ilave 30 gün için yeniden etkinleştirebilirsin.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal\'i kullanmaya devam edebilirsin, ancak senin için geliştirilen teknolojiyi desteklemek için aylık bağış yaparak destekçi olmayı düşünebilirsin.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signal\'i kullanmaya devam edebilirsin ancak senin için geliştirilen teknolojiyi desteklemek için aylık bağış yaparak destekçi olmayı göz önünde bulundur.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Destekçi Ol</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Boost Ekle</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Şimdi değil</string>
@@ -4575,7 +4575,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Ödemeni işleme koyamadığımız için yinelenen aylık bağışın iptal edildi. Rozetin artık profilinde görünmüyor.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Her ay tekrar eden aylık bağışın iptal edildi. %1$s %2$s rozetin artık profilinde görüntülenemiyor.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'i kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi yenile.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signal\'i kullanmaya devam edebilirsin ama uygulamaya destek olmak ve rozetini tekrar etkinleştirmek için şimdi aboneliğini yenile.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Aboneliği yenile</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Pay\'e git</string>
@@ -5220,9 +5220,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Desteğin için teşekkürler!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s\'ten bir hediye rozeti aldın! Bu rozeti profilinde sergileyerek Signal\'in farkındalık oluşturmasına yardımcı ol.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$s adlı kişiden bir hediye rozeti aldın! Bu rozeti profilinde sergileyerek Signal\'in farkındalık oluşturmasına yardımcı ol.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s\'e bir rozet hediye ettin. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$s adlı kişiye bir rozet hediye ettin. Hediyeni aldığında, rozetini gösterme veya gizleme seçeneği sunulur.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Ödeme</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5232,7 +5232,7 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Rozetini daha sonra ödeyebilirsin.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s\'e bir rozet hediye ettin. Kabul ettiklerinde, rozetlerini gösterme veya gizleme seçeneği sunulur.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$s adlı kişiye bir rozet hediye ettin. Hediyeni aldığında, rozetini gösterme veya gizleme seçeneği sunulur.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hediye rozetinin süresi doldu</string>
     <!-- Expired gift sheet top description text -->

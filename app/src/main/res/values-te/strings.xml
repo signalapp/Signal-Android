@@ -939,7 +939,7 @@
     <string name="ManageProfileFragment_your_name">మీ పేరు</string>
     <string name="ManageProfileFragment_your_username">మీ వినియోగదారు పేరు</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">అవతార్ సెట్ చేయడంలో విఫలమైంది</string>
-    <string name="ManageProfileFragment_badges">బ్యాడ్జిలు</string>
+    <string name="ManageProfileFragment_badges">బ్యాడ్జీలు</string>
     <string name="ManageProfileFragment__edit_photo">ఫోటోని ఎడిట్ చేయండి</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">యూజర్‌నేమ్ సృష్టించబడింది</string>
@@ -2598,7 +2598,7 @@
         <item>ఫీడ్‌బ్యాక్</item>
         <item>ఇతర</item>
         <item>చెల్లింపులు (MobileCoin)</item>
-        <item>విరాళాలు &amp; బ్యాడ్జిలు</item>
+        <item>విరాళాలు &amp; బ్యాడ్జీలు</item>
         <item>SMS ఎగుమతి</item>
     </string-array>
 
@@ -4302,7 +4302,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">సంభాషణ శాశ్వతంగా మ్యూట్ చేయబడింది</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ఫోన్ నెంబర్ క్లిప్‌బోర్డ్‌కు కాపీ చేయబడింది</string>
     <string name="ConversationSettingsFragment__phone_number">ఫోను నంబరు</string>
-    <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జిలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జి మీద తట్టండి.</string>
+    <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జి మీద తట్టండి.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
@@ -4469,13 +4469,13 @@
 
     <string name="CameraFragment__failed_to_open_camera">కెమెరాని ఓపెన్ చేయడం విఫలమైంది</string>
 
-    <string name="BadgesOverviewFragment__my_badges">నా బ్యాడ్జిలు</string>
+    <string name="BadgesOverviewFragment__my_badges">నా బ్యాడ్జీలు</string>
     <string name="BadgesOverviewFragment__featured_badge">ఫీచర్డ్ బ్యాడ్జి</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">ప్రొఫైల్‌పై బ్యాడ్జిలను ప్రదర్శించండి</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">ప్రొఫైల్‌పై బ్యాడ్జీలను ప్రదర్శించండి</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">ప్రొఫైల్‌ని అప్‌డేట్ చేయడం విఫలమైంది</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">బ్యాడ్జిలను ఎంచుకోండి</string>
+    <string name="BadgeSelectionFragment__select_badges">బ్యాడ్జీలను ఎంచుకోండి</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">పూర్వప్రదర్శన</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">బ్యాడ్జిని ఎంచుకోండి</string>
@@ -4522,9 +4522,9 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ప్రొఫైల్‌పై ప్రదర్శించు</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">ఫీచర్డ్ బ్యాడ్జిని తయారు చేయండి</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">కొనసాగు</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">మీకు ఒకటి కంటే ఎక్కువ బ్యాడ్జిలు ఉన్నప్పుడు, మీ ప్రొఫైల్‌లో ఇతరులు చూడటానికి ఫీచర్ చేయడానికి మీరు ఒకదాన్ని ఎంచుకోవచ్చు.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">మీకు ఒకటి కంటే ఎక్కువ బ్యాడ్జీలు ఉన్నప్పుడు, మీ ప్రొఫైల్‌లో ఇతరులు చూడటానికి ఫీచర్ చేయడానికి మీరు ఒకదాన్ని ఎంచుకోవచ్చు.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signal కు మద్దతు అందించడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జిలను పొందండి.</string>
+    <string name="BecomeASustainerFragment__get_badges">Signal కు మద్దతు అందించడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ఎలాంటి ప్రకటనదారులు లేదా పెట్టుబడిదారులు లేని లాభాపేక్ష లేని సంస్థ, కేవలం మీలాంటి వ్యక్తులు మాత్రమే మద్దతు అందిస్తున్నారు.</string>
 
     <!-- Button label for creating a donation -->
@@ -4538,7 +4538,7 @@
     <string name="ManageDonationsFragment__manage_subscription">సబ్‌స్క్రిప్షన్‌ను నిర్వహించండి</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">విరాళం రసీదులు</string>
-    <string name="ManageDonationsFragment__badges">బ్యాడ్జిలు</string>
+    <string name="ManageDonationsFragment__badges">బ్యాడ్జీలు</string>
     <string name="ManageDonationsFragment__subscription_faq">సబ్‌స్క్రిప్షన్ FAQ</string>
     <string name="ManageDonationsFragment__error_getting_subscription">సబ్‌స్క్రిప్షన్‌ని పొందడంలో లోపం.</string>
     <!-- Preference heading for other ways to donate -->
@@ -4617,7 +4617,7 @@
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">బహుమతిని పంపలేదు</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">ఈ గ్రహీత బహుమతి బ్యాడ్జిలను అందుకోలేని Signal వెర్షన్‌ను ఉపయోగిస్తున్నారు. వారు తాజా వెర్షన్‌కు అప్‌డేట్ చేసినప్పుడు వారు బహుమతులను పొందగలుగుతారు.</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">ఈ గ్రహీత బహుమతి బ్యాడ్జీలను అందుకోలేని Signal వెర్షన్‌ను ఉపయోగిస్తున్నారు. వారు తాజా వెర్షన్‌కు అప్‌డేట్ చేసినప్పుడు వారు బహుమతులను పొందగలుగుతారు.</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">బహుమతిని పంపలేకపోయారు</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
