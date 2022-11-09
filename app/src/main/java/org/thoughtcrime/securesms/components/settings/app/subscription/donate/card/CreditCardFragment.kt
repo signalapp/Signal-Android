@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.c
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.os.bundleOf
@@ -12,12 +13,14 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager.LayoutParams
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
@@ -101,6 +104,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     }
   }
 
+  override fun onStart() {
+    super.onStart()
+    if (!TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
+      requireActivity().window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
+    }
+  }
+
   override fun onResume() {
     super.onResume()
 
@@ -109,6 +119,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       CreditCardFormState.FocusedField.NUMBER -> ViewUtil.focusAndShowKeyboard(binding.cardNumber)
       CreditCardFormState.FocusedField.EXPIRATION -> ViewUtil.focusAndShowKeyboard(binding.cardExpiry)
       CreditCardFormState.FocusedField.CODE -> ViewUtil.focusAndShowKeyboard(binding.cardCvv)
+    }
+  }
+
+  override fun onStop() {
+    super.onStop()
+    if (!TextSecurePreferences.isScreenSecurityEnabled(requireContext())) {
+      requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
     }
   }
 
