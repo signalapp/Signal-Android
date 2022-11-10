@@ -189,6 +189,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   abstract void deleteThreads(@NonNull Set<Long> threadIds);
   abstract void deleteAllThreads();
   abstract void deleteAbandonedMessages();
+  public abstract void deleteRemotelyDeletedStory(long messageId);
 
   public abstract List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit);
 

@@ -44,6 +44,9 @@ fun MessageRecord.hasThumbnail(): Boolean =
 fun MessageRecord.isStoryReaction(): Boolean =
   isMms && MmsSmsColumns.Types.isStoryReaction((this as MmsMessageRecord).type)
 
+fun MessageRecord.isStory(): Boolean =
+  isMms && (this as MmsMessageRecord).storyType.isStory
+
 fun MessageRecord.isPaymentActivationRequest(): Boolean =
   isMms && MmsSmsColumns.Types.isRequestToActivatePayments((this as MmsMessageRecord).type)
 

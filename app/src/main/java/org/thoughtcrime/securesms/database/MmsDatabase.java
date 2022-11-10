@@ -2669,6 +2669,17 @@ public class MmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void deleteRemotelyDeletedStory(long messageId) {
+    try (Cursor cursor = getMessageCursor(messageId)) {
+      if (cursor.moveToFirst() && CursorUtil.requireBoolean(cursor, REMOTE_DELETED)) {
+        deleteMessage(messageId);
+      } else {
+        Log.i(TAG, "Unable to delete remotely deleted story: " + messageId);
+      }
+    }
+  }
+
+  @Override
   public List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit) {
     String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
                      TABLE_NAME + "." + getDateReceivedColumnName() + " >= ?";

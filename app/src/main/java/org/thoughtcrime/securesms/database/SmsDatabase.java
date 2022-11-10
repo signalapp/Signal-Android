@@ -1648,6 +1648,11 @@ public class SmsDatabase extends MessageDatabase {
   }
 
   @Override
+  public void deleteRemotelyDeletedStory(long messageId) {
+    throw new UnsupportedOperationException();
+  }
+
+  @Override
   public List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit) {
     String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
                      TABLE_NAME + "." + getDateReceivedColumnName() + " >= ?";
