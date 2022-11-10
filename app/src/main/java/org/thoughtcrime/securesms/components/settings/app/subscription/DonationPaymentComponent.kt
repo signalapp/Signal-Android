@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.parcelize.Parcelize
 
 interface DonationPaymentComponent {
-  val donationPaymentRepository: DonationPaymentRepository
+  val stripeRepository: StripeRepository
   val googlePayResultPublisher: Subject<GooglePayResult>
 
   @Parcelize

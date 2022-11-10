@@ -34,7 +34,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
 
   private val viewModel: GatewaySelectorViewModel by viewModels(factoryProducer = {
-    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().donationPaymentRepository)
+    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().stripeRepository)
   })
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -64,7 +64,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         DonateToSignalType.ONE_TIME -> presentOneTimeText()
       }
 
-      space(68.dp)
+      space(66.dp)
 
       if (state.isGooglePayAvailable) {
         customPref(

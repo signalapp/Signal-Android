@@ -23,7 +23,8 @@ import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -38,8 +39,9 @@ import java.util.Currency
  * Maintains state as a user works their way through the gift flow.
  */
 class GiftFlowViewModel(
-  val repository: GiftFlowRepository,
-  val donationPaymentRepository: DonationPaymentRepository
+  private val giftFlowRepository: GiftFlowRepository,
+  private val stripeRepository: StripeRepository,
+  private val oneTimeDonationRepository: OneTimeDonationRepository
 ) : ViewModel() {
 
   private var giftToPurchase: Gift? = null
@@ -87,7 +89,7 @@ class GiftFlowViewModel(
       }
     }
 
-    disposables += repository.getGiftPricing().subscribe { giftPrices ->
+    disposables += giftFlowRepository.getGiftPricing().subscribe { giftPrices ->
       store.update {
         it.copy(
           giftPrices = giftPrices,
@@ -96,7 +98,7 @@ class GiftFlowViewModel(
       }
     }
 
-    disposables += repository.getGiftBadge().subscribeBy(
+    disposables += giftFlowRepository.getGiftBadge().subscribeBy(
       onSuccess = { (giftLevel, giftBadge) ->
         store.update {
           it.copy(
@@ -139,12 +141,12 @@ class GiftFlowViewModel(
     this.giftToPurchase = Gift(giftLevel, giftPrice)
 
     store.update { it.copy(stage = GiftFlowState.Stage.RECIPIENT_VERIFICATION) }
-    disposables += donationPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(giftRecipient)
+    disposables += giftFlowRepository.verifyRecipientIsAllowedToReceiveAGift(giftRecipient)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onComplete = {
           store.update { it.copy(stage = GiftFlowState.Stage.TOKEN_REQUEST) }
-          donationPaymentRepository.requestTokenFromGooglePay(giftToPurchase!!.price, label, Gifts.GOOGLE_PAY_REQUEST_CODE)
+          stripeRepository.requestTokenFromGooglePay(giftToPurchase!!.price, label, Gifts.GOOGLE_PAY_REQUEST_CODE)
         },
         onError = this::onPaymentFlowError
       )
@@ -160,7 +162,7 @@ class GiftFlowViewModel(
 
     val recipient = store.state.recipient?.id
 
-    donationPaymentRepository.onActivityResult(
+    stripeRepository.onActivityResult(
       requestCode, resultCode, data, Gifts.GOOGLE_PAY_REQUEST_CODE,
       object : GooglePayApi.PaymentRequestCallback {
         override fun onSuccess(paymentData: PaymentData) {
@@ -169,13 +171,13 @@ class GiftFlowViewModel(
 
             store.update { it.copy(stage = GiftFlowState.Stage.PAYMENT_PIPELINE) }
 
-            val continuePayment: Single<StripeIntentAccessor> = donationPaymentRepository.continuePayment(gift.price, recipient, gift.level)
+            val continuePayment: Single<StripeIntentAccessor> = stripeRepository.continuePayment(gift.price, recipient, gift.level)
             val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, Single.just(GooglePayPaymentSource(paymentData)), ::Pair)
 
             disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
-              donationPaymentRepository.confirmPayment(paymentSource, paymentIntent, recipient)
+              stripeRepository.confirmPayment(paymentSource, paymentIntent, recipient)
                 .flatMapCompletable { Completable.complete() } // We do not currently handle 3DS for gifts.
-                .andThen(donationPaymentRepository.waitForOneTimeRedemption(gift.price, paymentIntent, recipient, store.state.additionalMessage?.toString(), gift.level))
+                .andThen(oneTimeDonationRepository.waitForOneTimeRedemption(gift.price, paymentIntent.intentId, recipient, store.state.additionalMessage?.toString(), gift.level))
             }.subscribeBy(
               onError = this@GiftFlowViewModel::onPaymentFlowError,
               onComplete = {
@@ -249,13 +251,15 @@ class GiftFlowViewModel(
 
   class Factory(
     private val repository: GiftFlowRepository,
-    private val donationPaymentRepository: DonationPaymentRepository
+    private val stripeRepository: StripeRepository,
+    private val oneTimeDonationRepository: OneTimeDonationRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(
         GiftFlowViewModel(
           repository,
-          donationPaymentRepository
+          stripeRepository,
+          oneTimeDonationRepository
         )
       ) as T
     }

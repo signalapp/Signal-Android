@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.components.settings.app.subscription.donate
+package org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface

@@ -40,7 +40,7 @@ class SetCurrencyFragment : DSLSettingsBottomSheetFragment() {
           summary = DSLSettingsText.from(currency.currencyCode),
           onClick = {
             viewModel.setSelectedCurrency(currency.currencyCode)
-            donationPaymentComponent.donationPaymentRepository.scheduleSyncForAccountRecordChange()
+            donationPaymentComponent.stripeRepository.scheduleSyncForAccountRecordChange()
             dismissAllowingStateLoss()
           }
         )

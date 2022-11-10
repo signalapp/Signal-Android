@@ -1,10 +1,10 @@
-package org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe
+package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-enum class StripeAction : Parcelable {
+enum class DonationProcessorAction : Parcelable {
   PROCESS_NEW_DONATION,
   UPDATE_SUBSCRIPTION,
   CANCEL_SUBSCRIPTION

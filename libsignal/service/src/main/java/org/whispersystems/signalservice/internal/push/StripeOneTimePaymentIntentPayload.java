@@ -2,7 +2,7 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-class DonationIntentPayload {
+class StripeOneTimePaymentIntentPayload {
   @JsonProperty
   private long amount;
 
@@ -12,7 +12,7 @@ class DonationIntentPayload {
   @JsonProperty
   private long level;
 
-  public DonationIntentPayload(long amount, String currency, long level) {
+  public StripeOneTimePaymentIntentPayload(long amount, String currency, long level) {
     this.amount      = amount;
     this.currency    = currency;
     this.level       = level;

@@ -55,7 +55,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private final String              paymentIntentId;
   private final long                badgeLevel;
 
-  private static BoostReceiptRequestResponseJob createJob(StripeIntentAccessor paymentIntent, DonationErrorSource donationErrorSource, long badgeLevel) {
+  private static BoostReceiptRequestResponseJob createJob(String paymentIntentId, DonationErrorSource donationErrorSource, long badgeLevel) {
     return new BoostReceiptRequestResponseJob(
         new Parameters
             .Builder()
@@ -65,14 +65,14 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
             .setMaxAttempts(Parameters.UNLIMITED)
             .build(),
         null,
-        paymentIntent.getIntentId(),
+        paymentIntentId,
         donationErrorSource,
         badgeLevel
     );
   }
 
-  public static JobManager.Chain createJobChainForBoost(@NonNull StripeIntentAccessor paymentIntent) {
-    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntent, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+  public static JobManager.Chain createJobChainForBoost(@NonNull String paymentIntentId) {
+    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
     DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost();
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -84,12 +84,12 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                   .then(multiDeviceProfileContentUpdateJob);
   }
 
-  public static JobManager.Chain createJobChainForGift(@NonNull StripeIntentAccessor paymentIntent,
+  public static JobManager.Chain createJobChainForGift(@NonNull String paymentIntentId,
                                                        @NonNull RecipientId recipientId,
                                                        @Nullable String additionalMessage,
                                                        long badgeLevel)
   {
-    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntent, DonationErrorSource.GIFT, badgeLevel);
+    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntentId, DonationErrorSource.GIFT, badgeLevel);
     GiftSendJob                    giftSendJob       = new GiftSendJob(recipientId, additionalMessage);
 
 

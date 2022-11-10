@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 
 /**
  * Activity wrapper for donate to signal screen. An activity is needed because Google Pay uses the
@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
  */
 class DonateToSignalActivity : FragmentWrapperActivity(), DonationPaymentComponent {
 
-  override val donationPaymentRepository: DonationPaymentRepository by lazy { DonationPaymentRepository(this) }
+  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun getFragment(): Fragment {

@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class GatewaySelectorViewModel(
   args: GatewaySelectorBottomSheetArgs,
-  private val repository: DonationPaymentRepository
+  private val repository: StripeRepository
 ) : ViewModel() {
 
   private val store = RxStore(GatewaySelectorState(args.request.badge))
@@ -40,7 +40,7 @@ class GatewaySelectorViewModel(
 
   class Factory(
     private val args: GatewaySelectorBottomSheetArgs,
-    private val repository: DonationPaymentRepository
+    private val repository: StripeRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(GatewaySelectorViewModel(args, repository)) as T

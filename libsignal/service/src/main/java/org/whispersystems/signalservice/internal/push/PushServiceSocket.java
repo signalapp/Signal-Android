@@ -86,7 +86,7 @@ import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedExc
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.SubscriptionClientSecret;
+import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -1017,10 +1017,10 @@ public class PushServiceSocket {
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
-  public SubscriptionClientSecret createBoostPaymentMethod(String currencyCode, long amount, long level) throws IOException {
-    String payload = JsonUtil.toJson(new DonationIntentPayload(amount, currencyCode, level));
+  public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, long amount, long level) throws IOException {
+    String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level));
     String result  = makeServiceRequestWithoutAuthentication(CREATE_BOOST_PAYMENT_INTENT, "POST", payload);
-    return JsonUtil.fromJsonResponse(result, SubscriptionClientSecret.class);
+    return JsonUtil.fromJsonResponse(result, StripeClientSecret.class);
   }
 
   public Map<String, List<BigDecimal>> getBoostAmounts() throws IOException {
@@ -1082,9 +1082,9 @@ public class PushServiceSocket {
     makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "DELETE", null);
   }
 
-  public SubscriptionClientSecret createSubscriptionPaymentMethod(String subscriberId) throws IOException {
+  public StripeClientSecret createSubscriptionPaymentMethod(String subscriberId) throws IOException {
     String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
-    return JsonUtil.fromJson(response, SubscriptionClientSecret.class);
+    return JsonUtil.fromJson(response, StripeClientSecret.class);
   }
 
   public void setDefaultSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {

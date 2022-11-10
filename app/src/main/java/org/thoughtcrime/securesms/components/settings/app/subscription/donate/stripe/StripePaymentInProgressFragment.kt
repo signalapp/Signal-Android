@@ -22,7 +22,9 @@ import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Stripe3DSDialogFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
 import org.thoughtcrime.securesms.databinding.StripePaymentInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -43,7 +45,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
   private val viewModel: StripePaymentInProgressViewModel by navGraphViewModels(
     R.id.donate_to_signal,
     factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().donationPaymentRepository)
+      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
     }
   )
 
@@ -58,13 +60,13 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     if (savedInstanceState == null) {
       viewModel.onBeginNewAction()
       when (args.action) {
-        StripeAction.PROCESS_NEW_DONATION -> {
+        DonationProcessorAction.PROCESS_NEW_DONATION -> {
           viewModel.processNewDonation(args.request, this::handleSecure3dsAction)
         }
-        StripeAction.UPDATE_SUBSCRIPTION -> {
+        DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
           viewModel.updateSubscription(args.request)
         }
-        StripeAction.CANCEL_SUBSCRIPTION -> {
+        DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
           viewModel.cancelSubscription()
         }
       }
@@ -76,39 +78,39 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     }
   }
 
-  private fun presentUiState(stage: StripeStage) {
+  private fun presentUiState(stage: DonationProcessorStage) {
     when (stage) {
-      StripeStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      StripeStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      StripeStage.FAILED -> {
+      DonationProcessorStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
+      DonationProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
+      DonationProcessorStage.FAILED -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to StripeActionResult(
+            REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               request = args.request,
-              status = StripeActionResult.Status.FAILURE
+              status = DonationProcessorActionResult.Status.FAILURE
             )
           )
         )
       }
-      StripeStage.COMPLETE -> {
+      DonationProcessorStage.COMPLETE -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to StripeActionResult(
+            REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               request = args.request,
-              status = StripeActionResult.Status.SUCCESS
+              status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
         )
       }
-      StripeStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
+      DonationProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
     }
   }
 

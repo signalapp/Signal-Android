@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.reminder.ReminderView
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -113,6 +113,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     return fragment.reminderView
   }
 
-  override val donationPaymentRepository: DonationPaymentRepository by lazy { DonationPaymentRepository(this) }
+  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 }

@@ -9,8 +9,8 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
+import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
-import org.whispersystems.signalservice.api.subscriptions.SubscriptionClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.EmptyResponse;
@@ -43,7 +43,8 @@ public class DonationsService {
       String signalAgent,
       GroupsV2Operations groupsV2Operations,
       boolean automaticNetworkRetry
-  ) {
+  )
+  {
     this(new PushServiceSocket(configuration, credentialsProvider, signalAgent, groupsV2Operations.getProfileOperations(), automaticNetworkRetry));
   }
 
@@ -71,12 +72,12 @@ public class DonationsService {
   /**
    * Submits price information to the server to generate a payment intent via the payment gateway.
    *
-   * @param amount        Price, in the minimum currency unit (e.g. cents or yen)
-   * @param currencyCode  The currency code for the amount
-   * @return              A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
+   * @param amount       Price, in the minimum currency unit (e.g. cents or yen)
+   * @param currencyCode The currency code for the amount
+   * @return A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
-  public ServiceResponse<SubscriptionClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createBoostPaymentMethod(currencyCode, Long.parseLong(amount), level), 200));
+  public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level) {
+    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, Long.parseLong(amount), level), 200));
   }
 
   /**
@@ -165,9 +166,10 @@ public class DonationsService {
                                                                 String currencyCode,
                                                                 String idempotencyKey,
                                                                 Object mutex
-  ) {
+  )
+  {
     return wrapInServiceResponse(() -> {
-      synchronized(mutex) {
+      synchronized (mutex) {
         pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
       }
       return new Pair<>(EmptyResponse.INSTANCE, 200);
@@ -188,11 +190,11 @@ public class DonationsService {
    * Creates a subscriber record on the signal server and stripe. Can be called idempotently as-is. After receiving 200 from this endpoint,
    * clients should save subscriberId locally and to storage service for the account. If you get a 403 from this endpoint and you did not
    * use an account authenticated connection, then the subscriberId has been corrupted in some way.
-   *
+   * <p>
    * Clients MUST periodically hit this endpoint to update the access time on the subscription record. Recommend trying to call it approximately
    * every 3 days. Not accessing this endpoint for an extended period of time will result in the subscription being canceled.
    *
-   * @param subscriberId  The subscriber ID for the user polling their subscription
+   * @param subscriberId The subscriber ID for the user polling their subscription
    */
   public ServiceResponse<EmptyResponse> putSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
@@ -204,7 +206,7 @@ public class DonationsService {
   /**
    * Cancels any current subscription at the end of the current subscription period.
    *
-   * @param subscriberId  The subscriber ID for the user cancelling their subscription
+   * @param subscriberId The subscriber ID for the user cancelling their subscription
    */
   public ServiceResponse<EmptyResponse> cancelSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
@@ -213,7 +215,7 @@ public class DonationsService {
     });
   }
 
-  public ServiceResponse<EmptyResponse> setDefaultPaymentMethodId(SubscriberId subscriberId, String paymentMethodId) {
+  public ServiceResponse<EmptyResponse> setDefaultStripePaymentMethod(SubscriberId subscriberId, String paymentMethodId) {
     return wrapInServiceResponse(() -> {
       pushServiceSocket.setDefaultSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
       return new Pair<>(EmptyResponse.INSTANCE, 200);
@@ -226,9 +228,9 @@ public class DonationsService {
    * @return              Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
    *                      but instead with the SetupIntent stripe APIs.
    */
-  public ServiceResponse<SubscriptionClientSecret> createSubscriptionPaymentMethod(SubscriberId subscriberId) {
+  public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
-      SubscriptionClientSecret clientSecret = pushServiceSocket.createSubscriptionPaymentMethod(subscriberId.serialize());
+      StripeClientSecret clientSecret = pushServiceSocket.createSubscriptionPaymentMethod(subscriberId.serialize());
       return new Pair<>(clientSecret, 200);
     });
   }

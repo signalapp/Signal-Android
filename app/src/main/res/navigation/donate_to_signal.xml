@@ -78,7 +78,7 @@
 
         <argument
             android:name="action"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripeAction"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction"
             app:nullable="false" />
 
         <argument
@@ -127,7 +127,7 @@
 
     <dialog
         android:id="@+id/stripe3dsDialogFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.Stripe3DSDialogFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSDialogFragment"
         android:label="stripe_3ds_dialog_fragment"
         tools:layout="@layout/stripe_3ds_dialog_fragment">
 

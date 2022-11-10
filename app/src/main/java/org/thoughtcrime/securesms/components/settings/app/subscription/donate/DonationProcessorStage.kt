@@ -1,6 +1,6 @@
-package org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe
+package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
-enum class StripeStage {
+enum class DonationProcessorStage {
   INIT,
   PAYMENT_PIPELINE,
   CANCELLING,

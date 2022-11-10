@@ -12,9 +12,9 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
-import org.thoughtcrime.securesms.components.settings.app.subscription.boost.BoostRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.SubscriptionRedemptionJobWatcher
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -42,8 +42,8 @@ import java.util.Currency
  */
 class DonateToSignalViewModel(
   startType: DonateToSignalType,
-  private val subscriptionsRepository: SubscriptionsRepository,
-  private val boostRepository: BoostRepository
+  private val subscriptionsRepository: MonthlyDonationRepository,
+  private val oneTimeDonationRepository: OneTimeDonationRepository
 ) : ViewModel() {
 
   companion object {
@@ -63,7 +63,7 @@ class DonateToSignalViewModel(
   val actions: Observable<DonateToSignalAction> = _actions.observeOn(AndroidSchedulers.mainThread())
 
   init {
-    initializeOneTimeDonationState(boostRepository)
+    initializeOneTimeDonationState(oneTimeDonationRepository)
     initializeMonthlyDonationState(subscriptionsRepository)
 
     networkDisposable += InternetConnectionObserver
@@ -87,7 +87,7 @@ class DonateToSignalViewModel(
   fun retryOneTimeDonationState() {
     if (!oneTimeDonationDisposables.isDisposed && store.state.oneTimeDonationState.donationStage == DonateToSignalState.DonationStage.FAILURE) {
       store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(donationStage = DonateToSignalState.DonationStage.INIT)) }
-      initializeOneTimeDonationState(boostRepository)
+      initializeOneTimeDonationState(oneTimeDonationRepository)
     }
   }
 
@@ -197,8 +197,8 @@ class DonateToSignalViewModel(
     }
   }
 
-  private fun initializeOneTimeDonationState(boostRepository: BoostRepository) {
-    oneTimeDonationDisposables += boostRepository.getBoostBadge().subscribeBy(
+  private fun initializeOneTimeDonationState(oneTimeDonationRepository: OneTimeDonationRepository) {
+    oneTimeDonationDisposables += oneTimeDonationRepository.getBoostBadge().subscribeBy(
       onSuccess = { badge ->
         store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(badge = badge)) }
       },
@@ -207,7 +207,7 @@ class DonateToSignalViewModel(
       }
     )
 
-    val boosts: Observable<Map<Currency, List<Boost>>> = boostRepository.getBoosts().toObservable()
+    val boosts: Observable<Map<Currency, List<Boost>>> = oneTimeDonationRepository.getBoosts().toObservable()
     val oneTimeCurrency: Observable<Currency> = SignalStore.donationsValues().observableOneTimeCurrency
 
     oneTimeDonationDisposables += Observable.combineLatest(boosts, oneTimeCurrency) { boostMap, currency ->
@@ -243,7 +243,7 @@ class DonateToSignalViewModel(
     )
   }
 
-  private fun initializeMonthlyDonationState(subscriptionsRepository: SubscriptionsRepository) {
+  private fun initializeMonthlyDonationState(subscriptionsRepository: MonthlyDonationRepository) {
     monitorLevelUpdateProcessing()
 
     val allSubscriptions = subscriptionsRepository.getSubscriptions()
@@ -362,11 +362,11 @@ class DonateToSignalViewModel(
 
   class Factory(
     private val startType: DonateToSignalType,
-    private val subscriptionsRepository: SubscriptionsRepository = SubscriptionsRepository(ApplicationDependencies.getDonationsService()),
-    private val boostRepository: BoostRepository = BoostRepository(ApplicationDependencies.getDonationsService())
+    private val subscriptionsRepository: MonthlyDonationRepository = MonthlyDonationRepository(ApplicationDependencies.getDonationsService()),
+    private val oneTimeDonationRepository: OneTimeDonationRepository = OneTimeDonationRepository(ApplicationDependencies.getDonationsService())
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, boostRepository)) as T
+      return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, oneTimeDonationRepository)) as T
     }
   }
 }

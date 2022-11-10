@@ -41,8 +41,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ca
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripeAction
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripeActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -104,7 +102,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
     R.id.donate_to_signal,
     factoryProducer = {
       donationPaymentComponent = requireListener()
-      StripePaymentInProgressViewModel.Factory(donationPaymentComponent.donationPaymentRepository)
+      StripePaymentInProgressViewModel.Factory(donationPaymentComponent.stripeRepository)
     }
   )
 
@@ -144,8 +142,8 @@ class DonateToSignalFragment : DSLSettingsFragment(
     }
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
-      val result: StripeActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
-      handleStripeActionResult(result)
+      val result: DonationProcessorActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
+      handleDonationProcessorActionResult(result)
     }
 
     setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
@@ -208,7 +206,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
         is DonateToSignalAction.CancelSubscription -> {
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-              StripeAction.CANCEL_SUBSCRIPTION,
+              DonationProcessorAction.CANCEL_SUBSCRIPTION,
               action.gatewayRequest
             )
           )
@@ -216,7 +214,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
         is DonateToSignalAction.UpdateSubscription -> {
           findNavController().safeNavigate(
             DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(
-              StripeAction.UPDATE_SUBSCRIPTION,
+              DonationProcessorAction.UPDATE_SUBSCRIPTION,
               action.gatewayRequest
             )
           )
@@ -432,28 +430,28 @@ class DonateToSignalFragment : DSLSettingsFragment(
   private fun handleCreditCardResult(creditCardResult: CreditCardResult) {
     Log.d(TAG, "Received credit card information from fragment.")
     stripePaymentViewModel.provideCardData(creditCardResult.creditCardData)
-    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(StripeAction.PROCESS_NEW_DONATION, creditCardResult.gatewayRequest))
+    findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, creditCardResult.gatewayRequest))
   }
 
-  private fun handleStripeActionResult(result: StripeActionResult) {
+  private fun handleDonationProcessorActionResult(result: DonationProcessorActionResult) {
     when (result.status) {
-      StripeActionResult.Status.SUCCESS -> handleSuccessfulStripeActionResult(result)
-      StripeActionResult.Status.FAILURE -> handleFailedStripeActionResult(result)
+      DonationProcessorActionResult.Status.SUCCESS -> handleSuccessfulDonationProcessorActionResult(result)
+      DonationProcessorActionResult.Status.FAILURE -> handleFailedDonationProcessorActionResult(result)
     }
 
     viewModel.refreshActiveSubscription()
   }
 
-  private fun handleSuccessfulStripeActionResult(result: StripeActionResult) {
-    if (result.action == StripeAction.CANCEL_SUBSCRIPTION) {
+  private fun handleSuccessfulDonationProcessorActionResult(result: DonationProcessorActionResult) {
+    if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
       Snackbar.make(requireView(), R.string.SubscribeFragment__your_subscription_has_been_cancelled, Snackbar.LENGTH_LONG).show()
     } else {
       findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToThanksForYourSupportBottomSheetDialog(result.request.badge))
     }
   }
 
-  private fun handleFailedStripeActionResult(result: StripeActionResult) {
-    if (result.action == StripeAction.CANCEL_SUBSCRIPTION) {
+  private fun handleFailedDonationProcessorActionResult(result: DonationProcessorActionResult) {
+    if (result.action == DonationProcessorAction.CANCEL_SUBSCRIPTION) {
       MaterialAlertDialogBuilder(requireContext())
         .setTitle(R.string.DonationsErrors__failed_to_cancel_subscription)
         .setMessage(R.string.DonationsErrors__subscription_cancellation_requires_an_internet_connection)
@@ -468,7 +466,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
 
   private fun launchGooglePay(gatewayResponse: GatewayResponse) {
     viewModel.provideGatewayRequestForGooglePay(gatewayResponse.request)
-    donationPaymentComponent.donationPaymentRepository.requestTokenFromGooglePay(
+    donationPaymentComponent.stripeRepository.requestTokenFromGooglePay(
       price = FiatMoney(gatewayResponse.request.price, Currency.getInstance(gatewayResponse.request.currencyCode)),
       label = gatewayResponse.request.label,
       requestCode = gatewayResponse.request.donateToSignalType.requestCode.toInt()
@@ -487,7 +485,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
     disposables += donationPaymentComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
         viewModel.consumeGatewayRequestForGooglePay()?.let {
-          donationPaymentComponent.donationPaymentRepository.onActivityResult(
+          donationPaymentComponent.stripeRepository.onActivityResult(
             paymentResult.requestCode,
             paymentResult.resultCode,
             paymentResult.data,
@@ -549,7 +547,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
     override fun onSuccess(paymentData: PaymentData) {
       Log.d(TAG, "Successfully retrieved payment data from Google Pay", true)
       stripePaymentViewModel.providePaymentData(paymentData)
-      findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(StripeAction.PROCESS_NEW_DONATION, request))
+      findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, request))
     }
 
     override fun onError(googlePayException: GooglePayApi.GooglePayException) {
