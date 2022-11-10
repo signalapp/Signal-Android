@@ -300,7 +300,7 @@ class DonateToSignalFragment : DSLSettingsFragment(
       if (state.donateToSignalType == DonateToSignalType.MONTHLY && state.monthlyDonationState.isSubscriptionActive) {
         primaryButton(
           text = DSLSettingsText.from(R.string.SubscribeFragment__update_subscription),
-          isEnabled = state.canContinue,
+          isEnabled = state.canUpdate,
           onClick = {
             MaterialAlertDialogBuilder(requireContext())
               .setTitle(R.string.SubscribeFragment__update_subscription_question)

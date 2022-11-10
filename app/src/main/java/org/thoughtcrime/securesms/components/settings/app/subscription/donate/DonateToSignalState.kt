@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.subscription.Subscription
@@ -54,7 +55,13 @@ data class DonateToSignalState(
 
   val canContinue: Boolean
     get() = when (donateToSignalType) {
-      DonateToSignalType.ONE_TIME -> areFieldsEnabled && oneTimeDonationState.isSelectionValid
+      DonateToSignalType.ONE_TIME -> areFieldsEnabled && oneTimeDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+      DonateToSignalType.MONTHLY -> areFieldsEnabled && monthlyDonationState.isSelectionValid && InAppDonations.hasAtLeastOnePaymentMethodAvailable()
+    }
+
+  val canUpdate: Boolean
+    get() = when (donateToSignalType) {
+      DonateToSignalType.ONE_TIME -> false
       DonateToSignalType.MONTHLY -> areFieldsEnabled && monthlyDonationState.isSelectionValid
     }
 
