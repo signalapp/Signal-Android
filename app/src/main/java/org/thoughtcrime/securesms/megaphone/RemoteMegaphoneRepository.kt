@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.megaphone
 
 import android.app.Application
 import android.content.Context
+import android.content.Intent
 import androidx.annotation.AnyThread
 import androidx.annotation.WorkerThread
 import org.json.JSONArray
@@ -9,8 +10,8 @@ import org.json.JSONException
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalActivity
 import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
@@ -50,7 +51,7 @@ object RemoteMegaphoneRepository {
   }
 
   private val donate: Action = Action { context, controller, remote ->
-    controller.onMegaphoneNavigationRequested(AppSettingsActivity.manageSubscriptions(context))
+    controller.onMegaphoneNavigationRequested(Intent(context, DonateToSignalActivity::class.java))
     snooze.run(context, controller, remote)
   }
 
