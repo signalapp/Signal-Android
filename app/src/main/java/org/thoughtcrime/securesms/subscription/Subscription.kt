@@ -129,7 +129,7 @@ data class Subscription(
       val formattedPrice = FiatMoneyUtil.format(
         context.resources,
         model.activePrice ?: model.subscription.prices.first { it.currency == model.selectedCurrency },
-        FiatMoneyUtil.formatOptions()
+        FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
       )
 
       if (model.isActive && model.willRenew) {
