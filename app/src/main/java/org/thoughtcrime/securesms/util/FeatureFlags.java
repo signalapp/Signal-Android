@@ -103,6 +103,9 @@ public final class FeatureFlags {
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.1";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   private static final String KEEP_MUTED_CHATS_ARCHIVED         = "android.keepMutedChatsArchived";
+  public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";
+  public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
+  public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -157,7 +160,10 @@ public final class FeatureFlags {
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
-      KEEP_MUTED_CHATS_ARCHIVED
+      KEEP_MUTED_CHATS_ARCHIVED,
+      GOOGLE_PAY_DISABLED_REGIONS,
+      CREDIT_CARD_DISABLED_REGIONS,
+      PAYPAL_DISABLED_REGIONS
   );
 
   @VisibleForTesting
@@ -560,6 +566,27 @@ public final class FeatureFlags {
    */
   public static boolean keepMutedChatsArchived() {
     return getBoolean(KEEP_MUTED_CHATS_ARCHIVED, false);
+  }
+
+  /**
+   * @return Serialized list of regions in which Google Pay is disabled for donations
+   */
+  public static @NonNull String googlePayDisabledRegions() {
+    return getString(GOOGLE_PAY_DISABLED_REGIONS, "*");
+  }
+
+  /**
+   * @return Serialized list of regions in which credit cards are disabled for donations
+   */
+  public static @NonNull String creditCardDisabledRegions() {
+    return getString(CREDIT_CARD_DISABLED_REGIONS, "*");
+  }
+
+  /**
+   * @return Serialized list of regions in which PayPal is disabled for donations
+   */
+  public static @NonNull String paypalDisabledRegions() {
+    return getString(PAYPAL_DISABLED_REGIONS, "*");
   }
 
   /** Only for rendering debug info. */

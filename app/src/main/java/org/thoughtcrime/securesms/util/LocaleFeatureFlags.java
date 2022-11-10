@@ -49,6 +49,27 @@ public final class LocaleFeatureFlags {
   }
 
   /**
+   * @return Whether Google Pay is disabled in this region
+   */
+  public static boolean isGooglePayDisabled() {
+    return isEnabled(FeatureFlags.GOOGLE_PAY_DISABLED_REGIONS, FeatureFlags.googlePayDisabledRegions());
+  }
+
+  /**
+   * @return Whether credit cards are disabled in this region
+   */
+  public static boolean isCreditCardDisabled() {
+    return isEnabled(FeatureFlags.CREDIT_CARD_DISABLED_REGIONS, FeatureFlags.googlePayDisabledRegions());
+  }
+
+  /**
+   * @return Whether PayPal is disabled in this region
+   */
+  public static boolean isPayPalDisabled() {
+    return isEnabled(FeatureFlags.PAYPAL_DISABLED_REGIONS, FeatureFlags.googlePayDisabledRegions());
+  }
+
+  /**
    * Parses a comma-separated list of country codes colon-separated from how many buckets out of 1 million
    * should be enabled to see this megaphone in that country code. At the end of the list, an optional
    * element saying how many buckets out of a million should be enabled for all countries not listed previously

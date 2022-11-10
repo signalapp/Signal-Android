@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.util.FeatureFlags
+import org.thoughtcrime.securesms.util.LocaleFeatureFlags
 import org.thoughtcrime.securesms.util.PlayServicesUtil
 
 /**
@@ -17,14 +18,14 @@ object InAppDonations {
    * - Able to use PayPal and is in a region where it is able to be accepted.
    */
   fun hasAtLeastOnePaymentMethodAvailable(): Boolean {
-    return isCreditCardAvailable() || isPayPalAvailable() || isPlayServicesAvailable()
+    return isCreditCardAvailable() || isPayPalAvailable() || isGooglePayAvailable()
   }
 
   /**
    * Whether the user is in a region that supports credit cards, based off local phone number.
    */
   fun isCreditCardAvailable(): Boolean {
-    return FeatureFlags.creditCardPayments()
+    return FeatureFlags.creditCardPayments() && !LocaleFeatureFlags.isCreditCardDisabled()
   }
 
   /**
@@ -32,6 +33,13 @@ object InAppDonations {
    */
   fun isPayPalAvailable(): Boolean {
     return false
+  }
+
+  /**
+   * Whether the user is in a region that supports GooglePay, based off local phone number.
+   */
+  private fun isGooglePayAvailable(): Boolean {
+    return isPlayServicesAvailable() && !LocaleFeatureFlags.isGooglePayDisabled()
   }
 
   /**
