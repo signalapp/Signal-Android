@@ -4,16 +4,16 @@ import android.media.AudioManager
 import android.os.Bundle
 import android.os.ResultReceiver
 import com.google.android.exoplayer2.C
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.PlaybackParameters
 import com.google.android.exoplayer2.Player
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
 import com.google.android.exoplayer2.ext.mediasession.MediaSessionConnector
 import com.google.android.exoplayer2.util.Util
 import org.signal.core.util.logging.Log
 
 class VoiceNotePlaybackController(
-  private val player: SimpleExoPlayer,
+  private val player: ExoPlayer,
   private val voiceNotePlaybackParameters: VoiceNotePlaybackParameters
 ) : MediaSessionConnector.CommandReceiver {
 
@@ -42,7 +42,6 @@ class VoiceNotePlaybackController(
 
         player.playWhenReady = false
         player.setAudioAttributes(attributes, newStreamType == AudioManager.STREAM_MUSIC)
-
         if (newStreamType == AudioManager.STREAM_VOICE_CALL) {
           player.playWhenReady = true
         }
