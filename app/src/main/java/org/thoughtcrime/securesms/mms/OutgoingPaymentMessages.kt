@@ -23,12 +23,14 @@ class OutgoingRequestToActivatePaymentMessages(
   StoryType.NONE,
   null,
   false,
-  null, emptyList(), emptyList(), emptyList(),
+  null,
+  emptyList(),
+  emptyList(),
+  emptyList(),
   null
 ) {
-  override fun isRequestToActivatePayments(): Boolean {
-    return true
-  }
+  override fun isRequestToActivatePayments(): Boolean = true
+  override fun isUrgent(): Boolean = false
 }
 
 /**
@@ -50,10 +52,37 @@ class OutgoingPaymentsActivatedMessages(
   StoryType.NONE,
   null,
   false,
-  null, emptyList(), emptyList(), emptyList(),
+  null,
+  emptyList(),
+  emptyList(),
+  emptyList(),
   null
 ) {
-  override fun isPaymentsActivated(): Boolean {
-    return true
-  }
+  override fun isPaymentsActivated(): Boolean = true
+  override fun isUrgent(): Boolean = false
+}
+
+class OutgoingPaymentsNotificationMessage(
+  recipient: Recipient,
+  paymentUuid: String,
+  sentTimeMillis: Long,
+  expiresIn: Long
+) : OutgoingSecureMediaMessage(
+  recipient,
+  paymentUuid,
+  LinkedList(),
+  sentTimeMillis,
+  ThreadDatabase.DistributionTypes.CONVERSATION,
+  expiresIn,
+  false,
+  StoryType.NONE,
+  null,
+  false,
+  null,
+  emptyList(),
+  emptyList(),
+  emptyList(),
+  null
+) {
+  override fun isPaymentsNotification(): Boolean = true
 }

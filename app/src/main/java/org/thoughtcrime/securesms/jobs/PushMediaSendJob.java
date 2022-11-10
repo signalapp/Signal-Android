@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.PaymentDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -46,6 +47,7 @@ import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.FileNotFoundException;
@@ -53,6 +55,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.UUID;
 
 public class PushMediaSendJob extends PushSendJob {
 
@@ -213,7 +216,7 @@ public class PushMediaSendJob extends PushSendJob {
       List<SharedContact>                        sharedContacts      = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews            = getPreviewsFor(message);
       SignalServiceDataMessage.GiftBadge         giftBadge           = getGiftBadgeFor(message);
-      SignalServiceDataMessage.Payment           payment             = getPaymentActivation(message);
+      SignalServiceDataMessage.Payment           payment             = getPayment(message);
       SignalServiceDataMessage.Builder           mediaMessageBuilder = SignalServiceDataMessage.newBuilder()
                                                                                                .withBody(message.getBody())
                                                                                                .withAttachments(serviceAttachments)
@@ -248,7 +251,7 @@ public class PushMediaSendJob extends PushSendJob {
         mediaMessageBuilder.withQuote(getQuoteFor(message).orElse(null));
       }
 
-      if (message.getGiftBadge() != null) {
+      if (message.getGiftBadge() != null || message.isPaymentsNotification()) {
         mediaMessageBuilder.withBody(null);
       }
 
@@ -281,19 +284,36 @@ public class PushMediaSendJob extends PushSendJob {
     }
   }
 
-  private SignalServiceDataMessage.Payment getPaymentActivation(OutgoingMediaMessage message) {
-    SignalServiceProtos.DataMessage.Payment.Activation.Type type = null;
+  private SignalServiceDataMessage.Payment getPayment(OutgoingMediaMessage message) {
+    if (message.isPaymentsNotification()) {
+      UUID paymentUuid = UuidUtil.parseOrThrow(message.getBody());
+      PaymentDatabase.PaymentTransaction payment = SignalDatabase.payments().getPayment(paymentUuid);
 
-    if (message.isRequestToActivatePayments()) {
-      type = SignalServiceProtos.DataMessage.Payment.Activation.Type.REQUEST;
-    } else if (message.isPaymentsActivated()) {
-      type = SignalServiceProtos.DataMessage.Payment.Activation.Type.ACTIVATED;
-    }
+      if (payment == null) {
+        Log.w(TAG, "Could not find payment, cannot send notification " + paymentUuid);
+        return null;
+      }
 
-    if (type != null) {
-      return new SignalServiceDataMessage.Payment(null, new SignalServiceDataMessage.PaymentActivation(type));
+      if (payment.getReceipt() == null) {
+        Log.w(TAG, "Could not find payment receipt, cannot send notification " + paymentUuid);
+        return null;
+      }
+
+      return new SignalServiceDataMessage.Payment(new SignalServiceDataMessage.PaymentNotification(payment.getReceipt(), payment.getNote()), null);
     } else {
-      return null;
+      SignalServiceProtos.DataMessage.Payment.Activation.Type type = null;
+
+      if (message.isRequestToActivatePayments()) {
+        type = SignalServiceProtos.DataMessage.Payment.Activation.Type.REQUEST;
+      } else if (message.isPaymentsActivated()) {
+        type = SignalServiceProtos.DataMessage.Payment.Activation.Type.ACTIVATED;
+      }
+
+      if (type != null) {
+        return new SignalServiceDataMessage.Payment(null, new SignalServiceDataMessage.PaymentActivation(type));
+      } else {
+        return null;
+      }
     }
   }
 

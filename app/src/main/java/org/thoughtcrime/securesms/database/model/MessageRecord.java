@@ -240,7 +240,7 @@ public abstract class MessageRecord extends DisplayRecord {
       int messageResource = SignalStore.misc().getSmsExportPhase().isSmsSupported() ? R.string.MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon
                                                                                     : R.string.MessageRecord__you_can_no_longer_send_sms_messages_in_signal;
       return fromRecipient(getIndividualRecipient(), r -> context.getString(messageResource, r.getDisplayName(context)), R.drawable.ic_update_info_16);
-    } else if (isRequestToActivatePayments()) {
+    } else if (isPaymentsRequestToActivate()) {
       return isOutgoing() ? fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_you_sent_request, r.getShortDisplayName(context)), R.drawable.ic_card_activate_payments)
                           : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_wants_you_to_activate_payments, r.getShortDisplayName(context)), R.drawable.ic_card_activate_payments);
    } else if (isPaymentsActivated()) {
@@ -577,7 +577,7 @@ public abstract class MessageRecord extends DisplayRecord {
            isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isBoostRequest() || isThreadMergeEventType() || isSmsExportType() ||
-           isRequestToActivatePayments() || isPaymentsActivated();
+           isPaymentsRequestToActivate() || isPaymentsActivated();
   }
 
   public boolean isMediaPending() {

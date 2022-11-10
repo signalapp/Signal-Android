@@ -6,6 +6,8 @@ import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.OutgoingPaymentsActivatedMessages
+import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
 
 /**
@@ -27,6 +29,10 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
 
   @Suppress("UsePropertyAccessSyntax")
   override fun onRun() {
+    if (!Recipient.self().isRegistered) {
+      throw NotPushRegisteredException()
+    }
+
     if (!SignalStore.paymentsValues().mobileCoinPaymentsEnabled()) {
       Log.w(TAG, "Payments aren't enabled, not going to attempt to send activation messages.")
       return

@@ -1485,12 +1485,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     private void goToSinglePayment(@NonNull UUID paymentId) {
-      Intent intent = new Intent(requireContext(), PaymentsActivity.class);
-
-      intent.putExtra(PaymentsActivity.EXTRA_PAYMENTS_STARTING_ACTION, R.id.action_directly_to_paymentDetails);
-      intent.putExtra(PaymentsActivity.EXTRA_STARTING_ARGUMENTS, new PaymentDetailsFragmentArgs.Builder(PaymentDetailsParcelable.forUuid(paymentId)).build().toBundle());
-
-      startActivity(intent);
+      startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), paymentId));
     }
   }
 

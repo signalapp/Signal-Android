@@ -47,7 +47,7 @@ public interface MmsSmsColumns {
    * {@link #TOTAL_MASK}.
    *
    * <pre>
-   *    ____________________________________________ SPECIAL TYPES (Story reactions) ({@link #SPECIAL_TYPES_MASK}
+   *    ____________________________________________ SPECIAL TYPES ({@link #SPECIAL_TYPES_MASK}
    *   |       _____________________________________ ENCRYPTION ({@link #ENCRYPTION_MASK})
    *   |      |        _____________________________ SECURE MESSAGE INFORMATION (no mask, but look at {@link #SECURE_MESSAGE_BIT})
    *   |      |       |     ________________________ GROUPS (no mask, but look at {@link #GROUP_UPDATE_BIT})
@@ -143,7 +143,8 @@ public interface MmsSmsColumns {
     public    static final long SPECIAL_TYPES_MASK                     = 0xF00000000L;
     public    static final long SPECIAL_TYPE_STORY_REACTION            = 0x100000000L;
     public    static final long SPECIAL_TYPE_GIFT_BADGE                = 0x200000000L;
-    protected static final long SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST = 0x400000000L;
+    protected static final long SPECIAL_TYPE_PAYMENTS_NOTIFICATION     = 0x300000000L;
+    protected static final long SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST = 0x400000000L;
     protected static final long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
 
     public static boolean isStoryReaction(long type) {
@@ -154,8 +155,12 @@ public interface MmsSmsColumns {
       return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_GIFT_BADGE;
     }
 
-    public static boolean isRequestToActivatePayments(long type) {
-      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST;
+    public static boolean isPaymentsNotification(long type) {
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+    }
+
+    public static boolean isPaymentsRequestToActivate(long type) {
+      return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
     }
 
     public static boolean isPaymentsActivated(long type) {

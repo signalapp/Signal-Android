@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender.IndividualSendEvents;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
@@ -40,7 +41,15 @@ public final class PaymentNotificationSendJob extends BaseJob {
   private final RecipientId recipientId;
   private final UUID        uuid;
 
-  PaymentNotificationSendJob(@NonNull RecipientId recipientId,
+  public static Job create(@NonNull RecipientId recipientId, @NonNull UUID uuid, @NonNull String queue) {
+    if (FeatureFlags.paymentsInChatMessages()) {
+      return new PaymentNotificationSendJobV2(recipientId, uuid);
+    } else {
+      return new PaymentNotificationSendJob(recipientId, uuid, queue);
+    }
+  }
+
+  private PaymentNotificationSendJob(@NonNull RecipientId recipientId,
                              @NonNull UUID uuid,
                              @NonNull String queue)
   {

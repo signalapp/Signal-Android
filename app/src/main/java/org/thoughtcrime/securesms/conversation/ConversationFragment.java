@@ -1168,6 +1168,15 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     });
   }
 
+  private void handleViewPaymentDetails(MessageRecord message) {
+    if (message instanceof MediaMmsMessageRecord) {
+      MediaMmsMessageRecord mediaMessage = (MediaMmsMessageRecord) message;
+      if (mediaMessage.isPaymentNotification() && mediaMessage.getPayment() != null) {
+        startActivity(PaymentsActivity.navigateToPaymentDetails(requireContext(), mediaMessage.getPayment().getUuid()));
+      }
+    }
+  }
+
   private void performSave(final MediaMmsMessageRecord message) {
     List<SaveAttachmentTask.Attachment> attachments = Stream.of(message.getSlideDeck().getSlides())
                                                             .filter(s -> s.getUri() != null && (s.hasImage() || s.hasVideo() || s.hasAudio() || s.hasDocument()))
@@ -2286,6 +2295,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
           break;
         case COPY:
           handleCopyMessage(conversationMessage.getMultiselectCollection().toSet());
+          break;
+        case PAYMENT_DETAILS:
+          handleViewPaymentDetails(conversationMessage.getMessageRecord());
           break;
         case MULTISELECT:
           handleEnterMultiSelect(conversationMessage);

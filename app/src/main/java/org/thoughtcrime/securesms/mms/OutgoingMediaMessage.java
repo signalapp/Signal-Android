@@ -193,6 +193,10 @@ public class OutgoingMediaMessage {
     return false;
   }
 
+  public boolean isPaymentsNotification() {
+    return false;
+  }
+
   public boolean isRequestToActivatePayments() {
     return false;
   }

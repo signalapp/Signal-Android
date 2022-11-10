@@ -297,7 +297,7 @@ public final class MessageContentProcessor {
         else if (message.getRemoteDelete().isPresent())                                      messageId = handleRemoteDelete(content, message, senderRecipient);
         else if (message.isActivatePaymentsRequest())                                        messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, true, false);
         else if (message.isPaymentsActivated())                                              messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, false, true);
-        else if (message.getPayment().isPresent())                                           handlePayment(content, message, senderRecipient);
+        else if (message.getPayment().isPresent())                                           messageId = handlePayment(content, message, smsMessageId, senderRecipient, receivedTime);
         else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient, receivedTime);
         else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
         else if (isMediaMessage)                                                             messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
@@ -433,7 +433,13 @@ public final class MessageContentProcessor {
     return receivedTime;
   }
 
-  private void handlePayment(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+  private @Nullable MessageId handlePayment(@NonNull SignalServiceContent content,
+                                            @NonNull SignalServiceDataMessage message,
+                                            @NonNull Optional<Long> smsMessageId,
+                                            @NonNull Recipient senderRecipient,
+                                            long receivedTime)
+      throws StorageFailedException
+  {
     log(content.getTimestamp(), "Payment message.");
 
     if (!message.getPayment().isPresent()) {
@@ -442,13 +448,14 @@ public final class MessageContentProcessor {
 
     if (!message.getPayment().get().getPaymentNotification().isPresent()) {
       warn(content.getTimestamp(), "Ignoring payment message without notification");
-      return;
+      return null;
     }
 
     SignalServiceDataMessage.PaymentNotification paymentNotification = message.getPayment().get().getPaymentNotification().get();
     PaymentDatabase                              paymentDatabase     = SignalDatabase.payments();
     UUID                                         uuid                = UUID.randomUUID();
     String                                       queue               = "Payment_" + PushProcessMessageJob.getQueueName(senderRecipient.getId());
+    MessageId                                    messageId           = null;
 
     try {
       paymentDatabase.createIncomingPayment(uuid,
@@ -457,18 +464,37 @@ public final class MessageContentProcessor {
                                             paymentNotification.getNote(),
                                             Money.MobileCoin.ZERO,
                                             Money.MobileCoin.ZERO,
-                                            paymentNotification.getReceipt());
+                                            paymentNotification.getReceipt(),
+                                            FeatureFlags.paymentsInChatMessages());
+
+      if (FeatureFlags.paymentsInChatMessages()) {
+        IncomingMediaMessage mediaMessage = IncomingMediaMessage.createIncomingPaymentNotification(senderRecipient.getId(),
+                                                                                                   content,
+                                                                                                   receivedTime,
+                                                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                                                   uuid);
+
+        Optional<InsertResult> insertResult = SignalDatabase.mms().insertSecureDecryptedMessageInbox(mediaMessage, -1);
+        smsMessageId.ifPresent(smsId -> SignalDatabase.sms().deleteMessage(smsId));
+        if (insertResult.isPresent()) {
+          messageId = new MessageId(insertResult.get().getMessageId(), true);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
+        }
+      }
     } catch (PaymentDatabase.PublicKeyConflictException e) {
       warn(content.getTimestamp(), "Ignoring payment with public key already in database");
-      return;
     } catch (SerializationException e) {
       warn(content.getTimestamp(), "Ignoring payment with bad data.", e);
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    } finally {
+      ApplicationDependencies.getJobManager()
+                             .startChain(new PaymentTransactionCheckJob(uuid, queue))
+                             .then(PaymentLedgerUpdateJob.updateLedger())
+                             .enqueue();
     }
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(new PaymentTransactionCheckJob(uuid, queue))
-                           .then(PaymentLedgerUpdateJob.updateLedger())
-                           .enqueue();
+    return messageId;
   }
 
   /**
@@ -2926,9 +2952,15 @@ public final class MessageContentProcessor {
                                      .toList());
           }
         }
+
+        if (message.isPaymentNotification()) {
+          message = SignalDatabase.payments().updateMessageWithPayment(message);
+        }
       }
 
-      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments, mentions, QuoteModel.Type.fromDataMessageType(quote.get().getType())));
+      String body = message.isPaymentNotification() ? message.getDisplayBody(context).toString() : message.getBody();
+
+      return Optional.of(new QuoteModel(quote.get().getId(), author, body, false, attachments, mentions, QuoteModel.Type.fromDataMessageType(quote.get().getType())));
     } else if (message != null) {
       warn("Found the target for the quote, but it's flagged as remotely deleted.");
     }

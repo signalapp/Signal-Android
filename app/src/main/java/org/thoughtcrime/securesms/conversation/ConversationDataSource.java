@@ -7,12 +7,14 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -24,11 +26,12 @@ import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -39,6 +42,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -96,6 +100,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     MentionHelper       mentionHelper    = new MentionHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
     ReactionHelper      reactionHelper   = new ReactionHelper();
+    PaymentHelper       paymentHelper    = new PaymentHelper();
     Set<ServiceId>      referencedIds    = new HashSet<>();
 
     try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(db.getConversation(threadId, start, length))) {
@@ -105,6 +110,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
         mentionHelper.add(record);
         reactionHelper.add(record);
         attachmentHelper.add(record);
+        paymentHelper.add(record);
 
         UpdateDescription description = record.getUpdateDisplayBody(context, null);
         if (description != null) {
@@ -137,6 +143,12 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     records = attachmentHelper.buildUpdatedModels(context, records);
     stopwatch.split("attachment-models");
+
+    paymentHelper.fetchPayments();
+    stopwatch.split("payments");
+
+    records = paymentHelper.buildUpdatedModels(records);
+    stopwatch.split("payment-models");
 
     for (ServiceId serviceId : referencedIds) {
       Recipient.resolved(RecipientId.from(serviceId));
@@ -191,6 +203,12 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
         }
 
         stopwatch.split("attachments");
+
+        if (record.isPaymentNotification()) {
+          record = SignalDatabase.payments().updateMessageWithPayment(record);
+        }
+
+        stopwatch.split("payments");
 
         return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions);
       } else {
@@ -303,4 +321,40 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     }
   }
 
+  private static class PaymentHelper {
+    private final Map<UUID, Long>    paymentMessages    = new HashMap<>();
+    private final Map<Long, Payment> messageIdToPayment = new HashMap<>();
+
+    public void add(MessageRecord messageRecord) {
+      if (messageRecord.isMms() && messageRecord.isPaymentNotification()) {
+        UUID paymentUuid = UuidUtil.parseOrNull(messageRecord.getBody());
+        if (paymentUuid != null) {
+          paymentMessages.put(paymentUuid, messageRecord.getId());
+        }
+      }
+    }
+
+    public void fetchPayments() {
+      List<Payment> payments = SignalDatabase.payments().getPayments(paymentMessages.keySet());
+      for (Payment payment : payments) {
+        if (payment != null) {
+          messageIdToPayment.put(paymentMessages.get(payment.getUuid()), payment);
+        }
+      }
+    }
+
+    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
+      return records.stream()
+                    .map(record -> {
+                      if (record instanceof MediaMmsMessageRecord) {
+                        Payment payment = messageIdToPayment.get(record.getId());
+                        if (payment != null) {
+                          return ((MediaMmsMessageRecord) record).withPayment(payment);
+                        }
+                      }
+                      return record;
+                    })
+                    .collect(Collectors.toList());
+    }
+  }
 }

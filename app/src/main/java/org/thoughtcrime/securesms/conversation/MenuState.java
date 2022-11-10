@@ -24,6 +24,7 @@ final class MenuState {
   private final boolean copy;
   private final boolean delete;
   private final boolean reactions;
+  private final boolean paymentDetails;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -34,6 +35,7 @@ final class MenuState {
     copy           = builder.copy;
     delete         = builder.delete;
     reactions      = builder.reactions;
+    paymentDetails = builder.paymentDetails;
   }
 
   boolean shouldShowForwardAction() {
@@ -68,6 +70,10 @@ final class MenuState {
     return reactions;
   }
 
+  boolean shouldShowPaymentDetails() {
+    return paymentDetails;
+  }
+
   static MenuState getMenuState(@NonNull Recipient conversationRecipient,
                                 @NonNull Set<MultiselectPart> selectedParts,
                                 boolean shouldShowMessageRequest,
@@ -84,6 +90,7 @@ final class MenuState {
     boolean hasPendingMedia = false;
     boolean mediaIsSelected = false;
     boolean hasGift         = false;
+    boolean hasPayment       = false;
 
     for (MultiselectPart part : selectedParts) {
       MessageRecord messageRecord = part.getMessageRecord();
@@ -121,6 +128,10 @@ final class MenuState {
       if (MessageRecordUtil.hasGiftBadge(messageRecord)) {
         hasGift = true;
       }
+
+      if (messageRecord.isPaymentNotification()) {
+        hasPayment = true;
+      }
     }
 
     boolean shouldShowForwardAction = !actionMessage   &&
@@ -129,6 +140,7 @@ final class MenuState {
                                       !remoteDelete    &&
                                       !hasPendingMedia &&
                                       !hasGift         &&
+                                      !hasPayment      &&
                                       selectedParts.size() <= MAX_FORWARDABLE_COUNT;
 
     int uniqueRecords = selectedParts.stream()
@@ -160,9 +172,10 @@ final class MenuState {
              .shouldShowReplyAction(canReplyToMessage(conversationRecipient, actionMessage, messageRecord, shouldShowMessageRequest, isNonAdminInAnnouncementGroup));
     }
 
-    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift)
+    return builder.shouldShowCopyAction(!actionMessage && !remoteDelete && hasText && !hasGift && !hasPayment)
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes())
+                  .shouldShowPaymentDetails(hasPayment)
                   .build();
   }
 
@@ -206,7 +219,7 @@ final class MenuState {
            messageRecord.isInMemoryMessageRecord() ||
            messageRecord.isChangeNumber() ||
            messageRecord.isBoostRequest() ||
-           messageRecord.isRequestToActivatePayments() ||
+           messageRecord.isPaymentsRequestToActivate() ||
            messageRecord.isPaymentsActivated();
   }
 
@@ -220,6 +233,7 @@ final class MenuState {
     private boolean copy;
     private boolean delete;
     private boolean reactions;
+    private boolean paymentDetails;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -258,6 +272,11 @@ final class MenuState {
 
     @NonNull Builder shouldShowReactions(boolean reactions) {
       this.reactions = reactions;
+      return this;
+    }
+
+    @NonNull Builder shouldShowPaymentDetails(boolean paymentDetails) {
+      this.paymentDetails = paymentDetails;
       return this;
     }
 

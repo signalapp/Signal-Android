@@ -254,7 +254,7 @@ public class MessageSender {
                           final long threadId,
                           final boolean forceSms,
                           @Nullable final String metricId,
-                          final SmsDatabase.InsertListener insertListener)
+                          @Nullable final SmsDatabase.InsertListener insertListener)
   {
     Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
     try {

@@ -52,9 +52,11 @@ public final class ThreadBodyUtil {
       return String.format("%s %s", EmojiStrings.GIFT, getGiftSummary(context, record));
     } else if (MessageRecordUtil.isStoryReaction(record)) {
       return getStoryReactionSummary(context, record);
-    } else if (MessageRecordUtil.isPaymentActivationRequest(record)) {
+    } else if (record.isPaymentNotification()) {
+      return String.format("%s %s", EmojiStrings.CARD, context.getString(R.string.ThreadRecord_payment));
+    } else if (record.isPaymentsRequestToActivate()) {
       return String.format("%s %s", EmojiStrings.CARD, getPaymentActivationRequestSummary(context, record));
-    } else if (MessageRecordUtil.isPaymentsActivated(record)) {
+    } else if (record.isPaymentsActivated()) {
       return String.format("%s %s", EmojiStrings.CARD, getPaymentActivatedSummary(context, record));
     }
 

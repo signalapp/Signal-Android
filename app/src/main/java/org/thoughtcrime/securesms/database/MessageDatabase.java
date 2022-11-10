@@ -522,7 +522,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public List<Long> getIncomingPaymentRequestThreads() {
     Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "DISTINCT " + THREAD_ID)
         .from(getTableName())
-        .where("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE + " AND (" + getTypeField() + " & ?) != 0", Types.SPECIAL_TYPE_ACTIVATE_PAYMENTS_REQUEST)
+        .where("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE + " AND (" + getTypeField() + " & ?) != 0", Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST)
         .run();
 
     return CursorExtensionsKt.readToList(cursor, c -> CursorUtil.requireLong(c, THREAD_ID));

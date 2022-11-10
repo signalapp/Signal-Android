@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.SlideDeck
+import org.thoughtcrime.securesms.payments.Payment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -135,7 +136,8 @@ object FakeMessageRecords {
     messageRanges: BodyRangeList? = null,
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
-    giftBadge: GiftBadge? = null
+    giftBadge: GiftBadge? = null,
+    payment: Payment? = null
   ): MediaMmsMessageRecord {
     return MediaMmsMessageRecord(
       id,
@@ -171,7 +173,8 @@ object FakeMessageRecords {
       messageRanges,
       storyType,
       parentStoryId,
-      giftBadge
+      giftBadge,
+      payment
     )
   }
 }

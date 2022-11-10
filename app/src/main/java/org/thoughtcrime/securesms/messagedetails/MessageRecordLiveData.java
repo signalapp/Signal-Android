@@ -40,7 +40,12 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
   @WorkerThread
   private synchronized void retrieve(MessageDatabase messageDatabase) {
     try {
-      final MessageRecord record = messageDatabase.getMessageRecord(messageId.getId());
+      MessageRecord record = messageDatabase.getMessageRecord(messageId.getId());
+
+      if (record.isPaymentNotification()) {
+        record = SignalDatabase.payments().updateMessageWithPayment(record);
+      }
+
       postValue(record);
       ApplicationDependencies.getDatabaseObserver().registerVerboseConversationObserver(record.getThreadId(), observer);
     } catch (NoSuchMessageException ignored) {

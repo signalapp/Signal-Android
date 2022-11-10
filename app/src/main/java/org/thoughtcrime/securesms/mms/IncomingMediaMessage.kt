@@ -12,8 +12,10 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2
 import java.util.Optional
+import java.util.UUID
 
 class IncomingMediaMessage(
   val from: RecipientId?,
@@ -39,6 +41,7 @@ class IncomingMediaMessage(
   linkPreviews: List<LinkPreview> = emptyList(),
   mentions: List<Mention> = emptyList(),
   val giftBadge: GiftBadge? = null,
+  val isPaymentsNotification: Boolean = false,
   val isActivatePaymentsRequest: Boolean = false,
   val isPaymentsActivated: Boolean = false
 ) {
@@ -138,4 +141,28 @@ class IncomingMediaMessage(
     isActivatePaymentsRequest = activatePaymentsRequest,
     isPaymentsActivated = paymentsActivated
   )
+
+  companion object {
+    @JvmStatic
+    fun createIncomingPaymentNotification(
+      from: RecipientId,
+      content: SignalServiceContent,
+      receivedTime: Long,
+      expiresIn: Long,
+      paymentUuid: UUID
+    ): IncomingMediaMessage {
+      return IncomingMediaMessage(
+        from = from,
+        body = paymentUuid.toString(),
+        sentTimeMillis = content.timestamp,
+        serverTimeMillis = content.serverReceivedTimestamp,
+        receivedTimeMillis = receivedTime,
+        expiresIn = expiresIn,
+        isUnidentified = content.isNeedsReceipt,
+        serverGuid = content.serverUuid,
+        isPushMessage = true,
+        isPaymentsNotification = true
+      )
+    }
+  }
 }

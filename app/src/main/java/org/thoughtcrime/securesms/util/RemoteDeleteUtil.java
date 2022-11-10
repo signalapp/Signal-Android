@@ -44,6 +44,7 @@ public final class RemoteDeleteUtil {
            (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
            !message.isRemoteDelete()                                                     &&
            !MessageRecordUtil.hasGiftBadge(message)                                      &&
+           !message.isPaymentNotification()                                              &&
            (((currentTime - message.getDateSent()) < SEND_THRESHOLD) || message.getRecipient().isSelf());
   }
 }

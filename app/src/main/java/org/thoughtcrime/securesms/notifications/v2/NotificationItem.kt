@@ -200,6 +200,8 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
       ThreadBodyUtil.getFormattedBodyFor(context, record)
     } else if (record.isStoryReaction()) {
       ThreadBodyUtil.getFormattedBodyFor(context, record)
+    } else if (record.isPaymentNotification()) {
+      ThreadBodyUtil.getFormattedBodyFor(context, record)
     } else {
       MentionUtil.updateBodyWithDisplayNames(context, record)
     }
