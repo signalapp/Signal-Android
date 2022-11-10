@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNum
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public final class MiscellaneousValues extends SignalStoreValues {
 
@@ -23,6 +24,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
   private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
   private static final String CDS_TOKEN                       = "misc.cds_token";
+  private static final String CDS_BLOCKED_UNTIL               = "misc.cds_blocked_until";
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
@@ -164,6 +166,42 @@ public final class MiscellaneousValues extends SignalStoreValues {
     getStore().beginWrite()
               .putBlob(CDS_TOKEN, token)
               .commit();
+  }
+
+  /**
+   * Marks the time at which we think the next CDS request will succeed. This should be taken from the service response.
+   */
+  public void setCdsBlockedUtil(long time) {
+    putLong(CDS_BLOCKED_UNTIL, time);
+  }
+
+  /**
+   * Indicates that a CDS request will never succeed at the current contact count.
+   */
+  public void markCdsPermanentlyBlocked() {
+    putLong(CDS_BLOCKED_UNTIL, Long.MAX_VALUE);
+  }
+
+  /**
+   * Clears any rate limiting state related to CDS.
+   */
+  public void clearCdsBlocked() {
+    setCdsBlockedUtil(0);
+  }
+
+  /**
+   * Whether or not we expect the next CDS request to succeed.
+   */
+  public boolean isCdsBlocked() {
+    return getCdsBlockedUtil() > 0;
+  }
+
+  /**
+   * This represents the next time we think we'll be able to make a successful CDS request. If it is before this time, we expect the request will fail
+   * (assuming the user still has the same number of new E164s).
+   */
+  public long getCdsBlockedUtil() {
+    return getLong(CDS_BLOCKED_UNTIL, 0);
   }
 
   public long getLastFcmForegroundServiceTime() {

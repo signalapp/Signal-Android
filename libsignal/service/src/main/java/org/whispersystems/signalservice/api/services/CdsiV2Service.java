@@ -40,14 +40,14 @@ public final class CdsiV2Service {
   private static final UUID EMPTY_UUID         = new UUID(0, 0);
   private static final int  RESPONSE_ITEM_SIZE = 8 + 16 + 16; // 1 uint64 + 2 UUIDs
 
-  private final CdsiSocket cdshSocket;
+  private final CdsiSocket cdsiSocket;
 
   public CdsiV2Service(SignalServiceConfiguration configuration, String mrEnclave) {
-    this.cdshSocket = new CdsiSocket(configuration, mrEnclave);
+    this.cdsiSocket = new CdsiSocket(configuration, mrEnclave);
   }
 
   public Single<ServiceResponse<Response>> getRegisteredUsers(String username, String password, Request request, Consumer<byte[]> tokenSaver) {
-    return cdshSocket
+    return cdsiSocket
         .connect(username, password, buildClientRequest(request), tokenSaver)
         .map(CdsiV2Service::parseEntries)
         .collect(Collectors.toList())

@@ -106,6 +106,7 @@ public final class FeatureFlags {
   public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
+  private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -163,7 +164,9 @@ public final class FeatureFlags {
       KEEP_MUTED_CHATS_ARCHIVED,
       GOOGLE_PAY_DISABLED_REGIONS,
       CREDIT_CARD_DISABLED_REGIONS,
-      PAYPAL_DISABLED_REGIONS
+      PAYPAL_DISABLED_REGIONS,
+      KEEP_MUTED_CHATS_ARCHIVED,
+      CDS_HARD_LIMIT
   );
 
   @VisibleForTesting
@@ -227,7 +230,8 @@ public final class FeatureFlags {
       SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
-      KEEP_MUTED_CHATS_ARCHIVED
+      KEEP_MUTED_CHATS_ARCHIVED,
+      CDS_HARD_LIMIT
   );
 
   /**
@@ -587,6 +591,13 @@ public final class FeatureFlags {
    */
   public static @NonNull String paypalDisabledRegions() {
     return getString(PAYPAL_DISABLED_REGIONS, "*");
+  }
+
+  /**
+   * If the user has more than this number of contacts, the CDS request will certainly be rejected, so we must fail.
+   */
+  public static int cdsHardLimit() {
+    return getInteger(CDS_HARD_LIMIT, 50_000);
   }
 
   /** Only for rendering debug info. */

@@ -17,13 +17,17 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.signalservice.api.push.ACI
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
+import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
 import org.whispersystems.signalservice.api.services.CdsiV2Service
 import java.io.IOException
 import java.util.Optional
 import java.util.concurrent.Callable
 import java.util.concurrent.Future
+import kotlin.math.roundToInt
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Performs the CDS refresh using the V2 interface (either CDSH or CDSI) that returns both PNIs and ACIs.
@@ -113,6 +117,12 @@ object ContactDiscoveryRefreshV2 {
       return ContactDiscovery.RefreshResult(emptySet(), emptyMap())
     }
 
+    if (newE164s.size > FeatureFlags.cdsHardLimit()) {
+      Log.w(TAG, "[$tag] Number of new contacts (${newE164s.size.roundedString()} > hard limit (${FeatureFlags.cdsHardLimit()}! Failing and marking ourselves as permanently blocked.")
+      SignalStore.misc().markCdsPermanentlyBlocked()
+      throw IOException("New contacts over the CDS hard limit!")
+    }
+
     val token: ByteArray? = if (previousE164s.isNotEmpty() && !isPartialRefresh) SignalStore.misc().cdsToken else null
 
     stopwatch.split("preamble")
@@ -137,14 +147,22 @@ object ContactDiscoveryRefreshV2 {
         }
         stopwatch.split("cds-db")
       }
-    } catch (e: NonSuccessfulResponseCodeException) {
-      if (e.code == 4101) {
-        Log.w(TAG, "Our token was invalid! Only thing we can do now is clear our local state :(")
-        SignalStore.misc().cdsToken = null
-        SignalDatabase.cds.clearAll()
-      }
+    } catch (e: CdsiResourceExhaustedException) {
+      Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
+      SignalStore.misc().cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
+      throw e
+    } catch (e: CdsiInvalidTokenException) {
+      Log.w(TAG, "Our token was invalid! Only thing we can do now is clear our local state :(")
+      SignalStore.misc().cdsToken = null
+      SignalDatabase.cds.clearAll()
       throw e
     }
+
+    if (!isPartialRefresh && SignalStore.misc().isCdsBlocked) {
+      Log.i(TAG, "Successfully made a request while blocked -- clearing blocked state.")
+      SignalStore.misc().clearCdsBlocked()
+    }
+
     Log.d(TAG, "[$tag] Used ${response.quotaUsedDebugOnly} quota.")
     stopwatch.split("network-post-token")
 
@@ -263,5 +281,10 @@ object ContactDiscoveryRefreshV2 {
         }
       }
       .toSet()
+  }
+
+  private fun Int.roundedString(): String {
+    val nearestThousand = (this.toDouble() / 1000).roundToInt()
+    return "~${nearestThousand}k"
   }
 }
