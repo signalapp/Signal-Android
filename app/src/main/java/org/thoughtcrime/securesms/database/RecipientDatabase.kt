@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.groups.GroupId.V1
 import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
-import org.thoughtcrime.securesms.jobs.RecipientChangedNumberJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -489,10 +488,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         if (result.affectedIds.isNotEmpty() || result.oldIds.isNotEmpty()) {
           StorageSyncHelper.scheduleSyncForDataChange()
           RecipientId.clearCache()
-        }
-
-        if (result.changedNumberId != null) {
-          ApplicationDependencies.getJobManager().add(RecipientChangedNumberJob(result.changedNumberId!!))
         }
       }
     }

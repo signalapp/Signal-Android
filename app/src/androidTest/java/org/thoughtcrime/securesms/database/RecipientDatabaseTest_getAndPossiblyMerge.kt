@@ -12,7 +12,6 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.CursorUtil
-import org.signal.core.util.ThreadUtil
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.SessionRecord
@@ -26,9 +25,7 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.jobs.RecipientChangedNumberJob
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
@@ -229,9 +226,6 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** Merge two different users into one. You should prefer the ACI user. Not shown: merging threads, dropping e164 sessions, etc. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge() {
-    val changeNumberListener = ChangeNumberListener()
-    changeNumberListener.enqueue()
-
     val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, null)
     val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
 
@@ -245,16 +239,12 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val existingE164Recipient = Recipient.resolved(existingE164Id)
     assertEquals(mergedId, existingE164Recipient.id)
 
-    changeNumberListener.waitForJobManager()
-    assertFalse(changeNumberListener.numberChangeWasEnqueued)
+    // TODO [greyson] Change number
   }
 
   /** Same as [getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge], but with a number change. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_merge_changedNumber() {
-    val changeNumberListener = ChangeNumberListener()
-    changeNumberListener.enqueue()
-
     val existingAciId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
     val existingE164Id: RecipientId = recipientDatabase.getAndPossiblyMerge(null, E164_A)
 
@@ -268,16 +258,12 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val existingE164Recipient = Recipient.resolved(existingE164Id)
     assertEquals(retrievedId, existingE164Recipient.id)
 
-    changeNumberListener.waitForJobManager()
-    assert(changeNumberListener.numberChangeWasEnqueued)
+    // TODO [greyson] Change number
   }
 
   /** No new rules here, just a more complex scenario to show how different rules interact. */
   @Test
   fun getAndPossiblyMerge_bothAciAndE164MapToExistingUser_aciAndE164_complex() {
-    val changeNumberListener = ChangeNumberListener()
-    changeNumberListener.enqueue()
-
     val existingId1: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
     val existingId2: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_B, E164_A)
 
@@ -292,8 +278,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     assertEquals(ACI_B, existingRecipient2.requireServiceId())
     assertFalse(existingRecipient2.hasE164())
 
-    changeNumberListener.waitForJobManager()
-    assert(changeNumberListener.numberChangeWasEnqueued)
+    // TODO [greyson] Change number
   }
 
   /**
@@ -383,9 +368,6 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   /** Verifying a case where a change number job is expected to be enqueued. */
   @Test
   fun getAndPossiblyMerge_aciMapsToExistingUserButE164DoesNot_changedNumber() {
-    val changeNumberListener = ChangeNumberListener()
-    changeNumberListener.enqueue()
-
     val existingId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_A)
 
     val retrievedId: RecipientId = recipientDatabase.getAndPossiblyMerge(ACI_A, E164_B)
@@ -395,8 +377,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     assertEquals(ACI_A, retrievedRecipient.requireServiceId())
     assertEquals(E164_B, retrievedRecipient.requireE164())
 
-    changeNumberListener.waitForJobManager()
-    assert(changeNumberListener.numberChangeWasEnqueued)
+    // TODO [greyson] Change number
   }
 
   /** High trust lets you merge two different users into one. You should prefer the ACI user. Not shown: merging threads, dropping e164 sessions, etc. */
@@ -629,24 +610,6 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val recipientId: RecipientId,
     val threadId: Long
   )
-
-  private class ChangeNumberListener {
-
-    var numberChangeWasEnqueued = false
-      private set
-
-    fun waitForJobManager() {
-      ApplicationDependencies.getJobManager().flush()
-      ThreadUtil.sleep(500)
-    }
-
-    fun enqueue() {
-      ApplicationDependencies.getJobManager().addListener(
-        { job -> job.factoryKey == RecipientChangedNumberJob.KEY },
-        { _, _ -> numberChangeWasEnqueued = true }
-      )
-    }
-  }
 
   companion object {
     val ACI_A = ACI.from(UUID.fromString("3436efbe-5a76-47fa-a98a-7e72c948a82e"))
