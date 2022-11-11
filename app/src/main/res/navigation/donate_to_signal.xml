@@ -123,6 +123,10 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_creditCardFragment_to_yourInformationIsPrivateBottomSheet"
+            app:destination="@id/yourInformationIsPrivateBottomSheet" />
     </fragment>
 
     <dialog
@@ -141,5 +145,11 @@
             app:argType="android.net.Uri"
             app:nullable="false" />
     </dialog>
+
+    <dialog
+        android:id="@+id/yourInformationIsPrivateBottomSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.YourInformationIsPrivateBottomSheet"
+        android:label="your_information_is_private_bottom_sheet"
+        tools:layout="@layout/dsl_settings_bottom_sheet" />
 
 </navigation>

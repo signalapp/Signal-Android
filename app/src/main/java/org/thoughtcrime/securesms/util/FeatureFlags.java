@@ -100,7 +100,7 @@ public final class FeatureFlags {
   private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
-  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.1";
+  public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.2";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   private static final String KEEP_MUTED_CHATS_ARCHIVED         = "android.keepMutedChatsArchived";
   public  static final String GOOGLE_PAY_DISABLED_REGIONS       = "global.donations.gpayDisabledRegions";

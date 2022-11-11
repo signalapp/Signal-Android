@@ -6,6 +6,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
@@ -38,6 +40,12 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       )
     } else {
       getString(R.string.CreditCardFragment__donation_amount_s, FiatMoneyUtil.format(resources, args.request.fiat))
+    }
+
+    binding.description.setLinkColor(ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary))
+    binding.description.setLearnMoreVisible(true)
+    binding.description.setOnLinkClickListener {
+      findNavController().safeNavigate(CreditCardFragmentDirections.actionCreditCardFragmentToYourInformationIsPrivateBottomSheet())
     }
 
     binding.cardNumber.addTextChangedListener(afterTextChanged = {

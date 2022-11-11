@@ -29,14 +29,14 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar"
         tools:text="Donation amount: $20" />
 
-    <TextView
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:paddingHorizontal="32dp"
-        android:text="@string/CreditCardFragment__enter_your_card_information_below"
+        android:text="@string/CreditCardFragment__enter_your_card_details"
         android:textColor="@color/signal_colorOnSurfaceVariant"
         app:layout_constraintTop_toBottomOf="@id/title" />
 

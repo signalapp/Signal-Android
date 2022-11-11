@@ -22,6 +22,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
+/**
+ * Appends an optional "Learn more" link to a given piece of text.
+ */
 public class LearnMoreTextView extends AppCompatTextView {
 
   private OnClickListener linkListener;

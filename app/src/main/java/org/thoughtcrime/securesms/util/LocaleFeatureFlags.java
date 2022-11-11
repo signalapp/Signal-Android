@@ -59,14 +59,14 @@ public final class LocaleFeatureFlags {
    * @return Whether credit cards are disabled in this region
    */
   public static boolean isCreditCardDisabled() {
-    return isEnabled(FeatureFlags.CREDIT_CARD_DISABLED_REGIONS, FeatureFlags.googlePayDisabledRegions());
+    return isEnabled(FeatureFlags.CREDIT_CARD_DISABLED_REGIONS, FeatureFlags.creditCardDisabledRegions());
   }
 
   /**
    * @return Whether PayPal is disabled in this region
    */
   public static boolean isPayPalDisabled() {
-    return isEnabled(FeatureFlags.PAYPAL_DISABLED_REGIONS, FeatureFlags.googlePayDisabledRegions());
+    return isEnabled(FeatureFlags.PAYPAL_DISABLED_REGIONS, FeatureFlags.paypalDisabledRegions());
   }
 
   /**
