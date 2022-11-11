@@ -98,6 +98,14 @@ class StoryReplyComposer @JvmOverloads constructor(
     }
   }
 
+  var hint: CharSequence
+    get() {
+      return input.hint
+    }
+    set(value) {
+      input.hint = value
+    }
+
   fun setQuote(messageRecord: MediaMmsMessageRecord) {
     quoteView.setQuote(
       GlideApp.with(this),
