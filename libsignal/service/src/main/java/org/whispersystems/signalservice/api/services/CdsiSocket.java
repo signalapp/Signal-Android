@@ -162,7 +162,7 @@ final class CdsiSocket {
                   throw new CdsiResourceExhaustedException(dataResponse.getRetryAfterSecs());
                 }
 
-                emitter.onNext(ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray())));
+                emitter.onNext(dataResponse);
                 break;
 
               case CLOSED:
