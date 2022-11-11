@@ -29,6 +29,7 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
+import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -37,10 +38,12 @@ import org.thoughtcrime.securesms.util.Base64;
 import org.signal.core.util.CursorUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.signal.core.util.SqlUtil;
+import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 public class IdentityDatabase extends Database {
 
@@ -110,8 +113,10 @@ public class IdentityDatabase extends Database {
                                        timestamp,
                                        nonblockingApproval);
       } else if (UuidUtil.isUuid(addressName)) {
-        if (SignalDatabase.recipients().containsPhoneOrUuid(addressName)) {
-          Recipient recipient = Recipient.external(context, addressName);
+        Optional<RecipientId> byServiceId = SignalDatabase.recipients().getByServiceId(ServiceId.parseOrThrow(addressName));
+
+        if (byServiceId.isPresent()) {
+          Recipient recipient = Recipient.resolved(byServiceId.get());
 
           if (recipient.hasE164() && !UuidUtil.isUuid(recipient.requireE164())) {
             Log.i(TAG, "Could not find identity for UUID. Attempting E164.");

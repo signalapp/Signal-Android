@@ -3,15 +3,14 @@ package org.thoughtcrime.securesms.animation.transitions
 import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
-import android.transition.Transition
-import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
+import androidx.core.view.ViewCompat
+import androidx.transition.Transition
+import androidx.transition.TransitionValues
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-@RequiresApi(21)
-class FabElevationFadeTransform(context: Context, attrs: AttributeSet?) : Transition(context, attrs) {
+class FabElevationFadeTransform(context: Context, attrs: AttributeSet) : Transition(context, attrs) {
 
   companion object {
     private const val ELEVATION = "CrossfaderTransition.ELEVATION"
@@ -19,23 +18,23 @@ class FabElevationFadeTransform(context: Context, attrs: AttributeSet?) : Transi
 
   override fun captureStartValues(transitionValues: TransitionValues) {
     if (transitionValues.view is FloatingActionButton) {
-      transitionValues.values[ELEVATION] = transitionValues.view.elevation
+      transitionValues.values[ELEVATION] = ViewCompat.getElevation(transitionValues.view)
     }
   }
 
   override fun captureEndValues(transitionValues: TransitionValues) {
     if (transitionValues.view is FloatingActionButton) {
-      transitionValues.values[ELEVATION] = transitionValues.view.elevation
+      transitionValues.values[ELEVATION] = ViewCompat.getElevation(transitionValues.view)
     }
   }
 
-  override fun createAnimator(sceneRoot: ViewGroup?, startValues: TransitionValues?, endValues: TransitionValues?): Animator? {
+  override fun createAnimator(sceneRoot: ViewGroup, startValues: TransitionValues?, endValues: TransitionValues?): Animator? {
     if (startValues?.view !is FloatingActionButton || endValues?.view !is FloatingActionButton) {
       return null
     }
 
-    val startElevation = startValues.view.elevation
-    val endElevation = endValues.view.elevation
+    val startElevation = ViewCompat.getElevation(startValues.view)
+    val endElevation = ViewCompat.getElevation(endValues.view)
     if (startElevation == endElevation) {
       return null
     }
@@ -46,7 +45,7 @@ class FabElevationFadeTransform(context: Context, attrs: AttributeSet?) : Transi
     ).apply {
       addUpdateListener {
         val elevation = it.animatedValue as Float
-        endValues.view.elevation = elevation
+        ViewCompat.setElevation(endValues.view, elevation)
       }
     }
   }

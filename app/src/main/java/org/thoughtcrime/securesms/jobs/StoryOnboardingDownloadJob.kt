@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
 import org.thoughtcrime.securesms.s3.S3
-import org.thoughtcrime.securesms.stories.Stories.isFeatureFlagEnabled
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import java.util.Locale
@@ -51,7 +50,7 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
 
     fun enqueueIfNeeded() {
-      if (SignalStore.storyValues().hasDownloadedOnboardingStory || !isFeatureFlagEnabled()) {
+      if (SignalStore.storyValues().hasDownloadedOnboardingStory) {
         return
       }
 

@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.transition.TransitionInflater
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -16,6 +15,7 @@ import androidx.core.app.SharedElementCallback
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.transition.TransitionInflater
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -129,6 +129,10 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     lifecycleDisposable.bindTo(viewLifecycleOwner)
     emptyNotice = requireView().findViewById(R.id.empty_notice)
     cameraFab = requireView().findViewById(R.id.camera_fab)
+    val sharedElementTarget: View = requireView().findViewById(R.id.camera_fab_shared_element_target)
+
+    ViewCompat.setTransitionName(cameraFab, "new_convo_fab")
+    ViewCompat.setTransitionName(sharedElementTarget, "camera_fab")
 
     sharedElementEnterTransition = TransitionInflater.from(requireContext()).inflateTransition(R.transition.change_transform_fabs)
     setEnterSharedElementCallback(object : SharedElementCallback() {
@@ -139,6 +143,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy {
               cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
+              sharedElementTarget.alpha = 0f
             }
         }
       }

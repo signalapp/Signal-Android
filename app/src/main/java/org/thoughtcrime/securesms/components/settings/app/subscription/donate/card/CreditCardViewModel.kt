@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
+import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Calendar
 
@@ -74,6 +75,10 @@ class CreditCardViewModel : ViewModel() {
 
   fun onCodeFocusChanged(isFocused: Boolean) {
     updateFocus(CreditCardFormState.FocusedField.CODE, isFocused)
+  }
+
+  fun getCardData(): StripeApi.CardData {
+    return formStore.state.toCardData()
   }
 
   private fun updateFocus(

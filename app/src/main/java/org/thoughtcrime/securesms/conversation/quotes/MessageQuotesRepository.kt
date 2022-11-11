@@ -46,7 +46,7 @@ class MessageQuotesRepository {
 
   @WorkerThread
   private fun getMessageInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
-    val originalRecord: MessageRecord? = if (messageId.mms) {
+    var originalRecord: MessageRecord? = if (messageId.mms) {
       SignalDatabase.mms.getMessageRecordOrNull(messageId.id)
     } else {
       SignalDatabase.sms.getMessageRecordOrNull(messageId.id)
@@ -66,13 +66,17 @@ class MessageQuotesRepository {
       .buildUpdatedModels(replyRecords)
       .map { replyRecord ->
         val replyQuote: Quote? = replyRecord.getQuote()
-        if (replyQuote != null && replyQuote.id == originalRecord.dateSent) {
+        if (replyQuote != null && replyQuote.id == originalRecord!!.dateSent) {
           (replyRecord as MediaMmsMessageRecord).withoutQuote()
         } else {
           replyRecord
         }
       }
       .map { ConversationMessageFactory.createWithUnresolvedData(application, it) }
+
+    if (originalRecord.isPaymentNotification) {
+      originalRecord = SignalDatabase.payments.updateMessageWithPayment(originalRecord)
+    }
 
     val originalMessage: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
       .apply {

@@ -8,6 +8,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.push.exceptions.UsernameIsNotReservedException;
@@ -66,6 +67,7 @@ class UsernameEditRepository {
     try {
       accountManager.confirmUsername(reserveUsernameResponse);
       SignalDatabase.recipients().setUsername(Recipient.self().getId(), reserveUsernameResponse.getUsername());
+      ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
       Log.i(TAG, "[confirmUsername] Successfully reserved username.");
       return UsernameSetResult.SUCCESS;
     } catch (UsernameTakenException e) {

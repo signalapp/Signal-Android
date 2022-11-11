@@ -117,6 +117,7 @@ class StoryFirstTimeNavigationViewTest {
     testSubject.callback = object : StoryFirstTimeNavigationView.Callback {
       override fun userHasSeenFirstNavigationView(): Boolean = true
       override fun onGotItClicked() = error("Unused")
+      override fun onCloseClicked() = error("Unused")
     }
 
     testSubject.setBlurHash(BlurHash.parseOrNull("0000")!!)
@@ -150,6 +151,7 @@ class StoryFirstTimeNavigationViewTest {
     testSubject.callback = object : StoryFirstTimeNavigationView.Callback {
       override fun userHasSeenFirstNavigationView(): Boolean = true
       override fun onGotItClicked() = error("Unused")
+      override fun onCloseClicked() = error("Unused")
     }
 
     testSubject.show()

@@ -8,115 +8,95 @@
     <ImageView
         android:id="@+id/edu_blur_hash"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:importantForAccessibility="no" />
+        android:layout_height="0dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintDimensionRatio="9:16"
+        app:tint="@color/core_white" />
 
     <ImageView
         android:id="@+id/edu_overlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:importantForAccessibility="no"
-        android:src="@color/transparent_black_70" />
+        android:src="@color/transparent_black_80" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/button_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="32dp"
-        app:layout_constrainedHeight="true"
-        app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toTopOf="@id/edu_got_it"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/edu_tap_icon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toTopOf="@id/edu_tap_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:lottie_rawRes="@raw/stories_tap_to_advance" />
 
-        <ImageView
-            android:id="@+id/edu_tap_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toTopOf="@id/edu_swipe_up_icon"
-            app:layout_constraintEnd_toStartOf="@id/edu_tap_label"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_tap_72"
-            app:tint="@color/core_white" />
+    <TextView
+        android:id="@+id/edu_tap_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/StoryFirstTimeNavigationView__tap_to_advance"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/core_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/edu_swipe_up_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edu_tap_icon" />
 
-        <TextView
-            android:id="@+id/edu_tap_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/StoryFirstTimeNavigationView__tap_to_advance"
-            android:textAppearance="@style/Signal.Text.BodyLarge"
-            android:textColor="@color/core_white"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/edu_tap_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/edu_tap_icon"
-            app:layout_constraintTop_toTopOf="@id/edu_tap_icon" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/edu_swipe_up_icon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="48dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toTopOf="@id/edu_swipe_up_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edu_tap_label"
+        app:lottie_rawRes="@raw/stories_swipe_up" />
 
-        <ImageView
-            android:id="@+id/edu_swipe_up_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toTopOf="@id/edu_swipe_right_icon"
-            app:layout_constraintEnd_toStartOf="@id/edu_swipe_up_label"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edu_tap_icon"
-            app:srcCompat="@drawable/ic_swipe_up_72"
-            app:tint="@color/core_white" />
+    <TextView
+        android:id="@+id/edu_swipe_up_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/StoryFirstTimeNavigationView__swipe_up_to_skip"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/core_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@id/edu_swipe_right_icon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edu_swipe_up_icon" />
 
-        <TextView
-            android:id="@+id/edu_swipe_up_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/StoryFirstTimeNavigationView__swipe_up_to_skip"
-            android:textAppearance="@style/Signal.Text.BodyLarge"
-            android:textColor="@color/core_white"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/edu_swipe_up_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/edu_swipe_up_icon"
-            app:layout_constraintTop_toTopOf="@id/edu_swipe_up_icon" />
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/edu_swipe_right_icon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="48dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toTopOf="@id/edu_swipe_right_label"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edu_swipe_up_label"
+        app:lottie_rawRes="@raw/stories_swipe_right" />
 
-        <ImageView
-            android:id="@+id/edu_swipe_right_icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="48dp"
-            android:layout_marginEnd="16dp"
-            android:importantForAccessibility="no"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/edu_swipe_right_label"
-            app:layout_constraintHorizontal_bias="0"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edu_swipe_up_icon"
-            app:srcCompat="@drawable/ic_swipe_right_72"
-            app:tint="@color/core_white" />
-
-        <TextView
-            android:id="@+id/edu_swipe_right_label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/StoryFirstTimeNavigationView__swipe_right_to_exit"
-            android:textAppearance="@style/Signal.Text.BodyLarge"
-            android:textColor="@color/core_white"
-            app:layout_constrainedWidth="true"
-            app:layout_constraintBottom_toBottomOf="@id/edu_swipe_right_icon"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/edu_swipe_right_icon"
-            app:layout_constraintTop_toTopOf="@id/edu_swipe_right_icon" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    <TextView
+        android:id="@+id/edu_swipe_right_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/StoryFirstTimeNavigationView__swipe_right_to_exit"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        android:textColor="@color/core_white"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edu_swipe_right_icon" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/edu_got_it"
@@ -129,6 +109,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_container" />
+        app:layout_constraintTop_toBottomOf="@id/edu_swipe_right_label" />
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/edu_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/Material3SearchToolbar__close"
+        android:scaleType="centerInside"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_x_white" />
 </merge>

@@ -3,14 +3,17 @@ package org.thoughtcrime.securesms.components.voice
 import android.content.Context
 import com.google.android.exoplayer2.C
 import com.google.android.exoplayer2.DefaultLoadControl
+import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.ForwardingPlayer
-import com.google.android.exoplayer2.SimpleExoPlayer
 import com.google.android.exoplayer2.audio.AudioAttributes
+import com.google.android.exoplayer2.audio.AudioSink
 import org.thoughtcrime.securesms.video.exo.SignalMediaSourceFactory
 
 class VoiceNotePlayer @JvmOverloads constructor(
   context: Context,
-  val internalPlayer: SimpleExoPlayer = SimpleExoPlayer.Builder(context)
+  val internalPlayer: ExoPlayer = ExoPlayer.Builder(context)
+    .setRenderersFactory(WorkaroundRenderersFactory(context))
     .setMediaSourceFactory(SignalMediaSourceFactory(context))
     .setLoadControl(
       DefaultLoadControl.Builder()
@@ -37,5 +40,14 @@ class VoiceNotePlayer @JvmOverloads constructor(
     } else {
       super.seekTo(windowIndex, positionMs)
     }
+  }
+}
+
+/**
+ * @see RetryableInitAudioSink
+ */
+class WorkaroundRenderersFactory(val context: Context) : DefaultRenderersFactory(context) {
+  override fun buildAudioSink(context: Context, enableFloatOutput: Boolean, enableAudioTrackPlaybackParams: Boolean, enableOffload: Boolean): AudioSink? {
+    return RetryableInitAudioSink(context, enableFloatOutput, enableAudioTrackPlaybackParams, enableOffload)
   }
 }

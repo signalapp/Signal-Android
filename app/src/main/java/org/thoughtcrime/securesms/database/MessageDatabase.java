@@ -12,6 +12,7 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 
+import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.SqlUtil;
@@ -177,7 +178,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   public abstract long insertMessageOutbox(@NonNull OutgoingMediaMessage message, long threadId, boolean forceSms, int defaultReceiptStatus, @Nullable SmsDatabase.InsertListener insertListener) throws MmsException;
   public abstract void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName);
   public abstract void insertGroupV1MigrationEvents(@NonNull RecipientId recipientId, long threadId, @NonNull GroupMigrationMembershipChange membershipChange);
-  public abstract void insertNumberChangeMessages(@NonNull Recipient recipient);
+  public abstract void insertNumberChangeMessages(@NonNull RecipientId recipientId);
   public abstract void insertBoostRequestMessage(@NonNull RecipientId recipientId, long threadId);
   public abstract void insertThreadMergeEvent(@NonNull RecipientId recipientId, long threadId, @NonNull ThreadMergeEvent event);
   public abstract void insertSmsExportMessage(@NonNull RecipientId recipientId, long threadId);
@@ -188,6 +189,7 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   abstract void deleteThreads(@NonNull Set<Long> threadIds);
   abstract void deleteAllThreads();
   abstract void deleteAbandonedMessages();
+  public abstract void deleteRemotelyDeletedStory(long messageId);
 
   public abstract List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit);
 
@@ -515,6 +517,15 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
       }
     }
     return data;
+  }
+
+  public List<Long> getIncomingPaymentRequestThreads() {
+    Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "DISTINCT " + THREAD_ID)
+        .from(getTableName())
+        .where("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE + " AND (" + getTypeField() + " & ?) != 0", Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST)
+        .run();
+
+    return CursorExtensionsKt.readToList(cursor, c -> CursorUtil.requireLong(c, THREAD_ID));
   }
 
   @Override

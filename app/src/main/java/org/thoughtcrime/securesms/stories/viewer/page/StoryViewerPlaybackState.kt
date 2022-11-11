@@ -22,9 +22,10 @@ data class StoryViewerPlaybackState(
   val isUserLongTouching: Boolean = false,
   val isUserScrollingChild: Boolean = false,
   val isUserScaling: Boolean = false,
-  val isDisplayingPartialSendDialog: Boolean = false
+  val isDisplayingPartialSendDialog: Boolean = false,
+  val isDisplayingRecipientBottomSheet: Boolean = false
 ) {
-  val hideChromeImmediate: Boolean = isRunningSharedElementAnimation
+  val hideChromeImmediate: Boolean = isRunningSharedElementAnimation || isDisplayingFirstTimeNavigation
 
   val hideChrome: Boolean = isRunningSharedElementAnimation ||
     isUserLongTouching ||
@@ -51,5 +52,6 @@ data class StoryViewerPlaybackState(
     isDisplayingInfoDialog ||
     isUserScaling ||
     isDisplayingHideDialog ||
-    isDisplayingPartialSendDialog
+    isDisplayingPartialSendDialog ||
+    isDisplayingRecipientBottomSheet
 }

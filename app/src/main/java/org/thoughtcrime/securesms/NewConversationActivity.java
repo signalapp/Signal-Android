@@ -342,7 +342,8 @@ public class NewConversationActivity extends ContactSelectionActivity
                                               recipient,
                                               () -> {
                                                 disposables.add(viewModel.blockContact(recipient).subscribe(() -> {
-                                                  displaySnackbar(R.string.NewConversationActivity__s_has_been_removed);
+                                                  displaySnackbar(R.string.NewConversationActivity__s_has_been_blocked, recipient.getDisplayName(this));
+                                                  contactsFragment.reset();
                                                 }));
                                               })
     );
@@ -366,7 +367,7 @@ public class NewConversationActivity extends ContactSelectionActivity
         .setPositiveButton(R.string.NewConversationActivity__remove,
                            (dialog, which) -> {
                              disposables.add(viewModel.hideContact(recipient).subscribe(() -> {
-                               displaySnackbar(R.string.NewConversationActivity__s_has_been_removed);
+                               displaySnackbar(R.string.NewConversationActivity__s_has_been_removed, recipient.getDisplayName(this));
                              }));
                            }
         )
@@ -374,7 +375,7 @@ public class NewConversationActivity extends ContactSelectionActivity
         .show();
   }
 
-  private void displaySnackbar(@StringRes int message) {
-    Snackbar.make(findViewById(android.R.id.content), message, Snackbar.LENGTH_SHORT).show();
+  private void displaySnackbar(@StringRes int message, Object ... formatArgs) {
+    Snackbar.make(findViewById(android.R.id.content), getString(message, formatArgs), Snackbar.LENGTH_SHORT).show();
   }
 }

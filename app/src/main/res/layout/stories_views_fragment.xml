@@ -34,7 +34,7 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="16dp"
         android:gravity="center"
-        android:text="@string/StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story"
+        android:text="@string/StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:visibility="gone"
         app:layout_constrainedWidth="true"

@@ -30,7 +30,7 @@ data class PnpDataSet(
 
   fun MutableSet<RecipientRecord>.replace(recipientId: RecipientId, update: (RecipientRecord) -> RecipientRecord) {
     val toUpdate = this.first { it.id == recipientId }
-    this -= toUpdate
+    this.removeIf { it.id == toUpdate.id }
     this += update(toUpdate)
   }
   /**
@@ -92,7 +92,7 @@ data class PnpDataSet(
             )
           }
 
-          records -= secondary
+          records.removeIf { it.id == secondary.id }
         }
         is PnpOperation.SessionSwitchoverInsert -> Unit
         is PnpOperation.ChangeNumberInsert -> Unit

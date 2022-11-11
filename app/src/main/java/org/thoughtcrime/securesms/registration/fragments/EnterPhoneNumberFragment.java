@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputContr
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.Dialogs;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.PlayServicesUtil;
@@ -50,6 +51,9 @@ import org.thoughtcrime.securesms.util.SupportEmailUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
+
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -183,15 +187,34 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     if (fcmSupported) {
       SmsRetrieverClient client = SmsRetriever.getClient(context);
       Task<Void>         task   = client.startSmsRetriever();
+      AtomicBoolean      handled = new AtomicBoolean(false);
+
+      Debouncer debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(5));
+      debouncer.publish(() -> {
+        if (!handled.getAndSet(true)) {
+          Log.w(TAG, "Timed out waiting for SMS listener!");
+          requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
+        }
+      });
 
       task.addOnSuccessListener(none -> {
-        Log.i(TAG, "Successfully registered SMS listener.");
-        requestVerificationCode(Mode.SMS_WITH_LISTENER);
+        if (!handled.getAndSet(true)) {
+          Log.i(TAG, "Successfully registered SMS listener.");
+          requestVerificationCode(Mode.SMS_WITH_LISTENER);
+        } else {
+          Log.w(TAG, "Successfully registered listener after timeout.");
+        }
+        debouncer.clear();
       });
 
       task.addOnFailureListener(e -> {
-        Log.w(TAG, "Failed to register SMS listener.", e);
-        requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
+        if (!handled.getAndSet(true)) {
+          Log.w(TAG, "Failed to register SMS listener.", e);
+          requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
+        } else {
+          Log.w(TAG, "Failed to register listener after timeout.");
+        }
+        debouncer.clear();
       });
     } else {
       Log.i(TAG, "FCM is not supported, using no SMS listener");

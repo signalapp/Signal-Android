@@ -220,6 +220,17 @@ public class GroupDatabase extends Database implements RecipientIdDatabaseRefere
     }
   }
 
+  public void removeUnmigratedV1Members(@NonNull GroupId.V2 id) {
+    Optional<GroupRecord> group = getGroup(id);
+
+    if (!group.isPresent()) {
+      Log.w(TAG, "Couldn't find the group!", new Throwable());
+      return;
+    }
+
+    removeUnmigratedV1Members(id, group.get().getUnmigratedV1Members());
+  }
+
   /**
    * Removes the specified members from the list of 'unmigrated V1 members' -- the list of members
    * that were either dropped or had to be invited when migrating the group from V1->V2.

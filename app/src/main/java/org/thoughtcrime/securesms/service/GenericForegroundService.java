@@ -178,9 +178,13 @@ public final class GenericForegroundService extends Service {
     } else {
       try {
         ContextCompat.startForegroundService(context, intent);
-      } catch (ForegroundServiceStartNotAllowedException e) {
-        Log.e(TAG, "Unable to start foreground service", e);
-        throw new UnableToStartException(e);
+      } catch (IllegalStateException e) {
+        if (e instanceof ForegroundServiceStartNotAllowedException) {
+          Log.e(TAG, "Unable to start foreground service", e);
+          throw new UnableToStartException(e);
+        } else {
+          throw e;
+        }
       }
     }
 

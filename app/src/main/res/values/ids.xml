@@ -15,6 +15,9 @@
     <item name="reminder_action_not_now" type="id" />
     <item name="reminder_action_turn_off" type="id" />
 
+    <item name="reminder_action_cds_temporary_error_learn_more" type="id" />
+    <item name="reminder_action_cds_permanent_error_learn_more" type="id" />
+
     <item name="status_bar_guideline" type="id" />
     <item name="navigation_bar_guideline" type="id" />
 

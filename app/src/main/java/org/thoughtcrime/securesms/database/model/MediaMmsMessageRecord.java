@@ -37,7 +37,9 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.SlideDeck;
+import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.signalservice.api.payments.FormatterOptions;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +63,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final int           partCount;
   private final boolean       mentionsSelf;
   private final BodyRangeList messageRanges;
+  private final Payment       payment;
 
   public MediaMmsMessageRecord(long id,
                                Recipient conversationRecipient,
@@ -95,7 +98,8 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                @Nullable BodyRangeList messageRanges,
                                @NonNull StoryType storyType,
                                @Nullable ParentStoryId parentStoryId,
-                               @Nullable GiftBadge giftBadge)
+                               @Nullable GiftBadge giftBadge,
+                               @Nullable Payment payment)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, dateServer, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
@@ -105,6 +109,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     this.partCount     = partCount;
     this.mentionsSelf  = mentionsSelf;
     this.messageRanges = messageRanges;
+    this.payment       = payment;
   }
 
   @Override
@@ -128,6 +133,8 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
+    } else if (isPaymentNotification() && payment != null) {
+      return new SpannableString(context.getString(R.string.MessageRecord__payment_s, payment.getAmount().toString(FormatterOptions.defaults())));
     }
 
     return super.getDisplayBody(context);
@@ -151,18 +158,22 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return Objects.requireNonNull(messageRanges);
   }
 
+  public @Nullable Payment getPayment() {
+    return payment;
+  }
+
   public @NonNull MediaMmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
   }
 
   public @NonNull MediaMmsMessageRecord withoutQuote() {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
                                      getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
   }
 
   public @NonNull MediaMmsMessageRecord withAttachments(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
@@ -183,7 +194,14 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
                                      getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
+  }
+
+  public @NonNull MediaMmsMessageRecord withPayment(@NonNull Payment payment) {
+    return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
+                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment);
   }
 
   private static @NonNull List<Contact> updateContacts(@NonNull List<Contact> contacts, @NonNull Map<AttachmentId, DatabaseAttachment> attachmentIdMap) {

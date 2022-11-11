@@ -14,7 +14,11 @@ import androidx.lifecycle.MutableLiveData;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.mobilecoin.lib.exceptions.SerializationException;
 
+import org.signal.core.util.CursorExtensionsKt;
+import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.payments.CryptoValueUtil;
@@ -31,8 +35,11 @@ import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SqlUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.payments.Money;
+import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -104,10 +111,11 @@ public final class PaymentDatabase extends Database implements RecipientIdDataba
                                     @NonNull String note,
                                     @NonNull Money amount,
                                     @NonNull Money fee,
-                                    @NonNull byte[] receipt)
+                                    @NonNull byte[] receipt,
+                                    boolean seen)
       throws PublicKeyConflictException, SerializationException
   {
-    create(uuid, fromRecipient, null, timestamp, 0, note, Direction.RECEIVED, State.SUBMITTED, amount, fee, null, receipt, null, false);
+    create(uuid, fromRecipient, null, timestamp, 0, note, Direction.RECEIVED, State.SUBMITTED, amount, fee, null, receipt, null, seen);
   }
 
   @WorkerThread
@@ -388,9 +396,42 @@ public final class PaymentDatabase extends Database implements RecipientIdDataba
     }
   }
 
+  public @NonNull List<Payment> getPayments(@Nullable Collection<UUID> paymentUuids) {
+    if (paymentUuids == null || paymentUuids.isEmpty()) {
+      return Collections.emptyList();
+    }
+
+    List<SqlUtil.Query> queries  = SqlUtil.buildCollectionQuery(PAYMENT_UUID, paymentUuids);
+    List<Payment>       payments = new LinkedList<>();
+
+    for (SqlUtil.Query query : queries) {
+      Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase())
+                                                .from(TABLE_NAME)
+                                                .where(query.getWhere(), (Object[]) query.getWhereArgs())
+                                                .run();
+
+      payments.addAll(CursorExtensionsKt.readToList(cursor, PaymentDatabase::readPayment));
+    }
+
+    return payments;
+  }
+
   @AnyThread
   public @NonNull LiveData<List<PaymentTransaction>> getAllLive() {
     return LiveDataUtil.mapAsync(changeSignal, change -> getAll());
+  }
+
+  @WorkerThread
+  public @NonNull MessageRecord updateMessageWithPayment(@NonNull MessageRecord record) {
+    if (record.isPaymentNotification()) {
+      Payment payment = getPayment(UuidUtil.parseOrThrow(record.getBody()));
+      if (payment != null && record instanceof MediaMmsMessageRecord) {
+        return ((MediaMmsMessageRecord) record).withPayment(payment);
+      } else {
+        throw new AssertionError("Payment not found for message");
+      }
+    }
+    return record;
   }
 
   @Override

@@ -42,7 +42,10 @@ fun MessageRecord.hasThumbnail(): Boolean =
   isMms && (this as MmsMessageRecord).slideDeck.thumbnailSlide != null
 
 fun MessageRecord.isStoryReaction(): Boolean =
-  isMms && MmsSmsColumns.Types.isStoryReaction((this as MmsMessageRecord).type)
+  isMms && MmsSmsColumns.Types.isStoryReaction(type)
+
+fun MessageRecord.isStory(): Boolean =
+  isMms && (this as MmsMessageRecord).storyType.isStory
 
 fun MessageRecord.isBorderless(context: Context): Boolean {
   return isCaptionlessMms(context) &&
@@ -133,7 +136,8 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
         !hasSharedContact() &&
         !hasSticker() &&
         !isCaptionlessMms(context) &&
-        !hasGiftBadge()
+        !hasGiftBadge() &&
+        !isPaymentNotification()
       )
 }
 

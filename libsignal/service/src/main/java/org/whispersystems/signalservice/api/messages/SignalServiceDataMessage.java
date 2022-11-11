@@ -161,6 +161,18 @@ public class SignalServiceDataMessage {
     return expirationUpdate;
   }
 
+  public boolean isActivatePaymentsRequest() {
+    return getPayment().isPresent() &&
+           getPayment().get().getPaymentActivation().isPresent() &&
+           getPayment().get().getPaymentActivation().get().getType().equals(SignalServiceProtos.DataMessage.Payment.Activation.Type.REQUEST);
+  }
+
+  public boolean isPaymentsActivated() {
+    return getPayment().isPresent() &&
+           getPayment().get().getPaymentActivation().isPresent() &&
+           getPayment().get().getPaymentActivation().get().getType().equals(SignalServiceProtos.DataMessage.Payment.Activation.Type.ACTIVATED);
+  }
+
   public boolean isProfileKeyUpdate() {
     return profileKeyUpdate;
   }
@@ -655,15 +667,33 @@ public class SignalServiceDataMessage {
     }
   }
 
+  public static class PaymentActivation {
+    private final SignalServiceProtos.DataMessage.Payment.Activation.Type type;
+
+    public PaymentActivation(SignalServiceProtos.DataMessage.Payment.Activation.Type type) {
+      this.type = type;
+    }
+
+    public SignalServiceProtos.DataMessage.Payment.Activation.Type getType() {
+      return type;
+    }
+  }
+
   public static class Payment {
     private final Optional<PaymentNotification> paymentNotification;
+    private final Optional<PaymentActivation> paymentActivation;
 
-    public Payment(PaymentNotification paymentNotification) {
-      this.paymentNotification = Optional.of(paymentNotification);
+    public Payment(PaymentNotification paymentNotification, PaymentActivation paymentActivation) {
+      this.paymentNotification = Optional.ofNullable(paymentNotification);
+      this.paymentActivation = Optional.ofNullable(paymentActivation);
     }
 
     public Optional<PaymentNotification> getPaymentNotification() {
       return paymentNotification;
+    }
+
+    public Optional<PaymentActivation> getPaymentActivation() {
+      return paymentActivation;
     }
   }
 

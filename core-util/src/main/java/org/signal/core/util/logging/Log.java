@@ -127,7 +127,7 @@ public final class Log {
     logger.e(tag, message, t, keepLonger);
   }
 
-  public static String tag(Class<?> clazz) {
+  public static @NonNull String tag(Class<?> clazz) {
     String simpleName = clazz.getSimpleName();
     if (simpleName.length() > 23) {
       return simpleName.substring(0, 23);

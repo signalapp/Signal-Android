@@ -292,8 +292,18 @@ message DataMessage {
       optional string note = 2;
     }
 
+    message Activation {
+      enum Type {
+        REQUEST   = 0;
+        ACTIVATED = 1;
+      }
+
+      optional Type type = 1;
+    }
+
     oneof Item {
       Notification notification = 1;
+      Activation   activation   = 2;
     }
   }
 

@@ -18,6 +18,7 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -58,7 +59,7 @@ public class TooltipPopup extends PopupWindow {
           ViewGroup.LayoutParams.WRAP_CONTENT,
           ViewGroup.LayoutParams.WRAP_CONTENT);
 
-    this.anchor          = anchor;
+    this.anchor      = anchor;
     this.position    = getRtlPosition(anchor.getContext(), rawPosition);
     this.startMargin = startMargin;
 
@@ -83,10 +84,10 @@ public class TooltipPopup extends PopupWindow {
 
     if (backgroundTint == 0) {
       bubble.getBackground().setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
-      arrow.setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
+      arrow.setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.SRC_IN);
     } else {
       bubble.getBackground().setColorFilter(backgroundTint, PorterDuff.Mode.MULTIPLY);
-      arrow.setColorFilter(backgroundTint, PorterDuff.Mode.MULTIPLY);
+      arrow.setColorFilter(backgroundTint, PorterDuff.Mode.SRC_IN);
     }
 
     if (iconGlideModel != null) {
@@ -148,8 +149,10 @@ public class TooltipPopup extends PopupWindow {
     switch (position) {
       case POSITION_ABOVE:
         xoffset += startMargin;
+        xoffset -= DimensionUnit.DP.toPixels(20);
       case POSITION_BELOW:
         xoffset += startMargin;
+        xoffset -= DimensionUnit.DP.toPixels(20);
         break;
       case POSITION_LEFT:
         xoffset += startMargin;

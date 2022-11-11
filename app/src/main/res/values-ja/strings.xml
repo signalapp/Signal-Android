@@ -104,6 +104,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">写真や動画、音声データを添付するには、Signalにストレージへのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アクセス許可」で「ストレージ」を有効にしてください。</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">連絡先情報を添付するには、Signalに連絡先へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「連絡先」を有効にしてください。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">位置情報を添付するには、Signalに位置情報へのアクセス許可が必要ですが、無効になっています。アプリ設定メニューの「アプリの権限」で「位置情報」を有効にしてください。</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s さんは決済機能を有効にしていません </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">決済機能を有効にするリクエストを送信しますか？</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">リクエストを送信する</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">キャンセル</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">メディアをアップロードしています…</string>
@@ -125,32 +133,38 @@
     <string name="BlockedUsersActivity__unblock">ブロックを解除する</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">寄付金額：%1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">以下にカード情報を入力してください</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">カード番号</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">月／年</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">無効なカード番号です</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">カードの有効期限が切れています</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">セキュリティコードが短すぎます</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">セキュリティコードが長すぎます</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">無効なセキュリティコードです</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">無効な月です</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">年の入力は必須です</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">無効な年です</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">続ける</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">%1$s をブロックして抜けますか？</string>
@@ -248,7 +262,7 @@
     <!-- Label for my stories when selecting who to send media to -->
     <string name="ContactsCursorLoader_my_stories">マイストーリー</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
-    <string name="ContactsCursorLoader_new">New</string>
+    <string name="ContactsCursorLoader_new">新規</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s にメッセージを送る</string>
@@ -296,6 +310,18 @@
     <string name="ConversationItem_pending">  保留中</string>
     <string name="ConversationItem_this_message_was_deleted">このメッセージは削除されました。</string>
     <string name="ConversationItem_you_deleted_this_message">メッセージを削除しました。</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">メッセージをダウンロードできません。%1$s さんがもう一度送信する必要があります。</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">画像をダウンロードできません。%1$s さんがもう一度送信する必要があります。</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">動画をダウンロードできません。%1$s さんがもう一度送信する必要があります。</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">メッセージをダウンロードできません。もう一度送信する必要があります。</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">画像をダウンロードできません。もう一度送信する必要があります。</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">動画をダウンロードできません。もう一度送信する必要があります。</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">添付ファイルを追加</string>
@@ -372,13 +398,13 @@
     <string name="ConversationActivity__reported_as_spam_and_blocked">スパムとして報告してブロックしました。</string>
 
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">SMS messaging is currently disabled. You can export your messages to another app on your phone.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone">現在、SMSメッセージは無効です。携帯電話で使用している他のアプリにメッセージをエクスポートできます。</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and they have unexported sms messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone">SMSメッセージはSignalでサポートされなくなりました。携帯電話で使用している他のアプリにメッセージをエクスポートできます。</string>
     <!-- Action button shown when in sms conversation, sms is disabled, and unexported sms messages are present -->
     <string name="ConversationActivity__export_sms_messages">SMSメッセージをエクスポートする</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">SMS messaging is currently disabled. Invite %1$s to Signal to keep the conversation here.</string>
+    <string name="ConversationActivity__sms_messaging_is_currently_disabled_invite_s_to_to_signal_to_keep_the_conversation_here">現在、SMSメッセージは無効です。%1$sをSignalへ招待して会話を続けてください。</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMSメッセージはSignalでサポートされなくなりました。%1$sをSignalへ招待して会話を続けてください。</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
@@ -419,6 +445,10 @@
     <string name="ConversationFragment_deleting_messages">メッセージを削除しています…</string>
     <string name="ConversationFragment_delete_for_me">自分の分だけ削除</string>
     <string name="ConversationFragment_delete_for_everyone">全員分を削除</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">このメッセージは、チャットの参加者全員が最新バージョンのSignalを使用している場合、全員で削除されます。参加者には、あなたがメッセージを削除したことがわかります。</string>
     <string name="ConversationFragment_quoted_message_not_found">元のメッセージが見つかりません</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">元のメッセージはすでに削除されています</string>
@@ -814,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signalグループに対応していない連絡先を選択したため、このグループはMMSになります。カスタムMMSグループ名と写真は、あなただけに表示されます。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signalグループがサポートしていない連絡先を選択したため、このグループはMMSとなります。MMSグループの名前と写真はあなただけに表示されます。暗号化されたメッセージ送受信にフォーカスするため、MMSのサポートはまもなく終了する予定です。</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">メンバー申請と招待</string>
@@ -1339,6 +1369,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s さんとの %2$s 番のメッセージ履歴が統合されました。</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s さんとのメッセージ履歴と、同じ人との別のチャットが統合されました。</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">決済機能を有効にするリクエストを %1$s さんに送信しました</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s さんが、決済機能を有効にすることを求めています。信頼する人にのみ送金してください。</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">決済機能を有効にしました</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s さんが決済機能を有効にしました</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s がグループ通話を開始しました · %2$s</string>
@@ -1367,6 +1405,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Signalでは、まもなくSMSメッセージを送信できなくなります。%1$sをSignalへ招待して会話を続けてください。</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">SignalでSMSメッセージを送信できなくなりました。%1$sをSignalへ招待して会話を続けてください。</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">承認する</string>
@@ -1812,6 +1852,14 @@
     <string name="ThreadRecord_view_once_media">使い捨てメディア</string>
     <string name="ThreadRecord_this_message_was_deleted">このメッセージは削除されました。</string>
     <string name="ThreadRecord_you_deleted_this_message">メッセージを削除しました。</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">決済機能を有効にするリクエストを送信しました</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s さんがあなたに決済機能を有効にすることを求めています</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">決済機能を有効にしました</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s さんが決済機能を有効にしました</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s がSignalに登録しました！</string>
     <string name="ThreadRecord_disappearing_messages_disabled">消えるメッセージが無効にされました</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">消えるメッセージのタイマーが%1$sに設定されました</string>
@@ -1838,6 +1886,8 @@
     <string name="ThreadRecord__reacted_s_to_your_story">あなたのストーリーにリアクション%1$sしました</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">彼らのストーリー%1$sにリアクションしました</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signalアップデート</string>
@@ -1940,6 +1990,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">メディアが存在しません。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">このメディアを共有できるアプリが見つかりません。</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">閉じる</string>
+    <string name="MediaPreviewFragment_edit_media_error">メディアエラー</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d個のチャットに%1$d件の新着メッセージ</string>
@@ -2035,6 +2086,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">この端末はもう登録されていません</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">これはおそらく別の端末でSignalに登録されたことが原因です。タップして再登録します。</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">決済機能を引き続きご利用いただくために、Signalをアップデートしてください。残高が最新の状態ではない可能性があります。</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">アップデートする</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">着信に出るには、Signalにマイクへのアクセスを許可してください。</string>
@@ -2162,6 +2219,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">メッセージの送信時に、消えるメッセージのタイマーが%1$sに設定されます。</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">寄付する</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">送金</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">決済機能を有効化</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">再生 … 停止</string>
@@ -2464,7 +2526,7 @@
         <item>その他</item>
         <item>決済機能 (MobileCoin)</item>
         <item>寄付 &amp; バッジ</item>
-        <item>SMS Export</item>
+        <item>SMSエクスポート</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2529,6 +2591,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">エンターキーでテキストメッセージを送信します</string>
     <string name="preferences__pref_use_address_book_photos">アドレス帳の写真を使用する</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">可能であれば、連絡先の表示にアドレス帳の写真を使用します。</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">ミュートしたチャットをアーカイブしたままにします</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">アーカイブされており、さらにミュートもしているチャットは、新しいメッセージが届いてもアーカイブされたままになります。</string>
     <string name="preferences__generate_link_previews">リンクプレビューを生成する</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">送信メッセージのリンクプレビューを、ウェブサイトから直接取得します。</string>
     <string name="preferences__choose_identity">アイデンティティを選択</string>
@@ -2720,107 +2786,9 @@
     <string name="configurable_single_select__customize_option">オプションのカスタマイズ</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2830,7 +2798,7 @@
     <string name="PaymentsAllActivityFragment__received">着金</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">決済機能 (ベータ) のご紹介</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨、MobileCoinを送受信できます。利用するには機能を有効化してください。</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Signalを使って、プライバシーを重視した新しいデジタル通貨であるMobileCoinを送受信できます。利用するには機能を有効化してください。</string>
     <string name="PaymentsHomeFragment__activate_payments">決済機能を有効化</string>
     <string name="PaymentsHomeFragment__activating_payments">決済機能を有効化しています…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">決済口座を復元</string>
@@ -2879,6 +2847,14 @@
     <string name="PaymentsHomeFragment__enable">有効にする</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">今はしない</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">アップデートが必要です</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">送金や受け取りを継続し、最新の決済残高を表示するためにはアップデートが必要です。</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">キャンセル</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">アップデートする</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -2922,7 +2898,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s (%2$s %3$s)</string>
     <string name="PaymentsDetailsFragment__to">送金先</string>
     <string name="PaymentsDetailsFragment__from">送金元</string>
-    <string name="PaymentsDetailsFragment__information">決済金額や時刻などの取引の詳細は、MobileCoin台帳の一部です。</string>
+    <string name="PaymentsDetailsFragment__information">決済金額や決済時刻などの取引の詳細は、MobileCoin台帳に記載されます。</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">コインクリーンアップ手数料</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">「コインクリーンアップ手数料」は、お手持ちのコインを組み合わせて取引を完了できない場合に発生します。クリーンアップすることで、送金を続けることができます。</string>
     <string name="PaymentsDetailsFragment__no_details_available">この取引にこれ以上の情報はありません</string>
@@ -2982,7 +2958,7 @@
     <string name="ConfirmPayment__error_getting_fee">手数料取得エラー</string>
     <string name="ConfirmPayment__estimated_s">概算 %1$s</string>
     <string name="ConfirmPayment__to">宛先</string>
-    <string name="ConfirmPayment__total_amount">合計</string>
+    <string name="ConfirmPayment__total_amount">合計金額</string>
     <string name="ConfirmPayment__balance_s">残高: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">決済を送信しています…</string>
     <string name="ConfirmPayment__processing_payment">決済を処理しています…</string>
@@ -3058,6 +3034,8 @@
     <string name="conversation_selection__menu_resend_message">再送</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">選択</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3139,13 +3117,21 @@
     <string name="reminder_header_push_text">コミュニケーション体験をアップグレードしてください。</string>
     <string name="reminder_header_service_outage_text">Signalは技術的な問題を抱えています。私たちは、これをできるだけ早く解決するよう対応しています。</string>
     <string name="reminder_header_progress">%1$d%%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">保存</string>
     <string name="media_preview__forward_title">転送</string>
     <string name="media_preview__share_title">共有する</string>
     <string name="media_preview__all_media_title">すべてのメディア</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">編集</string>
 
 
     <!-- media_preview_activity -->
@@ -3175,7 +3161,7 @@
 
     <string name="FirstInviteReminder__title">Signalへの招待</string>
     <string name="FirstInviteReminder__description">暗号化された送信メッセージの数を%1$d%%増やすことができます</string>
-    <string name="SecondInviteReminder__title">あなたのSignalをブースト</string>
+    <string name="SecondInviteReminder__title">Signalをブーストしてください</string>
     <string name="SecondInviteReminder__description">%1$s を招待しましょう</string>
     <string name="InsightsReminder__view_insights">統計を見る</string>
     <string name="InsightsReminder__invite">招待する</string>
@@ -3760,7 +3746,9 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">リカバリーフレーズを保存する</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">リカバリーフレーズの入力</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Signalの再インストール時にSignal PINを確認すると、残高は自動で復元されます。また、あなた固有の%1$d語のリカバリーフレーズを使って、残高を復元することもできます。リカバリーフレーズは、書きとめて安全な場所に保管してください。</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="other">Signalの再インストール時にSignal PINを確認すると、残高は自動で復元されます。また、あなた固有の%1$d語のリカバリーフレーズを使って、残高を復元することもできます。リカバリーフレーズは、書きとめて安全な場所に保管してください。</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">残高があります！残高を復元するためのキーとなる、24単語のリカバリーフレーズを保存しましょう。</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4081,7 +4069,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">サポーターになりませんか</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signalは、あなたのようなユーザーの皆様によって支えられています。 ぜひ寄付をして、バッジを手に入れましょう。</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signalは、ユーザーの皆様によって支えられています。ぜひ寄付をして、バッジを手に入れましょう。</string>
     <string name="BecomeASustainerMegaphone__not_now">今はしない</string>
     <string name="BecomeASustainerMegaphone__donate">寄付する</string>
 
@@ -4307,7 +4295,7 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">バッジの選択</string>
+    <string name="BadgeSelectionFragment__select_badges">バッジを選択してください</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">プレビュー</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">バッジを選択してください</string>
@@ -4315,6 +4303,12 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">プロフィールを更新できませんでした</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになる</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">バッジ</string>
 
@@ -4322,12 +4316,12 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signalを支えるコミュニティに参加して、データのためではなく、あなたのために作られた技術をサポートしてください。</string>
     <string name="SubscribeFragment__currency">通貨</string>
     <string name="SubscribeFragment__more_payment_options">その他の決済方法</string>
-    <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除</string>
-    <string name="SubscribeFragment__confirm_cancellation">解除しますか？</string>
+    <string name="SubscribeFragment__cancel_subscription">サブスクリプションを解除する</string>
+    <string name="SubscribeFragment__confirm_cancellation">本当に解除しますか？</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">再度課金されることはありません。課金期間が終了すると、バッジがプロフィールから削除されます。</string>
     <string name="SubscribeFragment__not_now">あとで</string>
     <string name="SubscribeFragment__confirm">解除する</string>
-    <string name="SubscribeFragment__update_subscription">サブスクリプションを更新</string>
+    <string name="SubscribeFragment__update_subscription">サブスクリプションを更新する</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">あなたのサブスクリプションは解除されました。</string>
     <string name="SubscribeFragment__update_subscription_question">サブスクリプションを更新しますか？</string>
     <string name="SubscribeFragment__update">更新する</string>
@@ -4335,28 +4329,30 @@
 
     <string name="Subscription__s_per_month">%1$s/月</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">更新 %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">有効期限%1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signalは、広告主や投資家を持たない非営利団体であり、ユーザの皆様の寄付によって成り立っています。毎月の定期的な寄付をしていただくと、寄付をしたことを他のユーザに知らせることができる、プロフィールバッジをプレゼントします。</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">寄付をお願いする理由</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signalは、表現の自由を守り、安全なグローバルコミュニケーションを可能にする、オープンソースのプライバシー保護技術の開発に取り組んでいます。</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">あなたの寄付がこの理念を支え、何百万人もの人々がプライベートなコミュニケーションに使っているアプリの開発と運営に充てられているのです。広告なし。トラッカーなし。本当です。</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ご支援をありがとうございます！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">ブーストをありがとうございます！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">%1$sバッジを獲得しました！ このバッジをプロフィールに表示することで、Signalへの寄付を認知してもらうことができます。</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">ブーストバッジを獲得しました！このバッジをプロフィールに表示して、Signalへの寄付を知ってもらいましょう。</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">また、</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">月次サポーターになることもできます。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">プロフィールに表示する</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">このバッジを表示する</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完了</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">続ける</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">複数のバッジを持っている場合は、自分のプロフィールに表示するバッジを選ぶことができます。</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Signalをサポートすると、あなたのプロフィールにバッジが表示されます。</string>
+    <string name="BecomeASustainerFragment__get_badges">Signalをサポートして、プロフィールにバッジをつけましょう。</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signalは広告主や投資家を持たない非営利団体で、ユーザーの皆様によって支えられています。</string>
 
     <!-- Button label for creating a donation -->
@@ -4367,11 +4363,11 @@
     <string name="ManageDonationsFragment__receipts">受領書</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">マイサポート</string>
-    <string name="ManageDonationsFragment__manage_subscription">サブスクリプションの管理</string>
+    <string name="ManageDonationsFragment__manage_subscription">サブスクリプションを管理する</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">寄付の領収書</string>
     <string name="ManageDonationsFragment__badges">バッジ</string>
-    <string name="ManageDonationsFragment__subscription_faq">サブスクリプションのよくある質問</string>
+    <string name="ManageDonationsFragment__subscription_faq">サブスクリプションに関するよくある質問</string>
     <string name="ManageDonationsFragment__error_getting_subscription">サブスクリプションを取得できませんでした。</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">その他の支援の方法</string>
@@ -4381,7 +4377,7 @@
     <string name="Boost__enter_custom_amount">金額を入力してください</string>
     <string name="Boost__one_time_contribution">1回限りの寄付</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加</string>
+    <string name="MySupportPreference__add_a_signal_boost">Signalブーストを追加する</string>
     <string name="MySupportPreference__s_per_month">%1$s/月</string>
     <string name="MySupportPreference__renews_s">更新 %1$s</string>
     <string name="MySupportPreference__processing_transaction">処理しています…</string>
@@ -4390,25 +4386,25 @@
     <string name="MySupportPreference__please_contact_support">サポートにお問い合わせください。</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ブーストバッジが失効しました</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ブーストバッジの有効期限が切れています</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">月々の寄付をキャンセル</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">毎月の寄付がキャンセルされました</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">あなたのブーストバッジは有効期限が切れたため、プロフィールには表示されません。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジをさらに30日間有効にすることができます。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">ブーストバッジの有効期限が切れたため、プロフィールには表示されません。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">1回の寄付で、ブーストバッジを再度30日間有効にすることができます。</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signalを使い続けることはできますが、あなたのために作られたテクノロジーを支援するため、毎月寄付するサポーターになることを検討してください。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Signalを使い続けることはできますが、ユーザーのために作られたテクノロジーを支援するため、毎月寄付するサステナになることを検討してください。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">サポーターになりませんか</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">ブーストを追加する</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">あとで</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">長期間活動を停止していたため、毎月の定期的な寄付が自動的にキャンセルされました。あなたの%1$sバッジはプロフィールに表示されなくなります。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">長い間ご利用がなかったため、毎月の定期的な寄付が自動的にキャンセルされました。%1$sバッジはプロフィールに表示されなくなっています。</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">決済処理が出来なかったため、毎月の定期的な寄付は解除されました。 バッジはプロフィールに表示されなくなります。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">決済処理が出来なかったため、毎月の定期的な寄付は解除されました。バッジはプロフィールに表示されなくなります。</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">毎月の定期的な寄付は解除されました。 %1$s%2$sバッジはプロフィールに表示されなくなります。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは使い続けられますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Signalは今後も利用できますが、アプリのサポートやバッジを再び有効にするには、今すぐ更新してください。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">サブスクリプションを更新する</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Google Payを開く</string>
 
@@ -4425,8 +4421,8 @@
     <string name="DonationsErrors__error_processing_payment">決済の処理中にエラーが発生しました</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">決済の処理中にエラーが発生しました。%1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
-    <string name="DonationsErrors__your_payment">決済処理ができず、課金しませんでした。あとで再度試してください。</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__your_payment">決済処理ができず、課金されていません。再度試してください。</string>
     <string name="DonationsErrors__still_processing">処理を継続しています</string>
     <string name="DonationsErrors__couldnt_add_badge">バッジを追加できませんでした</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4436,20 +4432,20 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">ギフトバッジの送信に失敗しました</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">ギフトバッジを送信できませんでした。サポートにお問い合わせください。</string>
-    <string name="DonationsErrors__your_badge_could_not">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。お手数ですが、サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">ギフトバッジを送信できませんでした。サポートまでお問い合わせください。</string>
+    <string name="DonationsErrors__your_badge_could_not">あなたのアカウントにバッジを追加できませんでしたが、課金はされている可能性があります。サポートまでお問い合わせください。</string>
     <string name="DonationsErrors__your_payment_is_still">あなたの決済はまだ処理が続いています。接続状況によっては数分かかる場合があります。</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Payを利用できません</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">アプリ内でご寄付いただくには、Google Payを設定してください。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">サブスクリプションを解除できませんでした</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">サブスクリプションを解除するには、インターネット接続が必要です。</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">お使いの端末がGoogle Payに対応していないため、バッジを獲得できるサブスクリプションができません。Signalのウェブサイトで寄付ただくことも可能です。</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">お使いの端末がGoogle Payに対応していないため、バッジを獲得できるサブスクリプションができません。ウェブサイトから寄付してただくことでSignalをサポートしていただくことができます。</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ネットワークエラー。インターネット接続を確認して再度試してください。</string>
     <string name="NetworkFailure__retry">再試行</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cant_send_gift">ギフトを送信できません</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">この受取人はギフトバッジを受け取ることができないバージョンのSignalを使用しています。最新バージョンにアップデートすると、ギフトを受け取れるようになります。</string>
+    <string name="DonationsErrors__target_does_not_support_gifting">この受取人はギフトバッジを受け取ることができないSignalのバージョンを使用しています。最新バージョンにアップデートすると、ギフトを受け取れるようになります。</string>
     <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
     <string name="DonationsErrors__couldnt_send_gift">ギフトを送信できませんでした</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
@@ -4666,7 +4662,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">領収書を共有</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Signalをインストールし直すと、過去の寄付の領収書を表示できなくなります。</string>
+    <string name="DonationReceiptListFragment__if_you_have">Signalを再インストールすると、過去にした寄付の領収書を入手できなくなります。</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">寄付の領収書</string>
     <!-- Donation receipts amount title -->
@@ -4691,7 +4687,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">マイストーリー</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Tap to add</string>
+    <string name="StoriesLandingFragment__tap_to_add">タップして追加</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">ストーリーがありません</string>
     <!-- Context menu option to hide a story -->
@@ -4767,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">閲覧 なし</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">既読を有効にすると、誰があなたのストーリーを見たのかがわかります。</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">設定へ</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4853,7 +4849,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">閲覧できる人を追加</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Delete custom story</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">カスタムストーリーを削除する</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s を削除しますか？</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -4891,7 +4887,7 @@
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">予期せぬエラーが発生しました</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
-    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Please enter a valid link.</string>
+    <string name="TextStoryPostSendFragment__please_enter_a_valid_link">有効なリンクを入力してください。</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
     <string name="ChangeMyStoryMembershipFragment__all_except">下記以外はすべて…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
@@ -4905,7 +4901,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">削除</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Delete custom story?</string>
+    <string name="StoryDialogs__delete_custom_story">カスタムストーリーを削除しますか？</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">ストーリーで共有された「 %1$s」と更新情報は削除されます。</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -4943,7 +4939,7 @@
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">ストーリー名</string>
     <!-- Name story screen note under text field -->
-    <string name="CreateStoryWithViewersFragment__only_you_can">Only you can see the name of this story.</string>
+    <string name="CreateStoryWithViewersFragment__only_you_can">あなただけがこのストーリーの名前を見ることができます。</string>
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">ストーリー名 (必須)</string>
     <!-- Name story screen viewers subheading -->
@@ -4959,7 +4955,7 @@
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">ストーリーの種類</string>
     <!-- Choose story type bottom sheet new story row title -->
-    <string name="ChooseStoryTypeBottomSheet__new_custom_story">New custom story</string>
+    <string name="ChooseStoryTypeBottomSheet__new_custom_story">新規カスタムストーリー</string>
     <!-- Choose story type bottom sheet new story row summary -->
     <string name="ChooseStoryTypeBottomSheet__visible_only_to">特定のユーザーのみ閲覧可能</string>
     <!-- Choose story type bottom sheet group story title -->
@@ -4976,6 +4972,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">返信を送信しています…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">このストーリーはすでに削除されています。</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">ストーリーをダウンロードできません。%1$sさんがもう一度共有する必要があります。</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">インターネット接続がありません</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5019,7 +5017,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">バッジを贈る</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">その人の名前でSignalに寄付をすると、バッジをプレゼントすることができます。その人のプロフィール写真にバッジが表示されます。</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">その人の名前でSignalに寄付をすると、バッジを贈ることができます。その人のプロフィール写真にバッジが表示されます。</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">次へ</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5031,7 +5029,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">プレゼントは1on1のメッセージで相手に届きます。下にメッセージを追加してください。</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">1回の寄付</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">1回限りの寄付</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">メッセージを追加してください</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5041,9 +5039,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">ご支援をありがとうございます！</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sからギフトバッジを受け取りました！このバッジをプロフィールに表示して、Signalの認知度向上に貢献してください。</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">%1$sさんからギフトバッジを受け取りました！このバッジをプロフィールに表示して、Signalへの関心度を深めることにお役立てください。</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$sにバッジをプレゼントしました。 承認すると、相手はバッジの表示・非表示を選択できるようになります。</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">%1$sさんにバッジをプレゼントしました。相手が受け取ると、相手はバッジの表示・非表示を選択できるようになります。</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">交換</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5053,22 +5051,22 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">バッジは後で交換することが可能です。</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$sにバッジをプレゼントしました。 承認すると、相手はバッジの表示・非表示を選択できるようになります。</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">%1$sさんにバッジをプレゼントしました。相手が受け取ると、相手はバッジの表示・非表示を選択できるようになります。</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ギフトバッジが失効しました</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">ギフトバッジの有効期限が切れました</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">あなたのギフトバッジは有効期限が切れたため、プロフィールには表示されません。</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">ギフトバッジの有効期限が切れたため、プロフィールに表示されなくなりました。</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">あなたのために作られた技術を継続的にサポートするため、月次サポーターへの登録をご検討ください。</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">毎月の寄付をする</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">月々の寄付をする</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">今はしない</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
     <string name="ContactSearchItems__only_share_with">共有する人を指定</string>
     <!-- Label under name for custom stories -->
     <plurals name="ContactSearchItems__custom_story_d_viewers">
-        <item quantity="other">Custom story · %1$d viewers</item>
+        <item quantity="other">カスタムストーリー · 閲覧 %1$d 人</item>
     </plurals>
     <!-- Label under name for group stories -->
     <plurals name="ContactSearchItems__group_story_d_viewers">
@@ -5099,7 +5097,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">ストーリーを削除しますか？</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Delete the custom story \"%1$s\"?</string>
+    <string name="ContactSearchMediator__delete_the_custom">カスタムストーリー「%1$s」を削除しますか？</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">削除</string>
     <!-- Gift expiry days remaining -->
@@ -5196,7 +5194,7 @@
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
-    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Story updates automatically disappear after 24 hours. Choose who can view your story or create new stories with specific viewers or groups.</string>
+    <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">ストーリーの更新は24時間後に自動的に消えます。ストーリーを閲覧できるユーザーを選択したり、特定の閲覧者やグループで新しいストーリーを作成することができます。</string>
     <!-- Preference title to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__turn_off_stories">ストーリーを非表示にします</string>
     <!-- Preference summary to turn off stories -->
@@ -5214,11 +5212,11 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">ストーリー</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Story views</string>
+    <string name="StoriesPrivacySettingsFragment__story_views">ストーリーの閲覧者数</string>
     <!-- Story view receipts toggle title -->
-    <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
+    <string name="StoriesPrivacySettingsFragment__view_receipts">閲覧済表示</string>
     <!-- Story view receipts toggle message -->
-    <string name="StoriesPrivacySettingsFragment__see_and_share">See and share when stories are viewed. If disabled, you won\'t see when others view your story.</string>
+    <string name="StoriesPrivacySettingsFragment__see_and_share">ストーリーが閲覧されたことを確認・共有することができます。無効にすると、他の人があなたのストーリーを閲覧したことが確認できません。</string>
 
     <!-- NewStoryItem -->
     <string name="NewStoryItem__new_story">新規ストーリー</string>
@@ -5246,7 +5244,7 @@
     <!-- Title of the screen -->
     <string name="ExportYourSmsMessagesFragment__export_your_sms_messages">SMSメッセージをエクスポートする</string>
     <!-- Message of the screen -->
-    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">You can export your SMS messages to your phone\'s SMS database and you\'ll have the option to keep or remove them from Signal. This allows other SMS apps on your phone to import them. This does not create a shareable file of your SMS history.</string>
+    <string name="ExportYourSmsMessagesFragment__you_can_export_your_sms_messages_to_your_phones_sms_database_and_youll_have_the_option_to_keep_or_remove_them_from_signal">SMSメッセージを携帯電話のSMSデータベースにエクスポートすることができ、Signalに残すか削除するかを選択できます。これにより、お使いの携帯電話の他のSMSアプリがメッセージをインポートできるようになります。これはSMSの履歴を共有可能なファイルにするものではありません。</string>
     <!-- Button label to begin export -->
     <string name="ExportYourSmsMessagesFragment__continue">続ける</string>
 
@@ -5260,13 +5258,13 @@
         <item quantity="other">%2$d 件中 %1$d 件をエクスポートしています…</item>
     </plurals>
     <!-- Alert dialog title shown when we think a user may not have enough local storage available to export sms messages -->
-    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">You may not have enough disk space</string>
+    <string name="ExportingSmsMessagesFragment__you_may_not_have_enough_disk_space">ディスク容量が不足している可能性があります</string>
     <!-- Alert dialog message shown when we think a user may not have enough local storage available to export sms messages, placeholder is the file size, e.g., 128kB -->
-    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">You need approximately %1$s to export your messages, ensure you have enough space before continuing.</string>
+    <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">メッセージのエクスポートには約 %1$s の容量が必要ですので、続行する前に十分な容量を確保してください。</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">とにかく続ける</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">SMSメッセージをエクスポートするには、SignalにSMSへの権限が必要です。</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5364,13 +5362,13 @@
     </plurals>
 
     <!-- Title of screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__export_partially_complete">Export partially complete</string>
+    <string name="ExportSmsPartiallyComplete__export_partially_complete">エクスポートが一部完了しました</string>
     <!-- Debug step 1 on screen shown when some sms messages did not export -->
-    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Ensure you have an additional %1$s free on your phone to export your messages</string>
+    <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">メッセージをエクスポートするために、携帯電話に%1$s の空き容量があることを確認してください</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
-    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Retry export, which will only retry messages that have not yet been exported</string>
+    <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">エクスポートを再度試してください。まだエクスポートされていないメッセージのみが対象です。</string>
     <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
-    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">If the problem persists, </string>
+    <string name="ExportSmsPartiallyComplete__if_the_problem_persists">問題が解決しない場合は、 </string>
     <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">お問い合わせ</string>
     <!-- Button text to retry sms export -->
@@ -5378,18 +5376,18 @@
     <!-- Button text to continue sms export flow and not retry failed message exports -->
     <string name="ExportSmsPartiallyComplete__continue_anyway">とにかく続ける</string>
     <!-- Title of screen shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__error_exporting_sms_messages">Error exporting SMS messages</string>
+    <string name="ExportSmsFullError__error_exporting_sms_messages">SMSメッセージのエクスポートエラー</string>
     <!-- Helper text shown when all sms messages failed to export -->
-    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">Please try again. If the problem persists, </string>
+    <string name="ExportSmsFullError__please_try_again_if_the_problem_persists">あとで再度試してください。問題が解決しない場合は、 </string>
 
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">続ける</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">毎月</string>
     <!-- Donation pill toggle one-time text -->
@@ -5397,18 +5395,57 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Signalに %1$s円／月を寄付する</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">%1$sバッジを獲得しましょう</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Signalに %1$s円を寄付する</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="other">%2$d 日間%1$sバッジを獲得しましょう</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">クレジットカードまたはデビットカード</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">キャンセル中…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

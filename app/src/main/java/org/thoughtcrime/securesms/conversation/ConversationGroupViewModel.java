@@ -85,10 +85,10 @@ final class ConversationGroupViewModel extends ViewModel {
     liveRecipient.setValue(recipient);
   }
 
-  void onSuggestedMembersBannerDismissed(@NonNull GroupId groupId, @NonNull List<RecipientId> suggestions) {
+  void onSuggestedMembersBannerDismissed(@NonNull GroupId groupId) {
     SignalExecutors.BOUNDED.execute(() -> {
       if (groupId.isV2()) {
-        SignalDatabase.groups().removeUnmigratedV1Members(groupId.requireV2(), suggestions);
+        SignalDatabase.groups().removeUnmigratedV1Members(groupId.requireV2());
         liveRecipient.postValue(liveRecipient.getValue());
       }
     });
@@ -161,15 +161,10 @@ final class ConversationGroupViewModel extends ViewModel {
 
   @WorkerThread
   private static List<RecipientId> mapToGroupV1MigrationSuggestions(@Nullable GroupRecord record) {
-    if (record == null) {
-      return Collections.emptyList();
-    }
-
-    if (!record.isV2Group()) {
-      return Collections.emptyList();
-    }
-
-    if (!record.isActive() || record.isPendingMember(Recipient.self())) {
+    if (record == null ||
+        !record.isV2Group() ||
+        !record.isActive() ||
+        record.isPendingMember(Recipient.self())) {
       return Collections.emptyList();
     }
 

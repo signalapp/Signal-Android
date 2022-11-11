@@ -1,11 +1,5 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="24dp"
-    android:height="24dp"
-    android:viewportWidth="24"
-    android:viewportHeight="24">
-  <path
-      android:pathData="M12,12m-10.5,0a10.5,10.5 0,1 1,21 0a10.5,10.5 0,1 1,-21 0"
-      android:strokeWidth="3"
-      android:fillColor="@color/signal_colorPrimary"
-      android:strokeColor="@color/signal_colorBackground"/>
-</vector>
+<?xml version="1.0" encoding="utf-8"?>
+<shape android:shape="oval" xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/signal_colorPrimary" />
+    <stroke android:color="@color/signal_colorOnPrimary" android:width="3dp" />
+</shape>

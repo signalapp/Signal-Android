@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.PaymentLedgerUpdateJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
+import org.thoughtcrime.securesms.jobs.SendPaymentsActivatedJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.AsynchronousCallback;
 import org.thoughtcrime.securesms.util.ProfileUtil;
@@ -25,7 +26,10 @@ public class PaymentsHomeRepository {
       SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(true);
       try {
         ProfileUtil.uploadProfile(ApplicationDependencies.getApplication());
-        ApplicationDependencies.getJobManager().add(PaymentLedgerUpdateJob.updateLedger());
+        ApplicationDependencies.getJobManager()
+                               .startChain(PaymentLedgerUpdateJob.updateLedger())
+                               .then(new SendPaymentsActivatedJob())
+                               .enqueue();
         callback.onComplete(null);
       } catch (PaymentsRegionException e) {
         SignalStore.paymentsValues().setMobileCoinPaymentsEnabled(false);

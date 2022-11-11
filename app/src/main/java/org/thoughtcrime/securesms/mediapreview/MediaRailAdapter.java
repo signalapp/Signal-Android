@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview;
 
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.load.DataSource;
+import com.bumptech.glide.load.engine.GlideException;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ThumbnailView;
@@ -16,6 +22,7 @@ import org.thoughtcrime.securesms.util.adapter.StableIdGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.MediaRailViewHolder> {
 
@@ -26,19 +33,21 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   private final List<Media>              media;
   private final RailItemListener         listener;
   private final StableIdGenerator<Media> stableIdGenerator;
+  private final ImageLoadingListener     imageLoadingListener;
 
-  private RailItemAddListener addListener;
-  private int                 activePosition;
-  private boolean             editable;
-  private boolean             interactive;
+  private RailItemAddListener  addListener;
+  private int                  activePosition;
+  private boolean              editable;
+  private boolean              interactive;
 
-  public MediaRailAdapter(@NonNull GlideRequests glideRequests, @NonNull RailItemListener listener, boolean editable) {
-    this.glideRequests     = glideRequests;
-    this.media             = new ArrayList<>();
-    this.listener          = listener;
-    this.editable          = editable;
-    this.stableIdGenerator = new StableIdGenerator<>();
-    this.interactive       = true;
+  public MediaRailAdapter(@NonNull GlideRequests glideRequests, @NonNull RailItemListener listener, boolean editable, ImageLoadingListener imageLoadingListener) {
+    this.glideRequests        = glideRequests;
+    this.media                = new ArrayList<>();
+    this.listener             = listener;
+    this.editable             = editable;
+    this.stableIdGenerator    = new StableIdGenerator<>();
+    this.interactive          = true;
+    this.imageLoadingListener = imageLoadingListener;
 
     setHasStableIds(true);
   }
@@ -60,7 +69,7 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
   public void onBindViewHolder(@NonNull MediaRailViewHolder viewHolder, int i) {
     switch (getItemViewType(i)) {
       case TYPE_MEDIA:
-        ((MediaViewHolder) viewHolder).bind(media.get(i), i == activePosition, glideRequests, listener, i - activePosition, editable, interactive);
+        ((MediaViewHolder) viewHolder).bind(media.get(i), i == activePosition, glideRequests, listener, i - activePosition, editable, interactive, imageLoadingListener);
         break;
       case TYPE_BUTTON:
         ((ButtonViewHolder) viewHolder).bind(addListener);
@@ -159,9 +168,10 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
     void bind(@NonNull Media media, boolean isActive, @NonNull GlideRequests glideRequests,
               @NonNull RailItemListener railItemListener, int distanceFromActive, boolean editable,
-              boolean interactive)
+              boolean interactive, @NonNull ImageLoadingListener listener)
     {
-      image.setImageResource(glideRequests, media.getUri());
+      listener.onRequest();
+      image.setImageResource(glideRequests, media.getUri(), 0, 0, false, listener);
       image.setOnClickListener(v -> railItemListener.onRailItemClicked(distanceFromActive));
 
       outline.setVisibility(isActive && interactive ? View.VISIBLE : View.GONE);
@@ -207,5 +217,33 @@ public class MediaRailAdapter extends RecyclerView.Adapter<MediaRailAdapter.Medi
 
   public interface RailItemAddListener {
     void onRailItemAddClicked();
+  }
+
+  abstract static class ImageLoadingListener implements RequestListener<Drawable> {
+    final private AtomicInteger activeJobs = new AtomicInteger();
+
+    void onRequest() {
+      activeJobs.incrementAndGet();
+    }
+
+    @Override
+    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
+      int count = activeJobs.decrementAndGet();
+      if (count == 0) {
+        onAllRequestsFinished();
+      }
+      return false;
+    }
+
+    @Override
+    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
+      int count = activeJobs.decrementAndGet();
+      if (count == 0) {
+        onAllRequestsFinished();
+      }
+      return false;
+    }
+
+    abstract void onAllRequestsFinished();
   }
 }

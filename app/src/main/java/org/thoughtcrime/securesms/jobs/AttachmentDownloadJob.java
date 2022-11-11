@@ -8,6 +8,7 @@ import androidx.annotation.VisibleForTesting;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.Hex;
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.InvalidMacException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
@@ -107,7 +108,8 @@ public final class AttachmentDownloadJob extends BaseJob {
     final AttachmentDatabase database     = SignalDatabase.attachments();
     final AttachmentId       attachmentId = new AttachmentId(partRowId, partUniqueId);
     final DatabaseAttachment attachment   = database.getAttachment(attachmentId);
-    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+    final boolean            pending      = attachment != null && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE
+                                                               && attachment.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE;
 
     if (pending && (manual || AttachmentUtil.isAutoDownloadPermitted(context, attachment))) {
       Log.i(TAG, "onAdded() Marking attachment progress as 'started'");
@@ -133,6 +135,11 @@ public final class AttachmentDownloadJob extends BaseJob {
 
     if (attachment == null) {
       Log.w(TAG, "attachment no longer exists.");
+      return;
+    }
+
+    if (attachment.isPermanentlyFailed()) {
+      Log.w(TAG, "Attachment was marked as a permanent failure. Refusing to download.");
       return;
     }
 
@@ -194,9 +201,17 @@ public final class AttachmentDownloadJob extends BaseJob {
       } else {
         throw new IOException("Failed to delete temp download file following range exception");
       }
-    } catch (InvalidPartException | NonSuccessfulResponseCodeException | InvalidMessageException | MmsException | MissingConfigurationException e) {
+    } catch (InvalidPartException | NonSuccessfulResponseCodeException | MmsException | MissingConfigurationException e) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e);
       markFailed(messageId, attachmentId);
+    } catch (InvalidMessageException e) {
+      Log.w(TAG, "Experienced an InvalidMessageException while trying to download an attachment.", e);
+      if (e.getCause() instanceof InvalidMacException) {
+        Log.w(TAG, "Detected an invalid mac. Treating as a permanent failure.");
+        markPermanentlyFailed(messageId, attachmentId);
+      } else {
+        markFailed(messageId, attachmentId);
+      }
     }
   }
 
@@ -257,6 +272,15 @@ public final class AttachmentDownloadJob extends BaseJob {
     try {
       AttachmentDatabase database = SignalDatabase.attachments();
       database.setTransferProgressFailed(attachmentId, messageId);
+    } catch (MmsException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void markPermanentlyFailed(long messageId, AttachmentId attachmentId) {
+    try {
+      AttachmentDatabase database = SignalDatabase.attachments();
+      database.setTransferProgressPermanentFailure(attachmentId, messageId);
     } catch (MmsException e) {
       Log.w(TAG, e);
     }

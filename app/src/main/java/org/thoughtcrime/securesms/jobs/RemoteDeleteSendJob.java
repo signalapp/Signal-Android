@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -28,12 +27,12 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
@@ -190,6 +189,10 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     if (recipients.isEmpty()) {
       db.markAsSent(messageId, true);
+
+      if (MessageRecordUtil.isStory(message)) {
+        db.deleteRemotelyDeletedStory(messageId);
+      }
     } else {
       Log.w(TAG, "Still need to send to " + recipients.size() + " recipients. Retrying.");
       throw new RetryLaterException();

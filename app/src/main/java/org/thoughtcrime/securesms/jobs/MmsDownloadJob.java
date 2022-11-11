@@ -249,8 +249,7 @@ public class MmsDownloadJob extends BaseJob {
       List<RecipientId> recipients = new ArrayList<>(members);
       group = Optional.of(SignalDatabase.groups().getOrCreateMmsGroupForMembers(recipients));
     }
-
-    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, TimeUnit.SECONDS.toMillis(retrieved.getDate()), -1, System.currentTimeMillis(), attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts));
+    IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, TimeUnit.SECONDS.toMillis(retrieved.getDate()), -1, System.currentTimeMillis(), attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts), false, false);
     Optional<InsertResult> insertResult = database.insertMessageInbox(message, contentLocation, threadId);
 
     if (insertResult.isPresent()) {

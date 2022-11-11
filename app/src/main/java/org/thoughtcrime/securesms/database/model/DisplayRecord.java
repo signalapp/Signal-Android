@@ -231,4 +231,16 @@ public abstract class DisplayRecord {
   public boolean isPendingInsecureSmsFallback() {
     return SmsDatabase.Types.isPendingInsecureSmsFallbackType(type);
   }
+
+  public boolean isPaymentNotification() {
+    return MmsSmsColumns.Types.isPaymentsNotification(type);
+  }
+
+  public boolean isPaymentsRequestToActivate() {
+    return MmsSmsColumns.Types.isPaymentsRequestToActivate(type);
+  }
+
+  public boolean isPaymentsActivated() {
+    return MmsSmsColumns.Types.isPaymentsActivated(type);
+  }
 }

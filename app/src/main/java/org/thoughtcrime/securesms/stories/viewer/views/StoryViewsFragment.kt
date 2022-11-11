@@ -8,10 +8,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -45,7 +45,7 @@ class StoryViewsFragment :
     val disabledButton: View = requireView().findViewById(R.id.disabled_button)
 
     disabledButton.setOnClickListener {
-      startActivity(AppSettingsActivity.privacy(requireContext()))
+      startActivity(StorySettingsActivity.getIntent(requireContext()))
     }
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.VIEWS)

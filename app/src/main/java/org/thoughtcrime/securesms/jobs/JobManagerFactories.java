@@ -102,6 +102,7 @@ public final class JobManagerFactories {
       put(ForceUpdateGroupV2Job.KEY,                 new ForceUpdateGroupV2Job.Factory());
       put(ForceUpdateGroupV2WorkerJob.KEY,           new ForceUpdateGroupV2WorkerJob.Factory());
       put(GiftSendJob.KEY,                           new GiftSendJob.Factory());
+      put(SendPaymentsActivatedJob.KEY,              new SendPaymentsActivatedJob.Factory());
       put(GroupV1MigrationJob.KEY,                   new GroupV1MigrationJob.Factory());
       put(GroupCallUpdateSendJob.KEY,                new GroupCallUpdateSendJob.Factory());
       put(GroupCallPeekJob.KEY,                      new GroupCallPeekJob.Factory());
@@ -138,6 +139,7 @@ public final class JobManagerFactories {
       put(NullMessageSendJob.KEY,                    new NullMessageSendJob.Factory());
       put(PaymentLedgerUpdateJob.KEY,                new PaymentLedgerUpdateJob.Factory());
       put(PaymentNotificationSendJob.KEY,            new PaymentNotificationSendJob.Factory());
+      put(PaymentNotificationSendJobV2.KEY,          new PaymentNotificationSendJobV2.Factory());
       put(PaymentSendJob.KEY,                        new PaymentSendJob.Factory());
       put(PaymentTransactionCheckJob.KEY,            new PaymentTransactionCheckJob.Factory());
       put(PnpInitializeDevicesJob.KEY,               new PnpInitializeDevicesJob.Factory());
@@ -175,6 +177,7 @@ public final class JobManagerFactories {
       put(SendReadReceiptJob.KEY,                    new SendReadReceiptJob.Factory(application));
       put(SendRetryReceiptJob.KEY,                   new SendRetryReceiptJob.Factory());
       put(SendViewedReceiptJob.KEY,                  new SendViewedReceiptJob.Factory(application));
+      put(SyncSystemContactLinksJob.KEY,             new SyncSystemContactLinksJob.Factory());
       put(MultiDeviceStorySendSyncJob.KEY,           new MultiDeviceStorySendSyncJob.Factory());
       put(ServiceOutageDetectionJob.KEY,             new ServiceOutageDetectionJob.Factory());
       put(SmsReceiveJob.KEY,                         new SmsReceiveJob.Factory());

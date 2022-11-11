@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
 import org.thoughtcrime.securesms.components.settings.configure
@@ -47,7 +47,7 @@ class ManageDonationsFragment :
   ExpiredGiftSheet.Callback {
 
   private val supportTechSummary: CharSequence by lazy {
-    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__support_technology)))
+    SpannableStringBuilder(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant), requireContext().getString(R.string.DonateToSignalFragment__private_messaging)))
       .append(" ")
       .append(
         SpanUtil.readMore(requireContext(), ContextCompat.getColor(requireContext(), R.color.signal_colorPrimary)) {
@@ -58,7 +58,7 @@ class ManageDonationsFragment :
 
   private val viewModel: ManageDonationsViewModel by viewModels(
     factoryProducer = {
-      ManageDonationsViewModel.Factory(SubscriptionsRepository(ApplicationDependencies.getDonationsService()))
+      ManageDonationsViewModel.Factory(MonthlyDonationRepository(ApplicationDependencies.getDonationsService()))
     }
   )
 
@@ -105,7 +105,7 @@ class ManageDonationsFragment :
 
       noPadTextPref(
         title = DSLSettingsText.from(
-          R.string.DonateToSignalFragment__powered_by,
+          R.string.DonateToSignalFragment__privacy_over_profit,
           DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
         )
       )

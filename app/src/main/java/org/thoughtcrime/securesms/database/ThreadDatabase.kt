@@ -553,7 +553,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
           $UNREAD_SELF_MENTION_COUNT = $UNREAD_SELF_MENTION_COUNT + ?, 
           $LAST_SCROLLED = ? 
       WHERE $ID = ?
-      """.trimIndent(),
+      """.toSingleLine(),
       SqlUtil.buildArgs(unreadAmount, unreadSelfMentionAmount, 0, threadId)
     )
   }
@@ -658,7 +658,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
           ${RecipientDatabase.TABLE_NAME}.${RecipientDatabase.GROUP_ID} NOT NULL 
           AND ${RecipientDatabase.TABLE_NAME}.${RecipientDatabase.GROUP_TYPE} != ${RecipientDatabase.GroupType.MMS.id}
         ) 
-      )""".trimMargin()
+      )"""
       where += " AND ${RecipientDatabase.TABLE_NAME}.${RecipientDatabase.FORCE_SMS_SELECTION} = 0"
     }
 
@@ -695,7 +695,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
           $activeGroupQuery
         )
       )
-    """.trimIndent()
+    """
 
     val query = createQuery(
       where = where,
@@ -1391,7 +1391,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       Log.w(TAG, "[merge] Only had a thread for secondary. Updating it to have the recipientId of the primary.", true)
       writableDatabase
         .update(TABLE_NAME)
-        .values(RECIPIENT_ID to primaryRecipientId)
+        .values(RECIPIENT_ID to primaryRecipientId.serialize())
         .where("$ID = ?", secondary.threadId)
         .run()
       MergeResult(threadId = secondary.threadId, previousThreadId = -1, neededMerge = false)
@@ -1567,7 +1567,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       query += " OFFSET $offset"
     }
 
-    return query
+    return query.toSingleLine()
   }
 
   private fun isSilentType(type: Long): Boolean {
@@ -1581,6 +1581,10 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
 
   fun readerFor(cursor: Cursor): Reader {
     return Reader(cursor)
+  }
+
+  private fun String.toSingleLine(): String {
+    return this.trimIndent().split("\n").joinToString(separator = " ")
   }
 
   object DistributionTypes {

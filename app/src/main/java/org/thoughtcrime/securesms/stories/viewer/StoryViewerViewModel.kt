@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,7 +31,7 @@ class StoryViewerViewModel(
         storyViewerArgs.storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyViewerArgs.storyThumbUri, storyViewerArgs.storyThumbBlur)
         else -> StoryViewerState.CrossfadeSource.None
       },
-      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote
+      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote || Build.VERSION.SDK_INT < 21
     )
   )
 
@@ -53,11 +54,18 @@ class StoryViewerViewModel(
   var hasConsumedInitialState = false
     private set
 
+  private val firstTimeNavigationPublisher: BehaviorSubject<Boolean> = BehaviorSubject.createDefault(false)
+
   val isChildScrolling: Observable<Boolean> = childScrollStatePublisher.distinctUntilChanged()
+  val isFirstTimeNavigationShowing: Observable<Boolean> = firstTimeNavigationPublisher.distinctUntilChanged()
 
   fun addHiddenAndRefresh(hidden: Set<RecipientId>) {
     this.hidden.addAll(hidden)
     refresh()
+  }
+
+  fun setIsDisplayingFirstTimeNavigation(isDisplayingFirstTimeNavigation: Boolean) {
+    firstTimeNavigationPublisher.onNext(isDisplayingFirstTimeNavigation)
   }
 
   fun getHidden(): Set<RecipientId> = hidden

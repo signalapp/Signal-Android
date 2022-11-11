@@ -12,16 +12,22 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage
+import org.thoughtcrime.securesms.sms.IncomingTextMessage
 import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.api.push.ServiceId
+import java.util.Optional
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
 class RecipientDatabaseTest_processPnpTuple {
 
   private lateinit var recipientDatabase: RecipientDatabase
+  private lateinit var smsDatabase: SmsDatabase
+  private lateinit var threadDatabase: ThreadDatabase
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())
@@ -29,6 +35,8 @@ class RecipientDatabaseTest_processPnpTuple {
   @Before
   fun setup() {
     recipientDatabase = SignalDatabase.recipients
+    smsDatabase = SignalDatabase.sms
+    threadDatabase = SignalDatabase.threads
 
     ensureDbEmpty()
 
@@ -180,11 +188,12 @@ class RecipientDatabaseTest_processPnpTuple {
   fun onlyPniMatches_noExistingPniSession_changeNumber() {
     // This test, I could go either way. We decide to change the E164 on the existing row rather than create a new one.
     // But it's an "unstable E164->PNI mapping" case, which we don't expect, so as long as there's a user-visible impact that should be fine.
-    // TODO Verify change number
     test {
-      given(E164_B, PNI_A, null)
+      given(E164_B, PNI_A, null, createThread = true)
       process(E164_A, PNI_A, ACI_A)
       expect(E164_A, PNI_A, ACI_A)
+
+      expectChangeNumberEvent()
     }
   }
 
@@ -192,21 +201,23 @@ class RecipientDatabaseTest_processPnpTuple {
   fun pniAndAciMatches_changeNumber() {
     // This test, I could go either way. We decide to change the E164 on the existing row rather than create a new one.
     // But it's an "unstable E164->PNI mapping" case, which we don't expect, so as long as there's a user-visible impact that should be fine.
-    // TODO Verify change number
     test {
-      given(E164_B, PNI_A, ACI_A)
+      given(E164_B, PNI_A, ACI_A, createThread = true)
       process(E164_A, PNI_A, ACI_A)
       expect(E164_A, PNI_A, ACI_A)
+
+      expectChangeNumberEvent()
     }
   }
 
   @Test
   fun onlyAciMatches_changeNumber() {
-    // TODO Verify change number
     test {
-      given(E164_B, null, ACI_A)
+      given(E164_B, null, ACI_A, createThread = true)
       process(E164_A, PNI_A, ACI_A)
       expect(E164_A, PNI_A, ACI_A)
+
+      expectChangeNumberEvent()
     }
   }
 
@@ -318,29 +329,31 @@ class RecipientDatabaseTest_processPnpTuple {
 
   @Test
   fun merge_e164AndPni_e164AndPniAndAci_changeNumber() {
-    // TODO Verify change number
     test {
       given(E164_A, PNI_A, null)
-      given(E164_B, PNI_B, ACI_A)
+      given(E164_B, PNI_B, ACI_A, createThread = true)
 
       process(E164_A, PNI_A, ACI_A)
 
       expectDeleted()
       expect(E164_A, PNI_A, ACI_A)
+
+      expectChangeNumberEvent()
     }
   }
 
   @Test
   fun merge_e164AndPni_e164Aci_changeNumber() {
-    // TODO Verify change number
     test {
       given(E164_A, PNI_A, null)
-      given(E164_B, null, ACI_A)
+      given(E164_B, null, ACI_A, createThread = true)
 
       process(E164_A, PNI_A, ACI_A)
 
       expectDeleted()
       expect(E164_A, PNI_A, ACI_A)
+
+      expectChangeNumberEvent()
     }
   }
 
@@ -402,15 +415,23 @@ class RecipientDatabaseTest_processPnpTuple {
   private inner class TestCase {
     private val generatedIds: LinkedHashSet<RecipientId> = LinkedHashSet()
     private var expectCount = 0
+    private lateinit var outputRecipientId: RecipientId
 
-    fun given(e164: String?, pni: PNI?, aci: ACI?) {
-      generatedIds += insert(e164, pni, aci)
+    fun given(e164: String?, pni: PNI?, aci: ACI?, createThread: Boolean = false) {
+      val id = insert(e164, pni, aci)
+      generatedIds += id
+      if (createThread) {
+        // Create a thread and throw a dummy message in it so it doesn't get automatically deleted
+        threadDatabase.getOrCreateThreadIdFor(Recipient.resolved(id))
+        smsDatabase.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, 0, 0, 0, "", Optional.empty(), 0, false, ""), ""))
+      }
     }
 
     fun process(e164: String?, pni: PNI?, aci: ACI?) {
       SignalDatabase.rawDatabase.beginTransaction()
       try {
-        generatedIds += recipientDatabase.processPnpTuple(e164, pni, aci, pniVerified = false).finalId
+        outputRecipientId = recipientDatabase.processPnpTuple(e164, pni, aci, pniVerified = false).finalId
+        generatedIds += outputRecipientId
         SignalDatabase.rawDatabase.setTransactionSuccessful()
       } finally {
         SignalDatabase.rawDatabase.endTransaction()
@@ -434,6 +455,10 @@ class RecipientDatabaseTest_processPnpTuple {
 
     fun expectDeleted(id: RecipientId) {
       assertNull(get(id))
+    }
+
+    fun expectChangeNumberEvent() {
+      assertEquals(1, smsDatabase.getChangeNumberMessageCount(outputRecipientId))
     }
   }
 

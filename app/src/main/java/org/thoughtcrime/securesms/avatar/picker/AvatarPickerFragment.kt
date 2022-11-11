@@ -123,7 +123,7 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
         }
       )
     }
-    clearButton.setOnClickListener { viewModel.clear() }
+    clearButton.setOnClickListener { viewModel.clearAvatar() }
 
     setFragmentResultListener(TextAvatarCreationFragment.REQUEST_KEY_TEXT) { _, bundle ->
       val text = AvatarBundler.extractText(bundle)

@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.jobs
 
 import androidx.core.os.LocaleListCompat
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.JsonNode
+import com.fasterxml.jackson.databind.node.ObjectNode
+import org.json.JSONObject
 import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
@@ -275,7 +278,9 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
             title = megaphone.translation.title,
             body = megaphone.translation.body,
             primaryActionText = megaphone.translation.primaryCtaText,
-            secondaryActionText = megaphone.translation.secondaryCtaText
+            secondaryActionText = megaphone.translation.secondaryCtaText,
+            primaryActionData = megaphone.remoteMegaphone.primaryCtaData?.takeIf { it is ObjectNode }?.let { JSONObject(it.toString()) },
+            secondaryActionData = megaphone.remoteMegaphone.secondaryCtaData?.takeIf { it is ObjectNode }?.let { JSONObject(it.toString()) }
           )
 
           SignalDatabase.remoteMegaphones.insert(record)
@@ -384,7 +389,9 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     @JsonProperty val showForNumberOfDays: Long?,
     @JsonProperty val conditionalId: String?,
     @JsonProperty val primaryCtaId: String?,
-    @JsonProperty val secondaryCtaId: String?
+    @JsonProperty val secondaryCtaId: String?,
+    @JsonProperty val primaryCtaData: JsonNode?,
+    @JsonProperty val secondaryCtaData: JsonNode?
   )
 
   data class TranslatedReleaseNote(

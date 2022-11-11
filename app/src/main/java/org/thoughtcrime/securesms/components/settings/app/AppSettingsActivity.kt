@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
@@ -34,7 +34,7 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
 
   private var wasConfigurationUpdated = false
 
-  override val donationPaymentRepository: DonationPaymentRepository by lazy { DonationPaymentRepository(this) }
+  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {

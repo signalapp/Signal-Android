@@ -45,6 +45,7 @@ public class CreatePaymentViewModel extends ViewModel {
   private final LiveData<Boolean> isValidAmount;
   private final Store<InputState> inputState;
   private final LiveData<Boolean> isPaymentsSupportedByPayee;
+  private final LiveData<Boolean> enclaveFailure;
 
   private final PayeeParcelable               payee;
   private final MutableLiveData<CharSequence> note;
@@ -55,6 +56,7 @@ public class CreatePaymentViewModel extends ViewModel {
     this.note             = new MutableLiveData<>(note);
     this.inputState       = new Store<>(new InputState());
     this.isValidAmount    = LiveDataUtil.combineLatest(spendableBalance, inputState.getStateLiveData(), (b, s) -> validateAmount(b.requireMobileCoin(), s.getMoney().requireMobileCoin()));
+    this.enclaveFailure   = LiveDataUtil.mapDistinct(SignalStore.paymentsValues().enclaveFailure(), isFailure -> isFailure);
 
     if (payee.getPayee().hasRecipientId()) {
       isPaymentsSupportedByPayee = LiveDataUtil.mapAsync(new DefaultValueLiveData<>(payee.getPayee().requireRecipientId()), r -> {
@@ -90,6 +92,10 @@ public class CreatePaymentViewModel extends ViewModel {
                                                                                                });
 
     inputState.update(liveExchangeRate, (rate, state) -> updateAmount(ApplicationDependencies.getApplication(), state.updateExchangeRate(rate), AmountKeyboardGlyph.NONE));
+  }
+
+  @NonNull LiveData<Boolean> getEnclaveFailure() {
+    return enclaveFailure;
   }
 
   @NonNull LiveData<InputState> getInputState() {

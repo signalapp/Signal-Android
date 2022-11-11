@@ -26,7 +26,7 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   void onFirstEverAppLaunch() {
     // TODO [ALAN] PhoneNumberPrivacy: During registration, set the attribute to so that new registrations start out as not listed
     //getStore().beginWrite()
-    //          .putInteger(LISTING_MODE, PhoneNumberListingMode.UNLISTED.ordinal())
+    //          .putInteger(LISTING_MODE, PhoneNumberListingMode.UNLISTED.serialize())
     //          .apply();
   }
 
@@ -36,21 +36,27 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
   }
 
   public @NonNull PhoneNumberSharingMode getPhoneNumberSharingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) return PhoneNumberSharingMode.EVERYONE;
-    return PhoneNumberSharingMode.values()[getInteger(SHARING_MODE, PhoneNumberSharingMode.EVERYONE.ordinal())];
+    if (!FeatureFlags.phoneNumberPrivacy()) {
+      return PhoneNumberSharingMode.EVERYONE;
+    }
+
+    return PhoneNumberSharingMode.deserialize(getInteger(SHARING_MODE, PhoneNumberSharingMode.EVERYONE.serialize()));
   }
 
   public void setPhoneNumberSharingMode(@NonNull PhoneNumberSharingMode phoneNumberSharingMode) {
-    putInteger(SHARING_MODE, phoneNumberSharingMode.ordinal());
+    putInteger(SHARING_MODE, phoneNumberSharingMode.serialize());
   }
 
   public @NonNull PhoneNumberListingMode getPhoneNumberListingMode() {
-    if (!FeatureFlags.phoneNumberPrivacy()) return PhoneNumberListingMode.LISTED;
-    return PhoneNumberListingMode.values()[getInteger(LISTING_MODE, PhoneNumberListingMode.LISTED.ordinal())];
+    if (!FeatureFlags.phoneNumberPrivacy()) {
+      return PhoneNumberListingMode.LISTED;
+    }
+
+    return PhoneNumberListingMode.deserialize(getInteger(LISTING_MODE, PhoneNumberListingMode.LISTED.serialize()));
   }
 
   public void setPhoneNumberListingMode(@NonNull PhoneNumberListingMode phoneNumberListingMode) {
-    putInteger(LISTING_MODE, phoneNumberListingMode.ordinal());
+    putInteger(LISTING_MODE, phoneNumberListingMode.serialize());
   }
 
   /**
@@ -73,21 +79,41 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
     return FeatureFlags.phoneNumberPrivacy() ? BOTH_CERTIFICATES : REGULAR_CERTIFICATE;
   }
 
-  /**
-   * Serialized, do not change ordinal/order
-   */
   public enum PhoneNumberSharingMode {
-    EVERYONE,
-    CONTACTS,
-    NOBODY
+    EVERYONE(0),
+    CONTACTS(1),
+    NOBODY(2);
+
+    private final int code;
+
+    PhoneNumberSharingMode(int code) {
+      this.code = code;
+    }
+
+    public int serialize() {
+      return code;
+    }
+
+    public static PhoneNumberSharingMode deserialize(int code) {
+      for (PhoneNumberSharingMode value : PhoneNumberSharingMode.values()) {
+        if (value.code == code) {
+          return value;
+        }
+      }
+
+      throw new IllegalArgumentException("Unrecognized code: " + code);
+    }
   }
 
-  /**
-   * Serialized, do not change ordinal/order
-   */
   public enum PhoneNumberListingMode {
-    LISTED,
-    UNLISTED;
+    LISTED(0),
+    UNLISTED(1);
+
+    private final int code;
+
+    PhoneNumberListingMode(int code) {
+      this.code = code;
+    }
 
     public boolean isDiscoverable() {
       return this == LISTED;
@@ -95,6 +121,20 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
     public boolean isUnlisted() {
       return this == UNLISTED;
+    }
+
+    public int serialize() {
+      return code;
+    }
+
+    public static PhoneNumberListingMode deserialize(int code) {
+      for (PhoneNumberListingMode value : PhoneNumberListingMode.values()) {
+        if (value.code == code) {
+          return value;
+        }
+      }
+
+      throw new IllegalArgumentException("Unrecognized code: " + code);
     }
   }
 }

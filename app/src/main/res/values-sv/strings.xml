@@ -105,6 +105,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal behöver behörigheten Lagring för att bifoga bilder, video och ljud men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Lagring\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal behöver behörigheten Kontakter för att bifoga kontaktinformation men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Kontakter\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal behöver behörigheten Plats för att bifoga platser men den har avfärdats permanent. Fortsätt till inställningar för appar, välj \"Behörigheter\" och aktivera \"Plats\".</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s har inte aktiverat betalningar </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Vill du skicka hen en begäran om att aktivera betalningar?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Skicka begäran</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Avbryt</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Laddar upp media…</string>
@@ -126,32 +134,38 @@
     <string name="BlockedUsersActivity__unblock">Avblockera</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Donationsbelopp: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">Ange dina kortuppgifter nedan</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">Kortnummer</string>
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/YY</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">Ogiltigt kortnummer</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">Kortet har gått ut</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">Koden är för kort</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">Koden är för lång</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">Ogiltig kod</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">Ogiltig månad</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">År krävs</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">Ogiltigt år</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Fortsätt</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Blockera och lämna %1$s?</string>
@@ -297,6 +311,18 @@
     <string name="ConversationItem_pending">  Väntar</string>
     <string name="ConversationItem_this_message_was_deleted">Detta meddelande togs bort.</string>
     <string name="ConversationItem_you_deleted_this_message">Du tog bort detta meddelande.</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Det går inte att ladda ner meddelandet. %1$s behöver skicka det igen.</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Det går inte att ladda ner bilden. %1$s behöver skicka den igen.</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Det går inte att ladda ner videon. %1$s behöver skicka den igen.</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Det går inte att ladda ner meddelandet. Du behöver skicka det igen.</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Det går inte att ladda ner bilden. Du behöver skicka den igen.</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Det går inte att ladda ner videon. Du behöver skicka den igen.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Lägg till bilaga</string>
@@ -426,6 +452,10 @@
     <string name="ConversationFragment_deleting_messages">Tar bort meddelanden…</string>
     <string name="ConversationFragment_delete_for_me">Ta bort för mig</string>
     <string name="ConversationFragment_delete_for_everyone">Ta bort för alla</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Detta meddelande tas bort för alla i konversationen om de har en ny version av Signal. De kommer att kunna se att du har tagit bort ett meddelande.</string>
     <string name="ConversationFragment_quoted_message_not_found">Hittade inte originalmeddelandet.</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Originalmeddelandet inte längre tillgänglig.</string>
@@ -852,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Du har valt en kontakt som inte stöder Signal-grupper, så den här gruppen blir mms. Anpassade mms-gruppnamn och foton kommer bara att vara synliga för dig.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Du har valt en kontakt som inte stöder Signal-grupper, så denna grupp kommer använda mms. Anpassade mms-gruppnamn och foton är bara synliga för dig. Stöd för mms-grupper kommer snart att tas bort för att fokusera på krypterade meddelanden.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Medlemsförfrågningar &amp; inbjudningar</string>
@@ -1397,6 +1427,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Din meddelandehistorik med %1$s och deras nummer %2$s har slagits samman.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Din meddelandehistorik med %1$s och en annan chatt som tillhörde dem har slagits samman.</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">Du har skickat en begäran till %1$s om att aktivera betalningar</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s vill att du ska aktivera betalningar. Skicka bara betalningar till personer du litar på.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">Du har aktiverat betalningar</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s kan nu ta emot betalningar</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s startade ett gruppsamtal · %2$s</string>
@@ -1427,6 +1465,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Snart kommer du inte längre att kunna skicka sms från Signal. Bjud in %1$s till Signal för att hålla konversationen här.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Du kan inte längre skicka sms i Signal. Bjud in %1$s till Signal för att hålla konversationen här.</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Acceptera</string>
@@ -1885,6 +1925,14 @@
     <string name="ThreadRecord_view_once_media">Visa-en-gång media</string>
     <string name="ThreadRecord_this_message_was_deleted">Detta meddelande togs bort.</string>
     <string name="ThreadRecord_you_deleted_this_message">Du tog bort detta meddelande.</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">Du har skickat en begäran om att aktivera betalningar</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s vill att du aktiverar betalningar</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">Du har aktiverat betalningar</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s kan nu ta emot betalningar</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s finns på Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Försvinnande meddelanden inaktiverat</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Tiden för försvinnande meddelanden inställd till %1$s</string>
@@ -1911,6 +1959,8 @@
     <string name="ThreadRecord__reacted_s_to_your_story">Reagerade %1$s på din story</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Reagerade %1$s på sin story</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal-uppdatering</string>
@@ -2014,6 +2064,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Media är inte längre tillgängligt.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Det går inte att hitta en app som kan dela detta medium.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Stäng</string>
+    <string name="MediaPreviewFragment_edit_media_error">Mediefel</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nya meddelanden i %2$d konversationer</string>
@@ -2110,6 +2161,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Enhet inte längre registreread</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Detta är troligen på grund av att du registrerade ditt mobilnummer hos Signal på en annan enhet. Tryck för att återregistrera dig.</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Uppdatera Signal för att fortsätta använda betalningar. Ditt saldo kanske inte är uppdaterat.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Uppdatera nu</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">För att svara på samtalet, ge Signal åtkomst till din mikrofon.</string>
@@ -2240,6 +2297,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Den försvinnande meddelandetiden ställs in till %1$s när du meddelar dem.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Donera</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Skicka betalning</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Aktivera betalningar</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Spela … Pausa</string>
@@ -2548,7 +2610,7 @@
         <item>Återkoppling</item>
         <item>Övrigt</item>
         <item>Betalningar (MobileCoin)</item>
-        <item>Donationer &amp; märken</item>
+        <item>Donationer och märken</item>
         <item>Sms-export</item>
     </string-array>
 
@@ -2615,6 +2677,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Om du trycker på enter-tangenten skickas textmeddelanden</string>
     <string name="preferences__pref_use_address_book_photos">Använd foton från adressboken</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Visa kontaktfoton från din adressbok om tillgängliga</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Håll avstängda chattar arkiverade</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Avstängda chattar som är arkiverade förblir arkiverade när ett nytt meddelande kommer.</string>
     <string name="preferences__generate_link_previews">Skapa länkförhandsgranskningar</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Hämta länkförhandsgranskningar direkt från webbplatser för meddelanden du skickar.</string>
     <string name="preferences__choose_identity">Välj identitet</string>
@@ -2806,107 +2872,9 @@
     <string name="configurable_single_select__customize_option">Anpassa alternativet</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2929,7 +2897,7 @@
     <string name="PaymentsHomeFragment__sent_s">Skickat %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Mottagen %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Överför till växling</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Valutaväxling</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Valutaomvandling</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Inaktivera betalningar</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Återställningsfras</string>
     <string name="PaymentsHomeFragment__help">Hjälp</string>
@@ -2938,7 +2906,7 @@
     <string name="PaymentsHomeFragment__received_payment">Mottagen betalning</string>
     <string name="PaymentsHomeFragment__processing_payment">Bearbetar betalning</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomvandling inte tillgängligt</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Valutaomvandling är inte tillgängligt</string>
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">Det går inte att visa valutaomvandling. Kontrollera din telefons anslutning och försök igen.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Betalningar är inte tillgängliga i din region.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Det gick inte att aktivera betalningar. Försök igen senare.</string>
@@ -2965,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">Slå på</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Inte nu</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Uppdatering krävs</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">En uppdatering krävs för att fortsätta skicka och ta emot betalningar och för att visa ditt uppdaterade betalningssaldo.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Avbryt</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Uppdatera nu</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3145,6 +3121,8 @@
     <string name="conversation_selection__menu_resend_message">Skicka om</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Välj</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3226,13 +3204,21 @@
     <string name="reminder_header_push_text">Uppgradera din kommunikationsupplevelse.</string>
     <string name="reminder_header_service_outage_text">Signal upplever tekniska problem. Vi arbetar för fullt för att återställa tjänsten så snabbt som möjligt.</string>
     <string name="reminder_header_progress">%1$d %%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Spara</string>
     <string name="media_preview__forward_title">Vidarebefordra</string>
     <string name="media_preview__share_title">Dela</string>
     <string name="media_preview__all_media_title">Alla media</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">Ändra</string>
 
 
     <!-- media_preview_activity -->
@@ -3739,7 +3725,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Tar bort konto…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutar ditt abonnemang…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">Avslutar ditt abonnemang …</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Beroende på antalet grupper du är med i kan detta ta några minuter</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3857,7 +3843,10 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Spara återställningsfras</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Ange återställningsfras</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Din saldo återställs automatiskt när du installerar om Signal om du bekräftar din Signal-PIN-kod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="one">Ditt saldo återställs automatiskt när du ominstallerar Signal om du bekräftar din Signal-pinkod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</item>
+        <item quantity="other">Ditt saldo återställs automatiskt när du ominstallerar Signal om du bekräftar din Signal-pinkod. Du kan också återställa ditt saldo med en återställningsfras, som är en fras på %1$d ord som är unik för dig. Skriv ner den och förvara den på ett säkert ställe.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Du har ett saldo. Det är dags att spara din återställningsfras – en nyckel på 24 ord som du kan använda för att återställa saldot.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4027,7 +4016,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Ta bort sms</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Tar bort sms från Signal ...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Tar bort sms från Signal …</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Du kan när som helst ta bort sms från Signal i Inställningar.</string>
     <!-- Description for export sms preference -->
@@ -4180,7 +4169,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Bli en upprätthållare</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drivs av människor som du. Bidra och få ett märke.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal drivs av människor som du. Donera och få ett märke.</string>
     <string name="BecomeASustainerMegaphone__not_now">Inte nu</string>
     <string name="BecomeASustainerMegaphone__donate">Donera</string>
 
@@ -4237,7 +4226,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Konversation tystad för alltid</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Kopierat telefonnummer till urklipp.</string>
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
-    <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att lära dig mer.</string>
+    <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att läsa mer.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
@@ -4418,6 +4407,12 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Det gick inte att uppdatera profilen</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">Märke</string>
 
@@ -4438,25 +4433,27 @@
 
     <string name="Subscription__s_per_month">%1$s/månad</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Förnyas %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">Upphör %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal är en ideell organisation utan annonsörer eller investerare, endast stödd av de människor som använder och värdesätter den. Gör en återkommande månatlig donation och få ett profilmärke för att dela ditt stöd.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Varför donera?</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal är engagerad i att utveckla integritetsteknologi med öppen källkod som skyddar yttrandefriheten och möjliggör säker global kommunikation.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Din donation driver denna sak och betalar för utvecklingen och driften av en app som används av miljoner för privat kommunikation. Inga annonser. Inga spårare. Inget påhitt.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Tack för ditt stöd!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Tack för boosten!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Du har fått %1$s märket! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Du har fått ett Boost märke! Visa detta märke på din profil för att väcka intresse om att donera till Signal.</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Du kan också</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">bli en månatlig upprätthållare.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Visa på profilen</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Presentera märket</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klar</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Fortsätt</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">När du har mer än ett märke kan du välja ett för att visa andra i din profil.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Få märken för din profil genom att stöda Signal.</string>
@@ -4475,7 +4472,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Donationskvitton</string>
     <string name="ManageDonationsFragment__badges">Märken</string>
     <string name="ManageDonationsFragment__subscription_faq">Vanliga frågor om abonnemang</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att få abonnemang.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Det gick inte att hämta prenumerationen.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Andra sätt att ge</string>
     <!-- Preference label to launch badge gifting -->
@@ -4484,7 +4481,7 @@
     <string name="Boost__enter_custom_amount">Ange anpassat belopp</string>
     <string name="Boost__one_time_contribution">Engångsbidrag</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal Boost</string>
+    <string name="MySupportPreference__add_a_signal_boost">Lägg till en Signal-boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/månad</string>
     <string name="MySupportPreference__renews_s">Förnyas %1$s</string>
     <string name="MySupportPreference__processing_transaction">Bearbetar transaktion…</string>
@@ -4493,24 +4490,24 @@
     <string name="MySupportPreference__please_contact_support">Kontakta supporten.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost märke gick ut</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-märket har upphört att gälla</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Månatlig donation avbruten</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ditt Boost märke har gått ut och är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Ditt Boost-märke har upphört att gälla och är inte längre synligt på din profil.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Du kan återaktivera ditt Boost-märke för ytterligare 30 dagar med ett engångsbidrag.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsätta att använda Signal men för att stöda teknik byggd för dig, överväg att bli en upprätthållare genom att göra en månatlig donation.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Du kan fortsätta att använda Signal men för att stödja teknik byggd för dig, överväg att bli en upprätthållare genom att göra en månatlig donation.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Bli en upprätthållare</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lägg till en Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Inte nu</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din månatliga donation var automatiskt avbruten för att du var inaktiv för länge. Ditt %1$s märke är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Din återkommande månatliga donation avbröts automatiskt eftersom du var inaktiv för länge. Ditt %1$s-märke visas inte längre i din profil.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din månatliga donation var avbruten för att vi inte kunde bearbeta din betalning. Ditt märke är inte längre synligt på din profil.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Din återkommande månatliga donation avbröts eftersom vi inte kunde behandla din betalning. Ditt märke visas inte längre i din profil.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Din återkommande månatliga donation avbröts. %1$s Ditt %2$s-märke är inte längre synligt på din profil.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stöda appen och återaktivera ditt märke, förnya nu.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Du kan fortsätta använda Signal men för att stödja appen och återaktivera ditt märke, förnya nu.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Förnya abonnemang</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Gå till Google Pay</string>
@@ -4874,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Inga visningar ännu</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktivera läskvitton för att se vem som har visat dina stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Gå till inställningar</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5087,6 +5084,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">Skickar svar …</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">Den här storyn är inte längre tillgänglig.</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Det går inte att ladda ner story. %1$s behöver dela den igen.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Ingen Internetanslutning</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5387,7 +5386,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Fortsätt ändå</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal behöver sms-behörighet för att kunna exportera dina sms-meddelanden.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5507,30 +5506,71 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Fortsätt</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">Månatlig</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">En gång</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donera %1$s/månad till Signal</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">Skaffa ett %1$s-märke</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donera %1$s till Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="one">Få ett %1$s-märke i %2$d dag</item>
+        <item quantity="other">Få ett %1$s-märke i %2$d dagar</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Betalkort</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Avbryter …</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

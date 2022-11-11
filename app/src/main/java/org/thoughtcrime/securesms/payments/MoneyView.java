@@ -89,6 +89,10 @@ public final class MoneyView extends AppCompatTextView {
   }
 
   public void setMoney(@NonNull Money money, boolean highlightCurrency, long timestamp) {
+    setMoney(money, timestamp, (highlightCurrency ? new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.payment_currency_code_foreground_color)) : null));
+  }
+
+  public void setMoney(@NonNull Money money, long timestamp, @Nullable Object currencySpan) {
     String          balance       = money.toString(formatterOptions);
     int             currencyIndex = balance.indexOf(money.getCurrency().getCurrencyCode());
 
@@ -102,8 +106,8 @@ public final class MoneyView extends AppCompatTextView {
       balanceSpan = new SpannableString(balance);
     }
 
-    if (highlightCurrency) {
-      balanceSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.payment_currency_code_foreground_color)), currencyIndex, currencyIndex + money.getCurrency().getCurrencyCode().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+    if (currencySpan != null) {
+      balanceSpan.setSpan(currencySpan, currencyIndex, currencyIndex + money.getCurrency().getCurrencyCode().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     }
 
     setText(balanceSpan);

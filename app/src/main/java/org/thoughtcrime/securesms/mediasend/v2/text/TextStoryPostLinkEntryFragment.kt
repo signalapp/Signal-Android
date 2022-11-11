@@ -15,7 +15,9 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModel
 import org.thoughtcrime.securesms.stories.StoryLinkPreviewView
 import org.thoughtcrime.securesms.util.LinkUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.setIncognitoKeyboardEnabled
 import org.thoughtcrime.securesms.util.visible
 
 class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
@@ -41,6 +43,7 @@ class TextStoryPostLinkEntryFragment : KeyboardEntryDialogFragment(
     val confirmButton: View = view.findViewById(R.id.confirm_button)
     val shareALinkGroup: Group = view.findViewById(R.id.share_a_link_group)
 
+    input.setIncognitoKeyboardEnabled(TextSecurePreferences.isIncognitoKeyboardEnabled(requireContext()))
     input.addTextChangedListener(
       afterTextChanged = {
         val scheme = "https://"

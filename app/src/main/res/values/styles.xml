@@ -520,4 +520,11 @@
         <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
     </style>
+    <style name="MediaPreviewButton">
+        <item name="android:layout_marginEnd">@dimen/media_preview_button_horizontal_margin</item>
+        <item name="android:layout_marginStart">@dimen/media_preview_button_horizontal_margin</item>
+        <item name="android:background">@drawable/circle_touch_highlight_background</item>
+        <item name="android:layout_width">@dimen/exo_media_preview_button_width</item>
+        <item name="android:layout_height">@dimen/exo_media_preview_button_width</item>
+    </style>
 </resources>

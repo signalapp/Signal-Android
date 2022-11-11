@@ -104,6 +104,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal memerlukan izin Penyimpanan untuk melampirkan foto, video, atau audio, tetapi saat ini izin ditolak secara permanen. Harap lanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Penyimpanan\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal memerlukan izin Kontak untuk melampirkan informasi kontak, tetapi saat ini izin ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Kontak\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal memerlukan izin Lokasi untuk melampirkan lokasi, tetapi saat ini izin ditolak secara permanen. Harap melanjutkan ke menu pengaturan aplikasi, Pilih \"Izin\", dan aktifkan \"Lokasi\".</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s belum mengaktifkan Pembayaran </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Anda ingin mengirimi mereka permintaan untuk mengaktifkan Pembayaran?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Kirim permintaan</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Batal</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Mengunggah media…</string>
@@ -125,32 +133,38 @@
     <string name="BlockedUsersActivity__unblock">Buka blokir</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Jumlah donasi: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">Masukkan informasi kartu Anda di bawah</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">Nomor kartu</string>
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/YY</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">Nomor kartu tidak valid</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">Kartu telah kedaluwarsa</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">Kode terlalu pendek</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">Kode terlalu panjang</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">Kode tidak valid</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">Bulan tidak valid</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">Tahun wajib diisi</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">Tahun tidak valid</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Lanjutkan</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Blokir dan tinggalkan %1$s?</string>
@@ -296,6 +310,18 @@
     <string name="ConversationItem_pending">  Tertunda</string>
     <string name="ConversationItem_this_message_was_deleted">Pesan ini telah dihapus.</string>
     <string name="ConversationItem_you_deleted_this_message">Anda menghapus pesan ini.</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Tidak dapat mengunduh pesan. %1$s harus mengirimnya lagi.</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Tidak dapat mengunduh gambar. %1$s harus mengirimnya lagi.</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Tidak dapat mengunduh video. %1$s harus mengirimnya lagi.</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Tidak dapat mengunduh pesan. Anda harus mengirimnya lagi.</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Tidak dapat mengunduh gambar. Anda harus mengirimnya lagi.</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Tidak dapat mengunduh video. Anda harus mengirimnya lagi.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Tambahkan lampiran</string>
@@ -419,6 +445,10 @@
     <string name="ConversationFragment_deleting_messages">Menghapus pesan-pesan …</string>
     <string name="ConversationFragment_delete_for_me">Hapus untuk saya</string>
     <string name="ConversationFragment_delete_for_everyone">Hapus untuk semua</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Pesan ini akan dihapus untuk setiap orang dalam percakapan ini jika mereka menggunakan versi terbaru Signal. Mereka dapat melihat ketika Anda menghapus sebuah pesan.</string>
     <string name="ConversationFragment_quoted_message_not_found">Pesan asli tidak ditemukan</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Pesan asli tidak lagi tersedia</string>
@@ -814,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Anda memilih satu kontak yang tidak mendukung grup Signal, jadi grup ini akan menjadi grup MMS. Nama grup MMS kustom dan foto hanya terlihat oleh Anda.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Anda memilih kontak yang tidak mendukung grup Signal, grup ini akan menjadi grup MMS. Foto dan nama grup MMS kustom hanya akan terlihat oleh Anda. Dukungan untuk grup MMS akan segera dihapus demi fokus pada pengiriman pesan terenkripsi.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Permintaan anggota &amp; undangan</string>
@@ -1334,11 +1364,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Sebuah pesan dari %1$s tidak dapat diterima</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s mengubah nomor teleponnya.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka fitur baru ini? Dukung Signal dengan donasi satu kali.</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Suka fitur baru ini? Dukung Signal dengan donasi satu-kali.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Riwayat pesan Anda dengan %1$s dan nomor %2$s telah digabungkan.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Riwayat pesan Anda dengan %1$s dan satu obrolan lain dengan mereka telah digabungkan.</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">Anda mengirimi %1$s permintaan untuk mengaktifkan Pembayaran</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ingin Anda mengaktifkan Pembayaran. Kirim pembayaran hanya kepada orang yang Anda percayai.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">Anda mengaktifkan Pembayaran</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s sekarang dapat menerima Pembayaran</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s memulai panggilan grup. %2$s</string>
@@ -1367,6 +1405,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Dalam waktu dekat, Anda tidak dapat lagi mengirim pesan SMS dari Signal. Undang %1$s ke Signal untuk menyimpan percakapan di sini.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Anda tidak dapat lagi mengirim pesan SMS di Signal. Undang %1$s ke Signal untuk menyimpan percakapan di sini.</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Terima</string>
@@ -1812,6 +1852,14 @@
     <string name="ThreadRecord_view_once_media">Media satu-tayangan</string>
     <string name="ThreadRecord_this_message_was_deleted">Pesan ini telah dihapus.</string>
     <string name="ThreadRecord_you_deleted_this_message">Anda menghapus pesan ini.</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">Anda mengirimkan permintaan untuk mengaktifkan Pembayaran</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ingin Anda mengaktifkan Pembayaran</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">Anda mengaktifkan Pembayaran</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s sekarang dapat menerima Pembayaran</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s ada di Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Pesan menghilang dinonaktifkan</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Waktu penghilangan pesan diatur menjadi %1$s</string>
@@ -1838,6 +1886,8 @@
     <string name="ThreadRecord__reacted_s_to_your_story">Memberi tanggapan %1$s ke cerita Anda</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Memberi tanggapan %1$s ke cerita mereka</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Pembaharuan Signal</string>
@@ -1940,6 +1990,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Media tidak tersedia.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Tidak dapat menemukan aplikasi untuk berbagi media ini.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Tutup</string>
+    <string name="MediaPreviewFragment_edit_media_error">Kesalahan Media</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
@@ -2035,6 +2086,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Perangkat tidak lagi terdaftar</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Hal ini mungkin karena Anda telah mendaftarkan nomor telepon Anda untuk Signal pada perangkat yang berbeda. Ketuk untuk mendaftar ulang.</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Perbarui Signal untuk terus menggunakan pembayaran. Saldo Anda mungkin belum diperbarui.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Perbarui sekarang</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Untuk menjawab panggilan, berikan Signal akses ke mikrofon Anda.</string>
@@ -2162,6 +2219,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Waktu pesan menghilang akan diatur menjadi %1$s saat Anda mengirimkan pesan.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Donasi</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Kirim Pembayaran</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Aktifkan Pembayaran</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Putar … Jeda</string>
@@ -2529,6 +2591,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Menekan tombol Enter akan mengirimkan pesan teks</string>
     <string name="preferences__pref_use_address_book_photos">Gunakan foto dari kontak</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Tampilkan foto dari kontak jika tersedia</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Biar Percakapan Dibisukan Diarsipkan</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Percakapan dibisukan yang diarsipkan akan tetap diarsipkan saat pesan baru masuk.</string>
     <string name="preferences__generate_link_previews">Buat pratinjau tautan</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Mengambil pratinjau dari tautan secara langsung dari situs web untuk pesan yang Anda kirimkan.</string>
     <string name="preferences__choose_identity">Pilih identitas</string>
@@ -2572,9 +2638,9 @@
     <string name="preferences__slow">Lambat</string>
     <string name="preferences__help">Bantuan</string>
     <string name="preferences__advanced">Lanjutan</string>
-    <string name="preferences__donate_to_signal">Berdonasi ke Signal</string>
+    <string name="preferences__donate_to_signal">Donasi ke Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Donasi satu kali</string>
+    <string name="preferences__one_time_donation">Donasi Satu-Kali</string>
     <string name="preferences__privacy">Privasi</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Cerita</string>
@@ -2720,107 +2786,9 @@
     <string name="configurable_single_select__customize_option">Sesuaikan opsi</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2879,6 +2847,14 @@
     <string name="PaymentsHomeFragment__enable">Aktifkan</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Jangan Sekarang</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Diperlukan Pembaruan</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Diperlukan pembaruan aplikasi agar dapat terus mengirim dan menerima pembayaran, serta melihat saldo pembayaran Anda yang terkini.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Batal</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Perbarui sekarang</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -2922,7 +2898,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s pada %2$s pada %3$s</string>
     <string name="PaymentsDetailsFragment__to">Kepada</string>
     <string name="PaymentsDetailsFragment__from">Dari</string>
-    <string name="PaymentsDetailsFragment__information">Detil transaksi termasuk jumlah pembayaran dan waktu dari transaksi adalah bagian dari Ledger MobileCoin.</string>
+    <string name="PaymentsDetailsFragment__information">Detail transaksi termasuk jumlah pembayaran dan waktu dari transaksi adalah bagian dari Ledger MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Biaya coin cleanup</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Biaya coin cleanup\" dibebankan saat koin dalam kepemilikan Anda tidak dapat digabungkan untuk menyelesaikan sebuah transaksi. Cleanup memungkinkan Anda untuk melanjutkan pembayaran.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Tidak ada detail lebih untuk transaksi ini</string>
@@ -3058,6 +3034,8 @@
     <string name="conversation_selection__menu_resend_message">Kirim ulang</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Pilih</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3139,13 +3117,21 @@
     <string name="reminder_header_push_text">Tingkatkan pengalaman komunikasi Anda.</string>
     <string name="reminder_header_service_outage_text">Signal mengalami kendala teknis. Kami sedang bekerja keras untuk mengembalikan layanan secepat mungkin.</string>
     <string name="reminder_header_progress">%1$d%%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Simpan</string>
     <string name="media_preview__forward_title">Teruskan</string>
     <string name="media_preview__share_title">Bagikan</string>
     <string name="media_preview__all_media_title">Semua media</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">Sunting</string>
 
 
     <!-- media_preview_activity -->
@@ -3175,7 +3161,7 @@
 
     <string name="FirstInviteReminder__title">Undang ke Signal</string>
     <string name="FirstInviteReminder__description">Anda dapat meningkatkan jumlah pesan terenkripsi sebanyak %1$d%%.</string>
-    <string name="SecondInviteReminder__title">Perkuat Signal</string>
+    <string name="SecondInviteReminder__title">Beri Boost untuk Signal Anda</string>
     <string name="SecondInviteReminder__description">Undang %1$s</string>
     <string name="InsightsReminder__view_insights">Lihat Insight</string>
     <string name="InsightsReminder__invite">Undang</string>
@@ -3760,7 +3746,9 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Simpan frasa pemulihan</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Masukkan frasa pemulihan</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Saldo Anda akan dipulihkan secara otomatis saat Anda memasang ulang Signal jika Anda mengkonfirmasi PIN Signal. Anda juga dapat memulihkan saldo menggunakan frasa pemulihan, yang berupa %1$d-frasa kata unik untuk Anda. Tuliskan dan simpan di tempat yang aman.</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="other">Saldo Anda akan dipulihkan secara otomatis saat Anda menginstal ulang Signal jika Anda mengonfirmasi PIN Signal. Anda juga dapat memulihkan saldo menggunakan frasa pemulihan, yang berupa frasa %1$d kata unik. Catat dan simpan di tempat yang aman.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Anda memiliki saldo! Waktunya menyimpan frasa pemulihan—ini adalah kunci 24 kata yang bisa digunakan untuk memulihkan saldo.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4056,9 +4044,9 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">Pemilih pojok bawah</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">Berdonasi ke Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">Donasi ke Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal didukung oleh orang baik seperti Anda. Donasi setiap bulan dan terima lencana.</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal didukung oleh orang-orang seperti Anda. Beri donasi setiap bulan dan dapatkan lencana.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Donasi</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4081,7 +4069,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Menjadi Penyokong</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal didukung oleh orang seperti Anda. Donasi dan dapatkan sebuah lencana.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal didukung oleh orang-orang seperti Anda. Beri donasi dan dapatkan sebuah lencana.</string>
     <string name="BecomeASustainerMegaphone__not_now">Nanti saja</string>
     <string name="BecomeASustainerMegaphone__donate">Donasi</string>
 
@@ -4138,7 +4126,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Percakapan disenyapkan selamanya</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Nomor telepon disalin ke papan klip.</string>
     <string name="ConversationSettingsFragment__phone_number">Nomor telepon</string>
-    <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana pada profil Anda dengan mendukung Signal. Ketuk pada lencana untuk meplejari lebih lanjut.</string>
+    <string name="ConversationSettingsFragment__get_badges">Dapatkan lencana untuk profil Anda dengan mendukung Signal. Ketuk lencana untuk mempelajari lebih lanjut.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Tambahkan anggota</string>
@@ -4302,7 +4290,7 @@
     <string name="CameraFragment__failed_to_open_camera">Gagal membuka kamera</string>
 
     <string name="BadgesOverviewFragment__my_badges">Lencana saya</string>
-    <string name="BadgesOverviewFragment__featured_badge">Lencana utama</string>
+    <string name="BadgesOverviewFragment__featured_badge">Lencana unggulan</string>
     <string name="BadgesOverviewFragment__display_badges_on_profile">Tampilkan lencana pada profil</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Gagal memperbarui profil</string>
 
@@ -4315,52 +4303,60 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Gagal memperbarui profil</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi penyokong</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">Lencana</string>
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Dukung teknologi yang dibangun untuk Anda—bukan untuk data Anda—dengan bergabung ke komunitas yang menyokongnya.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Dukung teknologi yang dibangun untuk Anda, bukan data Anda, dengan bergabung dengan komunitas yang menyokong Signal.</string>
-    <string name="SubscribeFragment__currency">Kurensi</string>
+    <string name="SubscribeFragment__currency">Mata Uang</string>
     <string name="SubscribeFragment__more_payment_options">Pilihan Pembayaran Lainnya</string>
     <string name="SubscribeFragment__cancel_subscription">Batalkan Langganan</string>
     <string name="SubscribeFragment__confirm_cancellation">Konfirmasi Pembatalan?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil Anda pada periode akhir tagihan Anda.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Anda tidak akan dikenakan biaya lagi. Lencana Anda akan dihapus dari profil pada akhir periode tagihan Anda.</string>
     <string name="SubscribeFragment__not_now">Nanti saja</string>
     <string name="SubscribeFragment__confirm">Konfirmasi</string>
     <string name="SubscribeFragment__update_subscription">Perbarui Langganan</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Langganan Anda telah dibatalkan.</string>
     <string name="SubscribeFragment__update_subscription_question">Perbarui langganan?</string>
     <string name="SubscribeFragment__update">Perbarui</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan biaya penuh (%1$s) dari harga baru berlangganan hari ini. Langganan Anda akan diperbarui setiap bulan.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Anda akan dikenakan biaya penuh (%1$s) harga langganan yang baru hari ini. Langganan Anda akan diperpanjang setiap bulan.</string>
 
     <string name="Subscription__s_per_month">%1$s/bulan</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Memperpanjang %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">Kedaluwarsa %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal adalah perusahaan nonprofit tanpa pengiklan atau investor, disokong hanya dengan mereka yang menggunakan dan menghargainya. Beri donasi bulanan berulang dan dapatkan lencana profil untuk membagikan dukungan Anda.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Mengapa Berdonasi?</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal berkomitmen untuk mengembangkan teknologi privasi bersumber terbuka yang melindungi kebebasan berekspresi dan memungkinkan komunikasi global yang aman.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Donasi Anda mendukung gerakan ini dan membiayai pengembangan dan operasi dari aplikasi yang digunakan jutaan orang untuk komunikasi privat. Tanpa iklan. Tanpa pelacak. Tidak bercanda.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Terima kasih untuk Dukungan Anda!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Terima kasih untuk Penguatnya!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Anda mendapatkan %1$s lencana! Tampilkan lencana ini pada profil Anda untuk membangun kesadaran untuk berdonasi ke Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Anda mendapatkan lencana Boost! Tampilkan lencana ini pada profil Anda untuk membangun kesadaran untuk berdonasi ke Signal.</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Anda juga dapat</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">menjadi Penyokong bulanan.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Tampilkan di Profil</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana istimewa</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Selesai</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Jika punya lebih dari satu lencana, Anda dapat memilih salah satunya untuk ditampilkan pada profil Anda.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Buat lencana unggulan</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Lanjutkan</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Jika punya lebih dari satu lencana, Anda dapat memilih salah satu untuk ditampilkan di profil Anda.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana pada profil Anda dengan mendukung Signal.</string>
+    <string name="BecomeASustainerFragment__get_badges">Dapatkan lencana untuk profil Anda dengan mendukung Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal adalah lembaga nirlaba tanpa pengiklan dan investor, didukung hanya oleh orang seperti Anda.</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">Berdonasi ke Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">Donasi ke Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Selanjutnya</string>
     <!-- Heading for receipts area of manage subscriptions page -->
@@ -4371,44 +4367,44 @@
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Resi Donasi</string>
     <string name="ManageDonationsFragment__badges">Lencana</string>
-    <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Populer Langganan</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Eror mengambil langganan.</string>
+    <string name="ManageDonationsFragment__subscription_faq">Pertanyaan Umum Langganan</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Terjadi kesalahan saat mendapatkan langganan.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Cara lain untuk memberi</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Hadiahkan sebuah lencana</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Beri hadiah lencana</string>
 
     <string name="Boost__enter_custom_amount">Masukkan Jumlah Kustom</string>
     <string name="Boost__one_time_contribution">Kontribusi sekali saja</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Tambahkan Penguat Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">Tambahkan Boost Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/bulan</string>
-    <string name="MySupportPreference__renews_s">Perpanjang %1$s</string>
+    <string name="MySupportPreference__renews_s">Memperpanjang %1$s</string>
     <string name="MySupportPreference__processing_transaction">Memproses transaksi…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
     <string name="MySupportPreference__couldnt_add_badge_s">Tidak dapat menambahkan lencana. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Mohon hubungi bantuan.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Lencana Boost kadaluwarsa</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Lencana Boost Kedaluwarsa</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Donasi Bulanan Dibatalkan</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost Anda telah kadaluwarsa dan tidak lagi terlihat pada profil Anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda dapat mengaktifkan kembali lencana Penguat Anda untuk 30 hari dengan kontribusi satu-kali.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Lencana Boost Anda telah kedaluwarsa dan tidak terlihat lagi di profil Anda.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Anda dapat mengaktifkan kembali lencana Boost Anda selama 30 hari lagi dengan kontribusi satu kali.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Anda tetap bisa menggunakan Signal tetapi untuk mendukung teknologi yang dibuat untuk Anda, pertimbangkan untuk menjadi penyokong dengan memberikan donasi bulanan.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Anda tetap dapat menggunakan Signal, tetapi untuk mendukung teknologi yang dibuat untuk Anda, pertimbangkan untuk menjadi penyokong dengan memberikan donasi bulanan.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Menjadi Penyokong</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambahkan sebuah Penguat</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Tambahkan Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nanti saja</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Donasi bulanan Anda telah otomatis dibatalkan karena Anda tidak aktif untuk waktu yang lama. Lencana %1$s Anda tidak lagi terlihat pada profil Anda.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Donasi bulanan berulang Anda otomatis dibatalkan karena Anda sudah lama tidak aktif. Lencana %1$s Anda tidak terlihat lagi di profil Anda.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donasi bulanan Anda telah dibatalkan karena kami tidak dapat memproses pembayaran Anda. Lencana Anda tidak lagi terlihat pada profil Anda.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Donasi bulanan berulang Anda telah dibatalkan karena kami tidak dapat memproses pembayaran Anda. Lencana Anda tidak terlihat lagi di profil Anda.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Donasi bulanan berulang Anda dibatalkan. %1$s Lencana %2$s sudah tidak terlihat di profil Anda.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda dapat tetap menggunakan Signal namun untuk mendukung aplikasinya dan mengaktifkan kembali lencana Anda, perbarui sekarang.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perbarui langganan</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Donasi bulanan berulang Anda telah dibatalkan. %1$s Lencana %2$s Anda tidak terlihat lagi di profil Anda.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Anda tetap dapat menggunakan Signal, tetapi untuk mendukung aplikasi dan mengaktifkan kembali lencana Anda, perpanjang langganan sekarang.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Perpanjang langganan</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Pergi ke Google Pay</string>
 
@@ -4418,15 +4414,15 @@
 
     <string name="Subscription__please_contact_support_for_more_information">Harap hubungi bantuan untuk informasi lebih lanjut.</string>
     <string name="Subscription__contact_support">Hubungi Bantuan</string>
-    <string name="Subscription__get_a_s_badge">Dapatkan sebuah %1$s lencana</string>
+    <string name="Subscription__get_a_s_badge">Dapatkan lencana %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Memproses pembayaran…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Gagal memproses pembayaran</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Gagal memproses pembayaran. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Lencana Anda tidak dapat ditambahkan ke akun Anda, namun Anda mungkin telah dikenakan biaya. Mohon kontak bagian dukungan.</string>
-    <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba kembali.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Lencana Anda tidak dapat ditambahkan ke akun Anda, tetapi Anda mungkin telah dikenakan biaya. Harap hubungi bagian dukungan.</string>
+    <string name="DonationsErrors__your_payment">Pembayaran tidak dapat diproses dan Anda belum ditagih. Silakan coba lagi.</string>
     <string name="DonationsErrors__still_processing">Masih memproses</string>
     <string name="DonationsErrors__couldnt_add_badge">Tidak dapat menambahkan lencana</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4436,14 +4432,14 @@
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">Gagal untuk mengirim lencana hadiah</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Tidak dapat mengirim lencana hadiah. Silahkan hubungi support.</string>
-    <string name="DonationsErrors__your_badge_could_not">Lencana Anda tidak dapat ditambahkan ke akun Anda, namun Anda mungkin telah dikenakan biaya. Mohon kontak bagian dukungan.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Tidak dapat mengirim lencana hadiah. Silakan hubungi bagian dukungan.</string>
+    <string name="DonationsErrors__your_badge_could_not">Lencana Anda tidak dapat ditambahkan ke akun Anda, tetapi Anda mungkin telah dikenakan biaya. Harap hubungi bagian dukungan.</string>
     <string name="DonationsErrors__your_payment_is_still">Pembayaran Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay Tidak Tersedia</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menata Google Pay untuk berdonasi dari dalam aplikasi.</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Anda harus menyiapkan Google Pay untuk berdonasi dari dalam aplikasi.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan sambungan internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Perangkat Anda tidak mendukung Google Pay, sehingga Anda tidak dapat berlangganan untuk memperoleh sebuah lencana. Anda tetap dapat mendukung Signal dengan berdonasi melalui situs web kami.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan koneksi internet.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Perangkat Anda tidak mendukung Google Pay sehingga Anda tidak dapat berlangganan dan mendapatkan lencana. Anda tetap bisa mendukung Signal dengan berdonasi melalui situs web kami.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
     <string name="NetworkFailure__retry">Coba lagi</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4666,7 +4662,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">Bagikan resi</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Jika Anda menginstal ulang Signal, resi dari donasi sebelumnya tidak akan tersedia.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Jika Anda telah menginstal ulang Signal, resi dari donasi sebelumnya tidak akan tersedia.</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">Resi donasi</string>
     <!-- Donation receipts amount title -->
@@ -4767,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Belum ada penonton</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Aktifkan bukti pesan terbaca untuk mengetahui siapa yang melihat cerita Anda.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Buka pengaturan</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4976,6 +4972,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">Mengirim balasan…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">Cerita ini sudah tidak tersedia.</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Tidak dapat mengunduh cerita. %1$s harus membagikannya lagi.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Tidak Ada Sambungan Internet</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5017,9 +5015,9 @@
     <!-- Tagline for gift row items -->
     <string name="GiftRowItem__send_a_gift_badge">Kirim lencana hadiah</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Hadiahkan sebuah lencana</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Beri Hadiah Lencana</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Beri seseorang lencana dengan memberikan donasi ke Signal atas nama mereka. Mereka akan mendapatkan lencana untuk diperlihatkan dalam profil foto mereka.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Beri seseorang lencana dengan memberikan donasi ke Signal atas nama mereka. Mereka akan mendapatkan lencana untuk ditampilkan di foto profil mereka.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Berikutnya</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5041,9 +5039,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Terima kasih untuk dukungan Anda!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Anda telah mendapatkan lencana hadiah dari %1$s! Bantu Signal membangun kesadaran dengan menampilkan lencana ini pada profil Anda.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Anda telah mendapatkan lencana hadiah dari %1$s! Bantu Signal membangun kesadaran dengan menampilkan lencana ini di profil Anda.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah menghadiahi lencana ke %1$s. Saat mereka menerimanya, mereka akan diberikan pilihan untuk memperlihatkan atau menyembunyikan lencana mereka.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Anda telah memberi hadiah lencana ke %1$s. Saat mereka menerimanya, mereka akan diberi pilihan untuk menampilkan atau menyembunyikan lencana mereka.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Tukarkan</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5051,13 +5049,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Meredeem hadiah…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Anda bisa meredeem lencana Anda nanti.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Anda bisa menebus lencana Anda nanti.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah menghadiahi lencana ke %1$s. Saat mereka menerimanya, mereka akan diberikan pilihan untuk memperlihatkan atau menyembunyikan lencana mereka.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Anda telah memberi hadiah lencana ke %1$s. Saat mereka menerimanya, mereka akan diberi pilihan untuk menampilkan atau menyembunyikan lencana mereka.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Hadiah Anda telah kadaluwarsa</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Lencana hadiah Anda telah kedaluwarsa</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lencana hadiah Anda telah kadaluwarsa, dan tidak lagi terlihat oleh orang lain pada profil Anda.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lencana hadiah Anda telah kedaluwarsa dan tidak terlihat lagi di profil Anda.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Untuk melanjutkan dukungan atas teknologi yang dibuat untuk Anda, mohon mempertimbangkan untuk menjadi Penyokong bulanan.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5266,7 +5264,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Tetap Lanjutkan</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal memerlukan izin SMS untuk dapat mengekspor pesan SMS Anda.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5385,30 +5383,69 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Lanjutkan</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">Bulanan</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">Sekali saja</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donasi %1$s/bulan ke Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Dapatkan sebuah %1$s lencana</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Dapatkan lencana %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donasi %1$s ke Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="other">Dapatkan lencana %1$s untuk %2$d hari</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kartu kredit atau debit</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Membatalkan…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

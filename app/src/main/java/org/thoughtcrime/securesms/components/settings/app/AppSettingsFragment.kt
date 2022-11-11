@@ -18,9 +18,7 @@ import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.stories.Stories.isFeatureFlagEnabled
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.PlayServicesUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -71,7 +69,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      if (PlayServicesUtil.getPlayServicesStatus(requireContext()) == PlayServicesUtil.PlayServicesStatus.SUCCESS) {
+      if (state.allowUserToGoToDonationManagementScreen) {
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
           icon = DSLSettingsIcon.from(R.drawable.ic_heart_24),
@@ -107,15 +105,13 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         }
       )
 
-      if (isFeatureFlagEnabled()) {
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__stories),
-          icon = DSLSettingsIcon.from(R.drawable.ic_stories_24),
-          onClick = {
-            findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
-          }
-        )
-      }
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__stories),
+        icon = DSLSettingsIcon.from(R.drawable.ic_stories_24),
+        onClick = {
+          findNavController().safeNavigate(AppSettingsFragmentDirections.actionAppSettingsFragmentToStoryPrivacySettings(R.string.preferences__stories))
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__notifications),

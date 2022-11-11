@@ -32,7 +32,7 @@ sealed class AvatarPickerViewModel(private val repository: AvatarPickerRepositor
     }
   }
 
-  fun clear() {
+  fun clearAvatar() {
     store.update {
       val avatar = getDefaultAvatarFromRepository()
       it.copy(currentAvatar = avatar, canSave = true, canClear = false, isCleared = true)

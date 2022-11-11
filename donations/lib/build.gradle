@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -38,6 +39,17 @@ dependencies {
     implementation libs.androidx.core.ktx
     implementation libs.androidx.annotation
     implementation libs.androidx.appcompat
+
+    implementation libs.kotlin.stdlib.jdk8
+    implementation libs.kotlin.reflect
+    implementation libs.jackson.module.kotlin
+    implementation libs.jackson.core
+
+    testImplementation testLibs.junit.junit
+    testImplementation testLibs.assertj.core
+    testImplementation (testLibs.robolectric.robolectric) {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
 
     api libs.google.play.services.wallet
     api libs.square.okhttp3

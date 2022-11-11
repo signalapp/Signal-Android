@@ -475,7 +475,9 @@ public class InputPanel extends LinearLayout
     future.addListener(new AssertedSuccessListener<Void>() {
       @Override
       public void onSuccess(Void result) {
-        fadeInNormalComposeViews();
+        if (voiceNoteDraftView.getDraft() == null) {
+          fadeInNormalComposeViews();
+        }
       }
     });
 

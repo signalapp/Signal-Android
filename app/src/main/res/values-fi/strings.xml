@@ -105,6 +105,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal tarvitsee luvan käyttää laitteesi tallennustilaa kuvien, videoiden tai äänitiedostojen liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal tarvitsee luvan käyttää laitteesi yhteystietoja oman yhteystietolistansa käsittelyä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Yhteystiedot\".</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal tarvitsee luvan käyttää sijaintitietoja sijainnin liittämistä varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Sijainti\".</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s ei ole aktivoinut Signal-maksuja </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Haluatko lähettää vastaanottajalle Signal-maksujen aktivointipyynnön?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Lähetä pyyntö</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Peruuta</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Lähetetään mediaa…</string>
@@ -126,32 +134,38 @@
     <string name="BlockedUsersActivity__unblock">Poista esto</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Lahjoitussumma: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">Anna kortin tiedot alla</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">Kortin numero</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">KK/VV</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">Virheellinen kortin numero</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">Kortti on vanhentunut</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">Koodi on liian lyhyt</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">Koodi on liian pitkä</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">Virheellinen koodi</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">Virheellinen kuukausi</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">Vuosi vaaditaan</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">Virheellinen vuosi</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Jatka</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Estetäänkö ja poistutaanko ryhmästä %1$s?</string>
@@ -297,6 +311,18 @@
     <string name="ConversationItem_pending">  Käsiteltävänä</string>
     <string name="ConversationItem_this_message_was_deleted">Viesti poistettiin.</string>
     <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Viestiä ei voi ladata. Käyttäjän %1$s on lähetettävä se uudelleen.</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Kuvaa ei voi ladata. Käyttäjän %1$s on lähetettävä se uudelleen.</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Videota ei voi ladata. Käyttäjän %1$s on lähetettävä se uudelleen.</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Viestiä ei voi ladata. Sinun on lähetettävä se uudelleen.</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Kuvaa ei voi ladata. Sinun on lähetettävä se uudelleen.</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Videota ei voi ladata. Sinun on lähetettävä se uudelleen.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Lisää liite</string>
@@ -426,6 +452,10 @@
     <string name="ConversationFragment_deleting_messages">Viestejä poistetaan…</string>
     <string name="ConversationFragment_delete_for_me">Poista minulta</string>
     <string name="ConversationFragment_delete_for_everyone">Poista kaikilta</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Tämä viesti poistetaan kaikilta keskustelussa olevilta, jos he käyttävät Signalin uusinta versiota. He näkevät, että poistit viestin.</string>
     <string name="ConversationFragment_quoted_message_not_found">Alkuperäistä viestiä ei löytynyt</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Alkuperäinen viesti ei ole enää saatavilla</string>
@@ -852,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Valitsemasi yhteystieto ei tue Signal-ryhmiä, joten tämän ryhmän viestit lähetetään multimediaviesteinä. Mukautettujen multimediaviestiryhmien nimet ja kuvat näkyvät vain sinulle.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Olet valinnut yhteystiedon, jonka laite ei tue Signalin ryhmäkeskusteluja. Tämä ryhmä tulee olemaan MMS-pohjainen. Multimediaviestiryhmien mukautetut nimet ja kuvat näkyvät vain sinulle. MMS-ryhmien tuki päättyy pian palvelun keskittyessä viestien salaukseen.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Liittymispyynnöt &amp; kutsut</string>
@@ -1397,6 +1427,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Viestihistoriasi yhteystiedon %1$s kanssa ja numero %2$s on yhdistetty.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Viestihistoriasi yhteystiedon %1$s kanssa ja toinen siihen kuulunut keskustelu on yhdistetty.</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">Lähetit käyttäjälle %1$s Signal-maksujen aktivointipyynnön</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s haluaa sinun aktivoivan Signal-maksut. Lähetä maksuja vain henkilöille, joihin luotat.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">Olet aktivoinut Signal-maksut</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s voi nyt hyväksyä maksuja</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
@@ -1427,6 +1465,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Pian et voi enää lähettää tekstiviestejä Signalista. Kutsu %1$s Signaliin, niin voit jatkaa keskustelua täällä.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Et voi enää lähettää tekstiviestejä Signalissa. Kutsu %1$s Signaliin, niin voit jatkaa keskustelua täällä.</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Hyväksy</string>
@@ -1885,6 +1925,14 @@
     <string name="ThreadRecord_view_once_media">Kerran katsottava media</string>
     <string name="ThreadRecord_this_message_was_deleted">Tämä viesti poistettiin.</string>
     <string name="ThreadRecord_you_deleted_this_message">Poistit tämän viestin.</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">Lähetit Signal-maksujen aktivointipyynnön</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s haluaa sinun aktivoivan Signal-maksut</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">Olet aktivoinut Signal-maksut</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s voi nyt hyväksyä maksuja</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s käyttää Signalia!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Katoavat viestit poistettu käytöstä</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Katoavien viestien ajaksi asetettu %1$s</string>
@@ -1906,11 +1954,13 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Lähetit lahjan</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjaksi saadun kunniamerkin</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Lunastit lahjamerkin</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Lähetti reaktion %1$s tarinaasi</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Lähetit reaktion %1$s tarinaan</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal-päivitys</string>
@@ -2014,6 +2064,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Media ei ole enää saatavilla.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Mikään sovellus ei tue tämän median jakamista.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Sulje</string>
+    <string name="MediaPreviewFragment_edit_media_error">Mediavirhe</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d uutta viestiä %2$d keskustelussa</string>
@@ -2110,6 +2161,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Tämä laite ei ole enää rekisteröity</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Todennäköisesti olet rekisteröitynyt Signaliin toisella laitteella. Rekisteröidy uudelleen napauttamalla.</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Maksut-toiminto edellyttää Signalin uusinta versiota. Saldosi ei ehkä ole ajan tasalla.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Päivitä nyt</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Jotta voit vastata puheluun, anna Signalille lupa käyttää mikrofonia.</string>
@@ -2240,6 +2297,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Viestien katoamisaika on asetettu arvoon %1$s, kun lähetät viestin.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Lahjoita</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Lähetä maksu</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Aktivoi maksut</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Soita … keskeytä</string>
@@ -2615,6 +2677,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Rivinvaihdon painallus lähettää viestin</string>
     <string name="preferences__pref_use_address_book_photos">Käytä osoitekirjan valokuvia</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Näytä yhteystietojen valokuvat osoitekirjasta, mikäli saatavilla</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Pidä mykistetyt chatit arkistossa</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Arkistoon siirretyt mykistetyt chatit pysyvät mykistettynä, vaikka uusia viestejä saapuu.</string>
     <string name="preferences__generate_link_previews">Luo esikatselukuvia linkeistä</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Näytä lähettämiesi linkkien esikatselu verkkosivustoilta.</string>
     <string name="preferences__choose_identity">Valitse identiteetti</string>
@@ -2806,107 +2872,9 @@
     <string name="configurable_single_select__customize_option">Mukautettu vaihtoehto</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2916,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">Vastaanotettu</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Esittelyssä maksut (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta. Aloita ottamalla se käyttöön.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">MobileCoin on uusi yksityisyyden suojaan keskittyvä digitaalinen valuutta, jota voit lähettää ja vastaanottaa Signalissa. Aloita ottamalla se käyttöön.</string>
     <string name="PaymentsHomeFragment__activate_payments">Aktivoi maksut</string>
     <string name="PaymentsHomeFragment__activating_payments">Aktivoidaan maksut…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Palauta maksutili</string>
@@ -2939,7 +2907,7 @@
     <string name="PaymentsHomeFragment__processing_payment">Käsitellään maksua</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Valuuttamuunnos ei saatavilla</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnoksen näyttäminen ei onnistu. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Valuuttamuunnosta ei voida näyttää. Tarkista puhelimen verkkoyhteys ja yritä uudelleen.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Maksutoiminto ei ole saatavilla alueellasi.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Maksutoiminnon käyttöönotto epäonnistui. Yritä myöhemmin uudelleen.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Poistetaanko maksut käytöstä?</string>
@@ -2965,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">Ota käyttöön</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Ei nyt</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Päivitys vaaditaan</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Sovellus on päivitettävä, jotta voit jatkossakin lähettää ja vastaanottaa maksuja ja nähdä ajantasaiset saldotiedot.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Peruuta</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Päivitä nyt</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3008,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s %2$s klo %3$s</string>
     <string name="PaymentsDetailsFragment__to">Vastaanottajat</string>
     <string name="PaymentsDetailsFragment__from">Lähettäjä</string>
-    <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot, mm. summa ja aika tallennetaan MobileCoiniin.</string>
+    <string name="PaymentsDetailsFragment__information">Tapahtuman tiedot, mukaan lukien maksun summa ja aika, tallennetaan MobileCoiniin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Kolikoiden siivousmaksu</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, summasta peritään kolikoiden siivousmaksu. Siivouksen jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Siirrosta ei ole saatavilla lisätietoja</string>
@@ -3068,7 +3044,7 @@
     <string name="ConfirmPayment__error_getting_fee">Virhe summan vastaanotossa</string>
     <string name="ConfirmPayment__estimated_s">Arvio %1$s</string>
     <string name="ConfirmPayment__to">Vastaanottaja:</string>
-    <string name="ConfirmPayment__total_amount">Yhteensä</string>
+    <string name="ConfirmPayment__total_amount">Kokonaissumma</string>
     <string name="ConfirmPayment__balance_s">Saldo: %1$s</string>
     <string name="ConfirmPayment__submitting_payment">Lähetetään maksua…</string>
     <string name="ConfirmPayment__processing_payment">Käsitellään maksua…</string>
@@ -3145,6 +3121,8 @@
     <string name="conversation_selection__menu_resend_message">Lähetä uudelleen</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Valitse</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3226,13 +3204,21 @@
     <string name="reminder_header_push_text">Päivitä keskustelukokemuksesi</string>
     <string name="reminder_header_service_outage_text">Signalissa on tällä hetkellä teknisiä ongelmia. Pyrimme korjaamaan ongelman mahdollisimman pian.</string>
     <string name="reminder_header_progress">%1$d %%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Tallenna</string>
     <string name="media_preview__forward_title">Välitä</string>
     <string name="media_preview__share_title">Jaa</string>
     <string name="media_preview__all_media_title">Kaikki mediatiedostot</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">Muokkaa</string>
 
 
     <!-- media_preview_activity -->
@@ -3857,7 +3843,10 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Tallenna palautuslause</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Syötä palautuslause</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Tilin saldo palautetaan automaattisesti Signalin uudelleenasennuksen yhteydessä syöttämällä Signalin tunnusluku. Saldon voi palauttaa myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="one">Tilin saldo palautetaan automaattisesti, kun asennat Signalin uudelleen ja vahvistat Signalin PIN-koodin. Voit palauttaa saldon myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</item>
+        <item quantity="other">Tilin saldo palautetaan automaattisesti, kun asennat Signalin uudelleen ja vahvistat Signalin PIN-koodin. Voit palauttaa saldon myös henkilökohtaisella %1$d-sanaisella palautuslauseella. Kirjoita se ylös ja säilytä turvallisessa paikassa.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Sinulla on saldoa! On aika tallentaa palautuslause – 24 sanan mittainen avain, jonka avulla voit palauttaa saldosi.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4027,7 +4016,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Poista tekstiviestit</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Poistetaan tekstiviestejä Signalista...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Poistetaan tekstiviestejä Signalista…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Voit poistaa tekstiviestejä Signalista asetuksissa milloin tahansa.</string>
     <!-- Description for export sms preference -->
@@ -4410,14 +4399,20 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Valitse merkki</string>
+    <string name="BadgeSelectionFragment__select_badges">Valitse merkit</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Valitse merkki</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Valitse merkki</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Sinun on valittava merkki</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy tukijaksi</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">Merkki</string>
 
@@ -4425,38 +4420,40 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Tue teknologiaa, joka on rakennettu sinua varten, ei datan tarpeisiin. Liity yhteisöön, joka pitää Signalia yllä.</string>
     <string name="SubscribeFragment__currency">Valuutta</string>
     <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
-    <string name="SubscribeFragment__cancel_subscription">Peru tilaus</string>
+    <string name="SubscribeFragment__cancel_subscription">Peruuta tilaus</string>
     <string name="SubscribeFragment__confirm_cancellation">Vahvistetaanko peruutus?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkki poistetaan profiilistasi laskutusjaksosi lopussa.</string>
     <string name="SubscribeFragment__not_now">Ei nyt</string>
     <string name="SubscribeFragment__confirm">Vahvista</string>
     <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruttu.</string>
-    <string name="SubscribeFragment__update_subscription_question">Päivitä tilaus?</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruutettu.</string>
+    <string name="SubscribeFragment__update_subscription_question">Päivitetäänkö tilaus?</string>
     <string name="SubscribeFragment__update">Päivitä</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sinulta veloitetaan uuden tilauksen täysi summa (%1$s) tänään. Tilaus uusiutuu kuukausittain.</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sinulta veloitetaan uuden tilauksen kokonaissumma (%1$s) tänään. Tilaus uusiutuu kuukausittain.</string>
 
     <string name="Subscription__s_per_month">%1$s / kk</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Uusiutuu %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">Päättyy %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal on voittoa tavoittelematon organisaatio, jolla ei ole sijoittajia eikä mainostajia. Toimimme Signalia käyttävien ja arvostavien ihmisten yhteisön voimalla. Tee toistuva kuukausilahjoitus ja ansaitse profiiliisi merkki, jolla osoitat tukevasi Signalia.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Miksi lahjoittaa?</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal on sitoutunut kehittämään avoimen lähdekoodin tietosuojateknologiaa, joka suojaa vapaata ilmaisua ja mahdollistaa turvallisen viestinnän.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Lahjoituksesi auttaa ylläpitämään ja kehittämään Signalia eteenpäin ja mahdollistaa turvallisen viestinnän miljoonille. Ei mainoksia. Ei seurantaa. Ei pelleilyä.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos Boostista!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Olet ansainnut %1$s -merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoituksista.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Olet ansainnut Boost-merkin! Näytä tämä merkki profiilissasi lisätäksesi tietoisuutta Signalille lahjoituksista.</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Voit myös</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ryhtyä kuukausittaiseksi tukijaksi.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Aseta esiteltäväksi merkiksi</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Jatka</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Jos sinulla on enemmän kuin yksi merkki, voit valita yhden niistä esiteltäväksi profiilissasi.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Hanki profiiliisi merkkejä tukemalla Signalia.</string>
@@ -4475,7 +4472,7 @@
     <string name="ManageDonationsFragment__donation_receipts">Lahjoituskuitit</string>
     <string name="ManageDonationsFragment__badges">Merkit</string>
     <string name="ManageDonationsFragment__subscription_faq">Tilausten yleiset kysymykset</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta noudettaessa.</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hankittaessa.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Muut lahjoitustavat</string>
     <!-- Preference label to launch badge gifting -->
@@ -4493,9 +4490,9 @@
     <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Kunniamerkki on erääntynyt</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Boost-merkki on vanhentunut</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kuukausilahjoitus peruttu</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Kuukausilahjoitus peruutettu</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Boost-merkkisi on vanhentunut, eikä se enää näy profiilissasi.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Voit aktivoida Boost-merkkisi uudelleen 30 päiväksi kertalahjoituksella.</string>
@@ -4505,17 +4502,17 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lisää Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska et ole ollut aktiivinen pitkään aikaan. Merkki %1$s ei näy enää profiilissasi.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska et ole ollut aktiivinen pitkään aikaan. %1$s-merkki ei näy enää profiilissasi.</string>
     <!-- Copy displayed when badge expires after payment failure -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Toistuva kuukausittainen lahjoituksesi peruutettiin automaattisesti, koska maksuasi ei voitu käsitellä. Merkki ei näy enää profiilissasi.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Toistuva kuukausittainen lahjoituksesi peruutettiin. %1$s Merkki %2$s ei näy enää profiilissasi.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkin uudelleen, uudista lahjoitus nyt.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uudista tilaus</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Toistuva kuukausittainen lahjoituksesi peruutettiin. %1$s %2$s-merkki ei näy enää profiilissasi.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkin uudelleen, uusi lahjoitus nyt.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uusi tilaus</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Siirry Google Payhin</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tilauksen maksua ei voitu käsitellä</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Tilauksen maksua ei voida käsitellä</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal tukija -tilauksen maksun veloituksessa on ongelmia. Varmista, että maksutapasi on ajan tasalla. Jos näin ei ole, päivitä se Google Payssa. Signal yrittää veloitusta uudelleen muutaman päivän kuluessa.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Älä näytä tätä uudelleen</string>
 
@@ -4529,7 +4526,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Virhe käsiteltäessä maksua. %1$s</string>
     <string name="DonationsErrors__your_badge_could_not_be_added">Merkkiä ei voitu lisätä tilillesi, mutta sinua on silti ehkä veloitettu. Ota yhteyttä tukeen.</string>
-    <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään, eikä sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
+    <string name="DonationsErrors__your_payment">Maksua ei voitu käsitellä, eikä sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
     <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
     <string name="DonationsErrors__couldnt_add_badge">Merkkiä ei voitu lisätä</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4545,7 +4542,7 @@
     <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruutus epäonnistui</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii Internet-yhteyden.</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii internet-yhteyden.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Laitteesi ei tue Google Payta, joten et voi tehdä tilausta ansaitaksesi merkin. Voit silti tukea Signalia tekemällä lahjoituksen verkkosivustomme kautta.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
     <string name="NetworkFailure__retry">Yritä uudelleen</string>
@@ -4874,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Ei katselukertoja vielä</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ota lukukuittaukset käyttöön nähdäksesi, kuka on nähnyt tarinasi.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Siirry asetuksiin</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5087,6 +5084,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">Lähetetään vastaus…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">Tämä tarina ei ole enää saatavilla.</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Tarinaa ei voi ladata. Käyttäjän %1$s on jaettava se uudelleen.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Ei Internet-yhteyttä</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5127,7 +5126,7 @@
         <item quantity="other">%1$s · %2$d päivän voimassaolo</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Lähetä merkki lahjaksi</string>
+    <string name="GiftRowItem__send_a_gift_badge">Lähetä lahjamerkki</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">Lahjoita merkki</string>
     <!-- Description text on start fragment for gifting a badge -->
@@ -5153,9 +5152,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Kiitämme tuestasi!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Olet saanut lahjaksi merkin käyttäjältä %1$s! Auta Signalia lisäämään tietoisuutta näyttämällä tämä merkki profiilissasi.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Olet saanut lahjamerkin käyttäjältä %1$s! Auta Signalia lisäämään tietoisuutta näyttämällä tämä merkki profiilissasi.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Olet lahjoittanut merkin henkilölle %1$s. Kun hän/he saavaat sen, he voivat joko näyttää tai piilottaa merkin.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Olet lahjoittanut merkin henkilölle %1$s. Kun vastaanottaja hyväksyy lahjan, hän voi joko näyttää tai piilottaa merkin.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Lunasta</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5165,15 +5164,15 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Voit lunastaa merkkisi myöhemmin.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Olet lahjoittanut merkin henkilölle %1$s. Kun hän/he saavaat sen, he voivat joko näyttää tai piilottaa merkin.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Olet lahjoittanut merkin henkilölle %1$s. Kun vastaanottaja hyväksyy lahjan, hän voi joko näyttää tai piilottaa merkin.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Lahjamerkkisi on vanhentunut</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lahjamerkkisi on vanhentunut ja se ei ole enää näkyvillä toisille profiilissasi.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Lahjamerkkisi on vanhentunut, eikä se näy enää muille profiilissasi.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Harkitse kuukausittaiseksi tukijaksi ryhtymistä, jos haluat jatkaa sinun tarpeisiisi kehitetyn teknologian tukemista.</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tee kuukausittainen lahjoitus</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Tee kuukausilahjoitus</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">Ei nyt</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5387,7 +5386,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Jatka silti</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal tarvitsee tekstiviestien käyttöoikeuden tekstiviestien tuontia varten.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5507,11 +5506,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Jatka</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Kuukausittain</string>
     <!-- Donation pill toggle one-time text -->
@@ -5519,18 +5518,59 @@
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Lahjoita Signalille %1$s/kuukausi</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">Hanki %1$s-merkki</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Lahjoita Signalille %1$s</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="one">Hanki %1$s-merkki %2$d päiväksi</item>
+        <item quantity="other">Hanki %1$s-merkki %2$d päiväksi</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Luotto- tai pankkikortti</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Peruutetaan…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

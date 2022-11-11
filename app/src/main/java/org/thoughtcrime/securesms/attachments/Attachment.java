@@ -119,7 +119,12 @@ public abstract class Attachment {
 
   public boolean isInProgress() {
     return transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE &&
-           transferState != AttachmentDatabase.TRANSFER_PROGRESS_FAILED;
+           transferState != AttachmentDatabase.TRANSFER_PROGRESS_FAILED &&
+           transferState != AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+  }
+
+  public boolean isPermanentlyFailed() {
+    return transferState == AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE;
   }
 
   public long getSize() {

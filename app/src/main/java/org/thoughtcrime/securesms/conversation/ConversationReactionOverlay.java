@@ -761,6 +761,10 @@ public final class ConversationReactionOverlay extends FrameLayout {
       items.add(new ActionItem(R.drawable.ic_copy_24_tinted, getResources().getString(R.string.conversation_selection__menu_copy), () -> handleActionItemClicked(Action.COPY)));
     }
 
+    if (menuState.shouldShowPaymentDetails()) {
+      items.add(new ActionItem(R.drawable.ic_payments_24, getResources().getString(R.string.conversation_selection__menu_payment_details), () -> handleActionItemClicked(Action.PAYMENT_DETAILS)));
+    }
+
     items.add(new ActionItem(R.drawable.ic_select_24_tinted, getResources().getString(R.string.conversation_selection__menu_multi_select), () -> handleActionItemClicked(Action.MULTISELECT)));
 
     if (menuState.shouldShowDetailsAction()) {
@@ -976,6 +980,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     DOWNLOAD,
     COPY,
     MULTISELECT,
+    PAYMENT_DETAILS,
     VIEW_INFO,
     DELETE,
   }

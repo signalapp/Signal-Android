@@ -8,6 +8,6 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
  */
 object V161_StorySendMessageIdIndex : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-    db.execSQL("CREATE INDEX story_sends_message_id_distribution_id_index ON story_sends (message_id, distribution_id)")
+    db.execSQL("CREATE INDEX IF NOT EXISTS story_sends_message_id_distribution_id_index ON story_sends (message_id, distribution_id)")
   }
 }

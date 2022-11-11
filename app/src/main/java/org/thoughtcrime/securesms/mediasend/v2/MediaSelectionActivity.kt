@@ -6,7 +6,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
-import android.view.WindowManager
 import android.widget.FrameLayout
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
@@ -41,6 +40,8 @@ import org.thoughtcrime.securesms.mediasend.v2.text.send.TextStoryPostSendReposi
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.FullscreenHelper
+import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.visible
 
@@ -84,9 +85,9 @@ class MediaSelectionActivity :
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.media_selection_activity)
 
-    window.addFlags(
-      WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
-    )
+    FullscreenHelper.showSystemUI(window)
+    WindowUtil.setNavigationBarColor(this, 0x01000000)
+    WindowUtil.setStatusBarColor(window, Color.TRANSPARENT)
 
     val sendType: MessageSendType = requireNotNull(intent.getParcelableExtra(MESSAGE_SEND_TYPE))
     val initialMedia: List<Media> = intent.getParcelableArrayListExtra(MEDIA) ?: listOf()
@@ -412,6 +413,17 @@ class MediaSelectionActivity :
         media = media,
         destination = MediaSelectionDestination.SingleRecipient(recipientId),
         message = message
+      )
+    }
+
+    @JvmStatic
+    fun editor(
+      context: Context,
+      media: List<Media>,
+    ): Intent {
+      return buildIntent(
+        context = context,
+        media = media
       )
     }
 

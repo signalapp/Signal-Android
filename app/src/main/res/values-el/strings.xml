@@ -105,6 +105,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Το Signal χρειάζεται τα δικαιώματα Αποθηκευτικού Χώρου για την επισύναψη φωτογραφιών, βίντεο ή κομματιών ήχου, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε τον «Αποθηκευτικό Χώρο».</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Το Signal χρειάζεται τα δικαιώματα Επαφών για την επισύναψη πληροφοριών επαφών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε τις «Επαφές».</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Το Signal χρειάζεται τα δικαιώματα Τοποθεσίας για την επισύναψη τοποθεσιών, αλλά αυτά δεν έχουν δοθεί μόνιμα. Πήγαινε στις ρυθμίσεις εφαρμογών, επέλεξε τα «Δικαιώματα», και ενεργοποίησε την «Τοποθεσία».</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">Ο χρήστης %1$s δεν έχει ενεργοποιήσει τις πληρωμές </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">Θέλεις να του στείλεις ένα αίτημα να ενεργοποιήσει τις πληρωμές;</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">Στείλε αίτημα</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">Ακύρωση</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">Ανέβασμα πολυμέσου…</string>
@@ -126,32 +134,38 @@
     <string name="BlockedUsersActivity__unblock">Κατάργηση αποκλεισμού</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">Ποσό δωρεάς: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">Γράψε παρακάτω τα στοιχεία της κάρτας σου</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">Αριθμός κάρτας</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">ΜΜ/ΕΕ</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">Μη έγκυρος αριθμός κάρτας</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">Η κάρτα έχει λήξει</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">Ο κωδικός είναι πολύ μικρός</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">Ο κωδικός είναι πολύ μεγάλος</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">Μη έγκυρος κωδικός</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">Μη έγκυρος μήνας</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">Απαιτείται έτος</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">Μη έγκυρο έτος</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">Συνέχεια</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Αποκλεισμός και αποχώρηση από %1$s;</string>
@@ -297,6 +311,18 @@
     <string name="ConversationItem_pending"> Εκκρεμεί</string>
     <string name="ConversationItem_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
     <string name="ConversationItem_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Η λήψη του μηνύματος απέτυχε. Ο χρήστης %1$s πρέπει να το στείλει ξανά.</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Η λήψη της εικόνας απέτυχε. Ο χρήστης %1$s πρέπει να τη στείλει ξανά.</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Η λήψη του βίντεο απέτυχε. Ο χρήστης %1$s πρέπει να το στείλει ξανά.</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Η λήψη του μηνύματος απέτυχε. Πρέπει να το στείλεις ξανά.</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Η λήψη της εικόνας απέτυχε. Πρέπει να τη στείλεις ξανά.</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Η λήψη του βίντεο απέτυχε. Πρέπει να το στείλεις ξανά.</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Προσθήκη συνημμένου</string>
@@ -426,6 +452,10 @@
     <string name="ConversationFragment_deleting_messages">Διαγραφή μηνυμάτων…</string>
     <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
     <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους σε αυτή τη συνομιλία, αν έχουν πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
     <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δεν βρέθηκε</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
@@ -852,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Έχεις επιλέξει μια επαφή που δεν υποστηρίζει ομάδες Signal, επομένως αυτή η ομάδα θα είναι MMS. Τα ονόματα και οι φωτογραφίες εξατομικευμένων ομάδων MMS θα είναι ορατά μόνο σε εσένα.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες του Signal, αυτή η ομάδα θα είναι με MMS. Τα εξατομικευμένα ονόματα και οι φωτογραφίες των ομάδων MMS θα είναι ορατά μόνο σε σένα. Η υποστήριξη για ομάδες MMS θα καταργηθεί σύντομα για εστίαση στην κρυπτογραφημένη ανταλλαγή μηνυμάτων.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
@@ -917,7 +947,7 @@
     <string name="ManageProfileFragment_your_name">Το όνομά σου</string>
     <string name="ManageProfileFragment_your_username">Το όνομα χρήστη σου</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Αποτυχία ορισμού εικόνας προφίλ</string>
-    <string name="ManageProfileFragment_badges">Εμβλήματα</string>
+    <string name="ManageProfileFragment_badges">Σήματα</string>
     <string name="ManageProfileFragment__edit_photo">Επεξεργασία φωτογραφίας</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">Το όνομα χρήστη δημιουργήθηκε</string>
@@ -1397,6 +1427,14 @@
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Συγχωνεύτηκαν το ιστορικό μηνυμάτων σου με τον χρήστη %1$s και τον αριθμό του, %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Το ιστορικό μηνυμάτων σου με τον χρήστη %1$s και μια άλλη συνομιλία που του άνηκε συγχωνεύτηκε.</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">Έστειλες στον χρήστη %1$s ένα αίτημα να ενεργοποιήσει τις πληρωμές</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">Ο χρήστης %1$s θέλει να ενεργοποιήσεις τις πληρωμές. Στείλε πληρωμές μόνο σε άτομα που εμπιστεύεσαι.</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">Ενεργοποίησες τις πληρωμές</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">Ο χρήστης %1$s μπορεί να αποδεχτεί πληρωμές</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">Ο/Η %1$s ξεκίνησε μια ομαδική κλήση · %2$s</string>
@@ -1427,6 +1465,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">Σύντομα, δεν θα μπορείς πια να στείλεις μηνύματα SMS στο Signal. Προσκάλεσε τον χρήστη %1$s στο Signal για να κρατήσεις εδώ τη συνομιλία.</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Δεν θα μπορείς πια να στείλεις μηνύματα SMS στο Signal. Προσκάλεσε τον χρήστη %1$s στο Signal για να κρατήσεις εδώ τη συνομιλία.</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Αποδοχή</string>
@@ -1885,6 +1925,14 @@
     <string name="ThreadRecord_view_once_media">Πολυμέσο μιας μόνο προβολής</string>
     <string name="ThreadRecord_this_message_was_deleted">Αυτο το μήνυμα διαγράφτηκε.</string>
     <string name="ThreadRecord_you_deleted_this_message">Διέγραψες αυτό το μήνυμα.</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">Έστειλες ένα αίτημα για ενεργοποίηση των πληρωμών</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">Ο χρήστης %1$s θέλει να ενεργοποιήσεις τις πληρωμές</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">Ενεργοποίησες τις πληρωμές</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">Ο χρήστης %1$s μπορεί να αποδεχτεί πληρωμές</string>
     <string name="ThreadRecord_s_is_on_signal">Ο/Η %1$s είναι στο Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Τα μηνύματα που εξαφανίζονται απενεργοποιήθηκαν</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Τα μηνύματα εξαφανίζονται σε %1$s</string>
@@ -1906,11 +1954,13 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">Έστειλες ένα δώρο</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">Εξαργύρωσες ένα δώρο έμβλημα</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">Εξαργύρωσες ένα σήμα δώρου</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Αντέδρασε με %1$s στην ιστορία σου</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">Αντέδρασε με %1$s στην ιστορία τους</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Αναβάθμιση Signal</string>
@@ -2014,6 +2064,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Κλείσιμο</string>
+    <string name="MediaPreviewFragment_edit_media_error">Σφάλμα πολυμέσων</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συνομιλίες</string>
@@ -2110,6 +2161,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Η συσκευή δεν είναι πλέον εγγεγραμμένη</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Αυτό συνέβη μάλλον επειδή καταχώρησες τον αριθμό τηλεφώνου σου στο Signal σε άλλη συσκευή. Πάτα για επανεγγραφή.</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">Ενημερώστε το Signal για να συνεχίσεις να χρησιμοποιείς πληρωμές. Το υπόλοιπό σου ενδέχεται να μην είναι ενημερωμένο.</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">Αναβάθμιση τώρα</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Για να απαντήσεις στη κλήση, δώσε στο Signal πρόσβαση στο μικρόφωνο.</string>
@@ -2240,6 +2297,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Ο χρόνος εξαφάνισης μηνυμάτων θα οριστεί σε %1$s όταν του/της στείλεις μήνύμα.</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">Δωρεά</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">Αποστολή πληρωμής</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">Ενεργοποίηση πληρωμών</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Αναπαραγωγή … Παύση</string>
@@ -2615,6 +2677,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">Τα μηνύματα θα στέλνονται με το πάτημα του Enter</string>
     <string name="preferences__pref_use_address_book_photos">Χρήση φωτογραφιών λίστας επαφών</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Εμφάνιση φωτογραφιών επαφών από τη λίστα επαφών αν είναι διαθέσιμες</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">Διατήρηση αρχειοθέτησης συνομιλιών σε σίγαση</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Οι συνομιλίες σε σίγαση που είναι αρχειοθετημένες, θα παραμείνουν σε αρχειοθέτηση όταν λάβεις νέα μηνύματα.</string>
     <string name="preferences__generate_link_previews">Προεπισκόπηση συνδέσμων</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Λάβε προεπισκόπεις συνδέσμων απ\' ευθείας από σελίδες για τα μηνύματα που στέλνεις.</string>
     <string name="preferences__choose_identity">Επέλεξε ταυτότητα</string>
@@ -2660,7 +2726,7 @@
     <string name="preferences__advanced">Για προχωρημένους</string>
     <string name="preferences__donate_to_signal">Κάνε μια δωρεά στο Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Δωρεά μια φορά</string>
+    <string name="preferences__one_time_donation">Μεμονωμένη δωρεά</string>
     <string name="preferences__privacy">Ιδιωτικότητα</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Ιστορίες</string>
@@ -2806,107 +2872,9 @@
     <string name="configurable_single_select__customize_option">Προσαρμογή ρύθμισης</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2916,7 +2884,7 @@
     <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση πληρωμών (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποιήστε το Signal για να στείλετε και να λάβετε MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο. Ενεργοποιήστε για να ξεκινήσετε.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποίησε το Signal για να στείλεις και να λάβεις MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο. Ενεργοποίησέ το για να ξεκινήσεις.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
     <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Επαναφορά λογαριασμού πληρωμών</string>
@@ -2929,7 +2897,7 @@
     <string name="PaymentsHomeFragment__sent_s">Στάλθηκαν %1$s</string>
     <string name="PaymentsHomeFragment__received_s">Λήφθηκαν %1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">Μεταφορά για ανταλλαγή</string>
-    <string name="PaymentsHomeFragment__currency_conversion">Μετατροπή νομίσματος</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Συνάλλαγμα</string>
     <string name="PaymentsHomeFragment__deactivate_payments">Απενεργοποίηση πληρωμών</string>
     <string name="PaymentsHomeFragment__recovery_phrase">Φράση ανάκτησης</string>
     <string name="PaymentsHomeFragment__help">Βοήθεια</string>
@@ -2938,8 +2906,8 @@
     <string name="PaymentsHomeFragment__received_payment">Ληφθείσα πληρωμή</string>
     <string name="PaymentsHomeFragment__processing_payment">Επεξεργασία πληρωμής</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">Μετατροπή συνα΄αλλάγματος μη διαθέσιμη</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Αδυναμία προβολής μετατροπής νομίσματος. Ελέγξτε τη σύνδεση του τηλεφώνου σας και δοκιμάστε ξανά.</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Μετατροπή συναλλάγματος μη διαθέσιμη</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Αδυναμία προβολής συναλλάγματος. Έλεγξε τη σύνδεση του τηλεφώνου σου και δοκίμασε ξανά.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Οι πληρωμές δεν είναι διαθέσιμες στην περιοχή σας.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Δεν ήταν δυνατή η ενεργοποίηση πληρωμών. Δοκιμάστε ξανά αργότερα.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Απενεργοποίηση πληρωμών;</string>
@@ -2965,6 +2933,14 @@
     <string name="PaymentsHomeFragment__enable">Ενεργοποίηση</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">Όχι τώρα</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">Απαιτείται αναβάθμιση</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">Απαιτείται ενημέρωση για να συνεχίσεις να στέλνεις και να λαμβάνεις πληρωμές και να βλέπεις το ενημερωμένο υπόλοιπο πληρωμών σου.</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">Ακύρωση</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">Αναβάθμιση τώρα</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3008,7 +2984,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s στις %2$s στις %3$s</string>
     <string name="PaymentsDetailsFragment__to">Προς</string>
     <string name="PaymentsDetailsFragment__from">Από</string>
-    <string name="PaymentsDetailsFragment__information">Τα στοιχεία της συναλλαγής, συμπεριλαμβανομένου του ποσού πληρωμής και του χρόνου συναλλαγής, αποτελούν μέρος του Καθολικού MobileCoin.</string>
+    <string name="PaymentsDetailsFragment__information">Τα στοιχεία της συναλλαγής, συμπεριλαμβανομένου του ποσού πληρωμής και του χρόνου συναλλαγής, αποτελούν μέρος του MobileCoin Ledger.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Τέλος καθαρισμού νομισμάτων</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Ένα «τέλος καθαρισμού κερμάτων» χρεώνεται όταν τα κέρματα που έχετε στην κατοχή σας δεν μπορούν να συνδυαστούν για να ολοκληρωθεί μια συναλλαγή. Ο καθαρισμός θα σας επιτρέψει να συνεχίσετε να στέλνετε πληρωμές.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Δεν υπάρχουν περισσότερες λεπτομέρειες για αυτήν τη συναλλαγή</string>
@@ -3145,6 +3121,8 @@
     <string name="conversation_selection__menu_resend_message">Επαναποστολή</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Επιλογή</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3226,13 +3204,21 @@
     <string name="reminder_header_push_text">Αναβάθμισε την εμπειρία επικοινωνίας σου.</string>
     <string name="reminder_header_service_outage_text">Το Signal αντιμετωπίζει τεχνικές δυσκολίες. Εργαζόμαστε σκληρά για να αποκαταστήσουμε την υπηρεσία όσο πιο γρήγορα γίνεται.</string>
     <string name="reminder_header_progress">%1$d%%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Αποθήκευση</string>
     <string name="media_preview__forward_title">Προώθηση</string>
     <string name="media_preview__share_title">Μοιράσου</string>
     <string name="media_preview__all_media_title">Όλα τα πολυμέσα</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">Eπεξεργασία</string>
 
 
     <!-- media_preview_activity -->
@@ -3857,7 +3843,10 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Αποθήκευση φράσης ανάκτησης</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Εισαγάγετε τη φράση ανάκτησης</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Το υπόλοιπό σας θα αποκατασταθεί αυτόματα όταν εγκαταστήσετε ξανά το Signal, εάν επιβεβαιώσετε το Signal PIN. Μπορείτε επίσης να επαναφέρετε το υπόλοιπό σας χρησιμοποιώντας μια φράση ανάκτησης, η οποία είναι μια φράση %1$d λέξεων, μοναδική για εσάς. Σημειώστε την και αποθηκεύστε την σε ασφαλές μέρος.</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="one">Το υπόλοιπό σου θα αποκατασταθεί αυτόματα όταν επανεγκαταστήσεις το Signal, εάν επιβεβαιώσεις το Signal PIN. Μπορείς επίσης να επαναφέρεις το υπόλοιπό σου χρησιμοποιώντας μια φράση ανάκτησης, η οποία είναι μια φράση %1$d λέξης, μοναδική για εσένα. Σημείωσε και αποθήκευσέ τη σε ασφαλές μέρος.</item>
+        <item quantity="other">Το υπόλοιπό σου θα αποκατασταθεί αυτόματα όταν επανεγκαταστήσεις το Signal, εάν επιβεβαιώσεις το Signal PIN. Μπορείς επίσης να επαναφέρεις το υπόλοιπό σου χρησιμοποιώντας μια φράση ανάκτησης, η οποία είναι μια φράση %1$d λέξεων, μοναδική για εσένα. Σημείωσε και αποθήκευσέ τη σε ασφαλές μέρος.</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Έχεις υπόλοιπο! Ώρα να αποθηκεύσεις τη φράση ανάκτησης—μία φράση 24 λέξεων που μπορείς να χρησιμοποιήσεις για να επαναφέρεις το υπόλοιπό σου.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4027,7 +4016,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Αφαίρεση μηνυμάτων SMS</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Αφαίρεση μηνυμάτων SMS από το Signal...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">Αφαίρεση μηνυμάτων SMS από το Signal…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Μπορείς να αφαιρέσεις μηνύματα SMS από το Signal στις Ρυθμίσεις ανά πάσα στιγμή.</string>
     <!-- Description for export sms preference -->
@@ -4157,7 +4146,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Κάνε μια δωρεά στο Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">H Signal υποστηρίζεται από ανθρώπους σαν κι εσένα. Κάνε μηνιαίες δωρεές για να λάβεις το badge</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Το Signal υποστηρίζεται από ανθρώπους σαν κι εσένα. Κάνε μηνιαίες δωρεές για να λάβεις ένα σήμα.</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">Δωρεά</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4180,7 +4169,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Το Signal βασίζεται σε άτομα σαν κι εσένα. Με τη δωρεά σου λαμβάνεις ένα έμβλημα.</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Το Signal βασίζεται σε άτομα σαν κι εσένα. Με τη δωρεά σου λαμβάνεις ένα σήμα.</string>
     <string name="BecomeASustainerMegaphone__not_now">Όχι τώρα</string>
     <string name="BecomeASustainerMegaphone__donate">Δωρεά</string>
 
@@ -4237,7 +4226,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">Η συνομιλία είνα σε σίγαση για πάντα</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Ο αριθμός τηλεφώνου αντιγράφτηκε στο πρόχειρο.</string>
     <string name="ConversationSettingsFragment__phone_number">Αριθμός τηλεφώνου</string>
-    <string name="ConversationSettingsFragment__get_badges">Πάρε εμβλήματα για το προφίλ σου στηρίζοντας το Signal. Πάτα σε ένα έμβλημα για να μάθεις περισσότερα.</string>
+    <string name="ConversationSettingsFragment__get_badges">Πάρε σήματα για το προφίλ σου στηρίζοντας το Signal. Πάτα σε ένα σήμα για να μάθεις περισσότερα.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Προσθήκη μελών</string>
@@ -4404,22 +4393,28 @@
 
     <string name="CameraFragment__failed_to_open_camera">Αποτυχία ενεργοποίησης κάμερας</string>
 
-    <string name="BadgesOverviewFragment__my_badges">Τα εμβλήματά μου</string>
-    <string name="BadgesOverviewFragment__featured_badge">Βασικό έμβλημα</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">Εμφάνιση εμβλημάτων στο προφίλ</string>
+    <string name="BadgesOverviewFragment__my_badges">Τα σήματά μου</string>
+    <string name="BadgesOverviewFragment__featured_badge">Βασικό σήμα</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">Εμφάνιση σημάτων στο προφίλ</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">Αποτυχία ανανέωσης προφίλ</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Επιλογή εμβλημάτων</string>
+    <string name="BadgeSelectionFragment__select_badges">Επιλογή σημάτων</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">Προεπισκόπηση</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">Επιλογή εμβλήματος</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Πρέπει να επιλέξεις έμβλημα</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">Επιλογή σήματος</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Πρέπει να επιλέξεις σήμα</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Αποτυχία ανανέωσης προφίλ</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε συνεχόμενα υποστηρικτής/τρια</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
-    <string name="ImageView__badge">Έμβλημα</string>
+    <string name="ImageView__badge">Σήμα</string>
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα - όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν.</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Στήριξε τεχνολογίες που έχουν φτιαχτεί για εσένα, όχι για τα δεδομένα σου. Έλα στη κοινότητα ανθρώπων που το στηρίζουν το Signal.</string>
@@ -4427,7 +4422,7 @@
     <string name="SubscribeFragment__more_payment_options">Περισσότεροι τρόποι πληρωμής</string>
     <string name="SubscribeFragment__cancel_subscription">Ακύρωση συνδρομής</string>
     <string name="SubscribeFragment__confirm_cancellation">Επιβεβαίωση ακύρωσης;</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το έμβλημά σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">Δεν θα χρεωθείς ξανά. Το σήμα σου θα αφαιρεθεί από το προφίλ σου στο τέλος της περιόδου για την οποία έχεις χρεωθεί.</string>
     <string name="SubscribeFragment__not_now">Όχι τώρα</string>
     <string name="SubscribeFragment__confirm">Επιβεβαίωση</string>
     <string name="SubscribeFragment__update_subscription">Ανανέωση συνδρομής</string>
@@ -4438,28 +4433,30 @@
 
     <string name="Subscription__s_per_month">%1$s/μήνα</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">Ανανεώνεται %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">Λήγει στις %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Το Signal είναι μια ΜΚΟ χωρις διαφημίσεις και επενδυτές, που συντηρείται μόνο από τα άτομα που το χρησιμοποιούν και το θεωρούν σημαντικό. Με μια επαναλαμβανόμενη μηνιαία δωρεά παίρνεις ένα έμβλημα για το προφίλ σου, για να δείξεις την υποστήριξή σου.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">Γιατί να κάνω δωρεά;</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Το Signal δεσμεύεται να αναπτύσσει τεχνολογία ιδιωτικότητας ανοικτού κώδικα, που προστατεύει την ελεύθερη έκφραση και επιτρέπει την ασφαλή επικοινωνία παγκοσμίως.</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">Η δωρεά σου ενισχύει αυτό το στόχο και πληρώνει για την ανάπτυξη και τη λειτουργία μιας εφαρμογής που χρησιμοποιείται από εκατομμύρια άτομα για ιδιωτικές επικοινωνίες. Χωρίς διαφημίσεις, χωρίς παρακολούθηση.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Ευχαριστούμε για την ενίσχυση!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">Κέρδισες ένα έμβλημα %1$s! Δείξε το έμβλημα στο προφίλ σου για να διαδώσεις τις δωρεές στο Signal.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">Κέρδισες ένα έμβλημα Ενίσχυσης! Δείξε το έμβλημα στο προφίλ σου για να διαδώσεις τις δωρεές στο Signal.</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Μπορείς επίσης</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό έμβλημα</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Τέλος</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα έμβλημα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Να γίνει το βασικό σήμα</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Συνέχεια</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Όταν έχεις πάνω από ένα σήματα, μπορείς να επιλέξεις ποιο μπορούν να δουν τα άλλα άτομα στο προφίλ σου.</string>
 
-    <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις εμβλήματα για το προφίλ σου.</string>
+    <string name="BecomeASustainerFragment__get_badges">Στηρίζοντας το Signal παίρνεις σήματα για το προφίλ σου.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Το Signal είναι μια μη κερδοσκοπική οργάνωση, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
 
     <!-- Button label for creating a donation -->
@@ -4473,80 +4470,80 @@
     <string name="ManageDonationsFragment__manage_subscription">Διαχείριση συνδρομής</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">Αποδείξεις δωρεών</string>
-    <string name="ManageDonationsFragment__badges">Εμβλήματα</string>
+    <string name="ManageDonationsFragment__badges">Σήματα</string>
     <string name="ManageDonationsFragment__subscription_faq">Συχνές ερωτήσεις συνδρομών</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">Σφάλμα λήψης συνδρομής.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">Κάνε δώρο ένα έμβλημα</string>
+    <string name="ManageDonationsFragment__gift_a_badge">Κάνε δώρο ένα σήμα</string>
 
     <string name="Boost__enter_custom_amount">Εισαγωγή προσαρμοσμένου ποσού</string>
     <string name="Boost__one_time_contribution">Υποστήριξη μια φορά</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Ενίσχυσης Signal</string>
+    <string name="MySupportPreference__add_a_signal_boost">Προσθήκη Boost Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/μήνα</string>
     <string name="MySupportPreference__renews_s">Ανανεώνεται %1$s</string>
     <string name="MySupportPreference__processing_transaction">Επεξεργασία συναλλαγής…</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">Αδυναμία προσθήκης εμβλήματος. %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">Αδυναμία προσθήκης σήματος. %1$s</string>
     <string name="MySupportPreference__please_contact_support">Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Το έμβλημα Ενίσχυσης έληξε</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">Το σήμα Boost έληξε</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">Η μηνιαία δωρεά ακυρώθηκε</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Το έμβλημα Ενίσχυσης έληξε και δεν θα εμφανίζεται πλέον στο προφίλ σου.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Μπορείς να επανενεργοποιήσεις το έμβλημα Ενίσχυσης για ακόμα 30 ημέρες, με μια μεμονωμένη συνεισφορά.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">Το σήμα Boost έληξε και δεν θα εμφανίζεται πλέον στο προφίλ σου.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Μπορείς να επανενεργοποιήσεις το σήμα Boost για ακόμα 30 ημέρες, με μια μεμονωμένη συνεισφορά.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal, αλλά για να υποστηρίξεις τη τεχνολογία που φτιάχνεται για σένα, σκέψου να γίνεις υποστηρικτής, κάνοντας μια μηνιαία δωρεά.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal, αλλά για να υποστηρίξεις την τεχνολογία που φτιάχνεται για σένα, σκέψου να γίνεις υποστηρικτής, κάνοντας μια μηνιαία δωρεά.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε υποστηρικτής/τρια</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Προσθήκη Ενίσχυσης</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Προσθήκη Boost</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Όχι τώρα</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το έμβλημα %1$s σου δεν είναι πλέον ορατό στο προφίλ σου.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε αυτόματα επειδή ήσουν ανενεργός/ή για πολύ καιρό. Το σήμα %1$s δεν είναι πλέον ορατό στο προφίλ σου.</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε επειδή δεν μπορέσαμε να εκτελέσουμε τη πληρωμή σου. Το έμβλημα δεν είναι πλέον ορατό στο προφίλ σου.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε επειδή δεν μπορέσαμε να διεκπεραιώσουμε την πληρωμή σου. Το σήμα δεν είναι πλέον ορατό στο προφίλ σου.</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε. %1$s To %2$s έμβλημα δεν θα είναι πλέον ορατό στο προφίλ σου.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το έμβλημά σου, ανανέωσε τώρα.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">Η επαναλαμβανόμενη μηνιαία δωρεά σου ακυρώθηκε. %1$s To σήμα %2$s δεν είναι πλέον ορατό στο προφίλ σου.</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Μπορείς να συνεχίσεις να χρησιμοποιείς το Signal, αλλά για να υποστηρίξεις την εφαρμογή και να επανενεργοποιήσεις το σήμα σου, ανανέωσε τώρα.</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Ανανέωση συνδρομής</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Μετάβαση στο Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Αδυναμία εκτέλεσης πληρωμής συνδρομής</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Αδυναμία επεξεργασίας πληρωμής συνδρομής</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Έχουμε δυσκολίες με το να λάβουμε την πληρωμή για την Υποστήριξη του Signal. Επιβεβαίωσε πως η μέθοδος πληρωμής είναι επικαιροποιημένη. Αν δεν είναι, επικαιροποίησέ την στο Google Pay. Το Signal θα προσπαθήσει να πραγματοποιήσει αυτή τη πληρωμή ξανά σε μερικές ημέρες.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Να μην εμφανιστεί ξανά</string>
 
     <string name="Subscription__please_contact_support_for_more_information">Παρακαλούμε επικοινώνησε με την υποστήριξη για περισσότερες πληροφορίες.</string>
     <string name="Subscription__contact_support">Επικοινωνία με την υποστήριξη</string>
-    <string name="Subscription__get_a_s_badge">Πάρε ένα έμβλημα %1$s</string>
+    <string name="Subscription__get_a_s_badge">Πάρε ένα σήμα %1$s</string>
 
     <string name="SubscribeFragment__processing_payment">Επεξεργασία πληρωμής…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Σφάλμα κατά την επεξεργασία της πληρωμής</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Σφάλμα κατά την επεξεργασία της πληρωμής. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
-    <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν μπόρεσε να διεκπεραιωθεί και δεν έχεις χρεωθεί. Παρακαλούμε προσπάθησε ξανά.</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">Το σήμα σου δεν ήταν δυνατό να προστεθεί στον λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Επικοινώνησε με την υποστήριξη.</string>
+    <string name="DonationsErrors__your_payment">Η πληρωμή σου δεν ήταν δυνατό να διεκπεραιωθεί και δεν έχεις χρεωθεί. Προσπάθησε ξανά.</string>
     <string name="DonationsErrors__still_processing">Ακόμα επεξεργάζεται</string>
-    <string name="DonationsErrors__couldnt_add_badge">Αδυναμία προσθήκης εμβλήματος</string>
+    <string name="DonationsErrors__couldnt_add_badge">Αδυναμία προσθήκης σήματος</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">Αποτυχία επικύρωσης εμβλήματος</string>
+    <string name="DonationsErrors__failed_to_validate_badge">Αποτυχία επικύρωσης σήματος</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Δεν μπορέσαμε να επικυρώσουμε την απάντηση του διακομιστή. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">Αποτυχία αποστολής του εμβλήματος δώρου</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">Αποτυχία αποστολής του σήματος δώρου</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">Δεν μπορέσαμε να στείλουμε το έμβλημα δώρο. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
-    <string name="DonationsErrors__your_badge_could_not">Το έμβλημά σου δεν μπόρεσε να προστεθεί στο λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">Δεν μπορέσαμε να στείλουμε το σήμα δώρου. Επικοινώνησε με την υποστήριξη.</string>
+    <string name="DonationsErrors__your_badge_could_not">Το σήμα σου δεν ήταν δυνατό να προστεθεί στον λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Επικοινώνησε με την υποστήριξη.</string>
     <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay μη διαθέσιμο</string>
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Πρέπει να ενεργοποιήσεις το Google Pay για να κάνεις δωρεά μέσω της εφαρμογής.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Πρέπει να υπάρχει σύνδεση στο διαδίκτυο για την ακύρωση της συνδρομής.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις έμβλημα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Η συσκευή σου δεν υποστηρίζει το Google Pay, οπότε δεν μπορείς να γίνεις συνδρομητής για να λάβεις σήμα. Μπορείς όμως να υποστηρίξεις το Signal κάνοντας μια δωρεά στην ιστοσελίδα μας.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
     <string name="NetworkFailure__retry">Επανάληψη</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4559,7 +4556,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">Το δώρο δεν εστάλη λόγω σφάλματος δικτύου. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">Έμβλημα δώρο</string>
+    <string name="GiftMessageView__gift_badge">Σήμα δώρου</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="one">Ισχύει για %1$d μήνα</item>
@@ -4760,7 +4757,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Δώρο</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Ενίσχυση</string>
+    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
     <string name="DonationReceiptDetailsFragment__details">Λεπτομέρειες</string>
     <!-- Donation receipts donation type heading -->
@@ -4874,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">Ενεργοποίησε το αποδεικτικό ανάγνωσης για να βλέπεις ποια άτομα βλέπουν τις ιστορίες σου.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5087,6 +5084,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">Αποστέλλεται απάντηση…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">Η ιστορία δεν είναι πια διαθέσιμη.</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Η λήψη της ιστορίας απέτυχε. Ο χρήστης %1$s πρέπει να τη μοιραστεί ξανά.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Δεν υπάρχει σύνδεση στο διαδίκτυο</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5127,11 +5126,11 @@
         <item quantity="other">%1$s · διάρκειας %2$d ημερών</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">Αποστολή εμβλήματος δώρου</string>
+    <string name="GiftRowItem__send_a_gift_badge">Αποστολή σήματος δώρου</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">Κάνε δώρο ένα έμβλημα</string>
+    <string name="GiftFlowStartFragment__gift_a_badge">Κάνε δώρο ένα σήμα</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">Κάνε δώρο ένα έμβλημα σε κάποιον/α, κάνοντας μια δωρεά στο Signal στο όνομά του/της. Θα λάβει το έμβλημα για να το δείξει στην εικόνα προφίλ του/της.</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">Κάνε δώρο ένα σήμα σε κάποιο άτομο, κάνοντας μια δωρεά στο Signal στο όνομά του. Θα λάβει ένα σήμα που θα μπορεί να δείχνει στην εικόνα προφίλ του.</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Επόμενο</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5143,7 +5142,7 @@
     <!-- Text explaining that gift will be sent to the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">Το δώρο σου θα σταλθεί σε προσωπικό μήνυμα στον παραλήπτη. Πρόσθεσε το μήνυμά σου παρακάτω.</string>
     <!-- Text explaining that this gift is a one time donation -->
-    <string name="GiftFlowConfirmationFragment__one_time_donation">Δωρεά μια φορά</string>
+    <string name="GiftFlowConfirmationFragment__one_time_donation">Μεμονωμένη δωρεά</string>
     <!-- Hint for add message input -->
     <string name="GiftFlowConfirmationFragment__add_a_message">Προσθήκη μηνύματος</string>
     <!-- Displayed in the dialog while verifying the chosen recipient -->
@@ -5153,9 +5152,9 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Έλαβες ένα έμβλημα δώρο από τον/την %1$s! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το έμβλημα στο προφίλ σου.</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">Έλαβες ένα σήμα δώρου από τον χρήστη %1$s! Βοήθησε με την ευαισθητοποίηση για το Signal, επιδεικνύοντας το σήμα στο προφίλ σου.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Δώρισες ένα έμβλημα στον/στην %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το έμβλημα.</string>
+    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">Δώρισες ένα σήμα στον χρήστη %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το σήμα.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Εξαργύρωση</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5163,13 +5162,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">Το δώρο εξαργυρώνεται…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">Μπορείς να εξαργυρώσεις το έμβλημά σου αργότερα.</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">Μπορείς να εξαργυρώσεις το σήμα σου αργότερα.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Δώρισες ένα έμβλημα στον/στην %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το έμβλημα.</string>
+    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">Δώρισες ένα σήμα στον χρήστη %1$s. Όταν το αποδεχτεί, θα έχει την επιλογή να δείξει ή να αποκρύψει το σήμα.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Το έμβλημα δώρο σου έληξε</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">Το σήμα δώρου σου έληξε</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Το έμβλημα δώρο σου έληξε, και δεν εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">Το σήμα δώρου σου έληξε και δεν εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5387,7 +5386,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Συνέχεια παρ\' όλα αυτά</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Το Signal χρειάζεται την άδεια SMS για να μπορεί να εξάγει τα μηνύματα SMS.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5507,30 +5506,71 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Συνέχεια</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">Μηνιαία</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">Μια φορά</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Κάνε μια δωρεά %1$s/μήνα στο Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Πάρε ένα έμβλημα %1$s</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">Πάρε ένα σήμα %1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Κάνε μια δωρεά %1$s στο Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="one">Πάρε ένα σήμα %1$s για %2$d μέρα</item>
+        <item quantity="other">Πάρε ένα σήμα %1$s για %2$d μέρες</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Πιστωτική ή χρεωστική κάρτα</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">Ακύρωση…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

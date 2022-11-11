@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
@@ -116,6 +117,7 @@ object StoriesLandingItem {
     private val badgeView: BadgeImageView = itemView.findViewById(R.id.badge)
     private val storyPreview: ImageView = itemView.findViewById<ImageView>(R.id.story).apply {
       isClickable = false
+      ViewCompat.setTransitionName(this, "story")
     }
     private val storyBlur: ImageView = itemView.findViewById<ImageView>(R.id.story_blur).apply {
       isClickable = false

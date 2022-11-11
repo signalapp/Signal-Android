@@ -18,6 +18,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
-import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -113,7 +113,7 @@ public final class Megaphones {
       put(Event.ONBOARDING, shouldShowOnboardingMegaphone(context) ? ALWAYS : NEVER);
       put(Event.TURN_OFF_CENSORSHIP_CIRCUMVENTION, shouldShowTurnOffCircumventionMegaphone() ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(7)) : NEVER);
       put(Event.DONATE_Q2_2022, shouldShowDonateMegaphone(context, Event.DONATE_Q2_2022, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
-      put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(3)) : NEVER);
+      put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(1)) : NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
 
       // Feature-introduction megaphones should *probably* be added below this divider
@@ -307,7 +307,7 @@ public final class Megaphones {
   }
 
   private static @NonNull Megaphone buildRemoteMegaphone(@NonNull Context context) {
-    RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow();
+    RemoteMegaphoneRecord record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(System.currentTimeMillis());
 
     if (record != null) {
       Megaphone.Builder builder = new Megaphone.Builder(Event.REMOTE_MEGAPHONE, Megaphone.Style.BASIC)
@@ -396,7 +396,7 @@ public final class Megaphones {
     return timeSinceLastDonatePrompt > MIN_TIME_BETWEEN_DONATE_MEGAPHONES &&
            VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
            LocaleFeatureFlags.isInDonateMegaphone() &&
-           PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
+           InAppDonations.INSTANCE.hasAtLeastOnePaymentMethodAvailable() &&
            Recipient.self()
                     .getBadges()
                     .stream()

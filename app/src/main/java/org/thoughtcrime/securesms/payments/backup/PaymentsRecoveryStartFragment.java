@@ -125,7 +125,9 @@ public class PaymentsRecoveryStartFragment extends Fragment {
         description = getString(R.string.PaymentsRecoveryStartFragment__got_balance);
         break;
       default:
-        description = getString(R.string.PaymentsRecoveryStartFragment__your_balance_will_automatically_restore, PaymentsConstants.MNEMONIC_LENGTH);
+        description = getResources().getQuantityString(R.plurals.PaymentsRecoveryStartFragment__your_balance_will_automatically_restore,
+                                                       PaymentsConstants.MNEMONIC_LENGTH,
+                                                       PaymentsConstants.MNEMONIC_LENGTH);
     }
     return description;
   }

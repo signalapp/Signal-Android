@@ -2,8 +2,5 @@
 <org.thoughtcrime.securesms.stories.StoryFirstTimeNavigationView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="0dp"
-    app:layout_constraintBottom_toBottomOf="@id/story_content_card_touch_interceptor"
-    app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor" />
+    android:layout_height="match_parent" />

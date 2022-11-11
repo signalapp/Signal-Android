@@ -25,10 +25,10 @@ public final class GiphyMp4PlaybackPolicy {
   }
 
   public static int maxSimultaneousPlaybackInSearchResults() {
-    return 12;
+    return ApplicationDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved();
   }
 
   public static int maxSimultaneousPlaybackInConversation() {
-    return 4;
+    return ApplicationDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved() / 3;
   }
 }

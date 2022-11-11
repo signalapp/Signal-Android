@@ -42,8 +42,13 @@ data class LargeBadge(
     override fun bind(model: Model) {
       badge.setBadge(model.largeBadge.badge)
 
-      name.text = model.largeBadge.badge.name
-      description.text = model.largeBadge.badge.resolveDescription(model.shortName)
+      name.text = context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal, model.shortName)
+      description.text = if (model.largeBadge.badge.isSubscription()) {
+        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly, model.shortName)
+      } else {
+        context.getString(R.string.ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation, model.shortName)
+      }
+
       description.setLines(model.maxLines)
       description.maxLines = model.maxLines
       description.minLines = model.maxLines

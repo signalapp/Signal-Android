@@ -34,20 +34,24 @@ class StoryViewsRepository {
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
       val record: MessageRecord = SignalDatabase.mms.getMessageRecord(storyId)
-      val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
-      val recipientIds: Set<RecipientId> = SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)
+      val filterIds: Set<RecipientId> = if (record.recipient.isDistributionList) {
+        val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
+        SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)
+      } else {
+        emptySet()
+      }
 
       fun refresh() {
         emitter.onNext(
           SignalDatabase.groupReceipts.getGroupReceiptInfo(storyId).filter {
             it.status == GroupReceiptDatabase.STATUS_VIEWED
+          }.filter {
+            filterIds.isEmpty() || it.recipientId in filterIds
           }.map {
             StoryViewItemData(
               recipient = Recipient.resolved(it.recipientId),
               timeViewedInMillis = it.timestamp
             )
-          }.filter {
-            it.recipient.id in recipientIds
           }
         )
       }

@@ -242,6 +242,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isDisplayingCaptionOverlay = isDisplayingCaptionOverlay) }
   }
 
+  fun setIsDisplayingRecipientBottomSheet(isDisplayingRecipientBottomSheet: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isDisplayingRecipientBottomSheet = isDisplayingRecipientBottomSheet) }
+  }
+
   fun setIsUserTouching(isUserTouching: Boolean) {
     storyViewerPlaybackStore.update { it.copy(isUserTouching = isUserTouching) }
     storyLongPressSubject.onNext(isUserTouching)

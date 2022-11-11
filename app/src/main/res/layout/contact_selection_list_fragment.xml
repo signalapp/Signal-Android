@@ -113,23 +113,6 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/chipRecycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:minHeight="48sp"
-        android:orientation="horizontal"
-        android:paddingStart="@dimen/dsl_settings_gutter"
-        android:paddingEnd="@dimen/dsl_settings_gutter"
-        android:scrollbars="none"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/contact_selection_list_chip"
-        tools:visibility="visible" />
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/header_action"
         style="@style/Widget.Signal.Button.Small"
@@ -147,6 +130,24 @@
         app:layout_constraintEnd_toEndOf="@id/swipe_refresh"
         app:layout_constraintTop_toTopOf="@id/swipe_refresh"
         tools:text="@string/ContactsCursorLoader_new_story"
+        tools:visibility="visible" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chipRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:minHeight="48sp"
+        android:orientation="horizontal"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:scrollbars="none"
+        android:visibility="gone"
+        android:background="@color/signal_colorSurface"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/contact_selection_list_chip"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

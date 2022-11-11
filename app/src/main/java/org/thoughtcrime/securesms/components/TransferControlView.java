@@ -183,15 +183,20 @@ public final class TransferControlView extends FrameLayout {
   }
 
   private int getTransferState(@NonNull List<Slide> slides) {
-    int transferState = AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+    int     transferState = AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+    boolean allFailed     = true;
+
     for (Slide slide : slides) {
-      if (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING && transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
-        transferState = slide.getTransferState();
-      } else {
-        transferState = Math.max(transferState, slide.getTransferState());
+      if (slide.getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE) {
+        allFailed = false;
+        if (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING && transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+          transferState = slide.getTransferState();
+        } else {
+          transferState = Math.max(transferState, slide.getTransferState());
+        }
       }
     }
-    return transferState;
+    return allFailed ? AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE : transferState;
   }
 
   private String getDownloadText(@NonNull List<Slide> slides) {

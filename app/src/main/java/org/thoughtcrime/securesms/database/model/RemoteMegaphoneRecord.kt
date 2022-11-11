@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.database.model
 
 import android.net.Uri
+import org.json.JSONObject
 
 /**
  * Represents a Remote Megaphone.
@@ -24,13 +25,27 @@ data class RemoteMegaphoneRecord(
   val primaryActionText: String?,
   val secondaryActionText: String?,
   val shownAt: Long = 0,
-  val finishedAt: Long = 0
+  val finishedAt: Long = 0,
+  val primaryActionData: JSONObject? = null,
+  val secondaryActionData: JSONObject? = null,
+  val snoozedAt: Long = 0,
+  val seenCount: Int = 0
 ) {
   @get:JvmName("hasPrimaryAction")
   val hasPrimaryAction = primaryActionId != null && primaryActionText != null
 
   @get:JvmName("hasSecondaryAction")
   val hasSecondaryAction = secondaryActionId != null && secondaryActionText != null
+
+  fun getDataForAction(actionId: ActionId): JSONObject? {
+    return if (primaryActionId == actionId) {
+      primaryActionData
+    } else if (secondaryActionId == actionId) {
+      secondaryActionData
+    } else {
+      null
+    }
+  }
 
   enum class ActionId(val id: String, val isDonateAction: Boolean = false) {
     SNOOZE("snooze"),

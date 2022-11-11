@@ -25,6 +25,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     ChatsSettingsState(
       generateLinkPreviews = SignalStore.settings().isLinkPreviewsEnabled,
       useAddressBook = SignalStore.settings().isPreferSystemContactPhotos,
+      keepMutedChatsArchived = SignalStore.settings().shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings().isPreferSystemEmoji,
       enterKeySends = SignalStore.settings().isEnterKeySends,
       chatBackupsEnabled = SignalStore.settings().isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(ApplicationDependencies.getApplication()),
@@ -55,6 +56,12 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
     refreshDebouncer.publish { ConversationUtil.refreshRecipientShortcuts() }
     SignalStore.settings().isPreferSystemContactPhotos = enabled
     repository.syncPreferSystemContactPhotos()
+  }
+
+  fun setKeepMutedChatsArchived(enabled: Boolean) {
+    store.update { it.copy(keepMutedChatsArchived = enabled) }
+    SignalStore.settings().setKeepMutedChatsArchived(enabled)
+    repository.syncKeepMutedChatsArchivedState()
   }
 
   fun setUseSystemEmoji(enabled: Boolean) {

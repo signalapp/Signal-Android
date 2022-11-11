@@ -104,6 +104,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal 需要儲存裝置權限才可附加照片、影片或音訊，但已被永久拒絕。請前往應用程式設定功能表，選擇 「權限」，然後啟用 「儲存裝置」。</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal 需要聯絡人權限才可附加聯絡人資訊，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「聯絡人」。</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal 需要位置權限才可附加位置，但已被永久拒絕。請前往應用程式設定功能表，選擇「權限」，然後啟用 「位置」。</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s 尚未啟動付款 </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">你想向他們傳送啟動付款的請求嗎？</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">傳送請求</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">取消</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">正在上載媒體…</string>
@@ -125,32 +133,38 @@
     <string name="BlockedUsersActivity__unblock">解除封鎖</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">捐款金額：%1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">請於下方輸入你的付款卡資料</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">付款卡號碼</string>
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/YY</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">付款卡號碼無效</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">付款卡已過期</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">代碼太短</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">代碼太長</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">代碼無效</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">月份無效</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">必須填寫年份</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">年份無效</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">繼續</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">要封鎖並退出 %1$s 嗎？</string>
@@ -296,6 +310,18 @@
     <string name="ConversationItem_pending">  待處理</string>
     <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
     <string name="ConversationItem_you_deleted_this_message">您已刪除此訊息。</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">無法下載訊息。%1$s 需要再次傳送。</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">無法下載圖像。%1$s 需要再次傳送。</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">無法下載影片。%1$s 需要再次傳送。</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">無法下載訊息。你需要再次傳送。</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">無法下載圖像。你需要再次傳送。</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">無法下載影片。你需要再次傳送。</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">新增附件</string>
@@ -419,6 +445,10 @@
     <string name="ConversationFragment_deleting_messages">正在刪除訊息…</string>
     <string name="ConversationFragment_delete_for_me">為我刪除</string>
     <string name="ConversationFragment_delete_for_everyone">為所有人刪除</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">此訊息將從對話中所有使用最近版本 Signal 的人刪除。他們將會看見您刪除了一則訊息。</string>
     <string name="ConversationFragment_quoted_message_not_found">找不到原始訊息</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不可用</string>
@@ -814,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">由於你已選擇一個不支援 Signal 群組的聯絡人，此群組將會使用多媒體短訊。只有你可以看見自訂多媒體短訊群組的名稱和相片。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">你選取的聯絡人無法使用 Signal 群組，因此群組將使用多媒體訊息。只有你可以看到自訂的多媒體訊息群組名稱和相片。系統即將停止支援多媒體訊息群組，專注提供加密通訊服務。</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">成員請求與邀請</string>
@@ -1334,11 +1364,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">來自 %1$s 的一則訊息無法送達</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s 已變更電話號碼。</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">您喜歡這個全新功能嗎？透過單次捐款來支持 Signal。</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">你喜歡這個全新功能嗎？透過單次捐款來支持 Signal。</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">你與 %1$s 的訊息紀錄及其號碼 %2$s 已經合併。</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">你與 %1$s 的訊息紀錄和屬於他們的另一個聊天已經合併。</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">你向 %1$s 傳送了啟動付款的請求</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s 希望你啟動付款。僅向你信任的人傳送付款。</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">你啟動了付款</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s 現在可以接受付款</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s 開展了群組通話 · %2$s</string>
@@ -1367,6 +1405,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">你很快將無法再於 Signal 傳送短訊。邀請 %1$s 加入 Signal 以繼續對話。</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">你無法再於 Signal 傳送短訊。邀請 %1$s 加入 Signal 以繼續對話。</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -1812,6 +1852,14 @@
     <string name="ThreadRecord_view_once_media">閱後即焚媒體</string>
     <string name="ThreadRecord_this_message_was_deleted">此訊息已被刪除。</string>
     <string name="ThreadRecord_you_deleted_this_message">您已刪除此訊息。</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">你傳送了啟動付款的請求</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s 希望你啟動付款</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">你已啟動付款</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s 現在可以接受付款</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s 在用 Signal 了！</string>
     <string name="ThreadRecord_disappearing_messages_disabled">限時訊息已停用</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">限時訊息時效已設為 %1$s</string>
@@ -1833,11 +1881,13 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_sent_a_gift">您送出一份禮品</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">您已換領一枚禮品徽章</string>
+    <string name="ThreadRecord__you_redeemed_a_gift_badge">你已兌換一枚饋贈徽章</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">對你的限時動態表達了 %1$s 心情</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">對他們的限時動態表達了 %1$s 心情</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">Signal 更新</string>
@@ -1940,6 +1990,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">媒體不再可用。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">找不到能夠分享此媒體的應用程式。</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">關閉</string>
+    <string name="MediaPreviewFragment_edit_media_error">多媒體錯誤</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">來自 %2$d 個對話的 %1$d 則新訊息</string>
@@ -2035,6 +2086,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">裝置已不再註冊</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">通常是因為您已在另一台裝置上使用 Signal 註冊您的電話號碼。輕觸以重新註冊。</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">請更新 Signal 以繼續使用付款功能。你的餘額可能尚未更新。</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">立即更新</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">若要接聽通話，請授予 Signal 存取您的咪高峰。</string>
@@ -2162,6 +2219,11 @@
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">當您發送訊息時，將會設置時效為 %1$s。</string>
     <!-- Update item button text to show to boost a feature -->
     <string name="ConversationUpdateItem_donate">捐款</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">付款</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">啟用付款</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
@@ -2463,7 +2525,7 @@
         <item>回饋</item>
         <item>其他</item>
         <item>付款 (MobileCoin)</item>
-        <item>捐款 &amp; 徽章</item>
+        <item>捐款及徽章</item>
         <item>SMS 短訊匯出</item>
     </string-array>
 
@@ -2529,6 +2591,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">按一下輸入鍵將會發送文字訊息</string>
     <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">在可用時顯示來自您的通訊錄中的聯絡人照片</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">繼續存檔靜音聊天記錄</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">當收到新訊息時，已存檔的靜音聊天將會保持存檔狀態。</string>
     <string name="preferences__generate_link_previews">產生連結預覽</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">為您傳送的訊息直接從網站提取連結預覽。</string>
     <string name="preferences__choose_identity">請選擇身份</string>
@@ -2720,107 +2786,9 @@
     <string name="configurable_single_select__customize_option">自訂選項</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2830,7 +2798,7 @@
     <string name="PaymentsAllActivityFragment__received">已收取</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">付款 (測試版) 登場</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">使用 Signal 以傳送和接收 MobileCoin：一種新的著重私隱的數碼貨幣。啟用以開始使用。</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">使用 Signal 傳送和接收 MobileCoin：一種注重隱私的全新數位貨幣。立即啟動便可以開始使用。</string>
     <string name="PaymentsHomeFragment__activate_payments">啟用付款</string>
     <string name="PaymentsHomeFragment__activating_payments">正在啟用付款…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">還原付款帳戶</string>
@@ -2852,8 +2820,8 @@
     <string name="PaymentsHomeFragment__received_payment">已接收付款</string>
     <string name="PaymentsHomeFragment__processing_payment">處理中付款</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">貨幣換算不可用</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">無法顯示貨幣換算。請檢查您手機的連線，然後再試一次。</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">無法提供貨幣換算</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">無法顯示貨幣換算。請檢查你手機的網路連線，然後再試一次。</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">付款不適用於您的地區。</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">無法啟用付款。請稍後再試。</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">要停用付款嗎？</string>
@@ -2879,6 +2847,14 @@
     <string name="PaymentsHomeFragment__enable">開啟</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">暫時不要</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">必須更新</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">你必須進行更新方可繼續傳送及接收付款，並查看最新的付款餘額。</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">取消</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">立即更新</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -2922,7 +2898,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s，在 %2$s 於 %3$s</string>
     <string name="PaymentsDetailsFragment__to">收款人：</string>
     <string name="PaymentsDetailsFragment__from">付款人：</string>
-    <string name="PaymentsDetailsFragment__information">交易詳情包括付款金額和交易時間，屬於 MobileCoin Ledger 一部份。</string>
+    <string name="PaymentsDetailsFragment__information">付款金額及交易時間等交易詳情屬於 MobileCoin 帳目的一部分。</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">金幣清理費用</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">當您擁有的金幣無法合併以完成一筆交易時，將會徵收一項「金幣清理費用」。清理將會允許您繼續發送付款。</string>
     <string name="PaymentsDetailsFragment__no_details_available">此交易無進一步詳情提供</string>
@@ -2982,7 +2958,7 @@
     <string name="ConfirmPayment__error_getting_fee">取得費用時發生錯誤</string>
     <string name="ConfirmPayment__estimated_s">估算 %1$s</string>
     <string name="ConfirmPayment__to">收款人：</string>
-    <string name="ConfirmPayment__total_amount">合計金額</string>
+    <string name="ConfirmPayment__total_amount">總金額</string>
     <string name="ConfirmPayment__balance_s">餘額：%1$s</string>
     <string name="ConfirmPayment__submitting_payment">正在提交付款…</string>
     <string name="ConfirmPayment__processing_payment">正在處理付款…</string>
@@ -3058,6 +3034,8 @@
     <string name="conversation_selection__menu_resend_message">重新傳送</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">選取</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3139,13 +3117,21 @@
     <string name="reminder_header_push_text">讓您的通訊體驗更上一層樓。</string>
     <string name="reminder_header_service_outage_text">Signal 出現技術問題。我們正努力搶修，儘快回復服務。</string>
     <string name="reminder_header_progress">%1$d%%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">儲存</string>
     <string name="media_preview__forward_title">轉發</string>
     <string name="media_preview__share_title">分享</string>
     <string name="media_preview__all_media_title">所有媒體</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">編輯</string>
 
 
     <!-- media_preview_activity -->
@@ -3175,7 +3161,7 @@
 
     <string name="FirstInviteReminder__title">邀請加入 Signal</string>
     <string name="FirstInviteReminder__description">您已傳送的加密訊息數目其實可提高多達 %1$d%%</string>
-    <string name="SecondInviteReminder__title">提升您的 Signal</string>
+    <string name="SecondInviteReminder__title">為你的 Signal 集氣</string>
     <string name="SecondInviteReminder__description">邀請%1$s</string>
     <string name="InsightsReminder__view_insights">檢視省覧</string>
     <string name="InsightsReminder__invite">邀請</string>
@@ -3643,7 +3629,7 @@
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">正在刪除帳戶…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
-    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消您的訂閱…</string>
+    <string name="DeleteAccountFragment__canceling_your_subscription">正在取消你的定期贊助…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is leaving groups -->
     <string name="DeleteAccountFragment__depending_on_the_number_of_groups">視乎您所在群組的數目，這可能需時數分鐘</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process has left all groups -->
@@ -3722,7 +3708,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">關於 MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一種新的著重私隱的數碼貨幣。</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin 是一種注重隱私的全新數位貨幣。</string>
     <string name="payment_info_card_adding_funds">增加款項</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">您可傳送 MobileCoin 到您的錢包位址，以增加款項在 Signal 中使用。</string>
     <string name="payment_info_card_cashing_out">提取款項</string>
@@ -3760,7 +3746,9 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">儲存恢復片語</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">輸入恢復片語</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">當您重新安裝 Signal 時，若您確認您的 Signal PIN 碼，您的餘額將會自動還原。您亦可使用恢復片語還原您的餘額，即是一組獨一無二的 %1$d 字詞片語。請寫下並妥為保存於安全的地方。</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="other">當你在重新安裝 Signal 時確認你的 Signal PIN 碼，餘額就會自動還原。你也可使用恢復片語還原你的餘額。恢復片語是一組獨一無二的片語，包含 %1$d 個字詞。請牢記恢復片語，並妥善保存於安全的地方。</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">你尚有餘額！是時候儲存你的恢復片語了──你可使用一組 24 個字的密鑰，以恢復你的餘額。</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -3930,7 +3918,7 @@
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">移除短訊</string>
     <!-- Snackbar text to confirm deletion -->
-    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">正在從 Signal 中移除短訊...</string>
+    <string name="SmsSettingsFragment__removing_sms_messages_from_signal">正在從 Signal 中移除短訊…</string>
     <!-- Snackbar text to indicate can delete later -->
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">你隨時可以在「設定」中移除 Signal 內的短訊。</string>
     <!-- Description for export sms preference -->
@@ -4058,7 +4046,7 @@
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">捐款給 Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">各位都是 Signal 的強大支柱。每月捐款，即可獲得徽章。</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal 全靠你的支持。每月捐款支持，即可獲得徽章。</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate">捐款</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
@@ -4081,7 +4069,7 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">成為延續人</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">萬家燈火照，將點點光輝，放進 Signal。凡捐款即獲贈徽章。</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal 全靠你的支持。捐款支持即可獲得徽章。</string>
     <string name="BecomeASustainerMegaphone__not_now">現在不要</string>
     <string name="BecomeASustainerMegaphone__donate">捐款</string>
 
@@ -4138,7 +4126,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">對話已設為靜音，直到永遠</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">電話號碼已複製至剪貼簿。</string>
     <string name="ConversationSettingsFragment__phone_number">電話號碼</string>
-    <string name="ConversationSettingsFragment__get_badges">撐起 Signal 並在您的個人資料中獲贈徽章。輕觸徽章以了解詳情。</string>
+    <string name="ConversationSettingsFragment__get_badges">支持 Signal 即可在你的個人檔案中展示徽章。點按徽章以了解更多資訊。</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">新增成員</string>
@@ -4302,19 +4290,25 @@
     <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
 
     <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
-    <string name="BadgesOverviewFragment__featured_badge">別注徽章</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">在個人資料中展現徽章</string>
+    <string name="BadgesOverviewFragment__featured_badge">主題徽章</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">在個人檔案中展示徽章</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">更新個人資料失敗</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">請選擇徽章</string>
+    <string name="BadgeSelectionFragment__select_badges">選擇徽章</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">預覽</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">請選擇一個徽章</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您必須選取一個徽章</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">選擇一個徽章</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">你必須選擇一個徽章</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新個人資料失敗</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
     <string name="ImageView__badge">徽章</string>
 
@@ -4322,41 +4316,43 @@
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">支持為您而設、而非為您的資料而造的科技，擔起延續人，成為延續 Signal 爐火的一分子。</string>
     <string name="SubscribeFragment__currency">貨幣</string>
     <string name="SubscribeFragment__more_payment_options">更多付款選項</string>
-    <string name="SubscribeFragment__cancel_subscription">取消訂閱</string>
-    <string name="SubscribeFragment__confirm_cancellation">確認取消訂閱嗎？</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">之後不會再向您收取。當您的付款週期屆滿時，您的徽章將從個人資料中移除。</string>
+    <string name="SubscribeFragment__cancel_subscription">取消定期贊助</string>
+    <string name="SubscribeFragment__confirm_cancellation">確定要取消嗎？</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">我們不會再向你收取費用。你的徽章會在付款週期屆滿時從你的個人檔案中移除。</string>
     <string name="SubscribeFragment__not_now">現在不要</string>
     <string name="SubscribeFragment__confirm">確認</string>
-    <string name="SubscribeFragment__update_subscription">更新訂閱</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">您的訂閱經已取消。</string>
-    <string name="SubscribeFragment__update_subscription_question">要更新訂閱嗎？</string>
+    <string name="SubscribeFragment__update_subscription">更新定期贊助</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">你的定期贊助已取消。</string>
+    <string name="SubscribeFragment__update_subscription_question">要更新定期贊助嗎？</string>
     <string name="SubscribeFragment__update">更新</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">是日將向您收取新的訂閱價格全額 (%1$s)。您的訂閱將會每月續期。</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">我們將於今天向你收取新定期贊助的全額價格 (%1$s)。你的定期贊助將會每月續期。</string>
 
     <string name="Subscription__s_per_month">%1$s/月</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">%1$s 續期</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">到期日為 %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴使用並珍重 Signal 的人維持。祈盼樂善好施，力所能及作每月捐款，並笑納一枚個人資料徽章，好與人分享您的支持。</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">為何要捐款？</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal 致力開發開放原始碼的私隱技術，保護自由表達並讓全球通訊變得安全。</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">您的捐款，驅動這因由，並有助補貼程式開發與運作，讓世界各地數以百萬計「惜爐」使用者，共星光中作私密通訊。無廣告 · 無追蹤 · 無戲言。</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">感謝您力撐支持！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">感謝您加油集氣！</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">您已獲贈「%1$s」徽章！不妨在您的個人資料中展覽此徽章，讓人一呼百應，以捐款撐起 Signal。</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">您已獲贈一枚「集氣」徽章！不妨在您的個人資料中展覽此徽章，讓人一呼百應，以捐款撐起 Signal。</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您亦可考慮</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供延續人。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為別注徽章</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">完成</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若您有多於一枚徽章，您可選取一枚作為別注徽章，在個人資料中供其他人看見。</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">設為主題徽章</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">繼續</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">若你有超過一枚以上的徽章，你可選取一枚作為主題徽章，在個人檔案中展示。</string>
 
-    <string name="BecomeASustainerFragment__get_badges">撐起 Signal 並在您的個人資料中獲贈徽章。</string>
+    <string name="BecomeASustainerFragment__get_badges">支持 Signal 以獲取你的個人檔案徽章。</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal 是非牟利機構，並無廣告商或投資者，純粹仰賴像您這樣的人撐起。</string>
 
     <!-- Button label for creating a donation -->
@@ -4367,12 +4363,12 @@
     <string name="ManageDonationsFragment__receipts">收據</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">我的支持</string>
-    <string name="ManageDonationsFragment__manage_subscription">管理訂閱</string>
+    <string name="ManageDonationsFragment__manage_subscription">管理定期贊助</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
     <string name="ManageDonationsFragment__badges">徽章</string>
-    <string name="ManageDonationsFragment__subscription_faq">訂閱常見問答</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">取得訂閱時發生錯誤。</string>
+    <string name="ManageDonationsFragment__subscription_faq">有關定期贊助的常見問答</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">取得定期贊助時發生錯誤。</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他方式捐贈</string>
     <!-- Preference label to launch badge gifting -->
@@ -4390,43 +4386,43 @@
     <string name="MySupportPreference__please_contact_support">請聯絡支援。</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">「集氣」徽章已到時限</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">捐款徽章已過期</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">每月捐款已取消</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">已取消每月捐款</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">您的「集氣」徽章已到時限，不再見於您的個人資料中。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">您可憑單次捐款，將您的「集氣」徽章再延續 30 天。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">你的捐款徽章已過期，且不會再顯示在你的個人檔案中。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">你可憑單次捐款重新啟動你的捐款徽章，並延期 30 天。</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">您可如常使用 Signal，沒有關係。如欲支持為您而設的科技，還請考慮每月捐款成為延續人。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">你可如常使用 Signal，但也可以考慮透過每月捐款成為定期贊助者，支持這項為你打造的技術。</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">新增集氣</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">現在不要</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">有見您已有好一段日子未曾使用，您的每月定期捐款已自動取消。您的「%1$s」徽章不再見於您的個人資料中。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">由於你太長時間沒有使用，因此你的每月定期捐款已被自動取消。你的 %1$s 徽章不會再顯示在你的個人檔案中。</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">我們未能處理您的付款，因此您的每月定期捐款已取消。您的徽章不再見於您的個人資料中。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">我們未能處理你的付款，因此你的每月定期捐款已被取消。你的徽章不會再顯示在你的個人檔案中。</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">你的每月定期捐款已取消。%1$s你的個人檔案將不再顯示「%2$s」徽章。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">您可如常使用 Signal，沒有關係。假如您希望支持此應用程式並延續您的徽章，請立即續期。</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為訂閱續期</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">你的每月定期捐款已被取消。%1$s 你的 %2$s 徽章不會再顯示在你的個人檔案中。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">你可如常使用 Signal，但如果想支持應用程式並重新啟動你的徽章，請立即為定期贊助續期。</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">為定期贊助續期</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">前往 Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">未能處理訂閱付款</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">未能處理定期贊助付款</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">我們在收取您的 Signal 延續人付款時遇到問題。請確定您的付款方法仍然有效。若已失效，請到 Google Pay 更新過時的資訊。Signal 將於數天內再次嘗試處理付款。</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">不要再顯示此訊息</string>
 
     <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>
     <string name="Subscription__contact_support">聯絡支援</string>
-    <string name="Subscription__get_a_s_badge">獲取一枚「%1$s」徽章</string>
+    <string name="Subscription__get_a_s_badge">獲取 %1$s 徽章</string>
 
     <string name="SubscribeFragment__processing_payment">正在處理付款…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">處理付款時發生錯誤</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">處理付款時發生錯誤。%1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">您的徽章未能新增至您的帳戶，惟款項或已向您收取。請聯絡支援。</string>
-    <string name="DonationsErrors__your_payment">您的付款未能處理，沒有向您扣帳。請再試一次。</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
+    <string name="DonationsErrors__your_payment">系統無法處理你的付款，且並未向你收取費用。請再試一次。</string>
     <string name="DonationsErrors__still_processing">仍在處理中</string>
     <string name="DonationsErrors__couldnt_add_badge">無法新增徽章</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
@@ -4434,16 +4430,16 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">無法驗證伺服器回應。請聯絡支援。</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">傳送徽章失敗</string>
+    <string name="DonationsErrors__failed_to_send_gift_badge">無法傳送饋贈徽章</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">無法傳送禮品徽章。請聯絡支援。</string>
-    <string name="DonationsErrors__your_badge_could_not">您的徽章未能新增至您的帳戶，惟款項或已向您收取。請聯絡支援。</string>
+    <string name="DonationsErrors__could_not_send_gift_badge">無法傳送饋贈徽章。請聯絡支援團隊。</string>
+    <string name="DonationsErrors__your_badge_could_not">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_payment_is_still">您的付款仍在處理中。可能需時幾分鐘，視乎您的連線而定。</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">您必需先設置 Google Pay 才可在應用程式中捐款。</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">取消訂閱失敗</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">需要互聯網連線才可取消訂閱。</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">您的裝置不支援 Google Pay，故抱歉未能讓您訂閱並贈予徽章。您仍可在我們的網站上捐款以支持 Signal。</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必需設置 Google Pay 才可在應用程式內捐款。</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">無法取消定期贊助</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">你必須有網路連線才可取消定期贊助。</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此未能進行定期贊助並贈予徽章。你仍可在我們的網站上捐款以支持 Signal。</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
     <string name="NetworkFailure__retry">重試</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4456,7 +4452,7 @@
     <string name="DonationsErrors__please_check_your_network_connection">由於發生網路錯誤，系統無法傳送你的禮品。請檢查你的網路連線，然後再試一次。</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">禮品徽章</string>
+    <string name="GiftMessageView__gift_badge">饋贈徽章</string>
     <!-- Gift message view expiry information -->
     <plurals name="GiftMessageView__lasts_for_d_months">
         <item quantity="other">為期 %1$d 個月</item>
@@ -4666,7 +4662,7 @@
     <!-- Donation receipts share PNG -->
     <string name="DonationReceiptDetailsFragment__share_receipt">分享收據</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">若您已重新安裝 Signal，先前捐款的收據恕未能提供。</string>
+    <string name="DonationReceiptListFragment__if_you_have">若您已重新安裝 Signal，恕未能提供先前捐款的收據。</string>
     <!-- Donation receipts document title -->
     <string name="DonationReceiptDetailsFragment__donation_receipt">捐款收據</string>
     <!-- Donation receipts amount title -->
@@ -4767,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">未有觀看</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">啟用已讀標記，以查看誰瀏覽了你的限時動態。</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">前往設定</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4976,6 +4972,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">正在傳送回覆…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">此限時動態不再適用。</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">無法下載限時動態。%1$s 需要再次分享。</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">無互聯網連線</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5015,11 +5013,11 @@
         <item quantity="other">%1$s · 為期 %2$d 天</item>
     </plurals>
     <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">送贈一枚禮品徽章</string>
+    <string name="GiftRowItem__send_a_gift_badge">贈送一枚禮品徽章</string>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">饋贈徽章</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">以其之名捐款給 Signal，饋贈一枚徽章給那特別的人。對方將獲得一枚徽章，可於其個人資料中展覽。</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">饋贈一枚徽章給特別的人，就能以對方的名義捐款給 Signal。對方將獲得一枚徽章，可於其個人資料中展示。</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">下一步</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5041,7 +5039,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">感謝您力撐支持！</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">您已收到 %1$s 送贈的禮品徽章！不妨在您的個人資料中展覽此徽章，讓人一呼百應，以捐款撐起 Signal。</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">您已收到 %1$s 贈送的禮品徽章！不妨在您的個人資料中展示此徽章，讓人一呼百應，以捐款支持 Signal。</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">您已饋贈一枚徽章給 %1$s。當對方接受時，將可自行選擇顯示或隱藏自己的徽章。</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -5051,13 +5049,13 @@
     <!-- Dialog text while redeeming a gift -->
     <string name="ViewReceivedGiftSheet__redeeming_gift">正在換領禮品…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
-    <string name="ConversationFragment__you_can_redeem_your_badge_later">您可容後換領您的徽章。</string>
+    <string name="ConversationFragment__you_can_redeem_your_badge_later">您可稍後換領您的徽章。</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">您已饋贈一枚徽章給 %1$s。當對方接受時，將可自行選擇顯示或隱藏自己的徽章。</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">您的禮品徽章已到時限</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">您的禮品徽章已過期</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">您的禮品徽章已到時限，不再在您的個人資料中讓別人看見。</string>
+    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">您的禮品徽章已過期，不會再在您的個人資料中顯示。</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5266,7 +5264,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">仍要繼續</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal 需要獲取短訊權限才能匯出你的短訊。</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5385,30 +5383,69 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">繼續</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">每月</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">單次</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">每月向 Signal 捐款 %1$s</string>
     <!-- Sheet summary when subscribing -->
     <string name="GatewaySelectorBottomSheet__get_a_s_badge">獲取一枚「%1$s」徽章</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">捐款 %1$s 給 Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="other">獲取為期 %2$d 天的 %1$s 徽章</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">信用卡或簽帳金融卡</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">正在取消…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

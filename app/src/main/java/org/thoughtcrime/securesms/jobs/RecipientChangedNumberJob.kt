@@ -32,7 +32,7 @@ class RecipientChangedNumberJob(parameters: Parameters, private val recipientId:
 
     if (!recipient.isBlocked && !recipient.isGroup && !recipient.isSelf) {
       Log.i(TAG, "Writing a number change event.")
-      SignalDatabase.sms.insertNumberChangeMessages(recipient)
+      SignalDatabase.sms.insertNumberChangeMessages(recipient.id)
     } else {
       Log.i(TAG, "Number changed but not relevant. blocked: ${recipient.isBlocked} isGroup: ${recipient.isGroup} isSelf: ${recipient.isSelf}")
     }

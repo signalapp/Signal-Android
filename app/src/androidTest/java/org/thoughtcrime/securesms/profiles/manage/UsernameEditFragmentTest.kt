@@ -21,6 +21,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import io.reactivex.rxjava3.schedulers.TestScheduler
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -89,6 +90,7 @@ class UsernameEditFragmentTest {
     onView(withContentDescription(R.string.load_more_header__loading)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)))
   }
 
+  @Ignore("Flakey espresso test.")
   @Test
   fun testNicknameUpdateHappyPath() {
     val nickname = "Spiderman"

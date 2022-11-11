@@ -291,7 +291,7 @@ class MmsDatabaseTest_stories {
   }
 
   @Test
-  fun givenAGroupStoryWithAReactionFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectFalse() {
+  fun givenAGroupStoryWithAReactionFromSelf_whenICheckHasSelfReplyInGroupStory_thenIExpectTrue() {
     // GIVEN
     val groupStoryId = MmsHelper.insert(
       recipient = myStory,
@@ -312,7 +312,7 @@ class MmsDatabaseTest_stories {
     val result = mms.hasGroupReplyOrReactionInStory(groupStoryId)
 
     // THEN
-    assertFalse(result)
+    assertTrue(result)
   }
 
   @Test

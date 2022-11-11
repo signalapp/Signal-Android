@@ -1028,8 +1028,11 @@ public class SignalServiceMessageSender {
                                                                                                                   .setMobileCoin(mobileCoinPayment);
 
         builder.setPayment(DataMessage.Payment.newBuilder().setNotification(paymentBuilder));
-        builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.PAYMENTS_VALUE, builder.getRequiredProtocolVersion()));
+      } else if (payment.getPaymentActivation().isPresent()) {
+        DataMessage.Payment.Activation.Builder activationBuilder = DataMessage.Payment.Activation.newBuilder().setType(payment.getPaymentActivation().get().getType());
+        builder.setPayment(DataMessage.Payment.newBuilder().setActivation(activationBuilder));
       }
+        builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.PAYMENTS_VALUE, builder.getRequiredProtocolVersion()));
     }
 
     if (message.getStoryContext().isPresent()) {

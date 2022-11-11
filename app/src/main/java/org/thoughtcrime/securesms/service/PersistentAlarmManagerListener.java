@@ -8,49 +8,89 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 
 public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
-  private static final String TAG = Log.tag(PersistentAlarmManagerListener.class);
+  private static final String TAG             = Log.tag(PersistentAlarmManagerListener.class);
+  private static final String ACTION_SCHEDULE = "signal.ACTION_SCHEDULE";
+
+  protected static @NonNull Intent getScheduleIntent() {
+    Intent scheduleIntent = new Intent();
+    scheduleIntent.setAction(ACTION_SCHEDULE);
+    return scheduleIntent;
+  }
 
   protected abstract long getNextScheduledExecutionTime(Context context);
+
   protected abstract long onAlarm(Context context, long scheduledTime);
 
   @Override
   public void onReceive(Context context, Intent intent) {
-    Log.i(TAG, String.format("%s#onReceive(%s)", getClass().getSimpleName(), intent.getAction()));
+    info(String.format("onReceive(%s)", intent.getAction()));
 
     long          scheduledTime = getNextScheduledExecutionTime(context);
     AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
     Intent        alarmIntent   = new Intent(context, getClass());
     PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntentFlags.immutable());
 
-
-    if (System.currentTimeMillis() >= scheduledTime) {
+    if (System.currentTimeMillis() >= scheduledTime && canRunDuringSchedule(intent.getAction())) {
+      info("onAlarm(): scheduled: " + scheduledTime + " actual: " + System.currentTimeMillis());
       scheduledTime = onAlarm(context, scheduledTime);
     }
 
-    Log.i(TAG, getClass() + " scheduling for: " + scheduledTime + " action: " + intent.getAction());
+    if (pendingIntent == null) {
+      info("PendingIntent somehow null, skipping");
+      return;
+    }
 
-    if (pendingIntent != null) {
-      alarmManager.cancel(pendingIntent);
-      if (scheduleExact() && Build.VERSION.SDK_INT >= 31) {
-        if (alarmManager.canScheduleExactAlarms()) {
-          alarmManager.setExact(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
-        } else {
-          Log.w(TAG, "Unable to schedule exact alarm, permissionAllowed: " + alarmManager.canScheduleExactAlarms());
-        }
-      } else {
-        alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
-      }
+    alarmManager.cancel(pendingIntent);
+
+    if (shouldScheduleExact()) {
+      scheduleExact(alarmManager, scheduledTime, pendingIntent);
     } else {
-      Log.i(TAG, "PendingIntent somehow null, skipping");
+      info("scheduling alarm for: " + scheduledTime);
+      alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
     }
   }
 
-  protected boolean scheduleExact() {
+  private boolean canRunDuringSchedule(@NonNull String action) {
+    return !shouldScheduleExact() || !ACTION_SCHEDULE.equals(action);
+  }
+
+  private void scheduleExact(AlarmManager alarmManager, long scheduledTime, PendingIntent pendingIntent) {
+    boolean hasManagerPermission = Build.VERSION.SDK_INT < 31 || alarmManager.canScheduleExactAlarms();
+
+    info("scheduling exact alarm for: " + scheduledTime + " hasManagerPermission: " + hasManagerPermission);
+    if (hasManagerPermission) {
+      try {
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
+        return;
+      } catch (Exception e) {
+        warn(e);
+      }
+    }
+
+    warn("Unable to schedule exact alarm, falling back to inexact alarm, scheduling alarm for: " + scheduledTime);
+    alarmManager.set(AlarmManager.RTC_WAKEUP, scheduledTime, pendingIntent);
+  }
+
+  protected boolean shouldScheduleExact() {
     return false;
+  }
+
+  private void info(String message) {
+    Log.i(TAG, "[" + getClass().getSimpleName() + "] " + message);
+  }
+
+  private void warn(String message) {
+    Log.w(TAG, "[" + getClass().getSimpleName() + "] " + message);
+  }
+
+  private void warn(Throwable t) {
+    Log.w(TAG, "[" + getClass().getSimpleName() + "]", t);
   }
 }

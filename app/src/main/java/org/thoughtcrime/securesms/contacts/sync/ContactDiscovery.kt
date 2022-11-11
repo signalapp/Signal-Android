@@ -1,24 +1,19 @@
 package org.thoughtcrime.securesms.contacts.sync
 
 import android.Manifest
-import android.accounts.Account
 import android.content.Context
-import android.content.OperationApplicationException
-import android.os.RemoteException
 import android.text.TextUtils
 import androidx.annotation.WorkerThread
-import org.signal.contacts.ContactLinkConfiguration
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.RecipientDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.SyncSystemContactLinksJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
@@ -45,9 +40,6 @@ object ContactDiscovery {
 
   private val TAG = Log.tag(ContactDiscovery::class.java)
 
-  private const val MESSAGE_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.contact"
-  private const val CALL_MIMETYPE = "vnd.android.cursor.item/vnd.org.thoughtcrime.securesms.call"
-  private const val CONTACT_TAG = "__TS"
   private const val FULL_SYSTEM_CONTACT_SYNC_THRESHOLD = 3
 
   @JvmStatic
@@ -154,8 +146,7 @@ object ContactDiscovery {
     stopwatch.split("cds")
 
     if (hasContactsPermissions(context)) {
-      addSystemContactLinks(context, result.registeredIds, removeSystemContactLinksIfMissing)
-      stopwatch.split("contact-links")
+      ApplicationDependencies.getJobManager().add(SyncSystemContactLinksJob())
 
       val useFullSync = removeSystemContactLinksIfMissing && result.registeredIds.size > FULL_SYSTEM_CONTACT_SYNC_THRESHOLD
       syncRecipientsWithSystemContacts(
@@ -215,68 +206,8 @@ object ContactDiscovery {
       }
   }
 
-  private fun buildContactLinkConfiguration(context: Context, account: Account): ContactLinkConfiguration {
-    return ContactLinkConfiguration(
-      account = account,
-      appName = context.getString(R.string.app_name),
-      messagePrompt = { e164 -> context.getString(R.string.ContactsDatabase_message_s, e164) },
-      callPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_call_s, e164) },
-      e164Formatter = { number -> PhoneNumberFormatter.get(context).format(number) },
-      messageMimetype = MESSAGE_MIMETYPE,
-      callMimetype = CALL_MIMETYPE,
-      syncTag = CONTACT_TAG
-    )
-  }
-
   private fun hasContactsPermissions(context: Context): Boolean {
     return Permissions.hasAll(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)
-  }
-
-  /**
-   * Adds the "Message/Call $number with Signal" link to registered users in the system contacts.
-   * @param registeredIds A list of registered [RecipientId]s
-   * @param removeIfMissing If true, this will remove links from every currently-linked system contact that is *not* in the [registeredIds] list.
-   */
-  private fun addSystemContactLinks(context: Context, registeredIds: Collection<RecipientId>, removeIfMissing: Boolean) {
-    if (!Permissions.hasAll(context, Manifest.permission.READ_CONTACTS, Manifest.permission.WRITE_CONTACTS)) {
-      Log.w(TAG, "[addSystemContactLinks] No contact permissions. Skipping.")
-      return
-    }
-
-    if (registeredIds.isEmpty()) {
-      Log.w(TAG, "[addSystemContactLinks] No registeredIds. Skipping.")
-      return
-    }
-
-    val stopwatch = Stopwatch("contact-links")
-
-    val account = SystemContactsRepository.getOrCreateSystemAccount(context, BuildConfig.APPLICATION_ID, context.getString(R.string.app_name))
-    if (account == null) {
-      Log.w(TAG, "[addSystemContactLinks] Failed to create an account!")
-      return
-    }
-
-    try {
-      val registeredE164s: Set<String> = SignalDatabase.recipients.getE164sForIds(registeredIds)
-      stopwatch.split("fetch-e164s")
-
-      SystemContactsRepository.removeDeletedRawContactsForAccount(context, account)
-      stopwatch.split("delete-stragglers")
-
-      SystemContactsRepository.addMessageAndCallLinksToContacts(
-        context = context,
-        config = buildContactLinkConfiguration(context, account),
-        targetE164s = registeredE164s,
-        removeIfMissing = removeIfMissing
-      )
-      stopwatch.split("add-links")
-
-      stopwatch.stop(TAG)
-    } catch (e: RemoteException) {
-      Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
-    } catch (e: OperationApplicationException) {
-      Log.w(TAG, "[addSystemContactLinks] Failed to add links to contacts.", e)
-    }
   }
 
   /**

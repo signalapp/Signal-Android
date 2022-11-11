@@ -228,6 +228,16 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       dismiss()
       getAdapterListener().onViewGiftBadgeClicked(messageRecord)
     }
+
+    override fun onActivatePaymentsClicked() {
+      dismiss()
+      getAdapterListener().onActivatePaymentsClicked()
+    }
+
+    override fun onSendPaymentClicked(recipientId: RecipientId) {
+      dismiss()
+      getAdapterListener().onSendPaymentClicked(recipientId)
+    }
   }
 
   interface Callback {

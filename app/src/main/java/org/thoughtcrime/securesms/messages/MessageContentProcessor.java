@@ -100,7 +100,6 @@ import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.keyvalue.StoryValues;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
@@ -136,6 +135,7 @@ import org.thoughtcrime.securesms.util.GroupUtil;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LinkUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -295,7 +295,9 @@ public final class MessageContentProcessor {
         else if (message.getReaction().isPresent() && message.getStoryContext().isPresent()) messageId = handleStoryReaction(content, message, senderRecipient);
         else if (message.getReaction().isPresent())                                          messageId = handleReaction(content, message, senderRecipient);
         else if (message.getRemoteDelete().isPresent())                                      messageId = handleRemoteDelete(content, message, senderRecipient);
-        else if (message.getPayment().isPresent())                                           handlePayment(content, message, senderRecipient);
+        else if (message.isActivatePaymentsRequest())                                        messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, true, false);
+        else if (message.isPaymentsActivated())                                              messageId = handlePaymentActivation(content, message, smsMessageId, senderRecipient, receivedTime, false, true);
+        else if (message.getPayment().isPresent())                                           messageId = handlePayment(content, message, smsMessageId, senderRecipient, receivedTime);
         else if (message.getStoryContext().isPresent())                                      messageId = handleStoryReply(content, message, senderRecipient, receivedTime);
         else if (message.getGiftBadge().isPresent())                                         messageId = handleGiftMessage(content, message, senderRecipient, threadRecipient, receivedTime);
         else if (isMediaMessage)                                                             messageId = handleMediaMessage(content, message, smsMessageId, senderRecipient, threadRecipient, receivedTime);
@@ -431,7 +433,13 @@ public final class MessageContentProcessor {
     return receivedTime;
   }
 
-  private void handlePayment(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
+  private @Nullable MessageId handlePayment(@NonNull SignalServiceContent content,
+                                            @NonNull SignalServiceDataMessage message,
+                                            @NonNull Optional<Long> smsMessageId,
+                                            @NonNull Recipient senderRecipient,
+                                            long receivedTime)
+      throws StorageFailedException
+  {
     log(content.getTimestamp(), "Payment message.");
 
     if (!message.getPayment().isPresent()) {
@@ -440,13 +448,14 @@ public final class MessageContentProcessor {
 
     if (!message.getPayment().get().getPaymentNotification().isPresent()) {
       warn(content.getTimestamp(), "Ignoring payment message without notification");
-      return;
+      return null;
     }
 
     SignalServiceDataMessage.PaymentNotification paymentNotification = message.getPayment().get().getPaymentNotification().get();
     PaymentDatabase                              paymentDatabase     = SignalDatabase.payments();
     UUID                                         uuid                = UUID.randomUUID();
     String                                       queue               = "Payment_" + PushProcessMessageJob.getQueueName(senderRecipient.getId());
+    MessageId                                    messageId           = null;
 
     try {
       paymentDatabase.createIncomingPayment(uuid,
@@ -455,18 +464,37 @@ public final class MessageContentProcessor {
                                             paymentNotification.getNote(),
                                             Money.MobileCoin.ZERO,
                                             Money.MobileCoin.ZERO,
-                                            paymentNotification.getReceipt());
+                                            paymentNotification.getReceipt(),
+                                            FeatureFlags.paymentsInChatMessages());
+
+      if (FeatureFlags.paymentsInChatMessages()) {
+        IncomingMediaMessage mediaMessage = IncomingMediaMessage.createIncomingPaymentNotification(senderRecipient.getId(),
+                                                                                                   content,
+                                                                                                   receivedTime,
+                                                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                                                   uuid);
+
+        Optional<InsertResult> insertResult = SignalDatabase.mms().insertSecureDecryptedMessageInbox(mediaMessage, -1);
+        smsMessageId.ifPresent(smsId -> SignalDatabase.sms().deleteMessage(smsId));
+        if (insertResult.isPresent()) {
+          messageId = new MessageId(insertResult.get().getMessageId(), true);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
+        }
+      }
     } catch (PaymentDatabase.PublicKeyConflictException e) {
       warn(content.getTimestamp(), "Ignoring payment with public key already in database");
-      return;
     } catch (SerializationException e) {
       warn(content.getTimestamp(), "Ignoring payment with bad data.", e);
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    } finally {
+      ApplicationDependencies.getJobManager()
+                             .startChain(new PaymentTransactionCheckJob(uuid, queue))
+                             .then(PaymentLedgerUpdateJob.updateLedger())
+                             .enqueue();
     }
 
-    ApplicationDependencies.getJobManager()
-                           .startChain(new PaymentTransactionCheckJob(uuid, queue))
-                           .then(PaymentLedgerUpdateJob.updateLedger())
-                           .enqueue();
+    return messageId;
   }
 
   /**
@@ -809,6 +837,60 @@ public final class MessageContentProcessor {
     }
   }
 
+  /**
+   * @param isActivatePaymentsRequest True if payments activation request message.
+   * @param isPaymentsActivated       True if payments activated message.
+   * @throws StorageFailedException
+   */
+  private @Nullable MessageId handlePaymentActivation(@NonNull SignalServiceContent content,
+                                                      @NonNull SignalServiceDataMessage message,
+                                                      @NonNull Optional<Long> smsMessageId,
+                                                      @NonNull Recipient senderRecipient,
+                                                      long receivedTime,
+                                                      boolean isActivatePaymentsRequest,
+                                                      boolean isPaymentsActivated)
+      throws StorageFailedException
+  {
+    try {
+      MessageDatabase database = SignalDatabase.mms();
+      IncomingMediaMessage mediaMessage = new IncomingMediaMessage(senderRecipient.getId(),
+                                                                   content.getTimestamp(),
+                                                                   content.getServerReceivedTimestamp(),
+                                                                   receivedTime,
+                                                                   StoryType.NONE,
+                                                                   null,
+                                                                   false,
+                                                                   -1,
+                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                   false,
+                                                                   false,
+                                                                   content.isNeedsReceipt(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   Optional.empty(),
+                                                                   content.getServerUuid(),
+                                                                   null,
+                                                                   isActivatePaymentsRequest,
+                                                                   isPaymentsActivated);
+
+      Optional<InsertResult>     insertResult     = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      if (smsMessageId.isPresent()) {
+        SignalDatabase.sms().deleteMessage(smsMessageId.get());
+      }
+
+      if (insertResult.isPresent()) {
+        return new MessageId(insertResult.get().getMessageId(), true);
+      }
+    } catch (MmsException e) {
+      throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
+    }
+    return null;
+  }
 
   /**
    * @param sideEffect True if the event is side effect of a different message, false if the message itself was an expiration update.
@@ -862,7 +944,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -952,6 +1036,9 @@ public final class MessageContentProcessor {
     if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, senderRecipient, content.getServerReceivedTimestamp())) {
       MessageDatabase db = targetMessage.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
       db.markAsRemoteDelete(targetMessage.getId());
+      if (MessageRecordUtil.isStory(targetMessage)) {
+        db.deleteRemotelyDeletedStory(targetMessage.getId());
+      }
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false);
       return new MessageId(targetMessage.getId(), targetMessage.isMms());
     } else if (targetMessage == null) {
@@ -1377,11 +1464,6 @@ public final class MessageContentProcessor {
   private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient, @NonNull Recipient threadRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story.");
-      return;
-    }
-
     if (!threadRecipient.isActiveGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
       warn(content.getTimestamp(), "Dropping story from an untrusted source.");
       return;
@@ -1423,7 +1505,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1519,11 +1603,6 @@ public final class MessageContentProcessor {
   private @Nullable MessageId handleStoryReaction(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story reaction.");
 
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story reaction.");
-      return null;
-    }
-
     SignalServiceDataMessage.Reaction reaction = message.getReaction().get();
 
     if (!EmojiUtil.isEmoji(reaction.getEmoji())) {
@@ -1587,7 +1666,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1619,11 +1700,6 @@ public final class MessageContentProcessor {
 
   private @Nullable MessageId handleStoryReply(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient, long receivedTime) throws StorageFailedException {
     log(content.getTimestamp(), "Story reply.");
-
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(content.getTimestamp(), "Dropping unsupported story reply.");
-      return null;
-    }
 
     SignalServiceDataMessage.StoryContext storyContext = message.getStoryContext().get();
 
@@ -1690,7 +1766,9 @@ public final class MessageContentProcessor {
                                                                    getMentions(message.getMentions()),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       Optional<InsertResult> insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1768,7 +1846,9 @@ public final class MessageContentProcessor {
                                                                    Optional.empty(),
                                                                    Optional.empty(),
                                                                    content.getServerUuid(),
-                                                                   giftBadge);
+                                                                   giftBadge,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
     } catch (MmsException e) {
@@ -1832,7 +1912,9 @@ public final class MessageContentProcessor {
                                                                    mentions,
                                                                    sticker,
                                                                    content.getServerUuid(),
-                                                                   null);
+                                                                   null,
+                                                                   false,
+                                                                   false);
 
       insertResult = database.insertSecureDecryptedMessageInbox(mediaMessage, -1);
 
@@ -1900,11 +1982,6 @@ public final class MessageContentProcessor {
    */
   private long handleSynchronizeSentStoryReply(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
     throws MmsException, BadGroupIdException {
-
-    if (!Stories.isFeatureFlagEnabled()) {
-      warn(envelopeTimestamp, "Dropping unsupported story reply sync message.");
-      return -1L;
-    }
 
     log(envelopeTimestamp, "Synchronize sent story reply for " + message.getTimestamp());
 
@@ -2875,9 +2952,15 @@ public final class MessageContentProcessor {
                                      .toList());
           }
         }
+
+        if (message.isPaymentNotification()) {
+          message = SignalDatabase.payments().updateMessageWithPayment(message);
+        }
       }
 
-      return Optional.of(new QuoteModel(quote.get().getId(), author, message.getBody(), false, attachments, mentions, QuoteModel.Type.fromDataMessageType(quote.get().getType())));
+      String body = message.isPaymentNotification() ? message.getDisplayBody(context).toString() : message.getBody();
+
+      return Optional.of(new QuoteModel(quote.get().getId(), author, body, false, attachments, mentions, QuoteModel.Type.fromDataMessageType(quote.get().getType())));
     } else if (message != null) {
       warn("Found the target for the quote, but it's flagged as remotely deleted.");
     }

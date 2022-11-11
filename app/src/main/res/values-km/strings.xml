@@ -104,6 +104,14 @@
     <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal ទាមទារសិទ្ធិប្រើប្រាស់អង្គរក្សាទុកដើម្បីភ្ជាប់រូបថត វីដេអូ ឬសំឡេង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"អង្គរក្សាទុក\" ។</string>
     <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal ទាមទារសិទ្ធិប្រើប្រាស់បញ្ជីទំនាក់ទំនងដើម្បីភ្ជាប់ព័ត៌មានបញ្ជីទំនាក់ទំនង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់របស់ប្រព័ន្ធ ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"បញ្ជីទំនាក់ទំនង\" ។</string>
     <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signalត្រូវការសិទ្ធិប្រើប្រាស់ទីតាំងដើម្បីភ្ជាប់ទីតាំង ប៉ុន្តែវាត្រូវបានបដិសេធរហូត។ សូមបន្តទៅការកំណត់ជ្រើសរើស \"អនុញ្ញាត\" និងបើក \"ទីតាំង\" ។</string>
+    <!-- Alert dialog title to show the recipient has not activated payments -->
+    <string name="AttachmentManager__not_activated_payments">%1$s មិនទាន់បានបើកដំណើរការការបង់ប្រាក់ </string>
+    <!-- Alert dialog description to send the recipient a request to activate payments -->
+    <string name="AttachmentManager__request_to_activate_payments">តើអ្នកចង់ផ្ញើសំណើទៅពួកគេដើម្បីបើកដំណើរការការបង់ប្រាក់ដែរទេ?</string>
+    <!-- Alert dialog button to send request -->
+    <string name="AttachmentManager__send_request">ផ្ញើសំណើ</string>
+    <!-- Alert dialog button to cancel dialog -->
+    <string name="AttachmentManager__cancel">បោះបង់</string>
 
     <!-- AttachmentUploadJob -->
     <string name="AttachmentUploadJob_uploading_media">កំពុងបញ្ជូនមេឌៀ…</string>
@@ -125,32 +133,38 @@
     <string name="BlockedUsersActivity__unblock">បើកវិញ</string>
 
     <!-- CreditCardFragment -->
-    <!-- Title of fragment detailing the donation amount, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s">Donation amount: %1$s</string>
+    <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s">ចំនួនទឹកប្រាក់បរិច្ចាគ៖ %1$s</string>
+    <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Enter your card information below</string>
+    <string name="CreditCardFragment__enter_your_card_information_below">បញ្ចូលព័ត៌មានកាតរបស់អ្នកខាងក្រោម</string>
+    <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
+    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Card number</string>
+    <string name="CreditCardFragment__card_number">លេខកាត</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">MM/YY</string>
+    <string name="CreditCardFragment__mm_yy">ខែ/ឆ្នាំ</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Invalid card number</string>
+    <string name="CreditCardFragment__invalid_card_number">លេខកាតមិនត្រឹមត្រូវ</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">Card has expired</string>
+    <string name="CreditCardFragment__card_has_expired">កាតបានផុតកំណត់</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">Code is too short</string>
+    <string name="CreditCardFragment__code_is_too_short">លេខកូដខ្លីពេក</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">Code is too long</string>
+    <string name="CreditCardFragment__code_is_too_long">លេខកូដវែងពេក</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Invalid code</string>
+    <string name="CreditCardFragment__invalid_code">លេខកូដមិនត្រឹមត្រូវ</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Invalid month</string>
+    <string name="CreditCardFragment__invalid_month">ខែមិនត្រឹមត្រូវ</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">Year required</string>
+    <string name="CreditCardFragment__year_required">ត្រូវការឆ្នាំ</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Invalid year</string>
+    <string name="CreditCardFragment__invalid_year">ឆ្នាំមិនត្រឹមត្រូវ</string>
+    <!-- Button label to confirm credit card input and proceed with payment -->
+    <string name="CreditCardFragment__continue">បន្ត</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">ហាមឃាត់ និងចាកចេញ %1$s?</string>
@@ -296,6 +310,18 @@
     <string name="ConversationItem_pending">  កំពុងរង់ចាំ</string>
     <string name="ConversationItem_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
     <string name="ConversationItem_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
+    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">មិនអាចទាញយកសារទេ។ %1$s នឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">មិនអាចទាញយករូបភាពទេ។ %1$s នឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">មិនអាចទាញយកវីដេអូទេ។ %1$s នឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">មិនអាចទាញយកសារទេ។ អ្នកនឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">មិនអាចទាញយករូបភាពទេ។ អ្នកនឹងត្រូវផ្ញើវាម្តងទៀត។</string>
+    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">មិនអាចទាញយកវីដេអូទេ។ អ្នកនឹងត្រូវផ្ញើវាម្តងទៀត។</string>
 
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">ភ្ជាប់ឯកសារ</string>
@@ -419,6 +445,10 @@
     <string name="ConversationFragment_deleting_messages">កំពុងលុបសារ…</string>
     <string name="ConversationFragment_delete_for_me">លុបសម្រាប់ខ្ញុំ</string>
     <string name="ConversationFragment_delete_for_everyone">លុបសម្រាប់ទាំងអស់គ្នា</string>
+    <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
+    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
+    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">សារនេះ នឹងត្រូវលុបចោលសម្រាប់អ្នករាល់គ្នា នៅក្នុងការសន្ទនា បើសិនពួកគេកំពុងប្រើប្រាស់ Signal ជំនាន់ថ្មីៗ។ ពួកគេនឹងអាចឃើញថា អ្នកបានលុបសារមួយ។</string>
     <string name="ConversationFragment_quoted_message_not_found">រកមិនឃើញសារដើម</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">សារដើមលែងមានទៀតហើយ</string>
@@ -814,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">អ្នកបានជ្រើសរើសឈ្មោះទំនាក់ទំនងមួយដែលមិនអាចប្រើបានជាមួយក្រុម Signal ទេ ដូច្នេះក្រុមនេះនឹងក្លាយជាសារពហុមេឌៀ។ មានតែអ្នកប៉ុណ្ណោះដែលនឹងអាចមើលឃើញឈ្មោះ និងរូបថតរបស់ក្រុមសារពហុមេឌៀដែលមានលក្ខណៈផ្ទាល់ខ្លួន។</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">អ្នកបានជ្រើសរើសឈ្មោះទំនាក់ទំនងមួយដែលមិនអាចប្រើបានជាមួយក្រុម Signal ដូចនេះក្រុមនេះនឹងទៅជាសារពហុមេឌៀ។ មានតែអ្នកប៉ុណ្ណោះដែលនឹងមើលឃើញឈ្មោះក្រុមសារពហុមេឌៀ និងរូបភាពដែលបានកំណត់។ ការគាំទ្រសម្រាប់ក្រុមសារពហុមេឌៀនឹងត្រូវបានដកចេញក្នុងពេលឆាប់ៗនេះ ដើម្បីផ្តោតលើការផ្ញើសារដែលបានអ៊ីនគ្រីប។</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">ការស្នើសុំសមាជិក &amp; ការអញ្ជើញ</string>
@@ -878,7 +908,7 @@
     <string name="ManageProfileFragment_your_name">ឈ្មោះរបស់អ្នក</string>
     <string name="ManageProfileFragment_your_username">ឈ្មោះអ្នកប្រើប្រាស់របស់អ្នក</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">បានបរាជ័យក្នុងការកំណត់រូបតំណាង</string>
-    <string name="ManageProfileFragment_badges">ស្លាកសម្គាល់</string>
+    <string name="ManageProfileFragment_badges">ស្លាក</string>
     <string name="ManageProfileFragment__edit_photo">កែប្រែរូបភាព</string>
     <!-- Snackbar message after creating username -->
     <string name="ManageProfileFragment__username_created">បានបង្កើតឈ្មោះអ្នកប្រើ</string>
@@ -1334,11 +1364,19 @@
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">សារពី %1$s មិនអាចបញ្ជូនបាន</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s បានផ្លាស់ប្តូរលេខទូរស័ព្ទរបស់គេ។</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
-    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ចូលចិត្តមុខងារថ្មីនេះឬ? ជួយគាំទ្រ Signal ជាមួយនឹងការបរិច្ចាគតែមួយដង។</string>
+    <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ចូលចិត្តមុខងារថ្មីនេះឬ? ជួយគាំទ្រ Signal តាមរយៈការបរិច្ចាគតែមួយដង។</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងលេខ %2$s របស់គេត្រូវបានបញ្ចូលគ្នា។</string>
     <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងការជជែកមួយផ្សេងទៀតដែលមានគេនៅក្នុងនោះដែរត្រូវបានបញ្ចូលគ្នា។</string>
+    <!-- Message to notify sender that activate payments request has been sent to the recipient -->
+    <string name="MessageRecord_you_sent_request">អ្នកបានផ្ញើសំណើទៅ %1$s ដើម្បីបើកដំណើរការការបង់ប្រាក់</string>
+    <!-- Request message from recipient to activate payments -->
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s ចង់ឲ្យអ្នកបើកដំណើរការការបង់ប្រាក់។ សូមផ្ញើការបង់ប្រាក់ទៅមនុស្សដែលអ្នកទុកចិត្តប៉ុណ្ណោះ។</string>
+    <!-- Message to inform user that payments was activated-->
+    <string name="MessageRecord_you_activated_payments">អ្នកបានបើកដំណើរការការបង់ប្រាក់</string>
+    <!-- Message to inform sender that recipient can now accept payments -->
+    <string name="MessageRecord_can_accept_payments">%1$s ឥឡូវអាចទទួលយកការបង់ប្រាក់បាន</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s បានចាប់ផ្តើមការហៅជាក្រុម · %2$s</string>
@@ -1367,6 +1405,8 @@
     <string name="MessageRecord__you_will_no_longer_be_able_to_send_sms_messages_from_signal_soon">អ្នកនឹងមិនអាចផ្ញើសារជាអក្សរពី Signal បានទៀតទេក្នុងពេលឆាប់ៗនេះ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">អ្នកមិនអាចផ្ញើសារជាអក្សរនៅក្នុង Signal ទៀតទេ។ បបួល %1$s ឲ្យប្រើ Signal ដើម្បីរក្សាការសន្ទនានៅទីនេះ។</string>
+    <!-- Body for quote when message being quoted is an in-app payment message -->
+    <string name="MessageRecord__payment_s">Payment: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
@@ -1812,6 +1852,14 @@
     <string name="ThreadRecord_view_once_media">បង្ហាញ-ម្តង មេឌា</string>
     <string name="ThreadRecord_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
     <string name="ThreadRecord_you_deleted_this_message">អ្នកបានលុបសារនេះ។</string>
+    <!-- Displayed in the notification when the user sends a request to activate payments -->
+    <string name="ThreadRecord_you_sent_request">អ្នកបានផ្ញើសំណើដើម្បីបើកដំណើរការការបង់ប្រាក់</string>
+    <!-- Displayed in the notification when the recipient wants to activate payments -->
+    <string name="ThreadRecord_wants_you_to_activate_payments">%1$s ចង់ឲ្យអ្នកបើកដំណើរការការបង់ប្រាក់</string>
+    <!-- Displayed in the notification when the user activates payments -->
+    <string name="ThreadRecord_you_activated_payments">អ្នកបានបើកដំណើរការការបង់ប្រាក់</string>
+    <!-- Displayed in the notification when the recipient can accept payments -->
+    <string name="ThreadRecord_can_accept_payments">%1$s ឥឡូវអាចទទួលយកការបង់ប្រាក់បាន</string>
     <string name="ThreadRecord_s_is_on_signal">%1$s ប្រើ Signal!​</string>
     <string name="ThreadRecord_disappearing_messages_disabled">សារបាត់ទៅវិញបានបិទ</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">កំណត់រយៈពេលលុបសារ %1$s</string>
@@ -1838,6 +1886,8 @@
     <string name="ThreadRecord__reacted_s_to_your_story">បានប្រតិកម្ម %1$s ទៅនឹងរឿងរ៉ាវរបស់អ្នក</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">បានប្រតិកម្ម %1$s ទៅនឹងរឿងរ៉ាវរបស់គេ</string>
+    <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
+    <string name="ThreadRecord_payment">Payment</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">បច្ចុប្បន្នភាព Signal</string>
@@ -1940,6 +1990,7 @@
     <string name="MediaPreviewActivity_media_no_longer_available">ឯកសារមេឌៀលែងមានទៀតហើយ។</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">មិនអាចស្វែងរកកម្មវិធីដែលអាចចែករំលែកឯកសារមេឌៀនេះ។</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">បិទ</string>
+    <string name="MediaPreviewFragment_edit_media_error">បញ្ហាមេឌៀ</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d ការសន្ទនា</string>
@@ -2035,6 +2086,12 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">ឧបករណ៍នេះលែងបានចុះឈ្មោះហើយ!</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">នេះហាក់ដូចជាដោយសារអ្នកបានចុះឈ្មោះលេខទូរស័ព្ទជាមួយSignalនៅលើឧបករណ៍ផ្សេងទៀត។ ចុច ដើម្បីចុះឈ្មោះម្តងទៀត។</string>
+
+    <!-- EnclaveFailureReminder -->
+    <!-- Banner message to update app to use payments -->
+    <string name="EnclaveFailureReminder_update_signal">ដំឡើងកំណែ Signal ដើម្បីបន្តប្រើប្រាស់ការបង់ប្រាក់។ សមតុល្យរបស់អ្នកប្រហែលជាមិនមានបច្ចុប្បន្នភាពទេ។</string>
+    <!-- Banner button to update now -->
+    <string name="EnclaveFailureReminder_update_now">ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">ដើម្បីឆ្លើយតបការហៅ សូមឲ្យ Signal ប្រើប្រាស់ម៉ៃក្រូហ្វូនរបស់អ្នក។</string>
@@ -2161,7 +2218,12 @@
     <string name="ConversationUpdateItem_view">បង្ហាញ</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">រយៈពេលសារបាត់ទៅវិញ នឹងត្រូវកំណត់ទៅ %1$s នៅពេលអ្នកផ្ញើសារពួកគេ។</string>
     <!-- Update item button text to show to boost a feature -->
-    <string name="ConversationUpdateItem_donate">ឧបត្ថម្ភ</string>
+    <string name="ConversationUpdateItem_donate">បរិច្ចាគ</string>
+    <!-- Update item button text to send payment -->
+    <string name="ConversationUpdateItem_send_payment">ផ្ញើការទូទាត់</string>
+    <!-- Update item button text to activate payments -->
+    <string name="ConversationUpdateItem_activate_payments">បើកដំណើរការការទូទាត់</string>
+
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">លេង … ផ្អាក</string>
@@ -2529,6 +2591,10 @@
     <string name="preferences__pressing_the_enter_key_will_send_text_messages">ចុចប៊ូតុង បញ្ចូន នឹងផ្ញើសារអក្សរ</string>
     <string name="preferences__pref_use_address_book_photos">ប្រើប្រាស់រូបភាពសៀវភៅអាសយដ្ឋាន</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">បង្ហាញរូបភាពលេខទំនាក់ទំនងចេញពីសៀវភៅអាសយដ្ឋានរបស់អ្នក ប្រសិនបើមាន</string>
+    <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__pref_keep_muted_chats_archived">បន្តទុកក្នុងបណ្ណសារនូវការជជែកដែលបិទសំឡេង</string>
+    <!-- Preference menu item description for a toggle switch for preserving the archived state of muted chats. -->
+    <string name="preferences__muted_chats_that_are_archived_will_remain_archived">ការជជែកដែលបានបិទសំឡេងដែលត្រូវបានទុកក្នុងបណ្ណសារនឹងនៅតែរក្សាទុកក្នុងបណ្ណសារដដែល នៅពេលសារថ្មីមកដល់។</string>
     <string name="preferences__generate_link_previews">បង្កើតការមើលមុនតំណភ្ជាប់</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">ទាញយកតំណភ្ជាប់មើលមុន ដោយផ្ទាល់ពីគេហទំព័រ សម្រាប់សារដែលអ្នកផ្ញើ។</string>
     <string name="preferences__choose_identity">ជ្រើសរើសអត្តសញ្ញាណ</string>
@@ -2572,7 +2638,7 @@
     <string name="preferences__slow">យឺត</string>
     <string name="preferences__help">ជំនួយ</string>
     <string name="preferences__advanced">កម្រិតខ្ពស់</string>
-    <string name="preferences__donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
+    <string name="preferences__donate_to_signal">បរិច្ចាគទៅ Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
     <string name="preferences__one_time_donation">ការបរិច្ចាគតែមួយដង</string>
     <string name="preferences__privacy">ឯកជនភាព</string>
@@ -2720,107 +2786,9 @@
     <string name="configurable_single_select__customize_option">ជម្រើសធ្វើផ្សេង</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_turn_off_stories_with_stories_on_disk" translatable="false">Turn off stories (with stories on disk)</string>
-    <string name="preferences__internal_turn_off_stories" translatable="false">Turn off stories</string>
-    <string name="preferences__internal_delete_custom_story" translatable="false">Delete custom story</string>
-    <string name="preferences__internal_hide_story" translatable="false">Hide story</string>
-    <string name="preferences__internal_story_or_profile_selector" translatable="false">Story or profile selector</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
-    <string name="preferences__internal_retry_send" translatable="false">Retry send</string>
-    <string name="preferences__internal_remove_group_story" translatable="false">Remove group story</string>
-    <string name="preferences__internal_clear_onboarding_state" translatable="false">Clear onboarding state</string>
-    <string name="preferences__internal_clears_onboarding_flag_and_triggers_download_of_onboarding_stories" translatable="false">Clears onboarding flag and triggers download of onboarding stories.</string>
     <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_preferences_groups_v2" translatable="false">Groups V2</string>
-    <string name="preferences__internal_force_gv2_invites" translatable="false">Force Invites</string>
-    <string name="preferences__internal_force_gv2_invites_description" translatable="false">Members will not be added directly to a GV2 even if they could be.</string>
-    <string name="preferences__internal_ignore_gv2_server_changes" translatable="false">Ignore server changes</string>
-    <string name="preferences__internal_ignore_gv2_server_changes_description" translatable="false">Changes in server\&apos;s response will be ignored, causing passive voice update messages if P2P is also ignored.</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes" translatable="false">Ignore P2P changes</string>
-    <string name="preferences__internal_ignore_gv2_p2p_changes_description" translatable="false">Changes sent P2P will be ignored. In conjunction with ignoring server changes, will cause passive voice.</string>
-    <string name="preferences__internal_payments" translatable="false">Payments</string>
-    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
-    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
-    <string name="preferences__internal_account" translatable="false">Account</string>
-    <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
-    <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
-    <string name="preferences__internal_refresh_profile" translatable="false">Refresh profile</string>
-    <string name="preferences__internal_refresh_profile_description" translatable="false">Forces a refresh of your own profile.</string>
-    <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
-    <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
-    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
-    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">\&apos;Internal Details\&apos; button</string>
-    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
-    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
-    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
-    <string name="preferences__internal_clear_keep_longer_logs" translatable="false">Clear keep longer logs</string>
-    <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
-    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
-    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
-    <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
-    <string name="preferences__internal_sync_now" translatable="false">Sync now</string>
-    <string name="preferences__internal_sync_now_description" translatable="false">Enqueue a normal storage service sync.</string>
-    <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
-    <string name="preferences__internal_network" translatable="false">Network</string>
-    <string name="preferences__internal_allow_censorship_toggle" translatable="false">Allow censorship circumvention toggle</string>
-    <string name="preferences__internal_allow_censorship_toggle_description" translatable="false">Allow changing the censorship circumvention toggle regardless of network connectivity.</string>
-    <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
-    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
-    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
-    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_force_search_index_download" translatable="false">Force search index download</string>
-    <string name="preferences__internal_force_search_index_download_description" translatable="false">Download the latest emoji search index if it\&apos;s newer than what we have.</string>
-    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
-    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
-    <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
-    <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
-    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
-    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
-    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
-    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
-    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
-    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
-    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
-    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
-    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
-    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
-    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
-    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
-    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
-    <string name="preferences__internal_calling_server" translatable="false">Group call server</string>
-    <string name="preferences__internal_calling_server_default" translatable="false">Default</string>
-    <string name="preferences__internal_calling_server_s" translatable="false">%1$s server</string>
-    <string name="preferences__internal_calling" translatable="false">Calling options</string>
-    <string name="preferences__internal_calling_audio_processing_method" translatable="false">Audio processing method</string>
-    <string name="preferences__internal_calling_bandwidth_mode" translatable="false">Bandwidth mode</string>
-    <string name="preferences__internal_calling_disable_telecom" translatable="false">Disable Telecom integration</string>
-    <string name="preferences__internal_badges" translatable="false">Badges</string>
-    <string name="preferences__internal_badges_enqueue_redemption" translatable="false">Enqueue redemption.</string>
-    <string name="preferences__internal_badges_enqueue_keep_alive" translatable="false">Enqueue keep-alive.</string>
-    <string name="preferences__internal_badges_set_error_state" translatable="false">Set error state.</string>
-    <string name="preferences__internal_release_channel" translatable="false">Release channel</string>
-    <string name="preferences__internal_fetch_release_channel" translatable="false">Fetch release channel</string>
-    <string name="preferences__internal_release_channel_set_last_version" translatable="false">Set last version seen back 10 versions</string>
-    <string name="preferences__internal_reset_donation_megaphone" translatable="false">Reset donation megaphone</string>
-    <string name="preferences__internal_add_sample_note" translatable="false">Add sample note</string>
-    <string name="preferences__internal_disable_stories" translatable="false">Disable stories</string>
-    <string name="preferences__internal_cds" translatable="false">CDS</string>
-    <string name="preferences__internal_clear_history" translatable="false">Clear history</string>
-    <string name="preferences__internal_clear_history_description" translatable="false">Clears all CDS history, meaning the next sync will consider all numbers to be new.</string>
-    <string name="preferences__internal_clear_all_service_ids" translatable="false">Clear all service IDs</string>
-    <string name="preferences__internal_clear_all_service_ids_description" translatable="false">Clears all known service IDs (except your own) for people that have phone numbers. Do not use on your personal device!</string>
-    <string name="preferences__internal_clear_all_profile_keys" translatable="false">Clear all profile keys</string>
-    <string name="preferences__internal_clear_all_profile_keys_description" translatable="false">Clears all known profile keys (except your own). Do not use on your personal device!</string>
-    <string name="preferences__internal_donor_error_expired_badge" translatable="false">Expired Badge</string>
-    <string name="preferences__internal_donor_error_charge_failure" translatable="false">Charge Failure</string>
-    <string name="preferences__internal_donor_error_cancelation_reason" translatable="false">Cancelation Reason</string>
-    <string name="preferences__internal_donor_error_save_and_finish" translatable="false">Save and Finish</string>
-    <string name="preferences__internal_donor_error_clear" translatable="false">Clear</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2830,7 +2798,7 @@
     <string name="PaymentsAllActivityFragment__received">បានទទួល</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">សូមណែនាំការទូទាត់ (សាកល្បង)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួល​កាក់ទូរស័ព្ទ រូបិយវត្ថុឌីជីថលផ្តោតលើឯកជនភាពថ្មីមួយ។ បើកដំណើរការ ដើម្បីចាប់ផ្តើម។</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">ប្រើប្រាស់ Signal ដើម្បីផ្ញើ និងទទួល MobileCoin ដែលជារូបិយបណ្ណឌីជីថលថ្មីមួយផ្តោតលើឯកជនភាព។ បើកដំណើរការ ដើម្បីចាប់ផ្តើម។</string>
     <string name="PaymentsHomeFragment__activate_payments">បើកដំណើរការការទូទាត់</string>
     <string name="PaymentsHomeFragment__activating_payments">កំពុងបើកដំណើរការ ការទូទាត់…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">ស្តារគណនីទូទាត់</string>
@@ -2843,7 +2811,7 @@
     <string name="PaymentsHomeFragment__sent_s">បានផ្ញើ %1$s</string>
     <string name="PaymentsHomeFragment__received_s">បានទទួល%1$s</string>
     <string name="PaymentsHomeFragment__transfer_to_exchange">ផ្ទេរដើម្បីផ្លាស់ប្តូរ</string>
-    <string name="PaymentsHomeFragment__currency_conversion">ការបម្លែងរូបិយវត្ថុ</string>
+    <string name="PaymentsHomeFragment__currency_conversion">ការបំប្លែងរូបិយបណ្ណ</string>
     <string name="PaymentsHomeFragment__deactivate_payments">បិទដំណើរការ ការទូទាត់</string>
     <string name="PaymentsHomeFragment__recovery_phrase">ឃ្លាសង្គ្រោះ</string>
     <string name="PaymentsHomeFragment__help">ជំនួយ</string>
@@ -2852,8 +2820,8 @@
     <string name="PaymentsHomeFragment__received_payment">ការទូទាត់បានទទួល</string>
     <string name="PaymentsHomeFragment__processing_payment">កំពុងដំណើរការ ការទូទាត់</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
-    <string name="PaymentsHomeFragment__currency_conversion_not_available">មិនមានការបម្លែងរូបិយវត្ថុ</string>
-    <string name="PaymentsHomeFragment__cant_display_currency_conversion">មិនអាចបង្ហាញការបម្លែងរូបិយវត្ថុ។ ពិនិត្យការតភ្ជាប់របស់ទូរស័ព្ទអ្នក និងសាកល្បងម្តងទៀត។</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">មិនមានការបំប្លែងរូបិយបណ្ណទេ</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">មិនអាចបង្ហាញការបំប្លែងរូបិយបណ្ណបានទេ។ សូមពិនិត្យមើលសេវាអ៊ីនធឺណិតរបស់ទូរសព្ទអ្នក រួចព្យាយាមម្តងទៀត។</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">ការទូទាត់មិនមាននៅក្នុងតំបន់របស់អ្នកទេ។</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">មិនអាចបើកការទូទាត់។ សាកល្បងម្តងទៀតពេលក្រោយ។</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">បិទដំណើរការ ការទូទាត់?</string>
@@ -2879,6 +2847,14 @@
     <string name="PaymentsHomeFragment__enable">បើក</string>
     <!-- Alert dialog button to not enable payment lock for now -->
     <string name="PaymentsHomeFragment__not_now">កុំទាន់</string>
+    <!-- Alert dialog title which shows up to update app to send payments -->
+    <string name="PaymentsHomeFragment__update_required">តម្រូវឲ្យដំឡើងកំណែ</string>
+    <!-- Alert dialog description that app update is required to send payments-->
+    <string name="PaymentsHomeFragment__an_update_is_required">តម្រូវឲ្យមានការដំឡើងកំណែដើម្បីបន្តផ្ញើ និងទទួលការបង់ប្រាក់ ហើយដើម្បីមើលសមតុល្យនៃការបង់ប្រាក់បច្ចុប្បន្នរបស់អ្នក។</string>
+    <!-- Alert dialog button to cancel -->
+    <string name="PaymentsHomeFragment__cancel">បោះបង់</string>
+    <!-- Alert dialog button to update now -->
+    <string name="PaymentsHomeFragment__update_now">ធ្វើបច្ចុប្បន្នភាពឥឡូវនេះ</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -2922,7 +2898,7 @@
     <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s លើ %2$s នៅ %3$s</string>
     <string name="PaymentsDetailsFragment__to">ទៅ</string>
     <string name="PaymentsDetailsFragment__from">ពី</string>
-    <string name="PaymentsDetailsFragment__information">ព័ត៌មានលម្អិតអំពីប្រតិបត្តិការ រួមទាំងចំនួនទឹកប្រាក់ទូទាត់ និងពេលវេលានៃប្រតិបត្តិការ គឺជាផ្នែកមួយនៃ MobileCoin Ledger ។</string>
+    <string name="PaymentsDetailsFragment__information">ព័ត៌មានលម្អិតអំពីប្រតិបត្តិការ រួមទាំងចំនួនទឹកប្រាក់បង់ និងពេលវេលានៃប្រតិបត្តិការ គឺជាផ្នែកមួយនៃ MobileCoin Ledger។</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">ថ្លៃសម្អាតកាក់</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">“ថ្លៃសំអាតកាក់” ត្រូវបានគិតប្រាក់នៅពេលដែលកាក់នៅក្នុងកម្មសិទ្ធិរបស់អ្នក មិនអាចបញ្ចូលគ្នាដើម្បីបញ្ចប់ប្រតិបត្តិការ។ ការសំអាត នឹងអនុញ្ញាតឱ្យអ្នកបន្តការផ្ញើការទូទាត់។</string>
     <string name="PaymentsDetailsFragment__no_details_available">មិនមានព័ត៌មានបន្ថែមសម្រាប់ប្រតិបត្តិការនេះ</string>
@@ -3008,7 +2984,7 @@
     <string name="CurrencyAmountFormatter_s_at_s">%1$s នៅ %2$s</string>
 
     <!-- SetCurrencyFragment -->
-    <string name="SetCurrencyFragment__set_currency">កំណត់រូបិយវត្ថុ</string>
+    <string name="SetCurrencyFragment__set_currency">កំណត់រូបិយបណ្ណ</string>
     <string name="SetCurrencyFragment__all_currencies">រូបិយវត្ថុទាំងអស់</string>
 
     <!-- **************************************** -->
@@ -3058,6 +3034,8 @@
     <string name="conversation_selection__menu_resend_message">ផ្ញើឡើងវិញ</string>
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">ជ្រើសរើស</string>
+    <!-- Button to view a in-chat payment message's full payment details -->
+    <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3139,13 +3117,21 @@
     <string name="reminder_header_push_text">ធ្វើឲ្យបទពិសោធន៍ទំនាក់ទំនងប្រសើរឡើង។</string>
     <string name="reminder_header_service_outage_text">Signal កំពុងជួបប្រទះបញ្ហាបច្ចេកទេស។ យើងកំពុងធ្វើការស្តារសេវាកម្មយ៉ាងរហ័សតាមដែលអាចធ្វើទៅបាន។</string>
     <string name="reminder_header_progress">%1$d%%</string>
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <string name="reminder_cds_warning_learn_more">Learn more</string>
+    <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
+    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <string name="reminder_cds_permanent_error_learn_more">Learn more</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">រក្សាទុក</string>
     <string name="media_preview__forward_title">បញ្ជូនបន្ត</string>
     <string name="media_preview__share_title">ចែករំលែក</string>
     <string name="media_preview__all_media_title">ព័ត៌មានទាំងអស់</string>
-    <string name="media_preview__edit_title">Edit</string>
+    <string name="media_preview__edit_title">កែប្រែ</string>
 
 
     <!-- media_preview_activity -->
@@ -3175,7 +3161,7 @@
 
     <string name="FirstInviteReminder__title">អញ្ជើញចូលប្រើSignal</string>
     <string name="FirstInviteReminder__description">អ្នកអាចបង្កើនចំនួនសារសម្ងាត់ដែលអ្នកផ្ញើដោយ %1$d%%</string>
-    <string name="SecondInviteReminder__title">ជំរុញ Signal របស់អ្នក</string>
+    <string name="SecondInviteReminder__title">ទ្រទ្រង់ Signal របស់អ្នក</string>
     <string name="SecondInviteReminder__description">អញ្ជើញ%1$s</string>
     <string name="InsightsReminder__view_insights">បង្ហាញព័ត៌មានលំអិត</string>
     <string name="InsightsReminder__invite">អញ្ជើញ</string>
@@ -3722,7 +3708,7 @@
 
     <!-- InfoCard -->
     <string name="payment_info_card_about_mobilecoin">អំពី MobileCoin</string>
-    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin គឺជារូបិយប័ណ្ណឌីជីថលថ្មីដែលផ្តោតលើឯកជនភាព។</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin គឺជារូបិយបណ្ណឌីជីថលថ្មីមួយដែលផ្តោតលើឯកជនភាព។</string>
     <string name="payment_info_card_adding_funds">បន្ថែមសាច់ប្រាក់</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">អ្នកអាចដាក់លុយដើម្បីប្រើនៅក្នុង Signal ដោយផ្ញើ MobileCoin ទៅកាន់អាសយដ្ឋានកាបូបរបស់អ្នក។</string>
     <string name="payment_info_card_cashing_out">ដកប្រាក់</string>
@@ -3760,7 +3746,9 @@
     <!-- Title in save recovery phrase screen -->
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">រក្សាទុកឃ្លាសម្រាប់ស្តារ</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">បញ្ជូលឃ្លាសង្គ្រោះ</string>
-    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">សមតុល្យរបស់អ្នកនឹងស្ដារឡើងវិញដោយស្វ័យប្រវត្តិនៅពេលអ្នកដំឡើង Signal ឡើងវិញ ប្រសិនបើអ្នកបញ្ជាក់លេខកូដ Signal របស់អ្នក។ អ្នកក៏អាចស្ដារសមតុល្យរបស់អ្នកដោយប្រើឃ្លាសង្គ្រោះ ដែលជាឃ្លា %1$dតែមួយគត់សម្រាប់អ្នក។ សរសេរ​វា​ ហើយ​ទុក​ក្នុង​កន្លែង​មាន​សុវត្ថិភាព។</string>
+    <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
+        <item quantity="other">សមតុល្យរបស់អ្នកនឹងស្ដារឡើងវិញដោយស្វ័យប្រវត្តិនៅពេលអ្នកដំឡើង Signal ឡើងវិញ ប្រសិនបើអ្នកបញ្ជាក់លេខកូដសម្ងាត់ Signal របស់អ្នក។ អ្នកក៏អាចស្ដារសមតុល្យរបស់អ្នកបានដែរ ដោយប្រើឃ្លាសម្រាប់ស្តារ ដែលជាឃ្លាមួយមាន %1$d ពាក្យដែលប្រើសម្រាប់តែអ្នក។ សូមសរសេរ និងទុកវានៅកន្លែងដែលមានសុវត្ថិភាព។</item>
+    </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">អ្នកមានសមតុល្យ! ដល់ពេលដែលត្រូវរក្សាទុកឃ្លាសម្រាប់ស្តាររបស់អ្នកហើយ—គន្លឹះដែលមាន 24 ពាក្យដែលអ្នកអាចប្រើដើម្បីស្ដារសមតុល្យរបស់អ្នក។</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
@@ -4056,11 +4044,11 @@
     <string name="ChatColorGradientTool_bottom_edge_selector">អ្នកជ្រើសរើសជ្រុងខាងក្រោម</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
+    <string name="Donate2022Q2Megaphone_donate_to_signal">បរិច្ចាគទៅ Signal</string>
     <!-- Body text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ត្រូវបានផ្តល់អានុភាពដោយមនុស្សដូចអ្នក។ បរិច្ចាគប្រចាំខែ ហើយទទួលបានស្លាកមួយ។</string>
+    <string name="Donate2022Q2Megaphone_signal_is_powered_by_people_like_you">Signal ដំណើរការទៅបានដោយសារមានការគាំទ្រពីមនុស្សដូចជាអ្នក។ សូមបរិច្ចាគជារៀងរាល់ខែ រួចទទួលបានស្លាកមួយ។</string>
     <!-- Button label that brings a user to the donate screen. Shown in a popup at the bottom of the chat list. -->
-    <string name="Donate2022Q2Megaphone_donate">ឧបត្ថម្ភ</string>
+    <string name="Donate2022Q2Megaphone_donate">បរិច្ចាគ</string>
     <!-- Button label that dismissed a prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_not_now">ពេលក្រោយ</string>
 
@@ -4081,9 +4069,9 @@
     <!-- BecomeASustainerMegaphone -->
     <string name="BecomeASustainerMegaphone__become_a_sustainer">ក្លាយជា Sustainer​ ម្នាក់</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
-    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal អាចដំណើរការបានដោយសារមនុស្សដូចអ្នក។ បរិច្ចាគរួចនឹងទទួលបានស្លាកមួយ។</string>
+    <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal ដំណើរការទៅបានដោយសារមានការគាំទ្រពីមនុស្សដូចជាអ្នក។ សូមផ្តល់ការបរិច្ចាគ រួចទទួលបានស្លាកមួយ។</string>
     <string name="BecomeASustainerMegaphone__not_now">ពេលក្រោយ</string>
-    <string name="BecomeASustainerMegaphone__donate">ឧបត្ថម្ភ</string>
+    <string name="BecomeASustainerMegaphone__donate">បរិច្ចាគ</string>
 
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">រូបតំណាងអារម្មណ៍</string>
@@ -4138,7 +4126,7 @@
     <string name="ConversationSettingsFragment__conversation_muted_forever">ការសន្ទនានេះត្រូវបានបិទសម្លេងជារៀងរហូត</string>
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ថតចម្លងលេខទូរស័ព្ទ</string>
     <string name="ConversationSettingsFragment__phone_number">លេខទូរស័ព្ទ</string>
-    <string name="ConversationSettingsFragment__get_badges">ទទួលបានស្លាកសម្គាល់លើគណនីអ្នកដោយគាំទ្រ Signal ។ ចុចលើស្លាកសម្គាល់ដើម្បីស្វែងយល់បន្ថែម។</string>
+    <string name="ConversationSettingsFragment__get_badges">ទទួលបានស្លាកសម្រាប់ប្រូហ្វាល់របស់អ្នកតាមរយៈការគាំទ្រដល់ Signal។ សូមចុចលើស្លាកដើម្បីស្វែងយល់បន្ថែម។</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">បន្ថែមសមាជិក</string>
@@ -4301,149 +4289,157 @@
 
     <string name="CameraFragment__failed_to_open_camera">បរាជ័យក្នុងការបើកកាម៉េរា</string>
 
-    <string name="BadgesOverviewFragment__my_badges">ស្លាកសម្គាល់របស់ខ្ញុំ</string>
-    <string name="BadgesOverviewFragment__featured_badge">ស្លាកសម្គាល់ពិសេស</string>
-    <string name="BadgesOverviewFragment__display_badges_on_profile">បង្ហាញស្លាកសម្គាល់លើគណនី</string>
+    <string name="BadgesOverviewFragment__my_badges">ស្លាករបស់ខ្ញុំ</string>
+    <string name="BadgesOverviewFragment__featured_badge">ស្លាកពិសេស</string>
+    <string name="BadgesOverviewFragment__display_badges_on_profile">បង្ហាញស្លាកលើប្រូហ្វាល់</string>
     <string name="BadgesOverviewFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">ជ្រើសរើសស្លាកសម្គាល់</string>
+    <string name="BadgeSelectionFragment__select_badges">ជ្រើសរើសស្លាក</string>
 
     <string name="SelectFeaturedBadgeFragment__preview">ពិនិត្យឡើងវិញ</string>
-    <string name="SelectFeaturedBadgeFragment__select_a_badge">ជ្រើសរើសស្លាកសម្គាល់មួយ</string>
-    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">អ្នកត្រូវជ្រើសរើសស្លាកសម្គាល់</string>
+    <string name="SelectFeaturedBadgeFragment__select_a_badge">ជ្រើសរើសស្លាកមួយ</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">អ្នកត្រូវជ្រើសរើសស្លាកមួយ</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ</string>
+    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s supports Signal with a monthly donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
 
-    <string name="ImageView__badge">ស្លាកសម្គាល់</string>
+    <string name="ImageView__badge">ស្លាក</string>
 
     <string name="SubscribeFragment__support_technology_that_is_built_for_you">គាំទ្របច្ចេកវិទ្យាដែលបង្ហើតឡើងដើម្បីអ្នក មិនមែនដើម្បីទិន្នន័យអ្នក ដោយចូលរួមជាមួយសហគមន៍យើងដើម្បីនិរន្តភាពរបស់ Signal</string>
     <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">គាំទ្របច្ចេកវិទ្យាដែលបង្ហើតឡើងដើម្បីអ្នក មិនមែនដើម្បីទិន្នន័យអ្នក ដោយចូលរួមជាមួយសហគមន៍យើងដើម្បីនិរន្តភាពរបស់ Signal</string>
-    <string name="SubscribeFragment__currency">រូបិយប័ណ្ណ</string>
+    <string name="SubscribeFragment__currency">រូបិយបណ្ណ</string>
     <string name="SubscribeFragment__more_payment_options">ជម្រើសក្នុងការទូទាត់ប្រាក់ផ្សេង</string>
-    <string name="SubscribeFragment__cancel_subscription">ផ្ដាច់ការជាវ</string>
-    <string name="SubscribeFragment__confirm_cancellation">បញ្ជាក់ការផ្ដាច់?</string>
-    <string name="SubscribeFragment__you_wont_be_charged_again">យើងនឹងមិនគិតលុយអ្នកម្ដងទៀតទេ។ ស្លាកសម្គាល់របស់អ្នកនឹងត្រូវដកចេញពីគណនីអ្នកនៅចុងបញ្ចប់នៃការជាវរបស់អ្នក។</string>
+    <string name="SubscribeFragment__cancel_subscription">បោះបង់ការជាវ</string>
+    <string name="SubscribeFragment__confirm_cancellation">បញ្ជាក់ការបោះបង់?</string>
+    <string name="SubscribeFragment__you_wont_be_charged_again">អ្នកនឹងមិនត្រូវបានគិតប្រាក់ម្ដងទៀតទេ។ ស្លាករបស់អ្នកនឹងត្រូវបានដកចេញពីប្រូហ្វាល់អ្នកនៅចុងបញ្ចប់នៃរយៈពេលបង់វិក្កយបត្ររបស់អ្នក។</string>
     <string name="SubscribeFragment__not_now">ពេលក្រោយ</string>
     <string name="SubscribeFragment__confirm">ផ្ទៀងផ្ទាត់</string>
     <string name="SubscribeFragment__update_subscription">ធ្វើបច្ចុប្បន្នភាពការជាវ</string>
-    <string name="SubscribeFragment__your_subscription_has_been_cancelled">ការជាវរបស់អ្នកត្រូវបានបញ្ចប់។</string>
-    <string name="SubscribeFragment__update_subscription_question">ធ្វើបច្ចុប្បន្នភាពការជាវ?</string>
+    <string name="SubscribeFragment__your_subscription_has_been_cancelled">ការជាវរបស់អ្នកត្រូវបានបោះបង់។</string>
+    <string name="SubscribeFragment__update_subscription_question">ធ្វើបច្ចុប្បន្នភាពការជាវឬ?</string>
     <string name="SubscribeFragment__update">បច្ចុប្បន្នភាព</string>
-    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">អ្នកនឹងត្រូវគិតលុយពេញថ្លៃចំនួន (%1$s) សម្រាប់តម្លៃការជាវថ្មីរបស់អ្នកថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងភ្ជាប់ឡើងវិញជារៀងរាល់ខែ។</string>
+    <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">អ្នកនឹងត្រូវបានគិតប្រាក់ពេញថ្លៃចំនួន (%1$s) នៃតម្លៃជាវថ្មីនៅថ្ងៃនេះ។ ការជាវរបស់អ្នកនឹងបន្តជារៀងរាល់ខែ។</string>
 
     <string name="Subscription__s_per_month">%1$s/ខែ</string>
     <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
-    <string name="Subscription__renews_s">Renews %1$s</string>
+    <string name="Subscription__renews_s">បន្ត %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
-    <string name="Subscription__expires_s">Expires %1$s</string>
+    <string name="Subscription__expires_s">ផុតកំណត់នៅ %1$s</string>
 
+    <!-- Title of learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_nonprofit_with_no">Signal គឺជាអង្គការមិនរកប្រាក់ចំណេញ ដែលគ្មានអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកវិនិយោគទេ ហើយទ្រទ្រង់ដោយមនុស្សដែលប្រើប្រាស់ និងផ្តល់តម្លៃដល់វាតែប៉ុណ្ណោះ។ សូមធ្វើការបរិច្ចាគប្រចាំខែ រួចអ្នកនឹងទទួលបានស្លាកប្រូហ្វាល់មួយដើម្បីបង្ហាញការគាំទ្រ​របស់អ្នក។</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_donate">ហេតុអ្វីត្រូវឧបត្ថម្ភ?</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal ប្ដេជ្ញាអភិវឌ្ឍនូវបច្ចេកវិទ្យាកូដចំហរ ដែលការពារសេរីភាពការបញ្ចេញមតិ និងការទំនាក់ទំនងជាសកលដែលមានសុវត្ថិភាព</string>
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_donation">ការបរិច្ចាគរបស់អ្នកនឹងជួយដល់បុព្វហេតុនេះ និងជួយបង់ថ្លៃចំណាយសម្រាប់ការអភិវឌ្ឍ និងដំណើរការរបស់កម្មវិធីដែលត្រូវបានប្រើដោយមនុស្សរាប់លាននាក់សម្រាប់ការប្រាស្រ័យទាក់ទងគ្នាជាលក្ខណៈឯកជន។ គ្មានការផ្សាយពាណិជ្ជកម្ម គ្មានកម្មវិធីតាមដាន ហើយក៏មិននិយាយលេងដែរ!</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <!-- Second small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <!-- Third small text blurb on learn more sheet -->
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">អរគុណសម្រាប់ការគាំទ្ររបស់អ្នក!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">អរគុណសម្រាប់ការជំរុញ!</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_display">អ្នកទទួលបានស្លាក %1$s! បង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នកដើម្បីបង្កើតការយល់ដឹងសម្រាប់ការបរិច្ចាគទៅ Signal។</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_display">អ្នកទទួលបានស្លាកទ្រទ្រង់មួយ! បង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នក ដើម្បីបង្កើតការយល់ដឹងសម្រាប់ការបរិច្ចាគទៅ Signal។</string>
+    <!-- Subtext underneath the dialog title on the thanks sheet -->
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">អ្នកក៏អាចដែរ</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ក្លាយជាអ្នកគាំទ្រប្រចាំខែម្នាក់</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">បង្ហាញលើគណនី</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">បង្កើតស្លាកសម្គាល់ពិសេស</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">បញ្ចប់</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">នៅពេលអ្នកទទួលបានស្លាកសម្គាល់លើសពីមួយ អ្នកអាចជ្រើសយកស្លាកមួយណាក៏បានដើម្បីបង្ហាញអោយអ្នកដទៃបានឃើញលើគណនីអ្នក</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">បង្កើតស្លាកពិសេស</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">បន្ត</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">នៅពេលអ្នកមានស្លាកលើសពីមួយ អ្នកអាចជ្រើសរើសស្លាកមួយដើម្បីបង្ហាញឲ្យអ្នកផ្សេងទៀតបានឃើញនៅលើប្រូហ្វាល់របស់អ្នក។</string>
 
-    <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្គាល់សម្រាប់គណនីរបស់អ្នកដោយគាំទ្រ Signal</string>
+    <string name="BecomeASustainerFragment__get_badges">ទទួលបានស្លាកសម្រាប់ប្រូហ្វាល់របស់អ្នកតាមរយៈការគាំទ្រដល់ Signal។</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal ជាកម្មវិធីដែលមិនរកប្រាក់ចំនូល មិនអ្នកផ្សាយពាណិជ្ជកម្ម ឬអ្នកបណ្ដាក់ទុន តែជាកម្មវិធីដែលគាំទ្រដោយមនុស្សដូចជាអ្នក</string>
 
     <!-- Button label for creating a donation -->
-    <string name="ManageDonationsFragment__donate_to_signal">ឧបត្ថម្ភទៅ Signal</string>
+    <string name="ManageDonationsFragment__donate_to_signal">បរិច្ចាគទៅ Signal</string>
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">បន្ថែម</string>
     <!-- Heading for receipts area of manage subscriptions page -->
     <string name="ManageDonationsFragment__receipts">បង្កាន់ដៃ</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">ការគាំទ្ររបស់ខ្ញុំ</string>
-    <string name="ManageDonationsFragment__manage_subscription">ចាត់ចែងការជាវ</string>
+    <string name="ManageDonationsFragment__manage_subscription">គ្រប់គ្រងការជាវ</string>
     <!-- Label for Donation Receipts button -->
     <string name="ManageDonationsFragment__donation_receipts">បង្កាន់ដៃបរិច្ចាគ</string>
-    <string name="ManageDonationsFragment__badges">ស្លាកសម្គាល់</string>
-    <string name="ManageDonationsFragment__subscription_faq">សំណួរដែលសួរញឺកញាប់អំពីការជាវ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">មានបញ្ហាក្នុងការជាវ</string>
+    <string name="ManageDonationsFragment__badges">ស្លាក</string>
+    <string name="ManageDonationsFragment__subscription_faq">សំណួរសួរញឹកញាប់អំពីការជាវ</string>
+    <string name="ManageDonationsFragment__error_getting_subscription">មានបញ្ហាក្នុងការជាវ។</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">វិធីផ្សេងទៀតក្នុងការផ្តល់ជូន</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__gift_a_badge">ផ្តល់ជូនស្លាកជាកាដូ</string>
 
-    <string name="Boost__enter_custom_amount">បញ្ជូលចំនួនប្រាក់ដោយខ្លួនឯង</string>
+    <string name="Boost__enter_custom_amount">បញ្ចូលចំនួនទឹកប្រាក់កំណត់ផ្ទាល់ខ្លួន</string>
     <string name="Boost__one_time_contribution">ចូលរួមចំនែកតែមួយលើក</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">បន្ថែម Signal Boost</string>
+    <string name="MySupportPreference__add_a_signal_boost">បញ្ចូលការទ្រទ្រង់ Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/ខែ</string>
-    <string name="MySupportPreference__renews_s">ភ្ជាប់ឡើងវិញ %1$s</string>
+    <string name="MySupportPreference__renews_s">បន្ត %1$s</string>
     <string name="MySupportPreference__processing_transaction">កំពុងដំណើការទូទាត់ប្រាក់</string>
     <!-- Displayed on "My Support" screen when user badge failed to be added to their account -->
-    <string name="MySupportPreference__couldnt_add_badge_s">មិនអាចបន្ថែមស្លាកសម្គាល់បាន %1$s</string>
+    <string name="MySupportPreference__couldnt_add_badge_s">មិនអាចដាក់ស្លាកបានទេ។ %1$s</string>
     <string name="MySupportPreference__please_contact_support">សូមទាក់ទងទៅកាន់សេវាគាំទ្រ</string>
 
     <!-- Title of expiry sheet when boost badge falls off profile unexpectedly. -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__boost_badge_expired">ស្លាកទ្រទ្រង់បានផុតកំណត់</string>
     <!-- Displayed in the bottom sheet if a monthly donation badge unexpectedly falls off the user\'s profile -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ការបរិច្ចាគប្រចាំខែត្រូវបានលុបចោល</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__monthly_donation_cancelled">ការបរិច្ចាគប្រចាំខែត្រូវបានបោះបង់</string>
     <!-- Displayed in the bottom sheet when a boost badge expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired_and">ស្លាកទ្រទ្រង់របស់អ្នកបានផុតកំណត់ ហើយមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតឡើយ។</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកសម្គាល់ជំរុញរបស់អោយសកម្មឡើងវិញសម្រាប់រយៈពេល ​៣០​ថ្ងៃដោយការចូលរួមចំណែកម្ដង</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">អ្នកអាចដាក់ស្លាកទ្រទ្រង់របស់អ្នកឲ្យដំណើរការឡើងវិញបានសម្រាប់រយៈពេល 30 ថ្ងៃទៀតតាមរយៈការរួមចំណែកមួយដង។</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">អ្នកអាចបន្តប្រើប្រាស់ Signal បាន ប៉ុន្តែដើម្បីគាំទ្របច្ចេកវិទ្យាដែលបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្លាយជាអ្នកទ្រទ្រង់ដោយធ្វើការបរិច្ចាគប្រចាំខែ។</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">អ្នកអាចបន្តប្រើប្រាស់ Signal បាន ប៉ុន្តែដើម្បីគាំទ្របច្ចេកវិទ្យាដែលបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្លាយជាអ្នកទ្រទ្រង់ដោយធ្វើការបរិច្ចាគប្រចាំខែ។</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">ធ្វើជាអ្នកគាំទ្រ​</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">បន្ថែមការជំរុញ</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">បញ្ចូលការទ្រទ្រង់</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">ពេលក្រោយ</string>
     <!-- Copy displayed when badge expires after user inactivity -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">ការបរិច្ចាគប្រចាំខែរបស់អ្នកត្រូវបានលុបចោលដោយស្វ័យប្រវត្តិ ដោយសារអ្នកអសកម្មយូរពេក។ ស្លាក %1$s របស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_automatically">ការបរិច្ចាគប្រចាំខែរបស់អ្នកត្រូវបានបោះបង់ដោយស្វ័យប្រវត្តិ ដោយសារអ្នកមិនមានសកម្មភាពយូរពេក។ ស្លាក %1$s របស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
     <!-- Copy displayed when badge expires after payment failure -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">ការបរិច្ចាគប្រចាំខែរបស់អ្នកត្រូវបានលុបចោល ដោយសារយើងមិនអាចដំណើរការការបង់ប្រាក់របស់អ្នកបាន។ ស្លាករបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled">ការបរិច្ចាគប្រចាំខែជាថ្មីទៀតរបស់អ្នកត្រូវបានបោះបង់ ដោយសារយើងមិនអាចដំណើរការការបង់ប្រាក់របស់អ្នកបាន។ ស្លាករបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
     <!-- Copy displayed when badge expires after a payment failure and we have a displayable charge failure reason -->
-    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">ការបរិច្ចាគប្រចាំខែរបស់អ្នកត្រូវបានបោះបង់។ %1$sស្លាក%2$sរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">អ្នកនៅតែអាចបន្តប្រើ Signal​ បាន ប៉ុន្តែដើម្បីបន្តគាំទ្រ និងដំណើការស្លាកសម្គាល់របស់អ្នកឡើងវិញ អ្នកត្រូវការជាវឡើងវិញ។</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">ការជាវឡើងវិញ</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__your_recurring_monthly_donation_was_canceled_s">ការបរិច្ចាគប្រចាំខែជាថ្មីទៀតរបស់អ្នកត្រូវបានបោះបង់។ %1$s ស្លាក%2$sរបស់អ្នកមិនអាចមើលឃើញនៅលើប្រូហ្វាល់របស់អ្នកទៀតទេ។</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">អ្នកអាចបន្តប្រើប្រាស់ Signal បាន ប៉ុន្តែដើម្បីគាំទ្រដល់កម្មវិធីនេះ និងដាក់ឲ្យស្លាករបស់អ្នកដំណើរការឡើងវិញ សូមអ្នកបន្តការជាវឥឡូវនេះ។</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">បន្តការជាវ</string>
     <!-- Button label to send user to Google Pay website -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">ចូលទៅកាន់ Google Pay</string>
 
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">មិនអាចដំណើការការទូទាត់ប្រាក់សម្រាប់ការជាវបាន</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">មិនអាចដំណើរការការបង់ប្រាក់សម្រាប់ការជាវបានទេ</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">យើងមានបញ្ហាក្នុងការប្រមូលនូវការទូទាត់ប្រាក់ Signal Sustainer របស់អ្នក។ សូមប្រាកដថាវិធីនៃការទូទាត់ប្រាក់របស់អ្នកទាន់សម័យ។ បើមិនដូច្នេះទេ សូមធ្វើបច្ចុប្បន្នភាពនៅក្នុង Google Payរបស់អ្នក។ Signal នឹងព្យាយាមដំណើការការទូទាត់ប្រាក់នេះម្ដងទៀតនៅកំឡុងពីរបីថ្ងៃខាងមុខ។</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">កុំបង្ហាញសារនេះម្ដងទៀត</string>
 
     <string name="Subscription__please_contact_support_for_more_information">សូមទំនាក់ទំនងមកកាន់ផ្នែកគាំទ្រសម្រាប់ព័ត៌មានបន្ថែម</string>
     <string name="Subscription__contact_support">ទាក់ទងជំនួយ</string>
-    <string name="Subscription__get_a_s_badge">ទទួលស្លាកសម្គាល់%1$s</string>
+    <string name="Subscription__get_a_s_badge">ទទួលស្លាក%1$s</string>
 
     <string name="SubscribeFragment__processing_payment">កំពុងដំណើរការការទូទាត់…</string>
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">បរាជ័យក្នុងដំណើរការទូទាត់ប្រាក់ %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">ស្លាកសម្គាល់អ្នកមិនអាចដាក់ចូលគណនីអ្នកបានទេ ប៉ុន្តែអ្នកប្រហែលត្រូវបានគិតប្រាក់រួចហើយ។ សូមទាក់ទងទៅកាន់ផ្នែកគាំទ្ររបស់យើង។</string>
-    <string name="DonationsErrors__your_payment">ការទូទាត់ប្រាក់របស់អ្នកមិនអាចដំណើការ ហើយអ្នកក៏មិនទាន់ត្រូវបានគិតប្រាក់ដែរ។ សូមព្យាយាមម្ដងទៀត។</string>
+    <string name="DonationsErrors__your_badge_could_not_be_added">ស្លាករបស់អ្នកមិនអាចដាក់ចូលគណនីរបស់អ្នកបានទេ ប៉ុន្តែអ្នកប្រហែលជាត្រូវបានគិតប្រាក់។ សូមទាក់ទងទៅផ្នែកជំនួយ។</string>
+    <string name="DonationsErrors__your_payment">ការបង់ប្រាក់របស់អ្នកមិនអាចដំណើរការបានទេ ហើយអ្នកក៏មិនទាន់ត្រូវបានគិតប្រាក់ដែរ។ សូមព្យាយាមម្ដងទៀត។</string>
     <string name="DonationsErrors__still_processing">កំពុងដំណើការ</string>
-    <string name="DonationsErrors__couldnt_add_badge">មិនអាចដាក់ស្លាកសម្គាល់</string>
+    <string name="DonationsErrors__couldnt_add_badge">មិនអាចដាក់ស្លាកបាន</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
-    <string name="DonationsErrors__failed_to_validate_badge">មិនអាចបញ្ជាក់ស្លាក</string>
+    <string name="DonationsErrors__failed_to_validate_badge">មិនអាចបញ្ជាក់ស្លាកបាន</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">មិន​អាច​បញ្ជាក់​ការ​ឆ្លើយតប​របស់​ម៉ាស៊ីន​មេ​បាន​ទេ។ សូមទាក់ទងផ្នែកជំនួយ។</string>
     <!-- Displayed as title when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__failed_to_send_gift_badge">មិនអាចផ្ញើស្លាកកាដូបាន</string>
     <!-- Displayed as message when some generic error happens during gift badge sending -->
     <string name="DonationsErrors__could_not_send_gift_badge">មិនអាចផ្ញើស្លាកកាដូបានទេ។ សូមទាក់ទងផ្នែកជំនួយ។</string>
-    <string name="DonationsErrors__your_badge_could_not">ស្លាកសម្គាល់អ្នកមិនអាចដាក់ចូលគណនីអ្នកបានទេ ប៉ុន្តែអ្នកប្រហែលត្រូវបានគិតប្រាក់រួចហើយ។ សូមទាក់ទងទៅកាន់ផ្នែកគាំទ្ររបស់យើង។</string>
+    <string name="DonationsErrors__your_badge_could_not">ស្លាករបស់អ្នកមិនអាចដាក់ចូលគណនីរបស់អ្នកបានទេ ប៉ុន្តែអ្នកប្រហែលជាត្រូវបានគិតប្រាក់។ សូមទាក់ទងទៅផ្នែកជំនួយ។</string>
     <string name="DonationsErrors__your_payment_is_still">ការទូទាត់ប្រាក់របស់អ្នកកំពុងដំណើរការ ដែលអាចចំណាយពេលពីរបីនាទីអាស្រ័យលើល្បឿនអុីនធឺណិត</string>
     <string name="DonationsErrors__google_pay_unavailable">Google Pay មិនដំណើរការ</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">អ្នកតម្រូវអោយតម្លើង Google Pay​ ដើម្បីអាចបរិច្ចាកតាមកម្មវិធីបាន។</string>
-    <string name="DonationsErrors__failed_to_cancel_subscription">បរាជ័យក្នុងការលុបចោលការជាវ។</string>
-    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ដើម្បីលុបចោលការជាវ តម្រូវអោយមានកាភ្ជាប់ទៅអុីនធឺណិត។</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ឧបករណ៍របស់អ្នកមិនអាចប្រើ Google Pay ដូច្នេះអ្នកមិនអាចជាវដើម្បីទទួលបានស្លាកសំគាល់ទេ។ អ្នកនៅតែអាចគាំទ្រ Signal បានដោយបរិច្ចាកតាមរយៈគេហទំព័ររបស់យើង។</string>
+    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">អ្នកត្រូវរៀបចំ Google Pay ដើម្បីធ្វើការបរិច្ចាគនៅក្នុងកម្មវិធី។</string>
+    <string name="DonationsErrors__failed_to_cancel_subscription">មិនអាចបោះបង់ការជាវបាន</string>
+    <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">ការបោះបង់ការជាវតម្រូវឲ្យមានការភ្ជាប់អ៊ីនធឺណិត។</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">ឧបករណ៍របស់អ្នកមិនអាចប្រើបានជាមួយ Google Pay ទេ ដូច្នេះអ្នកមិនអាចធ្វើការជាវដើម្បីទទួលបានស្លាកទេ។ អ្នកនៅតែអាចគាំទ្រដល់ Signal បានដោយធ្វើការបរិច្ចាគនៅលើគេហទំព័ររបស់យើង។</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">បណ្ដាញមានបញ្ហា។ សូមពិនិត្យការភ្ជាប់របស់អ្នក ហើយសាកល្បងម្ដងទៀត</string>
     <string name="NetworkFailure__retry">ព្យាយាមម្តងទៀត</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -4767,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">មិនទាន់មានចំនួនមើលទេ</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_read_receipts_to_see_whos_viewed_your_story">បើកមុខងារអានសារដើម្បីមើលថាអ្នកណាដែលបានមើលរឿងរ៉ាវរបស់អ្នក។</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ចូលទៅកាន់ការកំណត់</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -4976,6 +4972,8 @@
     <string name="StoryDirectReplyDialogFragment__sending_reply">កំពុងផ្ញើការឆ្លើយតប…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">រឿងរ៉ាវនេះលែងមានទៀតហើយ។</string>
+    <!-- Displayed in the viewer when a story has permanently failed to download. -->
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">មិនអាចទាញយករឿងរ៉ាវទេ។ %1$s នឹងត្រូវចែករំលែកវាម្តងទៀត។</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">មិនមានការតភ្ជាប់អ៊ីនធឺណិត</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
@@ -5019,7 +5017,7 @@
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__gift_a_badge">ផ្តល់ជូនស្លាកជាកាដូ</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">ផ្តល់ស្លាកជូននរណាម្នាក់ដោយធ្វើការបរិច្ចាគទៅ Signal ក្នុងនាមរបស់ពួកគេ។ ពួកគេនឹងទទួលបានស្លាកដើម្បីបង្ហាញនៅលើរូបថតប្រូហ្វាល់របស់ពួកគេ។</string>
+    <string name="GiftFlowStartFragment__gift_someone_a_badge">ផ្តល់ស្លាកជូននរណាម្នាក់ដោយធ្វើការបរិច្ចាគទៅ Signal ក្នុងនាមពួកគេ។ ពួកគេនឹងទទួលបានស្លាកមួយដើម្បីបង្ហាញនៅលើរូបថតប្រូហ្វាល់របស់ពួកគេ។</string>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">បន្ទាប់</string>
     <!-- Title text on choose recipient page for badge gifting -->
@@ -5041,7 +5039,7 @@
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">អរគុណសម្រាប់ការគាំទ្ររបស់អ្នក!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">អ្នកបានទទួលស្លាកមួយជាកាដូពី %1$s! ជួយ Signal ក្នុងការបំផុសការយល់ដឹង​តាមរយៈការបង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នក។</string>
+    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">អ្នកបានទទួលស្លាកកាដូមួយពី %1$s! ជួយ Signal ក្នុងការបំផុសការយល់ដឹងតាមរយៈការបង្ហាញស្លាកនេះនៅលើប្រូហ្វាល់របស់អ្នក។</string>
     <!-- Description for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">អ្នកបានផ្តល់ស្លាកមួយទៅ %1$s។ នៅពេលពួកគេទទួលយក ពួកគេអាចសម្រេចបានថាតើគួរបង្ហាញ ឬលាក់ស្លាកនោះ។</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
@@ -5061,7 +5059,7 @@
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">ដើម្បីបន្តគាំទ្របច្ចេកវិទ្យាដែលត្រូវបានបង្កើតឡើងសម្រាប់អ្នក សូមពិចារណាក្នុងការក្លាយជា Sustainer​ ម្នាក់ប្រចាំខែរបស់យើង។</string>
     <!-- Expired gift sheet make a monthly donation button -->
-    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">ធ្វើ​ការ​បរិច្ចាគ​ប្រចាំ​ខែ</string>
+    <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">ធ្វើការបរិច្ចាគប្រចាំខែ</string>
     <!-- Expired gift sheet not now button -->
     <string name="ExpiredGiftSheetConfiguration__not_now">ពេលក្រោយ</string>
     <!-- My Story label designating that we will only share with the selected viewers. -->
@@ -5266,7 +5264,7 @@
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">បន្តចុះ</string>
     <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
-    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal needs the SMS permission to be able to export your SMS messages.</string>
+    <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal ត្រូវការការអនុញ្ញាតសារជាអក្សរដើម្បីអាចនាំចេញសារជាអក្សររបស់អ្នក។</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5385,30 +5383,69 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__powered_by">Powered by people like you.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Privay over profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">បន្ត</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__support_technology">Support technology built for you, not your data, by joining the community that sustains Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
     <!-- Donation pill toggle monthly text -->
-    <string name="DonationPillToggle__monthly">Monthly</string>
+    <string name="DonationPillToggle__monthly">ប្រចាំខែ</string>
     <!-- Donation pill toggle one-time text -->
     <string name="DonationPillToggle__one_time">តែមួយដង</string>
 
     <!-- GatewaySelectorBottomSheet -->
     <!-- Sheet title when subscribing -->
-    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">Donate %1$s/month to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_month_to_signal">បរិច្ចាគ %1$s/ខែ ទៅ Signal</string>
     <!-- Sheet summary when subscribing -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge">ទទួលស្លាកសម្គាល់%1$s</string>
+    <string name="GatewaySelectorBottomSheet__get_a_s_badge">ទទួលស្លាក%1$s</string>
     <!-- Sheet title when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donate %1$s to Signal</string>
+    <string name="GatewaySelectorBottomSheet__donate_s_to_signal">បរិច្ចាគ %1$s ទៅ Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
-    <string name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">Get a %1$s badge for %2$d days</string>
+    <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
+        <item quantity="other">ទទួលបានស្លាក%1$s រយៈពេល %2$d ថ្ងៃ</item>
+    </plurals>
     <!-- Button label for paying with a credit card -->
-    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Credit or debit card</string>
+    <string name="GatewaySelectorBottomSheet__credit_or_debit_card">កាតឥណទាន ឬឥណពន្ធ</string>
 
     <!-- StripePaymentInProgressFragment -->
-    <string name="StripePaymentInProgressFragment__cancelling">Cancelling…</string>
+    <string name="StripePaymentInProgressFragment__cancelling">កំពុងបោះបង់…</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <plurals name="CdsTemporaryErrorBottomSheet_body1">
+        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+    </plurals>
+    <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
+    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <string name="CdsPermanentErrorBottomSheet_learn_more">Learn more</string>
+    <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+
+    <!-- PaymentMessageView -->
+    <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
+    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
+    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+
+    <!-- YourInformationIsPrivateBottomSheet -->
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
 
     <!-- EOF -->
 

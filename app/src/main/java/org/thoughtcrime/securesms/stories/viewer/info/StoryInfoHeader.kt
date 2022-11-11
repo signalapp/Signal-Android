@@ -34,6 +34,7 @@ object StoryInfoHeader {
     private val sentView: TextView = itemView.findViewById(R.id.story_info_view_sent_label)
     private val recvView: TextView = itemView.findViewById(R.id.story_info_view_received_label)
     private val sizeView: TextView = itemView.findViewById(R.id.story_info_view_file_size_label)
+    private val sizeHeader: TextView = itemView.findViewById(R.id.story_info_view_file_size_heading)
 
     override fun bind(model: Model) {
       if (model.sentMillis > 0L) {
@@ -58,9 +59,11 @@ object StoryInfoHeader {
 
       if (model.size > 0L) {
         sizeView.visible = true
+        sizeHeader.visible = true
         sizeView.text = Util.getPrettyFileSize(model.size)
       } else {
         sizeView.visible = false
+        sizeHeader.visible = false
       }
     }
   }

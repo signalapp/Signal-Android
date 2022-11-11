@@ -30,7 +30,7 @@ public class RotateSenderCertificateListener extends PersistentAlarmManagerListe
   }
 
   public static void schedule(Context context) {
-    new RotateSenderCertificateListener().onReceive(context, new Intent());
+    new RotateSenderCertificateListener().onReceive(context, getScheduleIntent());
   }
 
 }

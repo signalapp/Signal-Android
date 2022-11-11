@@ -248,7 +248,6 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
-import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewBannerView;
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment;
@@ -311,7 +310,6 @@ import org.thoughtcrime.securesms.verify.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.signalservice.api.SignalSessionLock;
-import org.whispersystems.signalservice.api.util.ExpiringProfileCredentialUtil;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -454,6 +452,7 @@ public class ConversationParentFragment extends Fragment
   private VoiceNotePlayerView          voiceNotePlayerView;
   private Material3OnScrollHelper      material3OnScrollHelper;
   private InlineQueryResultsController inlineQueryResultsController;
+  private OnBackPressedCallback        backPressedCallback;
 
   private LiveRecipient recipient;
   private long          threadId;
@@ -556,12 +555,13 @@ public class ConversationParentFragment extends Fragment
 
     disposables.add(viewModel.getStoryViewState().subscribe(titleView::setStoryRingFromState));
 
-    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
+    backPressedCallback = new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {
         onBackPressed();
       }
-    });
+    };
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), backPressedCallback);
 
     if (isSearchRequested && savedInstanceState == null) {
       onCreateOptionsMenu(toolbar.getMenu(), requireActivity().getMenuInflater());
@@ -579,6 +579,7 @@ public class ConversationParentFragment extends Fragment
     WindowUtil.setLightStatusBarFromTheme(requireActivity());
 
     EventBus.getDefault().register(this);
+    backPressedCallback.setEnabled(true);
     viewModel.checkIfMmsIsEnabled();
     initializeIdentityRecords();
     composeText.setMessageSendType(sendButton.getSelectedSendType());
@@ -1160,6 +1161,9 @@ public class ConversationParentFragment extends Fragment
       if (searchViewItem != null) {
         searchViewItem.collapseActionView();
       }
+    } else if (isInBubble()) {
+      backPressedCallback.setEnabled(false);
+      requireActivity().onBackPressed();
     } else {
       requireActivity().finish();
     }
@@ -1211,11 +1215,7 @@ public class ConversationParentFragment extends Fragment
         AttachmentManager.selectLocation(this, PICK_LOCATION, getSendButtonColor(sendButton.getSelectedSendType()));
         break;
       case PAYMENT:
-        if (ExpiringProfileCredentialUtil.isValid(recipient.get().getExpiringProfileKeyCredential())) {
-          AttachmentManager.selectPayment(this, recipient.getId());
-        } else {
-          CanNotSendPaymentDialog.show(requireActivity());
-        }
+        AttachmentManager.selectPayment(this, recipient.get());
         break;
 
     }
@@ -1901,7 +1901,7 @@ public class ConversationParentFragment extends Fragment
         if (actionId == R.id.reminder_action_gv1_suggestion_add_members) {
           GroupsV1MigrationSuggestionsDialog.show(requireActivity(), recipient.get().requireGroupId().requireV2(), gv1MigrationSuggestions);
         } else if (actionId == R.id.reminder_action_gv1_suggestion_no_thanks) {
-          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId(), gv1MigrationSuggestions);
+          groupViewModel.onSuggestedMembersBannerDismissed(recipient.get().requireGroupId());
         }
       });
       reminderView.get().setOnDismissListener(() -> {
@@ -2052,7 +2052,7 @@ public class ConversationParentFragment extends Fragment
     inputPanel.setListener(this);
     inputPanel.setMediaListener(this);
 
-    attachmentManager = new AttachmentManager(requireActivity(), this);
+    attachmentManager = new AttachmentManager(requireContext(), view, this);
     audioRecorder     = new AudioRecorder(requireContext());
     typingTextWatcher = new ComposeTextWatcher();
 

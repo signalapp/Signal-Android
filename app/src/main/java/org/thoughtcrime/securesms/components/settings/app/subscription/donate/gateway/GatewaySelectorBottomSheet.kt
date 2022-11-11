@@ -12,8 +12,11 @@ import org.thoughtcrime.securesms.badges.models.BadgeDisplay112
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsBottomSheetFragment
+import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
+import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.configure
@@ -31,7 +34,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
 
   private val viewModel: GatewaySelectorViewModel by viewModels(factoryProducer = {
-    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().donationPaymentRepository)
+    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().stripeRepository)
   })
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
@@ -61,7 +64,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         DonateToSignalType.ONE_TIME -> presentOneTimeText()
       }
 
-      space(68.dp)
+      space(66.dp)
 
       if (state.isGooglePayAvailable) {
         customPref(
@@ -79,11 +82,12 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       // PayPal
 
       // Credit Card
-      if (state.isCreditCardAvailable) {
+      if (InAppDonations.isCreditCardAvailable()) {
         space(12.dp)
 
         primaryButton(
           text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
+          icon = DSLSettingsIcon.from(R.drawable.credit_card, NO_TINT),
           onClick = {
             findNavController().popBackStack()
             val response = GatewayResponse(GatewayResponse.Gateway.CREDIT_CARD, args.request)
@@ -126,7 +130,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     space(6.dp)
     noPadTextPref(
       title = DSLSettingsText.from(
-        getString(R.string.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, args.request.badge.name, 30),
+        resources.getQuantityString(R.plurals.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, 30, args.request.badge.name, 30),
         DSLSettingsText.CenterModifier,
         DSLSettingsText.BodyLargeModifier,
         DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
