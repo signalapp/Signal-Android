@@ -1,10 +1,10 @@
 # Signal Android 
 
-Signal is a messaging app for simple private communication with friends.
+Signal is a simple, powerful, and secure messenger.
 
-Signal uses your phone's data connection (WiFi/3G/4G) to communicate securely, optionally supports plain SMS/MMS to function as a unified messenger, and can also encrypt the stored messages on your phone.
+Signal uses your phone's data connection (WiFi/3G/4G/5G) to communicate securely. Millions of people use Signal every day for free and instantaneous communication anywhere in the world. Send and receive high-fidelity messages, participate in HD voice/video calls, and explore a growing set of new features that help you stay connected. Signal’s advanced privacy-preserving technology is always enabled, so you can focus on sharing the moments that matter with the people who matter to you.
 
-Currently available on the Play store and [signal.org](https://signal.org/android/apk/).
+Currently available on the Play Store and [signal.org](https://signal.org/android/apk/).
 
 <a href='https://play.google.com/store/apps/details?id=org.thoughtcrime.securesms&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height='80px'/></a>
 
@@ -18,7 +18,7 @@ Want to live life on the bleeding edge and help out with testing?
 
 You can subscribe to Signal Android Beta releases here:
 https://play.google.com/apps/testing/org.thoughtcrime.securesms
- 
+
 If you're interested in a life of peace and tranquility, stick with the standard releases.
 
 ## Contributing Code
@@ -28,7 +28,7 @@ If you're new to the Signal codebase, we recommend going through our issues and 
 For larger changes and feature ideas, we ask that you propose it on the [unofficial Community Forum](https://community.signalusers.org) for a high-level discussion with the wider community before implementation.
 
 ## Contributing Ideas
-Have something you want to say about Open Whisper Systems projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
+Have something you want to say about Signal projects or want to be part of the conversation? Get involved in the [community forum](https://community.signalusers.org).
 
 Help
 ====
