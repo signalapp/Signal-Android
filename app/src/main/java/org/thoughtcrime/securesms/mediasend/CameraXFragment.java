@@ -25,7 +25,10 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.camera.core.CameraInfo;
 import androidx.camera.core.CameraSelector;
+import androidx.camera.core.ExposureState;
+import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
@@ -81,14 +84,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private static final Rational              ASPECT_RATIO_16_9  = new Rational(16, 9);
   private static final PreviewView.ScaleType PREVIEW_SCALE_TYPE = PreviewView.ScaleType.FILL_CENTER;
 
-  private PreviewView               previewView;
-  private ViewGroup                 controlsContainer;
-  private Controller                controller;
-  private View                      selfieFlash;
-  private MemoryFileDescriptor      videoFileDescriptor;
-  private LifecycleCameraController cameraController;
-  private Disposable                mostRecentItemDisposable = Disposable.disposed();
-  private CameraXModePolicy         cameraXModePolicy;
+  private PreviewView                      previewView;
+  private ViewGroup                        controlsContainer;
+  private Controller                       controller;
+  private View                             selfieFlash;
+  private MemoryFileDescriptor             videoFileDescriptor;
+  private LifecycleCameraController        cameraController;
+  private Disposable                       mostRecentItemDisposable = Disposable.disposed();
+  private CameraXModePolicy                cameraXModePolicy;
+  private CameraScreenBrightnessController cameraScreenBrightnessController;
 
   private boolean isThumbAvailable;
   private boolean isMediaSelected;
@@ -134,6 +138,9 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @SuppressLint("MissingPermission")
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow());
+    getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
+
     ViewGroup cameraParent = view.findViewById(R.id.camerax_camera_parent);
 
     this.previewView       = view.findViewById(R.id.camerax_camera);

@@ -70,17 +70,18 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   private static final String TAG = Log.tag(Camera1Fragment.class);
 
-  private TextureView                  cameraPreview;
-  private ViewGroup                    controlsContainer;
-  private ImageButton                  flipButton;
-  private View                         captureButton;
-  private Camera1Controller            camera;
-  private Controller                   controller;
-  private OrderEnforcer<Stage>         orderEnforcer;
-  private Camera1Controller.Properties properties;
-  private RotationListener             rotationListener;
-  private Disposable                   rotationListenerDisposable;
-  private Disposable                   mostRecentItemDisposable = Disposable.disposed();
+  private TextureView                      cameraPreview;
+  private ViewGroup                        controlsContainer;
+  private ImageButton                      flipButton;
+  private View                             captureButton;
+  private Camera1Controller                camera;
+  private Controller                       controller;
+  private OrderEnforcer<Stage>             orderEnforcer;
+  private Camera1Controller.Properties     properties;
+  private RotationListener                 rotationListener;
+  private Disposable                       rotationListenerDisposable;
+  private Disposable                       mostRecentItemDisposable = Disposable.disposed();
+  private CameraScreenBrightnessController cameraScreenBrightnessController;
 
   private boolean isThumbAvailable;
   private boolean isMediaSelected;
@@ -124,6 +125,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow());
+    getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
 
     rotationListener  = new RotationListener(requireContext());
     cameraPreview     = view.findViewById(R.id.camera_preview);
