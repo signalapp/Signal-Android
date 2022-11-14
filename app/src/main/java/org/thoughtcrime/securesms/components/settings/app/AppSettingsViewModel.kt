@@ -41,7 +41,8 @@ class AppSettingsViewModel(
         store.update { state ->
           state.copy(allowUserToGoToDonationManagementScreen = activeSubscription.isActive || InAppDonations.hasAtLeastOnePaymentMethodAvailable())
         }
-      }
+      },
+      onError = {}
     )
   }
 
