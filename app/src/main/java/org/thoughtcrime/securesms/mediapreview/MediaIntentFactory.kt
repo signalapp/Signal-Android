@@ -65,6 +65,7 @@ object MediaIntentFactory {
         attachment.size,
         attachment.caption,
         leftIsRecent,
+        allMediaInRail = true,
         sorting = MediaDatabase.Sorting.Newest,
         isVideoGif = attachment.isVideoGif
       )
