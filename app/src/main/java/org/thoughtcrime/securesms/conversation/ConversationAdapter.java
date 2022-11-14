@@ -178,9 +178,9 @@ public class ConversationAdapter
     } else if (messageRecord.isUpdate()) {
       return MESSAGE_TYPE_UPDATE;
     } else if (messageRecord.isOutgoing()) {
-      return MessageRecordUtil.isTextOnly(messageRecord, context) && !conversationMessage.hasBeenQuoted() ? MESSAGE_TYPE_OUTGOING_TEXT : MESSAGE_TYPE_OUTGOING_MULTIMEDIA;
+      return conversationMessage.isTextOnly(context) ? MESSAGE_TYPE_OUTGOING_TEXT : MESSAGE_TYPE_OUTGOING_MULTIMEDIA;
     } else {
-      return MessageRecordUtil.isTextOnly(messageRecord, context) && !conversationMessage.hasBeenQuoted() ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
+      return conversationMessage.isTextOnly(context) ? MESSAGE_TYPE_INCOMING_TEXT : MESSAGE_TYPE_INCOMING_MULTIMEDIA;
     }
   }
 

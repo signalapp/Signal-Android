@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 
 import java.security.MessageDigest;
 import java.util.Collections;
@@ -118,6 +119,12 @@ public class ConversationMessage {
 
   public @Nullable BodyRangeList.BodyRange.Button getBottomButton() {
     return styleResult.getBottomButton();
+  }
+
+  public boolean isTextOnly(@NonNull Context context) {
+    return MessageRecordUtil.isTextOnly(messageRecord, context) &&
+           !hasBeenQuoted() &&
+           getBottomButton() == null;
   }
 
   /**
