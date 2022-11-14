@@ -5752,7 +5752,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Súkromie je dôležitejšie než zisk</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Pokračovať</string>
     <!-- Description below title -->

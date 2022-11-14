@@ -1430,7 +1430,7 @@
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d’activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements Envoyer des paiements uniquement aux personnes en qui vous avez confiance.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements. Envoyer des paiements uniquement aux personnes en qui vous avez confiance.</string>
     <!-- Message to inform user that payments was activated-->
     <string name="MessageRecord_you_activated_payments">Vous avez activé les paiements</string>
     <!-- Message to inform sender that recipient can now accept payments -->
@@ -2166,7 +2166,7 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Mettez Signal à jour pour continuer à utiliser les paiements. Il se peut que votre solde ne soit pas à jour.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Mettre Signal à jour maintenant</string>
+    <string name="EnclaveFailureReminder_update_now">Mettre à jour maintenant</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Pour répondre à l’appel, accordez à Signal l’accès à votre microphone.</string>
@@ -2940,7 +2940,7 @@
     <!-- Alert dialog button to cancel -->
     <string name="PaymentsHomeFragment__cancel">Annuler</string>
     <!-- Alert dialog button to update now -->
-    <string name="PaymentsHomeFragment__update_now">Mettre Signal à jour maintenant</string>
+    <string name="PaymentsHomeFragment__update_now">Mettre à jour maintenant</string>
 
     <!-- PaymentsSecuritySetupFragment -->
     <!-- Toolbar title -->
@@ -3248,7 +3248,7 @@
 
     <string name="FirstInviteReminder__title">Inviter à Signal</string>
     <string name="FirstInviteReminder__description">Vous pourriez augmenter le nombre de messages chiffrés que vous envoyez de %1$d %%</string>
-    <string name="SecondInviteReminder__title">Améliorez votre Signal</string>
+    <string name="SecondInviteReminder__title">Améliorez vos fonctionnalités Signal</string>
     <string name="SecondInviteReminder__description">Inviter %1$s</string>
     <string name="InsightsReminder__view_insights">Visualiser Aperçu</string>
     <string name="InsightsReminder__invite">Inviter</string>
@@ -3844,8 +3844,8 @@
     <string name="PaymentsRecoveryStartFragment__save_recovery_phrase">Enregistrer une phrase de récupération</string>
     <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Saisissez la phrase de récupération</string>
     <plurals name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">
-        <item quantity="one">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre NIP Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mot qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
-        <item quantity="other">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre NIP Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mots qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
+        <item quantity="one">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre PIN Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mot qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
+        <item quantity="other">Après avoir réinstallé Signal, votre solde sera restauré automatiquement si vous confirmez votre PIN Signal. Vous pouvez aussi restaurer votre solde grâce à une phrase de récupération, une phrase de %1$d mots qui vous est propre. Notez-la et conservez-la dans un endroit sûr.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
     <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
@@ -4454,7 +4454,7 @@
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Afficher sur le profil</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Mettre en avant ce macaron</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Poursuivre</string>
-    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un macaron, vous pouvez en choisir un que les autres pourront voir sur votre profil.</string>
+    <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Si vous avez plus d’un macaron, vous pouvez choisir celui que les autres pourront voir sur votre profil.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Obtenez des macarons pour votre profil en soutenant Signal.</string>
     <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal est un organisme sans but lucratif, sans annonceurs ni investisseurs, soutenu uniquement par des personnes comme vous.</string>
@@ -4543,7 +4543,7 @@
     <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Vous devez configurer Google Pay pour faire un don dans l’appli.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Échec de l’annulation de l’abonnement</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">L’annulation de l’abonnement nécessite une connexion Internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un macaron. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Votre appareil ne prend pas en charge Google Pay, vous ne pouvez donc pas vous abonner pour gagner un macaron. Vous pouvez toujours soutenir Signal en faisant un don sur notre site Web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Erreur réseau. Vérifiez votre connexion et réessayez.</string>
     <string name="NetworkFailure__retry">Réessayer</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -5506,7 +5506,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">La vie privée avant le profit</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Poursuivre</string>
     <!-- Description below title -->

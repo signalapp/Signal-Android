@@ -136,11 +136,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">လှူဒါန်းမှုပမာဏ- %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">လှူဒါန်းမှုပမာဏ- တစ်လလျှင် %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">သင့်ကတ်အချက်အလက်ကို အောက်တွင် ထည့်သွင်းပါ</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">သင့်ကတ်အချက်အလက် အသေးစိတ်ကို ဖြည့်ပါ။ Signal သည် သင်၏ ကိုယ်ရေးအချက်အလက်များကို စုဆောင်းခြင်း သို့မဟုတ် သိုလှောင်ခြင်းများ မလုပ်ပါ။</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">ကတ်နံပါတ်</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -446,9 +446,9 @@
     <string name="ConversationFragment_delete_for_me">ကျွန်ုပ်အတွက် ဖျက်မယ်</string>
     <string name="ConversationFragment_delete_for_everyone">လူတိုင်းအတွက်ဖျက်ပါ</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">ဤစက်တွင် ဖျက်ရန်</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">နေရာတိုင်းတွင် ဖျက်ရန်</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">အကယ်၍ သူတို့ကလတ်တလော Signal ပုံစံတွင်ရှိနေလျှင်ဤမက်ဆေ့ခ်ျသည်စကားပြောဆိုမှုတွင်ပါဝင်သူများအတွက်ဖျက်ပစ်လိမ့်မည်။ သူတို့ကသင်မက်ဆေ့ခ်ျတစ်ခုဖျက်လိုက်သည်ကိုတွေ့နိုင်လိမ့်မည်။</string>
     <string name="ConversationFragment_quoted_message_not_found">မူရင်းစာကိုမတွေ့ပါ</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">မူရင်းသတင်းကိုမရရှိနိုင်ပါ</string>
@@ -844,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">သင်သည် Signal အဖွဲ့များအား သုံးနိုင်ခြင်း မရှိသည့် အဆက်အသွယ်ကို ရွေးချယ်ထားသောကြောင့် ဤအဖွဲ့သည့် MMS ဖြစ်သွားပါမည်။ စိတ်ကြိုက် MMS အဖွဲ့အမည်များနှင့် ဓာတ်ပုံများကို သင်သာလျှင် မြင်ရပါမည်။</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">သင်သည် Signal အဖွဲ့များကို မပံ့ပိုးသည့် အဆက်အသွယ်အား ရွေးချယ်ထားသောကြောင့် ဤအဖွဲ့သည် MMS ဖြစ်ပါလိမ့်မည်။ စိတ်ကြိုက် MMS အဖွဲ့အမည်များနှင့် ဓါတ်ပုံများကို သင်တစ်ဦးတည်းသာ မြင်နိုင်ပါသည်။ စာဝှက်စနစ်သုံးထားသော မက်ဆေ့ချ်လုပ်ဆောင်ချက်အပေါ် အာရုံစိုက်နိုင်ရန် MMS အဖွဲ့များအတွက် ပံ့ပိုးမှုကို မကြာမီ ဖယ်ရှားပါတော့မည်။</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">အသင်းဝင်တောင်းဆိုမှုများ &amp; amp; ဖိတ်ကြားထား</string>
@@ -1406,7 +1406,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Signal တွင် SMS မက်ဆေ့ချ်များကို ပေးပို့နိုင်တော့မည် မဟုတ်ပါ။ ဤတွင် ဆက်လက်ဆွေးနွေးနိုင်ရန် %1$s အား Signal သို့ ဖိတ်ခေါ်ပါ။</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">ငွေပေးချေမှု- %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">လက်ခံသည်</string>
@@ -3035,7 +3035,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">ရွေးမယ်</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">ငွေပေးချေမှု အသေးစိတ်</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3118,11 +3118,11 @@
     <string name="reminder_header_service_outage_text">Signal သည် နည်းပညာပိုင်းဆိုင်ရာ အခက်အခဲများ ကြုံတွေ့နေပါသည်။ ဝန်ဆောင်မှုများကို အမြန်ဆုံးပြန်လည်စတင်နိုင်ရန် ကျွနု်ပ်တို့ ကြိုးစားနေပါသည်။</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Signal ၏ သီးသန့်အဆက်အသွယ် ရှာဖွေလေ့လာမှုသည် သင့်ဖုန်း၏ အဆက်အသွယ်များကို ယာယီ စီမံလုပ်ဆောင်နိုင်ခြင်း မရှိပါ။</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Signal ၏ သီးသန့်အဆက်အသွယ် ရှာဖွေလေ့လာမှုသည် သင့်ဖုန်း၏ အဆက်အသွယ်များကို စီမံလုပ်ဆောင်နိုင်ခြင်း မရှိပါ။</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">ပိုမိုလေ့လာရန်</string>
 
@@ -4304,11 +4304,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ပါဝင်အားဖြည့်သူ ဖြစ်စေရန်</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s သည် Signal ကို ပံ့ပိုးပေးပါသည်</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s သည် Signal ကို လစဥ် လှူဒါန်းမှုဖြင့် ပံ့ပိုးပေးပါသည်။ Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ သင်ကဲ့သို့သော သူများနှင့်သာ ပံ့ပိုးလုပ်ဆောင်သည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s သည် Signal ကို လစဉ် လှူဒါန်းမှုဖြင့် ပံ့ပိုးပေးပါသည်။ Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ သင်ကဲ့သို့သော သူများနှင့်သာ ပံ့ပိုးလုပ်ဆောင်သည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s သည် Signal ကို လှူဒါန်းမှုဖြင့် ပံ့ပိုးပေးပါသည်။ Signal သည် ကြော်ငြာသူများ သို့မဟုတ် ရင်းနှီးမြှုပ်နှံသူများ မရှိဘဲ သင်ကဲ့သို့သော သူများနှင့်သာ ပံ့ပိုးလုပ်ဆောင်သည့် အကျိုးအမြတ်မယူသော အဖွဲ့အစည်းဖြစ်ပါသည်။</string>
 
     <string name="ImageView__badge">ဘဲ့ဂျ်</string>
 
@@ -4334,17 +4334,17 @@
     <string name="Subscription__expires_s">· %1$s သက်တမ်းကုန်ပါမည်</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal သည် မတူကွဲပြားသည်။</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ စောင့်ကြည့်ခြင်း မရှိ။</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal ကို လှူဒါန်းမှုများဖြင့် ပံ့ပိုးထားပါသည်၊ ဆိုလိုသည်မှာ သင်၏ ကိုယ်ပိုင်အချက်အလက်သည် ကျွန်ုပ်တို့ လုပ်ဆောင်မှုတိုင်း၏ ဗဟိုချက်ဖြစ်သည်။ Signal ကို သင့်အတွက် ဖန်တီးပေးထားပါသည်၊ သင့်ဒေတာများနှင့် အကျိုးအမြတ်အတွက် မဟုတ်ပါ။</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">သင်တတ်နိုင်လျှင် Signal ကို ဆက်လက်ပြီး ပျော်စရာကောင်းစေရန်၊ အားထားနိုင်စေရန်နှင့် အားလုံးအတွက် ရနိုင်ရန် လှူဒါန်းပေးပါ။</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">သင့်ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Signal ထံမှ လှူဒါန်းသူ ဘဲ့ဂျ် ရထားပြီးပါပြီ။ သင်၏ ပံ့ပိုးမှုကို ပြသရန် သင့်ပရိုဖိုင်တွင် ဖော်ပြပေးပါ။</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">သင်သည်လည်း</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">လစဉ် ပါဝင်အားဖြည့်သူ ဖြစ်နိုင်ပါသည်။</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">ပရိုဖိုင်တွင် ပြသရန်</string>
@@ -4763,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ကြည့်ရှုမှုများ မရှိသေးပါ</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">သင့်စတိုရီများအား ကြည့်ရှုခဲ့သူများကို ကြည့်ရန် ကြည့်ရှုမှုပြီးကြောင်းညွှန်ပြမှုကို ဖွင့်ပါ။</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ဆက်တင်သို့ သွားရန်</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5383,11 +5383,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">ကိုယ်ပိုင်အချက်အလက်သည် အကျိုးအမြတ်ထက် ပိုအရေးကြီးပါသည်</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">ဆက်လုပ်ရန်</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">သင် ငွေကြေးထောက်ပံ့ထားသည့် သီးသန့် မက်ဆေ့ချ်လုပ်ဆောင်ချက်။ ကြော်ငြာများ မရှိ၊ ခြေရာခံခြင်း မရှိ၊ အပေးအယူ မရှိ။ Signal ကို ပံ့ပိုးရန် ယခုပင် လှူဒါန်းလိုက်ပါ။</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">လစဉ်</string>
     <!-- Donation pill toggle one-time text -->
@@ -5411,41 +5411,41 @@
     <string name="StripePaymentInProgressFragment__cancelling">ပယ်ဖျက်နေဆဲ…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">အဆက်အသွယ်များစွာကို စီမံလုပ်ဆောင်ပြီးပါပြီ</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="other">သင့်အဆက်အသွယ်များကို စီမံလုပ်ဆောင်ရန် နောက်ထပ်ကြိုးပမ်းမှုကို %1$d ရက်အတွင်း လုပ်သွားပါမည်။</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">ဤပြဿနာကို အမြန်ဆုံး ဖြေရှင်းနိုင်ရန် အဆက်အသွယ်များစွာကို ချိန်ကိုက်ထားသည့် သင့်ဖုန်းရှိ အကောင့်များ သို့မဟုတ် အဆက်အသွယ်များကို ဖယ်ရှားကြည့်နိုင်ပါသည်။</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">အဆက်အသွယ်များကို ဖွင့်ရန်</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">အဆက်အသွယ်အက်ပ် ရှာမတွေ့ပါ</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">သင့်အဆက်အသွယ်များကို စီမံလုပ်ဆောင်နိုင်ခြင်း မရှိပါ</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">သင့်ဖုန်းရှိ အဆက်အသွယ် အရေအတွက်သည် Signal မှ စီမံလုပ်ဆောင်နိုင်သည့် ကန့်သတ်ချက်ထက် ကျော်လွန်နေပါသည်။ Signal တွင် အဆက်အသွယ်များကို ရှာဖွေရန် အဆက်အသွယ်များစွာကို ချိန်ကိုက်ထားသည့် သင့်ဖုန်းရှိ အကောင့်များ သို့မဟုတ် အဆက်အသွယ်များကို ဖယ်ရှားကြည့်ပါ။</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">အဆက်အသွယ်များကို ဖွင့်ရန်</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">အဆက်အသွယ်အက်ပ် ရှာမတွေ့ပါ</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">%1$s ပေးပို့ခဲ့ပါသည်</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s သည် သင့်ထံ ပေးပို့ခဲ့ပါသည်</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">Thank you for your support!</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">သင့်အချက်အလက်ကို လျှို့ဝှက်ထားပါသည်</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">သင် လှူဒါန်းသည့်အခါ Signal သည် သင့်ကိုယ်ရေးအချက်အလက်များကို စုဆောင်းခြင်း သို့မဟုတ် သိုလှောင်ခြင်းများ မပြုလုပ်ပါ။</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">သင်၏ လှူဒါန်းမှုများကို လက်ခံရန်အတွက် ငွေပေးချေမှု စီမံလုပ်ဆောင်ရေးအဖြစ် Stripe ကို သုံးပါသည်။ ၎င်းတို့ထံ သင်ပေးထားသည့် အချက်အလက်များကို ရယူသုံးစွဲခြင်း၊ သိုလှောင်ခြင်း သို့မဟုတ် သိမ်းဆည်းခြင်း မပြုပါ။</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal သည် သင့်လှူဒါန်းမှုကို သင်၏ Signal အကောင့်နှင့် ချိတ်ဆက်မည် မဟုတ်သည့်အပြင် မချိတ်ဆက်နိုင်ပါ။</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">သင်၏ ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
 
     <!-- EOF -->
 

@@ -5506,7 +5506,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">Personvern fremfor profitt</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">Fortsett</string>
     <!-- Description below title -->
