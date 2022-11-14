@@ -393,6 +393,7 @@ class StoryViewerPageFragment :
               storyPost.sender.isReleaseNotes -> ONBOARDING_DURATION
               storyPost.content.isVideo() -> -1L
               storyPost.content is StoryPost.Content.TextContent -> calculateDurationForText(storyPost.content)
+              storyPost.content is StoryPost.Content.AttachmentContent -> calculateDurationForAttachment(storyPost.content)
               else -> DEFAULT_DURATION
             }
           }
@@ -499,7 +500,20 @@ class StoryViewerPageFragment :
   }
 
   private fun calculateDurationForText(textContent: StoryPost.Content.TextContent): Long {
-    val divisionsOf15 = textContent.length / CHARACTERS_PER_SECOND
+    return calculateDurationForContentLength(textContent.length)
+  }
+
+  private fun calculateDurationForAttachment(attachmentContent: StoryPost.Content.AttachmentContent): Long {
+    val caption: String? = attachmentContent.attachment.caption
+    return if (caption.isNullOrEmpty()) {
+      DEFAULT_DURATION
+    } else {
+      calculateDurationForContentLength(caption.length)
+    }
+  }
+
+  private fun calculateDurationForContentLength(contentLength: Int): Long {
+    val divisionsOf15 = contentLength / CHARACTERS_PER_SECOND
     return TimeUnit.SECONDS.toMillis(divisionsOf15) + MIN_TEXT_STORY_PLAYBACK
   }
 
