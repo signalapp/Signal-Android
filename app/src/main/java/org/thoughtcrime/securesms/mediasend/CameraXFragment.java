@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Rational;
@@ -93,9 +94,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private Disposable                       mostRecentItemDisposable = Disposable.disposed();
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
-
-  private boolean isThumbAvailable;
-  private boolean isMediaSelected;
 
   public static CameraXFragment newInstanceForAvatarCapture() {
     CameraXFragment fragment = new CameraXFragment();
@@ -250,21 +248,23 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   }
 
   private void presentRecentItemThumbnail(@Nullable Media media) {
-    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+    View      thumbBackground = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+    ImageView thumbnail       = controlsContainer.findViewById(R.id.camera_gallery_button);
 
     if (media != null) {
-      thumbnail.setVisibility(View.VISIBLE);
+      thumbBackground.setBackgroundResource(R.drawable.circle_tintable);
+      thumbnail.clearColorFilter();
+      thumbnail.setScaleType(ImageView.ScaleType.FIT_CENTER);
       Glide.with(this)
            .load(new DecryptableUri(media.getUri()))
            .centerCrop()
            .into(thumbnail);
     } else {
-      thumbnail.setVisibility(View.GONE);
-      thumbnail.setImageResource(0);
+      thumbBackground.setBackgroundResource(R.drawable.media_selection_camera_switch_background);
+      thumbnail.setImageResource(R.drawable.ic_gallery_outline_24);
+      thumbnail.setColorFilter(Color.WHITE);
+      thumbnail.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
-
-    isThumbAvailable = media != null;
-    updateGalleryVisibility();
   }
 
   @Override
@@ -276,19 +276,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       countButton.setCount(selectedMediaCount);
     } else {
       countButton.setVisibility(View.GONE);
-    }
-
-    isMediaSelected = selectedMediaCount > 0;
-    updateGalleryVisibility();
-  }
-
-  private void updateGalleryVisibility() {
-    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
-
-    if (isMediaSelected || !isThumbAvailable) {
-      cameraGalleryContainer.setVisibility(View.GONE);
-    } else {
-      cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
   }
 
