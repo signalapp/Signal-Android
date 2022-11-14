@@ -51,7 +51,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
 
       customPref(
         AllSignalConnectionsRowItem.Model(
-          isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL,
+          isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL && state.hasUserPerformedManualSelection,
           count = state.allSignalConnectionsCount,
           onRowClicked = {
             lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ALL)
@@ -72,7 +72,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
       radioPref(
         title = DSLSettingsText.from(R.string.MyStorySettingsFragment__all_except),
         summary = exceptText,
-        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT,
+        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT && state.hasUserPerformedManualSelection,
         onClick = {
           lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ALL_EXCEPT)
             .subscribe { findNavController().safeNavigate(R.id.action_myStorySettings_to_allExceptFragment) }
@@ -88,7 +88,7 @@ class MyStorySettingsFragment : DSLSettingsFragment(
       radioPref(
         title = DSLSettingsText.from(R.string.MyStorySettingsFragment__only_share_with),
         summary = onlyWithText,
-        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH,
+        isChecked = state.myStoryPrivacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH && state.hasUserPerformedManualSelection,
         onClick = {
           lifecycleDisposable += viewModel.setMyStoryPrivacyMode(DistributionListPrivacyMode.ONLY_WITH)
             .subscribe { findNavController().safeNavigate(R.id.action_myStorySettings_to_onlyShareWithFragment) }
