@@ -55,8 +55,6 @@ public class PaymentsHomeFragment extends LoggingFragment {
 
   private PaymentsHomeViewModel viewModel;
 
-  private final OnBackPressed onBackPressed = new OnBackPressed();
-
   public PaymentsHomeFragment() {
     super(R.layout.payments_home_fragment);
   }
@@ -270,19 +268,13 @@ public class PaymentsHomeFragment extends LoggingFragment {
       }
     });
 
-    requireActivity().getOnBackPressedDispatcher().addCallback(onBackPressed);
+    requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressed());
   }
 
   @Override
   public void onResume() {
     super.onResume();
     viewModel.checkPaymentActivationState();
-  }
-
-  @Override
-  public void onDestroyView() {
-    super.onDestroyView();
-    onBackPressed.setEnabled(false);
   }
 
   private void showUpdateIsRequiredDialog() {
