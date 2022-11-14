@@ -513,7 +513,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { mediaRecord, isLtr ->
               startActivityForResult(
-                MediaIntentFactory.intentFromMediaRecord(requireContext(), mediaRecord, isLtr),
+                MediaIntentFactory.intentFromMediaRecord(requireContext(), mediaRecord, isLtr, allMediaInRail = true),
                 REQUEST_CODE_RETURN_FROM_MEDIA
               )
             }

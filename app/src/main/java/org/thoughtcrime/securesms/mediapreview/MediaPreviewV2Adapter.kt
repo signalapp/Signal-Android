@@ -4,6 +4,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.MediaUtil
 
 class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
@@ -35,6 +36,10 @@ class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragm
     fragment.arguments = args
 
     return fragment
+  }
+
+  fun findItemPosition(media: Media): Int {
+    return items.indexOfFirst { it.uri == media.uri }
   }
 
   fun updateBackingItems(newItems: Collection<Attachment>) {

@@ -50,7 +50,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/media_preview_album_rail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="11dp"
@@ -58,7 +58,6 @@
         android:layout_marginEnd="12dp"
         android:orientation="horizontal"
         android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:layout_height="64dp" />
 
     <LinearLayout
