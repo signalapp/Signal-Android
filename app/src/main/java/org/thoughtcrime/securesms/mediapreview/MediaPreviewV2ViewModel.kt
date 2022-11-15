@@ -3,10 +3,9 @@ package org.thoughtcrime.securesms.mediapreview
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
@@ -14,7 +13,6 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
 
@@ -76,11 +74,12 @@ class MediaPreviewV2ViewModel : ViewModel() {
     }
   }
 
-  fun deleteItem(context: Context, attachment: DatabaseAttachment, onSuccess: Consumer<in Unit>, onError: Consumer<in Throwable>) {
-    disposables += Single.fromCallable { AttachmentUtil.deleteAttachment(context.applicationContext, attachment) }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(onSuccess, onError)
+  fun remoteDelete(attachment: DatabaseAttachment): Completable {
+    return repository.remoteDelete(attachment).subscribeOn(Schedulers.io())
+  }
+
+  fun localDelete(context: Context, attachment: DatabaseAttachment): Completable {
+    return repository.localDelete(context, attachment).subscribeOn(Schedulers.io())
   }
 
   override fun onCleared() {

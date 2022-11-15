@@ -34,6 +34,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -42,6 +43,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
@@ -57,6 +59,7 @@ import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteDeleteUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -472,21 +475,50 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private fun deleteMedia(mediaItem: MediaDatabase.MediaRecord) {
     val attachment: DatabaseAttachment = mediaItem.attachment ?: return
 
-    MaterialAlertDialogBuilder(requireContext())
-      .setIcon(R.drawable.ic_warning)
-      .setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
-      .setMessage(R.string.MediaPreviewActivity_media_delete_confirmation_message)
-      .setCancelable(true)
-      .setPositiveButton(R.string.delete) { _, _ ->
-        viewModel.deleteItem(requireContext(), attachment, onSuccess = {
-          requireActivity().finish()
-        }, onError = {
-          Log.e(TAG, "Delete failed!", it)
-          requireActivity().finish()
-        })
+    MaterialAlertDialogBuilder(requireContext()).apply {
+      setIcon(R.drawable.ic_warning)
+      setTitle(R.string.MediaPreviewActivity_media_delete_confirmation_title)
+      setMessage(R.string.MediaPreviewActivity_media_delete_confirmation_message)
+      setCancelable(true)
+      setNegativeButton(android.R.string.cancel, null)
+      setPositiveButton(R.string.ConversationFragment_delete_for_me) { _, _ ->
+        lifecycleDisposable += viewModel.localDelete(requireContext(), attachment)
+          .observeOn(AndroidSchedulers.mainThread())
+          .subscribeBy(
+            onComplete = {
+              requireActivity().finish()
+            },
+            onError = {
+              Log.e(TAG, "Delete failed!", it)
+              Toast.makeText(requireContext(), R.string.MediaPreviewFragment_media_delete_error, Toast.LENGTH_LONG).show()
+              requireActivity().finish()
+            }
+          )
       }
-      .setNegativeButton(android.R.string.cancel, null)
-      .show()
+
+      if (canRemotelyDelete(attachment)) {
+        setNeutralButton(R.string.ConversationFragment_delete_for_everyone) { _, _ ->
+          lifecycleDisposable += viewModel.remoteDelete(attachment)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeBy(
+              onComplete = {
+                requireActivity().finish()
+              },
+              onError = {
+                Log.e(TAG, "Delete failed!", it)
+                Toast.makeText(requireContext(), R.string.MediaPreviewFragment_media_delete_error, Toast.LENGTH_LONG).show()
+                requireActivity().finish()
+              }
+            )
+        }
+      }
+    }.show()
+  }
+
+  fun canRemotelyDelete(attachment: DatabaseAttachment): Boolean {
+    val mmsId = attachment.mmsId
+    val attachmentCount = SignalDatabase.attachments.getAttachmentsForMessage(mmsId).size
+    return attachmentCount <= 1 && RemoteDeleteUtil.isValidSend(listOf(SignalDatabase.mms.getMessageRecord(mmsId)), System.currentTimeMillis())
   }
 
   private fun editMediaItem(currentItem: MediaDatabase.MediaRecord) {

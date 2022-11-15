@@ -1,15 +1,20 @@
 package org.thoughtcrime.securesms.mediapreview
 
+import android.content.Context
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
+import org.thoughtcrime.securesms.sms.MessageSender
+import org.thoughtcrime.securesms.util.AttachmentUtil
 
 /**
  * Repository for accessing the attachments in the encrypted database.
@@ -62,6 +67,18 @@ class MediaPreviewRepository {
         Result(itemPosition, mediaRecords.toList())
       }
     }.subscribeOn(Schedulers.io()).toFlowable()
+  }
+
+  fun localDelete(context: Context, attachment: DatabaseAttachment): Completable {
+    return Completable.fromRunnable {
+      AttachmentUtil.deleteAttachment(context.applicationContext, attachment)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  fun remoteDelete(attachment: DatabaseAttachment): Completable {
+    return Completable.fromRunnable {
+      MessageSender.sendRemoteDelete(attachment.mmsId, true)
+    }.subscribeOn(Schedulers.io())
   }
 
   data class Result(val initialPosition: Int, val records: List<MediaDatabase.MediaRecord>)
