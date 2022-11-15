@@ -88,7 +88,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
                                                                   @NonNull RemotePeer remotePeerGroup,
                                                                   @NonNull GroupId.V2 groupId,
                                                                   long ringId,
-                                                                  @NonNull UUID uuid,
+                                                                  @NonNull UUID sender,
                                                                   @NonNull CallManager.RingUpdate ringUpdate)
   {
     Log.i(TAG, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
@@ -118,7 +118,7 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
       return currentState;
     }
 
-    webRtcInteractor.peekGroupCallForRingingCheck(new GroupCallRingCheckInfo(remotePeerGroup.getId(), groupId, ringId, uuid, ringUpdate));
+    webRtcInteractor.peekGroupCallForRingingCheck(new GroupCallRingCheckInfo(remotePeerGroup.getId(), groupId, ringId, sender, ringUpdate));
 
     return currentState;
   }

@@ -741,13 +741,18 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
-  public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID uuid, @NonNull CallManager.RingUpdate ringUpdate) {
+  public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
-      GroupId.V2                groupId = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      GroupDatabase.GroupRecord group   = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      GroupId.V2                groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
+      GroupDatabase.GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      Recipient                 senderRecipient = Recipient.externalPush(ServiceId.from(sender));
 
-      if (group != null && group.isActive() && !Recipient.resolved(group.getRecipientId()).isBlocked()) {
-        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, uuid, ringUpdate));
+      if (group != null &&
+          group.isActive() &&
+          !Recipient.resolved(group.getRecipientId()).isBlocked() &&
+          (!group.isAnnouncementGroup() || group.isAdmin(senderRecipient)))
+      {
+        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, sender, ringUpdate));
       } else {
         Log.w(TAG, "Unable to ring unknown/inactive/blocked group.");
       }
