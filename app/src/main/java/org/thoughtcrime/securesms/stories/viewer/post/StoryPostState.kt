@@ -24,7 +24,8 @@ sealed class StoryPostState {
     val videoUri: Uri,
     val size: Long,
     val clipStart: Duration,
-    val clipEnd: Duration
+    val clipEnd: Duration,
+    val blurHash: BlurHash?
   ) : StoryPostState()
 
   data class None(private val ts: Long = System.currentTimeMillis()) : StoryPostState()

@@ -110,12 +110,23 @@ class StoryPostFragment : Fragment(R.layout.stories_post_fragment) {
     presentNone()
 
     binding.video.visible = true
+    binding.blur.visible = true
+
+    val storyBlurLoader = StoryBlurLoader(
+      viewLifecycleOwner.lifecycle,
+      state.blurHash,
+      state.videoUri,
+      pageViewModel.storyCache,
+      StoryDisplay.getStorySize(resources),
+      binding.blur
+    )
 
     storyVideoLoader = StoryVideoLoader(
       this,
       state,
       binding.video,
-      requireCallback()
+      requireCallback(),
+      storyBlurLoader
     )
 
     storyVideoLoader?.load()
