@@ -227,7 +227,7 @@ object StoryContextMenu {
           }
         )
         add(
-          ActionItem(R.drawable.ic_download_24_tinted, context.getString(R.string.save)) {
+          ActionItem(R.drawable.ic_save_24_tinted, context.getString(R.string.save)) {
             callbacks.onSave()
           }
         )
