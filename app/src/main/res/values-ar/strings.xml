@@ -141,11 +141,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">مَبلَغ التَّبَرُّع: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">مَبلَغ التَّبَرُّع: %1$s/شهريًا</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">يُرجى إدخال معلومات بطاقتك أسفله</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">يُرجى إدخال معلومات بطاقتك. لا يقوم Signal بجمع أو تخزين معلوماتك الشخصية.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">رقم البطاقة</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -481,9 +481,9 @@
     <string name="ConversationFragment_delete_for_me">احذف بالنسبة لي</string>
     <string name="ConversationFragment_delete_for_everyone">احذف للجميع</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">حذف من هذا الجهاز</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">احذف من كل مكان</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">سوف تُحذَف هذه الرسالة لكل من كان في هذه المحادثة شريطة استخدامه إصدار Signal حديث. لن يتمكن أحد من رؤية الرسالة التي قمت بحذفها.</string>
     <string name="ConversationFragment_quoted_message_not_found">لم يتم العثور على الرسالة الأصلية</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">الرسالة الأصلية لم تعد متوفرة</string>
@@ -1034,7 +1034,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">لقد حدّدتَ جهة اتصال لا تدعم مجموعات Signal، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">لقد اخترت جهة اتصال لا تدعم مجموعات Signal، لِذلك هذه المجموعة ستتواصل بتقنية MMS. أسماء وصور مجموعة MMS المُخصصة ستكون مرئية لك فقط. سَتتم إزالة دعم مجموعات MMS قريبًا للتركيز على الرسائل المشفرة.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">طلبات و دعوات اﻷعضاء</string>
@@ -1706,7 +1706,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">لن تتمكن من إرسال رسائل SMS من Signal بعد الآن. قم بدعوة %1$s إلى Signal لإبقاء المحادثة هنا.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">عمليات الدفع: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">موافقة</string>
@@ -2252,7 +2252,7 @@
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
     <string name="ThreadRecord__reacted_s_to_their_story">تفاعل %1$s مع قِصتهم</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
-    <string name="ThreadRecord_payment">عملية الدفع</string>
+    <string name="ThreadRecord_payment">عمليات الدفع</string>
 
     <!-- UpdateApkReadyListener -->
     <string name="UpdateApkReadyListener_Signal_update">تحديث Signal</string>
@@ -3470,7 +3470,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">حَدِّد</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">تفاصيل عمليات الدفع</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3553,11 +3553,11 @@
     <string name="reminder_header_service_outage_text">يواجه Signal بعض المشاكل التقنيّة حاليّاً. نعمل بجد لإعادة الخدمة بأسرع وقت ممكن.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">لا يُمكن لاكتشاف جهات الاتصال الخاصة لتطبيق Signal مُعالجة جهات اتصال هاتفك مؤقتًا.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">معرفة المزيد</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">لا يُمكن لاكتشاف جهات الاتصال الخاصة لتطبيق Signal مُعالجة جهات اتصال هاتفك.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">معرفة المزيد</string>
 
@@ -4824,11 +4824,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">كن داعماً</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">يدعم %1$s Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">يدعم %1$s Signal بتبرّع شهري. يُعتبر Signal تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مستثمرين، يدعمه فقط أشخاص مثلك.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">يدعم %1$s Signal بتبرّع شهري. يُعتبر Signal تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مُستثمرين، يدعمه فقط أشخاص مثلك.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">يدعم %1$s Signal بتبرّع. يُعتبر Signal تطبيقًا غير ربحيًا ولا يعتمد على أي إعلانات أو مستثمرين، يدعمه فقط أشخاص مثلك.</string>
 
     <string name="ImageView__badge">شارة</string>
 
@@ -4858,13 +4858,13 @@
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">التراسل الخاص. بدون إعلانات، بدون مُتعقبات، بدون رقابة.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">يتم دعم Signal من خلال التبرعات، مما يعني أن خصوصيتك هي محور كل ما نقوم به. أُنشِئ تطبيق Signal من أجلك؛ لا لأجل بياناتك ولا لأجل الربح.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">يتم دعم Signal من خلال التبرعات، مِما يعني أن خصوصيتك هي محور كل ما نقوم به. أُنشِئ تطبيق Signal من أجلك؛ لا لأجل بياناتك ولا لأجل الربح.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">إذا استطعت، يُرجى التبرع اليوم للحفاظ على تطبيق Signal مُمتعًا وموثوقًا به ومتاحًا للجميع.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">إذا استطعت، يُرجى التبرّع اليوم للحفاظ على تطبيق Signal مُمتعًا وموثوقًا به ومتاحًا للجميع.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">شكرا لدعمك!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">لقد حصلت على شارة مُتبرع من Signal! اعرضها في حسابك الشخصي لإظهار دعمك.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">يُمكنك أيضاً</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">كُن داعماً شهرياً.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">عرض في الملف الشخصي</string>
@@ -5303,7 +5303,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">لا مشاهدة حاليا</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">فعِّل إيصالات القراءة لِرؤية من شاهد قِصصك.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">الانتقال إلى الإعدادات</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -6031,46 +6031,46 @@
     <string name="StripePaymentInProgressFragment__cancelling">جارٍ الإلغاء…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">تمت معالجة عدد كبير جدًا من جهات الاتصال</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="zero">Another attempt to process your contacts will be made within %1$d days.</item>
-        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
-        <item quantity="two">Another attempt to process your contacts will be made within %1$d days.</item>
-        <item quantity="few">Another attempt to process your contacts will be made within %1$d days.</item>
-        <item quantity="many">Another attempt to process your contacts will be made within %1$d days.</item>
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="zero">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d يوم.</item>
+        <item quantity="one">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d يوم.</item>
+        <item quantity="two">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d يومين.</item>
+        <item quantity="few">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d أيام.</item>
+        <item quantity="many">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d يومًا.</item>
+        <item quantity="other">سيتم إجراء محاولة أخرى لمعالجة جهات اتصالك خلال %1$d يوم.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">لِحل هذه المشكلة بسرعة، ندعوك إلى إزالة جهات الاتصال أو الحسابات الموجودة على هاتفك والتي تقوم بمزامنة الكثير من جهات الاتصال.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">فتح جهات الاتصال</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">لم يُعثر على أي تطبيق لجهات الاتصال</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">لا يمكن معالجة جهات الاتصال الخاصة بك</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">تجاوز عدد جهات الاتصال على هاتفك الحد الذي يُمكن لتطبيق Signal معالجته. لإيجاد جهات اتصال على Signal، ندعوك إلى إزالة جهات الاتصال أو الحسابات الموجودة على هاتفك والتي تقوم بمزامنة الكثير من جهات الاتصال.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">معرفة المزيد</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">فتح جهات الاتصال</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">لم يُعثر على أي تطبيق لجهات الاتصال</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">أرسلت %1$s</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">أرسل لك %1$s</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">نَشكُرُكَ لِدَعمِك!</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">معلوماتك تبقى خاصة</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">لا يقوم Signal بجمع أو تخزين معلوماتك الشخصية عند قيامك بتبرع.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">نستخدم Stripe كمعالج عمليات الدفع الخاصة بنا لتلقي تبرعاتك. لا يُمكننا الوصول إلى أو تخزين أو حفظ أي من المعلومات التي تُقدمها.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">لا يقوم كما لا يُمكن لتطبيق Signal بربط تبرعاتك بحسابك على Signal.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">شكراً لدعمك!</string>
 
     <!-- EOF -->
 

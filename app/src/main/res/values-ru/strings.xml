@@ -2316,7 +2316,7 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Обновите Signal, чтобы и дальше использовать платежи. Ваш баланс может быть неактуальным.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Обновиться</string>
+    <string name="EnclaveFailureReminder_update_now">Обновить</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Для ответа на звонок предоставьте Signal доступ к микрофону.</string>

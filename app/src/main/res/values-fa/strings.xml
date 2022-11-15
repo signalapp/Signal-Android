@@ -137,11 +137,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">مبلغ کمک مالی: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">مبلغ کمک مالی: %1$s در ماه</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">اطلاعات کارت خود را در زیر وارد کنید</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">مشخصات کارت خود را وارد کنید سیگنال اطلاعات شخصی شما را جمع آوری یا ذخیره نمی‌کند.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">شماره کارت</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -453,9 +453,9 @@
     <string name="ConversationFragment_delete_for_me">حذف برای من</string>
     <string name="ConversationFragment_delete_for_everyone">حذف برای همه</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">حذف در این دستگاه</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">حذف در همه جا</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه در صورتی که آن‌ها از نسخهٔ اخیر سیگنال استفاده می‌کنند، حذف خواهد شد. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
     <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
@@ -882,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">شما مخاطبی را انتخاب کرده‌اید که از گروه‌های سیگنال پشتیبانی نمی‌کند، بنابراین این گروه فراپیام خواهد بود. نام‌ها و عکس‌های گروه فراپیامی سفارشی فقط برای شما قابل مشاهده خواهد بود.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه فراپیامی (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های فراپیامی به‌زودی حذف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
@@ -1466,7 +1466,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">دیگر نمی‌توانید در سیگنال پیامک ارسال کنید. برای ادامه مکالمه در اینجا، %1$s را به سیگنال دعوت کنید.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">پرداخت: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">پذیرفتن</string>
@@ -3122,7 +3122,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">انتخاب</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">جزئیات پرداخت</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3205,11 +3205,11 @@
     <string name="reminder_header_service_outage_text">سیگنال با مشکلات فنی روبروست. ما سخت در تلاش برای بازگردانی هرچه سریع‌تر سرویس هستیم.</string>
     <string name="reminder_header_progress">%%%1$d</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">کشف مخاطب خصوصی سیگنال به طور موقت نمی‌تواند مخاطبین تلفن شما را پردازش کند.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">بیشتر بدانید</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">کشف مخاطب خصوصی سیگنال نمی‌تواند مخاطبین تلفن شما را پردازش کند.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">بیشتر بدانید</string>
 
@@ -4408,11 +4408,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s از سیگنال پشتیبانی می‌کند</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s با کمک مالی ماهانه از سیگنال پشتیبانی می‌کند. ‌سیگنال یک شرکت غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s با اهدای کمک مالی ماهانه از سیگنال پشتیبانی می‌کند. سیگنال یک موسسه غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s با اهدای کمک مالی از سیگنال پشتیبانی می‌کند. ‌سیگنال یک موسسه غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
 
     <string name="ImageView__badge">نشان</string>
 
@@ -4442,13 +4442,13 @@
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">پیام‌رسانی خصوصی. بدون تبلیغات، بدون ردیاب، بدون نظارت.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">سیگنال از طریق کمک‌های مالی پشتیبانی می‌شود و این یعنی حریم خصوصی شما در رأس هر کاری است که ما انجام می‌دهیم. سیگنال برای شما ساخته شده است؛ نه برای داده‌های شما و نه برای سود.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">سیگنال از طریق اهدای کمک‌های مالی پشتیبانی می‌شود و این یعنی حریم خصوصی شما در رأس هر کاری است که ما انجام می‌دهیم. سیگنال برای شما ساخته شده است؛ نه برای داده‌های شما و نه برای سود.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">اگر می‌توانید، لطفاً همین امروز کمک مالی کنید تا سیگنال سرگرم‌کننده، قابل‌اعتماد و در دسترس همه باشد.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">اگر می‌توانید، لطفاً همین امروز کمک مالی اهدا کنید تا سیگنال سرگرم‌کننده، قابل‌اعتماد و در دسترس همه باشد.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">ممنون از پشتیبانی شما!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">شما یک نشان اهداکننده از سیگنال به‌دست آورده‌اید! برای نشان دادن حمایت خود، آن را در نمایه خود نمایش دهید.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">شما همچنین می‌توانید</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">به یک حامی ماهیانه تبدیل شوید.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">نمایش روی پروفایل</string>
@@ -4871,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">هنوز بازدیدی از آن نشده است</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">رسیدهای بازدید را فعال کنید تا ببینید چه کسی از استوری‌های شما بازدید کرده است.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">رفتن به تنظیمات</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5510,7 +5510,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">ادامه</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">پیام‌رسانی خصوصی، با تأمین مالی شما. بدون تبلیغات، بدون ردیابی، بدون کاستن از کیفیت. اکنون برای حمایت از سیگنال کمک مالی کنید.</string>
+    <string name="DonateToSignalFragment__private_messaging">پیام‌رسانی خصوصی، با تأمین مالی شما. بدون تبلیغات، بدون ردیابی، بدون کاستن از کیفیت. اکنون برای حمایت از سیگنال کمک مالی اهدا کنید.</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">ماهانه</string>
     <!-- Donation pill toggle one-time text -->
@@ -5535,42 +5535,42 @@
     <string name="StripePaymentInProgressFragment__cancelling">در حال لغو…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">تعداد زیادی مخاطب پردازش شده است</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="one">تلاش دیگری برای پردازش مخاطبین شما ظرف %1$d روز انجام خواهد شد.</item>
+        <item quantity="other">تلاش دیگری برای پردازش مخاطبین شما ظرف %1$d روز انجام خواهد شد.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">برای حل سریعتر این مشکل، می‌توانید حذف مخاطبین یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبین بسیاری هستند، در نظر بگیرید.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">مخاطبین را باز کنید</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">مخاطبین شما قابل پردازش نیستند</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">تعداد مخاطبین روی تلفن شما از حدی که سیگنال می‌تواند پردازش کند بیشتر است. برای یافتن مخاطبین در سیگنال، می‌توانید حذف مخاطبین یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبین بسیاری هستند، در نظر بگیرید.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">بیشتر بدانید</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">مخاطبین را باز کنید</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">شما %1$s را ارسال کردید</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s به شما ارسال کرد</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">ممنون از پشتیبانی شما</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">اطلاعات شما محرمانه است</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">سیگنال هیچ یک از اطلاعات شخصی شما را هنگام اهدای کمک مالی جمع آوری یا ذخیره نمی‌کند.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">ما برای دریافت کمک‌های مالی شما از Stripe به عنوان پردازشگر پرداخت خود استفاده می‌کنیم. ما به هیچ یک از اطلاعاتی که در اختیار آنها قرار می‌دهید دسترسی نداریم، یا آن‌ها را ذخیره نمی‌کنیم.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">سیگنال کمک مالی شما را به حساب سیگنال شما متصل نمی‌کند و امکان انجامش را ندارد.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">ممنون از پشتیبانی شما!</string>
 
     <!-- EOF -->
 

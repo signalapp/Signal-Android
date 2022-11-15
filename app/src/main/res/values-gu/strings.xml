@@ -137,11 +137,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">દાનની રકમ: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">દાનની રકમ: %1$s/માસ</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">નીચે તમારા કાર્ડની માહિતી દાખલ કરો</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">તમારા કાર્ડની વિગતો દાખલ કરો. Signal તમારી અંગત માહિતી એકત્રિત અથવા સંગ્રહિત કરતું નથી.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">કાર્ડ નંબર</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -453,9 +453,9 @@
     <string name="ConversationFragment_delete_for_me">મારા માટે કાઢી નાખો</string>
     <string name="ConversationFragment_delete_for_everyone">બધા માટે કાઢી નાખો</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">આ ડિવાઇસ પર ડિલીટ કરો</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">દરેક જગ્યાએ ડિલીટ કરો</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">જો આ મેસેજ Signal નાં તાજેતરનાં વર્ઝન પર હોય તો વાતચીત માં દરેક માટે આ મેસેજ કાઢી નાખવામાં આવશે. તેઓ જોઈ શકશે કે તમે કોઈ મેસેજ કાઢી નાખ્યો છે.</string>
     <string name="ConversationFragment_quoted_message_not_found">અસલ મેસેજ મળ્યો નથી</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">અસલ મેસેજ હવે ઉપલબ્ધ નથી</string>
@@ -882,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">તમે એવો સંપર્ક પસંદ કર્યો છે જે Signal ગ્રુપને સપોર્ટ કરતો નથી, તેથી આ ગ્રુપ MMS હશે. કસ્ટમ MMS ગ્રુપ નામ અને ફોટા ફક્ત તમને જ દેખાશે.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">તમે એવો સંપર્ક પસંદ કર્યો છે જેઓ Signal ગ્રુપને સપોર્ટ કરતાં નથી, આ ગ્રુપ MMS હશે. કસ્ટમ MMS ગ્રુપના નામ અને ફોટા ફક્ત તમને જ દેખાશે. એન્ક્રિપ્ટ કરેલ મેસેજ પર ધ્યાન આપવા માટે MMS ગ્રુપ માટેનું સમર્થન ટૂંક સમયમાં જ દૂર કરવામાં આવશે.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">મેમ્બર વિનંતીઓ &amp; આમંત્રણ આપે છે</string>
@@ -1466,7 +1466,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">તમે Signalમાં હવે SMS મેસેજ મોકલી શકતા નથી. વાતચીત અહીં રાખવા માટે %1$s ને Signal પર આમંત્રિત કરો.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">પેમેન્ટ: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
@@ -3122,7 +3122,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">પસંદ કરો</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">પેમેન્ટની વિગતો</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3205,11 +3205,11 @@
     <string name="reminder_header_service_outage_text">Signal તકનીકી મુશ્કેલીઓ અનુભવી રહ્યું છે. અમે શક્ય તેટલી ઝડપથી સેવાને રિસ્ટોર કરવા માટે સખત મહેનત કરી રહ્યા છીએ.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Signalની ખાનગી સંપર્ક શોધ અસ્થાયી રૂપે તમારા ફોનના સંપર્કો પર પ્રક્રિયા કરી શકતી નથી.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">વધુ જાણો</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Signalની ખાનગી સંપર્ક શોધ તમારા ફોનના સંપર્કો પર પ્રક્રિયા કરી શકતી નથી.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">વધુ જાણો</string>
 
@@ -4408,11 +4408,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">એક સસ્ટેનર બનો</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signalને સપોર્ટ કરે છે</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s એક માસિક દાન દ્વારા Signalને સમર્થન કરે છે. Signal એક બિનલાભકારી છે જેમાં કોઈ જાહેરાતકારો કે રોકાણકારો નથી, અને તે ફક્ત તમારા જેવા લોકો દ્વારા જ સમર્થિત છે.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s દાન દ્વારા Signalને સમર્થન કરે છે. Signal એક બિનલાભકારી છે જેમાં કોઈ જાહેરાતકારો કે રોકાણકારો નથી, અને તે ફક્ત તમારા જેવા લોકો દ્વારા જ સમર્થિત છે.</string>
 
     <string name="ImageView__badge">બૅજ</string>
 
@@ -4448,7 +4448,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">આપના સહયોગ બદલ આભાર!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">તમે Signal તરફથી દાતાનો બૅજ મેળવ્યો છે! તમારો સપોર્ટ બતાવવા માટે તેને તમારી પ્રોફાઇલ પર પ્રદર્શિત કરો.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">તમે પણ</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">માસિક સસ્ટેનર બની શકો છો.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">પ્રોફાઇલ પર દર્શાવો</string>
@@ -4871,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">હજી કોઈ દ્રશ્યો નથી</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">તમારી સ્ટોરી કોણે જોઈ છે તે જોવા પ્રાપ્ત કર્યાનું નિશાન સક્ષમ કરો.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">સેટિંગ્સ પર જાઓ</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5535,41 +5535,41 @@
     <string name="StripePaymentInProgressFragment__cancelling">રદ કરી રહ્યાં છીએ…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">ઘણા બધા સંપર્કો પર પ્રક્રિયા કરવામાં આવી છે</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="one">તમારા સંપર્કો પર પ્રક્રિયા કરવાનો બીજો પ્રયાસ %1$d દિવસમાં કરવામાં આવશે.</item>
+        <item quantity="other">તમારા સંપર્કો પર પ્રક્રિયા કરવાનો બીજો પ્રયાસ %1$d દિવસોમાં કરવામાં આવશે.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">આ સમસ્યાને વહેલા ઉકેલવા માટે, તમે તમારા ફોન પરથી એવા સંપર્કો અથવા એકાઉન્ટને દૂર કરવાનું વિચારી શકો છો જે ઘણા બધા સંપર્કોને સમન્વયિત કરી રહ્યાં છે.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">સંપર્કો ખોલો</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">કોઈ સંપર્કોની ઍપ મળી નહીં</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">તમારા સંપર્કો પર પ્રક્રિયા કરી શકાતી નથી</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">Signal કેટલા સંપર્કો પર પ્રક્રિયા કરી શકે તેના કરતાં તમારા ફોન પરના સંપર્કોની સંખ્યા વધુ છે. Signal પર સંપર્કો શોધવા માટે, તમારા ફોન પરના સંપર્કો અથવા ઘણા બધા સંપર્કોને સમન્વયિત કરી રહ્યાં હોય તેવા એકાઉન્ટને દૂર કરવાનું વિચારો.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">વધુ જાણો</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">સંપર્કો ખોલો</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">કોઈ સંપર્કોની ઍપ મળી નહીં</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">તમે %1$sને મોકલ્યા</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$sએ તમને મોકલ્યા</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">તમારી માહિતી ખાનગી છે</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">તમે દાન કરો છો ત્યારે Signal તમારી કોઈપણ અંગત માહિતી એકત્રિત કે સંગ્રહિત કરતું નથી.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">અમે તમારા દાન મેળવવા માટે અમારા પેમેન્ટ પ્રોસેસર તરીકે Stripeનો ઉપયોગ કરીએ છીએ. તમે તેમને પ્રદાન કરો છો તે કોઈપણ માહિતી અમે ઍક્સેસ, સંગ્રહ અથવા સેવ કરતાં નથી.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal તમારા દાનને તમારા Signal એકાઉન્ટ સાથે કનેક્ટ કરતું નથી અને કરી શકતું નથી.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">તમારા સપોર્ટ બદલ તમારો આભાર!</string>
 
     <!-- EOF -->

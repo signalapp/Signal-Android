@@ -136,11 +136,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">捐款金額：%1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">捐款金額：每月 %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">請於下方輸入你的付款卡資料</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">請輸入付款卡詳情。Signal 不會收集或保存你的個人資料。</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">付款卡號碼</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -446,9 +446,9 @@
     <string name="ConversationFragment_delete_for_me">為我刪除</string>
     <string name="ConversationFragment_delete_for_everyone">為所有人刪除</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">刪除此裝置</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">從所有裝置中刪除</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">此訊息將從對話中所有使用最近版本 Signal 的人刪除。他們將會看見您刪除了一則訊息。</string>
     <string name="ConversationFragment_quoted_message_not_found">找不到原始訊息</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">原始訊息已不可用</string>
@@ -844,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">由於你已選擇一個不支援 Signal 群組的聯絡人，此群組將會使用多媒體短訊。只有你可以看見自訂多媒體短訊群組的名稱和相片。</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">你選取的聯絡人無法使用 Signal 群組，因此群組將使用多媒體訊息。只有你可以看到自訂的多媒體訊息群組名稱和相片。系統即將停止支援多媒體訊息群組，專注提供加密通訊服務。</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">成員請求與邀請</string>
@@ -1406,7 +1406,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">你無法再於 Signal 傳送短訊。邀請 %1$s 加入 Signal 以繼續對話。</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">付款：%1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -3035,7 +3035,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">選取</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">付款詳情</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3118,11 +3118,11 @@
     <string name="reminder_header_service_outage_text">Signal 出現技術問題。我們正努力搶修，儘快回復服務。</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Signal 的個人聯絡人搜尋服務暫時無法處理你手機中的聯絡人。</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">了解更多</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Signal 的個人聯絡人搜尋服務無法處理你手機中的聯絡人。</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">了解更多</string>
 
@@ -4304,11 +4304,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s 支持 Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s 透過每月捐款支持 Signal。Signal 是非牟利機構，背後並無廣告商或投資者，全靠你的支持推動。</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s 透過每月捐款支持 Signal。Signal 是非營利機構，背後並無廣告商或投資者，全靠你的支持推動。</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s 透過捐款支持 Signal。Signal 是非營利機構，背後並無廣告商或投資者，全靠你的支持推動。</string>
 
     <string name="ImageView__badge">徽章</string>
 
@@ -4338,13 +4338,13 @@
     <!-- First small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">私密通訊。無廣告、無追蹤、無監控。</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal 全靠捐款支持運作，這表示保護你的隱私就是我們的首要工作。Signal 是為你而打造的，不是為了你的資料，也不是為了盈利。</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal 全靠捐款支持運作，這表示保護你的隱私就是我們的首要工作。Signal 是為你而打造的，不是為了你的資料，也不是為了營利。</string>
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">如果你願意的話，請立即捐款支持，讓 Signal 繼續為大家帶來有趣且可靠的應用程式。</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">感謝您力撐支持！</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">你已獲得 Signal 的捐款者徽章！在你的個人檔案中展示徽章，表現你對我們的支持。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">您亦可考慮</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">成為月供延續人。</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">在個人資料中展現</string>
@@ -4763,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">未有觀看</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">啟用已讀標記，看看誰瀏覽了你的限時動態。</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">前往設定</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5411,40 +5411,40 @@
     <string name="StripePaymentInProgressFragment__cancelling">正在取消…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">系統已處理太多聯絡人</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="other">系統會在 %1$d 天內再次嘗試處理你的聯絡人。</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">要盡速解決此問題，你可以考慮從同步大量聯絡人的手機中刪除聯絡人或帳戶。</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">開啟聯絡人</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">找不到聯絡人應用程式</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">系統無法處理聯絡人</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">你手機的聯絡人超出 Signal 可以處理的數量。如要在 Signal 上尋找聯絡人，請考慮從同步大量聯絡人的手機中刪除聯絡人或帳戶。</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">了解更多</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">開啟聯絡人</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">找不到聯絡人應用程式</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">你向 %1$s 發送了付款</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s 向你發送了付款</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">你的資料已保密</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">當你捐款時，Signal 不會收集或儲存任何個人資料。</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">我們使用 Stripe 作為接收捐款的付款處理商。我們不會存取、保存或儲存你向他們提供的任何資料。</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal 不會也無法將你的捐款連接到你的 Signal 帳戶。</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">多謝您的支持！</string>
 
     <!-- EOF -->

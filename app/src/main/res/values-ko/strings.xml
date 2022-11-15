@@ -136,11 +136,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">기부 금액: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">기부 금액: %1$s/월</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">아래 카드 정보를 입력하세요.</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">카드 세부 정보를 입력하세요. Signal은 개인 정보를 수집하거나 저장하지 않습니다.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">카드 번호</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -446,9 +446,9 @@
     <string name="ConversationFragment_delete_for_me">나에게서 삭제</string>
     <string name="ConversationFragment_delete_for_everyone">모두에게서 삭제</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">이 기기에서 삭제</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">전체에서 삭제</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">최신 버전의 Signal을 사용 중인 경우 대화에 참여한 모든 사람에게서 메시지가 삭제됩니다. 내가 메시지를 삭제했음을 알 수 있습니다.</string>
     <string name="ConversationFragment_quoted_message_not_found">원본 메시지를 찾을 수 없음</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">원본 메시지를 더 이상 볼 수 없음</string>
@@ -844,7 +844,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 지정 MMS 그룹 이름과 사진은 나만 볼 수 있습니다.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal 그룹을 지원하지 않는 연락처를 선택했으므로 이 그룹은 MMS가 됩니다. 사용자 정의 MMS 그룹 이름과 사진은 나에게만 표시됩니다. 암호화 메시지에 집중하기 위해 MMS 그룹에 대한 지원을 곧 중단합니다.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">멤버 요청 &amp; 초대</string>
@@ -1406,7 +1406,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Signal에서 더 이상 SMS 메시지를 보낼 수 없습니다. %1$s 님을 Signal로 초대하여 대화를 이어가세요.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">결제: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">수락</string>
@@ -3035,7 +3035,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">선택</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">결제 세부 정보</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3118,11 +3118,11 @@
     <string name="reminder_header_service_outage_text">Signal에 기술적 문제가 발생했습니다. 최대한 신속하게 처리하겠습니다.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Signal의 비공개 연락처 검색에서 일시적으로 내 휴대폰 연락처를 처리할 수 없습니다.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">자세히 알아보기</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Signal의 비공개 연락처 검색에서 내 휴대폰 연락처를 처리할 수 없습니다.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">자세히 알아보기</string>
 
@@ -4304,11 +4304,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">기여자 되기</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s 님은 Signal의 기부자입니다.</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s 님은 Signal의 월간 기부자입니다. Signal은 광고주나 투자자 없이 오로지 사용자의 기여로 운영되는 비영리 단체입니다.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s 님은 Signal의 기부자입니다. Signal은 광고주나 투자자 없이 오로지 사용자의 기여로 운영되는 비영리 단체입니다.</string>
 
     <string name="ImageView__badge">배지</string>
 
@@ -4336,7 +4336,7 @@
     <!-- Title of learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal은 다릅니다.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">개인정보를 보호하는 메시지. 광고와 트래커, 사찰에서 자유로운 앱.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">개인정보를 보호하는 메신저. 광고와 트래커, 사찰에서 자유로운 앱.</string>
     <!-- Second small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal은 사용자의 기부로 운영되기에 모든 면에서 사용자의 개인정보보호를 최우선으로 생각합니다. Signal은 데이터와 수익이 아닌 사용자를 위한 앱입니다.</string>
     <!-- Third small text blurb on learn more sheet -->
@@ -4344,7 +4344,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">여러분의 지지와 성원에 감사드립니다!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Signal에서 기부자 배지를 받았습니다! 프로필에 표시하여 Signal에 대한 지지를 보여주세요.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">다른 기여 방법</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">월간 기여자 되기</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">프로필에 표시</string>
@@ -4763,7 +4763,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">아직 아무도 조회 안 함</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">내 스토리를 본 사람을 확인하려면 수신 확인을 활성화하세요.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">설정으로 이동</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5387,7 +5387,7 @@
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">계속</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">사용자의 기부로 운영되는 개인정보를 보호하는 메시지. 광고와 트래커, 타협에서 자유로운 앱. 지금 기부를 통해 Signal을 지지해 주세요.</string>
+    <string name="DonateToSignalFragment__private_messaging">사용자의 기부로 운영되는 개인정보를 보호하는 메신저. 광고와 트래커, 타협에서 자유로운 앱. 지금 기부를 통해 Signal을 지지해 주세요.</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">월간</string>
     <!-- Donation pill toggle one-time text -->
@@ -5411,40 +5411,40 @@
     <string name="StripePaymentInProgressFragment__cancelling">취소하는 중…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">너무 많은 연락처를 처리했습니다.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="other">%1$d일 내로 연락처 처리를 다시 시도합니다.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">문제를 더 빨리 해결하려면 많은 연락처를 동기화 중인 휴대폰에서 연락처나 계정을 제거하세요.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">연락처 열기</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">연락처 앱을 찾지 못했습니다.</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">연락처를 처리할 수 없습니다.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">휴대폰 연락처 수가 Signal에서 처리할 수 있는 연락처 수를 초과했습니다. Signal에서 연락처를 찾으려면 많은 연락처를 동기화 중인 휴대폰에서 연락처나 계정을 제거하세요.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">자세히 알아보기</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">연락처 열기</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">연락처 앱을 찾지 못했습니다.</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">%1$s 님에게 보냄</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s 님이 보냄</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">개인 정보는 비공개로 유지됩니다.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal은 기부할 때 사용자의 개인 정보를 수집하거나 저장하지 않습니다.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Signal은 기부를 받을 때 Stripe를 결제 처리자로 사용합니다. Signal은 사용자가 Stripe에 제공하는 어떠한 정보에도 액세스하지 않으며, 이를 보관 또는 저장하지 않습니다.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal은 사용자의 기부를 Signal 계정에 연결하거나 연결을 시도하지 않습니다.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">지원해 주셔서 감사합니다!</string>
 
     <!-- EOF -->

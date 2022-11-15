@@ -137,11 +137,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">Ποσό δωρεάς: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">Ποσό δωρεάς: %1$s/μήνα</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">Γράψε παρακάτω τα στοιχεία της κάρτας σου</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">Πρόσθεσε τα στοιχεία της κάρτας σου. Το Signal δεν συλλέγει ούτε αποθηκεύει τα προσωπικά στοιχεία σου.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">Αριθμός κάρτας</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -453,9 +453,9 @@
     <string name="ConversationFragment_delete_for_me">Διαγραφή για εμένα</string>
     <string name="ConversationFragment_delete_for_everyone">Διαγραφή για όλους</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">Διαγραφή από αυτή τη συσκευή</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">Διαγραφή από όλες τις συσκευές</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Αυτό το μήνυμα θα διαγραφεί για όλους σε αυτή τη συνομιλία, αν έχουν πρόσφατη έκδοση του Signal. Θα μπορούν να δούν ότι διέγραψες ένα μήνυμα.</string>
     <string name="ConversationFragment_quoted_message_not_found">Το αρχικό μήνυμα δεν βρέθηκε</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Το αρχικό μήνυμα δεν είναι πια διαθέσιμο</string>
@@ -882,7 +882,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Έχεις επιλέξει μια επαφή που δεν υποστηρίζει ομάδες Signal, επομένως αυτή η ομάδα θα είναι MMS. Τα ονόματα και οι φωτογραφίες εξατομικευμένων ομάδων MMS θα είναι ορατά μόνο σε εσένα.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Επέλεξες μια επαφή που δεν υποστηρίζει τις ομάδες Signal, αυτή η ομάδα θα είναι με MMS. Τα εξατομικευμένα ονόματα και οι φωτογραφίες των ομάδων MMS θα είναι ορατά μόνο σε σένα. Η υποστήριξη για ομάδες MMS θα καταργηθεί σύντομα για εστίαση στην κρυπτογραφημένη ανταλλαγή μηνυμάτων.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">Αιτήματα μελών &amp; προσκλήσεις</string>
@@ -1466,7 +1466,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">Δεν θα μπορείς πια να στείλεις μηνύματα SMS στο Signal. Προσκάλεσε τον χρήστη %1$s στο Signal για να κρατήσεις εδώ τη συνομιλία.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">Πληρωμή: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Αποδοχή</string>
@@ -3122,7 +3122,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Επιλογή</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">Στοιχεία πληρωμής</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3205,11 +3205,11 @@
     <string name="reminder_header_service_outage_text">Το Signal αντιμετωπίζει τεχνικές δυσκολίες. Εργαζόμαστε σκληρά για να αποκαταστήσουμε την υπηρεσία όσο πιο γρήγορα γίνεται.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Η ιδιωτική ανακάλυψη επαφών Signal δεν μπορεί προσωρινά να επεξεργαστεί τις επαφές του τηλεφώνου σου.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">Μάθε περισσότερα</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Η ιδιωτική ανακάλυψη επαφών Signal δεν μπορεί να επεξεργαστεί τις επαφές του τηλεφώνου σου.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Μάθε περισσότερα</string>
 
@@ -4408,11 +4408,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Γίνε συνεχόμενα υποστηρικτής/τρια</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">Ο χρήστης %1$s στηρίζει το Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">Ο χρήστης %1$s στηρίζει το Signal με μηνιαία δωρεά. Το Signal είναι μη κερδοσκοπικός οργανισμός, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα σαν κι εσένα.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">Ο χρήστης %1$s στηρίζει το Signal με μηνιαία δωρεά. Το Signal είναι μη κερδοσκοπικός οργανισμός, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα όπως εσύ.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">O χρήστης %1$s στηρίζει το Signal με δωρεά. Το Signal είναι μη κερδοσκοπικός οργανισμός, χωρίς διαφημιστές και επενδυτές, που υποστηρίζεται από άτομα όπως εσύ.</string>
 
     <string name="ImageView__badge">Σήμα</string>
 
@@ -4448,7 +4448,7 @@
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Κέρδισες σήμα δωρεάς από το Signal! Πρόσθεσέ το στο προφίλ σου για να δείξεις την υποστήριξή σου.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Μπορείς επίσης</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">Να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Εμφάνιση στο προφίλ</string>
@@ -4871,7 +4871,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Καμία προβολή ακόμα</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Ενεργοποίησε το αποδεικτικό ανάγνωσης για να βλέπεις ποια άτομα βλέπουν τις ιστορίες σου.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Πήγαινε στις ρυθμίσεις</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5535,41 +5535,41 @@
     <string name="StripePaymentInProgressFragment__cancelling">Ακύρωση…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">Έγινε επεξεργασία πάρα πολλών επαφών</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="one">Η επόμενη προσπάθεια επεξεργασίας των επαφών σου μπορεί να γίνει σε %1$d μέρα.</item>
+        <item quantity="other">Η επόμενη προσπάθεια επεξεργασίας των επαφών σου μπορεί να γίνει σε %1$d μέρες.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">Για να επιλυθεί πιο γρήγορα το πρόβλημα, μπορείς να καταργήσεις τις επαφές ή τους λογαριασμούς από το τηλέφωνό σου που συγχρονίζουν πολλές επαφές.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Άνοιγμα επαφών</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Δεν βρέθηκαν εφαρμογές επαφών</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">Δεν είναι δυνατή η επεξεργασία των επαφών σου</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">Ο αριθμός των επαφών στο τηλέφωνό σου υπερβαίνει το όριο δυνατότητας επεξεργασίας του Signal. Για να βρεις επαφές στο Signal, μπορείς να καταργήσεις τις επαφές ή τους λογαριασμούς στο τηλέφωνό σου που συγχρονίζουν πολλές επαφές.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Μάθε περισσότερα</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">Άνοιγμα επαφών</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Δεν βρέθηκαν εφαρμογές επαφών</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">Έστειλες στον χρήστη %1$s</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">Ο χρήστης %1$s σου έστειλε</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Τα στοιχεία σου είναι ιδιωτικά</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Το Signal δεν συλλέγει ούτε αποθηκεύει τα προσωπικά στοιχεία σου όταν κάνεις δωρεά.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Χρησιμοποιούμε τη Stripe για την επεξεργασία πληρωμών, ώστε να λαμβάνουμε τις δωρεές μας. Δεν επεξεργαζόμαστε ούτε αποθηκεύουμε κανένα από τα στοιχεία που της παρέχεις.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Το Signal δεν μπορεί να συνδέσει τη δωρεά με τον λογαριασμό σου στο Signal.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Ευχαριστούμε για την υποστήριξή σου!</string>
 
     <!-- EOF -->
