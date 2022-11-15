@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -500,6 +501,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     return false;
   }
 
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    onMegaphoneChanged(viewModel.getMegaphone().getValue());
+  }
+
   private boolean isSearchOpen() {
     return isSearchVisible() || activeAdapter == searchAdapter;
   }
@@ -840,7 +847,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
-    if (megaphone == null || isArchived()) {
+    if (megaphone == null || isArchived() || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       if (megaphoneContainer.resolved()) {
         megaphoneContainer.get().setVisibility(View.GONE);
         megaphoneContainer.get().removeAllViews();
