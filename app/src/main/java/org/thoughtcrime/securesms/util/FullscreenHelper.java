@@ -143,12 +143,16 @@ public final class FullscreenHelper {
   }
 
   public void toggleUiVisibility() {
-    int systemUiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
-    if ((systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0) {
+    if (isSystemUiVisible()) {
       showSystemUI();
     } else {
       hideSystemUI();
     }
+  }
+
+  public boolean isSystemUiVisible() {
+    int systemUiVisibility = activity.getWindow().getDecorView().getSystemUiVisibility();
+    return (systemUiVisibility & View.SYSTEM_UI_FLAG_FULLSCREEN) != 0;
   }
 
   public void hideSystemUI() {
