@@ -33,6 +33,17 @@ object SqlUtil {
     return tables
   }
 
+  /**
+   * Given a table, this will return a set of tables that it has a foreign key dependency on.
+   */
+  @JvmStatic
+  fun getForeignKeyDependencies(db: SupportSQLiteDatabase, table: String): Set<String> {
+    return db.query("PRAGMA foreign_key_list($table)")
+      .readToSet{ cursor ->
+        cursor.requireNonNullString("table")
+      }
+  }
+
   @JvmStatic
   fun isEmpty(db: SupportSQLiteDatabase, table: String): Boolean {
     db.query("SELECT COUNT(*) FROM $table", null).use { cursor ->
