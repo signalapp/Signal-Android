@@ -56,6 +56,7 @@ public class MediaUtil {
   public static final String IMAGE_JPEG        = "image/jpeg";
   public static final String IMAGE_HEIC        = "image/heic";
   public static final String IMAGE_HEIF        = "image/heif";
+  public static final String IMAGE_AVIF        = "image/avif";
   public static final String IMAGE_WEBP        = "image/webp";
   public static final String IMAGE_GIF         = "image/gif";
   public static final String AUDIO_AAC         = "audio/aac";
@@ -275,6 +276,10 @@ public class MediaUtil {
 
   public static boolean isHeifType(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_HEIF);
+  }
+
+  public static boolean isAvifType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_AVIF);
   }
 
   public static boolean isFile(Attachment attachment) {
