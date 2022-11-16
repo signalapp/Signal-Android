@@ -11,6 +11,7 @@ import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -123,7 +124,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow());
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow(), () -> camera.isCameraFacingFront());
     getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
 
     rotationListener  = new RotationListener(requireContext());
@@ -336,6 +337,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
           animation.setDuration(200);
           animation.setInterpolator(new DecelerateInterpolator());
           flipButton.startAnimation(animation);
+          cameraScreenBrightnessController.onCameraDirectionChanged(newCameraId == Camera.CameraInfo.CAMERA_FACING_FRONT);
         });
       } else {
         flipButton.setVisibility(View.GONE);
