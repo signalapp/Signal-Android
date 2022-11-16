@@ -486,7 +486,10 @@
     <string name="ConversationFragment__cancel">ரத்து</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">தடுக்கப்பட்ட</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை நீக்கவா?</item>
@@ -571,6 +574,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">தேர்ந்தெடு உறுப்பினர்கள்</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">விவரம்</string>
@@ -3192,6 +3201,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">பூட்டு</string>
     <string name="text_secure_normal__mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
     <string name="text_secure_normal__invite_friends">நண்பர்களை அழை</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
@@ -4013,6 +4024,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">இயல்புநிலை SMS பயன்பாடாக பயன்படுத்தவும்</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அகற்று</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4021,6 +4034,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">நீங்கள் எந்த நேரத்திலும் அமைப்புகளில் சென்று சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம்.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம்</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">சேமிப்பிடத்தை அழிக்க சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றவும்.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5426,6 +5441,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">சேமிப்பக இடத்தைக் காலியாக்க நீங்கள் இப்போது சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றலாம். நீங்கள் அவற்றை அகற்றினாலும் உங்கள் மொபைலில் உள்ள பிற எஸ்.எம்.எஸ் பயன்பாடுகளுக்கு அவை தொடர்ந்து கிடைக்கப்பெறும்.</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">சிக்னலை இயல்புநிலை எஸ்.எம்.எஸ் பயன்பாடாக அமைக்கவும்</string>
@@ -5530,6 +5555,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">கிரெடிட் அல்லது டெபிட் கார்டு</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">ரத்துசெய்கிறது…</string>

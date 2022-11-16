@@ -141,7 +141,7 @@
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">اطلاعات کارت خود را در زیر وارد کنید</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">مشخصات کارت خود را وارد کنید سیگنال اطلاعات شخصی شما را جمع آوری یا ذخیره نمی‌کند.</string>
+    <string name="CreditCardFragment__enter_your_card_details">مشخصات کارت خود را وارد کنید. سیگنال اطلاعات شخصی شما را جمع آوری یا ذخیره نمی‌کند.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">شماره کارت</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -455,7 +455,7 @@
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
     <string name="ConversationFragment_delete_on_this_device">حذف در این دستگاه</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">حذف در همه جا</string>
+    <string name="ConversationFragment_delete_everywhere">حذف در همه‌جا</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">این پیام برای همه در این مکالمه در صورتی که آن‌ها از نسخهٔ اخیر سیگنال استفاده می‌کنند، حذف خواهد شد. آن‌ها قادر خواهند بود ببینند که شما پیامی را پاک کردید.</string>
     <string name="ConversationFragment_quoted_message_not_found">پیام اصلی یافت نشد</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">پیام اصلی دیگر در دسترس نیست</string>
@@ -486,7 +486,10 @@
     <string name="ConversationFragment__cancel">لغو</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">مسدود شده</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">حذف مکالمهٔ انتخاب شده؟</item>
         <item quantity="other">حذف مکالمه‌ها‌ی انتخاب شده؟</item>
@@ -571,6 +574,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">اعضا را انتخاب کنید</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">پروفایل</string>
@@ -3192,6 +3201,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">قفل</string>
     <string name="text_secure_normal__mark_all_as_read">علامت‌گذاری همه به صورت خوانده شده</string>
     <string name="text_secure_normal__invite_friends">دعوت دوستان</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">کپی به کلیپ‌بورد</string>
@@ -3205,11 +3216,11 @@
     <string name="reminder_header_service_outage_text">سیگنال با مشکلات فنی روبروست. ما سخت در تلاش برای بازگردانی هرچه سریع‌تر سرویس هستیم.</string>
     <string name="reminder_header_progress">%%%1$d</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">کشف مخاطب خصوصی سیگنال به طور موقت نمی‌تواند مخاطبین تلفن شما را پردازش کند.</string>
+    <string name="reminder_cds_warning_body">کشف مخاطب خصوصی سیگنال به‌طور موقت نمی‌تواند مخاطبان تلفن شما را پردازش کند.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">بیشتر بدانید</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">کشف مخاطب خصوصی سیگنال نمی‌تواند مخاطبین تلفن شما را پردازش کند.</string>
+    <string name="reminder_cds_permanent_error_body">کشف مخاطب خصوصی سیگنال نمی‌تواند مخاطبان تلفن شما را پردازش کند.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">بیشتر بدانید</string>
 
@@ -4013,6 +4024,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">استفاده به صورت برنامهٔ پیامک پیش‌فرض</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">صدور پیامک‌ها</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">حذف پیامک‌ها</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4021,6 +4034,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">می‌توانید در هر زمانی پیامک‌ها را در تنظیمات از سیگنال حذف کنید.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">می‌توانید پیامک‌های خود را به پایگاه داده پیامک تلفن خود صادر کنید</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -4410,9 +4425,9 @@
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s از سیگنال پشتیبانی می‌کند</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s با اهدای کمک مالی ماهانه از سیگنال پشتیبانی می‌کند. سیگنال یک موسسه غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s با اهدای کمک مالی ماهانه از سیگنال پشتیبانی می‌کند. سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s با اهدای کمک مالی از سیگنال پشتیبانی می‌کند. ‌سیگنال یک موسسه غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s با اهدای کمک مالی از سیگنال پشتیبانی می‌کند. ‌سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
 
     <string name="ImageView__badge">نشان</string>
 
@@ -5426,6 +5441,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">اکنون می‌توانید پیامک‌ها را از سیگنال حذف کنید تا فضای ذخیره‌سازی خالی شود. حتی اگر آن‌ها را حذف کنید، همچنان برای سایر برنامه‌های پیامک تلفن‌تان در دسترس خواهند بود.</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">سیگنال را به عنوان برنامه پیش‌فرض پیامک تنظیم کنید</string>
@@ -5506,7 +5531,7 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">حریم خصوصی بر سود ارجحیت دارد.</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">حریم خصوصی بر سود ارجحیت دارد</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">ادامه</string>
     <!-- Description below title -->
@@ -5530,6 +5555,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">کارت اعتباری یا دبیت کارت</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">در حال لغو…</string>
@@ -5538,24 +5565,24 @@
     <string name="CdsTemporaryErrorBottomSheet_title">تعداد زیادی مخاطب پردازش شده است</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">تلاش دیگری برای پردازش مخاطبین شما ظرف %1$d روز انجام خواهد شد.</item>
-        <item quantity="other">تلاش دیگری برای پردازش مخاطبین شما ظرف %1$d روز انجام خواهد شد.</item>
+        <item quantity="one">تلاش دیگری برای پردازش مخاطبان شما ظرف %1$d روز انجام خواهد شد.</item>
+        <item quantity="other">تلاش دیگری برای پردازش مخاطبان شما ظرف %1$d روز انجام خواهد شد.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">برای حل سریعتر این مشکل، می‌توانید حذف مخاطبین یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبین بسیاری هستند، در نظر بگیرید.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">برای حل سریع‌تر این مشکل، می‌توانید حذف مخاطبان یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبان بسیاری هستند، در نظر بگیرید.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">مخاطبین را باز کنید</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">مخاطبان را باز کنید</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
     <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">مخاطبین شما قابل پردازش نیستند</string>
+    <string name="CdsPermanentErrorBottomSheet_title">مخاطبان شما قابل پردازش نیستند</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">تعداد مخاطبین روی تلفن شما از حدی که سیگنال می‌تواند پردازش کند بیشتر است. برای یافتن مخاطبین در سیگنال، می‌توانید حذف مخاطبین یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبین بسیاری هستند، در نظر بگیرید.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">تعداد مخاطبان در تلفن شما از حد قابل پردازش برای سیگنال بیشتر است. برای یافتن مخاطبان در سیگنال، می‌توانید حذف مخاطبان یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبان بسیاری هستند، در نظر بگیرید.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">بیشتر بدانید</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">مخاطبین را باز کنید</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">مخاطبان را باز کنید</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
 
@@ -5568,9 +5595,9 @@
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">اطلاعات شما محرمانه است</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">سیگنال هیچ یک از اطلاعات شخصی شما را هنگام اهدای کمک مالی جمع آوری یا ذخیره نمی‌کند.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">ما برای دریافت کمک‌های مالی شما از Stripe به عنوان پردازشگر پرداخت خود استفاده می‌کنیم. ما به هیچ یک از اطلاعاتی که در اختیار آنها قرار می‌دهید دسترسی نداریم، یا آن‌ها را ذخیره نمی‌کنیم.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">سیگنال کمک مالی شما را به حساب سیگنال شما متصل نمی‌کند و امکان انجامش را ندارد.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">ممنون از پشتیبانی شما!</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">ما برای دریافت کمک‌های مالی شما از Stripe به عنوان پردازش‌گر پرداخت خود استفاده می‌کنیم. ما به هیچ‌یک از اطلاعاتی که در اختیار آن‌ها قرار می‌دهید دسترسی نداریم، یا آن‌ها را ذخیره نمی‌کنیم.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">سیگنال کمک مالی شما را به حساب سیگنال شما متصل نمی‌کند و امکان انجام این کار را هم ندارد.</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">سپاس از حمایت شما!</string>
 
     <!-- EOF -->
 

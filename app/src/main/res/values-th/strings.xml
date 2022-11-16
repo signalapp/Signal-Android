@@ -479,7 +479,10 @@
     <string name="ConversationFragment__cancel">ยกเลิก</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">ถูกปิดกั้น</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="other">ลบการสนทนาที่เลือกหรือไม่?</item>
     </plurals>
@@ -550,6 +553,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">เลือกสมาชิก</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">โปรไฟล์</string>
@@ -3105,6 +3114,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">ล็อก</string>
     <string name="text_secure_normal__mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
     <string name="text_secure_normal__invite_friends">เชิญเพื่อน</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
@@ -3915,6 +3926,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">ใช้เป็นแอป SMS หลัก</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">ส่งออกข้อความ SMS</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">ลบข้อความ SMS</string>
     <!-- Snackbar text to confirm deletion -->
@@ -3923,6 +3936,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">คุณสามารถลบข้อความ SMS ออกจาก Signal ได้ทุกเมื่อในเมนูการตั้งค่า</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">ลบข้อความ SMS ออกจาก Signal เพื่อเพิ่มพื้นที่จัดเก็บข้อมูล</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5304,6 +5319,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">ทีนี้คุณก็จะลบข้อความ SMS ออกจาก Signal เพื่อเพิ่มพื้นที่จัดเก็บข้อมูลได้แล้ว โดยข้อความจะยังคงอยู่ในแอป SMS อื่นๆ บนโทรศัพท์ แม้จะถูกลบไปแล้วก็ตาม</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">ตั้ง Signal เป็นแอป SMS เริ่มต้น</string>
@@ -5406,6 +5431,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">บัตรเครดิตหรือบัตรเดบิต</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">กำลังยกเลิก…</string>

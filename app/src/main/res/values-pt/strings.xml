@@ -141,7 +141,7 @@
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">Introduza as informações do seu cartão abaixo</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Introduza as informações do seu cartão. O sinal não recolhe nem armazena as suas informações pessoais.</string>
+    <string name="CreditCardFragment__enter_your_card_details">Introduza as informações do seu cartão. O Signal não recolhe nem armazena as suas informações pessoais.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">Número do cartão</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -486,7 +486,10 @@
     <string name="ConversationFragment__cancel">Cancelar</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Bloqueado</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Eliminar a conversa selecionada?</item>
         <item quantity="other">Eliminar as conversas selecionadas?</item>
@@ -571,6 +574,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Selecionar membros</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Perfil</string>
@@ -3122,7 +3131,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">Selecionar</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Detalhes do detalhe</string>
+    <string name="conversation_selection__menu_payment_details">Detalhes do pagamento</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3192,6 +3201,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">Desbloquear</string>
     <string name="text_secure_normal__mark_all_as_read">Marcar tudo como lido</string>
     <string name="text_secure_normal__invite_friends">Convidar amigos</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
@@ -4013,6 +4024,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">Definir como aplicação de SMS pré-definida</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">Exportar mensagens SMS</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Eliminar mensagens SMS</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4021,6 +4034,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Pode eliminar as mensagens SMS do Signal nas Definições a qualquer altura.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Pode exportar as suas mensagens SMS para a base de dados SMS do seu telemóvel</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Elimine mensagens SMS do Signal para libertar espaço de armazenamento.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5426,6 +5441,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Agora pode eliminar mensagens SMS do Signal para libertar espaço de armazenamento. Continuarão a estar disponíveis para outras aplicações SMS no seu telemóvel, mesmo que as elimine.</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Defina o Signal como a app SMS predefinida</string>
@@ -5530,6 +5555,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Cartão de crédito ou débito</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">A cancelar…</string>
@@ -5568,9 +5595,9 @@
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">As suas informações são privadas</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">O Signal não recolhe nem armazena nenhuma das suas informações pessoais quando faz uma doação.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Usamos Stripe como o nosso processador de pagamentos para receber as suas doações. Não acedemos, armazenamos ou guardamos quaisquer informações que lhes seja fornecida por si.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Usamos o Stripe como o nosso processador de pagamentos para receber as suas doações. Não acedemos, armazenamos ou guardamos quaisquer informações que lhes seja fornecida por si.</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">O Signal não liga nem consegue ligar a sua doação à sua conta do Signal.</string>
-    <string name="YourInformationIsPrivateBottomSheet__thank_you">Obrigado pelo seu suporte!</string>
+    <string name="YourInformationIsPrivateBottomSheet__thank_you">Obrigado pelo seu apoio!</string>
 
     <!-- EOF -->
 

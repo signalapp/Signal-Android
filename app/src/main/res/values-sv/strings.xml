@@ -486,7 +486,10 @@
     <string name="ConversationFragment__cancel">Avbryt</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Blockerade</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Radera markerad konversation?</item>
         <item quantity="other">Ta bort markerade konversationer?</item>
@@ -571,6 +574,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">Välj medlemmar</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profil</string>
@@ -3192,6 +3201,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">Lås</string>
     <string name="text_secure_normal__mark_all_as_read">Markera alla som lästa</string>
     <string name="text_secure_normal__invite_friends">Bjud in vänner</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopiera till urklipp</string>
@@ -4013,6 +4024,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">Använd som standardapp för SMS</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">Exportera sms</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Ta bort sms</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4021,6 +4034,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">Du kan när som helst ta bort sms från Signal i Inställningar.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Du kan exportera dina sms till telefonens sms-databas.</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Ta bort sms-meddelanden från Signal för att rensa lagringsutrymme.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5426,6 +5441,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">Du kan nu ta bort sms från Signal för att frigöra lagringsutrymme. De kommer fortfarande att vara tillgängliga för andra sms-appar på din telefon, även om du tar bort dem.</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Ställ in Signal som standardapp för sms</string>
@@ -5530,6 +5555,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Betalkort</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Avbryter …</string>
