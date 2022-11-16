@@ -73,7 +73,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
     }
   }
 
-  private fun getStoryPostFromRecord(recipientId: RecipientId, record: MessageRecord): Observable<StoryPost> {
+  private fun getStoryPostFromRecord(recipientId: RecipientId, originalRecord: MessageRecord): Observable<StoryPost> {
     return Observable.create { emitter ->
       fun refresh(record: MessageRecord) {
         val recipient = Recipient.resolved(recipientId)
@@ -94,12 +94,14 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
         emitter.onNext(story)
       }
 
+      val recordId = originalRecord.id
+      val threadId = originalRecord.threadId
       val recipient = Recipient.resolved(recipientId)
 
       val messageUpdateObserver = DatabaseObserver.MessageObserver {
-        if (it.mms && it.id == record.id) {
+        if (it.mms && it.id == recordId) {
           try {
-            val messageRecord = SignalDatabase.mms.getMessageRecord(record.id)
+            val messageRecord = SignalDatabase.mms.getMessageRecord(recordId)
             if (messageRecord.isRemoteDelete) {
               emitter.onComplete()
             } else {
@@ -113,21 +115,21 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
       val conversationObserver = DatabaseObserver.Observer {
         try {
-          refresh(SignalDatabase.mms.getMessageRecord(record.id))
+          refresh(SignalDatabase.mms.getMessageRecord(recordId))
         } catch (e: NoSuchMessageException) {
           Log.w(TAG, "Message deleted during content refresh.", e)
         }
       }
 
-      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(record.threadId, conversationObserver)
+      ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, conversationObserver)
       ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
 
       val messageInsertObserver = DatabaseObserver.MessageObserver {
-        refresh(SignalDatabase.mms.getMessageRecord(record.id))
+        refresh(SignalDatabase.mms.getMessageRecord(recordId))
       }
 
       if (recipient.isGroup) {
-        ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(record.threadId, messageInsertObserver)
+        ApplicationDependencies.getDatabaseObserver().registerMessageInsertObserver(threadId, messageInsertObserver)
       }
 
       emitter.setCancellable {
@@ -139,7 +141,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
         }
       }
 
-      refresh(record)
+      refresh(originalRecord)
     }
   }
 
@@ -150,7 +152,9 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
   fun getStoryPostsFor(recipientId: RecipientId, isOutgoingOnly: Boolean): Observable<List<StoryPost>> {
     return getStoryRecords(recipientId, isOutgoingOnly)
       .switchMap { records ->
-        val posts = records.map { getStoryPostFromRecord(recipientId, it) }
+        val posts: List<Observable<StoryPost>> = records.map {
+          getStoryPostFromRecord(recipientId, it).distinctUntilChanged()
+        }
         if (posts.isEmpty()) {
           Observable.just(emptyList())
         } else {
