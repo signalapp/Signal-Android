@@ -661,23 +661,27 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           viewModel.onSearchQueryUpdated(trimmed);
 
           if (trimmed.length() > 0) {
-            if (activeAdapter != searchAdapter) {
+            if (activeAdapter != searchAdapter && list != null) {
               setAdapter(searchAdapter);
               list.removeItemDecoration(searchAdapterDecoration);
               list.addItemDecoration(searchAdapterDecoration);
             }
           } else {
             if (activeAdapter != defaultAdapter) {
-              list.removeItemDecoration(searchAdapterDecoration);
-              setAdapter(defaultAdapter);
+              if (list != null) {
+                list.removeItemDecoration(searchAdapterDecoration);
+                setAdapter(defaultAdapter);
+              }
             }
           }
         }
 
         @Override
         public void onSearchClosed() {
-          list.removeItemDecoration(searchAdapterDecoration);
-          setAdapter(defaultAdapter);
+          if (list != null) {
+            list.removeItemDecoration(searchAdapterDecoration);
+            setAdapter(defaultAdapter);
+          }
           requireCallback().onSearchClosed();
           fadeInButtonsAndMegaphone(250);
         }
