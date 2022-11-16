@@ -440,7 +440,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getAndPossiblyMerge(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
   }
 
-  private fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
+  @VisibleForTesting
+  fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     if ((serviceId is PNI) && pni != null && serviceId != pni) {

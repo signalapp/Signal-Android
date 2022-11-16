@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.KbsEnclave
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess
 import org.thoughtcrime.securesms.push.SignalServiceTrustStore
+import org.thoughtcrime.securesms.recipients.LiveRecipientCache
 import org.thoughtcrime.securesms.testing.Verb
 import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.util.Base64
@@ -41,6 +42,7 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
   private val uncensoredConfiguration: SignalServiceConfiguration
   private val serviceNetworkAccessMock: SignalServiceNetworkAccess
   private val keyBackupService: KeyBackupService
+  private val recipientCache: LiveRecipientCache
 
   init {
     runSync {
@@ -81,6 +83,8 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
     }
 
     keyBackupService = mock()
+
+    recipientCache = LiveRecipientCache(application) { r -> r.run() }
   }
 
   override fun provideSignalServiceNetworkAccess(): SignalServiceNetworkAccess {
@@ -89,6 +93,10 @@ class InstrumentationApplicationDependencyProvider(application: Application, def
 
   override fun provideKeyBackupService(signalServiceAccountManager: SignalServiceAccountManager, keyStore: KeyStore, enclave: KbsEnclave): KeyBackupService {
     return keyBackupService
+  }
+
+  override fun provideRecipientCache(): LiveRecipientCache {
+    return recipientCache
   }
 
   companion object {
