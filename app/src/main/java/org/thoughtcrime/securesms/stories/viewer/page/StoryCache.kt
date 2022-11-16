@@ -5,6 +5,7 @@ import android.net.Uri
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
@@ -19,6 +20,11 @@ class StoryCache(
   private val glideRequests: GlideRequests,
   private val storySize: StoryDisplay.Size
 ) {
+
+  companion object {
+    private val TAG = Log.tag(StoryCache::class.java)
+  }
+
   private val cache = mutableMapOf<Uri, StoryCacheValue>()
 
   /**
@@ -26,6 +32,8 @@ class StoryCache(
    * downloaded, not images, or already in progress.
    */
   fun prefetch(attachments: List<Attachment>) {
+    Log.d(TAG, "Loading ${attachments.size} attachments at $storySize")
+
     val prefetchableAttachments: List<Attachment> = attachments
       .asSequence()
       .filter { it.uri != null && it.uri !in cache }
@@ -38,8 +46,11 @@ class StoryCache(
         glideRequests
           .load(DecryptableStreamUriLoader.DecryptableUri(attachment.uri!!))
           .priority(Priority.HIGH)
+          .centerInside()
           .into(StoryCacheTarget(attachment.uri!!, storySize))
-      } else null
+      } else {
+        null
+      }
 
       val blurTarget = if (attachment.blurHash != null) {
         glideRequests

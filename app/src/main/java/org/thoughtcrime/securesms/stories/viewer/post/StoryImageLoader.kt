@@ -46,6 +46,7 @@ class StoryImageLoader(
 
   private val imageListener = object : StoryCache.Listener {
     override fun onResourceReady(resource: Drawable) {
+      Log.d(TAG, "Loaded cached resource of size w${resource.intrinsicWidth} x h${resource.intrinsicHeight}")
       postImage.setImageDrawable(resource)
       imageState = LoadState.READY
       notifyListeners()
@@ -89,6 +90,7 @@ class StoryImageLoader(
     GlideApp.with(postImage)
       .load(DecryptableStreamUriLoader.DecryptableUri(imagePost.imageUri))
       .override(storySize.width, storySize.height)
+      .centerInside()
       .addListener(object : RequestListener<Drawable> {
         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
           imageState = LoadState.FAILED
