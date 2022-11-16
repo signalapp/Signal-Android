@@ -4,6 +4,6 @@
 
     <gradient android:type="linear"
         android:angle="270"
-        android:startColor="@color/story_caption_gradient_start" />
+        android:startColor="@color/story_gradient_start" />
 
 </shape>

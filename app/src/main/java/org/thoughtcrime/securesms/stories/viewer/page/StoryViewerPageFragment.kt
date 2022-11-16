@@ -107,6 +107,8 @@ class StoryViewerPageFragment :
   private lateinit var storyPageContainer: ConstraintLayout
   private lateinit var sendingBarTextView: TextView
   private lateinit var sendingBar: View
+  private lateinit var storyNormalBottomGradient: View
+  private lateinit var storyCaptionBottomGradient: View
 
   private lateinit var callback: Callback
 
@@ -172,9 +174,11 @@ class StoryViewerPageFragment :
     val largeCaptionOverlay: View = view.findViewById(R.id.story_large_caption_overlay)
     val reactionAnimationView: OnReactionSentView = view.findViewById(R.id.on_reaction_sent_view)
     val storyGradientTop: View = view.findViewById(R.id.story_gradient_top)
-    val storyGradientBottom: View = view.findViewById(R.id.story_gradient_bottom)
+    val storyGradientBottom: View = view.findViewById(R.id.story_bottom_gradient_container)
     val storyVolumeOverlayView: StoryVolumeOverlayView = view.findViewById(R.id.story_volume_overlay)
 
+    storyNormalBottomGradient = view.findViewById(R.id.story_gradient_bottom)
+    storyCaptionBottomGradient = view.findViewById(R.id.story_caption_gradient)
     storyPageContainer = view.findViewById(R.id.story_page_container)
     storyContentContainer = view.findViewById(R.id.story_content_container)
     storyCaptionContainer = view.findViewById(R.id.story_caption_container)
@@ -198,6 +202,7 @@ class StoryViewerPageFragment :
       progressBar,
       storyGradientTop,
       storyGradientBottom,
+      storyCaptionContainer
     )
 
     senderAvatar.setFallbackPhotoProvider(FallbackPhotoProvider())
@@ -434,15 +439,12 @@ class StoryViewerPageFragment :
       when {
         state.hideChromeImmediate -> {
           hideChromeImmediate()
-          storyCaptionContainer.visible = false
         }
         state.hideChrome -> {
           hideChrome()
-          storyCaptionContainer.visible = true
         }
         else -> {
           showChrome()
-          storyCaptionContainer.visible = true
         }
       }
     }
@@ -792,6 +794,9 @@ class StoryViewerPageFragment :
     } else {
       ""
     }
+
+    storyNormalBottomGradient.visible = !displayBody.isNotEmpty()
+    storyCaptionBottomGradient.visible = displayBody.isNotEmpty()
 
     caption.text = displayBody
     largeCaption.text = displayBody

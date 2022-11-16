@@ -44,12 +44,27 @@
                 android:layout_height="120dp"
                 android:background="@drawable/story_gradient_top" />
 
-            <View
-                android:id="@+id/story_gradient_bottom"
+            <FrameLayout
+                android:id="@+id/story_bottom_gradient_container"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="bottom"
-                android:background="@drawable/story_gradient_bottom" />
+                android:layout_height="280dp"
+                android:layout_gravity="bottom">
+
+                <View
+                    android:id="@+id/story_gradient_bottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="140dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/story_gradient_bottom" />
+
+                <View
+                    android:id="@+id/story_caption_gradient"
+                    android:layout_width="match_parent"
+                    android:layout_height="280dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/story_caption_gradient"
+                    android:visibility="gone" />
+            </FrameLayout>
 
             <org.thoughtcrime.securesms.stories.StorySlateView
                 android:id="@+id/story_slate"
@@ -125,6 +140,7 @@
         android:id="@+id/story_caption_container"
         android:layout_width="0dp"
         android:layout_height="95sp"
+        android:layout_marginBottom="12dp"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
         app:layout_constraintEnd_toEndOf="parent"
@@ -141,7 +157,7 @@
             android:layout_marginBottom="24dp"
             android:gravity="bottom"
             android:textAppearance="@style/Signal.Text.BodyLarge"
-            android:textColor="@color/signal_colorNeutralInverse"
+            android:textColor="@color/core_white"
             tools:text="Ugh." />
     </FrameLayout>
 
@@ -162,6 +178,7 @@
         android:layout_marginBottom="24dp"
         android:scrollbars="vertical"
         android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/core_white"
         android:visibility="gone"
         app:layout_constrainedHeight="true"
         app:layout_constraintBottom_toTopOf="@id/story_from_barrier"
@@ -182,7 +199,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/story_content_card_touch_interceptor"
         app:srcCompat="@drawable/ic_x_24"
-        app:tint="@color/signal_colorNeutralInverse" />
+        app:tint="@color/core_white" />
 
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/sender_avatar"
