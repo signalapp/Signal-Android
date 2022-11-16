@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -87,11 +88,13 @@ class StoryViewerPageViewModel(
         )
       }
 
-      storyCache.prefetch(
-        posts.map { it.content }
-          .filterIsInstance<StoryPost.Content.AttachmentContent>()
-          .map { it.attachment }
-      )
+      val attachments: List<Attachment> = posts.map { it.content }
+        .filterIsInstance<StoryPost.Content.AttachmentContent>()
+        .map { it.attachment }
+
+      if (attachments.isNotEmpty()) {
+        storyCache.prefetch(attachments)
+      }
     }
 
     disposables += storyLongPressSubject.debounce(150, TimeUnit.MILLISECONDS).subscribe { isLongPress ->
