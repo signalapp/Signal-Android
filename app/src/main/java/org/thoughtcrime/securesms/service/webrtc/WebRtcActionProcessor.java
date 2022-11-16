@@ -17,6 +17,7 @@ import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.CallManager.RingUpdate;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.NetworkRoute;
+import org.signal.ringrtc.PeekInfo;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
@@ -810,7 +811,7 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
-  protected @NonNull WebRtcServiceState handleReceivedGroupCallPeekForRingingCheck(@NonNull WebRtcServiceState currentState, @NonNull GroupCallRingCheckInfo info, long deviceCount) {
+  protected @NonNull WebRtcServiceState handleReceivedGroupCallPeekForRingingCheck(@NonNull WebRtcServiceState currentState, @NonNull GroupCallRingCheckInfo info, @NonNull PeekInfo peekInfo) {
     Log.i(tag, "handleReceivedGroupCallPeekForRingingCheck not processed");
 
     return currentState;
