@@ -31,8 +31,10 @@ class SignalSmsExportService : SmsExportService() {
     /**
      * Launches the export service and immediately begins exporting messages.
      */
-    fun start(context: Context) {
-      ContextCompat.startForegroundService(context, Intent(context, SignalSmsExportService::class.java))
+    fun start(context: Context, clearPreviousExportState: Boolean) {
+      val intent = Intent(context, SignalSmsExportService::class.java)
+        .apply { putExtra(CLEAR_PREVIOUS_EXPORT_STATE_EXTRA, clearPreviousExportState) }
+      ContextCompat.startForegroundService(context, intent)
     }
   }
 
@@ -78,6 +80,11 @@ class SignalSmsExportService : SmsExportService() {
         .setContentIntent(pendingIntent)
         .build()
     )
+  }
+
+  override fun clearPreviousExportState() {
+    SignalDatabase.sms.clearExportState()
+    SignalDatabase.mms.clearExportState()
   }
 
   override fun prepareForExport() {

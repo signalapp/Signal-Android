@@ -25,16 +25,17 @@ import java.util.concurrent.Executors
 abstract class SmsExportService : Service() {
 
   companion object {
-    fun clearProgressState() {
-      progressState.onNext(SmsExportProgress.Init)
-    }
-
     private val TAG = Log.tag(SmsExportService::class.java)
+    const val CLEAR_PREVIOUS_EXPORT_STATE_EXTRA = "clear_previous_export_state"
 
     /**
      * Progress state which can be listened to by interested components, such as fragments.
      */
     val progressState: BehaviorProcessor<SmsExportProgress> = BehaviorProcessor.createDefault(SmsExportProgress.Init)
+
+    fun clearProgressState() {
+      progressState.onNext(SmsExportProgress.Init)
+    }
   }
 
   override fun onBind(intent: Intent?): IBinder? {
@@ -47,18 +48,18 @@ abstract class SmsExportService : Service() {
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     Log.d(TAG, "Got start command in SMS Export Service")
 
-    startExport()
+    startExport(intent?.getBooleanExtra(CLEAR_PREVIOUS_EXPORT_STATE_EXTRA, false) ?: false)
 
     return START_NOT_STICKY
   }
 
-  private fun startExport() {
+  private fun startExport(clearExportState: Boolean) {
     if (isStarted) {
       Log.d(TAG, "Already running exporter.")
       return
     }
 
-    Log.d(TAG, "Running export...")
+    Log.d(TAG, "Running export clearExportState: $clearExportState")
 
     isStarted = true
     updateNotification(-1, -1)
@@ -67,6 +68,10 @@ abstract class SmsExportService : Service() {
     var progress = 0
     var errorCount = 0
     executor.execute {
+      if (clearExportState) {
+        clearPreviousExportState()
+      }
+
       prepareForExport()
       val totalCount = getUnexportedMessageCount()
       getUnexportedMessages().forEach { message ->
@@ -124,7 +129,14 @@ abstract class SmsExportService : Service() {
    */
   protected abstract fun getExportCompleteNotification(): ExportNotification?
 
-  /** Called prior to starting export for any task setup that may need to occur. */
+  /**
+   * Called prior to starting export if the user has requested previous export state to be cleared.
+   */
+  protected open fun clearPreviousExportState() = Unit
+
+  /**
+   * Called prior to starting export for any task setup that may need to occur.
+   */
   protected open fun prepareForExport() = Unit
 
   /**

@@ -99,7 +99,6 @@ public final class FeatureFlags {
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
   private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
-  private static final String SMS_EXPORT_MEGAPHONE_DELAY_DAYS   = "android.smsExport.megaphoneDelayDays.2";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.3";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
   private static final String KEEP_MUTED_CHATS_ARCHIVED         = "android.keepMutedChatsArchived";
@@ -160,7 +159,6 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       SMS_EXPORTER,
       HIDE_CONTACTS,
-      SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       KEEP_MUTED_CHATS_ARCHIVED,
@@ -231,7 +229,6 @@ public final class FeatureFlags {
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      SMS_EXPORT_MEGAPHONE_DELAY_DAYS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       KEEP_MUTED_CHATS_ARCHIVED,
@@ -547,13 +544,6 @@ public final class FeatureFlags {
    */
   public static boolean hideContacts() {
     return getBoolean(HIDE_CONTACTS, false);
-  }
-
-  /**
-   * Number of days to postpone the sms export megaphone and Phase 1 start.
-   */
-  public static int smsExportMegaphoneDelayDays() {
-    return getInteger(SMS_EXPORT_MEGAPHONE_DELAY_DAYS, 14);
   }
 
   /**

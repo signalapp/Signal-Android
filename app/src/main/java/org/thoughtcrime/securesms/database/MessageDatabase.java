@@ -418,6 +418,20 @@ public abstract class MessageDatabase extends Database implements MmsSmsColumns,
   }
 
   /**
+   * Resets the exported state and exported flag so messages can be re-exported.
+   */
+  public void clearExportState() {
+    ContentValues values = new ContentValues(2);
+    values.putNull(EXPORT_STATE);
+    values.put(EXPORTED, MessageExportStatus.UNEXPORTED.serialize());
+
+    SQLiteDatabaseExtensionsKt.update(getWritableDatabase(), getTableName())
+                              .values(values)
+                              .where(EXPORT_STATE + " IS NOT NULL OR " + EXPORTED + " != ?", MessageExportStatus.UNEXPORTED)
+                              .run();
+  }
+
+  /**
    * Reset the exported status (not state) to the default for clearing errors.
    */
   public void clearInsecureMessageExportedErrorStatus() {
