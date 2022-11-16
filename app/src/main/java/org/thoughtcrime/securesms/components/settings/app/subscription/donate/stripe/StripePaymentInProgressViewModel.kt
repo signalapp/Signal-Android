@@ -25,9 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.errors.Do
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.rx.RxStore
-import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels
 import org.whispersystems.signalservice.api.util.Preconditions
 
 class StripePaymentInProgressViewModel(
@@ -74,6 +72,7 @@ class StripePaymentInProgressViewModel(
     val errorSource = when (request.donateToSignalType) {
       DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
       DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.GIFT -> DonationErrorSource.GIFT
     }
 
     val paymentSourceProvider: Single<StripeApi.PaymentSource> = resolvePaymentSourceProvider(errorSource)
@@ -81,6 +80,7 @@ class StripePaymentInProgressViewModel(
     return when (request.donateToSignalType) {
       DonateToSignalType.MONTHLY -> proceedMonthly(request, paymentSourceProvider, nextActionHandler)
       DonateToSignalType.ONE_TIME -> proceedOneTime(request, paymentSourceProvider, nextActionHandler)
+      DonateToSignalType.GIFT -> proceedOneTime(request, paymentSourceProvider, nextActionHandler)
     }
   }
 
@@ -164,17 +164,23 @@ class StripePaymentInProgressViewModel(
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
     val amount = request.fiat
-    val recipient = Recipient.self().id
-    val level = SubscriptionLevels.BOOST_LEVEL.toLong()
 
-    val continuePayment: Single<StripeIntentAccessor> = stripeRepository.continuePayment(amount, recipient, level)
+    val continuePayment: Single<StripeIntentAccessor> = stripeRepository.continuePayment(amount, request.recipientId, request.level)
     val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider, ::Pair)
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
-      stripeRepository.confirmPayment(paymentSource, paymentIntent, recipient)
+      stripeRepository.confirmPayment(paymentSource, paymentIntent, request.recipientId)
         .flatMap { nextActionHandler(it) }
         .flatMap { stripeRepository.getStatusAndPaymentMethodId(it) }
-        .flatMapCompletable { oneTimeDonationRepository.waitForOneTimeRedemption(amount, paymentIntent.intentId, recipient, null, level) }
+        .flatMapCompletable {
+          oneTimeDonationRepository.waitForOneTimeRedemption(
+            amount,
+            paymentIntent.intentId,
+            request.recipientId,
+            request.additionalMessage,
+            request.level
+          )
+        }
     }.subscribeBy(
       onError = { throwable ->
         Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)

@@ -62,7 +62,10 @@ class GiftThanksSheet : DSLSettingsBottomSheetFragment() {
       )
 
       noPadTextPref(
-        title = DSLSettingsText.from(getString(R.string.GiftThanksSheet__youve_gifted_a_badge_to_s, recipient.getDisplayName(requireContext())))
+        title = DSLSettingsText.from(
+          getString(R.string.GiftThanksSheet__youve_gifted_a_badge_to_s, recipient.getDisplayName(requireContext())),
+          DSLSettingsText.CenterModifier
+        )
       )
 
       space(DimensionUnit.DP.toPixels(37f).toInt())
