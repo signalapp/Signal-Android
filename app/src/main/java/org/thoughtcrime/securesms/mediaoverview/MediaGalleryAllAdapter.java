@@ -82,6 +82,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
   public static final  int GALLERY         = 2;
   private static final int GALLERY_DETAIL  = 3;
   private static final int DOCUMENT_DETAIL = 4;
+  private static final int URL_DETAIL = 5;
 
   private static final int PAYLOAD_SELECTED = 1;
 
@@ -135,6 +136,8 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
         return new GalleryDetailViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_detail_item_media, parent, false));
       case AUDIO_DETAIL:
         return new AudioDetailViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_detail_item_audio, parent, false));
+      case URL_DETAIL:
+        return new UrlDetailViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_detail_item_url, parent, false));
       default:
         return new DocumentDetailViewHolder(LayoutInflater.from(context).inflate(R.layout.media_overview_detail_item_document, parent, false));
     }
@@ -148,6 +151,7 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     if (slide.hasAudio()) return AUDIO_DETAIL;
     if (slide.hasImage() || slide.hasVideo()) return detailView ? GALLERY_DETAIL : GALLERY;
     if (slide.hasDocument()) return DOCUMENT_DETAIL;
+    if (slide.hasAudio()) return URL_DETAIL;
 
     return 0;
   }
@@ -521,6 +525,41 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
     void unbind() {
       super.unbind();
       audioItemListener.unregisterPlaybackStateObserver(audioView.getPlaybackStateObserver());
+    }
+
+    @Override
+    protected String getFileTypeDescription(@NonNull Context context, @NonNull Slide slide) {
+      return context.getString(R.string.MediaOverviewActivity_audio);
+    }
+  }
+
+  private class UrlDetailViewHolder extends DetailViewHolder {
+
+    private boolean isVoiceNote;
+
+    UrlDetailViewHolder(@NonNull View itemView) {
+      super(itemView);
+    }
+
+    @Override
+    public void bind(@NonNull Context context, @NonNull MediaDatabase.MediaRecord mediaRecord, @NonNull Slide slide) {
+      if (!slide.hasAudio()) {
+        throw new AssertionError();
+      }
+
+      isVoiceNote = slide.asAttachment().isVoiceNote();
+      super.bind(context, mediaRecord, slide);
+      long mmsId = Objects.requireNonNull(mediaRecord.getAttachment()).getMmsId();
+    }
+
+    @Override
+    protected @NonNull String getMediaTitle() {
+      return context.getString(R.string.ThreadRecord_voice_message);
+    }
+
+    @Override
+    void unbind() {
+      super.unbind();
     }
 
     @Override

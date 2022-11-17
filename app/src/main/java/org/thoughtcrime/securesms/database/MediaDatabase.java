@@ -116,6 +116,14 @@ public class MediaDatabase extends Database {
     return database.rawQuery(query, args);
   }
 
+  public @NonNull Cursor getUrlMediaForThread(long threadId, @NonNull Sorting sorting) {
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
+    String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, AUDIO_MEDIA_QUERY));
+    String[]       args     = {threadId + ""};
+
+    return database.rawQuery(query, args);
+  }
+
   public @NonNull Cursor getAllMediaForThread(long threadId, @NonNull Sorting sorting) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
     String         query    = sorting.applyToQuery(applyEqualityOperator(threadId, ALL_MEDIA_QUERY));

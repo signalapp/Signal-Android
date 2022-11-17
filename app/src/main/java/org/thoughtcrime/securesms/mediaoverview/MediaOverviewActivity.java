@@ -265,6 +265,7 @@ public final class MediaOverviewActivity extends PassphraseRequiredActivity {
       pages.add(new Pair<>(MediaLoader.MediaType.GALLERY,  getString(R.string.MediaOverviewActivity_Media)));
       pages.add(new Pair<>(MediaLoader.MediaType.DOCUMENT, getString(R.string.MediaOverviewActivity_Files)));
       pages.add(new Pair<>(MediaLoader.MediaType.AUDIO,    getString(R.string.MediaOverviewActivity_Audio)));
+      pages.add(new Pair<>(MediaLoader.MediaType.URL,      getString(R.string.MediaOverviewActivity_Url)));
       pages.add(new Pair<>(MediaLoader.MediaType.ALL,      getString(R.string.MediaOverviewActivity_All)));
     }
 

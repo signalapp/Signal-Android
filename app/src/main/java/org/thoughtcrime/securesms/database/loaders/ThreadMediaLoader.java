@@ -40,6 +40,7 @@ public final class ThreadMediaLoader extends MediaLoader {
       case GALLERY : return mediaDatabase.getGalleryMediaForThread(threadId, sorting);
       case DOCUMENT: return mediaDatabase.getDocumentMediaForThread(threadId, sorting);
       case AUDIO   : return mediaDatabase.getAudioMediaForThread(threadId, sorting);
+      case URL     : return mediaDatabase.getUrlMediaForThread(threadId, sorting);
       case ALL     : return mediaDatabase.getAllMediaForThread(threadId, sorting);
       default      : throw new AssertionError();
     }

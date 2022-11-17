@@ -14,6 +14,7 @@ public abstract class MediaLoader extends AbstractCursorLoader {
     GALLERY,
     DOCUMENT,
     AUDIO,
+    URL,
     ALL
   }
 }
