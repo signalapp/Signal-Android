@@ -451,13 +451,12 @@ class DistributionListDatabase constructor(context: Context?, databaseHelper: Si
 
     val memberCount = when (privacyMode) {
       DistributionListPrivacyMode.ALL -> totalContactCount
-      DistributionListPrivacyMode.ALL_EXCEPT -> totalContactCount - rawMemberCount
+      DistributionListPrivacyMode.ALL_EXCEPT -> rawMemberCount
       DistributionListPrivacyMode.ONLY_WITH -> rawMemberCount
     }
 
     return DistributionListPrivacyData(
       privacyMode = privacyMode,
-      rawMemberCount = rawMemberCount,
       memberCount = memberCount
     )
   }

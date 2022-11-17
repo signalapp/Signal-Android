@@ -66,7 +66,7 @@ class MyStorySettingsRepository {
 
     return MyStoryPrivacyState(
       privacyMode = privacyData.privacyMode,
-      connectionCount = if (privacyData.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) privacyData.rawMemberCount else privacyData.memberCount
+      connectionCount = privacyData.memberCount
     )
   }
 }

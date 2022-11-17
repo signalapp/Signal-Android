@@ -130,7 +130,7 @@ object ContactSearchItems {
       val count = if (model.story.recipient.isGroup) {
         model.story.recipient.participantIds.size
       } else {
-        model.story.viewerCount
+        model.story.count
       }
 
       if (model.story.recipient.isMyStory && !model.hasBeenNotified) {
@@ -138,7 +138,13 @@ object ContactSearchItems {
       } else {
         number.text = when {
           model.story.recipient.isGroup -> context.resources.getQuantityString(R.plurals.ContactSearchItems__group_story_d_viewers, count, count)
-          model.story.recipient.isMyStory -> context.resources.getQuantityString(R.plurals.ContactSearchItems__my_story_s_dot_d_viewers, count, presentPrivacyMode(model.story.privacyMode), count)
+          model.story.recipient.isMyStory -> {
+            if (model.story.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT) {
+              context.resources.getQuantityString(R.plurals.ContactSearchItems__my_story_s_dot_d_excluded, count, presentPrivacyMode(DistributionListPrivacyMode.ALL), count)
+            } else {
+              context.resources.getQuantityString(R.plurals.ContactSearchItems__my_story_s_dot_d_viewers, count, presentPrivacyMode(model.story.privacyMode), count)
+            }
+          }
           else -> context.resources.getQuantityString(R.plurals.ContactSearchItems__custom_story_d_viewers, count, count)
         }
       }

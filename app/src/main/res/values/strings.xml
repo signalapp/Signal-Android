@@ -5237,6 +5237,11 @@
         <item quantity="one">%1$s · %2$d viewer</item>
         <item quantity="other">%1$s · %2$d viewers</item>
     </plurals>
+    <!-- Label under name for my story -->
+    <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
+        <item quantity="one">%1$s · %2$d excluded</item>
+        <item quantity="other">%1$s · %2$d excluded</item>
+    </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Tap to choose your viewers</string>
     <!-- Label for context menu item to open story settings -->

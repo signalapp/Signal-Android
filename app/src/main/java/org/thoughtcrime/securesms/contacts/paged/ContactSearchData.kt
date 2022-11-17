@@ -16,7 +16,7 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    */
   data class Story(
     val recipient: Recipient,
-    val viewerCount: Int,
+    val count: Int,
     val privacyMode: DistributionListPrivacyMode
   ) : ContactSearchData(ContactSearchKey.RecipientSearchKey.Story(recipient.id))
 
