@@ -1882,6 +1882,18 @@ public final class MessageContentProcessor {
     MessageDatabase database = SignalDatabase.mms();
     database.beginTransaction();
 
+
+
+    if(message.getBody().isPresent()) {
+      LinkPreviewUtil.Links urlsInMessage = LinkPreviewUtil.findValidPreviewUrls(message.getBody().get());
+      if(urlsInMessage.findFirst().isPresent()){
+        Log.e("TEST_MEDIA", "media_"+urlsInMessage.findFirst().get().getUrl());
+      } else {
+        Log.e("TEST_MEDIA", "media_nourl");
+      }
+    }
+
+
     try {
       Optional<QuoteModel>        quote          = getValidatedQuote(message.getQuote());
       Optional<List<Contact>>     sharedContacts = getContacts(message.getSharedContacts());
@@ -2378,6 +2390,16 @@ public final class MessageContentProcessor {
     log(message.getTimestamp(), "Text message.");
     MessageDatabase database = SignalDatabase.sms();
     String          body     = message.getBody().isPresent() ? message.getBody().get() : "";
+
+
+    if(message.getBody().isPresent()) {
+      LinkPreviewUtil.Links urlsInMessage = LinkPreviewUtil.findValidPreviewUrls(message.getBody().get());
+      if(urlsInMessage.findFirst().isPresent()){
+        Log.e("TEST_TEXT", "text_"+urlsInMessage.findFirst().get().getUrl());
+      } else {
+        Log.e("TEST_TEXT", "text_nourl");
+      }
+    }
 
     handlePossibleExpirationUpdate(content, message, groupId, senderRecipient, threadRecipient, receivedTime);
 
