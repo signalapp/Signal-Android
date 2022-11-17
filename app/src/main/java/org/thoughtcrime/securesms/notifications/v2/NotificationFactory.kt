@@ -237,7 +237,7 @@ object NotificationFactory {
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
-      setChannelId(NotificationChannels.getMessagesChannel(context))
+      setChannelId(NotificationChannels.getInstance().messagesChannel)
       setContentTitle(context.getString(R.string.app_name))
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, MainActivity.clearTop(context), PendingIntentFlags.mutable()))
       setGroupSummary(true)
@@ -269,7 +269,7 @@ object NotificationFactory {
     }
 
     val uri: Uri = if (NotificationChannels.supported()) {
-      NotificationChannels.getMessageRingtone(context, recipient) ?: NotificationChannels.getMessageRingtone(context)
+      NotificationChannels.getInstance().getMessageRingtone(recipient) ?: NotificationChannels.getInstance().messageRingtone
     } else {
       recipient.messageRingtone ?: SignalStore.settings().messageNotificationSound
     }
@@ -402,7 +402,7 @@ object NotificationFactory {
       if (threadRecipient != null) {
         SignalExecutors.BOUNDED.execute {
           SignalDatabase.recipients.setMessageRingtone(threadRecipient.id, null)
-          NotificationChannels.updateMessageRingtone(context, threadRecipient, null)
+          NotificationChannels.getInstance().updateMessageRingtone(threadRecipient, null)
         }
       }
     } catch (runtimeException: RuntimeException) {

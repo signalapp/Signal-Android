@@ -288,7 +288,7 @@ public class TextSecurePreferences {
 
   public static void onPostBackupRestore(@NonNull Context context) {
     if (NotificationChannels.supported()) {
-      NotificationChannels.updateMessageVibrate(context, SignalStore.settings().isMessageVibrateEnabled());
+      NotificationChannels.getInstance().updateMessageVibrate(SignalStore.settings().isMessageVibrateEnabled());
     }
   }
 

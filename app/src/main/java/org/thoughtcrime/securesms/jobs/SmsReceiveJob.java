@@ -195,7 +195,7 @@ public class SmsReceiveJob extends BaseJob {
   private static Notification buildPreRegistrationNotification(@NonNull Context context, @NonNull IncomingTextMessage message) {
     Recipient sender = Recipient.resolved(message.getSender());
 
-    return new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
+    return new NotificationCompat.Builder(context, NotificationChannels.getInstance().getMessagesChannel())
                                  .setStyle(new NotificationCompat.MessagingStyle(new Person.Builder()
                                                                  .setName(sender.getE164().orElse(""))
                                                                  .build())

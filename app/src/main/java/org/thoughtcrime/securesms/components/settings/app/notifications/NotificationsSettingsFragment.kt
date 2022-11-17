@@ -104,7 +104,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
           summary = DSLSettingsText.from(R.string.preferences__change_sound_and_vibration),
           isEnabled = state.messageNotificationsState.notificationsEnabled,
           onClick = {
-            NotificationChannels.openChannelSettings(requireContext(), NotificationChannels.getMessagesChannel(requireContext()), null)
+            NotificationChannels.getInstance().openChannelSettings(NotificationChannels.getInstance().messagesChannel, null)
           }
         )
       } else {
@@ -301,7 +301,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
     val intent = Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS)
     intent.putExtra(
       Settings.EXTRA_CHANNEL_ID,
-      NotificationChannels.getMessagesChannel(requireContext())
+      NotificationChannels.getInstance().messagesChannel
     )
     intent.putExtra(Settings.EXTRA_APP_PACKAGE, requireContext().packageName)
     startActivity(intent)

@@ -13,7 +13,7 @@ class SoundsAndNotificationsSettingsRepository(private val context: Context) {
   fun ensureCustomChannelConsistency(complete: () -> Unit) {
     SignalExecutors.BOUNDED.execute {
       if (NotificationChannels.supported()) {
-        NotificationChannels.ensureCustomChannelConsistency(context)
+        NotificationChannels.getInstance().ensureCustomChannelConsistency()
       }
       complete()
     }
@@ -38,7 +38,7 @@ class SoundsAndNotificationsSettingsRepository(private val context: Context) {
         if (recipient.notificationChannel != null || !NotificationChannels.supported()) {
           true
         } else {
-          NotificationChannels.updateWithShortcutBasedChannel(context, recipient)
+          NotificationChannels.getInstance().updateWithShortcutBasedChannel(recipient)
         }
       )
     }

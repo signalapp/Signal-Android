@@ -263,7 +263,7 @@ object ContactDiscovery {
         var recipient: Recipient? = reader.getNext()
 
         while (recipient != null) {
-          NotificationChannels.updateContactChannelName(context, recipient)
+          NotificationChannels.getInstance().updateContactChannelName(recipient)
           recipient = reader.getNext()
         }
       }

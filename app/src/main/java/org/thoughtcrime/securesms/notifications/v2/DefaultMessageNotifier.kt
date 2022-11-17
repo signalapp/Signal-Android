@@ -120,7 +120,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     reminderCount: Int,
     defaultBubbleState: BubbleState
   ) {
-    NotificationChannels.ensureCustomChannelConsistency(context)
+    NotificationChannels.getInstance().ensureCustomChannelConsistency()
 
     val currentLockStatus: Boolean = KeyCachingService.isLocked(context)
     val currentPrivacyPreference: NotificationPrivacyPreference = SignalStore.settings().messageNotificationsPrivacy

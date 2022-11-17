@@ -103,7 +103,7 @@ data class NotificationConversation(
     return if (isOnlyContactJoinedEvent) {
       NotificationChannels.JOIN_EVENTS
     } else {
-      recipient.notificationChannel ?: NotificationChannels.getMessagesChannel(context)
+      recipient.notificationChannel ?: NotificationChannels.getInstance().messagesChannel
     }
   }
 

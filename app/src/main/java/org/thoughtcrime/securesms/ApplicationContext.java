@@ -146,6 +146,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               SignalDatabase.init(this,
                                                   DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
                                                   AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
+                              SignalDatabase.triggerDatabaseAccess();
                             })
                             .addBlocking("logging", () -> {
                               initializeLogging();
@@ -155,7 +156,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addBlocking("rx-init", this::initializeRx)
                             .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
-                            .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
                             .addBlocking("app-migrations", this::initializeApplicationMigrations)
                             .addBlocking("ring-rtc", this::initializeRingRtc)

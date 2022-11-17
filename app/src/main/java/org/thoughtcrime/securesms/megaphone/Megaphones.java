@@ -227,13 +227,13 @@ public final class Megaphones {
                         .setBody(R.string.NotificationsMegaphone_never_miss_a_message)
                         .setImage(R.drawable.megaphone_notifications_64)
                         .setActionButton(R.string.NotificationsMegaphone_turn_on, (megaphone, controller) -> {
-                          if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.isMessageChannelEnabled(context)) {
+                          if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.getInstance().isMessageChannelEnabled()) {
                             Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-                            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getMessagesChannel(context));
+                            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getInstance().getMessagesChannel());
                             intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
                             controller.onMegaphoneNavigationRequested(intent);
                           } else if (Build.VERSION.SDK_INT >= 26 &&
-                                     (!NotificationChannels.areNotificationsEnabled(context) || !NotificationChannels.isMessagesChannelGroupEnabled(context)))
+                                     (!NotificationChannels.getInstance().areNotificationsEnabled() || !NotificationChannels.getInstance().isMessagesChannelGroupEnabled()))
                           {
                             Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
                             intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
@@ -415,9 +415,9 @@ public final class Megaphones {
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
     boolean shouldShow = !SignalStore.settings().isMessageNotificationsEnabled() ||
-                         !NotificationChannels.isMessageChannelEnabled(context) ||
-                         !NotificationChannels.isMessagesChannelGroupEnabled(context) ||
-                         !NotificationChannels.areNotificationsEnabled(context);
+                         !NotificationChannels.getInstance().isMessageChannelEnabled() ||
+                         !NotificationChannels.getInstance().isMessagesChannelGroupEnabled() ||
+                         !NotificationChannels.getInstance().areNotificationsEnabled();
     if (shouldShow) {
       Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
       if (!new TranslationDetection(context, locale)

@@ -186,7 +186,7 @@ sealed class NotificationBuilder(protected val context: Context) {
    * Notification builder using solely androidx/compat libraries.
    */
   private class NotificationBuilderCompat(context: Context) : NotificationBuilder(context) {
-    val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
+    val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getInstance().messagesChannel)
 
     override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
       val extender: NotificationCompat.WearableExtender = NotificationCompat.WearableExtender()

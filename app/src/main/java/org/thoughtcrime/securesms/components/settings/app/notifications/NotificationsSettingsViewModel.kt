@@ -16,8 +16,8 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
 
   init {
     if (NotificationChannels.supported()) {
-      SignalStore.settings().messageNotificationSound = NotificationChannels.getMessageRingtone(ApplicationDependencies.getApplication())
-      SignalStore.settings().isMessageVibrateEnabled = NotificationChannels.getMessageVibrate(ApplicationDependencies.getApplication())
+      SignalStore.settings().messageNotificationSound = NotificationChannels.getInstance().messageRingtone
+      SignalStore.settings().isMessageVibrateEnabled = NotificationChannels.getInstance().messageVibrate
     }
   }
 
@@ -33,19 +33,19 @@ class NotificationsSettingsViewModel(private val sharedPreferences: SharedPrefer
   fun setMessageNotificationsSound(sound: Uri?) {
     val messageSound = sound ?: Uri.EMPTY
     SignalStore.settings().messageNotificationSound = messageSound
-    NotificationChannels.updateMessageRingtone(ApplicationDependencies.getApplication(), messageSound)
+    NotificationChannels.getInstance().updateMessageRingtone(messageSound)
     store.update { getState() }
   }
 
   fun setMessageNotificationVibration(enabled: Boolean) {
     SignalStore.settings().isMessageVibrateEnabled = enabled
-    NotificationChannels.updateMessageVibrate(ApplicationDependencies.getApplication(), enabled)
+    NotificationChannels.getInstance().updateMessageVibrate(enabled)
     store.update { getState() }
   }
 
   fun setMessageNotificationLedColor(color: String) {
     SignalStore.settings().messageLedColor = color
-    NotificationChannels.updateMessagesLedColor(ApplicationDependencies.getApplication(), color)
+    NotificationChannels.getInstance().updateMessagesLedColor(color)
     store.update { getState() }
   }
 

@@ -53,7 +53,7 @@ public final class ConversationUtil {
   public static @NonNull String getChannelId(@NonNull Context context, @NonNull Recipient recipient) {
     Recipient resolved = recipient.resolve();
 
-    return resolved.getNotificationChannel() != null ? resolved.getNotificationChannel() : NotificationChannels.getMessagesChannel(context);
+    return resolved.getNotificationChannel() != null ? resolved.getNotificationChannel() : NotificationChannels.getInstance().getMessagesChannel();
   }
 
   /**

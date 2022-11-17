@@ -705,7 +705,7 @@ public class ConversationParentFragment extends Fragment
 
       onRecipientChanged(recipientSnapshot);
       titleView.setTitle(glideRequests, recipientSnapshot);
-      NotificationChannels.updateContactChannelName(requireContext(), recipientSnapshot);
+      NotificationChannels.getInstance().updateContactChannelName(recipientSnapshot);
       setBlockedUserState(recipientSnapshot, viewModel.getConversationStateSnapshot().getSecurityInfo());
       invalidateOptionsMenu();
       break;

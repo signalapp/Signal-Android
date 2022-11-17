@@ -371,7 +371,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
     // Note: The column only being checked due to upgrade issues as described in #8184
     if (oldVersion < NOTIFICATION_CHANNELS && !SqlUtil.columnExists(db, "recipient_preferences", "notification_channel")) {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN notification_channel TEXT DEFAULT NULL")
-      NotificationChannels.create(context)
+      NotificationChannels.getInstance()
 
       db.rawQuery("SELECT recipient_ids, system_display_name, signal_profile_name, notification, vibrate FROM recipient_preferences WHERE notification NOT NULL OR vibrate != 0", null).use { cursor ->
         while (cursor != null && cursor.moveToNext()) {
@@ -382,7 +382,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
           val messageSound: String? = cursor.getString(cursor.getColumnIndexOrThrow("notification"))
           val messageSoundUri: Uri? = if (messageSound != null) Uri.parse(messageSound) else null
           val vibrateState: Int = cursor.getInt(cursor.getColumnIndexOrThrow("vibrate"))
-          var displayName: String? = NotificationChannels.getChannelDisplayNameFor(context, systemName, profileName, null, address)
+          var displayName: String? = NotificationChannels.getInstance().getChannelDisplayNameFor(systemName, profileName, null, address)
           val vibrateEnabled: Boolean = if (vibrateState == 0) SignalStore.settings().isMessageVibrateEnabled() else vibrateState == 1
           if (GroupId.isEncodedGroup(address)) {
             db.rawQuery("SELECT title FROM groups WHERE group_id = ?", arrayOf(address)).use { groupCursor ->
@@ -394,7 +394,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
               }
             }
           }
-          val channelId: String? = NotificationChannels.createChannelFor(context, "contact_" + address + "_" + System.currentTimeMillis(), (displayName)!!, messageSoundUri, vibrateEnabled, null)
+          val channelId: String? = NotificationChannels.getInstance().createChannelFor("contact_" + address + "_" + System.currentTimeMillis(), (displayName)!!, messageSoundUri, vibrateEnabled, null)
           val values = ContentValues(1).apply {
             put("notification_channel", channelId)
           }

@@ -292,7 +292,7 @@ public final class RestoreBackupFragment extends LoggingFragment {
                                         passphrase);
 
           SignalDatabase.upgradeRestored(database);
-          NotificationChannels.restoreContactNotificationChannels(context);
+          NotificationChannels.getInstance().restoreContactNotificationChannels();
 
           enableBackups(context);
 

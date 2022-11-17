@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.annotation.TargetApi;
+import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
@@ -29,6 +30,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -76,11 +78,29 @@ public class NotificationChannels {
   public static final String CALL_STATUS   = "call_status";
   public static final String APP_ALERTS    = "app_alerts";
 
+  private static volatile NotificationChannels instance;
+
+  private final Application context;
+
+  public static NotificationChannels getInstance() {
+    if (instance == null) {
+      synchronized (NotificationChannels.class) {
+        if (instance == null) {
+          instance = new NotificationChannels(ApplicationDependencies.getApplication());
+        }
+      }
+    }
+
+    return instance;
+  }
+
   /**
    * Ensures all of the notification channels are created. No harm in repeat calls. Call is safely
    * ignored for API < 26.
    */
-  public static synchronized void create(@NonNull Context context) {
+  private NotificationChannels(@NonNull Application application) {
+    this.context = application;
+
     if (!supported()) {
       return;
     }
@@ -93,44 +113,9 @@ public class NotificationChannels {
       TextSecurePreferences.setNotificationChannelVersion(context, VERSION);
     }
 
-    onCreate(context, notificationManager);
+    onCreate(notificationManager);
 
-    AsyncTask.SERIAL_EXECUTOR.execute(() -> {
-      ensureCustomChannelConsistency(context);
-    });
-  }
-
-  /**
-   * Recreates all notification channels for contacts with custom notifications enabled. Should be
-   * safe to call repeatedly. Needs to be executed on a background thread.
-   */
-  @WorkerThread
-  public static synchronized void restoreContactNotificationChannels(@NonNull Context context) {
-    if (!NotificationChannels.supported()) {
-      return;
-    }
-
-    RecipientDatabase db = SignalDatabase.recipients();
-
-    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
-      Recipient recipient;
-      while ((recipient = reader.getNext()) != null) {
-        NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-        if (!channelExists(notificationManager.getNotificationChannel(recipient.getNotificationChannel()))) {
-          String id = createChannelFor(context, recipient);
-          db.setNotificationChannel(recipient.getId(), id);
-        }
-      }
-    }
-
-    ensureCustomChannelConsistency(context);
-  }
-
-  /**
-   * @return The channel ID for the default messages channel.
-   */
-  public static synchronized @NonNull String getMessagesChannel(@NonNull Context context) {
-    return getMessagesChannelId(TextSecurePreferences.getNotificationMessagesChannelVersion(context));
+    AsyncTask.SERIAL_EXECUTOR.execute(this::ensureCustomChannelConsistency);
   }
 
   /**
@@ -141,100 +126,9 @@ public class NotificationChannels {
   }
 
   /**
-   * @return A name suitable to be displayed as the notification channel title.
-   */
-  public static @NonNull String getChannelDisplayNameFor(@NonNull Context context,
-                                                         @Nullable String systemName,
-                                                         @Nullable String profileName,
-                                                         @Nullable String username,
-                                                         @NonNull String address)
-  {
-    if (!TextUtils.isEmpty(systemName)) {
-      return systemName;
-    } else if (!TextUtils.isEmpty(profileName)) {
-      return profileName;
-    } else if (!TextUtils.isEmpty(username)) {
-      return username;
-    } else if (!TextUtils.isEmpty(address)) {
-      return address;
-    } else {
-      return context.getString(R.string.NotificationChannel_missing_display_name);
-    }
-  }
-
-  /**
-   * Creates a channel for the specified recipient.
-   * @return The channel ID for the newly-created channel.
-   */
-  public static synchronized @Nullable String createChannelFor(@NonNull Context context, @NonNull Recipient recipient) {
-    if (recipient.getId().isUnknown()) return null;
-
-    VibrateState vibrateState     = recipient.getMessageVibrate();
-    boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? SignalStore.settings().isMessageVibrateEnabled() : vibrateState == VibrateState.ENABLED;
-    Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone(context);
-    String       displayName      = recipient.getDisplayName(context);
-
-    return createChannelFor(context, generateChannelIdFor(recipient), displayName, messageRingtone, vibrationEnabled, ConversationUtil.getShortcutId(recipient));
-  }
-
-  /**
-   * More verbose version of {@link #createChannelFor(Context, Recipient)}.
-   */
-  public static synchronized @Nullable String createChannelFor(@NonNull Context context,
-                                                               @NonNull String channelId,
-                                                               @NonNull String displayName,
-                                                               @Nullable Uri messageSound,
-                                                               boolean vibrationEnabled,
-                                                               @Nullable String shortcutId)
-  {
-    if (!supported()) {
-      return null;
-    }
-
-    NotificationChannel channel   = new NotificationChannel(channelId, displayName, NotificationManager.IMPORTANCE_HIGH);
-
-    setLedPreference(channel, SignalStore.settings().getMessageLedColor());
-    channel.setGroup(CATEGORY_MESSAGES);
-    setVibrationEnabled(channel, vibrationEnabled);
-
-    if (messageSound != null) {
-      channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                                                                  .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
-                                                                  .build());
-    }
-
-    if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION && shortcutId != null) {
-      channel.setConversationId(getMessagesChannel(context), shortcutId);
-    }
-
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    notificationManager.createNotificationChannel(channel);
-
-    return channelId;
-  }
-
-  /**
-   * Deletes the channel generated for the provided recipient. Safe to call even if there was never
-   * a channel made for that recipient.
-   */
-  public static synchronized void deleteChannelFor(@NonNull Context context, @NonNull Recipient recipient) {
-    if (!supported()) {
-      return;
-    }
-
-    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    String              channel             = recipient.getNotificationChannel();
-
-    if (channel != null) {
-      Log.i(TAG, "Deleting channel");
-      notificationManager.deleteNotificationChannel(channel);
-    }
-  }
-
-  /**
    * Navigates the user to the system settings for the desired notification channel.
    */
-  public static void openChannelSettings(@NonNull Context context, @NonNull String channelId, @Nullable String conversationId) {
+  public void openChannelSettings(@NonNull String channelId, @Nullable String conversationId) {
     if (!supported()) {
       return;
     }
@@ -253,12 +147,146 @@ public class NotificationChannels {
     }
   }
 
+
+  /**
+   * @return A name suitable to be displayed as the notification channel title.
+   */
+  public @NonNull String getChannelDisplayNameFor(@Nullable String systemName,
+                                                  @Nullable String profileName,
+                                                  @Nullable String username,
+                                                  @NonNull String address)
+  {
+    if (!TextUtils.isEmpty(systemName)) {
+      return systemName;
+    } else if (!TextUtils.isEmpty(profileName)) {
+      return profileName;
+    } else if (!TextUtils.isEmpty(username)) {
+      return username;
+    } else if (!TextUtils.isEmpty(address)) {
+      return address;
+    } else {
+      return context.getString(R.string.NotificationChannel_missing_display_name);
+    }
+  }
+
+  /**
+   * Whether or not notifications for the entire app are enabled.
+   */
+  public synchronized boolean areNotificationsEnabled() {
+    if (Build.VERSION.SDK_INT >= 24) {
+      return ServiceUtil.getNotificationManager(context).areNotificationsEnabled();
+    } else {
+      return true;
+    }
+  }
+
+  /**
+   * Recreates all notification channels for contacts with custom notifications enabled. Should be
+   * safe to call repeatedly. Needs to be executed on a background thread.
+   */
+  @WorkerThread
+  public synchronized void restoreContactNotificationChannels() {
+    if (!NotificationChannels.supported()) {
+      return;
+    }
+
+    RecipientDatabase db = SignalDatabase.recipients();
+
+    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
+      Recipient recipient;
+      while ((recipient = reader.getNext()) != null) {
+        NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+        if (!channelExists(notificationManager.getNotificationChannel(recipient.getNotificationChannel()))) {
+          String id = createChannelFor(recipient);
+          db.setNotificationChannel(recipient.getId(), id);
+        }
+      }
+    }
+
+    ensureCustomChannelConsistency();
+  }
+
+  /**
+   * @return The channel ID for the default messages channel.
+   */
+  public synchronized @NonNull String getMessagesChannel() {
+    return getMessagesChannelId(TextSecurePreferences.getNotificationMessagesChannelVersion(context));
+  }
+
+  /**
+   * Creates a channel for the specified recipient.
+   * @return The channel ID for the newly-created channel.
+   */
+  public synchronized @Nullable String createChannelFor(@NonNull Recipient recipient) {
+    if (recipient.getId().isUnknown()) return null;
+
+    VibrateState vibrateState     = recipient.getMessageVibrate();
+    boolean      vibrationEnabled = vibrateState == VibrateState.DEFAULT ? SignalStore.settings().isMessageVibrateEnabled() : vibrateState == VibrateState.ENABLED;
+    Uri          messageRingtone  = recipient.getMessageRingtone() != null ? recipient.getMessageRingtone() : getMessageRingtone();
+    String       displayName      = recipient.getDisplayName(context);
+
+    return createChannelFor(generateChannelIdFor(recipient), displayName, messageRingtone, vibrationEnabled, ConversationUtil.getShortcutId(recipient));
+  }
+
+  /**
+   * More verbose version of {@link #createChannelFor(Recipient)}.
+   */
+  public synchronized @Nullable String createChannelFor(@NonNull String channelId,
+                                                        @NonNull String displayName,
+                                                        @Nullable Uri messageSound,
+                                                        boolean vibrationEnabled,
+                                                        @Nullable String shortcutId)
+  {
+    if (!supported()) {
+      return null;
+    }
+
+    NotificationChannel channel = new NotificationChannel(channelId, displayName, NotificationManager.IMPORTANCE_HIGH);
+
+    setLedPreference(channel, SignalStore.settings().getMessageLedColor());
+    channel.setGroup(CATEGORY_MESSAGES);
+    setVibrationEnabled(channel, vibrationEnabled);
+
+    if (messageSound != null) {
+      channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+                                                                  .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+                                                                  .build());
+    }
+
+    if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION && shortcutId != null) {
+      channel.setConversationId(getMessagesChannel(), shortcutId);
+    }
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    notificationManager.createNotificationChannel(channel);
+
+    return channelId;
+  }
+
+  /**
+   * Deletes the channel generated for the provided recipient. Safe to call even if there was never
+   * a channel made for that recipient.
+   */
+  public synchronized void deleteChannelFor(@NonNull Recipient recipient) {
+    if (!supported()) {
+      return;
+    }
+
+    NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
+    String              channel             = recipient.getNotificationChannel();
+
+    if (channel != null) {
+      Log.i(TAG, "Deleting channel");
+      notificationManager.deleteNotificationChannel(channel);
+    }
+  }
+
   /**
    * Updates the LED color for message notifications and all contact-specific message notification
    * channels. Performs database operations and should therefore be invoked on a background thread.
    */
   @WorkerThread
-  public static synchronized void updateMessagesLedColor(@NonNull Context context, @NonNull String color) {
+  public synchronized void updateMessagesLedColor(@NonNull String color) {
     if (!supported()) {
       return;
     }
@@ -266,25 +294,25 @@ public class NotificationChannels {
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
 
-    updateMessageChannel(context, channel -> setLedPreference(channel, color));
-    updateAllRecipientChannelLedColors(context, notificationManager, color);
+    updateMessageChannel(channel -> setLedPreference(channel, color));
+    updateAllRecipientChannelLedColors(notificationManager, color);
 
-    ensureCustomChannelConsistency(context);
+    ensureCustomChannelConsistency();
   }
 
   /**
    * @return The message ringtone set for the default message channel.
    */
-  public static synchronized @NonNull Uri getMessageRingtone(@NonNull Context context) {
+  public synchronized @NonNull Uri getMessageRingtone() {
     if (!supported()) {
       return Uri.EMPTY;
     }
 
-    Uri sound = ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel(context)).getSound();
+    Uri sound = ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel()).getSound();
     return sound == null ? Uri.EMPTY : sound;
   }
 
-  public static synchronized @Nullable Uri getMessageRingtone(@NonNull Context context, @NonNull Recipient recipient) {
+  public synchronized @Nullable Uri getMessageRingtone(@NonNull Recipient recipient) {
     if (!supported() || recipient.resolve().getNotificationChannel() == null) {
       return null;
     }
@@ -304,13 +332,13 @@ public class NotificationChannels {
   /**
    * Update the message ringtone for the default message channel.
    */
-  public static synchronized void updateMessageRingtone(@NonNull Context context, @Nullable Uri uri) {
+  public synchronized void updateMessageRingtone(@Nullable Uri uri) {
     if (!supported()) {
       return;
     }
-    Log.i(TAG, "Updating default message ringtone with URI: " + String.valueOf(uri));
+    Log.i(TAG, "Updating default message ringtone with URI: " + uri);
 
-    updateMessageChannel(context, channel -> {
+    updateMessageChannel(channel -> {
       channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes());
     });
   }
@@ -322,11 +350,11 @@ public class NotificationChannels {
    * This has to update the database, and therefore should be run on a background thread.
    */
   @WorkerThread
-  public static synchronized void updateMessageRingtone(@NonNull Context context, @NonNull Recipient recipient, @Nullable Uri uri) {
+  public synchronized void updateMessageRingtone(@NonNull Recipient recipient, @Nullable Uri uri) {
     if (!supported() || recipient.getNotificationChannel() == null) {
       return;
     }
-    Log.i(TAG, "Updating recipient message ringtone with URI: " + String.valueOf(uri));
+    Log.i(TAG, "Updating recipient message ringtone with URI: " + uri);
 
     String  newChannelId = generateChannelIdFor(recipient);
     boolean success      = updateExistingChannel(ServiceUtil.getNotificationManager(context),
@@ -335,27 +363,27 @@ public class NotificationChannels {
                                                  channel -> channel.setSound(uri == null ? Settings.System.DEFAULT_NOTIFICATION_URI : uri, getRingtoneAudioAttributes()));
 
     SignalDatabase.recipients().setNotificationChannel(recipient.getId(), success ? newChannelId : null);
-    ensureCustomChannelConsistency(context);
+    ensureCustomChannelConsistency();
   }
 
   /**
    * @return The vibrate settings for the default message channel.
    */
-  public static synchronized boolean getMessageVibrate(@NonNull Context context) {
+  public synchronized boolean getMessageVibrate() {
     if (!supported()) {
       return false;
     }
 
-    return ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel(context)).shouldVibrate();
+    return ServiceUtil.getNotificationManager(context).getNotificationChannel(getMessagesChannel()).shouldVibrate();
   }
 
   /**
    * @return The vibrate setting for a specific recipient. If that recipient has no channel, this
    *         will return the setting for the default message channel.
    */
-  public static synchronized boolean getMessageVibrate(@NonNull Context context, @NonNull Recipient recipient) {
+  public synchronized boolean getMessageVibrate(@NonNull Recipient recipient) {
     if (!supported()) {
-      return getMessageVibrate(context);
+      return getMessageVibrate();
     }
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
@@ -363,7 +391,7 @@ public class NotificationChannels {
 
     if (!channelExists(channel)) {
       Log.w(TAG, "Recipient didn't have a channel. Returning message default.");
-      return getMessageVibrate(context);
+      return getMessageVibrate();
     }
 
     return channel.shouldVibrate() && !Arrays.equals(channel.getVibrationPattern(), EMPTY_VIBRATION_PATTERN);
@@ -372,13 +400,13 @@ public class NotificationChannels {
   /**
    * Sets the vibrate property for the default message channel.
    */
-  public static synchronized void updateMessageVibrate(@NonNull Context context, boolean enabled) {
+  public synchronized void updateMessageVibrate(boolean enabled) {
     if (!supported()) {
       return;
     }
     Log.i(TAG, "Updating default vibrate with value: " + enabled);
 
-    updateMessageChannel(context, channel -> setVibrationEnabled(channel, enabled));
+    updateMessageChannel(channel -> setVibrationEnabled(channel, enabled));
   }
 
   /**
@@ -388,13 +416,13 @@ public class NotificationChannels {
    * This has to update the database and should therefore be run on a background thread.
    */
   @WorkerThread
-  public static synchronized void updateMessageVibrate(@NonNull Context context, @NonNull Recipient recipient, VibrateState vibrateState) {
+  public synchronized void updateMessageVibrate(@NonNull Recipient recipient, VibrateState vibrateState) {
     if (!supported() || recipient.getNotificationChannel() == null) {
       return ;
     }
     Log.i(TAG, "Updating recipient vibrate with value: " + vibrateState);
 
-    boolean enabled      = vibrateState == VibrateState.DEFAULT ? getMessageVibrate(context) : vibrateState == VibrateState.ENABLED;
+    boolean enabled      = vibrateState == VibrateState.DEFAULT ? getMessageVibrate() : vibrateState == VibrateState.ENABLED;
     String  newChannelId = generateChannelIdFor(recipient);
 
     boolean success = updateExistingChannel(ServiceUtil.getNotificationManager(context),
@@ -403,7 +431,7 @@ public class NotificationChannels {
                                             channel -> setVibrationEnabled(channel, enabled));
 
     SignalDatabase.recipients().setNotificationChannel(recipient.getId(), success ? newChannelId : null);
-    ensureCustomChannelConsistency(context);
+    ensureCustomChannelConsistency();
   }
 
   /**
@@ -415,7 +443,7 @@ public class NotificationChannels {
    * Likewise, setting the pattern to any non-zero length array will set enable vibration flag to true.
    */
   @TargetApi(26)
-  private static void setVibrationEnabled(@NonNull NotificationChannel channel, boolean enabled) {
+  private void setVibrationEnabled(@NonNull NotificationChannel channel, boolean enabled) {
     if (enabled) {
       channel.setVibrationPattern(null);
       channel.enableVibration(true);
@@ -431,16 +459,16 @@ public class NotificationChannels {
    *
    * This could also return true if the specific channnel is enabled, but notifications *overall*
    * are disabled, or the messages category is disabled. Check
-   * {@link #areNotificationsEnabled(Context)} and {@link #isMessagesChannelGroupEnabled(Context)}
+   * {@link #areNotificationsEnabled()} and {@link #isMessagesChannelGroupEnabled()}
    * to be safe.
    */
-  public static synchronized boolean isMessageChannelEnabled(@NonNull Context context) {
+  public synchronized boolean isMessageChannelEnabled() {
     if (!supported()) {
       return true;
     }
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    NotificationChannel channel             = notificationManager.getNotificationChannel(getMessagesChannel(context));
+    NotificationChannel channel             = notificationManager.getNotificationChannel(getMessagesChannel());
 
     return channel != null && channel.getImportance() != NotificationManager.IMPORTANCE_NONE;
   }
@@ -448,9 +476,9 @@ public class NotificationChannels {
   /**
    * Whether or not the notification category for messages is enabled. Note that even if it is,
    * a user could have blocked the specific channel, or notifications overall, and it'd still be
-   * true. See {@link #isMessageChannelEnabled(Context)} and {@link #areNotificationsEnabled(Context)}.
+   * true. See {@link #isMessageChannelEnabled()} and {@link #areNotificationsEnabled()}.
    */
-  public static synchronized boolean isMessagesChannelGroupEnabled(@NonNull Context context) {
+  public synchronized boolean isMessagesChannelGroupEnabled() {
     if (Build.VERSION.SDK_INT < 28) {
       return true;
     }
@@ -461,7 +489,7 @@ public class NotificationChannels {
     return group != null && !group.isBlocked();
   }
 
-  public static boolean isCallsChannelValid(@NonNull Context context) {
+  public synchronized boolean isCallsChannelValid() {
     if (!supported()) {
       return true;
     }
@@ -473,24 +501,13 @@ public class NotificationChannels {
   }
 
   /**
-   * Whether or not notifications for the entire app are enabled.
-   */
-  public static synchronized boolean areNotificationsEnabled(@NonNull Context context) {
-    if (Build.VERSION.SDK_INT >= 24) {
-      return ServiceUtil.getNotificationManager(context).areNotificationsEnabled();
-    } else {
-      return true;
-    }
-  }
-
-  /**
    * Attempt to update a recipient with shortcut based notification channel if the system made one for us and we don't
    * have a channel set yet.
    *
    * @return true if a shortcut based notification channel was found and then associated with the recipient, false otherwise
    */
   @WorkerThread
-  public static boolean updateWithShortcutBasedChannel(@NonNull Context context, @NonNull Recipient recipient) {
+  public boolean updateWithShortcutBasedChannel(@NonNull Recipient recipient) {
     if (Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION && TextUtils.isEmpty(recipient.getNotificationChannel())) {
       String shortcutId = ConversationUtil.getShortcutId(recipient);
 
@@ -513,7 +530,7 @@ public class NotificationChannels {
    * Updates the name of an existing channel to match the recipient's current name. Will have no
    * effect if the recipient doesn't have an existing valid channel.
    */
-  public static synchronized void updateContactChannelName(@NonNull Context context, @NonNull Recipient recipient) {
+  public synchronized void updateContactChannelName(@NonNull Recipient recipient) {
     if (!supported() || recipient.getNotificationChannel() == null) {
       return;
     }
@@ -535,7 +552,7 @@ public class NotificationChannels {
 
   @TargetApi(26)
   @WorkerThread
-  public static synchronized void ensureCustomChannelConsistency(@NonNull Context context) {
+  public synchronized void ensureCustomChannelConsistency() {
     if (!supported()) {
       return;
     }
@@ -576,7 +593,7 @@ public class NotificationChannels {
       } else if (existingChannel.getId().startsWith(CONTACT_PREFIX) && !customChannelIds.contains(existingChannel.getId())) {
         Log.i(TAG, "Consistency: Deleting channel '"+ existingChannel.getId() + "' because the DB has no record of it.");
         notificationManager.deleteNotificationChannel(existingChannel.getId());
-      } else if (existingChannel.getId().startsWith(MESSAGES_PREFIX) && !existingChannel.getId().equals(getMessagesChannel(context))) {
+      } else if (existingChannel.getId().startsWith(MESSAGES_PREFIX) && !existingChannel.getId().equals(getMessagesChannel())) {
         Log.i(TAG, "Consistency: Deleting channel '" + existingChannel.getId() + "' because it's out of date.");
         notificationManager.deleteNotificationChannel(existingChannel.getId());
       }
@@ -590,12 +607,19 @@ public class NotificationChannels {
     }
   }
 
+  public synchronized void onLocaleChanged() {
+    if (!supported()) {
+      return;
+    }
+    onCreate(ServiceUtil.getNotificationManager(context));
+  }
+
   @TargetApi(26)
-  private static void onCreate(@NonNull Context context, @NonNull NotificationManager notificationManager) {
+  private void onCreate(@NonNull NotificationManager notificationManager) {
     NotificationChannelGroup messagesGroup = new NotificationChannelGroup(CATEGORY_MESSAGES, context.getResources().getString(R.string.NotificationChannel_group_chats));
     notificationManager.createNotificationChannelGroup(messagesGroup);
 
-    NotificationChannel messages     = new NotificationChannel(getMessagesChannel(context), context.getString(R.string.NotificationChannel_channel_messages), NotificationManager.IMPORTANCE_HIGH);
+    NotificationChannel messages     = new NotificationChannel(getMessagesChannel(), context.getString(R.string.NotificationChannel_channel_messages), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel calls        = new NotificationChannel(CALLS, context.getString(R.string.NotificationChannel_calls), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel failures     = new NotificationChannel(FAILURES, context.getString(R.string.NotificationChannel_failures), NotificationManager.IMPORTANCE_HIGH);
     NotificationChannel backups      = new NotificationChannel(BACKUPS, context.getString(R.string.NotificationChannel_backups), NotificationManager.IMPORTANCE_LOW);
@@ -708,7 +732,7 @@ public class NotificationChannels {
 
   @WorkerThread
   @TargetApi(26)
-  private static void updateAllRecipientChannelLedColors(@NonNull Context context, @NonNull NotificationManager notificationManager, @NonNull String color) {
+  private void updateAllRecipientChannelLedColors(@NonNull NotificationManager notificationManager, @NonNull String color) {
     RecipientDatabase database = SignalDatabase.recipients();
 
     try (RecipientDatabase.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {
@@ -723,11 +747,11 @@ public class NotificationChannels {
       }
     }
 
-    ensureCustomChannelConsistency(context);
+    ensureCustomChannelConsistency();
   }
 
   @TargetApi(26)
-  private static void updateMessageChannel(@NonNull Context context, @NonNull ChannelUpdater updater) {
+  private void updateMessageChannel(@NonNull ChannelUpdater updater) {
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
     int existingVersion                     = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
     int newVersion                          = existingVersion + 1;
@@ -736,7 +760,7 @@ public class NotificationChannels {
     if (updateExistingChannel(notificationManager, getMessagesChannelId(existingVersion), getMessagesChannelId(newVersion), updater)) {
       TextSecurePreferences.setNotificationMessagesChannelVersion(context, newVersion);
     } else {
-      onCreate(context, notificationManager);
+      onCreate(notificationManager);
     }
   }
 
