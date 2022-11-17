@@ -143,6 +143,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsFragment;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestState;
 import org.thoughtcrime.securesms.messagerequests.MessageRequestViewModel;
 import org.thoughtcrime.securesms.mms.AttachmentManager;
+import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -1046,6 +1047,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
+    Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
     AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(getActivity());
 
@@ -1065,6 +1067,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
             if (messageRecord.isMms()) {
               threadDeleted = SignalDatabase.mms().deleteMessage(messageRecord.getId());
+              handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord)messageRecord);
             } else {
               threadDeleted = SignalDatabase.sms().deleteMessage(messageRecord.getId());
             }
@@ -1096,11 +1099,24 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     return messageRecords.stream().allMatch(messageRecord -> messageRecord.isOutgoing() && messageRecord.getRecipient().isSelf());
   }
 
+  private void handleStopAudioMessageAfterDeletion(@NonNull MediaMmsMessageRecord message){
+    AudioSlide audioSlide = message.getSlideDeck().getAudioSlide();
+    if (audioSlide != null) {
+      Uri audioSlideUri = audioSlide.getUri();
+      if (audioSlideUri != null) {
+        listener.getVoiceNoteMediaController().stopPlaybackAndReset(audioSlideUri);
+      }
+    }
+  }
+
   private void handleDeleteForEveryone(Set<MessageRecord> messageRecords) {
     Runnable deleteForEveryone = () -> {
       SignalExecutors.BOUNDED.execute(() -> {
         for (MessageRecord message : messageRecords) {
           MessageSender.sendRemoteDelete(message.getId(), message.isMms());
+          if (message.isMms()){
+            handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord)message);
+          }
         }
       });
     };
