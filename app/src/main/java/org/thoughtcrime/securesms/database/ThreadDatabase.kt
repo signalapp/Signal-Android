@@ -1327,6 +1327,17 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       return true
     }
 
+    val drafts: DraftDatabase.Drafts = SignalDatabase.drafts.getDrafts(threadId)
+    if (drafts.isNotEmpty()) {
+      val threadRecord: ThreadRecord? = getThreadRecord(threadId)
+      if (threadRecord != null &&
+        threadRecord.type == MmsSmsColumns.Types.BASE_DRAFT_TYPE &&
+        threadRecord.date > record.timestamp
+      ) {
+        return false
+      }
+    }
+
     updateThread(
       threadId = threadId,
       meaningfulMessages = meaningfulMessages,

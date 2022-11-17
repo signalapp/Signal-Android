@@ -48,8 +48,8 @@ class DraftRepository(
         draftDatabase.replaceDrafts(actualThreadId, drafts)
         threadDatabase.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.uriSnippet, System.currentTimeMillis(), MmsSmsColumns.Types.BASE_DRAFT_TYPE, true)
       } else if (threadId > 0) {
-        threadDatabase.update(threadId, false)
         draftDatabase.clearDrafts(threadId)
+        threadDatabase.update(threadId, unarchive = false, allowDeletion = false)
       }
     }
   }

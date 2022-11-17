@@ -110,7 +110,7 @@ class DraftViewModel @JvmOverloads constructor(
     return repository
       .loadDrafts(threadId)
       .doOnSuccess { drafts ->
-        store.update { it.copyAndSetDrafts(threadId, drafts.drafts) }
+        store.update { saveDrafts(it.copyAndSetDrafts(threadId, drafts.drafts)) }
       }
       .observeOn(AndroidSchedulers.mainThread())
   }
