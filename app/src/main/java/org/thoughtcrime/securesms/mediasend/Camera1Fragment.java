@@ -29,11 +29,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.view.ViewKt;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
@@ -42,6 +40,7 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -50,10 +49,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.stories.Stories;
-import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -66,8 +62,8 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.
  */
 public class Camera1Fragment extends LoggingFragment implements CameraFragment,
-                                                             TextureView.SurfaceTextureListener,
-                                                             Camera1Controller.EventListener
+                                                                TextureView.SurfaceTextureListener,
+                                                                Camera1Controller.EventListener
 {
 
   private static final String TAG = Log.tag(Camera1Fragment.class);
@@ -84,6 +80,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private Disposable                       rotationListenerDisposable;
   private Disposable                       mostRecentItemDisposable = Disposable.disposed();
   private CameraScreenBrightnessController cameraScreenBrightnessController;
+  private boolean                          isMediaSelected;
 
   public static Camera1Fragment newInstance() {
     return new Camera1Fragment();
@@ -305,6 +302,19 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
       countButton.setVisibility(View.GONE);
       cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
+
+    isMediaSelected = selectedMediaCount > 0;
+    updateGalleryVisibility();
+  }
+
+  private void updateGalleryVisibility() {
+    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+
+    if (isMediaSelected) {
+      cameraGalleryContainer.setVisibility(View.GONE);
+    } else {
+      cameraGalleryContainer.setVisibility(View.VISIBLE);
+    }
   }
 
   private void initControls() {
@@ -329,7 +339,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, () -> {
       if (properties.getCameraCount() > 1) {
         flipButton.setVisibility(properties.getCameraCount() > 1 ? View.VISIBLE : View.GONE);
-        flipButton.setOnClickListener(v ->  {
+        flipButton.setOnClickListener(v -> {
           int newCameraId = camera.flip();
           TextSecurePreferences.setDirectCaptureCameraId(getContext(), newCameraId);
 

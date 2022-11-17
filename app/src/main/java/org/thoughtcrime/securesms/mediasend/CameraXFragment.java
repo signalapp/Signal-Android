@@ -26,10 +26,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.camera.core.CameraInfo;
 import androidx.camera.core.CameraSelector;
-import androidx.camera.core.ExposureState;
-import androidx.camera.core.FocusMeteringAction;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.core.ImageCaptureException;
 import androidx.camera.core.ImageProxy;
@@ -94,6 +91,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   private Disposable                       mostRecentItemDisposable = Disposable.disposed();
   private CameraXModePolicy                cameraXModePolicy;
   private CameraScreenBrightnessController cameraScreenBrightnessController;
+  private boolean                          isMediaSelected;
 
   public static CameraXFragment newInstanceForAvatarCapture() {
     CameraXFragment fragment = new CameraXFragment();
@@ -278,6 +276,19 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       countButton.setCount(selectedMediaCount);
     } else {
       countButton.setVisibility(View.GONE);
+    }
+
+    isMediaSelected = selectedMediaCount > 0;
+    updateGalleryVisibility();
+  }
+
+  private void updateGalleryVisibility() {
+    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+
+    if (isMediaSelected) {
+      cameraGalleryContainer.setVisibility(View.GONE);
+    } else {
+      cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
   }
 
