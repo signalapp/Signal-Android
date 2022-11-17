@@ -54,13 +54,13 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
     try {
       Set<X509Certificate> trustRoots = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config     = new ClientConfig();
-      VerifierFactory verifierFactory = new VerifierFactory(// ~August 15, 2022
+      VerifierFactory verifierFactory = new VerifierFactory(// ~November 16, 2022
                                                             new ServiceConfig(
-                                                                "01746f4dd25f8623d603534425ed45833687eca2b3ba25bdd87180b9471dac28",
-                                                                "3e9bf61f3191add7b054f0e591b62f832854606f6594fd63faef1e2aedec4021",
-                                                                "92fb35d0f603ceb5eaf2988b24a41d4a4a83f8fb9cd72e67c3bc37960d864ad6",
-                                                                "3d6e528ee0574ae3299915ea608b71ddd17cbe855d4f5e1c46df9b0d22b04cdb",
-                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615" }
+                                                                "5fe2b72fe5f01c269de0a3678728e7e97d823a953b053e43fbf934f439d290e6",
+                                                                "d901b5c4960f49871a848fd157c7c0b03351253d65bb839698ddd5df138ad7b6",
+                                                                "d5159ba907066384fae65842b5311f853b028c5ee4594f3b38dfc02acddf6fe3",
+                                                                "be1d711887530929fbc06ef8b77b618db15e9cd1dd0265559ea45f60a532ee52",
+                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
                                                             ));
 
       config.logAdapter = new MobileCoinLogAdapter();
