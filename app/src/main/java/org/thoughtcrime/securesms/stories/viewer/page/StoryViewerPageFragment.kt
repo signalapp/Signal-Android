@@ -510,7 +510,7 @@ class StoryViewerPageFragment :
     return if (caption.isNullOrEmpty()) {
       DEFAULT_DURATION
     } else {
-      calculateDurationForContentLength(caption.length)
+      max(DEFAULT_DURATION, calculateDurationForContentLength(caption.length))
     }
   }
 
