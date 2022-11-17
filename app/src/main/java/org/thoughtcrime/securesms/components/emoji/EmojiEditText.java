@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
+import android.text.SpannableStringBuilder;
 import android.util.AttributeSet;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.text.Spanned;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,11 +16,14 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -94,5 +101,38 @@ public class EmojiEditText extends AppCompatEditText {
     result[0] = new EmojiFilter(this, jumboEmoji);
 
     return result;
+  }
+
+  @Override
+  public boolean onTextContextMenuItem(int id) {
+    if (id == android.R.id.paste) {
+      ClipboardManager clipboardManager = ((ClipboardManager) getContext()
+              .getSystemService(Context.CLIPBOARD_SERVICE));
+      ClipData         originalClipData = clipboardManager.getPrimaryClip();
+      CharSequence     textToPaste      = getTextFromClipData(originalClipData);
+      if (textToPaste == null) return super.onTextContextMenuItem(id);
+
+      CharSequence     sanitizedText    = (textToPaste instanceof Spanned) ?
+              clearFormattingFromText(textToPaste) : textToPaste;
+
+      clipboardManager.setPrimaryClip(ClipData.newPlainText("signal_sanitized", sanitizedText));
+
+      boolean           retVal          = super.onTextContextMenuItem(id);
+      clipboardManager.setPrimaryClip(originalClipData);
+      return retVal;
+    }
+    return super.onTextContextMenuItem(id);
+  }
+
+  private SpannableStringBuilder clearFormattingFromText(CharSequence text) {
+    List<Mention>                 mentions = MentionAnnotation.getMentionsFromAnnotations(text);
+    SpannableStringBuilder spannableString = new SpannableStringBuilder(text.toString());
+    MentionAnnotation.setMentionAnnotations(spannableString, mentions);
+    return spannableString;
+  }
+
+  private CharSequence getTextFromClipData(ClipData data) {
+    return data == null || data.getItemCount() == 0 ? null
+            : data.getItemAt(0).coerceToText(getContext());
   }
 }
