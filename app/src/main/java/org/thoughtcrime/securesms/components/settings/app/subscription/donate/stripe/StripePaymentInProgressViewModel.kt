@@ -135,7 +135,13 @@ class StripePaymentInProgressViewModel(
           .map { (_, paymentMethod) -> paymentMethod ?: secure3DSAction.paymentMethodId!! }
       }
       .flatMapCompletable { stripeRepository.setDefaultPaymentMethod(it) }
-      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it)) }
+      .onErrorResumeNext {
+        if (it is DonationError) {
+          Completable.error(it)
+        } else {
+          Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.SUBSCRIPTION, it))
+        }
+      }
 
     disposables += setup.andThen(setLevel).subscribeBy(
       onError = { throwable ->
