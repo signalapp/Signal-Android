@@ -5599,6 +5599,18 @@
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal har ikke mulighed for at forbinde din donation til din Signal-konto.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">Tak for din støtte!</string>
 
+    <!-- GroupStoryEducationSheet -->
+    <!-- Displayed as the title of the education bottom sheet -->
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <!-- Line item on the sheet explaining group stories -->
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <!-- Line item on the sheet explaining that anyone in the group can view replies -->
+    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <!-- Button label to dismiss sheet -->
+    <string name="GroupStoryEducationSheet__next">Next</string>
+
     <!-- EOF -->
 
 </resources>
