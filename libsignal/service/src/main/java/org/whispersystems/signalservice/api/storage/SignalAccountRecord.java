@@ -191,6 +191,10 @@ public final class SignalAccountRecord implements SignalRecord {
         diff.add("HasReadOnboardingStory");
       }
 
+      if (hasSeenGroupStoryEducationSheet() != that.hasSeenGroupStoryEducationSheet()) {
+        diff.add("HasSeenGroupStoryEducationSheet");
+      }
+
       return diff.toString();
     } else {
       return "Different class. " + getClass().getSimpleName() + " | " + other.getClass().getSimpleName();
@@ -315,6 +319,10 @@ public final class SignalAccountRecord implements SignalRecord {
 
   public boolean hasReadOnboardingStory() {
     return proto.getHasReadOnboardingStory();
+  }
+
+  public boolean hasSeenGroupStoryEducationSheet() {
+    return proto.getHasSeenGroupStoryEducationSheet();
   }
 
   public AccountRecord toProto() {
@@ -681,6 +689,11 @@ public final class SignalAccountRecord implements SignalRecord {
 
     public Builder setHasReadOnboardingStory(boolean hasReadOnboardingStory) {
       builder.setHasReadOnboardingStory(hasReadOnboardingStory);
+      return this;
+    }
+
+    public Builder setHasSeenGroupStoryEducationSheet(boolean hasSeenGroupStoryEducationSheet) {
+      builder.setHasSeenGroupStoryEducationSheet(hasSeenGroupStoryEducationSheet);
       return this;
     }
 

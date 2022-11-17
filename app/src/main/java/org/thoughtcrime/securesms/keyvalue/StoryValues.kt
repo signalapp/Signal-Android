@@ -49,6 +49,11 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
      * Whether or not the user will send and receive viewed receipts for stories
      */
     private const val STORY_VIEWED_RECEIPTS = "stories.viewed.receipts"
+
+    /**
+     * Whether or not the user has seen the group story education sheet
+     */
+    private const val USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET = "stories.user.has.seen.group.story.education.sheet"
   }
 
   override fun onFirstEverAppLaunch() {
@@ -62,7 +67,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
     HAS_DOWNLOADED_ONBOARDING_STORY,
     USER_HAS_VIEWED_ONBOARDING_STORY,
     USER_HAS_READ_ONBOARDING_STORY,
-    STORY_VIEWED_RECEIPTS
+    STORY_VIEWED_RECEIPTS,
+    USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET
   )
 
   var isFeatureDisabled: Boolean by booleanValue(MANUAL_FEATURE_DISABLE, false)
@@ -80,6 +86,8 @@ internal class StoryValues(store: KeyValueStore) : SignalStoreValues(store) {
   var userHasReadOnboardingStory: Boolean by booleanValue(USER_HAS_READ_ONBOARDING_STORY, false)
 
   var viewedReceiptsEnabled: Boolean by booleanValue(STORY_VIEWED_RECEIPTS, false)
+
+  var userHasSeenGroupStoryEducationSheet: Boolean by booleanValue(USER_HAS_SEEN_GROUP_STORY_EDUCATION_SHEET, false)
 
   fun isViewedReceiptsStateSet(): Boolean {
     return store.containsKey(STORY_VIEWED_RECEIPTS)

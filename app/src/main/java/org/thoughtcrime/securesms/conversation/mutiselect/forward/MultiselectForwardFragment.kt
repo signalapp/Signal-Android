@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sharing.ShareSelectionAdapter
 import org.thoughtcrime.securesms.sharing.ShareSelectionMappingModel
+import org.thoughtcrime.securesms.stories.GroupStoryEducationSheet
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.Stories.getHeaderAction
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
@@ -80,6 +81,7 @@ class MultiselectForwardFragment :
   Fragment(R.layout.multiselect_forward_fragment),
   SafetyNumberBottomSheet.Callbacks,
   ChooseStoryTypeBottomSheet.Callback,
+  GroupStoryEducationSheet.Callback,
   WrapperDialogFragment.WrapperDialogFragmentCallback,
   ChooseInitialMyStoryMembershipBottomSheetDialogFragment.Callback {
 
@@ -466,11 +468,19 @@ class MultiselectForwardFragment :
   }
 
   override fun onGroupStoryClicked() {
-    ChooseGroupStoryBottomSheet().show(parentFragmentManager, ChooseGroupStoryBottomSheet.GROUP_STORY)
+    if (SignalStore.storyValues().userHasSeenGroupStoryEducationSheet) {
+      onGroupStoryEducationSheetNext()
+    } else {
+      GroupStoryEducationSheet().show(childFragmentManager, GroupStoryEducationSheet.KEY)
+    }
   }
 
   override fun onNewStoryClicked() {
     CreateStoryFlowDialogFragment().show(parentFragmentManager, CreateStoryWithViewersFragment.REQUEST_KEY)
+  }
+
+  override fun onGroupStoryEducationSheetNext() {
+    ChooseGroupStoryBottomSheet().show(parentFragmentManager, ChooseGroupStoryBottomSheet.GROUP_STORY)
   }
 
   override fun onWrapperDialogFragmentDismissed() {

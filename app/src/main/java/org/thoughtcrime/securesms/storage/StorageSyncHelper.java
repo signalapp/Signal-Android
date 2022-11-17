@@ -152,6 +152,7 @@ public final class StorageSyncHelper {
                                                          .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                          .setStoryViewReceiptsState(storyViewReceiptsState)
                                                          .setHasReadOnboardingStory(hasReadOnboardingStory)
+                                                         .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -181,6 +182,7 @@ public final class StorageSyncHelper {
     SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
     SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
     SignalStore.storyValues().setUserHasReadOnboardingStory(update.getNew().hasReadOnboardingStory());
+    SignalStore.storyValues().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());

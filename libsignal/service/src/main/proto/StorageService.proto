@@ -153,37 +153,38 @@ message AccountRecord {
     }
   }
 
-           bytes                  profileKey                    = 1;
-           string                 givenName                     = 2;
-           string                 familyName                    = 3;
-           string                 avatarUrlPath                 = 4;
-           bool                   noteToSelfArchived            = 5;
-           bool                   readReceipts                  = 6;
-           bool                   sealedSenderIndicators        = 7;
-           bool                   typingIndicators              = 8;
-           bool                   proxiedLinkPreviews           = 9;
-           bool                   noteToSelfMarkedUnread        = 10;
-           bool                   linkPreviews                  = 11;
-           PhoneNumberSharingMode phoneNumberSharingMode        = 12;
-           bool                   unlistedPhoneNumber           = 13;
-  repeated PinnedConversation     pinnedConversations           = 14;
-           bool                   preferContactAvatars          = 15;
-           Payments               payments                      = 16;
-           uint32                 universalExpireTimer          = 17;
-           bool                   primarySendsSms               = 18;
-           string                 e164                          = 19;
-  repeated string                 preferredReactionEmoji        = 20;
-           bytes                  subscriberId                  = 21;
-           string                 subscriberCurrencyCode        = 22;
-           bool                   displayBadgesOnProfile        = 23;
-           bool                   subscriptionManuallyCancelled = 24;
-           bool                   keepMutedChatsArchived        = 25;
-           bool                   hasSetMyStoriesPrivacy        = 26;
-           bool                   hasViewedOnboardingStory      = 27;
-           reserved            /* storiesDisabled */              28;
-           bool                   storiesDisabled               = 29;
-           OptionalBool           storyViewReceiptsEnabled      = 30;
-           bool                   hasReadOnboardingStory        = 31;
+           bytes                  profileKey                      = 1;
+           string                 givenName                       = 2;
+           string                 familyName                      = 3;
+           string                 avatarUrlPath                   = 4;
+           bool                   noteToSelfArchived              = 5;
+           bool                   readReceipts                    = 6;
+           bool                   sealedSenderIndicators          = 7;
+           bool                   typingIndicators                = 8;
+           bool                   proxiedLinkPreviews             = 9;
+           bool                   noteToSelfMarkedUnread          = 10;
+           bool                   linkPreviews                    = 11;
+           PhoneNumberSharingMode phoneNumberSharingMode          = 12;
+           bool                   unlistedPhoneNumber             = 13;
+  repeated PinnedConversation     pinnedConversations             = 14;
+           bool                   preferContactAvatars            = 15;
+           Payments               payments                        = 16;
+           uint32                 universalExpireTimer            = 17;
+           bool                   primarySendsSms                 = 18;
+           string                 e164                            = 19;
+  repeated string                 preferredReactionEmoji          = 20;
+           bytes                  subscriberId                    = 21;
+           string                 subscriberCurrencyCode          = 22;
+           bool                   displayBadgesOnProfile          = 23;
+           bool                   subscriptionManuallyCancelled   = 24;
+           bool                   keepMutedChatsArchived          = 25;
+           bool                   hasSetMyStoriesPrivacy          = 26;
+           bool                   hasViewedOnboardingStory        = 27;
+           reserved            /* storiesDisabled */                28;
+           bool                   storiesDisabled                 = 29;
+           OptionalBool           storyViewReceiptsEnabled        = 30;
+           bool                   hasReadOnboardingStory          = 31;
+           bool                   hasSeenGroupStoryEducationSheet = 32;
 }
 
 message StoryDistributionListRecord {
