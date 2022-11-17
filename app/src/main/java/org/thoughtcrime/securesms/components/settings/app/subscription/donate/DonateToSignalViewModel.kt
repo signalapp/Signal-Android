@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
-import org.thoughtcrime.securesms.util.next
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -118,7 +117,15 @@ class DonateToSignalViewModel(
   }
 
   fun toggleDonationType() {
-    store.update { it.copy(donateToSignalType = it.donateToSignalType.next()) }
+    store.update {
+      it.copy(
+        donateToSignalType = when (it.donateToSignalType) {
+          DonateToSignalType.ONE_TIME -> DonateToSignalType.MONTHLY
+          DonateToSignalType.MONTHLY -> DonateToSignalType.ONE_TIME
+          DonateToSignalType.GIFT -> error("We are in an illegal state")
+        }
+      )
+    }
   }
 
   fun setSelectedSubscription(subscription: Subscription) {
