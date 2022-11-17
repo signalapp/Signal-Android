@@ -16,8 +16,10 @@ import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.push.CdsiResourceExhaustedResponse;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Hex;
+import org.whispersystems.signalservice.internal.util.JsonUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 import org.whispersystems.util.Base64;
 
@@ -93,9 +95,6 @@ final class CdsiSocket {
                                    .addHeader("Authorization", basicAuth(username, password))
                                    .build();
 
-      AtomicInteger retryAfterSeconds = new AtomicInteger(0);
-
-
       WebSocket webSocket = okhttp.newWebSocket(request, new WebSocketListener() {
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
@@ -135,11 +134,6 @@ final class CdsiSocket {
               case WAITING_FOR_TOKEN:
                 ClientResponse tokenResponse = ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray()));
 
-                if (tokenResponse.getRetryAfterSecs() > 0) {
-                  Log.w(TAG, "Got a retry-after (" + tokenResponse.getRetryAfterSecs() + "), meaning we hit the rate limit. (WAITING_FOR_TOKEN)");
-                  throw new CdsiResourceExhaustedException(tokenResponse.getRetryAfterSecs());
-                }
-
                 if (tokenResponse.getToken().isEmpty()) {
                   throw new IOException("No token! Cannot continue!");
                 }
@@ -155,14 +149,7 @@ final class CdsiSocket {
                 break;
 
               case WAITING_FOR_RESPONSE:
-                ClientResponse dataResponse = ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray()));
-
-                if (dataResponse.getRetryAfterSecs() > 0) {
-                  Log.w(TAG, "Got a retry-after (" + dataResponse.getRetryAfterSecs() + "), meaning we hit the rate limit. (WAITING_FOR_RESPONSE)");
-                  throw new CdsiResourceExhaustedException(dataResponse.getRetryAfterSecs());
-                }
-
-                emitter.onNext(dataResponse);
+                emitter.onNext(ClientResponse.parseFrom(client.establishedRecv(bytes.toByteArray())));
                 break;
 
               case CLOSED:
@@ -193,6 +180,14 @@ final class CdsiSocket {
             stage.set(Stage.FAILED);
             if (code == 4003) {
               emitter.tryOnError(new CdsiInvalidArgumentException());
+            } else if (code == 4008) {
+              try {
+                CdsiResourceExhaustedResponse response = JsonUtil.fromJsonResponse(reason, CdsiResourceExhaustedResponse.class);
+                emitter.tryOnError(new CdsiResourceExhaustedException(response.getRetryAfter()));
+              } catch (IOException e) {
+                Log.w(TAG, "Failed to parse the retry_after!");
+                emitter.tryOnError(new NonSuccessfulResponseCodeException(code));
+              }
             } else if (code == 4101) {
               emitter.tryOnError(new CdsiInvalidTokenException());
             } else {
