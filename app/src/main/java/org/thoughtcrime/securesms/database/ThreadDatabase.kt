@@ -512,6 +512,42 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
     }
   }
 
+  /**
+   * Returns the number of unread messages across all threads.
+   * Threads that are forced-unread count as 1.
+   */
+  fun getUnreadMessageCount(): Long {
+    val allCount: Long = readableDatabase
+      .select("SUM($UNREAD_COUNT)")
+      .from(TABLE_NAME)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          cursor.getLong(0)
+        } else {
+          0
+        }
+      }
+
+    val forcedUnreadCount: Long = readableDatabase
+      .select("COUNT(*)")
+      .from(TABLE_NAME)
+      .where("$READ = ?", ReadStatus.FORCED_UNREAD.serialize())
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          cursor.getLong(0)
+        } else {
+          0
+        }
+      }
+
+    return allCount + forcedUnreadCount
+  }
+
+  /**
+   * Returns the number of unread messages in a given thread.
+   */
   fun getUnreadMessageCount(threadId: Long): Long {
     return readableDatabase
       .select(UNREAD_COUNT)

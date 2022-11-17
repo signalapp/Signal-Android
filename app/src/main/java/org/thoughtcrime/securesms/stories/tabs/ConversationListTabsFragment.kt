@@ -91,8 +91,8 @@ class ConversationListTabsFragment : Fragment(R.layout.conversation_list_tabs) {
       runPillAnimation(150, chatsPill, storiesPill)
     }
 
-    chatsUnreadIndicator.visible = state.unreadChatsCount > 0
-    chatsUnreadIndicator.text = formatCount(state.unreadChatsCount)
+    chatsUnreadIndicator.visible = state.unreadMessagesCount > 0
+    chatsUnreadIndicator.text = formatCount(state.unreadMessagesCount)
 
     storiesUnreadIndicator.visible = state.unreadStoriesCount > 0
     storiesUnreadIndicator.text = formatCount(state.unreadStoriesCount)
