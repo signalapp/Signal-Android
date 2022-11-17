@@ -57,7 +57,7 @@ public class LogSectionSystemInfo implements LogSection {
                                       .append(ScreenDensity.get(context)).append(", ")
                                       .append(getScreenRefreshRate(context)).append("\n");
     builder.append("Font Scale     : ").append(context.getResources().getConfiguration().fontScale).append("\n");
-    builder.append("Animation Scale: ").append(ContextUtil.getAnimationScale(context));
+    builder.append("Animation Scale: ").append(ContextUtil.getAnimationScale(context)).append("\n");
     builder.append("Android        : ").append(Build.VERSION.RELEASE).append(", API ")
                                       .append(Build.VERSION.SDK_INT).append(" (")
                                       .append(Build.VERSION.INCREMENTAL).append(", ")
