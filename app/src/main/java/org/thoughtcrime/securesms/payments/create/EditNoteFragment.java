@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,11 +17,16 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiEditText;
 import org.thoughtcrime.securesms.util.ViewUtil;
+import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+
+import java.util.Locale;
 
 public class EditNoteFragment extends LoggingFragment {
 
   private CreatePaymentViewModel viewModel;
   private EmojiEditText          noteEditText;
+
+  private static final int NOTE_MAX_LENGTH = 40;
 
   public EditNoteFragment() {
     super(R.layout.edit_note_fragment);
@@ -47,6 +54,11 @@ public class EditNoteFragment extends LoggingFragment {
       }
       return false;
     });
+
+    TextView lengthIndicator = view.findViewById(R.id.character_count);
+    noteEditText.addTextChangedListener(new AfterTextChanged(editable -> {
+      lengthIndicator.setText(String.format(Locale.getDefault(), "%d/%d", noteEditText.length(), NOTE_MAX_LENGTH));
+    }));
 
     View fab = view.findViewById(R.id.edit_note_fragment_fab);
     fab.setOnClickListener(v -> saveNote());

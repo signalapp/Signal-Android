@@ -3090,6 +3090,8 @@
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Note</string>
+    <!-- Content descriptor explaining the use of the save note FAB for Android accessibility settings-->
+    <string name="EditNoteFragment__content_description_save_note">Save note</string>
 
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirm payment</string>
