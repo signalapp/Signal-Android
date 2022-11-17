@@ -17,6 +17,7 @@ import com.airbnb.lottie.model.KeyPath
 import com.google.android.exoplayer2.ui.PlayerControlView
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.visible
 import kotlin.time.DurationUnit
 import kotlin.time.toDuration
 
@@ -61,7 +62,7 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
 
   @SuppressLint("SetTextI18n")
   fun setMediaMode(mediaMode: MediaMode) {
-    durationBar.visibility = if (mediaMode == MediaMode.VIDEO) VISIBLE else GONE
+    durationBar.visible = mediaMode == MediaMode.VIDEO
     videoControls.visibility = if (mediaMode == MediaMode.VIDEO) VISIBLE else INVISIBLE
     if (mediaMode == MediaMode.VIDEO) {
       setProgressUpdateListener { position, _ ->
