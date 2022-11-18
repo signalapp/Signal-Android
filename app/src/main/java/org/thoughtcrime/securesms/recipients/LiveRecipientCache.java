@@ -7,6 +7,7 @@ import android.database.Cursor;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -48,15 +49,19 @@ public final class LiveRecipientCache {
   private final AtomicReference<RecipientId> localRecipientId;
   private final AtomicBoolean                warmedUp;
 
-  @SuppressLint("UseSparseArrays")
   public LiveRecipientCache(@NonNull Context context) {
+    this(context, ThreadUtil.trace(new FilteredExecutor(SignalExecutors.newCachedBoundedExecutor("signal-recipients", 1, 4, 15), () -> !SignalDatabase.inTransaction())));
+  }
+
+  @VisibleForTesting
+  public LiveRecipientCache(@NonNull Context context, @NonNull Executor executor) {
     this.context           = context.getApplicationContext();
     this.recipientDatabase = SignalDatabase.recipients();
     this.recipients        = new LRUCache<>(CACHE_MAX);
     this.warmedUp          = new AtomicBoolean(false);
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, Recipient.UNKNOWN);
-    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.newCachedBoundedExecutor("signal-recipients", 1, 4, 15), () -> !SignalDatabase.inTransaction()));
+    this.resolveExecutor   = executor;
   }
 
   @AnyThread

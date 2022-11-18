@@ -1,12 +1,12 @@
 package org.thoughtcrime.securesms.conversationlist;
 
-import android.app.Application;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -17,6 +17,7 @@ import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData;
@@ -40,6 +41,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -50,6 +52,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Pair;
 
 class ConversationListViewModel extends ViewModel {
 
@@ -57,30 +60,32 @@ class ConversationListViewModel extends ViewModel {
 
   private static boolean coldStart = true;
 
-  private final MutableLiveData<Megaphone>        megaphone;
-  private final MutableLiveData<SearchResult>     searchResult;
-  private final MutableLiveData<ConversationSet>  selectedConversations;
-  private final Set<Conversation>                 internalSelection;
-  private final ConversationListDataSource        conversationListDataSource;
-  private final LivePagedData<Long, Conversation> pagedData;
-  private final LiveData<Boolean>                 hasNoConversations;
-  private final SearchRepository                  searchRepository;
-  private final MegaphoneRepository               megaphoneRepository;
-  private final Debouncer                         messageSearchDebouncer;
-  private final Debouncer                         contactSearchDebouncer;
-  private final ThrottledDebouncer                updateDebouncer;
-  private final DatabaseObserver.Observer         observer;
-  private final Invalidator                       invalidator;
-  private final CompositeDisposable               disposables;
-  private final UnreadPaymentsLiveData            unreadPaymentsLiveData;
-  private final UnreadPaymentsRepository          unreadPaymentsRepository;
-  private final NotificationProfilesRepository    notificationProfilesRepository;
+  private final MutableLiveData<Megaphone>                  megaphone;
+  private final MutableLiveData<SearchResult>               searchResult;
+  private final MutableLiveData<ConversationSet>            selectedConversations;
+  private final MutableLiveData<ConversationFilter>         conversationFilter;
+  private final LiveData<ConversationListDataSource>        conversationListDataSource;
+  private final Set<Conversation>                           internalSelection;
+  private final LiveData<LivePagedData<Long, Conversation>> pagedData;
+  private final LiveData<Boolean>                           hasNoConversations;
+  private final SearchRepository                            searchRepository;
+  private final MegaphoneRepository                         megaphoneRepository;
+  private final Debouncer                                   messageSearchDebouncer;
+  private final Debouncer                                   contactSearchDebouncer;
+  private final ThrottledDebouncer                          updateDebouncer;
+  private final DatabaseObserver.Observer                   observer;
+  private final Invalidator                                 invalidator;
+  private final CompositeDisposable                         disposables;
+  private final UnreadPaymentsLiveData                      unreadPaymentsLiveData;
+  private final UnreadPaymentsRepository                    unreadPaymentsRepository;
+  private final NotificationProfilesRepository              notificationProfilesRepository;
 
-  private String       activeQuery;
-  private SearchResult activeSearchResult;
-  private int          pinnedCount;
+  private String                  activeQuery;
+  private SearchResult            activeSearchResult;
+  private int                     pinnedCount;
+  private ConversationFilterLatch conversationFilterLatch;
 
-  private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
+  private ConversationListViewModel(@NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                      = new MutableLiveData<>();
     this.searchResult                   = new MutableLiveData<>();
     this.internalSelection              = new HashSet<>();
@@ -95,29 +100,37 @@ class ConversationListViewModel extends ViewModel {
     this.activeSearchResult             = SearchResult.EMPTY;
     this.invalidator                    = new Invalidator();
     this.disposables                    = new CompositeDisposable();
-    this.conversationListDataSource     = ConversationListDataSource.create(application, isArchived);
-    this.pagedData                      = PagedData.createForLiveData(conversationListDataSource,
-                                                                      new PagingConfig.Builder()
-                                                                           .setPageSize(15)
-                                                                           .setBufferPages(2)
-                                                                           .build());
+    this.conversationFilter             = new MutableLiveData<>(ConversationFilter.OFF);
+    this.conversationFilterLatch        = ConversationFilterLatch.RESET;
+    this.conversationListDataSource     = Transformations.map(conversationFilter, filter -> ConversationListDataSource.create(filter, isArchived));
+    this.pagedData                      = Transformations.map(conversationListDataSource, source -> PagedData.createForLiveData(source,
+                                                                                                                                new PagingConfig.Builder()
+                                                                                                                                    .setPageSize(15)
+                                                                                                                                    .setBufferPages(2)
+                                                                                                                                    .build()));
     this.unreadPaymentsLiveData         = new UnreadPaymentsLiveData();
     this.observer                       = () -> {
       updateDebouncer.publish(() -> {
         if (!TextUtils.isEmpty(activeQuery)) {
           onSearchQueryUpdated(activeQuery);
         }
-        pagedData.getController().onDataInvalidated();
+
+        LivePagedData<Long, Conversation> data = pagedData.getValue();
+        if (data == null) {
+          return;
+        }
+
+        data.getController().onDataInvalidated();
       });
     };
 
-    this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
-      pinnedCount = SignalDatabase.threads().getPinnedConversationListCount();
+    this.hasNoConversations = LiveDataUtil.mapAsync(LiveDataUtil.combineLatest(conversationFilter, getConversationList(), Pair::new), filterAndData -> {
+      pinnedCount = SignalDatabase.threads().getPinnedConversationListCount(ConversationFilter.OFF);
 
-      if (conversations.size() > 0) {
+      if (filterAndData.getSecond().size() > 0) {
         return false;
       } else {
-        return SignalDatabase.threads().getArchivedConversationListCount() == 0;
+        return SignalDatabase.threads().getArchivedConversationListCount(filterAndData.getFirst()) == 0;
       }
     });
 
@@ -137,11 +150,11 @@ class ConversationListViewModel extends ViewModel {
   }
 
   @NonNull LiveData<List<Conversation>> getConversationList() {
-    return pagedData.getData();
+    return Transformations.switchMap(pagedData, LivePagedData::getData);
   }
 
-  @NonNull PagingController getPagingController() {
-    return pagedData.getController();
+  @NonNull LiveData<PagingController<Long>> getPagingController() {
+    return Transformations.map(pagedData, LivePagedData::getController);
   }
 
   @NonNull LiveData<List<NotificationProfile>> getNotificationProfiles() {
@@ -199,6 +212,25 @@ class ConversationListViewModel extends ViewModel {
     setSelection(newSelection);
   }
 
+  void setConversationFilterLatch(@NonNull ConversationFilterLatch latch) {
+    ConversationFilterLatch previous = conversationFilterLatch;
+    conversationFilterLatch = latch;
+    if (previous != latch && latch == ConversationFilterLatch.RESET) {
+      toggleUnreadChatsFilter();
+    }
+  }
+
+  public void toggleUnreadChatsFilter() {
+    ConversationFilter filter = Objects.requireNonNull(conversationFilter.getValue());
+    if (filter == ConversationFilter.UNREAD) {
+      Log.d(TAG, "Setting filter to OFF");
+      conversationFilter.setValue(ConversationFilter.OFF);
+    } else {
+      Log.d(TAG, "Setting filter to UNREAD");
+      conversationFilter.setValue(ConversationFilter.UNREAD);
+    }
+  }
+
   private void setSelection(@NonNull Collection<Conversation> newSelection) {
     internalSelection.clear();
     internalSelection.addAll(newSelection);
@@ -206,8 +238,13 @@ class ConversationListViewModel extends ViewModel {
   }
 
   void onSelectAllClick() {
+    ConversationListDataSource dataSource = conversationListDataSource.getValue();
+    if (dataSource == null) {
+      return;
+    }
+
     disposables.add(
-        Single.fromCallable(() -> conversationListDataSource.load(0, conversationListDataSource.size(), disposables::isDisposed))
+        Single.fromCallable(() -> dataSource.load(0, dataSource.size(), disposables::isDisposed))
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(this::setSelection)
@@ -301,7 +338,7 @@ class ConversationListViewModel extends ViewModel {
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ConversationListViewModel(ApplicationDependencies.getApplication(), new SearchRepository(noteToSelfTitle), isArchived));
+      return modelClass.cast(new ConversationListViewModel(new SearchRepository(noteToSelfTitle), isArchived));
     }
   }
 }

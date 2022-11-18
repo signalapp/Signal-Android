@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.PointF;
@@ -70,20 +71,18 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   private static final String TAG = Log.tag(Camera1Fragment.class);
 
-  private TextureView                  cameraPreview;
-  private ViewGroup                    controlsContainer;
-  private ImageButton                  flipButton;
-  private View                         captureButton;
-  private Camera1Controller            camera;
-  private Controller                   controller;
-  private OrderEnforcer<Stage>         orderEnforcer;
-  private Camera1Controller.Properties properties;
-  private RotationListener             rotationListener;
-  private Disposable                   rotationListenerDisposable;
-  private Disposable                   mostRecentItemDisposable = Disposable.disposed();
-
-  private boolean isThumbAvailable;
-  private boolean isMediaSelected;
+  private TextureView                      cameraPreview;
+  private ViewGroup                        controlsContainer;
+  private ImageButton                      flipButton;
+  private View                             captureButton;
+  private Camera1Controller                camera;
+  private Controller                       controller;
+  private OrderEnforcer<Stage>             orderEnforcer;
+  private Camera1Controller.Properties     properties;
+  private RotationListener                 rotationListener;
+  private Disposable                       rotationListenerDisposable;
+  private Disposable                       mostRecentItemDisposable = Disposable.disposed();
+  private CameraScreenBrightnessController cameraScreenBrightnessController;
 
   public static Camera1Fragment newInstance() {
     return new Camera1Fragment();
@@ -124,6 +123,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow());
+    getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
 
     rotationListener  = new RotationListener(requireContext());
     cameraPreview     = view.findViewById(R.id.camera_preview);
@@ -271,21 +272,23 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   }
 
   private void presentRecentItemThumbnail(@Nullable Media media) {
-    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+    View      thumbBackground = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+    ImageView thumbnail       = controlsContainer.findViewById(R.id.camera_gallery_button);
 
     if (media != null) {
-      thumbnail.setVisibility(View.VISIBLE);
+      thumbBackground.setBackgroundResource(R.drawable.circle_tintable);
+      thumbnail.clearColorFilter();
+      thumbnail.setScaleType(ImageView.ScaleType.FIT_CENTER);
       Glide.with(this)
            .load(new DecryptableUri(media.getUri()))
            .centerCrop()
            .into(thumbnail);
     } else {
-      thumbnail.setVisibility(View.GONE);
-      thumbnail.setImageResource(0);
+      thumbBackground.setBackgroundResource(R.drawable.media_selection_camera_switch_background);
+      thumbnail.setImageResource(R.drawable.ic_gallery_outline_24);
+      thumbnail.setColorFilter(Color.WHITE);
+      thumbnail.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
-
-    isThumbAvailable = media != null;
-    updateGalleryVisibility();
   }
 
   @Override
@@ -299,19 +302,6 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
       cameraGalleryContainer.setVisibility(View.GONE);
     } else {
       countButton.setVisibility(View.GONE);
-      cameraGalleryContainer.setVisibility(View.VISIBLE);
-    }
-
-    isMediaSelected = selectedMediaCount > 0;
-    updateGalleryVisibility();
-  }
-
-  private void updateGalleryVisibility() {
-    View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
-
-    if (isMediaSelected || !isThumbAvailable) {
-      cameraGalleryContainer.setVisibility(View.GONE);
-    } else {
       cameraGalleryContainer.setVisibility(View.VISIBLE);
     }
   }

@@ -79,9 +79,9 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
 
     lifecycleDisposable += viewModel.state
       .subscribe { state ->
-        allRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL
-        allExceptRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT
-        onlyWitRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH
+        allRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL && state.hasUserPerformedManualSelection
+        allExceptRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ALL_EXCEPT && state.hasUserPerformedManualSelection
+        onlyWitRadio.isChecked = state.privacyState.privacyMode == DistributionListPrivacyMode.ONLY_WITH && state.hasUserPerformedManualSelection
 
         allExceptCount.visible = allExceptRadio.isChecked
         onlyWithCount.visible = onlyWitRadio.isChecked
@@ -95,7 +95,7 @@ class ChooseInitialMyStoryMembershipBottomSheetDialogFragment :
           else -> Unit
         }
 
-        save.isEnabled = state.recipientId != null
+        save.isEnabled = state.recipientId != null && state.hasUserPerformedManualSelection
       }
 
     val clickListener = { v: View ->

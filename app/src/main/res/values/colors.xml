@@ -7,7 +7,8 @@
 
     <color name="effectively_transparent_black">#01000000</color>
 
-    <color name="story_caption_gradient_start">#52000000</color>
+    <color name="story_gradient_start">#99000000</color>
+    <color name="story_caption_gradient_start">#CC000000</color>
 
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_08">#14000000</color>

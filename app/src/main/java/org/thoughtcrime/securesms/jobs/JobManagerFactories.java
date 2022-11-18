@@ -157,7 +157,6 @@ public final class JobManagerFactories {
       put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());
       put(PushTextSendJob.KEY,                       new PushTextSendJob.Factory());
       put(ReactionSendJob.KEY,                       new ReactionSendJob.Factory());
-      put(RecipientChangedNumberJob.KEY,             new RecipientChangedNumberJob.Factory());
       put(RefreshAttributesJob.KEY,                  new RefreshAttributesJob.Factory());
       put(RefreshOwnProfileJob.KEY,                  new RefreshOwnProfileJob.Factory());
       put(RemoteConfigRefreshJob.KEY,                new RemoteConfigRefreshJob.Factory());
@@ -254,6 +253,7 @@ public final class JobManagerFactories {
       put("RotateSignedPreKeyJob",                   new PreKeysSyncJob.Factory());
       put("CreateSignedPreKeyJob",                   new PreKeysSyncJob.Factory());
       put("RefreshPreKeysJob",                       new PreKeysSyncJob.Factory());
+      put("RecipientChangedNumberJob",               new FailingJob.Factory());
     }};
   }
 

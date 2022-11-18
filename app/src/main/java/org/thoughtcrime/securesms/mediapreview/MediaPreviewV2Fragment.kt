@@ -24,7 +24,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2.OFFSCREEN_PAGE_LIMIT_DEFAULT
@@ -42,7 +43,9 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
-import org.thoughtcrime.securesms.mediapreview.MediaRailAdapter.ImageLoadingListener
+import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
+import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
+import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.GlideApp
@@ -137,20 +140,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
 
   private fun initializeAlbumRail() {
     binding.mediaPreviewPlaybackControls.recyclerView.apply {
-      this.itemAnimator = null // Or can crash when set to INVISIBLE while animating by FullscreenHelper https://issuetracker.google.com/issues/148720682
-      PagerSnapHelper().attachToRecyclerView(this)
+      layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+      addItemDecoration(CenterDecoration(0))
       albumRailAdapter = MediaRailAdapter(
         GlideApp.with(this@MediaPreviewV2Fragment),
-        object : MediaRailAdapter.RailItemListener {
-          override fun onRailItemClicked(distanceFromActive: Int) {
-            binding.mediaPager.currentItem += distanceFromActive
-          }
-
-          override fun onRailItemDeleteClicked(distanceFromActive: Int) {
-            throw UnsupportedOperationException("Callback unsupported.")
-          }
-        },
-        false,
+        { media -> jumpViewPagerToMedia(media) },
         object : ImageLoadingListener() {
           override fun onAllRequestsFinished() {
             crossfadeViewIn(this@apply)
@@ -281,21 +275,52 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
       if (albumRail.visibility == GONE) {
         albumRail.visibility = View.INVISIBLE
       }
-      albumRailAdapter.setMedia(albumThumbnailMedia, albumPosition)
-      albumRail.smoothScrollToPosition(albumPosition)
+
+      albumRailAdapter.currentItemPosition = albumPosition
+      albumRailAdapter.submitList(albumThumbnailMedia)
+      scrollAlbumRailToCurrentAdapterPosition()
     } else {
       albumRail.visibility = View.GONE
-      albumRailAdapter.setMedia(emptyList())
+      albumRailAdapter.submitList(emptyList())
+      albumRailAdapter.imageLoadingListener.reset()
     }
   }
 
+  private fun scrollAlbumRailToCurrentAdapterPosition() {
+    val currentItemPosition = albumRailAdapter.currentItemPosition
+    val currentList = albumRailAdapter.currentList
+    val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
+    var selectedItemWidth = -1
+    for (i in currentList.indices) {
+      val isSelected = i == currentItemPosition
+      val stableId = albumRailAdapter.getItemId(i)
+      val viewHolder = albumRail.findViewHolderForItemId(stableId) as? MediaRailAdapter.MediaRailViewHolder
+      if (viewHolder != null) {
+        viewHolder.setSelectedItem(isSelected)
+        if (isSelected) {
+          selectedItemWidth = viewHolder.itemView.width
+        }
+      }
+    }
+    val offsetFromStart = (albumRail.width - selectedItemWidth) / 2
+    val smoothScroller = OffsetSmoothScroller(requireContext(), offsetFromStart)
+    smoothScroller.targetPosition = currentItemPosition
+    val layoutManager = albumRail.layoutManager as LinearLayoutManager
+    layoutManager.startSmoothScroll(smoothScroller)
+  }
+
   private fun crossfadeViewIn(view: View, duration: Long = 200) {
-    if (!view.isVisible) {
+    if (!view.isVisible && !fullscreenHelper.isSystemUiVisible) {
       val viewPropertyAnimator = view.animate()
         .alpha(1f)
         .setDuration(duration)
         .withStartAction {
           view.visibility = VISIBLE
+        }
+        .withEndAction {
+          if (view == binding.mediaPreviewPlaybackControls.recyclerView) {
+            scrollAlbumRailToCurrentAdapterPosition()
+          }
         }
       if (Build.VERSION.SDK_INT >= 21) {
         viewPropertyAnimator.interpolator = PathInterpolator(0.17f, 0.17f, 0f, 1f)
@@ -305,6 +330,12 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   }
 
   private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int) = childFragmentManager.findFragmentByTag("f$currentPosition") as? MediaPreviewFragment
+
+  private fun jumpViewPagerToMedia(media: Media) {
+    val viewPagerAdapter = binding.mediaPager.adapter as MediaPreviewV2Adapter
+    val position = viewPagerAdapter.findItemPosition(media)
+    binding.mediaPager.setCurrentItem(position, true)
+  }
 
   private fun getTitleText(mediaRecord: MediaDatabase.MediaRecord, showThread: Boolean): String {
     val recipient: Recipient = Recipient.live(mediaRecord.recipientId).get()
@@ -480,6 +511,16 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   override fun onDestroyView() {
     super.onDestroyView()
     viewModel.onDestroyView()
+  }
+
+  private class OffsetSmoothScroller(context: Context, val offset: Int) : LinearSmoothScroller(context) {
+    override fun getHorizontalSnapPreference(): Int {
+      return SNAP_TO_START
+    }
+
+    override fun calculateDxToMakeVisible(view: View?, snapPreference: Int): Int {
+      return offset + super.calculateDxToMakeVisible(view, snapPreference)
+    }
   }
 
   companion object {

@@ -4,8 +4,8 @@
     tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="46dp"
-    android:layout_height="46dp"
+    android:layout_width="@dimen/media_rail_item_size"
+    android:layout_height="@dimen/media_rail_item_size"
     android:layout_margin="4dp"
     android:animateLayoutChanges="true">
 
@@ -39,16 +39,6 @@
         android:layout_gravity="start|top"
         android:layout_marginStart="2dp"
         android:src="@drawable/ic_caption_28"
-        android:visibility="gone"
-        tools:visibility="visible"/>
-
-    <ImageView
-        android:id="@+id/rail_item_delete"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|top"
-        android:layout_margin="1dp"
-        android:src="@drawable/ic_x_28"
         android:visibility="gone"
         tools:visibility="visible"/>
 

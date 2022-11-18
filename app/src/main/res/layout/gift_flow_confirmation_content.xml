@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
-    tools:layout_height="match_parent">
+    tools:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
 
     <include layout="@layout/dsl_settings_toolbar" />
 
@@ -33,7 +33,7 @@
         android:gravity="center_vertical"
         android:text="@string/GiftFlowConfirmationFragment__one_time_donation"
         android:textAppearance="@style/Signal.Text.Body"
-        app:layout_constraintBottom_toTopOf="@id/google_pay_button"
+        app:layout_constraintBottom_toTopOf="@id/continue_button"
         app:layout_constraintEnd_toStartOf="@id/amount"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -55,20 +55,21 @@
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:gravity="center_vertical"
         android:textAppearance="@style/Signal.Text.Title"
-        app:layout_constraintBottom_toTopOf="@id/google_pay_button"
+        app:layout_constraintBottom_toTopOf="@id/continue_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/description"
         tools:text="$10" />
 
-    <org.thoughtcrime.securesms.badges.gifts.flow.GooglePayButton
-        android:id="@+id/google_pay_button"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/continue_button"
+        style="@style/Signal.Widget.Button.Large.Primary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginEnd="@dimen/dsl_settings_gutter"
+        android:layout_height="48dp"
+        android:layout_marginHorizontal="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:insetTop="2dp"
+        android:insetBottom="2dp"
+        android:text="@string/DonateToSignalFragment__continue"
+        app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

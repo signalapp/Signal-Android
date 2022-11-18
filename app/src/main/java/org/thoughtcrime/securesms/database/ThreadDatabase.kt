@@ -24,6 +24,7 @@ import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.attachments
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.drafts
@@ -132,7 +133,8 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
     val CREATE_INDEXS = arrayOf(
       "CREATE INDEX IF NOT EXISTS thread_recipient_id_index ON $TABLE_NAME ($RECIPIENT_ID);",
       "CREATE INDEX IF NOT EXISTS archived_count_index ON $TABLE_NAME ($ARCHIVED, $MEANINGFUL_MESSAGES);",
-      "CREATE INDEX IF NOT EXISTS thread_pinned_index ON $TABLE_NAME ($PINNED);"
+      "CREATE INDEX IF NOT EXISTS thread_pinned_index ON $TABLE_NAME ($PINNED);",
+      "CREATE INDEX IF NOT EXISTS thread_read ON $TABLE_NAME ($READ);"
     )
 
     private val THREAD_PROJECTION = arrayOf(
@@ -754,7 +756,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
   }
 
   fun getArchivedRecipients(): Set<RecipientId> {
-    return getArchivedConversationList().readToList { cursor ->
+    return getArchivedConversationList(ConversationFilter.OFF).readToList { cursor ->
       RecipientId.from(cursor.requireLong(RECIPIENT_ID))
     }.toSet()
   }
@@ -775,16 +777,18 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
     return positions
   }
 
-  fun getArchivedConversationList(offset: Long = 0, limit: Long = 0): Cursor {
-    val query = createQuery("$ARCHIVED = ? AND $MEANINGFUL_MESSAGES != 0", offset, limit, preferPinned = false)
+  fun getArchivedConversationList(conversationFilter: ConversationFilter, offset: Long = 0, limit: Long = 0): Cursor {
+    val filterQuery = conversationFilter.toQuery()
+    val query = createQuery("$ARCHIVED = ? AND $MEANINGFUL_MESSAGES != 0 $filterQuery", offset, limit, preferPinned = false)
     return readableDatabase.rawQuery(query, arrayOf("1"))
   }
 
-  fun getUnarchivedConversationList(pinned: Boolean, offset: Long, limit: Long): Cursor {
+  fun getUnarchivedConversationList(conversationFilter: ConversationFilter, pinned: Boolean, offset: Long, limit: Long): Cursor {
+    val filterQuery = conversationFilter.toQuery()
     val where = if (pinned) {
-      "$ARCHIVED = 0 AND $PINNED != 0"
+      "$ARCHIVED = 0 AND $PINNED != 0 $filterQuery"
     } else {
-      "$ARCHIVED = 0 AND $PINNED = 0 AND $MEANINGFUL_MESSAGES != 0"
+      "$ARCHIVED = 0 AND $PINNED = 0 AND $MEANINGFUL_MESSAGES != 0 $filterQuery"
     }
 
     val query = if (pinned) {
@@ -796,11 +800,12 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
     return readableDatabase.rawQuery(query, null)
   }
 
-  fun getArchivedConversationListCount(): Int {
+  fun getArchivedConversationListCount(conversationFilter: ConversationFilter): Int {
+    val filterQuery = conversationFilter.toQuery()
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 1 AND $MEANINGFUL_MESSAGES != 0")
+      .where("$ARCHIVED = 1 AND $MEANINGFUL_MESSAGES != 0 $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -811,11 +816,12 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       }
   }
 
-  fun getPinnedConversationListCount(): Int {
+  fun getPinnedConversationListCount(conversationFilter: ConversationFilter): Int {
+    val filterQuery = conversationFilter.toQuery()
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 0 AND $PINNED != 0")
+      .where("$ARCHIVED = 0 AND $PINNED != 0 $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -826,11 +832,12 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
       }
   }
 
-  fun getUnarchivedConversationListCount(): Int {
+  fun getUnarchivedConversationListCount(conversationFilter: ConversationFilter): Int {
+    val filterQuery = conversationFilter.toQuery()
     return readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0)")
+      .where("$ARCHIVED = 0 AND ($MEANINGFUL_MESSAGES != 0 OR $PINNED != 0) $filterQuery")
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -888,7 +895,7 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
           .run()
       }
 
-      var pinnedCount = getPinnedConversationListCount()
+      var pinnedCount = getPinnedConversationListCount(ConversationFilter.OFF)
 
       for (threadId in threadIds) {
         pinnedCount++
@@ -1585,6 +1592,15 @@ class ThreadDatabase(context: Context, databaseHelper: SignalDatabase) : Databas
 
   private fun String.toSingleLine(): String {
     return this.trimIndent().split("\n").joinToString(separator = " ")
+  }
+
+  private fun ConversationFilter.toQuery(): String {
+    return when (this) {
+      ConversationFilter.OFF -> ""
+      ConversationFilter.UNREAD -> " AND $READ != ${ReadStatus.READ.serialize()}"
+      ConversationFilter.MUTED -> error("This filter selection isn't supported yet.")
+      ConversationFilter.GROUPS -> error("This filter selection isn't supported yet.")
+    }
   }
 
   object DistributionTypes {

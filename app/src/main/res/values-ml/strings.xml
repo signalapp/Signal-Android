@@ -137,11 +137,11 @@
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s">സംഭാവനാ തുക: %1$s</string>
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__donation_amount_s_per_month">Donation amount: %1$s/month</string>
+    <string name="CreditCardFragment__donation_amount_s_per_month">സംഭാവനാ തുക: %1$s/മാസം</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_information_below">നിങ്ങളുടെ കാർഡ് വിവരം നൽകുക</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">Enter your card details. Signal does not collect or store your personal information.</string>
+    <string name="CreditCardFragment__enter_your_card_details">നിങ്ങളുടെ കാർഡ് വിശദാംശങ്ങൾ നൽകുക. Signal നിങ്ങളുടെ വ്യക്തിപരമായ വിവരങ്ങൾ ശേഖരിക്കുകയോ സംഭരിക്കുകയോ ചെയ്യുന്നില്ല.</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">കാർഡ് നമ്പർ</string>
     <!-- Displayed as a hint in the card expiry text field -->
@@ -453,9 +453,9 @@
     <string name="ConversationFragment_delete_for_me">എനിക്കായി ഇല്ലാതാക്കൂ</string>
     <string name="ConversationFragment_delete_for_everyone">എല്ലാവർക്കുമായി ഇല്ലാതാക്കൂ</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Delete on this device</string>
+    <string name="ConversationFragment_delete_on_this_device">ഈ ഉപകരണത്തിൽ ഇല്ലാതാക്കുക</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Delete everywhere</string>
+    <string name="ConversationFragment_delete_everywhere">എല്ലായിടത്തും ഇല്ലാതാക്കുക</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">സംഭാഷണത്തിലെ എല്ലാവർ‌ക്കും അവർ‌ Signal-ന്റെ സമീപകാല പതിപ്പിലാണെങ്കിൽ‌ ഈ സന്ദേശം ഇല്ലാതാക്കും. നിങ്ങൾ ഒരു സന്ദേശം ഇല്ലാതാക്കിയത് അവർക്ക് കാണാൻ കഴിയും.</string>
     <string name="ConversationFragment_quoted_message_not_found">യഥാർത്ഥ സന്ദേശം കണ്ടെത്തിയില്ല</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">യഥാർത്ഥ സന്ദേശം മേലിൽ ലഭ്യമല്ല</string>
@@ -486,7 +486,10 @@
     <string name="ConversationFragment__cancel">റദ്ദാക്കൂ</string>
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">തടഞ്ഞു</string>
-
+    <!-- Label for a button displayed in conversation list to clear the chat filter -->
+    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <!-- Notice on chat list when no unread chats are available, centered on display -->
+    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
         <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -571,6 +574,12 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__select_members">അംഗങ്ങളെ തിരഞ്ഞെടുക്കൂ</string>
+
+    <!-- ConversationListFilterPullView -->
+    <!-- Note in revealable view before fully revealed -->
+    <string name="ConversationListFilterPullView__pull_down_to_filter">Pull down to filter</string>
+    <!-- Note in revealable view after fully revealed -->
+    <string name="ConversationListFilterPullView__release_to_filter">Release to filter</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">പ്രൊഫൈൽ</string>
@@ -882,7 +891,7 @@
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺടാക്‌റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, അതിനാൽ ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
-    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">You\'ve selected a contact that doesn\'t support Signal groups, this group will be MMS. Custom MMS group names and photos will only be visible to you. Support for MMS groups will be removed soon to focus on encrypted messaging.</string>
+    <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal ഗ്രൂപ്പുകളെ പിന്തുണയ്‌ക്കാത്ത ഒരു കോൺ‌ടാക്റ്റ് നിങ്ങൾ തിരഞ്ഞെടുത്തു, ഈ ഗ്രൂപ്പ് MMS ആയിരിക്കും. കസ്റ്റം MMS ഗ്രൂപ്പ് പേരുകളും ഫോട്ടോകളും നിങ്ങൾക്ക് മാത്രമേ ദൃശ്യമാകൂ. എൻക്രിപ്റ്റ് ചെയ്‌ത സന്ദേശമയയ്‌ക്കലിൽ ശ്രദ്ധ കേന്ദ്രീകരിക്കാൻ MMS ഗ്രൂപ്പുകൾക്കുള്ള പിന്തുണ ഉടൻ നീക്കം ചെയ്യുന്നതാണ്.</string>
 
     <!-- ManageGroupActivity -->
     <string name="ManageGroupActivity_member_requests_and_invites">അംഗത്വ അഭ്യർത്ഥനകളും ക്ഷണങ്ങളും</string>
@@ -1466,7 +1475,7 @@
     <!-- In-conversation update message to indicate that the current contact is sms only and will need to migrate to signal to continue the conversation in signal. -->
     <string name="MessageRecord__you_can_no_longer_send_sms_messages_in_signal">നിങ്ങൾക്ക് ഇനി മുതൽ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ അയയ്ക്കാൻ കഴിയുന്നതല്ല. സംഭാഷണം ഇവിടെ നിലനിർത്താൻ %1$s എന്നയാളെ Signal-ലേക്ക് ക്ഷണിക്കുക.</string>
     <!-- Body for quote when message being quoted is an in-app payment message -->
-    <string name="MessageRecord__payment_s">Payment: %1$s</string>
+    <string name="MessageRecord__payment_s">പേയ്മെന്റ്: %1$s</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">സ്വീകരിക്കുക</string>
@@ -3122,7 +3131,7 @@
     <!-- Button to select a message and enter selection mode -->
     <string name="conversation_selection__menu_multi_select">തിരഞ്ഞെടുക്കൂ</string>
     <!-- Button to view a in-chat payment message's full payment details -->
-    <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <string name="conversation_selection__menu_payment_details">പേയ്മെന്റ് വിശദാംശങ്ങൾ</string>
 
     <!-- conversation_expiring_on -->
 
@@ -3192,6 +3201,8 @@
     <string name="text_secure_normal__menu_clear_passphrase">പൂട്ടുക</string>
     <string name="text_secure_normal__mark_all_as_read">എല്ലാം വായിച്ചതായി കാണിക്കൂ</string>
     <string name="text_secure_normal__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
+    <!-- Overflow menu entry to filter unread chats -->
+    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
@@ -3205,11 +3216,11 @@
     <string name="reminder_header_service_outage_text">Signal ചില സാങ്കേതിക പ്രശ്നങ്ങൾ നേരിടുകയാണ്. കഴിയുന്നതും വേഗം സേവനം പുനസ്ഥാപിക്കാൻ ഞങ്ങൾ കഠിനപ്രയത്നം നടത്തുകയാണ്.</string>
     <string name="reminder_header_progress">%1$d%%</string>
     <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
-    <string name="reminder_cds_warning_body">Signal\'s private contact discovery temporarily can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_warning_body">Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തലിന് നിങ്ങളുടെ ഫോണിന്റെ കോൺടാക്റ്റുകൾ താൽക്കാലികമായി പ്രോസസ്സ് ചെയ്യാൻ കഴിയില്ല.</string>
     <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
     <string name="reminder_cds_warning_learn_more">കൂടുതൽ അറിയുക</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
-    <string name="reminder_cds_permanent_error_body">Signal\'s private contact discovery can\'t process your phone\'s contacts.</string>
+    <string name="reminder_cds_permanent_error_body">Signal-ന്റെ സ്വകാര്യ കോൺടാക്റ്റ് കണ്ടെത്തലിന് നിങ്ങളുടെ ഫോണിന്റെ കോൺടാക്റ്റുകൾ പ്രോസസ്സ് ചെയ്യാൻ കഴിയില്ല.</string>
     <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
     <string name="reminder_cds_permanent_error_learn_more">കൂടുതൽ അറിയുക</string>
 
@@ -4013,6 +4024,8 @@
     <string name="SmsSettingsFragment__use_as_default_sms_app">സ്ഥിരസ്ഥിതി SMS അപ്ലിക്കേഷനായി ഉപയോഗിക്കുക</string>
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
+    <!-- Preference title to re-export sms -->
+    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4021,6 +4034,8 @@
     <string name="SmsSettingsFragment__you_can_remove_sms_messages_from_signal_in_settings">നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ക്രമീകരണങ്ങളിലെ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും.</string>
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">നിങ്ങളുടെ ഫോണിന്റെ SMS ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് കഴിയും</string>
+    <!-- Description for re-export sms preference -->
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">സംഭരണ സ്ഥലം കൂട്ടാൻ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -4408,11 +4423,11 @@
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">ഒരു പരിപാലകരാകുക</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s supports Signal</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal-നെ പിന്തുണയ്‌ക്കുന്നു</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s പ്രതിമാസ സംഭാവന നൽകി Signal-നെ പിന്തുണയ്‌ക്കുന്നു. പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാതെ, നിങ്ങളെപ്പോലുള്ള ആളുകളുടെ മാത്രം പിന്തുണയോടെ ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒരു സ്ഥാപനമാണ് Signal.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">പ്രതിമാസ സംഭാവന നൽകി %1$s Signal-നെ പിന്തുണയ്‌ക്കുന്നു. പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാതെ, നിങ്ങളെപ്പോലുള്ള ആളുകളുടെ മാത്രം പിന്തുണയോടെ ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒരു സ്ഥാപനമാണ് Signal.</string>
     <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
-    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s supports Signal with a donation. Signal is a nonprofit with no advertisers or investors, supported only by people like you.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">ഒരു സംഭാവന നൽകി %1$s Signal-നെ പിന്തുണയ്‌ക്കുന്നു. പരസ്യദാതാക്കളോ നിക്ഷേപകരോ ഇല്ലാതെ, നിങ്ങളെപ്പോലുള്ള ആളുകളുടെ മാത്രം പിന്തുണയോടെ ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്ന ഒരു സ്ഥാപനമാണ് Signal.</string>
 
     <string name="ImageView__badge">ബാഡ്‌ജ്</string>
 
@@ -4438,17 +4453,17 @@
     <string name="Subscription__expires_s">കാലഹരണപ്പെടുന്നത് %1$s</string>
 
     <!-- Title of learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal is different.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_different">Signal വ്യത്യസ്‌തമാണ്.</string>
     <!-- First small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">Private messaging. No ads, no trackers, no surveillance.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__private_messaging">സ്വകാര്യ സന്ദേശമയയ്‌ക്കൽ. പരസ്യങ്ങളില്ല, ട്രാക്കറുകളില്ല, നിരീക്ഷണമില്ല.</string>
     <!-- Second small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">Signal is supported by donations, meaning that your privacy is at the center of everything we do. Signal is built for you; not your data and not for profit.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_supported_by">സംഭാവനകളിലൂടെയാണ് Signal പ്രവർത്തിക്കുന്നത്, അതായത് ഞങ്ങൾ ചെയ്യുന്നതിലെല്ലാം നിങ്ങളുടെ സ്വകാര്യതയ്‌ക്കാണ് പ്രാധാന്യം. Signal നിങ്ങൾക്ക് വേണ്ടിയാണ് നിർമ്മിച്ചിരിക്കുന്നത്; ലാഭത്തിന് വേണ്ടിയോ നിങ്ങളുടെ ഡാറ്റയ്‌ക്ക് വേണ്ടിയോ അല്ല.</string>
     <!-- Third small text blurb on learn more sheet -->
-    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">If you can, please donate today to keep Signal fun, dependable, and available for everyone.</string>
+    <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Signal രസകരവും ആശ്രയിക്കാവുന്നതും എല്ലാവർക്കും ലഭ്യമാകുന്നതുമായി നിലനിർത്താൻ, നിങ്ങൾക്ക് കഴിയുമെങ്കിൽ ഇന്ന് തന്നെ സംഭാവന നൽകൂ.</string>
 
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">You\'ve earned a donor badge from Signal! Display it on your profile to show off your support.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">നിങ്ങൾ Signal-ൽ നിന്ന് ഒരു ഡോണർ ബാഡ്‌ജ് നേടി ! പിന്തുണ കാണിക്കാൻ ഇത് നിങ്ങളുടെ പ്രൊഫൈലിൽ പ്രദർശിപ്പിക്കുക.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">നിങ്ങൾക്ക്</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">പ്രതിമാസ സസ്റ്റൈനർ ആകാം.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">പ്രൊഫൈലിൽ പ്രദർശിപ്പിക്കുക</string>
@@ -4871,7 +4886,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ഇതുവരെ കാഴ്ച്ചകളൊന്നുമില്ല</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Enable view receipts to see who\'s viewed your stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">നിങ്ങളുടെ സ്റ്റോറികൾ ആരൊക്കെ കണ്ടുവെന്ന് അറിയാൻ, വായിച്ചതിനുള്ള സ്ഥിരീകരണം പ്രവർത്തനസജ്ജമാക്കുക.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">ക്രമീകരണത്തിലേക്ക് പോകുക</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -5426,6 +5441,16 @@
     <!-- Message of dialog -->
     <string name="RemoveSmsMessagesDialogFragment__you_can_now_remove_sms_messages_from_signal">സംഭരണ സ്ഥലം കൂട്ടാൻ നിങ്ങൾക്ക് ഇപ്പോൾ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യാൻ കഴിയും. നിങ്ങൾ നീക്കം ചെയ്‌താലും നിങ്ങളുടെ ഫോണിലെ മറ്റ് SMS ആപ്പുകൾക്ക് അവ തുടർന്നും ലഭ്യമാകും.</string>
 
+    <!-- ReExportSmsMessagesDialogFragment -->
+    <!-- Action button to re-export messages -->
+    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <!-- Action button to cancel re-export process -->
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <!-- Title of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <!-- Message of dialog -->
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
     <string name="SetSignalAsDefaultSmsAppFragment__set_signal_as_the_default_sms_app">Signal ഡിഫോൾട്ട് SMS ആപ്പായി സജ്ജീകരിക്കുക</string>
@@ -5506,11 +5531,11 @@
 
     <!-- DonateToSignalFragment -->
     <!-- Title below avatar -->
-    <string name="DonateToSignalFragment__privacy_over_profit">Privacy over profit</string>
+    <string name="DonateToSignalFragment__privacy_over_profit">ലാഭത്തേക്കാൾ മുഖ്യം സ്വകാര്യത</string>
     <!-- Continue button label -->
     <string name="DonateToSignalFragment__continue">തുടരുക</string>
     <!-- Description below title -->
-    <string name="DonateToSignalFragment__private_messaging">Private messaging, funded by you. No ads, no tracking, no compromise. Donate now to support Signal.</string>
+    <string name="DonateToSignalFragment__private_messaging">സ്വകാര്യ സന്ദേശമയയ്‌ക്കൽ, നിങ്ങളുടെ ധനസഹായത്തിൽ. പരസ്യങ്ങളില്ല, ട്രാക്കിംഗില്ല, വിട്ടുവീഴ്‌ചയില്ല. Signal-നെ പിന്തുണയ്ക്കാൻ ഇപ്പോൾ സംഭാവന നൽകൂ.</string>
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">പ്രതിമാസം</string>
     <!-- Donation pill toggle one-time text -->
@@ -5530,46 +5555,48 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ക്രെഡിറ്റ് കാർഡ് അല്ലെങ്കിൽ ഡെബിറ്റ് കാർഡ്</string>
+    <!-- Sheet summary when giving a gift -->
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">റദ്ദാക്കുന്നു…</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
-    <string name="CdsTemporaryErrorBottomSheet_title">Too many contacts have been processed</string>
+    <string name="CdsTemporaryErrorBottomSheet_title">വളരെയധികം കോൺടാക്റ്റുകൾ പ്രോസസ്സ് ചെയ്‌തു</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">Another attempt to process your contacts will be made within %1$d day.</item>
-        <item quantity="other">Another attempt to process your contacts will be made within %1$d days.</item>
+        <item quantity="one">നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രോസസ്സ് ചെയ്യാനുള്ള മറ്റൊരു ശ്രമം %1$d ദിവസത്തിനുള്ളിൽ നടത്തും.</item>
+        <item quantity="other">നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രോസസ്സ് ചെയ്യാനുള്ള മറ്റൊരു ശ്രമം %1$d ദിവസത്തിനുള്ളിൽ നടത്തും.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">To resolve this issue sooner, you can consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">ഈ പ്രശ്‌നം വേഗത്തിൽ പരിഹരിക്കാൻ, നിങ്ങളുടെ ഫോണിൽ ധാരാളം കോൺടാക്റ്റുകളെ സമന്വയിപ്പിക്കുന്ന കോൺടാക്റ്റുകളോ അക്കൗണ്ടുകളോ നീക്കം ചെയ്യുന്നത് നിങ്ങൾക്ക് പരിഗണിക്കാവുന്നതാണ്.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsTemporaryErrorBottomSheet_contacts_button">കോൺടാക്റ്റുകൾ തുറക്കുക</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">കോൺടാക്‌റ്റ് ആപ്പൊന്നും കണ്ടെത്തിയില്ല</string>
 
     <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">Your contacts can\'t be processed</string>
+    <string name="CdsPermanentErrorBottomSheet_title">നിങ്ങളുടെ കോൺടാക്റ്റുകൾ പ്രോസസ്സ് ചെയ്യാൻ കഴിയില്ല</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">The number of contacts on your phone exceeds the limit Signal can process. To find contacts on Signal, consider removing contacts or accounts on your phone that are syncing a lot of contacts.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">നിങ്ങളുടെ ഫോണിലെ കോൺടാക്റ്റുകളുടെ എണ്ണം Signal-ന് പ്രോസസ്സ് ചെയ്യാനാകുന്ന പരിധയിലും കൂടുതലാണ്. Signal-ൽ കോൺടാക്റ്റുകൾ കണ്ടെത്തുന്നതിന്, നിങ്ങളുടെ ഫോണിൽ ധാരാളം കോൺടാക്റ്റുകളെ സമന്വയിപ്പിക്കുന്ന കോൺടാക്റ്റുകളോ അക്കൗണ്ടുകളോ നീക്കം ചെയ്യുന്നത് പരിഗണിക്കുക.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">കൂടുതൽ അറിയുക</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsPermanentErrorBottomSheet_contacts_button">Open contacts</string>
+    <string name="CdsPermanentErrorBottomSheet_contacts_button">കോൺടാക്റ്റുകൾ തുറക്കുക</string>
     <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">No contacts app found</string>
+    <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">കോൺടാക്‌റ്റ് ആപ്പൊന്നും കണ്ടെത്തിയില്ല</string>
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">You sent %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">നിങ്ങൾ %1$s അയച്ചു</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s sent you</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s നിങ്ങൾക്ക് അയച്ചു</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
-    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Your information is private</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal does not collect or store any of your personal information when you make a donation.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">We use Stripe as our payment processor to receive your donations. We don\'t access, store, or save any of the information you provide to them.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal does not and cannot connect your donation to your Signal account.</string>
+    <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">നിങ്ങളുടെ വിവരങ്ങൾ സ്വകാര്യമാണ്</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">നിങ്ങൾ സംഭാവന നൽകുമ്പോൾ Signal നിങ്ങളുടെ വ്യക്തിപരമായ വിവരങ്ങളൊന്നും ശേഖരിക്കുകയോ സംഭരിക്കുകയോ ചെയ്യുന്നില്ല.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">നിങ്ങളുടെ സംഭാവനകൾ സ്വീകരിക്കുന്നതിന് പേയ്‌മെന്റ് പ്രോസസറായി ഞങ്ങൾ Stripe ഉപയോഗിക്കുന്നു. നിങ്ങൾ അവർക്ക് നൽകുന്ന വിവരങ്ങളൊന്നും ആക്‌സസ് ചെയ്യാനോ സംഭരിക്കാനോ സംരക്ഷിക്കാനോ ഞങ്ങൾക്കാകില്ല.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">നിങ്ങളുടെ സംഭാവന നിങ്ങളുടെ Signal അക്കൗണ്ടുമായി ബന്ധിപ്പിക്കാൻ Signal-ന് കഴിയില്ല, അങ്ങനെ ചെയ്യുകയുമില്ല.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">നിങ്ങളുടെ പിന്തുണയ്ക്ക് നന്ദി!</string>
 
     <!-- EOF -->

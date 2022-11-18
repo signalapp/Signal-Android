@@ -26,4 +26,14 @@ object SmsExportDialogs {
       }
       .show()
   }
+
+  @JvmStatic
+  fun showSmsReExportDialog(context: Context, continueCallback: Runnable) {
+    MaterialAlertDialogBuilder(context)
+      .setTitle(R.string.ReExportSmsMessagesDialogFragment__export_sms_again)
+      .setMessage(R.string.ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages)
+      .setPositiveButton(R.string.ReExportSmsMessagesDialogFragment__continue) { _, _ -> continueCallback.run() }
+      .setNegativeButton(R.string.ReExportSmsMessagesDialogFragment__cancel, null)
+      .show()
+  }
 }

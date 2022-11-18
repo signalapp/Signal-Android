@@ -356,6 +356,12 @@ public final class ContactSelectionListFragment extends LoggingFragment
     return view;
   }
 
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    constraintLayout = null;
+  }
+
   private @NonNull Bundle safeArguments() {
     return getArguments() != null ? getArguments() : new Bundle();
   }

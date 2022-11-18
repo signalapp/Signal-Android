@@ -13,7 +13,8 @@ class StoryVideoLoader(
   private val fragment: StoryPostFragment,
   private val videoPost: StoryPostState.VideoPost,
   private val videoPlayer: VideoPlayer,
-  private val callback: StoryPostFragment.Callback
+  private val callback: StoryPostFragment.Callback,
+  private val blurLoader: StoryBlurLoader
 ) : DefaultLifecycleObserver {
 
   companion object {
@@ -25,11 +26,13 @@ class StoryVideoLoader(
     videoPlayer.setVideoSource(VideoSlide(fragment.requireContext(), videoPost.videoUri, videoPost.size, false), false, TAG, videoPost.clipStart.inWholeMilliseconds, videoPost.clipEnd.inWholeMilliseconds)
     videoPlayer.hideControls()
     videoPlayer.setKeepContentOnPlayerReset(false)
+    blurLoader.load()
   }
 
   fun clear() {
     fragment.viewLifecycleOwner.lifecycle.removeObserver(this)
     videoPlayer.stop()
+    blurLoader.clear()
   }
 
   override fun onResume(lifecycleOwner: LifecycleOwner) {

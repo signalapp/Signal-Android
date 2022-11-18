@@ -52,7 +52,8 @@ object MediaIntentFactory {
   fun intentFromMediaRecord(
     context: Context,
     mediaRecord: MediaRecord,
-    leftIsRecent: Boolean
+    leftIsRecent: Boolean,
+    allMediaInRail: Boolean
   ): Intent {
     val attachment: DatabaseAttachment = mediaRecord.attachment!!
     return create(
@@ -65,6 +66,7 @@ object MediaIntentFactory {
         attachment.size,
         attachment.caption,
         leftIsRecent,
+        allMediaInRail = allMediaInRail,
         sorting = MediaDatabase.Sorting.Newest,
         isVideoGif = attachment.isVideoGif
       )

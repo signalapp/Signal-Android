@@ -44,7 +44,8 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
               videoUri = storyPostContent.uri,
               size = storyPostContent.attachment.size,
               clipStart = storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds,
-              clipEnd = storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+              clipEnd = storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds,
+              blurHash = storyPostContent.attachment.blurHash
             )
           }
         } else {

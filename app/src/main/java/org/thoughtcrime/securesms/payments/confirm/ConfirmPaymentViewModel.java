@@ -101,6 +101,12 @@ final class ConfirmPaymentViewModel extends ViewModel {
     confirmPaymentRepository.confirmPayment(store.getState(), this::handleConfirmPaymentResult);
   }
 
+  @Override
+  protected void onCleared() {
+    super.onCleared();
+    store.clear();
+  }
+
   void refreshFee() {
     feeRetry.setValue(true);
   }

@@ -17,8 +17,10 @@
             android:id="@+id/input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingEnd="48dp"
             android:gravity="top"
-            android:minLines="3" />
+            android:minLines="3"
+            tools:text="@tools:sample/lorem/random" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

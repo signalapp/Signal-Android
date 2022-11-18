@@ -75,7 +75,6 @@ import org.thoughtcrime.securesms.groups.GroupId.V1
 import org.thoughtcrime.securesms.groups.GroupId.V2
 import org.thoughtcrime.securesms.groups.v2.ProfileKeySet
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
-import org.thoughtcrime.securesms.jobs.RecipientChangedNumberJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -441,7 +440,8 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
     return getAndPossiblyMerge(serviceId = serviceId, pni = pni, e164 = e164, pniVerified = true, changeSelf = false)
   }
 
-  private fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
+  @VisibleForTesting
+  fun getAndPossiblyMerge(serviceId: ServiceId?, pni: PNI?, e164: String?, pniVerified: Boolean = false, changeSelf: Boolean = false): RecipientId {
     require(!(serviceId == null && e164 == null)) { "Must provide an ACI or E164!" }
 
     if ((serviceId is PNI) && pni != null && serviceId != pni) {
@@ -489,10 +489,6 @@ open class RecipientDatabase(context: Context, databaseHelper: SignalDatabase) :
         if (result.affectedIds.isNotEmpty() || result.oldIds.isNotEmpty()) {
           StorageSyncHelper.scheduleSyncForDataChange()
           RecipientId.clearCache()
-        }
-
-        if (result.changedNumberId != null) {
-          ApplicationDependencies.getJobManager().add(RecipientChangedNumberJob(result.changedNumberId!!))
         }
       }
     }

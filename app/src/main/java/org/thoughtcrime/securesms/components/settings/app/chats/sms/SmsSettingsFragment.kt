@@ -98,6 +98,16 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
             }
           )
 
+          clickPref(
+            title = DSLSettingsText.from(R.string.SmsSettingsFragment__export_sms_messages_again),
+            summary = DSLSettingsText.from(R.string.SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages),
+            onClick = {
+              SmsExportDialogs.showSmsReExportDialog(requireContext()) {
+                smsExportLauncher.launch(SmsExportActivity.createIntent(requireContext(), isReExport = true))
+              }
+            }
+          )
+
           dividerPref()
         }
         SmsExportState.NO_SMS_MESSAGES_IN_DATABASE -> Unit

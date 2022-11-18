@@ -25,6 +25,7 @@ import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.signal.ringrtc.HttpHeader;
 import org.signal.ringrtc.NetworkRoute;
+import org.signal.ringrtc.PeekInfo;
 import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
@@ -300,8 +301,8 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     process((s, p) -> p.handleSetRingGroup(s, ringGroup));
   }
 
-  private void receivedGroupCallPeekForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo, long deviceCount) {
-    process((s, p) -> p.handleReceivedGroupCallPeekForRingingCheck(s, groupCallRingCheckInfo, deviceCount));
+  private void receivedGroupCallPeekForRingingCheck(@NonNull GroupCallRingCheckInfo groupCallRingCheckInfo, @NonNull PeekInfo peekInfo) {
+    process((s, p) -> p.handleReceivedGroupCallPeekForRingingCheck(s, groupCallRingCheckInfo, peekInfo));
   }
 
   public void onAudioDeviceChanged(@NonNull SignalAudioManager.AudioDevice activeDevice, @NonNull Set<SignalAudioManager.AudioDevice> availableDevices) {
@@ -379,9 +380,10 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
                                                               .map(entry -> new GroupCall.GroupMemberInfo(entry.getKey(), entry.getValue().serialize()))
                                                               .collect(Collectors.toList());
 
-        callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(), credential.getTokenBytes().toByteArray(), members, peekInfo -> {
-          receivedGroupCallPeekForRingingCheck(info, peekInfo.getDeviceCount());
-        });
+        callManager.peekGroupCall(SignalStore.internalValues().groupCallingServer(),
+                                  credential.getTokenBytes().toByteArray(),
+                                  members,
+                                  peekInfo -> receivedGroupCallPeekForRingingCheck(info, peekInfo));
       } catch (IOException | VerificationFailedException | CallException e) {
         Log.e(TAG, "error peeking for ringing check", e);
       }
@@ -741,13 +743,18 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   @Override
-  public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID uuid, @NonNull CallManager.RingUpdate ringUpdate) {
+  public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
-      GroupId.V2                groupId = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      GroupDatabase.GroupRecord group   = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      GroupId.V2                groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
+      GroupDatabase.GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      Recipient                 senderRecipient = Recipient.externalPush(ServiceId.from(sender));
 
-      if (group != null && group.isActive() && !Recipient.resolved(group.getRecipientId()).isBlocked()) {
-        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, uuid, ringUpdate));
+      if (group != null &&
+          group.isActive() &&
+          !Recipient.resolved(group.getRecipientId()).isBlocked() &&
+          (!group.isAnnouncementGroup() || group.isAdmin(senderRecipient)))
+      {
+        process((s, p) -> p.handleGroupCallRingUpdate(s, new RemotePeer(group.getRecipientId()), groupId, ringId, sender, ringUpdate));
       } else {
         Log.w(TAG, "Unable to ring unknown/inactive/blocked group.");
       }

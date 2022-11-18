@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -28,8 +29,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
-  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.2";
-  private static final String STORIES_FEATURE_AVAILABLE_MS    = "misc.stories_feature_available_ms";
+  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.3";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -42,10 +42,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Arrays.asList(
-        SMS_PHASE_1_START_MS,
-        STORIES_FEATURE_AVAILABLE_MS
-    );
+    return Collections.singletonList(SMS_PHASE_1_START_MS);
   }
 
   public long getLastPrekeyRefreshTime() {
@@ -234,20 +231,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
     }
   }
 
-  public long getStoriesFeatureAvailableTimestamp() {
-    return getLong(STORIES_FEATURE_AVAILABLE_MS, 0);
-  }
-
-  public void setStoriesFeatureAvailableTimestamp(long timestamp) {
-    putLong(STORIES_FEATURE_AVAILABLE_MS, timestamp);
-  }
-
   public @NonNull SmsExportPhase getSmsExportPhase() {
-    if (getLong(SMS_PHASE_1_START_MS, 0) == 0) {
-      return SmsExportPhase.PHASE_0;
-    }
-
-    long now = System.currentTimeMillis();
-    return SmsExportPhase.getCurrentPhase(now - getLong(SMS_PHASE_1_START_MS, now));
+    return SmsExportPhase.PHASE_0;
   }
 }

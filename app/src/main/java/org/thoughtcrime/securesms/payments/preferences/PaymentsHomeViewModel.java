@@ -88,6 +88,12 @@ public class PaymentsHomeViewModel extends ViewModel {
     refreshExchangeRates(true);
   }
 
+  @Override
+  protected void onCleared() {
+    super.onCleared();
+    store.clear();
+  }
+
   private static PaymentsHomeState.PaymentsState getPaymentsState() {
     PaymentsValues paymentsValues = SignalStore.paymentsValues();
 

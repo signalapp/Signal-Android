@@ -9,6 +9,7 @@ import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.MessageDatabase
 import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -150,7 +151,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     }
 
     if (!values.hasMetConversationRequirement) {
-      if ((SignalDatabase.threads.getArchivedConversationListCount() + SignalDatabase.threads.getUnarchivedConversationListCount()) < 6) {
+      if ((SignalDatabase.threads.getArchivedConversationListCount(ConversationFilter.OFF) + SignalDatabase.threads.getUnarchivedConversationListCount(ConversationFilter.OFF)) < 6) {
         Log.i(TAG, "User does not have enough conversations to show release channel")
         values.nextScheduledCheck = System.currentTimeMillis() + RETRIEVE_FREQUENCY
         return

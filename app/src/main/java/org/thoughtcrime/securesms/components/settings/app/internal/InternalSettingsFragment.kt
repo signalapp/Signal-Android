@@ -513,6 +513,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       clickPref(
+        title = DSLSettingsText.from("Clear choose initial my story privacy state"),
+        isEnabled = true,
+        onClick = {
+          SignalStore.storyValues().userHasBeenNotifiedAboutStories = false
+        }
+      )
+
+      clickPref(
         title = DSLSettingsText.from("Clear first time navigation state"),
         isEnabled = true,
         onClick = {

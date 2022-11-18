@@ -181,6 +181,7 @@ class StoryGroupReplyFragment :
     StoryGroupReplyItem.register(adapter)
 
     composer.callback = this
+    composer.hint = getString(R.string.StoryViewerPageFragment__reply_to_group)
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.REPLIES)
 

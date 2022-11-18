@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.payments.create;
 
-import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -156,6 +155,20 @@ public class CreatePaymentFragment extends LoggingFragment {
             .show();
       }
     });
+  }
+
+  @Override
+  public void onDestroyView() {
+    super.onDestroyView();
+    constraintLayout = null;
+    addNote          = null;
+    balance          = null;
+    amount           = null;
+    exchange         = null;
+    request          = null;
+    toggle           = null;
+    note             = null;
+    pay              = null;
   }
 
   private void goBack(View v) {

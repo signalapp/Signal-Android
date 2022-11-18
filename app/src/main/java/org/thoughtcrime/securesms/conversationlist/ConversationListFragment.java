@@ -22,6 +22,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -32,6 +33,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -40,7 +43,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -68,6 +70,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -136,8 +139,6 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
-import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
-import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -191,7 +192,7 @@ import static android.app.Activity.RESULT_OK;
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
                                                                       ConversationListAdapter.OnConversationClickListener,
                                                                       ConversationListSearchAdapter.EventListener,
-                                                                      MegaphoneActionController
+                                                                      MegaphoneActionController, ConversationListAdapter.OnClearFilterClickListener
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
   public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
@@ -207,8 +208,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private RecyclerView                   list;
   private Stub<ReminderView>             reminderView;
   private Stub<UnreadPaymentsView>       paymentNotificationView;
-  private Stub<ViewGroup>                emptyState;
-  private TextView                       searchEmptyState;
   private PulsingFloatingActionButton    fab;
   private PulsingFloatingActionButton    cameraFab;
   private ConversationListViewModel      viewModel;
@@ -263,10 +262,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     coordinator             = view.findViewById(R.id.coordinator);
     list                    = view.findViewById(R.id.list);
-    searchEmptyState        = view.findViewById(R.id.search_no_results);
     bottomActionBar         = view.findViewById(R.id.conversation_list_bottom_action_bar);
     reminderView            = new Stub<>(view.findViewById(R.id.reminder));
-    emptyState              = new Stub<>(view.findViewById(R.id.empty_state));
     megaphoneContainer      = new Stub<>(view.findViewById(R.id.megaphone_container));
     paymentNotificationView = new Stub<>(view.findViewById(R.id.payments_notification));
     voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
@@ -275,6 +272,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     fab.setVisibility(View.VISIBLE);
     cameraFab.setVisibility(View.VISIBLE);
+
+    ConversationListFilterPullView pullView = view.findViewById(R.id.pull_view);
+
+    AppBarLayout appBarLayout = view.findViewById(R.id.recycler_coordinator_app_bar);
+    appBarLayout.addOnOffsetChangedListener((layout, verticalOffset) -> {
+      if (verticalOffset == 0) {
+        viewModel.setConversationFilterLatch(ConversationFilterLatch.SET);
+        pullView.setToRelease();
+      } else if (verticalOffset == -layout.getHeight()) {
+        viewModel.setConversationFilterLatch(ConversationFilterLatch.RESET);
+        pullView.setToPull();
+      }
+    });
 
     fab.show();
     cameraFab.show();
@@ -345,10 +355,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onDestroyView() {
     coordinator             = null;
     list                    = null;
-    searchEmptyState        = null;
     bottomActionBar         = null;
     reminderView            = null;
-    emptyState              = null;
     megaphoneContainer      = null;
     paymentNotificationView = null;
     voiceNotePlayerViewStub = null;
@@ -486,9 +494,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         handleInsights(); return true;
       case R.id.menu_notification_profile:
         handleNotificationProfile(); return true;
+      case R.id.menu_filter_unread_chats:
+        handleFilterUnreadChats(); return true;
     }
 
     return false;
+  }
+
+  @Override
+  public void onConfigurationChanged(@NonNull Configuration newConfig) {
+    super.onConfigurationChanged(newConfig);
+    onMegaphoneChanged(viewModel.getMegaphone().getValue());
   }
 
   private boolean isSearchOpen() {
@@ -645,23 +661,27 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           viewModel.onSearchQueryUpdated(trimmed);
 
           if (trimmed.length() > 0) {
-            if (activeAdapter != searchAdapter) {
+            if (activeAdapter != searchAdapter && list != null) {
               setAdapter(searchAdapter);
               list.removeItemDecoration(searchAdapterDecoration);
               list.addItemDecoration(searchAdapterDecoration);
             }
           } else {
             if (activeAdapter != defaultAdapter) {
-              list.removeItemDecoration(searchAdapterDecoration);
-              setAdapter(defaultAdapter);
+              if (list != null) {
+                list.removeItemDecoration(searchAdapterDecoration);
+                setAdapter(defaultAdapter);
+              }
             }
           }
         }
 
         @Override
         public void onSearchClosed() {
-          list.removeItemDecoration(searchAdapterDecoration);
-          setAdapter(defaultAdapter);
+          if (list != null) {
+            list.removeItemDecoration(searchAdapterDecoration);
+            setAdapter(defaultAdapter);
+          }
           requireCallback().onSearchClosed();
           fadeInButtonsAndMegaphone(250);
         }
@@ -691,7 +711,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
 
   private void initializeListAdapters() {
-    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), GlideApp.with(this), this);
+    defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, this);
     searchAdapter           = new ConversationListSearchAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, Locale.getDefault());
     searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false, 0);
 
@@ -727,7 +747,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     }
 
     if (adapter instanceof ConversationListAdapter) {
-      ((ConversationListAdapter) adapter).setPagingController(viewModel.getPagingController());
+      viewModel.getPagingController()
+               .observe(getViewLifecycleOwner(),
+                        controller -> ((ConversationListAdapter) adapter).setPagingController(controller));
     }
 
     list.setAdapter(adapter);
@@ -826,17 +848,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void onSearchResultChanged(@Nullable SearchResult result) {
     result = result != null ? result : SearchResult.EMPTY;
     searchAdapter.updateResults(result);
-
-    if (result.isEmpty() && activeAdapter == searchAdapter) {
-      searchEmptyState.setText(getString(R.string.SearchFragment_no_results, result.getQuery()));
-      searchEmptyState.setVisibility(View.VISIBLE);
-    } else {
-      searchEmptyState.setVisibility(View.GONE);
-    }
   }
 
   private void onMegaphoneChanged(@Nullable Megaphone megaphone) {
-    if (megaphone == null || isArchived()) {
+    if (megaphone == null || isArchived() || getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
       if (megaphoneContainer.resolved()) {
         megaphoneContainer.get().setVisibility(View.GONE);
         megaphoneContainer.get().removeAllViews();
@@ -964,6 +979,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void handleNotificationProfile() {
     NotificationProfileSelectionFragment.show(getParentFragmentManager());
+  }
+
+  private void handleFilterUnreadChats() {
+    viewModel.toggleUnreadChatsFilter();
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -1173,21 +1192,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   void updateEmptyState(boolean isConversationEmpty) {
     if (isConversationEmpty) {
       Log.i(TAG, "Received an empty data set.");
-      list.setVisibility(View.INVISIBLE);
-      emptyState.get().setVisibility(View.VISIBLE);
       fab.startPulse(3 * 1000);
       cameraFab.startPulse(3 * 1000);
 
       SignalStore.onboarding().setShowNewGroup(true);
       SignalStore.onboarding().setShowInviteFriends(true);
     } else {
-      list.setVisibility(View.VISIBLE);
       fab.stopPulse();
       cameraFab.stopPulse();
-
-      if (emptyState.resolved()) {
-        emptyState.get().setVisibility(View.GONE);
-      }
     }
   }
 
@@ -1454,6 +1466,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         ConversationUtil.refreshRecipientShortcuts();
       }
     }.executeOnExecutor(SignalExecutors.BOUNDED, threadId);
+  }
+
+  @Override
+  public void onClearFilterClick() {
+    viewModel.toggleUnreadChatsFilter();
   }
 
   private class PaymentNotificationListener implements UnreadPaymentsView.Listener {

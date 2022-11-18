@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.MediaUtil
+import java.util.Objects
 
 /**
  * Each story is made up of a collection of posts
@@ -44,5 +45,13 @@ data class StoryPost(
     abstract fun isVideo(): Boolean
 
     abstract fun isText(): Boolean
+
+    override fun equals(other: Any?): Boolean {
+      return other != null && other::class.java == this::class.java && other.hashCode() == hashCode()
+    }
+
+    override fun hashCode(): Int {
+      return Objects.hash(uri, isVideo(), isText(), transferState)
+    }
   }
 }

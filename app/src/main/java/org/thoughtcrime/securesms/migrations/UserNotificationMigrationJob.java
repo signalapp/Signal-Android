@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -76,8 +77,8 @@ public class UserNotificationMigrationJob extends MigrationJob {
 
     ThreadDatabase threadDatabase = SignalDatabase.threads();
 
-    int threadCount = threadDatabase.getUnarchivedConversationListCount() +
-                      threadDatabase.getArchivedConversationListCount();
+    int threadCount = threadDatabase.getUnarchivedConversationListCount(ConversationFilter.OFF) +
+                      threadDatabase.getArchivedConversationListCount(ConversationFilter.OFF);
 
     if (threadCount >= 3) {
       Log.w(TAG, "Already have 3 or more threads. Skipping.");
