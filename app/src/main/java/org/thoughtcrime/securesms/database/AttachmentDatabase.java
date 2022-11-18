@@ -356,28 +356,27 @@ public class AttachmentDatabase extends Database {
   public boolean deleteAttachmentsForMessage(long mmsId) {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: " + mmsId);
 
-    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
-    Cursor         cursor   = null;
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
+    db.beginTransaction();
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
-                              new String[] {mmsId+""}, null, null, null);
-
-      while (cursor != null && cursor.moveToNext()) {
-        deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
-                               CursorUtil.requireString(cursor, CONTENT_TYPE),
-                               new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
-                                                CursorUtil.requireLong(cursor, UNIQUE_ID)));
+      try (Cursor cursor = db.query(TABLE_NAME, new String[] { DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID }, MMS_ID + " = ?", new String[] { mmsId + "" }, null, null, null)) {
+        while (cursor.moveToNext()) {
+          deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
+                                 CursorUtil.requireString(cursor, CONTENT_TYPE),
+                                 new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
+                                                  CursorUtil.requireLong(cursor, UNIQUE_ID)));
+        }
       }
+
+      int deleteCount = db.delete(TABLE_NAME, MMS_ID + " = ?", new String[] { mmsId + "" });
+      notifyAttachmentListeners();
+      db.setTransactionSuccessful();
+
+      return deleteCount > 0;
     } finally {
-      if (cursor != null)
-        cursor.close();
+      db.endTransaction();
     }
-
-    int deleteCount = database.delete(TABLE_NAME, MMS_ID + " = ?", new String[] {mmsId + ""});
-    notifyAttachmentListeners();
-
-    return deleteCount > 0;
   }
 
   /**
@@ -410,69 +409,68 @@ public class AttachmentDatabase extends Database {
   public void deleteAttachmentFilesForViewOnceMessage(long mmsId) {
     Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] mmsId: " + mmsId);
 
-    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
-    Cursor         cursor   = null;
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
+    db.beginTransaction();
     try {
-      cursor = database.query(TABLE_NAME, new String[] {DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID}, MMS_ID + " = ?",
-          new String[] {mmsId+""}, null, null, null);
-
-      while (cursor != null && cursor.moveToNext()) {
-        deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
-                               CursorUtil.requireString(cursor, CONTENT_TYPE),
-                               new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
-                                                CursorUtil.requireLong(cursor, UNIQUE_ID)));
+      try (Cursor cursor = db.query(TABLE_NAME, new String[] { DATA, CONTENT_TYPE, ROW_ID, UNIQUE_ID }, MMS_ID + " = ?", new String[] { mmsId + "" }, null, null, null)) {
+        while (cursor != null && cursor.moveToNext()) {
+          deleteAttachmentOnDisk(CursorUtil.requireString(cursor, DATA),
+                                 CursorUtil.requireString(cursor, CONTENT_TYPE),
+                                 new AttachmentId(CursorUtil.requireLong(cursor, ROW_ID),
+                                                  CursorUtil.requireLong(cursor, UNIQUE_ID)));
+        }
       }
+
+      ContentValues values = new ContentValues();
+      values.put(DATA, (String) null);
+      values.put(DATA_RANDOM, (byte[]) null);
+      values.put(DATA_HASH, (String) null);
+      values.put(FILE_NAME, (String) null);
+      values.put(CAPTION, (String) null);
+      values.put(SIZE, 0);
+      values.put(WIDTH, 0);
+      values.put(HEIGHT, 0);
+      values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
+      values.put(VISUAL_HASH, (String) null);
+      values.put(CONTENT_TYPE, MediaUtil.VIEW_ONCE);
+
+      db.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] { mmsId + "" });
+      notifyAttachmentListeners();
+
+      long threadId = SignalDatabase.mms().getThreadIdForMessage(mmsId);
+      if (threadId > 0) {
+        notifyConversationListeners(threadId);
+      }
+
+      db.setTransactionSuccessful();
     } finally {
-      if (cursor != null)
-        cursor.close();
-    }
-
-    ContentValues values = new ContentValues();
-    values.put(DATA, (String) null);
-    values.put(DATA_RANDOM, (byte[]) null);
-    values.put(DATA_HASH, (String) null);
-    values.put(FILE_NAME, (String) null);
-    values.put(CAPTION, (String) null);
-    values.put(SIZE, 0);
-    values.put(WIDTH, 0);
-    values.put(HEIGHT, 0);
-    values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE);
-    values.put(VISUAL_HASH, (String) null);
-    values.put(CONTENT_TYPE, MediaUtil.VIEW_ONCE);
-
-    database.update(TABLE_NAME, values, MMS_ID + " = ?", new String[] {mmsId + ""});
-    notifyAttachmentListeners();
-
-    long threadId = SignalDatabase.mms().getThreadIdForMessage(mmsId);
-    if (threadId > 0) {
-      notifyConversationListeners(threadId);
+      db.endTransaction();
     }
   }
 
   public void deleteAttachment(@NonNull AttachmentId id) {
     Log.d(TAG, "[deleteAttachment] attachmentId: " + id);
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
 
-    SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
+    db.beginTransaction();
+    try {
+      try (Cursor cursor = db.query(TABLE_NAME, new String[]{DATA, CONTENT_TYPE}, PART_ID_WHERE, id.toStrings(), null, null, null)) {
+        if (!cursor.moveToNext()) {
+          Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
+          db.setTransactionSuccessful();
+          return;
+        }
+        String data        = CursorUtil.requireString(cursor, DATA);
+        String contentType = CursorUtil.requireString(cursor, CONTENT_TYPE);
 
-    try (Cursor cursor = database.query(TABLE_NAME,
-                                        new String[]{DATA, CONTENT_TYPE},
-                                        PART_ID_WHERE,
-                                        id.toStrings(),
-                                        null,
-                                        null,
-                                        null))
-    {
-      if (cursor == null || !cursor.moveToNext()) {
-        Log.w(TAG, "Tried to delete an attachment, but it didn't exist.");
-        return;
+        db.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
+        deleteAttachmentOnDisk(data, contentType, id);
+        notifyAttachmentListeners();
+        db.setTransactionSuccessful();
       }
-      String data        = CursorUtil.requireString(cursor, DATA);
-      String contentType = CursorUtil.requireString(cursor, CONTENT_TYPE);
-
-      database.delete(TABLE_NAME, PART_ID_WHERE, id.toStrings());
-      deleteAttachmentOnDisk(data, contentType, id);
-      notifyAttachmentListeners();
+    } finally {
+      db.endTransaction();
     }
   }
 
@@ -532,6 +530,12 @@ public class AttachmentDatabase extends Database {
                                       @Nullable String contentType,
                                       @NonNull AttachmentId attachmentId)
   {
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+    if (!db.inTransaction()) {
+      throw new IllegalStateException("Must be in a transaction!");
+    }
+
     DataUsageResult dataUsage = getAttachmentFileUsages(data, attachmentId);
 
     if (dataUsage.hasStrongReference()) {
@@ -549,22 +553,17 @@ public class AttachmentDatabase extends Database {
 
         if (removableWeakReferences.size() > 0) {
           Log.i(TAG, String.format(Locale.US, "[deleteAttachmentOnDisk] Deleting %d weak references for %s", removableWeakReferences.size(), data));
-          SQLiteDatabase database     = databaseHelper.getSignalWritableDatabase();
-          int            deletedCount = 0;
-          database.beginTransaction();
-          try {
-            for (AttachmentId weakReference : removableWeakReferences) {
-              Log.i(TAG, String.format("[deleteAttachmentOnDisk] Clearing weak reference for %s %s", data, weakReference));
-              ContentValues values = new ContentValues();
-              values.putNull(DATA);
-              values.putNull(DATA_RANDOM);
-              values.putNull(DATA_HASH);
-              deletedCount += database.update(TABLE_NAME, values, PART_ID_WHERE, weakReference.toStrings());
-            }
-            database.setTransactionSuccessful();
-          } finally {
-            database.endTransaction();
+          int deletedCount = 0;
+
+          for (AttachmentId weakReference : removableWeakReferences) {
+            Log.i(TAG, String.format("[deleteAttachmentOnDisk] Clearing weak reference for %s %s", data, weakReference));
+            ContentValues values = new ContentValues();
+            values.putNull(DATA);
+            values.putNull(DATA_RANDOM);
+            values.putNull(DATA_HASH);
+            deletedCount += db.update(TABLE_NAME, values, PART_ID_WHERE, weakReference.toStrings());
           }
+
           String logMessage = String.format(Locale.US, "[deleteAttachmentOnDisk] Cleared %d/%d weak references for %s", deletedCount, removableWeakReferences.size(), data);
           if (deletedCount != removableWeakReferences.size()) {
             Log.w(TAG, logMessage);
@@ -583,9 +582,14 @@ public class AttachmentDatabase extends Database {
   }
 
   private @NonNull DataUsageResult getAttachmentFileUsages(@Nullable String data, @NonNull AttachmentId attachmentId) {
+    SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
+
+    if (!database.inTransaction()) {
+      throw new IllegalArgumentException("Must be in a transaction!");
+    }
+
     if (data == null) return DataUsageResult.NOT_IN_USE;
 
-    SQLiteDatabase     database  = databaseHelper.getSignalReadableDatabase();
     String             selection = DATA + " = ? AND " + UNIQUE_ID + " != ? AND " + ROW_ID + " != ?";
     String[]           args      = {data, Long.toString(attachmentId.getUniqueId()), Long.toString(attachmentId.getRowId())};
     List<AttachmentId> quoteRows = new LinkedList<>();
@@ -1149,16 +1153,24 @@ public class AttachmentDatabase extends Database {
         throw new IllegalStateException("Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
       }
 
-      SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
-      Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(database, hash, attachmentId);
-      if (sharedDataInfo.isPresent()) {
-        Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
-        if (!destination.equals(sharedDataInfo.get().file) && destination.delete()) {
-          Log.i(TAG, "[setAttachmentData] Deleted original file. " + destination);
+      SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+
+      db.beginTransaction();
+      try {
+        Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(db, hash, attachmentId);
+        if (sharedDataInfo.isPresent()) {
+          Log.i(TAG, "[setAttachmentData] Duplicate data file found! " + sharedDataInfo.get().file.getAbsolutePath());
+          if (!destination.equals(sharedDataInfo.get().file) && destination.delete()) {
+            Log.i(TAG, "[setAttachmentData] Deleted original file. " + destination);
+          }
+          db.setTransactionSuccessful();
+          return sharedDataInfo.get();
+        } else {
+          Log.i(TAG, "[setAttachmentData] No matching attachment data found. " + destination.getAbsolutePath());
+          db.setTransactionSuccessful();
         }
-        return sharedDataInfo.get();
-      } else {
-        Log.i(TAG, "[setAttachmentData] No matching attachment data found. " + destination.getAbsolutePath());
+      } finally {
+        db.endTransaction();
       }
 
       return new DataInfo(destination, length, out.first, hash);
@@ -1171,6 +1183,9 @@ public class AttachmentDatabase extends Database {
                                                                        @NonNull String hash,
                                                                        @Nullable AttachmentId excludedAttachmentId)
   {
+    if (!database.inTransaction()) {
+      throw new IllegalArgumentException("Must be in a transaction!");
+    }
 
     Pair<String, String[]> selectorArgs = buildSharedFileSelectorArgs(hash, excludedAttachmentId);
     try (Cursor cursor = database.query(TABLE_NAME,
