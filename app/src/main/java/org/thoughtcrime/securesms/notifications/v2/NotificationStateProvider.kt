@@ -131,7 +131,12 @@ object NotificationStateProvider {
   ) {
     private val isGroupStoryReply: Boolean = thread.groupStoryId != null
     private val isUnreadIncoming: Boolean = isUnreadMessage && !messageRecord.isOutgoing && !isGroupStoryReply
-    private val isNotifiableGroupStoryMessage: Boolean = isUnreadMessage && !messageRecord.isOutgoing && isGroupStoryReply && (isParentStorySentBySelf || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
+
+    private val isNotifiableGroupStoryMessage: Boolean =
+      isUnreadMessage &&
+        !messageRecord.isOutgoing &&
+        isGroupStoryReply &&
+        (isParentStorySentBySelf || messageRecord.hasSelfMention() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
       return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage) {
