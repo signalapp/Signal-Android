@@ -1047,7 +1047,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   private AlertDialog.Builder buildRemoteDeleteConfirmationDialog(Set<MessageRecord> messageRecords) {
-    Context             context       = requireActivity();
     int                 messagesCount = messageRecords.size();
     AlertDialog.Builder builder       = new MaterialAlertDialogBuilder(getActivity());
 
@@ -1067,7 +1066,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
             if (messageRecord.isMms()) {
               threadDeleted = SignalDatabase.mms().deleteMessage(messageRecord.getId());
-              handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord)messageRecord);
+              handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord) messageRecord);
             } else {
               threadDeleted = SignalDatabase.sms().deleteMessage(messageRecord.getId());
             }
@@ -1115,7 +1114,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         for (MessageRecord message : messageRecords) {
           MessageSender.sendRemoteDelete(message.getId(), message.isMms());
           if (message.isMms()){
-            handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord)message);
+            handleStopAudioMessageAfterDeletion((MediaMmsMessageRecord) message);
           }
         }
       });
