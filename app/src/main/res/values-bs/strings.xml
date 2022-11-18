@@ -5687,9 +5687,9 @@
 
     <!-- ReExportSmsMessagesDialogFragment -->
     <!-- Action button to re-export messages -->
-    <string name="ReExportSmsMessagesDialogFragment__continue">Continue</string>
+    <string name="ReExportSmsMessagesDialogFragment__continue">Nastavi</string>
     <!-- Action button to cancel re-export process -->
-    <string name="ReExportSmsMessagesDialogFragment__cancel">Cancel</string>
+    <string name="ReExportSmsMessagesDialogFragment__cancel">Otkaži</string>
     <!-- Title of dialog -->
     <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
     <!-- Message of dialog -->
@@ -5804,7 +5804,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kreditna ili debitna kartica</string>
     <!-- Sheet summary when giving a gift -->
-    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Send a gift badge</string>
+    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">Pošalji značku kao poklon</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Otkazivanje…</string>
@@ -5859,7 +5859,7 @@
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
     <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
     <!-- Button label to dismiss sheet -->
-    <string name="GroupStoryEducationSheet__next">Next</string>
+    <string name="GroupStoryEducationSheet__next">Dalje</string>
 
     <!-- EOF -->
 
