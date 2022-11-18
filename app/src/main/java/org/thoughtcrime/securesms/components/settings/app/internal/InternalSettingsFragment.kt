@@ -357,11 +357,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       sectionHeaderPref(DSLSettingsText.from("Group call server"))
 
       radioPref(
-        title = DSLSettingsText.from("Default"),
+        title = DSLSettingsText.from("Production server"),
         summary = DSLSettingsText.from(BuildConfig.SIGNAL_SFU_URL),
         isChecked = state.callingServer == BuildConfig.SIGNAL_SFU_URL,
         onClick = {
-          viewModel.setInternalGroupCallingServer(null)
+          viewModel.setInternalGroupCallingServer(BuildConfig.SIGNAL_SFU_URL)
         }
       )
 

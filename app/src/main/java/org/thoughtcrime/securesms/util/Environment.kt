@@ -17,4 +17,11 @@ object Environment {
       publishableKey = BuildConfig.STRIPE_PUBLISHABLE_KEY
     )
   }
+
+  object Calling {
+    @JvmStatic
+    fun defaultSfuUrl(): String {
+      return if (IS_STAGING) BuildConfig.SIGNAL_STAGING_SFU_URL else BuildConfig.SIGNAL_SFU_URL
+    }
+  }
 }
