@@ -174,14 +174,20 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
   }
 
-  // We need to get the status and payment id from the intent.
-
+  /**
+   * Note: There seem to be times when PaymentIntent does not return a status. In these cases, we assume
+   *       that we are successful and proceed as normal. If the payment didn't actually succeed, then we
+   *       expect an error later in the chain to inform us of this.
+   */
   fun getStatusAndPaymentMethodId(stripeIntentAccessor: StripeIntentAccessor): Single<StatusAndPaymentMethodId> {
     return Single.fromCallable {
       when (stripeIntentAccessor.objectType) {
         StripeIntentAccessor.ObjectType.NONE -> StatusAndPaymentMethodId(StripeIntentStatus.SUCCEEDED, null)
         StripeIntentAccessor.ObjectType.PAYMENT_INTENT -> stripeApi.getPaymentIntent(stripeIntentAccessor).let {
-          StatusAndPaymentMethodId(it.status, it.paymentMethod)
+          if (it.status == null) {
+            Log.d(TAG, "Returned payment intent had a null status.", true)
+          }
+          StatusAndPaymentMethodId(it.status ?: StripeIntentStatus.SUCCEEDED, it.paymentMethod)
         }
         StripeIntentAccessor.ObjectType.SETUP_INTENT -> stripeApi.getSetupIntent(stripeIntentAccessor).let {
           StatusAndPaymentMethodId(it.status, it.paymentMethod)

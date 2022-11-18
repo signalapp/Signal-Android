@@ -13,6 +13,6 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class StripePaymentIntent @JsonCreator constructor(
   @JsonProperty("id") val id: String,
   @JsonProperty("client_secret") val clientSecret: String,
-  @JsonProperty("status") val status: StripeIntentStatus,
+  @JsonProperty("status") val status: StripeIntentStatus?,
   @JsonProperty("payment_method") val paymentMethod: String?
 )
