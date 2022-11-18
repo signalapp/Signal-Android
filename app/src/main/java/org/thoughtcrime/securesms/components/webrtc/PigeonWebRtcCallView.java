@@ -17,21 +17,26 @@ import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
+import org.thoughtcrime.securesms.components.AccessibleToggleButton;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState;
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage;
 
 public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusChangeListener{
 
     private static final String TAG = Log.tag(PigeonWebRtcCallView.class);
-
+    private TextView participants;
+    private TextView startCall;
     private TextView volumeToggle;
     private WebRtcCallMenuText speakerToggle;
     private WebRtcCallMenuText micToggle;
     private TextView answer;
     private TextView hangup;
     private TextView decline;
+
+    private WebRtcCallMenuText ringToggle;
 
     private LinearLayout expandedInfo;
     private TextView recipientName;
@@ -81,6 +86,8 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         recipientName = findViewById(R.id.call_screen_recipient_name);
         recipientNumber = findViewById(R.id.call_screen_recipient_number);
 
+        participants = findViewById(R.id.call_screen_participants_toggle);
+        startCall = findViewById(R.id.call_screen_start_call_toggle);
         volumeToggle = findViewById(R.id.call_screen_volume_toggle);
         speakerToggle = findViewById(R.id.call_screen_speaker_toggle);
         micToggle = findViewById(R.id.call_screen_audio_mic_toggle);
@@ -89,6 +96,7 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         answer = findViewById(R.id.call_screen_answer_call);
         hangup = findViewById(R.id.call_screen_end_call);
         decline = findViewById(R.id.call_screen_decline_call);
+        ringToggle = findViewById(R.id.call_screen_audio_ring_toggle_label);
 
         Resources res = getContext().getResources();
         mFocusHeight = 56;//res.getDimensionPixelSize(R.dimen.focus_item_height);
@@ -100,7 +108,16 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         mFocusedColor = res.getColor(R.color.focused_text_color);
         mNormalColor = res.getColor(R.color.normal_text_color);
 
+        participants.setOnClickListener(unused -> showParticipantsList());
+        startCall.setOnClickListener(v -> runIfNonNull(controlsListener, listener -> listener.onStartCall(false)));
         volumeToggle.setOnClickListener(v -> runIfNonNull(controlsListener, ControlsListener::onVolumePressed));
+
+        ringToggle.setOnTextChangedListener(new OnTextChangedListener() {
+            @Override public void textChanged(boolean on) {
+                runIfNonNull(controlsListener, listener -> listener.onRingGroupChanged(on, true));
+            }
+        });
+        ringToggle.setChecked(true);
 
         speakerToggle.setOnTextChangedListener(new OnTextChangedListener() {
             @Override
@@ -124,9 +141,12 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
 
         expandedInfo.setOnFocusChangeListener(this);
 
+        participants.setOnFocusChangeListener(this);
+        startCall.setOnFocusChangeListener(this);
         volumeToggle.setOnFocusChangeListener(this);
         speakerToggle.setOnFocusChangeListener(this);
         micToggle.setOnFocusChangeListener(this);
+        ringToggle.setOnFocusChangeListener(this);
         hangup.setOnFocusChangeListener(this);
         answer.setOnFocusChangeListener(this);
         decline.setOnFocusChangeListener(this);
@@ -211,7 +231,7 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         }
     }
 
-    public void updateCallParticipants(@NonNull CallParticipantsState state) {
+    public void updateCallParticipants(@NonNull CallParticipantsViewState state) {
     }
 
     public void setRecipient(@NonNull Recipient recipient) {
@@ -276,12 +296,23 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
     }
 
     public void setWebRtcControls(@NonNull WebRtcControls webRtcControls) {
+        if (webRtcControls.displayStartCallControls()) {
+            startCall.setVisibility(View.VISIBLE);
+            startCall.setText(webRtcControls.getStartCallButtonText());
+            startCall.setEnabled(webRtcControls.isStartCallEnabled());
+            label.setText(R.string.MessageRecord_group_call);
+        }
+
+        if (webRtcControls.displayRingToggle()) {
+            ringToggle.setVisibility(View.VISIBLE);
+        }
+
         if (webRtcControls.displayErrorControls()) {
              controlsListener.onCancelStartCall();
         }
 
         if (webRtcControls.displayIncomingCallButtons()) {
-            status.setText(R.string.WebRtcCallView__signal_voice_call);
+            status.setText(R.string.WebRtcCallView__signal_call);
 
             answer.setVisibility(View.VISIBLE);
             decline.setVisibility(View.VISIBLE);
@@ -299,6 +330,10 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         if (webRtcControls.displayEndCall()) {
             answer.setVisibility(View.GONE);
             decline.setVisibility(View.GONE);
+            startCall.setVisibility(View.GONE);
+            if(label.getText().equals(getContext().getString(R.string.MessageRecord_group_call))) {
+                participants.setVisibility(View.VISIBLE);
+            }
             hangup.setVisibility(View.VISIBLE);
         }
 
@@ -318,6 +353,19 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
     }
 
     public void hideSpeakerViewHint() {
+    }
+
+    private boolean showParticipantsList() {
+        controlsListener.onShowParticipantsList();
+        return true;
+    }
+
+    public void setRingGroup(boolean shouldRingGroup) {
+        ringToggle.setChecked(shouldRingGroup);
+    }
+
+    public void enableRingGroup(boolean enabled) {
+        ringToggle.setActivated(enabled);
     }
 
     public interface ControlsListener {
@@ -354,5 +402,7 @@ public class PigeonWebRtcCallView extends FrameLayout implements View.OnFocusCha
         void onPageChanged(@NonNull CallParticipantsState.SelectedPage page);
 
         void onLocalPictureInPictureClicked();
+
+        void onRingGroupChanged(boolean ringGroup, boolean ringingAllowed);
     }
 }

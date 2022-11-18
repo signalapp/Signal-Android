@@ -13,4 +13,4 @@
     android:textAppearance="?android:attr/textAppearanceListItem"
     android:textColor="@color/grey"
     android:theme="@style/Signal.Widget.CompoundButton.RadioButton"
-    tools:text="Pick me!" />
+    tools:text="Pick me!"/>

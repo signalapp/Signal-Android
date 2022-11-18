@@ -60,6 +60,13 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
     }
 
     @Override
+    public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
+      int subAdapterOffset = mergeAdapter.getSubAdapterFirstGlobalPosition(adapter);
+
+      mergeAdapter.notifyItemRangeChanged(subAdapterOffset + positionStart, itemCount, payload);
+    }
+
+    @Override
     public void onItemRangeChanged(int positionStart, int itemCount) {
       int subAdapterOffset = mergeAdapter.getSubAdapterFirstGlobalPosition(adapter);
 
@@ -249,6 +256,14 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
   }
 
   @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+    ChildAdapterPositionPair childAdapterPositionPair = getLocalPosition(position);
+    RecyclerView.Adapter adapter = childAdapterPositionPair.getAdapter();
+    //noinspection unchecked
+    adapter.onBindViewHolder(holder, childAdapterPositionPair.localPosition, payloads);
+  }
+
+  @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
     ChildAdapterPositionPair childAdapterPositionPair = getLocalPosition(position);
     RecyclerView.Adapter adapter = childAdapterPositionPair.getAdapter();
@@ -293,5 +308,5 @@ public class RecyclerViewConcatenateAdapter extends RecyclerView.Adapter<Recycle
 
     return count;
   }
-  
+
 }

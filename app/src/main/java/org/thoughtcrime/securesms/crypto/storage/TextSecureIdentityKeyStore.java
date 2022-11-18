@@ -2,6 +2,8 @@ package org.thoughtcrime.securesms.crypto.storage;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
@@ -25,7 +27,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
   private static final int TIMESTAMP_THRESHOLD_SECONDS = 5;
 
-  private static final String TAG = TextSecureIdentityKeyStore.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecureIdentityKeyStore.class);
   private static final Object LOCK = new Object();
 
   private final Context context;
@@ -44,20 +46,20 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
+  public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
       IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      Recipient                recipient        = Recipient.external(context, address.getName());
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipient.getId());
+      RecipientId              recipientId      = RecipientId.fromExternalPush(address.getName());
+      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipientId);
 
       if (!identityRecord.isPresent()) {
         Log.i(TAG, "Saving new identity...");
-        identityDatabase.saveIdentity(recipient.getId(), identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
-        return false;
+        identityDatabase.saveIdentity(recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
+        return SaveResult.NEW;
       }
 
       if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
-        Log.i(TAG, "Replacing existing identity...");
+        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
         if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
@@ -68,25 +70,26 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
           verifiedStatus = VerifiedStatus.DEFAULT;
         }
 
-        identityDatabase.saveIdentity(recipient.getId(), identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
-        IdentityUtil.markIdentityUpdate(context, recipient.getId());
-        SessionUtil.archiveSiblingSessions(context, address);
-        return true;
+        identityDatabase.saveIdentity(recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
+        IdentityUtil.markIdentityUpdate(context, recipientId);
+        SessionUtil.archiveSiblingSessions(address);
+        DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
+        return SaveResult.UPDATE;
       }
 
       if (isNonBlockingApprovalRequired(identityRecord.get())) {
         Log.i(TAG, "Setting approval status...");
-        identityDatabase.setApproval(recipient.getId(), nonBlockingApproval);
-        return false;
+        identityDatabase.setApproval(recipientId, nonBlockingApproval);
+        return SaveResult.NON_BLOCKING_APPROVAL_REQUIRED;
       }
 
-      return false;
+      return SaveResult.NO_CHANGE;
     }
   }
 
   @Override
   public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, false);
+    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
   }
 
   @Override
@@ -95,7 +98,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
       if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
         IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
         RecipientId      ourRecipientId   = Recipient.self().getId();
-        RecipientId      theirRecipientId = Recipient.external(context, address.getName()).getId();
+        RecipientId      theirRecipientId = RecipientId.fromExternalPush(address.getName());
 
         if (ourRecipientId.equals(theirRecipientId)) {
           return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
@@ -120,7 +123,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
     if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
-      RecipientId              recipientId = Recipient.external(context, address.getName()).getId();
+      RecipientId              recipientId = RecipientId.fromExternalPush(address.getName());
       Optional<IdentityRecord> record      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
 
       if (record.isPresent()) {
@@ -141,7 +144,7 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
 
     if (!identityKey.equals(identityRecord.get().getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match...");
+      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.get().getIdentityKey().hashCode());
       return false;
     }
 
@@ -162,5 +165,12 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return !identityRecord.isFirstUse() &&
            System.currentTimeMillis() - identityRecord.getTimestamp() < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS) &&
            !identityRecord.isApprovedNonBlocking();
+  }
+
+  public enum SaveResult {
+    NEW,
+    UPDATE,
+    NON_BLOCKING_APPROVAL_REQUIRED,
+    NO_CHANGE
   }
 }

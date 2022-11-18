@@ -11,10 +11,12 @@
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>Bulgarian български</item>
 <!-- my --><item>Burmese ဗမာစကား</item>
+<!-- yue --><item>Cantonese (Traditional) 粵語 (繁體)</item>
 <!-- ca --><item>Català</item>
 <!-- cs --><item>Čeština</item>
 <!-- zh_CN --><item>Chinese (Simplified) 中文 (简体)</item>
 <!-- zh_TW --><item>Chinese (Traditional) 中文 (繁體)</item>
+<!-- zh_HK --><item>Chinese (Traditional, Hong Kong) 中文 (香港)</item>
 <!-- cy --><item>Cymraeg</item>
 <!-- da --><item>Dansk</item>
 <!-- de --><item>Deutsch</item>
@@ -51,6 +53,7 @@
 <!-- nl --><item>Nederlands</item>
 <!-- nb --><item>Norsk (bokmål)</item>
 <!-- nn --><item>Norsk (nynorsk)</item>
+<!-- or --><item>Odia ଓଡ଼ିଆ</item>
 <!-- fa --><item>Persian فارسی</item>
 <!-- pl --><item>Polski</item>
 <!-- pt --><item>Português</item>
@@ -67,6 +70,7 @@
 <!-- fi --><item>Suomi</item>
 <!-- sv --><item>Svenska</item>
 <!-- ta --><item>Tamil தமிழ்</item>
+<!-- kab --><item>Taqbaylit</item>
 <!-- te --><item>Telugu తెలుగు</item>
 <!-- th --><item>Thai ภาษาไทย</item>
 <!-- tr --><item>Türkçe</item>
@@ -85,11 +89,13 @@
       <item>bs</item>
       <item>bg</item>
       <item>my</item>
+      <item>yue</item>
       <item>ca</item>
       <item>cs</item>
       <item>zh_CN</item>
       <item>zh_TW</item>
-      <item>cy</item> 
+      <item>zh_HK</item>
+      <item>cy</item>
       <item>da</item>
       <item>de</item>
       <item>et</item>
@@ -125,6 +131,7 @@
       <item>nl</item>
       <item>nb</item>
       <item>nn</item>
+      <item>or</item>
       <item>fa</item>
       <item>pl</item>
       <item>pt</item>
@@ -141,6 +148,7 @@
       <item>fi</item>
       <item>sv</item>
       <item>ta</item>
+      <item>kab</item>
       <item>te</item>
       <item>th</item>
       <item>tr</item>
@@ -224,10 +232,10 @@
 
   <string-array name="mute_durations">
       <item>@string/arrays__mute_for_one_hour</item>
-      <item>@string/arrays__mute_for_two_hours</item>
+      <item>@string/arrays__mute_for_eight_hours</item>
       <item>@string/arrays__mute_for_one_day</item>
       <item>@string/arrays__mute_for_seven_days</item>
-      <item>@string/arrays__mute_for_one_year</item>
+      <item>@string/arrays__always</item>
   </string-array>
 
   <string-array name="recipient_vibrate_entries">
@@ -277,8 +285,8 @@
 
   <string-array name="pref_data_and_storage_call_bandwidth_values">
       <item>@string/preferences_data_and_storage__never</item>
-      <item>@string/preferences_data_and_storage__cellular_only</item>
-      <item>@string/preferences_data_and_storage__wifi_and_cellular</item>
+      <item>@string/preferences_data_and_storage__mobile_data_only</item>
+      <item>@string/preferences_data_and_storage__wifi_and_mobile_data</item>
   </string-array>
 
   <string-array name="pref_media_download_roaming_default" />
@@ -352,6 +360,36 @@
         <item>@string/MediaOverviewActivity_Storage_used</item>
     </string-array>
 
+    <string-array name="ExpireTimerSettingsFragment__labels">
+        <item>@string/ExpireTimerSettingsFragment__off</item>
+        <item>@string/ExpireTimerSettingsFragment__4_weeks</item>
+        <item>@string/ExpireTimerSettingsFragment__1_week</item>
+        <item>@string/ExpireTimerSettingsFragment__1_day</item>
+        <item>@string/ExpireTimerSettingsFragment__8_hours</item>
+        <item>@string/ExpireTimerSettingsFragment__1_hour</item>
+        <item>@string/ExpireTimerSettingsFragment__5_minutes</item>
+        <item>@string/ExpireTimerSettingsFragment__30_seconds</item>
+    </string-array>
+
+    <integer-array name="ExpireTimerSettingsFragment__values">
+        <item>0</item>
+        <item>2419200</item>
+        <item>604800</item>
+        <item>86400</item>
+        <item>28800</item>
+        <item>3600</item>
+        <item>300</item>
+        <item>30</item>
+    </integer-array>
+
+    <string-array name="CustomExpireTimerSelectorView__unit_labels">
+        <item>@string/CustomExpireTimerSelectorView__second</item>
+        <item>@string/CustomExpireTimerSelectorView__minute</item>
+        <item>@string/CustomExpireTimerSelectorView__hour</item>
+        <item>@string/CustomExpireTimerSelectorView__day</item>
+        <item>@string/CustomExpireTimerSelectorView__week</item>
+    </string-array>
+
     <string-array name="conversation_list_item_options_menu">
         <item>@string/conversation_list_batch_archive__menu_archive_selected</item>
         <item>@string/conversation_list_batch__menu_delete_selected</item>
@@ -381,5 +419,15 @@
     <string-array name="sim_save_options">
         <item>@string/save_options_new_contact</item>
         <item>@string/save_options_add_to_existing</item>
+    </string-array>
+
+    <string-array name="PermissionsSettingsFragment__editor_labels">
+        <item>@string/PermissionsSettingsFragment__only_admins</item>
+        <item>@string/PermissionsSettingsFragment__all_members</item>
+    </string-array>
+
+    <string-array name="SoundsAndNotificationsSettingsFragment__mention_labels">
+        <item>@string/SoundsAndNotificationsSettingsFragment__always_notify</item>
+        <item>@string/SoundsAndNotificationsSettingsFragment__do_not_notify</item>
     </string-array>
 </resources>

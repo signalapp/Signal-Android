@@ -1,16 +1,16 @@
 /**
  * Copyright (C) 2014 Open Whisper Systems
- *
+ * <p>
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- *
+ * <p>
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * <p>
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -21,6 +21,7 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -31,11 +32,11 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter;
@@ -44,9 +45,13 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolde
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.CharacterIterable;
+import org.thoughtcrime.securesms.util.CursorUtil;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -61,6 +66,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   private static final int VIEW_TYPE_CONTACT = 0;
   private static final int VIEW_TYPE_DIVIDER = 1;
+  private static final int VIEW_TYPE_SHARE_CONFIRM = 2;
 
   private static final float WELCOME_OPTIOON_SCALE_FOCUS = 1.3f;
   private static final float WELCOME_OPTIOON_SCALE_NON_FOCUS = 1.0f;
@@ -77,6 +83,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   private final SelectedContactSet selectedContacts = new SelectedContactSet();
 
+  private final View.OnClickListener shareConfirmClickListener;
+
+  private boolean isSharing = false;
+
   public String oldtext1 = "";
   public String oldtext2 = "";
   RelativeLayout rlContainer;
@@ -92,7 +102,6 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private Animation animDownAndGone, animDownAndVisible, animUpAndGone, animUpAndVisible;
   private ItemAnimViewController2 mItemAnimController;
   private static boolean isScorllUp = true;
-
   public void clearSelectedContacts() {
     selectedContacts.clear();
   }
@@ -118,14 +127,48 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       super(itemView);
     }
 
-    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible);
+    public abstract void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkboxVisible);
     public abstract void unbind(@NonNull GlideRequests glideRequests);
     public abstract void setChecked(boolean checked);
+    public void animateChecked(boolean checked) {
+      // Intentionally empty.
+    }
+
     public abstract void setEnabled(boolean enabled);
+
+    public void setLetterHeaderCharacter(@Nullable String letterHeaderCharacter) {
+      // Intentionally empty.
+    }
   }
 
-  public static class ContactViewHolder extends ViewHolder {
-    ContactViewHolder(@NonNull  final View itemView,
+  public static class ShareConfirmViewHolder extends ViewHolder {
+    private TextView shareView;
+
+    ShareConfirmViewHolder(View itemView , View.OnClickListener shareClickListener) {
+      super(itemView);
+      this.shareView = itemView.findViewById(R.id.share_confirm);
+      itemView.setOnClickListener(shareClickListener);
+    }
+
+    @Override public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkboxVisible) {
+      shareView.setText("Share");
+    }
+
+    @Override
+    public void unbind(@NonNull GlideRequests glideRequests) {}
+
+    @Override
+    public void setChecked(boolean checked) {}
+
+    @Override
+    public void setEnabled(boolean enabled) {}
+  }
+
+  public static class ContactViewHolder extends ViewHolder implements LetterHeaderDecoration.LetterHeaderItem {
+
+    private String letterHeader;
+
+    ContactViewHolder(@NonNull final View itemView,
                       @Nullable final ItemClickListener clickListener)
     {
       super(itemView);
@@ -154,8 +197,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return (ContactSelectionListItem) itemView;
     }
 
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkBoxVisible) {
-      getView().set(glideRequests, recipientId, type, name, number, label, color, checkBoxVisible);
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkBoxVisible) {
+      getView().set(glideRequests, recipientId, type, name, number, label, about, checkBoxVisible);
     }
 
     @Override
@@ -165,12 +208,26 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
     @Override
     public void setChecked(boolean checked) {
-      getView().setChecked(checked);
+      getView().setChecked(checked, false);
+    }
+
+    @Override
+    public void animateChecked(boolean checked) {
+      getView().setChecked(checked, true);
     }
 
     @Override
     public void setEnabled(boolean enabled) {
       getView().setEnabled(enabled);
+    }
+    @Override
+    public @Nullable String getHeaderLetter() {
+      return letterHeader;
+    }
+
+    @Override
+    public void setLetterHeaderCharacter(@Nullable String letterHeaderCharacter) {
+      this.letterHeader = letterHeaderCharacter;
     }
   }
 
@@ -181,7 +238,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
                                      boolean multiSelect,
                                      @NonNull Set<RecipientId> currentContacts,
                                      RelativeLayout relativeLayout,
-                                     int marginTop,View.OnFocusChangeListener onFocusChangeListener) {
+                                     int marginTop,View.OnFocusChangeListener onFocusChangeListener,
+                                     View.OnClickListener shareConfirmClickListener,
+                                     boolean isSharing) {
     super(context, cursor);
     Resources res = context.getResources();
     mFocusHeight = res.getDimensionPixelSize(R.dimen.focus_item_height);
@@ -201,6 +260,8 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     this.currentContacts = currentContacts;
 //    mItemAnimController = new ItemAnimViewController2(relativeLayout, mFocusTextSize, mFocusHeight, marginTop);
     this.onFocusChangeListener = onFocusChangeListener;
+    this.shareConfirmClickListener = shareConfirmClickListener;
+    this.isSharing       = isSharing;
   }
 
   public static class DividerViewHolder extends ViewHolder {
@@ -213,7 +274,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     }
 
     @Override
-    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, int color, boolean checkboxVisible) {
+    public void bind(@NonNull GlideRequests glideRequests, @Nullable RecipientId recipientId, int type, String name, String number, String label, String about, boolean checkboxVisible) {
       this.label.setText(name);
     }
 
@@ -238,20 +299,26 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
                                      @Nullable Cursor cursor,
                                      @Nullable ItemClickListener clickListener,
                                      boolean multiSelect,
-                                     @NonNull Set<RecipientId> currentContacts)
+                                     @NonNull Set<RecipientId> currentContacts,
+                                     View.OnClickListener shareConfirmClickListener,
+                                     Boolean isSharing)
   {
     super(context, cursor);
-    this.layoutInflater = LayoutInflater.from(context);
+    this.layoutInflater  = LayoutInflater.from(context);
     this.glideRequests   = glideRequests;
     this.multiSelect     = multiSelect;
     this.clickListener   = clickListener;
     this.currentContacts = currentContacts;
+    this.shareConfirmClickListener = shareConfirmClickListener;
+    this.isSharing       = isSharing;
   }
 
   @Override
   public ViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
     if (viewType == VIEW_TYPE_CONTACT) {
       return new ContactViewHolder(layoutInflater.inflate(R.layout.contact_selection_list_item, parent, false), clickListener);
+    }else if (viewType == VIEW_TYPE_SHARE_CONFIRM){
+      return new ShareConfirmViewHolder(layoutInflater.inflate(R.layout.contact_selection_share_confirm_item, parent,false),shareConfirmClickListener);
     } else {
       return new DividerViewHolder(layoutInflater.inflate(R.layout.contact_selection_list_divider, parent, false));
     }
@@ -259,25 +326,23 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   @Override
   public void onBindItemViewHolder(ViewHolder viewHolder, @NonNull Cursor cursor) {
-    String      rawId       = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+    String      rawId       = CursorUtil.requireString(cursor, ContactRepository.ID_COLUMN);
     RecipientId id          = rawId != null ? RecipientId.from(rawId) : null;
-    int         contactType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.CONTACT_TYPE_COLUMN));
-    String      name        = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NAME_COLUMN  ));
-    String      number      = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN));
-    int         numberType  = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN ));
-    String      label       = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.LABEL_COLUMN ));
+    int         contactType = CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN);
+    String      name        = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
+    String      number      = CursorUtil.requireString(cursor, ContactRepository.NUMBER_COLUMN);
+    int         numberType  = CursorUtil.requireInt(cursor, ContactRepository.NUMBER_TYPE_COLUMN);
+    String      about       = CursorUtil.requireString(cursor, ContactRepository.ABOUT_COLUMN);
+    String      label       = CursorUtil.requireString(cursor, ContactRepository.LABEL_COLUMN);
     String      labelText   = ContactsContract.CommonDataKinds.Phone.getTypeLabel(getContext().getResources(),
                                                                                   numberType, label).toString();
 
-    int color = (contactType == ContactRepository.PUSH_TYPE) ? ContextCompat.getColor(getContext(), R.color.signal_text_primary)
-                                                             : ContextCompat.getColor(getContext(), R.color.signal_inverse_transparent_60);
 
     boolean currentContact = currentContacts.contains(id);
 
     viewHolder.unbind(glideRequests);
-    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, color, multiSelect || currentContact);
+    viewHolder.bind(glideRequests, id, contactType, name, number, labelText, about, multiSelect || currentContact);
     viewHolder.setEnabled(true);
-
     ContactSelectionListItem CSLitem;
     if (viewHolder.itemView instanceof ContactSelectionListItem) {
       CSLitem = (ContactSelectionListItem) (viewHolder.itemView);
@@ -286,6 +351,14 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
         public void onFocusChange(View v, boolean hasFocus) {
 //          if (onFocusChangeListener!=null)
           startFocusAnimation(v, hasFocus);
+        }
+      });
+    }else if (viewHolder.getAdapterPosition() == 0){
+      View shareConfirmItem = viewHolder.itemView;
+      shareConfirmItem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+        @Override
+        public void onFocusChange(View v, boolean hasFocus) {
+          shareStartFocusAnimation(shareConfirmItem,hasFocus);
         }
       });
     }
@@ -298,6 +371,54 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     } else {
       viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
     }
+
+    if (isContactRow(contactType)) {
+      int position = cursor.getPosition();
+      if (position == 0) {
+        viewHolder.setLetterHeaderCharacter(getHeaderLetterForDisplayName(cursor));
+      } else {
+        cursor.moveToPrevious();
+
+        int previousRowContactType = CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN);
+
+        if (!isContactRow(previousRowContactType)) {
+          cursor.moveToNext();
+          viewHolder.setLetterHeaderCharacter(getHeaderLetterForDisplayName(cursor));
+        } else {
+          String previousHeaderLetter = getHeaderLetterForDisplayName(cursor);
+          cursor.moveToNext();
+          String newHeaderLetter = getHeaderLetterForDisplayName(cursor);
+
+          if (Objects.equals(previousHeaderLetter, newHeaderLetter)) {
+            viewHolder.setLetterHeaderCharacter(null);
+          } else {
+            viewHolder.setLetterHeaderCharacter(newHeaderLetter);
+          }
+        }
+      }
+    }
+  }
+
+  private boolean isContactRow(int contactType) {
+    return (contactType & (ContactRepository.NEW_PHONE_TYPE | ContactRepository.NEW_USERNAME_TYPE | ContactRepository.DIVIDER_TYPE)) == 0;
+  }
+
+  private @Nullable String getHeaderLetterForDisplayName(@NonNull Cursor cursor) {
+    String           name              = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
+    Iterator<String> characterIterator = new CharacterIterable(name).iterator();
+
+    if (!TextUtils.isEmpty(name) && characterIterator.hasNext()) {
+      String next = characterIterator.next();
+
+      if (Character.isLetter(next.codePointAt(0))) {
+        return next.toUpperCase();
+      } else {
+        return "#";
+      }
+
+    } else {
+      return null;
+    }
   }
 
   @Override
@@ -306,20 +427,20 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       throw new AssertionError();
     }
 
-    String      rawId      = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.ID_COLUMN));
+    String      rawId      = CursorUtil.requireString(cursor, ContactRepository.ID_COLUMN);
     RecipientId id         = rawId != null ? RecipientId.from(rawId) : null;
-    int         numberType = cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_TYPE_COLUMN));
-    String      number     = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NUMBER_COLUMN));
+    int         numberType = CursorUtil.requireInt(cursor, ContactRepository.NUMBER_TYPE_COLUMN);
+    String      number     = CursorUtil.requireString(cursor, ContactRepository.NUMBER_COLUMN);
 
     viewHolder.setEnabled(true);
 
     if (currentContacts.contains(id)) {
-      viewHolder.setChecked(true);
+      viewHolder.animateChecked(true);
       viewHolder.setEnabled(false);
     } else if (numberType == ContactRepository.NEW_USERNAME_TYPE) {
-      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
+      viewHolder.animateChecked(selectedContacts.contains(SelectedContact.forUsername(id, number)));
     } else {
-      viewHolder.setChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
+      viewHolder.animateChecked(selectedContacts.contains(SelectedContact.forPhone(id, number)));
     }
   }
 
@@ -402,12 +523,70 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     oldtext2 = text2.getText().toString() + " " +text3.getText().toString();
   }
 
-  @Override
+  private void shareStartFocusAnimation(View v,boolean focused){
+
+    TextView tv = v.findViewById(R.id.share_confirm);
+    ValueAnimator va ;
+    if(focused){
+      va = ValueAnimator.ofFloat(0,1);
+    }else{
+      va = ValueAnimator.ofFloat(1,0);
+    }
+    va.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+      @Override
+      public void onAnimationUpdate(ValueAnimator valueAnimator) {
+        float scale = (float)valueAnimator.getAnimatedValue();
+        float height = (((float)(mFocusHeight - mNormalHeight))*(scale)+(float)mNormalHeight)*2;
+        float textsize = ((float)(mFocusTextSize - mNormalTextSize))*(scale) + mNormalTextSize;
+        float padding = (float)mNormalPaddingX -((float)(mNormalPaddingX - mFocusPaddingX))*(scale);
+        int alpha = (int)((float)0x81 + (float)((0xff - 0x81))*(scale));
+        int color =  alpha*0x1000000 + 0xffffff;
+//        if(focused){
+//          CSLitem.getLayoutParams().height = (int)height;
+//          text1.getLayoutParams().height= (int) height;
+//        } else {
+//          CSLitem.getLayoutParams().height = (int)height;
+//        }
+        tv.setTextColor(color);
+        tv.setTextSize((int)textsize);
+        tv.setTextColor(color);
+        tv.getLayoutParams().height = (int)height/2;
+
+        v.setPadding((int) padding,v.getPaddingTop(),v.getPaddingRight(),v.getPaddingBottom());
+        v.getLayoutParams().height = (int)height/2;
+      }
+    });
+
+    FastOutLinearInInterpolator FastOutLinearInInterpolator = new FastOutLinearInInterpolator();
+    va.setInterpolator(FastOutLinearInInterpolator);
+    if (focused) {
+      va.setDuration(270);
+      va.start();
+    } else {
+      va.setDuration(270);
+      va.start();
+    }
+  }
+
+  /*@Override
   public int getItemViewType(@NonNull Cursor cursor) {
-    if (cursor.getInt(cursor.getColumnIndexOrThrow(ContactRepository.CONTACT_TYPE_COLUMN)) == ContactRepository.DIVIDER_TYPE) {
+    if (CursorUtil.requireInt(cursor, ContactRepository.CONTACT_TYPE_COLUMN) == ContactRepository.DIVIDER_TYPE) {
       return VIEW_TYPE_DIVIDER;
     } else {
       return VIEW_TYPE_CONTACT;
+    }
+  }*/
+
+  @Override
+  public int getItemViewType(int position) {
+    if (isSharing && position == 0 ){
+      return VIEW_TYPE_SHARE_CONFIRM;
+    }else{
+      if (getContactType(position) == ContactRepository.DIVIDER_TYPE){
+        return VIEW_TYPE_DIVIDER;
+      }else{
+        return VIEW_TYPE_CONTACT;
+      }
     }
   }
 
@@ -434,15 +613,19 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     return selectedContacts.size();
   }
 
+  public int getCurrentContactsCount() {
+    return currentContacts.size();
+  }
+
   private @NonNull String getHeaderString(int position) {
     int contactType = getContactType(position);
 
-    if (contactType == ContactRepository.RECENT_TYPE || contactType == ContactRepository.DIVIDER_TYPE) {
+    if ((contactType & ContactRepository.RECENT_TYPE) > 0 || contactType == ContactRepository.DIVIDER_TYPE) {
       return " ";
     }
 
     Cursor cursor = getCursorAtPositionOrThrow(position);
-    String letter = cursor.getString(cursor.getColumnIndexOrThrow(ContactRepository.NAME_COLUMN));
+    String letter = CursorUtil.requireString(cursor, ContactRepository.NAME_COLUMN);
 
     if (letter != null) {
       letter = letter.trim();

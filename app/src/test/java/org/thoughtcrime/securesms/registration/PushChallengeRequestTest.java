@@ -56,14 +56,14 @@ public final class PushChallengeRequestTest {
     doAnswer(invocation -> {
       AsyncTask.execute(() -> PushChallengeRequest.postChallengeResponse("CHALLENGE"));
       return null;
-    }).when(signal).requestPushChallenge("token", "+123456");
+    }).when(signal).requestRegistrationPushChallenge("token", "+123456");
 
     long startTime = System.currentTimeMillis();
     Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 500L);
     long duration = System.currentTimeMillis() - startTime;
 
     assertThat(duration, lessThan(500L));
-    verify(signal).requestPushChallenge("token", "+123456");
+    verify(signal).requestRegistrationPushChallenge("token", "+123456");
     verifyNoMoreInteractions(signal);
 
     assertTrue(challenge.isPresent());
@@ -95,7 +95,7 @@ public final class PushChallengeRequestTest {
   public void getPushChallengeBlocking_returns_absent_if_any_IOException_is_thrown() throws IOException {
     SignalServiceAccountManager signal = mock(SignalServiceAccountManager.class);
 
-    doThrow(new IOException()).when(signal).requestPushChallenge(any(), any());
+    doThrow(new IOException()).when(signal).requestRegistrationPushChallenge(any(), any());
 
     Optional<String> challenge = PushChallengeRequest.getPushChallengeBlocking(signal, Optional.of("token"), "+123456", 500L);
 

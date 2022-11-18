@@ -1,98 +1,38 @@
 package org.thoughtcrime.securesms.components.emoji;
 
 import android.graphics.drawable.Drawable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.emoji.EmojiKeyboardProvider.EmojiEventListener;
+import org.thoughtcrime.securesms.util.MappingAdapter;
+import org.thoughtcrime.securesms.util.MappingModel;
+import org.thoughtcrime.securesms.util.MappingViewHolder;
 
-import java.util.ArrayList;
-import java.util.List;
+public class EmojiPageViewGridAdapter extends MappingAdapter implements PopupWindow.OnDismissListener {
 
-public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageViewGridAdapter.EmojiViewHolder> implements PopupWindow.OnDismissListener {
+  private final VariationSelectorListener variationSelectorListener;
 
-  private final List<Emoji>                 emojiList;
-  private final EmojiProvider               emojiProvider;
-  private final EmojiVariationSelectorPopup popup;
-  private final VariationSelectorListener   variationSelectorListener;
-  private final EmojiEventListener          emojiEventListener;
-  private final boolean                     allowVariations;
-
-  public EmojiPageViewGridAdapter(@NonNull EmojiProvider emojiProvider,
-                                  @NonNull EmojiVariationSelectorPopup popup,
+  public EmojiPageViewGridAdapter(@NonNull EmojiVariationSelectorPopup popup,
                                   @NonNull EmojiEventListener emojiEventListener,
                                   @NonNull VariationSelectorListener variationSelectorListener,
-                                  boolean allowVariations)
+                                  boolean allowVariations,
+                                  @LayoutRes int displayEmojiLayoutResId,
+                                  @LayoutRes int displayEmoticonLayoutResId)
   {
-    this.emojiList                 = new ArrayList<>();
-    this.emojiProvider             = emojiProvider;
-    this.popup                     = popup;
-    this.emojiEventListener        = emojiEventListener;
     this.variationSelectorListener = variationSelectorListener;
-    this.allowVariations           = allowVariations;
 
     popup.setOnDismissListener(this);
-  }
 
-  @NonNull
-  @Override
-  public EmojiViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    return new EmojiViewHolder(LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.emoji_display_item, viewGroup, false));
-  }
-
-  @Override
-  public void onBindViewHolder(@NonNull EmojiViewHolder viewHolder, int i) {
-    Emoji emoji = emojiList.get(i);
-
-    Drawable drawable = emojiProvider.getEmojiDrawable(emoji.getValue());
-
-    if (drawable != null) {
-      viewHolder.textView.setVisibility(View.GONE);
-      viewHolder.imageView.setVisibility(View.VISIBLE);
-
-      viewHolder.imageView.setImageDrawable(drawable);
-    } else {
-      viewHolder.textView.setVisibility(View.VISIBLE);
-      viewHolder.imageView.setVisibility(View.GONE);
-
-      viewHolder.textView.setEmoji(emoji.getValue());
-    }
-
-    viewHolder.itemView.setOnClickListener(v -> {
-      emojiEventListener.onEmojiSelected(emoji.getValue());
-    });
-
-    if (allowVariations && emoji.getVariations().size() > 1) {
-      viewHolder.itemView.setOnLongClickListener(v -> {
-        popup.dismiss();
-        popup.setVariations(emoji.getVariations());
-        popup.showAsDropDown(viewHolder.itemView, 0, -(2 * viewHolder.itemView.getHeight()));
-        variationSelectorListener.onVariationSelectorStateChanged(true);
-        return true;
-      });
-      viewHolder.hintCorner.setVisibility(View.VISIBLE);
-    } else {
-      viewHolder.itemView.setOnLongClickListener(null);
-      viewHolder.hintCorner.setVisibility(View.GONE);
-    }
-  }
-
-  @Override
-  public int getItemCount() {
-    return emojiList.size();
-  }
-
-  public void setEmoji(@NonNull List<Emoji> emojiList) {
-    this.emojiList.clear();
-    this.emojiList.addAll(emojiList);
-    notifyDataSetChanged();
+    registerFactory(EmojiHeader.class, new LayoutFactory<>(EmojiHeaderViewHolder::new, R.layout.emoji_grid_header));
+    registerFactory(EmojiModel.class, new LayoutFactory<>(v -> new EmojiViewHolder(v, emojiEventListener, variationSelectorListener, popup, allowVariations), displayEmojiLayoutResId));
+    registerFactory(EmojiTextModel.class, new LayoutFactory<>(v -> new EmojiTextViewHolder(v, emojiEventListener), displayEmoticonLayoutResId));
+    registerFactory(EmojiNoResultsModel.class, new LayoutFactory<>(MappingViewHolder.SimpleViewHolder::new, R.layout.emoji_grid_no_results));
   }
 
   @Override
@@ -100,18 +40,196 @@ public class EmojiPageViewGridAdapter extends RecyclerView.Adapter<EmojiPageView
     variationSelectorListener.onVariationSelectorStateChanged(false);
   }
 
-  static class EmojiViewHolder extends RecyclerView.ViewHolder {
+  public static class EmojiHeader implements MappingModel<EmojiHeader>, HasKey {
 
-    private final ImageView      imageView;
-    private final AsciiEmojiView textView;
-    private final ImageView      hintCorner;
+    private final String key;
+    private final int    title;
 
-    public EmojiViewHolder(@NonNull View itemView) {
-      super(itemView);
-      this.imageView  = itemView.findViewById(R.id.emoji_image);
-      this.textView   = itemView.findViewById(R.id.emoji_text);
-      this.hintCorner = itemView.findViewById(R.id.emoji_variation_hint);
+    public EmojiHeader(@NonNull String key, int title) {
+      this.key   = key;
+      this.title = title;
     }
+
+    @Override
+    public @NonNull String getKey() {
+      return key;
+    }
+
+    @Override
+    public boolean areItemsTheSame(@NonNull EmojiHeader newItem) {
+      return title == newItem.title;
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull EmojiHeader newItem) {
+      return areItemsTheSame(newItem);
+    }
+  }
+
+  static class EmojiHeaderViewHolder extends MappingViewHolder<EmojiHeader> {
+
+    private final TextView title;
+
+    public EmojiHeaderViewHolder(@NonNull View itemView) {
+      super(itemView);
+      title = findViewById(R.id.emoji_grid_header_title);
+    }
+
+    @Override
+    public void bind(@NonNull EmojiHeader model) {
+      title.setText(model.title);
+    }
+  }
+
+  public static class EmojiModel implements MappingModel<EmojiModel>, HasKey {
+
+    private final String key;
+    private final Emoji  emoji;
+
+    public EmojiModel(@NonNull String key, @NonNull Emoji emoji) {
+      this.key   = key;
+      this.emoji = emoji;
+    }
+
+    @Override
+    public @NonNull String getKey() {
+      return key;
+    }
+
+    public @NonNull Emoji getEmoji() {
+      return emoji;
+    }
+
+    @Override
+    public boolean areItemsTheSame(@NonNull EmojiModel newItem) {
+      return newItem.emoji.getValue().equals(emoji.getValue());
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull EmojiModel newItem) {
+      return areItemsTheSame(newItem);
+    }
+  }
+
+  static class EmojiViewHolder extends MappingViewHolder<EmojiModel> {
+
+    private final EmojiVariationSelectorPopup popup;
+    private final VariationSelectorListener   variationSelectorListener;
+    private final EmojiEventListener          emojiEventListener;
+    private final boolean                     allowVariations;
+
+    private final ImageView imageView;
+
+    public EmojiViewHolder(@NonNull View itemView,
+                           @NonNull EmojiEventListener emojiEventListener,
+                           @NonNull VariationSelectorListener variationSelectorListener,
+                           @NonNull EmojiVariationSelectorPopup popup,
+                           boolean allowVariations)
+    {
+      super(itemView);
+
+      this.popup                     = popup;
+      this.variationSelectorListener = variationSelectorListener;
+      this.emojiEventListener        = emojiEventListener;
+      this.allowVariations           = allowVariations;
+
+      this.imageView  = itemView.findViewById(R.id.emoji_image);
+    }
+
+    @Override
+    public void bind(@NonNull EmojiModel model) {
+      final Drawable drawable = EmojiProvider.getEmojiDrawable(imageView.getContext(), model.emoji.getValue());
+
+      if (drawable != null) {
+        imageView.setVisibility(View.VISIBLE);
+        imageView.setImageDrawable(drawable);
+      }
+
+      itemView.setOnClickListener(v -> {
+        emojiEventListener.onEmojiSelected(model.emoji.getValue());
+      });
+
+      if (allowVariations && model.emoji.hasMultipleVariations()) {
+        itemView.setOnLongClickListener(v -> {
+          popup.dismiss();
+          popup.setVariations(model.emoji.getVariations());
+          popup.showAsDropDown(itemView, 0, -(2 * itemView.getHeight()));
+          variationSelectorListener.onVariationSelectorStateChanged(true);
+          return true;
+        });
+      } else {
+        itemView.setOnLongClickListener(null);
+      }
+    }
+  }
+
+  public static class EmojiTextModel implements MappingModel<EmojiTextModel>, HasKey {
+    private final String key;
+    private final Emoji  emoji;
+
+    public EmojiTextModel(@NonNull String key, @NonNull Emoji emoji) {
+      this.key   = key;
+      this.emoji = emoji;
+    }
+
+    @Override
+    public @NonNull String getKey() {
+      return key;
+    }
+
+    public @NonNull Emoji getEmoji() {
+      return emoji;
+    }
+
+    @Override
+    public boolean areItemsTheSame(@NonNull EmojiTextModel newItem) {
+      return newItem.emoji.getValue().equals(emoji.getValue());
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull EmojiTextModel newItem) {
+      return areItemsTheSame(newItem);
+    }
+  }
+
+  static class EmojiTextViewHolder extends MappingViewHolder<EmojiTextModel> {
+
+    private final EmojiEventListener emojiEventListener;
+    private final AsciiEmojiView     textView;
+
+    public EmojiTextViewHolder(@NonNull View itemView,
+                               @NonNull EmojiEventListener emojiEventListener)
+    {
+      super(itemView);
+
+      this.emojiEventListener = emojiEventListener;
+      this.textView           = itemView.findViewById(R.id.emoji_text);
+    }
+
+    @Override
+    public void bind(@NonNull EmojiTextModel model) {
+      textView.setEmoji(model.emoji.getValue());
+
+      itemView.setOnClickListener(v -> {
+        emojiEventListener.onEmojiSelected(model.emoji.getValue());
+      });
+    }
+  }
+
+  public static class EmojiNoResultsModel implements MappingModel<EmojiNoResultsModel> {
+    @Override
+    public boolean areItemsTheSame(@NonNull EmojiNoResultsModel newItem) {
+      return true;
+    }
+
+    @Override
+    public boolean areContentsTheSame(@NonNull EmojiNoResultsModel newItem) {
+      return true;
+    }
+  }
+
+  public interface HasKey {
+    @NonNull String getKey();
   }
 
   public interface VariationSelectorListener {

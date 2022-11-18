@@ -8,6 +8,6 @@ package org.whispersystems.signalservice.api.push.exceptions;
 
 public class RateLimitException extends NonSuccessfulResponseCodeException {
   public RateLimitException(String s) {
-    super(s);
+    super(413, s);
   }
 }

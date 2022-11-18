@@ -122,14 +122,15 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     onOrientationChanged(getResources().getConfiguration().orientation);
 
-    viewModel.getMostRecentMediaItem().observe(this, this::presentRecentItemThumbnail);
-    viewModel.getHudState().observe(this, this::presentHud);
+    viewModel.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
+    viewModel.getHudState().observe(getViewLifecycleOwner(), this::presentHud);
   }
 
   @Override
   public void onResume() {
     super.onResume();
 
+    camera.bindToLifecycle(getViewLifecycleOwner());
     viewModel.onCameraStarted();
     requireActivity().getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);

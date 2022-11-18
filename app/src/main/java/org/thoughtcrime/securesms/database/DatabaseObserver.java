@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.database;
 
 import android.app.Application;
-import android.database.ContentObserver;
-import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
@@ -13,6 +11,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.UUID;
 import java.util.concurrent.Executor;
 
 /**
@@ -28,6 +27,10 @@ public final class DatabaseObserver {
   private final Set<Observer>            conversationListObservers;
   private final Map<Long, Set<Observer>> conversationObservers;
   private final Map<Long, Set<Observer>> verboseConversationObservers;
+  private final Map<UUID, Set<Observer>> paymentObservers;
+  private final Set<Observer>            allPaymentsObservers;
+  private final Set<Observer>            chatColorsObservers;
+  private final Set<Observer>            stickerPackObservers;
 
   public DatabaseObserver(Application application) {
     this.application                  = application;
@@ -35,6 +38,10 @@ public final class DatabaseObserver {
     this.conversationListObservers    = new HashSet<>();
     this.conversationObservers        = new HashMap<>();
     this.verboseConversationObservers = new HashMap<>();
+    this.paymentObservers             = new HashMap<>();
+    this.allPaymentsObservers         = new HashSet<>();
+    this.chatColorsObservers          = new HashSet<>();
+    this.stickerPackObservers         = new HashSet<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -55,11 +62,38 @@ public final class DatabaseObserver {
     });
   }
 
+  public void registerPaymentObserver(@NonNull UUID paymentId, @NonNull Observer listener) {
+    executor.execute(() -> {
+      registerMapped(paymentObservers, paymentId, listener);
+    });
+  }
+
+  public void registerAllPaymentsObserver(@NonNull Observer listener) {
+    executor.execute(() -> {
+      allPaymentsObservers.add(listener);
+    });
+  }
+
+  public void registerChatColorsObserver(@NonNull Observer listener) {
+    executor.execute(() -> {
+      chatColorsObservers.add(listener);
+    });
+  }
+
+  public void registerStickerPackObserver(@NonNull Observer listener) {
+    executor.execute(() -> {
+      stickerPackObservers.add(listener);
+    });
+  }
+
   public void unregisterObserver(@NonNull Observer listener) {
     executor.execute(() -> {
       conversationListObservers.remove(listener);
       unregisterMapped(conversationObservers, listener);
       unregisterMapped(verboseConversationObservers, listener);
+      unregisterMapped(paymentObservers, listener);
+      chatColorsObservers.remove(listener);
+      stickerPackObservers.remove(listener);
     });
   }
 
@@ -69,30 +103,42 @@ public final class DatabaseObserver {
         notifyMapped(conversationObservers, threadId);
         notifyMapped(verboseConversationObservers, threadId);
       }
-    });
 
-    for (long threadId : threadIds) {
-      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
-    }
+      for (long threadId : threadIds) {
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      }
+    });
   }
 
   public void notifyConversationListeners(long threadId) {
     executor.execute(() -> {
       notifyMapped(conversationObservers, threadId);
       notifyMapped(verboseConversationObservers, threadId);
-    });
 
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+    });
+  }
+
+  public void notifyVerboseConversationListeners(Set<Long> threadIds) {
+    executor.execute(() -> {
+      for (long threadId : threadIds) {
+        notifyMapped(verboseConversationObservers, threadId);
+      }
+
+      for (long threadId : threadIds) {
+        application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      }
+    });
   }
 
   public void notifyVerboseConversationListeners(long threadId) {
     executor.execute(() -> {
       notifyMapped(verboseConversationObservers, threadId);
-    });
 
-    application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+      application.getContentResolver().notifyChange(DatabaseContentProviders.Conversation.getVerboseUriForThread(threadId), null);
+    });
   }
 
   public void notifyConversationListListeners() {
@@ -101,8 +147,34 @@ public final class DatabaseObserver {
         listener.onChanged();
       }
     });
+  }
 
-    application.getContentResolver().notifyChange(DatabaseContentProviders.ConversationList.CONTENT_URI, null);
+  public void notifyPaymentListeners(@NonNull UUID paymentId) {
+    executor.execute(() -> {
+      notifyMapped(paymentObservers, paymentId);
+    });
+  }
+
+  public void notifyAllPaymentsListeners() {
+    executor.execute(() -> {
+      notifySet(allPaymentsObservers);
+    });
+  }
+
+  public void notifyChatColorsListeners() {
+    executor.execute(() -> {
+      for (Observer chatColorsObserver : chatColorsObservers) {
+        chatColorsObserver.onChanged();
+      }
+    });
+  }
+
+  public void notifyStickerPackObservers() {
+    executor.execute(() -> {
+      notifySet(stickerPackObservers);
+
+      application.getContentResolver().notifyChange(DatabaseContentProviders.StickerPack.CONTENT_URI, null);
+    });
   }
 
   private <K> void registerMapped(@NonNull Map<K, Set<Observer>> map, @NonNull K key, @NonNull Observer listener) {
@@ -129,6 +201,12 @@ public final class DatabaseObserver {
       for (Observer listener : listeners) {
         listener.onChanged();
       }
+    }
+  }
+
+  public static void notifySet(@NonNull Set<Observer> set) {
+    for (final Observer observer : set) {
+      observer.onChanged();
     }
   }
 

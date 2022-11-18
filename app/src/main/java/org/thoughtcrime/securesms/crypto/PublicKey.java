@@ -30,7 +30,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class PublicKey {
 
-  private static final String TAG = PublicKey.class.getSimpleName();
+  private static final String TAG = Log.tag(PublicKey.class);
 
   public static final int KEY_SIZE = 3 + ECPublicKey.KEY_SIZE;
 

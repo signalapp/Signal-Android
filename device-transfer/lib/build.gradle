@@ -1,0 +1,43 @@
+apply plugin: 'com.android.library'
+apply plugin: 'witness'
+apply from: 'witness-verifications.gradle'
+
+repositories {
+    mavenCentral()
+}
+
+android {
+    buildToolsVersion BUILD_TOOL_VERSION
+    compileSdkVersion COMPILE_SDK
+
+    defaultConfig {
+        minSdkVersion MINIMUM_SDK
+        targetSdkVersion TARGET_SDK
+    }
+
+    compileOptions {
+        sourceCompatibility JAVA_VERSION
+        targetCompatibility JAVA_VERSION
+    }
+}
+
+dependencyVerification {
+    configuration = '(debug|release)RuntimeClasspath'
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation project(':core-util')
+    implementation "org.whispersystems:signal-client-java:${LIBSIGNAL_CLIENT_VERSION}"
+    api 'org.greenrobot:eventbus:3.0.0'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'androidx.test:core:1.2.0'
+    testImplementation ('org.robolectric:robolectric:4.4') {
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+    }
+    testImplementation 'org.robolectric:shadows-multidex:4.4'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+
+    testImplementation(testFixtures(project(":libsignal-service")))
+}

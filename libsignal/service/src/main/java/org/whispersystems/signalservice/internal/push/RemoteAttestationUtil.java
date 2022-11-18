@@ -4,6 +4,7 @@ import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.ecc.Curve;
 import org.whispersystems.libsignal.ecc.ECKeyPair;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
+import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.contacts.crypto.Quote;
 import org.whispersystems.signalservice.internal.contacts.crypto.RemoteAttestation;
@@ -61,7 +62,7 @@ public final class RemoteAttestationUtil {
     Map<String, RemoteAttestation> attestations = new HashMap<>();
 
     if (response.getAttestations().isEmpty() || response.getAttestations().size() > 3) {
-      throw new NonSuccessfulResponseCodeException("Incorrect number of attestations: " + response.getAttestations().size());
+      throw new MalformedResponseException("Incorrect number of attestations: " + response.getAttestations().size());
     }
 
     for (Map.Entry<String, RemoteAttestationResponse> entry : response.getAttestations().entrySet()) {
@@ -92,7 +93,7 @@ public final class RemoteAttestationUtil {
     ResponseBody             body               = response.body();
 
     if (body == null) {
-      throw new NonSuccessfulResponseCodeException("Empty response!");
+      throw new MalformedResponseException("Empty response!");
     }
 
     return new ResponsePair(body.string(), parseCookies(response));

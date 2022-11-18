@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment;
 import org.thoughtcrime.securesms.registration.fragments.EnterCodeFragment;
 import org.thoughtcrime.securesms.registration.fragments.WelcomeFragment;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
+import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 public final class RegistrationNavigationActivity extends AppCompatActivity {
@@ -37,9 +39,16 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
   private SmsRetrieverReceiver smsRetrieverReceiver;
 
-  public static Intent newIntentForNewRegistration(@NonNull Context context) {
+  /**
+   */
+  public static Intent newIntentForNewRegistration(@NonNull Context context, @Nullable Intent originalIntent) {
     Intent intent = new Intent(context, RegistrationNavigationActivity.class);
     intent.putExtra(RE_REGISTRATION_EXTRA, false);
+
+    if (originalIntent != null) {
+      intent.setData(originalIntent.getData());
+    }
+
     return intent;
   }
 
@@ -60,6 +69,19 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_registration_navigation);
     initializeChallengeListener();
+
+    if (getIntent() != null && getIntent().getData() != null) {
+      CommunicationActions.handlePotentialProxyLinkUrl(this, getIntent().getDataString());
+    }
+  }
+
+  @Override
+  protected void onNewIntent(Intent intent) {
+    super.onNewIntent(intent);
+
+    if (intent.getData() != null) {
+      CommunicationActions.handlePotentialProxyLinkUrl(this, intent.getDataString());
+    }
   }
 
   @Override

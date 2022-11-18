@@ -19,6 +19,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
@@ -75,6 +76,7 @@ public class RefreshOwnProfileJob extends BaseJob {
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     setProfileName(profile.getName());
+    setProfileAbout(profile.getAbout(), profile.getAboutEmoji());
     setProfileAvatar(profile.getAvatar());
     setProfileCapabilities(profile.getCapabilities());
     Optional<ProfileKeyCredential> profileKeyCredential = profileAndCredential.getProfileKeyCredential();
@@ -108,10 +110,25 @@ public class RefreshOwnProfileJob extends BaseJob {
   private void setProfileName(@Nullable String encryptedName) {
     try {
       ProfileKey  profileKey    = ProfileKeyUtil.getSelfProfileKey();
-      String      plaintextName = ProfileUtil.decryptName(profileKey, encryptedName);
+      String      plaintextName = ProfileUtil.decryptString(profileKey, encryptedName);
       ProfileName profileName   = ProfileName.fromSerialized(plaintextName);
 
       DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
+    } catch (InvalidCiphertextException | IOException e) {
+      Log.w(TAG, e);
+    }
+  }
+
+  private void setProfileAbout(@Nullable String encryptedAbout, @Nullable String encryptedEmoji) {
+    try {
+      ProfileKey  profileKey     = ProfileKeyUtil.getSelfProfileKey();
+      String      plaintextAbout = ProfileUtil.decryptString(profileKey, encryptedAbout);
+      String      plaintextEmoji = ProfileUtil.decryptString(profileKey, encryptedEmoji);
+
+      Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextAbout) ? "non-" : "") + "empty about.");
+      Log.d(TAG, "Saving " + (!Util.isEmpty(plaintextEmoji) ? "non-" : "") + "empty emoji.");
+
+      DatabaseFactory.getRecipientDatabase(context).setAbout(Recipient.self().getId(), plaintextAbout, plaintextEmoji);
     } catch (InvalidCiphertextException | IOException e) {
       Log.w(TAG, e);
     }

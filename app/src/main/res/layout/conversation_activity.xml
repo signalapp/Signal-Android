@@ -167,6 +167,12 @@
 
                     <include layout="@layout/conversation_input_panel" />
 
+                    <ViewStub
+                        android:id="@+id/conversation_cannot_send_announcement_stub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout="@layout/conversation_cannot_send_announcement_group" />
+
                     <include layout="@layout/conversation_search_nav" />
 
 <!--                    <org.thoughtcrime.securesms.messagerequests.MessageRequestsBottomView
@@ -237,7 +243,16 @@
 
         </org.thoughtcrime.securesms.components.InputAwareLayout>
 
-        <include layout="@layout/conversation_reaction_scrubber" />
+        <ViewStub
+            android:id="@+id/conversation_reaction_scrubber_stub"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="@+id/status_bar_guideline"
+            app:layout_constraintBottom_toBottomOf="@+id/navigation_bar_guideline"
+            app:layout_constraintStart_toStartOf="@+id/parent_start_guideline"
+            app:layout_constraintEnd_toEndOf="@+id/parent_end_guideline"
+            android:inflatedId="@+id/conversation_reaction_scrubber"
+            android:layout="@layout/conversation_reaction_scrubber" />
     </FrameLayout>
 
     <androidx.recyclerview.widget.RecyclerView

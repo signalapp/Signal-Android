@@ -29,7 +29,7 @@ import java.security.MessageDigest;
 
 public class UpdateApkReadyListener extends BroadcastReceiver {
 
-  private static final String TAG = UpdateApkReadyListener.class.getSimpleName();
+  private static final String TAG = Log.tag(UpdateApkReadyListener.class);
 
   @Override
   public void onReceive(Context context, Intent intent) {

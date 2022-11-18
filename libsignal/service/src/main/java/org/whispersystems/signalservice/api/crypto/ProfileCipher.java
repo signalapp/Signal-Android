@@ -5,10 +5,15 @@ import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.internal.util.Util;
 
+import java.io.IOException;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.nio.charset.StandardCharsets;
 import java.security.InvalidAlgorithmParameterException;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -20,7 +25,19 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ProfileCipher {
 
-  public static final int NAME_PADDED_LENGTH = 53;
+  private static final int NAME_PADDED_LENGTH_1 = 53;
+  private static final int NAME_PADDED_LENGTH_2 = 257;
+  private static final int ABOUT_PADDED_LENGTH_1 = 128;
+  private static final int ABOUT_PADDED_LENGTH_2 = 254;
+  private static final int ABOUT_PADDED_LENGTH_3 = 512;
+
+  public static final int MAX_POSSIBLE_NAME_LENGTH  = NAME_PADDED_LENGTH_2;
+  public static final int MAX_POSSIBLE_ABOUT_LENGTH = ABOUT_PADDED_LENGTH_3;
+  public static final int EMOJI_PADDED_LENGTH       = 32;
+  public static final int ENCRYPTION_OVERHEAD       = 28;
+
+  public static final int PAYMENTS_ADDRESS_BASE64_FIELD_SIZE = 776;
+  public static final int PAYMENTS_ADDRESS_CONTENT_SIZE      = PAYMENTS_ADDRESS_BASE64_FIELD_SIZE * 6 / 8 - ProfileCipher.ENCRYPTION_OVERHEAD;
 
   private final ProfileKey key;
 
@@ -28,7 +45,12 @@ public class ProfileCipher {
     this.key = key;
   }
 
-  public byte[] encryptName(byte[] input, int paddedLength) {
+  /**
+   * Encrypts an input and ensures padded length.
+   * <p>
+   * Padded length does not include {@link #ENCRYPTION_OVERHEAD}.
+   */
+  public byte[] encrypt(byte[] input, int paddedLength) {
     try {
       byte[] inputPadded = new byte[paddedLength];
 
@@ -43,13 +65,22 @@ public class ProfileCipher {
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
       cipher.init(Cipher.ENCRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
-      return ByteUtil.combine(nonce, cipher.doFinal(inputPadded));
+      byte[] encryptedPadded = ByteUtil.combine(nonce, cipher.doFinal(inputPadded));
+
+      if (encryptedPadded.length != (paddedLength + ENCRYPTION_OVERHEAD)) {
+        throw new AssertionError(String.format(Locale.US, "Wrong output length %d != padded length %d + %d", encryptedPadded.length, paddedLength, ENCRYPTION_OVERHEAD));
+      }
+
+      return encryptedPadded;
     } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | BadPaddingException | NoSuchPaddingException | IllegalBlockSizeException | InvalidKeyException e) {
       throw new AssertionError(e);
     }
   }
 
-  public byte[] decryptName(byte[] input) throws InvalidCiphertextException {
+  /**
+   * Returns original data with padding still intact.
+   */
+  public byte[] decrypt(byte[] input) throws InvalidCiphertextException {
     try {
       if (input.length < 12 + 16 + 1) {
         throw new InvalidCiphertextException("Too short: " + input.length);
@@ -61,25 +92,76 @@ public class ProfileCipher {
       Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key.serialize(), "AES"), new GCMParameterSpec(128, nonce));
 
-      byte[] paddedPlaintext = cipher.doFinal(input, nonce.length, input.length - nonce.length);
-      int    plaintextLength = 0;
-
-      for (int i=paddedPlaintext.length-1;i>=0;i--) {
-        if (paddedPlaintext[i] != (byte)0x00) {
-          plaintextLength = i + 1;
-          break;
-        }
-      }
-
-      byte[] plaintext = new byte[plaintextLength];
-      System.arraycopy(paddedPlaintext, 0, plaintext, 0, plaintextLength);
-
-      return plaintext;
+      return cipher.doFinal(input, nonce.length, input.length - nonce.length);
     } catch (NoSuchAlgorithmException | InvalidAlgorithmParameterException | NoSuchPaddingException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     } catch (InvalidKeyException | BadPaddingException e) {
       throw new InvalidCiphertextException(e);
     }
+  }
+
+  /**
+   * Encrypts a string's UTF bytes representation.
+   */
+  public byte[] encryptString(String input, int paddedLength) {
+    return encrypt(input.getBytes(StandardCharsets.UTF_8), paddedLength);
+  }
+
+  /**
+   * Strips 0 char padding from decrypt result.
+   */
+  public String decryptString(byte[] input) throws InvalidCiphertextException {
+    byte[] paddedPlaintext = decrypt(input);
+    int    plaintextLength = 0;
+
+    for (int i = paddedPlaintext.length - 1; i >= 0; i--) {
+      if (paddedPlaintext[i] != (byte) 0x00) {
+        plaintextLength = i + 1;
+        break;
+      }
+    }
+
+    byte[] plaintext = new byte[plaintextLength];
+    System.arraycopy(paddedPlaintext, 0, plaintext, 0, plaintextLength);
+
+    return new String(plaintext);
+  }
+
+  /**
+   * Encodes the length, and adds padding.
+   * <p>
+   * encrypt(input.length | input | padding)
+   * <p>
+   * Padded length does not include 28 bytes encryption overhead.
+   */
+  public byte[] encryptWithLength(byte[] input, int paddedLength) {
+    ByteBuffer content = ByteBuffer.wrap(new byte[input.length + 4]);
+    content.order(ByteOrder.LITTLE_ENDIAN);
+    content.putInt(input.length);
+    content.put(input);
+    return encrypt(content.array(), paddedLength);
+  }
+
+  /**
+   * Extracts result from:
+   * <p>
+   * decrypt(encrypt(result.length | result | padding))
+   */
+  public byte[] decryptWithLength(byte[] input) throws InvalidCiphertextException, IOException {
+    byte[]     decrypted = decrypt(input);
+    int        maxLength = decrypted.length - 4;
+    ByteBuffer content   = ByteBuffer.wrap(decrypted);
+    content.order(ByteOrder.LITTLE_ENDIAN);
+    int contentLength = content.getInt();
+    if (contentLength > maxLength) {
+      throw new IOException("Encoded length exceeds content length");
+    }
+    if (contentLength < 0) {
+      throw new IOException("Encoded length is less than 0");
+    }
+    byte[] result = new byte[contentLength];
+    content.get(result);
+    return result;
   }
 
   public boolean verifyUnidentifiedAccess(byte[] theirUnidentifiedAccessVerifier) {
@@ -99,4 +181,25 @@ public class ProfileCipher {
     }
   }
 
+  public static int getTargetNameLength(String name) {
+    int nameLength = name.getBytes(StandardCharsets.UTF_8).length;
+
+    if (nameLength <= NAME_PADDED_LENGTH_1) {
+      return NAME_PADDED_LENGTH_1;
+    } else {
+      return NAME_PADDED_LENGTH_2;
+    }
+  }
+
+  public static int getTargetAboutLength(String about) {
+    int aboutLength = about.getBytes(StandardCharsets.UTF_8).length;
+
+    if (aboutLength <= ABOUT_PADDED_LENGTH_1) {
+      return ABOUT_PADDED_LENGTH_1;
+    } else if (aboutLength < ABOUT_PADDED_LENGTH_2){
+      return ABOUT_PADDED_LENGTH_2;
+    } else {
+      return ABOUT_PADDED_LENGTH_3;
+    }
+  }
 }

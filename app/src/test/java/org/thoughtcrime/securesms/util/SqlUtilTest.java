@@ -7,9 +7,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.annotation.Config;
+import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
@@ -110,8 +113,34 @@ public final class SqlUtilTest {
     assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
   }
 
+  @Test
+  public void buildCollectionQuery_multipleRecipientIds() {
+    SqlUtil.Query updateQuery = SqlUtil.buildCollectionQuery("a", Arrays.asList(RecipientId.from(1), RecipientId.from(2), RecipientId.from(3)));
+
+    assertEquals("a IN (?, ?, ?)", updateQuery.getWhere());
+    assertArrayEquals(new String[] { "1", "2", "3" }, updateQuery.getWhereArgs());
+  }
+
   @Test(expected = IllegalArgumentException.class)
   public void buildCollectionQuery_none() {
     SqlUtil.buildCollectionQuery("a", Collections.emptyList());
+  }
+
+  @Test
+  public void splitStatements_singleStatement() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo"), result);
+  }
+
+  @Test
+  public void splitStatements_twoStatements() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\nSELECT * FROM bar;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
+  }
+
+  @Test
+  public void splitStatements_twoStatementsSeparatedByNewLines() {
+    List<String> result = SqlUtil.splitStatements("SELECT * FROM foo;\n\nSELECT * FROM bar;\n");
+    assertEquals(Arrays.asList("SELECT * FROM foo", "SELECT * FROM bar"), result);
   }
 }

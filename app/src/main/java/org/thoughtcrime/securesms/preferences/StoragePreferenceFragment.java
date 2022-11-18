@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,20 +14,22 @@ import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
+import androidx.fragment.app.Fragment;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.ApplicationPreferencesActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.mp02anim.ItemAnimViewController;
 import org.thoughtcrime.securesms.components.settings.BaseSettingsAdapter;
 import org.thoughtcrime.securesms.components.settings.BaseSettingsFragment;
 import org.thoughtcrime.securesms.components.settings.CustomizableSingleSelectSetting;
 import org.thoughtcrime.securesms.components.settings.SingleSelectSetting;
+import org.thoughtcrime.securesms.components.settings.app.wrapped.SettingsWrapperFragment;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -88,10 +89,10 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
     String key = preference.getKey();
     switch (key) {
       case SettingsValues.THREAD_TRIM_LENGTH:
-        getApplicationPreferencesActivity().pushFragment(BaseSettingsFragment.create(new ConversationLengthLimitConfiguration()));
+        pushFragment(BaseSettingsFragment.create(new ConversationLengthLimitConfiguration()));
         break;
       case SettingsValues.KEEP_MESSAGES_DURATION:
-        getApplicationPreferencesActivity().pushFragment(BaseSettingsFragment.create(new KeepMessagesConfiguration()));
+        pushFragment(BaseSettingsFragment.create(new KeepMessagesConfiguration()));
         break;
     }
     return true;
@@ -168,8 +169,17 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
-  private @NonNull ApplicationPreferencesActivity getApplicationPreferencesActivity() {
-    return (ApplicationPreferencesActivity) requireActivity();
+  private void updateToolbarTitle(@StringRes int title) {
+    if (getParentFragment() instanceof SettingsWrapperFragment) {
+      ((SettingsWrapperFragment) getParentFragment()).setTitle(title);
+    }
+  }
+
+  private void pushFragment(@NonNull Fragment fragment) {
+    getParentFragmentManager().beginTransaction()
+        .replace(R.id.wrapped_fragment, fragment)
+        .addToBackStack(null)
+        .commit();
   }
 
   private class ClearMessageHistoryClickListener implements Preference.OnPreferenceClickListener {

@@ -48,7 +48,7 @@ public final class ThreadRecord {
   private final Uri       snippetUri;
   private final String    contentType;
   private final Extra     extra;
-  private final long      count;
+  private final boolean   meaningfulMessages;
   private final int       unreadCount;
   private final boolean   forcedUnread;
   private final int       distributionType;
@@ -69,7 +69,7 @@ public final class ThreadRecord {
     this.snippetUri           = builder.snippetUri;
     this.contentType          = builder.contentType;
     this.extra                = builder.extra;
-    this.count                = builder.count;
+    this.meaningfulMessages   = builder.meaningfulMessages;
     this.unreadCount          = builder.unreadCount;
     this.forcedUnread         = builder.forcedUnread;
     this.distributionType     = builder.distributionType;
@@ -103,8 +103,8 @@ public final class ThreadRecord {
     return contentType;
   }
 
-  public long getCount() {
-    return count;
+  public boolean hasMeaningfulMessages() {
+    return meaningfulMessages;
   }
 
   public int getUnreadCount() {
@@ -184,6 +184,29 @@ public final class ThreadRecord {
     else                                                  return null;
   }
 
+  public @NonNull RecipientId getIndividualRecipientId() {
+    if (extra != null && extra.getIndividualRecipientId() != null) {
+      return RecipientId.from(extra.getIndividualRecipientId());
+    } else {
+      if (getRecipient().isGroup()) {
+        return RecipientId.UNKNOWN;
+      } else {
+        return getRecipient().getId();
+      }
+    }
+  }
+
+  public @NonNull RecipientId getGroupMessageSender() {
+    RecipientId threadRecipientId     = getRecipient().getId();
+    RecipientId individualRecipientId = getIndividualRecipientId();
+
+    if (threadRecipientId.equals(individualRecipientId)) {
+      return Recipient.self().getId();
+    } else {
+      return individualRecipientId;
+    }
+  }
+
   public boolean isGv2Invite() {
     return extra != null && extra.isGv2Invite();
   }
@@ -208,7 +231,7 @@ public final class ThreadRecord {
            deliveryStatus == that.deliveryStatus             &&
            deliveryReceiptCount == that.deliveryReceiptCount &&
            readReceiptCount == that.readReceiptCount         &&
-           count == that.count                               &&
+           meaningfulMessages == that.meaningfulMessages     &&
            unreadCount == that.unreadCount                   &&
            forcedUnread == that.forcedUnread                 &&
            distributionType == that.distributionType         &&
@@ -236,7 +259,7 @@ public final class ThreadRecord {
                         snippetUri,
                         contentType,
                         extra,
-                        count,
+                        meaningfulMessages,
                         unreadCount,
                         forcedUnread,
                         distributionType,
@@ -249,7 +272,7 @@ public final class ThreadRecord {
   public static class Builder {
     private long      threadId;
     private String    body;
-    private Recipient recipient;
+    private Recipient recipient = Recipient.UNKNOWN;
     private long      type;
     private long      date;
     private long      deliveryStatus;
@@ -258,7 +281,7 @@ public final class ThreadRecord {
     private Uri       snippetUri;
     private String    contentType;
     private Extra     extra;
-    private long      count;
+    private boolean   meaningfulMessages;
     private int       unreadCount;
     private boolean   forcedUnread;
     private int       distributionType;
@@ -326,8 +349,8 @@ public final class ThreadRecord {
       return this;
     }
 
-    public Builder setCount(long count) {
-      this.count = count;
+    public Builder setMeaningfulMessages(boolean meaningfulMessages) {
+      this.meaningfulMessages = meaningfulMessages;
       return this;
     }
 

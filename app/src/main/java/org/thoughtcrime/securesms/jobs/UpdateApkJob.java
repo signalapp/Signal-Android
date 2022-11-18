@@ -38,7 +38,7 @@ public class UpdateApkJob extends BaseJob {
 
   public static final String KEY = "UpdateApkJob";
 
-  private static final String TAG = UpdateApkJob.class.getSimpleName();
+  private static final String TAG = Log.tag(UpdateApkJob.class);
 
   public UpdateApkJob() {
     this(new Job.Parameters.Builder()
@@ -161,7 +161,7 @@ public class UpdateApkJob extends BaseJob {
 
     downloadRequest.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI);
     downloadRequest.setTitle("Downloading Signal update");
-    downloadRequest.setDescription("Downloading " + versionName);
+    downloadRequest.setDescription("Downloading Signal" + versionName);
     downloadRequest.setVisibleInDownloadsUi(false);
     downloadRequest.setDestinationInExternalFilesDir(context, null, "signal-update.apk");
     downloadRequest.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN);

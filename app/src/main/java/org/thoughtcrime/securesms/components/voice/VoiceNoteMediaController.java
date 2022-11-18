@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components.voice;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ import java.util.Objects;
  */
 public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
+  public static final String EXTRA_THREAD_ID = "voice.note.thread_id";
   public static final String EXTRA_MESSAGE_ID = "voice.note.message_id";
   public static final String EXTRA_PROGRESS = "voice.note.playhead";
   public static final String EXTRA_PLAY_SINGLE = "voice.note.play.single";
@@ -64,7 +66,9 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
   @Override
   public void onStart(@NonNull LifecycleOwner owner) {
-    mediaBrowser.connect();
+    if (!mediaBrowser.isConnected()) {
+      mediaBrowser.connect();
+    }
   }
 
   @Override
@@ -79,6 +83,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     if (MediaControllerCompat.getMediaController(activity) != null) {
       MediaControllerCompat.getMediaController(activity).unregisterCallback(mediaControllerCompatCallback);
     }
+
     mediaBrowser.disconnect();
   }
 
@@ -99,11 +104,15 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
 
 
   public void startConsecutivePlayback(@NonNull Uri audioSlideUri, long messageId, double progress) {
-    startPlayback(audioSlideUri, messageId, progress, false);
+    startPlayback(audioSlideUri, messageId, -1, progress, false);
   }
 
   public void startSinglePlayback(@NonNull Uri audioSlideUri, long messageId, double progress) {
-    startPlayback(audioSlideUri, messageId, progress, true);
+    startPlayback(audioSlideUri, messageId, -1, progress, true);
+  }
+
+  public void startSinglePlaybackForDraft(@NonNull Uri draftUri, long threadId, double progress) {
+    startPlayback(draftUri, -1, threadId, progress, true);
   }
 
   /**
@@ -115,7 +124,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
    * @param progress       The desired progress % to seek to.
    * @param singlePlayback The player will only play back the specified Uri, and not build a playlist.
    */
-  private void startPlayback(@NonNull Uri audioSlideUri, long messageId, double progress, boolean singlePlayback) {
+  private void startPlayback(@NonNull Uri audioSlideUri, long messageId, long threadId, double progress, boolean singlePlayback) {
     if (isCurrentTrack(audioSlideUri)) {
       long duration = getMediaController().getMetadata().getLong(MediaMetadataCompat.METADATA_KEY_DURATION);
 
@@ -124,6 +133,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     } else {
       Bundle extras = new Bundle();
       extras.putLong(EXTRA_MESSAGE_ID, messageId);
+      extras.putLong(EXTRA_THREAD_ID, threadId);
       extras.putDouble(EXTRA_PROGRESS, progress);
       extras.putBoolean(EXTRA_PLAY_SINGLE, singlePlayback);
 
@@ -168,6 +178,11 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
     if (isCurrentTrack(audioSlideUri)) {
       getMediaController().getTransportControls().stop();
     }
+    AudioManager mAudioManager;
+    mAudioManager = (AudioManager)activity.getSystemService(Context.AUDIO_SERVICE);
+    mAudioManager.setSpeakerphoneOn(true);
+    mAudioManager.setMode(AudioManager.MODE_NORMAL);
+
   }
 
   private boolean isCurrentTrack(@NonNull Uri uri) {

@@ -47,6 +47,10 @@ public class BlobDataSource implements DataSource {
     }
 
     long size = unwrapLong(BlobProvider.getFileSize(uri));
+    if (size == 0) {
+      size = BlobProvider.getInstance().calculateFileSize(context, uri);
+    }
+
     if (size - dataSpec.position <= 0) throw new EOFException("No more data");
 
     return size - dataSpec.position;

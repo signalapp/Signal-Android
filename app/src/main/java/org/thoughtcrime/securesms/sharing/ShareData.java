@@ -16,24 +16,26 @@ class ShareData {
   private final Optional<String>           mimeType;
   private final Optional<ArrayList<Media>> media;
   private final boolean                    external;
+  private final boolean                    isMmsOrSmsSupported;
 
-  static ShareData forIntentData(@NonNull Uri uri, @NonNull String mimeType, boolean external) {
-    return new ShareData(Optional.of(uri), Optional.of(mimeType), Optional.absent(), external);
+  static ShareData forIntentData(@NonNull Uri uri, @NonNull String mimeType, boolean external, boolean isMmsOrSmsSupported) {
+    return new ShareData(Optional.of(uri), Optional.of(mimeType), Optional.absent(), external, isMmsOrSmsSupported);
   }
 
   static ShareData forPrimitiveTypes() {
-    return new ShareData(Optional.absent(), Optional.absent(), Optional.absent(), true);
+    return new ShareData(Optional.absent(), Optional.absent(), Optional.absent(), true, true);
   }
 
-  static ShareData forMedia(@NonNull List<Media> media) {
-    return new ShareData(Optional.absent(), Optional.absent(), Optional.of(new ArrayList<>(media)), true);
+  static ShareData forMedia(@NonNull List<Media> media, boolean isMmsOrSmsSupported) {
+    return new ShareData(Optional.absent(), Optional.absent(), Optional.of(new ArrayList<>(media)), true, isMmsOrSmsSupported);
   }
 
-  private ShareData(Optional<Uri> uri, Optional<String> mimeType, Optional<ArrayList<Media>> media, boolean external) {
-    this.uri      = uri;
-    this.mimeType = mimeType;
-    this.media    = media;
-    this.external = external;
+  private ShareData(Optional<Uri> uri, Optional<String> mimeType, Optional<ArrayList<Media>> media, boolean external, boolean isMmsOrSmsSupported) {
+    this.uri                 = uri;
+    this.mimeType            = mimeType;
+    this.media               = media;
+    this.external            = external;
+    this.isMmsOrSmsSupported = isMmsOrSmsSupported;
   }
 
   boolean isForIntent() {
@@ -62,5 +64,9 @@ class ShareData {
 
   public boolean isExternal() {
     return external;
+  }
+
+  public boolean isMmsOrSmsSupported() {
+    return isMmsOrSmsSupported;
   }
 }

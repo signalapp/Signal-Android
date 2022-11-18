@@ -27,3 +27,5 @@ RUN yes | sdkmanager --sdk_root="${ANDROID_HOME}" "platforms;${ANDROID_API_LEVEL
 RUN yes | ${ANDROID_HOME}/tools/bin/sdkmanager --licenses --sdk_root="${ANDROID_HOME}"
 
 RUN rm -rf ${ANDROID_HOME}/tools
+
+RUN docker/gradlewarmer/gradlew --version

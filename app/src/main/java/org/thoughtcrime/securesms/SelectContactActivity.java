@@ -68,4 +68,9 @@ public class SelectContactActivity extends ContactSelectionActivity
     @Override
     public void onSearch(View view) {
     }
+
+    @Override
+    public void onSelectionChanged() {
+
+    }
 }

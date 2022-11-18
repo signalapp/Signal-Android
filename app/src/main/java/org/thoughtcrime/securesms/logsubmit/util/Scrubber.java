@@ -19,6 +19,10 @@ package org.thoughtcrime.securesms.logsubmit.util;
 
 import androidx.annotation.NonNull;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -62,6 +66,18 @@ public final class Scrubber {
   private static final Pattern UUID_PATTERN = Pattern.compile("(JOB::)?([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{10})([0-9a-f]{2})", Pattern.CASE_INSENSITIVE);
   private static final String  UUID_CENSOR  = "********-****-****-****-**********";
 
+  /**
+   * The domain name except for TLD will be censored.
+   */
+  private static final Pattern     DOMAIN_PATTERN = Pattern.compile("([a-z0-9]+\\.)+([a-z0-9\\-]*[a-z\\-][a-z0-9\\-]*)", Pattern.CASE_INSENSITIVE);
+  private static final String      DOMAIN_CENSOR  = "***.";
+  private static final Set<String> TOP_100_TLDS   = new HashSet<>(Arrays.asList("com", "net", "org", "jp", "de", "uk", "fr", "br", "it", "ru", "es", "me", "gov", "pl", "ca", "au", "cn", "co", "in",
+                                                                                "nl", "edu", "info", "eu", "ch", "id", "at", "kr", "cz", "mx", "be", "tv", "se", "tr", "tw", "al", "ua", "ir", "vn",
+                                                                                "cl", "sk", "ly", "cc", "to", "no", "fi", "us", "pt", "dk", "ar", "hu", "tk", "gr", "il", "news", "ro", "my", "biz",
+                                                                                "ie", "za", "nz", "sg", "ee", "th", "io", "xyz", "pe", "bg", "hk", "lt", "link", "ph", "club", "si", "site",
+                                                                                "mobi", "by", "cat", "wiki", "la", "ga", "xxx", "cf", "hr", "ng", "jobs", "online", "kz", "ug", "gq", "ae", "is",
+                                                                                "lv", "pro", "fm", "tips", "ms", "sa", "app"));
+
   public static CharSequence scrub(@NonNull CharSequence in) {
 
     in = scrubE164(in);
@@ -69,6 +85,7 @@ public final class Scrubber {
     in = scrubGroupsV1(in);
     in = scrubGroupsV2(in);
     in = scrubUuids(in);
+    in = scrubDomains(in);
 
     return in;
   }
@@ -115,6 +132,23 @@ public final class Scrubber {
                    } else {
                      output.append(UUID_CENSOR)
                            .append(matcher.group(3));
+                   }
+                 });
+  }
+
+  private static CharSequence scrubDomains(@NonNull CharSequence in) {
+    return scrub(in,
+                 DOMAIN_PATTERN,
+                 (matcher, output) -> {
+                   String match = matcher.group(0);
+                   if (matcher.groupCount() == 2 &&
+                       TOP_100_TLDS.contains(matcher.group(2).toLowerCase(Locale.US)) &&
+                       !match.endsWith("whispersystems.org") &&
+                       !match.endsWith("signal.org")) {
+                     output.append(DOMAIN_CENSOR)
+                           .append(matcher.group(2));
+                   } else {
+                     output.append(match);
                    }
                  });
   }

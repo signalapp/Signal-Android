@@ -86,11 +86,6 @@ public final class GroupsV1MigrationUtil {
           throw new InvalidMigrationStateException();
         }
 
-        if (forced && !FeatureFlags.groupsV1ManualMigration()) {
-          Log.w(TAG, "Manual migration is not enabled! Skipping.");
-          throw new InvalidMigrationStateException();
-        }
-
         List<Recipient> registeredMembers = RecipientUtil.getEligibleForSending(groupRecipient.getParticipants());
 
         if (RecipientUtil.ensureUuidsAreAvailable(context, registeredMembers)) {
@@ -100,6 +95,11 @@ public final class GroupsV1MigrationUtil {
 
         List<Recipient> possibleMembers = forced ? getMigratableManualMigrationMembers(registeredMembers)
                                                  : getMigratableAutoMigrationMembers(registeredMembers);
+
+        if (!forced && !groupRecipient.hasName()) {
+          Log.w(TAG, "Group has no name. Skipping auto-migration.");
+          throw new InvalidMigrationStateException();
+        }
 
         if (!forced && possibleMembers.size() != registeredMembers.size()) {
           Log.w(TAG, "Not allowed to invite or leave registered users behind in an auto-migration! Skipping.");
@@ -152,7 +152,7 @@ public final class GroupsV1MigrationUtil {
       }
 
       Recipient recipient = Recipient.externalGroupExact(context, gv1Id);
-      long      threadId  = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+      long      threadId  = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
 
       performLocalMigration(context, gv1Id, threadId, recipient);
       Log.i(TAG, "Migration complete! (" + gv1Id + ", " + threadId + ", " + recipient.getId() + ")", new Throwable());

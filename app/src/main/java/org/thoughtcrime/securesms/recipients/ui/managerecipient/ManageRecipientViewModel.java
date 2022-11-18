@@ -17,9 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.BlockUnblockDialog;
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.DialogWithListActivity;
-import org.thoughtcrime.securesms.ExpirationDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.components.Mp02CustomDialog;
@@ -33,7 +32,6 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -43,7 +41,6 @@ import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Hex;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -72,6 +69,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   private final LiveData<Boolean>                                canCollapseMemberList;
   private final DefaultValueLiveData<CollapseState>              groupListCollapseState;
   private final LiveData<Boolean>                                canBlock;
+  private final LiveData<Boolean>                                canUnblock;
   private final LiveData<List<GroupMemberEntry.FullMember>>      visibleSharedGroups;
   private final LiveData<String>                                 sharedGroupsCountSummary;
   private final LiveData<Boolean>                                canAddToAGroup;
@@ -85,10 +83,11 @@ public final class ManageRecipientViewModel extends ViewModel {
     this.identity                  = new MutableLiveData<>();
     this.mediaCursor               = new MutableLiveData<>(null);
     this.groupListCollapseState    = new DefaultValueLiveData<>(CollapseState.COLLAPSED);
-    this.disappearingMessageTimer  = Transformations.map(this.recipient, r -> ExpirationUtil.getExpirationDisplayValue(context, r.getExpireMessages()));
+    this.disappearingMessageTimer  = Transformations.map(this.recipient, r -> ExpirationUtil.getExpirationDisplayValue(context, r.getExpiresInSeconds()));
     this.muteState                 = Transformations.map(this.recipient, r -> new MuteState(r.getMuteUntil(), r.isMuted()));
-    this.hasCustomNotifications    = Transformations.map(this.recipient, r -> r.getNotificationChannel() != null || !NotificationChannels.supported());
-    this.canBlock                  = Transformations.map(this.recipient, r -> !r.isBlocked());
+    this.hasCustomNotifications    = LiveDataUtil.mapAsync(this.recipient, manageRecipientRepository::hasCustomNotifications);
+    this.canBlock                  = Transformations.map(this.recipient, r -> RecipientUtil.isBlockable(r) && !r.isBlocked());
+    this.canUnblock                = Transformations.map(this.recipient, Recipient::isBlocked);
     this.internalDetails           = Transformations.map(this.recipient, this::populateInternalDetails);
 
     manageRecipientRepository.getThreadId(this::onThreadIdLoaded);
@@ -190,6 +189,10 @@ public final class ManageRecipientViewModel extends ViewModel {
     return canBlock;
   }
 
+  LiveData<Boolean> getCanUnblock() {
+    return canUnblock;
+  }
+
   void handleExpirationSelection(@NonNull Context context) {
     boolean activeGroup = isActiveGroup();
 
@@ -199,7 +202,7 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     //final long thread = this.threadId;
     Intent intent = new Intent(context, DialogWithListActivity.class);
-    intent.putExtra(STRING_CURRENT_EXPIRATION, recipient.getValue().getExpireMessages());
+    intent.putExtra(STRING_CURRENT_EXPIRATION, recipient.getValue().getExpiresInSeconds());
     intent.putExtra(RECIPIENT_EXTRA, recipient.getValue().getId());
     //intent.putExtra(THREAD_ID_EXTRA, threadId);
     context.startActivity(intent);
@@ -233,11 +236,11 @@ public final class ManageRecipientViewModel extends ViewModel {
   }
 
   void onAddToGroupButton(@NonNull Activity activity) {
-    manageRecipientRepository.getGroupMembership(existingGroups -> Util.runOnMain(() -> activity.startActivity(AddToGroupsActivity.newIntent(activity, manageRecipientRepository.getRecipientId(), existingGroups))));
+    manageRecipientRepository.getGroupMembership(existingGroups -> ThreadUtil.runOnMain(() -> activity.startActivity(AddToGroupsActivity.newIntent(activity, manageRecipientRepository.getRecipientId(), existingGroups))));
   }
 
   private void withRecipient(@NonNull Consumer<Recipient> mainThreadRecipientCallback) {
-    manageRecipientRepository.getRecipient(recipient -> Util.runOnMain(() -> mainThreadRecipientCallback.accept(recipient)));
+    manageRecipientRepository.getRecipient(recipient -> ThreadUtil.runOnMain(() -> mainThreadRecipientCallback.accept(recipient)));
   }
 
   private static @NonNull List<Recipient> filterSharedGroupList(@NonNull List<Recipient> groups,
@@ -342,10 +345,6 @@ public final class ManageRecipientViewModel extends ViewModel {
     return sharedGroupsCountSummary;
   }
 
-  void onSelectColor(int color) {
-   manageRecipientRepository.setColor(color);
-  }
-
   void onGroupClicked(@NonNull Activity activity, @NonNull Recipient recipient) {
     CommunicationActions.startConversation(activity, recipient, null);
     activity.finish();
@@ -385,16 +384,18 @@ public final class ManageRecipientViewModel extends ViewModel {
 
     String profileKeyBase64 = recipient.getProfileKey() != null ? Base64.encodeBytes(recipient.getProfileKey()) : "None";
     String profileKeyHex    = recipient.getProfileKey() != null ? Hex.toStringCondensed(recipient.getProfileKey()) : "None";
-    return String.format("-- Profile Name --\n%s\n\n" +
+    return String.format("-- Profile Name --\n[%s] [%s]\n\n" +
                          "-- Profile Sharing --\n%s\n\n" +
                          "-- Profile Key (Base64) --\n%s\n\n" +
                          "-- Profile Key (Hex) --\n%s\n\n" +
+                         "-- Sealed Sender Mode --\n%s\n\n" +
                          "-- UUID --\n%s\n\n" +
                          "-- RecipientId --\n%s",
-                         recipient.getProfileName().toString(),
+                         recipient.getProfileName().getGivenName(), recipient.getProfileName().getFamilyName(),
                          recipient.isProfileSharing(),
                          profileKeyBase64,
                          profileKeyHex,
+                         recipient.getUnidentifiedAccessMode(),
                          recipient.getUuid().transform(UUID::toString).or("None"),
                          recipient.getId().serialize());
   }

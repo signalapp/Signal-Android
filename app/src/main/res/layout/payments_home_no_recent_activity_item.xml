@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:gravity="center"
+    android:text="@string/PaymentsHomeFragment__no_recent_activity_yet"
+    android:textColor="@color/signal_text_secondary"
+    android:textSize="16sp" />

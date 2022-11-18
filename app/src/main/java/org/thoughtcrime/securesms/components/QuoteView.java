@@ -17,13 +17,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -32,13 +35,14 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
 import java.util.List;
 
 public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
-  private static final String TAG = QuoteView.class.getSimpleName();
+  private static final String TAG = Log.tag(QuoteView.class);
 
   private static final int MESSAGE_TYPE_PREVIEW  = 0;
   private static final int MESSAGE_TYPE_OUTGOING = 1;
@@ -48,7 +52,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   private ViewGroup footerView;
   private TextView  authorView;
   private TextView  bodyView;
-  private ImageView quoteBarView;
+  private View      quoteBarView;
   private ImageView thumbnailView;
   private View      attachmentVideoOverlayView;
   private ViewGroup attachmentContainerView;
@@ -151,7 +155,8 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
                        @NonNull Recipient author,
                        @Nullable CharSequence body,
                        boolean originalMissing,
-                       @NonNull SlideDeck attachments)
+                       @NonNull SlideDeck attachments,
+                       @Nullable ChatColors chatColors)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -165,6 +170,12 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     setQuoteText(body, attachments);
     setQuoteAttachment(glideRequests, attachments);
     setQuoteMissingFooter(originalMissing);
+
+    if (Build.VERSION.SDK_INT < 21 && messageType == MESSAGE_TYPE_INCOMING && chatColors != null) {
+      this.setBackgroundColor(chatColors.asSingleColor());
+    } else {
+      this.setBackground(null);
+    }
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -187,15 +198,23 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     setQuoteAuthor(recipient);
   }
 
+  public @NonNull Projection getProjection(@NonNull ViewGroup parent) {
+    return Projection.relativeToParent(parent, this, getCorners());
+  }
+
+  public @NonNull Projection.Corners getCorners() {
+    return new Projection.Corners(cornerMask.getRadii());
+  }
+
   private void setQuoteAuthor(@NonNull Recipient author) {
     boolean outgoing = messageType != MESSAGE_TYPE_INCOMING;
+    boolean preview  = messageType == MESSAGE_TYPE_PREVIEW;
 
     authorView.setText(author.isSelf() ? getContext().getString(R.string.QuoteView_you)
                                        : author.getDisplayName(getContext()));
 
-    // We use the raw color resource because Android 4.x was struggling with tints here
-    quoteBarView.setImageResource(author.getColor().toQuoteBarColorResource(getContext(), outgoing));
-    mainView.setBackgroundColor(author.getColor().toQuoteBackgroundColor(getContext(), outgoing));
+    quoteBarView.setBackgroundColor(ContextCompat.getColor(getContext(), outgoing ? R.color.core_white : android.R.color.transparent));
+    mainView.setBackgroundColor(ContextCompat.getColor(getContext(), preview ? R.color.quote_preview_background : R.color.quote_view_background));
   }
 
   private void setQuoteText(@Nullable CharSequence body, @NonNull SlideDeck attachments) {
@@ -271,7 +290,11 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   private void setQuoteMissingFooter(boolean missing) {
     footerView.setVisibility(missing ? VISIBLE : GONE);
-    footerView.setBackgroundColor(author.get().getColor().toQuoteFooterColor(getContext(), messageType != MESSAGE_TYPE_INCOMING));
+    footerView.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.quote_view_background));
+  }
+
+  public void setTextSize(int unit, float size) {
+    bodyView.setTextSize(unit, size);
   }
 
   public long getQuoteId() {

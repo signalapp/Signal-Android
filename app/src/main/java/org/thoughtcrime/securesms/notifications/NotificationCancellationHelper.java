@@ -14,12 +14,15 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BubbleUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * Consolidates Notification Cancellation logic to one class.
@@ -36,14 +39,18 @@ public final class NotificationCancellationHelper {
 
   private NotificationCancellationHelper() {}
 
+  public static void cancelAllMessageNotifications(@NonNull Context context) {
+    cancelAllMessageNotifications(context, Collections.emptySet());
+  }
+
   /**
    * Cancels all Message-Based notifications. Specifically, this is any notification that is not the
-   * summary notification assigned to the {@link DefaultMessageNotifier#NOTIFICATION_GROUP} group.
+   * summary notification assigned to the {@link MessageNotifierV2#NOTIFICATION_GROUP} group.
    *
    * We utilize our wrapped cancellation methods and a counter to make sure that we do not lose
    * bubble notifications that do not have unread messages in them.
    */
-  static void cancelAllMessageNotifications(@NonNull Context context) {
+  public static void cancelAllMessageNotifications(@NonNull Context context, @NonNull Set<Integer> stickyNotifications) {
     if (Build.VERSION.SDK_INT >= 23) {
       try {
         NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
@@ -53,7 +60,7 @@ public final class NotificationCancellationHelper {
         for (StatusBarNotification activeNotification : activeNotifications) {
           if (isSingleThreadNotification(activeNotification)) {
             activeCount++;
-            if (cancel(context, activeNotification.getId())) {
+            if (!stickyNotifications.contains(activeNotification.getId()) && cancel(context, activeNotification.getId())) {
               activeCount--;
             }
           }
@@ -72,13 +79,39 @@ public final class NotificationCancellationHelper {
     }
   }
 
+  public static void cancelMessageSummaryIfSoleNotification(@NonNull Context context) {
+    if (Build.VERSION.SDK_INT > 23) {
+      try {
+        NotificationManager     notifications       = ServiceUtil.getNotificationManager(context);
+        StatusBarNotification[] activeNotifications = notifications.getActiveNotifications();
+        boolean                 soleMessageSummary  = false;
+
+        for (StatusBarNotification activeNotification : activeNotifications) {
+          if (isSingleThreadNotification(activeNotification)) {
+            soleMessageSummary = false;
+            break;
+          } else if (activeNotification.getId() == NotificationIds.MESSAGE_SUMMARY) {
+            soleMessageSummary = true;
+          }
+        }
+
+        if (soleMessageSummary) {
+          Log.d(TAG, "Cancelling sole message summary");
+          cancelLegacy(context, NotificationIds.MESSAGE_SUMMARY);
+        }
+      } catch (Throwable e) {
+        Log.w(TAG, e);
+      }
+    }
+  }
+
   /**
    * @return whether this is a non-summary notification that is a member of the NOTIFICATION_GROUP group.
    */
   @RequiresApi(23)
   private static boolean isSingleThreadNotification(@NonNull StatusBarNotification statusBarNotification) {
     return statusBarNotification.getId() != NotificationIds.MESSAGE_SUMMARY &&
-           Objects.equals(statusBarNotification.getNotification().getGroup(), DefaultMessageNotifier.NOTIFICATION_GROUP);
+           Objects.equals(statusBarNotification.getNotification().getGroup(), MessageNotifierV2.NOTIFICATION_GROUP);
   }
 
   /**
@@ -144,10 +177,15 @@ public final class NotificationCancellationHelper {
       return true;
     }
 
-    RecipientId recipientId = RecipientId.from(notification.getShortcutId());
-    Long        threadId    = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
+    RecipientId recipientId = ConversationUtil.getRecipientId(notification.getShortcutId());
+    if (recipientId == null) {
+      Log.d(TAG, "isCancellable: Unable to get recipient from shortcut id");
+      return true;
+    }
 
+    Long threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipientId);
     long focusedThreadId = ApplicationDependencies.getMessageNotifier().getVisibleThread();
+
     if (Objects.equals(threadId, focusedThreadId)) {
       Log.d(TAG, "isCancellable: user entered full screen thread.");
       return true;

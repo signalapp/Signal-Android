@@ -29,13 +29,19 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 public class MediaPickerFolderFragment extends Fragment implements MediaPickerFolderAdapter.EventListener {
 
   private static final String KEY_TOOLBAR_TITLE = "toolbar_title";
+  private static final String KEY_HIDE_CAMERA   = "hide_camera";
 
   private String             toolbarTitle;
+  private boolean            showCamera;
   private MediaSendViewModel viewModel;
   private Controller         controller;
   private GridLayoutManager  layoutManager;
 
   public static @NonNull MediaPickerFolderFragment newInstance(@NonNull Context context, @Nullable Recipient recipient) {
+    return newInstance(context, recipient, false);
+  }
+
+  public static @NonNull MediaPickerFolderFragment newInstance(@NonNull Context context, @Nullable Recipient recipient, boolean hideCamera) {
     String toolbarTitle;
 
     if (recipient != null) {
@@ -45,8 +51,13 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
       toolbarTitle = "";
     }
 
+    return newInstance(toolbarTitle, hideCamera);
+  }
+
+  public static @NonNull MediaPickerFolderFragment newInstance(@NonNull String toolbarTitle, boolean hideCamera) {
     Bundle args = new Bundle();
     args.putString(KEY_TOOLBAR_TITLE, toolbarTitle);
+    args.putBoolean(KEY_HIDE_CAMERA, hideCamera);
 
     MediaPickerFolderFragment fragment = new MediaPickerFolderFragment();
     fragment.setArguments(args);
@@ -60,6 +71,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     setHasOptionsMenu(true);
 
     toolbarTitle = getArguments().getString(KEY_TOOLBAR_TITLE);
+    showCamera   = !getArguments().getBoolean(KEY_HIDE_CAMERA);
     viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
@@ -92,7 +104,7 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
     list.setLayoutManager(layoutManager);
     list.setAdapter(adapter);
 
-    viewModel.getFolders(requireContext()).observe(this, adapter::setFolders);
+    viewModel.getFolders(requireContext()).observe(getViewLifecycleOwner(), adapter::setFolders);
 
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
   }
@@ -105,16 +117,14 @@ public class MediaPickerFolderFragment extends Fragment implements MediaPickerFo
 
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
-    requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+    if (showCamera) {
+      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+    }
   }
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.mediapicker_menu_camera:
-        controller.onCameraSelected();
-        return true;
-    }
+    if (item.getItemId() == R.id.mediapicker_menu_camera) { controller.onCameraSelected(); return true; }
     return false;
   }
 

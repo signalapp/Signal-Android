@@ -20,7 +20,11 @@ public class ApngBufferCacheDecoder implements ResourceDecoder<ByteBuffer, APNGD
 
   @Override
   public boolean handles(@NonNull ByteBuffer source, @NonNull Options options) {
-    return APNGParser.isAPNG(new ByteBufferReader(source));
+    if (options.get(ApngOptions.ANIMATE)) {
+      return APNGParser.isAPNG(new ByteBufferReader(source));
+    } else {
+      return false;
+    }
   }
 
   @Override

@@ -42,6 +42,7 @@ public final class GroupMentionSettingDialog {
         selectionCallback.selection = MentionSetting.ALWAYS_NOTIFY;
       } else if (dontNotify.isChecked()) {
         selectionCallback.selection = MentionSetting.DO_NOT_NOTIFY;
+        dontNotify.requestFocus();
       }
     };
 

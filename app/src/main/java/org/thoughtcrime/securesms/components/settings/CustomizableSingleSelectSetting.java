@@ -36,7 +36,7 @@ public class CustomizableSingleSelectSetting {
       super(itemView);
       this.selectionListener = selectionListener;
       this.text = findViewById(R.id.single_select_item_text);
-//      radio          = findViewById(R.id.customizable_single_select_radio);
+      //      radio          = findViewById(R.id.customizable_single_select_radio);
       summaryText    = findViewById(R.id.customizable_single_select_summary);
       customize      = findViewById(R.id.customizable_single_select_customize);
       customizeGroup = findViewById(R.id.customizable_single_select_customize_group);
@@ -48,18 +48,13 @@ public class CustomizableSingleSelectSetting {
           delegate.updateFocusView(text, hasFocus);
         }
       });
-      delegate = new SingleSelectSetting.ViewHolder(itemView, selectionListener) {
-        @Override
-        protected void setChecked(boolean checked) {
-//          radio.setChecked(checked);
-        }
-      };
+      delegate = new SingleSelectSetting.ViewHolder(itemView, selectionListener);
     }
 
     @Override
     public void bind(@NonNull Item model) {
       delegate.bind(model.singleSelectItem);
-//      customizeGroup.setVisibility(radio.isChecked() ? View.VISIBLE : View.GONE);
+//      customizeGroup.setVisibility(model.singleSelectItem.isSelected() ? View.VISIBLE : View.GONE);
       customize.setOnClickListener(v -> selectionListener.onCustomizeClicked(model));
       if (model.getCustomValue() != null) {
         summaryText.setText(model.getSummaryText());
@@ -95,6 +90,7 @@ public class CustomizableSingleSelectSetting {
     @Override
     public boolean areContentsTheSame(@NonNull Item newItem) {
       return singleSelectItem.areContentsTheSame(newItem.singleSelectItem) && Objects.equals(customValue, newItem.customValue) && Objects.equals(summaryText, newItem.summaryText);
+
     }
   }
 }

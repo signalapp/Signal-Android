@@ -91,7 +91,7 @@ public final class PushChallengeRequest {
 
       eventBus.register(this);
       try {
-        accountManager.requestPushChallenge(fcmToken, e164number);
+        accountManager.requestRegistrationPushChallenge(fcmToken, e164number);
 
         latch.await(timeoutMs, TimeUnit.MILLISECONDS);
 

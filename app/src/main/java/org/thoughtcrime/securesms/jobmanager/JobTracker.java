@@ -10,6 +10,8 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.util.LRUCache;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -64,6 +66,22 @@ public class JobTracker {
           .forEach(listener -> {
             listenerExecutor.execute(() -> listener.onStateChanged(job, state));
           });
+  }
+
+  /**
+   * Returns whether or not any jobs referenced by the IDs in the provided collection have failed.
+   * Keep in mind that this is not perfect -- our data is only kept in memory, and even then only up
+   * to a certain limit.
+   */
+  synchronized boolean haveAnyFailed(@NonNull Collection<String> jobIds) {
+    for (String jobId : jobIds) {
+      JobInfo jobInfo = jobInfos.get(jobId);
+      if (jobInfo != null && jobInfo.getJobState() == JobState.FAILURE) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   private @NonNull JobInfo getOrCreateJobInfo(@NonNull Job job) {

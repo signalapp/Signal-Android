@@ -4,4 +4,5 @@
     android:id="@+id/leaveGroup"
     style="@style/Mp02.Signal.ListTextView"
     android:text="@string/ManageGroupActivity_leave_group"
-    tools:ignore="UnusedAttribute" />
+    tools:ignore="UnusedAttribute"
+    android:visibility="gone"/>

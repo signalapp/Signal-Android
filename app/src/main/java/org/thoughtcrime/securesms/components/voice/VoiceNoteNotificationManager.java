@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColors;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -98,14 +100,13 @@ class VoiceNoteNotificationManager {
       int         startingPosition = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_MESSAGE_POSITION);
       long        threadId         = controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_THREAD_ID);
 
-      MaterialColor color;
-      try {
-        color = MaterialColor.fromSerialized(controller.getMetadata().getString(VoiceNoteMediaDescriptionCompatFactory.EXTRA_COLOR));
-      } catch (MaterialColor.UnknownColorException e) {
-        color = ContactColors.UNKNOWN_COLOR;
+      int color = (int) controller.getMetadata().getLong(VoiceNoteMediaDescriptionCompatFactory.EXTRA_COLOR);
+
+      if (color == 0) {
+        color = ChatColorsPalette.UNKNOWN_CONTACT.asSingleColor();
       }
 
-      notificationManager.setColor(color.toNotificationColor(context));
+      notificationManager.setColor(color);
 
       Intent conversationActivity = ConversationIntents.createBuilder(context, recipientId, threadId)
                                                        .withStartingPosition(startingPosition)
@@ -130,7 +131,7 @@ class VoiceNoteNotificationManager {
 
     @Override
     public @Nullable Bitmap getCurrentLargeIcon(Player player, PlayerNotificationManager.BitmapCallback callback) {
-      if (!hasMetadata() || !TextSecurePreferences.getNotificationPrivacy(context).isDisplayContact()) {
+      if (!hasMetadata() || !SignalStore.settings().getMessageNotificationsPrivacy().isDisplayContact()) {
         cachedBitmap      = null;
         cachedRecipientId = null;
         return null;

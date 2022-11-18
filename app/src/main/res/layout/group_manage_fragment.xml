@@ -54,6 +54,22 @@
                     android:textColor="@color/signal_text_secondary"
                     tools:text="12 members (4 invited)" />
 
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/manage_group_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:gravity="center_horizontal"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:textAppearance="@style/Signal.Text.Body"
+                    android:textColor="@color/signal_text_secondary"
+                    android:visibility="gone"
+                    tools:text="Group to plot the capture of Doc Oct"
+                    tools:visibility="visible" />
+
                 <org.thoughtcrime.securesms.util.views.LearnMoreTextView
                     android:id="@+id/manage_group_info_text"
                     android:layout_width="wrap_content"
@@ -328,6 +344,18 @@
                             tools:text="Default (Notify me)" />
 
                     </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/chat_wallpaper"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:background="?selectableItemBackground"
+                        android:gravity="start|center_vertical"
+                        android:paddingStart="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:paddingEnd="@dimen/group_manage_fragment_row_horizontal_padding"
+                        android:text="@string/ManageGroupActivity_chat_color_and_wallpaper"
+                        android:textAlignment="viewStart"
+                        android:textAppearance="@style/Signal.Text.Body"/>
 
                 </LinearLayout>
 
@@ -692,7 +720,8 @@
                         android:text="@string/ManageGroupActivity_leave_group"
                         android:textAlignment="viewStart"
                         android:textAppearance="@style/Signal.Text.Body"
-                        android:textColor="@color/core_red" />
+                        android:textColor="@color/core_red"
+                        android:visibility="gone"/>
 
                 </LinearLayout>
 

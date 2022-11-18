@@ -17,6 +17,7 @@ import androidx.core.widget.ImageViewCompat;
 
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
@@ -24,12 +25,12 @@ import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.AvatarUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.webrtc.RendererCommon;
 
@@ -54,6 +55,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private AppCompatImageView  backgroundAvatar;
   private AvatarImageView     avatar;
+  private View                rendererFrame;
   private TextureViewRenderer renderer;
   private ImageView           pipAvatar;
   private ContactPhoto        contactPhoto;
@@ -83,6 +85,7 @@ public class CallParticipantView extends ConstraintLayout {
     backgroundAvatar = findViewById(R.id.call_participant_background_avatar);
     avatar           = findViewById(R.id.call_participant_item_avatar);
     pipAvatar        = findViewById(R.id.call_participant_item_pip_avatar);
+    rendererFrame    = findViewById(R.id.call_participant_renderer_frame);
     renderer         = findViewById(R.id.call_participant_renderer);
     audioMuted       = findViewById(R.id.call_participant_mic_muted);
     infoOverlay      = findViewById(R.id.call_participant_info_overlay);
@@ -102,12 +105,17 @@ public class CallParticipantView extends ConstraintLayout {
     renderer.setScalingType(scalingType);
   }
 
+  void setScalingType(@NonNull RendererCommon.ScalingType scalingTypeMatchOrientation, @NonNull RendererCommon.ScalingType scalingTypeMismatchOrientation) {
+    renderer.setScalingType(scalingTypeMatchOrientation, scalingTypeMismatchOrientation);
+  }
+
   void setCallParticipant(@NonNull CallParticipant participant) {
     boolean participantChanged = recipientId == null || !recipientId.equals(participant.getRecipient().getId());
     recipientId = participant.getRecipient().getId();
     infoMode    = participant.getRecipient().isBlocked() || isMissingMediaKeys(participant);
 
     if (infoMode) {
+      rendererFrame.setVisibility(View.GONE);
       renderer.setVisibility(View.GONE);
       renderer.attachBroadcastVideoSink(null);
       audioMuted.setVisibility(View.GONE);
@@ -130,12 +138,15 @@ public class CallParticipantView extends ConstraintLayout {
     } else {
       infoOverlay.setVisibility(View.GONE);
 
-      renderer.setVisibility(participant.isVideoEnabled() ? View.VISIBLE : View.GONE);
+      boolean hasContentToRender = participant.isVideoEnabled() || participant.isScreenSharing();
+
+      rendererFrame.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
+      renderer.setVisibility(hasContentToRender ? View.VISIBLE : View.GONE);
 
       if (participant.isVideoEnabled()) {
-        if (participant.getVideoSink().getEglBase() != null) {
-          renderer.init(participant.getVideoSink().getEglBase());
-        }
+        participant.getVideoSink().getLockableEglBase().performWithValidEglBase(eglBase -> {
+          renderer.init(eglBase);
+        });
         renderer.attachBroadcastVideoSink(participant.getVideoSink());
       } else {
         renderer.attachBroadcastVideoSink(null);
@@ -154,7 +165,7 @@ public class CallParticipantView extends ConstraintLayout {
 
   private boolean isMissingMediaKeys(@NonNull CallParticipant participant) {
     if (missingMediaKeysUpdater != null) {
-      Util.cancelRunnableOnMain(missingMediaKeysUpdater);
+      ThreadUtil.cancelRunnableOnMain(missingMediaKeysUpdater);
       missingMediaKeysUpdater = null;
     }
 
@@ -168,7 +179,7 @@ public class CallParticipantView extends ConstraintLayout {
             setCallParticipant(participant);
           }
         };
-        Util.runOnMainDelayed(missingMediaKeysUpdater, DELAY_SHOWING_MISSING_MEDIA_KEYS - time);
+        ThreadUtil.runOnMainDelayed(missingMediaKeysUpdater, DELAY_SHOWING_MISSING_MEDIA_KEYS - time);
       }
     }
     return false;
@@ -183,6 +194,14 @@ public class CallParticipantView extends ConstraintLayout {
 
     avatar.setVisibility(shouldRenderInPip ? View.GONE : View.VISIBLE);
     pipAvatar.setVisibility(shouldRenderInPip ? View.VISIBLE : View.GONE);
+  }
+
+  void hideAvatar() {
+    avatar.setAlpha(0f);
+  }
+
+  void showAvatar() {
+    avatar.setAlpha(1f);
   }
 
   void useLargeAvatar() {
@@ -219,7 +238,10 @@ public class CallParticipantView extends ConstraintLayout {
             .into(pipAvatar);
 
     pipAvatar.setScaleType(contactPhoto == null ? ImageView.ScaleType.CENTER_INSIDE : ImageView.ScaleType.CENTER_CROP);
-    pipAvatar.setBackgroundColor(recipient.getColor().toActionBarColor(getContext()));
+
+    ChatColors chatColors = recipient.getChatColors();
+
+    pipAvatar.setBackground(chatColors.getChatBubbleMask());
   }
 
   private void showBlockedDialog(@NonNull Recipient recipient) {

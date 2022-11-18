@@ -10,6 +10,12 @@
     tools:context=".registration.fragments.EnterPhoneNumberFragment"
     tools:targetApi="o">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"/>
+
     <TextView
         android:id="@+id/phone_number_entry"
         style="@style/Mp02.Signal.Text.BigCommonTextButton"
@@ -19,7 +25,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/RegistrationActivity_phone_number_description"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/country_code_header"

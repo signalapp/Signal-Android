@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/payments_recovery_phrase_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="?actionBarStyle"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/PaymentsRecoveryStartFragment__recovery_phrase"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/payments_recovery_phrase_fragment_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                android:text="@string/PaymentsRecoveryPhraseFragment__your_recovery_phrase"
+                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/payments_recovery_phrase_fragment_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                android:text="@string/PaymentsRecoveryPhraseFragment__write_down_the_following_d_words"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_fragment_title" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/payment_recovery_phrase_outline_margin"
+                android:layout_marginEnd="@dimen/payment_recovery_phrase_outline_margin"
+                android:background="@drawable/rounded_outline"
+                app:layout_constraintBottom_toBottomOf="@id/payments_recovery_phrase_fragment_copy_space"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/payments_recovery_phrase_fragment_recycler" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_recovery_phrase_fragment_copy"
+                style="@style/Signal.Widget.Button.Small.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/PaymentsRecoveryPhraseFragment__copy"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_fragment_recycler" />
+
+            <Space
+                android:id="@+id/payments_recovery_phrase_fragment_copy_space"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_fragment_copy" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/payments_recovery_phrase_fragment_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/payment_recovery_phrase_adapter_margin"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/payment_recovery_phrase_adapter_margin"
+                android:layout_marginBottom="36dp"
+                android:paddingTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_fragment_message"
+                tools:itemCount="24"
+                tools:listitem="@layout/mnemonic_part_adapter_item"
+                tools:spanCount="2" />
+
+            <TextView
+                android:id="@+id/payments_recovery_phrase_fragment_warning"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                android:text="@string/PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                android:textColor="@color/payment_currency_code_foreground_color"
+                app:layout_constraintBottom_toTopOf="@+id/payments_recovery_phrase_fragment_next"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_fragment_copy_space"
+                app:layout_constraintVertical_bias="0" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_recovery_phrase_fragment_next"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/PaymentsRecoveryPhraseFragment__next"
+                app:layout_constraintBottom_toTopOf="@id/payments_recovery_phrase_fragment_edit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_recovery_phrase_fragment_edit"
+                style="@style/Signal.Widget.Button.Medium.Secondary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="48dp"
+                android:layout_marginEnd="48dp"
+                android:layout_marginBottom="8dp"
+                android:text="@string/PaymentsRecoveryPhraseFragment__edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>

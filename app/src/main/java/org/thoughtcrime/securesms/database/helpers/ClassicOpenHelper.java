@@ -117,7 +117,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
   private static final int MORE_RECIPIENT_FIELDS                           = 47;
   private static final int DATABASE_VERSION                                = 47;
 
-  private static final String TAG = ClassicOpenHelper.class.getSimpleName();
+  private static final String TAG = Log.tag(ClassicOpenHelper.class);
 
   private final Context context;
 
@@ -1393,7 +1393,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
   private static class NumberMigrator {
 
-    private static final String TAG = NumberMigrator.class.getSimpleName();
+    private static final String TAG = Log.tag(NumberMigrator.class);
 
     private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
       add("NU");

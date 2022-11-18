@@ -1,6 +1,13 @@
 package org.thoughtcrime.securesms.keyvalue;
 
+import androidx.annotation.NonNull;
+
+import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public final class InternalValues extends SignalStoreValues {
 
@@ -12,6 +19,11 @@ public final class InternalValues extends SignalStoreValues {
   public static final String GV2_DISABLE_AUTOMIGRATE_NOTIFICATION = "internal.gv2.disable_automigrate_notification";
   public static final String RECIPIENT_DETAILS                    = "internal.recipient_details";
   public static final String FORCE_CENSORSHIP                     = "internal.force_censorship";
+  public static final String FORCE_BUILT_IN_EMOJI                 = "internal.force_built_in_emoji";
+  public static final String REMOVE_SENDER_KEY_MINIMUM            = "internal.remove_sender_key_minimum";
+  public static final String DELAY_RESENDS                        = "internal.delay_resends";
+  public static final String CALLING_SERVER                       = "internal.calling_server";
+  public static final String SHAKE_TO_REPORT                      = "internal.shake_to_report";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -19,6 +31,11 @@ public final class InternalValues extends SignalStoreValues {
 
   @Override
   void onFirstEverAppLaunch() {
+  }
+
+  @Override
+  @NonNull List<String> getKeysToIncludeInBackup() {
+    return Collections.emptyList();
   }
 
   /**
@@ -71,6 +88,27 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
+   * Force the app to use the emoji that ship with the app, as opposed to the ones that were downloaded.
+   */
+  public synchronized boolean forceBuiltInEmoji() {
+    return FeatureFlags.internalUser() && getBoolean(FORCE_BUILT_IN_EMOJI, false);
+  }
+
+  /**
+   * Remove the requirement that there must be two sender-key-capable recipients to use sender key
+   */
+  public synchronized boolean removeSenderKeyMinimum() {
+    return FeatureFlags.internalUser() && getBoolean(REMOVE_SENDER_KEY_MINIMUM, false);
+  }
+
+  /**
+   * Delay resending messages in response to retry receipts by 10 seconds.
+   */
+  public synchronized boolean delayResends() {
+    return FeatureFlags.internalUser() && getBoolean(DELAY_RESENDS, false);
+  }
+
+  /**
    * Disable initiating a GV1->GV2 auto-migration. You can still recognize a group has been
    * auto-migrated.
    */
@@ -84,5 +122,27 @@ public final class InternalValues extends SignalStoreValues {
    */
   public synchronized boolean disableGv1AutoMigrateNotification() {
     return FeatureFlags.internalUser() && getBoolean(GV2_DISABLE_AUTOMIGRATE_NOTIFICATION, false);
+  }
+
+  /**
+   * Whether or not "shake to report" is enabled.
+   */
+  public synchronized boolean shakeToReport() {
+    return FeatureFlags.internalUser() && getBoolean(SHAKE_TO_REPORT, true);
+  }
+
+  /**
+   * The selected group calling server to use.
+   * <p>
+   * The user must be an internal user and the setting must be one of the current set of internal servers otherwise
+   * the default SFU will be returned. This ensures that if the {@link BuildConfig#SIGNAL_SFU_INTERNAL_URLS} list changes,
+   * internal users cannot be left on old servers.
+   */
+  public synchronized @NonNull String groupCallingServer() {
+    String internalServer = FeatureFlags.internalUser() ? getString(CALLING_SERVER, null) : null;
+    if (internalServer != null && !Arrays.asList(BuildConfig.SIGNAL_SFU_INTERNAL_URLS).contains(internalServer)) {
+      internalServer = null;
+    }
+    return internalServer != null ? internalServer : BuildConfig.SIGNAL_SFU_URL;
   }
 }

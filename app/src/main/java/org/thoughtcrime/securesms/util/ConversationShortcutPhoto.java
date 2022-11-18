@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.contacts.avatars.FallbackPhoto80dp;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.SystemContactPhoto;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -37,6 +36,13 @@ import java.util.concurrent.ExecutionException;
 
 public final class ConversationShortcutPhoto implements Key {
 
+  /**
+   * Version integer to update whenever business logic changes in this class (such as
+   * design tweaks or bug fixes). This way, the old photos will be considered invalid
+   * in the cache.
+   */
+  private static final long VERSION = 1L;
+
   private final Recipient recipient;
   private final String    avatarObject;
 
@@ -44,7 +50,6 @@ public final class ConversationShortcutPhoto implements Key {
   public ConversationShortcutPhoto(@NonNull Recipient recipient) {
     this.recipient    = recipient.resolve();
     this.avatarObject = Util.firstNonNull(recipient.getProfileAvatar(), "");
-
   }
 
   @Override
@@ -53,6 +58,7 @@ public final class ConversationShortcutPhoto implements Key {
     messageDigest.update(avatarObject.getBytes());
     messageDigest.update(isSystemContactPhoto() ? (byte) 1 : (byte) 0);
     messageDigest.update(ByteUtil.longToByteArray(getFileLastModified()));
+    messageDigest.update(ByteUtil.longToByteArray(VERSION));
   }
 
   @Override
@@ -162,7 +168,10 @@ public final class ConversationShortcutPhoto implements Key {
     }
 
     private @NonNull Bitmap getShortcutInfoBitmap(@NonNull Context context) throws ExecutionException, InterruptedException {
-      return DrawableUtil.wrapBitmapForShortcutInfo(request(GlideApp.with(context).asBitmap(), context, false).circleCrop().submit().get());
+      return DrawableUtil.wrapBitmapForShortcutInfo(AvatarUtil.loadIconBitmapSquareNoCache(context,
+                                                                                           photo.recipient,
+                                                                                           DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE,
+                                                                                           DrawableUtil.SHORTCUT_INFO_WRAPPED_SIZE));
     }
 
     private @NonNull Bitmap getFallbackForShortcut(@NonNull Context context) {
@@ -177,29 +186,34 @@ public final class ConversationShortcutPhoto implements Key {
         photoSource = R.drawable.ic_profile_80;
       }
 
-      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getColor().toAvatarColor(context))
-                                                                               : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), ViewUtil.dpToPx(28));
-      Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asDrawable(context, recipient.getColor().toAvatarColor(context)), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
+      FallbackContactPhoto photo   = recipient.isSelf() || recipient.isGroup() ? new FallbackPhoto80dp(photoSource, recipient.getAvatarColor().colorInt())
+                                                                               : new ShortcutGeneratedContactPhoto(recipient.getDisplayName(context), photoSource, ViewUtil.dpToPx(80), ViewUtil.dpToPx(28), recipient.getAvatarColor().colorInt());
+      Bitmap               toWrap  = DrawableUtil.toBitmap(photo.asCallCard(context), ViewUtil.dpToPx(80), ViewUtil.dpToPx(80));
       Bitmap               wrapped = DrawableUtil.wrapBitmapForShortcutInfo(toWrap);
 
       toWrap.recycle();
 
       return wrapped;
     }
-
-    private <T> GlideRequest<T> request(@NonNull GlideRequest<T> glideRequest, @NonNull Context context, boolean loadSelf) {
-      return glideRequest.load(photo.recipient.getContactPhoto()).diskCacheStrategy(DiskCacheStrategy.ALL);
-    }
   }
 
   private static final class ShortcutGeneratedContactPhoto extends GeneratedContactPhoto {
-    public ShortcutGeneratedContactPhoto(@NonNull String name, int fallbackResId, int targetSize, int fontSize) {
+
+    private final int color;
+
+    public ShortcutGeneratedContactPhoto(@NonNull String name, int fallbackResId, int targetSize, int fontSize, int color) {
       super(name, fallbackResId, targetSize, fontSize);
+
+      this.color = color;
     }
 
     @Override
     protected Drawable newFallbackDrawable(@NonNull Context context, int color, boolean inverted) {
       return new FallbackPhoto80dp(getFallbackResId(), color).asDrawable(context, -1);
+    }
+
+    @Override public Drawable asCallCard(Context context) {
+      return new FallbackPhoto80dp(getFallbackResId(), color).asCallCard(context);
     }
   }
 }

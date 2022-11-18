@@ -7,14 +7,21 @@ import android.view.ViewGroup;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
+import androidx.recyclerview.widget.RecyclerView;
 
 import org.whispersystems.libsignal.util.guava.Function;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Optional;
+
+import kotlin.collections.CollectionsKt;
+import kotlin.jvm.functions.Function1;
 
 /**
  * A reusable and composable {@link androidx.recyclerview.widget.RecyclerView.Adapter} built on-top of {@link ListAdapter} to
@@ -63,10 +70,22 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
     holder.onDetachedFromWindow();
   }
 
+  @Override
+  public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+    super.onAttachedToRecyclerView(recyclerView);
+    if (recyclerView.getItemAnimator() != null && recyclerView.getItemAnimator().getClass() == DefaultItemAnimator.class) {
+      recyclerView.setItemAnimator(new NoCrossfadeChangeDefaultAnimator());
+    }
+  }
+
   public <T extends MappingModel<T>> void registerFactory(Class<T> clazz, Factory<T> factory) {
     int type = typeCount++;
     factories.put(type, factory);
     itemTypes.put(clazz, type);
+  }
+
+  public <T extends MappingModel<T>> void registerFactory(@NonNull Class<T> clazz, @NonNull Function<View, MappingViewHolder<T>> creator, @LayoutRes int layout) {
+    registerFactory(clazz, new LayoutFactory<>(creator, layout));
   }
 
   @Override
@@ -87,6 +106,20 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
   public void onBindViewHolder(@NonNull MappingViewHolder holder, int position) {
     //noinspection unchecked
     holder.bind(getItem(position));
+  }
+  public <T extends MappingModel<T>> int indexOfFirst(@NonNull Class<T> clazz, @NonNull Function1<T, Boolean> predicate) {
+    return CollectionsKt.indexOfFirst(getCurrentList(), m -> {
+      //noinspection unchecked
+      return clazz.isAssignableFrom(m.getClass()) && predicate.invoke((T) m);
+    });
+  }
+
+  public @NonNull Optional<MappingModel<?>> getModel(int index) {
+    List<MappingModel<?>> currentList = getCurrentList();
+    if (index >= 0 && index < currentList.size()) {
+      return Optional.ofNullable(currentList.get(index));
+    }
+    return Optional.empty();
   }
 
   private static class MappingDiffCallback extends DiffUtil.ItemCallback<MappingModel<?>> {

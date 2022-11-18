@@ -8,8 +8,11 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.ApplicationContext;
+import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.service.DelayedNotificationController;
+import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.util.PowerManagerCompat;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -31,11 +34,21 @@ public class BackgroundMessageRetriever {
 
   private static final long NORMAL_TIMEOUT  = TimeUnit.SECONDS.toMillis(10);
 
+  public static final long DO_NOT_SHOW_IN_FOREGROUND = DelayedNotificationController.DO_NOT_SHOW;
+
   /**
    * @return False if the retrieval failed and should be rescheduled, otherwise true.
    */
   @WorkerThread
   public boolean retrieveMessages(@NonNull Context context, MessageRetrievalStrategy... strategies) {
+    return retrieveMessages(context, DO_NOT_SHOW_IN_FOREGROUND, strategies);
+  }
+
+  /**
+   * @return False if the retrieval failed and should be rescheduled, otherwise true.
+   */
+  @WorkerThread
+  public boolean retrieveMessages(@NonNull Context context, long showNotificationAfterMs, MessageRetrievalStrategy... strategies) {
     if (shouldIgnoreFetch(context)) {
       Log.i(TAG, "Skipping retrieval -- app is in the foreground.");
       return true;
@@ -47,27 +60,29 @@ public class BackgroundMessageRetriever {
     }
 
     synchronized (this) {
-      PowerManager.WakeLock wakeLock = null;
+      try (DelayedNotificationController controller = GenericForegroundService.startForegroundTaskDelayed(context, context.getString(R.string.BackgroundMessageRetriever_checking_for_messages), showNotificationAfterMs, R.drawable.ic_signal_refresh)) {
+        PowerManager.WakeLock wakeLock = null;
 
-      try {
-        wakeLock = WakeLockUtil.acquire(context, PowerManager.PARTIAL_WAKE_LOCK, TimeUnit.SECONDS.toMillis(60), WAKE_LOCK_TAG);
+        try {
+          wakeLock = WakeLockUtil.acquire(context, PowerManager.PARTIAL_WAKE_LOCK, TimeUnit.SECONDS.toMillis(60), WAKE_LOCK_TAG);
 
-        TextSecurePreferences.setNeedsMessagePull(context, true);
+          TextSecurePreferences.setNeedsMessagePull(context, true);
 
-        long         startTime    = System.currentTimeMillis();
-        PowerManager powerManager = ServiceUtil.getPowerManager(context);
-        boolean      doze         = PowerManagerCompat.isDeviceIdleMode(powerManager);
-        boolean      network      = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
+          long         startTime    = System.currentTimeMillis();
+          PowerManager powerManager = ServiceUtil.getPowerManager(context);
+          boolean      doze         = PowerManagerCompat.isDeviceIdleMode(powerManager);
+          boolean      network      = new NetworkConstraint.Factory(ApplicationContext.getInstance(context)).create().isMet();
 
-        if (doze || !network) {
-          Log.w(TAG, "We may be operating in a constrained environment. Doze: " + doze + " Network: " + network);
+          if (doze || !network) {
+            Log.w(TAG, "We may be operating in a constrained environment. Doze: " + doze + " Network: " + network);
+          }
+
+          Log.i(TAG, "Performing normal message fetch.");
+          return executeBackgroundRetrieval(context, startTime, strategies);
+        } finally {
+          WakeLockUtil.release(wakeLock, WAKE_LOCK_TAG);
+          ACTIVE_LOCK.release();
         }
-
-        Log.i(TAG, "Performing normal message fetch.");
-        return executeBackgroundRetrieval(context, startTime, strategies);
-      } finally {
-        WakeLockUtil.release(wakeLock, WAKE_LOCK_TAG);
-        ACTIVE_LOCK.release();
       }
     }
   }
@@ -107,7 +122,7 @@ public class BackgroundMessageRetriever {
    *         care of it.
    */
   public static boolean shouldIgnoreFetch(@NonNull Context context) {
-    return ApplicationContext.getInstance(context).isAppVisible() &&
+    return ApplicationDependencies.getAppForegroundObserver().isForegrounded() &&
            !ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(context);
   }
 

@@ -3,12 +3,15 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment;
 import org.thoughtcrime.securesms.conversationlist.ConversationListFragment;
@@ -93,10 +96,11 @@ public class MainNavigator {
     getFragmentManager().beginTransaction()
                         .add(R.id.fragment_container, ConversationListFragment.newInstance())
                         .commit();
+
     if(Recipient.self().getProfileName().toString().equals("")){
       Intent intent = new Intent(activity, EditProfileActivity.class);
       intent.putExtra(EditProfileActivity.EXCLUDE_SYSTEM, true);
-      intent.putExtra(EditProfileActivity.DISPLAY_USERNAME, true);
+      //intent.putExtra(EditProfileActivity.DISPLAY_USERNAME, true);
       intent.putExtra(EditProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
       activity.startActivityForResult(intent,1);
     }
@@ -122,13 +126,12 @@ public class MainNavigator {
                                        .withStartingPosition(startingPosition)
                                        .build();
 
-    activity.startActivity(intent);
     activity.overridePendingTransition(R.anim.slide_from_end, R.anim.fade_scale_out);
+    activity.startActivity(intent);
   }
 
   public void goToAppSettings() {
-    Intent intent = new Intent(activity, ApplicationPreferencesActivity.class);
-    activity.startActivityForResult(intent, REQUEST_CONFIG_CHANGES);
+    activity.startActivityForResult(AppSettingsActivity.home(activity), REQUEST_CONFIG_CHANGES);
   }
 
   public void goToArchiveList() {

@@ -10,19 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.avatars.FallbackContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ResourceContactPhoto;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 
 public class ConversationBannerView extends ConstraintLayout {
 
   private AvatarImageView contactAvatar;
   private TextView        contactTitle;
+  private TextView        contactAbout;
   private TextView        contactSubtitle;
-  private TextView        contactDescription;
+  private EmojiTextView   contactDescription;
+  private View            tapToView;
 
   public ConversationBannerView(Context context) {
     this(context, null);
@@ -39,18 +45,36 @@ public class ConversationBannerView extends ConstraintLayout {
 
     contactAvatar      = findViewById(R.id.message_request_avatar);
     contactTitle       = findViewById(R.id.message_request_title);
+    contactAbout       = findViewById(R.id.message_request_about);
     contactSubtitle    = findViewById(R.id.message_request_subtitle);
     contactDescription = findViewById(R.id.message_request_description);
+    tapToView          = findViewById(R.id.message_request_avatar_tap_to_view);
 
     contactAvatar.setFallbackPhotoProvider(new FallbackPhotoProvider());
   }
 
   public void setAvatar(@NonNull GlideRequests requests, @Nullable Recipient recipient) {
     contactAvatar.setAvatar(requests, recipient, false);
+
+    if (recipient != null && recipient.shouldBlurAvatar() && recipient.getContactPhoto() != null) {
+      tapToView.setVisibility(VISIBLE);
+      tapToView.setOnClickListener(v -> {
+        SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getRecipientDatabase(getContext().getApplicationContext())
+                                                             .manuallyShowAvatar(recipient.getId()));
+      });
+    } else {
+      tapToView.setVisibility(GONE);
+      tapToView.setOnClickListener(null);
+    }
   }
 
   public void setTitle(@Nullable CharSequence title) {
     contactTitle.setText(title);
+  }
+
+  public void setAbout(@Nullable String about) {
+    contactAbout.setText(about);
+    contactAbout.setVisibility(TextUtils.isEmpty(about) ? GONE : VISIBLE);
   }
 
   public void setSubtitle(@Nullable CharSequence subtitle) {
@@ -60,6 +84,19 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void setDescription(@Nullable CharSequence description) {
     contactDescription.setText(description);
+    contactDescription.setVisibility(TextUtils.isEmpty(description) ? GONE : VISIBLE);
+  }
+
+  public @NonNull EmojiTextView getDescription() {
+    return contactDescription;
+  }
+
+  public void showBackgroundBubble(boolean enabled) {
+    if (enabled) {
+      setBackgroundResource(R.drawable.wallpaper_bubble_background_12);
+    } else {
+      setBackground(null);
+    }
   }
 
   public void hideSubtitle() {
@@ -72,6 +109,10 @@ public class ConversationBannerView extends ConstraintLayout {
 
   public void hideDescription() {
     contactDescription.setVisibility(View.GONE);
+  }
+
+  public void setLinkifyDescription(boolean enable) {
+    contactDescription.setMovementMethod(enable ? LongClickMovementMethod.getInstance(getContext()) : null);
   }
 
   private static final class FallbackPhotoProvider extends Recipient.FallbackPhotoProvider {

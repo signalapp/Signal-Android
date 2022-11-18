@@ -6,6 +6,7 @@ import android.content.Context;
 import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -86,6 +87,13 @@ public final class KeyValueStore implements KeyValueReader {
     return dataSet.getString(key, defaultValue);
   }
 
+  @AnyThread
+  @Override
+  public synchronized boolean containsKey(@NonNull String key) {
+    initializeIfNecessary();
+    return dataSet.containsKey(key);
+  }
+
   /**
    * @return A writer that allows writing and removing multiple entries in a single atomic
    *         transaction.
@@ -126,6 +134,15 @@ public final class KeyValueStore implements KeyValueReader {
     }
   }
 
+  /**
+   * Forces the store to re-fetch all of it's data from the database.
+   * Should only be used for testing!
+   */
+  @VisibleForTesting
+  synchronized void resetCache() {
+    dataSet = null;
+    initializeIfNecessary();
+  }
 
   private synchronized void write(@NonNull KeyValueDataSet newDataSet, @NonNull Collection<String> removes) {
     initializeIfNecessary();

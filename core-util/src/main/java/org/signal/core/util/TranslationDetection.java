@@ -24,11 +24,17 @@ public final class TranslationDetection {
   public TranslationDetection(@NonNull Context context) {
     this.resourcesLocal     = context.getResources();
     this.configurationLocal = resourcesLocal.getConfiguration();
+    this.resourcesEn        = ResourceUtil.getEnglishResources(context);
+  }
 
-    Configuration configurationEn = new Configuration(configurationLocal);
-    configurationEn.setLocale(Locale.ENGLISH);
-
-    this.resourcesEn = context.createConfigurationContext(configurationEn).getResources();
+  /**
+   * @param context     Can be Application context.
+   * @param usersLocale Locale of user.
+   */
+  public TranslationDetection(@NonNull Context context, @NonNull Locale usersLocale) {
+    this.resourcesLocal     = ResourceUtil.getResources(context.getApplicationContext(), usersLocale);
+    this.configurationLocal = resourcesLocal.getConfiguration();
+    this.resourcesEn        = ResourceUtil.getEnglishResources(context);
   }
 
   /**
@@ -46,6 +52,15 @@ public final class TranslationDetection {
     String stringLocal = resourcesLocal.getString(resId);
 
     return !stringEn.equals(stringLocal);
+  }
+
+  public boolean textExistsInUsersLanguage(@StringRes int... resIds) {
+    for (int resId : resIds) {
+      if (!textExistsInUsersLanguage(resId)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   protected boolean configSupportsEnglish() {

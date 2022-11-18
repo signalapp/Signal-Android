@@ -80,9 +80,36 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
   }
 
   @Override
-  public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-    super.onActivityCreated(savedInstanceState);
+  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    recipientPagerView = view.findViewById(R.id.reactions_bottom_view_recipient_pager);
+    messageId          = requireArguments().getLong(ARGS_MESSAGE_ID);
 
+    setUpRecipientsRecyclerView();
+    setUpTabMediator(savedInstanceState);
+
+    reactionsLoader = new ReactionsLoader(requireContext(),
+                                          requireArguments().getLong(ARGS_MESSAGE_ID),
+                                          requireArguments().getBoolean(ARGS_IS_MMS));
+
+    LoaderManager.getInstance(requireActivity()).initLoader((int) messageId, null, reactionsLoader);
+
+    setUpViewModel();
+  }
+
+  @Override
+  public void onDestroyView() {
+    LoaderManager.getInstance(requireActivity()).destroyLoader((int) messageId);
+    super.onDestroyView();
+  }
+
+  @Override
+  public void onDismiss(@NonNull DialogInterface dialog) {
+    super.onDismiss(dialog);
+
+    callback.onReactionsDialogDismissed();
+  }
+
+  private void setUpTabMediator(@Nullable Bundle savedInstanceState) {
     if (savedInstanceState == null) {
       FrameLayout    container       = requireDialog().findViewById(R.id.container);
       LayoutInflater layoutInflater  = LayoutInflater.from(requireContext());
@@ -112,39 +139,10 @@ public final class ReactionsBottomSheetDialogFragment extends BottomSheetDialogF
           text.setText(String.valueOf(emojiCount.getCount()));
         } else {
           emoji.setVisibility(View.GONE);
-          text.setText(requireContext().getString(R.string.ReactionsBottomSheetDialogFragment_all, emojiCount.getCount()));
+          text.setText(customView.getContext().getString(R.string.ReactionsBottomSheetDialogFragment_all, emojiCount.getCount()));
         }
       }).attach();
     }
-
-    setUpViewModel();
-  }
-
-  @Override
-  public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    recipientPagerView = view.findViewById(R.id.reactions_bottom_view_recipient_pager);
-    messageId          = requireArguments().getLong(ARGS_MESSAGE_ID);
-
-    setUpRecipientsRecyclerView();
-
-    reactionsLoader = new ReactionsLoader(requireContext(),
-                                          requireArguments().getLong(ARGS_MESSAGE_ID),
-                                          requireArguments().getBoolean(ARGS_IS_MMS));
-
-    LoaderManager.getInstance(requireActivity()).initLoader((int) messageId, null, reactionsLoader);
-  }
-
-  @Override
-  public void onDestroyView() {
-    LoaderManager.getInstance(requireActivity()).destroyLoader((int) messageId);
-    super.onDestroyView();
-  }
-
-  @Override
-  public void onDismiss(@NonNull DialogInterface dialog) {
-    super.onDismiss(dialog);
-
-    callback.onReactionsDialogDismissed();
   }
 
   private void setUpRecipientsRecyclerView() {

@@ -1,6 +1,6 @@
-/** 
+/**
  * Copyright (C) 2011 Whisper Systems
- * 
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -10,7 +10,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -40,7 +40,7 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class ClassicDecryptingPartInputStream {
 
-  private static final String TAG = ClassicDecryptingPartInputStream.class.getSimpleName();
+  private static final String TAG = Log.tag(ClassicDecryptingPartInputStream.class);
 
   private static final int IV_LENGTH  = 16;
   private static final int MAC_LENGTH = 20;

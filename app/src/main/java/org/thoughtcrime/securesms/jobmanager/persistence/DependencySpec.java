@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.persistence;
 
 import androidx.annotation.NonNull;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public final class DependencySpec {
@@ -45,6 +46,6 @@ public final class DependencySpec {
 
   @Override
   public @NonNull String toString() {
-    return String.format("jobSpecId: JOB::%s | dependsOnJobSpecId: JOB::%s | memoryOnly: %b", jobId, dependsOnJobId, memoryOnly);
+    return String.format(Locale.US, "jobSpecId: JOB::%s | dependsOnJobSpecId: JOB::%s | memoryOnly: %b", jobId, dependsOnJobId, memoryOnly);
   }
 }

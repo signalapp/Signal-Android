@@ -22,9 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,10 +34,12 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   private static final String KEY_FOLDER_TITLE       = "folder_title";
   private static final String KEY_MAX_SELECTION      = "max_selection";
   private static final String KEY_FORCE_MULTI_SELECT = "force_multi_select";
+  private static final String KEY_HIDE_CAMERA        = "hide_camera";
 
   private String                 bucketId;
   private String                 folderTitle;
   private int                    maxSelection;
+  private boolean                showCamera;
   private MediaSendViewModel     viewModel;
   private MediaPickerItemAdapter adapter;
   private Controller             controller;
@@ -50,11 +50,16 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
   }
 
   public static MediaPickerItemFragment newInstance(@NonNull String bucketId, @NonNull String folderTitle, int maxSelection, boolean forceMultiSelect) {
+    return newInstance(bucketId, folderTitle, maxSelection, forceMultiSelect, false);
+  }
+
+  public static MediaPickerItemFragment newInstance(@NonNull String bucketId, @NonNull String folderTitle, int maxSelection, boolean forceMultiSelect, boolean hideCamera) {
     Bundle args = new Bundle();
     args.putString(KEY_BUCKET_ID, bucketId);
     args.putString(KEY_FOLDER_TITLE, folderTitle);
     args.putInt(KEY_MAX_SELECTION, maxSelection);
     args.putBoolean(KEY_FORCE_MULTI_SELECT, forceMultiSelect);
+    args.putBoolean(KEY_HIDE_CAMERA, hideCamera);
 
     MediaPickerItemFragment fragment = new MediaPickerItemFragment();
     fragment.setArguments(args);
@@ -70,6 +75,7 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     bucketId     = getArguments().getString(KEY_BUCKET_ID);
     folderTitle  = getArguments().getString(KEY_FOLDER_TITLE);
     maxSelection = getArguments().getInt(KEY_MAX_SELECTION);
+    showCamera   = !getArguments().getBoolean(KEY_HIDE_CAMERA);
     viewModel    = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
@@ -104,8 +110,8 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
     initToolbar(view.findViewById(R.id.mediapicker_toolbar));
     onScreenWidthChanged(getScreenWidth());
 
-    viewModel.getSelectedMedia().observe(this, adapter::setSelected);
-    viewModel.getMediaInBucket(requireContext(), bucketId).observe(this, adapter::setMedia);
+    viewModel.getSelectedMedia().observe(getViewLifecycleOwner(), adapter::setSelected);
+    viewModel.getMediaInBucket(requireContext(), bucketId).observe(getViewLifecycleOwner(), adapter::setMedia);
   }
 
   @Override
@@ -120,16 +126,14 @@ public class MediaPickerItemFragment extends Fragment implements MediaPickerItem
 
   @Override
   public void onPrepareOptionsMenu(@NonNull Menu menu) {
-    requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+    if (showCamera) {
+      requireActivity().getMenuInflater().inflate(R.menu.mediapicker_default, menu);
+    }
   }
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.mediapicker_menu_camera:
-        controller.onCameraSelected();
-        return true;
-    }
+    if (item.getItemId() == R.id.mediapicker_menu_camera) { controller.onCameraSelected(); return true; }
     return false;
   }
 

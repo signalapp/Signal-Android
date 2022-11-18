@@ -4,8 +4,8 @@ package org.thoughtcrime.securesms.notifications;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 
@@ -13,30 +13,40 @@ public class DeleteNotificationReceiver extends BroadcastReceiver {
 
   public static String DELETE_NOTIFICATION_ACTION = "org.thoughtcrime.securesms.DELETE_NOTIFICATION";
 
-  public static String EXTRA_IDS = "message_ids";
-  public static String EXTRA_MMS = "is_mms";
+  public static final String EXTRA_IDS        = "message_ids";
+  public static final String EXTRA_MMS        = "is_mms";
+  public static final String EXTRA_THREAD_IDS = "thread_ids";
 
   @Override
   public void onReceive(final Context context, Intent intent) {
     if (DELETE_NOTIFICATION_ACTION.equals(intent.getAction())) {
-      ApplicationDependencies.getMessageNotifier().clearReminder(context);
+      MessageNotifier notifier = ApplicationDependencies.getMessageNotifier();
+      notifier.clearReminder(context);
 
-      final long[]    ids = intent.getLongArrayExtra(EXTRA_IDS);
-      final boolean[] mms = intent.getBooleanArrayExtra(EXTRA_MMS);
+      final long[]    ids       = intent.getLongArrayExtra(EXTRA_IDS);
+      final boolean[] mms       = intent.getBooleanArrayExtra(EXTRA_MMS);
+      final long[]    threadIds = intent.getLongArrayExtra(EXTRA_THREAD_IDS);
 
-      if (ids == null  || mms == null || ids.length != mms.length) return;
-
-      new AsyncTask<Void, Void, Void>() {
-        @Override
-        protected Void doInBackground(Void... params) {
-          for (int i=0;i<ids.length;i++) {
-            if (!mms[i]) DatabaseFactory.getSmsDatabase(context).markAsNotified(ids[i]);
-            else         DatabaseFactory.getMmsDatabase(context).markAsNotified(ids[i]);
-          }
-
-          return null;
+      if (threadIds != null) {
+        for (long threadId : threadIds) {
+          notifier.removeStickyThread(threadId);
         }
-      }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
+      }
+
+      if (ids == null || mms == null || ids.length != mms.length) return;
+
+      PendingResult finisher = goAsync();
+
+      SignalExecutors.BOUNDED.execute(() -> {
+        for (int i = 0; i < ids.length; i++) {
+          if (!mms[i]) {
+            DatabaseFactory.getSmsDatabase(context).markAsNotified(ids[i]);
+          } else {
+            DatabaseFactory.getMmsDatabase(context).markAsNotified(ids[i]);
+          }
+        }
+        finisher.finish();
+      });
     }
   }
 }

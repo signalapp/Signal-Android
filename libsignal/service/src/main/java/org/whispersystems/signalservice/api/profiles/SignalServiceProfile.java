@@ -30,6 +30,15 @@ public class SignalServiceProfile {
   private String name;
 
   @JsonProperty
+  private String about;
+
+  @JsonProperty
+  private String aboutEmoji;
+
+  @JsonProperty
+  private byte[] paymentAddress;
+
+  @JsonProperty
   private String avatar;
 
   @JsonProperty
@@ -60,6 +69,18 @@ public class SignalServiceProfile {
 
   public String getName() {
     return name;
+  }
+
+  public String getAbout() {
+    return about;
+  }
+
+  public String getAboutEmoji() {
+    return aboutEmoji;
+  }
+
+  public byte[] getPaymentAddress() {
+    return paymentAddress;
   }
 
   public String getAvatar() {
@@ -100,6 +121,12 @@ public class SignalServiceProfile {
     @JsonProperty("gv1-migration")
     private boolean gv1Migration;
 
+    @JsonProperty
+    private boolean senderKey;
+
+    @JsonProperty
+    private boolean announcementGroup;
+
     @JsonCreator
     public Capabilities() {}
 
@@ -113,6 +140,14 @@ public class SignalServiceProfile {
 
     public boolean isGv1Migration() {
       return gv1Migration;
+    }
+
+    public boolean isSenderKey() {
+      return senderKey;
+    }
+
+    public boolean isAnnouncementGroup() {
+      return announcementGroup;
     }
   }
 

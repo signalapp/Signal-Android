@@ -16,25 +16,32 @@ import androidx.core.app.NotificationCompat;
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.BackupProtos;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.PinValues;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.libsignal.util.Medium;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.io.IOException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
 public class TextSecurePreferences {
 
-  private static final String TAG = TextSecurePreferences.class.getSimpleName();
+  private static final String TAG = Log.tag(TextSecurePreferences.class);
 
   public  static final String IDENTITY_PREF                    = "pref_choose_identity";
   public  static final String CHANGE_PASSPHRASE_PREF           = "pref_change_passphrase";
@@ -82,7 +89,6 @@ public class TextSecurePreferences {
   private static final String SEEN_WELCOME_SCREEN_PREF         = "pref_seen_welcome_screen";
   private static final String PROMPTED_PUSH_REGISTRATION_PREF  = "pref_prompted_push_registration";
   private static final String PROMPTED_OPTIMIZE_DOZE_PREF      = "pref_prompted_optimize_doze";
-  private static final String SIGNALING_KEY_PREF               = "pref_signaling_key";
   private static final String DIRECTORY_FRESH_TIME_PREF        = "pref_directory_refresh_time";
   private static final String UPDATE_APK_REFRESH_TIME_PREF     = "pref_update_apk_refresh_time";
   private static final String UPDATE_APK_DOWNLOAD_ID           = "pref_update_apk_download_id";
@@ -149,6 +155,8 @@ public class TextSecurePreferences {
   private static final String ENCRYPTED_BACKUP_PASSPHRASE = "pref_encrypted_backup_passphrase";
   private static final String BACKUP_TIME                 = "pref_backup_next_time";
 
+  public static final String TRANSFER = "pref_transfer";
+
   public static final String SCREEN_LOCK         = "pref_android_screen_lock";
   public static final String SCREEN_LOCK_TIMEOUT = "pref_android_screen_lock_timeout";
 
@@ -192,6 +200,7 @@ public class TextSecurePreferences {
   private static final String SEEN_STICKER_INTRO_TOOLTIP = "pref_seen_sticker_intro_tooltip";
 
   private static final String MEDIA_KEYBOARD_MODE = "pref_media_keyboard_mode";
+  public  static final String RECENT_STORAGE_KEY  = "pref_recent_emoji2";
 
   private static final String VIEW_ONCE_TOOLTIP_SEEN = "pref_revealable_message_tooltip_seen";
 
@@ -210,6 +219,79 @@ public class TextSecurePreferences {
   private static final String STORAGE_MANIFEST_VERSION = "pref_storage_manifest_version";
 
   private static final String ARGON2_TESTED = "argon2_tested";
+
+  private static final String[] booleanPreferencesToBackup = {SCREEN_SECURITY_PREF,
+                                                              INCOGNITO_KEYBORAD_PREF,
+                                                              ALWAYS_RELAY_CALLS_PREF,
+                                                              READ_RECEIPTS_PREF,
+                                                              TYPING_INDICATORS,
+                                                              SHOW_UNIDENTIFIED_DELIVERY_INDICATORS,
+                                                              UNIVERSAL_UNIDENTIFIED_ACCESS,
+                                                              NOTIFICATION_PREF,
+                                                              VIBRATE_PREF,
+                                                              IN_THREAD_NOTIFICATION_PREF,
+                                                              CALL_NOTIFICATIONS_PREF,
+                                                              CALL_VIBRATE_PREF,
+                                                              NEW_CONTACTS_NOTIFICATIONS,
+                                                              SHOW_INVITE_REMINDER_PREF,
+                                                              SYSTEM_EMOJI_PREF,
+                                                              ENTER_SENDS_PREF};
+
+  private static final String[] stringPreferencesToBackup = {LED_COLOR_PREF,
+                                                             LED_BLINK_PREF,
+                                                             REPEAT_ALERTS_PREF,
+                                                             NOTIFICATION_PRIVACY_PREF,
+                                                             THEME_PREF,
+                                                             LANGUAGE_PREF,
+                                                             MESSAGE_BODY_TEXT_SIZE_PREF};
+
+  private static final String[] stringSetPreferencesToBackup = {MEDIA_DOWNLOAD_MOBILE_PREF,
+                                                                MEDIA_DOWNLOAD_WIFI_PREF,
+                                                                MEDIA_DOWNLOAD_ROAMING_PREF};
+
+  public static List<BackupProtos.SharedPreference> getPreferencesToSaveToBackup(@NonNull Context context) {
+    SharedPreferences                   preferences  = PreferenceManager.getDefaultSharedPreferences(context);
+    List<BackupProtos.SharedPreference> backupProtos = new ArrayList<>();
+    String                              defaultFile  = context.getPackageName() + "_preferences";
+
+    for (String booleanPreference : booleanPreferencesToBackup) {
+      if (preferences.contains(booleanPreference)) {
+        backupProtos.add(BackupProtos.SharedPreference.newBuilder()
+                                                      .setFile(defaultFile)
+                                                      .setKey(booleanPreference)
+                                                      .setBooleanValue(preferences.getBoolean(booleanPreference, false))
+                                                      .build());
+      }
+    }
+
+    for (String stringPreference : stringPreferencesToBackup) {
+      if (preferences.contains(stringPreference)) {
+        backupProtos.add(BackupProtos.SharedPreference.newBuilder()
+                                                      .setFile(defaultFile)
+                                                      .setKey(stringPreference)
+                                                      .setValue(preferences.getString(stringPreference, null))
+                                                      .build());
+      }
+    }
+
+    for (String stringSetPreference : stringSetPreferencesToBackup) {
+      if (preferences.contains(stringSetPreference)) {
+        backupProtos.add(BackupProtos.SharedPreference.newBuilder()
+                                                      .setFile(defaultFile)
+                                                      .setKey(stringSetPreference)
+                                                      .setIsStringSetValue(true)
+                                                      .addAllStringSetValue(preferences.getStringSet(stringSetPreference, Collections.emptySet()))
+                                                      .build());
+      }
+    }
+
+    return backupProtos;
+  }
+  public static void onPostBackupRestore(@NonNull Context context) {
+    if (NotificationChannels.supported()) {
+      NotificationChannels.updateMessageVibrate(context, SignalStore.settings().isMessageVibrateEnabled());
+    }
+  }
 
   public static boolean isScreenLockEnabled(@NonNull Context context) {
     return getBooleanPreference(context, SCREEN_LOCK, false);
@@ -299,10 +381,7 @@ public class TextSecurePreferences {
     return getStringPreference(context, ENCRYPTED_BACKUP_PASSPHRASE, null);
   }
 
-  public static void setBackupEnabled(@NonNull Context context, boolean value) {
-    setBooleanPreference(context, BACKUP_ENABLED, value);
-  }
-
+  @Deprecated
   public static boolean isBackupEnabled(@NonNull Context context) {
     return getBooleanPreference(context, BACKUP_ENABLED, false);
   }
@@ -389,7 +468,12 @@ public class TextSecurePreferences {
   }
 
   public static void setUnauthorizedReceived(Context context, boolean value) {
+    boolean previous = isUnauthorizedRecieved(context);
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
+
+    if (previous != value) {
+      Recipient.self().live().refresh();
+    }
   }
 
   public static boolean isUnauthorizedRecieved(Context context) {
@@ -425,18 +509,17 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, LINK_PREVIEWS, false);
   }
 
-  public static boolean isGifSearchInGridLayout(Context context) {
-    return getBooleanPreference(context, GIF_GRID_LAYOUT, false);
-  }
-
-  public static void setIsGifSearchInGridLayout(Context context, boolean isGrid) {
-    setBooleanPreference(context, GIF_GRID_LAYOUT, isGrid);
-  }
-
   public static int getNotificationPriority(Context context) {
-    return Integer.valueOf(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+    try {
+      return Integer.parseInt(getStringPreference(context, NOTIFICATION_PRIORITY_PREF, String.valueOf(NotificationCompat.PRIORITY_HIGH)));
+    } catch (ClassCastException e) {
+      return getIntegerPreference(context, NOTIFICATION_PRIORITY_PREF, NotificationCompat.PRIORITY_HIGH);
+    }
   }
 
+  /**
+   * @deprecated Use {@link SettingsValues#getMessageFontSize()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
+   */
   public static int getMessageBodyTextSize(Context context) {
     return Integer.valueOf(getStringPreference(context, MESSAGE_BODY_TEXT_SIZE_PREF, "16"));
   }
@@ -490,12 +573,9 @@ public class TextSecurePreferences {
     return getIntegerPreference(context, SIGNED_PREKEY_FAILURE_COUNT_PREF, 0);
   }
 
+  @Deprecated
   public static NotificationPrivacyPreference getNotificationPrivacy(Context context) {
     return new NotificationPrivacyPreference(getStringPreference(context, NOTIFICATION_PRIVACY_PREF, "all"));
-  }
-
-  public static void setNewContactsNotificationEnabled(Context context, boolean isEnabled) {
-    setBooleanPreference(context, NEW_CONTACTS_NOTIFICATIONS, isEnabled);
   }
 
   public static boolean isNewContactsNotificationEnabled(Context context) {
@@ -530,10 +610,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, WIFI_SMS_PREF, value);
   }
 
+  @Deprecated
   public static boolean isWifiSmsEnabled(Context context) {
     return getBooleanPreference(context, WIFI_SMS_PREF, false);
   }
 
+  @Deprecated
   public static int getRepeatAlertsCount(Context context) {
     try {
       return Integer.parseInt(getStringPreference(context, REPEAT_ALERTS_PREF, "0"));
@@ -541,10 +623,6 @@ public class TextSecurePreferences {
       Log.w(TAG, e);
       return 0;
     }
-  }
-
-  public static void setRepeatAlertsCount(Context context, int count) {
-    setStringPreference(context, REPEAT_ALERTS_PREF, String.valueOf(count));
   }
 
   public static boolean isSignedPreKeyRegistered(Context context) {
@@ -578,10 +656,6 @@ public class TextSecurePreferences {
     setLongPreference(context, GCM_REGISTRATION_ID_TIME_PREF, timestamp);
   }
 
-  public static boolean isSmsEnabled(Context context) {
-    return Util.isDefaultSmsProvider(context);
-  }
-
   public static int getLocalRegistrationId(Context context) {
     return getIntegerPreference(context, LOCAL_REGISTRATION_ID_PREF, 0);
   }
@@ -590,6 +664,7 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, LOCAL_REGISTRATION_ID_PREF, registrationId);
   }
 
+  @Deprecated
   public static boolean isInThreadNotifications(Context context) {
     return getBooleanPreference(context, IN_THREAD_NOTIFICATION_PREF, true);
   }
@@ -699,14 +774,11 @@ public class TextSecurePreferences {
     setStringPreference(context, GCM_PASSWORD_PREF, password);
   }
 
-  public static String getSignalingKey(Context context) {
-    return getStringPreference(context, SIGNALING_KEY_PREF, null);
-  }
-
   public static boolean isEnterImeKeyEnabled(Context context) {
     return getBooleanPreference(context, ENTER_PRESENT_PREF, false);
   }
 
+  @Deprecated
   public static boolean isEnterSendsEnabled(Context context) {
     return getBooleanPreference(context, ENTER_SENDS_PREF, false);
   }
@@ -857,7 +929,9 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, EXPERIENCE_DISMISSED_PREF, versionCode);
   }
 
-  //need to be removed
+  /**
+   * @deprecated Use {@link SettingsValues#getTheme()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
+   */
   public static String getTheme(Context context) {
     return DynamicTheme.DARK;
   }
@@ -868,7 +942,14 @@ public class TextSecurePreferences {
 
   public static void setPushRegistered(Context context, boolean registered) {
     Log.i(TAG, "Setting push registered: " + registered);
+    boolean previous = isPushRegistered(context);
+
     setBooleanPreference(context, REGISTERED_GCM_PREF, registered);
+    ApplicationDependencies.getIncomingMessageObserver().notifyRegistrationChanged();
+
+    if (previous != registered) {
+      Recipient.self().live().refresh();
+    }
   }
 
   public static boolean isShowInviteReminders(Context context) {
@@ -887,10 +968,16 @@ public class TextSecurePreferences {
     setIntegerPrefrence(context, PASSPHRASE_TIMEOUT_INTERVAL_PREF, interval);
   }
 
+  /**
+   * @deprecated Use {@link SettingsValues#getLanguage()} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
+   */
   public static String getLanguage(Context context) {
     return getStringPreference(context, LANGUAGE_PREF, "zz");
   }
 
+  /**
+   * @deprecated Use {@link SettingsValues#setLanguage(String)} via {@link org.thoughtcrime.securesms.keyvalue.SignalStore} instead.
+   */
   public static void setLanguage(Context context, String language) {
     setStringPreference(context, LANGUAGE_PREF, language);
   }
@@ -899,6 +986,7 @@ public class TextSecurePreferences {
     setBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, value);
   }
 
+  @Deprecated
   public static boolean isSmsDeliveryReportsEnabled(Context context) {
     return getBooleanPreference(context, SMS_DELIVERY_REPORT_PREF, false);
   }
@@ -935,6 +1023,7 @@ public class TextSecurePreferences {
     return getBooleanPreference(context, ALL_SMS_PREF, true);
   }
 
+  @Deprecated
   public static boolean isNotificationsEnabled(Context context) {
     return getBooleanPreference(context, NOTIFICATION_PREF, true);
   }
@@ -943,14 +1032,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, NOTIFICATION_PREF, value);
   }
 
+  @Deprecated
   public static boolean isCallNotificationsEnabled(Context context) {
     return getBooleanPreference(context, CALL_NOTIFICATIONS_PREF, true);
   }
 
-  public static void setCallNotificationsEnabled(Context context, boolean value) {
-    setBooleanPreference(context, CALL_NOTIFICATIONS_PREF, value);
-  }
-
+  @Deprecated
   public static @NonNull Uri getNotificationRingtone(Context context) {
     String result = getStringPreference(context, RINGTONE_PREF, Settings.System.DEFAULT_NOTIFICATION_URI.toString());
 
@@ -961,6 +1048,7 @@ public class TextSecurePreferences {
     return Uri.parse(result);
   }
 
+  @Deprecated
   public static @NonNull Uri getCallNotificationRingtone(Context context) {
     String result = getStringPreference(context, CALL_RINGTONE_PREF, Settings.System.DEFAULT_RINGTONE_URI.toString());
 
@@ -971,30 +1059,12 @@ public class TextSecurePreferences {
     return Uri.parse(result);
   }
 
-  public static void removeNotificationRingtone(Context context) {
-    removePreference(context, RINGTONE_PREF);
-  }
-
-  public static void removeCallNotificationRingtone(Context context) {
-    removePreference(context, CALL_RINGTONE_PREF);
-  }
-
-  public static void setNotificationRingtone(Context context, String ringtone) {
-    setStringPreference(context, RINGTONE_PREF, ringtone);
-  }
-
-  public static void setCallNotificationRingtone(Context context, String ringtone) {
-    setStringPreference(context, CALL_RINGTONE_PREF, ringtone);
-  }
-
-  public static void setNotificationVibrateEnabled(Context context, boolean enabled) {
-    setBooleanPreference(context, VIBRATE_PREF, enabled);
-  }
-
+  @Deprecated
   public static boolean isNotificationVibrateEnabled(Context context) {
     return getBooleanPreference(context, VIBRATE_PREF, true);
   }
 
+  @Deprecated
   public static boolean isCallNotificationVibrateEnabled(Context context) {
     return getBooleanPreference(context, CALL_VIBRATE_PREF, true);
   }
@@ -1003,10 +1073,12 @@ public class TextSecurePreferences {
     setBooleanPreference(context, CALL_VIBRATE_PREF, value);
   }
 
+  @Deprecated
   public static String getNotificationLedColor(Context context) {
     return getStringPreference(context, LED_COLOR_PREF, "blue");
   }
 
+  @Deprecated
   public static String getNotificationLedPattern(Context context) {
     return getStringPreference(context, LED_BLINK_PREF, "500,2000");
   }
@@ -1023,6 +1095,7 @@ public class TextSecurePreferences {
     setStringPreference(context, THREAD_TRIM_LENGTH, String.valueOf(value));
   }
 
+  @Deprecated
   public static boolean isSystemEmojiPreferred(Context context) {
     return getBooleanPreference(context, SYSTEM_EMOJI_PREF, false);
   }
@@ -1206,10 +1279,6 @@ public class TextSecurePreferences {
     setBooleanPreference(context, HAS_SEEN_VIDEO_RECORDING_TOOLTIP, value);
   }
 
-  public static long getStorageManifestVersion(Context context) {
-    return getLongPreference(context, STORAGE_MANIFEST_VERSION, 0);
-  }
-
   public static void setStorageManifestVersion(Context context, long version) {
     setLongPreference(context, STORAGE_MANIFEST_VERSION, version);
   }
@@ -1279,6 +1348,6 @@ public class TextSecurePreferences {
 
   // NEVER rename these -- they're persisted by name
   public enum MediaKeyboardMode {
-    EMOJI, STICKER
+    EMOJI, STICKER, GIF
   }
 }

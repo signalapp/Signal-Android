@@ -41,7 +41,7 @@ public class PreJoinActionProcessor extends DeviceAwareActionProcessor {
                                   .callState(WebRtcViewModel.State.CALL_INCOMING)
                                   .build();
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
     return beginCallDelegate.handleStartIncomingCall(currentState, remotePeer);
   }
 

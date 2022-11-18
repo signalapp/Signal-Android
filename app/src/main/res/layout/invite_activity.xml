@@ -15,8 +15,8 @@
         android:fillViewport="true"
         android:clickable="false"
         android:scrollbars="none"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="gone">
 
         <LinearLayout
             android:layout_gravity="center"
@@ -86,15 +86,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <org.thoughtcrime.securesms.components.ContactFilterToolbar
+        <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
             android:visibility="gone"
-            android:id="@+id/contact_filter"
-            android:layout_height="?attr/actionBarSize"
+            android:id="@+id/sms_send_frame_toolbar"
             android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/sim_background"
-            android:elevation="4dp"
-            app:searchTextStyle="@style/TextSecure.TitleTextStyle.Light" />
+            android:layout_height="56dp"
+            android:theme="?attr/settingsToolbarStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:title="@string/InviteActivity_invite_to_signal"
+            app:titleTextAppearance="@style/Signal.Text.Title" />
+
+        <org.thoughtcrime.securesms.components.ContactFilterView
+            android:id="@+id/contact_filter_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="@dimen/dsl_settings_gutter"
+            android:minHeight="44dp"
+            android:visibility="gone"/>
 
         <fragment
             android:id="@+id/contact_selection_list_fragment"
@@ -107,26 +121,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="end"
+            android:gravity="center_horizontal"
             android:padding="5dp"
             android:visibility="gone"
             android:orientation="vertical">
 
             <Button
                 android:id="@+id/cancel_sms_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                style="@style/Signal.Widget.Button.Large.Primary.Inverse"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:text="@string/InviteActivity_cancel" />
 
             <Button
                 android:id="@+id/send_sms_button"
-                style="@style/Widget.AppCompat.Button.Borderless"
+                style="@style/Signal.Widget.Button.Large.Primary.Inverse"
                 android:textColor="#2090ea"
                 android:enabled="false"
-                android:layout_width="wrap_content"
-                android:layout_height="30dp"
-                tools:text="Send to 0 friends" />
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:text="Send SMS (0)"/>
 
         </LinearLayout>
     </LinearLayout>

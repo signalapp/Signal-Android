@@ -14,7 +14,7 @@ import java.util.List;
 
 class Camera1Controller {
 
-  private static final String TAG = Camera1Controller.class.getSimpleName();
+  private static final String TAG = Log.tag(Camera1Controller.class);
 
   private final int                  screenWidth;
   private final int                  screenHeight;

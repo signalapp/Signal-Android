@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class UpdateApkRefreshListener extends PersistentAlarmManagerListener {
 
-  private static final String TAG = UpdateApkRefreshListener.class.getSimpleName();
+  private static final String TAG = Log.tag(UpdateApkRefreshListener.class);
 
   private static final long INTERVAL = TimeUnit.HOURS.toMillis(6);
 

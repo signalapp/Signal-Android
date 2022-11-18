@@ -56,4 +56,6 @@
     <color name="conversation_group_tint">#b0c8f9</color>
     <color name="conversation_group_shade">#1851b4</color>
 
+    <color name="conversation_background">#343434</color>
+
 </resources>

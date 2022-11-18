@@ -36,7 +36,7 @@ public final class RecipientMediaLoader extends MediaLoader {
     if (recipientId == null || recipientId.isUnknown()) return null;
 
     long threadId = DatabaseFactory.getThreadDatabase(getContext())
-                                   .getThreadIdFor(Recipient.resolved(recipientId));
+                                   .getOrCreateThreadIdFor(Recipient.resolved(recipientId));
 
     return ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting);
   }

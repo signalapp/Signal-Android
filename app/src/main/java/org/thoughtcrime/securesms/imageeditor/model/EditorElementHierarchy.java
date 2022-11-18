@@ -45,11 +45,15 @@ import org.thoughtcrime.securesms.imageeditor.renderers.OvalGuideRenderer;
 final class EditorElementHierarchy {
 
   static @NonNull EditorElementHierarchy create() {
-    return new EditorElementHierarchy(createRoot(false));
+    return new EditorElementHierarchy(createRoot(CropStyle.RECTANGLE));
   }
 
   static @NonNull EditorElementHierarchy createForCircleEditing() {
-    return new EditorElementHierarchy(createRoot(true));
+    return new EditorElementHierarchy(createRoot(CropStyle.CIRCLE));
+  }
+
+  static @NonNull EditorElementHierarchy createForPinchAndPanCropping() {
+    return new EditorElementHierarchy(createRoot(CropStyle.PINCH_AND_PAN));
   }
 
   static @NonNull EditorElementHierarchy create(@NonNull EditorElement root) {
@@ -78,7 +82,24 @@ final class EditorElementHierarchy {
     this.thumbs            = this.cropEditorElement.getChild(1);
   }
 
-  private static @NonNull EditorElement createRoot(boolean circleEdit) {
+  private enum CropStyle {
+    /**
+     * A rectangular overlay with 8 thumbs, corners and edges.
+     */
+    RECTANGLE,
+
+    /**
+     * Cropping with a circular template overlay with Corner thumbs only.
+     */
+    CIRCLE,
+
+    /**
+     * No overlay and no thumbs. Cropping achieved through pinching and panning.
+     */
+    PINCH_AND_PAN
+  }
+
+  private static @NonNull EditorElement createRoot(@NonNull CropStyle cropStyle) {
     EditorElement root = new EditorElement(null);
 
     EditorElement imageRoot = new EditorElement(null);
@@ -96,7 +117,8 @@ final class EditorElementHierarchy {
     EditorElement imageCrop = new EditorElement(null);
     overlay.addElement(imageCrop);
 
-    EditorElement cropEditorElement = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color, !circleEdit));
+    boolean       renderCenterThumbs = cropStyle == CropStyle.RECTANGLE;
+    EditorElement cropEditorElement  = new EditorElement(new CropAreaRenderer(R.color.crop_area_renderer_outer_color, renderCenterThumbs));
 
     cropEditorElement.getFlags()
                      .setRotateLocked(true)
@@ -116,14 +138,18 @@ final class EditorElementHierarchy {
 
     cropEditorElement.addElement(blackout);
 
-    cropEditorElement.addElement(createThumbs(cropEditorElement, !circleEdit));
+    if (cropStyle == CropStyle.PINCH_AND_PAN) {
+      cropEditorElement.addElement(new EditorElement(null));
+    } else {
+      cropEditorElement.addElement(createThumbs(cropEditorElement, renderCenterThumbs));
 
-    if (circleEdit) {
-      EditorElement circle = new EditorElement(new OvalGuideRenderer(R.color.crop_circle_guide_color));
-      circle.getFlags().setSelectable(false)
-                       .persist();
+      if (cropStyle == CropStyle.CIRCLE) {
+        EditorElement circle = new EditorElement(new OvalGuideRenderer(R.color.crop_circle_guide_color));
+        circle.getFlags().setSelectable(false)
+              .persist();
 
-      cropEditorElement.addElement(circle);
+        cropEditorElement.addElement(circle);
+      }
     }
 
     return root;
@@ -197,11 +223,14 @@ final class EditorElementHierarchy {
     return flipRotate;
   }
 
-  void startCrop(@NonNull Runnable invalidate) {
-    Matrix editor         = new Matrix();
-    float  scaleInForCrop = 0.8f;
+  /**
+   * @param scaleIn Use 1 for no scale in, use less than 1 and it will zoom the image out
+   *                so user can see more of the surrounding image while cropping.
+   */
+  void startCrop(@NonNull Runnable invalidate, float scaleIn) {
+    Matrix editor = new Matrix();
 
-    editor.postScale(scaleInForCrop, scaleInForCrop);
+    editor.postScale(scaleIn, scaleIn);
     root.animateEditorTo(editor, invalidate);
 
     cropEditorElement.getFlags()

@@ -127,7 +127,7 @@ public class ViewOnceMessageActivity extends PassphraseRequiredActivity implemen
     image.setVisibility(View.GONE);
     duration.setVisibility(View.VISIBLE);
 
-    VideoSlide videoSlide = new VideoSlide(this, uri, 0);
+    VideoSlide videoSlide = new VideoSlide(this, uri, 0, false);
 
     video.setWindow(getWindow());
     video.setPlayerStateCallbacks(this);

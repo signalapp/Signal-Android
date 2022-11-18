@@ -239,7 +239,7 @@ public final class GroupV1MessageProcessor {
         RecipientId                recipientId     = DatabaseFactory.getRecipientDatabase(context).getOrInsertFromGroupId(GroupId.v1orThrow(group.getGroupId()));
         Recipient                  recipient       = Recipient.resolved(recipientId);
         OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, storage, null, content.getTimestamp(), 0, false, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList());
-        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getThreadIdFor(recipient);
+        long                       threadId        = DatabaseFactory.getThreadDatabase(context).getOrCreateThreadIdFor(recipient);
         long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
         mmsDatabase.markAsSent(messageId, true);
@@ -248,7 +248,7 @@ public final class GroupV1MessageProcessor {
       } else {
         MessageDatabase            smsDatabase  = DatabaseFactory.getSmsDatabase(context);
         String                     body         = Base64.encodeBytes(storage.toByteArray());
-        IncomingTextMessage        incoming     = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerReceivedTimestamp(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt());
+        IncomingTextMessage        incoming     = new IncomingTextMessage(Recipient.externalHighTrustPush(context, content.getSender()).getId(), content.getSenderDevice(), content.getTimestamp(), content.getServerReceivedTimestamp(), System.currentTimeMillis(), body, Optional.of(GroupId.v1orThrow(group.getGroupId())), 0, content.isNeedsReceipt(), content.getServerUuid());
         IncomingGroupUpdateMessage groupMessage = new IncomingGroupUpdateMessage(incoming, storage, body);
 
         Optional<InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);

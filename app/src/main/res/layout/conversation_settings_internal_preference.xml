@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/internal_preference_body"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:textAlignment="center"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:textIsSelectable="true"
+        tools:text="@tools:sample/lorem" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/internal_disable_profile_sharing"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/preferences__internal_disable_profile_sharing" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/internal_delete_session"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/preferences__internal_delete_session" />
+
+</LinearLayout>

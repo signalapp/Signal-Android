@@ -39,6 +39,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private final MutableLiveData<String>                            name              = new MutableLiveData<>("");
   private final MutableLiveData<byte[]>                            avatar            = new MutableLiveData<>();
   private final SingleLiveEvent<GroupCreateResult>                 groupCreateResult = new SingleLiveEvent<>();
+  private final MutableLiveData<Integer>                           disappearingMessagesTimer = new MutableLiveData<>(SignalStore.settings().getUniversalExpireTimer());
   private final LiveData<Boolean>                                  isMms;
   private final LiveData<Boolean>                                  canSubmitForm;
   private final AddGroupDetailsRepository                          repository;
@@ -50,12 +51,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     this.repository = repository;
 
     MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers = new MutableLiveData<>();
+    LiveData<Boolean>                                         isValidName    = Transformations.map(name, name -> !TextUtils.isEmpty(name));
 
-    LiveData<Boolean> isValidName = Transformations.map(name, name -> !TextUtils.isEmpty(name));
-
-    members              = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
-
-    isMms                = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
+    members = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
+    isMms   = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);
 
     LiveData<List<GroupMemberEntry.NewGroupCandidate>> membersToCheckGv2CapabilityOf = LiveDataUtil.combineLatest(isMms, members, (forcedMms, memberList) -> {
       if (SignalStore.internalValues().gv2DoNotCreateGv2Groups() || forcedMms) {
@@ -66,8 +65,9 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     });
 
     nonGv2CapableMembers = LiveDataUtil.mapAsync(membersToCheckGv2CapabilityOf, memberList -> repository.checkCapabilities(Stream.of(memberList).map(newGroupCandidate -> newGroupCandidate.getMember().getId()).toList()));
-    canSubmitForm        = FeatureFlags.groupsV1ForcedMigration() ? LiveDataUtil.just(false)
-                                                                  : LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName);
+    canSubmitForm        = LiveDataUtil.combineLatest(LiveDataUtil.combineLatest(isMms, isValidName, (mms, validName) -> mms || validName),
+                                                      nonGv2CapableMembers,
+                                                      (canSubmit, nonGv2) -> canSubmit && nonGv2.isEmpty());
 
     repository.resolveMembers(recipientIds, initialMembers::postValue);
   }
@@ -96,6 +96,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     return nonGv2CapableMembers;
   }
 
+  @NonNull LiveData<Integer> getDisappearingMessagesTimer() {
+    return disappearingMessagesTimer;
+  }
+
   void setAvatar(@Nullable byte[] avatar) {
     this.avatar.setValue(avatar);
   }
@@ -109,7 +113,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   }
 
   void delete(@NonNull RecipientId recipientId) {
-    Set<RecipientId> deleted  = this.deleted.getValue();
+    Set<RecipientId> deleted = this.deleted.getValue();
 
     deleted.add(recipientId);
     this.deleted.setValue(deleted);
@@ -122,6 +126,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     byte[]                                   avatarBytes = avatar.getValue();
     boolean                                  isGroupMms  = isMms.getValue() == Boolean.TRUE;
     String                                   groupName   = name.getValue();
+    Integer                                  disappearingTimer = disappearingMessagesTimer.getValue();
 
     if (!isGroupMms && TextUtils.isEmpty(groupName)) {
       groupCreateResult.postValue(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_INVALID_NAME));
@@ -132,6 +137,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
                            avatarBytes,
                            groupName,
                            isGroupMms,
+                           disappearingTimer,
                            groupCreateResult::postValue);
   }
 
@@ -144,6 +150,10 @@ public final class AddGroupDetailsViewModel extends ViewModel {
   private static boolean isAnyForcedSms(@NonNull List<GroupMemberEntry.NewGroupCandidate> members) {
     return Stream.of(members)
                  .anyMatch(member -> !member.getMember().isRegistered());
+  }
+
+  public void setDisappearingMessageTimer(int timer) {
+    disappearingMessagesTimer.setValue(timer);
   }
 
   static final class Factory implements ViewModelProvider.Factory {

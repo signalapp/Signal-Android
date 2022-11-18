@@ -25,6 +25,19 @@ final class MmsMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int[] getImageDimensionTargets(Context context) {
+    int[] targets = new int[4];
+
+    targets[0] = getImageMaxHeight(context);
+
+    for (int i = 1; i < targets.length; i++) {
+      targets[i] = targets[i - 1] / 2;
+    }
+
+    return targets;
+  }
+
+  @Override
   public int getImageMaxSize(Context context) {
     return getMaxMessageSize(context);
   }

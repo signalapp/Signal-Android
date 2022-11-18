@@ -7,9 +7,9 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
@@ -66,18 +66,18 @@ public final class SimpleProgressDialog {
       dialogAtomicReference.set(show(context));
     };
 
-    Util.runOnMainDelayed(showRunnable, delayMs);
+    ThreadUtil.runOnMainDelayed(showRunnable, delayMs);
 
     return () -> {
-      Util.cancelRunnableOnMain(showRunnable);
-      Util.runOnMain(() -> {
+      ThreadUtil.cancelRunnableOnMain(showRunnable);
+      ThreadUtil.runOnMain(() -> {
         AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
         if (alertDialog != null) {
           long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
           long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
 
           if (remainingTimeMs > 0) {
-            Util.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
+            ThreadUtil.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
           } else {
             alertDialog.dismiss();
           }

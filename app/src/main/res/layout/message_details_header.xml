@@ -93,12 +93,14 @@
 
             <TextView
                 android:id="@+id/message_details_header_sent_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/message_details_table_row_pad"
                 android:background="?selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_sent_time_label"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@+id/message_details_header_sent_time_label"
                 app:layout_constraintStart_toEndOf="@+id/message_details_header_label_barrier"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Jan 18, 2015, 12:29:37 AM GMT-08:00" />
 
             <TextView
@@ -110,16 +112,18 @@
                 android:text="@string/message_details_header__received"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time_label" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time" />
 
             <TextView
                 android:id="@+id/message_details_header_received_time"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/message_details_table_row_pad"
                 android:background="?selectableItemBackground"
-                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_received_time_label"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@+id/message_details_header_received_time_label"
                 app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
+                app:layout_constraintEnd_toEndOf="parent"
                 tools:text="Jan 18, 2015, 12:31:15 AM GMT-08:00" />
 
             <androidx.constraintlayout.widget.Group
@@ -137,16 +141,18 @@
                 android:text="@string/message_details_header__disappears"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time_label" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time" />
 
             <TextView
                 android:id="@+id/message_details_header_expires_in"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/message_details_table_row_pad"
-                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_expires_in_label"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@+id/message_details_header_expires_in_label"
                 app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
-                tools:text="1 week" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="1 week 6 days 23 hours 54 minutes 16 seconds and 200 milliseconds" />
 
             <androidx.constraintlayout.widget.Group
                 android:id="@+id/message_details_header_expires_group"
@@ -163,16 +169,18 @@
                 android:text="@string/message_details_header__via"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in_label" />
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in" />
 
             <TextView
                 android:id="@+id/message_details_header_transport"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/message_details_table_row_pad"
-                app:layout_constraintBottom_toBottomOf="@+id/message_details_header_transport_label"
+                android:maxLines="2"
+                app:layout_constraintTop_toTopOf="@+id/message_details_header_transport_label"
                 app:layout_constraintStart_toEndOf="@id/message_details_header_label_barrier"
-                tools:text="Push (TextSecure)" />
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Data (Signal)" />
 
             <androidx.constraintlayout.widget.Barrier
                 android:id="@+id/message_details_header_label_barrier"

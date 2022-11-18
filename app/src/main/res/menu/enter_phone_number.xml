@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+      android:id="@+id/phone_menu_use_proxy"
+      android:title="@string/preferences_use_proxy"/>
+
+</menu>

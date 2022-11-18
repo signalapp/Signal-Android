@@ -18,10 +18,16 @@ public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends Map
   protected final @Nullable AvatarImageView  avatar;
   protected final @Nullable TextView         name;
   protected final @Nullable EventListener<T> eventListener;
+  private   final           boolean          quickContactEnabled;
 
   public RecipientViewHolder(@NonNull View itemView, @Nullable EventListener<T> eventListener) {
+    this(itemView, eventListener, false);
+  }
+
+  public RecipientViewHolder(@NonNull View itemView, @Nullable EventListener<T> eventListener, boolean quickContactEnabled) {
     super(itemView);
-    this.eventListener = eventListener;
+    this.eventListener       = eventListener;
+    this.quickContactEnabled = quickContactEnabled;
 
     avatar = findViewById(R.id.recipient_view_avatar);
     name   = findViewById(R.id.recipient_view_name);
@@ -30,7 +36,7 @@ public class RecipientViewHolder<T extends RecipientMappingModel<T>> extends Map
   @Override
   public void bind(@NonNull T model) {
     if (avatar != null) {
-      avatar.setRecipient(model.getRecipient());
+      avatar.setRecipient(model.getRecipient(), quickContactEnabled);
     }
 
     if (name != null) {

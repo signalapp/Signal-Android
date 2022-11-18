@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.util;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,7 +19,7 @@ public final class BottomSheetUtil {
    */
   public static void show(@NonNull FragmentManager manager,
                           @Nullable String tag,
-                          @NonNull BottomSheetDialogFragment dialog)
+                          @NonNull DialogFragment dialog)
   {
     FragmentTransaction transaction = manager.beginTransaction();
     transaction.add(dialog, tag);

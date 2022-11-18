@@ -120,7 +120,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>();
 
-    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query, false, FeatureFlags.groupsV1ForcedMigration())) {
+    try (GroupDatabase.Reader reader = groupDatabase.getGroupsFilteredByTitle(query, false, true, true)) {
       GroupDatabase.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         RecipientId recipientId = recipientDatabase.getOrInsertFromGroupId(groupRecord.getId());

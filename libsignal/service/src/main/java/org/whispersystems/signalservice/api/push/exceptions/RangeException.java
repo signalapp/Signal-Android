@@ -9,6 +9,6 @@ package org.whispersystems.signalservice.api.push.exceptions;
 public final class RangeException extends NonSuccessfulResponseCodeException {
 
   public RangeException(long requested) {
-    super("Range request out of bounds " + requested);
+    super(416, "Range request out of bounds " + requested);
   }
 }

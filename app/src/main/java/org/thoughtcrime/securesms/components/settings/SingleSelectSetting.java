@@ -1,10 +1,13 @@
 package org.thoughtcrime.securesms.components.settings;
 
+import android.text.TextUtils;
 import android.animation.ValueAnimator;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.CheckedTextView;
+import android.widget.RadioButton;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +30,7 @@ public class SingleSelectSetting {
 
   public static class ViewHolder extends MappingViewHolder<Item> {
 
+//    private final   RadioButton                          radio;
     protected final CheckedTextView                      text;
     protected final SingleSelectSelectionChangedListener selectionChangedListener;
 
@@ -110,23 +114,28 @@ public class SingleSelectSetting {
   }
 
   public static class Item implements MappingModel<Item> {
-    private final String  text;
     private final Object  item;
+    private final String  text;
     private final boolean isSelected;
 
     public <T> Item(@NonNull T item, @Nullable String text, boolean isSelected) {
-      this.item       = item;
-      this.text       = text != null ? text : item.toString();
-      this.isSelected = isSelected;
+      this.item        = item;
+      this.text        = text != null ? text : item.toString();
+      this.isSelected  = isSelected;
+    }
+
+    public @NonNull Object getItem() {
+      return item;
     }
 
     public @NonNull String getText() {
       return text;
     }
 
-    public @NonNull Object getItem() {
-      return item;
+    public boolean isSelected() {
+      return isSelected;
     }
+
 
     @Override
     public boolean areItemsTheSame(@NonNull Item newItem) {
@@ -135,7 +144,8 @@ public class SingleSelectSetting {
 
     @Override
     public boolean areContentsTheSame(@NonNull Item newItem) {
-      return Objects.equals(text, newItem.text) && isSelected == newItem.isSelected;
+      return Objects.equals(text, newItem.text)               &&
+             isSelected == newItem.isSelected;
     }
   }
 }

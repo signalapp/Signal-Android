@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Build;
 import android.os.Bundle;
-import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -19,9 +19,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.annotation.StringRes;
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,22 +30,27 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.profiles.manage.EditProfileNameFragment;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
-import org.thoughtcrime.securesms.util.StringUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
 
-import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.DISPLAY_USERNAME;
+//import static org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil.MAX_DESCRIPTION_LENGTH;////关联patch未合并，导致文件缺失，临时注释
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.GROUP_ID;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_BUTTON_TEXT;
 import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.NEXT_INTENT;
+import static org.thoughtcrime.securesms.profiles.edit.EditProfileActivity.SHOW_TOOLBAR;
 
 //import com.dd.CircularProgressButton;
 
 public class EditProfileFragment extends LoggingFragment implements View.OnFocusChangeListener {
 
     private static final String TAG = Log.tag(EditProfileFragment.class);
+
+    private static final int    MAX_DESCRIPTION_GLYPHS     = 480;
+    private static final int    MAX_DESCRIPTION_BYTES      = 8192;
 
     private Intent mNextIntent;
     private EditProfileViewModel viewModel;
@@ -71,28 +77,11 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
         }
     }
 
-    public static EditProfileFragment create(boolean excludeSystem,
-                                             Intent nextIntent,
-                                             boolean displayUsernameField,
-                                             @StringRes int nextButtonText) {
-
-        EditProfileFragment fragment = new EditProfileFragment();
-        Bundle args = new Bundle();
-
-        args.putBoolean(EXCLUDE_SYSTEM, excludeSystem);
-        args.putParcelable(NEXT_INTENT, nextIntent);
-        args.putBoolean(DISPLAY_USERNAME, displayUsernameField);
-        args.putInt(NEXT_BUTTON_TEXT, nextButtonText);
-        fragment.setArguments(args);
-
-        return fragment;
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.profile_create_fragment, container, false);
-    }
+  @Nullable
+  @Override
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.profile_create_fragment, container, false);
+  }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
@@ -121,12 +110,6 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
 
         mFocusPaddingX = res.getDimensionPixelSize(R.dimen.focus_item_padding_x);
         mNormalPaddingX = res.getDimensionPixelSize(R.dimen.item_padding_x);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        viewModel.refreshUsername();
     }
 
     @Override
@@ -165,14 +148,14 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
     }
 
     private void handleUpload() {
-        viewModel.submitProfile(uploadResult -> {
+        viewModel.getUploadResult().observe(getViewLifecycleOwner(), uploadResult -> {
             if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-                RegistrationUtil.maybeMarkRegistrationComplete(requireContext());
                 handleFinishedLegacy();
             } else {
                 Toast.makeText(requireContext(), R.string.CreateProfileActivity_problem_setting_profile, Toast.LENGTH_LONG).show();
             }
         });
+        viewModel.submitProfile();
     }
 
     @Override
@@ -184,14 +167,6 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
         if (mNextIntent != null) startActivity(mNextIntent);
 
         mController.onProfileNameUploadCompleted();
-    }
-
-    private static void trimInPlace(Editable s) {
-        int trimmedLength = StringUtil.trimToFit(s.toString(), ProfileName.MAX_PART_LENGTH).length();
-
-        if (s.length() > trimmedLength) {
-            s.delete(trimmedLength, s.length());
-        }
     }
 
     public GroupId getGroupId() {
@@ -280,7 +255,7 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
 
                 firstNameEdit.setHint(R.string.CreateProfileActivity_required);
                 firstNameEdit.addTextChangedListener(new AfterTextChanged(s -> {
-                    trimInPlace(s);
+                    EditProfileNameFragment.trimFieldToMaxByteLength(s);
                     mViewModel.setGivenName(s.toString());
                 }));
                 mViewModel.givenName().observe(mFragment, givenName -> updateFieldIfNeeded(firstNameEdit, givenName));
@@ -290,19 +265,23 @@ public class EditProfileFragment extends LoggingFragment implements View.OnFocus
                 lastNameTv.setText(R.string.CreateProfileActivity_last_name_optional);
                 lastNameEdit.setHint(R.string.CreateProfileActivity_optional);
                 lastNameEdit.addTextChangedListener(new AfterTextChanged(s -> {
-                    trimInPlace(s);
+                    EditProfileNameFragment.trimFieldToMaxByteLength(s);
                     mViewModel.setFamilyName(s.toString());
                 }));
                 mViewModel.familyName().observe(mFragment, familyName -> updateFieldIfNeeded(lastNameEdit, familyName));
             } else if (position == 1 && mFragment.getGroupId() != null) {
               TextView textTv = holder.itemView.findViewById(R.id.item_singleline_tv);
               textTv.setText(R.string.save);
-            } else if (position == 2) {
+            } else if (position == 2){
+                TextView phoneNumber = holder.itemView.findViewById(R.id.item_singleline_tv);
+                String number = PhoneNumberFormatter.prettyPrint(TextSecurePreferences.getLocalNumber(mContext));
+                phoneNumber.setText(number);
+            }/*else if (position == 2) {
                 TextView textTv = holder.itemView.findViewById(R.id.item_singleline_tv);
                 textTv.setText(R.string.CreateProfileActivity_signal_profiles_are_end_to_end_encrypted);
                 textTv.setEnabled(false);
 
-            } else if (position == 3) {
+            }*/else if (position == 3) {
                 TextView nextTv = holder.itemView.findViewById(R.id.item_singleline_tv);
                 nextTv.setText(R.string.save);
                 nextTv.setWidth(100);

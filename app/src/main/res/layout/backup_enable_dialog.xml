@@ -22,6 +22,7 @@
                  android:focusable="true">
 
         <TableRow android:gravity="center_horizontal"
+                  android:layoutDirection="ltr"
                   android:clickable="false"
                   android:focusable="false">
 
@@ -46,7 +47,9 @@
                       tools:text="42738" />
         </TableRow>
 
-        <TableRow android:gravity="center_horizontal">
+        <TableRow android:gravity="center_horizontal"
+                  android:layoutDirection="ltr">
+
             <TextView android:id="@+id/code_fourth"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"

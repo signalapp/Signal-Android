@@ -36,4 +36,8 @@ public interface ChangeSetModifier {
   void removeDeleteRequestingMembers(int i);
 
   void removePromoteRequestingMembers(int i);
+
+  void clearModifyDescription();
+
+  void clearModifyAnnouncementsOnly();
 }

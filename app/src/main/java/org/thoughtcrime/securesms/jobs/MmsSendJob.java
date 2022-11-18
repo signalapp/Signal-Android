@@ -61,7 +61,7 @@ public final class MmsSendJob extends SendJob {
 
   public static final String KEY = "MmsSendJobV2";
 
-  private static final String TAG = MmsSendJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MmsSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
@@ -141,7 +141,7 @@ public final class MmsSendJob extends SendJob {
       final MmsSendResult result   = getSendResult(sendConf, pdu);
 
       database.markAsSent(messageId, false);
-      markAttachmentsUploaded(messageId, message.getAttachments());
+      markAttachmentsUploaded(messageId, message);
 
       Log.i(TAG, "Sent message: " + messageId);
     } catch (UndeliverableMessageException | IOException e) {
@@ -242,6 +242,10 @@ public final class MmsSendJob extends SendJob {
       List<Recipient> members = DatabaseFactory.getGroupDatabase(context).getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       for (Recipient member : members) {
+        if (!member.hasSmsAddress()) {
+          throw new UndeliverableMessageException("One of the group recipients did not have an SMS address! " + member.getId());
+        }
+
         if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
           req.addBcc(new EncodedStringValue(member.requireSmsAddress()));
         } else {
@@ -249,6 +253,10 @@ public final class MmsSendJob extends SendJob {
         }
       }
     } else {
+      if (!message.getRecipient().hasSmsAddress()) {
+        throw new UndeliverableMessageException("Recipient did not have an SMS address! " + message.getRecipient().getId());
+      }
+
       req.addTo(new EncodedStringValue(message.getRecipient().requireSmsAddress()));
     }
 

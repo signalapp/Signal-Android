@@ -6,7 +6,6 @@
 
 package org.whispersystems.signalservice.api;
 
-import org.signal.zkgroup.VerificationFailedException;
 import org.signal.zkgroup.profiles.ClientZkProfileOperations;
 import org.signal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.libsignal.InvalidMessageException;
@@ -23,12 +22,9 @@ import org.whispersystems.signalservice.api.profiles.ProfileAndCredential;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.whispersystems.signalservice.api.websocket.ConnectivityListener;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.SignalServiceEnvelopeEntity;
@@ -55,15 +51,12 @@ import java.util.UUID;
  *
  * @author Moxie Marlinspike
  */
-@SuppressWarnings("OptionalUsedAsFieldOrParameterType")
 public class SignalServiceMessageReceiver {
 
   private final PushServiceSocket          socket;
   private final SignalServiceConfiguration urls;
   private final CredentialsProvider        credentialsProvider;
   private final String                     signalAgent;
-  private final ConnectivityListener       connectivityListener;
-  private final SleepTimer                 sleepTimer;
   private final ClientZkProfileOperations  clientZkProfileOperations;
 
   /**
@@ -73,17 +66,16 @@ public class SignalServiceMessageReceiver {
    * @param uuid The Signal Service UUID.
    * @param e164 The Signal Service phone number.
    * @param password The Signal Service user password.
-   * @param signalingKey The 52 byte signaling key assigned to this user at registration.
    */
   public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
-                                      UUID uuid, String e164, String password,
-                                      String signalingKey, String signalAgent,
-                                      ConnectivityListener listener,
-                                      SleepTimer timer,
+                                      UUID uuid,
+                                      String e164,
+                                      String password,
+                                      String signalAgent,
                                       ClientZkProfileOperations clientZkProfileOperations,
                                       boolean automaticNetworkRetry)
   {
-    this(urls, new StaticCredentialsProvider(uuid, e164, password, signalingKey), signalAgent, listener, timer, clientZkProfileOperations, automaticNetworkRetry);
+    this(urls, new StaticCredentialsProvider(uuid, e164, password), signalAgent, clientZkProfileOperations, automaticNetworkRetry);
   }
 
   /**
@@ -95,18 +87,14 @@ public class SignalServiceMessageReceiver {
   public SignalServiceMessageReceiver(SignalServiceConfiguration urls,
                                       CredentialsProvider credentials,
                                       String signalAgent,
-                                      ConnectivityListener listener,
-                                      SleepTimer timer,
                                       ClientZkProfileOperations clientZkProfileOperations,
                                       boolean automaticNetworkRetry)
   {
     this.urls                      = urls;
     this.credentialsProvider       = credentials;
-    this.socket                    = new PushServiceSocket(urls, credentials, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
     this.signalAgent               = signalAgent;
-    this.connectivityListener      = listener;
-    this.sleepTimer                = timer;
     this.clientZkProfileOperations = clientZkProfileOperations;
+    this.socket = new PushServiceSocket(urls, credentials, signalAgent, clientZkProfileOperations, automaticNetworkRetry);
   }
 
   /**
@@ -240,10 +228,10 @@ public class SignalServiceMessageReceiver {
   public SignalServiceMessagePipe createMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
-                                                            Optional.of(credentialsProvider), signalAgent, connectivityListener,
-                                                            sleepTimer,
+                                                            Optional.of(credentialsProvider), signalAgent,
                                                             urls.getNetworkInterceptors(),
-                                                            urls.getDns());
+                                                            urls.getDns(),
+                                                            urls.getSignalProxy());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfileOperations);
   }
@@ -251,10 +239,11 @@ public class SignalServiceMessageReceiver {
   public SignalServiceMessagePipe createUnidentifiedMessagePipe() {
     WebSocketConnection webSocket = new WebSocketConnection(urls.getSignalServiceUrls()[0].getUrl(),
                                                             urls.getSignalServiceUrls()[0].getTrustStore(),
-                                                            Optional.<CredentialsProvider>absent(), signalAgent, connectivityListener,
-                                                            sleepTimer,
+                                                            Optional.<CredentialsProvider>absent(), signalAgent,
+
                                                             urls.getNetworkInterceptors(),
-                                                            urls.getDns());
+                                                            urls.getDns(),
+                                                            urls.getSignalProxy());
 
     return new SignalServiceMessagePipe(webSocket, Optional.of(credentialsProvider), clientZkProfileOperations);
   }
@@ -273,7 +262,7 @@ public class SignalServiceMessageReceiver {
       SignalServiceEnvelope envelope;
 
       if (entity.hasSource() && entity.getSourceDevice() > 0) {
-        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrNull(entity.getSourceUuid()), entity.getSourceE164());
+        SignalServiceAddress address = new SignalServiceAddress(UuidUtil.parseOrThrow(entity.getSourceUuid()), entity.getSourceE164());
         envelope = new SignalServiceEnvelope(entity.getType(),
                                              Optional.of(address),
                                              entity.getSourceDevice(),
@@ -296,8 +285,11 @@ public class SignalServiceMessageReceiver {
       callback.onMessage(envelope);
       results.add(envelope);
 
-      if (envelope.hasUuid()) socket.acknowledgeMessage(envelope.getUuid());
-      else                    socket.acknowledgeMessage(entity.getSourceE164(), entity.getTimestamp());
+      if (envelope.hasServerGuid()) {
+        socket.acknowledgeMessage(envelope.getServerGuid());
+      } else {
+        socket.acknowledgeMessage(entity.getSourceE164(), entity.getTimestamp());
+      }
     }
 
     return results;

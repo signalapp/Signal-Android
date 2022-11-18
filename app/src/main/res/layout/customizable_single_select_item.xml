@@ -10,7 +10,7 @@
     style="@style/Mp02.Signal.Text.CommonTextButton">
 
     <!--<RadioButton
-        android:id="@+id/customizable_single_select_radio"
+        android:id="@+id/customizable_single_select_item_radio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="false"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_settings_outline_24" />
+        app:srcCompat="@drawable/ic_settings_24" />
 
     <View
         android:id="@+id/customizable_single_select_divider"

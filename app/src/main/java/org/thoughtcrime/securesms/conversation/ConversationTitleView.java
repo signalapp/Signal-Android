@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversation;
 
 import android.content.Context;
 import android.content.res.ColorStateList;
+import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class ConversationTitleView extends RelativeLayout {
@@ -64,7 +66,7 @@ public class ConversationTitleView extends RelativeLayout {
   }
 
   public void showExpiring(@NonNull LiveRecipient recipient) {
-    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpireMessages()));
+    expirationBadgeTime.setText(ExpirationUtil.getExpirationAbbreviatedDisplayValue(getContext(), recipient.get().getExpiresInSeconds()));
     expirationBadgeContainer.setVisibility(View.VISIBLE);
     updateSubtitleVisibility();
   }
@@ -84,20 +86,21 @@ public class ConversationTitleView extends RelativeLayout {
     if   (recipient == null) setComposeTitle();
     else                     setRecipientTitle(recipient);
 
-    int startDrawable = 0;
-    int endDrawable   = 0;
+    Drawable startDrawable = null;
+    Drawable endDrawable   = null;
 
     if (recipient != null && recipient.isBlocked()) {
-      startDrawable = R.drawable.ic_block_white_18dp;
+      startDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_block_white_18dp);
     } else if (recipient != null && recipient.isMuted()) {
-      startDrawable = R.drawable.ic_volume_off_white_18dp;
+      startDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.ic_bell_disabled_16));
+      startDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
     }
 
     if (recipient != null && recipient.isSystemContact() && !recipient.isSelf()) {
-      endDrawable = R.drawable.ic_profile_circle_outline_16;
+      endDrawable = ContextCompat.getDrawable(getContext(), R.drawable.ic_profile_circle_outline_16);
     }
 
-    title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, 0, endDrawable, 0);
+    title.setCompoundDrawablesRelativeWithIntrinsicBounds(startDrawable, null, endDrawable, null);
     TextViewCompat.setCompoundDrawableTintList(title, ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.transparent_white_90)));
 
     updateVerifiedSubtitleVisibility();
@@ -124,7 +127,7 @@ public class ConversationTitleView extends RelativeLayout {
 
   private void setGroupRecipientTitle(@NonNull Recipient recipient) {
     this.title.setText(recipient.getDisplayName(getContext()));
-    titlename = recipient.getName(getContext());
+    titlename = recipient.getGroupName(getContext());
     titlename = Util.getFirstNonEmpty(recipient.getE164().orNull(), recipient.getUuid().transform(UUID::toString).orNull());
     this.subtitle.setText(Stream.of(recipient.getParticipants())
                                 .sorted((a, b) -> Boolean.compare(a.isSelf(), b.isSelf()))

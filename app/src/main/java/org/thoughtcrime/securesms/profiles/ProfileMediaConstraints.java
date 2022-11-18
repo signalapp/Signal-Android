@@ -22,6 +22,11 @@ public class ProfileMediaConstraints extends MediaConstraints {
   }
 
   @Override
+  public int[] getImageDimensionTargets(Context context) {
+    return new int[] { getImageMaxWidth(context) };
+  }
+
+  @Override
   public int getGifMaxSize(Context context) {
     return 0;
   }

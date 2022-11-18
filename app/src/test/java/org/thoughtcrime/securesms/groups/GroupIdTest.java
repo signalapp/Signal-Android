@@ -16,8 +16,8 @@ import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
-import static org.thoughtcrime.securesms.groups.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
 import static org.thoughtcrime.securesms.testutil.SecureRandomTestUtil.mockRandom;
+import static org.thoughtcrime.securesms.testutil.ZkGroupLibraryUtil.assumeZkGroupSupportedOnOS;
 
 public final class GroupIdTest {
 

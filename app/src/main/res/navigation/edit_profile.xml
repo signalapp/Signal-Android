@@ -23,7 +23,7 @@
 
     <fragment
         android:id="@+id/usernameEditFragment"
-        android:name="org.thoughtcrime.securesms.usernames.username.UsernameEditFragment"
+        android:name="org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment"
         android:label="fragment_edit_username"
         tools:layout="@layout/username_edit_fragment" />
 

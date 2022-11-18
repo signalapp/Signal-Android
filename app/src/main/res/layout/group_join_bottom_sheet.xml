@@ -28,7 +28,7 @@
         app:layout_constraintTop_toTopOf="@+id/group_join_recipient_avatar"
         tools:visibility="visible" />
 
-    <TextView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/group_join_group_name"
         style="@style/TextAppearance.Signal.Body1.Bold"
         android:layout_width="wrap_content"
@@ -53,6 +53,26 @@
         app:layout_constraintTop_toBottomOf="@+id/group_join_group_name"
         tools:text="Group · 12 members" />
 
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/group_join_group_description"
+        style="@style/Signal.Text.Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_join_group_details"
+        tools:text="Coordinate the folks to do the thing"
+        tools:visibility="visible" />
+
     <TextView
         android:id="@+id/group_join_explain"
         style="@style/TextAppearance.Signal.Body2"
@@ -63,9 +83,9 @@
         android:layout_marginEnd="16dp"
         android:textColor="@color/signal_text_primary"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_join_group_details"
+        app:layout_constraintTop_toBottomOf="@+id/group_join_group_description"
         tools:text="@string/GroupJoinBottomSheetDialogFragment_admin_approval_needed" />
 
     <Button

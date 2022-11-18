@@ -1,12 +1,16 @@
 package org.thoughtcrime.securesms.contacts.avatars;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
 import android.graphics.drawable.LayerDrawable;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.content.res.AppCompatResources;
+import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
 
 import org.thoughtcrime.securesms.R;
@@ -41,7 +45,16 @@ public final class FallbackPhoto80dp implements FallbackContactPhoto {
 
   @Override
   public Drawable asCallCard(Context context) {
-    throw new UnsupportedOperationException();
+    Drawable      background      = new ColorDrawable(backgroundColor);
+    Drawable      foreground      = AppCompatResources.getDrawable(context, drawable80dp);
+    int           transparent20   = ContextCompat.getColor(context, R.color.signal_transparent_20);
+    Drawable      gradient        = new GradientDrawable(GradientDrawable.Orientation.TOP_BOTTOM, new int[]{ Color.TRANSPARENT, transparent20 });
+    LayerDrawable drawable        = new LayerDrawable(new Drawable[]{background, foreground, gradient});
+    int           foregroundInset = ViewUtil.dpToPx(24);
+
+    drawable.setLayerInset(1, foregroundInset, foregroundInset, foregroundInset, foregroundInset);
+
+    return drawable;
   }
 
   private @NonNull Drawable buildDrawable(@NonNull Context context) {

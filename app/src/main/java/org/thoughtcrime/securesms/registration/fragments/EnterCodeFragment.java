@@ -35,8 +35,11 @@ import org.thoughtcrime.securesms.registration.VerficationCodeObserver;
 import org.thoughtcrime.securesms.registration.service.CodeVerificationRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
 import org.thoughtcrime.securesms.registration.service.RegistrationService;
+import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 
+import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -183,7 +186,7 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
 
     //TODO : no code situation
     RegistrationViewModel model = getModel();
-    model.getSuccessfulCodeRequestAttempts().observe(this, (attempts) -> {
+    model.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
     });
 
     model.onStartEnterCode();
@@ -240,7 +243,19 @@ public final class EnterCodeFragment extends BaseRegistrationFragment
           @Override
           public void onSuccessfulRegistration() {
             updateUiStatus(EnterCodeStatus.STATUS_VERIFY_SUCCESS);
-            handleSuccessfulRegistration();
+
+            SimpleTask.run(() -> {
+              long startTime = System.currentTimeMillis();
+              try {
+                FeatureFlags.refreshSync();
+                Log.i(TAG, "Took " + (System.currentTimeMillis() - startTime) + " ms to get feature flags.");
+              } catch (IOException e) {
+                Log.w(TAG, "Failed to refresh flags after " + (System.currentTimeMillis() - startTime) + " ms.", e);
+              }
+                return null;
+              }, none -> {
+                handleSuccessfulRegistration();
+            });
           }
 
               //TODO : onV1RegistrationLockPinRequiredOrIncorrect : NEW callbacks

@@ -5,6 +5,9 @@
     <string name="install_url" translatable="false">https://signal.org/install</string>
     <string name="donate_url" translatable="false">https://signal.org/donate</string>
     <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -25,16 +28,6 @@
     <!-- ApplicationPreferencesActivity -->
     <string name="ApplicationPreferencesActivity_currently_s">Currently: %s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">You haven\'t set a passphrase yet!</string>
-    <plurals name="ApplicationPreferencesActivity_messages_per_conversation">
-        <item quantity="one">%d message per conversation</item>
-        <item quantity="other">%d messages per conversation</item>
-    </plurals>
-    <string name="ApplicationPreferencesActivity_delete_all_old_messages_now">Delete all old messages now?</string>
-    <plurals name="ApplicationPreferencesActivity_this_will_immediately_trim_all_conversations_to_the_d_most_recent_messages">
-        <item quantity="one">This will immediately trim all conversations to the most recent message.</item>
-        <item quantity="other">This will immediately trim all conversations to the %d most recent messages.</item>
-    </plurals>
-    <string name="ApplicationPreferencesActivity_delete">Delete</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Disable passphrase?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">This will permanently unlock Pigeon and message notifications.</string>
     <string name="ApplicationPreferencesActivity_disable">Disable</string>
@@ -53,13 +46,15 @@
     <string name="ApplicationPreferencesActivity_Off">Off</string>
     <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
     <string name="ApplicationPreferencesActivity_privacy_summary">Screen lock %1$s, Registration lock %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary_screen_lock">Screen lock %1$s</string>
     <string name="ApplicationPreferencesActivity_appearance_summary">Theme %1$s, Language %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PINs are required for registration lock. To disable PINs, please first disable registration lock.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN created.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN disabled.</string>
     <string name="ApplicationPreferencesActivity_hide">Hide</string>
     <string name="ApplicationPreferencesActivity_hide_reminder">Hide reminder?</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record payments recovery phrase</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">Record phrase</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
 
     <!-- AppProtectionPreferenceFragment -->
     <plurals name="AppProtectionPreferenceFragment_minutes">
@@ -73,15 +68,16 @@
     <string name="DraftDatabase_Draft_video_snippet">(video)</string>
     <string name="DraftDatabase_Draft_location_snippet">(location)</string>
     <string name="DraftDatabase_Draft_quote_snippet">(reply)</string>
+    <string name="DraftDatabase_Draft_voice_note">(Voice message)</string>
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">Gallery</string>
-    <string name="AttachmentKeyboard_gif">GIF</string>
     <string name="AttachmentKeyboard_file">File</string>
     <string name="AttachmentKeyboard_contact">Contact</string>
     <string name="AttachmentKeyboard_location">Location</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Pigeon needs permission to show your photos and videos.</string>
     <string name="AttachmentKeyboard_give_access">Give Access</string>
+    <string name="AttachmentKeyboard_payment">Payment</string>
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Can\'t find an app to select media.</string>
@@ -94,8 +90,8 @@
     <string name="AttachmentUploadJob_uploading_media">Uploading media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Compressing video…</string>
 
-    <!-- AudioSlidePlayer -->
-    <string name="AudioSlidePlayer_error_playing_audio">Error playing audio!</string>
+    <!-- BackgroundMessageRetriever -->
+    <string name="BackgroundMessageRetriever_checking_for_messages">Checking for messages…</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blocked users</string>
@@ -119,10 +115,9 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">You will be able to message and call each other and your name and photo will be shared with them.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Blocked people won\'t be able to call you or send you messages.</string>
     <string name="BlockUnblockDialog_unblock_s">Unblock %1$s?</string>
-    <string name="BlockUnblockDialog_unblock">Unblock</string>
     <string name="BlockUnblockDialog_block">Block</string>
     <string name="BlockUnblockDialog_block_and_leave">Block and Leave</string>
-    <string name="BlockUnblockDialog_block_and_delete">Block and Delete</string>
+    <string name="BlockUnblockDialog_report_spam_and_block">Report spam and block</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">Today</string>
@@ -132,12 +127,6 @@
     <string name="BucketedThreadMedia_Large">Large</string>
     <string name="BucketedThreadMedia_Medium">Medium</string>
     <string name="BucketedThreadMedia_Small">Small</string>
-
-    <!-- CallScreen -->
-    <string name="CallScreen_Incoming_call">Incoming call</string>
-
-    <!-- CameraActivity -->
-    <string name="CameraActivity_image_save_failure">Failed to save image.</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Tap for photo, hold for video</string>
@@ -172,10 +161,8 @@
 
     <!-- CommunicationActions -->
     <string name="CommunicationActions_no_browser_found">No web browser found.</string>
-    <string name="CommunicationActions_no_email_app_found">No email app found.</string>
     <string name="CommunicationActions_send_email">Send email</string>
     <string name="CommunicationActions_a_cellular_call_is_already_in_progress">A cellular call is already in progress.</string>
-    <string name="CommunicationActions_start_video_call">Start video call?</string>
     <string name="CommunicationActions_start_voice_call">Start voice call?</string>
     <string name="CommunicationActions_cancel">Cancel</string>
     <string name="CommunicationActions_call">Call</string>
@@ -218,6 +205,7 @@
     <string name="ConversationItem_error_network_not_delivered">Send failed</string>
     <string name="ConversationItem_received_key_exchange_message_tap_to_process">Received key exchange message, tap to process.</string>
     <string name="ConversationItem_group_action_left">%1$s has left the group.</string>
+    <string name="ConversationItem_send_paused">Send paused</string>
     <string name="ConversationItem_click_to_approve_unencrypted">Send failed, tap for unsecured fallback</string>
     <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">Fallback to unencrypted SMS?</string>
     <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">Fallback to unencrypted MMS?</string>
@@ -263,9 +251,13 @@
     <string name="ConversationActivity_unblock">Unblock</string>
     <string name="ConversationActivity_blocked">Blocked</string>
     <string name="ConversationActivity_attachment_exceeds_size_limits">Attachment exceeds size limits for the type of message you\'re sending.</string>
-    <string name="ConversationActivity_quick_camera_unavailable">Camera unavailable</string>
     <string name="ConversationActivity_unable_to_record_audio">Unable to record audio!</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">You can\'t send messages to this group because you\'re no longer a member.</string>
+    <string name="ConversationActivity_only_s_can_send_messages">Only %1$s can send messages.</string>
+    <string name="ConversationActivity_admins">admins</string>
+    <string name="ConversationActivity_message_an_admin">Message an admin</string>
+    <string name="ConversationActivity_cant_start_group_call">Can\'t start group call</string>
+    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Only admins of this group can start a call.</string>
     <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">There is no app available to handle this link on your device.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Your request to join has been sent to the group admin. You\'ll be notified when they take action.</string>
     <string name="ConversationActivity_cancel_request">Cancel Request</string>
@@ -305,6 +297,10 @@
     <string name="ConversationActivity_join">Join</string>
     <string name="ConversationActivity_full">Full</string>
 
+    <string name="ConversationActivity_error_sending_media">Error sending media</string>
+
+    <string name="ConversationActivity__reported_as_spam_and_blocked">Reported as spam and blocked.</string>
+
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%d unread message</item>
@@ -315,10 +311,6 @@
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">Delete selected message?</item>
         <item quantity="other">Delete selected messages?</item>
-    </plurals>
-    <plurals name="ConversationFragment_this_will_permanently_delete_all_n_selected_messages">
-        <item quantity="one">This will permanently delete the selected message.</item>
-        <item quantity="other">This will permanently delete all %1$d selected messages.</item>
     </plurals>
     <string name="ConversationFragment_save_to_sd_card">Save to storage?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
@@ -365,12 +357,6 @@
     <string name="ConversationFragment_your_safety_number_with_s_changed">Your safety number with %s changed</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Your safety number with %s changed, likely because they reinstalled Pigeon or changed devices. Tap Verify to confirm the new safety number. This is optional.</string>
 
-    <!-- ConversationListActivity -->
-    <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">There is no browser installed on your device.</string>
-
-    <!-- ConversationListFragment -->
-    <string name="ConversationListFragment_no_results_found_for_s_">No results found for \'%s\'</string>
-
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Delete selected conversation?</item>
         <item quantity="other">Delete selected conversations?</item>
@@ -401,14 +387,17 @@
     <string name="ConversationTitleView_verified">Verified</string>
     <string name="ConversationTitleView_you">You</string>
 
+    <!-- ConversationTypingView -->
+    <string name="ConversationTypingView__plus_d">+%1$d</string>
+
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity_some_contacts_cannot_be_in_legacy_groups">Some contacts cannot be in legacy groups.</string>
+    <string name="CreateGroupActivity__select_members">Select members</string>
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">Profile</string>
     <string name="CreateProfileActivity_error_setting_profile_photo">Error setting profile photo</string>
     <string name="CreateProfileActivity_problem_setting_profile">Problem setting profile</string>
-    <string name="CreateProfileActivity_profile_photo">Profile photo</string>
     <string name="CreateProfileActivity_set_up_your_profile">Set up your profile</string>
     <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Pigeon profiles are end-to-end encrypted, and the Signal service never has access to this information.</string>
     <string name="CreateProfileActivity_set_avatar_description">Set avatar</string>
@@ -419,6 +408,7 @@
     <string name="ChooseBackupFragment__icon_content_description">Restore from backup icon</string>
     <string name="ChooseBackupFragment__choose_backup">Choose backup</string>
     <string name="ChooseBackupFragment__learn_more">Learn more</string>
+    <string name="ChooseBackupFragment__no_file_browser_available">No file browser available</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Restore complete</string>
@@ -465,12 +455,6 @@
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chat session refreshed</string>
     <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Pigeon uses end-to-end encryption and it may need to refresh your chat session sometimes. This doesn\'t affect your chat\'s security, but you may have missed a message from this contact, and you can ask them to resend it.</string>
-
-    <!-- DeliveryStatus -->
-    <string name="DeliveryStatus_sending">Sending</string>
-    <string name="DeliveryStatus_sent">Sent</string>
-    <string name="DeliveryStatus_delivered">Delivered</string>
-    <string name="DeliveryStatus_read">Read</string>
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">Unlink \'%s\'?</string>
@@ -519,9 +503,7 @@
     <!-- ShareActivity -->
     <string name="ShareActivity_share_with">Share with</string>
     <string name="ShareActivity_multiple_attachments_are_only_supported">Multiple attachments are only supported for images and videos</string>
-
-    <!-- GcmBroadcastReceiver -->
-    <string name="GcmBroadcastReceiver_retrieving_a_message">Retrieving a message…</string>
+    <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">You do not have permission to send to this group</string>
 
     <!-- GcmRefreshJob -->
     <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Permanent Pigeon communication failure!</string>
@@ -543,16 +525,12 @@
     <string name="AddToGroupActivity_add_to_groups">Add to groups</string>
     <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
     <string name="AddToGroupActivity_add">Add</string>
+    <string name="AddToGroupActivity_add_to_a_group">Add to a group</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Choose new admin</string>
     <string name="ChooseNewAdminActivity_done">Done</string>
     <string name="ChooseNewAdminActivity_you_left">You left \"%1$s.\"</string>
-
-    <!-- GroupShareProfileView -->
-    <string name="GroupShareProfileView_share_your_profile_name_and_photo_with_this_group">Share your profile name and photo with this group?</string>
-    <string name="GroupShareProfileView_do_you_want_to_make_your_profile_name_and_photo_visible_to_all_current_and_future_members_of_this_group">Do you want to make your profile name and photo visible to all current and future members of this group?</string>
-    <string name="GroupShareProfileView_make_visible">Make visible</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">You</string>
@@ -578,7 +556,6 @@
         <item quantity="other">%d invitations sent</item>
     </plurals>
     <string name="GroupManagement_invite_single_user">“%1$s” can’t be automatically added to this group by you.\n\nThey’ve been invited to join, and won’t see any group messages until they accept.</string>
-    <string name="GroupManagement_learn_more">Learn more</string>
     <string name="GroupManagement_invite_multiple_users">These users can’t be automatically added to this group by you.\n\nThey’ve been invited to join the group, and won’t see any group messages until they accept.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
@@ -610,11 +587,6 @@
         <item quantity="one">This member is not capable of joining New Groups, and will be removed from the group:</item>
         <item quantity="other">These members are not capable of joining New Groups, and will be removed from the group:</item>
     </plurals>
-
-    <!-- GroupsV1MigrationInitiationReminder -->
-    <string name="GroupsV1MigrationInitiationReminder_to_access_new_features_like_mentions">To access new features like @mentions and admins, upgrade this group.</string>
-    <string name="GroupsV1MigrationInitiationReminder_not_now">Not now</string>
-    <string name="GroupsV1MigrationInitiationReminder_update_group">Update group</string>
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
@@ -693,7 +665,7 @@
         <item quantity="one">Error revoking invite</item>
         <item quantity="other">Error revoking invites</item>
     </plurals>
-    
+
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Pending member requests</string>
     <string name="RequestingMembersFragment_no_member_requests_to_show">No member requests to show.</string>
@@ -704,11 +676,13 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Done</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">This person can\'t be added to legacy groups.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">This person can\'t be added to announcement groups.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Add \"%1$s\" to \"%2$s\"?</item>
         <item quantity="other">Add %3$d members to \"%2$s\"?</item>
     </plurals>
     <string name="AddMembersActivity__add">Add</string>
+    <string name="AddMembersActivity__add_members">Add members</string>
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Name this group</string>
@@ -719,7 +693,6 @@
     <string name="AddGroupDetailsFragment__group_name_required">Group name (required)</string>
     <string name="AddGroupDetailsFragment__group_name_optional">Group name (optional)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">This field is required.</string>
-    <string name="AddGroupDetailsFragment__groups_require_at_least_two_members">Groups require at least two members.</string>
     <string name="AddGroupDetailsFragment__group_creation_failed">Group creation failed.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Try again later.</string>
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt">You\'ve selected a contact that doesn\'t support Pigeon groups, so this group will be MMS.</string>
@@ -749,7 +722,6 @@
     </plurals>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageGroupActivity_member_requests_and_invites">Member requests &amp; invites</string>
     <string name="ManageGroupActivity_add_members">Add members</string>
     <string name="ManageGroupActivity_edit_group_info">Edit group info</string>
@@ -762,17 +734,14 @@
     <string name="ManageGroupActivity_mute_notifications">Mute notifications</string>
     <string name="ManageGroupActivity_custom_notifications">Custom notifications</string>
     <string name="ManageGroupActivity_mentions">Mentions</string>
+    <string name="ManageGroupActivity_chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
     <string name="ManageGroupActivity_until_s">Until %1$s</string>
+    <string name="ManageGroupActivity_always">Always</string>
     <string name="ManageGroupActivity_off">Off</string>
     <string name="ManageGroupActivity_on">On</string>
     <string name="ManageGroupActivity_view_all_members">View all members</string>
     <string name="ManageGroupActivity_see_all">See all</string>
 
-    <string name="ManageGroupActivity_none">None</string>
-    <plurals name="ManageGroupActivity_invited">
-        <item quantity="one">%d invited</item>
-        <item quantity="other">%d invited</item>
-    </plurals>
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%d member added.</item>
         <item quantity="other">%d members added.</item>
@@ -784,6 +753,7 @@
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">You don\'t have the rights to do this</string>
     <string name="ManageGroupActivity_not_capable">Someone you added does not support new groups and needs to update Pigeon </string>
+    <string name="ManageGroupActivity_not_announcement_capable">Someone you added does not support announcement groups and needs to update Signal</string>
     <string name="ManageGroupActivity_failed_to_update_the_group">Failed to update the group</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">You\'re not a member of the group</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Failed to update the group please retry later</string>
@@ -797,26 +767,37 @@
     <string name="ManageGroupActivity_upgrade_this_group">upgrade this group.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">This is an insecure MMS Group. To chat privately, invite your contacts to Pigeon .</string>
     <string name="ManageGroupActivity_invite_now">Invite now</string>
+    <string name="ManageGroupActivity_more">more</string>
+    <string name="ManageGroupActivity_add_group_description">Add group description…</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notify me for Mentions</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats?</string>
-    <string name="GroupMentionSettingDialog_default_notify_me">Default (Notify me)</string>
-    <string name="GroupMentionSettingDialog_default_dont_notify_me">Default (Don\'t notify me)</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Always notify me</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Don\'t notify me</string>
-    
+
+    <!-- ManageProfileFragment -->
+    <string name="ManageProfileFragment_profile_name">Profile name</string>
+    <string name="ManageProfileFragment_username">Username</string>
+    <string name="ManageProfileFragment_about">About</string>
+    <string name="ManageProfileFragment_write_a_few_words_about_yourself">Write a few words about yourself</string>
+    <string name="ManageProfileFragment_your_name">Your name</string>
+    <string name="ManageProfileFragment_your_username">Your username</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">Failed to set avatar</string>
+
     <!-- ManageRecipientActivity -->
     <string name="ManageRecipientActivity_add_to_system_contacts">Add to system contacts</string>
     <string name="ManageRecipientActivity_this_person_is_in_your_contacts">This person is in your contacts</string>
     <string name="ManageRecipientActivity_disappearing_messages">Disappearing messages</string>
     <string name="ManageRecipientActivity_chat_color">Chat color</string>
+    <string name="ManageRecipientActivity_chat_wallpaper">Chat wallpaper</string>
     <string name="ManageRecipientActivity_block">Block</string>
     <string name="ManageRecipientActivity_unblock">Unblock</string>
     <string name="ManageRecipientActivity_view_safety_number">View safety number</string>
     <string name="ManageRecipientActivity_mute_notifications">Mute notifications</string>
     <string name="ManageRecipientActivity_custom_notifications">Custom notifications</string>
     <string name="ManageRecipientActivity_until_s">Until %1$s</string>
+    <string name="ManageRecipientActivity_always">Always</string>
     <string name="ManageRecipientActivity_off">Off</string>
     <string name="ManageRecipientActivity_on">On</string>
     <string name="ManageRecipientActivity_add_to_a_group">Add to a group</string>
@@ -827,7 +808,6 @@
         <item quantity="one">%d group in common</item>
         <item quantity="other">%d groups in common</item>
     </plurals>
-    <string name="ManageRecipientActivity_edit_name_and_picture">Edit name and picture</string>
     <string name="ManageRecipientActivity_message_description">Message</string>
     <string name="ManageRecipientActivity_voice_call_description">Voice call</string>
     <string name="ManageRecipientActivity_insecure_voice_call_description">Insecure voice call</string>
@@ -849,7 +829,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
-    
+
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
     <string name="ShareableGroupLinkDialogFragment__manage_and_share">Manage &amp; share</string>
@@ -858,10 +838,6 @@
     <string name="ShareableGroupLinkDialogFragment__reset_link">Reset link</string>
     <string name="ShareableGroupLinkDialogFragment__member_requests">Member requests</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Approve new members</string>
-    <string name="ShareableGroupLinkDialogFragment__enabled">Enabled</string>
-    <string name="ShareableGroupLinkDialogFragment__disabled">Disabled</string>
-    <string name="ShareableGroupLinkDialogFragment__default">Default</string>
-    <string name="ShareableGroupLinkDialogFragment__group_link_reset">Group link reset</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
 
@@ -919,10 +895,6 @@
     <string name="RequestConfirmationDialog_add">Add</string>
     <string name="RequestConfirmationDialog_deny">Deny</string>
 
-    <!-- CropImageActivity -->
-    <string name="CropImageActivity_group_avatar">Group avatar</string>
-    <string name="CropImageActivity_profile_avatar">Avatar</string>
-
     <!-- ImageEditorHud -->
     <string name="ImageEditorHud_blur_faces">Blur faces</string>
     <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">New: Blur faces or draw anywhere to blur</string>
@@ -934,7 +906,6 @@
 
     <!-- InviteActivity -->
     <string name="InviteActivity_share">Share</string>
-    <string name="InviteActivity_choose_contacts">Choose contacts</string>
     <string name="InviteActivity_share_with_contacts">Share with contacts</string>
     <string name="InviteActivity_choose_how_to_share">Choose how to share</string>
 
@@ -942,13 +913,9 @@
     <string name="InviteActivity_send">Send SMS to</string>
     <string name="InviteActivity_send_nullmsg_toast">Please select Contacts</string>
     <string name="InviteActivity_sending">Sending…</string>
-    <string name="InviteActivity_heart_content_description">Heart</string>
     <string name="InviteActivity_invitations_sent">Invitations sent!</string>
     <string name="InviteActivity_invite_to_signal">Invite Contacts</string>
-    <plurals name="InviteActivity_send_sms_to_friends">
-        <item quantity="one">SEND SMS TO %d FRIEND</item>
-        <item quantity="other">SEND SMS TO %d FRIENDS</item>
-    </plurals>
+    <string name="InviteActivity_send_sms">Send SMS (%d)</string>
     <plurals name="InviteActivity_send_sms_invites">
         <item quantity="one">Send %d SMS invite?</item>
         <item quantity="other">Send %d SMS invites?</item>
@@ -956,9 +923,6 @@
     <string name="InviteActivity_lets_switch_to_signal">Let\'s connect with end-to-end encryption: %1$s</string>
     <string name="InviteActivity_no_app_to_share_to">It looks like you don\'t have any apps to share to.</string>
     <string name="InviteActivity_friends_dont_let_friends_text_unencrypted">Friends don\'t let friends chat unencrypted.</string>
-
-    <!-- Job -->
-    <string name="Job_working_in_the_background">Working in the background…</string>
 
     <!-- LearnMoreTextView -->
     <string name="LearnMoreTextView_learn_more">Learn more</string>
@@ -1015,6 +979,7 @@
     <string name="MediaOverviewActivity_image">Image</string>
     <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s &#183; %2$s</string>
     <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s &#183; %2$s &#183; %3$s</string>
+    <string name="MediaOverviewActivity_voice_message">Voice message</string>
 
     <string name="MediaOverviewActivity_sent_by_s">Sent by %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Sent by you</string>
@@ -1032,15 +997,26 @@
     <string name="Megaphones_new_group">New group</string>
     <string name="Megaphones_invite_friends">Invite friends</string>
     <string name="Megaphones_use_sms">Use SMS</string>
+    <string name="Megaphones_appearance">Appearance</string>
+    <string name="Megaphones_add_photo">Add photo</string>
 
     <!-- NotificationBarManager -->
     <string name="NotificationBarManager_signal_call_in_progress">Pigeon call in progress</string>
     <string name="NotificationBarManager__establishing_signal_call">Establishing Pigeon call</string>
     <string name="NotificationBarManager__incoming_signal_call">Incoming Pigeon call</string>
-    <string name="NotificationBarManager__deny_call">Deny call</string>
+    <string name="NotificationBarManager__incoming_signal_group_call">Incoming Signal group call</string>
+    <string name="NotificationBarManager__stopping_signal_call_service">Stopping Pigeon call service</string>
+    <string name="NotificationBarManager__decline_call">Decline call</string>
     <string name="NotificationBarManager__answer_call">Answer call</string>
     <string name="NotificationBarManager__end_call">End call</string>
     <string name="NotificationBarManager__cancel_call">Cancel call</string>
+    <string name="NotificationBarManager__join_call">Join call</string>
+
+    <!-- NotificationsMegaphone -->
+    <string name="NotificationsMegaphone_turn_on_notifications">Turn on Notifications?</string>
+    <string name="NotificationsMegaphone_never_miss_a_message">Never miss a message from your contacts and groups.</string>
+    <string name="NotificationsMegaphone_turn_on">Turn on</string>
+    <string name="NotificationsMegaphone_not_now">Not now</string>
 
     <!-- NotificationMmsMessageRecord -->
     <string name="NotificationMmsMessageRecord_multimedia_message">Multimedia message</string>
@@ -1051,12 +1027,11 @@
     <string name="MediaPickerActivity_send_to">Send to %s</string>
     <string name="MediaPickerActivity__menu_open_camera">Open camera</string>
 
-    <!-- MediaPickerItemFragment -->
-    <string name="MediaPickerItemFragment_tap_to_select">Tap to select</string>
-
     <!-- MediaSendActivity -->
     <string name="MediaSendActivity_add_a_caption">Add a caption…</string>
     <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">An item was removed because it exceeded the size limit</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">An item was removed because it had an unknown type</string>
+    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">An item was removed because it exceeded the size limit or had an unknown type</string>
     <string name="MediaSendActivity_camera_unavailable">Camera unavailable.</string>
     <string name="MediaSendActivity_message_to_s">Message to %s</string>
     <string name="MediaSendActivity_message">Message</string>
@@ -1073,6 +1048,10 @@
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">All media</string>
     <string name="MediaRepository__camera">Camera</string>
+
+    <!-- MessageDecryptionUtil -->
+    <string name="MessageDecryptionUtil_failed_to_decrypt_message">Failed to decrypt message</string>
+    <string name="MessageDecryptionUtil_tap_to_send_a_debug_log">Tap to send a debug log</string>
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">Unknown</string>
@@ -1137,7 +1116,7 @@
     <string name="MessageRecord_s_made_s_an_admin">%1$s made %2$s an admin.</string>
     <string name="MessageRecord_s_made_you_an_admin">%1$s made you an admin.</string>
     <string name="MessageRecord_you_revoked_admin_privileges_from_s">You revoked admin privileges from %1$s.</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revoked your admin privileges."</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s revoked your admin privileges.</string>
     <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s revoked admin privileges from %2$s.</string>
     <string name="MessageRecord_s_is_now_an_admin">%1$s is now an admin.</string>
     <string name="MessageRecord_you_are_now_an_admin">You are now an admin.</string>
@@ -1186,6 +1165,11 @@
     <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s changed the group name to \"%2$s\".</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">The group name has changed to \"%1$s\".</string>
 
+    <!-- GV2 description change -->
+    <string name="MessageRecord_you_changed_the_group_description">You changed the group description.</string>
+    <string name="MessageRecord_s_changed_the_group_description">%1$s changed the group description.</string>
+    <string name="MessageRecord_the_group_description_has_changed">The group description has changed.</string>
+
     <!-- GV2 avatar change -->
     <string name="MessageRecord_you_changed_the_group_avatar">You changed the group avatar.</string>
     <string name="MessageRecord_s_changed_the_group_avatar">%1$s changed the group avatar.</string>
@@ -1200,6 +1184,14 @@
     <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">You changed who can edit group membership to \"%1$s\".</string>
     <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s changed who can edit group membership to \"%2$s\".</string>
     <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">Who can edit group membership has been changed to \"%1$s\".</string>
+
+    <!-- GV2 announcement group change -->
+    <string name="MessageRecord_you_allow_all_members_to_send">You changed the group settings to allow all members to send messages.</string>
+    <string name="MessageRecord_you_allow_only_admins_to_send">You changed the group settings to only allow admins to send messages.</string>
+    <string name="MessageRecord_s_allow_all_members_to_send">%1$s changed the group settings to allow all members to send messages.</string>
+    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s changed the group settings to only allow admins to send messages.</string>
+    <string name="MessageRecord_allow_all_members_to_send">The group settings were changed to allow all members to send messages.</string>
+    <string name="MessageRecord_allow_only_admins_to_send">The group settings were changed to only allow admins to send messages.</string>
 
     <!-- GV2 group link invite access level change -->
     <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">You turned on the group link with admin approval off.</string>
@@ -1252,20 +1244,19 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">You marked your safety number with %s verified from another device</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
+    <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">A message from %s couldn\'t be delivered</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
     <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in the group call · %2$s</string>
     <string name="MessageRecord_you_are_in_the_group_call_s1">You are in the group call · %1$s</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call_s1">%1$s and %2$s are in the group call · %3$s</string>
-    <string name="MessageRecord_s_s_and_s_are_in_the_group_call_s">%1$s, %2$s, and %3$s are in the group call · %4$s</string>
     <string name="MessageRecord_group_call_s">Group call · %1$s</string>
 
     <string name="MessageRecord_s_started_a_group_call">%1$s started a group call</string>
     <string name="MessageRecord_s_is_in_the_group_call">%1$s is in the group call</string>
     <string name="MessageRecord_you_are_in_the_group_call">You are in the group call</string>
     <string name="MessageRecord_s_and_s_are_in_the_group_call">%1$s and %2$s are in the group call</string>
-    <string name="MessageRecord_s_s_and_s_are_in_the_group_call">%1$s, %2$s, and %3$s are in the group call</string>
     <string name="MessageRecord_group_call">Group call</string>
 
     <string name="MessageRecord_you">You</string>
@@ -1296,6 +1287,7 @@
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Join this group? They won’t know you’ve seen their messages until you accept.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Unblock this group and share your name and photo with its members? You won\'t receive any messages until you unblock them.</string>
     <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+    <string name="MessageRequestProfileView_view">View</string>
     <string name="MessageRequestProfileView_member_of_one_group">Member of %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Member of %1$s and %2$s</string>
     <string name="MessageRequestProfileView_member_of_many_groups">Member of %1$s, %2$s, and %3$s</string>
@@ -1340,11 +1332,7 @@
     <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Pigeon needs the Camera permission in order to scan a QR code, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
     <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">Unable to scan a QR code without the Camera permission</string>
 
-    <!-- ExpirationDialog -->
     <string name="ExpirationDialog_disappearing_messages">Disappearing messages</string>
-    <string name="ExpirationDialog_your_messages_will_not_expire">Your messages will not expire.</string>
-    <string name="ExpirationDialog_your_messages_will_disappear_s_after_they_have_been_seen">Messages sent and received in this conversation will disappear %s after they have been seen.</string>
-
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">Update now</string>
     <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">This version of Pigeon will expire today. Update to the most recent version.</string>
@@ -1359,11 +1347,11 @@
     <string name="PassphrasePromptActivity_ok_button_content_description">Submit passphrase</string>
     <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">Invalid passphrase!</string>
     <string name="PassphrasePromptActivity_unlock_signal">Unlock Pigeon </string>
+    <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - Lock Screen</string>
 
     <!-- PlacePickerActivity -->
     <string name="PlacePickerActivity_title">Map</string>
 
-    <string name="PlacePickerActivity_not_a_valid_address">Not a valid Address</string>
     <string name="PlacePickerActivity_drop_pin">Drop pin</string>
     <string name="PlacePickerActivity_accept_address">Accept address</string>
 
@@ -1405,7 +1393,6 @@
     <string name="RatingManager_rate_now">Rate now!</string>
     <string name="RatingManager_no_thanks">No thanks</string>
     <string name="RatingManager_later">Later</string>
-    <string name="RatingManager_whoops_the_play_store_app_does_not_appear_to_be_installed">Whoops, the Play Store app does not appear to be installed on your device.</string>
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">All &#183; %1$d</string>
@@ -1416,13 +1403,17 @@
     <!-- ReactionsRecipientAdapter -->
     <string name="ReactionsRecipientAdapter_you">You</string>
 
+    <!-- RecaptchaRequiredBottomSheetFragment -->
+    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">Verify to continue messaging</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">To help prevent spam on Signal, please complete verification.</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">After verifying, you can continue messaging. Any paused messages will automatically be sent.</string>
+
+    <!-- Recipient -->
+    <string name="Recipient_you">You</string>
+
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Block</string>
-    <string name="RecipientPreferenceActivity_error_leaving_group">Error leaving group</string>
     <string name="RecipientPreferenceActivity_unblock">Unblock</string>
-    <string name="RecipientPreferenceActivity_enabled">Enabled</string>
-    <string name="RecipientPreferenceActivity_disabled">Disabled</string>
-    <string name="RecipientPreferenceActivity_available_once_a_message_has_been_sent_or_received">Available once a message has been sent or received.</string>
 
     <!-- RecipientProvider -->
     <string name="RecipientProvider_unnamed_group">Unnamed group</string>
@@ -1430,7 +1421,6 @@
     <!-- RedPhone -->
     <string name="RedPhone_answering">Answering…</string>
     <string name="RedPhone_ending_call">Ending call…</string>
-    <string name="RedPhone_dialing">Dialing…</string>
     <string name="RedPhone_ringing">Ringing…</string>
     <string name="RedPhone_busy">Busy</string>
     <string name="RedPhone_connected">Connected</string>
@@ -1445,31 +1435,67 @@
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">To call %1$s, Pigeon needs access to your camera</string>
     <string name="WebRtcCallActivity__signal_s">Pigeon %1$s</string>
     <string name="WebRtcCallActivity__calling">Calling…</string>
-    <string name="WebRtcCallActivity__group_call">Group Call</string>
+    <string name="WebRtcCallActivity__group_is_too_large_to_ring_the_participants">Group is too large to ring the participants.</string>
 
     <!-- WebRtcCallView -->
-    <string name="WebRtcCallView__signal_voice_call">Pigeon voice call…</string>
-    <string name="WebRtcCallView__signal_video_call">Pigeon video call…</string>
+    <string name="WebRtcCallView__signal_call">Pigeon Call</string>
+    <string name="WebRtcCallView__signal_video_call">Pigeon Video Call</string>
     <string name="WebRtcCallView__start_call">Start Call</string>
     <string name="WebRtcCallView__join_call">Join Call</string>
     <string name="WebRtcCallView__call_is_full">Call is full</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">The maximum number of %1$d participants has been reached for this call. Try again later.</string>
-    <string name="WebRtcCallView__s_group_call">\"%1$s\" Group Call</string>
     <string name="WebRtcCallView__view_participants_list">View participants</string>
     <string name="WebRtcCallView__your_video_is_off">Your video is off</string>
-    <string name="WebRtcCallView__connecting">Connecting…</string>
     <string name="WebRtcCallView__reconnecting">Reconnecting…</string>
     <string name="WebRtcCallView__joining">Joining…</string>
     <string name="WebRtcCallView__disconnected">Disconnected</string>
 
+    <string name="WebRtcCallView__signal_will_ring_s">Signal will ring %1$s</string>
+    <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal will ring %1$s and %2$s</string>
+    <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+        <item quantity="one">Signal will ring %1$s, %2$s, and %3$d other</item>
+        <item quantity="other">Signal will ring %1$s, %2$s, and %3$d others</item>
+    </plurals>
+
+    <string name="WebRtcCallView__s_will_be_notified">%1$s will be notified</string>
+    <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s and %2$s will be notified</string>
+    <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+        <item quantity="one">%1$s, %2$s, and %3$d other will be notified</item>
+        <item quantity="other">%1$s, %2$s, and %3$d others will be notified</item>
+    </plurals>
+
+    <string name="WebRtcCallView__ringing_s">Ringing %1$s</string>
+    <string name="WebRtcCallView__ringing_s_and_s">Ringing %1$s and %2$s</string>
+    <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+        <item quantity="one">Ringing %1$s, %2$s, and %3$d other</item>
+        <item quantity="other">Ringing %1$s, %2$s, and %3$d others</item>
+    </plurals>
+
+    <string name="WebRtcCallView__s_is_calling_you">%1$s is calling you</string>
+    <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s is calling you and %2$s</string>
+    <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s is calling you, %2$s, and %3$s</string>
+    <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+        <item quantity="one">%1$s is calling you, %2$s, %3$s, and %4$d other</item>
+        <item quantity="other">%1$s is calling you, %2$s, %3$s, and %4$d others</item>
+    </plurals>
+
     <string name="WebRtcCallView__no_one_else_is_here">No one else is here</string>
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
+    <string name="WebRtcCallView__s_are_in_this_call">%1$s are in this call</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
+    <string name="WebRtcCallView__s_is_presenting">%1$s is presenting</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s, and %3$d other are in this call</item>
         <item quantity="other">%1$s, %2$s, and %3$d others are in this call</item>
     </plurals>
+
+    <string name="WebRtcCallView__flip">Flip</string>
+    <string name="WebRtcCallView__speaker">Speaker</string>
+    <string name="WebRtcCallView__camera">Camera</string>
+    <string name="WebRtcCallView__mute">Mute</string>
+    <string name="WebRtcCallView__ring">Ring</string>
+    <string name="WebRtcCallView__end_call">End call</string>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call_d_people">
@@ -1484,6 +1510,20 @@
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Can\'t receive audio &amp; video from %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Can\'t receive audio and video from %1$s</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">This may be because they have not verified your safety number change, there\'s a problem with their device, or they have blocked you.</string>
+
+    <!-- CallToastPopupWindow -->
+    <string name="CallToastPopupWindow__swipe_to_view_screen_share">Swipe to view screen share</string>
+
+    <!-- ProxyBottomSheetFragment -->
+    <string name="ProxyBottomSheetFragment_proxy_server">Proxy server</string>
+    <string name="ProxyBottomSheetFragment_proxy_address">Proxy address</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">Do you want to use this proxy address?</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">Use proxy</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">Successfully connected to proxy.</string>
+
+    <!-- RecaptchaProofActivity -->
+    <string name="RecaptchaProofActivity_failed_to_submit">Failed to submit</string>
+    <string name="RecaptchaProofActivity_complete_verification">Complete verification</string>
 
     <!-- RegistrationActivity -->
     <string name="RegistrationActivity_select_your_country">Select your country</string>
@@ -1521,11 +1561,8 @@
         <item quantity="other">You are now %d steps away from submitting a debug log.</item>
     </plurals>
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">We need to verify that you\'re human.</string>
-    <string name="RegistrationActivity_failed_to_verify_the_captcha">Failed to verify the CAPTCHA</string>
     <string name="RegistrationActivity_next">Next</string>
     <string name="RegistrationActivity_continue">Continue</string>
-    <string name="RegistrationActivity_continue_d_attempts_left">Continue (%d attempts left)</string>
-    <string name="RegistrationActivity_continue_last_attempt">Continue (last attempt!)</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Take privacy with you.\nBe yourself in every message.</string>
     <string name="RegistrationActivity_pigeon_enables_you_to_use_signal">Pigeon enables you to use Signal on the MP02.</string>
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Enter your phone number to get started</string>
@@ -1544,9 +1581,6 @@
     <string name="RevealableMessageView_view_video">View Video</string>
     <string name="RevealableMessageView_viewed">Viewed</string>
     <string name="RevealableMessageView_media">Media</string>
-
-    <!-- ScribbleActivity -->
-    <string name="ScribbleActivity_save_failure">Failed to save image changes</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">No results found for \'%s\'</string>
@@ -1629,12 +1663,13 @@
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">Failed to submit logs</string>
     <string name="SubmitDebugLogActivity_success">Success!</string>
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copy this URL and add it to your issue report or support email:\n\n<b>%1$s</b></string>
-    <string name="SubmitDebugLogActivity_copied_to_clipboard">Copied to clipboard</string>
     <string name="SubmitDebugLogActivity_share">Share</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online">This log will be posted publicly online for contributors to view. You may examine and edit it before uploading.</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online for contributors to view. You may examine it before uploading.</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
-    <string name="SupportEmailUtil_subject">Subject:</string>
+    <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_signal_android_support_request">Pigeon Android Support Request</string>
     <string name="SupportEmailUtil_device_info">Device info:</string>
     <string name="SupportEmailUtil_android_version">Android version:</string>
@@ -1667,13 +1702,11 @@
     <string name="ThreadRecord_you_marked_verified">You marked verified</string>
     <string name="ThreadRecord_you_marked_unverified">You marked unverified</string>
     <string name="ThreadRecord_message_could_not_be_processed">Message could not be processed</string>
+    <string name="ThreadRecord_delivery_issue">Delivery issue</string>
     <string name="ThreadRecord_message_request">Message Request</string>
-    <string name="ThreadRecord_s_added_you_to_the_group">%1$s added you to the group</string>
-    <string name="ThreadRecord_s_invited_you_to_the_group">%1$s invited you to the group</string>
     <string name="ThreadRecord_photo">Photo</string>
     <string name="ThreadRecord_gif">GIF</string>
     <string name="ThreadRecord_voice_message">Voice Message</string>
-    <string name="ThreadRecord_contact">Contact</string>
     <string name="ThreadRecord_file">File</string>
     <string name="ThreadRecord_video">Video</string>
     <string name="ThreadRecord_chat_session_refreshed">Chat session refreshed</string>
@@ -1765,15 +1798,14 @@
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d new messages in %2$d conversations</string>
     <string name="MessageNotifier_most_recent_from_s">Most recent from: %1$s</string>
     <string name="MessageNotifier_locked_message">Locked message</string>
-    <string name="MessageNotifier_media_message_with_text">Media message: %s</string>
     <string name="MessageNotifier_message_delivery_failed">Message delivery failed.</string>
     <string name="MessageNotifier_failed_to_deliver_message">Failed to deliver message.</string>
     <string name="MessageNotifier_error_delivering_message">Error delivering message.</string>
+    <string name="MessageNotifier_message_delivery_paused">Message delivery paused.</string>
+    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Verify to continue messaging on Signal.</string>
     <string name="MessageNotifier_mark_all_as_read">Mark all as read</string>
     <string name="MessageNotifier_mark_read">Mark read</string>
     <string name="MessageNotifier_turn_off_these_notifications">Turn off these notifications</string>
-    <string name="MessageNotifier_media_message">Media message</string>
-    <string name="MessageNotifier_sticker">Sticker</string>
     <string name="MessageNotifier_view_once_photo">View-once photo</string>
     <string name="MessageNotifier_view_once_video">View-once video</string>
     <string name="MessageNotifier_reply">Reply</string>
@@ -1795,20 +1827,21 @@
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Turn off contact joined Pigeon notifications? You can enable them again in Pigeon > Settings > Notifications.</string>
 
     <!-- Notification Channels -->
-    <string name="NotificationChannel_messages">Default</string>
+    <string name="NotificationChannel_channel_messages">Messages</string>
     <string name="NotificationChannel_calls">Calls</string>
     <string name="NotificationChannel_failures">Failures</string>
     <string name="NotificationChannel_backups">Backups</string>
     <string name="NotificationChannel_locked_status">Lock status</string>
     <string name="NotificationChannel_app_updates">App updates</string>
     <string name="NotificationChannel_other">Other</string>
-    <string name="NotificationChannel_group_messages">Messages</string>
+    <string name="NotificationChannel_group_chats">Chats</string>
     <string name="NotificationChannel_missing_display_name">Unknown</string>
     <string name="NotificationChannel_voice_notes">Voice Notes</string>
+    <string name="NotificationChannel_contact_joined_signal">Contact joined Pigeon</string>
+
+    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">No activity available to open notification channel settings.</string>
 
     <!-- ProfileEditNameFragment -->
-    <string name="ProfileEditNameFragment_successfully_set_profile_name">Successfully set profile name.</string>
-    <string name="ProfileEditNameFragment_encountered_a_network_error">Encountered a network error.</string>
 
 
     <!-- RegistrationLockV2Dialog -->
@@ -1838,6 +1871,8 @@
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Pigeon</string>
     <string name="SingleRecipientNotificationBuilder_new_message">New message</string>
+    <string name="SingleRecipientNotificationBuilder_message_request">Message request</string>
+    <string name="SingleRecipientNotificationBuilder_you">You</string>
 
     <!-- ThumbnailView -->
     <string name="ThumbnailView_Play_video_description">Play video</string>
@@ -1852,9 +1887,6 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">Device no longer registered</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This is likely because you registered your phone number with Pigeon on a different device. Tap to re-register.</string>
-
-    <!-- VideoPlayer -->
-    <string name="VideoPlayer_error_playing_video">Error playing video</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_from_s_give_signal_access_to_your_microphone">To answer the call from %s, give Pigeon access to your microphone.</string>
@@ -1903,24 +1935,6 @@
     <string name="WebRtcCallControls_answer_call_description">Answer call</string>
     <string name="WebRtcCallControls_reject_call_description">Reject call</string>
 
-    <!-- attachment_type_selector -->
-    <string name="attachment_type_selector__audio">Audio</string>
-    <string name="attachment_type_selector__audio_description">Audio</string>
-    <string name="attachment_type_selector__contact">Contact</string>
-    <string name="attachment_type_selector__contact_description">Contact</string>
-    <string name="attachment_type_selector__camera">Camera</string>
-    <string name="attachment_type_selector__camera_description">Camera</string>
-    <string name="attachment_type_selector__location">Location</string>
-    <string name="attachment_type_selector__location_description">Location</string>
-    <string name="attachment_type_selector__gif">GIF</string>
-    <string name="attachment_type_selector__gif_description">Gif</string>
-    <string name="attachment_type_selector__gallery_description">Image or video</string>
-    <string name="attachment_type_selector__file_description">File</string>
-    <string name="attachment_type_selector__gallery">Gallery</string>
-    <string name="attachment_type_selector__file">File</string>
-
-    <string name="attachment_type_selector__drawer_description">Toggle attachment drawer</string>
-
     <!-- change_passphrase_activity -->
     <string name="change_passphrase_activity__old_passphrase">Old passphrase</string>
     <string name="change_passphrase_activity__new_passphrase">New passphrase</string>
@@ -1957,9 +1971,6 @@
         <item quantity="one">%1$d member</item>
         <item quantity="other">%1$d members</item>
     </plurals>
-
-    <!-- blocked_contacts_fragment -->
-    <string name="blocked_contacts_fragment__no_blocked_contacts">No blocked contacts</string>
 
     <!-- contact_selection_list_fragment -->
     <string name="contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them">Pigeon needs access to your contacts in order to display them.</string>
@@ -2011,6 +2022,11 @@
     <string name="ConversationUpdateItem_return_to_call">Return to call</string>
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
     <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
+    <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
+    <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
+    <string name="ConversationUpdateItem_view">View</string>
+    <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">The disappearing message time will be set to %1$s when you message them.</string>
 
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Play … Pause</string>
@@ -2022,7 +2038,6 @@
     <string name="QuoteView_photo">Photo</string>
     <string name="QuoteView_view_once_media">View-once media</string>
     <string name="QuoteView_sticker">Sticker</string>
-    <string name="QuoteView_document">Document</string>
     <string name="QuoteView_you">You</string>
     <string name="QuoteView_original_missing">Original message not found</string>
 
@@ -2031,6 +2046,7 @@
 
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Safety Number Changes</string>
+    <string name="safety_number_change_dialog__accept">Accept</string>
     <string name="safety_number_change_dialog__send_anyway">Send anyway</string>
     <string name="safety_number_change_dialog__call_anyway">Call anyway</string>
     <string name="safety_number_change_dialog__join_call">Join call</string>
@@ -2039,6 +2055,19 @@
     <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">The following people may have reinstalled or changed devices. Verify your safety number with them to ensure privacy.</string>
     <string name="safety_number_change_dialog__view">View</string>
     <string name="safety_number_change_dialog__previous_verified">Previous verified</string>
+
+    <!-- EnableCallNotificationSettingsDialog__call_notifications_checklist -->
+    <string name="EnableCallNotificationSettingsDialog__call_notifications_enabled">Call notifications enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_call_notifications">Enable call notifications</string>
+    <string name="EnableCallNotificationSettingsDialog__enable_background_activity">Enable background activity</string>
+    <string name="EnableCallNotificationSettingsDialog__everything_looks_good_now">Everything looks good now!</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications">To receive call notifications, tap here and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications">To receive call notifications, tap here and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings">To receive call notifications, tap here and enable background activity in \"Battery\" settings. </string>
+    <string name="EnableCallNotificationSettingsDialog__settings">Settings</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_show_notifications">To receive call notifications, tap Settings and turn on \"Show notifications.\"</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_turn_on_notifications">To receive call notifications, tap Settings and turn on notifications and make sure Sound and Pop-up are enabled.</string>
+    <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">To receive call notifications, tap Settings and enable background activity in \"Battery\" settings.</string>
 
     <!-- country_selection_fragment -->
     <string name="country_selection_fragment__loading_countries">Loading countries…</string>
@@ -2054,13 +2083,6 @@
     <!-- device_list_fragment -->
     <string name="device_list_fragment__no_devices_linked">No devices linked</string>
     <string name="device_list_fragment__link_new_device">Link new device</string>
-
-    <!-- experience_upgrade_activity -->
-    <string name="experience_upgrade_activity__continue">continue</string>
-
-    <string name="experience_upgrade_preference_fragment__read_receipts_are_here">Read receipts are here</string>
-    <string name="experience_upgrade_preference_fragment__optionally_see_and_share_when_messages_have_been_read">Optionally see and share when messages have been read</string>
-    <string name="experience_upgrade_preference_fragment__enable_read_receipts">Enable read receipts</string>
 
     <!-- expiration -->
     <string name="expiration_off">Off</string>
@@ -2120,26 +2142,10 @@
     </plurals>
 
     <!-- giphy_activity -->
-    <string name="giphy_activity_toolbar__search_gifs_and_stickers">Search GIFs and stickers</string>
+    <string name="giphy_activity_toolbar__search_gifs">Search GIFs</string>
 
     <!-- giphy_fragment -->
     <string name="giphy_fragment__nothing_found">Nothing found</string>
-
-    <!-- log_submit_activity -->
-    <string name="log_submit_activity__log_fetch_failed">Could not read the log on your device. You can still use ADB to get a debug log instead.</string>
-    <string name="log_submit_activity__thanks">Thanks for your help!</string>
-    <string name="log_submit_activity__submitting">Submitting</string>
-    <string name="log_submit_activity__no_browser_installed">No browser installed</string>
-    <string name="log_submit_activity__button_dont_submit">Don\'t submit</string>
-    <string name="log_submit_activity__button_submit">Submit</string>
-    <string name="log_submit_activity__button_got_it">Got it</string>
-    <string name="log_submit_activity__button_compose_email">Compose email</string>
-    <string name="log_submit_activity__this_log_will_be_posted_online">This log will be posted publicly online for contributors to view, you may examine and edit it before submitting.</string>
-    <string name="log_submit_activity__loading_logs">Loading logs…</string>
-    <string name="log_submit_activity__uploading_logs">Uploading logs…</string>
-    <string name="log_submit_activity__choose_email_app">Choose email app</string>
-    <string name="log_submit_activity__please_review_this_log_from_my_app">Please review this log from my app: %1$s</string>
-    <string name="log_submit_activity__network_failure">Network failure. Please try again.</string>
 
     <!-- database_migration_activity -->
     <string name="database_migration_activity__would_you_like_to_import_your_existing_text_messages">Would you like to import your existing text messages into Pigeon \'s encrypted database?</string>
@@ -2149,11 +2155,6 @@
     <string name="database_migration_activity__this_could_take_a_moment_please_be_patient">This could take a moment. Please be patient, we\'ll notify you when the import is complete.</string>
     <string name="database_migration_activity__importing">IMPORTING</string>
 
-
-    <string name="import_fragment__import_system_sms_database">Import system SMS database</string>
-    <string name="import_fragment__import_the_database_from_the_default_system">Import the database from the default system messenger app</string>
-    <string name="import_fragment__import_plaintext_backup">Import plaintext backup</string>
-    <string name="import_fragment__import_a_plaintext_backup_file">Import a plaintext backup file. Compatible with \'SMS Backup &amp; Restore.\'</string>
 
     <!-- load_more_header -->
     <string name="load_more_header__see_full_conversation">See full conversation</string>
@@ -2165,7 +2166,6 @@
     <!-- message_recipients_list_item -->
     <string name="message_recipients_list_item__view">VIEW</string>
     <string name="message_recipients_list_item__resend">RESEND</string>
-    <string name="message_recipients_list_item__resending">Resending…</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -2181,6 +2181,11 @@
     <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Pigeon requires MMS settings to deliver media and group messages through your wireless carrier. Your device does not make this information available, which is occasionally true for locked devices and other restrictive configurations.</string>
     <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">To send media and group messages, tap \'OK\' and complete the requested settings. The MMS settings for your carrier can generally be located by searching for \'your carrier APN\'. You will only need to do this once.</string>
 
+    <!-- BadDecryptLearnMoreDialog -->
+    <string name="BadDecryptLearnMoreDialog_delivery_issue">Delivery Issue</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_individual">A message, sticker, reaction, or read receipt couldn\'t be delivered to you from %s. They may have tried sending it to you directly, or in a group.</string>
+    <string name="BadDecryptLearnMoreDialog_couldnt_be_delivered_group">A message, sticker, reaction, or read receipt couldn\'t be delivered to you from %s.</string>
+
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">First name</string>
     <string name="CreateProfileActivity_required">required</string>
@@ -2190,11 +2195,32 @@
     <string name="CreateProfileActivity__username">Username</string>
     <string name="CreateProfileActivity__create_a_username">Create a username</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Custom MMS group names and photos will only be visible to you.</string>
+    <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Group descriptions will be visible to members of this group and people who have been invited.</string>
+
+    <!-- EditAboutFragment -->
+    <string name="EditAboutFragment_about">About</string>
+    <string name="EditAboutFragment_write_a_few_words_about_yourself">Write a few words about yourself…</string>
+    <string name="EditAboutFragment_count">%1$d/%2$d</string>
+    <string name="EditAboutFragment_speak_freely">Speak freely</string>
+    <string name="EditAboutFragment_encrypted">Encrypted</string>
+    <string name="EditAboutFragment_be_kind">Be kind</string>
+    <string name="EditAboutFragment_coffee_lover">Coffee lover</string>
+    <string name="EditAboutFragment_free_to_chat">Free to chat</string>
+    <string name="EditAboutFragment_taking_a_break">Taking a break</string>
+    <string name="EditAboutFragment_working_on_something_new">Working on something new</string>
 
     <!-- EditProfileFragment -->
-    <string name="EditProfileFragment__edit_group_name_and_photo">Edit group name and photo</string>
+    <string name="EditProfileFragment__edit_group">Edit group</string>
     <string name="EditProfileFragment__group_name">Group name</string>
+    <string name="EditProfileFragment__group_description">Group description</string>
     <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+
+    <!-- EditProfileNameFragment -->
+    <string name="EditProfileNameFragment_your_name">Your name</string>
+    <string name="EditProfileNameFragment_first_name">First name</string>
+    <string name="EditProfileNameFragment_last_name_optional">Last name (optional)</string>
+    <string name="EditProfileNameFragment_save">Save</string>
+    <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Failed to save due to network issues. Try again later.</string>
 
     <!-- recipient_preferences_activity -->
     <string name="recipient_preference_activity__shared_media">Shared media</string>
@@ -2211,12 +2237,6 @@
     <!-- recipients_panel -->
     <string name="recipients_panel__to"><small>Enter a name or number</small></string>
     <string name="recipients_panel__add_members">Add members</string>
-
-    <!-- unknown_sender_view -->
-    <string name="unknown_sender_view__the_sender_is_not_in_your_contact_list">The sender is not in your contact list</string>
-    <string name="unknown_sender_view__block">BLOCK</string>
-    <string name="unknown_sender_view__add_to_contacts">ADD TO CONTACTS</string>
-    <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">DON\'T ADD, BUT MAKE MY PROFILE VISIBLE</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
@@ -2245,6 +2265,7 @@
     <string name="message_details_recipient_header__delivered_to">Delivered to</string>
     <string name="message_details_recipient_header__read_by">Read by</string>
     <string name="message_details_recipient_header__not_sent">Not sent</string>
+    <string name="message_details_recipient_header__viewed">Viewed by</string>
 
     <!-- message_Details_recipient -->
     <string name="message_details_recipient__failed_to_send">Failed to send</string>
@@ -2267,12 +2288,8 @@
     <string name="MessageRequestsMegaphone__message_requests">Message requests</string>
     <string name="MessageRequestsMegaphone__users_can_now_choose_to_accept">Users can now choose to accept a new conversation. Profile names let people know who\'s messaging them.</string>
     <string name="MessageRequestsMegaphone__add_profile_name">Add profile name</string>
-    <string name="MessageRequestsMegaphone__new_message_requests">New: Message requests</string>
-    <string name="MessageRequestsMegaphone__add_name">Add name</string>
-    <string name="MessageRequestsMegaphone__you_can_now_choose_whether_to_accept">You can now choose whether to accept a new conversation. You’ll see options to \"Accept,\" \"Delete,\" or \"Block.\"</string>
 
     <!-- HelpFragment -->
-    <string name="HelpFragment__help">Help</string>
     <string name="HelpFragment__have_you_read_our_faq_yet">Have you read our FAQ yet?</string>
     <string name="HelpFragment__next">Next</string>
     <string name="HelpFragment__contact_us">Contact us</string>
@@ -2280,6 +2297,7 @@
     <string name="HelpFragment__include_debug_log">Include debug log.</string>
     <string name="HelpFragment__whats_this">What\'s this?</string>
     <string name="HelpFragment__how_do_you_feel">How do you feel? (Optional)</string>
+    <string name="HelpFragment__tell_us_why_youre_reaching_out">Tell us why you\'re reaching out.</string>
     <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
     <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
     <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
@@ -2290,11 +2308,18 @@
     <string name="HelpFragment__support_info">Support Info</string>
     <string name="HelpFragment__signal_android_support_request">Pigeon Android Support Request</string>
     <string name="HelpFragment__debug_log">Debug Log:</string>
-    <string name="HelpFragment__na">n/a</string>
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__signal_support">Pigeon Support</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string name="HelpFragment__no_email_app_found">No email app found.</string>
+    <string-array name="HelpFragment__categories">
+        <item>-- Please select an option --</item>
+        <item>Something\'s Not Working</item>
+        <item>Feature Request</item>
+        <item>Question</item>
+        <item>Feedback</item>
+        <item>Other</item>
+        <item>Payments</item>
+    </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">This Message</string>
@@ -2308,17 +2333,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symbols</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flags</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No results found</string>
 
     <!-- arrays.xml -->
-    <string name="arrays__import_export">Import</string>
     <string name="arrays__use_default">Use default</string>
     <string name="arrays__use_custom">Use custom</string>
 
     <string name="arrays__mute_for_one_hour">Mute for 1 hour</string>
-    <string name="arrays__mute_for_two_hours">Mute for 2 hours</string>
+    <string name="arrays__mute_for_eight_hours">Mute for 8 hours</string>
     <string name="arrays__mute_for_one_day">Mute for 1 day</string>
     <string name="arrays__mute_for_seven_days">Mute for 7 days</string>
-    <string name="arrays__mute_for_one_year">Mute for 1 year</string>
+    <string name="arrays__always">Always</string>
 
     <string name="arrays__settings_default">Settings default</string>
     <string name="arrays__enabled">Enabled</string>
@@ -2349,6 +2374,7 @@
     </plurals>
 
     <!-- preferences.xml -->
+    <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS and MMS</string>
     <string name="preferences__pref_all_sms_title">Receive all SMS</string>
     <string name="preferences__pref_all_mms_title">Receive all MMS</string>
@@ -2372,12 +2398,12 @@
     <string name="preferences__inactivity_timeout_passphrase">Inactivity timeout passphrase</string>
     <string name="preferences__inactivity_timeout_interval">Inactivity timeout interval</string>
     <string name="preferences__notifications">Notifications</string>
-    <string name="preferences__system_notification_settings">System notification settings</string>
     <string name="preferences__led_color">LED color</string>
     <string name="preferences__led_color_unknown">Unknown</string>
     <string name="preferences__pref_led_blink_title">LED blink pattern</string>
     <string name="preferences__sound">Sound</string>
     <string name="preferences__silent">Silent</string>
+    <string name="preferences__default">Default</string>
     <string name="preferences__repeat_alerts">Repeat alerts</string>
     <string name="preferences__never">Never</string>
     <string name="preferences__one_time">One time</string>
@@ -2397,8 +2423,9 @@
     <string name="preferences__fast">Fast</string>
     <string name="preferences__normal">Normal</string>
     <string name="preferences__slow">Slow</string>
-    <string name="preferences__help">Help</string>
+    <string name="preferences__help">About</string>
     <string name="preferences__advanced">Advanced</string>
+    <string name="preferences__donate_to_signal">Donate to Signal</string>
     <string name="preferences__privacy">Privacy</string>
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Manual MMS settings</string>
@@ -2411,6 +2438,8 @@
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Request a delivery report for each SMS message you send</string>
     <string name="preferences__data_and_storage">Data and storage</string>
     <string name="preferences__storage">Storage</string>
+    <string name="preferences__payments">Payments</string>
+    <string name="preferences__payments_beta">Payments (Beta)</string>
     <string name="preferences__conversation_length_limit">Conversation length limit</string>
     <string name="preferences__keep_messages">Keep messages</string>
     <string name="preferences__clear_message_history">Clear message history</string>
@@ -2419,12 +2448,13 @@
     <string name="preferences__dark_theme">Dark</string>
     <string name="preferences__appearance">Appearance</string>
     <string name="preferences__theme">Theme</string>
+    <string name="preferences__chat_wallpaper">Chat wallpaper</string>
+    <string name="preferences__chat_color_and_wallpaper">Chat color &amp; wallpaper</string>
     <string name="preferences__disable_pin">Disable PIN</string>
     <string name="preferences__enable_pin">Enable PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">If you disable the PIN, you will lose all data when you re-register Pigeon unless you manually back up and restore. You can not turn on Registration Lock while the PIN is disabled.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs keep information stored with Pigeon encrypted so only you can access it. Your profile, settings, and contacts will restore when you reinstall. You won’t need your PIN to open the app.</string>
     <string name="preferences__system_default">System default</string>
-    <string name="preferences__default">Default</string>
     <string name="preferences__language">Language</string>
     <string name="preferences__signal_messages_and_calls">Pigeon messages and calls</string>
     <string name="preferences__advanced_pin_settings">Advanced PIN settings</string>
@@ -2438,7 +2468,9 @@
     <string name="preferences__if_read_receipts_are_disabled_you_wont_be_able_to_see_read_receipts">If read receipts are disabled, you won\'t be able to see read receipts from others.</string>
     <string name="preferences__typing_indicators">Typing indicators</string>
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">If typing indicators are disabled, you won\'t be able to see typing indicators from others.</string>
-    <string name="preferences__request_keyboard_to_disable_personalized_learning">Request keyboard to disable personalized learning</string>
+    <string name="preferences__request_keyboard_to_disable">Request keyboard to disable personalized learning.</string>
+    <string name="preferences__this_setting_is_not_a_guarantee">This setting is not a guarantee, and your keyboard may ignore it.</string>
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_app_protection__blocked_users">Blocked users</string>
     <string name="preferences_chats__when_using_mobile_data">When using mobile data</string>
     <string name="preferences_chats__when_using_wifi">When using Wi-Fi</string>
@@ -2478,8 +2510,8 @@
     <string name="preferences_data_and_storage__calls">Calls</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Use less data for calls</string>
     <string name="preferences_data_and_storage__never">Never</string>
-    <string name="preferences_data_and_storage__wifi_and_cellular">WiFi and Cellular</string>
-    <string name="preferences_data_and_storage__cellular_only">Cellular only</string>
+    <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi and mobile data</string>
+    <string name="preferences_data_and_storage__mobile_data_only">Mobile data only</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
     <string name="preferences_notifications__messages">Messages</string>
     <string name="preferences_notifications__events">Events</string>
@@ -2498,10 +2530,24 @@
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Allow from anyone</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Enable sealed sender for incoming messages from non-contacts and people with whom you have not shared your profile.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Learn more</string>
-    <string name="preferences_notifications__mentions">Mentions</string>
-    <string name="preferences_notifications__notify_me">Notify me</string>
-    <string name="preferences_notifications__receive_notifications_when_youre_mentioned_in_muted_chats">Receive notifications when you’re mentioned in muted chats</string>
     <string name="preferences_setup_a_username">Setup a username</string>
+    <string name="preferences_proxy">Proxy</string>
+    <string name="preferences_use_proxy">Use proxy</string>
+    <string name="preferences_off">Off</string>
+    <string name="preferences_on">On</string>
+    <string name="preferences_proxy_address">Proxy address</string>
+    <string name="preferences_only_use_a_proxy_if">Only use a proxy if you\'re not able to connect to Signal on mobile data or Wi-Fi.</string>
+    <string name="preferences_share">Share</string>
+    <string name="preferences_save">Save</string>
+    <string name="preferences_connecting_to_proxy">Connecting to proxy…</string>
+    <string name="preferences_connected_to_proxy">Connected to proxy</string>
+    <string name="preferences_connection_failed">Connection failed</string>
+    <string name="preferences_couldnt_connect_to_the_proxy">Couldn\'t connect to the proxy. Check the proxy address and try again.</string>
+    <string name="preferences_you_are_connected_to_the_proxy">You are connected to the proxy. You can turn the proxy off at any time from Settings.</string>
+    <string name="preferences_success">Success</string>
+    <string name="preferences_failed_to_connect">Failed to connect</string>
+    <string name="preferences_enter_proxy_address">Enter proxy address</string>
+
 
     <string name="configurable_single_select__customize_option">Customize option</string>
 
@@ -2521,16 +2567,21 @@
     <string name="preferences__internal_do_not_initiate_automigrate_description" translatable="false">Do not attempt to initiate an auto-migration. You will still recognize migrated groups.</string>
     <string name="preferences__internal_do_not_notify_automigrate" translatable="false">Disable Auto-Migration Notification</string>
     <string name="preferences__internal_do_not_notify_automigrate_description" translatable="false">Do not attempt to notify other users of an auto-migration. They will have to discover it on their own.</string>
+    <string name="preferences__internal_payments" translatable="false">Payments</string>
+    <string name="preferences__internal_payment_copy_data" translatable="false">Copy payments data</string>
+    <string name="preferences__internal_payment_copy_data_description" translatable="false">Copy all payment records to clipboard.</string>
     <string name="preferences__internal_account" translatable="false">Account</string>
     <string name="preferences__internal_refresh_attributes" translatable="false">Refresh attributes</string>
     <string name="preferences__internal_refresh_attributes_description" translatable="false">Forces a write of capabilities on to the server followed by a read.</string>
     <string name="preferences__internal_rotate_profile_key" translatable="false">Rotate profile key</string>
     <string name="preferences__internal_rotate_profile_key_description" translatable="false">Creates a new versioned profile, and triggers an update of any GV2 group you belong to.</string>
-    <string name="preferences__internal_refresh_remote_values" translatable="false">Refresh remote values</string>
-    <string name="preferences__internal_refresh_remote_values_description" translatable="false">Forces a refresh of remote values locally instead of waiting for the elapsed time</string>
-    <string name="preferences__internal_display" translatable="false">Display</string>
+    <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
+    <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
+    <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
     <string name="preferences__internal_user_details" translatable="false">User Details</string>
     <string name="preferences__internal_user_details_description" translatable="false">See more information about a user when viewing conversation settings.</string>
+    <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
+    <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
@@ -2538,9 +2589,179 @@
     <string name="preferences__internal_force_censorship" translatable="false">Force censorship</string>
     <string name="preferences__internal_force_censorship_description" translatable="false">Force the app to behave as if it is in a country where Pigeon is censored.</string>
     <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
+    <string name="preferences__internal_emoji" translatable="false">Emoji</string>
+    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set.</string>
+    <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
+    <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
+    <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
+    <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
+    <string name="preferences__internal_clear_all_state" translatable="false">Clear all state</string>
+    <string name="preferences__internal_click_to_delete_all_sender_key_state" translatable="false">Click to delete all sender key state</string>
+    <string name="preferences__internal_clear_shared_state" translatable="false">Clear shared state</string>
+    <string name="preferences__internal_click_to_delete_all_sharing_state" translatable="false">Click to delete all sharing state</string>
+    <string name="preferences__internal_remove_two_person_minimum" translatable="false">Remove 2 person minimum</string>
+    <string name="preferences__internal_remove_the_requirement_that_you_need" translatable="false">Remove the requirement that you  need at least 2 recipients to use sender key.</string>
+    <string name="preferences__internal_delay_resends" translatable="false">Delay resends</string>
+    <string name="preferences__internal_delay_resending_messages_in_response_to_retry_receipts" translatable="false">Delay resending messages in response to retry receipts by 10 seconds.</string>
+    <string name="preferences__internal_local_metrics" translatable="false">Local Metrics</string>
+    <string name="preferences__internal_clear_local_metrics" translatable="false">Clear local metrics</string>
+    <string name="preferences__internal_click_to_clear_all_local_metrics_state" translatable="false">Click to clear all local metrics state.</string>
+    <string name="preferences__internal_calling" translatable="false">Group call server</string>
+    <string name="preferences__internal_calling_default" translatable="false">Default</string>
+    <string name="preferences__internal_calling_s_server" translatable="false">%1$s server</string>
+
+
+    <!-- Payments -->
+    <string name="PaymentsActivityFragment__all_activity">All activity</string>
+    <string name="PaymentsAllActivityFragment__all">All</string>
+    <string name="PaymentsAllActivityFragment__sent">Sent</string>
+    <string name="PaymentsAllActivityFragment__received">Received</string>
+
+    <string name="PaymentsHomeFragment__introducing_payments">Introducing payments (Beta)</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Use Pigeon to send and receive MobileCoin, a new privacy focused digital currency. Activate to get started.</string>
+    <string name="PaymentsHomeFragment__activate_payments">Activate Payments</string>
+    <string name="PaymentsHomeFragment__activating_payments">Activating payments…</string>
+    <string name="PaymentsHomeFragment__restore_payments_account">Restore payments account</string>
+    <string name="PaymentsHomeFragment__no_recent_activity_yet">No recent activity yet</string>
+    <string name="PaymentsHomeFragment__pending_requests">Pending requests</string>
+    <string name="PaymentsHomeFragment__recent_activity">Recent activity</string>
+    <string name="PaymentsHomeFragment__see_all">See all</string>
+    <string name="PaymentsHomeFragment__add_funds">Add funds</string>
+    <string name="PaymentsHomeFragment__send">Send</string>
+    <string name="PaymentsHomeFragment__sent_s">Sent %1$s</string>
+    <string name="PaymentsHomeFragment__received_s">Received %1$s</string>
+    <string name="PaymentsHomeFragment__transfer_to_exchange">Transfer to exchange</string>
+    <string name="PaymentsHomeFragment__currency_conversion">Currency conversion</string>
+    <string name="PaymentsHomeFragment__deactivate_payments">Deactivate payments</string>
+    <string name="PaymentsHomeFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsHomeFragment__help">Help</string>
+    <string name="PaymentsHomeFragment__coin_cleanup_fee">Coin cleanup fee</string>
+    <string name="PaymentsHomeFragment__sent_payment">Sent payment</string>
+    <string name="PaymentsHomeFragment__received_payment">Received payment</string>
+    <string name="PaymentsHomeFragment__processing_payment">Processing payment</string>
+    <string name="PaymentsHomeFragment__unknown_amount">---</string>
+    <string name="PaymentsHomeFragment__currency_conversion_not_available">Currency conversion not available</string>
+    <string name="PaymentsHomeFragment__cant_display_currency_conversion">Can\'t display currency conversion. Check your phone\'s connection and try again.</string>
+    <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Payments is not available in your region.</string>
+    <string name="PaymentsHomeFragment__could_not_enable_payments">Could not enable payments. Try again later.</string>
+    <string name="PaymentsHomeFragment__deactivate_payments_question">Deactivate Payments?</string>
+    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">You will not be able to send or receive MobileCoin in Pigeon if you deactivate payments.</string>
+    <string name="PaymentsHomeFragment__deactivate">Deactivate</string>
+    <string name="PaymentsHomeFragment__continue">Continue</string>
+    <string name="PaymentsHomeFragment__balance_is_not_currently_available">Balance is not currently available.</string>
+    <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
+    <string name="PaymentsHomeFragment__payment_failed">Payment failed</string>
+    <string name="PaymentsHomeFragment__details">Details</string>
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">You can use Pigeon to send and receive MobileCoin. All payments are subject to the Terms of Use for MobileCoins and the MobileCoin Wallet. This is a beta feature so you may encounter some issues and payments or balances you may lose can\'t be recovered. </string>
+    <string name="PaymentsHomeFragment__activate">Activate</string>
+    <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin terms</string>
+    <string name="PaymentsHomeFragment__payments_not_available">Payments in Pigeon is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
+
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+
+    <!-- PaymentsAddMoneyFragment -->
+    <string name="PaymentsAddMoneyFragment__add_funds">Add funds</string>
+    <string name="PaymentsAddMoneyFragment__your_wallet_address">Your Wallet Address</string>
+    <string name="PaymentsAddMoneyFragment__copy">Copy</string>
+    <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copied to clipboard</string>
+    <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    
+    <!-- PaymentsDetailsFragment -->
+    <string name="PaymentsDetailsFragment__details">Details</string>
+    <string name="PaymentsDetailsFragment__status">Status</string>
+    <string name="PaymentsDetailsFragment__submitting_payment">Submitting payment…</string>
+    <string name="PaymentsDetailsFragment__processing_payment">Processing payment…</string>
+    <string name="PaymentsDetailsFragment__payment_complete">Payment complete</string>
+    <string name="PaymentsDetailsFragment__payment_failed">Payment failed</string>
+    <string name="PaymentsDetailsFragment__network_fee">Network fee</string>
+    <string name="PaymentsDetailsFragment__sent_by">Sent by</string>
+    <string name="PaymentsDetailsFragment__sent_to_s">Sent to %1$s</string>
+    <string name="PaymentsDetailsFragment__you_on_s_at_s">You on %1$s at %2$s</string>
+    <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s on %2$s at %3$s</string>
+    <string name="PaymentsDetailsFragment__to">To</string>
+    <string name="PaymentsDetailsFragment__from">From</string>
+    <string name="PaymentsDetailsFragment__information">Transaction details including the payment amount and time of transaction are part of the MobileCoin Ledger.</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin cleanup fee</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin cleanup fee” is charged when the coins in your possession can not be combined to complete a transaction. Cleanup will allow you to continue sending payments.</string>
+    <string name="PaymentsDetailsFragment__no_details_available">No further details available for this transaction</string>
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+    <string name="PaymentsDetailsFragment__sent_payment">Sent payment</string>
+    <string name="PaymentsDetailsFragment__received_payment">Received payment</string>
+    <string name="PaymentsDeatilsFragment__payment_completed_s">Payment completed %1$s</string>
+    <string name="PaymentsDetailsFragment__block_number">Block number</string>
+
+    <!-- PaymentsTransferFragment -->
+    <string name="PaymentsTransferFragment__transfer">Transfer</string>
+    <string name="PaymentsTransferFragment__scan_qr_code">Scan QR Code</string>
+    <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">To: Scan or enter wallet address</string>
+    <string name="PaymentsTransferFragment__you_can_transfer">You can transfer MobileCoin by completing a transfer to the wallet address provided by the exchange. The wallet address is the string of numbers and letters most commonly below the QR code.</string>
+    <string name="PaymentsTransferFragment__next">Next</string>
+    <string name="PaymentsTransferFragment__invalid_address">Invalid address</string>
+    <string name="PaymentsTransferFragment__check_the_wallet_address">Check the wallet address you\'re attempting to transfer to and try again.</string>
+    <string name="PaymentsTransferFragment__you_cant_transfer_to_your_own_signal_wallet_address">You can\'t transfer to your own Pigeon wallet address. Enter the wallet address from your account at a supported exchange.</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs">To scan a QR code, Pigeon needs access to the camera.</string>
+    <string name="PaymentsTransferFragment__signal_needs_the_camera_permission_to_capture_qr_code_go_to_settings">Pigeon needs the Camera permission to capture a QR code. Go to settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">To scan a QR code, Pigeon needs access to the camera.</string>
+    <string name="PaymentsTransferFragment__settings">Settings</string>
+
+    <!-- PaymentsTransferQrScanFragment -->
+    <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan Address QR Code</string>
+    <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan the address QR code of the payee</string>
+
+    <!-- CreatePaymentFragment -->
+    <string name="CreatePaymentFragment__request">Request</string>
+    <string name="CreatePaymentFragment__pay">Pay</string>
+    <string name="CreatePaymentFragment__available_balance_s">Available balance: %1$s</string>
+    <string name="CreatePaymentFragment__toggle_content_description">Toggle</string>
+    <string name="CreatePaymentFragment__1">1</string>
+    <string name="CreatePaymentFragment__2">2</string>
+    <string name="CreatePaymentFragment__3">3</string>
+    <string name="CreatePaymentFragment__4">4</string>
+    <string name="CreatePaymentFragment__5">5</string>
+    <string name="CreatePaymentFragment__6">6</string>
+    <string name="CreatePaymentFragment__7">7</string>
+    <string name="CreatePaymentFragment__8">8</string>
+    <string name="CreatePaymentFragment__9">9</string>
+    <string name="CreatePaymentFragment__decimal">.</string>
+    <string name="CreatePaymentFragment__0">0</string>
+    <string name="CreatePaymentFragment__lt">&lt;</string>
+    <string name="CreatePaymentFragment__backspace">Backspace</string>
+    <string name="CreatePaymentFragment__add_note">Add note</string>
+    <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversions are just estimates and may not be accurate.</string>
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+
+    <!-- EditNoteFragment -->
+    <string name="EditNoteFragment_note">Note</string>
+
+    <!-- ConfirmPaymentFragment -->
+    <string name="ConfirmPayment__confirm_payment">Confirm payment</string>
+    <string name="ConfirmPayment__network_fee">Network fee</string>
+    <string name="ConfirmPayment__error_getting_fee">Error getting fee</string>
+    <string name="ConfirmPayment__estimated_s">Estimated %1$s</string>
+    <string name="ConfirmPayment__to">To</string>
+    <string name="ConfirmPayment__total_amount">Total amount</string>
+    <string name="ConfirmPayment__balance_s">Balance: %1$s</string>
+    <string name="ConfirmPayment__submitting_payment">Submitting payment…</string>
+    <string name="ConfirmPayment__processing_payment">Processing payment…</string>
+    <string name="ConfirmPayment__payment_complete">Payment complete</string>
+    <string name="ConfirmPayment__payment_failed">Payment failed</string>
+    <string name="ConfirmPayment__payment_will_continue_processing">Payment will continue processing</string>
+    <string name="ConfirmPaymentFragment__invalid_recipient">Invalid recipient</string>
+    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">This person has not activated payments</string>
+    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Unable to request a network fee. To continue this payment tap okay to try again.</string>
+
+    <!-- CurrencyAmountFormatter_s_at_s -->
+    <string name="CurrencyAmountFormatter_s_at_s">%1$s at %2$s</string>
+
+    <!-- SetCurrencyFragment -->
+    <string name="SetCurrencyFragment__set_currency">Set Currency</string>
+    <string name="SetCurrencyFragment__all_currencies">All Currencies</string>
 
     <!-- **************************************** -->
     <!-- menus -->
@@ -2578,7 +2799,6 @@
     <string name="conversation_expiring_off__disappearing_messages">Disappearing messages</string>
 
     <!-- conversation_expiring_on -->
-    <string name="menu_conversation_expiring_on__messages_expiring">Messages expiring</string>
 
     <!-- conversation_insecure -->
     <string name="conversation_insecure__invite">Invite</string>
@@ -2590,7 +2810,6 @@
     <string name="conversation_list_batch__menu_select_all">Select all</string>
     <string name="conversation_list_batch_archive__menu_archive_selected">Archive selected</string>
     <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Unarchive selected</string>
-    <string name="conversation_list_batch__menu_unarchive_selected">Unarchive selected</string>
     <string name="conversation_list_batch__menu_mark_as_read">Mark as read</string>
     <string name="conversation_list_batch__menu_mark_as_unread">Mark as unread</string>
 
@@ -2604,9 +2823,6 @@
     <!-- conversation_list_item_view -->
     <string name="conversation_list_item_view__contact_photo_image">Contact Photo Image</string>
     <string name="conversation_list_item_view__archived">Archived</string>
-
-    <string name="conversation_list_item_inbox_zero__inbox_zeeerrro">Inbox zeeerrro</string>
-    <string name="conversation_list_item_inbox_zero__zip_zilch_zero_nada_nyou_re_all_caught_up">Zip. Zilch. Zero. Nada.\nYou\'re all caught up!</string>
 
 
     <!-- conversation_list_fragment -->
@@ -2625,7 +2841,6 @@
     <string name="conversation_unmuted__mute_notifications">Mute notifications</string>
 
     <!-- conversation -->
-    <string name="conversation__menu_add_attachment">Add attachment</string>
     <string name="conversation__menu_edit_group">Edit group</string>
     <string name="conversation__menu_group_settings">Group settings</string>
     <string name="conversation__menu_leave_group">Leave group</string>
@@ -2654,7 +2869,6 @@
     <string name="text_secure_normal__menu_clear_passphrase">Lock</string>
     <string name="text_secure_normal__mark_all_as_read">Mark all read</string>
     <string name="text_secure_normal__invite_friends">Invite friends</string>
-    <string name="text_secure_normal__help">Help</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copy to clipboard</string>
@@ -2685,11 +2899,6 @@
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Refresh</string>
     <!-- redphone_audio_popup_menu -->
-
-    <!-- Trimmer -->
-    <string name="trimmer__deleting">Deleting</string>
-    <string name="trimmer__deleting_old_messages">Deleting old messages…</string>
-    <string name="trimmer__old_messages_successfully_deleted">Old messages successfully deleted</string>
 
     <!-- Insights -->
     <string name="Insights__percent">%</string>
@@ -2755,7 +2964,6 @@
     <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registration Lock = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Your Registration Lock is now called a PIN, and it does more. Update it now.</string>
-    <string name="KbsSplashFragment__read_more_about_pins">Read more about PINs.</string>
     <string name="KbsSplashFragment__update_pin">Update PIN</string>
     <string name="KbsSplashFragment__create_your_pin">Create your PIN</string>
     <string name="KbsSplashFragment__learn_more_about_pins">Learn more about PINs</string>
@@ -2781,12 +2989,13 @@
     <string name="RegistrationLockFragment__enter_the_pin_you_created">Enter the PIN you created for your account. This is different from your SMS verification code.</string>
     <string name="RegistrationLockFragment__enter_alphanumeric_pin">Enter alphanumeric PIN</string>
     <string name="RegistrationLockFragment__enter_numeric_pin">Enter numeric PIN</string>
-    <string name="RegistrationLockFragment__next">Next</string>
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Incorrect PIN. Try again.</string>
     <string name="RegistrationLockFragment__forgot_pin">Forgot PIN?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Incorrect PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Forgot your PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Not many tries left!</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal Registration - Need Help with PIN for Android (v1 PIN)</string>
+    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal Registration - Need Help with PIN for Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
         <item quantity="one">For your privacy and security, there is no way to recover your PIN. If you can\'t remember your PIN, you can re-verify with SMS after %1$d day of inactivity. In this case, your account will be wiped and all content deleted.</item>
@@ -2812,19 +3021,15 @@
         <item quantity="one">%1$d attempt remaining.</item>
         <item quantity="other">%1$d attempts remaining.</item>
     </plurals>
+    <string name="ChatColorSelectionFragment__delete_chat_color">Delete chat color?</string>
 
     <!-- CalleeMustAcceptMessageRequestDialogFragment -->
-    <string name="CalleeMustAcceptMessageRequestDialogFragment__okay">Okay</string>
     <string name="CalleeMustAcceptMessageRequestDialogFragment__s_will_get_a_message_request_from_you">%1$s will get a message request from you. You can call once your message request is accepted.</string>
 
     <!-- KBS Megaphone -->
     <string name="KbsMegaphone__create_a_pin">Create a PIN</string>
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PINs keep information that’s stored with Pigeon encrypted.</string>
     <string name="KbsMegaphone__create_pin">Create PIN</string>
-    <string name="KbsMegaphone__introducing_pins">Introducing PINs</string>
-    <string name="KbsMegaphone__update_pin">Update PIN</string>
-    <string name="KbsMegaphone__well_remind_you_later_creating_a_pin">We\'ll remind you later. Creating a PIN will become mandatory in %1$d days.</string>
-    <string name="KbsMegaphone__well_remind_you_later_confirming_your_pin">We\'ll remind you later. Confirming your PIN will become mandatory in %1$d days.</string>
 
     <!-- Research Megaphone -->
     <string name="ResearchMegaphone_tell_signal_what_you_think">Tell Pigeon what you think</string>
@@ -2857,13 +3062,13 @@
     <string name="backup_enable_dialog__folder">Folder</string>
     <string name="backup_enable_dialog__i_have_written_down_this_passphrase">I have written down this passphrase. Without it, I will be unable to restore a backup.</string>
     <string name="registration_activity__restore_backup">Restore backup</string>
+    <string name="registration_activity__transfer_or_restore_account">Transfer or restore account</string>
+    <string name="registration_activity__transfer_account">Transfer account</string>
     <string name="registration_activity__skip">Skip</string>
-    <string name="registration_activity__register">Register</string>
     <string name="preferences_chats__chat_backups">Chat backups</string>
     <string name="preferences_chats__backup_chats_to_external_storage">Backup chats to external storage</string>
-    <string name="preferences_chats__create_backup">Create backup</string>
-    <string name="preferences_chats__verify_backup_passphrase">Verify backup passphrase</string>
-    <string name="preferences_chats__test_your_backup_passphrase_and_verify_that_it_matches">Test your backup passphrase and verify that it matches</string>
+    <string name="preferences_chats__transfer_account">Transfer account</string>
+    <string name="preferences_chats__transfer_account_to_a_new_android_device">Transfer account to a new Android device</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Enter backup passphrase</string>
     <string name="RegistrationActivity_restore">Restore</string>
     <string name="RegistrationActivity_backup_failure_downgrade">Cannot import backups from newer versions of Pigeon </string>
@@ -2898,7 +3103,6 @@
     <string name="LocalBackupJobApi29_there_is_not_enough_space">There is not enough space to store your backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tap to manage backups.</string>
     <string name="ProgressPreference_d_messages_so_far">%d messages so far</string>
-    <string name="RegistrationActivity_please_enter_the_verification_code_sent_to_s">Please enter the verification code sent to %s.</string>
     <string name="RegistrationActivity_wrong_number">Wrong number</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contact Pigeon Support</string>
@@ -2942,7 +3146,6 @@
     <string name="preferences_app_protection__registration_lock">Registration Lock</string>
     <string name="RegistrationActivity_you_must_enter_your_registration_lock_PIN">You must enter your Registration Lock PIN</string>
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">Your PIN has at least %d digits or characters</string>
-    <string name="RegistrationActivity_incorrect_registration_lock_pin">Incorrect Registration Lock PIN</string>
     <string name="RegistrationActivity_too_many_attempts">Too many attempts</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">You\'ve made too many incorrect Registration Lock PIN attempts. Please try again in a day.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">You\'ve made too many attempts. Please try again later.</string>
@@ -2967,9 +3170,137 @@
     <string name="preferences_chats__backups">Backups</string>
     <string name="prompt_passphrase_activity__signal_is_locked">Pigeon is locked</string>
     <string name="prompt_passphrase_activity__tap_to_unlock">TAP TO UNLOCK</string>
-    <string name="RegistrationLockDialog_reminder">Reminder:</string>
-    <string name="recipient_preferences__about">About</string>
     <string name="Recipient_unknown">Unknown</string>
+
+    <!-- TransferOrRestoreFragment -->
+    <string name="TransferOrRestoreFragment__transfer_or_restore_account">Transfer or restore account</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">If you have previously registered a Signal account, you can transfer or restore your account and messages</string>
+    <string name="TransferOrRestoreFragment__transfer_from_android_device">Transfer from Android device</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Transfer your account and messages from your old Android device. You need access to your old device.</string>
+    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">You need access to your old device.</string>
+    <string name="TransferOrRestoreFragment__restore_from_backup">Restore from backup</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore your messages from a local backup. If you don’t restore now, you won\'t be able to restore later.</string>
+
+    <!-- NewDeviceTransferInstructionsFragment -->
+    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Open Signal on your old Android phone</string>
+    <string name="NewDeviceTransferInstructions__continue">Continue</string>
+    <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
+    <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Tap on your profile photo in the top left to open Settings</string>
+    <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">Tap on "Account"</string>
+    <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">Tap "Transfer Account" and then "Continue" on both devices</string>
+
+    <!-- NewDeviceTransferSetupFragment -->
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Preparing to connect to old Android device…</string>
+    <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Taking a moment, should be ready soon</string>
+    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Waiting for old Android device to connect…</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal needs the location permission to discover and connect to your old Android device.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal needs location services enabled to discover and connect with your old Android device.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal needs Wi-Fi on to discover and connect with your old Android device. Wi-Fi needs to be on but it does not have to be connected to a Wi-Fi network.</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, it appears this device does not support Wi-Fi Direct. Signal uses Wi-Fi Direct to discover and connect with your old Android device. You can still restore a backup to restore your account from your old Android device.</string>
+    <string name="NewDeviceTransferSetup__restore_a_backup">Restore a backup</string>
+    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">An unexpected error occurred while attempting to connect to your old Android device.</string>
+
+    <!-- OldDeviceTransferSetupFragment -->
+    <string name="OldDeviceTransferSetup__searching_for_new_android_device">Searching for new Android device…</string>
+    <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal needs the location permission to discover and connect to your new Android device.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal needs location services enabled to discover and connect with your new Android device.</string>
+    <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal needs Wi-Fi on to discover and connect with your new Android device. Wi-Fi needs to be on but it does not have to be connected to a Wi-Fi network.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Sorry, it appears this device does not support Wi-Fi Direct. Signal uses Wi-Fi Direct to discover and connect with your new Android device. You can still create a backup to restore your account on your new Android device.</string>
+    <string name="OldDeviceTransferSetup__create_a_backup">Create a backup</string>
+    <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">An unexpected error occurred while attempting to connect to your new Android device.</string>
+
+    <!-- DeviceTransferSetupFragment -->
+    <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Unable to open Wi-Fi Settings. Please turn on Wi-Fi manually.</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Grant location permission</string>
+    <string name="DeviceTransferSetup__turn_on_location_services">Turn on location services</string>
+    <string name="DeviceTransferSetup__unable_to_open_location_settings">Unable to open location settings.</string>
+    <string name="DeviceTransferSetup__turn_on_wifi">Turn on Wi-Fi</string>
+    <string name="DeviceTransferSetup__error_connecting">Error Connecting</string>
+    <string name="DeviceTransferSetup__retry">Retry</string>
+    <string name="DeviceTransferSetup__submit_debug_logs">Submit debug logs</string>
+    <string name="DeviceTransferSetup__verify_code">Verify code</string>
+    <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Verify that the code below matches on both of your devices. Then tap continue.</string>
+    <string name="DeviceTransferSetup__the_numbers_do_not_match">The numbers do not match</string>
+    <string name="DeviceTransferSetup__continue">Continue</string>
+    <string name="DeviceTransferSetup__number_is_not_the_same">Number is not the same</string>
+    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">If the numbers on your devices do not match, it\'s possible you connected to the wrong device. To fix this, stop the transfer and try again, and keep both of your devices close.</string>
+    <string name="DeviceTransferSetup__stop_transfer">Stop transfer</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Unable to discover old device</string>
+    <string name="DeviceTransferSetup__unable_to_discover_new_device">Unable to discover new device</string>
+    <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Make sure the following permissions and services are enabled:</string>
+    <string name="DeviceTransferSetup__location_permission">Location permission</string>
+    <string name="DeviceTransferSetup__location_services">Location services</string>
+    <string name="DeviceTransferSetup__wifi">Wi-Fi</string>
+    <string name="DeviceTransferSetup__on_the_wifi_direct_screen_remove_all_remembered_groups_and_unlink_any_invited_or_connected_devices">On the WiFi Direct screen, remove all remembered groups and unlink any invited or connected devices.</string>
+    <string name="DeviceTransferSetup__wifi_direct_screen">WiFi Direct screen</string>
+    <string name="DeviceTransferSetup__try_turning_wifi_off_and_on_on_both_devices">Try turning Wi-Fi off and on, on both devices.</string>
+    <string name="DeviceTransferSetup__make_sure_both_devices_are_in_transfer_mode">Make sure both devices are in transfer mode.</string>
+    <string name="DeviceTransferSetup__go_to_support_page">Go to support page</string>
+    <string name="DeviceTransferSetup__try_again">Try again</string>
+    <string name="DeviceTransferSetup__waiting_for_other_device">Waiting for other device</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device_to_start_the_transfer">Tap Continue on your other device to start the transfer.</string>
+    <string name="DeviceTransferSetup__tap_continue_on_your_other_device">Tap Continue on your other device…</string>
+
+    <!-- NewDeviceTransferFragment -->
+    <string name="NewDeviceTransfer__cannot_transfer_from_a_newer_version_of_signal">Cannot transfer from a newer versions of Signal</string>
+
+    <!-- DeviceTransferFragment -->
+    <string name="DeviceTransfer__transferring_data">Transferring data</string>
+    <string name="DeviceTransfer__keep_both_devices_near_each_other">Keep both devices near each other. Do not turn off the devices and keep Signal open. Transfers are end-to-end encrypted.</string>
+    <string name="DeviceTransfer__d_messages_so_far">%1$d messages so far…</string>
+    <string name="DeviceTransfer__cancel">Cancel</string>
+    <string name="DeviceTransfer__try_again">Try again</string>
+    <string name="DeviceTransfer__stop_transfer_question">Stop transfer?</string>
+    <string name="DeviceTransfer__stop_transfer">Stop transfer</string>
+    <string name="DeviceTransfer__all_transfer_progress_will_be_lost">All transfer progress will be lost.</string>
+    <string name="DeviceTransfer__transfer_failed">Transfer failed</string>
+    <string name="DeviceTransfer__unable_to_transfer">Unable to transfer</string>
+
+    <!-- OldDeviceTransferInstructionsFragment -->
+    <string name="OldDeviceTransferInstructions__transfer_account">Transfer Account</string>
+    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">You can transfer your Signal account when setting up Signal on a new Android device. Before continuing:</string>
+    <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
+    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Download Signal on your new Android device</string>
+    <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">Tap on "Transfer or restore account"</string>
+    <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">Select "Transfer from Android device" when prompted and then "Continue". Keep both devices nearby.</string>
+    <string name="OldDeviceTransferInstructions__continue">Continue</string>
+
+    <!-- OldDeviceTransferComplete -->
+    <string name="OldDeviceTransferComplete__transfer_complete">Transfer complete</string>
+    <string name="OldDeviceTransferComplete__go_to_your_new_device">Go to your new device</string>
+    <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Your Signal data has been transferred to your new device. To complete the transfer process, you must continue registration on your new device.</string>
+    <string name="OldDeviceTransferComplete__close">Close</string>
+
+    <!-- NewDeviceTransferComplete -->
+    <string name="NewDeviceTransferComplete__transfer_successful">Transfer successful</string>
+    <string name="NewDeviceTransferComplete__transfer_complete">Transfer complete</string>
+    <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">To complete the transfer process, you must continue registration.</string>
+    <string name="NewDeviceTransferComplete__continue_registration">Continue registration</string>
+
+    <!-- DeviceToDeviceTransferService -->
+    <string name="DeviceToDeviceTransferService_content_title">Account transfer</string>
+    <string name="DeviceToDeviceTransferService_status_ready">Preparing to connect to your other Android device…</string>
+    <string name="DeviceToDeviceTransferService_status_starting_up">Preparing to connect to your other Android device…</string>
+    <string name="DeviceToDeviceTransferService_status_discovery">Searching for your other Android device…</string>
+    <string name="DeviceToDeviceTransferService_status_network_connected">Connecting to your other Android device…</string>
+    <string name="DeviceToDeviceTransferService_status_verification_required">Verification required</string>
+    <string name="DeviceToDeviceTransferService_status_service_connected">Transferring account…</string>
+
+    <!-- OldDeviceTransferLockedDialog -->
+    <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Complete registration on your new device</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Your Signal account has been transferred to your new device, but you must complete registration on it to continue. Signal will be inactive on this device.</string>
+    <string name="OldDeviceTransferLockedDialog__done">Done</string>
+    <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancel and activate this device</string>
+
+    <!-- AdvancedPreferenceFragment -->
+    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transfer MOB balance?</string>
+    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">You have a balance of %1$s. If you do not transfer your funds to another wallet address before deleting your account, you will lose it forever.</string>
+    <string name="AdvancedPreferenceFragment__dont_transfer">Don\'t transfer</string>
+    <string name="AdvancedPreferenceFragment__transfer">Transfer</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Block</string>
@@ -2978,7 +3309,7 @@
     <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
     <string name="RecipientBottomSheet_add_to_another_group">Add to another group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
-    <string name="RecipientBottomSheet_make_group_admin">Make group admin</string>
+    <string name="RecipientBottomSheet_make_admin">Make admin</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remove as admin</string>
     <string name="RecipientBottomSheet_remove_from_group">Remove from group</string>
     <string name="RecipientBottomSheet_message_description">Message</string>
@@ -3007,6 +3338,8 @@
     <string name="GroupsLearnMore_paragraph_3">Pigeon will offer a way to upgrade Legacy Groups in the future.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
+    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Anyone with this link can view the group\'s name and photo and request to join. Share it with people you trust.</string>
+    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Anyone with this link can view the group\'s name and photo and join the group. Share it with people you trust.</string>
     <string name="GroupLinkBottomSheet_share_via_signal">Share via Pigeon </string>
     <string name="GroupLinkBottomSheet_copy">Copy</string>
     <string name="GroupLinkBottomSheet_qr_code">QR Code</string>
@@ -3015,7 +3348,7 @@
     <string name="GroupLinkBottomSheet_the_link_is_not_currently_active">The link is not currently active</string>
 
     <!-- VoiceNotePlaybackPreparer -->
-    <string name="VoiceNotePlaybackPreparer__could_not_start_playback">Could not start playback.</string>
+    <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Failed to play voice message</string>
 
     <!-- VoiceNoteMediaDescriptionCompatFactory -->
     <string name="VoiceNoteMediaDescriptionCompatFactory__voice_message">Voice message &#183; %1$s</string>
@@ -3076,6 +3409,7 @@
     <string name="DeleteAccountFragment__delete_account">Delete account</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Delete your account info and profile photo</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">Delete all your messages</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Delete %1$s in your payments account</string>
     <string name="DeleteAccountFragment__no_country_code">No country code specified</string>
     <string name="DeleteAccountFragment__no_number">No number specified</string>
     <string name="DeleteAccountFragment__the_phone_number">The phone number you entered doesn\'t match your account\'s.</string>
@@ -3090,6 +3424,241 @@
 
     <!-- CreateGroupActivity -->
     <string name="CreateGroupActivity__skip">Skip</string>
+    <plurals name="CreateGroupActivity__d_members">
+        <item quantity="one">%1$d member</item>
+        <item quantity="other">%1$d members</item>
+    </plurals>
+
+    <!-- ShareActivity -->
+    <string name="ShareActivity__share">Share</string>
+    <string name="ShareActivity__send">Send</string>
+    <string name="ShareActivity__comma_s">, %1$s</string>
+    <string name="ShareActivity__sharing_to_multiple_chats_is">Sharing to multiple chats is only supported for Signal messages</string>
+
+    <!-- MultiShareDialogs -->
+    <string name="MultiShareDialogs__failed_to_send_to_some_users">Failed to send to some users</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">You can only share with up to %1$d chats</string>
+
+    <!-- ShareInterstitialActivity -->
+    <string name="ShareInterstitialActivity__forward_message">Forward message</string>
+
+    <!-- ChatWallpaperActivity -->
+    <string name="ChatWallpaperActivity__chat_wallpaper">Chat wallpaper</string>
+
+    <!-- ChatWallpaperFragment -->
+    <string name="ChatWallpaperFragment__chat_color">Chat color</string>
+    <string name="ChatWallpaperFragment__reset_chat_colors">Reset chat colors</string>
+    <string name="ChatWallpaperFragment__reset_chat_color">Reset chat color</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">Reset chat color?</string>
+    <string name="ChatWallpaperFragment__set_wallpaper">Set wallpaper</string>
+    <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Dark mode dims wallpaper</string>
+    <string name="ChatWallpaperFragment__contact_name">Contact name</string>
+    <string name="ChatWallpaperFragment__reset">Reset</string>
+    <string name="ChatWallpaperFragment__clear">Clear</string>
+    <string name="ChatWallpaperFragment__wallpaper_preview_description">Wallpaper preview</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Would you like to override all chat colors?</string>
+    <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Would you like to override all wallpapers?</string>
+    <string name="ChatWallpaperFragment__reset_default_colors">Reset default colors</string>
+    <string name="ChatWallpaperFragment__reset_all_colors">Reset all colors</string>
+    <string name="ChatWallpaperFragment__reset_default_wallpaper">Reset default wallpaper</string>
+    <string name="ChatWallpaperFragment__reset_all_wallpapers">Reset all wallpapers</string>
+    <string name="ChatWallpaperFragment__reset_wallpapers">Reset wallpapers</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper">Reset wallpaper</string>
+    <string name="ChatWallpaperFragment__reset_wallpaper_question">Reset wallpaper?</string>
+
+    <!-- ChatWallpaperSelectionFragment -->
+    <string name="ChatWallpaperSelectionFragment__choose_from_photos">Choose from photos</string>
+    <string name="ChatWallpaperSelectionFragment__presets">Presets</string>
+
+    <!-- ChatWallpaperPreviewActivity -->
+    <string name="ChatWallpaperPreviewActivity__preview">Preview</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper">Set wallpaper</string>
+    <string name="ChatWallpaperPreviewActivity__10_49_am">10:49 am</string>
+    <string name="ChatWallpaperPreviewActivity__this_wallpaper_will_be_set_for_all_chats">This wallpaper will be set for all chats</string>
+    <string name="ChatWallpaperPreviewActivity__besides_those_you_manually_override">Besides those you manually override</string>
+
+    <!-- WallpaperImageSelectionActivity -->
+    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Choose wallpaper image</string>
+
+    <!-- WallpaperCropActivity -->
+    <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinch to zoom, drag to adjust.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Set wallpaper for all chats.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Set wallpaper for %s.</string>
+    <string name="WallpaperCropActivity__error_setting_wallpaper">Error setting wallpaper.</string>
+    <string name="WallpaperCropActivity__blur">Blur</string>
+
+    <!-- GroupDescriptionDialog -->
+    <string name="GroupDescriptionDialog__group_description">Group description</string>
+
+    <!-- QualitySelectorBottomSheetDialog -->
+    <string name="QualitySelectorBottomSheetDialog__standard">Standard</string>
+    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Faster, less data</string>
+    <string name="QualitySelectorBottomSheetDialog__high">High</string>
+    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Slower, more data</string>
+    <string name="QualitySelectorBottomSheetDialog__photo_quality">Photo quality</string>
+
+    <!-- AppSettingsFragment -->
+    <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
+
+    <!-- AccountSettingsFragment -->
+    <string name="AccountSettingsFragment__account">Account</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">You\'ll be asked less frequently over time</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN to register your phone number with Signal again</string>
+
+    <!-- ChatsSettingsFragment -->
+    <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
+    <string name="ChatsSettingsFragment__enter_key_sends">Enter key sends</string>
+
+    <!--SmsSettingsFragment -->
+    <string name="SmsSettingsFragment__use_as_default_sms_app">Use as default SMS app</string>
+
+    <!-- NotificationsSettingsFragment -->
+    <string name="NotificationsSettingsFragment__messages">Messages</string>
+    <string name="NotificationsSettingsFragment__calls">Calls</string>
+    <string name="NotificationsSettingsFragment__notify_when">Notify when…</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Contact joins Signal</string>
+
+    <!-- PrivacySettingsFragment -->
+    <string name="PrivacySettingsFragment__blocked">Blocked</string>
+    <string name="PrivacySettingsFragment__d_contacts">%1$d contacts</string>
+    <string name="PrivacySettingsFragment__messaging">Messaging</string>
+    <string name="PrivacySettingsFragment__disappearing_messages">Disappearing messages</string>
+    <string name="PrivacySettingsFragment__app_security">App security</string>
+    <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Block screenshots in the recents list and inside the app</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Signal messages and calls, always relay calls, and sealed sender</string>
+    <string name="PrivacySettingsFragment__default_timer_for_new_changes">Default timer for new chats</string>
+    <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
+
+    <!-- AdvancedPrivacySettingsFragment -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+    <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show status icon</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Show an icon in message details when they were delivered using sealed sender.</string>
+
+    <!-- ExpireTimerSettingsFragment -->
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in new chats started by you will disappear after they have been seen.</string>
+    <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">When enabled, new messages sent and received in this chat will disappear after they have been seen.</string>
+    <string name="ExpireTimerSettingsFragment__off">Off</string>
+    <string name="ExpireTimerSettingsFragment__4_weeks">4 weeks</string>
+    <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
+    <string name="ExpireTimerSettingsFragment__1_day">1 day</string>
+    <string name="ExpireTimerSettingsFragment__8_hours">8 hours</string>
+    <string name="ExpireTimerSettingsFragment__1_hour">1 hour</string>
+    <string name="ExpireTimerSettingsFragment__5_minutes">5 minutes</string>
+    <string name="ExpireTimerSettingsFragment__30_seconds">30 seconds</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Custom time</string>
+    <string name="ExpireTimerSettingsFragment__set">Set</string>
+    <string name="ExpireTimerSettingsFragment__save">Save</string>
+
+    <string name="CustomExpireTimerSelectorView__second">Second</string>
+    <string name="CustomExpireTimerSelectorView__minute">Minute</string>
+    <string name="CustomExpireTimerSelectorView__hour">Hour</string>
+    <string name="CustomExpireTimerSelectorView__day">Day</string>
+    <string name="CustomExpireTimerSelectorView__week">Week</string>
+
+    <!-- HelpSettingsFragment -->
+    <string name="HelpSettingsFragment__support_center">Support center</string>
+    <string name="HelpSettingsFragment__contact_us">Contact us</string>
+    <string name="HelpSettingsFragment__version">Version</string>
+    <string name="HelpSettingsFragment__debug_log">Debug log</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Terms &amp; Privacy Policy</string>
+    <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
+    <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
+
+    <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__calls">Calls</string>
+    <!-- KeyboardPagerFragment -->
+    <string name="KeyboardPagerFragment_emoji">Emoji</string>
+    <string name="KeyboardPagerFragment_open_emoji_search">Open emoji search</string>
+    <string name="KeyboardPagerFragment_open_sticker_search">Open sticker search</string>
+    <string name="KeyboardPagerFragment_open_gif_search">Open gif search</string>
+    <string name="KeyboardPagerFragment_stickers">Stickers</string>
+    <string name="KeyboardPagerFragment_backspace">Backspace</string>
+    <string name="KeyboardPagerFragment_gifs">Gifs</string>
+    <string name="KeyboardPagerFragment_search_emoji">Search emoji</string>
+    <string name="KeyboardPagerfragment_back_to_emoji">Back to emoji</string>
+    <string name="KeyboardPagerfragment_clear_search_entry">Clear search entry</string>
+    <string name="KeyboardPagerFragment_search_giphy">Search GIPHY</string>
+    <!-- StickerSearchDialogFragment -->
+    <string name="StickerSearchDialogFragment_search_stickers">Search stickers</string>
+    <string name="StickerSearchDialogFragment_no_results_found">No results found</string>
+    <string name="EmojiSearchFragment__no_results_found">No results found</string>
+    <string name="NotificationsSettingsFragment__unknown_ringtone">Unknown ringtone</string>
+
+    <!-- ConversationSettingsFragment -->
+    <string name="ConversationSettingsFragment__send_message">Send message</string>
+    <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
+    <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
+    <string name="ConversationSettingsFragment__message">Message</string>
+    <string name="ConversationSettingsFragment__video">Video</string>
+    <string name="ConversationSettingsFragment__audio">Audio</string>
+    <string name="ConversationSettingsFragment__call">Call</string>
+    <string name="ConversationSettingsFragment__mute">Mute</string>
+    <string name="ConversationSettingsFragment__muted">Muted</string>
+    <string name="ConversationSettingsFragment__search">Search</string>
+    <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
+    <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <string name="ConversationSettingsFragment__contact_details">Contact details</string>
+    <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>
+    <string name="ConversationSettingsFragment__block">Block</string>
+    <string name="ConversationSettingsFragment__block_group">Block group</string>
+    <string name="ConversationSettingsFragment__unblock">Unblock</string>
+    <string name="ConversationSettingsFragment__unblock_group">Unblock group</string>
+    <string name="ConversationSettingsFragment__add_to_a_group">Add to a group</string>
+    <string name="ConversationSettingsFragment__see_all">See all</string>
+    <string name="ConversationSettingsFragment__add_members">Add members</string>
+    <string name="ConversationSettingsFragment__permissions">Permissions</string>
+    <string name="ConversationSettingsFragment__requests_and_invites">Requests &amp; invites</string>
+    <string name="ConversationSettingsFragment__group_link">Group link</string>
+    <string name="ConversationSettingsFragment__add_as_a_contact">Add as a contact</string>
+    <string name="ConversationSettingsFragment__unmute">Unmute</string>
+    <string name="ConversationSettingsFragment__conversation_muted_until_s">Conversation muted until %1$s</string>
+    <string name="ConversationSettingsFragment__conversation_muted_forever">Conversation muted forever</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Copied phone number to clipboard.</string>
+    <string name="ConversationSettingsFragment__phone_number">Phone number</string>
+
+    <!-- PermissionsSettingsFragment -->
+    <string name="PermissionsSettingsFragment__add_members">Add members</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Edit group info</string>
+    <string name="PermissionsSettingsFragment__send_messages">Send messages</string>
+    <string name="PermissionsSettingsFragment__all_members">All members</string>
+    <string name="PermissionsSettingsFragment__only_admins">Only admins</string>
+    <string name="PermissionsSettingsFragment__who_can_add_new_members">Who can add new members?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Who can edit this group\'s info?</string>
+    <string name="PermissionsSettingsFragment__who_can_send_messages">Who can send messages?</string>
+
+    <!-- SoundsAndNotificationsSettingsFragment -->
+    <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Mute notifications</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Not muted</string>
+    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Muted until %1$s</string>
+    <string name="SoundsAndNotificationsSettingsFragment__mentions">Mentions</string>
+    <string name="SoundsAndNotificationsSettingsFragment__always_notify">Always notify</string>
+    <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Do not notify</string>
+    <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Custom notifications</string>
+
+
+    <!-- DSLSettingsToolbar -->
+    <string name="DSLSettingsToolbar__navigate_up">Navigate up</string>
+    <string name="MultiselectForwardFragment__forward_to">Forward to</string>
+    <string name="MultiselectForwardFragment__add_a_message">Add a message</string>
+    <string name="MultiselectForwardFragment__faster_forwards">Faster forwards</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Forwarded messages are now sent immediately.</string>
+    <plurals name="MultiselectForwardFragment_send_d_messages">
+        <item quantity="one">Send %1$d message</item>
+        <item quantity="other">Send %1$d messages</item>
+    </plurals>
+    <plurals name="MultiselectForwardFragment_messages_sent">
+        <item quantity="one">Message sent</item>
+        <item quantity="other">Messages sent</item>
+    </plurals>
+    <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+        <item quantity="one">Message failed to send</item>
+        <item quantity="other">Messages failed to send</item>
+    </plurals>
+    <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+        <item quantity="one">Couldn\'t forward message because it\'s no longer available.</item>
+        <item quantity="other">Couldn\'t forward messages because they\'re no longer available.</item>
+    </plurals>
+    <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
 
     <!-- EOF -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -3191,4 +3760,173 @@ Updated May 25, 2018\n
     <string name="GroupCreateActivity_menu_apply_button">Apply</string>
 
     <string name="advanced_version_name">Pigeon %s upon Signal %s</string>
+
+
+    <!-- InfoCard -->
+    <string name="payment_info_card_about_mobilecoin">About MobileCoin</string>
+    <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is a new privacy focused digital currency.</string>
+    <string name="payment_info_card_adding_funds">Adding funds</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">Auto matches the color to the wallpaper</string>
+    <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Drag to change the direction of the gradient</string>
+
+    <!-- ChatColorsMegaphone -->
+    <string name="ChatColorsMegaphone__new_chat_colors">New Chat Colors</string>
+    <string name="ChatColorsMegaphone__we_switched_up_chat_colors">We switched up chat colors to give you more options and make chats easier to read.</string>
+    <string name="ChatColorsMegaphone__appearance">Appearance</string>
+    <string name="ChatColorsMegaphone__not_now">Not now</string>
+    <string name="payment_info_card_you_can_add_funds_for_use_in">You can add funds for use in Pigeon by sending MobileCoin to your wallet address.</string>
+    <string name="payment_info_card_cashing_out">Cashing out</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">You can cash out MobileCoin anytime on an exchange that supports MobileCoin. Just make a transfer to your account at that exchange.</string>
+    <string name="payment_info_card_hide_this_card">Hide this card?</string>
+    <string name="payment_info_card_hide">Hide</string>
+    <string name="payment_info_card_record_recovery_phrase">Record recovery phrase</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">Your recovery phrase gives you another way to restore your payments account.</string>
+    <string name="payment_info_card_record_your_phrase">Record your phrase</string>
+    <string name="payment_info_card_update_your_pin">Update your PIN</string>
+    <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
+    <string name="payment_info_card_update_pin">Update PIN</string>
+
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+
+    <!-- DeactivateWalletFragment -->
+    <string name="DeactivateWalletFragment__deactivate_wallet">Deactivate Wallet</string>
+    <string name="DeactivateWalletFragment__your_balance">Your balance</string>
+    <string name="DeactivateWalletFragment__its_recommended_that_you">It\'s recommended that you transfer your funds to another wallet address before deactivating payments. If you choose not to transfer your funds now, they will remain in your wallet linked to Pigeon if you reactivate payments.</string>
+    <string name="DeactivateWalletFragment__transfer_remaining_balance">Transfer remaining balance</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring">Deactivate without transferring</string>
+    <string name="DeactivateWalletFragment__deactivate">Deactivate</string>
+    <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deactivate without transferring?</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Your balance will remain in your wallet linked to Pigeon if you choose to reactivate payments.</string>
+    <string name="DeactivateWalletFragment__error_deactivating_wallet">Error deactivating wallet.</string>
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+
+    <!-- PaymentsRecoveryStartFragment -->
+    <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">View recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Enter recovery phrase</string>
+    <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Your balance will automatically restore when you reinstall Pigeon if you confirm your Pigeon PIN. You can also restore your balance using a recovery phrase, which is a %1$d-word phrase unique to you. Write it down and store it in a safe place.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Your recovery phrase is a %1$d-word phrase unique to you. Use this phrase to restore your balance.</string>
+    <string name="PaymentsRecoveryStartFragment__start">Start</string>
+    <string name="PaymentsRecoveryStartFragment__enter_manually">Enter manually</string>
+    <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Paste from clipboard</string>
+
+    <!-- PaymentsRecoveryPasteFragment -->
+    <string name="PaymentsRecoveryPasteFragment__paste_recovery_phrase">Paste recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__recovery_phrase">Recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__next">Next</string>
+    <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+    <string name="PaymentsRecoveryPasteFragment__make_sure">Make sure you\'ve entered %1$d words and try again.</string>
+
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+
+    <!-- PaymentsRecoveryPhraseFragment -->
+    <string name="PaymentsRecoveryPhraseFragment__next">Next</string>
+    <string name="PaymentsRecoveryPhraseFragment__edit">Edit</string>
+    <string name="PaymentsRecoveryPhraseFragment__previous">Previous</string>
+    <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Your recovery phrase</string>
+    <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Write down the following %1$d words in order. Store your list in a secure place.</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Make sure you\'ve entered your phrase correctly.</string>
+    <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Do not screenshot or send by email.</string>
+    <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Payments account restored.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Invalid recovery phrase</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Make sure you\'ve entered your phrase correctly and try again.</string>
+    <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Copy to clipboard?</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">If you choose to store your recovery phrase digitally, ensure it is securely stored somewhere you trust.</string>
+    <string name="PaymentsRecoveryPhraseFragment__copy">Copy</string>
+
+    <!-- PaymentsRecoveryPhraseConfirmFragment -->
+    <string name="PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase">Confirm recovery phrase</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__enter_the_following_words">Enter the following words from your recovery phrase.</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__word_d">Word %1$d</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__see_phrase_again">See phrase again</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__done">Done</string>
+    <string name="PaymentRecoveryPhraseConfirmFragment__recovery_phrase_confirmed">Recovery phrase confirmed</string>
+
+    <!-- PaymentsRecoveryEntryFragment -->
+    <string name="PaymentsRecoveryEntryFragment__enter_recovery_phrase">Enter recovery phrase</string>
+    <string name="PaymentsRecoveryEntryFragment__enter_word_d">Enter word %1$d</string>
+    <string name="PaymentsRecoveryEntryFragment__word_d">Word %1$d</string>
+    <string name="PaymentsRecoveryEntryFragment__next">Next</string>
+    <string name="PaymentsRecoveryEntryFragment__invalid_word">Invalid word</string>
+
+    <!-- ClearClipboardAlarmReceiver -->
+    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Clipboard cleared.</string>
+
+    <!-- PaymentNotificationsView -->
+    <string name="PaymentNotificationsView__view">View</string>
+
+    <!-- UnreadPayments -->
+    <string name="UnreadPayments__s_sent_you_s">%1$s sent you %2$s</string>
+    <string name="UnreadPayments__d_new_payment_notifications">%1$d new payment notifications</string>
+
+    <!-- CanNotSendPaymentDialog -->
+    <string name="CanNotSendPaymentDialog__cant_send_payment">Can\'t send payment</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">To send a payment to this user they need to accept a message request from you. Send them a message to create a message request.</string>
+    <string name="CanNotSendPaymentDialog__send_a_message">Send a message</string>
+    <!-- GroupsInCommonMessageRequest -->
+    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">You have no groups in common with this person. Review requests carefully before accepting to avoid unwanted messages.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">None of your contacts or people you chat with are in this group. Review requests carefully before accepting to avoid unwanted messages.</string>
+    <string name="GroupsInCommonMessageRequest__about_message_requests">About message requests</string>
+    <string name="GroupsInCommonMessageRequest__okay">Okay</string>
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+    <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Here\'s a preview of the chat color.</string>
+    <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">The color is visible to only you.</string>
+
+    <!-- ChatColorSelectionFragment -->
+    <string name="ChatColorSelectionFragment__auto">Auto</string>
+    <string name="ChatColorSelectionFragment__use_custom_colors">Use custom colors</string>
+    <string name="ChatColorSelectionFragment__chat_color">Chat color</string>
+    <string name="ChatColorSelectionFragment__edit">Edit</string>
+    <string name="ChatColorSelectionFragment__duplicate">Duplicate</string>
+    <string name="ChatColorSelectionFragment__delete">Delete</string>
+    <string name="ChatColorSelectionFragment__delete_color">Delete color</string>
+    <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
+        <item quantity="one">This custom color is used in %1$d chat. Do you want to delete it for all chats?</item>
+        <item quantity="other">This custom color is used in %1$d chats. Do you want to delete it for all chats?</item>
+    </plurals>
+    <!-- CustomChatColorCreatorFragment -->
+    <string name="CustomChatColorCreatorFragment__solid">Solid</string>
+    <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
+    <string name="CustomChatColorCreatorFragment__hue">Hue</string>
+    <string name="CustomChatColorCreatorFragment__saturation">Saturation</string>
+    <!-- CustomChatColorCreatorFragmentPage -->
+    <string name="CustomChatColorCreatorFragmentPage__save">Save</string>
+    <string name="CustomChatColorCreatorFragmentPage__edit_color">Edit color</string>
+    <plurals name="CustomChatColorCreatorFragmentPage__this_color_is_used">
+        <item quantity="one">This color is used in %1$d chat. Do you want to save changes for all chats?</item>
+        <item quantity="other">This color is used in %1$d chats. Do you want to save changes for all chats?</item>
+    </plurals>
+    <!-- ChatColorGradientTool -->
+    <string name="ChatColorGradientTool_top_edge_selector">Top edge selector</string>
+    <string name="ChatColorGradientTool_bottom_edge_selector">Bottom edge selector</string>
+
+    <!-- EditReactionsFragment -->
+    <string name="EditReactionsFragment__customize_reactions">Customize reactions</string>
+    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Tap to replace an emoji</string>
+    <string name="EditReactionsFragment__reset">Reset</string>
+    <string name="EditReactionsFragment_save">Save</string>
+
+    <!-- StickerKeyboard -->
+    <string name="StickerKeyboard__recently_used">Recently used</string>
+
+    <!-- PaymentRecipientSelectionFragment -->
+    <string name="PaymentRecipientSelectionFragment__new_payment">New payment</string>
+
+    <!-- NewConversationActivity -->
+    <string name="NewConversationActivity__new_message">New message</string>
+
+    <!-- ContactFilterView -->
+    <string name="ContactFilterView__search_name_or_number">Search name or number</string>
+
+    <!-- ContactSelectionListItem -->
+    <string name="ContactSelectionListItem__sms">SMS</string>
+    <string name="ContactSelectionListItem__dot_s">· %1$s</string>
+
+    <!-- DSLSettingsToolbar -->
+
+    <!-- EOF -->
+
 </resources>

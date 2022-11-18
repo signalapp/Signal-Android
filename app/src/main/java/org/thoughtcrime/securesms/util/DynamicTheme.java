@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
 public class DynamicTheme {
 
@@ -54,7 +55,7 @@ public class DynamicTheme {
   }
 
   public static void setDefaultDayNightMode(@NonNull Context context) {
-    String theme = TextSecurePreferences.getTheme(context);
+    String theme = SignalStore.settings().getTheme();
 
     if (theme.equals(SYSTEM)) {
       Log.d(TAG, "Setting to follow system expecting: " + ConfigurationUtil.getNightModeConfiguration(context.getApplicationContext()));
@@ -74,7 +75,7 @@ public class DynamicTheme {
    * Takes the system theme into account.
    */
   public static boolean isDarkTheme(@NonNull Context context) {
-    String theme = TextSecurePreferences.getTheme(context);
+    String theme = SignalStore.settings().getTheme();
 
     if (theme.equals(SYSTEM) && systemThemeAvailable()) {
       return isSystemInDarkTheme(context);

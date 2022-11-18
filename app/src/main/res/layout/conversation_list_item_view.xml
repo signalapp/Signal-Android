@@ -80,7 +80,7 @@
           android:layout_toEndOf="@id/conversation_list_item_alert"
           android:paddingEnd="1dp">
 
-      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+      <org.thoughtcrime.securesms.components.emoji.SingleLineEmojiTextView
           android:id="@+id/conversation_list_item_summary"
           style="@style/Signal.Text.Preview"
           android:layout_width="match_parent"

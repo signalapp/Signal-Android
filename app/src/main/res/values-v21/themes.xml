@@ -46,4 +46,25 @@
         <item name="android:navigationBarColor">@color/transparent</item>
     </style>
 
+    <style name="TextSecure.LightNoActionBar.ConversationSettings" parent="TextSecure.LightNoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent_black_20</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/transparent_window_wipe_transition</item>
+        <item name="android:windowAnimationStyle">@style/Signal.ConversationSettings.WindowAnimation</item>
+    </style>
+
+    <style name="TextSecure.DarkNoActionBar.ConversationSettings" parent="TextSecure.DarkNoActionBar">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@color/transparent_black_20</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/transparent_window_wipe_transition</item>
+        <item name="android:windowAnimationStyle">@style/Signal.ConversationSettings.WindowAnimation</item>
+    </style>
+
+    <style name="Signal.ConversationSettings.WindowAnimation" parent="android:style/Animation" >
+        <item name="android:windowExitAnimation">@anim/slide_fade_to_bottom</item>
+    </style>
 </resources>

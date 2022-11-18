@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/set_currency_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/SetCurrencyFragment__set_currency"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/set_currency_fragment_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollIndicators="top"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:ignore="UnusedAttribute"
+        tools:listitem="@layout/single_select_item" />
+
+</LinearLayout>

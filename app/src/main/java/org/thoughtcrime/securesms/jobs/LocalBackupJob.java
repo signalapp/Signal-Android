@@ -37,7 +37,7 @@ public final class LocalBackupJob extends BaseJob {
 
   private static final String TAG = Log.tag(LocalBackupJob.class);
 
-  private static final String QUEUE = "__LOCAL_BACKUP__";
+  public static final String QUEUE = "__LOCAL_BACKUP__";
 
   public static final String TEMP_BACKUP_FILE_PREFIX = ".backup";
   public static final String TEMP_BACKUP_FILE_SUFFIX = ".tmp";
@@ -115,12 +115,16 @@ public final class LocalBackupJob extends BaseJob {
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                   DatabaseFactory.getBackupDatabase(context),
                                   tempFile,
-                                  backupPassword);
+                                  backupPassword,
+                                  this::isCanceled);
 
         if (!tempFile.renameTo(backupFile)) {
           Log.w(TAG, "Failed to rename temp file");
           throw new IOException("Renaming temporary backup file failed!");
         }
+      } catch (FullBackupExporter.BackupCanceledException e) {
+        Log.w(TAG, "Backup cancelled");
+        throw e;
       } catch (IOException e) {
         BackupFileIOError.postNotificationForException(context, e, getRunAttempt());
         throw e;

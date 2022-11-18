@@ -6,9 +6,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 
+import java.util.concurrent.TimeUnit;
+
 public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionHandler {
 
-  private static final String TAG = SignalUncaughtExceptionHandler.class.getSimpleName();
+  private static final String TAG = Log.tag(SignalUncaughtExceptionHandler.class);
 
   private final Thread.UncaughtExceptionHandler originalHandler;
 
@@ -17,8 +19,8 @@ public class SignalUncaughtExceptionHandler implements Thread.UncaughtExceptionH
   }
 
   @Override
-  public void uncaughtException(Thread t, Throwable e) {
-    Log.e(TAG, "", e);
+  public void uncaughtException(@NonNull Thread t, @NonNull Throwable e) {
+    Log.e(TAG, "", e, true);
     SignalStore.blockUntilAllWritesFinished();
     Log.blockUntilAllWritesFinished();
     ApplicationDependencies.getJobManager().flush();

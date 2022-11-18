@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emoji_grid_header_title"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:ellipsize="end"
+    android:gravity="center_vertical"
+    android:minHeight="36dp"
+    android:singleLine="true"
+    android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+    android:textColor="@color/signal_text_hint"
+    tools:text="@string/ReactWithAnyEmojiBottomSheetDialogFragment__activities" />

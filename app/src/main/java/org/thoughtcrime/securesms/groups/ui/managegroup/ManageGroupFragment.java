@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,14 +33,19 @@ import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupRightsDialo
 import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupsLearnMoreBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.groups.ui.migration.GroupsV1MigrationInitiationBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
+import org.thoughtcrime.securesms.recipients.ui.disappearingmessages.RecipientDisappearingMessagesActivity;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
 import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
+import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
+import org.thoughtcrime.securesms.groups.ui.managegroup.dialogs.GroupDescriptionDialog;
+import org.thoughtcrime.securesms.groups.v2.GroupDescriptionUtil;
 
 import java.util.Locale;
 import java.util.Objects;
@@ -54,6 +60,7 @@ public class ManageGroupFragment extends LoggingFragment {
     public static final String DIALOG_TAG = "DIALOG";
 
     private ManageGroupViewModel viewModel;
+    private EmojiTextView groupDescription;
     private LearnMoreTextView groupInfoText;
     private RelativeLayout rlContainer;
     private RecyclerView mSettingList;
@@ -101,6 +108,7 @@ public class ManageGroupFragment extends LoggingFragment {
                       @Nullable ViewGroup container,
                       @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.pigeon_group_manage_fragment, container, false);
+//        groupDescription            = view.findViewById(R.id.manage_group_description);
         groupInfoText = view.findViewById(R.id.manage_group_info_text);
         rlContainer = view.findViewById(R.id.rl_container);
         mSettingList = view.findViewById(R.id.conversation_setting_list);
@@ -149,8 +157,14 @@ public class ManageGroupFragment extends LoggingFragment {
 //      mDisappearingMessages.setEnabled(canEdit);
 //    });
         viewModel.getDisappearingMessageTimer().observe(getViewLifecycleOwner(), string -> {
-            mDisappearingMessages.setText(getString(R.string.ManageRecipientActivity_disappearing_messages)+ " " + string);
+//            mDisappearingMessages.setText(getString(R.string.ManageRecipientActivity_disappearing_messages)+ " " + string);
         });
+        /*disappearingMessagesRow.setOnClickListener(v -> {
+            Recipient recipient = viewModel.getGroupRecipient().getValue();
+            if (recipient != null) {
+                startActivity(RecipientDisappearingMessagesActivity.forRecipient(requireContext(), recipient.getId()));
+            }
+        });*/
         if (NotificationChannels.supported()) {
             viewModel.hasCustomNotifications().observe(getViewLifecycleOwner(), hasCustomNotifications -> {
                 addOnOffString(mCustomNotifications,
@@ -162,9 +176,15 @@ public class ManageGroupFragment extends LoggingFragment {
             mMentions.setText(getString(R.string.ManageGroupActivity_mentions) + " " + value);
         });
 
+//        viewModel.getDescription().observe(getViewLifecycleOwner(), this::updateGroupDescription);
         viewModel.getGroupRecipient().observe(getViewLifecycleOwner(), groupRecipient -> {
-            mCustomNotifications.setOnClickListener(v -> CustomNotificationsDialogFragment.create(groupRecipient.getId())
-                    .show(requireFragmentManager(), DIALOG_TAG));
+
+           mCustomNotifications.setOnClickListener(v->{
+               if (getActivity() != null) {
+                   ((ManageGroupActivity) getActivity()).replaceFragment(groupRecipient.getId());
+               }
+           });
+
         });
 
         mLeaveGroup.setOnClickListener(v -> LeaveGroupDialog.handleLeavePushGroup(requireActivity(), groupId.requirePush(), () -> startActivity(MainActivity.clearTop(context))));
@@ -221,10 +241,14 @@ public class ManageGroupFragment extends LoggingFragment {
             mMuteNotificationsUntilLabel.setVisibility(muteState.isMuted() ? View.VISIBLE : View.GONE);
 
             if (muteState.isMuted()) {
-                mMuteNotificationsUntilLabel.setText(getString(R.string.ManageGroupActivity_until_s,
-                        DateUtils.getTimeString(requireContext(),
-                                Locale.getDefault(),
-                                muteState.getMutedUntil())));
+                if (muteState.getMutedUntil() == Long.MAX_VALUE) {
+                    mMuteNotificationsUntilLabel.setText(R.string.ManageGroupActivity_always);
+                } else {
+                    mMuteNotificationsUntilLabel.setText(getString(R.string.ManageGroupActivity_until_s,
+                            DateUtils.getTimeString(requireContext(),
+                                    Locale.getDefault(),
+                                    muteState.getMutedUntil())));
+                }
                 if (mMuteNotifications.hasFocus()) startSmallFocusAnimation(mMuteNotificationsUntilLabel, true);
             }
         });
@@ -286,6 +310,31 @@ public class ManageGroupFragment extends LoggingFragment {
                     break;
             }
         });
+    }
+
+    private void updateGroupDescription(@NonNull ManageGroupViewModel.Description description) {
+        if (!TextUtils.isEmpty(description.getDescription()) || description.canEditDescription()) {
+            groupDescription.setVisibility(View.VISIBLE);
+            groupDescription.setMovementMethod(LongClickMovementMethod.getInstance(requireContext()));
+        } else {
+            groupDescription.setVisibility(View.GONE);
+            groupDescription.setMovementMethod(null);
+        }
+
+        if (TextUtils.isEmpty(description.getDescription())) {
+            if (description.canEditDescription()) {
+                groupDescription.setOverflowText(null);
+                groupDescription.setText(R.string.ManageGroupActivity_add_group_description);
+                groupDescription.setOnClickListener(v -> startActivity(EditProfileActivity.getIntentForGroupProfile(requireActivity(), getGroupId())));
+            }
+        } else {
+            groupDescription.setOnClickListener(null);
+            GroupDescriptionUtil.setText(requireContext(),
+                                         groupDescription,
+                                         description.getDescription(),
+                                         description.shouldLinkifyWebLinks(),
+                                         () -> GroupDescriptionDialog.show(getChildFragmentManager(), getGroupId(), null, description.shouldLinkifyWebLinks()));
+        }
     }
 
     private GroupId getGroupId() {

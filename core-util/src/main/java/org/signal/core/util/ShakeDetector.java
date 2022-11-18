@@ -1,5 +1,5 @@
 // Copyright 2010 Square, Inc.
-// Modified 2020 Signal
+// Modified 2020 Signal 
 
 package org.signal.core.util;
 
@@ -235,4 +235,3 @@ public class ShakeDetector implements SensorEventListener {
   public void onAccuracyChanged(Sensor sensor, int accuracy) {
   }
 }
-

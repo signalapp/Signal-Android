@@ -4,6 +4,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -22,6 +23,8 @@ import java.util.Map;
  * separate lock. Instead, we use the database lock itself as a locking mechanism.
  */
 class RemappedRecords {
+
+  private static final String TAG = Log.tag(RemappedRecords.class);
 
   private static final RemappedRecords INSTANCE = new RemappedRecords();
 
@@ -48,6 +51,7 @@ class RemappedRecords {
    * Can only be called inside of a transaction.
    */
   void addRecipient(@NonNull Context context, @NonNull RecipientId oldId, @NonNull RecipientId newId) {
+    Log.w(TAG, "[Recipient] Remapping " + oldId + " to " + newId);
     ensureInTransaction(context);
     ensureRecipientMapIsPopulated(context);
     recipientMap.put(oldId, newId);
@@ -58,6 +62,7 @@ class RemappedRecords {
    * Can only be called inside of a transaction.
    */
   void addThread(@NonNull Context context, long oldId, long newId) {
+    Log.w(TAG, "[Thread] Remapping " + oldId + " to " + newId);
     ensureInTransaction(context);
     ensureThreadMapIsPopulated(context);
     threadMap.put(oldId, newId);

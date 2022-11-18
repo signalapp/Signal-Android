@@ -141,8 +141,8 @@ public class PinRestoreEntryFragment extends LoggingFragment implements View.OnF
     private void initViewModel() {
         viewModel = ViewModelProviders.of(this).get(PinRestoreViewModel.class);
 
-        viewModel.getTriesRemaining().observe(this, this::presentTriesRemaining);
-        viewModel.getEvent().observe(this, this::presentEvent);
+        viewModel.getTriesRemaining().observe(getViewLifecycleOwner(), this::presentTriesRemaining);
+        viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
     }
 
     private void updateFocusView(View parent, boolean hasFocus) {
@@ -264,7 +264,7 @@ public class PinRestoreEntryFragment extends LoggingFragment implements View.OnF
                 }))
                 .setNeutralButton(R.string.PinRestoreEntryFragment_contact_support, (dialog, which) -> {
                     String body = SupportEmailUtil.generateSupportEmailBody(requireContext(),
-                            getString(R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin),
+                            R.string.PinRestoreEntryFragment_signal_registration_need_help_with_pin,
                             null,
                             null);
                     CommunicationActions.openEmail(requireContext(),

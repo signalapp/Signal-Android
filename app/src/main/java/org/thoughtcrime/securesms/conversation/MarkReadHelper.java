@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.conversation;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -23,18 +25,20 @@ class MarkReadHelper {
   private static final long     DEBOUNCE_TIMEOUT = 100;
   private static final Executor EXECUTOR         = new SerialMonoLifoExecutor(SignalExecutors.BOUNDED);
 
-  private final long      threadId;
-  private final Context   context;
-  private final Debouncer debouncer = new Debouncer(DEBOUNCE_TIMEOUT);
-  private       long      latestTimestamp;
+  private final long           threadId;
+  private final Context        context;
+  private final LifecycleOwner lifecycleOwner;
+  private final Debouncer      debouncer = new Debouncer(DEBOUNCE_TIMEOUT);
+  private       long           latestTimestamp;
 
-  MarkReadHelper(long threadId, @NonNull Context context) {
-    this.threadId = threadId;
-    this.context  = context.getApplicationContext();
+  MarkReadHelper(long threadId, @NonNull Context context, @NonNull LifecycleOwner lifecycleOwner) {
+    this.threadId       = threadId;
+    this.context        = context.getApplicationContext();
+    this.lifecycleOwner = lifecycleOwner;
   }
 
   public void onViewsRevealed(long timestamp) {
-    if (timestamp <= latestTimestamp) {
+    if (timestamp <= latestTimestamp || lifecycleOwner.getLifecycle().getCurrentState() != Lifecycle.State.RESUMED) {
       return;
     }
 

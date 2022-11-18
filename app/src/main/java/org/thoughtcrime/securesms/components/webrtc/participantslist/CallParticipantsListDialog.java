@@ -1,10 +1,17 @@
 package org.thoughtcrime.securesms.components.webrtc.participantslist;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.ContextThemeWrapper;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,7 +36,7 @@ import org.thoughtcrime.securesms.util.MappingModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CallParticipantsListDialog extends BottomSheetDialogFragment {
+public class CallParticipantsListDialog extends DialogFragment {
 
   private RecyclerView                participantList;
   private CallParticipantsListAdapter adapter;
@@ -60,11 +67,12 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
 
   @Override
   public @NonNull View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    getDialog().requestWindowFeature(Window.FEATURE_NO_TITLE);
     ContextThemeWrapper contextThemeWrapper = new ContextThemeWrapper(inflater.getContext(), R.style.TextSecure_DarkTheme);
     LayoutInflater      themedInflater      = LayoutInflater.from(contextThemeWrapper);
 
     participantList = (RecyclerView) themedInflater.inflate(R.layout.call_participants_list_dialog, container, false);
-
+    slideToUp(participantList);
     return participantList;
   }
 
@@ -79,11 +87,46 @@ public class CallParticipantsListDialog extends BottomSheetDialogFragment {
     viewModel.getCallParticipantsState().observe(getViewLifecycleOwner(), this::updateList);
   }
 
+  @Override public void onStart() {
+    super.onStart();
+    initWindow();
+  }
+
   private void initializeList() {
     adapter = new CallParticipantsListAdapter();
 
     participantList.setLayoutManager(new LinearLayoutManager(requireContext()));
     participantList.setAdapter(adapter);
+  }
+
+  private void initWindow() {
+    Window window = getDialog().getWindow();
+    WindowManager.LayoutParams params = window.getAttributes();
+    params.gravity = Gravity.BOTTOM;
+    params.width = WindowManager.LayoutParams.MATCH_PARENT;
+    window.setAttributes(params);
+    window.setBackgroundDrawable(new ColorDrawable(Color.BLACK));
+  }
+
+  public static void slideToUp(View view){
+    Animation slide = new TranslateAnimation(Animation.RELATIVE_TO_SELF, 0.0f,
+                                             Animation.RELATIVE_TO_SELF, 0.0f, Animation.RELATIVE_TO_SELF,
+                                             1.0f, Animation.RELATIVE_TO_SELF, 0.0f);
+    slide.setDuration(400);
+    slide.setFillAfter(true);
+    slide.setFillEnabled(true);
+    view.startAnimation(slide);
+    slide.setAnimationListener(new Animation.AnimationListener() {
+      @Override
+      public void onAnimationStart(Animation animation) {
+      }
+      @Override
+      public void onAnimationEnd(Animation animation) {
+      }
+      @Override
+      public void onAnimationRepeat(Animation animation) {
+      }
+    });
   }
 
   private void updateList(@NonNull CallParticipantsState callParticipantsState) {

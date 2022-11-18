@@ -25,6 +25,7 @@ import androidx.core.view.ViewCompat;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -42,7 +43,7 @@ public class PushContactSelectionActivity extends ContactSelectionActivity imple
   public static final String KEY_SELECTED_RECIPIENTS = "recipients";
 
   @SuppressWarnings("unused")
-  private final static String TAG = PushContactSelectionActivity.class.getSimpleName();
+  private final static String TAG = Log.tag(PushContactSelectionActivity.class);
 
   private static final float WELCOME_OPTIOON_SCALE_FOCUS = 1.3f;
   private static final float WELCOME_OPTIOON_SCALE_NON_FOCUS = 1.0f;
@@ -97,5 +98,10 @@ public class PushContactSelectionActivity extends ContactSelectionActivity imple
 
     setResult(RESULT_OK, resultIntent);
     finish();
+  }
+
+  @Override
+  public void onSelectionChanged() {
+
   }
 }

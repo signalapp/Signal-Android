@@ -14,14 +14,15 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CameraControl;
+import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.webrtc.Camera1Enumerator;
 import org.webrtc.Camera2Capturer;
 import org.webrtc.Camera2Enumerator;
 import org.webrtc.CameraEnumerator;
 import org.webrtc.CameraVideoCapturer;
 import org.webrtc.CapturerObserver;
-import org.webrtc.EglBase;
 import org.webrtc.SurfaceTextureHelper;
+import org.webrtc.VideoFrame;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -38,19 +39,19 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
 
   private static final String TAG = Log.tag(Camera.class);
 
-  @NonNull  private final Context               context;
-  @Nullable private final CameraVideoCapturer   capturer;
-  @NonNull  private final CameraEventListener   cameraEventListener;
-  @NonNull  private final EglBase               eglBase;
-            private final int                   cameraCount;
-  @NonNull  private       CameraState.Direction activeDirection;
-            private       boolean               enabled;
-            private       boolean               isInitialized;
-            private       int                   orientation;
+  @NonNull  private final Context                   context;
+  @Nullable private final CameraVideoCapturer       capturer;
+  @NonNull  private final CameraEventListener       cameraEventListener;
+  @NonNull  private final EglBaseWrapper            eglBase;
+            private final int                       cameraCount;
+  @NonNull  private       CameraState.Direction     activeDirection;
+            private       boolean                   enabled;
+            private       boolean                   isInitialized;
+            private       int                       orientation;
 
   public Camera(@NonNull Context context,
                 @NonNull CameraEventListener cameraEventListener,
-                @NonNull EglBase eglBase,
+                @NonNull EglBaseWrapper eglBase,
                 @NonNull CameraState.Direction desiredCameraDirection)
   {
     this.context                = context;
@@ -79,11 +80,13 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   @Override
   public void initCapturer(@NonNull CapturerObserver observer) {
     if (capturer != null) {
-      capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", eglBase.getEglBaseContext()),
-                          context,
-                          observer);
-      capturer.setOrientation(orientation);
-      isInitialized = true;
+      eglBase.performWithValidEglBase(base -> {
+        capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", base.getEglBaseContext()),
+                            context,
+                            new CameraCapturerWrapper(observer));
+        capturer.setOrientation(orientation);
+        isInitialized = true;
+      });
     }
   }
 
@@ -295,6 +298,32 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
                                                        @Nullable CameraVideoCapturer.CameraEventsHandler eventsHandler)
     {
       return new Camera2Capturer(context, deviceName, eventsHandler, new FilteredCamera2Enumerator(context));
+    }
+  }
+
+  private class CameraCapturerWrapper implements CapturerObserver {
+    private final CapturerObserver observer;
+
+    public CameraCapturerWrapper(@NonNull CapturerObserver observer) {
+      this.observer = observer;
+    }
+
+    @Override
+    public void onCapturerStarted(boolean success) {
+      observer.onCapturerStarted(success);
+      if (success) {
+        cameraEventListener.onFullyInitialized();
+      }
+    }
+
+    @Override
+    public void onCapturerStopped() {
+      observer.onCapturerStopped();
+    }
+
+    @Override
+    public void onFrameCaptured(VideoFrame videoFrame) {
+      observer.onFrameCaptured(videoFrame);
     }
   }
 }

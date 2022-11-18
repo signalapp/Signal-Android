@@ -58,7 +58,7 @@ import java.util.concurrent.TimeUnit;
 
 public class KeyCachingService extends Service {
 
-  private static final String TAG = KeyCachingService.class.getSimpleName();
+  private static final String TAG = Log.tag(KeyCachingService.class);
 
   public static final int SERVICE_RUNNING_ID = 4141;
 
@@ -226,7 +226,7 @@ public class KeyCachingService extends Service {
   }
 
   private static void startTimeoutIfAppropriate(@NonNull Context context) {
-    boolean appVisible       = ApplicationContext.getInstance(context).isAppVisible();
+    boolean appVisible       = ApplicationDependencies.getAppForegroundObserver().isForegrounded();
     boolean secretSet        = KeyCachingService.masterSecret != null;
 
     boolean timeoutEnabled   = TextSecurePreferences.isPassphraseTimeoutEnabled(context);

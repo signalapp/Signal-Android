@@ -4,14 +4,16 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 
 public final class WebRtcControls {
 
   public static final WebRtcControls NONE = new WebRtcControls();
-  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null);
+  public static final WebRtcControls PIP  = new WebRtcControls(false, false, false, false, true, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null, FoldableState.flat());
 
   private final boolean           isRemoteVideoEnabled;
   private final boolean           isLocalVideoEnabled;
@@ -23,9 +25,10 @@ public final class WebRtcControls {
   private final GroupCallState    groupCallState;
   private final WebRtcAudioOutput audioOutput;
   private final Long              participantLimit;
+  private final FoldableState     foldableState;
 
   private WebRtcControls() {
-    this(false, false, false, false, false, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null);
+    this(false, false, false, false, false, false, CallState.NONE, GroupCallState.NONE, WebRtcAudioOutput.HANDSET, null, FoldableState.flat());
   }
 
   WebRtcControls(boolean isLocalVideoEnabled,
@@ -37,7 +40,8 @@ public final class WebRtcControls {
                  @NonNull CallState callState,
                  @NonNull GroupCallState groupCallState,
                  @NonNull WebRtcAudioOutput audioOutput,
-                 @Nullable Long participantLimit)
+                 @Nullable Long participantLimit,
+                 @NonNull FoldableState foldableState)
   {
     this.isLocalVideoEnabled          = isLocalVideoEnabled;
     this.isRemoteVideoEnabled         = isRemoteVideoEnabled;
@@ -49,10 +53,21 @@ public final class WebRtcControls {
     this.groupCallState               = groupCallState;
     this.audioOutput                  = audioOutput;
     this.participantLimit             = participantLimit;
+    this.foldableState                = foldableState;
   }
 
-  boolean canRotateControls() {
-    return !isGroupCall();
+  public @NonNull WebRtcControls withFoldableState(FoldableState foldableState) {
+    return new WebRtcControls(isLocalVideoEnabled,
+                              isRemoteVideoEnabled,
+                              isMoreThanOneCameraAvailable,
+                              isBluetoothAvailable,
+                              isInPipMode,
+                              hasAtLeastOneRemote,
+                              callState,
+                              groupCallState,
+                              audioOutput,
+                              participantLimit,
+                              foldableState);
   }
 
   boolean displayErrorControls() {
@@ -61,6 +76,14 @@ public final class WebRtcControls {
 
   boolean displayStartCallControls() {
     return isPreJoin();
+  }
+
+  boolean adjustForFold() {
+    return foldableState.isFolded();
+  }
+
+  @Px int getFold() {
+    return foldableState.getFoldPoint();
   }
 
   @StringRes int getStartCallButtonText() {
@@ -90,7 +113,7 @@ public final class WebRtcControls {
   }
 
   boolean displayGroupMembersButton() {
-    return groupCallState.isAtLeast(GroupCallState.CONNECTING);
+    return (groupCallState.isAtLeast(GroupCallState.CONNECTING) && hasAtLeastOneRemote) || groupCallState.isAtLeast(GroupCallState.FULL);
   }
 
   boolean displayEndCall() {
@@ -153,6 +176,18 @@ public final class WebRtcControls {
     return audioOutput;
   }
 
+  boolean showSmallHeader() {
+    return isAtLeastOutgoing();
+  }
+
+  boolean showFullScreenShade() {
+    return isPreJoin() || isIncoming();
+  }
+
+  boolean displayRingToggle() {
+    return FeatureFlags.groupCallRinging() && isPreJoin() && isGroupCall() && !hasAtLeastOneRemote;
+  }
+
   private boolean isError() {
     return callState == CallState.ERROR;
   }
@@ -201,6 +236,37 @@ public final class WebRtcControls {
 
     boolean isAtLeast(@SuppressWarnings("SameParameterValue") @NonNull GroupCallState other) {
       return compareTo(other) >= 0;
+    }
+  }
+
+  public static final class FoldableState {
+
+    private static final int NOT_SET = -1;
+
+    private final int foldPoint;
+
+    public FoldableState(int foldPoint) {
+      this.foldPoint = foldPoint;
+    }
+
+    public boolean isFolded() {
+      return foldPoint != NOT_SET;
+    }
+
+    public boolean isFlat() {
+      return foldPoint == NOT_SET;
+    }
+
+    public int getFoldPoint() {
+      return foldPoint;
+    }
+
+    public static @NonNull FoldableState folded(int foldPoint) {
+      return new FoldableState(foldPoint);
+    }
+
+    public static @NonNull FoldableState flat() {
+      return new FoldableState(NOT_SET);
     }
   }
 }

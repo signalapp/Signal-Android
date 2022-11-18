@@ -16,9 +16,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public final class SignalExecutors {
 
-  public static final ExecutorService UNBOUNDED = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
-  public static final ExecutorService BOUNDED   = Executors.newFixedThreadPool(getIdealThreadCount(), new NumberedThreadFactory("signal-bounded"));
-  public static final ExecutorService SERIAL    = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
+  public static final ExecutorService UNBOUNDED  = Executors.newCachedThreadPool(new NumberedThreadFactory("signal-unbounded"));
+  public static final ExecutorService BOUNDED    = Executors.newFixedThreadPool(getIdealThreadCount(), new NumberedThreadFactory("signal-bounded"));
+  public static final ExecutorService SERIAL     = Executors.newSingleThreadExecutor(new NumberedThreadFactory("signal-serial"));
+  public static final ExecutorService BOUNDED_IO = newCachedBoundedExecutor("signal-bounded-io", 1, 32);
 
   private SignalExecutors() {}
 
@@ -32,10 +33,10 @@ public final class SignalExecutors {
    * ThreadPoolExecutor will only create a new thread if the provided queue returns false from
    * offer(). That means if you give it an unbounded queue, it'll only ever create 1 thread, no
    * matter how long the queue gets.
-   *
+   * <p>
    * But if you bound the queue and submit more runnables than there are threads, your task is
    * rejected and throws an exception.
-   *
+   * <p>
    * So we make a queue that will always return false if it's non-empty to ensure new threads get
    * created. Then, if a task gets rejected, we simply add it to the queue.
    */

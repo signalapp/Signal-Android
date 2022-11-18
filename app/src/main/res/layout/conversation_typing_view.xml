@@ -1,38 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.thoughtcrime.securesms.components.ConversationTypingView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<org.thoughtcrime.securesms.components.ConversationTypingView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:gravity="center_vertical"
     android:paddingStart="8dp"
-    android:paddingEnd="8dp"
     android:paddingTop="2dp"
-    android:gravity="center_vertical">
+    android:paddingEnd="8dp">
 
     <org.thoughtcrime.securesms.components.AvatarImageView
-        android:id="@+id/typing_avatar"
-        android:foreground="@drawable/contact_photo_background"
+        android:id="@+id/typing_avatar_1"
         android:layout_width="@dimen/conversation_item_avatar_size"
         android:layout_height="@dimen/conversation_item_avatar_size"
         android:layout_marginStart="4dp"
-        android:cropToPadding="true"
         android:contentDescription="@string/conversation_item_received__contact_photo_description"
-        app:fallbackImageSize="small" />
+        android:cropToPadding="true"
+        android:foreground="@drawable/contact_photo_background"
+        android:visibility="gone"
+        app:fallbackImageSize="small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
-    <FrameLayout
-        android:id="@+id/typing_bubble"
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/typing_avatar_2"
+        android:layout_width="@dimen/conversation_item_avatar_size"
+        android:layout_height="@dimen/conversation_item_avatar_size"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/conversation_item_received__contact_photo_description"
+        android:cropToPadding="true"
+        android:foreground="@drawable/contact_photo_background"
+        android:visibility="gone"
+        app:fallbackImageSize="small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_1"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/typing_avatar_3"
+        android:layout_width="@dimen/conversation_item_avatar_size"
+        android:layout_height="@dimen/conversation_item_avatar_size"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/conversation_item_received__contact_photo_description"
+        android:cropToPadding="true"
+        android:foreground="@drawable/contact_photo_background"
+        android:visibility="gone"
+        app:fallbackImageSize="small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/typing_count"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/conversation_item_avatar_size"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/tintable_pill_bg"
+        android:gravity="center"
+        android:minWidth="@dimen/conversation_item_avatar_size"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/typing_avatar_2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:backgroundTint="@color/signal_background_secondary"
+        tools:text="+1000000"
+        tools:visibility="visible" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/typist_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="end"
+        app:constraint_referenced_ids="typing_avatar_1, typing_avatar_2, typing_avatar_3, typing_count" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/indicator_card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:padding="12dp"
-        android:background="@drawable/message_bubble_background">
+        android:layout_marginTop="1dp"
+        android:layout_marginBottom="1dp"
+        app:cardCornerRadius="@dimen/message_corner_radius"
+        app:cardElevation="0dp"
+        app:contentPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/typist_barrier"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <org.thoughtcrime.securesms.components.TypingIndicatorView
-            android:id="@+id/typing_indicator"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <FrameLayout
+            android:id="@+id/typing_bubble"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    </FrameLayout>
+            <org.thoughtcrime.securesms.components.TypingIndicatorView
+                android:id="@+id/typing_indicator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                app:typingIndicator_tint="@color/signal_inverse_primary" />
+
+        </FrameLayout>
+    </androidx.cardview.widget.CardView>
 
 </org.thoughtcrime.securesms.components.ConversationTypingView>

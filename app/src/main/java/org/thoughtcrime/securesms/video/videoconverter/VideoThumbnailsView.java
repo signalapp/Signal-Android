@@ -21,16 +21,17 @@ import java.io.IOException;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 @RequiresApi(api = 23)
 public class VideoThumbnailsView extends View {
 
   private static final String TAG = Log.tag(VideoThumbnailsView.class);
 
-  private MediaInput                    input;
-  private ArrayList<Bitmap>             thumbnails;
-  private AsyncTask<Void, Bitmap, Void> thumbnailsTask;
-  private OnDurationListener            durationListener;
+  private          MediaInput                    input;
+  private volatile ArrayList<Bitmap>             thumbnails;
+  private          AsyncTask<Void, Bitmap, Void> thumbnailsTask;
+  private          OnDurationListener            durationListener;
 
   private final Paint paint        = new Paint(Paint.ANTI_ALIAS_FLAG);
   private final RectF tempRect     = new RectF();
@@ -100,7 +101,7 @@ public class VideoThumbnailsView extends View {
 
     if (thumbnails == null) {
       if (thumbnailsTask == null) {
-        final int   thumbnailCount  = drawRect.width()         / drawRect.height();
+        final int   thumbnailCount  = drawRect.width() / drawRect.height();
         final float thumbnailWidth  = (float) drawRect.width() / thumbnailCount;
         final float thumbnailHeight = drawRect.height();
 
@@ -109,7 +110,7 @@ public class VideoThumbnailsView extends View {
         thumbnailsTask.execute();
       }
     } else {
-      final int   thumbnailCount  = drawRect.width()         / drawRect.height();
+      final int   thumbnailCount  = drawRect.width() / drawRect.height();
       final float thumbnailWidth  = (float) drawRect.width() / thumbnailCount;
       final float thumbnailHeight = drawRect.height();
 
@@ -119,7 +120,7 @@ public class VideoThumbnailsView extends View {
       for (int i = 0; i < thumbnails.size(); i++) {
         tempRect.left  = drawRect.left + i * thumbnailWidth;
         tempRect.right = tempRect.left + thumbnailWidth;
-        
+
         final Bitmap thumbnailBitmap = thumbnails.get(i);
         if (thumbnailBitmap != null) {
           canvas.save();
@@ -128,11 +129,11 @@ public class VideoThumbnailsView extends View {
           if (tempDrawRect.width() * thumbnailHeight > tempDrawRect.height() * thumbnailWidth) {
             float w = tempDrawRect.height() * thumbnailWidth / thumbnailHeight;
             tempDrawRect.left  = tempDrawRect.centerX() - (int) (w / 2);
-            tempDrawRect.right = tempDrawRect.left      + (int) w;
+            tempDrawRect.right = tempDrawRect.left + (int) w;
           } else {
             float h = tempDrawRect.width() * thumbnailHeight / thumbnailWidth;
             tempDrawRect.top    = tempDrawRect.centerY() - (int) (h / 2);
-            tempDrawRect.bottom = tempDrawRect.top       + (int) h;
+            tempDrawRect.bottom = tempDrawRect.top + (int) h;
           }
           canvas.drawBitmap(thumbnailBitmap, tempDrawRect, tempRect, paint);
           canvas.restore();
@@ -149,10 +150,10 @@ public class VideoThumbnailsView extends View {
     if (durationListener != null) {
       durationListener.onDurationKnown(duration);
     }
-      if (this.duration != duration) {
-          this.duration = duration;
-          afterDurationChange(duration);
-      }
+    if (this.duration != duration) {
+      this.duration = duration;
+      afterDurationChange(duration);
+    }
   }
 
   protected void afterDurationChange(long duration) {
@@ -169,7 +170,8 @@ public class VideoThumbnailsView extends View {
     final float                              thumbnailWidth;
     final float                              thumbnailHeight;
     final int                                thumbnailCount;
-          long                               duration;
+
+    long duration;
 
     ThumbnailsTask(final @NonNull VideoThumbnailsView view, final @NonNull MediaInput input, final float thumbnailWidth, final float thumbnailHeight, final int thumbnailCount) {
       this.viewReference   = new WeakReference<>(view);
@@ -191,8 +193,11 @@ public class VideoThumbnailsView extends View {
 
         @Override
         public boolean publishProgress(int index, Bitmap thumbnail) {
-          ThumbnailsTask.this.publishProgress(thumbnail);
-          return !isCancelled();
+          boolean notCanceled = !isCancelled();
+          if (notCanceled) {
+            ThumbnailsTask.this.publishProgress(thumbnail);
+          }
+          return notCanceled;
         }
 
         @Override
@@ -205,20 +210,26 @@ public class VideoThumbnailsView extends View {
 
     @Override
     protected void onProgressUpdate(Bitmap... values) {
-      final VideoThumbnailsView view = viewReference.get();
-      if (view != null) {
-        view.thumbnails.addAll(Arrays.asList(values));
+      if (isCancelled()) {
+        return;
+      }
+
+      VideoThumbnailsView view       = viewReference.get();
+      List<Bitmap>        thumbnails = view != null ? view.thumbnails : null;
+      if (thumbnails != null) {
+        thumbnails.addAll(Arrays.asList(values));
         view.invalidate();
       }
     }
 
     @Override
     protected void onPostExecute(Void result) {
-      final VideoThumbnailsView view = viewReference.get();
+      VideoThumbnailsView view       = viewReference.get();
+      List<Bitmap>        thumbnails = view != null ? view.thumbnails : null;
       if (view != null) {
         view.setDuration(duration);
         view.invalidate();
-        Log.i(TAG, "onPostExecute, we have " + view.thumbnails.size() + " thumbs");
+        Log.i(TAG, "onPostExecute, we have " + (thumbnails != null ? thumbnails.size() : "null") + " thumbs");
       }
     }
   }

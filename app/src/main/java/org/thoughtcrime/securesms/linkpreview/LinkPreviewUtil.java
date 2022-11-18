@@ -10,6 +10,7 @@ import android.text.util.Linkify;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
+import androidx.core.text.util.LinkifyCompat;
 
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
@@ -53,7 +54,7 @@ public final class LinkPreviewUtil {
    */
   public static @NonNull Links findValidPreviewUrls(@NonNull String text) {
     SpannableString spannable = new SpannableString(text);
-    boolean         found     = Linkify.addLinks(spannable, Linkify.WEB_URLS);
+    boolean         found     = LinkifyCompat.addLinks(spannable, Linkify.WEB_URLS);
 
     if (!found) {
       return Links.EMPTY;

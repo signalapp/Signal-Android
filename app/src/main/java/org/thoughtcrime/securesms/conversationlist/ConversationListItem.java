@@ -26,6 +26,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.StyleSpan;
+import android.text.style.TextAppearanceSpan;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -52,7 +53,6 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
-import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
@@ -64,6 +64,8 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -270,7 +272,7 @@ public final class ConversationListItem extends ConstraintLayout
                    @NonNull  Locale        locale,
                    @Nullable String        highlightSubstring)
   {
-    observeRecipient(messageResult.conversationRecipient.live());
+    observeRecipient(messageResult.getConversationRecipient().live());
     observeDisplayBody(null);
     setSubjectViewText(null);
 
@@ -278,8 +280,8 @@ public final class ConversationListItem extends ConstraintLayout
     this.glideRequests   = glideRequests;
 
     fromView.setText(recipient.get(), true);
-    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), messageResult.bodySnippet, highlightSubstring));
-    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.receivedTimestampMs));
+    setSubjectViewText(SearchUtil.getHighlightedSpan(locale, () -> new StyleSpan(Typeface.BOLD), messageResult.getBodySnippet(), highlightSubstring));
+    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, messageResult.getReceivedTimestampMs()));
     archivedView.setVisibility(GONE);
     unreadIndicator.setVisibility(GONE);
     deliveryStatusIndicator.setNone();
@@ -502,10 +504,13 @@ public final class ConversationListItem extends ConstraintLayout
   }
 
   private void setStatusIcons(ThreadRecord thread) {
-    if (!thread.isOutgoing()         ||
-        thread.isOutgoingAudioCall() ||
-        thread.isOutgoingVideoCall() ||
-        thread.isVerificationStatusChange())
+    if (MmsSmsColumns.Types.isBadDecryptType(thread.getType())) {
+      deliveryStatusIndicator.setNone();
+      alertView.setFailed();
+    } else if (!thread.isOutgoing()         ||
+               thread.isOutgoingAudioCall() ||
+               thread.isOutgoingVideoCall() ||
+               thread.isVerificationStatusChange())
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
@@ -576,7 +581,7 @@ public final class ConversationListItem extends ConstraintLayout
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_left_the_group), defaultTint);
     } else if (SmsDatabase.Types.isKeyExchangeType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ConversationListItem_key_exchange_message), defaultTint);
-    } else if (SmsDatabase.Types.isFailedDecryptType(thread.getType())) {
+    } else if (SmsDatabase.Types.isChatSessionRefresh(thread.getType())) {
       UpdateDescription description = UpdateDescription.staticDescription(context.getString(R.string.ThreadRecord_chat_session_refreshed), R.drawable.ic_refresh_16);
       return emphasisAdded(context, description, defaultTint);
     } else if (SmsDatabase.Types.isNoRemoteSessionType(thread.getType())) {
@@ -623,6 +628,8 @@ public final class ConversationListItem extends ConstraintLayout
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_could_not_be_processed), defaultTint);
     } else if (SmsDatabase.Types.isProfileChange(thread.getType())) {
       return emphasisAdded(context, "", defaultTint);
+    } else if (MmsSmsColumns.Types.isBadDecryptType(thread.getType())) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_delivery_issue), defaultTint);
     } else {
       ThreadDatabase.Extra extra = thread.getExtra();
       if (extra != null && extra.isViewOnce()) {
@@ -630,9 +637,44 @@ public final class ConversationListItem extends ConstraintLayout
       } else if (extra != null && extra.isRemoteDelete()) {
         return emphasisAdded(context, context.getString(thread.isOutgoing() ? R.string.ThreadRecord_you_deleted_this_message : R.string.ThreadRecord_this_message_was_deleted), defaultTint);
       } else {
-        return LiveDataUtil.just(new SpannableString(removeNewlines(thread.getBody())));
+        String body = removeNewlines(thread.getBody());
+
+        LiveData<SpannableString> finalBody = recipientToStringAsync(thread.getRecipient().getId(), threadRecipient -> {
+          if (threadRecipient.isGroup()) {
+            RecipientId groupMessageSender = thread.getGroupMessageSender();
+            if (!groupMessageSender.isUnknown()) {
+              return createGroupMessageUpdateString(context, body, Recipient.resolved(groupMessageSender), thread.isRead());
+            }
+          }
+          return new SpannableString(body);
+        });
+
+        return whileLoadingShow(body, finalBody);
       }
     }
+  }
+
+  private static SpannableString createGroupMessageUpdateString(@NonNull Context context,
+                                                                @NonNull String body,
+                                                                @NonNull Recipient recipient,
+                                                                boolean read)
+  {
+    String sender = (recipient.isSelf() ? context.getString(R.string.MessageRecord_you)
+                                        : recipient.getShortDisplayName(context)) + ": ";
+
+    SpannableString spannable = new SpannableString(sender + body);
+    spannable.setSpan(new TextAppearanceSpan(context, read ? R.style.Signal_Text_Preview_Medium_Secondary
+                                                           : R.style.Signal_Text_Preview_Medium_Primary),
+                      0,
+                      sender.length(),
+                      Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+    return spannable;
+  }
+
+  /** After a short delay, if the main data hasn't shown yet, then a loading message is displayed. */
+  private static @NonNull LiveData<SpannableString> whileLoadingShow(@NonNull String loading, @NonNull LiveData<SpannableString> string) {
+    return LiveDataUtil.until(string, LiveDataUtil.delay(250, new SpannableString(loading)));
   }
 
   private static @NonNull String removeNewlines(@Nullable String text) {
@@ -655,7 +697,7 @@ public final class ConversationListItem extends ConstraintLayout
     return emphasisAdded(LiveUpdateMessage.fromMessageDescription(context, description, defaultTint));
   }
 
-  private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull LiveData<Spannable> description) {
+  private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull LiveData<SpannableString> description) {
     return Transformations.map(description, sequence -> {
       SpannableString spannable = new SpannableString(sequence);
       spannable.setSpan(new StyleSpan(Typeface.ITALIC),

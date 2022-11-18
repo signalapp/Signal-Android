@@ -14,6 +14,7 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -35,6 +36,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * Handles the retrieval of media present on the user's device.
@@ -242,7 +244,7 @@ public class MediaRepository {
         long   size        = cursor.getLong(cursor.getColumnIndexOrThrow(Images.Media.SIZE));
         long   duration    = !isImage ? cursor.getInt(cursor.getColumnIndexOrThrow(Video.Media.DURATION)) : 0;
 
-        media.add(new Media(uri, mimetype, date, width, height, size, duration, false, Optional.of(bucketId), Optional.absent(), Optional.absent()));
+        media.add(fixMimeType(context, new Media(uri, mimetype, date, width, height, size, duration, false, false, Optional.of(bucketId), Optional.absent(), Optional.absent())));
       }
     }
 
@@ -255,19 +257,22 @@ public class MediaRepository {
 
   @WorkerThread
   private List<Media> getPopulatedMedia(@NonNull Context context, @NonNull List<Media> media) {
-    return Stream.of(media).map(m -> {
-      try {
-        if (isPopulated(m)) {
-          return m;
-        } else if (PartAuthority.isLocalUri(m.getUri())) {
-          return getLocallyPopulatedMedia(context, m);
-        } else {
-          return getContentResolverPopulatedMedia(context, m);
-        }
-      } catch (IOException e) {
-        return m;
-      }
-    }).toList();
+    return media.stream()
+                .map(m -> {
+                  try {
+                    if (isPopulated(m)) {
+                      return m;
+                    } else if (PartAuthority.isLocalUri(m.getUri())) {
+                      return getLocallyPopulatedMedia(context, m);
+                    } else {
+                      return getContentResolverPopulatedMedia(context, m);
+                    }
+                  } catch (IOException e) {
+                    return m;
+                  }
+                })
+                .map(m -> fixMimeType(context, m))
+                .collect(Collectors.toList());
   }
 
   @WorkerThread
@@ -332,7 +337,7 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
   }
 
   private Media getContentResolverPopulatedMedia(@NonNull Context context, @NonNull Media media) throws IOException {
@@ -358,7 +363,26 @@ public class MediaRepository {
       height = dimens.second;
     }
 
-    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.getBucketId(), media.getCaption(), Optional.absent());
+    return new Media(media.getUri(), media.getMimeType(), media.getDate(), width, height, size, 0, media.isBorderless(), media.isVideoGif(), media.getBucketId(), media.getCaption(), Optional.absent());
+  }
+
+  @VisibleForTesting
+  static @NonNull Media fixMimeType(@NonNull Context context, @NonNull Media media) {
+    if (MediaUtil.isOctetStream(media.getMimeType())) {
+      Log.w(TAG, "Media has mimetype octet stream");
+      String newMimeType = MediaUtil.getMimeType(context, media.getUri());
+      if (newMimeType != null && !newMimeType.equals(media.getMimeType())) {
+        Log.d(TAG, "Changing mime type to '" + newMimeType + "'");
+        return Media.withMimeType(media, newMimeType);
+      } else if (media.getSize() > 0 && media.getWidth() > 0 && media.getHeight() > 0) {
+        boolean likelyVideo = media.getDuration() > 0;
+        Log.d(TAG, "Assuming content is " + (likelyVideo ? "a video" : "an image") + ", setting mimetype");
+        return Media.withMimeType(media, likelyVideo ? MediaUtil.VIDEO_UNSPECIFIED : MediaUtil.IMAGE_JPEG);
+      } else {
+        Log.d(TAG, "Unable to fix mimetype");
+      }
+    }
+    return media;
   }
 
   private static class FolderResult {

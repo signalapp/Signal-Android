@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <corners android:radius="1000dp" />
+
+    <solid android:color="@color/signal_text_primary_disabled" />
+
+    <size
+        android:width="48dp"
+        android:height="2dp" />
+</shape>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+  <TextView
+      android:id="@+id/edit_proxy_switch_title"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_use_proxy"
+      style="@style/Signal.Text.Body"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
+
+  <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+      android:id="@+id/edit_proxy_switch_title_description"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:text="@string/preferences_only_use_a_proxy_if"
+      style="@style/Signal.Text.Preview"
+      android:textColor="@color/signal_text_secondary"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
+
+  <androidx.appcompat.widget.SwitchCompat
+      android:id="@+id/edit_proxy_switch"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintTop_toTopOf="@id/edit_proxy_switch_title"
+      app:layout_constraintBottom_toBottomOf="@id/edit_proxy_switch_title"/>
+
+  <TextView
+      android:id="@+id/edit_proxy_address_title"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="25dp"
+      style="@style/Signal.Text.Preview"
+      android:fontFamily="sans-serif-medium"
+      android:textColor="@color/signal_accent_primary"
+      android:text="@string/preferences_proxy_address"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title_description"/>
+
+  <EditText
+      android:id="@+id/edit_proxy_host"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="-2dp"
+      android:hint="@string/preferences_enter_proxy_address"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_address_title"
+      tools:hint="https://proxy.parker.org"/>
+
+  <TextView
+      android:id="@+id/edit_proxy_status"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="4dp"
+      style="@style/Signal.Text.Caption"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_host"
+      tools:text="@string/preferences_connected_to_proxy"/>
+
+  <TextView
+      android:id="@+id/edit_proxy_share"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="19dp"
+      style="@style/Signal.Text.Body"
+      android:text="@string/preferences_share"
+      android:drawableStart="@drawable/ic_share_24"
+      android:drawableTint="@color/signal_text_primary"
+      android:drawablePadding="10dp"
+      android:paddingStart="13dp"
+      android:paddingEnd="13dp"
+      android:paddingTop="10dp"
+      android:paddingBottom="10dp"
+      android:background="?selectableItemBackground"
+      app:layout_constraintTop_toBottomOf="@id/edit_proxy_status"
+      app:layout_constraintStart_toStartOf="parent" />
+
+  <com.dd.CircularProgressButton
+      android:id="@+id/edit_proxy_save"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="bottom|end"
+      android:layout_marginEnd="16dp"
+      android:layout_marginBottom="16dp"
+      android:textColor="@color/white"
+      android:text="@string/preferences_save"
+      app:cornerRadius="80dp"
+      app:elevation="4dp"
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:cpb_colorIndicator="@color/white"
+      app:cpb_colorProgress="?colorAccent"
+      app:cpb_cornerRadius="28dp"
+      app:cpb_selectorIdle="@drawable/progress_button_state"
+      app:cpb_textIdle="@string/preferences_save" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

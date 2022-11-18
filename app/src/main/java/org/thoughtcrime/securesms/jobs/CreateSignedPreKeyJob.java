@@ -23,7 +23,7 @@ public class CreateSignedPreKeyJob extends BaseJob {
 
   public static final String KEY = "CreateSignedPreKeyJob";
 
-  private static final String TAG = CreateSignedPreKeyJob.class.getSimpleName();
+  private static final String TAG = Log.tag(CreateSignedPreKeyJob.class);
 
   public CreateSignedPreKeyJob(Context context) {
     this(new Job.Parameters.Builder()

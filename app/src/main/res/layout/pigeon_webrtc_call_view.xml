@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:parentTag="org.thoughtcrime.securesms.components.webrtc.PigeonWebRtcCallView"
     android:background="@color/sim_background">
 
@@ -112,6 +113,31 @@
         </LinearLayout>
 
             <TextView
+                android:id="@+id/call_screen_participants_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__view_participants_list"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/call_screen_start_call_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__start_call"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
+
+            <TextView
                 android:id="@+id/call_screen_volume_toggle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -122,6 +148,19 @@
                 android:text="@string/WebRtcCallControls_volume_button_description"
                 android:textColor="@color/white_not_focus"
                 android:textSize="@dimen/item_textsize" />
+
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallMenuText
+                android:id="@+id/call_screen_audio_ring_toggle_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__ring"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
 
             <org.thoughtcrime.securesms.components.webrtc.WebRtcCallMenuText
                 android:id="@+id/call_screen_speaker_toggle"

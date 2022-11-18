@@ -30,7 +30,7 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
   private final MediaConstraints                    mediaConstraints;
 
   MediaSendFragmentPagerAdapter(@NonNull FragmentManager fm, @NonNull MediaConstraints mediaConstraints) {
-    super(fm);
+    super(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
     this.mediaConstraints = mediaConstraints;
     this.media            = new ArrayList<>();
     this.fragments        = new HashMap<>();
@@ -48,7 +48,8 @@ class MediaSendFragmentPagerAdapter extends FragmentStatePagerAdapter {
     } else if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
       return MediaSendVideoFragment.newInstance(mediaItem.getUri(),
                                                 mediaConstraints.getCompressedVideoMaxSize(ApplicationDependencies.getApplication()),
-                                                mediaConstraints.getVideoMaxSize(ApplicationDependencies.getApplication()));
+                                                mediaConstraints.getVideoMaxSize(ApplicationDependencies.getApplication()),
+                                                mediaItem.isVideoGif());
     } else {
       throw new UnsupportedOperationException("Can only render images and videos. Found mimetype: '" + mediaItem.getMimeType() + "'");
     }

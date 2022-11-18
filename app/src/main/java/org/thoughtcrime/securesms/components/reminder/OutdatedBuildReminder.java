@@ -22,7 +22,7 @@ public class OutdatedBuildReminder extends Reminder {
   }
 
   private static CharSequence getPluralsText(final Context context) {
-    int days = getDaysUntilExpiry() - 1;
+    int days = getDaysUntilExpiry();
 
     if (days == 0) {
       return context.getString(R.string.OutdatedBuildReminder_your_version_of_signal_will_expire_today);

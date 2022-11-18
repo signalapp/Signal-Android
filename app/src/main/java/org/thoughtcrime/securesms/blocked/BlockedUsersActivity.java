@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.blocked;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,8 +7,10 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.thoughtcrime.securesms.ContactSelectionListFragment;
@@ -22,6 +23,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.whispersystems.libsignal.util.guava.Optional;
+
+import java.util.function.Consumer;
 
 public class BlockedUsersActivity extends PassphraseRequiredActivity implements BlockedUsersFragment.Listener, ContactSelectionListFragment.OnContactSelectedListener {
 
@@ -61,7 +64,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
-  public boolean onBeforeContactSelected(Optional<RecipientId> recipientId, String number) {
+  public void onBeforeContactSelected(Optional<RecipientId> recipientId, String number, Consumer<Boolean> callback) {
     final String displayName = recipientId.transform(id -> Recipient.resolved(id).getDisplayName(this)).or(number);
     Mp02CustomDialog dialog = new Mp02CustomDialog(BlockedUsersActivity.this);
     dialog.setMessage(getString(R.string.BlockedUserActivity__s_will_not_be_able_to, displayName));
@@ -85,7 +88,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
     });
     dialog.show();
 
-    return false;
+    callback.accept(false);
   }
 
   @Override
@@ -94,11 +97,14 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   }
 
   @Override
+  public void onSelectionChanged() {
+
+  }
+
+  @Override
   public void handleAddUserToBlockedList() {
     ContactSelectionListFragment fragment = new ContactSelectionListFragment();
     Intent                       intent   = getIntent();
-
-    fragment.setOnContactSelectedListener(this);
 
     intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
     intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, 1);

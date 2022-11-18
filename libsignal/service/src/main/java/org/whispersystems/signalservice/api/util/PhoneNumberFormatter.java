@@ -147,7 +147,7 @@ public class PhoneNumberFormatter {
 
     return "+"                                                     +
         countryCode.replaceAll("[^0-9]", "").replaceAll("^0*", "") +
-        number.replaceAll("[^0-9]", "");
+        (number != null ? number.replaceAll("[^0-9]", "") : "");
   }
 
   public static String getInternationalFormatFromE164(String e164number) {

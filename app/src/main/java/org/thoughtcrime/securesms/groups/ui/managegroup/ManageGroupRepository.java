@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.groups.MembershipNotSuitableForV2Exception;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeErrorCallback;
 import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason;
+import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -74,20 +75,9 @@ final class ManageGroupRepository {
   private GroupStateResult getGroupState(@NonNull GroupId groupId) {
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
     Recipient      groupRecipient = Recipient.externalGroupExact(context, groupId);
-    long           threadId       = threadDatabase.getThreadIdFor(groupRecipient);
+    long           threadId       = threadDatabase.getOrCreateThreadIdFor(groupRecipient);
 
     return new GroupStateResult(threadId, groupRecipient);
-  }
-
-  void setExpiration(@NonNull GroupId groupId, int newExpirationTime, @NonNull GroupChangeErrorCallback error) {
-    SignalExecutors.UNBOUNDED.execute(() -> {
-      try {
-        GroupManager.updateGroupTimer(context, groupId.requirePush(), newExpirationTime);
-      } catch (GroupChangeException | IOException e) {
-        Log.w(TAG, e);
-        error.onError(GroupChangeFailureReason.fromException(e));
-      }
-    });
   }
 
   void applyMembershipRightsChange(@NonNull GroupId groupId, @NonNull GroupAccessControl newRights, @NonNull GroupChangeErrorCallback error) {
@@ -159,6 +149,15 @@ final class ManageGroupRepository {
     });
   }
 
+  @WorkerThread
+  boolean hasCustomNotifications(Recipient recipient) {
+    if (recipient.getNotificationChannel() != null || !NotificationChannels.supported()) {
+      return true;
+    }
+
+    return NotificationChannels.updateWithShortcutBasedChannel(context, recipient);
+  }
+
   static final class GroupStateResult {
 
     private final long      threadId;
@@ -217,7 +216,7 @@ final class ManageGroupRepository {
       return selectionLimits.getHardLimit() - members.size();
     }
 
-    public @NonNull ArrayList<RecipientId> getMembersWithoutSelf() {
+    public @NonNull List<RecipientId> getMembersWithoutSelf() {
       ArrayList<RecipientId> recipientIds = new ArrayList<>(members.size());
       RecipientId            selfId       = Recipient.self().getId();
 

@@ -5,6 +5,8 @@ import android.media.AudioManager;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
+import org.thoughtcrime.securesms.ringrtc.Camera;
 import org.thoughtcrime.securesms.ringrtc.CameraState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -33,7 +35,7 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       androidAudioManager.setSpeakerphoneOn(true);
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
     return currentState;
   }
@@ -41,6 +43,10 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   @Override
   protected @NonNull WebRtcServiceState handleBluetoothChange(@NonNull WebRtcServiceState currentState, boolean available) {
     Log.i(tag, "handleBluetoothChange(): " + available);
+
+    if (available && currentState.getLocalDeviceState().wantsBluetooth()) {
+      webRtcInteractor.setWantsBluetoothConnection(true);
+    }
 
     return currentState.builder()
                        .changeLocalDeviceState()
@@ -61,9 +67,12 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .wantsBluetooth(false)
+                       .build();
   }
 
   @Override
@@ -76,9 +85,12 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
       webRtcInteractor.updatePhoneState(WebRtcUtil.getInCallPhoneState(context));
     }
 
-    webRtcInteractor.sendMessage(currentState);
+    webRtcInteractor.postStateUpdate(currentState);
 
-    return currentState;
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .wantsBluetooth(isBluetooth)
+                       .build();
   }
 
   @Override
@@ -98,6 +110,11 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
   @Override
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted():");
+
+    BroadcastVideoSink localSink = currentState.getVideoState().getLocalSink();
+    if (localSink != null) {
+      localSink.setRotateToRightSide(newCameraState.getActiveDirection() == CameraState.Direction.BACK);
+    }
 
     return currentState.builder()
                        .changeLocalDeviceState()

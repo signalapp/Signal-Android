@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 @RequiresApi(26)
 public class FcmJobService extends JobService {
 
-  private static final String TAG = FcmJobService.class.getSimpleName();
+  private static final String TAG = Log.tag(FcmJobService.class);
 
   private static final int ID = 1337;
 

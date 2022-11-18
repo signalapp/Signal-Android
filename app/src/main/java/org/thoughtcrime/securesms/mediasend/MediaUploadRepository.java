@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -78,14 +79,26 @@ class MediaUploadRepository {
   void applyMediaUpdates(@NonNull Map<Media, Media> oldToNew, @Nullable Recipient recipient) {
     executor.execute(() -> {
       for (Map.Entry<Media, Media> entry : oldToNew.entrySet()) {
-
-        boolean same = entry.getKey().equals(entry.getValue()) && (!entry.getValue().getTransformProperties().isPresent() || !entry.getValue().getTransformProperties().get().isVideoEdited());
-        if (!same || !uploadResults.containsKey(entry.getValue())) {
-          cancelUploadInternal(entry.getKey());
-          uploadMediaInternal(entry.getValue(), recipient);
+        Media oldMedia = entry.getKey();
+        Media newMedia = entry.getValue();
+        boolean same = oldMedia.equals(newMedia) && hasSameTransformProperties(oldMedia, newMedia);
+        if (!same || !uploadResults.containsKey(newMedia)) {
+          cancelUploadInternal(oldMedia);
+          uploadMediaInternal(newMedia, recipient);
         }
       }
     });
+  }
+
+  private boolean hasSameTransformProperties(@NonNull Media oldMedia, @NonNull Media newMedia) {
+    TransformProperties oldProperties = oldMedia.getTransformProperties().orNull();
+    TransformProperties newProperties = newMedia.getTransformProperties().orNull();
+
+    if (oldProperties == null || newProperties == null) {
+      return oldProperties == newProperties;
+    }
+
+    return !newProperties.isVideoEdited() && oldProperties.getSentMediaQuality() == newProperties.getSentMediaQuality();
   }
 
   void cancelUpload(@NonNull Media media) {
@@ -191,11 +204,11 @@ class MediaUploadRepository {
 
   public static @NonNull Attachment asAttachment(@NonNull Context context, @NonNull Media media) {
     if (MediaUtil.isVideoType(media.getMimeType())) {
-      return new VideoSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
+      return new VideoSlide(context, media.getUri(), media.getSize(), media.isVideoGif(), media.getWidth(), media.getHeight(), media.getCaption().orNull(), media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isGif(media.getMimeType())) {
       return new GifSlide(context, media.getUri(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull()).asAttachment();
     } else if (MediaUtil.isImageType(media.getMimeType())) {
-      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null).asAttachment();
+      return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orNull(), null, media.getTransformProperties().orNull()).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
     } else {

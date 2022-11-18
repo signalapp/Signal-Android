@@ -43,6 +43,8 @@ public class AddGroupDetailsFragment extends LoggingFragment{
 
   private static final String TAG = Log.tag(AddGroupDetailsFragment.class);
 
+  private static final short REQUEST_DISAPPEARING_TIMER  = 28621;
+
   private MyEditText name;
   private TextView create;
   private TextView addMembers;
@@ -50,6 +52,7 @@ public class AddGroupDetailsFragment extends LoggingFragment{
   private GroupMemberListView members;
   private Callback                 callback;
   private AddGroupDetailsViewModel viewModel;
+  private View                     disappearingMessagesRow;
 
   private int mFocusHeight;
   private int mNormalHeight;
@@ -85,6 +88,7 @@ public class AddGroupDetailsFragment extends LoggingFragment{
     members    = view.findViewById(R.id.member_list);
     rlContainer              = view.findViewById(R.id.rl_container);
     View                mmsWarning = view.findViewById(R.id.mms_warning);
+    disappearingMessagesRow = view.findViewById(R.id.group_disappearing_messages_row);
 
     Resources res = getContext().getResources();
     mFocusHeight = 56;//res.getDimensionPixelSize(R.dimen.focus_item_height);
@@ -108,6 +112,7 @@ public class AddGroupDetailsFragment extends LoggingFragment{
 
 //    viewModel.getCanSubmitForm().observe(getViewLifecycleOwner(), isFormValid -> setCreateEnabled(isFormValid, true));
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
+      disappearingMessagesRow.setVisibility(isMms ? View.GONE : View.VISIBLE);
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
       name.setHint(isMms ? R.string.AddGroupDetailsFragment__group_name_optional : R.string.AddGroupDetailsFragment__group_name_required);
     });
@@ -241,7 +246,7 @@ public class AddGroupDetailsFragment extends LoggingFragment{
         toast(R.string.AddGroupDetailsFragment__group_creation_failed);
         break;
       case ERROR_INVALID_NAME:
-        name.setError(getString(R.string.AddGroupDetailsFragment__this_field_is_required));
+        toast(R.string.AddGroupDetailsFragment__this_field_is_required);
         break;
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());

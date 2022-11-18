@@ -1,122 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="org.thoughtcrime.securesms.components.emoji.MediaKeyboard">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/media_keyboard_fragment_container"
+        android:name="org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/signal_background_tertiary">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/media_keyboard_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="6dp"
-            android:padding="6dp"
-            app:srcCompat="@drawable/ic_search_24"
-            android:tint="@color/media_keyboard_button_color"
-            android:background="?selectableItemBackgroundBorderless"
-            android:visibility="invisible"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/media_keyboard_provider_tabs"
-            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_provider_tabs"
-            tools:visibility="visible"/>
-
-        <LinearLayout
-            android:id="@+id/media_keyboard_provider_tabs"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:layout_marginStart="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace"
-            app:layout_constraintStart_toEndOf="@id/media_keyboard_search"
-            app:layout_constraintTop_toBottomOf="@id/media_keyboard_tabs_top" />
-
-        <org.thoughtcrime.securesms.components.RepeatableImageKey
-            android:id="@+id/media_keyboard_backspace"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
-            android:padding="6dp"
-            android:src="@drawable/ic_backspace_grey600_24dp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/media_keyboard_provider_tabs"
-            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_provider_tabs"
-            tools:visibility="visible"/>
-
-        <org.thoughtcrime.securesms.components.ControllableViewPager
-            android:id="@+id/media_keyboard_pager"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            app:layout_constraintTop_toBottomOf="@id/media_keyboard_provider_tabs"
-            app:layout_constraintBottom_toTopOf="@id/media_keyboard_tabs"/>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@color/signal_background_secondary"
-            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
-            app:layout_constraintTop_toTopOf="@+id/media_keyboard_tabs" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/media_keyboard_tabs_top"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:visibility="gone"
-            app:layout_constraintEnd_toStartOf="@id/media_keyboard_add"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_height="40dp"
-            tools:visibility="visible" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/media_keyboard_tabs"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/media_keyboard_add"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:layout_height="40dp"
-            tools:visibility="visible" />
-
-        <org.thoughtcrime.securesms.components.RepeatableImageKey
-            android:id="@+id/media_keyboard_backspace_backup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
-            android:padding="6dp"
-            android:src="@drawable/ic_backspace_grey600_24dp"
-            android:background="?selectableItemBackgroundBorderless"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/media_keyboard_tabs"
-            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
-            tools:visibility="visible"/>
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/media_keyboard_add"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="12dp"
-            android:scaleType="fitCenter"
-            android:tint="@color/media_keyboard_button_color"
-            android:visibility="gone"
-            android:background="?selectableItemBackground"
-            app:srcCompat="@drawable/ic_plus_24"
-            app:layout_constraintBottom_toBottomOf="@id/media_keyboard_tabs"
-            app:layout_constraintTop_toTopOf="@id/media_keyboard_tabs"
-            app:layout_constraintEnd_toStartOf="@id/media_keyboard_backspace_backup"
-            tools:visibility="visible"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        android:layout_height="match_parent" />
 
 </merge>

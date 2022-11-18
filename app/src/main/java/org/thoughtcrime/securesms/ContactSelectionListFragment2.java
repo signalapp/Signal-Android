@@ -310,7 +310,9 @@ public final class ContactSelectionListFragment2 extends Fragment
             isMulti(),
             currentSelection,
             rlContainer,
-            72,onFocusChangeListener);
+            72,onFocusChangeListener,
+            null,
+            false);
     selectedContacts = cursorRecyclerViewAdapter.getSelectedContacts();
 
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
@@ -475,9 +477,9 @@ public final class ContactSelectionListFragment2 extends Fragment
   @Override
   public @NonNull
   Loader<Cursor> onCreateLoader(int id, Bundle args) {
-    return new ContactsCursorLoader(getActivity(),
+    return new ContactsCursorLoader.Factory(getActivity(),
             getActivity().getIntent().getIntExtra(DISPLAY_MODE, DisplayMode.FLAG_ALL),
-            cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false),true);
+            cursorFilter, getActivity().getIntent().getBooleanExtra(RECENTS, false)).create();
   }
 
   @Override
@@ -567,7 +569,7 @@ public final class ContactSelectionListFragment2 extends Fragment
             if (uuid.isPresent()) {
               Recipient recipient = Recipient.externalUsername(requireContext(), uuid.get(), contact.getNumber());
               selectedContacts.add(SelectedContact.forUsername(recipient.getId(), contact.getNumber()));
-              contact.setChecked(true);
+              contact.setChecked(true, false);
 
               if (onContactSelectedListener != null) {
                 onContactSelectedListener.onContactSelected(Optional.of(recipient.getId()), null);
@@ -582,7 +584,7 @@ public final class ContactSelectionListFragment2 extends Fragment
           });
         } else {
           selectedContacts.add(selectedContact);
-          contact.setChecked(true);
+          contact.setChecked(true, false);
 
           if (onContactSelectedListener != null) {
             onContactSelectedListener.onContactSelected(contact.getRecipientId(), contact.getNumber());
@@ -590,7 +592,7 @@ public final class ContactSelectionListFragment2 extends Fragment
         }
       } else {
         selectedContacts.remove(selectedContact);
-        contact.setChecked(false);
+        contact.setChecked(false, false);
 
         if (onContactSelectedListener != null) {
           onContactSelectedListener.onContactDeselected(contact.getRecipientId(), contact.getNumber());

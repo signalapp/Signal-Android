@@ -69,34 +69,42 @@ message ContactRecord {
     UNVERIFIED = 2;
   }
 
-  string        serviceUuid   = 1;
-  string        serviceE164   = 2;
-  bytes         profileKey    = 3;
-  bytes         identityKey   = 4;
-  IdentityState identityState = 5;
-  string        givenName     = 6;
-  string        familyName    = 7;
-  string        username      = 8;
-  bool          blocked       = 9;
-  bool          whitelisted   = 10;
-  bool          archived      = 11;
-  bool          markedUnread  = 12;
+  string        serviceUuid         = 1;
+  string        serviceE164         = 2;
+  bytes         profileKey          = 3;
+  bytes         identityKey         = 4;
+  IdentityState identityState       = 5;
+  string        givenName           = 6;
+  string        familyName          = 7;
+  string        username            = 8;
+  bool          blocked             = 9;
+  bool          whitelisted         = 10;
+  bool          archived            = 11;
+  bool          markedUnread        = 12;
+  uint64        mutedUntilTimestamp = 13;
 }
 
 message GroupV1Record {
-  bytes id           = 1;
-  bool  blocked      = 2;
-  bool  whitelisted  = 3;
-  bool  archived     = 4;
-  bool  markedUnread = 5;
+  bytes  id                  = 1;
+  bool   blocked             = 2;
+  bool   whitelisted         = 3;
+  bool   archived            = 4;
+  bool   markedUnread        = 5;
+  uint64 mutedUntilTimestamp = 6;
 }
 
 message GroupV2Record {
-  bytes masterKey    = 1;
-  bool  blocked      = 2;
-  bool  whitelisted  = 3;
-  bool  archived     = 4;
-  bool  markedUnread = 5;
+  bytes  masterKey           = 1;
+  bool   blocked             = 2;
+  bool   whitelisted         = 3;
+  bool   archived            = 4;
+  bool   markedUnread        = 5;
+  uint64 mutedUntilTimestamp = 6;
+}
+
+message Payments {
+  bool  enabled = 1;
+  bytes entropy = 2;
 }
 
 message AccountRecord {
@@ -135,4 +143,7 @@ message AccountRecord {
            bool                   unlistedPhoneNumber    = 13;
   repeated PinnedConversation     pinnedConversations    = 14;
            bool                   preferContactAvatars   = 15;
+           Payments               payments               = 16;
+           uint32                 universalExpireTimer   = 17;
+           bool                   primarySendsSms        = 18;
 }

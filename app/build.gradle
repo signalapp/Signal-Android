@@ -1,25 +1,20 @@
-import org.signal.signing.ApkSignerUtil
-
-import java.security.MessageDigest
-
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'com.google.protobuf'
 apply plugin: 'androidx.navigation.safeargs'
 apply plugin: 'witness'
+apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply from: 'translations.gradle'
 apply from: 'witness-verifications.gradle'
+apply plugin: 'org.jetbrains.kotlin.android'
+apply plugin: 'app.cash.exhaustive'
 
 repositories {
     maven {
         url "https://raw.github.com/signalapp/maven/master/photoview/releases/"
         content {
             includeGroupByRegex "com\\.github\\.chrisbanes.*"
-        }
-    }
-    maven {
-        url "https://raw.github.com/signalapp/maven/master/shortcutbadger/releases/"
-        content {
-            includeGroupByRegex "me\\.leolin.*"
         }
     }
     maven {
@@ -42,8 +37,23 @@ repositories {
     }
     google()
     mavenCentral()
-    jcenter()
     mavenLocal()
+    maven {
+        url "https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/"
+    }
+    jcenter {
+        content {
+            includeVersion "com.google.android.exoplayer", "exoplayer-core", "2.9.1"
+            includeVersion "com.google.android.exoplayer", "exoplayer-ui", "2.9.1"
+            includeVersion "com.google.android.exoplayer", "extension-mediasession", "2.9.1"
+            includeVersion "mobi.upod", "time-duration-picker", "1.1.3"
+            includeVersion "cn.carbswang.android", "NumberPickerView", "1.0.9"
+            includeVersion "com.takisoft.fix", "colorpicker", "0.9.1"
+            includeVersion "com.codewaves.stickyheadergrid", "stickyheadergrid", "0.9.4"
+            includeVersion "com.amulyakhare", "com.amulyakhare.textdrawable", "1.0.1"
+            includeVersion "com.google.android", "flexbox", "0.3.0"
+        }
+    }
 }
 
 protobuf {
@@ -61,8 +71,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 779
-def canonicalVersionName = "Pigeon 1.0.0779 upon Signal 5.2.3"
+def canonicalVersionCode = 784
+def canonicalVersionName = "Pigeon 1.1.0784 upon Signal 5.15.5"
 
 def postFixSize = 100
 def abiPostFix = ['universal'  : 0,
@@ -73,12 +83,42 @@ def abiPostFix = ['universal'  : 0,
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
+def selectableVariants = [
+        'internalProdFlipper',
+        'internalProdPerf',
+        'internalProdRelease',
+        'internalStagingFlipper',
+        'internalStagingPerf',
+        'internalStagingRelease',
+        'nightlyProdFlipper',
+        'nightlyProdPerf',
+        'nightlyProdRelease',
+        'nightlyStagingPerf',
+        'playProdDebug',
+        'playProdFlipper',
+        'playProdPerf',
+        'playProdRelease',
+        'playStagingDebug',
+        'playStagingFlipper',
+        'playStagingPerf',
+        'playStagingRelease',
+        'studyProdMock',
+        'studyProdPerf',
+        'websiteProdFlipper',
+        'websiteProdRelease',
+]
+
 android {
     buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 
     flavorDimensions 'distribution', 'environment'
     useLibrary 'org.apache.http.legacy'
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+        freeCompilerArgs = ["-Xallow-result-return-type"]
+    }
 
     dexOptions {
         javaMaxHeapSize "4g"
@@ -108,7 +148,8 @@ android {
         project.ext.set("archivesBaseName", "Signal");
 
         buildConfigField "long", "BUILD_TIMESTAMP", getLastCommitTimestamp() + "L"
-        buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service.whispersystems.org\""
+        buildConfigField "String", "GIT_HASH", "\"${getGitHash()}\""
+        buildConfigField "String", "SIGNAL_URL", "\"https://chat.signal.org\""
         buildConfigField "String", "STORAGE_URL", "\"https://storage.signal.org\""
         buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn.signal.org\""
         buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2.signal.org\""
@@ -116,6 +157,8 @@ android {
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
         buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
+        buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_NAMES", "new String[]{\"Test\", \"Staging\"}"
+        buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_URLS", "new String[]{\"https://sfu.test.voip.signal.org\", \"https://sfu.staging.voip.signal.org\"}"
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
@@ -128,6 +171,14 @@ android {
         buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"AMhf5ywVwITZMsff/eCyudZx9JDmkkkbV6PInzG4p8x3VqVJSFiMvnvlEKWuRob/1eaIetR31IYeAbm0NdOuHH8Qi+Rexi1wLlpzIo1gstHWBfZzy1+qHRV5A4TqPp15YzBPm0WSggW6PbSn+F4lf57VCnHF7p8SvzAA2ZZJPYJURt8X7bbg+H3i+PEjH9DXItNEqs2sNcug37xZQDLm7X0=\""
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
+        buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
+        buildConfigField "int[]", "MOBILE_COIN_REGIONS", "new int[]{44}"
+        buildConfigField "String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\""
+        buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/challenge/generate.html\""
+
+        buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"unset\""
+        buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"unset\""
+        buildConfigField "String", "BUILD_VARIANT_TYPE", "\"unset\""
 
         ndk {
             abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
@@ -148,6 +199,7 @@ android {
     }
 
     compileOptions {
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JAVA_VERSION
         targetCompatibility JAVA_VERSION
     }
@@ -160,10 +212,8 @@ android {
         exclude 'META-INF/LICENSE'
         exclude 'META-INF/NOTICE'
         exclude 'META-INF/proguard/androidx-annotations.pro'
-    }
-
-    aaptOptions {
-        ignoreAssetsPattern '!contours.tfl:!LMprec_600.emd:!blazeface.tfl'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages.properties'
+        exclude '/org/spongycastle/x509/CertPathReviewerMessages_de.properties'
     }
 
     buildTypes {
@@ -194,22 +244,34 @@ android {
                     'proguard/proguard.cfg'
             testProguardFiles 'proguard/proguard-automation.pro',
                     'proguard/proguard.cfg'
+
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Debug\""
         }
         flipper {
             initWith debug
             isDefault false
             minifyEnabled false
             matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Flipper\""
         }
         release {
             minifyEnabled true
             proguardFiles = buildTypes.debug.proguardFiles
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Release\""
         }
         perf {
             initWith debug
             isDefault false
             debuggable false
             matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Perf\""
+        }
+        mock {
+            initWith debug
+            isDefault false
+            minifyEnabled false
+            matchingFallbacks = ['debug']
+            buildConfigField "String", "BUILD_VARIANT_TYPE", "\"Mock\""
         }
     }
 
@@ -220,6 +282,7 @@ android {
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"play\""
         }
 
         website {
@@ -227,6 +290,7 @@ android {
             ext.websiteUpdateUrl = "https://updates.signal.org/android"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "true"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "\"$ext.websiteUpdateUrl\""
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"website\""
         }
 
         internal {
@@ -234,12 +298,35 @@ android {
             ext.websiteUpdateUrl = "null"
             buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
             buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"internal\""
+        }
+
+        nightly {
+            dimension 'distribution'
+            versionNameSuffix "-nightly-untagged-${getDateSuffix()}"
+            ext.websiteUpdateUrl = "null"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\""
+        }
+
+        study {
+            dimension 'distribution'
+
+            applicationIdSuffix ".study"
+            ext.websiteUpdateUrl = "null"
+            buildConfigField "boolean", "PLAY_STORE_DISABLED", "false"
+            buildConfigField "String", "NOPLAY_UPDATE_URL", "$ext.websiteUpdateUrl"
+            buildConfigField "String", "BUILD_DISTRIBUTION_TYPE", "\"study\""
         }
 
         prod {
             dimension 'environment'
 
             isDefault true
+
+            buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"mainnet\""
+            buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"Prod\""
         }
 
         staging {
@@ -247,7 +334,7 @@ android {
 
             applicationIdSuffix ".staging"
 
-            buildConfigField "String", "SIGNAL_URL", "\"https://textsecure-service-staging.whispersystems.org\""
+            buildConfigField "String", "SIGNAL_URL", "\"https://chat.staging.signal.org\""
             buildConfigField "String", "STORAGE_URL", "\"https://storage-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN_URL", "\"https://cdn-staging.signal.org\""
             buildConfigField "String", "SIGNAL_CDN2_URL", "\"https://cdn2-staging.signal.org\""
@@ -255,23 +342,46 @@ android {
             buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api-staging.backup.signal.org\""
             buildConfigField "String", "CDS_MRENCLAVE", "\"c98e00a4e3ff977a56afefe7362a27e4961e4f19e211febfbb19b897e6b80b15\""
             buildConfigField "KbsEnclave", "KBS_ENCLAVE", "new KbsEnclave(\"823a3b2c037ff0cbe305cc48928cfcc97c9ed4a8ca6d49af6f7d6981fb60a4e9\", " +
-                                                                         "\"038c40bbbacdc873caa81ac793bb75afde6dfe436a99ab1f15e3f0cbb7434ced\", " +
+                                                                         "\"51a56084c0b21c6b8f62b1bc792ec9bedac4c7c3964bb08ddcab868158c09982\", " +
                                                                          "\"a3baab19ef6ce6f34ab9ebb25ba722725ae44a8872dc0ff08ad6d83a9489de87\")"
             buildConfigField "KbsEnclave[]", "KBS_FALLBACKS", "new KbsEnclave[0]"
             buildConfigField "String", "UNIDENTIFIED_SENDER_TRUST_ROOT", "\"BbqY1DzohE4NUZoVF+L18oUPrK3kILllLEJh2UnPSsEx\""
             buildConfigField "String", "ZKGROUP_SERVER_PUBLIC_PARAMS", "\"ABSY21VckQcbSXVNCGRYJcfWHiAMZmpTtTELcDmxgdFbtp/bWsSxZdMKzfCp8rvIs8ocCU3B37fT3r4Mi5qAemeGeR2X+/YmOGR5ofui7tD5mDQfstAI9i+4WpMtIe8KC3wU5w3Inq3uNWVmoGtpKndsNfwJrCg0Hd9zmObhypUnSkfYn2ooMOOnBpfdanRtrvetZUayDMSC5iSRcXKpdls=\""
+            buildConfigField "String", "MOBILE_COIN_ENVIRONMENT", "\"testnet\""
+            buildConfigField "String", "RECAPTCHA_PROOF_URL", "\"https://signalcaptchas.org/staging/challenge/generate.html\""
+
+            buildConfigField "String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\""
         }
     }
 
     android.applicationVariants.all { variant ->
         variant.outputs.each { output ->
-            output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
-            def abiName = output.getFilter("ABI") ?: 'universal'
-            def postFix = abiPostFix.get(abiName, 0)
+            if (output.baseName.contains('nightly')) {
+                output.versionCodeOverride = canonicalVersionCode * postFixSize + 5
+                def tag = getCurrentGitTag()
+                if (tag != null && tag.length() > 0) {
+                    output.versionNameOverride = tag
+                }
+            } else {
+                output.outputFileName = output.outputFileName.replace(".apk", "-${variant.versionName}.apk")
+                def abiName = output.getFilter("ABI") ?: 'universal'
+                def postFix = abiPostFix.get(abiName, 0)
 
-            if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
+                if (postFix >= postFixSize) throw new AssertionError("postFix is too large")
 
-            output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
+                output.versionCodeOverride = canonicalVersionCode * postFixSize + postFix
+            }
+        }
+    }
+
+    android.variantFilter { variant ->
+        def distribution = variant.getFlavors().get(0).name
+        def environment  = variant.getFlavors().get(1).name
+        def buildType    = variant.buildType.name
+        def fullName     = distribution + environment.capitalize() + buildType.capitalize()
+
+        if (!selectableVariants.contains(fullName)) {
+            variant.setIgnore(true)
         }
     }
 
@@ -301,14 +411,19 @@ repositories {
 }
 
 dependencies {
+    implementation 'androidx.core:core-ktx:1.5.0'
+    implementation 'androidx.fragment:fragment-ktx:1.3.5'
     lintChecks project(':lintchecks')
-    implementation(name:'ringrtc-android-2.9.4', ext:'aar')
+    implementation(name:'ringrtc-android-2.11.1', ext:'aar')
+
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
     implementation ('androidx.appcompat:appcompat:1.2.0') {
         force = true
     }
+    implementation "androidx.window:window:1.0.0-alpha09"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
-    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.material:material:1.3.0'
     implementation 'androidx.legacy:legacy-support-v13:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'androidx.preference:preference:1.0.0'
@@ -322,16 +437,17 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-savedstate:1.0.0-alpha05'
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.1.0'
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.1.0'
     implementation "androidx.camera:camera-core:1.0.0-beta11"
     implementation "androidx.camera:camera-camera2:1.0.0-beta11"
     implementation "androidx.camera:camera-lifecycle:1.0.0-beta11"
     implementation "androidx.camera:camera-view:1.0.0-alpha18"
     implementation "androidx.concurrent:concurrent-futures:1.0.0"
     implementation "androidx.autofill:autofill:1.0.0"
-    implementation 'com.google.firebase:firebase-ml-vision:24.0.3'
-    implementation 'com.google.firebase:firebase-ml-vision-face-model:20.0.1'
+    implementation "androidx.biometric:biometric:1.1.0"
+    implementation "androidx.sharetarget:sharetarget:1.1.0"
 
-    implementation ('com.google.firebase:firebase-messaging:20.2.0') {
+    implementation ('com.google.firebase:firebase-messaging:22.0.0') {
         exclude group: 'com.google.firebase', module: 'firebase-core'
         exclude group: 'com.google.firebase', module: 'firebase-analytics'
         exclude group: 'com.google.firebase', module: 'firebase-measurement-connector'
@@ -351,23 +467,29 @@ dependencies {
     implementation project(':paging')
     implementation project(':core-util')
     implementation project(':video')
+    implementation project(':device-transfer')
 
     implementation 'org.signal:zkgroup-android:0.7.0'
-    implementation 'org.whispersystems:signal-client-android:0.1.5'
+    implementation "org.whispersystems:signal-client-android:${LIBSIGNAL_CLIENT_VERSION}"
     implementation 'com.google.protobuf:protobuf-javalite:3.10.0'
+
+    implementation('com.mobilecoin:android-sdk:1.1.0') {
+        exclude group: 'com.google.protobuf'
+    }
+
     implementation 'org.signal:argon2:13.1@aar'
 
-//    implementation 'org.signal:ringrtc-android:2.8.9'
+//    implementation 'org.signal:ringrtc-android:2.11.1'
 
-    implementation "me.leolin:ShortcutBadger:1.1.16"
+    implementation "me.leolin:ShortcutBadger:1.1.22"
     implementation 'se.emilsjolander:stickylistheaders:2.7.0'
     implementation 'com.jpardogo.materialtabstrip:library:1.0.9'
     implementation 'org.apache.httpcomponents:httpclient-android:4.3.5'
     implementation 'com.github.chrisbanes:PhotoView:2.1.3'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-    annotationProcessor 'androidx.annotation:annotation:1.1.0'
+    kapt 'com.github.bumptech.glide:compiler:4.11.0'
+    kapt 'androidx.annotation:annotation:1.1.0'
     implementation 'com.makeramen:roundedimageview:2.1.0'
     implementation 'com.pnikosis:materialish-progress:1.5'
     implementation 'org.greenrobot:eventbus:3.0.0'
@@ -396,19 +518,22 @@ dependencies {
         exclude group: 'com.android.support', module: 'recyclerview-v7'
     }
 
-    implementation 'com.airbnb.android:lottie:3.0.7'
+    implementation 'com.airbnb.android:lottie:3.6.0'
 
     implementation 'com.codewaves.stickyheadergrid:stickyheadergrid:0.9.4'
     implementation 'com.github.dmytrodanylyk.circular-progress-button:library:1.1.3-S2'
-    implementation 'org.signal:android-database-sqlcipher:3.5.9-S3'
+
+    implementation "net.zetetic:android-database-sqlcipher:4.4.3"
+    implementation "androidx.sqlite:sqlite:2.1.0"
+
     implementation('com.googlecode.ez-vcard:ez-vcard:0.9.11') {
         exclude group: 'com.fasterxml.jackson.core'
         exclude group: 'org.freemarker'
     }
     implementation 'dnsjava:dnsjava:2.1.9'
 
-    flipperImplementation 'com.facebook.flipper:flipper:0.32.2'
-    flipperImplementation 'com.facebook.soloader:soloader:0.8.2'
+    flipperImplementation 'com.facebook.flipper:flipper:0.91.0'
+    flipperImplementation 'com.facebook.soloader:soloader:0.10.1'
 
     testImplementation 'junit:junit:4.12'
     testImplementation 'org.assertj:assertj-core:3.11.1'
@@ -425,76 +550,27 @@ dependencies {
     testImplementation 'org.robolectric:shadows-multidex:4.4'
     testImplementation 'org.hamcrest:hamcrest:2.2'
 
+    testImplementation(testFixtures(project(":libsignal-service")))
+
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
+
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxkotlin:3.0.1'
 }
 
 dependencyVerification {
     configuration = '(play|website)(Prod|Staging)(Debug|Release)RuntimeClasspath'
 }
 
-def assembleWebsiteDescriptor = { variant, file ->
-    if (file.exists()) {
-        MessageDigest md = MessageDigest.getInstance("SHA-256");
-        file.eachByte 4096, { bytes, size ->
-            md.update(bytes, 0, size);
-        }
-
-        String digest = md.digest().collect { String.format "%02x", it }.join();
-        String url = variant.productFlavors.get(0).ext.websiteUpdateUrl
-        String apkName = file.getName()
-
-        String descriptor = "{" +
-                "\"versionCode\" : ${canonicalVersionCode * postFixSize + abiPostFix['universal']}," +
-                "\"versionName\" : \"$canonicalVersionName\"," +
-                "\"sha256sum\" : \"$digest\"," +
-                "\"url\" : \"$url/$apkName\"" +
-                "}"
-
-        File descriptorFile = new File(file.getParent(), apkName.replace(".apk", ".json"))
-
-        descriptorFile.write(descriptor)
-    }
-}
-
-def signProductionRelease = { variant ->
-    variant.outputs.collect { output ->
-        String apkName = output.outputFile.name
-        File inputFile = new File(output.outputFile.path)
-        File outputFile = new File(output.outputFile.parent, apkName.replace('-unsigned', ''))
-
-        new ApkSignerUtil('sun.security.pkcs11.SunPKCS11',
-                'pkcs11.config',
-                'PKCS11',
-                'file:pkcs11.password').calculateSignature(inputFile.getAbsolutePath(),
-                outputFile.getAbsolutePath())
-
-        inputFile.delete()
-        outputFile
-    }
-}
-
-task signProductionPlayRelease {
-    doLast {
-        signProductionRelease(android.applicationVariants.find { (it.name == 'playProdRelease') })
-    }
-}
-
-task signProductionInternalRelease {
-    doLast {
-        signProductionRelease(android.applicationVariants.find { (it.name == 'internalProdRelease') })
-    }
-}
-
-task signProductionWebsiteRelease {
-    doLast {
-        def  variant       = android.applicationVariants.find { (it.name == 'websiteProdRelease') }
-        File signedRelease = signProductionRelease(variant).find { it.name.contains('universal') }
-        assembleWebsiteDescriptor(variant, signedRelease)
-    }
-}
-
 def getLastCommitTimestamp() {
+    if (!(new File('.git').exists())) {
+        return System.currentTimeMillis().toString()
+    }
+
     new ByteArrayOutputStream().withStream { os ->
         def result = exec {
             executable = 'git'
@@ -503,6 +579,39 @@ def getLastCommitTimestamp() {
         }
 
         return os.toString() + "000"
+    }
+}
+
+def getGitHash() {
+    if (!(new File('.git').exists())) {
+        return "abcd1234"
+    }
+
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+def getCurrentGitTag() {
+    if (!(new File('.git').exists())) {
+        return ''
+    }
+
+    def stdout = new ByteArrayOutputStream()
+    exec {
+        commandLine 'git', 'tag', '--points-at', 'HEAD'
+        standardOutput = stdout
+    }
+
+    def output = stdout.toString().trim()
+
+    if (output != null && output.size() > 0) {
+        return output.split('\n')[0];
+    } else {
+        return null
     }
 }
 
@@ -525,4 +634,10 @@ def loadKeystoreProperties(filename) {
     } else {
         return null;
     }
+}
+
+def getDateSuffix() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy-MM-dd-HH:mm')
+    return formattedDate
 }

@@ -82,6 +82,14 @@
         <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.Light</item>
     </style>
 
+    <style name="TextSecure.LightActionBar.Settings">
+        <item name="colorControlHighlight">@color/transparent_black_15</item>
+    </style>
+
+    <style name="TextSecure.DarkActionBar.Settings">
+        <item name="colorControlHighlight">@color/transparent_white_15</item>
+    </style>
+
     <style name="TextSecure.LightActionBar.DarkText" parent="TextSecure.LightActionBar"></style>
 
     <style name="TextSecure.HighlightActionBar" parent="@style/TextSecure.DarkActionBar.Conversation">
@@ -139,6 +147,11 @@
         <item name="android:colorControlNormal" tools:ignore="NewApi">@color/signal_text_primary</item>
         <item name="colorControlActivated">?colorAccent</item>
         <item name="android:colorControlActivated" tools:ignore="NewApi">?colorAccent</item>
+    </style>
+
+    <style name="Signal.Toolbar.PaymentInfoCard" parent="@style/Widget.AppCompat.ActionBar">
+        <item name="actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
+        <item name="android:actionOverflowButtonStyle">@style/Signal.Toolbar.Overflow.PaymentCard</item>
     </style>
 
     <style name="TextSecure.TitleTextStyle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
@@ -357,12 +370,6 @@
         <item name="searchIcon">@drawable/ic_search_24</item>
     </style>
 
-    <style name="Signal.SearchView.Dark">
-        <item name="closeIcon">@drawable/ic_x_conversation_20</item>
-        <item name="searchHintIcon">@drawable/ic_search_conversation_24</item>
-        <item name="searchIcon">@drawable/ic_search_conversation_24</item>
-    </style>
-
     <style name="Signal.Toolbar.Overflow" parent="Widget.AppCompat.ActionButton.Overflow">
         <item name="srcCompat">@drawable/ic_more_vert_24</item>
         <item name="android:src">@null</item>
@@ -378,6 +385,10 @@
     <style name="Signal.Toolbar.Overflow.Conversation">
         <item name="srcCompat">@drawable/ic_more_vert_conversation_24</item>
         <item name="android:tint">@null</item>
+    </style>
+
+    <style name="Signal.Toolbar.Overflow.PaymentCard">
+        <item name="android:tint">@color/payment_info_card_overflow_tint</item>
     </style>
 
     <style name="TextSecure.ActionModeStyle" parent="@style/Widget.AppCompat.ActionMode">
@@ -505,6 +516,13 @@
         <item name="iconGravity">textStart</item>
     </style>
 
+    <style name="Widget.TimeDurationPicker.Dialog">
+        <item name="durationDisplayBackground">?colorControlActivated</item>
+        <item name="textAppearanceDisplay">@style/TextAppearance.TimeDurationPicker.Display.Large.Dark</item>
+        <item name="textAppearanceUnit">@style/TextAppearance.TimeDurationPicker.Unit.Large.Dark</item>
+        <item name="android:layoutDirection">ltr</item>
+    </style>
+
     <style name="ShapeAppearanceOverlay.Signal.Button.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
@@ -527,5 +545,19 @@
         <item name="android:paddingStart">30px</item>
         <item name="android:ellipsize">marquee</item>
         <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Widget.Signal.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="android:paddingStart">@dimen/dsl_settings_gutter</item>
+        <item name="android:paddingEnd">@dimen/dsl_settings_gutter</item>
+        <item name="boxBackgroundColor">@color/signal_background_secondary</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxStrokeWidth">0dp</item>
+        <item name="boxStrokeWidthFocused">0dp</item>
+        <item name="hintTextColor">@color/signal_accent_primary</item>
+        <item name="android:textColorHint">@color/signal_text_hint</item>
     </style>
 </resources>

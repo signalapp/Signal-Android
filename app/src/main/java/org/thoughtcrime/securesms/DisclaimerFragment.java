@@ -38,6 +38,9 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.Arrays;
+import java.util.Locale;
+
 public class DisclaimerFragment extends Fragment {
     private static final String TAG = DisclaimerFragment.class.getSimpleName();
     private TextView mDisclaimerTV;
@@ -187,12 +190,23 @@ public class DisclaimerFragment extends Fragment {
         }
 
         if (localNumber.isPresent()) {
-            getModel().onNumberDetected(localNumber.get().getCountryCode(), localNumber.get().getNationalNumber());
+            Log.i(TAG, "Phone number detected");
+            Phonenumber.PhoneNumber phoneNumber    = localNumber.get();
+            String                  nationalNumber = String.valueOf(phoneNumber.getNationalNumber());
+
+            if (phoneNumber.getNumberOfLeadingZeros() != 0) {
+                char[] value = new char[phoneNumber.getNumberOfLeadingZeros()];
+                Arrays.fill(value, '0');
+                nationalNumber = new String(value) + nationalNumber;
+                Log.i(TAG, String.format(Locale.US, "Padded national number with %d zeros", phoneNumber.getNumberOfLeadingZeros()));
+            }
+
+            getModel().onNumberDetected(phoneNumber.getCountryCode(), nationalNumber);
         } else {
             Optional<String> simCountryIso = Util.getSimCountryIso(requireContext());
 
             if (simCountryIso.isPresent() && !TextUtils.isEmpty(simCountryIso.get())) {
-                getModel().onNumberDetected(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get()), 0);
+                getModel().onNumberDetected(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get()), "");
             }
         }
     }

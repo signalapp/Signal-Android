@@ -17,6 +17,7 @@ import net.sqlcipher.database.SQLiteStatement;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.helpers.SQLCipherOpenHelper;
+import org.thoughtcrime.securesms.util.Hex;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
@@ -49,11 +50,13 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
       SignalDatabase keyValueOpenHelper   = KeyValueDatabase.getInstance((Application) getContext());
       SignalDatabase megaphoneOpenHelper  = MegaphoneDatabase.getInstance((Application) getContext());
       SignalDatabase jobManagerOpenHelper = JobDatabase.getInstance((Application) getContext());
+      SignalDatabase metricsOpenHelper    = LocalMetricsDatabase.getInstance((Application) getContext());
 
       return Arrays.asList(new Descriptor(mainOpenHelper),
                            new Descriptor(keyValueOpenHelper),
                            new Descriptor(megaphoneOpenHelper),
-                           new Descriptor(jobManagerOpenHelper));
+                           new Descriptor(jobManagerOpenHelper),
+                           new Descriptor(metricsOpenHelper));
     } catch (Exception e) {
       Log.i(TAG, "Unable to use reflection to access raw database.", e);
     }
@@ -237,7 +240,12 @@ public class FlipperSqlCipherAdapter extends DatabaseDriver<FlipperSqlCipherAdap
       case Cursor.FIELD_TYPE_FLOAT:
         return cursor.getDouble(column);
       case Cursor.FIELD_TYPE_BLOB:
-        return cursor.getBlob(column);
+        byte[] blob = cursor.getBlob(column);
+        String bytes = blob != null ? "(blob) " + Hex.toStringCondensed(Arrays.copyOf(blob, Math.min(blob.length, 32))) : null;
+        if (bytes != null && bytes.length() == 32 && blob.length > 32) {
+          bytes += "...";
+        }
+        return bytes;
       case Cursor.FIELD_TYPE_STRING:
       default:
         return cursor.getString(column);

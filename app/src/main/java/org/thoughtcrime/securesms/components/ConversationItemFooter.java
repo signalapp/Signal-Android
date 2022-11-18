@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -25,16 +26,21 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.Projection;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionInfoCompat;
 import org.thoughtcrime.securesms.util.dualsim.SubscriptionManagerCompat;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Locale;
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class ConversationItemFooter extends LinearLayout {
@@ -48,6 +54,8 @@ public class ConversationItemFooter extends LinearLayout {
 //  private View                audioSpace;
 //  private TextView            audioDuration;
 //  private LottieAnimationView revealDot;
+
+  private long previousMessageId;
 
   public ConversationItemFooter(Context context) {
     super(context);
@@ -97,11 +105,11 @@ public class ConversationItemFooter extends LinearLayout {
     presentTimer(messageRecord);
     presentInsecureIndicator(messageRecord);
     presentDeliveryStatus(messageRecord);
-    hideAudioDurationViews();
+    presentAudioDuration(messageRecord);
   }
 
   public void setAudioDuration(long totalDurationMillis, long currentPostionMillis) {
-    long remainingSecs = TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis);
+    long remainingSecs = Math.max(0, TimeUnit.MILLISECONDS.toSeconds(totalDurationMillis - currentPostionMillis));
 //    audioDuration.setText(getResources().getString(R.string.AudioView_duration, remainingSecs / 60, remainingSecs % 60));
   }
 
@@ -121,13 +129,35 @@ public class ConversationItemFooter extends LinearLayout {
 //    revealDot.addValueCallback(
 //        new KeyPath("**"),
 //        LottieProperty.COLOR_FILTER,
-//        frameInfo -> new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+//    frameInfo -> new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_IN)
 //    );
   }
 
   public void setOnlyShowSendingStatus(boolean onlyShowSending, MessageRecord messageRecord) {
     this.onlyShowSendingStatus = onlyShowSending;
     presentDeliveryStatus(messageRecord);
+  }
+
+  public void enableBubbleBackground(@DrawableRes int drawableRes, @Nullable Integer tint) {
+    setBackgroundResource(drawableRes);
+
+    if (tint != null) {
+      getBackground().setColorFilter(tint, PorterDuff.Mode.MULTIPLY);
+    } else {
+      getBackground().clearColorFilter();
+    }
+  }
+
+  public void disableBubbleBackground() {
+    setBackground(null);
+  }
+
+  public @Nullable Projection getProjection() {
+    if (getVisibility() == VISIBLE) {
+      return Projection.relativeToViewRoot(this, new Projection.Corners(ViewUtil.dpToPx(11)));
+    } else {
+      return null;
+    }
   }
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale) {
@@ -145,9 +175,15 @@ public class ConversationItemFooter extends LinearLayout {
       dateView.setText(errorMsg);
     } else if (messageRecord.isPendingInsecureSmsFallback()) {
       dateView.setText(R.string.ConversationItem_click_to_approve_unencrypted);
+    } else if (messageRecord.isRateLimited()) {
+      dateView.setText(R.string.ConversationItem_send_paused);
     } else {
-      dateView.setText(DateUtils.getExtendedRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
+      dateView.setText(DateUtils.getSimpleRelativeTimeSpanString(getContext(), locale, messageRecord.getTimestamp()));
     }
+  }
+
+  public TextView getDateView() {
+    return dateView;
   }
 
   private void presentSimInfo(@NonNull MessageRecord messageRecord) {
@@ -182,11 +218,11 @@ public class ConversationItemFooter extends LinearLayout {
         this.timerView.startAnimation();
 
         if (messageRecord.getExpireStarted() + messageRecord.getExpiresIn() <= System.currentTimeMillis()) {
-          ApplicationContext.getInstance(getContext()).getExpiringMessageManager().checkSchedule();
+          ApplicationDependencies.getExpiringMessageManager().checkSchedule();
         }
       } else if (!messageRecord.isOutgoing() && !messageRecord.isMediaPending()) {
         SignalExecutors.BOUNDED.execute(() -> {
-          ExpiringMessageManager expirationManager = ApplicationContext.getInstance(getContext()).getExpiringMessageManager();
+          ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
           long                   id                = messageRecord.getId();
           boolean                mms               = messageRecord.isMms();
 
@@ -206,6 +242,19 @@ public class ConversationItemFooter extends LinearLayout {
   }
 
   private void presentDeliveryStatus(@NonNull MessageRecord messageRecord) {
+    long newMessageId = buildMessageId(messageRecord);
+
+    if (previousMessageId == newMessageId && deliveryStatusView.isPending() && !messageRecord.isPending()) {
+      if (messageRecord.getRecipient().isGroup()) {
+        SignalLocalMetrics.GroupMessageSend.onUiUpdated(messageRecord.getId());
+      } else {
+        SignalLocalMetrics.IndividualMessageSend.onUiUpdated(messageRecord.getId());
+      }
+    }
+
+    previousMessageId = newMessageId;
+
+
     if (messageRecord.isFailed() || messageRecord.isPendingInsecureSmsFallback()) {
       deliveryStatusView.setNone();
       return;
@@ -243,6 +292,12 @@ public class ConversationItemFooter extends LinearLayout {
           moveAudioViewsForIncoming();
         }
         showAudioDurationViews();
+//
+//        if (messageRecord.getViewedReceiptCount() > 0 || (messageRecord.isOutgoing() && Objects.equals(messageRecord.getRecipient(), Recipient.self()))) {
+//          revealDot.setProgress(1f);
+//        } else {
+//          revealDot.setProgress(0f);
+//        }
       } else {
         hideAudioDurationViews();
       }
@@ -260,8 +315,8 @@ public class ConversationItemFooter extends LinearLayout {
 //    addView(audioDuration, 0);
 
     int padStart = ViewUtil.dpToPx(60);
-    int padLeft  = getLayoutDirection() == LAYOUT_DIRECTION_LTR ? padStart : 0;
-    int padRight = getLayoutDirection() == LAYOUT_DIRECTION_RTL ? padStart : 0;
+    int padLeft  = ViewUtil.isLtr(this) ? padStart : 0;
+    int padRight = ViewUtil.isRtl(this) ? padStart : 0;
 
 //    audioDuration.setPadding(padLeft, 0, padRight, 0);
   }
@@ -281,14 +336,16 @@ public class ConversationItemFooter extends LinearLayout {
 //    audioSpace.setVisibility(View.VISIBLE);
 //    audioDuration.setVisibility(View.VISIBLE);
 //
-//    if (FeatureFlags.viewedReceipts()) {
-//      revealDot.setVisibility(View.VISIBLE);
-//    }
+//    revealDot.setVisibility(View.VISIBLE);
   }
 
   private void hideAudioDurationViews() {
 //    audioSpace.setVisibility(View.GONE);
 //    audioDuration.setVisibility(View.GONE);
 //    revealDot.setVisibility(View.GONE);
+  }
+
+  private long buildMessageId(@NonNull MessageRecord record) {
+    return record.isMms() ? -record.getId() : record.getId();
   }
 }

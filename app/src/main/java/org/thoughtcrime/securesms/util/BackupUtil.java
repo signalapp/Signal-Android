@@ -33,7 +33,7 @@ import java.util.Objects;
 
 public class BackupUtil {
 
-  private static final String TAG = BackupUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(BackupUtil.class);
 
   public static final int PASSPHRASE_LENGTH = 30;
 
@@ -103,7 +103,7 @@ public class BackupUtil {
 
   public static void disableBackups(@NonNull Context context) {
     BackupPassphrase.set(context, null);
-    TextSecurePreferences.setBackupEnabled(context, false);
+    SignalStore.settings().setBackupEnabled(false);
     BackupUtil.deleteAllBackups();
 
     if (BackupUtil.isUserSelectionRequired(context)) {
@@ -166,7 +166,6 @@ public class BackupUtil {
     return backups;
   }
 
-  @RequiresApi(29)
   public static @Nullable BackupInfo getBackupInfoFromSingleUri(@NonNull Context context, @NonNull Uri singleUri) {
     DocumentFile documentFile = DocumentFile.fromSingleUri(context, singleUri);
 
@@ -206,7 +205,7 @@ public class BackupUtil {
     new SecureRandom().nextBytes(random);
 
     for (int i=0;i<30;i+=5) {
-      result[i/5] = String.format("%05d", ByteUtil.byteArray5ToLong(random, i) % 100000);
+      result[i/5] = String.format(Locale.ENGLISH,  "%05d", ByteUtil.byteArray5ToLong(random, i) % 100000);
     }
 
     return result;

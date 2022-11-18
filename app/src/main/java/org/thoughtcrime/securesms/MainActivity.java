@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferLockedDialog;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.CommunicationActions;
@@ -41,6 +43,8 @@ public class MainActivity extends PassphraseRequiredActivity {
     navigator.onCreate(savedInstanceState);
 
     handleGroupLinkInIntent(getIntent());
+    handleProxyInIntent(getIntent());
+    handleSignalMeIntent(getIntent());
 
     CachedInflater.from(this).clear();
   }
@@ -56,6 +60,8 @@ public class MainActivity extends PassphraseRequiredActivity {
   protected void onNewIntent(Intent intent) {
     super.onNewIntent(intent);
     handleGroupLinkInIntent(intent);
+    handleProxyInIntent(intent);
+    handleSignalMeIntent(intent);
   }
 
   @Override
@@ -68,6 +74,9 @@ public class MainActivity extends PassphraseRequiredActivity {
   protected void onResume() {
     super.onResume();
     dynamicTheme.onResume(this);
+    if (SignalStore.misc().isOldDeviceTransferLocked()) {
+      OldDeviceTransferLockedDialog.show(getSupportFragmentManager());
+    }
   }
 
   @Override
@@ -95,6 +104,19 @@ public class MainActivity extends PassphraseRequiredActivity {
     Uri data = intent.getData();
     if (data != null) {
       CommunicationActions.handlePotentialGroupLinkUrl(this, data.toString());
+    }
+  }
+
+  private void handleProxyInIntent(Intent intent) {
+    Uri data = intent.getData();
+    if (data != null) {
+      CommunicationActions.handlePotentialProxyLinkUrl(this, data.toString());
+    }
+  }
+  private void handleSignalMeIntent(Intent intent) {
+    Uri data = intent.getData();
+    if (data != null) {
+      CommunicationActions.handlePotentialSignalMeUrl(this, data.toString());
     }
   }
 }

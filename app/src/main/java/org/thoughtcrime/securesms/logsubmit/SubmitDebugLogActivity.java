@@ -58,7 +58,9 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     dynamicTheme.onCreate(this);
     setContentView(R.layout.submit_debug_log_activity);
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    getSupportActionBar().setTitle(R.string.AndroidManifest__log_submit);
+    getSupportActionBar().setTitle(R.string.HelpSettingsFragment__debug_log);
+
+    this.viewModel = ViewModelProviders.of(this, new SubmitDebugLogViewModel.Factory()).get(SubmitDebugLogViewModel.class);
 
     initView();
     initViewModel();
@@ -115,16 +117,13 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   public boolean onOptionsItemSelected(MenuItem item) {
     super.onOptionsItemSelected(item);
 
-    switch (item.getItemId()) {
-      case android.R.id.home:
-        finish();
-        return true;
-      case R.id.menu_edit_log:
-        viewModel.onEditButtonPressed();
-        break;
-      case R.id.menu_done_editing_log:
-        viewModel.onDoneEditingButtonPressed();
-        break;
+    if (item.getItemId() == android.R.id.home) {
+      finish();
+      return true;
+    } else if (item.getItemId() == R.id.menu_edit_log) {
+      viewModel.onEditButtonPressed();
+    } else if (item.getItemId() == R.id.menu_done_editing_log) {
+      viewModel.onDoneEditingButtonPressed();
     }
 
     return false;
@@ -150,10 +149,11 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     this.scrollToBottomButton = findViewById(R.id.debug_log_scroll_to_bottom);
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
 
-    this.adapter = new SubmitDebugLogAdapter(this);
+    this.adapter = new SubmitDebugLogAdapter(this, viewModel.getPagingController());
 
     this.lineList.setLayoutManager(new LinearLayoutManager(this));
     this.lineList.setAdapter(adapter);
+    this.lineList.setItemAnimator(null);
 
     submitButton.setOnClickListener(v -> onSubmitClicked());
 
@@ -181,8 +181,6 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void initViewModel() {
-    this.viewModel = ViewModelProviders.of(this, new SubmitDebugLogViewModel.Factory()).get(SubmitDebugLogViewModel.class);
-
     viewModel.getLines().observe(this, this::presentLines);
     viewModel.getMode().observe(this, this::presentMode);
   }
@@ -196,7 +194,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
       submitButton.setVisibility(View.VISIBLE);
     }
 
-    adapter.setLines(lines);
+    adapter.submitList(lines);
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
@@ -204,9 +202,10 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
       case NORMAL:
         editBanner.setVisibility(View.GONE);
         adapter.setEditing(false);
-        editMenuItem.setVisible(true);
-        doneMenuItem.setVisible(false);
-        searchMenuItem.setVisible(true);
+        // TODO [greyson][log] Not yet implemented
+//        editMenuItem.setVisible(true);
+//        doneMenuItem.setVisible(false);
+//        searchMenuItem.setVisible(true);
         break;
       case SUBMITTING:
         editBanner.setVisibility(View.GONE);

@@ -24,5 +24,15 @@ jobs:
     - name: Validate Gradle Wrapper
       uses: gradle/wrapper-validation-action@v1
 
+    - name: Remove Android S
+      run: $ANDROID_HOME/tools/bin/sdkmanager --uninstall "platforms;android-S"
+
     - name: Build with Gradle
       run: ./gradlew qa
+
+    - name: Archive reports for failed build
+      if: ${{ failure() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: reports
+        path: '*/build/reports'

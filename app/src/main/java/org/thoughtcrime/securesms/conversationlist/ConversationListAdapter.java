@@ -65,6 +65,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private boolean isFromLauncher = false;
   private int originItemCount = 0;
 
+  private Conversation conversation1;
+
   protected ConversationListAdapter(@NonNull Context context,
                                     @NonNull GlideRequests glideRequests,
                                     @NonNull OnConversationClickListener onConversationClickListener) {
@@ -73,6 +75,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     this.mContext = context;
     this.glideRequests = glideRequests;
     this.onConversationClickListener = onConversationClickListener;
+
+    this.setHasStableIds(true);
   }
 
   protected ConversationListAdapter(@NonNull Context context,
@@ -190,11 +194,17 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
 
 //    Log.d(TAG, "isFromLauncher : " + isFromLauncher);
-    if(isFromLauncher() && holder.getAdapterPosition() == 6){
+    /*if(isFromLauncher() && holder.getAdapterPosition() == 6){
       View item = (ConversationListItem) holder.itemView;
       item.requestFocus();
+      item.performClick();
       setFromLauncher(false);
-    }
+    }*/
+  }
+
+  public Conversation getConversation(){
+    conversation1 = getItem(6);
+    return conversation1;
   }
 
   public ConversationListItem getFromText() {
@@ -257,6 +267,23 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
 
     return super.getItem(position);
+  }
+
+  @Override
+  public long getItemId(int position) {
+    Conversation item = getItem(position);
+
+    if (item == null) {
+      return 0;
+    }
+
+    switch (item.getType()) {
+      case THREAD:          return item.getThreadRecord().getThreadId();
+      case PINNED_HEADER:   return -1;
+      case UNPINNED_HEADER: return -2;
+      case ARCHIVED_FOOTER: return -3;
+      default:              throw new AssertionError();
+    }
   }
 
   public void setPagingController(@Nullable PagingController pagingController) {

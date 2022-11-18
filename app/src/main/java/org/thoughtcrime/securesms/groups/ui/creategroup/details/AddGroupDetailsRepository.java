@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupsV2CapabilityChecker;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 
@@ -48,17 +49,24 @@ final class AddGroupDetailsRepository {
     });
   }
 
-  void createGroup(@NonNull  Set<RecipientId>  members,
-                   @Nullable byte[]            avatar,
-                   @Nullable String            name,
-                   boolean                     mms,
+  void createGroup(@NonNull Set<RecipientId> members,
+                   @Nullable byte[] avatar,
+                   @Nullable String name,
+                   boolean mms,
+                   @Nullable Integer disappearingMessagesTimer,
                    Consumer<GroupCreateResult> resultConsumer)
   {
     SignalExecutors.BOUNDED.execute(() -> {
       Set<Recipient> recipients = new HashSet<>(Stream.of(members).map(Recipient::resolved).toList());
 
       try {
-        GroupManager.GroupActionResult result = GroupManager.createGroup(context, recipients, avatar, name, mms);
+        GroupManager.GroupActionResult result = GroupManager.createGroup(context,
+                                                                         recipients,
+                                                                         avatar,
+                                                                         name,
+                                                                         mms,
+                                                                         disappearingMessagesTimer != null ? disappearingMessagesTimer
+                                                                                                           : SignalStore.settings().getUniversalExpireTimer());
 
         resultConsumer.accept(GroupCreateResult.success(result));
       } catch (GroupChangeBusyException e) {

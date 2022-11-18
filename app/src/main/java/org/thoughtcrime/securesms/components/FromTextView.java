@@ -1,7 +1,10 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -9,14 +12,19 @@ import android.text.style.StyleSpan;
 import android.util.AttributeSet;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.ViewUtil;
+
+import java.util.Objects;
 
 public class FromTextView extends EmojiTextView {
 
-  private static final String TAG = FromTextView.class.getSimpleName();
+  private static final String TAG = Log.tag(FromTextView.class);
 
   public FromTextView(Context context) {
     super(context);
@@ -64,9 +72,17 @@ public class FromTextView extends EmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked()) setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
-    else if (recipient.isMuted())   setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_volume_off_grey600_18dp, 0, 0, 0);
+    if      (recipient.isBlocked()) setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_block_grey600_18dp, 0, 0, 0);
+    else if (recipient.isMuted())   setCompoundDrawablesRelativeWithIntrinsicBounds(getMuted(), null, null, null);
     else                            setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+  }
+
+  private Drawable getMuted() {
+    Drawable mutedDrawable = Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.ic_bell_disabled_16));
+
+    mutedDrawable.setBounds(0, 0, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18));
+    mutedDrawable.setColorFilter(new PorterDuffColorFilter(ContextCompat.getColor(getContext(), R.color.signal_icon_tint_secondary), PorterDuff.Mode.SRC_IN));
+    return mutedDrawable;
   }
 
   private boolean mFocused;

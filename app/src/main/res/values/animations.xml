@@ -5,6 +5,11 @@
         <item name="android:windowExitAnimation">@anim/slide_to_top</item>
     </style>
 
+    <style name="FakeBottomSheet" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/slide_fade_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_fade_to_bottom</item>
+    </style>
+
     <style name="FadeScale" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/fade_scale_in</item>
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>

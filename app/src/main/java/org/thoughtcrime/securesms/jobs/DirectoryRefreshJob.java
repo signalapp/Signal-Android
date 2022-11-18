@@ -18,7 +18,7 @@ public class DirectoryRefreshJob extends BaseJob {
 
   public static final String KEY = "DirectoryRefreshJob";
 
-  private static final String TAG = DirectoryRefreshJob.class.getSimpleName();
+  private static final String TAG = Log.tag(DirectoryRefreshJob.class);
 
   private static final String KEY_RECIPIENT           = "recipient";
   private static final String KEY_NOTIFY_OF_NEW_USERS = "notify_of_new_users";

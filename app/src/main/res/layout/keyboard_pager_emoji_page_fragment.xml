@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/signal_background_secondary">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/emoji_keyboard_search_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/signal_background_secondary"
+        app:elevation="0dp"
+        app:expanded="false"
+        tools:expanded="true">
+
+        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+            android:id="@+id/emoji_keyboard_search_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="8dp"
+            android:paddingBottom="4dp"
+            app:click_only="true"
+            app:layout_scrollFlags="scroll|snap"
+            app:search_hint="@string/KeyboardPagerFragment_search_emoji"
+            app:search_icon_tint="@color/signal_icon_tint_tab_unselected"
+            app:show_always="true" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiPageView
+        android:id="@+id/emoji_page_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+        android:paddingBottom="@dimen/keyboard_toolbar_height"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <LinearLayout
+        android:id="@+id/emoji_keyboard_bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/keyboard_toolbar_height"
+        android:layout_gravity="bottom"
+        android:background="@color/signal_background_secondary"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emoji_search"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_open_emoji_search"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_search_24"
+            app:tint="@color/icon_tab_selector" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/emoji_categories_recycler"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/keyboard_toolbar_height"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:itemCount="10"
+            tools:listitem="@layout/keyboard_pager_category_icon" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/emoji_backspace"
+            android:layout_width="@dimen/keyboard_toolbar_height"
+            android:layout_height="@dimen/keyboard_toolbar_height"
+            android:background="?selectableItemBackground"
+            android:contentDescription="@string/KeyboardPagerFragment_backspace"
+            android:padding="11dp"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/ic_backspace_24"
+            app:tint="@color/icon_tab_selector" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/emoji_keyboard_top_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/toolbar_shadow"
+        app:app_bar_layout_id="@+id/emoji_keyboard_search_appbar"
+        app:layout_behavior=".keyboard.TopShadowBehavior" />
+
+    <View
+        android:id="@+id/emoji_keyboard_bottom_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:background="@drawable/bottom_toolbar_shadow"
+        app:bottom_bar_id="@+id/emoji_keyboard_bottom_bar"
+        app:layout_behavior=".keyboard.BottomShadowBehavior" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

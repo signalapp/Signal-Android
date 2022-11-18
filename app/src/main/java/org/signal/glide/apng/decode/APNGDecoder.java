@@ -12,7 +12,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
 
-import org.signal.glide.Log;
+import org.signal.core.util.logging.Log;
 import org.signal.glide.apng.io.APNGReader;
 import org.signal.glide.apng.io.APNGWriter;
 import org.signal.glide.common.decode.Frame;
@@ -32,7 +32,7 @@ import java.util.List;
  */
 public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
 
-    private static final String TAG = APNGDecoder.class.getSimpleName();
+    private static final String TAG = Log.tag(APNGDecoder.class);
 
     private APNGWriter apngWriter;
     private int mLoopCount;

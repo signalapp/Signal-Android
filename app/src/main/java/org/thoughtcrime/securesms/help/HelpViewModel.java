@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import org.thoughtcrime.securesms.logsubmit.LogLine;
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository;
 import org.thoughtcrime.securesms.util.livedata.LiveDataPair;
+import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 
@@ -18,20 +19,19 @@ public class HelpViewModel extends ViewModel {
 
   private static final int MINIMUM_PROBLEM_CHARS = 10;
 
-  private MutableLiveData<Boolean> problemMeetsLengthRequirements = new MutableLiveData<>();
-  private MutableLiveData<Boolean> hasLines                       = new MutableLiveData<>(false);
-  private LiveData<Boolean>        isFormValid                    = Transformations.map(new LiveDataPair<>(problemMeetsLengthRequirements, hasLines), this::transformValidationData);
+  private final MutableLiveData<Boolean> problemMeetsLengthRequirements;
+  private final MutableLiveData<Integer> categoryIndex;
+  private final LiveData<Boolean>        isFormValid;
 
   private final SubmitDebugLogRepository submitDebugLogRepository;
 
-  private List<LogLine> logLines;
-
   public HelpViewModel() {
-    submitDebugLogRepository = new SubmitDebugLogRepository();
+    submitDebugLogRepository       = new SubmitDebugLogRepository();
+    problemMeetsLengthRequirements = new MutableLiveData<>();
+    categoryIndex                  = new MutableLiveData<>(0);
 
-    submitDebugLogRepository.getLogLines(lines -> {
-      logLines = lines;
-      hasLines.postValue(true);
+    isFormValid = LiveDataUtil.combineLatest(problemMeetsLengthRequirements, categoryIndex, (meetsLengthRequirements, index) -> {
+      return meetsLengthRequirements == Boolean.TRUE && index > 0;
     });
   }
 
@@ -43,20 +43,24 @@ public class HelpViewModel extends ViewModel {
     problemMeetsLengthRequirements.setValue(problem.length() >= MINIMUM_PROBLEM_CHARS);
   }
 
+  void onCategorySelected(int index) {
+    this.categoryIndex.setValue(index);
+  }
+
+  int getCategoryIndex() {
+    return Optional.fromNullable(this.categoryIndex.getValue()).or(0);
+  }
+
   LiveData<SubmitResult> onSubmitClicked(boolean includeDebugLogs) {
     MutableLiveData<SubmitResult> resultLiveData = new MutableLiveData<>();
 
     if (includeDebugLogs) {
-      submitDebugLogRepository.submitLog(logLines, result -> resultLiveData.postValue(new SubmitResult(result, result.isPresent())));
+      submitDebugLogRepository.buildAndSubmitLog(result -> resultLiveData.postValue(new SubmitResult(result, result.isPresent())));
     } else {
       resultLiveData.postValue(new SubmitResult(Optional.absent(), false));
     }
 
     return resultLiveData;
-  }
-
-  private boolean transformValidationData(Pair<Boolean, Boolean> validationData) {
-    return validationData.first() == Boolean.TRUE && validationData.second() == Boolean.TRUE;
   }
 
   static class SubmitResult {

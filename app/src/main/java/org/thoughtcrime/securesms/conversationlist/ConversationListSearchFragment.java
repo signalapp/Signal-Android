@@ -18,13 +18,13 @@ import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.conversationlist.model.MessageResult;
-import org.thoughtcrime.securesms.conversationlist.model.SearchResult;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.search.SearchResult;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
@@ -75,11 +75,11 @@ public class ConversationListSearchFragment extends ConversationListFragment
 
   private void initializeViewModel() {
     viewModel = ViewModelProviders.of(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
-    viewModel.getSearchResult().observe(this, result -> {
+    viewModel.getSearchResult().observe(getViewLifecycleOwner(), result -> {
       result = result != null ? result : SearchResult.EMPTY;
       searchAdapter.updateResults(result);
     });
-    viewModel.updateQuery("");
+    viewModel.onSearchQueryUpdated("");
   }
 
   private void initializeListAdapters() {
@@ -111,14 +111,14 @@ public class ConversationListSearchFragment extends ConversationListFragment
   }
 
   @Override
-  public void onMessageClicked(@NonNull MessageResult message) {
+  public void onMessageClicked(MessageResult message) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      int startingPosition = DatabaseFactory.getMmsSmsDatabase(getContext()).getMessagePositionInConversation(message.threadId, message.receivedTimestampMs);
+      int startingPosition = DatabaseFactory.getMmsSmsDatabase(getContext()).getMessagePositionInConversation(message.getThreadId(), message.getReceivedTimestampMs());
       return Math.max(0, startingPosition);
     }, startingPosition -> {
       hideKeyboard();
-      getNavigator().goToConversation(message.conversationRecipient.getId(),
-              message.threadId,
+      getNavigator().goToConversation(message.getConversationRecipient().getId(),
+              message.getThreadId(),
               ThreadDatabase.DistributionTypes.DEFAULT,
               startingPosition);
     });
@@ -127,7 +127,7 @@ public class ConversationListSearchFragment extends ConversationListFragment
   @Override
   public void onSearchTextChange(String text) {
     String trimmed = text.trim();
-    viewModel.updateQuery(trimmed);
+    viewModel.onSearchQueryUpdated(trimmed);
     //TODO Temp mark decoration to avoid bug, need further check.
     /*if (trimmed.length() > 0) {
       list.removeItemDecoration(searchAdapterDecoration);

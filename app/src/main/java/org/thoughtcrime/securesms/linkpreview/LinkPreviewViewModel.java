@@ -11,10 +11,10 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.RequestController;
 import org.thoughtcrime.securesms.util.Debouncer;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Collections;
@@ -53,13 +53,27 @@ public class LinkPreviewViewModel extends ViewModel {
     return linkPreviewSafeState.getValue() != null && linkPreviewSafeState.getValue().hasContent();
   }
 
-  public @NonNull List<LinkPreview> getActiveLinkPreviews() {
-    final LinkPreviewState state = linkPreviewSafeState.getValue();
+  /**
+   * Gets the current state for use in the UI, then resets local state to prepare for the next message send.
+   */
+  public @NonNull List<LinkPreview> onSend() {
+    final LinkPreviewState currentState = linkPreviewSafeState.getValue();
 
-    if (state == null || !state.getLinkPreview().isPresent()) {
+    if (activeRequest != null) {
+      activeRequest.cancel();
+      activeRequest = null;
+    }
+
+    userCanceled = false;
+    activeUrl    = null;
+
+    debouncer.clear();
+    linkPreviewState.setValue(LinkPreviewState.forNoLinks());
+
+    if (currentState == null || !currentState.getLinkPreview().isPresent()) {
       return Collections.emptyList();
     } else {
-      return Collections.singletonList(state.getLinkPreview().get());
+      return Collections.singletonList(currentState.getLinkPreview().get());
     }
   }
 
@@ -99,7 +113,7 @@ public class LinkPreviewViewModel extends ViewModel {
       activeRequest = repository.getLinkPreview(context, link.get().getUrl(), new LinkPreviewRepository.Callback() {
           @Override
           public void onSuccess(@NonNull LinkPreview linkPreview) {
-            Util.runOnMain(() -> {
+            ThreadUtil.runOnMain(() -> {
               if (!userCanceled) {
                 if (activeUrl != null && activeUrl.equals(linkPreview.getUrl())) {
                   linkPreviewState.setValue(LinkPreviewState.forPreview(linkPreview));
@@ -113,9 +127,13 @@ public class LinkPreviewViewModel extends ViewModel {
 
         @Override
         public void onError(@NonNull LinkPreviewRepository.Error error) {
-          Util.runOnMain(() -> {
+          ThreadUtil.runOnMain(() -> {
             if (!userCanceled) {
-              linkPreviewState.setValue(LinkPreviewState.forLinksWithNoPreview(error));
+              if (activeUrl != null) {
+                linkPreviewState.setValue(LinkPreviewState.forLinksWithNoPreview(error));
+              } else {
+                linkPreviewState.setValue(LinkPreviewState.forNoLinks());
+              }
             }
             activeRequest = null;
           });
@@ -143,19 +161,6 @@ public class LinkPreviewViewModel extends ViewModel {
     if (!enabled) {
       onUserCancel();
     }
-  }
-
-  public void onSend() {
-    if (activeRequest != null) {
-      activeRequest.cancel();
-      activeRequest = null;
-    }
-
-    userCanceled = false;
-    activeUrl    = null;
-
-    debouncer.clear();
-    linkPreviewState.setValue(LinkPreviewState.forNoLinks());
   }
 
   public void onEnabled() {

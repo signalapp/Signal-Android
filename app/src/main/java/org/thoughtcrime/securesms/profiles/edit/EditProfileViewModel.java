@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.profiles.edit;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.util.Consumer;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -11,27 +10,29 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.ProfileName;
+import org.thoughtcrime.securesms.profiles.edit.EditProfileRepository.UploadResult;
+import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.Arrays;
 import java.util.Objects;
 
 class EditProfileViewModel extends ViewModel {
 
-  private final MutableLiveData<String>           givenName           = new MutableLiveData<>();
-  private final MutableLiveData<String>           familyName          = new MutableLiveData<>();
-  private final LiveData<String>                  trimmedGivenName    = Transformations.map(givenName, StringUtil::trimToVisualBounds);
-  private final LiveData<String>                  trimmedFamilyName   = Transformations.map(familyName, StringUtil::trimToVisualBounds);
-  private final LiveData<ProfileName>             internalProfileName = LiveDataUtil.combineLatest(trimmedGivenName, trimmedFamilyName, ProfileName::fromParts);
-  private final MutableLiveData<byte[]>           internalAvatar      = new MutableLiveData<>();
-  private final MutableLiveData<byte[]>           originalAvatar      = new MutableLiveData<>();
-  private final MutableLiveData<Optional<String>> internalUsername    = new MutableLiveData<>();
-  private final MutableLiveData<String>           originalDisplayName = new MutableLiveData<>();
-  private final LiveData<Boolean>                 isFormValid;
-  private final EditProfileRepository             repository;
-  private final GroupId                           groupId;
+  private final MutableLiveData<String>       givenName           = new MutableLiveData<>();
+  private final MutableLiveData<String>       familyName          = new MutableLiveData<>();
+  private final LiveData<String>              trimmedGivenName    = Transformations.map(givenName, StringUtil::trimToVisualBounds);
+  private final LiveData<String>              trimmedFamilyName   = Transformations.map(familyName, StringUtil::trimToVisualBounds);
+  private final LiveData<ProfileName>         internalProfileName = LiveDataUtil.combineLatest(trimmedGivenName, trimmedFamilyName, ProfileName::fromParts);
+  private final MutableLiveData<byte[]>       internalAvatar      = new MutableLiveData<>();
+  private final MutableLiveData<byte[]>       originalAvatar      = new MutableLiveData<>();
+  private final MutableLiveData<String>       originalDisplayName = new MutableLiveData<>();
+  private final SingleLiveEvent<UploadResult> uploadResult        = new SingleLiveEvent<>();
+  private final LiveData<Boolean>             isFormValid;
+  private final EditProfileRepository         repository;
+  private final GroupId                       groupId;
+  private       String                        originalDescription;
 
   private EditProfileViewModel(@NonNull EditProfileRepository repository, boolean hasInstanceState, @Nullable GroupId groupId) {
     this.repository  = repository;
@@ -43,6 +44,10 @@ class EditProfileViewModel extends ViewModel {
       if (groupId != null) {
         repository.getCurrentDisplayName(originalDisplayName::setValue);
         repository.getCurrentName(givenName::setValue);
+        repository.getCurrentDescription(d -> {
+          originalDescription = d;
+          familyName.setValue(d);
+        });
       } else {
         repository.getCurrentProfileName(name -> {
           givenName.setValue(name.getGivenName());
@@ -77,10 +82,6 @@ class EditProfileViewModel extends ViewModel {
     return Transformations.distinctUntilChanged(internalAvatar);
   }
 
-  public LiveData<Optional<String>> username() {
-    return internalUsername;
-  }
-
   public boolean hasAvatar() {
     return internalAvatar.getValue() != null;
   }
@@ -91,6 +92,10 @@ class EditProfileViewModel extends ViewModel {
 
   public boolean canRemoveProfilePhoto() {
     return hasAvatar();
+  }
+
+  public SingleLiveEvent<UploadResult> getUploadResult() {
+    return uploadResult;
   }
 
   public void setGivenName(String givenName) {
@@ -105,13 +110,10 @@ class EditProfileViewModel extends ViewModel {
     internalAvatar.setValue(avatar);
   }
 
-  public void refreshUsername() {
-    repository.getCurrentUsername(internalUsername::postValue);
-  }
-
-  public void submitProfile(Consumer<EditProfileRepository.UploadResult> uploadResultConsumer) {
+  public void submitProfile() {
     ProfileName profileName = isGroup() ? ProfileName.EMPTY : internalProfileName.getValue();
     String      displayName = isGroup() ? givenName.getValue() : "";
+    String      description = isGroup() ? familyName.getValue() : "";
 
     if (profileName == null || displayName == null) {
       return;
@@ -120,13 +122,16 @@ class EditProfileViewModel extends ViewModel {
     byte[] oldAvatar      = originalAvatar.getValue();
     byte[] newAvatar      = internalAvatar.getValue();
     String oldDisplayName = isGroup() ? originalDisplayName.getValue() : null;
+    String oldDescription = isGroup() ? originalDescription : null;
 
     repository.uploadProfile(profileName,
                              displayName,
                              !Objects.equals(StringUtil.stripBidiProtection(oldDisplayName), displayName),
+                             description,
+                             !Objects.equals(StringUtil.stripBidiProtection(oldDescription), description),
                              newAvatar,
                              !Arrays.equals(oldAvatar, newAvatar),
-                             uploadResultConsumer);
+                             uploadResult::postValue);
   }
 
   static class Factory implements ViewModelProvider.Factory {

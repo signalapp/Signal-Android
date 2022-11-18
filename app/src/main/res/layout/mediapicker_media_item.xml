@@ -34,6 +34,7 @@
             android:layout_marginStart="2dp"
             android:tint="@color/core_ultramarine"
             android:scaleType="fitXY"
+            android:layoutDirection="ltr"
             app:srcCompat="@drawable/triangle_right" />
 
     </FrameLayout>

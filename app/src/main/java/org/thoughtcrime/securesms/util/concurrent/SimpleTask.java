@@ -5,8 +5,8 @@ import android.os.AsyncTask;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.Lifecycle;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.util.Util;
 
 import java.util.concurrent.Executor;
 
@@ -28,7 +28,7 @@ public class SimpleTask {
       final E result = backgroundTask.run();
 
       if (isValid(lifecycle)) {
-        Util.runOnMain(() -> {
+        ThreadUtil.runOnMain(() -> {
           if (isValid(lifecycle)) {
             foregroundTask.run(result);
           }
@@ -52,7 +52,7 @@ public class SimpleTask {
   public static <E> void run(@NonNull Executor executor, @NonNull BackgroundTask<E> backgroundTask, @NonNull ForegroundTask<E> foregroundTask) {
     executor.execute(() -> {
       final E result = backgroundTask.run();
-      Util.runOnMain(() -> foregroundTask.run(result));
+      ThreadUtil.runOnMain(() -> foregroundTask.run(result));
     });
   }
 

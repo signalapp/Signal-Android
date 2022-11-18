@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="@string/preferences__submit_debug_log"
+          android:id="@+id/menu_submit_debug_logs"
+          android:icon="@android:drawable/ic_menu_upload" />
+
+    <item android:title="@string/PinRestoreEntryFragment_contact_support"
+          android:id="@+id/menu_contact_support" />
+</menu>

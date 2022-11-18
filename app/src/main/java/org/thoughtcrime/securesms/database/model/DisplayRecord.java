@@ -206,6 +206,10 @@ public abstract class DisplayRecord {
             deliveryStatus < SmsDatabase.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
   }
 
+  public boolean isRemoteViewed() {
+    return viewReceiptCount > 0;
+  }
+
   public boolean isRemoteRead() {
     return readReceiptCount > 0;
   }

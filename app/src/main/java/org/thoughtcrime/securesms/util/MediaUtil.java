@@ -48,7 +48,7 @@ import java.util.concurrent.ExecutionException;
 
 public class MediaUtil {
 
-  private static final String TAG = MediaUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(MediaUtil.class);
 
   public static final String IMAGE_PNG         = "image/png";
   public static final String IMAGE_JPEG        = "image/jpeg";
@@ -64,6 +64,7 @@ public class MediaUtil {
   public static final String LONG_TEXT         = "text/x-signal-plain";
   public static final String VIEW_ONCE         = "application/x-signal-view-once";
   public static final String UNKNOWN           = "*/*";
+  public static final String OCTET             = "application/octet-stream";
 
   public static SlideType getSlideTypeFromContentType(@NonNull String contentType) {
     if (isGif(contentType)) {
@@ -111,7 +112,7 @@ public class MediaUtil {
     }
 
     String type = context.getContentResolver().getType(uri);
-    if (type == null) {
+    if (type == null || isOctetStream(type)) {
       final String extension = MimeTypeMap.getFileExtensionFromUrl(uri.toString());
       type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension.toLowerCase());
     }
@@ -283,19 +284,42 @@ public class MediaUtil {
   }
 
   public static boolean isImageType(String contentType) {
-    return (null != contentType) && contentType.startsWith("image/");
+    if (contentType == null) {
+      return false;
+    }
+
+    return contentType.startsWith("image/") ||
+           contentType.equals(MediaStore.Images.Media.CONTENT_TYPE);
   }
 
   public static boolean isAudioType(String contentType) {
-    return (null != contentType) && contentType.startsWith("audio/");
+    if (contentType == null) {
+      return false;
+    }
+
+    return contentType.startsWith("audio/") ||
+           contentType.equals(MediaStore.Audio.Media.CONTENT_TYPE);
   }
 
   public static boolean isVideoType(String contentType) {
-    return (null != contentType) && contentType.startsWith("video/");
+    if (contentType == null) {
+      return false;
+    }
+
+    return contentType.startsWith("video/") ||
+           contentType.equals(MediaStore.Video.Media.CONTENT_TYPE);
   }
 
   public static boolean isImageOrVideoType(String contentType) {
     return isImageType(contentType) || isVideoType(contentType);
+  }
+
+  public static boolean isImageVideoOrAudioType(String contentType) {
+    return isImageOrVideoType(contentType) || isAudioType(contentType);
+  }
+
+  public static boolean isImageAndNotGif(@NonNull String contentType) {
+    return isImageType(contentType) && !isGif(contentType);
   }
 
   public static boolean isLongTextType(String contentType) {
@@ -304,6 +328,10 @@ public class MediaUtil {
 
   public static boolean isViewOnceType(String contentType) {
     return (null != contentType) && contentType.equals(VIEW_ONCE);
+  }
+
+  public static boolean isOctetStream(@Nullable String contentType) {
+    return OCTET.equals(contentType);
   }
 
   public static boolean hasVideoThumbnail(@NonNull Context context, @Nullable Uri uri) {

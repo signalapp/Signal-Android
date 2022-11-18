@@ -6,7 +6,7 @@ import net.sqlcipher.database.SQLiteDatabaseHook;
 /**
  * Standard hook for setting common SQLCipher PRAGMAs.
  */
-public final class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
+public class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
 
   @Override
   public void preKey(SQLiteDatabase db) {
@@ -16,7 +16,11 @@ public final class SqlCipherDatabaseHook implements SQLiteDatabaseHook {
 
   @Override
   public void postKey(SQLiteDatabase db) {
+    db.rawExecSQL("PRAGMA cipher_compatibility = 3;");
+    db.rawExecSQL("PRAGMA cipher_memory_security = OFF;");
     db.rawExecSQL("PRAGMA kdf_iter = '1';");
     db.rawExecSQL("PRAGMA cipher_page_size = 4096;");
+    db.enableWriteAheadLogging();
+    db.setForeignKeyConstraintsEnabled(true);
   }
 }

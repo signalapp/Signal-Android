@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.NotPushRegisteredException;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -17,6 +19,7 @@ import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.multidevice.KeysMessage;
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.storage.StorageKey;
 
 import java.io.IOException;
@@ -25,7 +28,7 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   public static final String KEY = "MultiDeviceKeysUpdateJob";
 
-  private static final String TAG = MultiDeviceKeysUpdateJob.class.getSimpleName();
+  private static final String TAG = Log.tag(MultiDeviceKeysUpdateJob.class);
 
   public MultiDeviceKeysUpdateJob() {
     this(new Parameters.Builder()
@@ -53,20 +56,25 @@ public class MultiDeviceKeysUpdateJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, UntrustedIdentityException {
+    if (!Recipient.self().isRegistered()) {
+      throw new NotPushRegisteredException();
+    }
+
     if (!TextSecurePreferences.isMultiDevice(context)) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
     }
 
     SignalServiceMessageSender messageSender     = ApplicationDependencies.getSignalServiceMessageSender();
-    StorageKey                 storageServiceKey = SignalStore.storageServiceValues().getOrCreateStorageKey();
+    StorageKey                 storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
-    messageSender.sendMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.fromNullable(storageServiceKey))),
-                              UnidentifiedAccessUtil.getAccessForSync(context));
+    messageSender.sendSyncMessage(SignalServiceSyncMessage.forKeys(new KeysMessage(Optional.fromNullable(storageServiceKey))),
+                                  UnidentifiedAccessUtil.getAccessForSync(context));
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
+    if (e instanceof ServerRejectedException) return false;
     return e instanceof PushNetworkException;
   }
 

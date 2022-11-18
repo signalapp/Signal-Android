@@ -1,6 +1,11 @@
 package org.thoughtcrime.securesms.profiles;
 
+import android.app.Application;
+
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -8,6 +13,8 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 
+@RunWith(RobolectricTestRunner.class)
+@Config(manifest = Config.NONE, application = Application.class)
 public final class ProfileNameTest {
 
   @Test
@@ -167,10 +174,10 @@ public final class ProfileNameTest {
 
   @Test
   public void fromParts_with_long_name_parts() {
-    ProfileName name = ProfileName.fromParts("GivenSomeVeryLongNameSomeVeryLongName", "FamilySomeVeryLongNameSomeVeryLongName");
+    ProfileName name = ProfileName.fromParts("GivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongName", "FamilySomeVeryLongNameSomeVeryLongName");
 
-    assertEquals("GivenSomeVeryLongNameSomeV", name.getGivenName());
-    assertEquals("FamilySomeVeryLongNameSome", name.getFamilyName());
+    assertEquals("GivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLongNameSomeVeryLongNameGivenSomeVeryLong", name.getGivenName());
+    assertEquals("FamilySomeVeryLongNameSomeVeryLongName", name.getFamilyName());
   }
 
   @Test

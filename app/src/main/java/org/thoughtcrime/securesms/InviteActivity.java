@@ -20,25 +20,21 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.ViewCompat;
 import androidx.interpolator.view.animation.FastOutSlowInInterpolator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.fasterxml.jackson.databind.exc.IgnoredPropertyException;
-
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar;
-import org.thoughtcrime.securesms.components.ContactFilterToolbar.OnFilterChangedListener;
-import org.thoughtcrime.securesms.components.MyEditText;
+import org.thoughtcrime.securesms.components.ContactFilterView;
+import org.thoughtcrime.securesms.components.ContactFilterView.OnFilterChangedListener;
 import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
 import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -49,10 +45,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
-import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
-import org.thoughtcrime.securesms.util.adapter.RecyclerViewConcatenateAdapterStickyHeader;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture.Listener;
 import org.thoughtcrime.securesms.util.task.ProgressDialogAsyncTask;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -183,8 +176,9 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
 
 //    View shareTextView = findViewById(R.id.share_textView);
 //    smsTextView = findViewById(R.id.sms_textView);
-    Button               smsCancelButton = findViewById(R.id.cancel_sms_button);
-    ContactFilterToolbar contactFilter   = findViewById(R.id.contact_filter);
+    Button            smsCancelButton = findViewById(R.id.cancel_sms_button);
+    Toolbar           smsToolbar      = findViewById(R.id.sms_send_frame_toolbar);
+    ContactFilterView contactFilter   = findViewById(R.id.contact_filter_edit_text);
 
 //    mScrollView       = findViewById(R.id.idScrol);
 //    inviteText        = findViewById(R.id.invite_text);
@@ -196,11 +190,10 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
 //    inviteText.setText(getString(R.string.InviteActivity_lets_switch_to_signal, getString(R.string.install_url)));
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
 
-    contactsFragment.setOnContactSelectedListener(this);
     smsCancelButton.setOnClickListener(new SmsCancelClickListener());
     smsSendButton.setOnClickListener(new SmsSendClickListener());
     contactFilter.setOnFilterChangedListener(new ContactFilterChangedListener());
-    contactFilter.setNavigationIcon(R.drawable.ic_search_conversation_24);
+    smsToolbar.setNavigationIcon(R.drawable.ic_search_conversation_24);
 
 //    if (Util.isDefaultSmsProvider(this)) {
 //      shareTextView.setOnClickListener(new ShareClickListener());
@@ -246,6 +239,10 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
     updateSmsButtonText(contactsFragment.getSelectedContacts().size());
   }
 
+  public void onSelectionChanged() {
+
+  }
+
   private void sendSmsInvites() {
     new SendSmsInvitesAsyncTask(this,textStr )
         .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,
@@ -254,9 +251,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
   }
 
   private void updateSmsButtonText(int count) {
-    smsSendButton.setText(getResources().getQuantityString(R.plurals.InviteActivity_send_sms_to_friends,
-                                                           count,
-                                                           count));
+    smsSendButton.setText(getResources().getString(R.string.InviteActivity_send_sms, count));
     smsSendButton.setEnabled(count > 0);
   }
 
@@ -267,6 +262,16 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
       cancelSmsSelection();
     } else {
       super.onBackPressed();
+    }
+  }
+
+  @Override
+  public boolean onSupportNavigateUp() {
+    if (smsSendFrame.getVisibility() == View.VISIBLE) {
+      cancelSmsSelection();
+      return false;
+    } else {
+      return super.onSupportNavigateUp();
     }
   }
 
@@ -401,7 +406,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
         Recipient   recipient      = Recipient.resolved(recipientId);
         int         subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
 
-        MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null);
+        MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null, null);
 
         if (recipient.getContactUri() != null) {
           DatabaseFactory.getRecipientDatabase(context).setHasSentInvite(recipient.getId());

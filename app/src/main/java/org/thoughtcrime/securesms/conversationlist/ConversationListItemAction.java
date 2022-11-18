@@ -1,11 +1,8 @@
 package org.thoughtcrime.securesms.conversationlist;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -30,7 +27,6 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
     super(context, attrs);
   }
 
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
   public ConversationListItemAction(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
   }
@@ -49,7 +45,7 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
                    @NonNull Set<Long> selectedThreads,
                    boolean batchMode)
   {
-    this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getCount()));
+    this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getUnreadCount()));
   }
 
   @Override

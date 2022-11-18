@@ -113,10 +113,11 @@ final class MessageDetailsRepository {
   }
 
   private @NonNull RecipientDeliveryStatus.Status getStatusFor(MessageRecord messageRecord) {
-    if (messageRecord.isRemoteRead()) return RecipientDeliveryStatus.Status.READ;
-    if (messageRecord.isDelivered())  return RecipientDeliveryStatus.Status.DELIVERED;
-    if (messageRecord.isSent())       return RecipientDeliveryStatus.Status.SENT;
-    if (messageRecord.isPending())    return RecipientDeliveryStatus.Status.PENDING;
+    if (messageRecord.isRemoteViewed()) return RecipientDeliveryStatus.Status.VIEWED;
+    if (messageRecord.isRemoteRead())   return RecipientDeliveryStatus.Status.READ;
+    if (messageRecord.isDelivered())    return RecipientDeliveryStatus.Status.DELIVERED;
+    if (messageRecord.isSent())         return RecipientDeliveryStatus.Status.SENT;
+    if (messageRecord.isPending())      return RecipientDeliveryStatus.Status.PENDING;
 
     return RecipientDeliveryStatus.Status.UNKNOWN;
   }
@@ -128,6 +129,7 @@ final class MessageDetailsRepository {
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
     else if (groupStatus == GroupReceiptDatabase.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
+    else if (groupStatus == GroupReceiptDatabase.STATUS_VIEWED)                  return RecipientDeliveryStatus.Status.VIEWED;
     throw new AssertionError();
   }
 }

@@ -6,6 +6,7 @@ public interface MmsSmsColumns {
   public static final String ID                       = "_id";
   public static final String NORMALIZED_DATE_SENT     = "date_sent";
   public static final String NORMALIZED_DATE_RECEIVED = "date_received";
+  public static final String NORMALIZED_TYPE          = "type";
   public static final String DATE_SERVER              = "date_server";
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";
@@ -27,8 +28,36 @@ public interface MmsSmsColumns {
   public static final String REACTIONS_UNREAD         = "reactions_unread";
   public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
   public static final String REMOTE_DELETED           = "remote_deleted";
+  public static final String SERVER_GUID              = "server_guid";
 
+  /**
+   * For storage efficiency, all types are stored within a single 64-bit integer column in the
+   * database. There are various areas reserved for different classes of data.
+   *
+   * When carving out a new area, if it's storing a bunch of mutually-exclusive flags (like in
+   * {@link #BASE_TYPE_MASK}, you should store integers in that area. If multiple flags can be set
+   * within a category, you'll have to store them as bits. Just keep in mind that storing as bits
+   * means we can store less data (i.e. 4 bits can store 16 exclusive values, or 4 non-exclusive
+   * values). This was not always followed in the past, and now we've wasted some space.
+   *
+   * Note: We technically could use up to 64 bits, but {@link #TOTAL_MASK} is currently just set to
+   * look at 32. Theoretically if we needed more bits, we could just use them and expand the size of
+   * {@link #TOTAL_MASK}.
+   *
+   * <pre>
+   *      _____________________________________ ENCRYPTION ({@link #ENCRYPTION_MASK})
+   *     |        _____________________________ SECURE MESSAGE INFORMATION (no mask, but look at {@link #SECURE_MESSAGE_BIT})
+   *     |       |     ________________________ GROUPS (no mask, but look at {@link #GROUP_UPDATE_BIT})
+   *     |       |    |       _________________ KEY_EXCHANGE ({@link #KEY_EXCHANGE_MASK})
+   *     |       |    |      |       _________  MESSAGE_ATTRIBUTES ({@link #MESSAGE_ATTRIBUTE_MASK})
+   *     |       |    |      |      |     ____  BASE_TYPE ({@link #BASE_TYPE_MASK})
+   *  ___|___   _|   _|   ___|__    |  __|_
+   * |       | |  | |  | |       | | ||    |
+   * 0000 0000 0000 0000 0000 0000 0000 0000
+   * </pre>
+   */
   public static class Types {
+
     protected static final long TOTAL_MASK = 0xFFFFFFFF;
 
     // Base Types
@@ -46,6 +75,7 @@ public interface MmsSmsColumns {
     protected static final long INCOMING_VIDEO_CALL_TYPE           = 10;
     protected static final long OUTGOING_VIDEO_CALL_TYPE           = 11;
     protected static final long GROUP_CALL_TYPE                    = 12;
+    protected static final long BAD_DECRYPT_TYPE                   = 13;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -63,8 +93,10 @@ public interface MmsSmsColumns {
                                                             OUTGOING_AUDIO_CALL_TYPE, OUTGOING_VIDEO_CALL_TYPE};
 
     // Message attributes
-    protected static final long MESSAGE_ATTRIBUTE_MASK = 0xE0;
-    protected static final long MESSAGE_FORCE_SMS_BIT  = 0x40;
+    protected static final long MESSAGE_ATTRIBUTE_MASK   = 0xE0;
+    protected static final long MESSAGE_RATE_LIMITED_BIT = 0x80;
+    protected static final long MESSAGE_FORCE_SMS_BIT    = 0x40;
+    // Note: Might be wise to reserve 0x20 -- it would let us expand BASE_MASK by a bit if needed
 
     // Key Exchange Information
     protected static final long KEY_EXCHANGE_MASK                  = 0xFF00;
@@ -166,6 +198,10 @@ public interface MmsSmsColumns {
       return (type & BASE_TYPE_MASK) == INVALID_MESSAGE_TYPE;
     }
 
+    public static boolean isBadDecryptType(long type) {
+      return (type & BASE_TYPE_MASK) == BAD_DECRYPT_TYPE;
+    }
+
     public static boolean isSecureType(long type) {
       return (type & SECURE_MESSAGE_BIT) != 0;
     }
@@ -208,6 +244,10 @@ public interface MmsSmsColumns {
 
     public static boolean isIdentityUpdate(long type) {
       return (type & KEY_EXCHANGE_IDENTITY_UPDATE_BIT) != 0;
+    }
+
+    public static boolean isRateLimited(long type) {
+      return (type & MESSAGE_RATE_LIMITED_BIT) != 0;
     }
 
     public static boolean isCallLog(long type) {
@@ -264,7 +304,7 @@ public interface MmsSmsColumns {
       return (type & GROUP_QUIT_BIT) != 0;
     }
 
-    public static boolean isFailedDecryptType(long type) {
+    public static boolean isChatSessionRefresh(long type) {
       return (type & ENCRYPTION_REMOTE_FAILED_BIT) != 0;
     }
 

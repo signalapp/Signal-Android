@@ -21,7 +21,6 @@ import android.annotation.SuppressLint;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.core.app.RemoteInput;
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.notifications.v2.MessageNotifierV2;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -40,16 +40,17 @@ import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
  */
 public class RemoteReplyReceiver extends BroadcastReceiver {
 
-  public static final String TAG             = RemoteReplyReceiver.class.getSimpleName();
-  public static final String REPLY_ACTION    = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
-  public static final String RECIPIENT_EXTRA = "recipient_extra";
-  public static final String REPLY_METHOD    = "reply_method";
+  public static final String REPLY_ACTION       = "org.thoughtcrime.securesms.notifications.WEAR_REPLY";
+  public static final String RECIPIENT_EXTRA    = "recipient_extra";
+  public static final String REPLY_METHOD       = "reply_method";
+  public static final String EARLIEST_TIMESTAMP = "earliest_timestamp";
 
   @SuppressLint("StaticFieldLeak")
   @Override
@@ -62,7 +63,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
     final RecipientId  recipientId  = intent.getParcelableExtra(RECIPIENT_EXTRA);
     final ReplyMethod  replyMethod  = (ReplyMethod) intent.getSerializableExtra(REPLY_METHOD);
-    final CharSequence responseText = remoteInput.getCharSequence(DefaultMessageNotifier.EXTRA_REMOTE_REPLY);
+    final CharSequence responseText = remoteInput.getCharSequence(MessageNotifierV2.EXTRA_REMOTE_REPLY);
 
     if (recipientId == null) throw new AssertionError("No recipientId specified");
     if (replyMethod == null) throw new AssertionError("No reply method specified");
@@ -73,7 +74,7 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
         Recipient recipient      = Recipient.resolved(recipientId);
         int       subscriptionId = recipient.getDefaultSubscriptionId().or(-1);
-        long      expiresIn      = recipient.getExpireMessages() * 1000L;
+        long      expiresIn      = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
 
         switch (replyMethod) {
           case GroupMessage: {
@@ -91,22 +92,24 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList(),
                                                                   Collections.emptyList());
-            threadId = MessageSender.send(context, reply, -1, false, null);
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case SecureMessage: {
             OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
-            threadId = MessageSender.send(context, reply, -1, false, null);
+            threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
             OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, true, null);
+            threadId = MessageSender.send(context, reply, -1, true, null, null);
             break;
           }
           default:
             throw new AssertionError("Unknown Reply method");
         }
+
+        ApplicationDependencies.getMessageNotifier().addStickyThread(threadId, intent.getLongExtra(EARLIEST_TIMESTAMP, System.currentTimeMillis()));
 
         List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(context).setRead(threadId, true);
 

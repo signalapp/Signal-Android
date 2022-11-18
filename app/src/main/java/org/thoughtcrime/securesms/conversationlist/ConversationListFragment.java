@@ -42,11 +42,21 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.transition.TransitionManager;
+import org.thoughtcrime.securesms.search.MessageResult;
+import org.thoughtcrime.securesms.search.SearchResult;
+import org.thoughtcrime.securesms.components.UnreadPaymentsView;
+import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
+import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
+import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
+import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -58,6 +68,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.NewConversationActivity;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
@@ -66,6 +77,7 @@ import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.ThreadDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.insights.InsightsLauncher;
@@ -73,14 +85,21 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
+import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
+
+import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
+import org.thoughtcrime.securesms.util.views.Stub;
+import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -89,6 +108,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -105,13 +125,17 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   public static int longClickItemPosition = -1;
 
+//  private ConstraintLayout                  constraintLayout;
+//  private Stub<UnreadPaymentsView>          paymentNotificationView;
+//  private View                              unreadPaymentsDot;
+
   private RecyclerView                      list;
   private ConversationListViewModel         viewModel;
   private RecyclerView.Adapter              activeAdapter;
   private ConversationListAdapter           defaultAdapter;
   private SnapToTopDataObserver             snapToTopDataObserver;
   private Drawable                          archiveDrawable;
-//  private LifecycleObserver                 visibilityLifecycleObserver;
+//  private AppForegroundObserver.Listener    appForegroundObserver;
 
   private Stopwatch startupStopwatch;
   private boolean isFromLauncher = false;
@@ -137,7 +161,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    list               = view.findViewById(R.id.list);
+    list                    = view.findViewById(R.id.list);
+//    constraintLayout        = view.findViewById(R.id.constraint_layout);
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
     list.setItemAnimator(new DeleteItemAnimator());
@@ -161,7 +186,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
             list.post(new Runnable() {
               @Override
               public void run() {
-                list.scrollBy(0,190);
+                handleCreateConversation(getDefaultAdapter().getConversation().getThreadRecord().getThreadId(),getDefaultAdapter().getConversation().getThreadRecord().getRecipient(),getDefaultAdapter().getConversation().getThreadRecord().getDistributionType());
               }
             });
             defaultAdapter.setFromLauncher(true);
@@ -188,7 +213,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     EventBus.getDefault().register(this);
 
-    if (TextSecurePreferences.isSmsEnabled(requireContext())) {
+    if (Util.isDefaultSmsProvider(requireContext())) {
       InsightsLauncher.showInsightsModal(requireContext(), requireFragmentManager());
     }
 
@@ -199,6 +224,11 @@ public class ConversationListFragment extends MainFragment implements Conversati
 //    if (activeAdapter != null) {
 //      activeAdapter.notifyDataSetChanged();
 //    }
+
+    if (SignalStore.rateLimit().needsRecaptcha()) {
+      Log.i(TAG, "Recaptcha required.");
+      RecaptchaProofBottomSheetFragment.show(getChildFragmentManager());
+    }
     if(getNavigator().getFromSearch()) {
       getNavigator().setFromSearch(false);
       list.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver
@@ -255,7 +285,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   public void onStart() {
     super.onStart();
     ConversationFragment.prepare(requireContext());
-//    ProcessLifecycleOwner.get().getLifecycle().addObserver(visibilityLifecycleObserver);
+//    ApplicationDependencies.getAppForegroundObserver().addListener(appForegroundObserver);
   }
 
   @Override
@@ -268,7 +298,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   @Override
   public void onStop() {
     super.onStop();
-//    ProcessLifecycleOwner.get().getLifecycle().removeObserver(visibilityLifecycleObserver);
+//    ApplicationDependencies.getAppForegroundObserver().removeListener(appForegroundObserver);
   }
 
   @Override
@@ -313,6 +343,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
       @Override
       public void onItemRangeInserted(int positionStart, int itemCount) {
         startupStopwatch.split("data-set");
+        SignalLocalMetrics.ColdStart.onConversationListDataLoaded();
         defaultAdapter.unregisterAdapterDataObserver(this);
         list.post(() -> {
           AppStartup.getInstance().onCriticalRenderEventEnd();
@@ -347,7 +378,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void initializeTypingObserver() {
-    ApplicationDependencies.getTypingStatusRepository().getTypingThreads().observe(this, threadIds -> {
+    ApplicationDependencies.getTypingStatusRepository().getTypingThreads().observe(getViewLifecycleOwner(), threadIds -> {
       if (threadIds == null) {
         threadIds = Collections.emptySet();
       }
@@ -365,13 +396,91 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
     viewModel.getConversationList().observe(getViewLifecycleOwner(), this::onSubmitList);
 
-//    visibilityLifecycleObserver = new DefaultLifecycleObserver() {
+//    appForegroundObserver = new AppForegroundObserver.Listener() {
 //      @Override
-//      public void onStart(@NonNull LifecycleOwner owner) {
+//      public void onForeground() {
 //        viewModel.onVisible();
 //      }
-//    };
+//
+//      @Override
+//      public void onBackground() { }
+
+//    viewModel.getUnreadPaymentsLiveData().observe(getViewLifecycleOwner(), this::onUnreadPaymentsChanged);
+
   }
+
+  /*private void onUnreadPaymentsChanged(@NonNull Optional<UnreadPayments> unreadPayments) {
+    if (unreadPayments.isPresent()) {
+      paymentNotificationView.get().setListener(new PaymentNotificationListener(unreadPayments.get()));
+      paymentNotificationView.get().setUnreadPayments(unreadPayments.get());
+      animatePaymentUnreadStatusIn();
+    } else {
+      animatePaymentUnreadStatusOut();
+    }
+  }
+
+  private void animatePaymentUnreadStatusIn() {
+    animatePaymentUnreadStatus(ConstraintSet.VISIBLE);
+    unreadPaymentsDot.animate().alpha(1);
+  }
+
+  private void animatePaymentUnreadStatusOut() {
+    if (paymentNotificationView.resolved()) {
+      animatePaymentUnreadStatus(ConstraintSet.GONE);
+    }
+
+    unreadPaymentsDot.animate().alpha(0);
+  }
+
+  private void animatePaymentUnreadStatus(int constraintSetVisibility) {
+    paymentNotificationView.get();
+
+    TransitionManager.beginDelayedTransition(constraintLayout);
+
+    ConstraintSet currentLayout = new ConstraintSet();
+    currentLayout.clone(constraintLayout);
+
+    currentLayout.setVisibility(R.id.payments_notification, constraintSetVisibility);
+    currentLayout.applyTo(constraintLayout);
+  }*/
+
+  /*private class PaymentNotificationListener implements UnreadPaymentsView.Listener {
+
+    private final UnreadPayments unreadPayments;
+
+    private PaymentNotificationListener(@NonNull UnreadPayments unreadPayments) {
+      this.unreadPayments = unreadPayments;
+    }
+
+    @Override
+    public void onOpenPaymentsNotificationClicked() {
+      UUID paymentId = unreadPayments.getPaymentUuid();
+
+      if (paymentId == null) {
+        goToPaymentsHome();
+      } else {
+        goToSinglePayment(paymentId);
+      }
+    }
+
+    @Override
+    public void onClosePaymentsNotificationClicked() {
+      viewModel.onUnreadPaymentsClosed();
+    }
+
+    private void goToPaymentsHome() {
+      startActivity(new Intent(requireContext(), PaymentsActivity.class));
+    }
+
+    private void goToSinglePayment(@NonNull UUID paymentId) {
+      Intent intent = new Intent(requireContext(), PaymentsActivity.class);
+
+      intent.putExtra(PaymentsActivity.EXTRA_PAYMENTS_STARTING_ACTION, R.id.action_directly_to_paymentDetails);
+      intent.putExtra(PaymentsActivity.EXTRA_STARTING_ARGUMENTS, new PaymentDetailsFragmentArgs.Builder(PaymentDetailsParcelable.forUuid(paymentId)).build().toBundle());
+
+      startActivity(intent);
+    }
+  }*/
 
   private void handleMarkSelectedAsRead() {
     Context context = requireContext();
@@ -571,24 +680,33 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                 Snackbar.LENGTH_LONG,
                                 false)
     {
+      private final ThreadDatabase threadDatabase= DatabaseFactory.getThreadDatabase(getActivity());
+
+      private List<Long> pinnedThreadIds;
       @Override
       protected void executeAction(@Nullable Long parameter) {
-        DatabaseFactory.getThreadDatabase(getActivity()).archiveConversation(threadId);
+        Context context = requireActivity();
+
+        pinnedThreadIds = threadDatabase.getPinnedThreadIds();
+        threadDatabase.archiveConversation(threadId);
 
         if (unreadCount > 0) {
-          List<MarkedMessageInfo> messageIds = DatabaseFactory.getThreadDatabase(getActivity()).setRead(threadId, false);
-          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
-          MarkReadReceiver.process(getActivity(), messageIds);
+          List<MarkedMessageInfo> messageIds = threadDatabase.setRead(threadId, false);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context);
+          MarkReadReceiver.process(context, messageIds);
         }
       }
 
       @Override
       protected void reverseAction(@Nullable Long parameter) {
-        DatabaseFactory.getThreadDatabase(getActivity()).unarchiveConversation(threadId);
+        Context context = requireActivity();
+
+        threadDatabase.unarchiveConversation(threadId);
+        threadDatabase.restorePins(pinnedThreadIds);
 
         if (unreadCount > 0) {
-          DatabaseFactory.getThreadDatabase(getActivity()).incrementUnread(threadId, unreadCount);
-          ApplicationDependencies.getMessageNotifier().updateNotification(getActivity());
+          threadDatabase.incrementUnread(threadId, unreadCount);
+          ApplicationDependencies.getMessageNotifier().updateNotification(context);
         }
       }
     }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, threadId);

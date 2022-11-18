@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 /**
@@ -38,6 +39,8 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
   private GroupMemberListView                  ineligibleList;
   private TextView                             ineligibleTitle;
   private View                                 ineligibleContainer;
+  private View                                 upgradeButton;
+  private View                                 spinner;
 
   public static void showForInitiation(@NonNull FragmentManager manager, @NonNull RecipientId groupRecipientId) {
     Bundle args = new Bundle();
@@ -71,6 +74,8 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
     this.ineligibleContainer = view.findViewById(R.id.gv1_migrate_ineligible_container);
     this.ineligibleTitle     = view.findViewById(R.id.gv1_migrate_ineligible_title);
     this.ineligibleList      = view.findViewById(R.id.gv1_migrate_ineligible_list);
+    this.upgradeButton       = view.findViewById(R.id.gv1_migrate_upgrade_button);
+    this.spinner             = view.findViewById(R.id.gv1_migrate_spinner);
 
     inviteList.setNestedScrollingEnabled(false);
     ineligibleList.setNestedScrollingEnabled(false);
@@ -82,8 +87,9 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
     viewModel = ViewModelProviders.of(this, new GroupsV1MigrationInitiationViewModel.Factory(groupRecipientId)).get(GroupsV1MigrationInitiationViewModel.class);
     viewModel.getMigrationState().observe(getViewLifecycleOwner(), this::onMigrationStateChanged);
 
+    upgradeButton.setEnabled(false);
+    upgradeButton.setOnClickListener(v -> onUpgradeClicked());
     view.findViewById(R.id.gv1_migrate_cancel_button).setOnClickListener(v -> dismiss());
-    view.findViewById(R.id.gv1_migrate_upgrade_button).setOnClickListener(v -> onUpgradeClicked());
   }
 
   @Override
@@ -107,6 +113,9 @@ public final class GroupsV1MigrationInitiationBottomSheetDialogFragment extends 
     } else {
       ineligibleContainer.setVisibility(View.GONE);
     }
+
+    upgradeButton.setEnabled(true);
+    spinner.setVisibility(View.GONE);
   }
 
   private void onUpgradeClicked() {

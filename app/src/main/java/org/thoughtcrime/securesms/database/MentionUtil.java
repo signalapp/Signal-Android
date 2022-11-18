@@ -76,6 +76,10 @@ public final class MentionUtil {
     int bodyIndex = 0;
 
     for (Mention mention : sortedMentions) {
+      if (invalidMention(body, mention)) {
+        continue;
+      }
+
       updatedBody.append(body.subSequence(bodyIndex, mention.getStart()));
       CharSequence replaceWith    = replacementTextGenerator.apply(mention);
       Mention      updatedMention = new Mention(mention.getRecipientId(), updatedBody.length(), replaceWith.length());
@@ -137,6 +141,13 @@ public final class MentionUtil {
         return context.getString(R.string.GroupMentionSettingDialog_dont_notify_me);
     }
     throw new IllegalArgumentException("Unknown mention setting: " + mentionSetting);
+  }
+
+  private static boolean invalidMention(@NonNull CharSequence body, @NonNull Mention mention) {
+    int start  = mention.getStart();
+    int length = mention.getLength();
+
+    return start < 0 || length < 0 || (start + length) > body.length();
   }
 
   public static class UpdatedBodyAndMentions {

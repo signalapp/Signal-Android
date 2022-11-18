@@ -29,11 +29,15 @@ public final class CallParticipantViewState extends RecipientMappingModel<CallPa
   }
 
   public int getVideoMutedVisibility() {
-    return callParticipant.isVideoEnabled() ? View.GONE : View.VISIBLE;
+    return View.GONE;
   }
 
   public int getAudioMutedVisibility() {
     return callParticipant.isMicrophoneEnabled() ? View.GONE : View.VISIBLE;
+  }
+
+  public int getScreenSharingVisibility() {
+    return callParticipant.isScreenSharing() ? View.VISIBLE : View.GONE;
   }
 
   @Override

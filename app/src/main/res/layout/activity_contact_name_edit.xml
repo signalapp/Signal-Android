@@ -14,7 +14,7 @@
         android:theme="?attr/actionBarStyle"
         android:minHeight="?attr/actionBarSize"
         android:elevation="4dp"
-        app:navigationIcon="@drawable/ic_check_24" />
+        app:navigationIcon="@drawable/ic_check_24_tinted" />
 
     <ScrollView
         android:layout_width="match_parent"

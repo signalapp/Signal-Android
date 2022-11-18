@@ -239,7 +239,7 @@ public class DialogWithListActivity extends Activity {
           DatabaseFactory.getRecipientDatabase(
                   DialogWithListActivity.this).setExpireMessages(recipientId, expirationTime);
           OutgoingExpirationUpdateMessage outgoingMessage = new OutgoingExpirationUpdateMessage(getRecipient(), System.currentTimeMillis(), expirationTime * 1000L);
-          MessageSender.send(DialogWithListActivity.this, outgoingMessage, threadId, false, null);
+          MessageSender.send(DialogWithListActivity.this, outgoingMessage, threadId, false, null,null);
 
           return null;
         }

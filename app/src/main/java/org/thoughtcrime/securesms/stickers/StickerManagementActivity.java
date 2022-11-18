@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.sharing.ShareActivity;
+import org.thoughtcrime.securesms.util.DeviceProperties;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
 /**
@@ -93,7 +94,7 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
 
   private void initView() {
     this.list    = findViewById(R.id.sticker_management_list);
-    this.adapter = new StickerManagementAdapter(GlideApp.with(this), this);
+    this.adapter = new StickerManagementAdapter(GlideApp.with(this), this, DeviceProperties.shouldAllowApngStickerAnimation(this));
 
     list.setLayoutManager(new LinearLayoutManager(this));
     list.setAdapter(adapter);

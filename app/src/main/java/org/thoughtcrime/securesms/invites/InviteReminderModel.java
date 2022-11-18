@@ -50,18 +50,18 @@ public final class InviteReminderModel {
     }
 
     ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(context);
-    long threadId                 = threadDatabase.getThreadIdFor(recipient);
+    Long threadId                 = threadDatabase.getThreadIdFor(recipient.getId());
 
-    MmsSmsDatabase mmsSmsDatabase = DatabaseFactory.getMmsSmsDatabase(context);
-    int conversationCount         = mmsSmsDatabase.getInsecureSentCount(threadId);
+    if (threadId != null) {
+      int conversationCount = DatabaseFactory.getMmsSmsDatabase(context).getInsecureSentCount(threadId);
 
-    if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
-      return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
-    } else if (conversationCount >= FIRST_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenFirstInviteReminder()) {
-      return new FirstInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
-    } else {
-      return new NoReminderInfo();
+      if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
+        return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
+      } else if (conversationCount >= FIRST_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenFirstInviteReminder()) {
+        return new FirstInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));
+      }
     }
+    return new NoReminderInfo();
   }
 
   public @NonNull Optional<Reminder> getReminder() {

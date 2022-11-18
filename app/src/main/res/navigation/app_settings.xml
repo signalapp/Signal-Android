@@ -1,0 +1,425 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_settings"
+    app:startDestination="@id/appSettingsFragment">
+
+    <fragment
+        android:id="@+id/appSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.AppSettingsFragment"
+        android:label="app_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+        <action
+            android:id="@+id/action_appSettingsFragment_to_accountSettingsFragment"
+            app:destination="@id/accountSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_deviceActivity"
+            app:destination="@id/deviceActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_paymentsActivity"
+            app:destination="@id/paymentsActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_appearanceSettingsFragment"
+            app:destination="@id/appearanceSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_chatsSettingsFragment"
+            app:destination="@id/chatsSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_notificationsSettingsFragment"
+            app:destination="@id/notificationsSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_privacySettingsFragment"
+            app:destination="@id/privacySettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_dataAndStorageSettingsFragment"
+            app:destination="@id/dataAndStoragePreferenceFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_manageProfileActivity"
+            app:destination="@id/manageProfileActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_helpSettingsFragment"
+            app:destination="@id/helpSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_inviteActivity"
+            app:destination="@id/inviteActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"  />
+        <action
+            android:id="@+id/action_appSettingsFragment_to_internalSettingsFragment"
+            app:destination="@id/internalSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_dataAndStorageSettingsFragment_to_storagePreferenceFragment"
+            app:destination="@id/storagePreferenceFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/manageProfileActivity"
+        android:name="org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity"
+        android:label="manage_profile_activity" />
+
+    <!-- region Account Settings and subpages -->
+    <fragment
+        android:id="@+id/accountSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.account.AccountSettingsFragment"
+        android:label="account_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_deleteAccountFragment"
+            app:destination="@id/deleteAccountFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_advancedPinSettingsActivity"
+            app:destination="@id/advancedPinSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_accountSettingsFragment_to_oldDeviceTransferActivity"
+            app:destination="@id/oldDeviceTransferActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/advancedPinSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedAdvancedPinPreferenceFragment"
+        android:label="advanced_pin_settings_fragment" />
+
+    <fragment
+        android:id="@+id/deleteAccountFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedDeleteAccountFragment"
+        android:label="delete_account_fragment"
+        tools:layout="@layout/delete_account_fragment" />
+
+    <activity
+        android:id="@+id/oldDeviceTransferActivity"
+        android:name="org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceTransferActivity"
+        android:label="old_device_transfer_Activity"
+        tools:layout="@layout/old_device_transfer_activity" />
+
+    <!-- CreateKbsPinActivity -->
+
+    <!-- endregion -->
+
+    <!-- Linked Devices -->
+    <activity
+        android:id="@+id/deviceActivity"
+        android:name="org.thoughtcrime.securesms.DeviceActivity"
+        android:label="device_activity" />
+
+    <!-- Payments -->
+    <activity
+        android:id="@+id/paymentsActivity"
+        android:name="org.thoughtcrime.securesms.payments.preferences.PaymentsActivity"
+        android:label="payments_activity" />
+
+    <!-- region Appearance settings and Subpages -->
+    <fragment
+        android:id="@+id/appearanceSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.appearance.AppearanceSettingsFragment"
+        android:label="appearance_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+        <action
+            android:id="@+id/action_appearanceSettings_to_wallpaperActivity"
+            app:destination="@id/wallpaperActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <activity
+        android:id="@+id/wallpaperActivity"
+        android:name="org.thoughtcrime.securesms.wallpaper.ChatWallpaperActivity"
+        android:label="wallpaper_activity" />
+
+    <!-- endregion -->
+
+    <!-- region Chats settings and subpages -->
+
+    <fragment
+        android:id="@+id/chatsSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.ChatsSettingsFragment"
+        android:label="chats_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_backupsPreferenceFragment"
+            app:destination="@id/backupsPreferenceFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_smsSettingsFragment"
+            app:destination="@id/smsSettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_chatsSettingsFragment_to_editReactionsFragment"
+            app:destination="@id/editReactionsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/backupsPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedBackupsPreferenceFragment"
+        android:label="backups_preference_fragment"
+        tools:layout="@layout/fragment_backups" />
+
+    <fragment
+        android:id="@+id/smsSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsSettingsFragment"
+        android:label="sms_settings_fragment"
+        tools:layout="@layout/dsl_settings_fragment">
+        <action
+            android:id="@+id/action_smsSettingsFragment_to_mmsPreferencesFragment"
+            app:destination="@id/mmsPreferencesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/mmsPreferencesFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedMmsPreferencesFragment"
+        android:label="mms_preferences_fragment" />
+
+    <fragment
+        android:id="@+id/editReactionsFragment"
+        android:name="org.thoughtcrime.securesms.reactions.edit.EditReactionsFragment"
+        android:label="edit_reactions_fragment"
+        tools:layout="@layout/edit_reactions_fragment" />
+
+    <!-- endregion -->
+
+    <!-- Notifications -->
+    <fragment
+        android:id="@+id/notificationsSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.NotificationsSettingsFragment"
+        android:label="notifications_settings_fragment" />
+
+    <!-- region Privacy -->
+    <fragment
+        android:id="@+id/privacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.PrivacySettingsFragment"
+        android:label="privacy_settings_fragment">
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_blockedUsersActivity"
+            app:destination="@id/blockedUsersActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_advancedPrivacySettingsFragment"
+            app:destination="@id/advancedPrivacySettingsFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_privacySettingsFragment_to_disappearingMessagesTimerSelectFragment"
+            app:destination="@id/app_settings_expire_timer"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/blockedUsersActivity"
+        android:name="org.thoughtcrime.securesms.blocked.BlockedUsersActivity"
+        android:label="blocked_users_activity" />
+
+    <fragment
+        android:id="@+id/advancedPrivacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
+        android:label="advanced_privacy_settings_fragment" />
+
+    <include app:graph="@navigation/app_settings_expire_timer" />
+    <!-- endregion -->
+
+    <!-- region Data and Storage -->
+
+    <fragment
+        android:id="@+id/dataAndStoragePreferenceFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.data.DataAndStoragePreferenceFragment"
+        android:label="data_and_storage_settings_fragment">
+        <action
+            android:id="@+id/action_dataAndStorageSettingsFragment_to_editProxyFragment"
+            app:destination="@id/editProxyFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/storagePreferenceFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedStoragePreferenceFragment"
+        android:label="storage_preference_fragment" />
+
+    <fragment
+        android:id="@+id/editProxyFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedEditProxyFragment"
+        android:label="edit_proxy_fragment" />
+
+    <!-- endregion -->
+
+    <!-- region Help -->
+    <fragment
+        android:id="@+id/helpSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.help.HelpSettingsFragment"
+        android:label="help_settings_fragment">
+        <action
+            android:id="@+id/action_helpSettingsFragment_to_helpFragment"
+            app:destination="@id/helpFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_helpSettingsFragment_to_submitDebugLogActivity"
+            app:destination="@id/submitDebugLogActivity"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/helpFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedHelpFragment"
+        android:label="help_fragment">
+
+        <argument
+            android:name="start_category_index"
+            android:defaultValue="0"
+            app:argType="integer"
+            app:nullable="false" />
+    </fragment>
+
+    <activity
+        android:id="@+id/submitDebugLogActivity"
+        android:name="org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity"
+        android:label="submit_debug_log_activity" />
+    <!-- endregion -->
+
+    <activity
+        android:id="@+id/inviteActivity"
+        android:name="org.thoughtcrime.securesms.InviteActivity"
+        android:label="invite_activity" />
+
+    <!-- region Direct-To-Page actions -->
+
+
+    <action
+        android:id="@+id/action_direct_to_backupsPreferenceFragment"
+        app:destination="@id/backupsPreferenceFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <action
+        android:id="@+id/action_direct_to_helpFragment"
+        app:destination="@id/helpFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <action
+        android:id="@+id/action_direct_to_editProxyFragment"
+        app:destination="@id/editProxyFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+    <action
+        android:id="@+id/action_direct_to_notificationsSettingsFragment"
+        app:destination="@id/notificationsSettingsFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
+
+
+    <!-- endregion -->
+
+    <!-- Internal Settings -->
+
+    <fragment
+        android:id="@+id/internalSettingsFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.InternalSettingsFragment"
+        android:label="internal_settings_fragment" />
+
+    <!-- endregion -->
+
+</navigation>

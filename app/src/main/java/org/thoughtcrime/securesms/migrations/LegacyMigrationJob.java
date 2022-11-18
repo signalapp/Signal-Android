@@ -10,6 +10,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.color.MaterialColor;
 import org.thoughtcrime.securesms.contacts.avatars.ContactColorsLegacy;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
@@ -34,6 +36,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.FileUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
+import org.whispersystems.signalservice.api.messages.SignalServiceEnvelope;
 
 import java.io.File;
 import java.util.List;
@@ -230,17 +233,8 @@ public class LegacyMigrationJob extends MigrationJob {
 
     if (lastSeenVersion < COLOR_MIGRATION) {
       long startTime = System.currentTimeMillis();
-      DatabaseFactory.getRecipientDatabase(context).updateSystemContactColors((name, color) -> {
-        if (color != null) {
-          try {
-            return MaterialColor.fromSerialized(color);
-          } catch (MaterialColor.UnknownColorException e) {
-            Log.w(TAG, "Encountered an unknown color during legacy color migration.", e);
-            return ContactColorsLegacy.generateFor(name);
-          }
-        }
-        return ContactColorsLegacy.generateFor(name);
-      });
+      //noinspection deprecation
+      DatabaseFactory.getRecipientDatabase(context).updateSystemContactColors();
       Log.i(TAG, "Color migration took " + (System.currentTimeMillis() - startTime) + " ms");
     }
 
@@ -290,10 +284,10 @@ public class LegacyMigrationJob extends MigrationJob {
     PushDatabase pushDatabase = DatabaseFactory.getPushDatabase(context);
     JobManager   jobManager   = ApplicationDependencies.getJobManager();
 
-    try (Cursor pushReader = pushDatabase.getPending()) {
-      while (pushReader != null && pushReader.moveToNext()) {
-        jobManager.add(new PushDecryptMessageJob(context,
-                                                 pushReader.getLong(pushReader.getColumnIndexOrThrow(PushDatabase.ID))));
+    try (PushDatabase.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
+      SignalServiceEnvelope envelope;
+      while ((envelope = pushReader.getNext()) != null) {
+        jobManager.add(new PushDecryptMessageJob(context, envelope));
       }
     }
   }

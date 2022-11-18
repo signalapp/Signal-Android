@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallManager;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.ringrtc.CallState;
 import org.thoughtcrime.securesms.ringrtc.Camera;
@@ -37,8 +38,8 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
+    ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
     webRtcInteractor.startAudioCommunication(activePeer.getState() == CallState.REMOTE_RINGING);
-    webRtcInteractor.setWantsBluetoothConnection(true);
 
     activePeer.connected();
 
@@ -53,10 +54,14 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
                                .changeCallInfoState()
                                .callState(WebRtcViewModel.State.CALL_CONNECTED)
                                .callConnectedTime(System.currentTimeMillis())
+                               .commit()
+                               .changeLocalDeviceState()
+                               .wantsBluetooth(true)
                                .build();
 
-    webRtcInteractor.unregisterPowerButtonReceiver();
     webRtcInteractor.setCallInProgressNotification(TYPE_ESTABLISHED, activePeer);
+    webRtcInteractor.unregisterPowerButtonReceiver();
+    webRtcInteractor.setWantsBluetoothConnection(true);
 
     try {
       CallManager callManager = webRtcInteractor.getCallManager();

@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.recipients.ui.notifications.CustomNotificationsDialogFragment;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.adapter.FixedViewsAdapter;
@@ -53,12 +52,13 @@ public class ManageRecipientFragment extends LoggingFragment {
     private TextView mMuteNotificationsUntilLabel;
     private TextView mCustomNotifications;
     private TextView mViewSafetyNumber;
+    private TextView mRecipientNumber;
     private TextView mBlockGroup;
     private TextView mUnblockGroup;
     private RecipientId recipientId;
 
     private FixedViewsAdapter disappearingMessagesAdapter, muteNotificationsAdapter, customNotificationsAdapter;
-    private FixedViewsAdapter viewSafetyNumberAdapter, blockGroupAdapter, unblockGroupAdapter;
+    private FixedViewsAdapter viewSafetyNumberAdapter,settingRecipientNumberAdapter, blockGroupAdapter, unblockGroupAdapter;
 
     private int mFocusHeight;
     private int mNormalHeight;
@@ -142,14 +142,18 @@ public class ManageRecipientFragment extends LoggingFragment {
         if (recipientId.equals(Recipient.self().getId())) {
             muteNotificationsAdapter.hide();
             viewSafetyNumberAdapter.hide();
+            settingRecipientNumberAdapter.hide();
             blockGroupAdapter.hide();
             unblockGroupAdapter.hide();
         }
 
         mDisappearingMessages.setOnClickListener(v -> viewModel.handleExpirationSelection(requireContext()));
         viewModel.getMuteState().observe(getViewLifecycleOwner(), this::presentMuteState);
-        mCustomNotifications.setOnClickListener(v -> CustomNotificationsDialogFragment.create(recipientId)
-                .show(requireFragmentManager(), "CUSTOM_NOTIFICATIONS"));
+        mCustomNotifications.setOnClickListener(v-> {
+            if (getActivity() != null) {
+                ((ManageRecipientActivity) getActivity()).replaceFragment(recipientId);
+            }
+        });
         mBlockGroup.setOnClickListener(v -> viewModel.onBlockClicked(requireActivity()));
         mUnblockGroup.setOnClickListener(v -> viewModel.onUnblockClicked(requireActivity()));
         viewModel.getCanBlock().observe(getViewLifecycleOwner(), canBlock -> {
@@ -179,10 +183,14 @@ public class ManageRecipientFragment extends LoggingFragment {
                 muteState.isMuted(), getContext());
         mMuteNotificationsUntilLabel.setVisibility(muteState.isMuted() ? View.VISIBLE : View.GONE);
         if (muteState.isMuted()) {
-            mMuteNotificationsUntilLabel.setText(getString(R.string.ManageRecipientActivity_until_s,
-                    DateUtils.getTimeString(requireContext(),
-                            Locale.getDefault(),
-                            muteState.getMutedUntil())));
+            if (muteState.getMutedUntil() == Long.MAX_VALUE) {
+                mMuteNotificationsUntilLabel.setText(R.string.ManageRecipientActivity_always);
+            } else {
+                mMuteNotificationsUntilLabel.setText(getString(R.string.ManageRecipientActivity_until_s,
+                        DateUtils.getTimeString(requireContext(),
+                                Locale.getDefault(),
+                                muteState.getMutedUntil())));
+            }
             if (mMuteNotifications.hasFocus()) startSmallFocusAnimation(mMuteNotificationsUntilLabel, true);
         }
     }
@@ -197,6 +205,10 @@ public class ManageRecipientFragment extends LoggingFragment {
         concatenateAdapter.addAdapter(customNotificationsAdapter);
         viewSafetyNumberAdapter = new FixedViewsAdapter(requireContext(), 72, rlContainer, createViewSafetyNumberView());
         concatenateAdapter.addAdapter(viewSafetyNumberAdapter);
+        if (Recipient.resolved(recipientId) != null) {
+            settingRecipientNumberAdapter = new FixedViewsAdapter(requireContext(), 72, rlContainer, createRecipientNumberView());
+            concatenateAdapter.addAdapter(settingRecipientNumberAdapter);
+        }
         blockGroupAdapter = new FixedViewsAdapter(requireContext(), 72, rlContainer, createBlockGroupView());
         concatenateAdapter.addAdapter(blockGroupAdapter);
         unblockGroupAdapter = new FixedViewsAdapter(requireContext(), 72, rlContainer, createUnblockGroupView());
@@ -249,7 +261,13 @@ public class ManageRecipientFragment extends LoggingFragment {
         mViewSafetyNumber = (TextView) view;
         return view;
     }
-
+    private View createRecipientNumberView() {
+        View view = LayoutInflater.from(requireContext())
+                .inflate(R.layout.conversation_setting_recipient_number_item, (ViewGroup) requireView(), false);
+        mRecipientNumber = (TextView) view;
+        mRecipientNumber.setText(Recipient.resolved(recipientId).getNumber());
+        return view;
+    }
     private View createBlockGroupView() {
         View view = LayoutInflater.from(requireContext())
                 .inflate(R.layout.conversation_setting_block_item, (ViewGroup) requireView(), false);

@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 final class WorkManagerDatabase extends SQLiteOpenHelper {
 
-  private static final String TAG = WorkManagerDatabase.class.getSimpleName();
+  private static final String TAG = Log.tag(WorkManagerDatabase.class);
 
   static final String DB_NAME = "androidx.work.workdb";
 
@@ -65,7 +65,6 @@ final class WorkManagerDatabase extends SQLiteOpenHelper {
                                                          0,
                                                          0,
                                                          Job.Parameters.UNLIMITED,
-                                                         TimeUnit.SECONDS.toMillis(30),
                                                          TimeUnit.DAYS.toMillis(1),
                                                          dataSerializer.serialize(DataMigrator.convert(data)),
                                                          null,

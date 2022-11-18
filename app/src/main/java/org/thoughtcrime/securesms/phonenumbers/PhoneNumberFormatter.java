@@ -14,6 +14,7 @@ import com.google.i18n.phonenumbers.ShortNumberInfo;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.util.SetUtil;
 import org.thoughtcrime.securesms.util.StringUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
@@ -29,19 +30,11 @@ import java.util.regex.Pattern;
 
 public class PhoneNumberFormatter {
 
-  private static final String TAG = PhoneNumberFormatter.class.getSimpleName();
+  private static final String TAG = Log.tag(PhoneNumberFormatter.class);
 
-  private static final Set<String> SHORT_COUNTRIES = new HashSet<String>() {{
-    add("NU");
-    add("TK");
-    add("NC");
-    add("AC");
-  }};
-
-  private static final Set<Integer> NATIONAL_FORMAT_COUNTRY_CODES = new HashSet<>(Arrays.asList(
-      1,  // US
-      44  // UK
-  ));
+  private static final Set<String>  EXCLUDE_FROM_MANUAL_SHORTCODE_4 = SetUtil.newHashSet("AC", "NC", "NU", "TK");
+  private static final Set<String>  MANUAL_SHORTCODE_6              = SetUtil.newHashSet("DE", "FI", "GB", "SK");
+  private static final Set<Integer> NATIONAL_FORMAT_COUNTRY_CODES   = SetUtil.newHashSet(1 /*US*/, 44 /*UK*/);
 
   private static final Pattern US_NO_AREACODE = Pattern.compile("^(\\d{7})$");
   private static final Pattern BR_NO_AREACODE = Pattern.compile("^(9?\\d{8})$");
@@ -118,7 +111,7 @@ public class PhoneNumberFormatter {
 
   public String format(@Nullable String number) {
     if (number == null)                       return "Unknown";
-    if (GroupId.isEncodedGroup(number))     return number;
+    if (GroupId.isEncodedGroup(number))       return number;
     if (ALPHA_PATTERN.matcher(number).find()) return number.trim();
 
     String bareNumber = number.replaceAll("[^0-9+]", "");
@@ -128,13 +121,11 @@ public class PhoneNumberFormatter {
       else                             return number.trim();
     }
 
-    // libphonenumber doesn't seem to be correct for Germany and Finland
-    if (bareNumber.length() <= 6 && ("DE".equals(localCountryCode) || "FI".equals(localCountryCode) || "SK".equals(localCountryCode))) {
+    if (bareNumber.length() <= 6 && MANUAL_SHORTCODE_6.contains(localCountryCode)) {
       return bareNumber;
     }
 
-    // libphonenumber seems incorrect for Russia and a few other countries with 4 digit short codes.
-    if (bareNumber.length() <= 4 && !SHORT_COUNTRIES.contains(localCountryCode)) {
+    if (bareNumber.length() <= 4 && !EXCLUDE_FROM_MANUAL_SHORTCODE_4.contains(localCountryCode)) {
       return bareNumber;
     }
 

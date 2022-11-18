@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log;
 
 public class PlayServicesUtil {
 
-  private static final String TAG = PlayServicesUtil.class.getSimpleName();
+  private static final String TAG = Log.tag(PlayServicesUtil.class);
 
   public enum PlayServicesStatus {
     SUCCESS,

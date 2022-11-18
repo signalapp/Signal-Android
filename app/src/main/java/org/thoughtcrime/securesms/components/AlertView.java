@@ -9,11 +9,12 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 
 public class AlertView extends LinearLayout {
 
-  private static final String TAG = AlertView.class.getSimpleName();
+  private static final String TAG = Log.tag(AlertView.class);
 
   private ImageView approvalIndicator;
   private ImageView failedIndicator;
@@ -67,5 +68,11 @@ public class AlertView extends LinearLayout {
     this.setVisibility(View.VISIBLE);
     approvalIndicator.setVisibility(View.GONE);
     failedIndicator.setVisibility(View.VISIBLE);
+  }
+
+  public void setRateLimited() {
+    this.setVisibility(View.VISIBLE);
+    approvalIndicator.setVisibility(View.VISIBLE);
+    failedIndicator.setVisibility(View.GONE);
   }
 }

@@ -16,7 +16,7 @@ import java.util.UUID;
 
 public class AccountManagerFactory {
 
-  private static final String TAG = AccountManagerFactory.class.getSimpleName();
+  private static final String TAG = Log.tag(AccountManagerFactory.class);
 
   public static @NonNull SignalServiceAccountManager createAuthenticated(@NonNull Context context,
                                                                          @NonNull UUID uuid,

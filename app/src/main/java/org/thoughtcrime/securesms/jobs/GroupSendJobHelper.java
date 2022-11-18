@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 
 import java.util.ArrayList;
@@ -19,11 +20,12 @@ final class GroupSendJobHelper {
   private GroupSendJobHelper() {
   }
 
-  static List<Recipient> getCompletedSends(@NonNull Context context, @NonNull Collection<SendMessageResult> results) {
-    List<Recipient> completions = new ArrayList<>(results.size());
+  static List<Recipient> getCompletedSends(@NonNull List<Recipient> possibleRecipients, @NonNull Collection<SendMessageResult> results) {
+    RecipientAccessList accessList  = new RecipientAccessList(possibleRecipients);
+    List<Recipient>     completions = new ArrayList<>(results.size());
 
     for (SendMessageResult sendMessageResult : results) {
-      Recipient recipient = Recipient.externalPush(context, sendMessageResult.getAddress());
+      Recipient recipient = accessList.requireByAddress(sendMessageResult.getAddress());
 
       if (sendMessageResult.getIdentityFailure() != null) {
         Log.w(TAG, "Identity failure for " + recipient.getId());

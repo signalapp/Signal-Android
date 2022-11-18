@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/payments_create"
+    app:startDestination="@id/createPaymentFragment">
+
+    <fragment
+        android:id="@+id/createPaymentFragment"
+        android:name="org.thoughtcrime.securesms.payments.create.CreatePaymentFragment"
+        tools:layout="@layout/create_payment_fragment">
+
+        <argument
+            android:name="payee"
+            app:argType="org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable"
+            app:nullable="false" />
+
+        <argument
+            android:name="note"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="finish_on_confirm"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
+        <action
+            android:id="@+id/action_createPaymentFragment_to_editPaymentNoteFragment"
+            app:destination="@id/editPaymentNoteFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_close_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_createPaymentFragment_to_confirmPaymentFragment"
+            app:destination="@id/confirmPaymentFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/editPaymentNoteFragment"
+        android:name="org.thoughtcrime.securesms.payments.create.EditNoteFragment"
+        tools:layout="@layout/edit_note_fragment" />
+
+    <dialog
+        android:id="@+id/confirmPaymentFragment"
+        android:name="org.thoughtcrime.securesms.payments.confirm.ConfirmPaymentFragment"
+        tools:layout="@layout/confirm_payment_fragment">
+
+        <argument
+            android:name="createPaymentDetails"
+            app:argType="org.thoughtcrime.securesms.payments.CreatePaymentDetails"
+            app:nullable="false" />
+
+        <argument
+            android:name="finish_on_confirm"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
+    </dialog>
+
+</navigation>

@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -15,6 +18,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
@@ -34,6 +39,12 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
   private TextView mCountryCodeHeader;
   private EditText mPhoneNumberEdit;
   private TextView mPhoneNumberNext;
+
+  @Override
+  public void onCreate(@Nullable Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setHasOptionsMenu(true);
+  }
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -101,6 +112,25 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     initNumber(number);
     if (model.hasCaptchaToken()) {
       handleRegister(requireContext());
+    }
+
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+  }
+
+  @Override
+  public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+    inflater.inflate(R.menu.enter_phone_number, menu);
+  }
+
+  @Override
+  public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    if (item.getItemId() == R.id.phone_menu_use_proxy) {
+      Navigation.findNavController(requireView()).navigate(EnterPhoneNumberFragmentDirections.actionEditProxy());
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -210,9 +240,9 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
 
   private void initNumber(@NonNull NumberViewState numberViewState) {
     int    countryCode       = numberViewState.getCountryCode();
-    long   number            = numberViewState.getNationalNumber();
+    String   number            = numberViewState.getNationalNumber();
     mCountryCodeHeader.setText(String.format("+%s", String.valueOf(countryCode)));
-    if (number != 0) {
+    if (!TextUtils.isEmpty(number)) {
       this.mPhoneNumberEdit.setText(String.valueOf(number));
       this.mPhoneNumberEdit.setSelection(mPhoneNumberEdit.getText().length());
     }
@@ -238,7 +268,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     public void afterTextChanged(Editable s) {
       if (s.length() == 0) return;
       RegistrationViewModel model = getModel();
-      model.setNationalNumber(Long.parseLong(s.toString()));
+      model.setNationalNumber(s.toString());
     }
 
     @Override

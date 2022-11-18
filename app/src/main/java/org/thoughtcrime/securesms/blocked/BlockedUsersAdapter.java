@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 import java.util.Objects;
@@ -146,7 +147,7 @@ final class BlockedUsersAdapter extends ListAdapter<Recipient, RecyclerView.View
       //displayName.setText(recipient.getDisplayName(itemView.getContext()));
 
       if (recipient.hasAUserSetDisplayName(itemView.getContext())) {
-        String identifier = recipient.getE164().or(recipient.getUsername()).orNull();
+        String identifier = recipient.getE164().transform(PhoneNumberFormatter::prettyPrint).or(recipient.getUsername()).orNull();
 
         if (identifier != null) {
           numberOrUsername.setText(identifier);

@@ -30,9 +30,10 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
 
   private static final String TAG = Log.tag(MediaSendVideoFragment.class);
 
-  private static final String KEY_URI        = "uri";
-  private static final String KEY_MAX_OUTPUT = "max_output_size";
-  private static final String KEY_MAX_SEND   = "max_send_size";
+  private static final String KEY_URI          = "uri";
+  private static final String KEY_MAX_OUTPUT   = "max_output_size";
+  private static final String KEY_MAX_SEND     = "max_send_size";
+  private static final String KEY_IS_VIDEO_GIF = "is_video_gif";
 
   private final Throttler videoScanThrottle = new Throttler(150);
   private final Handler   handler           = new Handler(Looper.getMainLooper());
@@ -40,15 +41,17 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
             private Controller     controller;
             private Data           data           = new Data();
             private Uri            uri;
+            private boolean        isVideoGif;
             private VideoPlayer    player;
   @Nullable private VideoEditorHud hud;
             private Runnable       updatePosition;
 
-  public static MediaSendVideoFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize) {
+  public static MediaSendVideoFragment newInstance(@NonNull Uri uri, long maxCompressedVideoSize, long maxAttachmentSize, boolean isVideoGif) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_URI, uri);
     args.putLong(KEY_MAX_OUTPUT, maxCompressedVideoSize);
     args.putLong(KEY_MAX_SEND, maxAttachmentSize);
+    args.putBoolean(KEY_IS_VIDEO_GIF, isVideoGif);
 
     MediaSendVideoFragment fragment = new MediaSendVideoFragment();
     fragment.setArguments(args);
@@ -76,15 +79,20 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
 
     player = view.findViewById(R.id.video_player);
 
-    uri = requireArguments().getParcelable(KEY_URI);
-    long       maxOutput = requireArguments().getLong(KEY_MAX_OUTPUT);
-    long       maxSend   = requireArguments().getLong(KEY_MAX_SEND);
-    VideoSlide slide     = new VideoSlide(requireContext(), uri, 0);
+    uri        = requireArguments().getParcelable(KEY_URI);
+    isVideoGif = requireArguments().getBoolean(KEY_IS_VIDEO_GIF);
+
+    long       maxOutput  = requireArguments().getLong(KEY_MAX_OUTPUT);
+    long       maxSend    = requireArguments().getLong(KEY_MAX_SEND);
+    VideoSlide slide      = new VideoSlide(requireContext(), uri, 0, isVideoGif);
 
     player.setWindow(requireActivity().getWindow());
     player.setVideoSource(slide, true);
 
-    if (MediaConstraints.isVideoTranscodeAvailable()) {
+    if (slide.isVideoGif()) {
+      player.hideControls();
+      player.loopForever();
+    } else if (MediaConstraints.isVideoTranscodeAvailable()) {
       hud = view.findViewById(R.id.video_editor_hud);
       hud.setEventListener(this);
       updateHud(data);
@@ -140,6 +148,10 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   public void onResume() {
     super.onResume();
     startPositionUpdates();
+
+    if (player != null && isVideoGif) {
+      player.play();
+    }
   }
 
   private void startPositionUpdates() {
@@ -180,8 +192,9 @@ public class MediaSendVideoFragment extends Fragment implements VideoEditorHud.E
   @Override
   public @Nullable View getPlaybackControls() {
     if (hud != null && hud.getVisibility() == View.VISIBLE) return null;
-
-    return player != null ? player.getControlView() : null;
+    else if (isVideoGif)                                    return null;
+    else if (player != null)                                return player.getControlView();
+    else                                                    return null;
   }
 
   @Override

@@ -5,6 +5,8 @@ import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
 
+import java.util.Objects;
+
 public class Stub<T> {
 
   private ViewStub viewStub;
@@ -21,6 +23,9 @@ public class Stub<T> {
     }
 
     return view;
+  }
+  public @NonNull T require() {
+    return Objects.requireNonNull(get());
   }
 
   public boolean isResolved() {

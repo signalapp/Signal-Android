@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="0dp">
+
+    <org.thoughtcrime.securesms.giph.mp4.GiphyMp4VideoPlayer
+        android:id="@+id/video_player"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="false"
+        android:contentDescription="@string/conversation_item__mms_image_description"
+        android:longClickable="false" />
+
+</FrameLayout>

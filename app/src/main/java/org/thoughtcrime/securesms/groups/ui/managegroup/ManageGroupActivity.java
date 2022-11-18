@@ -12,7 +12,9 @@ import androidx.core.app.ActivityOptionsCompat;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.conversation.sounds.custom.CustomNotificationsSettingsFragment;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 
@@ -21,6 +23,7 @@ public class ManageGroupActivity extends PassphraseRequiredActivity {
   private static final String GROUP_ID = "GROUP_ID";
 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
+  private ManageGroupFragment manageGroupFragment;
 
   public static Intent newIntent(@NonNull Context context, @NonNull GroupId groupId) {
     Intent intent = new Intent(context, ManageGroupActivity.class);
@@ -47,10 +50,32 @@ public class ManageGroupActivity extends PassphraseRequiredActivity {
     getWindow().getDecorView().setSystemUiVisibility(getWindow().getDecorView().getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
     setContentView(R.layout.group_manage_activity);
     if (savedInstanceState == null) {
+      manageGroupFragment = ManageGroupFragment.newInstance(getIntent().getStringExtra(GROUP_ID));
       getSupportFragmentManager().beginTransaction()
-                                 .replace(R.id.container, ManageGroupFragment.newInstance(getIntent().getStringExtra(GROUP_ID)))
+                                 .replace(R.id.container, manageGroupFragment)
                                  .commitNow();
     }
+  }
+  CustomNotificationsSettingsFragment fragment;
+  public void replaceFragment(RecipientId recipientId){
+    fragment = new CustomNotificationsSettingsFragment();
+    final Bundle                              bundle   = new Bundle();
+    bundle.putParcelable("recipientId",recipientId);
+    fragment.setArguments(bundle);
+    getSupportFragmentManager().beginTransaction()
+                                .hide(manageGroupFragment)
+                               .add(R.id.container, fragment)
+                               .commitNow();
+  }
+
+  @Override public void onBackPressed() {
+    if (fragment != null) {
+      getSupportFragmentManager().beginTransaction().show(manageGroupFragment).remove(fragment).commitNow();
+      fragment=null;
+    }else {
+      super.onBackPressed();
+    }
+
   }
 
   @Override

@@ -16,7 +16,8 @@ public interface MessageNotifier {
   long getVisibleThread();
   void clearVisibleThread();
   void setLastDesktopActivityTimestamp(long timestamp);
-  void notifyMessageDeliveryFailed(Context context, Recipient recipient, long threadId);
+  void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, long threadId);
+  void notifyProofRequired(@NonNull Context context, @NonNull Recipient recipient, long threadId);
   void cancelDelayedNotifications();
   void updateNotification(@NonNull Context context);
   void updateNotification(@NonNull Context context, long threadId);
@@ -24,6 +25,8 @@ public interface MessageNotifier {
   void updateNotification(@NonNull Context context, long threadId, boolean signal);
   void updateNotification(@NonNull Context context, long threadId, boolean signal, int reminderCount, @NonNull BubbleUtil.BubbleState defaultBubbleState);
   void clearReminder(@NonNull Context context);
+  void addStickyThread(long threadId, long earliestTimestamp);
+  void removeStickyThread(long threadId);
 
 
   class ReminderReceiver extends BroadcastReceiver {

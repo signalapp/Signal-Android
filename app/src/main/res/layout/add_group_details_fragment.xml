@@ -6,6 +6,42 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/group_disappearing_messages_row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:visibility="gone">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_timer_disabled_24"
+            app:tint="@color/signal_text_primary"
+            android:visibility="gone"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="@string/PrivacySettingsFragment__disappearing_messages"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            android:visibility="gone"/>
+        <TextView
+            android:id="@+id/group_disappearing_messages_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            android:textColor="@color/signal_text_secondary"
+            tools:text="1 week"
+            android:visibility="gone"/>
+    </LinearLayout>
+    <LinearLayout
         android:id="@+id/mms_warning"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -13,6 +49,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_disappearing_messages_row"
         tools:visibility="visible">
 
         <TextView

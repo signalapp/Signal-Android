@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.SystemProfileUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -29,7 +30,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.concurrent.ExecutionException;
 
-class EditSelfProfileRepository implements EditProfileRepository {
+public class EditSelfProfileRepository implements EditProfileRepository {
 
   private static final String TAG = Log.tag(EditSelfProfileRepository.class);
 
@@ -107,10 +108,16 @@ class EditSelfProfileRepository implements EditProfileRepository {
     nameConsumer.accept("");
   }
 
+  @Override public void getCurrentDescription(@NonNull Consumer<String> descriptionConsumer) {
+    descriptionConsumer.accept("");
+  }
+
   @Override
   public void uploadProfile(@NonNull ProfileName profileName,
                             @NonNull String displayName,
                             boolean displayNameChanged,
+                            @NonNull String description,
+                            boolean descriptionChanged,
                             @Nullable byte[] avatar,
                             boolean avatarChanged,
                             @NonNull Consumer<UploadResult> uploadResultConsumer)
@@ -130,6 +137,8 @@ class EditSelfProfileRepository implements EditProfileRepository {
                              .startChain(new ProfileUploadJob())
                              .then(Arrays.asList(new MultiDeviceProfileKeyUpdateJob(), new MultiDeviceProfileContentUpdateJob()))
                              .enqueue();
+
+      RegistrationUtil.maybeMarkRegistrationComplete(context);
 
       return UploadResult.SUCCESS;
     }, uploadResultConsumer::accept);

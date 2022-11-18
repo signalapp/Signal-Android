@@ -31,11 +31,15 @@ public final class LogSectionCapabilities implements LogSection {
     AccountAttributes.Capabilities capabilities = AppCapabilities.getCapabilities(false);
 
     return new StringBuilder().append("-- Local").append("\n")
-                              .append("GV2          : ").append(capabilities.isGv2()).append("\n")
-                              .append("GV1 Migration: ").append(capabilities.isGv1Migration()).append("\n")
+                              .append("GV2                : ").append(capabilities.isGv2()).append("\n")
+                              .append("GV1 Migration      : ").append(capabilities.isGv1Migration()).append("\n")
+                              .append("Sender Key         : ").append(capabilities.isSenderKey()).append("\n")
+                              .append("Announcement Groups: ").append(capabilities.isAnnouncementGroup()).append("\n")
                               .append("\n")
                               .append("-- Global").append("\n")
-                              .append("GV2          : ").append(self.getGroupsV2Capability()).append("\n")
-                              .append("GV1 Migration: ").append(self.getGroupsV1MigrationCapability()).append("\n");
+                              .append("GV2                : ").append(self.getGroupsV2Capability()).append("\n")
+                              .append("GV1 Migration      : ").append(self.getGroupsV1MigrationCapability()).append("\n")
+                              .append("Sender Key         : ").append(self.getSenderKeyCapability()).append("\n")
+                              .append("Announcement Groups: ").append(self.getAnnouncementGroupCapability()).append("\n");
   }
 }

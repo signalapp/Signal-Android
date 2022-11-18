@@ -16,6 +16,7 @@ import androidx.core.util.Consumer;
 
 import com.google.protobuf.ByteString;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -26,7 +27,6 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormDat
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
 import org.thoughtcrime.securesms.media.MediaInput;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
 import java.io.IOException;
@@ -61,13 +61,7 @@ public final class AudioWaveForm {
 
     if (uri == null) {
       Log.w(TAG, "No uri");
-      Util.runOnMain(onFailure);
-      return;
-    }
-
-    if (!(attachment instanceof DatabaseAttachment)) {
-      Log.i(TAG, "Not yet in database");
-      Util.runOnMain(onFailure);
+      ThreadUtil.runOnMain(onFailure);
       return;
     }
 
@@ -75,7 +69,7 @@ public final class AudioWaveForm {
     AudioFileInfo cached   = WAVE_FORM_CACHE.get(cacheKey);
     if (cached != null) {
       Log.i(TAG, "Loaded wave form from cache " + cacheKey);
-      Util.runOnMain(() -> onSuccess.accept(cached));
+      ThreadUtil.runOnMain(() -> onSuccess.accept(cached));
       return;
     }
 
@@ -83,7 +77,7 @@ public final class AudioWaveForm {
       AudioFileInfo cachedInExecutor = WAVE_FORM_CACHE.get(cacheKey);
       if (cachedInExecutor != null) {
         Log.i(TAG, "Loaded wave form from cache inside executor" + cacheKey);
-        Util.runOnMain(() -> onSuccess.accept(cachedInExecutor));
+        ThreadUtil.runOnMain(() -> onSuccess.accept(cachedInExecutor));
         return;
       }
 
@@ -92,38 +86,58 @@ public final class AudioWaveForm {
         AudioFileInfo audioFileInfo = AudioFileInfo.fromDatabaseProtobuf(audioHash.getAudioWaveForm());
         if (audioFileInfo.waveForm.length == 0) {
           Log.w(TAG, "Recovering from a wave form generation error  " + cacheKey);
-          Util.runOnMain(onFailure);
+          ThreadUtil.runOnMain(onFailure);
           return;
         } else if (audioFileInfo.waveForm.length != BAR_COUNT) {
           Log.w(TAG, "Wave form from database does not match bar count, regenerating " + cacheKey);
         } else {
           WAVE_FORM_CACHE.put(cacheKey, audioFileInfo);
           Log.i(TAG, "Loaded wave form from DB " + cacheKey);
-          Util.runOnMain(() -> onSuccess.accept(audioFileInfo));
+          ThreadUtil.runOnMain(() -> onSuccess.accept(audioFileInfo));
           return;
         }
       }
 
-      try {
-        AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
-        DatabaseAttachment dbAttachment       = (DatabaseAttachment) attachment;
-        long               startTime          = System.currentTimeMillis();
+      if (attachment instanceof DatabaseAttachment) {
+        try {
+          AttachmentDatabase attachmentDatabase = DatabaseFactory.getAttachmentDatabase(context);
+          DatabaseAttachment dbAttachment       = (DatabaseAttachment) attachment;
+          long               startTime          = System.currentTimeMillis();
 
-        attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), AudioWaveFormData.getDefaultInstance());
+          attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), AudioWaveFormData.getDefaultInstance());
 
-        Log.i(TAG, String.format("Starting wave form generation (%s)", cacheKey));
+          Log.i(TAG, String.format("Starting wave form generation (%s)", cacheKey));
 
-        AudioFileInfo fileInfo = generateWaveForm(uri);
+          AudioFileInfo fileInfo = generateWaveForm(uri);
 
-        Log.i(TAG, String.format(Locale.US, "Audio wave form generation time %d ms (%s)", System.currentTimeMillis() - startTime, cacheKey));
+          Log.i(TAG, String.format(Locale.US, "Audio wave form generation time %d ms (%s)", System.currentTimeMillis() - startTime, cacheKey));
 
-        attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), fileInfo.toDatabaseProtobuf());
+          attachmentDatabase.writeAudioHash(dbAttachment.getAttachmentId(), fileInfo.toDatabaseProtobuf());
 
-        WAVE_FORM_CACHE.put(cacheKey, fileInfo);
-        Util.runOnMain(() -> onSuccess.accept(fileInfo));
-      } catch (Throwable e) {
-        Log.w(TAG, "Failed to create audio wave form for " + cacheKey, e);
-        Util.runOnMain(onFailure);
+          WAVE_FORM_CACHE.put(cacheKey, fileInfo);
+          ThreadUtil.runOnMain(() -> onSuccess.accept(fileInfo));
+        } catch (Throwable e) {
+          Log.w(TAG, "Failed to create audio wave form for " + cacheKey, e);
+          ThreadUtil.runOnMain(onFailure);
+        }
+      } else {
+        try {
+          Log.i(TAG, "Not in database and not cached. Generating wave form on-the-fly.");
+
+          long startTime = System.currentTimeMillis();
+
+          Log.i(TAG, String.format("Starting wave form generation (%s)", cacheKey));
+
+          AudioFileInfo fileInfo = generateWaveForm(uri);
+
+          Log.i(TAG, String.format(Locale.US, "Audio wave form generation time %d ms (%s)", System.currentTimeMillis() - startTime, cacheKey));
+
+          WAVE_FORM_CACHE.put(cacheKey, fileInfo);
+          ThreadUtil.runOnMain(() -> onSuccess.accept(fileInfo));
+        } catch (IOException e) {
+          Log.w(TAG, "Failed to create audio wave form for " + cacheKey, e);
+          ThreadUtil.runOnMain(onFailure);
+        }
       }
     });
   }

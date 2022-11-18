@@ -17,6 +17,7 @@ public final class SignalServiceConfiguration {
   private final SignalStorageUrl[]           signalStorageUrls;
   private final List<Interceptor>            networkInterceptors;
   private final Optional<Dns>                dns;
+  private final Optional<SignalProxy>        proxy;
   private final byte[]                       zkGroupServerPublicParams;
 
   public SignalServiceConfiguration(SignalServiceUrl[] signalServiceUrls,
@@ -26,6 +27,7 @@ public final class SignalServiceConfiguration {
                                     SignalStorageUrl[] signalStorageUrls,
                                     List<Interceptor> networkInterceptors,
                                     Optional<Dns> dns,
+                                    Optional<SignalProxy> proxy,
                                     byte[] zkGroupServerPublicParams)
   {
     this.signalServiceUrls          = signalServiceUrls;
@@ -35,6 +37,7 @@ public final class SignalServiceConfiguration {
     this.signalStorageUrls          = signalStorageUrls;
     this.networkInterceptors        = networkInterceptors;
     this.dns                        = dns;
+    this.proxy                      = proxy;
     this.zkGroupServerPublicParams  = zkGroupServerPublicParams;
   }
 
@@ -68,5 +71,9 @@ public final class SignalServiceConfiguration {
 
   public byte[] getZkGroupServerPublicParams() {
     return zkGroupServerPublicParams;
+  }
+
+  public Optional<SignalProxy> getSignalProxy() {
+    return proxy;
   }
 }

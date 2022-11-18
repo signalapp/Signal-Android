@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/payments_recovery_phrase_confirm_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="?actionBarStyle"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/PaymentsRecoveryStartFragment__recovery_phrase"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                android:text="@string/PaymentRecoveryPhraseConfirmFragment__confirm_recovery_phrase"
+                android:textAppearance="@style/TextAppearance.Signal.Title2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="49dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="49dp"
+                android:gravity="center"
+                android:text="@string/PaymentRecoveryPhraseConfirmFragment__enter_the_following_words"
+                android:textAppearance="@style/TextAppearance.Signal.Body2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/payments_recovery_phrase_confirm_fragment_title" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_word1_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/payments_recovery_phrase_confirm_fragment_message">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/payments_recovery_phrase_confirm_fragment_word_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="16dp"
+                    android:inputType="textVisiblePassword"
+                    tools:hint="Word 6"
+                    tools:text="Silver" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_word2_wrapper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:errorEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/payments_recovery_phrase_confirm_fragment_word1_wrapper">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/payments_recovery_phrase_confirm_fragment_word_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_marginEnd="16dp"
+                    android:inputType="textVisiblePassword"
+                    tools:hint="Word 11"
+                    tools:text="Word" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_see_again"
+                style="@style/Signal.Widget.Button.Medium.Secondary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/PaymentRecoveryPhraseConfirmFragment__see_phrase_again"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/payments_recovery_phrase_confirm_fragment_done"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/PaymentRecoveryPhraseConfirmFragment__done"
+                app:cornerRadius="28dp"
+                app:elevation="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</LinearLayout>
