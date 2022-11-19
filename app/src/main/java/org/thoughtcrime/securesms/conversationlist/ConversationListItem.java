@@ -530,10 +530,14 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (MmsSmsColumns.Types.isDraftMessageType(thread.getType())) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(context, draftText + " " + thread.getBody(), defaultTint);
-    } else if (SmsDatabase.Types.isOutgoingAudioCall(thread.getType()) || SmsDatabase.Types.isOutgoingVideoCall(thread.getType())) {
+    } else if (SmsDatabase.Types.isOutgoingAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called), R.drawable.ic_update_audio_call_outgoing_16, defaultTint);
-    } else if (SmsDatabase.Types.isIncomingAudioCall(thread.getType()) || SmsDatabase.Types.isIncomingVideoCall(thread.getType())) {
+    } else if (SmsDatabase.Types.isOutgoingVideoCall(thread.getType())) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_called), R.drawable.ic_update_video_call_outgoing_16, defaultTint);
+    } else if (SmsDatabase.Types.isIncomingAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called_you), R.drawable.ic_update_audio_call_incoming_16, defaultTint);
+    } else if (SmsDatabase.Types.isIncomingVideoCall(thread.getType())) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_called_you), R.drawable.ic_update_video_call_incoming_16, defaultTint);
     } else if (SmsDatabase.Types.isMissedAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_missed_audio_call), R.drawable.ic_update_audio_call_missed_16, defaultTint);
     } else if (SmsDatabase.Types.isMissedVideoCall(thread.getType())) {
