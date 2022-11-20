@@ -106,18 +106,19 @@ public class EmojiEditText extends AppCompatEditText {
   @Override
   public boolean onTextContextMenuItem(int id) {
     if (id == android.R.id.paste) {
-      ClipboardManager clipboardManager = ((ClipboardManager) getContext()
-              .getSystemService(Context.CLIPBOARD_SERVICE));
+      ClipboardManager clipboardManager = ((ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE));
       ClipData         originalClipData = clipboardManager.getPrimaryClip();
       CharSequence     textToPaste      = getTextFromClipData(originalClipData);
-      if (textToPaste == null) return super.onTextContextMenuItem(id);
+      if (textToPaste == null) {
+        return super.onTextContextMenuItem(id);
+      }
 
-      CharSequence     sanitizedText    = (textToPaste instanceof Spanned) ?
-              clearFormattingFromText(textToPaste) : textToPaste;
+      CharSequence     sanitizedText    = (textToPaste instanceof Spanned) ? clearFormattingFromText(textToPaste)
+                                                                           : textToPaste;
 
       clipboardManager.setPrimaryClip(ClipData.newPlainText("signal_sanitized", sanitizedText));
 
-      boolean           retVal          = super.onTextContextMenuItem(id);
+      boolean retVal = super.onTextContextMenuItem(id);
       clipboardManager.setPrimaryClip(originalClipData);
       return retVal;
     }
@@ -125,7 +126,7 @@ public class EmojiEditText extends AppCompatEditText {
   }
 
   private SpannableStringBuilder clearFormattingFromText(CharSequence text) {
-    List<Mention>                 mentions = MentionAnnotation.getMentionsFromAnnotations(text);
+    List<Mention>          mentions        = MentionAnnotation.getMentionsFromAnnotations(text);
     SpannableStringBuilder spannableString = new SpannableStringBuilder(text.toString());
     MentionAnnotation.setMentionAnnotations(spannableString, mentions);
     return spannableString;
@@ -133,6 +134,6 @@ public class EmojiEditText extends AppCompatEditText {
 
   private CharSequence getTextFromClipData(ClipData data) {
     return data == null || data.getItemCount() == 0 ? null
-            : data.getItemAt(0).coerceToText(getContext());
+                                                    : data.getItemAt(0).coerceToText(getContext());
   }
 }
