@@ -65,7 +65,7 @@
                 style="@style/BackupPassphrase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
                 tools:text="56944" />
 
             <TextView
@@ -73,12 +73,13 @@
                 style="@style/BackupPassphrase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
                 tools:text="42738" />
         </TableRow>
 
         <TableRow android:gravity="center_horizontal"
-                  android:layoutDirection="ltr">
+                  android:layoutDirection="ltr"
+                  android:layout_marginTop="4dp">
 
             <TextView
                 android:id="@+id/code_fourth"
@@ -92,7 +93,7 @@
                 style="@style/BackupPassphrase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
                 tools:text="24922" />
 
             <TextView
@@ -100,7 +101,7 @@
                 style="@style/BackupPassphrase"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="8dp"
                 tools:text="58594" />
         </TableRow>
     </TableLayout>

@@ -36,20 +36,21 @@
             <TextView android:id="@+id/code_second"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginStart="20dp"
+                      android:layout_marginStart="8dp"
                       style="@style/BackupPassphrase"
                       tools:text="56944" />
 
             <TextView android:id="@+id/code_third"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginStart="20dp"
+                      android:layout_marginStart="8dp"
                       style="@style/BackupPassphrase"
                       tools:text="42738" />
         </TableRow>
 
         <TableRow android:gravity="center_horizontal"
-                  android:layoutDirection="ltr">
+                  android:layoutDirection="ltr"
+                  android:layout_marginTop="4dp">
 
             <TextView android:id="@+id/code_fourth"
                       android:layout_width="wrap_content"
@@ -60,14 +61,14 @@
             <TextView android:id="@+id/code_fifth"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginStart="20dp"
+                      android:layout_marginStart="8dp"
                       style="@style/BackupPassphrase"
                       tools:text="24922" />
 
             <TextView android:id="@+id/code_sixth"
                       android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
-                      android:layout_marginStart="20dp"
+                      android:layout_marginStart="8dp"
                       style="@style/BackupPassphrase"
                       tools:text="58594" />
         </TableRow>
