@@ -20,7 +20,7 @@ import android.content.Context;
 
 import androidx.annotation.NonNull;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.thoughtcrime.securesms.contacts.ContactsDatabase;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.util.SqlUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.io.Closeable;
-import java.io.IOException;
 
 public class DatabaseFactory {
 
@@ -74,6 +73,7 @@ public class DatabaseFactory {
   private final EmojiSearchDatabase         emojiSearchDatabase;
   private final MessageSendLogDatabase      messageSendLogDatabase;
   private final GroupCallRingDatabase       groupCallRingDatabase;
+  private final ReactionDatabase            reactionDatabase;
 
   public static DatabaseFactory getInstance(Context context) {
     if (instance == null) {
@@ -208,7 +208,11 @@ public class DatabaseFactory {
     return getInstance(context).groupCallRingDatabase;
   }
 
-  public static net.sqlcipher.database.SQLiteDatabase getBackupDatabase(Context context) {
+  public static ReactionDatabase getReactionDatabase(Context context) {
+    return getInstance(context).reactionDatabase;
+  }
+
+  public static net.zetetic.database.sqlcipher.SQLiteDatabase getBackupDatabase(Context context) {
     return getInstance(context).databaseHelper.getRawReadableDatabase();
   }
 
@@ -232,7 +236,7 @@ public class DatabaseFactory {
   }
 
   private DatabaseFactory(@NonNull Context context) {
-    SqlCipherLibraryLoader.load(context);
+    SqlCipherLibraryLoader.load();
 
     DatabaseSecret   databaseSecret   = DatabaseSecretProvider.getOrCreateDatabaseSecret(context);
     AttachmentSecret attachmentSecret = AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret();
@@ -267,6 +271,7 @@ public class DatabaseFactory {
     this.emojiSearchDatabase    = new EmojiSearchDatabase(context, databaseHelper);
     this.messageSendLogDatabase = new MessageSendLogDatabase(context, databaseHelper);
     this.groupCallRingDatabase       = new GroupCallRingDatabase(context, databaseHelper);
+    this.reactionDatabase            = new ReactionDatabase(context, databaseHelper);
   }
 
   public void onApplicationLevelUpgrade(@NonNull Context context, @NonNull MasterSecret masterSecret,
@@ -297,7 +302,7 @@ public class DatabaseFactory {
     databaseHelper.getSignalWritableDatabase();
   }
 
-  public net.sqlcipher.database.SQLiteDatabase getRawDatabase() {
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawDatabase() {
     return databaseHelper.getRawWritableDatabase();
   }
 

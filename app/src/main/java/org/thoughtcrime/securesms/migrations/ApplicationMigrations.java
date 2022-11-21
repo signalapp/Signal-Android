@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.migrations;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -40,7 +41,8 @@ public class ApplicationMigrations {
 
   private static final int LEGACY_CANONICAL_VERSION = 455;
 
-  private static final class Version {
+  @VisibleForTesting
+  static final class Version {
     static final int LEGACY                 = 1;
     static final int RECIPIENT_ID           = 2;
     static final int RECIPIENT_SEARCH       = 3;
@@ -83,8 +85,14 @@ public class ApplicationMigrations {
     static final int ANNOUNCEMENT_GROUP_CAPABILITY = 41;
     static final int STICKER_MY_DAILY_LIFE         = 42;
     static final int SENDER_KEY_3                  = 43;
+    static final int CHANGE_NUMBER_SYNC            = 44;
+    static final int CHANGE_NUMBER_CAPABILITY      = 45;
+    static final int CHANGE_NUMBER_CAPABILITY_2    = 46;
+    static final int DEFAULT_REACTIONS_SYNC        = 47;
+    static final int DB_REACTIONS_MIGRATION        = 48;
+//    static final int CHANGE_NUMBER_CAPABILITY_3    = 49;
   }
-  public static final int CURRENT_VERSION = 43;
+  public static final int CURRENT_VERSION = 49;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -363,6 +371,26 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SENDER_KEY_3) {
       jobs.put(Version.SENDER_KEY_3, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHANGE_NUMBER_SYNC) {
+      jobs.put(Version.CHANGE_NUMBER_SYNC, new AccountRecordMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHANGE_NUMBER_CAPABILITY) {
+      jobs.put(Version.CHANGE_NUMBER_CAPABILITY, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHANGE_NUMBER_CAPABILITY_2) {
+      jobs.put(Version.CHANGE_NUMBER_CAPABILITY_2, new AttributesMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DEFAULT_REACTIONS_SYNC) {
+      jobs.put(Version.DEFAULT_REACTIONS_SYNC, new StorageServiceMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DB_REACTIONS_MIGRATION) {
+      jobs.put(Version.DB_REACTIONS_MIGRATION, new DatabaseMigrationJob());
     }
 
     return jobs;

@@ -51,13 +51,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/conversation_list_item_thumbnail"
+        app:layout_constraintEnd_toStartOf="@id/conversation_list_item_date"
         android:layout_marginRight="40dp"
         android:gravity="center_vertical"
         android:ellipsize="marquee"
         android:singleLine="true"
         android:textColor="@color/text_primary"
-        tools:text="Peter Parker"/>
+        tools:text="Long Chat name for testing purposes" />
 
     <org.thoughtcrime.securesms.components.AlertView
         android:id="@+id/conversation_list_item_alert"

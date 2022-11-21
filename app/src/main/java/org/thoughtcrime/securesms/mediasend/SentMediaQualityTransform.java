@@ -17,7 +17,7 @@ public final class SentMediaQualityTransform implements MediaTransform {
 
   private final SentMediaQuality sentMediaQuality;
 
-  SentMediaQualityTransform(@NonNull SentMediaQuality sentMediaQuality) {
+  public SentMediaQualityTransform(@NonNull SentMediaQuality sentMediaQuality) {
     this.sentMediaQuality = sentMediaQuality;
   }
 

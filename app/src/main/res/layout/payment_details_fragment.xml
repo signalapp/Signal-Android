@@ -81,6 +81,8 @@
                 android:layout_marginTop="12dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/rounded_rectangle_tertiary"
+                android:enabled="false"
+                android:inputType="none"
                 android:paddingStart="16dp"
                 android:paddingTop="6dp"
                 android:paddingEnd="16dp"

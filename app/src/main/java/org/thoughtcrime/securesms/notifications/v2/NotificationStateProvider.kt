@@ -2,19 +2,24 @@ package org.thoughtcrime.securesms.notifications.v2
 
 import android.content.Context
 import androidx.annotation.WorkerThread
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.MmsSmsColumns
 import org.thoughtcrime.securesms.database.MmsSmsDatabase
 import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.CursorUtil
+import java.lang.IllegalStateException
 
 /**
  * Queries the message databases to determine messages that should be in notifications.
  */
 object NotificationStateProvider {
+
+  private val TAG = Log.tag(NotificationStateProvider::class.java)
 
   @WorkerThread
   fun constructNotificationState(context: Context, stickyThreads: Map<Long, MessageNotifierV2.StickyThread>): NotificationStateV2 {
@@ -30,17 +35,26 @@ object NotificationStateProvider {
         while (record != null) {
           val threadRecipient: Recipient? = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
+            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1
+
             messages += NotificationMessage(
               messageRecord = record,
+              reactions = if (hasUnreadReactions) DatabaseFactory.getReactionDatabase(context).getReactions(MessageId(record.id, record.isMms)) else emptyList(),
               threadRecipient = threadRecipient,
               threadId = record.threadId,
               stickyThread = stickyThreads.containsKey(record.threadId),
               isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
-              hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1,
+              hasUnreadReactions = hasUnreadReactions,
               lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN)
             )
           }
-          record = reader.next
+          try {
+            record = reader.next
+          } catch (e: IllegalStateException) {
+            // XXX Weird SQLCipher bug that's being investigated
+            record = null
+            Log.w(TAG, "Failed to read next record!", e)
+          }
         }
       }
     }
@@ -56,7 +70,7 @@ object NotificationStateProvider {
           }
 
           if (notification.hasUnreadReactions) {
-            notification.messageRecord.reactions.filter { notification.includeReaction(it) }
+            notification.reactions.filter { notification.includeReaction(it) }
               .forEach { notificationItems.add(ReactionNotification(notification.threadRecipient, notification.messageRecord, it)) }
           }
         }
@@ -77,6 +91,7 @@ object NotificationStateProvider {
 
   private data class NotificationMessage(
     val messageRecord: MessageRecord,
+    val reactions: List<ReactionRecord>,
     val threadRecipient: Recipient,
     val threadId: Long,
     val stickyThread: Boolean,

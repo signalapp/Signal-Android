@@ -105,9 +105,10 @@ public class SignalDataStoreImpl implements SignalServiceDataStore {
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames){
     return sessionStore.getAllAddressesWithActiveSessions(addressNames);
   }
+
 
   @Override
   public void storeSession(SignalProtocolAddress axolotlAddress, SessionRecord record) {

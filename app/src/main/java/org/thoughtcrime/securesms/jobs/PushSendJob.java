@@ -347,7 +347,7 @@ public abstract class PushSendJob extends SendJob {
           thumbnail = builder.build();
         }
 
-        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.getContentType(),
+        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.isVideoGif() ? MediaUtil.IMAGE_GIF : attachment.getContentType(),
                                                                                  attachment.getFileName(),
                                                                                  thumbnail));
       } catch (BitmapDecodingException e) {
@@ -467,6 +467,8 @@ public abstract class PushSendJob extends SendJob {
   protected void handleProofRequiredException(@NonNull ProofRequiredException proofRequired, @Nullable Recipient recipient, long threadId, long messageId, boolean isMms)
       throws ProofRequiredException, RetryLaterException
   {
+    Log.w(TAG, "[Proof Required] Options: " + proofRequired.getOptions());
+
     try {
       if (proofRequired.getOptions().contains(ProofRequiredException.Option.PUSH_CHALLENGE)) {
         ApplicationDependencies.getSignalServiceAccountManager().requestRateLimitPushChallenge();

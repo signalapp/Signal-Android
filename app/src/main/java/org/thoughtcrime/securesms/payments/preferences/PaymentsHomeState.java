@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.payments.preferences.model.PaymentItem;
 
 import java.util.Collections;

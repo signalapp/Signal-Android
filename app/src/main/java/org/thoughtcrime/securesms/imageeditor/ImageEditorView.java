@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.imageeditor.model.EditorModel;
 import org.thoughtcrime.securesms.imageeditor.model.ThumbRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.BezierDrawingRenderer;
 import org.thoughtcrime.securesms.imageeditor.renderers.MultiLineTextRenderer;
+import org.thoughtcrime.securesms.imageeditor.renderers.TrashRenderer;
 
 /**
  * ImageEditorView
@@ -66,6 +67,9 @@ public final class ImageEditorView extends FrameLayout {
 
   @Nullable
   private UndoRedoStackListener undoRedoStackListener;
+
+  @Nullable
+  private DragListener dragListener;
 
   private final Matrix viewMatrix      = new Matrix();
   private final RectF  viewPort        = Bounds.newFullBounds();
@@ -114,18 +118,14 @@ public final class ImageEditorView extends FrameLayout {
     return editText;
   }
 
-  public void startTextEditing(@NonNull EditorElement editorElement, boolean incognitoKeyboardEnabled, boolean selectAll) {
+  public void startTextEditing(@NonNull EditorElement editorElement) {
+    getModel().addFade();
     if (editorElement.getRenderer() instanceof MultiLineTextRenderer) {
-      editText.setIncognitoKeyboardEnabled(incognitoKeyboardEnabled);
       editText.setCurrentTextEditorElement(editorElement);
-      if (selectAll) {
-        editText.selectAll();
-      }
-      editText.requestFocus();
     }
   }
 
-  private void zoomToFitText(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer) {
+  public void zoomToFitText(@NonNull EditorElement editorElement, @NonNull MultiLineTextRenderer textRenderer) {
       getModel().zoomToTextElement(editorElement, textRenderer);
   }
 
@@ -135,12 +135,10 @@ public final class ImageEditorView extends FrameLayout {
 
   public void doneTextEditing() {
     getModel().zoomOut();
+    getModel().removeFade();
     if (editText.getCurrentTextEntity() != null) {
       editText.setCurrentTextEditorElement(null);
       editText.hideKeyboard();
-      if (tapListener != null) {
-        tapListener.onEntityDown(null);
-      }
     }
   }
 
@@ -233,6 +231,11 @@ public final class ImageEditorView extends FrameLayout {
         model.pushUndoPoint();
         editSession = startEdit(inverse, point, selected);
 
+        if (editSession != null) {
+          checkTrashIntersect(point);
+          notifyDragStart(editSession.getSelected());
+        }
+
         if (tapListener != null && allowTaps()) {
           if (editSession != null) {
             tapListener.onEntityDown(editSession.getSelected());
@@ -259,6 +262,7 @@ public final class ImageEditorView extends FrameLayout {
           }
           model.moving(editSession.getSelected());
           invalidate();
+          notifyDragMove(editSession.getSelected(), checkTrashIntersect(getPoint(event)));
           return true;
         }
         break;
@@ -276,7 +280,7 @@ public final class ImageEditorView extends FrameLayout {
             editSession = null;
           }
           if (editSession == null) {
-            dragDropRelease();
+            dragDropRelease(false);
           }
           return true;
         }
@@ -286,7 +290,7 @@ public final class ImageEditorView extends FrameLayout {
         if (editSession != null && event.getActionIndex() < 2) {
           editSession.commit();
           model.pushUndoPoint();
-          dragDropRelease();
+          dragDropRelease(true);
 
           Matrix newInverse = model.findElementInverseMatrix(editSession.getSelected(), viewMatrix);
           if (newInverse != null) {
@@ -301,7 +305,14 @@ public final class ImageEditorView extends FrameLayout {
       case MotionEvent.ACTION_UP: {
         if (editSession != null) {
           editSession.commit();
-          dragDropRelease();
+          dragDropRelease(false);
+
+          PointF  point        = getPoint(event);
+          boolean hittingTrash = event.getPointerCount() == 1 &&
+                                 checkTrashIntersect(point)   &&
+                                 model.findElementAtPoint(point, viewMatrix, new Matrix()) == editSession.getSelected();
+
+          notifyDragEnd(editSession.getSelected(), hittingTrash);
 
           editSession = null;
           model.postEdit(moreThanOnePointerUsedInSession);
@@ -317,11 +328,49 @@ public final class ImageEditorView extends FrameLayout {
     return super.onTouchEvent(event);
   }
 
-  private @Nullable EditSession startEdit(@NonNull Matrix inverse, @NonNull PointF point, @Nullable EditorElement selected) {
+  private boolean checkTrashIntersect(@NonNull PointF point) {
     if (mode == Mode.Draw || mode == Mode.Blur) {
+      return false;
+    }
+
+    if (model.checkTrashIntersectsPoint(point)) {
+      if (model.getTrash().getRenderer() instanceof TrashRenderer) {
+        ((TrashRenderer) model.getTrash().getRenderer()).expand();
+      }
+      return true;
+    } else {
+      if (model.getTrash().getRenderer() instanceof TrashRenderer) {
+        ((TrashRenderer) model.getTrash().getRenderer()).shrink();
+      }
+      return false;
+    }
+  }
+
+  private void notifyDragStart(@Nullable EditorElement editorElement) {
+    if (dragListener != null) {
+      dragListener.onDragStarted(editorElement);
+    }
+  }
+
+  private void notifyDragMove(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
+    if (dragListener != null) {
+      dragListener.onDragMoved(editorElement, isInTrashHitZone);
+    }
+  }
+
+  private void notifyDragEnd(@Nullable EditorElement editorElement, boolean isInTrashHitZone) {
+    if (dragListener != null) {
+      dragListener.onDragEnded(editorElement, isInTrashHitZone);
+    }
+  }
+
+  private @Nullable EditSession startEdit(@NonNull Matrix inverse, @NonNull PointF point, @Nullable EditorElement selected) {
+    EditSession editSession = startAMoveAndResizeSession(inverse, point, selected);
+    if (editSession == null && (mode == Mode.Draw || mode == Mode.Blur)) {
       return startADrawingSession(point);
     } else {
-      return startAMoveAndResizeSession(inverse, point, selected);
+      setMode(Mode.MoveAndResize);
+      return editSession;
     }
   }
 
@@ -357,6 +406,11 @@ public final class ImageEditorView extends FrameLayout {
     return ElementDragEditSession.startDrag(selected, inverse, point);
   }
 
+  @NonNull
+  public Mode getMode() {
+    return mode;
+  }
+
   public void setMode(@NonNull Mode mode) {
     this.mode = mode;
   }
@@ -371,10 +425,10 @@ public final class ImageEditorView extends FrameLayout {
     this.color = color;
   }
 
-  private void dragDropRelease() {
+  private void dragDropRelease(boolean stillTouching) {
     model.dragDropRelease();
     if (drawingChangedListener != null) {
-      drawingChangedListener.onDrawingChanged();
+      drawingChangedListener.onDrawingChanged(stillTouching);
     }
   }
 
@@ -407,13 +461,16 @@ public final class ImageEditorView extends FrameLayout {
     this.undoRedoStackListener = undoRedoStackListener;
   }
 
+  public void setDragListener(@Nullable DragListener dragListener) {
+    this.dragListener = dragListener;
+  }
+
   public void setTapListener(TapListener tapListener) {
     this.tapListener = tapListener;
   }
 
   public void deleteElement(@Nullable EditorElement editorElement) {
     if (editorElement != null) {
-      model.pushUndoPoint();
       model.delete(editorElement);
       invalidate();
     }
@@ -470,11 +527,17 @@ public final class ImageEditorView extends FrameLayout {
   }
 
   public interface DrawingChangedListener {
-    void onDrawingChanged();
+    void onDrawingChanged(boolean stillTouching);
   }
 
   public interface SizeChangedListener {
     void onSizeChanged(int newWidth, int newHeight);
+  }
+
+  public interface DragListener {
+    void onDragStarted(@Nullable EditorElement editorElement);
+    void onDragMoved(@Nullable EditorElement editorElement, boolean isInTrashHitZone);
+    void onDragEnded(@Nullable EditorElement editorElement, boolean isInTrashHitZone);
   }
 
   public interface TapListener {

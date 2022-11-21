@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.color.MaterialColor;
+import org.thoughtcrime.securesms.components.recyclerview.ToolbarShadowAnimationHelper;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
-import org.thoughtcrime.securesms.conversation.colors.ColorizerView;
+import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeDialog;
 import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -27,7 +29,7 @@ import org.thoughtcrime.securesms.messagedetails.MessageDetailsViewModel.Factory
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.DynamicDarkActionBarTheme;
+import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.WindowUtil;
 
@@ -46,8 +48,9 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   private MessageDetailsViewModel viewModel;
   private MessageDetailsAdapter   adapter;
   private Colorizer               colorizer;
+  private RecyclerViewColorizer   recyclerViewColorizer;
 
-  private DynamicTheme dynamicTheme = new DynamicDarkActionBarTheme();
+  private DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   public static @NonNull Intent getIntentForMessageDetails(@NonNull Context context, @NonNull MessageRecord message, @NonNull RecipientId recipientId, long threadId) {
     Intent intent = new Intent(context, MessageDetailsActivity.class);
@@ -100,14 +103,15 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
 
   private void initializeList() {
     RecyclerView  list          = findViewById(R.id.message_details_list);
-    ColorizerView colorizerView = findViewById(R.id.message_details_colorizer);
+    View          toolbarShadow = findViewById(R.id.toolbar_shadow);
 
-    colorizer = new Colorizer(colorizerView);
-    adapter   = new MessageDetailsAdapter(this, glideRequests, colorizer, this::onErrorClicked);
+    colorizer             = new Colorizer();
+    adapter               = new MessageDetailsAdapter(this, glideRequests, colorizer, this::onErrorClicked);
+    recyclerViewColorizer = new RecyclerViewColorizer(list);
 
     list.setAdapter(adapter);
     list.setItemAnimator(null);
-    colorizer.attachToRecyclerView(list);
+    list.addOnScrollListener(new ToolbarShadowAnimationHelper(toolbarShadow));
   }
 
   private void initializeViewModel() {
@@ -124,7 +128,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
         adapter.submitList(convertToRows(details));
       }
     });
-    viewModel.getRecipient().observe(this, recipient -> colorizer.onChatColorsChanged(recipient.getChatColors()));
+    viewModel.getRecipient().observe(this, recipient -> recyclerViewColorizer.setChatColors(recipient.getChatColors()));
   }
 
   private void initializeVideoPlayer() {
@@ -137,6 +141,7 @@ public final class MessageDetailsActivity extends PassphraseRequiredActivity {
   }
 
   private void initializeActionBar() {
+    setSupportActionBar(findViewById(R.id.toolbar));
     requireSupportActionBar().setDisplayHomeAsUpEnabled(true);
     requireSupportActionBar().setTitle(R.string.AndroidManifest__message_details);
 

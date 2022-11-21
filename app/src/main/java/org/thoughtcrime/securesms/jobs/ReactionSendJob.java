@@ -5,17 +5,14 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.MessageDatabase;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.ReactionDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -26,20 +23,18 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.whispersystems.libsignal.util.guava.Optional;
-import org.whispersystems.signalservice.api.SignalServiceMessageSender;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
-import org.whispersystems.signalservice.api.crypto.UnidentifiedAccessPair;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
-import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 
 public class ReactionSendJob extends BaseJob {
 
@@ -57,8 +52,7 @@ public class ReactionSendJob extends BaseJob {
   private static final String KEY_RECIPIENTS              = "recipients";
   private static final String KEY_INITIAL_RECIPIENT_COUNT = "initial_recipient_count";
 
-  private final long              messageId;
-  private final boolean           isMms;
+  private final MessageId         messageId;
   private final List<RecipientId> recipients;
   private final int               initialRecipientCount;
   private final ReactionRecord    reaction;
@@ -67,14 +61,13 @@ public class ReactionSendJob extends BaseJob {
 
   @WorkerThread
   public static @NonNull ReactionSendJob create(@NonNull Context context,
-                                                long messageId,
-                                                boolean isMms,
+                                                @NonNull MessageId messageId,
                                                 @NonNull ReactionRecord reaction,
                                                 boolean remove)
       throws NoSuchMessageException
   {
-    MessageRecord message = isMms ? DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId)
-                                  : DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId);
+    MessageRecord message = messageId.isMms() ? DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId.getId())
+                                              : DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId.getId());
 
     Recipient conversationRecipient = DatabaseFactory.getThreadDatabase(context).getRecipientForThreadId(message.getThreadId());
 
@@ -82,26 +75,28 @@ public class ReactionSendJob extends BaseJob {
       throw new AssertionError("We have a message, but couldn't find the thread!");
     }
 
-    List<RecipientId> recipients = conversationRecipient.isGroup() ? Stream.of(RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants())).map(Recipient::getId).toList()
-                                                                   : Stream.of(conversationRecipient.getId()).toList();
-
-    recipients.remove(Recipient.self().getId());
+    RecipientId       selfId     = Recipient.self().getId();
+    List<RecipientId> recipients = conversationRecipient.isGroup() ? RecipientUtil.getEligibleForSending(conversationRecipient.getParticipants())
+                                                                                  .stream()
+                                                                                  .map(Recipient::getId)
+                                                                                  .filter(r -> !r.equals(selfId))
+                                                                                  .collect(Collectors.toList())
+                                                                   : Collections.singletonList(conversationRecipient.getId());
 
     return new ReactionSendJob(messageId,
-                               isMms,
                                recipients,
                                recipients.size(),
                                reaction,
                                remove,
                                new Parameters.Builder()
                                              .setQueue(conversationRecipient.getId().toQueueKey())
+                                             .addConstraint(NetworkConstraint.KEY)
                                              .setLifespan(TimeUnit.DAYS.toMillis(1))
                                              .setMaxAttempts(Parameters.UNLIMITED)
                                              .build());
   }
 
-  private ReactionSendJob(long messageId,
-                          boolean isMms,
+  private ReactionSendJob(@NonNull MessageId messageId,
                           @NonNull List<RecipientId> recipients,
                           int initialRecipientCount,
                           @NonNull ReactionRecord reaction,
@@ -111,7 +106,6 @@ public class ReactionSendJob extends BaseJob {
     super(parameters);
 
     this.messageId             = messageId;
-    this.isMms                 = isMms;
     this.recipients            = recipients;
     this.initialRecipientCount = initialRecipientCount;
     this.reaction              = reaction;
@@ -120,8 +114,8 @@ public class ReactionSendJob extends BaseJob {
 
   @Override
   public @NonNull Data serialize() {
-    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId)
-                             .putBoolean(KEY_IS_MMS, isMms)
+    return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId.getId())
+                             .putBoolean(KEY_IS_MMS, messageId.isMms())
                              .putString(KEY_REACTION_EMOJI, reaction.getEmoji())
                              .putString(KEY_REACTION_AUTHOR, reaction.getAuthor().serialize())
                              .putLong(KEY_REACTION_DATE_SENT, reaction.getDateSent())
@@ -143,26 +137,25 @@ public class ReactionSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    MessageDatabase db;
-    MessageRecord     message;
+    ReactionDatabase reactionDatabase = DatabaseFactory.getReactionDatabase(context);
 
-    if (isMms) {
-      db      = DatabaseFactory.getMmsDatabase(context);
-      message = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId);
+    MessageRecord  message;
+
+    if (messageId.isMms()) {
+      message = DatabaseFactory.getMmsDatabase(context).getMessageRecord(messageId.getId());
     } else {
-      db      = DatabaseFactory.getSmsDatabase(context);
-      message = DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId);
+      message = DatabaseFactory.getSmsDatabase(context).getSmsMessage(messageId.getId());
     }
 
     Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();
     long      targetSentTimestamp = message.getDateSent();
 
-    if (!remove && !db.hasReaction(messageId, reaction)) {
+    if (!remove && !reactionDatabase.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to add a reaction, but it's no longer present on the message!");
       return;
     }
 
-    if (remove && db.hasReaction(messageId, reaction)) {
+    if (remove && reactionDatabase.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to remove a reaction, but it's still there!");
       return;
     }
@@ -178,7 +171,7 @@ public class ReactionSendJob extends BaseJob {
       return;
     }
 
-    List<Recipient>   resolved     = Stream.of(recipients).map(Recipient::resolved).toList();
+    List<Recipient>   resolved     = recipients.stream().map(Recipient::resolved).collect(Collectors.toList());
     List<RecipientId> unregistered = resolved.stream().filter(Recipient::isUnregistered).map(Recipient::getId).collect(Collectors.toList());
     List<Recipient>   destinations = resolved.stream().filter(Recipient::isMaybeRegistered).collect(Collectors.toList());
     List<Recipient>   completions  = deliver(conversationRecipient, destinations, targetAuthor, targetSentTimestamp);
@@ -211,14 +204,14 @@ public class ReactionSendJob extends BaseJob {
 
     Log.w(TAG, "Failed to send the reaction to all recipients!");
 
-    MessageDatabase db = isMms ? DatabaseFactory.getMmsDatabase(context) : DatabaseFactory.getSmsDatabase(context);
+    ReactionDatabase reactionDatabase = DatabaseFactory.getReactionDatabase(context);
 
-    if (remove && !db.hasReaction(messageId, reaction)) {
+    if (remove && !reactionDatabase.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Reaction removal failed, so adding the reaction back.");
-      db.addReaction(messageId, reaction);
-    } else if (!remove && db.hasReaction(messageId, reaction)){
+      reactionDatabase.addReaction(messageId, reaction);
+    } else if (!remove && reactionDatabase.hasReaction(messageId, reaction)){
       Log.w(TAG, "Reaction addition failed, so removing the reaction.");
-      db.deleteReaction(messageId, reaction.getAuthor());
+      reactionDatabase.deleteReaction(messageId, reaction.getAuthor());
     } else {
       Log.w(TAG, "Reaction state didn't match what we'd expect to revert it, so we're just leaving it alone.");
     }
@@ -241,7 +234,7 @@ public class ReactionSendJob extends BaseJob {
                                                                                    destinations,
                                                                                    false,
                                                                                    ContentHint.RESENDABLE,
-                                                                                   new MessageId(messageId, isMms),
+                                                                                   messageId,
                                                                                    dataMessage);
 
     return GroupSendJobHelper.getCompletedSends(destinations, results);
@@ -275,7 +268,7 @@ public class ReactionSendJob extends BaseJob {
                                                                    data.getLong(KEY_REACTION_DATE_RECEIVED));
       boolean           remove                = data.getBoolean(KEY_REMOVE);
 
-      return new ReactionSendJob(messageId, isMms, recipients, initialRecipientCount, reaction, remove, parameters);
+      return new ReactionSendJob(new MessageId(messageId, isMms), recipients, initialRecipientCount, reaction, remove, parameters);
     }
   }
 }

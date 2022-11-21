@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.text.Annotation;
 import android.text.Layout;
 import android.text.SpannableStringBuilder;
@@ -11,6 +12,8 @@ import android.text.Spanned;
 import android.text.TextDirectionHeuristic;
 import android.text.TextDirectionHeuristics;
 import android.text.TextUtils;
+import android.text.method.TransformationMethod;
+import android.text.style.MetricAffectingSpan;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.ViewGroup;
@@ -44,6 +47,7 @@ public class EmojiTextView extends AppCompatTextView {
   private boolean                forceCustom;
   private CharSequence           previousText;
   private BufferType             previousBufferType;
+  private TransformationMethod   previousTransformationMethod;
   private float                  originalFontSize;
   private boolean                useSystemEmoji;
   private boolean                sizeChangeInProgress;
@@ -128,10 +132,11 @@ public class EmojiTextView extends AppCompatTextView {
       return;
     }
 
-    previousText         = text;
-    previousOverflowText = overflowText;
-    previousBufferType   = type;
-    useSystemEmoji       = useSystemEmoji();
+    previousText                 = text;
+    previousOverflowText         = overflowText;
+    previousBufferType           = type;
+    useSystemEmoji               = useSystemEmoji();
+    previousTransformationMethod = getTransformationMethod();
 
     if (useSystemEmoji || candidates == null || candidates.size() == 0) {
       super.setText(new SpannableStringBuilder(Optional.fromNullable(text).or("")), BufferType.NORMAL);
@@ -158,23 +163,62 @@ public class EmojiTextView extends AppCompatTextView {
   }
 
   @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    widthMeasureSpec = applyWidthMeasureRoundingFix(widthMeasureSpec);
+
     super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     CharSequence text = getText();
     if (getLayout() == null || !measureLastLine || text == null || text.length() == 0) {
       lastLineWidth = -1;
     } else {
       Layout layout = getLayout();
-      int    lines  = layout.getLineCount();
-      int    start  = layout.getLineStart(lines - 1);
-      int    count  = text.length() - start;
+      text = layout.getText();
 
-      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, start, count)) ||
-          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, start, count))) {
+      int lines = layout.getLineCount();
+      int start = layout.getLineStart(lines - 1);
+
+      if ((getLayoutDirection() == LAYOUT_DIRECTION_LTR && textDirection.isRtl(text, 0, text.length())) ||
+          (getLayoutDirection() == LAYOUT_DIRECTION_RTL && !textDirection.isRtl(text, 0, text.length()))) {
         lastLineWidth = getMeasuredWidth();
       } else {
         lastLineWidth = (int) getPaint().measureText(text, start, text.length());
       }
     }
+  }
+
+  /**
+   * Starting from API 30, there can be a rounding error in text layout when a non-default font
+   * scale is used. This causes a line break to be inserted where there shouldn't be one. Force the
+   * width to be larger to work around this problem.
+   * https://issuetracker.google.com/issues/173574230
+   *
+   * @param widthMeasureSpec the original measure spec passed to {@link #onMeasure(int, int)}
+   * @return the measure spec with the workaround, or the original one.
+   */
+  private int applyWidthMeasureRoundingFix(int widthMeasureSpec) {
+    if (Build.VERSION.SDK_INT >= 30 && Math.abs(getResources().getConfiguration().fontScale - 1f) > 0.01f) {
+      CharSequence text = getText();
+      if (text != null) {
+        int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSpecSize = MeasureSpec.getSize(widthMeasureSpec);
+
+        float measuredTextWidth = hasMetricAffectingSpan(text) ? Layout.getDesiredWidth(text, getPaint()) : getPaint().measureText(text, 0, text.length());
+        int   desiredWidth      = (int) measuredTextWidth + getPaddingLeft() + getPaddingRight();
+
+        if (widthSpecMode == MeasureSpec.AT_MOST && desiredWidth < widthSpecSize) {
+          return MeasureSpec.makeMeasureSpec(desiredWidth + 1, MeasureSpec.EXACTLY);
+        }
+      }
+    }
+
+    return widthMeasureSpec;
+  }
+
+  private boolean hasMetricAffectingSpan(@NonNull CharSequence text) {
+    if (!(text instanceof Spanned)) {
+      return false;
+    }
+
+    return ((Spanned) text).nextSpanTransition(-1, text.length(), MetricAffectingSpan.class) != text.length();
   }
 
   public int getLastLineWidth() {
@@ -261,7 +305,8 @@ public class EmojiTextView extends AppCompatTextView {
            Util.equals(previousOverflowText, overflowText) &&
            Util.equals(previousBufferType, bufferType)     &&
            useSystemEmoji == useSystemEmoji()              &&
-           !sizeChangeInProgress;
+           !sizeChangeInProgress                           &&
+           previousTransformationMethod == getTransformationMethod();
   }
 
   private boolean useSystemEmoji() {

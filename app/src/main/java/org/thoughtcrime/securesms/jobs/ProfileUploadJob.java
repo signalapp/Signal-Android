@@ -7,6 +7,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.ProfileUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 

@@ -8,6 +8,7 @@ import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
@@ -43,6 +44,12 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
                                                            @NonNull OfferMessage.Type offerType)
   {
     Log.i(TAG, "handleOutgoingCall():");
+
+    Recipient recipient = Recipient.resolved(remotePeer.getId());
+    if (recipient.isGroup()) {
+      Log.w(TAG, "Aborting attempt to start 1:1 call for group recipient: " + remotePeer.getId());
+      return currentState;
+    }
 
     currentState = WebRtcVideoUtil.initializeVideo(context, webRtcInteractor.getCameraEventListener(), currentState);
     return beginCallDelegate.handleOutgoingCall(currentState, remotePeer, offerType);

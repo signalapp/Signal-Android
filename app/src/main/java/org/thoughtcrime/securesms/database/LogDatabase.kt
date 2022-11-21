@@ -4,8 +4,8 @@ import android.annotation.SuppressLint
 import android.app.Application
 import android.content.ContentValues
 import android.database.Cursor
-import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SQLiteOpenHelper
+import net.zetetic.database.sqlcipher.SQLiteDatabase
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -23,28 +23,29 @@ import java.util.concurrent.TimeUnit
  * Logs are very performance critical. Even though this database is written to on a low-priority background thread, we want to keep throughput high and ensure
  * that we aren't creating excess garbage.
  *
- * This is it's own separate physical database, so it cannot do joins or queries with any other
- * tables.
+ * This is it's own separate physical database, so it cannot do joins or queries with any other tables.
  */
 class LogDatabase private constructor(
   application: Application,
-  private val databaseSecret: DatabaseSecret
+  databaseSecret: DatabaseSecret
 ) : SQLiteOpenHelper(
     application,
     DATABASE_NAME,
+    databaseSecret.asString(),
     null,
     DATABASE_VERSION,
-    SqlCipherDatabaseHook(),
-    SqlCipherErrorHandler(DATABASE_NAME)
+    0,
+    SqlCipherDeletingErrorHandler(DATABASE_NAME),
+    SqlCipherDatabaseHook()
   ),
   SignalDatabase {
 
   companion object {
     private val TAG = Log.tag(LogDatabase::class.java)
 
-    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(10)
+    private val MAX_FILE_SIZE = ByteUnit.MEGABYTES.toBytes(15)
     private val DEFAULT_LIFESPAN = TimeUnit.DAYS.toMillis(2)
-    private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(7)
+    private val LONGER_LIFESPAN = TimeUnit.DAYS.toMillis(14)
 
     private const val DATABASE_VERSION = 2
     private const val DATABASE_NAME = "signal-logs.db"
@@ -80,7 +81,7 @@ class LogDatabase private constructor(
       if (instance == null) {
         synchronized(LogDatabase::class.java) {
           if (instance == null) {
-            SqlCipherLibraryLoader.load(context)
+            SqlCipherLibraryLoader.load()
             instance = LogDatabase(context, DatabaseSecretProvider.getOrCreateDatabaseSecret(context))
           }
         }
@@ -226,12 +227,6 @@ class LogDatabase private constructor(
       }
     }
   }
-
-  private val readableDatabase: SQLiteDatabase
-    get() = getReadableDatabase(databaseSecret.asString())
-
-  private val writableDatabase: SQLiteDatabase
-    get() = getWritableDatabase(databaseSecret.asString())
 
   interface Reader : Iterator<String>, Closeable
 

@@ -19,6 +19,7 @@ import org.whispersystems.signalservice.api.payments.Currency;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
 import org.whispersystems.signalservice.api.payments.Money;
 
+import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -65,8 +66,15 @@ public final class MoneyView extends AppCompatTextView {
     styledAttributes.recycle();
   }
 
+  public @NonNull String localizeAmountString(@NonNull String amount) {
+    String decimalSeparator  = String.valueOf(DecimalFormatSymbols.getInstance().getDecimalSeparator());
+    String groupingSeparator = String.valueOf(DecimalFormatSymbols.getInstance().getGroupingSeparator());
+
+    return amount.replace(".", "__D__").replace(",", "__G__").replace("__D__", decimalSeparator).replace("__G__", groupingSeparator);
+  }
+
   public void setMoney(@NonNull String amount, @NonNull Currency currency) {
-    SpannableString balanceSpan   = new SpannableString(amount + currency.getCurrencyCode());
+    SpannableString balanceSpan   = new SpannableString(localizeAmountString(amount) + currency.getCurrencyCode());
     int             currencyIndex = balanceSpan.length() - currency.getCurrencyCode().length();
     balanceSpan.setSpan(new ForegroundColorSpan(ContextCompat.getColor(getContext(), R.color.payment_currency_code_foreground_color)), currencyIndex, currencyIndex + currency.getCurrencyCode().length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
     setText(balanceSpan);

@@ -101,7 +101,7 @@ class ChatColorPreviewView @JvmOverloads constructor(
       wallpaper = findViewById(R.id.wallpaper)
       wallpaperDim = findViewById(R.id.wallpaper_dim)
       colorizerView = findViewById(R.id.colorizer)
-      colorizer = Colorizer(colorizerView)
+      colorizer = Colorizer()
     } finally {
       typedArray?.recycle()
     }

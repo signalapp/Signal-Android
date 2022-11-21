@@ -42,8 +42,7 @@ class WebRtcCallRepository {
   @WorkerThread
   void getIdentityRecords(@NonNull Recipient recipient, @NonNull Consumer<IdentityRecordList> consumer) {
     SignalExecutors.BOUNDED.execute(() -> {
-      IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      List<Recipient>  recipients;
+      List<Recipient> recipients;
 
       if (recipient.isGroup()) {
         recipients = DatabaseFactory.getGroupDatabase(context).getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
@@ -51,7 +50,7 @@ class WebRtcCallRepository {
         recipients = Collections.singletonList(recipient);
       }
 
-      consumer.accept(identityDatabase.getIdentities(recipients));
+      consumer.accept(ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients));
     });
   }
 }

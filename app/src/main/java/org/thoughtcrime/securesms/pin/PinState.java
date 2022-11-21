@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
-import org.thoughtcrime.securesms.registration.service.KeyBackupSystemWrongPinException;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.InvalidKeyException;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -40,61 +39,6 @@ import java.util.concurrent.TimeUnit;
 public final class PinState {
 
   private static final String TAG = Log.tag(PinState.class);
-
-  /**
-   * Invoked during registration to restore the master key based on the server response during
-   * verification.
-   *
-   * Does not affect {@link PinState}.
-   */
-  public static synchronized @Nullable KbsPinData restoreMasterKey(@Nullable String pin,
-                                                                   @NonNull KbsEnclave enclave,
-                                                                   @Nullable String basicStorageCredentials,
-                                                                   @NonNull TokenResponse tokenResponse)
-    throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
-  {
-    Log.i(TAG, "restoreMasterKey()");
-
-    if (pin == null) return null;
-
-    if (basicStorageCredentials == null) {
-      throw new AssertionError("Cannot restore KBS key, no storage credentials supplied");
-    }
-
-    Log.i(TAG, "Preparing to restore from " + enclave.getEnclaveName());
-    return restoreMasterKeyFromEnclave(enclave, pin, basicStorageCredentials, tokenResponse);
-  }
-
-  private static @NonNull KbsPinData restoreMasterKeyFromEnclave(@NonNull KbsEnclave enclave,
-                                                                 @NonNull String pin,
-                                                                 @NonNull String basicStorageCredentials,
-                                                                 @NonNull TokenResponse tokenResponse)
-      throws IOException, KeyBackupSystemWrongPinException, KeyBackupSystemNoDataException
-  {
-    KeyBackupService                keyBackupService = ApplicationDependencies.getKeyBackupService(enclave);
-    KeyBackupService.RestoreSession session          = keyBackupService.newRegistrationSession(basicStorageCredentials, tokenResponse);
-
-    try {
-      Log.i(TAG, "Restoring pin from KBS");
-
-      HashedPin  hashedPin = PinHashing.hashPin(pin, session);
-      KbsPinData kbsData   = session.restorePin(hashedPin);
-
-      if (kbsData != null) {
-        Log.i(TAG, "Found registration lock token on KBS.");
-      } else {
-        throw new AssertionError("Null not expected");
-      }
-
-      return kbsData;
-    } catch (UnauthenticatedResponseException | InvalidKeyException e) {
-      Log.w(TAG, "Failed to restore key", e);
-      throw new IOException(e);
-    } catch (KeyBackupServicePinException e) {
-      Log.w(TAG, "Incorrect pin", e);
-      throw new KeyBackupSystemWrongPinException(e.getToken());
-    }
-  }
 
   /**
    * Invoked after a user has successfully registered. Ensures all the necessary state is updated.

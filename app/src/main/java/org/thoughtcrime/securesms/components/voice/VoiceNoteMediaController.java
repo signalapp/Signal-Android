@@ -65,19 +65,14 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   @Override
-  public void onStart(@NonNull LifecycleOwner owner) {
-    if (!mediaBrowser.isConnected()) {
-      mediaBrowser.connect();
-    }
-  }
-
-  @Override
   public void onResume(@NonNull LifecycleOwner owner) {
+    mediaBrowser.disconnect();
+    mediaBrowser.connect();
     activity.setVolumeControlStream(AudioManager.STREAM_MUSIC);
   }
 
   @Override
-  public void onStop(@NonNull LifecycleOwner owner) {
+  public void onPause(@NonNull LifecycleOwner owner) {
     clearProgressEventHandler();
 
     if (MediaControllerCompat.getMediaController(activity) != null) {
@@ -192,7 +187,7 @@ public class VoiceNoteMediaController implements DefaultLifecycleObserver {
   }
 
   private void notifyProgressEventHandler() {
-    if (progressEventHandler == null) {
+    if (progressEventHandler == null && activity != null) {
       progressEventHandler = new ProgressEventHandler(getMediaController(), voiceNotePlaybackState);
       progressEventHandler.sendEmptyMessage(0);
     }

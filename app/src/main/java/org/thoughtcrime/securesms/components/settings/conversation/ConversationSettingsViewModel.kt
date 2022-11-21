@@ -71,7 +71,8 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           sharedMedia = cursor.orNull(),
           sharedMediaIds = ids,
-          sharedMediaLoaded = true
+          sharedMediaLoaded = true,
+          displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
         )
       } else {
         cursor.orNull().ensureClosed()
@@ -102,10 +103,8 @@ sealed class ConversationSettingsViewModel(
 
   override fun onCleared() {
     cleared = true
-    store.update { state ->
-      openedMediaCursors.forEach { it.ensureClosed() }
-      state.copy(sharedMedia = null)
-    }
+    openedMediaCursors.forEach { it.ensureClosed() }
+    store.clear()
   }
 
   private fun Cursor?.ensureClosed() {
@@ -114,10 +113,6 @@ sealed class ConversationSettingsViewModel(
     }
   }
 
-  open fun disableProfileSharing(): Unit = error("This ViewModel does not support this interaction")
-
-  open fun deleteSession(): Unit = error("This ViewModel does not support this interaction")
-
   open fun initiateGroupUpgrade(): Unit = error("This ViewModel does not support this interaction")
 
   private class RecipientSettingsViewModel(
@@ -125,9 +120,7 @@ sealed class ConversationSettingsViewModel(
     private val repository: ConversationSettingsRepository
   ) : ConversationSettingsViewModel(
     repository,
-    SpecificSettingsState.RecipientSettingsState(
-      displayInternalRecipientDetails = repository.isInternalRecipientDetailsEnabled()
-    )
+    SpecificSettingsState.RecipientSettingsState()
   ) {
 
     private val liveRecipient = Recipient.live(recipientId)
@@ -145,7 +138,7 @@ sealed class ConversationSettingsViewModel(
             isSearchAvailable = true
           ),
           disappearingMessagesLifespan = recipient.expiresInSeconds,
-          canModifyBlockedState = !recipient.isSelf,
+          canModifyBlockedState = !recipient.isSelf && RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireRecipientSettingsState().copy(
             contactLinkState = when {
               recipient.isSelf -> ContactLinkState.NONE
@@ -236,14 +229,6 @@ sealed class ConversationSettingsViewModel(
 
     override fun unblock() {
       repository.unblock(recipientId)
-    }
-
-    override fun disableProfileSharing() {
-      repository.disableProfileSharingForInternalUser(recipientId)
-    }
-
-    override fun deleteSession() {
-      repository.deleteSessionForInternalUser(recipientId)
     }
   }
 

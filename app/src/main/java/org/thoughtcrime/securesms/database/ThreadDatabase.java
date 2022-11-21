@@ -224,6 +224,14 @@ public class ThreadDatabase extends Database {
     }
   }
 
+  public void  updateSnippetUriSilently(long threadId, @Nullable Uri attachment) {
+    ContentValues contentValues = new ContentValues();
+    contentValues.put(SNIPPET_URI, attachment != null ? attachment.toString() : null);
+
+    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
+  }
+
   public void updateSnippet(long threadId, String snippet, @Nullable Uri attachment, long date, long type, boolean unarchive) {
     if (isSilentType(type)) {
       return;
@@ -240,7 +248,7 @@ public class ThreadDatabase extends Database {
     }
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-    db.update(TABLE_NAME, contentValues, ID + " = ?", new String[] {threadId + ""});
+    db.update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
     notifyConversationListListeners();
   }
 
@@ -1108,6 +1116,15 @@ public class ThreadDatabase extends Database {
     return getThreadIdIfExistsFor(recipientId) > -1;
   }
 
+  public void updateLastSeenAndMarkSentAndLastScrolledSilenty(long threadId) {
+    ContentValues contentValues = new ContentValues(3);
+    contentValues.put(LAST_SEEN, System.currentTimeMillis());
+    contentValues.put(HAS_SENT, 1);
+    contentValues.put(LAST_SCROLLED, 0);
+
+    databaseHelper.getSignalWritableDatabase().update(TABLE_NAME, contentValues, ID_WHERE, SqlUtil.buildArgs(threadId));
+  }
+
   public void setHasSentSilently(long threadId, boolean hasSent) {
     ContentValues contentValues = new ContentValues(1);
     contentValues.put(HAS_SENT, hasSent ? 1 : 0);
@@ -1503,7 +1520,9 @@ public class ThreadDatabase extends Database {
 
   private boolean isSilentType(long type) {
     return MmsSmsColumns.Types.isProfileChange(type) ||
-           MmsSmsColumns.Types.isGroupV1MigrationEvent(type);
+           MmsSmsColumns.Types.isGroupV1MigrationEvent(type) ||
+           MmsSmsColumns.Types.isChangeNumber(type) ||
+           MmsSmsColumns.Types.isGroupV2LeaveOnly(type);
   }
 
   public Reader readerFor(Cursor cursor) {

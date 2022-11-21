@@ -20,18 +20,27 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.registration.service.RegistrationCodeRequest;
-import org.thoughtcrime.securesms.registration.service.RegistrationService;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.util.Dialogs;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
-public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  implements View.OnFocusChangeListener {
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.Disposable;
+
+public final class EnterPhoneNumberFragment extends LoggingFragment  implements View.OnFocusChangeListener {
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
@@ -39,6 +48,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
   private TextView mCountryCodeHeader;
   private EditText mPhoneNumberEdit;
   private TextView mPhoneNumberNext;
+  private RegistrationViewModel  viewModel;
+  private final LifecycleDisposable disposables = new LifecycleDisposable();
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -47,8 +58,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
   }
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
     return inflater.inflate(R.layout.fragment_registration_enter_phone_number, container, false);
   }
 
@@ -68,6 +78,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     });
 
     mPhoneNumberEdit.requestFocus();
+    disposables.bindTo(getViewLifecycleOwner().getLifecycle());
+    viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
 
     mPhoneNumberEdit.setOnKeyListener((view13, i, keyEvent) -> {
       if (mPhoneNumberEdit.isEnabled() && keyEvent.getKeyCode() == KeyEvent.KEYCODE_BACK) {
@@ -107,11 +119,10 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     mPhoneNumberEdit.setOnFocusChangeListener(this);
     mPhoneNumberNext.setOnFocusChangeListener(this);
 
-    RegistrationViewModel model = getModel();
-    NumberViewState number = model.getNumber();
+    NumberViewState number = viewModel.getNumber();
     initNumber(number);
-    if (model.hasCaptchaToken()) {
-      handleRegister(requireContext());
+    if (viewModel.hasCaptchaToken()) {
+      ThreadUtil.runOnMainDelayed(() -> handleRegister(requireContext()), 250);
     }
 
     Toolbar toolbar = view.findViewById(R.id.toolbar);
@@ -149,7 +160,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
       return;
     }
 
-    final NumberViewState number     = getModel().getNumber();
+    final NumberViewState number     = viewModel.getNumber();
     final String          e164number = number.getE164Number();
 
     if (!number.isValid()) {
@@ -159,7 +170,7 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
       enableAllEntries();
       return;
     }
-    requestVerificationCode(e164number);
+    requestVerificationCode(Mode.SMS_WITHOUT_LISTENER);
   }
 
   private void enableAllEntries() {
@@ -174,68 +185,34 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     mPhoneNumberNext.setEnabled(false);
   }
 
-  private void requestVerificationCode(String e164number) {
-    RegistrationViewModel model   = getModel();
-    String                captcha = model.getCaptchaToken();
-    model.clearCaptchaResponse();
+  private void requestVerificationCode(@NonNull Mode mode) {
+    NavController navController = NavHostFragment.findNavController(this);
 
-    NavController navController = Navigation.findNavController(mPhoneNumberNext);
+    Disposable request = viewModel.requestVerificationCode(mode)
+            .doOnSubscribe(unused -> TextSecurePreferences.setPushRegistered(ApplicationDependencies.getApplication(), false))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(processor -> {
+              if (processor.hasResult()) {
+                navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+              } else if (processor.localRateLimit()) {
+                Log.i(TAG, "Unable to request sms code due to local rate limit");
+                navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
+              } else if (processor.captchaRequired()) {
+                Log.i(TAG, "Unable to request sms code due to captcha required");
+                navController.navigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
+              } else if (processor.rateLimit()) {
+                Log.i(TAG, "Unable to request sms code due to rate limit");
+                Toast.makeText(getContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
+              } else {
+                Log.w(TAG, "Unable to request sms code", processor.getError());
+                Toast.makeText(getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+              }
 
-    if (!model.getRequestLimiter().canRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, e164number, System.currentTimeMillis())) {
-      Log.i(TAG, "Local rate limited");
-      enableAllEntries();
-      return;
-    }
+//              cancelSpinning(register);
+              enableAllEntries();
+            });
 
-    RegistrationService registrationService = RegistrationService.getInstance(e164number, model.getRegistrationSecret());
-
-    registrationService.requestVerificationCode(requireActivity(), RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, captcha,
-      new RegistrationCodeRequest.SmsVerificationCodeCallback() {
-
-        @Override
-        public void onNeedCaptcha() {
-          if (getContext() == null) {
-            Log.i(TAG, "Got onNeedCaptcha response, but fragment is no longer attached.");
-            return;
-          }
-          Log.i(TAG, "Need captcha!");
-          navController.navigate(EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-
-        @Override
-        public void requestSent(@Nullable String fcmToken) {
-          if (getContext() == null) {
-            Log.i(TAG, "Got requestSent response, but fragment is no longer attached.");
-            return;
-          }
-          Log.i(TAG, "Success RequestSent!");
-          model.setFcmToken(fcmToken);
-          model.markASuccessfulAttempt();
-          navController.navigate(EnterPhoneNumberFragmentDirections.actionEnterVerificationCode());
-          enableAllEntries();
-          model.getRequestLimiter().onSuccessfulRequest(RegistrationCodeRequest.Mode.SMS_WITHOUT_LISTENER, e164number, System.currentTimeMillis());
-          model.updateLimiter();
-        }
-
-        @Override
-        public void onRateLimited() {
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-
-        @Override
-        public void onError() {
-          Log.e(TAG, "SmsVerificationCodeCallback onError()");
-          Toast.makeText(mPhoneNumberNext.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
-          enableAllEntries();
-          model.getRequestLimiter().onUnsuccessfulRequest();
-          model.updateLimiter();
-        }
-      });
+    disposables.add(request);
   }
 
   private void initNumber(@NonNull NumberViewState numberViewState) {
@@ -267,8 +244,8 @@ public final class EnterPhoneNumberFragment extends BaseRegistrationFragment  im
     @Override
     public void afterTextChanged(Editable s) {
       if (s.length() == 0) return;
-      RegistrationViewModel model = getModel();
-      model.setNationalNumber(s.toString());
+      viewModel.setNationalNumber(s.toString());
+
     }
 
     @Override

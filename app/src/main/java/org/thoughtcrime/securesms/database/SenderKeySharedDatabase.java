@@ -34,11 +34,13 @@ public class SenderKeySharedDatabase extends Database {
   public static final  String DISTRIBUTION_ID = "distribution_id";
   public static final  String ADDRESS         = "address";
   public static final  String DEVICE          = "device";
+  public static final  String TIMESTAMP       = "timestamp";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" + ID              + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                  DISTRIBUTION_ID + " TEXT NOT NULL, " +
                                                                                  ADDRESS         + " TEXT NOT NULL, " +
                                                                                  DEVICE          + " INTEGER NOT NULL, " +
+                                                                                 TIMESTAMP       + " INTEGER DEFAULT 0, " +
                                                                                  "UNIQUE(" + DISTRIBUTION_ID + "," + ADDRESS + ", " + DEVICE + ") ON CONFLICT REPLACE);";
 
   SenderKeySharedDatabase(Context context, SQLCipherOpenHelper databaseHelper) {
@@ -58,6 +60,7 @@ public class SenderKeySharedDatabase extends Database {
         values.put(ADDRESS, address.getName());
         values.put(DEVICE, address.getDeviceId());
         values.put(DISTRIBUTION_ID, distributionId.toString());
+        values.put(TIMESTAMP, System.currentTimeMillis());
 
         db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
       }

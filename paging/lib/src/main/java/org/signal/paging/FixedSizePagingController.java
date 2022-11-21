@@ -7,7 +7,9 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executor;
 
 /**
@@ -18,32 +20,34 @@ import java.util.concurrent.Executor;
  * which allows it to keep track of pending requests in a thread-safe way, while spinning off
  * tasks to fetch data on its own executor.
  */
-class FixedSizePagingController<E> implements PagingController {
+class FixedSizePagingController<Key, Data> implements PagingController<Key> {
 
   private static final String TAG = FixedSizePagingController.class.getSimpleName();
 
   private static final Executor FETCH_EXECUTOR = SignalExecutors.newCachedSingleThreadExecutor("signal-FixedSizePagingController");
   private static final boolean  DEBUG          = false;
 
-  private final PagedDataSource<E>       dataSource;
-  private final PagingConfig             config;
-  private final MutableLiveData<List<E>> liveData;
-  private final DataStatus               loadState;
+  private final PagedDataSource<Key, Data>  dataSource;
+  private final PagingConfig                config;
+  private final MutableLiveData<List<Data>> liveData;
+  private final DataStatus                  loadState;
+  private final Map<Key, Integer>           keyToPosition;
 
-  private List<E> data;
+  private List<Data> data;
 
   private volatile boolean invalidated;
 
-  FixedSizePagingController(@NonNull PagedDataSource<E> dataSource,
+  FixedSizePagingController(@NonNull PagedDataSource<Key, Data> dataSource,
                             @NonNull PagingConfig config,
-                            @NonNull MutableLiveData<List<E>> liveData,
+                            @NonNull MutableLiveData<List<Data>> liveData,
                             int size)
   {
-    this.dataSource = dataSource;
-    this.config     = config;
-    this.liveData   = liveData;
-    this.loadState  = DataStatus.obtain(size);
-    this.data       = new CompressedList<>(loadState.size());
+    this.dataSource    = dataSource;
+    this.config        = config;
+    this.liveData      = liveData;
+    this.loadState     = DataStatus.obtain(size);
+    this.data          = new CompressedList<>(loadState.size());
+    this.keyToPosition = new HashMap<>();
   }
 
   /**
@@ -96,17 +100,21 @@ class FixedSizePagingController<E> implements PagingController {
         return;
       }
 
-      List<E> loaded = dataSource.load(loadStart, loadEnd - loadStart, () -> invalidated);
+      List<Data> loaded = dataSource.load(loadStart, loadEnd - loadStart, () -> invalidated);
 
       if (invalidated) {
         Log.w(TAG, buildLog(aroundIndex, "Invalidated! Just after data was loaded."));
         return;
       }
 
-      List<E> updated = new CompressedList<>(data);
+      List<Data> updated = new CompressedList<>(data);
 
       for (int i = 0, len = Math.min(loaded.size(), data.size() - loadStart); i < len; i++) {
-        updated.set(loadStart + i, loaded.get(i));
+        int  position = loadStart + i;
+        Data item     = loaded.get(i);
+
+        updated.set(position, item);
+        keyToPosition.put(dataSource.getKey(item), position);
       }
 
       data = updated;
@@ -122,6 +130,76 @@ class FixedSizePagingController<E> implements PagingController {
 
     invalidated = true;
     loadState.recycle();
+  }
+
+  @Override
+  public void onDataItemChanged(Key key) {
+    FETCH_EXECUTOR.execute(() -> {
+      Integer position = keyToPosition.get(key);
+
+      if (position == null) {
+        Log.w(TAG, "Notified of key " + key + " but it wasn't in the cache!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just before individual change was loaded for position " + position);
+        return;
+      }
+
+      Data item = dataSource.load(key);
+
+      if (item == null) {
+        Log.w(TAG, "Notified of key " + key + " but the loaded item was null!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just after individual change was loaded for position " + position);
+        return;
+      }
+
+      List<Data> updatedList = new CompressedList<>(data);
+
+      updatedList.set(position, item);
+      data = updatedList;
+      liveData.postValue(updatedList);
+    });
+  }
+
+  @Override
+  public void onDataItemInserted(Key key, int position) {
+    FETCH_EXECUTOR.execute(() -> {
+      if (keyToPosition.containsKey(key)) {
+        Log.w(TAG, "Notified of key " + key + " being inserted at " + position + ", but the item already exists!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just before individual insert was loaded for position " + position);
+        return;
+      }
+
+      Data item = dataSource.load(key);
+
+      if (item == null) {
+        Log.w(TAG, "Notified of key " + key + " being inserted at " + position + ", but the loaded item was null!");
+        return;
+      }
+
+      if (invalidated) {
+        Log.w(TAG, "Invalidated! Just after individual insert was loaded for position " + position);
+        return;
+      }
+
+      List<Data> updatedList = new CompressedList<>(data);
+
+      updatedList.add(position, item);
+      keyToPosition.put(dataSource.getKey(item), position);
+
+      data = updatedList;
+      liveData.postValue(updatedList);
+    });
   }
 
   private static String buildLog(int aroundIndex, String message) {

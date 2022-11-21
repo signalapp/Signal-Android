@@ -17,14 +17,12 @@ import static org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeL
 public class DeviceTransferAuthenticationTest {
 
   private byte[] certificate;
-  private byte[] badCertificate;
 
   @Before
   public void ensureNativeSupported() throws KeyGenerationFailedException {
     assumeLibSignalSupportedOnOS();
 
-    certificate    = SelfSignedIdentity.create().getX509Encoded();
-    badCertificate = SelfSignedIdentity.create().getX509Encoded();
+    certificate = SelfSignedIdentity.create().getX509Encoded();
   }
 
   @Test
@@ -39,9 +37,10 @@ public class DeviceTransferAuthenticationTest {
   }
 
   @Test(expected = DeviceTransferAuthenticationException.class)
-  public void testServerCompute_withChangedClientCertificate() throws DeviceTransferAuthenticationException {
-    Client client = new Client(badCertificate);
-    Server server = new Server(certificate, client.getCommitment());
+  public void testServerCompute_withChangedClientCertificate() throws DeviceTransferAuthenticationException, KeyGenerationFailedException {
+    byte[] badCertificate = SelfSignedIdentity.create().getX509Encoded();
+    Client client         = new Client(badCertificate);
+    Server server         = new Server(certificate, client.getCommitment());
 
     byte[] clientRandom = client.setServerRandomAndGetClientRandom(server.getRandom());
 

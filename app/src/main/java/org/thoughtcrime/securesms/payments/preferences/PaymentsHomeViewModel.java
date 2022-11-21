@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.payments.Payment;
 import org.thoughtcrime.securesms.payments.UnreadPaymentsRepository;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchangeRepository;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.payments.preferences.model.InProgress;
 import org.thoughtcrime.securesms.payments.preferences.model.InfoCard;
 import org.thoughtcrime.securesms.payments.preferences.model.IntroducingPayments;

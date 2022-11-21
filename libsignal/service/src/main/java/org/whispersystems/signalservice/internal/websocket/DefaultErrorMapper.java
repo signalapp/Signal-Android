@@ -2,6 +2,7 @@ package org.whispersystems.signalservice.internal.websocket;
 
 import org.whispersystems.libsignal.util.guava.Function;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
+import org.whispersystems.signalservice.api.push.exceptions.CaptchaRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.DeprecatedVersionException;
 import org.whispersystems.signalservice.api.push.exceptions.ExpectationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
@@ -72,6 +73,8 @@ public final class DefaultErrorMapper implements ErrorMapper {
       case 401:
       case 403:
         return new AuthorizationFailedException(status, "Authorization failed!");
+      case 402:
+        return new CaptchaRequiredException();
       case 404:
         return new NotFoundException("Not found");
       case 409:

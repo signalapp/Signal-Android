@@ -10,31 +10,31 @@ import java.util.List;
 /**
  * The primary entry point for creating paged data.
  */
-public final class PagedData<E> {
+public final class PagedData<Key, Data> {
 
-  private final LiveData<List<E>> data;
-  private final PagingController  controller;
+  private final LiveData<List<Data>>  data;
+  private final PagingController<Key> controller;
 
   @AnyThread
-  public static <E> PagedData<E> create(@NonNull PagedDataSource<E> dataSource, @NonNull PagingConfig config) {
-    MutableLiveData<List<E>> liveData   = new MutableLiveData<>();
-    PagingController         controller = new BufferedPagingController<>(dataSource, config, liveData);
+  public static <Key, Data> PagedData<Key, Data> create(@NonNull PagedDataSource<Key, Data> dataSource, @NonNull PagingConfig config) {
+    MutableLiveData<List<Data>> liveData   = new MutableLiveData<>();
+    PagingController<Key>       controller = new BufferedPagingController<>(dataSource, config, liveData);
 
     return new PagedData<>(liveData, controller);
   }
 
-  private PagedData(@NonNull LiveData<List<E>> data, @NonNull PagingController controller) {
+  private PagedData(@NonNull LiveData<List<Data>> data, @NonNull PagingController<Key> controller) {
     this.data       = data;
     this.controller = controller;
   }
 
   @AnyThread
-  public @NonNull LiveData<List<E>> getData() {
+  public @NonNull LiveData<List<Data>> getData() {
     return data;
   }
 
   @AnyThread
-  public @NonNull PagingController getController() {
+  public @NonNull PagingController<Key> getController() {
     return controller;
   }
 }

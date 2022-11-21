@@ -51,7 +51,7 @@ final class MessageDetailsRepository {
                                                  messageRecord.getRecipient(),
                                                  getStatusFor(messageRecord),
                                                  messageRecord.isUnidentified(),
-                                                 -1,
+                                                 messageRecord.getReceiptTimestamp(),
                                                  getNetworkFailure(messageRecord, messageRecord.getRecipient()),
                                                  getKeyMismatchFailure(messageRecord, messageRecord.getRecipient())));
     } else {
@@ -65,7 +65,7 @@ final class MessageDetailsRepository {
                                                      recipient,
                                                      RecipientDeliveryStatus.Status.UNKNOWN,
                                                      false,
-                                                     -1,
+                                                     messageRecord.getReceiptTimestamp(),
                                                      getNetworkFailure(messageRecord, recipient),
                                                      getKeyMismatchFailure(messageRecord, recipient)));
         }

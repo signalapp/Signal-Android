@@ -10,6 +10,7 @@ public final class RegistrationValues extends SignalStoreValues {
 
   private static final String REGISTRATION_COMPLETE = "registration.complete";
   private static final String PIN_REQUIRED          = "registration.pin_required";
+  private static final String HAS_UPLOADED_PROFILE  = "registration.has_uploaded_profile";
 
   RegistrationValues(@NonNull KeyValueStore store) {
     super(store);
@@ -17,6 +18,7 @@ public final class RegistrationValues extends SignalStoreValues {
 
   public synchronized void onFirstEverAppLaunch() {
     getStore().beginWrite()
+              .putBoolean(HAS_UPLOADED_PROFILE, false)
               .putBoolean(REGISTRATION_COMPLETE, false)
               .putBoolean(PIN_REQUIRED, true)
               .commit();
@@ -45,5 +47,17 @@ public final class RegistrationValues extends SignalStoreValues {
   @CheckResult
   public synchronized boolean isRegistrationComplete() {
     return getStore().getBoolean(REGISTRATION_COMPLETE, true);
+  }
+
+  public boolean hasUploadedProfile() {
+    return getBoolean(HAS_UPLOADED_PROFILE, true);
+  }
+
+  public void markHasUploadedProfile() {
+    putBoolean(HAS_UPLOADED_PROFILE, true);
+  }
+
+  public void clearHasUploadedProfile() {
+    putBoolean(HAS_UPLOADED_PROFILE, false);
   }
 }

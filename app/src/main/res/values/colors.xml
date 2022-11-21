@@ -57,6 +57,8 @@
     <color name="storage_color_videos">#ff9BCFBD</color>
     <color name="storage_color_audio">@color/core_ultramarine</color>
     <color name="storage_color_files">#ffA23474</color>
+    <color name="conversation_list_archive_background_start">#ff28782A</color>
+    <color name="conversation_list_archive_background_end">#ff329635</color>
     <color name="sim_background">#000e00</color>
     <color name="focused_text_color">#FFFFFFFF</color>
     <color name="normal_text_color">#80FFFFFF</color>

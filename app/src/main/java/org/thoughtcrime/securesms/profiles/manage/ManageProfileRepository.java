@@ -9,6 +9,8 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -27,6 +29,8 @@ final class ManageProfileRepository {
       try {
         ProfileUtil.uploadProfileWithName(context, profileName);
         DatabaseFactory.getRecipientDatabase(context).setProfileName(Recipient.self().getId(), profileName);
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
         Log.w(TAG, "Failed to upload profile during name change.", e);
@@ -40,6 +44,8 @@ final class ManageProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAbout(context, about, emoji);
         DatabaseFactory.getRecipientDatabase(context).setAbout(Recipient.self().getId(), about, emoji);
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
+
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
         Log.w(TAG, "Failed to upload profile during about change.", e);
@@ -53,6 +59,7 @@ final class ManageProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAvatar(context, new StreamDetails(new ByteArrayInputStream(data), contentType, data.length));
         AvatarHelper.setAvatar(context, Recipient.self().getId(), new ByteArrayInputStream(data));
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {
         Log.w(TAG, "Failed to upload profile during avatar change.", e);
@@ -66,6 +73,7 @@ final class ManageProfileRepository {
       try {
         ProfileUtil.uploadProfileWithAvatar(context, null);
         AvatarHelper.delete(context, Recipient.self().getId());
+        ApplicationDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
 
         callback.accept(Result.SUCCESS);
       } catch (IOException e) {

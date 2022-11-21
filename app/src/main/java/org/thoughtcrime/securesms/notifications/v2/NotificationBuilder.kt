@@ -13,6 +13,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.core.app.NotificationCompat
 import androidx.core.app.RemoteInput
+import androidx.core.content.LocusIdCompat
 import androidx.core.graphics.drawable.IconCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
@@ -70,6 +71,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   abstract fun setTicker(ticker: CharSequence?)
   abstract fun addTurnOffJoinedNotificationsAction(pendingIntent: PendingIntent)
   abstract fun setAutoCancel(autoCancel: Boolean)
+  abstract fun setLocusIdActual(locusId: String)
   abstract fun build(): Notification
 
   protected abstract fun addPersonActual(recipient: Recipient)
@@ -84,6 +86,12 @@ sealed class NotificationBuilder(protected val context: Context) {
   fun addPerson(recipient: Recipient) {
     if (privacy.isDisplayContact) {
       addPersonActual(recipient)
+    }
+  }
+
+  fun setLocusId(locusId: String) {
+    if (privacy.isDisplayContact && isNotLocked) {
+      setLocusIdActual(locusId)
     }
   }
 
@@ -263,7 +271,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         val personBuilder: PersonCompat.Builder = PersonCompat.Builder()
           .setBot(false)
           .setName(notificationItem.getPersonName(context))
-          .setUri(notificationItem.getPersonUri(context))
+          .setUri(notificationItem.getPersonUri())
           .setIcon(notificationItem.getPersonIcon(context).toIconCompat())
 
         if (includeShortcut) {
@@ -330,9 +338,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         0
       )
 
-      val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder()
-        .setIntent(intent)
-        .setIcon(AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
+      val bubbleMetadata = NotificationCompat.BubbleMetadata.Builder(intent, AvatarUtil.getIconCompatForShortcut(context, conversation.recipient))
         .setAutoExpandBubble(bubbleState === BubbleUtil.BubbleState.SHOWN)
         .setDesiredHeight(600)
         .setSuppressNotification(bubbleState === BubbleUtil.BubbleState.SHOWN)
@@ -454,6 +460,10 @@ sealed class NotificationBuilder(protected val context: Context) {
 
     override fun setSubText(subText: String) {
       builder.setSubText(subText)
+    }
+
+    override fun setLocusIdActual(locusId: String) {
+      builder.setLocusId(LocusIdCompat(locusId))
     }
   }
 }

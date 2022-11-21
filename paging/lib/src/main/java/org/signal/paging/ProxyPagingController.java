@@ -1,7 +1,5 @@
 package org.signal.paging;
 
-import android.util.Log;
-
 import androidx.annotation.Nullable;
 
 /**
@@ -9,9 +7,9 @@ import androidx.annotation.Nullable;
  * to keep a single, static controller, even when the true controller may be changing due to data
  * source changes.
  */
-public class ProxyPagingController implements PagingController {
+public class ProxyPagingController<Key> implements PagingController<Key> {
 
-  private PagingController proxied;
+  private PagingController<Key> proxied;
 
   @Override
   public synchronized void onDataNeededAroundIndex(int aroundIndex) {
@@ -27,10 +25,24 @@ public class ProxyPagingController implements PagingController {
     }
   }
 
+  @Override
+  public void onDataItemChanged(Key key) {
+    if (proxied != null) {
+      proxied.onDataItemChanged(key);
+    }
+  }
+
+  @Override
+  public void onDataItemInserted(Key key, int position) {
+    if (proxied != null) {
+      proxied.onDataItemInserted(key, position);
+    }
+  }
+
   /**
    * Updates the underlying controller to the one specified.
    */
-  public synchronized void set(@Nullable PagingController bound) {
+  public synchronized void set(@Nullable PagingController<Key> bound) {
     this.proxied = bound;
   }
 }

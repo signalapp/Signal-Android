@@ -61,15 +61,22 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     val thumbnailSlide: Slide? = messageRecord.slideDeck.thumbnailSlide
 
     return if (thumbnailSlide == null) {
-      val slideContentType: String? = messageRecord.slideDeck.firstSlideContentType
-      if (slideContentType != null) {
-        slideContentType
+      val slide: Slide? = messageRecord.slideDeck.firstSlide
+
+      if (slide != null && slide.isVideoGif) {
+        MediaUtil.IMAGE_GIF
+      } else if (slide != null) {
+        slide.contentType
       } else {
-        Log.w(TAG, "Could not distinguish view-once content type from message record, defaulting to JPEG")
+        Log.w(TAG, "Could not distinguish content type from message record, defaulting to JPEG")
         MediaUtil.IMAGE_JPEG
       }
     } else {
-      thumbnailSlide.contentType
+      if (thumbnailSlide.isVideoGif) {
+        MediaUtil.IMAGE_GIF
+      } else {
+        thumbnailSlide.contentType
+      }
     }
   }
 
@@ -100,7 +107,7 @@ sealed class NotificationItemV2(val threadRecipient: Recipient, protected val re
     return timestamp.compareTo(other.timestamp)
   }
 
-  fun getPersonUri(context: Context): String? {
+  fun getPersonUri(): String? {
     return if (SignalStore.settings().messageNotificationsPrivacy.isDisplayContact && individualRecipient.isSystemContact) {
       individualRecipient.contactUri.toString()
     } else {
@@ -283,6 +290,8 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
       context.getString(R.string.MessageNotifier_reacted_s_to_s, EMOJI_REPLACEMENT_STRING, body)
     } else if (record.isMediaMessage() && MediaUtil.isVideoType(getMessageContentType((record as MmsMessageRecord)))) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_video, EMOJI_REPLACEMENT_STRING)
+    } else if (record.isMediaMessage() && MediaUtil.isGif(getMessageContentType((record as MmsMessageRecord)))) {
+      context.getString(R.string.MessageNotifier_reacted_s_to_your_gif, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMediaMessage() && MediaUtil.isImageType(getMessageContentType((record as MmsMessageRecord)))) {
       context.getString(R.string.MessageNotifier_reacted_s_to_your_image, EMOJI_REPLACEMENT_STRING)
     } else if (record.isMediaMessage() && MediaUtil.isAudioType(getMessageContentType((record as MmsMessageRecord)))) {

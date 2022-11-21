@@ -80,7 +80,7 @@ final class VoiceNotePlaybackPreparer implements MediaSessionConnector.PlaybackP
 
   @Override
   public void onPrepare() {
-    throw new UnsupportedOperationException("VoiceNotePlaybackPreparer does not support onPrepare");
+    Log.w(TAG, "Requested playback from IDLE state. Ignoring.");
   }
 
   @Override

@@ -16,12 +16,15 @@
  */
 package org.thoughtcrime.securesms.conversationlist;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -33,7 +36,6 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.MenuRes;
@@ -42,21 +44,11 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
 import androidx.appcompat.widget.Toolbar;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.res.ResourcesCompat;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionManager;
-import org.thoughtcrime.securesms.search.MessageResult;
-import org.thoughtcrime.securesms.search.SearchResult;
-import org.thoughtcrime.securesms.components.UnreadPaymentsView;
-import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
-import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
-import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsFragmentArgs;
-import org.thoughtcrime.securesms.payments.preferences.details.PaymentDetailsParcelable;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -68,11 +60,8 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.NewConversationActivity;
-import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.RatingManager;
-import org.thoughtcrime.securesms.components.recyclerview.DeleteItemAnimator;
-import org.thoughtcrime.securesms.components.settings.CustomizableSingleSelectSetting;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -88,18 +77,13 @@ import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.ratelimit.RecaptchaProofBottomSheetFragment;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
-
-import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.SnapToTopDataObserver;
 import org.thoughtcrime.securesms.util.Stopwatch;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.task.SnackbarAsyncTask;
-import org.thoughtcrime.securesms.util.views.Stub;
-import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,9 +92,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
-import java.util.UUID;
+import androidx.annotation.ColorInt;
 
-import static android.app.Activity.RESULT_OK;
 
 
 public class ConversationListFragment extends MainFragment implements ConversationListAdapter.OnConversationClickListener,
@@ -137,7 +120,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
   private Drawable                          archiveDrawable;
 //  private AppForegroundObserver.Listener    appForegroundObserver;
 
-  private Stopwatch startupStopwatch;
+  protected ConversationListArchiveItemDecoration archiveDecoration;
+  private   Stopwatch                             startupStopwatch;
   private boolean isFromLauncher = false;
   private boolean isFirstEnter = false;
 
@@ -163,12 +147,14 @@ public class ConversationListFragment extends MainFragment implements Conversati
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     list                    = view.findViewById(R.id.list);
 //    constraintLayout        = view.findViewById(R.id.constraint_layout);
+    archiveDecoration = new ConversationListArchiveItemDecoration(new ColorDrawable(getResources().getColor(R.color.conversation_list_archive_background_end)));
 
     list.setLayoutManager(new LinearLayoutManager(requireActivity()));
-    list.setItemAnimator(new DeleteItemAnimator());
+    list.setItemAnimator(new ConversationListItemAnimator());
     list.setClipToPadding(false);
     list.setClipChildren(false);
     list.setPadding(0, 76, 0, 200);
+    list.addItemDecoration(archiveDecoration);
 
     snapToTopDataObserver = new SnapToTopDataObserver(list);
 
@@ -409,6 +395,18 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   }
 
+//  private void onConversationListChanged(@NonNull List<Conversation> conversations) {
+//    LinearLayoutManager layoutManager    = (LinearLayoutManager) list.getLayoutManager();
+//    int                 firstVisibleItem = layoutManager != null ? layoutManager.findFirstCompletelyVisibleItemPosition() : -1;
+//
+//    defaultAdapter.submitList(conversations, () -> {
+//      if (firstVisibleItem == 0) {
+//        list.scrollToPosition(0);
+//      }
+//      onPostSubmitList(conversations.size());
+//    });
+//  }
+
   /*private void onUnreadPaymentsChanged(@NonNull Optional<UnreadPayments> unreadPayments) {
     if (unreadPayments.isPresent()) {
       paymentNotificationView.get().setListener(new PaymentNotificationListener(unreadPayments.get()));
@@ -629,6 +627,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     Set<Long> batchSet = Collections.synchronizedSet(new HashSet<Long>());
     batchSet.add(item.getThreadId());
     getNavigator().setCurrentConversation(item.getThreadId(), batchSet);
+    getNavigator().setCurrentConversation(item.getThreadId(), batchSet);
     getNavigator().goToOptionsList();
     return true;
   }
@@ -672,6 +671,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
 
   @SuppressLint("StaticFieldLeak")
   protected void onItemSwiped(long threadId, int unreadCount) {
+    archiveDecoration.onArchiveStarted();
+
     new SnackbarAsyncTask<Long>(getViewLifecycleOwner().getLifecycle(),
                                 requireView(),
                                 getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
@@ -680,7 +681,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                 Snackbar.LENGTH_LONG,
                                 false)
     {
-      private final ThreadDatabase threadDatabase= DatabaseFactory.getThreadDatabase(getActivity());
+      private final ThreadDatabase threadDatabase = DatabaseFactory.getThreadDatabase(getActivity());
 
       private List<Long> pinnedThreadIds;
       @Override
@@ -754,7 +755,8 @@ public class ConversationListFragment extends MainFragment implements Conversati
     @Override
     public int getSwipeDirs(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
       if (viewHolder.itemView instanceof ConversationListItemAction      ||
-          viewHolder instanceof ConversationListAdapter.HeaderViewHolder)
+          viewHolder instanceof ConversationListAdapter.HeaderViewHolder ||
+              viewHolder.itemView.isSelected())
       {
         return 0;
       }

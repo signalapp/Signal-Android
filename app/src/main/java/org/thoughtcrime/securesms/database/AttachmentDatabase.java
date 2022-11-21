@@ -73,6 +73,7 @@ import java.io.OutputStream;
 import java.security.DigestInputStream;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -82,9 +83,10 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class AttachmentDatabase extends Database {
-  
+
   private static final String TAG = Log.tag(AttachmentDatabase.class);
 
   public  static final String TABLE_NAME             = "part";
@@ -122,7 +124,7 @@ public class AttachmentDatabase extends Database {
           static final String UPLOAD_TIMESTAMP       = "upload_timestamp";
           static final String CDN_NUMBER             = "cdn_number";
 
-  public  static final String DIRECTORY              = "parts";
+  private static final String DIRECTORY              = "parts";
 
   public static final int TRANSFER_PROGRESS_DONE    = 0;
   public static final int TRANSFER_PROGRESS_STARTED = 1;
@@ -475,14 +477,18 @@ public class AttachmentDatabase extends Database {
   }
 
   public int deleteAbandonedAttachmentFiles() {
-    Set<String> filesOnDisk = new HashSet<>();
-    Set<String> filesInDb   = new HashSet<>();
+    File[] diskFiles = context.getDir(DIRECTORY, Context.MODE_PRIVATE).listFiles();
 
-    File attachmentDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    for (File file : attachmentDirectory.listFiles()) {
-      filesOnDisk.add(file.getAbsolutePath());
+    if (diskFiles == null) {
+      return 0;
     }
 
+    Set<String> filesOnDisk = Arrays.stream(diskFiles)
+                                    .filter(f -> !PartFileProtector.isProtected(f))
+                                    .map(File::getAbsolutePath)
+                                    .collect(Collectors.toSet());
+
+    Set<String> filesInDb = new HashSet<>();
     try (Cursor cursor = databaseHelper.getSignalReadableDatabase().query(true, TABLE_NAME, new String[] { DATA }, null, null, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         filesInDb.add(CursorUtil.requireString(cursor, DATA));
@@ -620,7 +626,10 @@ public class AttachmentDatabase extends Database {
       //noinspection ResultOfMethodCallIgnored
       dataInfo.file.delete();
     } else {
-      notifyConversationListeners(DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId));
+      long threadId = DatabaseFactory.getMmsDatabase(context).getThreadIdForMessage(mmsId);
+      DatabaseFactory.getThreadDatabase(context).updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
+
+      notifyConversationListeners(threadId);
       notifyConversationListListeners();
     }
 
@@ -866,10 +875,8 @@ public class AttachmentDatabase extends Database {
       return existing;
     }
 
-    File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    File transferFile   = File.createTempFile("transfer", ".mms", partsDirectory);
-
-    ContentValues values = new ContentValues();
+    File          transferFile = newTransferFile();
+    ContentValues values       = new ContentValues();
     values.put(TRANSFER_FILE, transferFile.getAbsolutePath());
 
     db.update(TABLE_NAME, values, PART_ID_WHERE, attachmentId.toStrings());
@@ -1066,8 +1073,17 @@ public class AttachmentDatabase extends Database {
   }
 
   public File newFile() throws IOException {
+    return newFile(context);
+  }
+
+  private File newTransferFile() throws IOException {
     File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
-    return File.createTempFile("part", ".mms", partsDirectory);
+    return PartFileProtector.protect(() -> File.createTempFile("transfer", ".mms", partsDirectory));
+  }
+
+  public static File newFile(Context context) throws IOException {
+    File partsDirectory = context.getDir(DIRECTORY, Context.MODE_PRIVATE);
+    return PartFileProtector.protect(() -> File.createTempFile("part", ".mms", partsDirectory));
   }
 
   private @NonNull DataInfo setAttachmentData(@NonNull File destination,
@@ -1076,11 +1092,18 @@ public class AttachmentDatabase extends Database {
       throws MmsException
   {
     try {
+      File                       tempFile          = newFile();
       MessageDigest              messageDigest     = MessageDigest.getInstance("SHA-256");
       DigestInputStream          digestInputStream = new DigestInputStream(in, messageDigest);
-      Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, destination, false);
+      Pair<byte[], OutputStream> out               = ModernEncryptingPartOutputStream.createFor(attachmentSecret, tempFile, false);
       long                       length            = StreamUtil.copy(digestInputStream, out.second);
       String                     hash              = Base64.encodeBytes(digestInputStream.getMessageDigest().digest());
+
+      if (!tempFile.renameTo(destination)) {
+        Log.w(TAG, "Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
+        tempFile.delete();
+        throw new IllegalStateException("Couldn't rename " + tempFile.getPath() + " to " + destination.getPath());
+      }
 
       SQLiteDatabase     database       = databaseHelper.getSignalWritableDatabase();
       Optional<DataInfo> sharedDataInfo = findDuplicateDataFileInfo(database, hash, attachmentId);

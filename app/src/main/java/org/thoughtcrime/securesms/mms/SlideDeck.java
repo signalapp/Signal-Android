@@ -151,9 +151,9 @@ public class SlideDeck {
     return null;
   }
 
-  public @Nullable String getFirstSlideContentType() {
+  public @Nullable Slide getFirstSlide() {
     if (Util.hasItems(slides)) {
-      return slides.get(0).getContentType();
+      return slides.get(0);
     }
 
     return null;

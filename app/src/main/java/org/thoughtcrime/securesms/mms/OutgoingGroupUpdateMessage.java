@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContext;
 
 import java.util.Collections;
@@ -70,7 +71,11 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
   }
 
   public boolean isV2Group() {
-    return messageGroupContext.isV2Group();
+    return GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext);
+  }
+
+  public boolean isJustAGroupLeave() {
+    return GroupV2UpdateMessageUtil.isJustAGroupLeave(messageGroupContext);
   }
 
   public @NonNull MessageGroupContext.GroupV1Properties requireGroupV1Properties() {

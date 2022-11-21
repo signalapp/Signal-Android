@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.MediaDatabase;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.database.loaders.ThreadMediaLoader;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.ui.addtogroup.AddToGroupsActivity;
@@ -61,7 +62,7 @@ public final class ManageRecipientViewModel extends ViewModel {
   private final LiveData<String>                                 subtitle;
   private final LiveData<String>                                 internalDetails;
   private final LiveData<String>                                 disappearingMessageTimer;
-  private final MutableLiveData<IdentityDatabase.IdentityRecord> identity;
+  private final MutableLiveData<IdentityRecord> identity;
   private final LiveData<Recipient>                              recipient;
   private final MutableLiveData<MediaCursor>                     mediaCursor;
   private final LiveData<MuteState>                              muteState;
@@ -253,7 +254,7 @@ public final class ManageRecipientViewModel extends ViewModel {
     }
   }
 
-  LiveData<IdentityDatabase.IdentityRecord> getIdentity() {
+  LiveData<IdentityRecord> getIdentity() {
     return identity;
   }
 
@@ -333,7 +334,7 @@ public final class ManageRecipientViewModel extends ViewModel {
     dialog.show();
   }
 
-  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityDatabase.IdentityRecord identityRecord) {
+  void onViewSafetyNumberClicked(@NonNull Activity activity, @NonNull IdentityRecord identityRecord) {
     activity.startActivity(VerifyIdentityActivity.newIntent(activity, identityRecord));
   }
 

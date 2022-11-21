@@ -5,9 +5,10 @@ import androidx.core.util.Consumer
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.database.DatabaseFactory
-import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.ThreadDatabase
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList
+import org.thoughtcrime.securesms.database.model.IdentityRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -26,11 +27,10 @@ class MultiselectForwardRepository(context: Context) {
     val onAllMessagesFailed: () -> Unit
   )
 
-  fun checkForBadIdentityRecords(shareContacts: List<ShareContact>, consumer: Consumer<List<IdentityDatabase.IdentityRecord>>) {
+  fun checkForBadIdentityRecords(shareContacts: List<ShareContact>, consumer: Consumer<List<IdentityRecord>>) {
     SignalExecutors.BOUNDED.execute {
-      val identityDatabase: IdentityDatabase = DatabaseFactory.getIdentityDatabase(context)
       val recipients: List<Recipient> = shareContacts.map { Recipient.resolved(it.recipientId.get()) }
-      val identityRecordList: IdentityRecordList = identityDatabase.getIdentities(recipients)
+      val identityRecordList: IdentityRecordList = ApplicationDependencies.getIdentityStore().getIdentityRecords(recipients)
 
       consumer.accept(identityRecordList.untrustedRecords)
     }

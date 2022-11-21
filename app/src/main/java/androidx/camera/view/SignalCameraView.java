@@ -60,6 +60,7 @@ import androidx.camera.core.impl.LensFacingConverter;
 import androidx.camera.core.impl.utils.executor.CameraXExecutors;
 import androidx.camera.core.impl.utils.futures.FutureCallback;
 import androidx.camera.core.impl.utils.futures.Futures;
+import androidx.core.util.Consumer;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.LiveData;
 
@@ -130,6 +131,11 @@ public final class SignalCameraView extends FrameLayout {
   // For accessibility event
   private MotionEvent mUpEvent;
 
+  // BEGIN Custom Signal Code Block
+  private Consumer<Throwable> errorConsumer;
+  private Throwable           pendingError;
+  // END Custom Signal Code Block
+
   public SignalCameraView(@NonNull Context context) {
     this(context, null);
   }
@@ -167,14 +173,32 @@ public final class SignalCameraView extends FrameLayout {
    *                                  androidx.lifecycle.Lifecycle.State#DESTROYED} state.
    * @throws IllegalStateException    if camera permissions are not granted.
    */
+  // BEGIN Custom Signal Code Block
+
   @RequiresPermission(permission.CAMERA)
-  public void bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner) {
+  public void bindToLifecycle(@NonNull LifecycleOwner lifecycleOwner, Consumer<Throwable> errorConsumer) {
     mCameraModule.bindToLifecycle(lifecycleOwner);
+    this.errorConsumer = errorConsumer;
+    if (pendingError != null) {
+      errorConsumer.accept(pendingError);
+    }
   }
+  // END Custom Signal Code Block
+
 
   private void init(Context context, @Nullable AttributeSet attrs) {
     addView(mPreviewView = new PreviewView(getContext()), 0 /* view position */);
-    mCameraModule = new SignalCameraXModule(this);
+
+    // Begin custom signal code block
+    mPreviewView.setImplementationMode(PreviewView.ImplementationMode.COMPATIBLE);
+    mCameraModule = new SignalCameraXModule(this, error -> {
+      if (errorConsumer != null) {
+        errorConsumer.accept(error);
+      } else {
+        pendingError = error;
+      }
+    });
+    // End custom signal code block
 
     if (attrs != null) {
       TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CameraView);

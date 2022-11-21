@@ -15,6 +15,7 @@ import androidx.core.content.ContextCompat
 import androidx.interpolator.view.animation.FastOutLinearInInterpolator
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.switchmaterial.SwitchMaterial
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.MappingAdapter
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.util.visible
 class DSLSettingsAdapter : MappingAdapter() {
   init {
     registerFactory(ClickPreference::class.java, LayoutFactory(::ClickPreferenceViewHolder, R.layout.dsl_preference_item))
+    registerFactory(LongClickPreference::class.java, LayoutFactory(::LongClickPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(TextPreference::class.java, LayoutFactory(::TextPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(RadioListPreference::class.java, LayoutFactory(::RadioListPreferenceViewHolder, R.layout.dsl_preference_item))
     registerFactory(MultiSelectListPreference::class.java, LayoutFactory(::MultiSelectListPreferenceViewHolder, R.layout.dsl_preference_item))
@@ -138,12 +140,27 @@ class ClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<ClickPref
   }
 }
 
+class LongClickPreferenceViewHolder(itemView: View) : PreferenceViewHolder<LongClickPreference>(itemView) {
+  override fun bind(model: LongClickPreference) {
+    super.bind(model)
+    itemView.setOnLongClickListener() {
+      model.onLongClick()
+      true
+    }
+  }
+}
+
 class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<RadioListPreference>(itemView) {
   override fun bind(model: RadioListPreference) {
     super.bind(model)
 
-    summaryView.visibility = View.GONE
-    summaryView.text = model.listItems[model.selected]
+    if (model.selected >= 0) {
+      summaryView.visibility = View.VISIBLE
+      summaryView.text = model.listItems[model.selected]
+    } else {
+      summaryView.visibility = View.GONE
+      Log.w(TAG, "Detected a radio list without a default selection: ${model.dialogTitle}")
+    }
 
     itemView.setOnClickListener {
       var selection = -1
@@ -172,6 +189,10 @@ class RadioListPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Radio
         builder.show()
       }
     }
+  }
+
+  companion object {
+    private val TAG = Log.tag(RadioListPreference::class.java)
   }
 }
 

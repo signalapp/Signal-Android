@@ -19,6 +19,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 public class CameraButtonView extends View {
 
@@ -95,7 +96,7 @@ public class CameraButtonView extends View {
     outlinePaint.setColor(0x26000000);
     outlinePaint.setAntiAlias(true);
     outlinePaint.setStyle(Paint.Style.STROKE);
-    outlinePaint.setStrokeWidth(1.5f);
+    outlinePaint.setStrokeWidth(ViewUtil.dpToPx(4));
     return outlinePaint;
   }
 

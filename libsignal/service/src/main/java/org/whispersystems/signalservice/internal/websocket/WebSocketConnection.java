@@ -1,5 +1,9 @@
 package org.whispersystems.signalservice.internal.websocket;
 
+import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage;
+import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
+import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.whispersystems.libsignal.logging.Log;
@@ -7,7 +11,6 @@ import org.whispersystems.libsignal.util.Pair;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.push.TrustStore;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
-import org.whispersystems.signalservice.api.util.SleepTimer;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
 import org.whispersystems.signalservice.api.websocket.HealthMonitor;
@@ -16,8 +19,6 @@ import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
-import org.whispersystems.signalservice.internal.util.concurrent.ListenableFuture;
-import org.whispersystems.signalservice.internal.util.concurrent.SettableFuture;
 
 import java.io.IOException;
 import java.security.KeyManagementException;
@@ -28,10 +29,10 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -52,10 +53,6 @@ import okhttp3.Response;
 import okhttp3.WebSocket;
 import okhttp3.WebSocketListener;
 import okio.ByteString;
-
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketMessage;
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketRequestMessage;
-import static org.whispersystems.signalservice.internal.websocket.WebSocketProtos.WebSocketResponseMessage;
 
 public class WebSocketConnection extends WebSocketListener {
 
@@ -144,7 +141,7 @@ public class WebSocketConnection extends WebSocketListener {
             String filledUri;
 
             if (credentialsProvider.isPresent()) {
-                String identifier = credentialsProvider.get().getUuid() != null ? credentialsProvider.get().getUuid().toString() : credentialsProvider.get().getE164();
+                String identifier = Objects.requireNonNull(credentialsProvider.get().getUuid()).toString();
                 filledUri = String.format(wsUri, identifier, credentialsProvider.get().getPassword());
             } else {
                 filledUri = wsUri;
@@ -239,7 +236,7 @@ public class WebSocketConnection extends WebSocketListener {
 
         return single.subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .timeout(10, TimeUnit.SECONDS);
+                .timeout(10, TimeUnit.SECONDS, Schedulers.io());
     }
 
     public synchronized void sendResponse(WebSocketResponseMessage response) throws IOException {

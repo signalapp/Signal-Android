@@ -30,6 +30,7 @@ class AdvancedPrivacySettingsViewModel(
         AdvancedPrivacySettingsRepository.DisablePushMessagesResult.SUCCESS -> {
           TextSecurePreferences.setPushRegistered(ApplicationDependencies.getApplication(), false)
           SignalStore.registrationValues().clearRegistrationComplete()
+          SignalStore.registrationValues().clearHasUploadedProfile()
         }
         AdvancedPrivacySettingsRepository.DisablePushMessagesResult.NETWORK_ERROR -> {
           singleEvents.postValue(Event.DISABLE_PUSH_FAILED)

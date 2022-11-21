@@ -36,7 +36,9 @@ final class MessageDetails {
     notSent   = new TreeSet<>(RECIPIENT_COMPARATOR);
     viewed    = new TreeSet<>(RECIPIENT_COMPARATOR);
 
-    if (conversationMessage.getMessageRecord().isOutgoing()) {
+    if (conversationMessage.getMessageRecord().getRecipient().isSelf()) {
+      read.addAll(recipients);
+    } else if (conversationMessage.getMessageRecord().isOutgoing()) {
       for (RecipientDeliveryStatus status : recipients) {
         switch (status.getDeliveryStatus()) {
           case UNKNOWN:

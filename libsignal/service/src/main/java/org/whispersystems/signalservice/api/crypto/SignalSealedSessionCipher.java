@@ -20,6 +20,7 @@ import org.whispersystems.libsignal.NoSessionException;
 import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.SignalSessionLock;
+import org.whispersystems.libsignal.InvalidRegistrationIdException;
 
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class SignalSealedSessionCipher {
   }
 
   public byte[] multiRecipientEncrypt(List<SignalProtocolAddress> recipients, UnidentifiedSenderMessageContent content)
-      throws InvalidKeyException, UntrustedIdentityException, NoSessionException
+          throws InvalidKeyException, UntrustedIdentityException, NoSessionException, InvalidRegistrationIdException
   {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
       return cipher.multiRecipientEncrypt(recipients, content);

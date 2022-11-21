@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.payments.create;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.payments.Money;
 

@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.payments.Balance;
 import org.thoughtcrime.securesms.payments.CreatePaymentDetails;
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
 import org.thoughtcrime.securesms.payments.currency.CurrencyExchange;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.payments.preferences.model.PayeeParcelable;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
@@ -76,8 +76,16 @@ public class CreatePaymentViewModel extends ViewModel {
                                                                                                    return Optional.fromNullable(ApplicationDependencies.getPayments()
                                                                                                                                                        .getCurrencyExchange(true)
                                                                                                                                                        .getExchangeRate(currency));
-                                                                                                 } catch (IOException e) {
-                                                                                                   return Optional.absent();
+                                                                                                 } catch (IOException e1) {
+                                                                                                   Log.w(TAG, "Unable to get fresh exchange data, falling back to cached", e1);
+                                                                                                   try {
+                                                                                                     return Optional.fromNullable(ApplicationDependencies.getPayments()
+                                                                                                                                                         .getCurrencyExchange(false)
+                                                                                                                                                         .getExchangeRate(currency));
+                                                                                                   } catch (IOException e2) {
+                                                                                                     Log.w(TAG, "Unable to get any exchange data", e2);
+                                                                                                     return Optional.absent();
+                                                                                                   }
                                                                                                  }
                                                                                                });
 
@@ -230,7 +238,7 @@ public class CreatePaymentViewModel extends ViewModel {
       if (!oldAmount.isEmpty()) {
         String newAmount = oldAmount.substring(0, oldAmount.length() - 1);
         if (newAmount.isEmpty()) {
-          return context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes());
+          return AmountKeyboardGlyph.ZERO.getGlyph(context);
         } else {
           return newAmount;
         }
@@ -239,12 +247,12 @@ public class CreatePaymentViewModel extends ViewModel {
       return oldAmount;
     }
 
-    boolean oldAmountIsZero = context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes()).equals(oldAmount);
-    int     decimalIndex    = oldAmount.indexOf(context.getString(AmountKeyboardGlyph.DECIMAL.getGlyphRes()));
+    boolean oldAmountIsZero = AmountKeyboardGlyph.ZERO.getGlyph(context).equals(oldAmount);
+    int     decimalIndex    = oldAmount.indexOf(AmountKeyboardGlyph.DECIMAL.getGlyph(context));
 
     if (glyph == AmountKeyboardGlyph.DECIMAL) {
       if (oldAmountIsZero) {
-        return context.getString(AmountKeyboardGlyph.ZERO.getGlyphRes()) + context.getString(glyph.getGlyphRes());
+        return AmountKeyboardGlyph.ZERO.getGlyph(context) + glyph.getGlyph(context);
       } else if (decimalIndex > -1) {
         return oldAmount;
       }
@@ -255,9 +263,9 @@ public class CreatePaymentViewModel extends ViewModel {
     }
 
     if (oldAmountIsZero) {
-      return context.getString(glyph.getGlyphRes());
+      return glyph.getGlyph(context);
     } else {
-      return oldAmount + context.getString(glyph.getGlyphRes());
+      return oldAmount + glyph.getGlyph(context);
     }
   }
 

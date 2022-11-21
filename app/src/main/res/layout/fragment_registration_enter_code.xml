@@ -63,6 +63,7 @@
         android:defaultFocusHighlightEnabled="false"
         android:visibility="gone"/>
 
+
     <FrameLayout
         android:id="@+id/verification_loading"
         android:layout_width="match_parent"

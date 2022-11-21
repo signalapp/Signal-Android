@@ -21,6 +21,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 
 import com.annimon.stream.Stream;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
@@ -185,40 +186,22 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
   private class ClearMessageHistoryClickListener implements Preference.OnPreferenceClickListener {
     @Override
     public boolean onPreferenceClick(@NonNull Preference preference) {
-//      new AlertDialog.Builder(requireActivity())
-//                     .setTitle(R.string.preferences_storage__clear_message_history)
-//                     .setMessage(R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device)
-//                     .setPositiveButton(R.string.delete, (d, w) -> showAreYouReallySure())
-//                     .setNegativeButton(android.R.string.cancel, null)
-//                     .show();
-
-      String title = getString(R.string.preferences_storage__clear_message_history) + getString(R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device);
-      android.app.AlertDialog builder = RationaleDialog.createNonMsgDialog(requireActivity(),
-              title,
-              R.string.delete,
-              android.R.string.cancel,this::showAreYouReallySure,null,null);{
-      }
-      builder.show();
+      new MaterialAlertDialogBuilder(requireActivity())
+              .setTitle(R.string.preferences_storage__clear_message_history)
+              .setMessage(R.string.preferences_storage__this_will_delete_all_message_history_and_media_from_your_device)
+              .setPositiveButton(R.string.delete, (d, w) -> showAreYouReallySure())
+              .setNegativeButton(android.R.string.cancel, null)
+              .show();
       return true;
     }
 
     private void showAreYouReallySure() {
-//      new AlertDialog.Builder(requireActivity())
-//                     .setTitle(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history)
-//                     .setMessage(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
-//                     .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).deleteAllConversations()))
-//                     .setNegativeButton(android.R.string.cancel, null)
-//                     .show();
-//
-      String title = getString(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history) + getString(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone);
-      android.app.AlertDialog builder = RationaleDialog.createNonMsgDialog(requireActivity(),
-              title,
-              R.string.preferences_storage__delete_all_now,
-              android.R.string.cancel,
-              () -> SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).deleteAllConversations()),null,null);{
-}
-      builder.show();
-
+      new MaterialAlertDialogBuilder(requireActivity())
+              .setTitle(R.string.preferences_storage__are_you_sure_you_want_to_delete_all_message_history)
+              .setMessage(R.string.preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone)
+              .setPositiveButton(R.string.preferences_storage__delete_all_now, (d, w) -> SignalExecutors.BOUNDED.execute(() -> DatabaseFactory.getThreadDatabase(ApplicationDependencies.getApplication()).deleteAllConversations()))
+              .setNegativeButton(android.R.string.cancel, null)
+              .show();
     }
   }
 
@@ -243,15 +226,12 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
       KeepMessagesDuration newDuration     = (KeepMessagesDuration) selection;
 
       if (newDuration.ordinal() > currentDuration.ordinal()) {
-        String title = mContext.getResources().getString(R.string.preferences_storage__delete_older_messages) + "\n"
-                + mContext.getResources().getString(R.string.preferences_storage__this_will_permanently_delete_all_message_history_and_media, activity.getString(newDuration.getStringResource()));
-        android.app.AlertDialog builder = RationaleDialog.createNonMsgDialog(mContext,
-                title,
-                R.string.delete,
-                android.R.string.cancel,
-                () -> updateTrimByTime(newDuration),null,null);{
-        }
-        builder.show();
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.preferences_storage__delete_older_messages)
+                .setMessage(activity.getString(R.string.preferences_storage__this_will_permanently_delete_all_message_history_and_media, activity.getString(newDuration.getStringResource())))
+                .setPositiveButton(R.string.delete, (d, w) -> updateTrimByTime(newDuration))
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
       } else {
         updateTrimByTime(newDuration);
       }
@@ -312,12 +292,12 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
         editText.setText(String.valueOf(trimLength));
       }
 
-      AlertDialog dialog = new AlertDialog.Builder(activity)
-                                          .setTitle(R.string.preferences__conversation_length_limit)
-                                          .setView(view)
-                                          .setPositiveButton(android.R.string.ok, (d, w) -> onSelectionChanged(Integer.parseInt(editText.getText().toString())))
-                                          .setNegativeButton(android.R.string.cancel, (d, w) -> updateSettingsList())
-                                          .create();
+      AlertDialog dialog = new MaterialAlertDialogBuilder(activity)
+          .setTitle(R.string.preferences__conversation_length_limit)
+          .setView(view)
+          .setPositiveButton(android.R.string.ok, (d, w) -> onSelectionChanged(Integer.parseInt(editText.getText().toString())))
+          .setNegativeButton(android.R.string.cancel, (d, w) -> updateSettingsList())
+          .create();
 
       dialog.setOnShowListener(d -> {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setEnabled(!TextUtils.isEmpty(editText.getText()));
@@ -361,15 +341,12 @@ public class StoragePreferenceFragment extends ListSummaryPreferenceFragment imp
       int     newTrimLength     = (Integer) selection;
 
       if (newTrimLength > 0 && (!trimLengthEnabled || newTrimLength < trimLength)) {
-        String title = mContext.getResources().getString(R.string.preferences_storage__delete_older_messages) + "\n"
-                + mContext.getResources().getString(R.string.preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages, NumberFormat.getInstance().format(newTrimLength));
-        android.app.AlertDialog builder = RationaleDialog.createNonMsgDialog(mContext,
-                title,
-                R.string.delete,
-                android.R.string.cancel,
-                () -> updateTrimByLength(newTrimLength),null,null);{
-        }
-        builder.show();
+        new MaterialAlertDialogBuilder(activity)
+                .setTitle(R.string.preferences_storage__delete_older_messages)
+                .setMessage(activity.getString(R.string.preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages, NumberFormat.getInstance().format(newTrimLength)))
+                .setPositiveButton(R.string.delete, (d, w) -> updateTrimByLength(newTrimLength))
+                .setNegativeButton(android.R.string.cancel, null)
+                .show();
       } else if (newTrimLength == CUSTOM_LENGTH) {
         onCustomizeClicked(null);
       } else {

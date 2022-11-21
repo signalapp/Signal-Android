@@ -68,16 +68,26 @@ class MultiselectForwardViewModel(
 
   private fun performSend(additionalMessage: String) {
     store.update { it.copy(stage = MultiselectForwardState.Stage.SendPending) }
-    repository.send(
-      additionalMessage = additionalMessage,
-      multiShareArgs = records,
-      shareContacts = store.state.selectedContacts,
-      MultiselectForwardRepository.MultiselectForwardResultHandlers(
-        onAllMessageSentSuccessfully = { store.update { it.copy(stage = MultiselectForwardState.Stage.Success) } },
-        onAllMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.AllFailed) } },
-        onSomeMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.SomeFailed) } }
+    if (records.isEmpty()) {
+      store.update { state ->
+        state.copy(
+          stage = MultiselectForwardState.Stage.SelectionConfirmed(
+            state.selectedContacts.filter { it.recipientId.isPresent }.map { it.recipientId.get() }.distinct()
+          )
+        )
+      }
+    } else {
+      repository.send(
+        additionalMessage = additionalMessage,
+        multiShareArgs = records,
+        shareContacts = store.state.selectedContacts,
+        MultiselectForwardRepository.MultiselectForwardResultHandlers(
+          onAllMessageSentSuccessfully = { store.update { it.copy(stage = MultiselectForwardState.Stage.Success) } },
+          onAllMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.AllFailed) } },
+          onSomeMessagesFailed = { store.update { it.copy(stage = MultiselectForwardState.Stage.SomeFailed) } }
+        )
       )
-    )
+    }
   }
 
   class Factory(

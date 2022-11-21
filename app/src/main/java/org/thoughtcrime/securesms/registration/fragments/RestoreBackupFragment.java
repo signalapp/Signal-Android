@@ -1,5 +1,9 @@
 package org.thoughtcrime.securesms.registration.fragments;
 
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -27,17 +31,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
 import com.dd.CircularProgressButton;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppInitialization;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.backup.BackupPassphrase;
 import org.thoughtcrime.securesms.backup.FullBackupBase;
@@ -47,17 +53,16 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.NoExternalStorageException;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.util.Locale;
-
-public final class RestoreBackupFragment extends BaseRegistrationFragment {
+public final class RestoreBackupFragment extends LoggingFragment {
 
   private static final String TAG                            = Log.tag(RestoreBackupFragment.class);
   private static final short  OPEN_DOCUMENT_TREE_RESULT_CODE = 13782;
@@ -67,6 +72,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   private TextView               restoreBackupProgress;
   private CircularProgressButton restoreButton;
   private View                   skipRestoreButton;
+  private RegistrationViewModel  viewModel;
 
   @Override
   public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -94,10 +100,17 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
                                  .navigate(RestoreBackupFragmentDirections.actionSkip());
                      });
 
-    if (isReregister()) {
+    viewModel = new ViewModelProvider(requireActivity()).get(RegistrationViewModel.class);
+
+    if (viewModel.isReregister()) {
       Log.i(TAG, "Skipping backup restore during re-register.");
       Navigation.findNavController(view)
                 .navigate(RestoreBackupFragmentDirections.actionSkipNoReturn());
+      return;
+    }
+
+    if (viewModel.hasBackupCompleted()) {
+      onBackupComplete();
       return;
     }
 
@@ -271,6 +284,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
       @Override
       protected void onPostExecute(@NonNull BackupImportResult result) {
+        viewModel.markBackupCompleted();
         cancelSpinning(restoreButton);
         skipRestoreButton.setVisibility(View.VISIBLE);
 
@@ -298,6 +312,14 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
   }
 
   @Override
+  public void onResume() {
+    super.onResume();
+    if (viewModel != null && viewModel.hasBackupCompleted()) {
+      onBackupComplete();
+    }
+  }
+
+  @Override
   public void onStop() {
     super.onStop();
     EventBus.getDefault().unregister(this);
@@ -305,7 +327,7 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
 
   @Subscribe(threadMode = ThreadMode.MAIN)
   public void onEvent(@NonNull FullBackupBase.BackupEvent event) {
-    int count = event.getCount();
+    long count = event.getCount();
 
     if (count == 0) {
       restoreBackupProgress.setText(R.string.RegistrationActivity_checking);
@@ -317,12 +339,16 @@ public final class RestoreBackupFragment extends BaseRegistrationFragment {
     skipRestoreButton.setVisibility(View.INVISIBLE);
 
     if (event.getType() == FullBackupBase.BackupEvent.Type.FINISHED) {
-      if (BackupUtil.isUserSelectionRequired(requireContext()) && !BackupUtil.canUserAccessBackupDirectory(requireContext())) {
-        displayConfirmationDialog(requireContext());
-      } else {
-        Navigation.findNavController(requireView())
-                  .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
-      }
+      onBackupComplete();
+    }
+  }
+
+  private void onBackupComplete() {
+    if (BackupUtil.isUserSelectionRequired(requireContext()) && !BackupUtil.canUserAccessBackupDirectory(requireContext())) {
+      displayConfirmationDialog(requireContext());
+    } else {
+      Navigation.findNavController(requireView())
+                .navigate(RestoreBackupFragmentDirections.actionBackupRestored());
     }
   }
 

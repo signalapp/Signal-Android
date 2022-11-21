@@ -236,6 +236,6 @@ public class ProtoUtilTest {
     TestInnerMessageWithNewString reparsedTest = TestInnerMessageWithNewString.parseFrom(combined.toByteArray());
 
     Assert.assertEquals("a2", reparsedTest.getInner().getA());
-    Assert.assertEquals("", reparsedTest.getInner().getB());
+    Assert.assertEquals("b1", reparsedTest.getInner().getB());
   }
 }

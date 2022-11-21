@@ -17,7 +17,7 @@
         android:layout_centerVertical="true"
         android:orientation="vertical">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.thoughtcrime.securesms.components.FromTextView
             android:id="@+id/title"
             style="@style/TextSecure.TitleTextStyle.Dark"
             android:layout_width="wrap_content"

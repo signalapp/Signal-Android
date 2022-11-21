@@ -54,6 +54,7 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.security.SecureRandom;
 import java.util.ArrayList;
@@ -483,7 +484,7 @@ public class Util {
     return MemoryUnitFormat.formatBytes(sizeBytes);
   }
 
-  public static void copyToClipboard(@NonNull Context context, @NonNull String text) {
+  public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text) {
     ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText("text", text));
   }
 
@@ -513,26 +514,5 @@ public class Util {
     } catch (NumberFormatException e) {
       return defaultValue;
     }
-  }
-
-  /**
-   * Appends the stack trace of the provided throwable onto the provided primary exception. This is
-   * useful for when exceptions are thrown inside of asynchronous systems (like runnables in an
-   * executor) where you'd otherwise lose important parts of the stack trace. This lets you save a
-   * throwable at the entry point, and then combine it with any caught exceptions later.
-   *
-   * @return The provided primary exception, for convenience.
-   */
-  public static RuntimeException appendStackTrace(@NonNull RuntimeException primary, @NonNull Throwable secondary) {
-    StackTraceElement[] now      = primary.getStackTrace();
-    StackTraceElement[] then     = secondary.getStackTrace();
-    StackTraceElement[] combined = new StackTraceElement[now.length + then.length];
-
-    System.arraycopy(now, 0, combined, 0, now.length);
-    System.arraycopy(then, 0, combined, now.length, then.length);
-
-    primary.setStackTrace(combined);
-
-    return primary;
   }
 }

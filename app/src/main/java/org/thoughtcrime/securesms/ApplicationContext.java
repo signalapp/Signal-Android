@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms;
 
 import android.content.Context;
 import android.os.Build;
-import android.os.SystemClock;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +29,7 @@ import androidx.multidex.MultiDexApplication;
 import com.google.android.gms.security.ProviderInstaller;
 
 import org.conscrypt.Conscrypt;
+import org.greenrobot.eventbus.EventBus;
 import org.signal.aesgcmprovider.AesGcmProvider;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.AndroidLogger;
@@ -61,6 +61,8 @@ import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.messageprocessingalarm.MessageProcessReceiver;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
+import org.thoughtcrime.securesms.mms.SignalGlideComponents;
+import org.thoughtcrime.securesms.mms.SignalGlideModule;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
@@ -85,8 +87,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.webrtc.voiceengine.WebRtcAudioManager;
-import org.webrtc.voiceengine.WebRtcAudioUtils;
 import org.whispersystems.libsignal.logging.SignalProtocolLoggerProvider;
 import org.whispersystems.signalservice.api.SignalServiceMessagePipe;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
@@ -131,7 +131,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     super.onCreate();
 
     AppStartup.getInstance().addBlocking("security-provider", this::initializeSecurityProvider)
-                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load(this))
+                            .addBlocking("sqlcipher-init", () -> SqlCipherLibraryLoader.load())
                             .addBlocking("logging", () -> {
                               initializeLogging();
                               Log.i(TAG, "onCreate()");
@@ -141,6 +141,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               RxJavaPlugins.setInitIoSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED_IO, true, false));
                               RxJavaPlugins.setInitComputationSchedulerHandler(schedulerSupplier -> Schedulers.from(SignalExecutors.BOUNDED, true, false));
                             })
+                            .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
                             .addBlocking("app-dependencies", this::initializeAppDependencies)
                             .addBlocking("notification-channels", () -> NotificationChannels.create(this))
                             .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
@@ -163,6 +164,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             })
                             .addBlocking("blob-provider", this::initializeBlobProvider)
                             .addBlocking("feature-flags", FeatureFlags::init)
+                            .addBlocking("glide", () -> SignalGlideModule.setRegisterGlideComponents(new SignalGlideComponents()))
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializePendingRetryReceiptManager)
                             .addNonBlocking(this::initializeGcmCheck)
@@ -176,6 +178,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
                             .addNonBlocking(() -> ApplicationDependencies.getJobManager().beginJobLoop())
                             .addNonBlocking(EmojiSource::refresh)
+                            .addNonBlocking(() -> ApplicationDependencies.getGiphyMp4Cache().onAppStart(this))
                             .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
                             .addPostRender(this::initializeExpiringMessageManager)
                             .addPostRender(() -> SignalStore.settings().setDefaultSms(Util.isDefaultSmsProvider(this)))
@@ -223,8 +226,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     long startTime = System.currentTimeMillis();
     Log.i(TAG, "App is now visible.");
 
-    ApplicationDependencies.getFrameRateTracker().begin();
+    ApplicationDependencies.getFrameRateTracker().start();
     ApplicationDependencies.getMegaphoneRepository().onAppForegrounded();
+    ApplicationDependencies.getDeadlockDetector().start();
 
     SignalExecutors.BOUNDED.execute(() -> {
       FeatureFlags.refreshIfNecessary();
@@ -245,8 +249,9 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
     Log.i(TAG, "App is no longer visible.");
     KeyCachingService.onAppBackgrounded(this);
     ApplicationDependencies.getMessageNotifier().clearVisibleThread();
-    ApplicationDependencies.getFrameRateTracker().end();
+    ApplicationDependencies.getFrameRateTracker().stop();
     ApplicationDependencies.getShakeToReport().disable();
+    ApplicationDependencies.getDeadlockDetector().stop();
   }
 
   public TypingStatusRepository getTypingStatusRepository() {
@@ -294,7 +299,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
 
-    SignalExecutors.UNBOUNDED.execute(() -> LogDatabase.getInstance(this).trimToSize());
+    SignalExecutors.UNBOUNDED.execute(() -> {
+      Log.blockUntilAllWritesFinished();
+      LogDatabase.getInstance(this).trimToSize();
+    });
   }
 
   private void initializeCrashHandling() {
@@ -379,14 +387,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
   private void initializeRingRtc() {
     try {
 
-      if (RtcDeviceLists.hardwareAECBlocked()) {
-        WebRtcAudioUtils.setWebRtcBasedAcousticEchoCanceler(true);
-      }
-
-      if (!RtcDeviceLists.openSLESAllowed()) {
-        WebRtcAudioManager.setBlacklistDeviceForOpenSLESUsage(true);
-      }
-
       CallManager.initialize(this, new RingRtcLogger());
     } catch (UnsatisfiedLinkError e) {
       throw new AssertionError("Unable to load ringrtc library", e);
@@ -395,7 +395,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   @WorkerThread
   private void initializeCircumvention() {
-    if (new SignalServiceNetworkAccess(ApplicationContext.this).isCensored(ApplicationContext.this)) {
+    if (ApplicationDependencies.getSignalServiceNetworkAccess().isCensored(ApplicationContext.this)) {
       try {
         ProviderInstaller.installIfNeeded(ApplicationContext.this);
       } catch (Throwable t) {

@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.VerifyIdentityActivity;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
@@ -174,7 +174,7 @@ public final class ConversationUpdateItem extends FrameLayout
     }
 
     UpdateDescription   updateDescription = Objects.requireNonNull(messageRecord.getUpdateDisplayBody(getContext()));
-    LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, ContextCompat.getColor(getContext(), R.color.conversation_item_update_text_color));
+    LiveData<SpannableString> liveUpdateMessage = LiveUpdateMessage.fromMessageDescription(getContext(), updateDescription, ContextCompat.getColor(getContext(), R.color.conversation_item_update_text_color),true);
     LiveData<SpannableString> spannableMessage  = loading(liveUpdateMessage);
 
     observeDisplayBody(lifecycleOwner, spannableMessage);
@@ -415,6 +415,14 @@ public final class ConversationUpdateItem extends FrameLayout
           eventListener.onBadDecryptLearnMoreClicked(conversationMessage.getMessageRecord().getRecipient().getId());
         }
       });
+    } else if (conversationMessage.getMessageRecord().isChangeNumber() && conversationMessage.getMessageRecord().getIndividualRecipient().isSystemContact()) {
+      actionButton.setText(R.string.ConversationUpdateItem_update_contact);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getIndividualRecipient());
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);
@@ -487,10 +495,11 @@ public final class ConversationUpdateItem extends FrameLayout
   }
 
   private static boolean isSameType(@NonNull MessageRecord current, @NonNull MessageRecord candidate) {
-    return (current.isGroupUpdate()           && candidate.isGroupUpdate())   ||
-           (current.isProfileChange()         && candidate.isProfileChange()) ||
-           (current.isGroupCall()             && candidate.isGroupCall())     ||
-           (current.isExpirationTimerUpdate() && candidate.isExpirationTimerUpdate());
+    return (current.isGroupUpdate()           && candidate.isGroupUpdate())           ||
+           (current.isProfileChange()         && candidate.isProfileChange())         ||
+           (current.isGroupCall()             && candidate.isGroupCall())             ||
+           (current.isExpirationTimerUpdate() && candidate.isExpirationTimerUpdate()) ||
+           (current.isChangeNumber()          && candidate.isChangeNumber());
   }
 
   @Override

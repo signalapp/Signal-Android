@@ -3,17 +3,23 @@ package org.thoughtcrime.securesms.crypto.storage;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.exoplayer2.C;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil;
 import org.thoughtcrime.securesms.crypto.SessionUtil;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.IdentityRecord;
 import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.IdentityStoreRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.IdentityUtil;
+import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.IdentityKey;
 import org.whispersystems.libsignal.IdentityKeyPair;
@@ -21,19 +27,29 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.state.IdentityKeyStore;
 import org.whispersystems.libsignal.util.guava.Optional;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class TextSecureIdentityKeyStore implements IdentityKeyStore {
 
-  private static final int TIMESTAMP_THRESHOLD_SECONDS = 5;
-
   private static final String TAG = Log.tag(TextSecureIdentityKeyStore.class);
-  private static final Object LOCK = new Object();
+
+  private static final Object LOCK                        = new Object();
+  private static final int    TIMESTAMP_THRESHOLD_SECONDS = 5;
 
   private final Context context;
+  private final Cache   cache;
 
   public TextSecureIdentityKeyStore(Context context) {
+    this(context, DatabaseFactory.getIdentityDatabase(context));
+  }
+
+  TextSecureIdentityKeyStore(@NonNull Context context, @NonNull IdentityDatabase identityDatabase) {
     this.context = context;
+    this.cache   = new Cache(identityDatabase);
   }
 
   @Override
@@ -46,40 +62,44 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return TextSecurePreferences.getLocalRegistrationId(context);
   }
 
+  @Override
+  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
+  }
+
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
     synchronized (LOCK) {
-      IdentityDatabase         identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-      RecipientId              recipientId      = RecipientId.fromExternalPush(address.getName());
-      Optional<IdentityRecord> identityRecord   = identityDatabase.getIdentity(recipientId);
+      IdentityStoreRecord identityRecord = cache.get(address.getName());
+      RecipientId         recipientId    = RecipientId.fromExternalPush(address.getName());
 
-      if (!identityRecord.isPresent()) {
+      if (identityRecord == null) {
         Log.i(TAG, "Saving new identity...");
-        identityDatabase.saveIdentity(recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
+        cache.save(address.getName(), recipientId, identityKey, VerifiedStatus.DEFAULT, true, System.currentTimeMillis(), nonBlockingApproval);
         return SaveResult.NEW;
       }
 
-      if (!identityRecord.get().getIdentityKey().equals(identityKey)) {
-        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.get().getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
+      if (!identityRecord.getIdentityKey().equals(identityKey)) {
+        Log.i(TAG, "Replacing existing identity... Existing: " + identityRecord.getIdentityKey().hashCode() + " New: " + identityKey.hashCode());
         VerifiedStatus verifiedStatus;
 
-        if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.VERIFIED ||
-            identityRecord.get().getVerifiedStatus() == VerifiedStatus.UNVERIFIED)
+        if (identityRecord.getVerifiedStatus() == VerifiedStatus.VERIFIED ||
+            identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED)
         {
           verifiedStatus = VerifiedStatus.UNVERIFIED;
         } else {
           verifiedStatus = VerifiedStatus.DEFAULT;
         }
 
-        identityDatabase.saveIdentity(recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
+        cache.save(address.getName(), recipientId, identityKey, verifiedStatus, false, System.currentTimeMillis(), nonBlockingApproval);
         IdentityUtil.markIdentityUpdate(context, recipientId);
         SessionUtil.archiveSiblingSessions(address);
         DatabaseFactory.getSenderKeySharedDatabase(context).deleteAllFor(recipientId);
         return SaveResult.UPDATE;
       }
 
-      if (isNonBlockingApprovalRequired(identityRecord.get())) {
+      if (isNonBlockingApprovalRequired(identityRecord)) {
         Log.i(TAG, "Setting approval status...");
-        identityDatabase.setApproval(recipientId, nonBlockingApproval);
+        cache.setApproval(address.getName(), recipientId, identityRecord, nonBlockingApproval);
         return SaveResult.NON_BLOCKING_APPROVAL_REQUIRED;
       }
 
@@ -87,73 +107,132 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     }
   }
 
-  @Override
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
+  public void saveIdentityWithoutSideEffects(@NonNull RecipientId recipientId,
+                                             IdentityKey identityKey,
+                                             VerifiedStatus verifiedStatus,
+                                             boolean firstUse,
+                                             long timestamp,
+                                             boolean nonBlockingApproval)
+  {
+    Recipient recipient = Recipient.resolved(recipientId);
+    if (recipient.hasServiceIdentifier()) {
+      cache.save(recipient.requireServiceId(), recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+    } else {
+      Log.w(TAG, "[saveIdentity] No serviceId for " + recipient.getId());
+    }
   }
 
   @Override
   public boolean isTrustedIdentity(SignalProtocolAddress address, IdentityKey identityKey, Direction direction) {
-    synchronized (LOCK) {
-      if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
-        IdentityDatabase identityDatabase = DatabaseFactory.getIdentityDatabase(context);
-        RecipientId      ourRecipientId   = Recipient.self().getId();
-        RecipientId      theirRecipientId = RecipientId.fromExternalPush(address.getName());
+    boolean isSelf = address.getName().equals(TextSecurePreferences.getLocalUuid(context).toString()) ||
+                     address.getName().equals(TextSecurePreferences.getLocalNumber(context));
 
-        if (ourRecipientId.equals(theirRecipientId)) {
-          return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
-        }
+    if (isSelf) {
+      return identityKey.equals(IdentityKeyUtil.getIdentityKey(context));
+    }
 
-        switch (direction) {
-          case SENDING:   return isTrustedForSending(identityKey, identityDatabase.getIdentity(theirRecipientId));
-          case RECEIVING: return true;
-          default:        throw new AssertionError("Unknown direction: " + direction);
-        }
-      } else {
-        Log.w(TAG, "Tried to check if identity is trusted for " + address.getName() + ", but no matching recipient existed!");
-        switch (direction) {
-          case SENDING:   return false;
-          case RECEIVING: return true;
-          default:        throw new AssertionError("Unknown direction: " + direction);
-        }
-      }
+    IdentityStoreRecord record = cache.get(address.getName());
+
+    switch (direction) {
+      case SENDING:
+        return isTrustedForSending(identityKey, record);
+      case RECEIVING:
+        return true;
+      default:
+        throw new AssertionError("Unknown direction: " + direction);
     }
   }
 
   @Override
   public IdentityKey getIdentity(SignalProtocolAddress address) {
-    if (DatabaseFactory.getRecipientDatabase(context).containsPhoneOrUuid(address.getName())) {
-      RecipientId              recipientId = RecipientId.fromExternalPush(address.getName());
-      Optional<IdentityRecord> record      = DatabaseFactory.getIdentityDatabase(context).getIdentity(recipientId);
+    IdentityStoreRecord record = cache.get(address.getName());
+    return record != null ? record.getIdentityKey() : null;
+  }
 
-      if (record.isPresent()) {
-        return record.get().getIdentityKey();
-      } else {
-        return null;
-      }
+  public @NonNull Optional<IdentityRecord> getIdentityRecord(@NonNull RecipientId recipientId) {
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.hasServiceIdentifier()) {
+      IdentityStoreRecord record = cache.get(recipient.requireServiceId());
+      return Optional.fromNullable(record).transform(r -> r.toIdentityRecord(recipientId));
     } else {
-      Log.w(TAG, "Tried to get identity for " + address.getName() + ", but no matching recipient existed!");
-      return null;
+      Log.w(TAG, "[getIdentityRecord] No serviceId for " + recipient.getId());
+      return Optional.absent();
     }
   }
 
-  private boolean isTrustedForSending(IdentityKey identityKey, Optional<IdentityRecord> identityRecord) {
-    if (!identityRecord.isPresent()) {
+  public @NonNull IdentityRecordList getIdentityRecords(@NonNull List<Recipient> recipients) {
+    List<String> addressNames = recipients.stream()
+                                          .filter(Recipient::hasServiceIdentifier)
+                                          .map(Recipient::requireServiceId)
+                                          .collect(Collectors.toList());
+
+    if (addressNames.isEmpty()) {
+      return IdentityRecordList.EMPTY;
+    }
+
+    List<IdentityRecord> records = new ArrayList<>(recipients.size());
+
+    for (Recipient recipient : recipients) {
+      if (recipient.hasServiceIdentifier()) {
+        IdentityStoreRecord record = cache.get(recipient.requireServiceId());
+
+        if (record != null) {
+          records.add(record.toIdentityRecord(recipient.getId()));
+        }
+      } else {
+        Log.w(TAG, "[getIdentityRecords] No serviceId for " + recipient.getId());
+      }
+    }
+
+    return new IdentityRecordList(records);
+  }
+
+  public void setApproval(@NonNull RecipientId recipientId, boolean nonBlockingApproval) {
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.hasServiceIdentifier()) {
+      cache.setApproval(recipient.requireServiceId(), recipientId, nonBlockingApproval);
+    } else {
+      Log.w(TAG, "[setApproval] No serviceId for " + recipient.getId());
+    }
+  }
+
+  public void setVerified(@NonNull RecipientId recipientId, IdentityKey identityKey, VerifiedStatus verifiedStatus) {
+    Recipient recipient = Recipient.resolved(recipientId);
+
+    if (recipient.hasServiceIdentifier()) {
+      cache.setVerified(recipient.requireServiceId(), recipientId, identityKey, verifiedStatus);
+    } else {
+      Log.w(TAG, "[setVerified] No serviceId for " + recipient.getId());
+    }
+  }
+
+  public void delete(@NonNull String addressName) {
+    cache.delete(addressName);
+  }
+
+  public void invalidate(@NonNull String addressName) {
+    cache.invalidate(addressName);
+  }
+
+  private boolean isTrustedForSending(@NonNull IdentityKey identityKey, @Nullable IdentityStoreRecord identityRecord) {
+    if (identityRecord == null) {
       Log.w(TAG, "Nothing here, returning true...");
       return true;
     }
 
-    if (!identityKey.equals(identityRecord.get().getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.get().getIdentityKey().hashCode());
+    if (!identityKey.equals(identityRecord.getIdentityKey())) {
+      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.getIdentityKey().hashCode());
       return false;
     }
 
-    if (identityRecord.get().getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
+    if (identityRecord.getVerifiedStatus() == VerifiedStatus.UNVERIFIED) {
       Log.w(TAG, "Needs unverified approval!");
       return false;
     }
 
-    if (isNonBlockingApprovalRequired(identityRecord.get())) {
+    if (isNonBlockingApprovalRequired(identityRecord)) {
       Log.w(TAG, "Needs non-blocking approval!");
       return false;
     }
@@ -161,10 +240,78 @@ public class TextSecureIdentityKeyStore implements IdentityKeyStore {
     return true;
   }
 
-  private boolean isNonBlockingApprovalRequired(IdentityRecord identityRecord) {
-    return !identityRecord.isFirstUse() &&
-           System.currentTimeMillis() - identityRecord.getTimestamp() < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS) &&
-           !identityRecord.isApprovedNonBlocking();
+  private boolean isNonBlockingApprovalRequired(IdentityStoreRecord record) {
+    return !record.getFirstUse()            &&
+           !record.getNonblockingApproval() &&
+           System.currentTimeMillis() - record.getTimestamp() < TimeUnit.SECONDS.toMillis(TIMESTAMP_THRESHOLD_SECONDS);
+  }
+
+  private static final class Cache {
+
+    private final Map<String, IdentityStoreRecord> cache;
+    private final IdentityDatabase                 identityDatabase;
+
+    Cache(@NonNull IdentityDatabase identityDatabase) {
+      this.identityDatabase = identityDatabase;
+      this.cache            = new LRUCache<>(200);
+    }
+
+    public synchronized @Nullable IdentityStoreRecord get(@NonNull String addressName) {
+      if (cache.containsKey(addressName)) {
+        return cache.get(addressName);
+      } else {
+        IdentityStoreRecord record = identityDatabase.getIdentityStoreRecord(addressName);
+        cache.put(addressName, record);
+        return record;
+      }
+    }
+
+    public synchronized void save(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus, boolean firstUse, long timestamp, boolean nonBlockingApproval) {
+      identityDatabase.saveIdentity(addressName, recipientId, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval);
+      cache.put(addressName, new IdentityStoreRecord(addressName, identityKey, verifiedStatus, firstUse, timestamp, nonBlockingApproval));
+    }
+
+    public synchronized void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, boolean nonblockingApproval) {
+      setApproval(addressName, recipientId, cache.get(addressName), nonblockingApproval);
+    }
+
+    public synchronized void setApproval(@NonNull String addressName, @NonNull RecipientId recipientId, @Nullable IdentityStoreRecord record, boolean nonblockingApproval) {
+      identityDatabase.setApproval(addressName, recipientId, nonblockingApproval);
+
+      if (record != null) {
+        cache.put(record.getAddressName(),
+                  new IdentityStoreRecord(record.getAddressName(),
+                                          record.getIdentityKey(),
+                                          record.getVerifiedStatus(),
+                                          record.getFirstUse(),
+                                          record.getTimestamp(),
+                                          nonblockingApproval));
+      }
+    }
+
+    public synchronized void setVerified(@NonNull String addressName, @NonNull RecipientId recipientId, @NonNull IdentityKey identityKey, @NonNull VerifiedStatus verifiedStatus) {
+      identityDatabase.setVerified(addressName, recipientId, identityKey, verifiedStatus);
+
+      IdentityStoreRecord record = cache.get(addressName);
+      if (record != null) {
+        cache.put(addressName,
+                  new IdentityStoreRecord(record.getAddressName(),
+                                          record.getIdentityKey(),
+                                          verifiedStatus,
+                                          record.getFirstUse(),
+                                          record.getTimestamp(),
+                                          record.getNonblockingApproval()));
+      }
+    }
+
+    public synchronized void delete(@NonNull String addressName) {
+      identityDatabase.delete(addressName);
+      cache.remove(addressName);
+    }
+
+    public synchronized void invalidate(@NonNull String addressName) {
+      cache.remove(addressName);
+    }
   }
 
   public enum SaveResult {

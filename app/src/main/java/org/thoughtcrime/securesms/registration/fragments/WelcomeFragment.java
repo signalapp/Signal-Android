@@ -42,7 +42,13 @@ import org.whispersystems.libsignal.util.guava.Optional;
 
 import java.util.ArrayList;
 
-public final class WelcomeFragment extends BaseRegistrationFragment {
+import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.cancelSpinning;
+import static org.thoughtcrime.securesms.util.CircularProgressButtonUtil.setSpinning;
+import androidx.lifecycle.ViewModelProviders;
+import org.thoughtcrime.securesms.LoggingFragment;
+
+public final class WelcomeFragment extends LoggingFragment {
 
   private static final String TAG = Log.tag(WelcomeFragment.class);
   private static final int WELCOME_OPTION_DISCLAIMER = 0;
@@ -110,24 +116,21 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
   private static final            int[]          HEADERS_API_29     = { R.drawable.ic_contacts_white_48dp };
 
   private View                   restoreFromBackup;
+  private RegistrationViewModel  viewModel;
 
   @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState) {
-    return inflater.inflate(isReregister() ? R.layout.fragment_registration_blank
-                    : R.layout.fragment_registration_welcome,
-            container,
-            false);
+  public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    return inflater.inflate(R.layout.fragment_registration_welcome, container, false);
   }
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
 
-    if (isReregister()) {
-      RegistrationViewModel model = getModel();
+    viewModel = ViewModelProviders.of(requireActivity()).get(RegistrationViewModel.class);
 
-      if (model.hasRestoreFlowBeenShown()) {
+    if (viewModel.isReregister()) {
+      if (viewModel.hasRestoreFlowBeenShown()) {
         Log.i(TAG, "We've come back to the home fragment on a restore, user must be backing out");
         if (!Navigation.findNavController(view).popBackStack()) {
           FragmentActivity activity = requireActivity();
@@ -140,10 +143,9 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
       initializeNumber();
 
       Log.i(TAG, "Skipping restore because this is a reregistration.");
-      model.setWelcomeSkippedOnRestore();
+      viewModel.setWelcomeSkippedOnRestore();
       Navigation.findNavController(view)
               .navigate(WelcomeFragmentDirections.actionSkipRestore());
-
     } else {
       //init res
       Resources res = requireActivity().getResources();
@@ -273,13 +275,13 @@ public final class WelcomeFragment extends BaseRegistrationFragment {
       Phonenumber.PhoneNumber phoneNumber    = localNumber.get();
       String                  nationalNumber = PhoneNumberUtil.getInstance().format(phoneNumber, PhoneNumberUtil.PhoneNumberFormat.NATIONAL);
 
-      getModel().onNumberDetected(phoneNumber.getCountryCode(), nationalNumber);
+      viewModel.onNumberDetected(phoneNumber.getCountryCode(), nationalNumber);
     } else {
       Log.i(TAG, "No number detected");
       Optional<String> simCountryIso = Util.getSimCountryIso(requireContext());
 
       if (simCountryIso.isPresent() && !TextUtils.isEmpty(simCountryIso.get())) {
-        getModel().onNumberDetected(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get()), "");
+        viewModel.onNumberDetected(PhoneNumberUtil.getInstance().getCountryCodeForRegion(simCountryIso.get()), "");
       }
     }
   }

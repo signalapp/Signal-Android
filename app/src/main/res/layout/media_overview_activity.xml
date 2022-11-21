@@ -54,6 +54,7 @@
             android:textColor="@color/media_overview_toolbar_foreground"
             app:layout_constraintBottom_toBottomOf="@+id/sorting"
             app:layout_constraintStart_toStartOf="@+id/sorting"
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
             tools:text="@string/MediaOverviewActivity_Storage_used" />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -79,7 +80,7 @@
             android:paddingEnd="16dp"
             app:layout_constraintBottom_toBottomOf="@+id/sorting"
             app:layout_constraintEnd_toEndOf="@+id/sorting"
-            >
+            app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/view_grid"

@@ -8,7 +8,9 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import okio.HashingSink
-import okio.Okio
+import okio.blackholeSink
+import okio.buffer
+import okio.source
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
@@ -18,7 +20,6 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
-import java.lang.Exception
 import java.util.UUID
 
 /**
@@ -52,6 +53,7 @@ private fun Context.getEmojiDirectory(): File = getDir(EMOJI_DIRECTORY, Context.
 private fun Context.getVersionFile(): File = File(getEmojiDirectory(), VERSION_FILE)
 private fun Context.getNameFile(versionUuid: UUID): File = File(File(getEmojiDirectory(), versionUuid.toString()).apply { mkdir() }, NAME_FILE)
 
+@Suppress("UNUSED_PARAMETER")
 private fun getFilesUri(name: String, format: String): Uri = PartAuthority.getEmojiUri(name)
 
 private fun getOutputStream(context: Context, outputFile: File): OutputStream {
@@ -97,11 +99,11 @@ object EmojiFiles {
     val file = version.getFile(context, uuid)
 
     try {
-      HashingSink.md5(Okio.blackhole()).use { hashingSink ->
-        Okio.buffer(Okio.source(getInputStream(context, file))).use { source ->
+      HashingSink.md5(blackholeSink()).use { hashingSink ->
+        getInputStream(context, file).source().buffer().use { source ->
           source.readAll(hashingSink)
 
-          return hashingSink.hash().toByteArray()
+          return hashingSink.hash.toByteArray()
         }
       }
     } catch (e: Exception) {

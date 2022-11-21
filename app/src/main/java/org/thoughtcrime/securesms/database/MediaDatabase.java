@@ -65,7 +65,9 @@ public class MediaDatabase extends Database {
                                                    + MmsDatabase.VIEW_ONCE + " = 0 AND "
                                                    + AttachmentDatabase.DATA + " IS NOT NULL AND "
                                                    + "(" + AttachmentDatabase.QUOTE + " = 0 OR (" + AttachmentDatabase.QUOTE + " = 1 AND " + AttachmentDatabase.DATA_HASH + " IS NULL)) AND "
-                                                   + AttachmentDatabase.STICKER_PACK_ID + " IS NULL ";
+                                                   + AttachmentDatabase.STICKER_PACK_ID + " IS NULL AND "
+                                                   + MmsDatabase.RECIPIENT_ID + " > 0 AND "
+                                                   + THREAD_RECIPIENT_ID + " > 0";
 
    private static final String UNIQUE_MEDIA_QUERY = "SELECT "
         + "MAX(" + AttachmentDatabase.SIZE + ") as " + AttachmentDatabase.SIZE + ", "

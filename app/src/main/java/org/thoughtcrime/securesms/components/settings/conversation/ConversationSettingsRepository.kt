@@ -11,8 +11,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper
 import org.thoughtcrime.securesms.database.DatabaseFactory
 import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.IdentityDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupManager
@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.whispersystems.libsignal.util.guava.Optional
-import org.whispersystems.libsignal.util.guava.Preconditions
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -64,13 +63,9 @@ class ConversationSettingsRepository(
     SignalExecutors.BOUNDED.execute { consumer(DatabaseFactory.getGroupDatabase(context).activeGroupCount > 0) }
   }
 
-  fun getIdentity(recipientId: RecipientId, consumer: (IdentityDatabase.IdentityRecord?) -> Unit) {
+  fun getIdentity(recipientId: RecipientId, consumer: (IdentityRecord?) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      consumer(
-        DatabaseFactory.getIdentityDatabase(context)
-          .getIdentity(recipientId)
-          .orNull()
-      )
+      consumer(ApplicationDependencies.getIdentityStore().getIdentityRecord(recipientId).orNull())
     }
   }
 
@@ -183,7 +178,11 @@ class ConversationSettingsRepository(
   fun block(recipientId: RecipientId) {
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.resolved(recipientId)
-      RecipientUtil.blockNonGroup(context, recipient)
+      if (recipient.isGroup) {
+        RecipientUtil.block(context, recipient)
+      } else {
+        RecipientUtil.blockNonGroup(context, recipient)
+      }
     }
   }
 
@@ -205,29 +204,6 @@ class ConversationSettingsRepository(
     SignalExecutors.BOUNDED.execute {
       val recipient = Recipient.externalGroupExact(context, groupId)
       RecipientUtil.unblock(context, recipient)
-    }
-  }
-
-  fun disableProfileSharingForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
-
-    SignalExecutors.BOUNDED.execute {
-      DatabaseFactory.getRecipientDatabase(context).setProfileSharing(recipientId, false)
-    }
-  }
-
-  fun deleteSessionForInternalUser(recipientId: RecipientId) {
-    Preconditions.checkArgument(FeatureFlags.internalUser(), "Internal users only!")
-
-    SignalExecutors.BOUNDED.execute {
-      val recipient = Recipient.resolved(recipientId)
-
-      if (recipient.hasUuid()) {
-        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireUuid().toString())
-      }
-      if (recipient.hasE164()) {
-        DatabaseFactory.getSessionDatabase(context).deleteAllFor(recipient.requireE164())
-      }
     }
   }
 

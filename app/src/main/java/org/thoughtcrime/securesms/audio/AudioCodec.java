@@ -1,13 +1,12 @@
 package org.thoughtcrime.securesms.audio;
 
-import android.annotation.TargetApi;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaCodec;
 import android.media.MediaCodecInfo;
 import android.media.MediaFormat;
 import android.media.MediaRecorder;
-import android.os.Build;
+import android.os.ParcelFileDescriptor;
 
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
@@ -17,8 +16,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
 
-@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-public class AudioCodec {
+public class AudioCodec implements Recorder {
 
   private static final String TAG = Log.tag(AudioCodec.class);
 
@@ -51,12 +49,19 @@ public class AudioCodec {
     }
   }
 
+  @Override
+  public void start(ParcelFileDescriptor fileDescriptor) {
+    Log.i(TAG, "Recording voice note using AudioCodec.");
+    start(new ParcelFileDescriptor.AutoCloseOutputStream(fileDescriptor));
+  }
+
+  @Override
   public synchronized void stop() {
     running = false;
     while (!finished) Util.wait(this, 0);
   }
 
-  public void start(final OutputStream outputStream) {
+  private void start(final OutputStream outputStream) {
     new Thread(new Runnable() {
       @Override
       public void run() {

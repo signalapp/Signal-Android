@@ -18,8 +18,8 @@ import com.annimon.stream.Stream;
 import com.bumptech.glide.Glide;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.sqlcipher.database.SQLiteDatabase;
-import net.sqlcipher.database.SQLiteOpenHelper;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteOpenHelper;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.color.MaterialColor;
@@ -31,7 +31,6 @@ import org.thoughtcrime.securesms.crypto.DatabaseSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.database.AttachmentDatabase;
 import org.thoughtcrime.securesms.database.ChatColorsDatabase;
-import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.DraftDatabase;
 import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
 import org.thoughtcrime.securesms.database.GroupCallRingDatabase;
@@ -45,6 +44,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
 import org.thoughtcrime.securesms.database.PaymentDatabase;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptDatabase;
 import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.ReactionDatabase;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
 import org.thoughtcrime.securesms.database.RemappedRecordsDatabase;
 import org.thoughtcrime.securesms.database.SearchDatabase;
@@ -215,18 +215,20 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
   private static final int IDENTITY_MIGRATION               = 114;
   private static final int GROUP_CALL_RING_TABLE            = 115;
   private static final int CLEANUP_SESSION_MIGRATION        = 116;
+  private static final int RECEIPT_TIMESTAMP                = 117;
+  private static final int SENDER_KEY_UUID                  = 119;
+  private static final int SENDER_KEY_SHARED_TIMESTAMP      = 120;
+  private static final int REACTION_REFACTOR                = 121;
 
-  private static final int    DATABASE_VERSION = 116;
+  private static final int    DATABASE_VERSION = 121;
   private static final String DATABASE_NAME    = "signal.db";
 
-  private final Context        context;
-  private final DatabaseSecret databaseSecret;
+  private final Context context;
 
   public SQLCipherOpenHelper(@NonNull Context context, @NonNull DatabaseSecret databaseSecret) {
-    super(context, DATABASE_NAME, null, DATABASE_VERSION, new SqlCipherDatabaseHook(), new SqlCipherErrorHandler(DATABASE_NAME));
+    super(context, DATABASE_NAME, databaseSecret.asString(), null, DATABASE_VERSION, 0, new SqlCipherErrorHandler(DATABASE_NAME), new SqlCipherDatabaseHook());
 
-    this.context        = context.getApplicationContext();
-    this.databaseSecret = databaseSecret;
+    this.context = context.getApplicationContext();
   }
 
   @Override
@@ -260,6 +262,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     db.execSQL(ChatColorsDatabase.CREATE_TABLE);
     db.execSQL(EmojiSearchDatabase.CREATE_TABLE);
     db.execSQL(GroupCallRingDatabase.CREATE_TABLE);
+    db.execSQL(ReactionDatabase.CREATE_TABLE);
     executeStatements(db, SearchDatabase.CREATE_TABLE);
     executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE);
     executeStatements(db, MessageSendLogDatabase.CREATE_TABLE);
@@ -280,6 +283,7 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES);
 
     executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS);
+    executeStatements(db, ReactionDatabase.CREATE_TRIGGERS);
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       ClassicOpenHelper                      legacyHelper = new ClassicOpenHelper(context);
@@ -2019,6 +2023,72 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
         db.delete("part", "mid != -8675309 AND mid NOT IN (SELECT _id FROM mms)", null);
       }
 
+      if (oldVersion < RECEIPT_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
+        db.execSQL("ALTER TABLE mms ADD COLUMN receipt_timestamp INTEGER DEFAULT -1");
+      }
+
+      if (oldVersion < SENDER_KEY_UUID) {
+        long start = System.currentTimeMillis();
+
+        db.execSQL("CREATE TABLE sender_keys_tmp (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "address TEXT NOT NULL, " +
+                "device INTEGER NOT NULL, " +
+                "distribution_id TEXT NOT NULL, " +
+                "record BLOB NOT NULL, " +
+                "created_at INTEGER NOT NULL, " +
+                "UNIQUE(address, device, distribution_id) ON CONFLICT REPLACE)");
+
+        db.execSQL("INSERT INTO sender_keys_tmp (address, device, distribution_id, record, created_at) " +
+                "SELECT recipient.uuid AS new_address, " +
+                "sender_keys.device, " +
+                "sender_keys.distribution_id, " +
+                "sender_keys.record, " +
+                "sender_keys.created_at " +
+                "FROM sender_keys INNER JOIN recipient ON sender_keys.recipient_id = recipient._id " +
+                "WHERE new_address NOT NULL");
+
+        db.execSQL("DROP TABLE sender_keys");
+        db.execSQL("ALTER TABLE sender_keys_tmp RENAME TO sender_keys");
+
+        Log.d(TAG, "Sender key migration took " + (System.currentTimeMillis() - start) + " ms");
+      }
+
+      if (oldVersion < SENDER_KEY_SHARED_TIMESTAMP) {
+        db.execSQL("ALTER TABLE sender_key_shared ADD COLUMN timestamp INTEGER DEFAULT 0");
+      }
+
+      if (oldVersion < REACTION_REFACTOR) {
+        db.execSQL("CREATE TABLE reaction (_id INTEGER PRIMARY KEY, " +
+                                          "message_id INTEGER NOT NULL, " +
+                                          "is_mms INTEGER NOT NULL, " +
+                                          "author_id INTEGER NOT NULL REFERENCES recipient (_id) ON DELETE CASCADE, " +
+                                          "emoji TEXT NOT NULL, " +
+                                          "date_sent INTEGER NOT NULL, " +
+                                          "date_received INTEGER NOT NULL, " +
+                                          "UNIQUE(message_id, is_mms, author_id) ON CONFLICT REPLACE)");
+
+        try (Cursor cursor = db.rawQuery("SELECT _id, reactions FROM sms WHERE reactions NOT NULL", null)) {
+          while (cursor.moveToNext()) {
+            migrateReaction(db, cursor, false);
+          }
+        }
+
+        try (Cursor cursor = db.rawQuery("SELECT _id, reactions FROM mms WHERE reactions NOT NULL", null)) {
+          while (cursor.moveToNext()) {
+            migrateReaction(db, cursor, true);
+          }
+        }
+
+        db.execSQL("UPDATE reaction SET author_id = IFNULL((SELECT new_id FROM remapped_recipients WHERE author_id = old_id), author_id)");
+
+        db.execSQL("CREATE TRIGGER reactions_sms_delete AFTER DELETE ON sms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END");
+        db.execSQL("CREATE TRIGGER reactions_mms_delete AFTER DELETE ON mms BEGIN DELETE FROM reaction WHERE message_id = old._id AND is_mms = 0; END");
+
+        db.execSQL("UPDATE sms SET reactions = NULL WHERE reactions NOT NULL");
+        db.execSQL("UPDATE mms SET reactions = NULL WHERE reactions NOT NULL");
+      }
+
       db.setTransactionSuccessful();
     } finally {
       db.endTransaction();
@@ -2031,33 +2101,56 @@ public class SQLCipherOpenHelper extends SQLiteOpenHelper implements SignalDatab
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.");
   }
 
-  public net.sqlcipher.database.SQLiteDatabase getReadableDatabase() {
-    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
-  }
+  private void migrateReaction(@NonNull SQLiteDatabase db, @NonNull Cursor cursor, boolean isMms) {
+    try {
+      long         messageId    = CursorUtil.requireLong(cursor, "_id");
+      ReactionList reactionList = ReactionList.parseFrom(CursorUtil.requireBlob(cursor, "reactions"));
 
-  public net.sqlcipher.database.SQLiteDatabase getWritableDatabase() {
-    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
-  }
+      for (ReactionList.Reaction reaction : reactionList.getReactionsList()) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("message_id", messageId);
+        contentValues.put("is_mms", isMms ? 1 : 0);
+        contentValues.put("author_id", reaction.getAuthor());
+        contentValues.put("emoji", reaction.getEmoji());
+        contentValues.put("date_sent", reaction.getSentTime());
+        contentValues.put("date_received", reaction.getReceivedTime());
 
-  public net.sqlcipher.database.SQLiteDatabase getRawReadableDatabase() {
-    return super.getReadableDatabase(databaseSecret.asString());
-  }
-
-  public net.sqlcipher.database.SQLiteDatabase getRawWritableDatabase() {
-    return super.getWritableDatabase(databaseSecret.asString());
-  }
-
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalReadableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getReadableDatabase(databaseSecret.asString()));
-  }
-
-  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalWritableDatabase() {
-    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getWritableDatabase(databaseSecret.asString()));
+        db.insert("reaction", null, contentValues);
+      }
+    } catch (InvalidProtocolBufferException e) {
+      Log.w(TAG, "Failed to parse reaction!");
+    }
   }
 
   @Override
-  public @NonNull net.sqlcipher.database.SQLiteDatabase getSqlCipherDatabase() {
-    return super.getWritableDatabase(databaseSecret.asString());
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getReadableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalReadableDatabase() instead!");
+  }
+
+  @Override
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getWritableDatabase() {
+    throw new UnsupportedOperationException("Call getSignalWritableDatabase() instead!");
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawReadableDatabase() {
+    return super.getReadableDatabase();
+  }
+
+  public net.zetetic.database.sqlcipher.SQLiteDatabase getRawWritableDatabase() {
+    return super.getWritableDatabase();
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalReadableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getReadableDatabase());
+  }
+
+  public org.thoughtcrime.securesms.database.SQLiteDatabase getSignalWritableDatabase() {
+    return new org.thoughtcrime.securesms.database.SQLiteDatabase(super.getWritableDatabase());
+  }
+
+  @Override
+  public @NonNull net.zetetic.database.sqlcipher.SQLiteDatabase getSqlCipherDatabase() {
+    return super.getWritableDatabase();
   }
 
   public void markCurrent(SQLiteDatabase db) {

@@ -209,7 +209,6 @@
   <string name="ConversationItem_this_message_was_deleted">Это сообщение было удалено.</string>
   <string name="ConversationItem_you_deleted_this_message">Вы удалили это сообщение.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset">Сбросить</string>
   <string name="ConversationActivity_add_attachment">Добавить вложение</string>
   <string name="ConversationActivity_select_contact_info">Выбрать контактную информацию</string>
   <string name="ConversationActivity_compose_message">Написать сообщение</string>
@@ -347,10 +346,12 @@
   <string name="ConversationFragment_not_now">Не сейчас</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Ваш код безопасности с %s изменился</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Ваш код безопасности с %s изменился, скорее всего потому что этот собеседник переустановил Pigeon или сменил устройство. Нажмите «Подтверждение», чтобы проверить новый код безопасности. Это необязательно.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">На вашем устройстве не установлен браузер.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Результаты не найдены для «%s»</string>
+  <string name="ConversationFragment__s_on">«%1$s» включён</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Удалить выбранный разговор?</item>
     <item quantity="few">Удалить выбранные разговоры?</item>
@@ -378,6 +379,74 @@
     <item quantity="many">%d разговоров перемещено во Входящие</item>
     <item quantity="other">%d разговоров перемещено во Входящие</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Прочитан</item>
+    <item quantity="few">Прочитаны</item>
+    <item quantity="many">Прочитаны</item>
+    <item quantity="other">Прочитаны</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Не прочитан</item>
+    <item quantity="few">Не прочитаны</item>
+    <item quantity="many">Не прочитаны</item>
+    <item quantity="other">Не прочитаны</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Прикрепить</item>
+    <item quantity="few">Прикрепить</item>
+    <item quantity="many">Прикрепить</item>
+    <item quantity="other">Прикрепить</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Открепить</item>
+    <item quantity="few">Открепить</item>
+    <item quantity="many">Открепить</item>
+    <item quantity="other">Открепить</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Откл. звук</item>
+    <item quantity="few">Откл. звук</item>
+    <item quantity="many">Откл. звук</item>
+    <item quantity="other">Откл. звук</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Вкл. звук</item>
+    <item quantity="few">Вкл. звук</item>
+    <item quantity="many">Вкл. звук</item>
+    <item quantity="other">Вкл. звук</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Выбрать</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Архивировать</item>
+    <item quantity="few">Архивировать</item>
+    <item quantity="many">Архивировать</item>
+    <item quantity="other">Архивировать</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Разархивировать</item>
+    <item quantity="few">Разархивировать</item>
+    <item quantity="many">Разархивировать</item>
+    <item quantity="other">Разархивировать</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Удалить</item>
+    <item quantity="few">Удалить</item>
+    <item quantity="many">Удалить</item>
+    <item quantity="other">Удалить</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Выбрать все</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d выбран</item>
+    <item quantity="few">%d выбрано</item>
+    <item quantity="many">%d выбрано</item>
+    <item quantity="other">%d выбрано</item>
+  </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Профиль уведомлений</string>
+  <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Включайте или отключайте свой профиль уведомлений здесь.</string>
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">«%1$s» включён</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Сообщение обмена ключами</string>
   <!--ConversationListItemAction-->
@@ -724,6 +793,8 @@
   <string name="ManageGroupActivity_add_members">Добавить участников</string>
   <string name="ManageGroupActivity_edit_group_info">Редактировать информацию</string>
   <string name="ManageGroupActivity_who_can_add_new_members">Кто может добавлять новых участников?</string>
+  <string name="ManageProfileFragment__edit_photo">Редактировать фото</string>
+  <string name="ManageProfileFragment_badges">Значки</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Кто может редактировать информацию группы?</string>
   <string name="ManageGroupActivity_group_link">Ссылка на группу</string>
   <string name="ManageGroupActivity_block_group">Заблокировать группу</string>
@@ -809,6 +880,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Включено</string>
   <string name="CustomNotificationsDialogFragment__disabled">Отключено</string>
   <string name="CustomNotificationsDialogFragment__default">По умолчанию</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Неизвестная</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Ссылка на группу</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Управлять и поделиться</string>
@@ -905,6 +977,7 @@
   <string name="Job_working_in_the_background">Работа в фоновом режиме…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Узнать больше</string>
+  <string name="SpanUtil__read_more">Читать далее</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Не удалось найти сообщение</string>
   <string name="LongMessageActivity_message_from_s">Сообщение от %1$s</string>
@@ -943,17 +1016,24 @@
   <string name="MediaOverviewActivity_Grid_view_description">Вид: сетка</string>
   <string name="MediaOverviewActivity_List_view_description">Вид: список</string>
   <string name="MediaOverviewActivity_Selected_description">Выбрано</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d элемент %2$s</item>
-    <item quantity="few">%1$d элемента %2$s</item>
-    <item quantity="many">%1$d элементов %2$s</item>
-    <item quantity="other">%1$d элементов %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Выбрать все</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Сохранить</item>
+    <item quantity="few">Сохранить</item>
+    <item quantity="many">Сохранить</item>
+    <item quantity="other">Сохранить</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d элемент</item>
-    <item quantity="few">%1$d элемента</item>
-    <item quantity="many">%1$d элементов</item>
-    <item quantity="other">%1$d элементов</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Удалить</item>
+    <item quantity="few">Удалить</item>
+    <item quantity="many">Удалить</item>
+    <item quantity="other">Удалить</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d выбран (%2$s)</item>
+    <item quantity="few">%1$d выбрано (%2$s)</item>
+    <item quantity="many">%1$d выбрано (%2$s)</item>
+    <item quantity="other">%1$d выбрано (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Файл</string>
   <string name="MediaOverviewActivity_audio">Аудио</string>
@@ -1206,6 +1286,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Вы отметили код безопасности с %s как неподтверждённый</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Вы отметили код безопасности с %s как неподтверждённый с другого устройства</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Не удалось доставить сообщение от %s</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s изменил(-а) свой номер телефона.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s начал(-а) групповой звонок · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s в групповом звонке · %2$s</string>
@@ -1408,10 +1489,10 @@
   <string name="WebRtcCallView__signal_will_ring_s">Signal будет звонить у %1$s</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal будет звонить у %1$s и %2$s</string>
   <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-    <item quantity="one">Signal будет звонить у %1$s, %2$s и ещё %3$d человека</item>
-    <item quantity="few">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
-    <item quantity="many">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
-    <item quantity="other">Signal будет звонить у %1$s, %2$s и ещё %3$d человек</item>
+    <item quantity="one">Signal будет звонить у %1$s, %2$s и ещё у %3$d человека</item>
+    <item quantity="few">Signal будет звонить у %1$s, %2$s и ещё у %3$d человек</item>
+    <item quantity="many">Signal будет звонить у %1$s, %2$s и ещё у %3$d человек</item>
+    <item quantity="other">Signal будет звонить у %1$s, %2$s и ещё у %3$d человек</item>
   </plurals>
   <string name="WebRtcCallView__s_will_be_notified">%1$s будет уведомлен(-а)</string>
   <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s и %2$s будут уведомлены</string>
@@ -1489,10 +1570,13 @@
   <string name="RegistrationActivity_no_browser">Не удалось открыть эту ссылку. Веб-браузер не найден.</string>
   <string name="RegistrationActivity_more_information">Больше информации</string>
   <string name="RegistrationActivity_less_information">Меньше информации</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon необходим доступ к вашим контактам и медиа-файлам для того, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon необходим доступ к вашим контактам для того, чтобы связываться с друзьями, обмениваться сообщениями и совершать защищённые звонки</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon необходим доступ к вашим контактам и медиафайлам, чтобы помочь вам связаться с друзьями и отправлять сообщения. Ваши контакты загружаются с помощью технологии конфиденциального обнаружения контактов Signal, которая использует сквозное шифрование, поэтому ваши контакты никогда не видны сервису Signal и Pigeon.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon необходим доступ к вашим контактам, чтобы помочь вам связаться с друзьями. Ваши контакты загружаются с помощью технологии конфиденциального обнаружения контактов Signal, которая использует сквозное шифрование, поэтому ваши контакты никогда не видны сервису Signal и Pigeon.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Вы сделали слишком много попыток зарегистрировать этот номер. Пожалуйста, попробуйте ещё раз позже.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Не удается подключиться к сервису. Пожалуйста, проверьте подключение к сети и повторите попытку.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Нестандартный номер телефона</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Номер, который вы ввели (%1$s), похоже, не в стандартном формате.\n\nВы имели в виду %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Формат номера телефона</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Чтобы упросить подтверждение вашего номера телефона, Pigeon может автоматически вставить код подтверждения, если вы разрешите Pigeon доступ к SMS.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Вы в %d шаге от отправки журнала отладки.</item>
@@ -1544,6 +1628,8 @@
   <string name="SharedContactView_add_to_contacts">Добавить в контакты</string>
   <string name="SharedContactView_invite_to_signal">Пригласить Контакты</string>
   <string name="SharedContactView_message">Сообщение Pigeon </string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Больше</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Мы напомним вам позже.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Мы напомним вам завтра.</string>
@@ -1737,6 +1823,7 @@
   <string name="MessageNotifier_reacted_s_to_s">Отреагировал(-а) %1$s на: «%2$s».</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Отреагировал(-а) %1$s на ваше видео.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Отреагировал(-а) %1$s на ваше изображение.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Отреагировал(-а) %1$s на вашу GIF-анимацию.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Отреагировал(-а) %1$s на ваш файл.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Отреагировал(-а) %1$s на ваше аудио.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Отреагировал(-а) %1$s на ваше одноразовое медиа.</string>
@@ -1924,6 +2011,7 @@
   <string name="ConversationUpdateItem_call_is_full">Звонок заполнен</string>
   <string name="ConversationUpdateItem_invite_friends">Пригласить друзей</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Включить уведомления о звонках</string>
+  <string name="ConversationUpdateItem_update_contact">Обновить контакт</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Нет общих групп. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">В этой группе нет ваших контактов. Внимательно проверяйте запросы.</string>
   <string name="ConversationUpdateItem_view">Просмотреть</string>
@@ -1935,6 +2023,7 @@
   <string name="QuoteView_audio">Аудио</string>
   <string name="QuoteView_video">Видео</string>
   <string name="QuoteView_photo">Фото</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Одноразовое медиа</string>
   <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Описание группы будет видно участникам этой группы и людям, которые были приглашены.</string>
   <string name="QuoteView_sticker">Стикер</string>
@@ -1943,6 +2032,13 @@
   <string name="QuoteView_original_missing">Исходное сообщение не найдено</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Прокрутить вниз</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Всплывающие чаты — это функция Android, которую вы можете отключить для чатов Signal.</string>
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Не сейчас</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Отключить</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Изменения кода безопасности</string>
   <string name="safety_number_change_dialog__accept">Принять</string>
@@ -2129,10 +2225,10 @@
   <string name="unknown_sender_view__add_to_contacts">ДОБАВИТЬ В КОНТАКТЫ</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">НЕ ДОБАВЛЯТЬ, НО ОТКРЫТЬ МОЙ ПРОФИЛЬ</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Если вы хотите убедиться в надёжности шифрования переписки и звонков с %s, сравните этот код с таким же кодом на устройстве вашего собеседника. Также вы можете отсканировать код на устройстве собеседника или попросить его отсканировать ваш код.<a href="https://signal.org/redirect/safety-numbers"> Подробнее</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Сканировать</string>
   <string name="verify_display_fragment__loading">Загружаем…</string>
-  <string name="verify_display_fragment__verified">Подтверждён</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Подтверждён</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Поделиться кодом безопасности</string>
   <!--webrtc_answer_decline_button-->
@@ -2191,14 +2287,15 @@
   <string name="HelpFragment__could_not_upload_logs">Не удалось отправить журналы</string>
   <string name="HelpFragment__signal_support">Поддержка Pigeon </string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Пожалуйста, пишите как можно подробнее, чтобы помочь нам понять проблему.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Пожалуйста, выберите вариант --</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Пожалуйста, выберите вариант \-\-</item>
     <item>Что-то не работает</item>
     <item>Запросить новые функции</item>
     <item>Вопрос</item>
     <item>Обратная связь</item>
     <item>Другое</item>
-    <item>Платежи</item>
+    <item>Платежи (MobileCoin)</item>
+    <item>Ускорение Signal и Поддерживающие</item>
   </string-array>
   <string name="HelpFragment__no_email_app_found">Приложение электронной почты не найдено.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -2299,6 +2396,9 @@
   <string name="preferences__slow">Медленное</string>
   <string name="preferences__help">Обо мне</string>
   <string name="preferences__advanced">Расширенные</string>
+  <string name="preferences__subscription">Подписка</string>
+  <string name="preferences__become_a_signal_sustainer">Станьте Поддерживающим Signal</string>
+  <string name="preferences__signal_boost">Ускорение Signal</string>
   <string name="preferences__privacy">Конфиденциальность</string>
   <string name="preferences__mms_user_agent">User Agent для MMS </string>
   <string name="preferences__advanced_mms_access_point_names">Ручные настройки MMS</string>
@@ -2657,7 +2757,7 @@
   <string name="Insights__title">Выводы</string>
   <string name="InsightsDashboardFragment__title">Выводы</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Pigeon Protocol автоматически защитил %1$d%% от ваших исходящих сообщений за последние %2$d дней. Разговоры между пользователями Pigeon всегда защищены сквозным шифрованием.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Улучшение Pigeon </string>
+  <string name="InsightsDashboardFragment__spread_the_word">Расскажите другим</string>
   <string name="InsightsDashboardFragment__not_enough_data">Недостаточно данных</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Ваш процент в «Выводах» считается на основе исходящих сообщений, которые не исчезли и не были удалены за последние %1$d дней.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Начните разговор</string>
@@ -2863,7 +2963,7 @@
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon требуется разрешение на доступ к хранилищу для создания резервных копий, но оно было вами отклонено. Нажмите «Продолжить», чтобы перейти в настройки приложения, откройте «Разрешения» и включите «Хранилище».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Последняя резервная копия: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">В процессе</string>
-  <string name="LocalBackupJob_creating_backup">Создаём резервную копию…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Создаём резервную копию…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Резервное копирование не удалось</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Ваша папка для резервных копий была удалена или перемещена.</string>
   <string name="VoiceNotePlaybackPreparer__failed_to_play_voice_message">Не удалось воспроизвести голосовое сообщение</string>
@@ -2954,6 +3054,8 @@
   <string name="RecipientBottomSheet_block">Заблокировать</string>
   <string name="RecipientBottomSheet_unblock">Разблокировать</string>
   <string name="RecipientBottomSheet_add_to_contacts">Добавить в контакты</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Не найдено приложение, которое может открывать контакты.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Добавить в группу</string>
   <string name="RecipientBottomSheet_add_to_another_group">Добавить в другую группу</string>
   <string name="RecipientBottomSheet_view_safety_number">Просмотреть код безопасности</string>
@@ -3054,6 +3156,18 @@
   <string name="DeleteAccountFragment__failed_to_delete_account">Не удалось удалить учётную запись. Есть ли у вас подключение к сети?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Не удалось удалить локальные данные. Вы можете удалить их вручную в системных настройках приложения.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Запустить настройки приложения</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Покидаем группы…</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Удаляем учётную запись…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">В зависимости от количества групп, в которых вы состоите, это может занять несколько минут</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Удаляем данные пользователя и сбрасываем приложение</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Учётная запись не удалена</string>
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">В процессе удаления произошла ошибка. Проверьте своё соединение с интернетом и попробуйте ещё раз.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Поиск по странам</string>
   <!--CreateGroupActivity-->
@@ -3078,7 +3192,7 @@
   <string name="ChatWallpaperFragment__reset_chat_color">Сбросить цвет чата</string>
   <string name="ChatWallpaperFragment__reset_chat_color_question">Сбросить цвет чата?</string>
   <string name="ChatWallpaperFragment__set_wallpaper">Установить обои</string>
-  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Затемнение обоев при тёмной теме</string>
+  <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Тёмная тема затемняет обои</string>
   <string name="ChatWallpaperFragment__contact_name">Имя контакта</string>
   <string name="ChatWallpaperFragment__reset">Сбросить</string>
   <string name="ChatWallpaperFragment__clear">Удалить</string>
@@ -3196,6 +3310,47 @@
   <string name="AccountSettingsFragment__account">Учётная запись</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Напоминания будут появляться реже со временем</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Требовать вводить ваш PIN-код Signal при повторной регистрации вашего номера телефона в Signal</string>
+  <string name="AccountSettingsFragment__change_phone_number">Изменить номер телефона</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Используйте эту функцию, чтобы изменить свой текущий номер телефона на новый. Это изменение нельзя отменить.\n\nПеред тем как продолжить, убедитесь, что ваш новый номер может принимать SMS или звонки.</string>
+  <string name="ChangeNumberFragment__continue">Продолжить</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Ваш номер телефона был изменён.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Ваш старый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Старый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Ваш новый номер</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Новый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Введённый вами номер телефона не соответствует номеру телефона вашей учётной записи.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Вы должны указать код страны вашего старого номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Вы должны указать свой старый номер телефона</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Вы должны указать код страны вашего нового номера</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Вы должны указать свой новый номер телефона</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Проверка %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Требуется CAPTCHA</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Изменить номер</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Вы собираетесь изменить свой номер телефона с %1$s на %2$s.\n\nПеред тем как продолжить, пожалуйста, проверьте, что номер ниже правильный.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Редактировать номер</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Изменение номера Signal - Нужна помощь с PIN-кодом для Android (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN-коды не совпадают</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN-код, связанный с вашим новым номером, отличается от PIN-кода, связанного со старым номером. Вы хотите оставить свой старый PIN-код или обновить его?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Оставить старый PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Обновить PIN-код</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Оставить старый PIN-код?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Похоже, что вы пытались изменить свой номер, но нам не удалось проверить, было ли успешным это изменение.\n\nПроверяем заново сейчас…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Статус изменения подтверждён</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Ваш номер %1$s был подтверждён. Если это не ваш новый номер, пожалуйста, пройдите процесс изменения номера заново.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Статус изменения не подтверждён</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Нам не удалось проверить статус вашего запроса на изменение номера.\n\n(Ошибка: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Повторить попытку</string>
+  <string name="ChangeNumberLockActivity__leave">Покинуть</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Отправить журнал отладки</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Клавиатура</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Отправка клавишей «Ввод»</string>
@@ -3206,6 +3361,17 @@
   <string name="NotificationsSettingsFragment__calls">Звонки</string>
   <string name="NotificationsSettingsFragment__notify_when">Уведомлять, когда…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Контакт присоединяется к Signal</string>
+  <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Профили уведомлений</string>
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Профили</string>
+  <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Создайте профиль, чтобы получать уведомления только от людей и групп, выбранных вами.</string>
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Профили уведомлений</string>
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Создать профиль</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Заблокированные</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d контактов</string>
@@ -3247,6 +3413,11 @@
   <string name="HelpFragment__copyright_signal_messenger">Авторские права Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Лицензировано под GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Качество медиа</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Качество отправляемого медиа</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Отправление медиа в высоком качестве использует больше данных.</string>
+  <string name="DataAndStorageSettingsFragment__high">Высокое</string>
+  <string name="DataAndStorageSettingsFragment__standard">Стандартное</string>
   <string name="DataAndStorageSettingsFragment__calls">Звонки</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Авто</string>
@@ -3297,6 +3468,11 @@
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Выберите вид и цвет или настройте свои инициалы.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Не сейчас</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Добавить фото</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Станьте Поддерживающим</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal существует благодаря таким людям, как вы. Поддержите нас и получите значок для профиля.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Нет, спасибо</string>
+  <string name="BecomeASustainerMegaphone__contribute">Поддержать</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Эмодзи</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Открыть поиск эмодзи</string>
@@ -3342,9 +3518,14 @@
   <string name="ConversationSettingsFragment__add_as_a_contact">Добавить в контакты</string>
   <string name="ConversationSettingsFragment__unmute">Включить звуки</string>
   <string name="ConversationSettingsFragment__conversation_muted_until_s">Звуки разговора отключены до %1$s</string>
+  <string name="MediaReviewFragment__view_once_message">Одноразовое сообщение</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Один или несколько элементов были слишком большими</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Один или несколько элементов были недействительными</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Выбрано слишком много элементов</string>
   <string name="ConversationSettingsFragment__conversation_muted_forever">Звуки разговора отключены навсегда</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Номер телефона был скопирован в буфер обмена.</string>
   <string name="ConversationSettingsFragment__phone_number">Номер телефона</string>
+  <string name="ConversationSettingsFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal. Нажмите на значок, чтобы узнать больше.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Добавлять участников</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Редактировать информацию</string>
@@ -3367,6 +3548,7 @@
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">0.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Новый платёж</string>
@@ -3375,7 +3557,7 @@
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Поиск по имени или номеру</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Остановить воспроизведение голосового сообщения</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Изменить скорость воспроизведения голосового сообщения</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Приостановить воспроизведение голосового сообщения</string>
@@ -3434,6 +3616,245 @@
     <item quantity="other">Не удалось переслать сообщения, потому что они больше не доступны.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Достигнут предел</string>
+  <string name="ImageEditorHud__delete">Удалить</string>
+  <string name="CameraFragment__failed_to_open_camera">Не удалось открыть камеру</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Переключиться между стилями текста</string>
+  <string name="BadgesOverviewFragment__my_badges">Мои значки</string>
+  <string name="BadgesOverviewFragment__featured_badge">Главный значок</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Показывать значки в профиле</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="BadgeSelectionFragment__select_badges">Выберите значки</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Предпросмотр</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Выберите значок</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Вы должны выбрать значок</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Не удалось обновить профиль</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Стать поддерживающим</string>
+  <string name="ImageView__badge">Значок</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal существует благодаря таким людям, как вы.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Поддержите технологию, которая создана для вас, а не ради ваших данных, присоединившись к сообществу людей, которые её поддерживают.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Поддержите технологию, сделанную для вас, а не для ваших данных, присоединившись к сообществу, которое поддерживает Signal.</string>
+  <string name="SubscribeFragment__currency">Валюта</string>
+  <string name="SubscribeFragment__more_payment_options">Больше способов оплаты</string>
+  <string name="SubscribeFragment__cancel_subscription">Отменить подписку</string>
+  <string name="SubscribeFragment__confirm_cancellation">Подтверждаете отмену?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">С вас больше не будет взиматься плата. Ваш значок будет удалён из вашего профиля в конце расчётного периода.</string>
+  <string name="SubscribeFragment__not_now">Не сейчас</string>
+  <string name="SubscribeFragment__confirm">Подтвердить</string>
+  <string name="SubscribeFragment__update_subscription">Обновить подписку</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Ваша подписка была отменена.</string>
+  <string name="SubscribeFragment__update_subscription_question">Обновить подписку?</string>
+  <string name="SubscribeFragment__update">Обновить</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Полная сумма новой подписки будет взята с вас сегодня. Ваша подписка продлится %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Полная сумма новой подписки (%1$s) будет взята с вас сегодня. Ваша подписка будет продлеваться ежемесячно.</string>
+  <string name="Subscription__s_per_month">%s/месяц</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/месяц · Продлится %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/месяц · Истекает %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal — некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только людьми, которые используют и ценят приложение Signal. Вносите ежемесячные взносы, и вы получите значок для профиля, чтобы продемонстрировать свою поддержку.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Почему стоит поддерживать?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal предан миссии по разработке технологии конфиденциальности с открытым исходным кодом, которая защищает свободу слова и делает возможным безопасное общение по всему миру.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Ваш вклад поддерживает эту миссию и оплачивает разработку и работу приложения, которое используется миллионами людей для конфиденциального общения. Без рекламы. Без трекеров. Без шуток.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Спасибо за вашу поддержку!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Спасибо за Ускорение!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Вы заработали значок «%s»! Помогите Signal повысить осведомлённость, показав этот значок в своём профиле.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Вы заработали значок «Ускорение»! Помогите Signal повысить осведомлённость, показав этот значок в своём профиле.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Вы также можете</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">стать ежемесячным Поддерживающим.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Показывать в профиле</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Сделать главным значком</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Готово</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Когда у вас больше одного значка, вы можете выбрать главный значок, который другие люди будут видеть в вашем профиле.</string>
+  <string name="BecomeASustainerFragment__get_badges">Получайте значки для своего профиля, поддерживая Signal.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal — это некоммерческая организация без рекламодателей и инвесторов, поддерживаемая только такими людьми, как вы.</string>
+  <string name="ManageDonationsFragment__my_support">Моя поддержка</string>
+  <string name="ManageDonationsFragment__manage_subscription">Управлять подпиской</string>
+  <string name="ManageDonationsFragment__badges">Значки</string>
+  <string name="ManageDonationsFragment__subscription_faq">ЧаВО по подписке</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Не удалось получить информацию о подписке.</string>
+  <string name="BoostFragment__give_signal_a_boost">Дайте «Ускорение» приложению Signal</string>
+  <string name="BoostFragment__say_thanks_and_earn">Скажите «Спасибо!» и получите значок «Ускорение» на %1$d дней.</string>
+  <string name="Boost__enter_custom_amount">Ввести сумму</string>
+  <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
+  <string name="MySupportPreference__add_a_signal_boost">Добавить Ускорение Signal</string>
+  <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
+  <string name="MySupportPreference__renews_s">Продлится %1$s</string>
+  <string name="MySupportPreference__processing_transaction">Обрабатываем транзакцию…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Не удалось добавить значок. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Пожалуйста, свяжитесь с поддержкой.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Ваш значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Значок истёк</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Подписка отменена</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Ваш значок «Ускорение» истёк и больше не виден другим людям в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Вы можете заново активировать свой значок «Ускорение» ещё на 30 дней, сделав одноразовое пожертвование.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Чтобы продолжить поддерживать технологию, сделанную для вас, а не для ваших данных, пожалуйста, подумайте о том, чтобы стать ежемесячным Поддерживающим.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Стать Поддерживающим</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Добавить Ускорение</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Не сейчас</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Ваша подписка Поддерживающего была автоматически отменена, потому что вы были неактивны слишком долго. Ваш значок «%1$s» больше не виден в вашем профиле.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Вы можете продолжать использовать Signal, но чтобы поддержать приложение и заново активировать значок, продлите подписку сейчас.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Продлить подписку</string>
+  <string name="Subscription__contact_support">Связаться с поддержкой</string>
+  <string name="Subscription__please_contact_support_for_more_information">Пожалуйста, свяжитесь с поддержкой, чтобы получить больше информации.</string>
+  <string name="Subscription__earn_a_s_badge">Заработайте значок «%1$s»</string>
+  <string name="SubscribeFragment__processing_payment">Обрабатываем платёж…</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Ошибка обработки платежа</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Ошибка обработки платежа. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Ваш значок не удалось добавить в вашу учётную запись, но, возможно, с вас была взята плата. Пожалуйста, свяжитесь с поддержкой.</string>
+  <string name="DonationsErrors__your_payment">Не удалось обработать ваш платёж, и с вас не была взята плата. Пожалуйста, попробуйте ещё раз.</string>
+  <string name="DonationsErrors__still_processing">Продолжается обработка</string>
+  <string name="DonationsErrors__couldnt_add_badge">Не удалось добавить значок</string>
+  <string name="DonationsErrors__your_badge_could_not">Ваш значок не удалось добавить в вашу учётную запись, но, возможно, с вас была взята плата. Пожалуйста, свяжитесь с поддержкой.</string>
+  <string name="DonationsErrors__your_payment_is_still">Ваш платёж всё ещё обрабатывается. Это может занять несколько минут в зависимости от вашего соединения.</string>
+
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay недоступен</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Вам необходимо настроить Google Pay, чтобы пожертвовать в приложении.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Не удалось отменить подписку</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Для отмены подписки требуется соединение с интернетом.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ваше устройство не поддерживает Google Pay, поэтому вы не можете подписаться, чтобы получить значок. Вы всё равно можете поддержать Signal, сделав пожертвование на нашем сайте.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Ошибка сети. Проверьте ваше подключение к интернету и попробуйте ещё раз.</string>
+  <string name="NetworkFailure__retry">Повторить попытку</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Назовите свой профиль</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Название профиля</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button to continue to the next step-->
+  <string name="EditNotificationProfileFragment__next">Далее</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Создать</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Сохранить</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Редактировать этот профиль</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Профиль с таким названием уже существует</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Работа</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Сон</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">В дороге</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">В покое</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Фокусирование</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">У профиля должно быть название</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Разрешённые уведомления</string>
+  <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Добавьте людей и групп, от которых вы хотите получать уведомления и звонки, когда включён этот профиль</string>
+  <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Добавить людей или групп</string>
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Добавить</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Создайте профиль, чтобы получать уведомления и звонки только от тех людей и групп, от которых хотите.</string>
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Профили</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Новый профиль</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Включён</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Удалить профиль</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">«%1$s» убран(-а) из профиля.</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Отменить</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Навсегда удалить профиль?</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Удалить</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Редактировать профиль уведомлений</string>
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Каждый день</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Включён</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Отключён</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">с %1$s до %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Исключения</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Разрешить все звонки</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Уведомлять обо всех упоминаниях</string>
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Расписание</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Просмотреть все</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Добавить расписание</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Настройте расписание, чтобы включать этот профиль уведомлений автоматически.</string>
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Расписание</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Начало</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Окончание</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">В</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">П</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">В</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">С</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">Ч</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">П</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">С</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Задать время начала</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Задать время окончания</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Сохранить</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Пропустить</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Далее</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">В расписании должен быть хотя бы один день</string>
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Профиль создан</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Готово</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Вы можете вручную включать и отключать ваш профиль через меню в списке чатов.</string>
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Добавьте расписание в настройках, чтобы автоматизировать свой профиль.</string>
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Ваш профиль будет включаться и отключаться автоматически согласно вашему расписанию.</string>
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Новый профиль</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">На 1 час</string>
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">До %1$s</string>
+  <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Просмотреть настройки</string>
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Включён до %1$s</string>
+  <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Профили уведомлений</string>
+  <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Получайте уведомления только от людей и групп, выбранных вами.</string>
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Создать профиль</string>
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Не сейчас</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Не удалось открыть приложение для выбора мелодии.</string>
   <!--EOF-->
   <string name="save_options_new_contact">Новый контакт</string>
   <string name="save_options_add_to_existing">Добавить к существующему</string>

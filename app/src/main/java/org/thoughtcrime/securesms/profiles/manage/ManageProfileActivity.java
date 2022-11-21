@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 import androidx.navigation.NavDirections;
 import androidx.navigation.NavGraph;
 import androidx.navigation.Navigation;
@@ -51,13 +52,16 @@ public class ManageProfileActivity extends PassphraseRequiredActivity implements
 
     if (bundle == null) {
       Bundle   extras = getIntent().getExtras();
-      NavGraph graph  = Navigation.findNavController(this, R.id.nav_host_fragment).getGraph();
+      //noinspection ConstantConditions
+      NavController navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
 
-      Navigation.findNavController(this, R.id.nav_host_fragment).setGraph(graph, extras != null ? extras : new Bundle());
+      NavGraph graph  = navController.getGraph();
+
+      navController.setGraph(graph, extras != null ? extras : new Bundle());
 
       if (extras != null && extras.getBoolean(START_AT_USERNAME, false)) {
         NavDirections action = ManageProfileFragmentDirections.actionManageUsername();
-        Navigation.findNavController(this, R.id.nav_host_fragment).navigate(action);
+        navController.navigate(action);
       }
     }
   }

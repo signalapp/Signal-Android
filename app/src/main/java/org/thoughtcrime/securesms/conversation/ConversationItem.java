@@ -147,6 +147,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * A view that displays an individual conversation item within a conversation
@@ -369,11 +370,20 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         setMessageSpacing(context, messageRecord, previousMessageRecord, nextMessageRecord, groupThread);
         setReactions(messageRecord);
         setFooter(messageRecord, nextMessageRecord, locale, groupThread, hasWallpaper);
+
+        if (audioViewStub.resolved()) {
+            audioViewStub.get().setOnLongClickListener(passthroughClickListener);
+        }
     }
 
     @Override
     public void updateTimestamps() {
         getActiveFooter(messageRecord).setMessageRecord(messageRecord, locale);
+    }
+
+    @Override
+    public void updateContactNameColor() {
+        setGroupAuthorColor(messageRecord, hasWallpaper, colorizer);
     }
 
     @Override
@@ -1168,7 +1178,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             }
         }
 
-        if (!TextUtils.isEmpty(current.getDisplayBody(getContext()))) {
+        if (!current.isDisplayBodyEmpty(getContext())) {
             bottomStart = 0;
             bottomEnd = 0;
         }
@@ -1196,7 +1206,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
 
     private void setSharedContactCorners(@NonNull MessageRecord current, @NonNull Optional<MessageRecord> previous, @NonNull Optional<MessageRecord> next, boolean isGroupThread) {
-        if (TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+        if (messageRecord.isDisplayBodyEmpty(getContext())){
             if (isSingularMessage(current, previous, next, isGroupThread) || isEndOfMessageCluster(current, next, isGroupThread)) {
                 sharedContactStub.get().setSingularStyle();
             } else if (current.isOutgoing()) {
@@ -1408,9 +1418,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     private ConversationItemFooter getActiveFooter(@NonNull MessageRecord messageRecord) {
         if (hasNoBubble(messageRecord) && stickerFooter != null) {
             return stickerFooter;
-        } else if (hasSharedContact(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+        } else if (hasSharedContact(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
             return sharedContactStub.get().getFooter();
-        } else if (hasOnlyThumbnail(messageRecord) && TextUtils.isEmpty(messageRecord.getDisplayBody(getContext()))) {
+        } else if (hasOnlyThumbnail(messageRecord) && messageRecord.isDisplayBodyEmpty(getContext())) {
             return mediaThumbnailStub.get().getFooter();
         } else {
             return footer;
@@ -1685,7 +1695,9 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             return null;
         } else {
             return new GiphyMp4PlaybackPolicyEnforcer(() -> {
-                eventListener.onPlayInlineContent(null);
+                if (eventListener != null) {
+                    eventListener.onPlayInlineContent(null);
+                }
             });
         }
     }
@@ -1698,7 +1710,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     @Override
     public @NonNull Projection getProjection(@NonNull ViewGroup recyclerView) {
         return Projection.relativeToParent(recyclerView, mediaThumbnailStub.get(), mediaThumbnailStub.get().getCorners())
-                         .translateX(bodyBubble.getTranslationX());
+                .translateX(bodyBubble.getTranslationX())
+                .translateX(getTranslationX());
     }
 
     @Override
@@ -1723,7 +1736,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         if (messageRecord.isOutgoing()      &&
             !hasNoBubble(messageRecord)     &&
             !messageRecord.isRemoteDelete() &&
-            bodyBubbleCorners != null)
+            bodyBubbleCorners != null       &&
+            bodyBubble.getProjections().isEmpty())
             {
             projections.add(Projection.relativeToViewRoot(bodyBubble, bodyBubbleCorners).translateX(bodyBubble.getTranslationX()));
         }
@@ -1743,7 +1757,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
             projections.add(quoteView.getProjection((ViewGroup) getRootView()).translateX(bodyBubble.getTranslationX() + this.getTranslationX()));
         }
 
-        return projections;
+        return projections.stream().map(p -> p.translateY(this.getTranslationY())).collect(Collectors.toList());
     }
 
     @Override

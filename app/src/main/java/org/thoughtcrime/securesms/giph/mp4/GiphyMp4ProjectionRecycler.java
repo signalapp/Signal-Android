@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.thoughtcrime.securesms.conversation.ConversationItemSwipeCallback;
 import org.thoughtcrime.securesms.util.Projection;
 
 import java.util.ArrayList;
@@ -51,6 +50,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     }
   }
 
+  @Override
   public void updateVideoDisplayPositionAndSize(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4Playable holder) {
     GiphyMp4ProjectionPlayerHolder playerHolder = getCurrentHolder(holder.getAdapterPosition());
     if (playerHolder != null) {
@@ -95,7 +95,7 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
     Projection projection = giphyMp4Playable.getProjection(recyclerView);
 
     holder.getContainer().setX(projection.getX());
-    holder.getContainer().setY(projection.getY());
+    holder.getContainer().setY(projection.getY() + recyclerView.getTranslationY());
 
     ViewGroup.LayoutParams params = holder.getContainer().getLayoutParams();
     if (params.width != projection.getWidth() || params.height != projection.getHeight()) {
@@ -115,6 +115,8 @@ public final class GiphyMp4ProjectionRecycler implements GiphyMp4PlaybackControl
       holder.show();
       holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
       holder.playContent(giphyMp4Playable.getMediaSource(), giphyMp4Playable.getPlaybackPolicyEnforcer());
+    } else {
+      holder.setOnPlaybackReady(giphyMp4Playable::hideProjectionArea);
     }
   }
 

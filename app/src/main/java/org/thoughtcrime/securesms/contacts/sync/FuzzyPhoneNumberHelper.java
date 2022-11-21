@@ -3,9 +3,11 @@ package org.thoughtcrime.securesms.contacts.sync;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
@@ -18,6 +20,8 @@ import java.util.UUID;
  */
 class FuzzyPhoneNumberHelper {
 
+  private final static List<FuzzyVariant> FUZZY_VARIANTS = Arrays.asList(new MxFuzzyVariant(), new ArFuzzyVariant());
+
   /**
    * This should be run on the list of eligible numbers for contact intersection so that we can
    * create an updated list that has potentially more "fuzzy" number matches in it.
@@ -26,15 +30,14 @@ class FuzzyPhoneNumberHelper {
     Set<String>         allNumbers = new HashSet<>(testNumbers);
     Map<String, String> fuzzies    = new HashMap<>();
 
-    for (String number : testNumbers) {
-      if (mx(number)) {
-        String add1   = mxAdd1(number);
-        String strip1 = mxStrip1(number);
 
-        if (mxMissing1(number) && !storedNumbers.contains(add1) && allNumbers.add(add1)) {
-          fuzzies.put(number, add1);
-        } else if (mxHas1(number) && !storedNumbers.contains(strip1) && allNumbers.add(strip1)) {
-          fuzzies.put(number, strip1);
+    for (String number : testNumbers) {
+      for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
+        if(fuzzyVariant.hasVariants(number)) {
+          String variant = fuzzyVariant.getVariant(number);
+          if(variant != null && !storedNumbers.contains(variant) && allNumbers.add(variant)) {
+            fuzzies.put(number, variant);
+          }
         }
       }
     }
@@ -53,11 +56,15 @@ class FuzzyPhoneNumberHelper {
 
     for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
       if (registeredNumbers.contains(entry.getKey()) && registeredNumbers.contains(entry.getValue())) {
-        if (mxHas1(entry.getKey())) {
-          rewrites.put(entry.getKey(), entry.getValue());
-          allNumbers.remove(entry.getKey());
-        } else {
-          allNumbers.remove(entry.getValue());
+        for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
+          if(fuzzyVariant.hasVariants(entry.getKey())) {
+            if (fuzzyVariant.isDefaultVariant(entry.getKey())) {
+              allNumbers.remove(entry.getValue());
+            } else {
+              rewrites.put(entry.getKey(), entry.getValue());
+              allNumbers.remove(entry.getKey());
+            }
+          }
         }
       } else if (registeredNumbers.contains(entry.getValue())) {
         rewrites.put(entry.getKey(), entry.getValue());
@@ -79,11 +86,15 @@ class FuzzyPhoneNumberHelper {
 
     for (Map.Entry<String, String> entry : inputResult.getFuzzies().entrySet()) {
       if (registeredNumbers.containsKey(entry.getKey()) && registeredNumbers.containsKey(entry.getValue())) {
-        if (mxHas1(entry.getKey())) {
-          rewrites.put(entry.getKey(), entry.getValue());
-          allNumbers.remove(entry.getKey());
-        } else {
-          allNumbers.remove(entry.getValue());
+        for (FuzzyVariant fuzzyVariant: FUZZY_VARIANTS) {
+          if(fuzzyVariant.hasVariants(entry.getKey())) {
+            if (fuzzyVariant.isDefaultVariant(entry.getKey())) {
+              allNumbers.remove(entry.getValue());
+            } else {
+              rewrites.put(entry.getKey(), entry.getValue());
+              allNumbers.remove(entry.getKey());
+            }
+          }
         }
       } else if (registeredNumbers.containsKey(entry.getValue())) {
         rewrites.put(entry.getKey(), entry.getValue());
@@ -94,29 +105,63 @@ class FuzzyPhoneNumberHelper {
     return new OutputResultV2(allNumbers, rewrites);
   }
 
-
-  private static boolean mx(@NonNull String number) {
-    return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
+  private interface FuzzyVariant {
+    boolean hasVariants(@NonNull String number);
+    String getVariant(@NonNull String number);
+    boolean isDefaultVariant(@NonNull String number);
   }
 
-  private static boolean mxHas1(@NonNull String number) {
-    return number.startsWith("+521") && number.length() == 14;
+  private static class MxFuzzyVariant implements FuzzyVariant {
+
+    @Override
+    public boolean hasVariants(@NonNull String number) {
+      return number.startsWith("+52") && (number.length() == 13 || number.length() == 14);
+    }
+
+    @Override
+    public String getVariant(String number) {
+      if(number.startsWith("+521") && number.length() == 14) {
+        return "+52" + number.substring("+521".length());
+      }
+      if(number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13) {
+        return "+521" + number.substring("+52".length());
+      }
+
+      return null;
+    }
+
+    @Override
+    public boolean isDefaultVariant(@NonNull String number) {
+      return number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13;
+    }
+
   }
 
-  private static boolean mxMissing1(@NonNull String number) {
-    return number.startsWith("+52") && !number.startsWith("+521") && number.length() == 13;
-  }
+  private static class ArFuzzyVariant implements FuzzyVariant {
 
-  private static @NonNull String mxStrip1(@NonNull String number) {
-    return mxHas1(number) ? "+52" + number.substring("+521".length())
-                          : number;
-  }
+    @Override
+    public boolean hasVariants(@NonNull String number) {
+      return number.startsWith("+54") && (number.length() == 13 || number.length() == 14);
+    }
 
-  private static @NonNull String mxAdd1(@NonNull String number) {
-    return mxMissing1(number) ? "+521" + number.substring("+52".length())
-                              : number;
-  }
+    @Override
+    public String getVariant(String number) {
+      if(number.startsWith("+549") && number.length() == 14) {
+        return "+54" + number.substring("+549".length());
+      }
+      if(number.startsWith("+54") && !number.startsWith("+549") && number.length() == 13) {
+        return "+549" + number.substring("+54".length());
+      }
 
+      return null;
+    }
+
+    @Override
+    public boolean isDefaultVariant(@NonNull String number) {
+      return number.startsWith("+54") && !number.startsWith("+549") && number.length() == 13;
+    }
+
+  }
 
   public static class InputResult {
     private final Set<String>         numbers;

@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance
 
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -23,7 +23,7 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
   private val languageValues by lazy { resources.getStringArray(R.array.language_values) }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
-    viewModel = ViewModelProviders.of(this)[AppearanceSettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this)[AppearanceSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
       adapter.submitList(getConfiguration(state).toMappingModelList())

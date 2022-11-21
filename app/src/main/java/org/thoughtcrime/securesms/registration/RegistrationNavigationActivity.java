@@ -12,6 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -19,17 +20,17 @@ import com.google.android.gms.common.api.Status;
 
 import org.greenrobot.eventbus.EventBus;
 import org.signal.core.util.logging.Log;
-import androidx.fragment.app.Fragment;
-
 import org.thoughtcrime.securesms.DisclaimerFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.TermsFragment;
 import org.thoughtcrime.securesms.registration.fragments.CaptchaFragment;
 import org.thoughtcrime.securesms.registration.fragments.EnterCodeFragment;
 import org.thoughtcrime.securesms.registration.fragments.WelcomeFragment;
+import org.thoughtcrime.securesms.registration.viewmodel.RegistrationViewModel;
 import org.thoughtcrime.securesms.service.VerificationCodeParser;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.whispersystems.libsignal.util.guava.Optional;
+
 
 public final class RegistrationNavigationActivity extends AppCompatActivity {
 
@@ -37,10 +38,9 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
 
   public static final String RE_REGISTRATION_EXTRA = "re_registration";
 
-  private SmsRetrieverReceiver smsRetrieverReceiver;
+  private SmsRetrieverReceiver  smsRetrieverReceiver;
+  private RegistrationViewModel viewModel;
 
-  /**
-   */
   public static Intent newIntentForNewRegistration(@NonNull Context context, @Nullable Intent originalIntent) {
     Intent intent = new Intent(context, RegistrationNavigationActivity.class);
     intent.putExtra(RE_REGISTRATION_EXTRA, false);
@@ -67,6 +67,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    viewModel = new ViewModelProvider(this, new RegistrationViewModel.Factory(this, isReregister(getIntent()))).get(RegistrationViewModel.class);
+
     setContentView(R.layout.activity_registration_navigation);
     initializeChallengeListener();
 
@@ -82,6 +84,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
     if (intent.getData() != null) {
       CommunicationActions.handlePotentialProxyLinkUrl(this, intent.getDataString());
     }
+
+    viewModel.setIsReregister(isReregister(intent));
   }
 
   @Override
@@ -112,9 +116,8 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
       case KeyEvent.KEYCODE_5:
       case KeyEvent.KEYCODE_0:
         if (fragment instanceof CaptchaFragment) {
-          if (event.getAction() == KeyEvent.ACTION_DOWN) {
-            ((CaptchaFragment) fragment).onKeyDown(code);
-          }
+          ((CaptchaFragment) fragment).onKeyDown(code, event.getAction());
+          return true;
         }
         break;
       case KeyEvent.KEYCODE_BACK:
@@ -154,6 +157,10 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
         break;
     }
     return super.dispatchKeyEvent(event);
+  }
+
+  private boolean isReregister(@NonNull Intent intent) {
+    return intent.getBooleanExtra(RE_REGISTRATION_EXTRA, false);
   }
 
   private void initializeChallengeListener() {

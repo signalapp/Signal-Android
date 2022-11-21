@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 import org.thoughtcrime.securesms.webrtc.CallBandwidthMode
@@ -46,6 +47,11 @@ class DataAndStorageSettingsViewModel(
     getStateAndCopyStorageUsage()
   }
 
+  fun setSentMediaQuality(sentMediaQuality: SentMediaQuality) {
+    SignalStore.settings().sentMediaQuality = sentMediaQuality
+    getStateAndCopyStorageUsage()
+  }
+
   private fun getStateAndCopyStorageUsage() {
     store.update { getState().copy(totalStorageUse = it.totalStorageUse) }
   }
@@ -62,7 +68,8 @@ class DataAndStorageSettingsViewModel(
       ApplicationDependencies.getApplication()
     ),
     callBandwidthMode = SignalStore.settings().callBandwidthMode,
-    isProxyEnabled = SignalStore.proxy().isProxyEnabled
+    isProxyEnabled = SignalStore.proxy().isProxyEnabled,
+    sentMediaQuality = SignalStore.settings().sentMediaQuality
   )
 
   class Factory(

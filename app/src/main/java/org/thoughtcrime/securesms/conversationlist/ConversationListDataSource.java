@@ -6,6 +6,7 @@ import android.database.MatrixCursor;
 import android.database.MergeCursor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-abstract class ConversationListDataSource implements PagedDataSource<Conversation> {
+abstract class ConversationListDataSource implements PagedDataSource<Long, Conversation> {
 
   private static final String TAG = Log.tag(ConversationListDataSource.class);
 
@@ -71,6 +72,16 @@ abstract class ConversationListDataSource implements PagedDataSource<Conversatio
     stopwatch.stop(TAG);
 
     return conversations;
+  }
+
+  @Override
+  public @Nullable Conversation load(Long threadId) {
+    throw new UnsupportedOperationException("Not implemented!");
+  }
+
+  @Override
+  public @NonNull Long getKey(@NonNull Conversation conversation) {
+    return conversation.getThreadRecord().getThreadId();
   }
 
   protected abstract int getTotalCount();

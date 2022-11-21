@@ -69,7 +69,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientExporter
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment
-import org.thoughtcrime.securesms.recipients.ui.sharablegrouplink.ShareableGroupLinkDialogFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
@@ -297,20 +296,16 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
       }
 
-      state.withRecipientSettingsState { recipientState ->
-        if (recipientState.displayInternalRecipientDetails) {
-          customPref(
-            InternalPreference.Model(
-              recipient = state.recipient,
-              onDisableProfileSharingClick = {
-                viewModel.disableProfileSharing()
-              },
-              onDeleteSessionClick = {
-                viewModel.deleteSession()
-              }
-            )
+      if (state.displayInternalRecipientDetails) {
+        customPref(
+          InternalPreference.Model(
+            recipient = state.recipient,
+            onInternalDetailsClicked = {
+              val action = ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToInternalDetailsSettingsFragment(state.recipient.id)
+              navController.navigate(action)
+            }
           )
-        }
+        )
       }
 
       customPref(
@@ -407,6 +402,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       state.withRecipientSettingsState { recipientState ->
         when (recipientState.contactLinkState) {
           ContactLinkState.OPEN -> {
+            @Suppress("DEPRECATION")
             clickPref(
               title = DSLSettingsText.from(R.string.ConversationSettingsFragment__contact_details),
               icon = DSLSettingsIcon.from(R.drawable.ic_profile_circle_24),
@@ -416,6 +412,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             )
           }
           ContactLinkState.ADD -> {
+            @Suppress("DEPRECATION")
             clickPref(
               title = DSLSettingsText.from(R.string.ConversationSettingsFragment__add_as_a_contact),
               icon = DSLSettingsIcon.from(R.drawable.ic_plus_24),
@@ -444,6 +441,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
         sectionHeaderPref(R.string.recipient_preference_activity__shared_media)
 
+        @Suppress("DEPRECATION")
         customPref(
           SharedMediaPreference.Model(
             mediaCursor = state.sharedMedia,
@@ -574,7 +572,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             summary = DSLSettingsText.from(if (groupState.groupLinkEnabled) R.string.preferences_on else R.string.preferences_off),
             icon = DSLSettingsIcon.from(R.drawable.ic_link_16),
             onClick = {
-              ShareableGroupLinkDialogFragment.create(groupState.groupId.requireV2()).show(parentFragmentManager, "DIALOG")
+              navController.navigate(ConversationSettingsFragmentDirections.actionConversationSettingsFragmentToShareableGroupLinkFragment(groupState.groupId.requireV2().toString()))
             }
           )
 
@@ -666,6 +664,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     startActivity(AddToGroupsActivity.newIntent(requireContext(), addToAGroup.recipientId, addToAGroup.groupMembership))
   }
 
+  @Suppress("DEPRECATION")
   private fun handleAddMembersToGroup(addMembersToGroup: ConversationSettingsEvent.AddMembersToGroup) {
     startActivityForResult(
       AddMembersActivity.createIntent(

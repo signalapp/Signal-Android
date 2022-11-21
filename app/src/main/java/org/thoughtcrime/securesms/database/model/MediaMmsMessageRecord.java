@@ -21,6 +21,7 @@ import android.text.SpannableString;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -71,8 +72,8 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                @NonNull SlideDeck slideDeck,
                                int partCount,
                                long mailbox,
-                               List<IdentityKeyMismatch> mismatches,
-                               List<NetworkFailure> failures,
+                               Set<IdentityKeyMismatch> mismatches,
+                               Set<NetworkFailure> failures,
                                int subscriptionId,
                                long expiresIn,
                                long expireStarted,
@@ -86,12 +87,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                boolean remoteDelete,
                                boolean mentionsSelf,
                                long notifiedTimestamp,
-                               int viewedReceiptCount)
+                               int viewedReceiptCount,
+                               long receiptTimestamp)
   {
     super(id, body, conversationRecipient, individualRecipient, recipientDeviceId, dateSent,
           dateReceived, dateServer, threadId, Status.STATUS_NONE, deliveryReceiptCount, mailbox, mismatches, failures,
           subscriptionId, expiresIn, expireStarted, viewOnce, slideDeck,
-          readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount);
+          readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp);
     this.partCount    = partCount;
     this.mentionsSelf = mentionsSelf;
   }
@@ -107,6 +109,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   }
 
   @Override
+  @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
     if (MmsDatabase.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
@@ -123,6 +126,13 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   public int getPartCount() {
     return partCount;
+  }
+
+  public @NonNull MediaMmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
+    return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
+                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp());
   }
 
   public @NonNull MediaMmsMessageRecord withAttachments(@NonNull Context context, @NonNull List<DatabaseAttachment> attachments) {
@@ -143,7 +153,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
                                      getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
-                                     getNotifiedTimestamp(), getViewedReceiptCount());
+                                     getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp());
   }
 
   private static @NonNull List<Contact> updateContacts(@NonNull List<Contact> contacts, @NonNull Map<AttachmentId, DatabaseAttachment> attachmentIdMap) {

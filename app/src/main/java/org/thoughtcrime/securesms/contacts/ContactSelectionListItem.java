@@ -66,6 +66,12 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     ViewUtil.setTextViewGravityStart(this.nameView, getContext());
   }
 
+  @Override
+  protected void onDetachedFromWindow() {
+    super.onDetachedFromWindow();
+    unbind();
+  }
+
   public void set(@NonNull GlideRequests glideRequests,
                   @Nullable RecipientId recipientId,
                   int type,
@@ -86,6 +92,9 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     if (type == ContactRepository.NEW_PHONE_TYPE || type == ContactRepository.NEW_USERNAME_TYPE) {
       this.recipient = null;
     } else if (recipientId != null) {
+      if (this.recipient != null) {
+        this.recipient.removeForeverObserver(this);
+      }
       this.recipient = Recipient.live(recipientId);
       this.recipient.observeForever(this);
     }
@@ -142,7 +151,7 @@ public class ContactSelectionListItem extends ConstraintLayout implements Recipi
     this.checkBox.setEnabled(enabled);
   }
 
-  public void unbind(GlideRequests glideRequests) {
+  public void unbind() {
     if (recipient != null) {
       recipient.removeForeverObserver(this);
       recipient = null;

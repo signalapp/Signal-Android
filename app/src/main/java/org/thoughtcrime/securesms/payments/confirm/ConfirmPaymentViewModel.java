@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.payments.FiatMoneyUtil;
 import org.thoughtcrime.securesms.payments.PaymentTransactionLiveData;
 import org.thoughtcrime.securesms.payments.PaymentsAddressException;
 import org.thoughtcrime.securesms.payments.confirm.ConfirmPaymentRepository.ConfirmPaymentResult;
-import org.thoughtcrime.securesms.payments.currency.FiatMoney;
+import org.signal.core.util.money.FiatMoney;
 import org.thoughtcrime.securesms.util.DefaultValueLiveData;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;

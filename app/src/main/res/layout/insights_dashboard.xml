@@ -127,7 +127,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:gravity="center"
-                android:text="@string/InsightsDashboardFragment__boost_your_signal"
+                android:text="@string/InsightsDashboardFragment__spread_the_word"
                 android:textAppearance="@style/TextAppearance.Signal.SubHead.Insights"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintEnd_toEndOf="parent"

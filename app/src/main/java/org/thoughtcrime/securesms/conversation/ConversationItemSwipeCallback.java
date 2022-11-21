@@ -30,17 +30,14 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
   private final SwipeAvailabilityProvider     swipeAvailabilityProvider;
   private final ConversationItemTouchListener itemTouchListener;
   private final OnSwipeListener               onSwipeListener;
-  private final OnViewHolderTranslated        onViewHolderTranslated;
 
   ConversationItemSwipeCallback(@NonNull SwipeAvailabilityProvider swipeAvailabilityProvider,
-                                @NonNull OnSwipeListener onSwipeListener,
-                                @NonNull OnViewHolderTranslated onViewHolderTranslated)
+                                @NonNull OnSwipeListener onSwipeListener)
   {
     super(0, ItemTouchHelper.END);
     this.itemTouchListener          = new ConversationItemTouchListener(this::updateLatestDownCoordinate);
     this.swipeAvailabilityProvider  = swipeAvailabilityProvider;
     this.onSwipeListener            = onSwipeListener;
-    this.onViewHolderTranslated     = onViewHolderTranslated;
     this.shouldTriggerSwipeFeedback = true;
     this.canTriggerSwipe            = true;
   }
@@ -93,24 +90,20 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
 
     if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE && isCorrectSwipeDir) {
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, Math.abs(dx), sign);
-      dispatchTranslationUpdate(recyclerView, viewHolder);
+      recyclerView.invalidate();
       handleSwipeFeedback((ConversationItem) viewHolder.itemView, Math.abs(dx));
       if (canTriggerSwipe) {
         setTouchListener(recyclerView, viewHolder, Math.abs(dx));
       }
     } else if (actionState == ItemTouchHelper.ACTION_STATE_IDLE || dx == 0) {
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView, 0, 1);
-      dispatchTranslationUpdate(recyclerView, viewHolder);
+      recyclerView.invalidate();
     }
 
     if (dx == 0) {
       shouldTriggerSwipeFeedback = true;
       canTriggerSwipe            = true;
     }
-  }
-
-  private void dispatchTranslationUpdate(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder) {
-    onViewHolderTranslated.onViewHolderTranslated(recyclerView, viewHolder);
   }
 
   private void handleSwipeFeedback(@NonNull ConversationItem item, float dx) {
@@ -172,7 +165,7 @@ public class ConversationItemSwipeCallback extends ItemTouchHelper.SimpleCallbac
       ConversationSwipeAnimationHelper.update((ConversationItem) viewHolder.itemView,
                                               0f,
                                               getSignFromDirection(viewHolder.itemView));
-      dispatchTranslationUpdate(recyclerView, viewHolder);
+      recyclerView.invalidate();
     }
   }
 

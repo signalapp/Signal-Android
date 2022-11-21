@@ -24,6 +24,7 @@ public final class InternalValues extends SignalStoreValues {
   public static final String DELAY_RESENDS                        = "internal.delay_resends";
   public static final String CALLING_SERVER                       = "internal.calling_server";
   public static final String SHAKE_TO_REPORT                      = "internal.shake_to_report";
+  public static final String DISABLE_STORAGE_SERVICE              = "internal.disable_storage_service";
 
   InternalValues(KeyValueStore store) {
     super(store);
@@ -74,10 +75,10 @@ public final class InternalValues extends SignalStoreValues {
   }
 
   /**
-   * Show detailed recipient info in the {@link org.thoughtcrime.securesms.recipients.ui.managerecipient.ManageRecipientFragment}.
+   * Show detailed recipient info in the {@link org.thoughtcrime.securesms.components.settings.conversation.InternalConversationSettingsFragment}.
    */
   public synchronized boolean recipientDetails() {
-    return FeatureFlags.internalUser() && getBoolean(RECIPIENT_DETAILS, false);
+    return FeatureFlags.internalUser() && getBoolean(RECIPIENT_DETAILS, true);
   }
 
   /**
@@ -129,6 +130,13 @@ public final class InternalValues extends SignalStoreValues {
    */
   public synchronized boolean shakeToReport() {
     return FeatureFlags.internalUser() && getBoolean(SHAKE_TO_REPORT, true);
+  }
+
+  /**
+   * Whether or not storage service is manually disabled.
+   */
+  public synchronized boolean storageServiceDisabled() {
+    return FeatureFlags.internalUser() && getBoolean(DISABLE_STORAGE_SERVICE, false);
   }
 
   /**

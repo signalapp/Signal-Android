@@ -2,9 +2,12 @@ package org.thoughtcrime.securesms.dependencies;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
+import android.os.HandlerThread;
 
 import androidx.annotation.NonNull;
 
+import org.signal.core.util.concurrent.DeadlockDetector;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.components.TypingStatusRepository;
@@ -58,7 +61,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCache;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FrameRateTracker;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
-import org.whispersystems.libsignal.state.SignalProtocolStore;
+import org.thoughtcrime.securesms.video.exo.GiphyMp4Cache;
 import org.whispersystems.libsignal.util.guava.Optional;
 import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
@@ -73,6 +76,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketFactory;
 import org.whispersystems.signalservice.internal.websocket.WebSocketConnection;
 
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Implementation of {@link ApplicationDependencies.Provider} that provides real app dependencies.
@@ -114,7 +118,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
                                             signalWebSocket,
                                             Optional.of(new SecurityEventListener(context)),
                                             provideClientZkOperations().getProfileOperations(),
-                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16),
+                                            SignalExecutors.newCachedBoundedExecutor("signal-messages", 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(512),
                                             FeatureFlags.okHttpAutomaticRetry());
   }
@@ -285,6 +289,19 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     healthMonitor.monitor(signalWebSocket);
 
     return signalWebSocket;
+  }
+
+  @Override
+  public @NonNull GiphyMp4Cache provideGiphyMp4Cache() {
+    return new GiphyMp4Cache(ByteUnit.MEGABYTES.toBytes(16));
+  }
+
+  @Override
+  public @NonNull
+  DeadlockDetector provideDeadlockDetector() {
+    HandlerThread handlerThread = new HandlerThread("signal-DeadlockDetector");
+    handlerThread.start();
+    return new DeadlockDetector(new Handler(handlerThread.getLooper()), TimeUnit.SECONDS.toMillis(5));
   }
 
   private @NonNull WebSocketFactory provideWebSocketFactory(@NonNull SignalWebSocketHealthMonitor healthMonitor) {

@@ -58,13 +58,10 @@ public final class SlideFactory {
     }
   }
 
-  private static @Nullable Slide getContentResolverSlideInfo(@NonNull Context context, @NonNull MediaType mediaType, @NonNull Uri uri, int width, int height) {
-    Cursor cursor = null;
-    long   start  = System.currentTimeMillis();
+  private static @Nullable Slide getContentResolverSlideInfo(@NonNull Context context, @Nullable MediaType mediaType, @NonNull Uri uri, int width, int height) {
+    long start = System.currentTimeMillis();
 
-    try {
-      cursor = context.getContentResolver().query(uri, null, null, null, null);
-
+    try (Cursor cursor = context.getContentResolver().query(uri, null, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         String fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME));
         long   fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE));
@@ -76,17 +73,19 @@ public final class SlideFactory {
           height = dimens.second;
         }
 
+        if (mediaType == null) {
+          mediaType = MediaType.DOCUMENT;
+        }
+
         Log.d(TAG, "remote slide with size " + fileSize + " took " + (System.currentTimeMillis() - start) + "ms");
         return mediaType.createSlide(context, uri, fileName, mimeType, null, fileSize, width, height, false);
       }
-    } finally {
-      if (cursor != null) cursor.close();
     }
 
     return null;
   }
 
-  private static @NonNull Slide getManuallyCalculatedSlideInfo(@NonNull Context context, @NonNull MediaType mediaType, @NonNull Uri uri, int width, int height) throws IOException {
+  private static @NonNull Slide getManuallyCalculatedSlideInfo(@NonNull Context context, @Nullable MediaType mediaType, @NonNull Uri uri, int width, int height) throws IOException {
     long     start     = System.currentTimeMillis();
     Long     mediaSize = null;
     String   fileName  = null;
@@ -112,6 +111,10 @@ public final class SlideFactory {
       Pair<Integer, Integer> dimens = MediaUtil.getDimensions(context, mimeType, uri);
       width  = dimens.first;
       height = dimens.second;
+    }
+
+    if (mediaType == null) {
+      mediaType = MediaType.DOCUMENT;
     }
 
     Log.d(TAG, "local slide with size " + mediaSize + " took " + (System.currentTimeMillis() - start) + "ms");

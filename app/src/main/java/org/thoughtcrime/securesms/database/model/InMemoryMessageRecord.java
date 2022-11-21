@@ -40,8 +40,8 @@ public class InMemoryMessageRecord extends MessageRecord {
           0,
           0,
           type,
-          Collections.emptyList(),
-          Collections.emptyList(),
+          Collections.emptySet(),
+          Collections.emptySet(),
           -1,
           0,
           System.currentTimeMillis(),
@@ -50,7 +50,8 @@ public class InMemoryMessageRecord extends MessageRecord {
           Collections.emptyList(),
           false,
           0,
-          0);
+          0,
+          -1);
   }
 
   @Override

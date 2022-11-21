@@ -116,6 +116,7 @@ public class WebRtcCallView extends ConstraintLayout {
   private View                          foldParticipantCountWrapper;
   private TextView                      foldParticipantCount;
   private AvatarImageView               largeHeaderAvatar;
+  private ConstraintSet                 largeHeaderConstraints;
   private ConstraintSet                 smallHeaderConstraints;
   private Guideline                     statusBarGuideline;
   private View                          fullScreenShade;
@@ -225,6 +226,7 @@ public class WebRtcCallView extends ConstraintLayout {
     incomingCallViews.add(decline);
     incomingCallViews.add(declineLabel);
     incomingCallViews.add(footerGradient);
+    incomingCallViews.add(incomingRingStatus);
 
     adjustableMarginsSet.add(micToggle);
     adjustableMarginsSet.add(cameraDirectionToggle);
@@ -291,6 +293,9 @@ public class WebRtcCallView extends ConstraintLayout {
     rotatableControls.add(cameraDirectionToggle);
     rotatableControls.add(decline);
     rotatableControls.add(smallLocalRender.findViewById(R.id.call_participant_mic_muted));
+
+    largeHeaderConstraints = new ConstraintSet();
+    largeHeaderConstraints.clone(getContext(), R.layout.webrtc_call_view_header_large);
 
     smallHeaderConstraints = new ConstraintSet();
     smallHeaderConstraints.clone(getContext(), R.layout.webrtc_call_view_header_small);
@@ -584,8 +589,7 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayIncomingCallButtons()) {
       visibleViewSet.addAll(incomingCallViews);
 
-      incomingRingStatus.setVisibility(VISIBLE);
-      incomingRingStatus.setText(R.string.WebRtcCallView__signal_call);
+      incomingRingStatus.setText(webRtcControls.displayAnswerWithAudio() ? R.string.WebRtcCallView__signal_call : R.string.WebRtcCallView__signal_video_call);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer));
     }
@@ -593,9 +597,6 @@ public class WebRtcCallView extends ConstraintLayout {
     if (webRtcControls.displayAnswerWithAudio()) {
       visibleViewSet.add(answerWithAudio);
       visibleViewSet.add(answerWithAudioLabel);
-
-      incomingRingStatus.setVisibility(VISIBLE);
-      incomingRingStatus.setText(R.string.WebRtcCallView__signal_video_call);
 
       answer.setImageDrawable(AppCompatResources.getDrawable(getContext(), R.drawable.webrtc_call_screen_answer_with_video));
     }
@@ -688,6 +689,7 @@ public class WebRtcCallView extends ConstraintLayout {
     if (!visibleViewSet.equals(lastVisibleSet) ||
         !controls.isFadeOutEnabled() ||
         (webRtcControls.showSmallHeader() && largeHeaderAvatar.getVisibility() == View.VISIBLE) ||
+        (!webRtcControls.showSmallHeader() && largeHeaderAvatar.getVisibility() == View.GONE) ||
         forceUpdate)
     {
 
@@ -928,7 +930,11 @@ public class WebRtcCallView extends ConstraintLayout {
     constraintSet.applyTo(parent);
 
     if (showSmallHeader) {
+      smallHeaderConstraints.setVisibility(incomingRingStatus.getId(), visibleViewSet.contains(incomingRingStatus) ? View.VISIBLE : View.GONE);
       smallHeaderConstraints.applyTo(toolbar);
+    } else {
+      largeHeaderConstraints.setVisibility(incomingRingStatus.getId(), visibleViewSet.contains(incomingRingStatus) ? View.VISIBLE : View.GONE);
+      largeHeaderConstraints.applyTo(toolbar);
     }
   }
 

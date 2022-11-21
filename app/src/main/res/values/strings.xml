@@ -8,6 +8,7 @@
     <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
     <string name="support_center_url" translatable="false">https://support.signal.org/</string>
     <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
 
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -430,6 +431,8 @@
     <string name="BackupsPreferenceFragment__learn_more">Learn more</string>
     <string name="BackupsPreferenceFragment__in_progress">In progress…</string>
     <string name="BackupsPreferenceFragment__d_so_far">%1$d so far…</string>
+    <!-- Show percentage of completion of backup -->
+    <string name="BackupsPreferenceFragment__s_so_far">%1$s%% so far…</string>
     <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
 
 
@@ -476,7 +479,7 @@
 
 
     <!-- DonateMegaphone -->
-    <string name="DonateMegaphone_donate_to_signal">Donate to Pigeon</string>
+    <string name="DonateMegaphone_donate_to_signal">Donate to Signal</string>
     <string name="DonateMegaphone_Signal_is_powered_by_people_like_you_show_your_support_today">Pigeon is powered by people like you. Show your support today!</string>
     <string name="DonateMegaphone_donate">Donate</string>
     <string name="DonateMegaphone_no_thanks">No Thanks</string>
@@ -829,6 +832,7 @@
     <string name="CustomNotificationsDialogFragment__enabled">Enabled</string>
     <string name="CustomNotificationsDialogFragment__disabled">Disabled</string>
     <string name="CustomNotificationsDialogFragment__default">Default</string>
+    <string name="CustomNotificationsDialogFragment__unknown">Unknown</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
     <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Shareable group link</string>
@@ -1245,6 +1249,7 @@
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">You marked your safety number with %s unverified</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">You marked your safety number with %s unverified from another device</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">A message from %s couldn\'t be delivered</string>
+    <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s changed their number to a new number.</string>
 
     <!-- Group Calling update messages -->
     <string name="MessageRecord_s_started_a_group_call_s">%1$s started a group call · %2$s</string>
@@ -1431,6 +1436,7 @@
     <string name="RedPhone_got_it">Got it</string>
 
     <!-- WebRtcCallActivity -->
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">To answer the call, give Signal access to your microphone.</string>
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tap here to turn on your video</string>
     <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">To call %1$s, Pigeon needs access to your camera</string>
     <string name="WebRtcCallActivity__signal_s">Pigeon %1$s</string>
@@ -1551,10 +1557,14 @@
     <string name="RegistrationActivity_no_browser">Unable to open this link. No web browser found.</string>
     <string name="RegistrationActivity_more_information">More information</string>
     <string name="RegistrationActivity_less_information">Less information</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon needs access to your contacts and media in order to connect with friends, exchange messages, and make secure calls</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon needs access to your contacts in order to connect with friends, exchange messages, and make secure calls</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon needs the contacts and media permissions to help you connect with friends and send messages. Your contacts are uploaded using Signal\'s private contact discovery, which means they are end-to-end encrypted and never visible to the Signal and Pigeon service.</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon needs the contacts permission to help you connect with friends. Your contacts are uploaded using Signal\'s private contact discovery, which means they are end-to-end encrypted and never visible to the Signal and Pigeon service.</string>
     <string name="RegistrationActivity_rate_limited_to_service">You\'ve made too many attempts to register this number. Please try again later.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Unable to connect to service. Please check network connection and try again.</string>
+    <string name="RegistrationActivity_non_standard_number_format">Non-standard number format</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">The number you entered (%1$s) appears to be a non-standard format.\n\nDid you mean %2$s?</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Phone Number Format</string>
+    <string name="RegistrationActivity_call_requested">Call requested</string>
     <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">To easily verify your phone number, Pigeon can automatically detect your verification code if you allow Pigeon to view SMS messages.</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">You are now %d step away from submitting a debug log.</item>
@@ -1607,7 +1617,7 @@
     <string name="SharedContactView_invite_to_signal">Invite Contacts</string>
     <string name="SharedContactView_message">Pigeon Message</string>
 
-    <!-- Pigeon PinReminders -->
+    <!-- Signal PinReminders -->
     <string name="SignalPinReminders_well_remind_you_again_later">We\'ll remind you again later.</string>
     <string name="SignalPinReminders_well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
@@ -1818,6 +1828,7 @@
     <string name="MessageNotifier_reacted_s_to_s">Reacted %1$s to: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">Reacted %1$s to your video.</string>
     <string name="MessageNotifier_reacted_s_to_your_image">Reacted %1$s to your image.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reacted %1$s to your GIF.</string>
     <string name="MessageNotifier_reacted_s_to_your_file">Reacted %1$s to your file.</string>
     <string name="MessageNotifier_reacted_s_to_your_audio">Reacted %1$s to your audio.</string>
     <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reacted %1$s to your view-once media.</string>
@@ -2023,6 +2034,7 @@
     <string name="ConversationUpdateItem_call_is_full">Call is full</string>
     <string name="ConversationUpdateItem_invite_friends">Invite friends</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Enable Call Notifications</string>
+    <string name="ConversationUpdateItem_update_contact">Update contact</string>
     <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No groups in common. Review requests carefully.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">No contacts in this group. Review requests carefully.</string>
     <string name="ConversationUpdateItem_view">View</string>
@@ -2036,6 +2048,7 @@
     <string name="QuoteView_audio">Audio</string>
     <string name="QuoteView_video">Video</string>
     <string name="QuoteView_photo">Photo</string>
+    <string name="QuoteView_gif">GIF</string>
     <string name="QuoteView_view_once_media">View-once media</string>
     <string name="QuoteView_sticker">Sticker</string>
     <string name="QuoteView_you">You</string>
@@ -2239,13 +2252,19 @@
     <string name="recipients_panel__add_members">Add members</string>
 
     <!-- verify_display_fragment -->
-    <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[If you wish to verify the security of your encryption with %s, compare the number above with the number on their device. Alternatively, you can scan the code on their phone, or ask them to scan your code. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
+    <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[To verify the security of your end-to-end encryption with %s, compare the numbers above with their device. You can also scan the code on their phone. <a href="https://signal.org/redirect/safety-numbers">Learn more.</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Tap to scan</string>
+    <string name="verify_display_fragment__successful_match">Successful match</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">Failed to verify safety number</string>
     <string name="verify_display_fragment__loading">Loading…</string>
-    <string name="verify_display_fragment__verified">Verified</string>
+    <string name="verify_display_fragment__mark_as_verified">Mark as verified</string>
+    <string name="verify_display_fragment__clear_verification">Clear verification</string>
 
     <!-- verify_identity -->
     <string name="verify_identity__share_safety_number">Share safety number</string>
+
+    <!-- verity_scan_fragment -->
+    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scan the QR Code on your contact\'s device.</string>
 
     <!-- webrtc_answer_decline_button -->
     <string name="webrtc_answer_decline_button__swipe_up_to_answer">Swipe up to answer</string>
@@ -2253,10 +2272,10 @@
 
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Some issues need your attention.</string>
-    <string name="message_details_header__sent">Sent</string>
-    <string name="message_details_header__received">Received</string>
-    <string name="message_details_header__disappears">Disappears</string>
-    <string name="message_details_header__via">Via</string>
+    <string name="message_details_header__sent">Sent:</string>
+    <string name="message_details_header__received">Received:</string>
+    <string name="message_details_header__disappears">Disappears:</string>
+    <string name="message_details_header__via">Via:</string>
 
     <!-- message_details_recipient_header -->
     <string name="message_details_recipient_header__pending_send">Pending</string>
@@ -2311,14 +2330,15 @@
     <string name="HelpFragment__could_not_upload_logs">Could not upload logs</string>
     <string name="HelpFragment__signal_support">Pigeon Support</string>
     <string name="HelpFragment__please_be_as_descriptive_as_possible">Please be as descriptive as possible to help us understand the issue.</string>
-    <string-array name="HelpFragment__categories">
-        <item>-- Please select an option --</item>
+    <string-array name="HelpFragment__categories_3">
+        <item>\-\- Please select an option \-\-</item>
         <item>Something\'s Not Working</item>
         <item>Feature Request</item>
         <item>Question</item>
         <item>Feedback</item>
         <item>Other</item>
         <item>Payments</item>
+        <item>Sustainers &amp; Signal Boost</item>
     </string-array>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
@@ -2578,11 +2598,13 @@
     <string name="preferences__internal_refresh_remote_config" translatable="false">Refresh remote config</string>
     <string name="preferences__internal_refresh_remote_config_description" translatable="false">Forces a refresh of the remote config locally instead of waiting for the elapsed time.</string>
     <string name="preferences__internal_misc" translatable="false">Miscellaneous</string>
-    <string name="preferences__internal_user_details" translatable="false">User Details</string>
-    <string name="preferences__internal_user_details_description" translatable="false">See more information about a user when viewing conversation settings.</string>
+    <string name="preferences__internal_user_details" translatable="false">\'Internal Details\' button</string>
+    <string name="preferences__internal_user_details_description" translatable="false">Show a button in conversation settings that lets you see more information about a user.</string>
     <string name="preferences__internal_shake_to_report" translatable="false">Shake to Report</string>
     <string name="preferences__internal_shake_to_report_description" translatable="false">Shake your phone to easily submit and share a debug log.</string>
     <string name="preferences__internal_storage_service" translatable="false">Storage service</string>
+    <string name="preferences__internal_disable_storage_service" translatable="false">Disable syncing</string>
+    <string name="preferences__internal_disable_storage_service_description" translatable="false">Prevent syncing any data to/from storage service.</string>
     <string name="preferences__internal_force_storage_service_sync" translatable="false">Overwrite remote data</string>
     <string name="preferences__internal_force_storage_service_sync_description" translatable="false">Forces remote storage to match the local device state.</string>
     <string name="preferences__internal_network" translatable="false">Network</string>
@@ -2590,11 +2612,14 @@
     <string name="preferences__internal_force_censorship_description" translatable="false">Force the app to behave as if it is in a country where Pigeon is censored.</string>
     <string name="preferences__internal_conversations_and_shortcuts" translatable="false">Conversations and Shortcuts</string>
     <string name="preferences__internal_emoji" translatable="false">Emoji</string>
-    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set.</string>
+    <string name="preferences__internal_use_built_in_emoji_set" translatable="false">Use built-in emoji set</string>
+    <string name="preferences__internal_force_emoji_download" translatable="false">Force emoji download</string>
+    <string name="preferences__internal_force_emoji_download_description" translatable="false">Download the latest emoji set if it\'s newer than what we have.</string>
     <string name="preferences__internal_current_version_builtin" translatable="false">Current version: Built-In</string>
     <string name="preferences__internal_current_version_d_at_density_s" translatable="false">Current version: %1$d at density %2$s</string>
     <string name="preferences__internal_delete_all_dynamic_shortcuts" translatable="false">Delete all dynamic shortcuts</string>
     <string name="preferences__internal_click_to_delete_all_dynamic_shortcuts" translatable="false">Click to delete all dynamic shortcuts</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
     <string name="preferences__internal_disable_profile_sharing" translatable="false">Disable Profile Sharing</string>
     <string name="preferences__internal_delete_session" translatable="false">Delete Session</string>
     <string name="preferences__internal_sender_key" translatable="false">Sender Key</string>
@@ -2670,7 +2695,7 @@
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copied to clipboard</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
     <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    
+
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Details</string>
     <string name="PaymentsDetailsFragment__status">Status</string>
@@ -2905,7 +2930,7 @@
     <string name="Insights__title">Insights</string>
     <string name="InsightsDashboardFragment__title">Insights</string>
     <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Pigeon Protocol automatically protected %1$d%% of your outgoing messages over the past %2$d days. Conversations between Pigeon users are always end-to-end encrypted.</string>
-    <string name="InsightsDashboardFragment__boost_your_signal">Pigeon boost</string>
+    <string name="InsightsDashboardFragment__spread_the_word">Spread the word</string>
     <string name="InsightsDashboardFragment__not_enough_data">Not enough data</string>
     <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Your Insights percentage is calculated based on outgoing messages within the past %1$d days that have not disappeared or been deleted.</string>
     <string name="InsightsDashboardFragment__start_a_conversation">Start a conversation</string>
@@ -3096,7 +3121,7 @@
     <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon requires external storage permission in order to create backups, but it has been permanently denied. Please continue to app settings, select \"Permissions\" and enable \"Storage\".</string>
     <string name="ChatsPreferenceFragment_last_backup_s">Last backup: %s</string>
     <string name="ChatsPreferenceFragment_in_progress">In progress</string>
-    <string name="LocalBackupJob_creating_backup">Creating backup…</string>
+    <string name="LocalBackupJob_creating_signal_backup">Creating Signal backup…</string>
     <string name="LocalBackupJobApi29_backup_failed">Backup failed</string>
     <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Your backup directory has been deleted or moved.</string>
     <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Your backup file is too large to store on this volume.</string>
@@ -3107,6 +3132,7 @@
     <string name="RegistrationActivity_call_me_instead_available_in">Call me instead \n (Available in %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contact Pigeon Support</string>
     <string name="RegistrationActivity_code_support_subject">Pigeon Registration - Verification Code for Android</string>
+    <string name="RegistrationActivity_incorrect_code">Incorrect code</string>
     <string name="BackupUtil_never">Never</string>
     <string name="BackupUtil_unknown">Unknown</string>
     <string name="preferences_app_protection__see_my_phone_number">See my phone number</string>
@@ -3250,6 +3276,8 @@
     <string name="DeviceTransfer__transferring_data">Transferring data</string>
     <string name="DeviceTransfer__keep_both_devices_near_each_other">Keep both devices near each other. Do not turn off the devices and keep Signal open. Transfers are end-to-end encrypted.</string>
     <string name="DeviceTransfer__d_messages_so_far">%1$d messages so far…</string>
+    <!-- Filled in with total percentage of messages transferred -->
+    <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% of messages so far…</string>
     <string name="DeviceTransfer__cancel">Cancel</string>
     <string name="DeviceTransfer__try_again">Try again</string>
     <string name="DeviceTransfer__stop_transfer_question">Stop transfer?</string>
@@ -3306,6 +3334,8 @@
     <string name="RecipientBottomSheet_block">Block</string>
     <string name="RecipientBottomSheet_unblock">Unblock</string>
     <string name="RecipientBottomSheet_add_to_contacts">Add to contacts</string>
+    <!-- Error message that displays when a user tries to tap to view system contact details but has no app that supports it -->
+    <string name="RecipientBottomSheet_unable_to_open_contacts">Can\'t find an app able to open contacts.</string>
     <string name="RecipientBottomSheet_add_to_a_group">Add to a group</string>
     <string name="RecipientBottomSheet_add_to_another_group">Add to another group</string>
     <string name="RecipientBottomSheet_view_safety_number">View safety number</string>
@@ -3504,6 +3534,54 @@
     <string name="AccountSettingsFragment__account">Account</string>
     <string name="AccountSettingsFragment__youll_be_asked_less_frequently">You\'ll be asked less frequently over time</string>
     <string name="AccountSettingsFragment__require_your_signal_pin">Require your Signal PIN to register your phone number with Signal again</string>
+    <string name="AccountSettingsFragment__change_phone_number">Change phone number</string>
+
+    <!-- ChangeNumberFragment -->
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Use this to change your current phone number to a new phone number. You can’t undo this change.\n\nBefore continuing, make sure your new number can receive SMS or calls.</string>
+    <string name="ChangeNumberFragment__continue">Continue</string>
+    <string name="ChangeNumber__your_phone_number_has_been_changed">Your phone number has been changed.</string>
+
+    <!-- ChangeNumberEnterPhoneNumberFragment -->
+    <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Change Number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Your old number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Your new number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">New phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">The phone number you entered doesn\'t match your account\'s.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">You must specify your old number\'s country code</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">You must specify your old phone number</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">You must specify your new number\'s country code</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">You must specify your new phone number</string>
+
+    <!-- ChangeNumberVerifyFragment -->
+    <string name="ChangeNumberVerifyFragment__change_number">Change Number</string>
+    <string name="ChangeNumberVerifyFragment__verifying_s">Verifying %1$s</string>
+    <string name="ChangeNumberVerifyFragment__captcha_required">Captcha required</string>
+
+    <!-- ChangeNumberConfirmFragment -->
+    <string name="ChangeNumberConfirmFragment__change_number">Change number</string>
+    <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">You are about to change your phone number from %1$s to %2$s.\n\nBefore proceeding, please verify that the below number is correct.</string>
+    <string name="ChangeNumberConfirmFragment__edit_number">Edit number</string>
+
+    <!-- ChangeNumberRegistrationLockFragment -->
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signal Change Number - Need Help with PIN for Android (v2 PIN)</string>
+
+    <!-- ChangeNumberPinDiffersFragment -->
+    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PINs do not match</string>
+    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">The PIN associated with your new number is different from the PIN associated with your old one. Would you like to keep your old PIN or update it?</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Keep old PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__update_pin">Update PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Keep old pin?</string>
+
+    <!-- ChangeNumberLockActivity -->
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">It looks like you tried to change your number but we were unable to determine if it was successful.\n\nRechecking now…</string>
+    <string name="ChangeNumberLockActivity__change_status_confirmed">Change status confirmed</string>
+    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Your number has been confirmed as %1$s. If this is not your new number, please restart the change number process.</string>
+    <string name="ChangeNumberLockActivity__change_status_unconfirmed">Change status unconfirmed</string>
+    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">We could not determine the status of your change number request.\n\n(Error: %1$s)</string>
+    <string name="ChangeNumberLockActivity__retry">Retry</string>
+    <string name="ChangeNumberLockActivity__leave">Leave</string>
+    <string name="ChangeNumberLockActivity__submit_debug_log">Submit debug log</string>
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
@@ -3565,6 +3643,11 @@
     <string name="HelpFragment__licenced_under_the_gplv3">Licensed under the GPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
+    <string name="DataAndStorageSettingsFragment__media_quality">Media quality</string>
+    <string name="DataAndStorageSettingsFragment__sent_media_quality">Sent media quality</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Sending high quality media will use more data.</string>
+    <string name="DataAndStorageSettingsFragment__high">High</string>
+    <string name="DataAndStorageSettingsFragment__standard">Standard</string>
     <string name="DataAndStorageSettingsFragment__calls">Calls</string>
     <!-- KeyboardPagerFragment -->
     <string name="KeyboardPagerFragment_emoji">Emoji</string>
@@ -3597,6 +3680,7 @@
     <string name="ConversationSettingsFragment__search">Search</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Contact details</string>
     <string name="ConversationSettingsFragment__view_safety_number">View safety number</string>
     <string name="ConversationSettingsFragment__block">Block</string>
@@ -3659,6 +3743,37 @@
         <item quantity="other">Couldn\'t forward messages because they\'re no longer available.</item>
     </plurals>
     <string name="MultiselectForwardFragment__limit_reached">Limit reached</string>
+
+    <!-- Media V2 -->
+    <string name="MediaReviewFragment__add_a_message">Add a message</string>
+    <string name="MediaReviewFragment__add_a_reply">Add a reply</string>
+    <string name="MediaReviewFragment__send_to">Send to</string>
+
+    <string name="ImageEditorHud__cancel">Cancel</string>
+    <string name="ImageEditorHud__draw">Draw</string>
+    <string name="ImageEditorHud__write_text">Write text</string>
+    <string name="ImageEditorHud__add_a_sticker">Add a sticker</string>
+    <string name="ImageEditorHud__blur">Blur</string>
+    <string name="ImageEditorHud__done_editing">Done editing</string>
+    <string name="ImageEditorHud__clear_all">Clear all</string>
+    <string name="ImageEditorHud__undo">Undo</string>
+    <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Toggle between marker and highlighter</string>
+
+    <string name="MediaCountIndicatorButton__send">Send</string>
+
+    <string name="MediaReviewSelectedItem__tap_to_remove">Tap to remove</string>
+    <string name="MediaReviewSelectedItem__tap_to_select">Tap to select</string>
+    <string name="MediaReviewImagePageFragment__discard">Discard</string>
+    <string name="MediaReviewImagePageFragment__discard_changes">Discard changes?</string>
+    <string name="MediaReviewFragment__view_once_message">View once message</string>
+    <string name="MediaReviewFragment__one_or_more_items_were_too_large">One or more items were too large</string>
+    <string name="MediaReviewFragment__one_or_more_items_were_invalid">One or more items were invalid</string>
+    <string name="MediaReviewFragment__too_many_items_selected">Too many items selected</string>
+    <string name="MediaReviewImagePageFragment__youll_lose_any_changes">You\'ll lose any changes you\'ve made to this photo.</string>
+    <string name="ImageEditorHud__delete">Delete</string>
+    <string name="CameraFragment__failed_to_open_camera">Failed to open camera</string>
+    <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">You must select a badge</string>
+    <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Failed to update profile</string>
 
     <!-- EOF -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -3926,6 +4041,8 @@ Updated May 25, 2018\n
     <string name="ContactSelectionListItem__dot_s">· %1$s</string>
 
     <!-- DSLSettingsToolbar -->
+    <!-- Displayed in a toast when we fail to open the ringtone picker -->
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
 
     <!-- EOF -->
 

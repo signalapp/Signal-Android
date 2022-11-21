@@ -6,7 +6,6 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/media_keyboard_fragment_container"
-        android:name="org.thoughtcrime.securesms.keyboard.KeyboardPagerFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

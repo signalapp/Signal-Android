@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediasend;
 
+import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
@@ -22,11 +24,9 @@ import android.view.animation.DecelerateInterpolator;
 import android.view.animation.RotateAnimation;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
@@ -38,6 +38,9 @@ import com.bumptech.glide.request.transition.Transition;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
+import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.util.ServiceUtil;
@@ -65,7 +68,6 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private Controller                   controller;
   private OrderEnforcer<Stage>         orderEnforcer;
   private Camera1Controller.Properties properties;
-  private MediaSendViewModel           viewModel;
 
   public static Camera1Fragment newInstance() {
     return new Camera1Fragment();
@@ -74,8 +76,15 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (!(getActivity() instanceof Controller)) {
-      throw new IllegalStateException("Parent activity must implement the Controller interface.");
+
+    if (getActivity() instanceof Controller) {
+      this.controller = (Controller) getActivity();
+    } else if (getParentFragment() instanceof Controller) {
+      this.controller = (Controller) getParentFragment();
+    }
+
+    if (controller == null) {
+      throw new IllegalStateException("Parent must implement controller interface.");
     }
 
     WindowManager windowManager = ServiceUtil.getWindowManager(getActivity());
@@ -84,10 +93,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
     display.getSize(displaySize);
 
-    controller    = (Controller) getActivity();
     camera        = new Camera1Controller(TextSecurePreferences.getDirectCaptureCameraId(getContext()), displaySize.x, displaySize.y, this);
     orderEnforcer = new OrderEnforcer<>(Stage.SURFACE_AVAILABLE, Stage.CAMERA_PROPERTIES_AVAILABLE);
-    viewModel     = ViewModelProviders.of(requireActivity(), new MediaSendViewModel.Factory(requireActivity().getApplication(), new MediaRepository())).get(MediaSendViewModel.class);
   }
 
   @Nullable
@@ -104,6 +111,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     cameraPreview     = view.findViewById(R.id.camera_preview);
     controlsContainer = view.findViewById(R.id.camera_controls_container);
 
+    View cameraParent = view.findViewById(R.id.camera_preview_parent);
+
     onOrientationChanged(getResources().getConfiguration().orientation);
 
     cameraPreview.setSurfaceTextureListener(this);
@@ -111,14 +120,29 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     GestureDetector gestureDetector = new GestureDetector(flipGestureListener);
     cameraPreview.setOnTouchListener((v, event) -> gestureDetector.onTouchEvent(event));
 
-    viewModel.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
-    viewModel.getHudState().observe(getViewLifecycleOwner(), this::presentHud);
+    controller.getMostRecentMediaItem().observe(getViewLifecycleOwner(), this::presentRecentItemThumbnail);
+
+    view.addOnLayoutChangeListener((v, left, top, right, bottom, oldLeft, oldTop, oldRight, oldBottom) -> {
+      // Let's assume portrait for now, so 9:16
+      float aspectRatio = CameraFragment.getAspectRatioForOrientation(getResources().getConfiguration().orientation);
+      float width       = right - left;
+      float height      = Math.min((1f / aspectRatio) * width, bottom - top);
+
+      ViewGroup.LayoutParams params = cameraParent.getLayoutParams();
+
+      // If there's a mismatch...
+      if (params.height != (int) height) {
+        params.width  = (int) width;
+        params.height = (int) height;
+
+        cameraParent.setLayoutParams(params);
+      }
+    });
   }
 
   @Override
   public void onResume() {
     super.onResume();
-    viewModel.onCameraStarted();
     camera.initialize();
 
     if (cameraPreview.isAvailable()) {
@@ -142,6 +166,37 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     super.onPause();
     camera.release();
     orderEnforcer.reset();
+  }
+
+  @Override
+  public void fadeOutControls(@NonNull Runnable onEndAction) {
+    controlsContainer.setEnabled(false);
+    controlsContainer.animate()
+                     .setInterpolator(MediaAnimations.getInterpolator())
+                     .setDuration(250)
+                     .alpha(0f)
+                     .setListener(new AnimationCompleteListener() {
+                       @Override
+                       public void onAnimationEnd(Animator animation) {
+                         controlsContainer.setEnabled(true);
+                         onEndAction.run();
+                       }
+                     });
+  }
+
+  @Override
+  public void fadeInControls() {
+    controlsContainer.setEnabled(false);
+    controlsContainer.animate()
+                     .setInterpolator(MediaAnimations.getInterpolator())
+                     .setDuration(250)
+                     .alpha(1f)
+                     .setListener(new AnimationCompleteListener() {
+                       @Override
+                       public void onAnimationEnd(Animator animation) {
+                         controlsContainer.setEnabled(true);
+                       }
+                     });
   }
 
   @Override
@@ -203,15 +258,13 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     }
   }
 
-  private void presentHud(@Nullable MediaSendViewModel.HudState state) {
-    if (state == null) return;
+  @Override
+  public void presentHud(int selectedMediaCount) {
+    MediaCountIndicatorButton countButton = controlsContainer.findViewById(R.id.camera_review_button);
 
-    View     countButton     = controlsContainer.findViewById(R.id.camera_count_button);
-    TextView countButtonText = controlsContainer.findViewById(R.id.mediasend_count_button_text);
-
-    if (state.getButtonState() == MediaSendViewModel.ButtonState.COUNT) {
+    if (selectedMediaCount > 0) {
       countButton.setVisibility(View.VISIBLE);
-      countButtonText.setText(String.valueOf(state.getSelectionCount()));
+      countButton.setCount(selectedMediaCount);
     } else {
       countButton.setVisibility(View.GONE);
     }
@@ -222,7 +275,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     captureButton = requireView().findViewById(R.id.camera_capture_button);
 
     View galleryButton = requireView().findViewById(R.id.camera_gallery_button);
-    View countButton   = requireView().findViewById(R.id.camera_count_button);
+    View countButton   = requireView().findViewById(R.id.camera_review_button);
 
     captureButton.setOnClickListener(v -> {
       captureButton.setEnabled(false);
@@ -248,8 +301,6 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
-
-    viewModel.onCameraControlsInitialized();
   }
 
   private void onCaptureClicked() {

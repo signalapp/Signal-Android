@@ -27,7 +27,7 @@ import okhttp3.Response;
 /**
  * Data source for GiphyImages.
  */
-final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
+final class GiphyMp4PagedDataSource implements PagedDataSource<String, GiphyImage> {
 
   private static final Uri BASE_GIPHY_URI = Uri.parse("https://api.giphy.com/v1/gifs/")
                                                .buildUpon()
@@ -74,6 +74,16 @@ final class GiphyMp4PagedDataSource implements PagedDataSource<GiphyImage> {
       Log.w(TAG, "Failed to load content", e);
       return new LinkedList<>();
     }
+  }
+
+  @Override
+  public String getKey(@NonNull GiphyImage giphyImage) {
+    return giphyImage.getGifUrl();
+  }
+
+  @Override
+  public @Nullable GiphyImage load(String url) {
+    throw new UnsupportedOperationException("Not implemented!");
   }
 
   private @NonNull GiphyResponse performFetch(int start, int length) throws IOException {

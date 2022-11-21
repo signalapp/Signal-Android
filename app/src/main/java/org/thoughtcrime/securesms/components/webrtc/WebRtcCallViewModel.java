@@ -20,6 +20,7 @@ import org.signal.core.util.ThreadUtil;
 import org.thoughtcrime.securesms.components.sensors.DeviceOrientationMonitor;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
@@ -341,6 +342,9 @@ public class WebRtcCallViewModel extends ViewModel {
       case CALL_DISCONNECTED:
         callState = WebRtcControls.CallState.ENDING;
         break;
+      case CALL_DISCONNECTED_GLARE:
+        callState = WebRtcControls.CallState.INCOMING;
+        break;
       case NETWORK_FAILURE:
         callState = WebRtcControls.CallState.ERROR;
         break;
@@ -440,7 +444,7 @@ public class WebRtcCallViewModel extends ViewModel {
     if (recipient.isGroup()) {
       repository.getIdentityRecords(recipient, identityRecords -> {
         if (identityRecords.isUntrusted(false) || identityRecords.isUnverified(false)) {
-          List<IdentityDatabase.IdentityRecord> records = identityRecords.getUnverifiedRecords();
+          List<IdentityRecord> records = identityRecords.getUnverifiedRecords();
           records.addAll(identityRecords.getUntrustedRecords());
           events.postValue(new Event.ShowGroupCallSafetyNumberChange(records));
         } else {
@@ -475,13 +479,13 @@ public class WebRtcCallViewModel extends ViewModel {
     }
 
     public static class ShowGroupCallSafetyNumberChange extends Event {
-      private final List<IdentityDatabase.IdentityRecord> identityRecords;
+      private final List<IdentityRecord> identityRecords;
 
-      public ShowGroupCallSafetyNumberChange(@NonNull List<IdentityDatabase.IdentityRecord> identityRecords) {
+      public ShowGroupCallSafetyNumberChange(@NonNull List<IdentityRecord> identityRecords) {
         this.identityRecords = identityRecords;
       }
 
-      public @NonNull List<IdentityDatabase.IdentityRecord> getIdentityRecords() {
+      public @NonNull List<IdentityRecord> getIdentityRecords() {
         return identityRecords;
       }
     }

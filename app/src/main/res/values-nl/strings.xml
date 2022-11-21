@@ -74,7 +74,7 @@
   <string name="AttachmentKeyboard_payment">Overschrijving</string>
   <!--AttachmentManager-->
   <string name="AttachmentManager_cant_open_media_selection">Geen app gevonden om media te selecteren.</string>
-  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Pigeon heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal heeft toegang nodig tot de externe opslagruimte om afbeeldingen, video\'s of audio te kunnen verzenden, maar deze toestemming is permanent geweigerd. Ga naar de instellingen, tik op  ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Pigeon heeft toegang nodig tot de contacten om contactinformatie in Pigeon weer te geven, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Contacten’ in.</string>
   <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Pigeon heeft toegang nodig tot de locatie om locaties te kunnen verzenden aan je gesprekspartners, maar deze toestemming is pertinent geweigerd. Ga naar de instellingen, tik op ‘Toestemmingen’ en schakel ‘Locatie’ in.</string>
   <string name="AttachmentManager_signal_requires_the_camera_permission_in_order_to_take_photos_but_it_has_been_permanently_denied">Pigeon heeft toegang nodig tot de camera om foto\'s te kunnen maken, maar deze toegang is pertinent geweigerd. Ga naar de instellingen, selecteer ‘Toestemmingen’ en schakel ‘Camera’ in.</string>
@@ -86,8 +86,7 @@
   <!--BlockedUsersActivity-->
   <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
   <string name="BlockedUsersActivity__add_blocked_user">Contactpersoon aan blokkeerlijst toevoegen</string>
-  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.
-</string>
+  <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat, en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
   <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
   <string name="BlockedUserActivity__s_will_not_be_able_to">“%1$s” kan jou nog steeds bellen of berichten sturen en weet dus niet dat hij of zijn geblokkeerd is, maar je zult die oproepen en berichten niet zien.</string>
@@ -102,7 +101,7 @@
   <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">Groepsleden zullen je niet langer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">Groepsleden zullen je weer aan deze groep kunnen toevoegen.</string>
   <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Jullie zullen elkaar weer kunnen bellen en berichten naar elkaar kunnen verzenden en je profielnaam en -foto zullen voor hem of haar weer worden bijgewerkt.</string>
-  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen nergens aan zien dat ze geblokkeerd zijn; ze lijken je nog steeds te kunnen bellen, berichten lijken nog steeds te worden afgeleverd en je profielfoto verdwijnt niet. Je zult hun oproepen en berichten echter niet zien.</string>
+  <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Geblokkeerde personen kunnen niet zien dat ze geblokkeerd zijn: het lijkt voor hen alsof je telefoon over gaat en alsof berichten worden afgeleverd. Je huidige profielnaam en -foto blijven voor geblokkeerde personen zichtbaar maar worden ze niet bijgewerkt als je een nieuwe foto of naam instelt.</string>
   <string name="BlockUnblockDialog_unblock_s">%1$s deblokkeren?</string>
   <string name="BlockUnblockDialog_unblock">Deblokkeren</string>
   <string name="BlockUnblockDialog_block">Blokkeren</string>
@@ -204,7 +203,6 @@
   <string name="ConversationItem_this_message_was_deleted">Dit bericht is gewist.</string>
   <string name="ConversationItem_you_deleted_this_message">Je hebt dit bericht gewist.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset">Opnieuw opzetten</string>>
   <string name="ConversationActivity_add_attachment">Bijlage toevoegen</string>
   <string name="ConversationActivity_select_contact_info">Tik op contactinformatie</string>
   <string name="ConversationActivity_compose_message">Bericht opstellen</string>
@@ -258,7 +256,7 @@
   <string name="ConversationActivity_no_results">Geen resultaten</string>
   <string name="ConversationActivity_sticker_pack_installed">Stickerpakket geïnstalleerd</string>
   <string name="ConversationActivity_new_say_it_with_stickers">Nieuw: zeg het met stickers</string>
-  <string name="ConversationActivity_cancel">Audio-opname annuleren</string>
+  <string name="ConversationActivity_cancel">Annuleren</string>
   <string name="ConversationActivity_delete_conversation">Gesprek verwijderen?</string>
   <string name="ConversationActivity_delete_and_leave_group">Groep verwijderen en verlaten?</string>
   <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">Dit gesprek zal worden gewist van al je apparaten.</string>
@@ -287,13 +285,13 @@
   <string name="ConversationFragment_save_to_sd_card">Opslaan naar telefoonopslag?</string>
   <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
     <item quantity="one">Als je dit bestand opslaat op de telefoonopslag wordt het niet versleuteld opgeslagen en hebben alle andere apps op je apparaat toegang tot dit bestand.\n\nDoorgaan?</item>
-    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze niet versleuteld opgeslagen en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
+    <item quantity="other">Als je deze %1$d bestanden opslaat op de telefoonopslag worden ze niet versleuteld en hebben alle andere apps op je apparaat ook toegang tot deze bestanden.\n\nDoorgaan?</item>
   </plurals>
   <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
     <item quantity="one">Fout tijdens het opslaan van de bijlage op de telefoonopslag!</item>
     <item quantity="other">Fout tijdens het opslaan van de bijlagen op de telefoonopslag!</item>
   </plurals>
-  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar telefoonopslag!</string>
+  <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Kan niet schrijven naar opslag!</string>
   <plurals name="ConversationFragment_saving_n_attachments">
     <item quantity="one">Bijlage aan het opslaan</item>
     <item quantity="other">%1$d bijlagen aan het opslaan</item>
@@ -303,9 +301,9 @@
     <item quantity="other">%1$d bijlagen aan het opslaan naar telefoonopslag …</item>
   </plurals>
   <string name="ConversationFragment_pending">In afwachting …</string>
-  <string name="ConversationFragment_push">Internet (Pigeon-protocol)</string>
-  <string name="ConversationFragment_mms">Mms (onbeveiligd)</string>
-  <string name="ConversationFragment_sms">Sms (onbeveiligd)</string>
+  <string name="ConversationFragment_push">Internet (versleuteld met Signal-protocol)</string>
+  <string name="ConversationFragment_mms">Mms (niet versleuteld)</string>
+  <string name="ConversationFragment_sms">Sms (niet versleuteld)</string>
   <string name="ConversationFragment_deleting">Aan het wissen</string>
   <string name="ConversationFragment_deleting_messages">Berichten aan het wissen …</string>
   <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
@@ -318,16 +316,18 @@
   <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Je kunt elk bericht naar links vegen om snel een reactie te schijven</string>
   <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Uitgaande eenmaligeweergave-media worden onmiddellijk gewist zodra ze zijn verzonden. Je kunt je eigen media dus niet terugzien. — Gebruik eenmaligeweergave-berichten niet ter beveiliging, want Signal kan niet garanderen dat een bericht op het apparaat van een ander daadwerkelijk wordt gewist.</string>
   <string name="ConversationFragment_you_already_viewed_this_message">Je hebt dit eenmaligeweergave-bericht al weergegeven</string>
-  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nAls je de Pigeon app op een ander apparaat gekoppeld hebt, dan worden alle notities van na het moment van koppelen gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
+  <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Je kunt in dit speciale gesprek notities voor jezelf achterlaten.\nEn als je gebruik maakt van gekoppelde apparaten, dan zullen noties vanaf het moment van koppelen worden gesynchroniseerd. Je kunt dus notities toevoegen en teruglezen vanaf al je gekoppelde apparaten.</string>
   <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam.</string>
   <string name="ConversationFragment__tap_to_review">Tik hier om ze te vergelijken</string>
-  <string name="ConversationFragment__review_requests_carefully">Overweeg dit verzoek zorgvuldig</string>
+  <string name="ConversationFragment__review_requests_carefully">Overweeg dit gespreksverzoek zorgvuldig:</string>
   <string name="ConversationFragment__signal_found_another_contact_with_the_same_name">Pigeon heeft een ander contactpersoon gevonden met dezelfde naam.</string>
   <string name="ConversationFragment_contact_us">Neem contact met ons op</string>
   <string name="ConversationFragment_verify">Verifiëren</string>
   <string name="ConversationFragment_not_now">Niet nu</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Je veiligheidsnummer met %s is veranderd</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Je veiligheidsnummer met %s is veranderd. Waarschijnlijk heeft hij of zij Signal opnieuw geïnstalleerd of is hij of zij op een nieuwe telefoon overgestapt. Als je echt zeker wilt weten dat je nog steeds met dezelfde persoon communiceert, tik dan op ‘Verifiëren’ om het veiligheidsnummer na te kijken. Voor de meeste mensen is deze extra controle niet nodig.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
+  <string name="ConversationFragment__s_on">%1$s ingeschakeld</string>
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Er is geen browser op je apparaat geïnstalleerd.</string>
   <!--ConversationListFragment-->
@@ -349,8 +349,56 @@
   <string name="ConversationListFragment_undo">ONGEDAAN MAKEN</string>
   <plurals name="ConversationListFragment_moved_conversations_to_inbox">
     <item quantity="one">Gesprek naar postvak IN verplaatst</item>
-    <item quantity="other"> %d gesprekken naar postvak IN verplaatst</item>
+    <item quantity="other">%d gesprekken naar postvak IN verplaatst</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Gelezen</item>
+    <item quantity="other">Gelezen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Ongelezen</item>
+    <item quantity="other">Ongelezen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Vast­prikken</item>
+    <item quantity="other">Vast­prikken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Losmaken</item>
+    <item quantity="other">Losmaken</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Meldingen dempen</item>
+    <item quantity="other">Meldingen dempen</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Meldingen niet langer dempen</item>
+    <item quantity="other">Meldingen niet langer dempen</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Selecteren</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Archiveren</item>
+    <item quantity="other">Archiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Dearchiveren</item>
+    <item quantity="other">Dearchiveren</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Alles selecteren</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d geselecteerd</item>
+    <item quantity="other">%d geselecteerd</item>
+  </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Meldingsprofiel</string>
+  <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Schakel hier je meldingsprofiel in of uit.</string>
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s ingeschakeld</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Sleuteluitwisselingsbericht</string>
   <!--ConversationListItemAction-->
@@ -388,16 +436,16 @@
   <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Back-upbestanden worden versleuteld met een wachtwoord en worden alleen offline op je eigen apparaat opgeslagen. Als je het maken van back-upbestanden inschakelt maakt Signal automatisch elke dag een nieuw back-upbestand van al je gesprekken en media. Alleen de twee meest recente geslaagde back-upbestanden blijven bewaard, oudere back-upbestanden worden overschreven.</string>
   <string name="BackupsPreferenceFragment__create_backup">Nu een back-upbestand maken</string>
   <string name="BackupsPreferenceFragment__last_backup">Meest recente back-upbestand: %1$s</string>
-  <string name="BackupsPreferenceFragment__backup_folder">Back-updirectory</string>
+  <string name="BackupsPreferenceFragment__backup_folder">Back-uplocatie</string>
   <string name="BackupsPreferenceFragment__verify_backup_passphrase">Back-upwachtwoord verifiëren</string>
-  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord onthouden hebt</string>
+  <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test je back-upwachtwoord om na te gaan of je het juiste wachtwoord hebt onthouden</string>
   <string name="BackupsPreferenceFragment__turn_on">Inschakelen</string>
   <string name="BackupsPreferenceFragment__turn_off">Uitschakelen</string>
   <string name="BackupsPreferenceFragment__to_restore_a_backup">Om je gegevens uit een bestaand back-upbestand terug te plaatsen moet je Signal opnieuw installeren. Open dan de net geïnstalleerde Signal app en tik op “Back-upgegevens terugzetten”. %1$s</string>
   <string name="BackupsPreferenceFragment__learn_more">Meer leren hierover</string>
   <string name="BackupsPreferenceFragment__in_progress">Wordt nu uitgevoerd …</string>
   <string name="BackupsPreferenceFragment__d_so_far">Tot nu toe %1$d …</string>
-  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de externe opslagruimte om back-upbestanden te kunnen maken, maar deze is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal heeft toegang nodig tot de opslagruimte om back-upbestanden te kunnen maken, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <!--CustomDefaultPreference-->
   <string name="CustomDefaultPreference_using_custom">Zelf ingesteld: %s</string>
   <string name="CustomDefaultPreference_using_default">Standaard in gebruik: %s</string>
@@ -593,8 +641,7 @@
     <item quantity="other">%1$d uitnodigingen intrekken</item>
   </plurals>
   <plurals name="PendingMembersActivity_error_revoking_invite">
-    <item quantity="one">Fout bij het intrekken van een uitnodiging
-</item>
+    <item quantity="one">Fout bij het intrekken van een uitnodiging</item>
     <item quantity="other">Fout bij het intrekken van uitnodigingen</item>
   </plurals>
   <!--RequestingMembersFragment-->
@@ -660,6 +707,8 @@
   <string name="ManageGroupActivity_block_group">Groep blokkeren en verlaten</string>
   <string name="ManageGroupActivity_unblock_group">Groep deblokkeren</string>
   <string name="ManageGroupActivity_leave_group">Groep verlaten</string>
+  <string name="ManageProfileFragment_badges">Badges</string>
+  <string name="ManageProfileFragment__edit_photo">Profielfoto aanpassen</string>
   <string name="ManageGroupActivity_mute_notifications">Meldingen dempen</string>
   <string name="ManageGroupActivity_custom_notifications">Aangepaste meldingen</string>
   <string name="ManageGroupActivity_mentions">Vermeldingen</string>
@@ -736,6 +785,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Ingeschakeld</string>
   <string name="CustomNotificationsDialogFragment__disabled">Uitgeschakeld</string>
   <string name="CustomNotificationsDialogFragment__default">Systeemstandaard</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Onbekend</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Deelbare groepsverwijzing</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Beheren &amp; delen</string>
@@ -826,6 +876,7 @@
   <string name="Job_working_in_the_background">Bezig op de achtergrond …</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Meer leren hierover</string>
+  <string name="SpanUtil__read_more">Meer lezen</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kan bericht niet vinden</string>
   <string name="LongMessageActivity_message_from_s">Volledige bericht van %1$s</string>
@@ -855,18 +906,23 @@
   <string name="MediaOverviewActivity_Sort_by">Sorteren op</string>
   <string name="MediaOverviewActivity_Newest">Nieuwste bovenaan</string>
   <string name="MediaOverviewActivity_Oldest">Oudste bovenaan</string>
-  <string name="MediaOverviewActivity_Storage_used">Hoeveelheid opslagruimte</string>
+  <string name="MediaOverviewActivity_Storage_used">Gebruikte opslagruimte</string>
   <string name="MediaOverviewActivity_All_storage_use">Alle opgeslagen bestanden</string>
   <string name="MediaOverviewActivity_Grid_view_description">Rasterweergave</string>
   <string name="MediaOverviewActivity_List_view_description">Lijstweergave</string>
   <string name="MediaOverviewActivity_Selected_description">Geselecteerd</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d item %2$s</item>
-    <item quantity="other">%1$d items %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Alles selecteren</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Onversleuteld opslaan</item>
+    <item quantity="other">Onversleuteld opslaan</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d item</item>
-    <item quantity="other">%1$d items</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Wissen</item>
+    <item quantity="other">Wissen</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d geselecteerd (%2$s)</item>
+    <item quantity="other">%1$d geselecteerd (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Bestand</string>
   <string name="MediaOverviewActivity_audio">Audio</string>
@@ -1103,6 +1159,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Je hebt je veiligheidsnummer met %s gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Je hebt je veiligheidsnummer met %s vanaf een ander apparaat gemarkeerd als ‘niet geverifieerd’</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Een bericht van %s kan niet worden afgeleverd</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s heeft zijn of haar telefoonnummer gewijzigd.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s heeft een groepsoproep gestart · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s is in deze groepsoproep aanwezig · %2$s</string>
@@ -1207,7 +1264,7 @@
   <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">Als je je je pincode niet kan herinneren, dan kun je een nieuwe pincode aanmaken. Je kunt Pigeon dan weer gebruiken, maar sommige instellingen waaronder je profielnaam en -foto zullen dan niet bewaard blijven.</string>
   <string name="PinRestoreEntryFragment_create_new_pin">Nieuwe pincode aanmaken</string>
   <string name="PinRestoreEntryFragment_contact_support">Neem contact op met ondersteuning</string>
-  <string name="PinRestoreEntryFragment_cancel">Audio-opname annuleren</string>
+  <string name="PinRestoreEntryFragment_cancel">Annuleren</string>
   <string name="PinRestoreEntryFragment_skip">Overslaan</string>
   <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
     <item quantity="one">Je hebt nog %1$d poging resterend. Als je geen pogingen meer over hebt, dan kun je nog wel een nieuwe pincode aanmaken. Je kunt Pigeon dan wel weer registreren met dit telefoonnummer, maar sommige instellingen zoals je profielnaam en -foto zullen dan verloren gaan.</item>
@@ -1287,7 +1344,7 @@
   <string name="WebRtcCallView__your_video_is_off">Je camera staat uit</string>
   <string name="WebRtcCallView__connecting">Verbinding aan het maken …</string>
   <string name="WebRtcCallView__reconnecting">Opnieuw aan het verbinden …</string>
-  <string name="WebRtcCallView__joining">Verbinden met groep aan het maken …</string>
+  <string name="WebRtcCallView__joining">Verbinden met de groep aan het maken …</string>
   <string name="WebRtcCallView__disconnected">Verbinding verbroken</string>
   <string name="WebRtcCallView__signal_will_ring_s">Signal zal %1$s bellen</string>
   <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal zal %1$s en %2$s bellen</string>
@@ -1320,8 +1377,8 @@
   <string name="WebRtcCallView__s_and_s_are_in_this_call">Gesprek met %1$s en %2$s</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s laat zijn of haar scherm zien</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
-    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig.</item>
-    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig.</item>
+    <item quantity="one">In dit gesprek zijn %1$s, %2$s en %3$d andere aanwezig</item>
+    <item quantity="other">In dit gesprek zijn %1$s, %2$s en %3$d anderen aanwezig</item>
   </plurals>
   <string name="WebRtcCallView__flip">Omdraaien</string>
   <string name="WebRtcCallView__speaker">Luidspreker</string>
@@ -1367,10 +1424,16 @@
   <string name="RegistrationActivity_no_browser">Kan deze verwijzing niet openen; geen webbrowser gevonden.</string>
   <string name="RegistrationActivity_more_information">Meer informatie</string>
   <string name="RegistrationActivity_less_information">Minder informatie</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon zal je om een aantal toestemmingen vragen: Pigeon moet je contactenlijst lezen om je opgeslagen contactpersonen weer te geven als optie om berichten naar te verzenden en om beveiligde oproepen mee te beginnen.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon heeft toegang nodig tot de contactenlijst van je telefoon om je contactpersonen te kunnen weergeven als opties om beveiligde gesprekken mee te beginnen en om beveiligd mee te bellen</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon zal een aantal toestemmingen vragen:
++1. Je contactenlijst lezen om personen weer te geven naar wie je berichten kunt verzenden. Je contactenlijst blijft altijd onleesbaar voor Signal\'s servers.
++2. Bestanden lezen van en schrijven naar de externe opslag, om bestanden bij te voegen als bijlagen en om ontvangen bijlagen op te kunnen slaan.
++3. De telefoonstatus lezen om te voorkomen dat Signal-oproepen je andere oproepen verstoren.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon moet je contactenlijst lezen om personen weer te geven naar wie je berichten kunt sturen en met wie je oproepen kunt beginnen. Je contactenlijst blijft altijd onleesbaar voor Signal\'s servers.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Je hebt te veel pogingen ondernomen om Pigeon voor dit telefoonnummer te registreren. Probeer het later opnieuw.</string>
-  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Ga na dat je apparaat internetverbinding heeft en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_unable_to_connect_to_service">Het lukt niet om te verbinden met Signals servers. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Afwijkend telefoonnummerformaat</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Het door jou ingevulde telefoonnummer (%1$s) heeft een afwijkend formaat.\n\nBedoelde je %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - Telefoonnummerformaat</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Als je Pigeon toestaat sms-berichten te lezen, kan het je registratiecode automatisch detecteren om je telefoonnummer eenvoudig te verifiëren.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Je bent nu %d stap verwijderd van het indienen van een foutopsporingslog.</item>
@@ -1386,7 +1449,7 @@
   <string name="RegistrationActivity_pigeon_enables_you_to_use_signal">Pigeon stelt u in staat om Signal te gebruiken op de MP02.</string>
   <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Voer je telefoonnummer in om te beginnen</string>
   <string name="RegistrationActivity_enter_your_phone_number">Voer je telefoonnummer in</string>
-  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen. Providerkosten zijn mogelijk van toepassing.</string>
+  <string name="RegistrationActivity_you_will_receive_a_verification_code">Je zult een verificatiecode ontvangen.</string>
   <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer de code in die we hebben verzonden naar %s</string>
   <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verzeker je ervan dat je telefoon netwerkbereik heeft zodat je een sms of oproep kunt ontvangen</string>
   <string name="RegistrationActivity_phone_number_description">Telefoonnummer</string>
@@ -1421,6 +1484,8 @@
   <string name="SharedContactView_invite_to_signal">Nodig contacten uit</string>
   <string name="SharedContactView_message">Pigeon-gesprek openen</string>
   <string name="ThreadRecord_delivery_issue">Afleveringsprobleem</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Meer opties</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Correct! Pigeon zal je later opnieuw vragen of je je pincode nog weet.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Correct! Pigeon zal je morgen opnieuw vragen of je je pincode nog weet.</string>
@@ -1578,7 +1643,7 @@
   <string name="MediaPreviewActivity_you">Door jou verzonden</string>
   <string name="MediaPreviewActivity_unssuported_media_type">Niet-ondersteund mediatype</string>
   <string name="MediaPreviewActivity_draft">Concept</string>
-  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Pigeon heeft toegang tot externe opslagruimte nodig om iets op te slaan op de externe opslag, maar deze toegang is pertinent geweigerd. Ga naar de instellingen voor deze app, tik op ‘Machtigingen’ en schakel ‘Opslagruimte’ in.</string>
+  <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal heeft toegang tot externe opslag nodig om iets op te slaan op de externe opslag, maar deze is permanent geweigerd. Ga naar de instellingen voor deze app, tik op ‘App-machtigingen’ en schakel ‘Opslagruimte’ in.</string>
   <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Kan niet opslaan naar externe opslag zonder machtiging</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_title">Bericht wissen?</string>
   <string name="MediaPreviewActivity_media_delete_confirmation_message">Dit bericht zal alleen voor jou onherroepelijk gewist worden, maar dus niet voor je gesprekspartner(s).</string>
@@ -1612,6 +1677,7 @@
   <string name="MessageNotifier_reacted_s_to_s">reageerde met %1$s op “%2$s”.</string>
   <string name="MessageNotifier_reacted_s_to_your_video">reageerde met %1$s op je video.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">reageerde met %1$s op je afbeelding.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reageerde met %1$s op je GIF.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">reageerde met %1$s op je bestand.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">reageerde met %1$s op je audio.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">reageerde met %1$s op je eenmaligeweergave-media.</string>
@@ -1660,7 +1726,7 @@
   </plurals>
   <!--UnauthorizedReminder-->
   <string name="UnauthorizedReminder_device_no_longer_registered">Apparaat niet langer geregistreerd</string>
-  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je je telefoonnummer met Pigeon op een ander apparaat hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
+  <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Dit komt waarschijnlijk doordat je vanaf een ander apparaat je telefoonnummer bij Signal hebt geregistreerd. Tik hier om opnieuw te registreren.</string>
   <!--VideoPlayer-->
   <string name="VideoPlayer_error_playing_video">Fout bij afspelen van video</string>
   <!--WebRtcCallActivity-->
@@ -1684,7 +1750,7 @@
   <!--WebRtcAudioOutputToggle-->
   <string name="WebRtcAudioOutputToggle__audio_output">Audio-uitvoer</string>
   <string name="WebRtcAudioOutputToggle__phone_earpiece">Telefoonoortje</string>
-  <string name="WebRtcAudioOutputToggle__speaker">Luidspreker</string>
+  <string name="WebRtcAudioOutputToggle__speaker">Luid­spreker</string>
   <string name="WebRtcAudioOutputToggle__bluetooth">Bluetooth</string>
   <!--WebRtcCallControls-->
   <string name="WebRtcCallControls_tap_to_enable_your_video">Tik om je video in te schakelen</string>
@@ -1771,7 +1837,7 @@
   <string name="conversation_activity__quick_attachment_drawer_record_and_send_audio_description">Geluid opnemen en verzenden</string>
   <string name="conversation_activity__quick_attachment_drawer_lock_record_description">Vergrendel opnemen van audio</string>
   <string name="conversation_activity__enable_signal_for_sms">Pigeon gebruiken om een sms-bericht te verzenden</string>
-  <string name="conversation_activity__message_could_not_be_sent">het bericht kon niet worden verzonden. Ga na dat je apparaat verbonden is met internet of met je sms-provider en probeer het opnieuw.</string>
+  <string name="conversation_activity__message_could_not_be_sent">Het bericht kon niet worden verzonden. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <!--conversation_input_panel-->
   <string name="conversation_input_panel__slide_to_cancel">Veeg om te annuleren</string>
   <string name="conversation_input_panel__cancel">Audio-opname annuleren</string>
@@ -1793,6 +1859,7 @@
   <string name="ConversationUpdateItem_call_is_full">De oproep is vol</string>
   <string name="ConversationUpdateItem_invite_friends">Kennissen uitnodigen</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Oproepmeldingen inschakelen</string>
+  <string name="ConversationUpdateItem_update_contact">Contactpersoon aanpassen</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Je hebt met deze persoon geen gemeenschappelijke groep: overweeg dit gespreksverzoek zorgvuldig.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Er is in deze groep geen lid met wie je al een gesprek voert: overweeg deze uitnodiging zorgvuldig.</string>
   <string name="ConversationUpdateItem_view">Weergeven</string>
@@ -1804,6 +1871,7 @@
   <string name="QuoteView_audio">Audio</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Afbeelding</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Eenmaligeweergave-media</string>
   <string name="QuoteView_sticker">Sticker</string>
   <string name="QuoteView_document">Document</string>
@@ -1811,6 +1879,13 @@
   <string name="QuoteView_original_missing">Oorspronkelijk bericht niet gevonden</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Scroll naar bodem</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Bubbels zijn een Android functionaliteit die je voor elk Signal-gesprek afzonderlijk kunt in- of uitschakelen.</string>
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Niet nu</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Uitschakelen</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Veiligheidsnummer(s) veranderd</string>
   <string name="safety_number_change_dialog__accept">Aanvaarden</string>
@@ -1885,6 +1960,16 @@
   <string name="IdentityUtil_unverified_dialog_one">Je veiligheidsnummer met %1$s is veranderd en is niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat %1$s Pigeon opnieuw heeft geïnstalleerd.</string>
   <string name="IdentityUtil_unverified_dialog_two">Je veiligheidsnummers met %1$s en %2$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Pigeon opnieuw geïnstalleerd hebben.</string>
   <string name="IdentityUtil_unverified_dialog_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn niet langer geverifieerd. Dit kan betekenen dat iemand je communicatie probeert te onderscheppen, of gewoon dat ze Pigeon opnieuw geïnstalleerd hebben.</string>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Maak een keuze \-\-</item>
+    <item>Er werkt iets niet zoals het hoort</item>
+    <item>Verzoek voor nieuwe functionaliteit</item>
+    <item>Vraag</item>
+    <item>Terugkoppeling</item>
+    <item>Iets anders</item>
+    <item>Overschrijvingen (MobileCoin)</item>
+    <item>Donaties (maandelijks of eenmalig)</item>
+  </string-array>
   <string name="IdentityUtil_untrusted_dialog_one">Je veiligheidsnummer met %s is zojuist veranderd.</string>
   <string name="IdentityUtil_untrusted_dialog_two">Je veiligheidsnummers met %1$s en %2$s zijn zojuist veranderd.</string>
   <string name="IdentityUtil_untrusted_dialog_many">Je veiligheidsnummers met %1$s, %2$s en %3$s zijn zojuist veranderd.</string>
@@ -1958,6 +2043,7 @@
   <string name="EditAboutFragment_about">Over mij</string>
   <string name="EditAboutFragment_write_a_few_words_about_yourself">Schijf een paar woorden over jezelf …</string>
   <string name="EditAboutFragment_count">%d/%d</string>
+  <string name="EditAboutFragment_taking_a_break">Ik neem even een pauze</string>
   <!--EditProfileFragment-->
   <string name="EditProfileFragment__edit_group">Groep aanpassen</string>
   <string name="EditProfileFragment__group_name">Groepsnaam</string>
@@ -1987,10 +2073,10 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="unknown_sender_view__add_to_contacts">AAN CONTACTEN TOEVOEGEN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">NIET TOEVOEGEN, MAAR MIJN PROFIEL WEL ZICHTBAAR MAKEN</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Als je wilt verifiëren dat je rechtstreeks met %s communiceert zonder dat je communicatie wordt onderschept, ga dan na dat het bovenstaande nummer overeen komt met het nummer op zijn / haar apparaat. Je kunt ook de QR-code op zijn / haar telefoon scannen, of hem / haar vragen jouw QR-code te scannen. <a href="https://signal.org/redirect/safety-numbers">Meer leren hierover.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Tik om te scannen</string>
   <string name="verify_display_fragment__loading">Aan het laden …</string>
-  <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Ik heb deze contactpersoon geverifieerd</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Veiligheidsnummer doorsturen</string>
   <!--webrtc_answer_decline_button-->
@@ -2048,15 +2134,6 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="HelpFragment__could_not_upload_logs">Logs uploaden is mislukt</string>
   <string name="HelpFragment__signal_support">Pigeon-ondersteuning</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Probeer zo beschrijvend mogelijk te zijn om ons te helpen het probleem te begrijpen.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Maak een keuze --</item>
-    <item>Er werkt iets niet zoals het hoort</item>
-    <item>Verzoek voor nieuwe functionaliteit</item>
-    <item>Vraag</item>
-    <item>Terugkoppeling</item>
-    <item>Iets anders</item>
-    <item>Overschrijvingen</item>
-  </string-array>
   <string name="HelpFragment__no_email_app_found">Geen e-mail-app gevonden op je apparaat.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
@@ -2122,7 +2199,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__enable_passphrase">Appvergrendeling met wachtwoord inschakelen</string>
   <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Vergrendel de Pigeon -app en -meldingen met een wachtwoord</string>
   <string name="preferences__screen_security">Meekijkpreventie</string>
-  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="preferences__disable_screen_security_to_allow_screen_shots">Bescherm je gesprekken op je eigen telefoon tegen schermopnames vanuit andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Pigeon automatisch vergrendelen na een bepaalde periode van inactiviteit</string>
   <string name="preferences__inactivity_timeout_passphrase">Vergrendeling bij inactiviteit</string>
   <string name="preferences__inactivity_timeout_interval">Inactiviteitsduur voor vergrendeling</string>
@@ -2131,7 +2208,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__led_color">Melding-LED-kleur</string>
   <string name="preferences__led_color_unknown">Onbekend</string>
   <string name="preferences__pref_led_blink_title">Melding-LED-knipperpatroon</string>
-  <string name="preferences__sound">Geluid</string>
+  <string name="preferences__sound">Berichtgeluid</string>
   <string name="preferences__silent">Stil</string>
   <string name="preferences__default">Standaardmeldingen</string>
   <string name="preferences__repeat_alerts">Herhaal meldingen</string>
@@ -2155,6 +2232,9 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences__slow">Langzaam</string>
   <string name="preferences__help">Over mij</string>
   <string name="preferences__advanced">Geavanceerd</string>
+  <string name="preferences__subscription">Maandelijkse donatie</string>
+  <string name="preferences__become_a_signal_sustainer">Help Signal mogelijk maken</string>
+  <string name="preferences__signal_boost">Eenmalige donatie</string>
   <string name="preferences__privacy">Privacy</string>
   <string name="preferences__mms_user_agent">Mms-gebruikersagent</string>
   <string name="preferences__advanced_mms_access_point_names">Handmatige mms-instellingen</string>
@@ -2239,7 +2319,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="preferences_data_and_storage__use_less_data_for_calls">Minder gegevensoverdracht bij oproepen</string>
   <string name="preferences_data_and_storage__never">Nooit</string>
   <string name="preferences_data_and_storage__wifi_and_mobile_data">Bij zowel wifi als mobiele-dataoverdracht</string>
-  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruikmaken van minder dataoverdracht bij oproepen kan de kwaliteit van oproepen verbeteren</string>
+  <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Gebruikmaken van minder dataoverdracht bij oproepen kan bij een slechte verbinding de kwaliteit van een oproep verbeteren</string>
   <string name="preferences_notifications__messages">Berichten</string>
   <string name="preferences_notifications__events">Gebeurtenissen</string>
   <string name="preferences_notifications__in_chat_sounds">Ook geluid voor geopend gesprek</string>
@@ -2292,7 +2372,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsHomeFragment__processing_payment">Overschrijving aan het verwerken</string>
   <string name="PaymentsHomeFragment__unknown_amount">---</string>
   <string name="PaymentsHomeFragment__currency_conversion_not_available">Omrekenen van valuta is niet beschikbaar</string>
-  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan de omrekening van valuta niet weergeven. Ga na dat je telefoon internetverbinding heeft en probeer het opnieuw.</string>
+  <string name="PaymentsHomeFragment__cant_display_currency_conversion">Kan de omrekening van valuta niet weergeven. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Overschrijving zijn niet beschikbaar in jouw regio.</string>
   <string name="PaymentsHomeFragment__could_not_enable_payments">Kan overschrijvingen niet inschakelen. Probeer het later opnieuw.</string>
   <string name="PaymentsHomeFragment__deactivate_payments_question">Overschrijvingen uitschakelen?</string>
@@ -2305,7 +2385,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsHomeFragment__details">Details</string>
   <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Je kunt Pigeon gebruiken om MobileCoin te verzenden en ontvangen. De gebruiksvoorwaarden van MobileCoin en van de MobileCoin-portemonnee zijn op alle overschrijvingen van toepassing. Dit is een bèta-functionaliteit, dat betekent dat er fouten kunnen voorkomen en het kan voorkomen dat overschrijvingen en krediet verloren gaan en niet hersteld kunnen worden.</string>
   <string name="PaymentsHomeFragment__activate">Inschakelen</string>
-  <string name="PaymentsHomeFragment__view_mobile_coin_terms">De voorwaarden van MobileCoin weergeven</string>
+  <string name="PaymentsHomeFragment__view_mobile_coin_terms">De gebruiksvoorwaarden van MobileCoin weergeven</string>
   <string name="PaymentsHomeFragment__payments_not_available">Overschrijvingen via Pigeon zijn niet langer mogelijk. Je kunt nog wel je krediet omzetten naar een andere valuta maar je kunt niet langer overschrijvingen verzenden of ontvangen of krediet toevoegen.</string>
   <!--PaymentsAddMoneyFragment-->
   <string name="PaymentsAddMoneyFragment__add_funds">Krediet toevoegen</string>
@@ -2327,7 +2407,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsDetailsFragment__s_on_s_at_s">%1$s op %2$s om %3$s</string>
   <string name="PaymentsDetailsFragment__to">Naar</string>
   <string name="PaymentsDetailsFragment__from">Van</string>
-  <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails waaronder de hoeveelheid en het tijdstip van de betaling zijn onderdeel van het kasboek van MobileCoin.</string>
+  <string name="PaymentsDetailsFragment__information">Overschrijvingsdetails, waaronder de hoeveelheid en het tijdstip van de betaling, zijn onderdeel van het kasboek van MobileCoin.</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_fee">Samenvoegingskosten</string>
   <string name="PaymentsDetailsFragment__coin_cleanup_information">Er worden “samenvoegingskosten” in rekening gebracht wanneer de munten die je bezit niet kunnen worden samengevoegd to de nieuwe gewenste overschrijving. Door deze samenvoegingskosten kunnen je toch een nieuwe overschrijvingen maken.</string>
   <string name="PaymentsDetailsFragment__no_details_available">Er is geen verdere informatie beschikbaar over deze overschrijving</string>
@@ -2339,7 +2419,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsTransferFragment__transfer">Overschrijven</string>
   <string name="PaymentsTransferFragment__scan_qr_code">QR-code scannen</string>
   <string name="PaymentsTransferFragment__to_scan_or_enter_wallet_address">Naar: Scan de QR-code of vul het portomonnee-adres in</string>
-  <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vind het meestal onder de QR-code.</string>
+  <string name="PaymentsTransferFragment__you_can_transfer">Je kunt MobileCoin overschrijven door een deel van je krediet te sturen naar het adres van de portemonnee die je via de beurs hebt gekregen. Dat adres bestaat uit nummers en letters en je vindt het meestal onder de QR-code.</string>
   <string name="PaymentsTransferFragment__next">Volgende</string>
   <string name="PaymentsTransferFragment__invalid_address">Adres ongeldig</string>
   <string name="PaymentsTransferFragment__check_the_wallet_address">Ga na dat het portemonnee-adres waarnaar je probeert over te schrijven juist is en probeer het opnieuw.</string>
@@ -2349,8 +2429,8 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsTransferFragment__to_scan_a_qr_code_signal_needs_access_to_the_camera">Pigeon heeft toegang nodig tot de camera om een QR-code the kunnen scannen.</string>
   <string name="PaymentsTransferFragment__settings">Instellingen</string>
   <!--PaymentsTransferQrScanFragment-->
-  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan de QR-code van de portemonnee van de ontvanger</string>
-  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan de QR-code van der persoon of organisatie naar wie je wilt overschrijven.</string>
+  <string name="PaymentsTransferQrScanFragment__scan_address_qr_code">Scan de QR-code van de ontvanger</string>
+  <string name="PaymentsTransferQrScanFragment__scan_the_address_qr_code_of_the_payee">Scan de QR-code van de persoon of organisatie naar wie je wilt overschrijven.</string>
   <!--CreatePaymentFragment-->
   <string name="CreatePaymentFragment__request">Verzoek</string>
   <string name="CreatePaymentFragment__pay">Overschrijven</string>
@@ -2517,7 +2597,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="Insights__title">Inzichten</string>
   <string name="InsightsDashboardFragment__title">Inzichten</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">%1$d%% van je verzonden berichten over de afgelopen %2$d dagen waren beveiligde Signal-berichten in plaats van onbeveiligde sms- of mms-berichten. Signal-berichten worden altijd eind-tot-eind-versleuteld uitgewisseld, in tegenstelling tot sms- en mms-berichten.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Je kunt meer gesprekken beveiligd voeren</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Zeg het voort</string>
   <string name="InsightsDashboardFragment__not_enough_data">Niet genoeg gegevens om een inzicht te geven</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Je inzichten-percentage wordt berekend op basis van berichten die niet zijn verlopen en niet handmatig zijn gewist en die je in de afgelopen %1$d dagen hebt verzonden.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Begin een gesprek</string>
@@ -2652,7 +2732,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PushDecryptJob_new_locked_message">Nieuw vergrendeld bericht</string>
   <string name="PushDecryptJob_unlock_to_view_pending_messages">Ontgrendel om je berichten te lezen</string>
   <string name="enter_backup_passphrase_dialog__backup_passphrase">Back-upwachtwoord</string>
-  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-upbestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-upgegevens terug te zetten.</string>
+  <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Back-upbestanden worden opgeslagen op het externe opslaggeheugen en versleuteld met het wachtwoord hieronder. Je hebt dit wachtwoord nodig om de back-up te herstellen.</string>
   <string name="backup_enable_dialog__you_must_have_this_passphrase">Je hebt in de toekomst dit wachtwoord nodig om je gegevens vanuit een back-upbestand te kunnen herstellen.</string>
   <string name="backup_enable_dialog__folder">Opslaglocatie</string>
   <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ik heb dit wachtwoord opgeschreven. Zonder dit wachtwoord kan ik deze back-upbestanden niet gebruiken om gegevens terug te zetten.</string>
@@ -2674,11 +2754,11 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Je hebt nu de gelegenheid om berichten en media uit een back-upbestand terug te zetten. Let op: Herstellen vanuit een back-upbestand kan alleen tijdens de installatie van de Signal-app. Als je deze stap overslaat kun je dit niet op een later moment alsnog doen.</string>
   <string name="RegistrationActivity_backup_size_s">Back-upbestand-grootte: %s</string>
   <string name="RegistrationActivity_backup_timestamp_s">Back-upbestand-tijdstip: %s</string>
-  <string name="BackupDialog_enable_local_backups">Signal back-upbestanden laten maken?</string>
+  <string name="BackupDialog_enable_local_backups">Back-upbestanden maken?</string>
   <string name="BackupDialog_enable_backups">Back-upbestanden inschakelen</string>
   <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Verklaar dat je het begrijpt door het selectievakje aan te vinken.</string>
   <string name="BackupDialog_delete_backups">Alle back-upbestanden wissen?</string>
-  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je Signal niet langer back-upbestanden wilt laten maken, dan zal Signal ook alle bestaande back-upbestanden in /Signal/Backups wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
+  <string name="BackupDialog_disable_and_delete_all_local_backups">Als je het maken van back-upbestanden uitschakeld, dan zal Signal ook alle bestaande back-upbestanden uit de back-uplocatie wissen, om er zeker van te zijn dat er geen oude gesprekken op je apparaat achterblijven.</string>
   <string name="BackupDialog_delete_backups_statement">Back-upbestanden wissen</string>
   <string name="BackupDialog_to_enable_backups_choose_a_folder">Kies een opslaglocatie om het maken van back-upbestanden te kunnen inschakelen.</string>
   <string name="BackupDialog_choose_folder">Kies een map</string>
@@ -2688,7 +2768,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BackupDialog_verify">Verifiëren</string>
   <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Je hebt het juiste back-upwachtwoord ingevoerd</string>
   <string name="BackupDialog_passphrase_was_not_correct">Je hebt niet het juiste back-upwachtwoord ingevoerd.</string>
-  <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Back-upbestand aan het maken …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Het maken van een back-upbestand is mislukt</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Je back-up directory is verwijderd of verplaatst.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Je back-upbestand is te groot om op dit volume op te slaan.</string>
@@ -2814,6 +2894,8 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="RecipientBottomSheet_block">Blokkeren</string>
   <string name="RecipientBottomSheet_unblock">Deblokkeren</string>
   <string name="RecipientBottomSheet_add_to_contacts">Aan contactenlijst toevoegen</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Kan geen app vinden om contactenlijst weer te geven.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Aan een groep toevoegen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Aan nog een andere groep toevoegen</string>
   <string name="RecipientBottomSheet_view_safety_number">Veiligheidsnummer weergeven</string>
@@ -2858,14 +2940,14 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="BlockedUsersActivity__s_has_been_unblocked">“%1$s” is gedeblokkeerd.</string>
   <!--ReviewCardDialogFragment-->
   <string name="ReviewCardDialogFragment__review_members">Groepsleden vergelijken</string>
-  <string name="ReviewCardDialogFragment__review_request">Lidmaatschapsverzoeken vergelijken</string>
+  <string name="ReviewCardDialogFragment__review_request">Personen vergelijken</string>
   <string name="ReviewCardDialogFragment__d_group_members_have_the_same_name">%1$d groepsleden hebben dezelfde naam. Vergelijk deze groepsleden hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
-  <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk als je niet zeker bent van wie het lidmaatschapsverzoek afkomstig is de personen hieronder  en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
-  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen.</string>
-  <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen.</string>
+  <string name="ReviewCardDialogFragment__if_youre_not_sure">Vergelijk, als je niet zeker bent van wie het gespreksverzoek afkomstig is, de personen hieronder en neem actie indien je denkt dat een van hen zich probeert voor te doen als de ander.</string>
+  <string name="ReviewCardDialogFragment__no_other_groups_in_common">Geen andere gemeenschappelijke groepen</string>
+  <string name="ReviewCardDialogFragment__no_groups_in_common">Geen gemeenschappelijke groepen</string>
   <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-    <item quantity="one">%d gemeenschappelijke groep</item>
-    <item quantity="other">%d gemeenschappelijke groepen</item>
+    <item quantity="one">Nog %d andere gemeenschappelijke groep</item>
+    <item quantity="other">Nog %d andere gemeenschappelijke groepen</item>
   </plurals>
   <plurals name="ReviewCardDialogFragment__d_groups_in_common">
     <item quantity="one">%d gemeenschappelijke groep</item>
@@ -2875,14 +2957,14 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ReviewCardDialogFragment__remove">Verwijderen</string>
   <string name="ReviewCardDialogFragment__failed_to_remove_group_member">Het verwijderen van een groepslid is mislukt.</string>
   <!--ReviewCard-->
-  <string name="ReviewCard__member">Lid</string>
-  <string name="ReviewCard__request">Lidmaatschapsverzoek</string>
-  <string name="ReviewCard__your_contact">Je contactpersoon</string>
+  <string name="ReviewCard__member">Lid van deze groep maar niet in je contactenlijst</string>
+  <string name="ReviewCard__request">Wil een gesprek met je beginnen</string>
+  <string name="ReviewCard__your_contact">Persoon die in je contactenlijst staat</string>
   <string name="ReviewCard__remove_from_group">Van de groep verwijderen</string>
-  <string name="ReviewCard__update_contact">Contactpersoon bijwerken</string>
+  <string name="ReviewCard__update_contact">Contactpersoon aanpassen</string>
   <string name="ReviewCard__block">Blokkeren</string>
-  <string name="ReviewCard__delete">Wissen</string>
-  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd.</string>
+  <string name="ReviewCard__delete">Contactpersoon wissen</string>
+  <string name="ReviewCard__recently_changed">“%1$s” heeft recentelijk zijn of haar profielnaam naar “%2$s” gewijzigd</string>
   <!--CallParticipantsListUpdatePopupWindow-->
   <string name="CallParticipantsListUpdatePopupWindow__s_joined">%1$s neemt nu deel aan deze oproep</string>
   <string name="CallParticipantsListUpdatePopupWindow__s_and_s_joined">%1$s en %2$s nemen nu deel</string>
@@ -2910,6 +2992,18 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="DeleteAccountFragment__failed_to_delete_account">Het wissen van je gegevens is mislukt. Heb je een werkende netwerkverbinding?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het \'apps\'-menu in de instellingenapp van je besturingssysteem.</string>
   <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten …</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Gegevens aan het wissen …</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Afhankelijk van het aantal groepen waarvan je lid bent kan dit een aantal minuten duren</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Gebruikersgegevens worden gewist</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Je gegevens zijn niet gewist</string>
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Er is een probleem met het wissen van je gegevens. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Land zoeken</string>
   <!--CreateGroupActivity-->
@@ -2950,7 +3044,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ChatWallpaperFragment__reset_wallpaper">Achtergrond verwijderen</string>
   <string name="ChatWallpaperFragment__reset_wallpaper_question">Achtergrond verwijderen?</string>
   <!--ChatWallpaperSelectionFragment-->
-  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Kiezen vanuit galerij</string>
+  <string name="ChatWallpaperSelectionFragment__choose_from_photos">Afbeelding uit galerij kiezen</string>
   <string name="ChatWallpaperSelectionFragment__presets">Reeds beschikbare achtergronden</string>
   <!--ChatWallpaperPreviewActivity-->
 
@@ -2959,7 +3053,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Veeg om meer achtergronden weer te geven</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Deze achtergrond instellen voor alle gesprekken</string>
   <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Deze achtergrond instellen voor %1$s</string>
-  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je gallerij weer te kunnen geven is toestemming om de opslag te gebruiken nodig.</string>
+  <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Om je gallerij te bekijken is toestemming nodig om de opslag te gebruiken.</string>
   <!--WallpaperImageSelectionActivity-->
   <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Een achtergrond kiezen</string>
   <!--WallpaperCropActivity-->
@@ -2972,7 +3066,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="payment_info_card_about_mobilecoin">Over MobileCoin</string>
   <string name="payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency">MobileCoin is een nieuw privacygericht digitaal betaalmiddel.</string>
   <string name="payment_info_card_adding_funds">Krediet toevoegen</string>
-  <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet toevoegen aan Pigeon door MobileCoin te verzenden naar je portemonnee-adres.</string>
+  <string name="payment_info_card_you_can_add_funds_for_use_in">Je kunt krediet aan Signal toevoegen door een hoeveelheid MobileCoin naar je portemonnee-adres te sturen.</string>
   <string name="payment_info_card_cashing_out">Uitbetalen</string>
   <string name="payment_info_card_you_can_cash_out_mobilecoin">Je kunt op elk moment je MobileCoin laten uitbetalen via een beurs die MobileCoin ondersteund. Je hoeft slechts over te schrijven naar jouw account bij die beurs.</string>
   <string name="payment_info_card_hide_this_card">Deze informatie verbergen?</string>
@@ -2997,8 +3091,8 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PaymentsRecoveryStartFragment__recovery_phrase">Herstel-zin</string>
   <string name="PaymentsRecoveryStartFragment__view_recovery_phrase">Herstel-zin weergeven</string>
   <string name="PaymentsRecoveryStartFragment__enter_recovery_phrase">Vul je herstel-zin in</string>
-  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Je krediet wordt automatisch hersteld wanneer je Pigeon opnieuw installeert en je Pigeon-pincode invult. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</string>
-  <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang hebt verloren.</string>
+  <string name="PaymentsRecoveryStartFragment__your_balance_will_automatically_restore">Je krediet wordt automatisch hersteld wanneer je Signal opnieuw installeert en daarbij je Signal-pincode invoert. Je kunt je krediet ook herstellen middels een unieke herstel-zin, die bestaat uit %1$d woorden. Schrijf die zin op en bewaar hem op een veilige plaats.</string>
+   <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">De herstel-zin is voor iedereen uniek en bestaat uit %1$d woorden. Je kunt deze zin gebruiken om je krediet te herstellen als je toegang hebt verloren.</string>
   <string name="PaymentsRecoveryStartFragment__start">Beginnen</string>
   <string name="PaymentsRecoveryStartFragment__enter_manually">Handmatig invullen</string>
   <string name="PaymentsRecoveryStartFragment__paste_from_clipboard">Plakken uit klembord</string>
@@ -3067,6 +3161,47 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="AccountSettingsFragment__account">Jouw registratie</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Herinneringen helpen je om je Signal-pincode te onthouden. Dit is belangrijk, omdat je je pincode later niet kunt veranderen of teruglezen en omdat je de pincode nodig zult hebben om je gegevens te herstellen wanneer je je telefoonnummer opnieuw registreert. Naarmate je je pincode een aantal keer juist invoert, zul je minder vaak herinneringen te zien krijgen.</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Gebruik je pincode voor twee-factor-authenticatie. Ieder die je telefoonnummer opnieuw probeert te registreren bij Signal moet verplicht je Signal-pincode invoeren. Hierdoor kan niemand behalve jij Signal-berichten verzenden of ontvangen met jouw telefoonnummer.</string>
+  <string name="AccountSettingsFragment__change_phone_number">Telefoonnummer wijzigen</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Gebruik dit als je op een ander telefoonnummer door wilt gaan met Signal. Je kunt overatappen naar een nieuw telefoonnummer niet ongedaan maken.\n\nGa na dat je op het nieuwe telefoonnummer sms-berichten of oproepen kunt ontvangen voordat je verder gaat.</string>
+  <string name="ChangeNumberFragment__continue">Doorgaan</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Je telefoonnummer is gewijzigd.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Je oude telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Je nieuwe telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Je nieuwe nummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nieuw telefoonnummer</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Het telefoonnummer dat je hebt ingevuld komt niet overeen met het telefoonnummer waarmee je staat geregistreerd bij Signal.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Je moet je oude landcode aangeven</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Je moet je oude telefoonnummer invullen</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Je moet je nieuwe landcode aangeven</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Je moet je nieuwe telefoonnummer invullen</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Nummer veranderen</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">%1$s aan het verifiëren</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vereist</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Telefoonnummer wijzigen</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Je staat op het punt om het telefoonnummer waarmee je geregistreert staat te veranderen van %1$s naar %2$s.\n\nGa na dat het telefoonnummer hieronder correct is.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Telefoonnummer wijzigen</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Telefoonnummer voor Signal veranderen - Hulp nodig bij met de pincode (pincode versie 2)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">De pincodes komen niet overeen</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">De pincode voor je nieuwe telefoonnummer is anders dan de pincode voor je oude telefoonnummer. Wil je de oude pincode behouden of een nieuwe pincode aanmaken?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Oude pincode behouden</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Nieuwe pincode aanmaken</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Oude pincode behouden?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Het lijkt er op dat je hebt geprobeerd om je telefoonnummer te wijzigen, maar Signal kan niet vaststellen of dat is geslaagd.\n\nSignal gaat nu opnieuw na of je telefoonnummer is gewijzigd …</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Telefoonnummer is succesvol gewijzigd</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Je nieuwe telefoonnummer %1$s is nu bevestigd. Herstart het ‘telefoonnummer wijzigen’-proces als dit niet je nieuwe telefoonnummer is.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Onbekend of telefoonnummer is gewijzigd</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Signal kan niet vaststellen of je telefoonnummer is gewijzigd.\n\n(Fout: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Opnieuw proberen</string>
+  <string name="ChangeNumberLockActivity__leave">Verlaten</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Foutopsporingslog indienen</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Toetsenbord</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Enter-toets verzendt</string>
@@ -3077,13 +3212,24 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="NotificationsSettingsFragment__calls">Oproepen</string>
   <string name="NotificationsSettingsFragment__notify_when">Geef me een melding wanneer …</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Een contactpersoon uit mijn systeemcontactenlijst sinds kort via Signal bereikbaar is</string>
+  <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Meldingsprofielen</string>
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Meldingsprofielen instellen</string>
+  <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt</string>
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Meldingsprofielen</string>
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Meldingsprofiel aanmaken</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Geblokkeerd</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d personen</string>
   <string name="PrivacySettingsFragment__messaging">Berichten</string>
   <string name="PrivacySettingsFragment__disappearing_messages">Verlopende berichten</string>
   <string name="PrivacySettingsFragment__app_security">App-beveiliging</string>
-  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken tegen schermopnames door andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
+  <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Bescherm je gesprekken op je eigen telefoon tegen schermopnames vanuit andere apps door Signals inhoud te verbergen in de lijst van recent geopende apps en door schermafdrukken te blokkeren</string>
   <string name="PrivacySettingsFragment__signal_message_and_calls">Signal-berichten en -oproepen, alle omroepen omleiden en verzegelde afzender</string>
   <string name="PrivacySettingsFragment__default_timer_for_new_changes">Standaard-tijdspanne voor alle nieuwe gesprekken</string>
   <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Stel in dat berichten in alle nieuwe gesprekken die jij zelf begint een bepaalde tijd nadat ze gezien zijn voor zowel jou als je gesprekspartner vanzelf worden gewist.</string>
@@ -3091,8 +3237,8 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pictogram weergeven</string>
   <string name="AdvancedPrivacySettingsFragment__show_an_icon">Laat in de berichtdetails een pictogram zien bij berichten die zijn afgeleverd met een verzegelde afzender</string>
   <!--ExpireTimerSettingsFragment-->
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten voor iedereen die ze heeft gezien nadat de ingestelde tijd is verlopen worden gewist. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
-  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen die ze heeft gezien nadat de ingestelde tijd is verlopen worden gewist. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Voor alle nieuwe gesprekken die jij zelf begint zullen berichten voor iedereen worden gewist nadat de ingestelde tijd is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
+  <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_this_chat_will_disappear_after_they_have_been_seen">Nieuwe berichten in dit gesprek zullen voor iedereen worden gewist nadat de ingestelde tijdspanne is verlopen. De tijdspanne begint voor iedere persoon individueel pas te lopen vanaf het moment dat hij of zij het bericht heeft gezien. — Gebruik dit niet ter beveiliging, want Signal kan niet garanderen dat berichten op het apparaat van een ander ook daadwerkelijk worden gewist.</string>
   <string name="ExpireTimerSettingsFragment__off">Uit</string>
   <string name="ExpireTimerSettingsFragment__4_weeks">4 weken</string>
   <string name="ExpireTimerSettingsFragment__1_week">1 week</string>
@@ -3118,6 +3264,11 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="HelpFragment__copyright_signal_messenger">Auteursrecht Signal berichtenapp</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Uitgegeven onder een GPLv3 licentie</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediakwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Media-verzendkwaliteit</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Door hoge kwaliteit media te verzenden verbruik je meer dataoverdracht. Als je provider je dataverbruik in rekening brengt kan dat dus duurder zijn.</string>
+  <string name="DataAndStorageSettingsFragment__high">Hoog</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standaard</string>
   <string name="DataAndStorageSettingsFragment__calls">Oproepen</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3164,11 +3315,19 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Maak jezelf herkenbaar door een profielfoto in te stellen of pas de kleur of tekst aan.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Niet nu</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Voeg een foto toe</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Help Signal mogelijk maken</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal wordt gefinancierd door donaties van mensen zoals jij. Als je ons steunt krijg je een profiel-badge.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Nee bedankt</string>
+  <string name="BecomeASustainerMegaphone__contribute">Bijdragen</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Emoji-zoeken</string>
   <string name="KeyboardPagerFragment_open_sticker_search">Sticker zoeken</string>
   <string name="KeyboardPagerFragment_open_gif_search">GIF zoeken</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Een of meerdere items zijn te groot</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Een of meerdere items zijn ongeldig</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Te veel items geselecteerd</string>
   <string name="KeyboardPagerFragment_stickers">Stickers</string>
   <string name="KeyboardPagerFragment_backspace">Backspace</string>
   <string name="KeyboardPagerFragment_gifs">GIFs</string>
@@ -3185,12 +3344,12 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
   <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
   <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-  <string name="ConversationSettingsFragment__message">Bericht verzenden</string>
+  <string name="ConversationSettingsFragment__message">Berichten</string>
   <string name="ConversationSettingsFragment__video">Video-oproep</string>
   <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
   <string name="ConversationSettingsFragment__call">Bellen</string>
-  <string name="ConversationSettingsFragment__mute">Dempen</string>
-  <string name="ConversationSettingsFragment__muted">Gedempt</string>
+  <string name="ConversationSettingsFragment__mute">Meldingen dempen</string>
+  <string name="ConversationSettingsFragment__muted">Meldingen niet langer dempen</string>
   <string name="ConversationSettingsFragment__search">Zoeken</string>
   <string name="ConversationSettingsFragment__disappearing_messages">Verlopende berichten</string>
   <string name="ConversationSettingsFragment__sounds_and_notifications">Geluiden &amp; meldingen</string>
@@ -3201,17 +3360,18 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="ConversationSettingsFragment__unblock">Deblokkeren</string>
   <string name="ConversationSettingsFragment__unblock_group">Groep deblokkeren</string>
   <string name="ConversationSettingsFragment__add_to_a_group">Aan een groep toevoegen</string>
-  <string name="ConversationSettingsFragment__see_all">Alle leden weergeven</string>
+  <string name="ConversationSettingsFragment__see_all">Alles weergeven</string>
   <string name="ConversationSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="ConversationSettingsFragment__permissions">Machtigingen</string>
   <string name="ConversationSettingsFragment__requests_and_invites">Verzoeken &amp; uitnodiging</string>
   <string name="ConversationSettingsFragment__group_link">Groepsverwijzing voor deze groep</string>
   <string name="ConversationSettingsFragment__add_as_a_contact">Als contactpersoon toevoegen</string>
   <string name="ConversationSettingsFragment__unmute">Niet langer dempen</string>
-  <string name="ConversationSettingsFragment__conversation_muted_until_s">Gesprek dedempt tot %1$s</string>
-  <string name="ConversationSettingsFragment__conversation_muted_forever">Gesprek voor onbepaalde tijd gedempt</string>
+  <string name="ConversationSettingsFragment__conversation_muted_until_s">Je heb dit gesprek in het verleden tot %1$s gedempt</string>
+  <string name="ConversationSettingsFragment__conversation_muted_forever">Je hebt dit gesprek in het verleden voor onbepaalde tijd gedempt</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Telefoonnummer naar klembord gekopieerd.</string>
   <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
+  <string name="ConversationSettingsFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven. Tik op een badge om er meer over te leren.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Groepsleden toevoegen</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Groepsinformatie aanpassen</string>
@@ -3220,6 +3380,8 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <string name="PermissionsSettingsFragment__only_admins">Uitsluitend beheerders</string>
   <string name="PermissionsSettingsFragment__who_can_add_new_members">Wie mag nieuwe leden toevoegen?</string>
   <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Wie mag de groepsinformatie aanpassen?</string>
+  <string name="BecomeASustainerFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal is een organisatie zonder winstoogmerk, zonder advertenties en zonder investeerders. Signal wordt uitsluitend mogelijk gemaakt door donaties van mensen zoals jij.</string>
   <string name="PermissionsSettingsFragment__who_can_send_messages">Wie kunnen berichten verzenden?</string>
   <!--SoundsAndNotificationsSettingsFragment-->
   <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Meldingen dempen</string>
@@ -3232,8 +3394,9 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--StickerKeyboard-->
   <string name="StickerKeyboard__recently_used">Recentelijk gebruikt</string>
   <!--PlaybackSpeedToggleTextView-->
-  <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
+  <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Nieuwe overschrijving</string>
@@ -3242,7 +3405,7 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Zoek op naam of telefoonnummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Audiobericht afspelen stoppen</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Audioafspeelsnelheid aanpassen</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Audiobericht pauzeren</string>
@@ -3293,6 +3456,242 @@ Pigeon zal nu toestemming vragen om je contactenlijst te lezen, om na te gaan wi
     <item quantity="other">Kon sommige berichten niet doorsturen omdat die inmiddels niet langer beschikbaar zijn.</item>
   </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Limiet bereikt</string>
+  <string name="ImageEditorHud__delete">Gesprek wissen</string>
+  <string name="CameraFragment__failed_to_open_camera">Camera openen is mislukt</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Wisselen tussen tekststijlen</string>
+  <string name="BadgesOverviewFragment__my_badges">Jouw badges</string>
+  <string name="BadgesOverviewFragment__featured_badge">Zichtbare badge</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Maak badges zichtbaar op mijn profiel</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profiel bijwerken mislukt</string>
+  <string name="BadgeSelectionFragment__select_badges">Badges selecteren</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Voorbeeld</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Kies een badge</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Je moet een badge kiezen</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiel bijwerken mislukt</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
+  <string name="ImageView__badge">Badge</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal wordt onder andere gefinancierd door donaties van mensen zoals jij.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Ondersteun technologie die is gemaakt voor jou—niet voor het verzamelen van je gegevens—door mee te doen met de gemeenschap die het mogelijk maakt.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Ondersteun technologie die is gemaakt voor jou, niet voor het verzamelen van je gegevens, door één van de donateurs te worden die Signal mogelijk maken.</string>
+  <string name="SubscribeFragment__currency">Valuta</string>
+  <string name="SubscribeFragment__more_payment_options">Meer overschrijvingsopties</string>
+  <string name="SubscribeFragment__cancel_subscription">Maandelijkse donatie annuleren</string>
+  <string name="SubscribeFragment__confirm_cancellation">Maandelijkse donatie annuleren?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Er zal niet opnieuw geld worden afgeschreven. Je badge zal worden verwijderd van je profiel wanneer je laatste betalingsperiode is afgelopen.</string>
+  <string name="SubscribeFragment__not_now">Niet nu</string>
+  <string name="SubscribeFragment__confirm">Bevestigen</string>
+  <string name="SubscribeFragment__update_subscription">Maandelijkse donatie bijwerken</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Je maandelijkse donatie is geannuleerd.</string>
+  <string name="SubscribeFragment__update_subscription_question">Maandelijkse donatie aanpassen?</string>
+  <string name="SubscribeFragment__update">Bijwerken</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount">Vandaag wordt het volledige bedrag voor de maandelijkse donatie afgeschreven. Je donatie wordt vernieuwd op %1$s.</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Vandaag wordt het volledige bedrag (%1$s) voor de maandelijkse donatie afgeschreven.</string>
+  <string name="Subscription__s_per_month">%s/maand</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/maand · Wordt %2$s vernieuwd</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/maand · Verloopt %2$s</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal is een organisatie zonder winstoogmerk zonder adverteerders en zonder investeerders, uitsluitend mogelijk gemaakt door mensen die de app gebruiken en die er waarde aan hechten. Geef een maandelijkse donatie en ontvang een profiel-badge die je—als je dat wilt—kunt weergeven op je profiel om te laten zien dat je Signal ondersteunt.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Waarom bijdragen?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">We ontwikkelen open-broncode privacy-technologieën waarmee vrijheid van meningsuiting wordt beschermd en waarmee op een beveiligde manier over de hele wereld kan worden gecommuniceerd.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Mede met jou bijdrage wordt deze missie mogelijk gemaakt en wordt betaald voor de ontwikkeling en het in werking houden van apps waardoor miljoenen mensen wereldwijd in vrijheid gesprekken kunnen voeren. Geen advertenties, geen volgers, geen grapje.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Bedankt voor je ondersteuning!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Bedankt voor je bijdrage!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Je hebt de ‘%s’-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Je hebt de ‘Eenmalige donateur’-badge verdiend! Help Signal om bewustwording te creëren door deze badge op je profiel weer te geven.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Je kunt ook</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">maandelijks doneren.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Op profiel weergeven</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Badge op je profiel weergeven</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Klaar</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Als je meerdere badges hebt dan kun je er één kiezen om voor anderen op je profiel weer te geven.</string>
+  <string name="ManageDonationsFragment__manage_subscription">Maandelijkse donatie beheren</string>
+  <string name="ManageDonationsFragment__my_support">Mijn bijdrage</string>
+  <string name="ManageDonationsFragment__subscription_faq">Informatie over maandelijkse donaties</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Fout bij het ophalen van informatie over maandelijkse donaties.</string>
+  <string name="BoostFragment__give_signal_a_boost">Help Signal met een eenmalige bijdrage</string>
+  <string name="BoostFragment__say_thanks_and_earn">Bedank Signal en verdien de ‘Eenmalige donateur’-badge voor %1$d dagen.</string>
+  <string name="ManageDonationsFragment__badges">Badges</string>
+  <string name="Boost__enter_custom_amount">Vul een zelfgekozen bedrag in</string>
+  <string name="MySupportPreference__add_a_signal_boost">Geef Signal een oppepper</string>
+  <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
+  <string name="MySupportPreference__s_per_month">%1$s/maand</string>
+  <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
+  <string name="MySupportPreference__processing_transaction">Overschrijving aan het verwerken …</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Kan badge niet toevoegen. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Neem contact op met de ondersteuning.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Je badge is verlopen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Badge verlopen</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Maandelijkse donaties geannuleerd</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Je ‘Eenmalige donateur’-badge is verlopen en is daarom niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Je kunt je ‘Eenmalige donateur’-badge opnieuw voor 30 dagen activeren met een nieuwe eenmalige donatie.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Overweeg maandelijkse donaties in te stellen om technologie die is gemaakt voor jou in plaats van voor het verzamelen van gegevens te blijven ondersteunen.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Help Signal mogelijk maken</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Nogmaals eenmalig doneren</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Niet nu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Je maandelijkse donaties zijn automatisch geannuleerd omdat je te lang inactief bent geweest. Je ‘%1$s’-badge is niet langer voor anderen te zien op je profiel.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Je kunt Signal gewoon blijven gebruiken, maar als je Signal wilt ondersteunen en je badge weer wilt weergeven dan kun je nu je donaties vernieuwen.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Maandelijkse donaties vernieuwen</string>
+  <string name="Subscription__please_contact_support_for_more_information">Neem contact op met de ondersteuning voor meer informatie.</string>
+  <string name="Subscription__contact_support">Neem contact op</string>
+  <string name="Subscription__earn_a_s_badge">Verdien een ‘%1$s’-badge</string>
+  <string name="SubscribeFragment__processing_payment">Overschrijving aan het verwerken …</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Fout bij het verwerken van een overschrijving</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Fout bij het verwerken van een overschrijving. $1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
+  <string name="DonationsErrors__your_payment">Je overschrijving kon niet worden verwerkt, daarom is er geen geld overgemaakt. Probeer het opnieuw.</string>
+  <string name="DonationsErrors__still_processing">Wordt nog verwerkt</string>
+  <string name="DonationsErrors__couldnt_add_badge">Kan badge niet toevoegen</string>
+  <string name="DonationsErrors__your_badge_could_not">Het is niet gelukt om de badge toe te voegen aan je profiel, maar je hebt misschien al wel betaald. Neem contact op met ondersteuning.</string>
+  <string name="DonationsErrors__your_payment_is_still">Je overschrijving wordt nog verwerkt. Dit kan een paar minuten duren afhankelijk van je internetverbinding.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay is niet beschikbaar</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Je moet ‘Google Pay’ instellen om vanuit de Signal app donaties te kunnen doen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Het annuleren van je maandelijkse donatie is mislukt</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Om je maandelijkse donatie te annuleren moet je toegang hebben tot internet.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Je apparaat biedt geen ondersteuning voor Google Play, daarom kun je via de app geen maandelijkse donatie maken en kun je geen badge verdienen. Je kunt nog wel doneren via Signal\'s website.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Netwerkfout. Ga na dat je apparaat met het internet is verbonden en probeer het opnieuw.</string>
+  <string name="NetworkFailure__retry">Opnieuw proberen</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Geef je meldingsprofiel een naam</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Profielnaam</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button to continue to the next step-->
+  <string name="EditNotificationProfileFragment__next">Volgende</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Aanmaken</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Opslaan</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Dit meldingsprofiel aanpassen</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Er bestaat al een meldingsprofiel met deze naam</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Tijdens werk</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Wanneer ik slaap</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Terwijl ik aan het rijden ben</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Even nergens mee bezig</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Nu even focussen</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Je meldingsprofiel moet een naam hebben</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Meldingen doorlaten</string>
+  <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Voeg mensen en groepen toe waarvan je meldingen wilt ontvangen terwijl dit meldingsprofiel actief is</string>
+  <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Personen of groepen toevoegen</string>
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Toevoegen</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Maak een meldingsprofiel aan waardoor je meldingen van bepaalde personen of groepen alleen krijgt op momenten dat jij daar zin in hebt.</string>
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Meldingsprofielen</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Nieuw meldingsprofiel aanmaken</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Ingeschakeld</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Meldingsprofiel wissen</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">“%1$s” verwijderd.</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Ongedaan maken</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Meldingsprofiel wissen?</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Wissen</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Meldingsprofiel aanpassen</string>
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Elke dag</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Ingeschakeld</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Uitgeschakeld</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s naar %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Uitzonderingen</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Alle oproepen doorlaten</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Alle vermeldingen melden</string>
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Tijdsplanning</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Alle personen en groepen weergeven</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Tijdsplanning toevoegen</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Stel eventueel een tijdsplanning in zodat dit meldingsprofiel automatisch op bepaalde momenten wordt geactiveerd en gedeactiveerd.</string>
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Tijdsplanning</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Beginnen</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Beëindigen</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">z</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">m</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">d</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">w</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">d</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">v</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">z</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Starttijd instellen</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Eindtijd instellen</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Opslaan</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Overslaan</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Volgende</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Je moet tenminste één dag kiezen</string>
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Meldingsprofiel aangemaakt</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Klaar</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Je kunt een meldingsprofiel handmatig in- en uitschakelen via het menu in de gesprekkenlijst.</string>
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Voeg eventueel een tijdsplanning toe aan dit meldingsprofiel om het automatisch op bepaalde momenten te activeren en te deactiveren.</string>
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Je meldingsprofiel wordt automatisch geactiveerd en gedeactiveerd volgens je tijdsplanning.</string>
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Nieuw meldingsprofiel aanmaken</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Een uur lang</string>
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">Tot %1$s</string>
+  <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Instellingen weergeven</string>
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Ingeschakeld tot %1$s</string>
+  <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Meldingsprofielen</string>
+  <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Ontvang alleen meldingen van personen en groepen van wie jij dat wilt, wanneer jij dat wilt.</string>
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__create_a_profile">Meldingsprofiel aanmaken</string>
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Niet nu</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Het openen van het belgeluid-keuzemenu is mislukt.</string>
   <!--EOF-->
   <string name="save_options_new_contact">Nieuw contact</string>
   <string name="save_options_add_to_existing">Toevoegen aan bestaande</string>

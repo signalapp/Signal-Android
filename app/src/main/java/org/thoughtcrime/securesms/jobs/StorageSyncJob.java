@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.annimon.stream.Stream;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
@@ -168,6 +168,11 @@ public class StorageSyncJob extends BaseJob {
 
     if (!TextSecurePreferences.isPushRegistered(context)) {
       Log.i(TAG, "Not registered. Skipping.");
+      return;
+    }
+
+    if (SignalStore.internalValues().storageServiceDisabled()) {
+      Log.w(TAG, "Storage service has been manually disabled. Skipping.");
       return;
     }
 

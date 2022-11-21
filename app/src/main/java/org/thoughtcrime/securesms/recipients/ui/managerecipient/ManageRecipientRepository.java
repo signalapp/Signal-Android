@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -53,7 +54,7 @@ final class ManageRecipientRepository {
     return threadDatabase.getOrCreateThreadIdFor(groupRecipient);
   }
 
-  void getIdentity(@NonNull Consumer<IdentityDatabase.IdentityRecord> callback) {
+  void getIdentity(@NonNull Consumer<IdentityRecord> callback) {
     SignalExecutors.BOUNDED.execute(() -> callback.accept(DatabaseFactory.getIdentityDatabase(context)
                                                   .getIdentity(recipientId)
                                                   .orNull()));

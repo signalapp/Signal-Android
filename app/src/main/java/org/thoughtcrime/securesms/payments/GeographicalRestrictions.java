@@ -18,20 +18,20 @@ public final class GeographicalRestrictions {
 
   private GeographicalRestrictions() {}
 
-  private static final Set<Integer> REGION_CODE_SET;
+  private static final Set<Integer> BLACKLIST;
 
   static {
-    Set<Integer> set = new HashSet<>(BuildConfig.MOBILE_COIN_REGIONS.length);
+    Set<Integer> set = new HashSet<>(BuildConfig.MOBILE_COIN_BLACKLIST.length);
 
-    for (int i = 0; i < BuildConfig.MOBILE_COIN_REGIONS.length; i++) {
-      set.add(BuildConfig.MOBILE_COIN_REGIONS[i]);
+    for (int i = 0; i < BuildConfig.MOBILE_COIN_BLACKLIST.length; i++) {
+      set.add(BuildConfig.MOBILE_COIN_BLACKLIST[i]);
     }
 
-    REGION_CODE_SET = Collections.unmodifiableSet(set);
+    BLACKLIST = Collections.unmodifiableSet(set);
   }
 
   public static boolean regionAllowed(int regionCode) {
-    return REGION_CODE_SET.contains(regionCode);
+    return !BLACKLIST.contains(regionCode);
   }
 
   public static boolean e164Allowed(@Nullable String e164) {

@@ -61,6 +61,10 @@ object EmojiPageCache {
     }
   }
 
+  fun clear() {
+    cache.clear()
+  }
+
   @WorkerThread
   private fun loadInternal(context: Context, emojiPageRequest: EmojiPageRequest): Bitmap? {
     val inputStream: InputStream = when (emojiPageRequest.emojiPage) {

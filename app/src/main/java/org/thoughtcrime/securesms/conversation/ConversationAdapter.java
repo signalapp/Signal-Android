@@ -43,12 +43,9 @@ import org.signal.core.util.logging.Log;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.MaskView;
-import org.thoughtcrime.securesms.components.AlbumThumbnailView;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.ConversationItemThumbnail;
 import org.thoughtcrime.securesms.components.QuoteView;
-import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
@@ -101,14 +98,12 @@ public class ConversationAdapter
     private static final int MESSAGE_TYPE_INCOMING_TEXT = 3;
     private static final int MESSAGE_TYPE_UPDATE = 4;
     private static final int MESSAGE_TYPE_HEADER = 5;
-    private static final int MESSAGE_TYPE_FOOTER = 6;
+    public  static final int MESSAGE_TYPE_FOOTER = 6;
     private static final int MESSAGE_TYPE_PLACEHOLDER = 7;
     private static final int MESSAGE_TYPE_UPDATE_SEND = 8;
-    private static final int PAYLOAD_TIMESTAMP = 0;
+    private static final int PAYLOAD_TIMESTAMP   = 0;
+    public  static final int PAYLOAD_NAME_COLORS = 1;
     private static final int MESSAGE_TYPE_UPDATE_RECEIVED = 9;
-
-    private static final long HEADER_ID = Long.MIN_VALUE;
-    private static final long FOOTER_ID = Long.MIN_VALUE + 1;
 
     private OnItemSelectLisioner mOnItemSelectLisioner;
 
@@ -128,12 +123,13 @@ public class ConversationAdapter
 
     private String searchQuery;
     private ConversationMessage recordToPulse;
-    private View headerView;
+    private View typingView;
     private View footerView;
     private PagingController pagingController;
     private boolean             isMessageRequestAccepted;
     private ConversationMessage inlineContent;
     private Colorizer           colorizer;
+    private boolean             isTypingViewEnabled;
 
     public void addItemSelectLisioner(OnItemSelectLisioner onItemSelectLisioner) {
         this.mOnItemSelectLisioner = onItemSelectLisioner;
@@ -176,12 +172,11 @@ public class ConversationAdapter
         this.attachmentMediaSourceFactory = attachmentMediaSourceFactory;
         this.colorizer                    = colorizer;
 
-        setHasStableIds(true);
     }
 
     @Override
     public int getItemViewType(int position) {
-        if (hasHeader() && position == 0) {
+        if (isTypingViewEnabled() && position == 0) {
             return MESSAGE_TYPE_HEADER;
         }
 
@@ -209,24 +204,6 @@ public class ConversationAdapter
         }
     }
 
-    @Override
-    public long getItemId(int position) {
-        if (hasHeader() && position == 0) {
-            return HEADER_ID;
-        }
-
-        if (hasFooter() && position == getItemCount() - 1) {
-            return FOOTER_ID;
-        }
-
-        ConversationMessage message = getItem(position);
-
-        if (message == null) {
-            return -1;
-        }
-
-        return message.getUniqueId(digest);
-    }
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -341,14 +318,21 @@ public class ConversationAdapter
                 v.setLayoutParams(new FrameLayout.LayoutParams(1, ViewUtil.dpToPx(100)));
                 return new PlaceholderViewHolder(v);
             case MESSAGE_TYPE_HEADER:
+                return new HeaderViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
+
             case MESSAGE_TYPE_FOOTER:
-                return new HeaderFooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
+                return new FooterViewHolder(CachedInflater.from(parent.getContext()).inflate(R.layout.cursor_adapter_header_footer_view, parent, false));
             default:
                 throw new IllegalStateException("Cannot create viewholder for type: " + viewType);
         }
     }
-    @Override public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
-        if (payloads.contains(PAYLOAD_TIMESTAMP)) {
+    private boolean containsValidPayload(@NonNull List<Object> payloads) {
+        return payloads.contains(PAYLOAD_TIMESTAMP) || payloads.contains(PAYLOAD_NAME_COLORS);
+    }
+
+    @Override
+  public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List<Object> payloads) {
+        if (containsValidPayload(payloads)) {
             switch (getItemViewType(position)) {
                 case MESSAGE_TYPE_INCOMING_TEXT:
                     case MESSAGE_TYPE_INCOMING_MULTIMEDIA:
@@ -356,7 +340,14 @@ public class ConversationAdapter
                     case MESSAGE_TYPE_OUTGOING_MULTIMEDIA:
                     case MESSAGE_TYPE_UPDATE:
                         ConversationViewHolder conversationViewHolder = (ConversationViewHolder) holder;
-                        conversationViewHolder.getBindable().updateTimestamps();
+                        if (payloads.contains(PAYLOAD_TIMESTAMP)) {
+                            conversationViewHolder.getBindable().updateTimestamps();
+                        }
+
+                        if (payloads.contains(PAYLOAD_NAME_COLORS)) {
+                            conversationViewHolder.getBindable().updateContactNameColor();
+                        }
+
                     default:
                         return;
             }
@@ -405,7 +396,7 @@ public class ConversationAdapter
                 }
                 break;
             case MESSAGE_TYPE_HEADER:
-                ((HeaderFooterViewHolder) holder).bind(headerView);
+                ((HeaderViewHolder) holder).bind(typingView);
                 break;
             case MESSAGE_TYPE_FOOTER:
                 ((HeaderFooterViewHolder) holder).bind(footerView);
@@ -415,17 +406,14 @@ public class ConversationAdapter
 
     @Override
     public int getItemCount() {
-        boolean hasHeader = headerView != null;
         boolean hasFooter = footerView != null;
-        return super.getItemCount() + fastRecords.size() + (hasHeader ? 1 : 0) + (hasFooter ? 1 : 0);
+        return super.getItemCount() + fastRecords.size() + (isTypingViewEnabled ? 1 : 0) + (hasFooter ? 1 : 0);
     }
 
     @Override
     public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
         if (holder instanceof ConversationViewHolder) {
             ((ConversationViewHolder) holder).getBindable().unbind();
-        } else if (holder instanceof HeaderFooterViewHolder) {
-            ((HeaderFooterViewHolder) holder).unbind();
         }
     }
 
@@ -463,7 +451,7 @@ public class ConversationAdapter
 
     public @Nullable
     ConversationMessage getItem(int position) {
-        position = hasHeader() ? position - 1 : position;
+        position = isTypingViewEnabled() ? position - 1 : position;
 
         if (position == -1) {
             return null;
@@ -519,7 +507,7 @@ public class ConversationAdapter
      */
     @MainThread
     int getAdapterPositionForMessagePosition(int messagePosition) {
-        return hasHeader() ? messagePosition + 1 : messagePosition;
+        return isTypingViewEnabled() ? messagePosition + 1 : messagePosition;
     }
 
     /**
@@ -562,27 +550,26 @@ public class ConversationAdapter
     /**
      * Sets the view that appears at the bottom of the list (because the list is reversed).
      */
-    void setHeaderView(@Nullable View view) {
-        boolean hadHeader = hasHeader();
+    void setTypingView(@NonNull View view) {
+        this.typingView = view;
+    }
 
-        this.headerView = view;
+    void setTypingViewEnabled(boolean isTypingViewEnabled) {
+        if (typingView == null && isTypingViewEnabled) {
+            throw new IllegalStateException("Must set header before enabling.");
+        }
 
-        if (view == null && hadHeader) {
+        if (this.isTypingViewEnabled && !isTypingViewEnabled) {
+            this.isTypingViewEnabled = false;
             notifyItemRemoved(0);
-        } else if (view != null && hadHeader) {
+        } else if (this.isTypingViewEnabled) {
             notifyItemChanged(0);
-        } else if (view != null) {
+        } else if (isTypingViewEnabled) {
+            this.isTypingViewEnabled = true;
             notifyItemInserted(0);
         }
     }
 
-    /**
-     * Returns the header view, if one was set.
-     */
-    @Nullable
-    View getHeaderView() {
-        return headerView;
-    }
 
     /**
      * Momentarily highlights a mention at the requested position.
@@ -600,8 +587,10 @@ public class ConversationAdapter
      * Conversation search query updated. Allows rendering of text highlighting.
      */
     void onSearchQueryUpdated(String query) {
-        this.searchQuery = query;
-        notifyDataSetChanged();
+        if (!Objects.equals(query, this.searchQuery)) {
+            this.searchQuery = query;
+            notifyDataSetChanged();
+        }
     }
 
     /**
@@ -685,8 +674,8 @@ public class ConversationAdapter
         }
     }
 
-    private boolean hasHeader() {
-        return headerView != null;
+    public boolean isTypingViewEnabled() {
+        return isTypingViewEnabled;
     }
 
     public boolean hasFooter() {
@@ -694,7 +683,7 @@ public class ConversationAdapter
     }
 
     private boolean isHeaderPosition(int position) {
-        return hasHeader() && position == 0;
+        return isTypingViewEnabled() && position == 0;
     }
 
     private boolean isFooterPosition(int position) {
@@ -835,7 +824,7 @@ public class ConversationAdapter
         }
     }
 
-    private static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
+    public abstract static class HeaderFooterViewHolder extends RecyclerView.ViewHolder {
 
         private ViewGroup container;
 
@@ -848,12 +837,28 @@ public class ConversationAdapter
             unbind();
 
             if (view != null) {
+                removeViewFromParent(view);
                 container.addView(view);
             }
         }
 
         void unbind() {
             container.removeAllViews();
+        }
+
+        private void removeViewFromParent(@NonNull View view) {
+            if (view.getParent() != null) {
+                ((ViewGroup) view.getParent()).removeView(view);
+            }
+        }
+    }
+    public static class FooterViewHolder extends HeaderFooterViewHolder {
+        FooterViewHolder(@NonNull View itemView) { super(itemView); }
+    }
+
+    public static class HeaderViewHolder extends HeaderFooterViewHolder {
+        HeaderViewHolder(@NonNull View itemView) {
+        super(itemView);
         }
     }
 

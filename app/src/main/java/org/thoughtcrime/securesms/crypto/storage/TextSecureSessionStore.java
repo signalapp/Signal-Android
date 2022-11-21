@@ -15,9 +15,9 @@ import org.whispersystems.libsignal.SignalProtocolAddress;
 import org.whispersystems.libsignal.protocol.CiphertextMessage;
 import org.whispersystems.libsignal.state.SessionRecord;
 import org.whispersystems.signalservice.api.SignalServiceSessionStore;
-import org.whispersystems.signalservice.api.messages.InvalidRegistrationIdException;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -39,7 +39,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
       SessionRecord sessionRecord = DatabaseFactory.getSessionDatabase(context).load(address);
 
       if (sessionRecord == null) {
-        Log.w(TAG, "No existing session information found.");
+        Log.w(TAG, "No existing session information found for " + address);
         return new SessionRecord();
       }
 
@@ -56,6 +56,10 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
         String message = "Mismatch! Asked for " + addresses.size() + " sessions, but only found " + sessionRecords.size() + "!";
         Log.w(TAG, message);
         throw new NoSessionException(message);
+      }
+
+      if (sessionRecords.stream().anyMatch(Objects::isNull)) {
+        throw new NoSessionException("Failed to find one or more sessions.");
       }
 
       return sessionRecords;
@@ -83,6 +87,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public void deleteSession(SignalProtocolAddress address) {
     synchronized (LOCK) {
+      Log.w(TAG, "Deleting session for " + address);
       DatabaseFactory.getSessionDatabase(context).delete(address);
     }
   }
@@ -90,6 +95,7 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   @Override
   public void deleteAllSessions(String name) {
     synchronized (LOCK) {
+      Log.w(TAG, "Deleting all sessions for " + name);
       DatabaseFactory.getSessionDatabase(context).deleteAllFor(name);
     }
   }
@@ -102,24 +108,14 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
   }
 
   @Override
-  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) throws InvalidRegistrationIdException {
+  public Set<SignalProtocolAddress> getAllAddressesWithActiveSessions(List<String> addressNames) {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> activeRows = DatabaseFactory.getSessionDatabase(context)
-                                                                   .getAllFor(addressNames)
-                                                                   .stream()
-                                                                   .filter(row -> isActive(row.getRecord()))
-                                                                   .collect(Collectors.toList());
-
-      boolean hasInvalidRegistrationId = activeRows.stream()
-                                                   .map(SessionDatabase.SessionRow::getRecord)
-                                                   .anyMatch(record -> !isValidRegistrationId(record.getRemoteRegistrationId()));
-      if (hasInvalidRegistrationId) {
-        throw new InvalidRegistrationIdException();
-      }
-
-      return activeRows.stream()
-                       .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
-                       .collect(Collectors.toSet());
+      return DatabaseFactory.getSessionDatabase(context)
+                                          .getAllFor(addressNames)
+                                          .stream()
+                                          .filter(row -> isActive(row.getRecord()))
+                                          .map(row -> new SignalProtocolAddress(row.getAddress(), row.getDeviceId()))
+                                          .collect(Collectors.toSet());
     }
   }
 

@@ -59,6 +59,11 @@
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
     </style>
 
+    <style name="TextSecure.Animation.AddMessageDialog" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
+    </style>
+
     <!-- ActionBar styles -->
     <style name="TextSecure.DarkActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">?android:attr/windowBackground</item>
@@ -325,7 +330,7 @@
         <item name="android:fontFamily">monospace</item>
         <item name="android:typeface">monospace</item>
         <item name="android:textColor">@drawable/mp02_list_text_color</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">16sp</item>
         <item name="android:clickable">false</item>
         <item name="android:focusable">false</item>
     </style>
@@ -487,7 +492,7 @@
 
     <style name="Widget.Signal.CardView.PreferenceRow" parent="Widget.MaterialComponents.CardView">
         <item name="cardCornerRadius">0dp</item>
-        <item name="cardElevation">0.5dp</item>
+        <item name="cardElevation">0dp</item>
         <item name="cardBackgroundColor">?android:attr/windowBackground</item>
     </style>
 
@@ -559,5 +564,16 @@
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintTextColor">@color/signal_accent_primary</item>
         <item name="android:textColorHint">@color/signal_text_hint</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:minWidth">@dimen/mtrl_btn_dialog_btn_min_width</item>
+        <!-- Allow buttons to span more than one line so that the end isn't cut
+             off for long strings. MDC defaults to 1 line. -->
+        <item name="android:lines">2</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:layout_marginStart">@dimen/mtrl_btn_text_btn_padding_left</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:gravity">end|center_vertical</item>
     </style>
 </resources>

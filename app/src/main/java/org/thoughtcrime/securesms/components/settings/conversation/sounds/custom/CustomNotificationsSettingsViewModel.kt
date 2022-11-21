@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class CustomNotificationsSettingsViewModel(
@@ -42,7 +43,7 @@ class CustomNotificationsSettingsViewModel(
           RecipientDatabase.VibrateState.ENABLED -> true
           RecipientDatabase.VibrateState.DISABLED -> false
         },
-        showCallingOptions = !recipient.isGroup && recipient.isRegistered,
+        showCallingOptions = recipient.isRegistered && (!recipient.isGroup || FeatureFlags.groupCallRinging()),
         callSound = recipient.callRingtone,
         callVibrateState = recipient.callVibrate
       )

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver;
+import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 
@@ -228,55 +229,63 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     bodyView.setVisibility(GONE);
     mediaDescriptionText.setVisibility(VISIBLE);
 
-    List<Slide> audioSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasAudio).limit(1).toList();
-    List<Slide> documentSlides = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
-    List<Slide> imageSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasImage).limit(1).toList();
-    List<Slide> videoSlides    = Stream.of(attachments.getSlides()).filter(Slide::hasVideo).limit(1).toList();
-    List<Slide> stickerSlides  = Stream.of(attachments.getSlides()).filter(Slide::hasSticker).limit(1).toList();
-    List<Slide> viewOnceSlides = Stream.of(attachments.getSlides()).filter(Slide::hasViewOnce).limit(1).toList();
+    Slide audioSlide    = attachments.getSlides().stream().filter(Slide::hasAudio).findFirst().orElse(null);
+    Slide documentSlide = attachments.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
+    Slide imageSlide    = attachments.getSlides().stream().filter(Slide::hasImage).findFirst().orElse(null);
+    Slide videoSlide    = attachments.getSlides().stream().filter(Slide::hasVideo).findFirst().orElse(null);
+    Slide stickerSlide  = attachments.getSlides().stream().filter(Slide::hasSticker).findFirst().orElse(null);
+    Slide viewOnceSlide = attachments.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
 
     // Given that most types have images, we specifically check images last
-    if (!viewOnceSlides.isEmpty()) {
+    if (viewOnceSlide != null) {
       mediaDescriptionText.setText(R.string.QuoteView_view_once_media);
-    } else if (!audioSlides.isEmpty()) {
+    } else if (audioSlide != null) {
       mediaDescriptionText.setText(R.string.QuoteView_audio);
-    } else if (!documentSlides.isEmpty()) {
+    } else if (documentSlide != null) {
       mediaDescriptionText.setVisibility(GONE);
-    } else if (!videoSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_video);
-    } else if (!stickerSlides.isEmpty()) {
+    } else if (videoSlide != null) {
+      if (videoSlide.isVideoGif()) {
+        mediaDescriptionText.setText(R.string.QuoteView_gif);
+      } else {
+        mediaDescriptionText.setText(R.string.QuoteView_video);
+      }
+    } else if (stickerSlide != null) {
       mediaDescriptionText.setText(R.string.QuoteView_sticker);
-    } else if (!imageSlides.isEmpty()) {
-      mediaDescriptionText.setText(R.string.QuoteView_photo);
+    } else if (imageSlide != null) {
+      if (MediaUtil.isGif(imageSlide.getContentType())) {
+        mediaDescriptionText.setText(R.string.QuoteView_gif);
+      } else {
+        mediaDescriptionText.setText(R.string.QuoteView_photo);
+      }
     }
   }
 
   private void setQuoteAttachment(@NonNull GlideRequests glideRequests, @NonNull SlideDeck slideDeck) {
-    List<Slide> imageVideoSlides = Stream.of(slideDeck.getSlides()).filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).limit(1).toList();
-    List<Slide> documentSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasDocument).limit(1).toList();
-    List<Slide> viewOnceSlides   = Stream.of(attachments.getSlides()).filter(Slide::hasViewOnce).limit(1).toList();
+    Slide imageVideoSlide = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
+    Slide documentSlide   = slideDeck.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
+    Slide viewOnceSlide   = slideDeck.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
 
     attachmentVideoOverlayView.setVisibility(GONE);
 
-    if (!viewOnceSlides.isEmpty()) {
+    if (viewOnceSlide != null) {
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);
-    } else if (!imageVideoSlides.isEmpty() && imageVideoSlides.get(0).getUri() != null) {
+    } else if (imageVideoSlide != null && imageVideoSlide.getUri() != null) {
       thumbnailView.setVisibility(VISIBLE);
       attachmentContainerView.setVisibility(GONE);
       dismissView.setBackgroundResource(R.drawable.dismiss_background);
-      if (imageVideoSlides.get(0).hasVideo()) {
+      if (imageVideoSlide.hasVideo() && !imageVideoSlide.isVideoGif()) {
         attachmentVideoOverlayView.setVisibility(VISIBLE);
       }
-      glideRequests.load(new DecryptableUri(imageVideoSlides.get(0).getUri()))
+      glideRequests.load(new DecryptableUri(imageVideoSlide.getUri()))
                    .centerCrop()
                    .override(getContext().getResources().getDimensionPixelSize(R.dimen.quote_thumb_size))
                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                    .into(thumbnailView);
-    } else if (!documentSlides.isEmpty()){
+    } else if (documentSlide != null){
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(VISIBLE);
-      attachmentNameView.setText(documentSlides.get(0).getFileName().or(""));
+      attachmentNameView.setText(documentSlide.getFileName().or(""));
     } else {
       thumbnailView.setVisibility(GONE);
       attachmentContainerView.setVisibility(GONE);

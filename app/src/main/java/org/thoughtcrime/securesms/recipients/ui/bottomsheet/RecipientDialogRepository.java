@@ -12,6 +12,8 @@ import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.GroupDatabase;
 import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -51,11 +53,9 @@ final class RecipientDialogRepository {
     return groupId;
   }
 
-  void getIdentity(@NonNull Consumer<IdentityDatabase.IdentityRecord> callback) {
+  void getIdentity(@NonNull Consumer<IdentityRecord> callback) {
     SignalExecutors.BOUNDED.execute(
-      () -> callback.accept(DatabaseFactory.getIdentityDatabase(context)
-                                           .getIdentity(recipientId)
-                                           .orNull()));
+      () -> callback.accept(ApplicationDependencies.getIdentityStore().getIdentityRecord(recipientId).orNull()));
   }
 
   void getRecipient(@NonNull RecipientCallback recipientCallback) {

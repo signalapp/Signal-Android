@@ -49,6 +49,7 @@
   <string name="ApplicationPreferencesActivity_pin_disabled">PIN-kode deaktivert.</string>
   <string name="ApplicationPreferencesActivity_hide">Skjul</string>
   <string name="ApplicationPreferencesActivity_hide_reminder">Skjul påminnelse?</string>
+  <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Før du kan deaktivere PIN-koden din, må du registrere betalingsgjenopprettingsfrasen for å sikre at du kan gjenopprette betalingskontoen din.</string>
   <!--AppProtectionPreferenceFragment-->
   <plurals name="AppProtectionPreferenceFragment_minutes">
     <item quantity="one">%d minutt</item>
@@ -199,7 +200,6 @@
   <string name="ConversationItem_this_message_was_deleted">Denne meldingen ble slettet.</string>
   <string name="ConversationItem_you_deleted_this_message">Du slettet denne meldingen.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset">Tilbakestill</string>
   <string name="ConversationActivity_add_attachment">Legg til vedlegg</string>
   <string name="ConversationActivity_select_contact_info">Velg kontaktinformasjon</string>
   <string name="ConversationActivity_compose_message">Skriv melding</string>
@@ -227,6 +227,9 @@
   <string name="ConversationActivity_quick_camera_unavailable">Kamera utilgjengelig</string>
   <string name="ConversationActivity_unable_to_record_audio">Kan ikke ta opp lyd!</string>
   <string name="ConversationActivity_you_cant_send_messages_to_this_group">Du kan ikke sende meldinger til denne gruppen fordi du ikke lenger er medlem av den.</string>
+  <string name="ConversationActivity_only_s_can_send_messages">Kun %1$s kan sende meldinger.</string>
+  <string name="ConversationActivity_cant_start_group_call">Kan ikke starte gruppeanrop</string>
+  <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Bare administratorer for denne gruppen kan starte en samtale.</string>
   <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Du har ingen programmer på denne enheten som kan håndtere denne lenka.</string>
   <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Din forespørsel om å bli med har blitt sendt til gruppeadministratoren. Du vil bli varslet når de tar aksjon.</string>
   <string name="ConversationActivity_cancel_request">Avbryt forespørsel</string>
@@ -322,6 +325,7 @@
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Denne enheten har ingen nettleser installert.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Ingen resultater funnet for \'%s\'</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Vil du slette valgt samtale?</item>
     <item quantity="other">Vil du slette valgte samtaler?</item>
@@ -341,6 +345,15 @@
     <item quantity="one">Flyttet samtalen til innboks</item>
     <item quantity="other">Flyttet %d samtaler til innboks</item>
   </plurals>
+  <string name="ConversationListFragment_select">Velg</string>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Velg alle</string>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <!--Tooltip shown after you have created your first notification profile-->
+  <!--Message shown in top toast to indicate the named profile is on-->
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Nøkkelutveksling</string>
   <!--ConversationListItemAction-->
@@ -443,6 +456,7 @@
   <!--ShareActivity-->
   <string name="ShareActivity_share_with">Del med</string>
   <string name="ShareActivity_multiple_attachments_are_only_supported">Flere vedlegg støttes bare for bilder og videoer</string>
+  <string name="ShareActivity_you_do_not_have_permission_to_send_to_this_group">Du har ikke tillatelse til å sende til denne gruppen</string>
   <!--GcmBroadcastReceiver-->
   <string name="GcmBroadcastReceiver_retrieving_a_message">Mottar en melding…</string>
   <!--GcmRefreshJob-->
@@ -717,6 +731,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Aktivert</string>
   <string name="CustomNotificationsDialogFragment__disabled">Deaktivert</string>
   <string name="CustomNotificationsDialogFragment__default">Forvalgt</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Ukjent</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Delbar gruppelenke</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Administrer &amp; del</string>
@@ -790,6 +805,7 @@
   <string name="InviteActivity_share">Del</string>
   <string name="InviteActivity_choose_contacts">Velg kontakter</string>
   <string name="InviteActivity_share_with_contacts">Del med kontakter</string>
+  <string name="InviteActivity_share_via">Del via…</string>
   <string name="InviteActivity_cancel">Avbryt</string>
   <string name="InviteActivity_sending">Sender…</string>
   <string name="InviteActivity_heart_content_description">Hjerte</string>
@@ -805,6 +821,7 @@
   <string name="Job_working_in_the_background">Jobber i bakgrunnen…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lær mer</string>
+  <string name="SpanUtil__read_more">Les mer</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Kunne ikke finne meldingen</string>
   <string name="LongMessageActivity_message_from_s">Melding fra %1$s</string>
@@ -839,13 +856,14 @@
   <string name="MediaOverviewActivity_Grid_view_description">Rutenett visning</string>
   <string name="MediaOverviewActivity_List_view_description">Listevisning</string>
   <string name="MediaOverviewActivity_Selected_description">Valgt</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d element %2$s</item>
-    <item quantity="other">%1$d elementer %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Velg alle</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Lagre</item>
+    <item quantity="other">Lagre</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d element</item>
-    <item quantity="other">%1$d elementer</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Slett</item>
+    <item quantity="other">Slett</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Fil</string>
   <string name="MediaOverviewActivity_audio">Lyd</string>
@@ -1066,6 +1084,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Du markerte sikkerhetsnummeret for %s som bekreftet fra en annen enhet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Du markerte sikkerhetsnummer for %s som ikke bekreftet</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Du markerte sikkerhetsnummer for %s som ikke bekreftet fra en annen enhet</string>
+  <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">En melding fra %s kunne ikke leveres</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s startet en gruppesamtale · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s er i gruppesamtalen · %2$s</string>
@@ -1249,6 +1268,9 @@
   <string name="WebRtcCallView__reconnecting">Kobler til på nytt…</string>
   <string name="WebRtcCallView__joining">Blir med…</string>
   <string name="WebRtcCallView__disconnected">Koplet fra</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal vil ringe %1$s</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal vil ringe %1$s og %2$s</string>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s vil bli varslet</string>
   <string name="WebRtcCallView__no_one_else_is_here">Ingen andre er her</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$ser i denne samtalen</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s og %2$s er i denne samtalen.</string>
@@ -1295,8 +1317,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="RegistrationActivity_no_browser">Klarte ikke å åpne lenke. Fant ingen nettleser.</string>
   <string name="RegistrationActivity_more_information">Mer informasjon</string>
   <string name="RegistrationActivity_less_information">Mindre informasjon</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon må ha tilgang til kontakter og medier på systemet for å kunne koble til venner, sende/motta meldinger og ringe</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon må ha tilgang til kontaktene dine for å kunne koble til venner, sende/motta meldinger og ringe sikkert</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon trenger kontaktene og medietillatelsene for å hjelpe deg med å få kontakt med venner og sende meldinger. Kontaktene dine lastes opp ved hjelp av Signal private kontaktoppdagelse, noe som betyr at de er ende-til-ende-krypterte og aldri synlige for Signal- og Pigeon-tjenesten.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon trenger kontakttillatelsen for å hjelpe deg med å få kontakt med venner. Kontaktene dine lastes opp ved hjelp av Signal private kontaktoppdagelse, noe som betyr at de er ende-til-ende-krypterte og aldri synlige for Signal- og Pigeon-tjenesten.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Du har gjort for mange forsøk på å registrere dette nummeret. Prøv igjen senere.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Klarte ikke å koble til tjenesten. Kontroller at du har en stabil nettilkobling og prøv på nytt.</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Pigeon kan hente SMS-bekreftelseskoden din automatisk hvis du tillater at programmet leser SMS-meldinger på enheten.</string>
@@ -1348,6 +1370,8 @@ skrev inn (%s) er ugyldig.</string>
   <string name="SharedContactView_add_to_contacts">Legg til kontakt</string>
   <string name="SharedContactView_invite_to_signal">Inviter kontakter</string>
   <string name="SharedContactView_message">Pigeon-melding</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Mer</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Vi minner deg om det senere.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vi minner deg på igjen i morgen.</string>
@@ -1716,6 +1740,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ConversationUpdateItem_call_is_full">Samtalen er full</string>
   <string name="ConversationUpdateItem_invite_friends">Inviter venner</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Slå på samtalevarsler</string>
+  <string name="ConversationUpdateItem_update_contact">Oppdater kontakt</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ingen felles grupper. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ingen kontakter i denne gruppen. Gjennomgå forespørsler nøye.</string>
   <string name="ConversationUpdateItem_view">Vis</string>
@@ -1727,6 +1752,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_audio">Lyd</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Bilde</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Vis en gang media</string>
   <string name="QuoteView_sticker">Klistremerke</string>
   <string name="QuoteView_document">Dokument</string>
@@ -1734,6 +1760,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="QuoteView_original_missing">Opprinnelig melding ikke funnet</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Rull til bunnen</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Ikke nå</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Skru av</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Endringer av sikkerhetsnummer</string>
   <string name="safety_number_change_dialog__accept">Godta</string>
@@ -1803,15 +1835,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="expiration_combined">%1$s %2$s</string>
   <!--unverified safety numbers-->
   <string name="IdentityUtil_unverified_banner_one">Sikkerhetsnummeret for %s er endret og ikke lenger bekreftet</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Vennligst velg et alternativ --</item>
-    <item>Det er noe ikke fungerer</item>
-    <item>Foreslå nye funksjoner</item>
-    <item>Hvordan kan jeg … ?</item>
-    <item>Tilbakemeldinger</item>
-    <item>Annet</item>
-    <item>Betalinger</item>
-  </string-array>
   <string name="IdentityUtil_unverified_banner_two">Sikkerhetsnummeret for %1$s og %2$s er ikke lenger bekreftet</string>
   <string name="IdentityUtil_unverified_banner_many">Sikkerhetsnummer for %1$s, %2$s og %3$s er ikke lenger bekreftet</string>
   <string name="IdentityUtil_unverified_dialog_one">Sikkerhetsnummer for %1$s er endret og ikke lenger bekreftet. Dette kan enten bety at noen forsøker å overvåke eller manipulere kommunikasjonen, eller det kan være så enkelt som at %1$s installerte Pigeon på nytt.</string>
@@ -1912,19 +1935,20 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="unknown_sender_view__add_to_contacts">LEGG TIL KONTAKTER</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">IKKE LEGG TIL, MEN GJØR PROFILEN MIN SYNLIG</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker kryptering mot %s, bør du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også skanne koden på motpartens enhet, eller be dem om å skanne din <a href="https://signal.org/redirect/safety-numbers">Les mer.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Hvis du vil bekrefte at du har sikker kryptering mot %s, bør du sammenlikne tallene overfor med tallene på motpartens enhet. Du kan også skanne koden på motpartens enhet, eller be dem om å skanne din <a href="https://signal.org/redirect/safety-numbers">Les mer.</a>]]></string> -->
   <string name="verify_display_fragment__tap_to_scan">Trykk for å skanne</string>
   <string name="verify_display_fragment__loading">Laster…</string>
-  <string name="verify_display_fragment__verified">Bekreftet</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Bekreftet</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Del sikkerhetsnummer</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skann QR-koden på kontaktens enhet.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Sveip opp for å svare</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Sveip ned for å avvise</string>
   <!--message_details_header-->
   <string name="message_details_header__issues_need_your_attention">Problemer venter på manuell løsning.</string>
-  <string name="message_details_header__sent">Sendt</string>
-  <string name="message_details_header__received">Mottatt</string>
+  <string name="message_details_header__sent">Sendt:</string>
+  <string name="message_details_header__received">Mottatt:</string>
   <string name="message_details_header__disappears">Forsvinner</string>
   <string name="message_details_header__via">Via</string>
   <!--message_details_recipient_header-->
@@ -1988,6 +2012,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__symbols">Symboler</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Flagg</string>
   <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticons</string>
+  <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen resultater</string>
   <!--arrays.xml-->
   <string name="arrays__import_export">Importer</string>
   <string name="arrays__use_default">Bruk forvalgt</string>
@@ -2144,7 +2169,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_storage__custom">Selvvalgt</string>
   <string name="preferences_advanced__use_system_emoji">Bruk systemets emoji</string>
   <string name="preferences_advanced__disable_signal_built_in_emoji_support">Slå av innebygd emoji-støtte i Pigeon </string>
-  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Videresend alle samtaler gjennom Pigeon serveren for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vill redusere samtalekvaliteten.</string>
+  <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Omdiriger alle samtaler gjennom Signal-tjenesten for å unngå å avsløre IP-adressen din til kontakten din. Aktivering vil redusere samtalekvaliteten.</string>
   <string name="preferences_advanced__always_relay_calls">Omdiriger alle samtaler</string>
   <string name="preferences_app_protection__who_can">Hvem kan…</string>
   <string name="preferences_app_protection__app_access">Programtilgang</string>
@@ -2154,6 +2179,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="preferences_data_and_storage__calls">Samtaler</string>
   <string name="preferences_data_and_storage__use_less_data_for_calls">Bruk mindre data for anrop</string>
   <string name="preferences_data_and_storage__never">Aldri</string>
+  <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi og mobildata</string>
+  <string name="preferences_data_and_storage__mobile_data_only">Kun mobildata</string>
   <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Lavere dataforbruk kan forbedre samtaler på dårlige nettverk</string>
   <string name="preferences_notifications__messages">Meldinger</string>
   <string name="preferences_notifications__events">Hendelser</string>
@@ -2191,6 +2218,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__no_recent_activity_yet">Ingen nylig aktivitet</string>
   <string name="PaymentsHomeFragment__see_all">Se alle</string>
   <string name="PaymentsHomeFragment__send">Send</string>
+  <string name="PaymentsHomeFragment__sent_s">Sendt %1$s</string>
   <string name="PaymentsHomeFragment__deactivate_payments">Deaktiver betalinger</string>
   <string name="PaymentsHomeFragment__recovery_phrase">Gjenopprettingsfrase</string>
   <string name="PaymentsHomeFragment__help">Hjelp</string>
@@ -2208,6 +2236,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="PaymentsHomeFragment__payments_deactivated">Betalinger er deaktivert</string>
   <string name="PaymentsHomeFragment__payment_failed">Betaling mislyktes</string>
   <string name="PaymentsHomeFragment__details">Detaljer</string>
+  <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Du kan bruke Signal til å sende og motta MobileCoin. Alle betalinger er underlagt vilkårene for bruk for MobileCoins og MobileCoin-lommeboken. Dette er en betafunksjon slik at du kan støte på noen problemer og betalinger eller saldoer du kan miste kan ikke gjenopprettes.</string>
   <string name="PaymentsHomeFragment__activate">Aktiver</string>
   <string name="PaymentsHomeFragment__payments_not_available">Betalinger i Signal er ikke lenger tilgjengelige. Du kan fortsatt overføre midler til en veksler, men du kan ikke lenger sende eller motta betalinger eller legge til midler.</string>
   <!--PaymentsAddMoneyFragment-->
@@ -2396,7 +2425,6 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="Insights__title">Innsikt</string>
   <string name="InsightsDashboardFragment__title">Innsikt</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Pigeon-protokoll automatisk beskyttet %1$d%% av utgående meldinger over de siste %2$d dagene. Samtaler mellom Pigeon -brukere er alltid kryptert fra ende til ende.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Pigeon økning</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ikke nok data</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Prosentene i oversikten er regnet ut fra utgående meldinger de siste %1$d dagene som ikke har forsvunnet eller blitt slettet.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Start en samtale</string>
@@ -2573,7 +2601,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon krever tillatelse fra systemet for å kunne lagre sikkerhetskopier, men du har valgt å avslå dette permanent. Gå til «Apper»-menyen på systemet og slå på tillatelsen «Lagring».</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Siste sikkerhetskopi: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Under behandling</string>
-  <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Tar sikkerhetskopi …</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Sikkerhetskopi feilet</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Din sikkerhetskopikatalog har blitt slettet eller flyttet.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Sikkerhetskopien din er for stor til å lagres på dette volumet.</string>
@@ -2762,6 +2790,7 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="RecipientBottomSheet_block">Blokker</string>
   <string name="RecipientBottomSheet_unblock">Skru av blokkering</string>
   <string name="RecipientBottomSheet_add_to_contacts">Legg til i kontakter</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
   <string name="RecipientBottomSheet_add_to_a_group">Legg til gruppen</string>
   <string name="RecipientBottomSheet_add_to_another_group">Legg til en annen gruppe</string>
   <string name="RecipientBottomSheet_view_safety_number">Vis sikkerhetsnummer</string>
@@ -2858,6 +2887,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="DeleteAccountFragment__failed_to_delete_account">Klarte ikke slette konto. Har du nettverksforbindelse?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Klarte ikke slette lokal data. Du kan manuelt slette den i systemet applikasjonsinnstillinger.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Åpne App Innstillinger</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Søk Land</string>
   <!--CreateGroupActivity-->
@@ -2969,6 +3004,21 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="AccountSettingsFragment__account">Konto</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Du vil bli spurt sjeldnere over tid</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Krev Signal-PIN for å registrere telefonnummeret på nytt hos Signal</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__continue">Fortsett</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Telefonnummeret du tastet inn stemmer ikke med kontoen din sitt.</string>
+  <!--ChangeNumberVerifyFragment-->
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__edit_number">Rediger nummer</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Oppdater PIN</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Det ser ut til at du prøvde å endre nummeret ditt, men vi klarte ikke å finne ut om det var vellykket.\n\nSjekker på nytt nå…</string>
+  <string name="ChangeNumberLockActivity__retry">Prøv på nytt</string>
+  <string name="ChangeNumberLockActivity__leave">Forlat</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Send feilsøkingslogg</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Tastatur</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Send med enter-tast</string>
@@ -2979,6 +3029,12 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="NotificationsSettingsFragment__calls">Samtaler</string>
   <string name="NotificationsSettingsFragment__notify_when">Varsle når…</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt blir med på Signal</string>
+  <!--Notification preference header-->
+  <!--Notification preference option header-->
+  <!--Notification preference summary text-->
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <!--Button text to create a notification profile-->
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Blokkert</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontakter</string>
@@ -3020,6 +3076,11 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensiert under GPLv3</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Sendt mediekvalitet</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Å sende høykvalitetsmedier vil bruke mer data.</string>
+  <string name="DataAndStorageSettingsFragment__high">Høy</string>
+  <string name="DataAndStorageSettingsFragment__standard">Standard</string>
   <string name="DataAndStorageSettingsFragment__calls">Samtaler</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3059,10 +3120,14 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <string name="ChatColorsMegaphone__not_now">Ikke nå</string>
   <!--AddAProfilePhotoMegaphone-->
   <string name="AddAProfilePhotoMegaphone__not_now">Ikke nå</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__no_thanks">Nei takk</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emoji</string>
   <string name="KeyboardPagerFragment_stickers">Klistremerker</string>
   <!--StickerSearchDialogFragment-->
+  <string name="StickerSearchDialogFragment_no_results_found">Ingen resultater</string>
+  <string name="EmojiSearchFragment__no_results_found">Ingen resultater</string>
   <!--ConversationSettingsFragment-->
   <string name="ConversationSettingsFragment__message">Melding</string>
   <string name="ConversationSettingsFragment__video">Video</string>
@@ -3102,8 +3167,8 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--NewConversationActivity-->
   <string name="NewConversationActivity__new_message">Ny melding</string>
   <!--ContactFilterView-->
+  <string name="ContactFilterView__search_name_or_number">Søk etter navn eller nummer</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
   <!--AvatarPickerFragment-->
   <string name="AvatarPickerFragment__camera">Kamera</string>
   <string name="AvatarPickerFragment__photo">Bilde</string>
@@ -3116,7 +3181,116 @@ Mottok nøkkelutvekslingsmelding for ugyldig protokollversion.</string>
   <!--VectorAvatarCreationFragment-->
   <!--ContactSelectionListItem-->
   <string name="ContactSelectionListItem__sms">SMS</string>
+  <string name="ImageEditorHud__delete">Slett</string>
   <!--DSLSettingsToolbar-->
+  <string name="SelectFeaturedBadgeFragment__preview">Forhåndsvisning</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Signal drives av folk som deg.</string>
+  <string name="SubscribeFragment__not_now">Ikke nå</string>
+  <string name="SubscribeFragment__confirm">Bekreft</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Ferdig</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Når du har mer enn ett merke, kan du velge ett som skal vises som andre kan se på profilen din.</string>
+  <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ikke nå</string>
+  <string name="Subscription__contact_support">Kontakt brukerstøtte</string>
+  <string name="SubscribeFragment__processing_payment">Behandler betaling …</string>
+  <!-- Removed by excludeNonTranslatables <string name="DonationsErrors__payment_failed">Betaling mislyktes</string> -->
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="SubscribeFragment__update">Oppdater</string>
+  <string name="NetworkFailure__retry">Prøv på nytt</string>
+  <!--Title of create notification profile screen-->
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Profil navn</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button to continue to the next step-->
+  <string name="EditNotificationProfileFragment__next">Neste</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Opprett</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Lagre</string>
+  <!--Title of edit notification profile screen-->
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Arbeid</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <!--Description of what the user should be doing with this screen-->
+  <!--Button text that launches the contact picker to select from-->
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Legg til</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <!--Header shown above list of all notification profiles-->
+  <!--Button that starts the create new notification profile flow-->
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">På</string>
+  <!--Button use to permanently delete a notification profile-->
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Angre</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Slett</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <!--Schedule description if all days are selected-->
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">På</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Av</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s til %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <!--Section header for showing schedule information-->
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Se alle</string>
+  <!--Title for add schedule to profile in create flow-->
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Start</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Avslutt</string>
+  <!--First letter of Sunday-->
+  <!--First letter of Monday-->
+  <!--First letter of Tuesday-->
+  <!--First letter of Wednesday-->
+  <!--First letter of Thursday-->
+  <!--First letter of Friday-->
+  <!--First letter of Saturday-->
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Lagre</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Hopp over</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Neste</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <!--Title for final screen shown after completing a profile creation-->
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Ferdig</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">Frem til %1$s</string>
+  <!--Option to view profile details-->
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <!--Title for notification profile megaphone-->
+  <!--Description for notification profile megaphone-->
+  <!--Call to action button to create a profile from megaphone-->
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ikke nå</string>
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <!--EOF-->
   <string name="save_options_new_contact">Ny kontakt</string>
   <string name="save_options_add_to_existing">Legg til eksisterende</string>

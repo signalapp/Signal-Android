@@ -38,7 +38,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
-
+import org.signal.zkgroup.profiles.ProfileKey;
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
+import org.thoughtcrime.securesms.database.DatabaseFactory;
 public class TextSecurePreferences {
 
   private static final String TAG = Log.tag(TextSecurePreferences.class);
@@ -248,6 +250,31 @@ public class TextSecurePreferences {
   private static final String[] stringSetPreferencesToBackup = {MEDIA_DOWNLOAD_MOBILE_PREF,
                                                                 MEDIA_DOWNLOAD_WIFI_PREF,
                                                                 MEDIA_DOWNLOAD_ROAMING_PREF};
+
+  public static long getPreferencesToSaveToBackupCount(@NonNull Context context) {
+    SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+    long              count       = 0;
+
+    for (String booleanPreference : booleanPreferencesToBackup) {
+      if (preferences.contains(booleanPreference)) {
+        count++;
+      }
+    }
+
+    for (String stringPreference : stringPreferencesToBackup) {
+      if (preferences.contains(stringPreference)) {
+        count++;
+      }
+    }
+
+    for (String stringSetPreference : stringSetPreferencesToBackup) {
+      if (preferences.contains(stringSetPreference)) {
+        count++;
+      }
+    }
+
+    return count;
+  }
 
   public static List<BackupProtos.SharedPreference> getPreferencesToSaveToBackup(@NonNull Context context) {
     SharedPreferences                   preferences  = PreferenceManager.getDefaultSharedPreferences(context);
@@ -473,6 +500,10 @@ public class TextSecurePreferences {
 
     if (previous != value) {
       Recipient.self().live().refresh();
+    }
+
+    if (value) {
+      clearLocalCredentials(context);
     }
   }
 
@@ -950,6 +981,10 @@ public class TextSecurePreferences {
     if (previous != registered) {
       Recipient.self().live().refresh();
     }
+
+    if (previous && !registered) {
+      clearLocalCredentials(context);
+    }
   }
 
   public static boolean isShowInviteReminders(Context context) {
@@ -1345,6 +1380,15 @@ public class TextSecurePreferences {
     prefs.edit().putStringSet(key, values).apply();
   }
 
+  private static void clearLocalCredentials(Context context) {
+    TextSecurePreferences.setPushServerPassword(context, Util.getSecret(18));
+
+    ProfileKey newProfileKey = ProfileKeyUtil.createNew();
+    Recipient  self          = Recipient.self();
+    DatabaseFactory.getRecipientDatabase(context).setProfileKey(self.getId(), newProfileKey);
+
+    ApplicationDependencies.getGroupsV2Authorization().clear();
+  }
 
   // NEVER rename these -- they're persisted by name
   public enum MediaKeyboardMode {

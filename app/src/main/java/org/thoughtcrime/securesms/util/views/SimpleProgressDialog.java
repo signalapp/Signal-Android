@@ -68,26 +68,43 @@ public final class SimpleProgressDialog {
 
     ThreadUtil.runOnMainDelayed(showRunnable, delayMs);
 
-    return () -> {
-      ThreadUtil.cancelRunnableOnMain(showRunnable);
-      ThreadUtil.runOnMain(() -> {
-        AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
-        if (alertDialog != null) {
-          long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
-          long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
+    return new DismissibleDialog() {
+      @Override
+      public void dismiss() {
+        ThreadUtil.cancelRunnableOnMain(showRunnable);
+        ThreadUtil.runOnMain(() -> {
+          AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
+          if (alertDialog != null) {
+            long beenShowingForMs = System.currentTimeMillis() - shownAt.get();
+            long remainingTimeMs  = minimumShowTimeMs - beenShowingForMs;
 
-          if (remainingTimeMs > 0) {
-            ThreadUtil.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
-          } else {
+            if (remainingTimeMs > 0) {
+              ThreadUtil.runOnMainDelayed(alertDialog::dismiss, remainingTimeMs);
+            } else {
+              alertDialog.dismiss();
+            }
+          }
+        });
+      }
+
+      @Override
+      public void dismissNow() {
+        ThreadUtil.cancelRunnableOnMain(showRunnable);
+        ThreadUtil.runOnMain(() -> {
+          AlertDialog alertDialog = dialogAtomicReference.getAndSet(null);
+          if (alertDialog != null) {
             alertDialog.dismiss();
           }
-        }
-      });
+        });
+      }
     };
   }
 
   public interface DismissibleDialog {
     @AnyThread
     void dismiss();
+
+    @AnyThread
+    void dismissNow();
   }
 }

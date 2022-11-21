@@ -1,12 +1,17 @@
+enableFeaturePreview('VERSION_CATALOGS')
+
 include ':app'
 include ':libsignal-service'
 include ':lintchecks'
 include ':paging'
 include ':paging-app'
 include ':core-util'
+include ':glide-config'
 include ':video'
 include ':device-transfer'
 include ':device-transfer-app'
+include ':donations'
+include ':donations-app'
 
 project(':app').name = 'Pigeon'
 project(':paging').projectDir = file('paging/lib')
@@ -16,5 +21,8 @@ project(':device-transfer').projectDir = file('device-transfer/lib')
 project(':device-transfer-app').projectDir = file('device-transfer/app')
 
 project(':libsignal-service').projectDir = file('libsignal/service')
-
+project(':donations').projectDir = file('donations/lib')
+project(':donations-app').projectDir = file('donations/app')
 rootProject.name='Pigeon'
+
+apply from: 'dependencies.gradle'

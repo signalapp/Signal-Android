@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.renderers;
 
 import android.graphics.Path;
+import android.graphics.RectF;
 import android.os.Parcel;
 
 import androidx.annotation.ColorInt;
@@ -9,6 +10,7 @@ import androidx.annotation.NonNull;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.Renderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Renders the {@link color} outside of the {@link Bounds}.
@@ -19,11 +21,19 @@ public final class InverseFillRenderer implements Renderer {
 
   private final int color;
 
-  private final Path path = new Path();
+  private final RectF dst  = new RectF();
+  private final Path  path = new Path();
 
   @Override
   public void render(@NonNull RendererContext rendererContext) {
     rendererContext.canvas.save();
+
+    rendererContext.mapRect(dst, Bounds.FULL_BOUNDS);
+    rendererContext.canvasMatrix.setToIdentity();
+
+    path.reset();
+    path.addRoundRect(dst, ViewUtil.dpToPx(18), ViewUtil.dpToPx(18), Path.Direction.CW);
+
     rendererContext.canvas.clipPath(path);
     rendererContext.canvas.drawColor(color);
     rendererContext.canvas.restore();
@@ -32,11 +42,6 @@ public final class InverseFillRenderer implements Renderer {
   public InverseFillRenderer(@ColorInt int color) {
     this.color = color;
     path.toggleInverseFillType();
-    path.moveTo(Bounds.LEFT, Bounds.TOP);
-    path.lineTo(Bounds.RIGHT, Bounds.TOP);
-    path.lineTo(Bounds.RIGHT, Bounds.BOTTOM);
-    path.lineTo(Bounds.LEFT, Bounds.BOTTOM);
-    path.close();
   }
 
   private InverseFillRenderer(Parcel in) {

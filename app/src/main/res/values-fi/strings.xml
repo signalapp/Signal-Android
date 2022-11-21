@@ -203,7 +203,6 @@
   <string name="ConversationItem_this_message_was_deleted">Tämä viesti poistettiin.</string>
   <string name="ConversationItem_you_deleted_this_message">Poistit tämän viestin.</string>
   <!--ConversationActivity-->
-  <string name="ConversationActivity_reset">Alusta</string>
   <string name="ConversationActivity_add_attachment">Lisää liite</string>
   <string name="ConversationActivity_select_contact_info">Valitse yhteystieto</string>
   <string name="ConversationActivity_compose_message">Kirjoita viesti</string>
@@ -328,10 +327,12 @@
   <string name="ConversationFragment_not_now">Ei nyt</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed">Turvanumerosi yhteystiedon %s kanssa on vaihtunut</string>
   <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">Turvanumerosi kontaktin %s kanssa on vaihtunut, luultavasti koska hän on uudelleenasentanut Signalin tai vaihtanut käyttämäänsä laitetta. Vahvista uusi turvanumero napauttamalla \'Vahvista\'. Toiminto on valinnainen.</string>
+  <!--Message shown to indicate which notification profile is on/active-->
   <!--ConversationListActivity-->
   <string name="ConversationListActivity_there_is_no_browser_installed_on_your_device">Laitteessasi ei ole verkkoselainta asennettuna.</string>
   <!--ConversationListFragment-->
   <string name="ConversationListFragment_no_results_found_for_s_">Ei hakutuloksia: \'%s\'</string>
+  <string name="ConversationFragment__s_on">%1$s käytössä</string>
   <plurals name="ConversationListFragment_delete_selected_conversations">
     <item quantity="one">Poistetaanko valittu keskustelu?</item>
     <item quantity="other">Poistetaanko valitut keskustelut?</item>
@@ -351,6 +352,54 @@
     <item quantity="one">Keskustelu siirretty postilaatikkoon</item>
     <item quantity="other">%d keskustelua siirretty postilaatikkoon</item>
   </plurals>
+  <plurals name="ConversationListFragment_read_plural">
+    <item quantity="one">Luettu</item>
+    <item quantity="other">Luettu</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unread_plural">
+    <item quantity="one">Lukematon</item>
+    <item quantity="other">Lukematon</item>
+  </plurals>
+  <plurals name="ConversationListFragment_pin_plural">
+    <item quantity="one">Kiinnitä</item>
+    <item quantity="other">Kiinnitä</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unpin_plural">
+    <item quantity="one">Irrota</item>
+    <item quantity="other">Irrota</item>
+  </plurals>
+  <plurals name="ConversationListFragment_mute_plural">
+    <item quantity="one">Mykistä</item>
+    <item quantity="other">Mykistä</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unmute_plural">
+    <item quantity="one">Poista mykistys</item>
+    <item quantity="other">Poista mykistys</item>
+  </plurals>
+  <string name="ConversationListFragment_select">Valitse</string>
+  <plurals name="ConversationListFragment_archive_plural">
+    <item quantity="one">Arkistoi</item>
+    <item quantity="other">Arkistoi</item>
+  </plurals>
+  <plurals name="ConversationListFragment_unarchive_plural">
+    <item quantity="one">Pal. arkistosta</item>
+    <item quantity="other">Pal. arkistosta</item>
+  </plurals>
+  <plurals name="ConversationListFragment_delete_plural">
+    <item quantity="one">Poista</item>
+    <item quantity="other">Poista</item>
+  </plurals>
+  <string name="ConversationListFragment_select_all">Valitse kaikki</string>
+  <plurals name="ConversationListFragment_s_selected">
+    <item quantity="one">%d valittu</item>
+    <item quantity="other">%d valittu</item>
+  </plurals>
+  <!--Show in conversation list overflow menu to open selection bottom sheet-->
+  <string name="ConversationListFragment__notification_profile">Ilmoitusprofiili</string>
+  <!--Tooltip shown after you have created your first notification profile-->
+  <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Kytke ilmoitusprofiilisi käyttöön/pois käytöstä täältä.</string>
+  <!--Message shown in top toast to indicate the named profile is on-->
+  <string name="ConversationListFragment__s_on">%1$s käytössä</string>
   <!--ConversationListItem-->
   <string name="ConversationListItem_key_exchange_message">Avaintenvaihtoviesti</string>
   <!--ConversationListItemAction-->
@@ -368,7 +417,7 @@
   <string name="CreateProfileActivity_error_setting_profile_photo">Virhe asetettaessa profiilikuvaa</string>
   <string name="CreateProfileActivity_problem_setting_profile">Virhe asetettaessa profiilia</string>
   <string name="CreateProfileActivity_profile_photo">Profiilikuva</string>
-  <string name="CreateProfileActivity_set_up_your_profile">Aseta profiilisi</string>
+  <string name="CreateProfileActivity_set_up_your_profile">Määritä profiilisi</string>
   <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">Pigeon-profiilit ovat päästä päähän salattuja eikä Signal-palvelulla ole pääsyä näihin tietoihin.</string>
   <string name="CreateProfileActivity_set_avatar_description">Aseta kuvake</string>
   <!--ChooseBackupFragment-->
@@ -656,6 +705,8 @@
   <string name="ManageGroupActivity_who_can_add_new_members">Ketkä voivat lisätä uusia jäseniä?</string>
   <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ketkä voivat muokata tämän ryhmän tietoja?</string>
   <string name="ManageGroupActivity_group_link">Ryhmälinkki</string>
+  <string name="ManageProfileFragment_badges">Merkit</string>
+  <string name="ManageProfileFragment__edit_photo">Muokkaa kuvaa</string>
   <string name="ManageGroupActivity_block_group">Estä ryhmä</string>
   <string name="ManageGroupActivity_unblock_group">Poista ryhmän esto</string>
   <string name="ManageGroupActivity_leave_group">Poistu ryhmästä</string>
@@ -732,6 +783,7 @@
   <string name="CustomNotificationsDialogFragment__enabled">Päällä</string>
   <string name="CustomNotificationsDialogFragment__disabled">Pois päältä</string>
   <string name="CustomNotificationsDialogFragment__default">Oletus</string>
+  <string name="CustomNotificationsDialogFragment__unknown">Tuntematon</string>
   <!--ShareableGroupLinkDialogFragment-->
   <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Jaettava ryhmälinkki</string>
   <string name="ShareableGroupLinkDialogFragment__manage_and_share">Hallinnoi &amp; jaa</string>
@@ -805,11 +857,13 @@
   <string name="InviteActivity_share">Jaa</string>
   <string name="InviteActivity_choose_contacts">Valitse yhteystietoja</string>
   <string name="InviteActivity_share_with_contacts">Jaa kontaktien kanssa</string>
+  <string name="InviteActivity_share_via">Jaa…</string>
   <string name="InviteActivity_cancel">Peruuta</string>
   <string name="InviteActivity_sending">Lähetetään…</string>
   <string name="InviteActivity_heart_content_description">Sydän</string>
   <string name="InviteActivity_invitations_sent">Kutsut lähetetty!</string>
   <string name="InviteActivity_invite_to_signal">Kutsu yhteystietoja</string>
+  <string name="InviteActivity_send_sms">Lähetä SMS (%d)</string>
   <plurals name="InviteActivity_send_sms_invites">
     <item quantity="one">Lähetetäänkö %d tekstiviestikutsu?</item>
     <item quantity="other">Lähetetäänkö %d tekstiviestikutsua?</item>
@@ -820,6 +874,7 @@
   <string name="Job_working_in_the_background">Taustatyöskentely käynnissä…</string>
   <!--LearnMoreTextView-->
   <string name="LearnMoreTextView_learn_more">Lue lisää</string>
+  <string name="SpanUtil__read_more">Lue lisää</string>
   <!--LongMessageActivity-->
   <string name="LongMessageActivity_unable_to_find_message">Viestiä ei löydy</string>
   <string name="LongMessageActivity_message_from_s">Viesti lähettäjältä: %1$s</string>
@@ -854,13 +909,18 @@
   <string name="MediaOverviewActivity_Grid_view_description">Ruudukkonäkymä</string>
   <string name="MediaOverviewActivity_List_view_description">Listanäkymä</string>
   <string name="MediaOverviewActivity_Selected_description">Valittu</string>
-  <plurals name="MediaOverviewActivity_d_items_s">
-    <item quantity="one">%1$d kappale %2$s</item>
-    <item quantity="other">%1$d kappaletta %2$s</item>
+  <string name="MediaOverviewActivity_select_all">Valitse kaikki</string>
+  <plurals name="MediaOverviewActivity_save_plural">
+    <item quantity="one">Tallenna</item>
+    <item quantity="other">Tallenna</item>
   </plurals>
-  <plurals name="MediaOverviewActivity_d_items">
-    <item quantity="one">%1$d kappale</item>
-    <item quantity="other">%1$d kappaletta</item>
+  <plurals name="MediaOverviewActivity_delete_plural">
+    <item quantity="one">Poista</item>
+    <item quantity="other">Poista</item>
+  </plurals>
+  <plurals name="MediaOverviewActivity_d_selected_s">
+    <item quantity="one">%1$d valittu (%2$s)</item>
+    <item quantity="other">%1$d valittu (%2$s)</item>
   </plurals>
   <string name="MediaOverviewActivity_file">Tiedosto</string>
   <string name="MediaOverviewActivity_audio">Äänitiedosto</string>
@@ -888,6 +948,7 @@
   <string name="NotificationBarManager_signal_call_in_progress">Pigeon-puhelu käynnissä</string>
   <string name="NotificationBarManager__establishing_signal_call">Muodostetaan Pigeon -puhelua</string>
   <string name="NotificationBarManager__incoming_signal_call">Saapuva Pigeon -puhelu</string>
+  <string name="NotificationBarManager__incoming_signal_group_call">Saapuva Signal-ryhmäpuhelu</string>
   <string name="NotificationBarManager__stopping_signal_call_service">Pysäytetään Signalin puhelupalvelua</string>
   <string name="NotificationBarManager__decline_call">Hylkää puhelu</string>
   <string name="NotificationBarManager__answer_call">Vastaa puheluun</string>
@@ -1096,6 +1157,7 @@
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi.</string>
   <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Merkitsit turvanumerosi kontaktin %s kanssa varmentamattomaksi toisesta laitteesta.</string>
   <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Viestiä kontaktilta %s ei pystytty toimittamaan</string>
+  <string name="MessageRecord_s_changed_their_number_to_a_new_number">%1$s vaihtoi numeronsa uuteen.</string>
   <!--Group Calling update messages-->
   <string name="MessageRecord_s_started_a_group_call_s">%1$s aloitti ryhmäpuhelun · %2$s</string>
   <string name="MessageRecord_s_is_in_the_group_call_s">%1$s on ryhmäpuhelussa · %2$s</string>
@@ -1281,9 +1343,34 @@
   <string name="WebRtcCallView__reconnecting">Yhdistetään uudelleen…</string>
   <string name="WebRtcCallView__joining">Liittymässä…</string>
   <string name="WebRtcCallView__disconnected">Ei yhteyttä</string>
+  <string name="WebRtcCallView__signal_will_ring_s">Signal soittaa %1$s:lle</string>
+  <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal soittaa %1$s:lle ja %2$s:lle</string>
+  <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
+    <item quantity="one">Signal soittaa %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Signal soittaa%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+  </plurals>
+  <string name="WebRtcCallView__s_will_be_notified">%1$s:lle ilmoitetaan</string>
+  <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s:lle ja %2$s:lle ilmoitetaan</string>
+  <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
+    <item quantity="one">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
+    <item quantity="other">%1$s:lle, %2$s:lle sekä %3$d:lle muulle ilmoitetaan</item>
+  </plurals>
+  <string name="WebRtcCallView__ringing_s">Soitetaan%1$s:lle</string>
+  <string name="WebRtcCallView__ringing_s_and_s">Soitetaan%1$s:lle ja %2$s:lle</string>
+  <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
+    <item quantity="one">Soitetaan %1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+    <item quantity="other">Soitetaan%1$s:lle, %2$s:lle sekä %3$d:lle muulle</item>
+  </plurals>
   <string name="WebRtcCallView__s_is_calling_you">%1$s soittaa sinulle</string>
+  <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s soittaa sinulle ja  %2$s:lle</string>
+  <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s soittaa sinulle, %2$s:lle sekä %3$s:lle</string>
+  <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
+    <item quantity="one">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
+    <item quantity="other">%1$s soittaa sinulle, %2$s:lle, %3$s:lle sekä %4$d:lle muulle</item>
+  </plurals>
   <string name="WebRtcCallView__no_one_else_is_here">Kukaan muu ei ole täällä</string>
   <string name="WebRtcCallView__s_is_in_this_call">%1$s on tässä puhelussa</string>
+  <string name="WebRtcCallView__s_are_in_this_call">%1$s ovat tässä puhelussa</string>
   <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s ja %2$s ovat tässä puhelussa</string>
   <string name="WebRtcCallView__s_is_presenting">%1$s esittää</string>
   <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
@@ -1328,13 +1415,17 @@ puhelinnumero</string>
   <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play Servicesiä päivitetään tai se ei ole juuri nyt saavutettavissa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_disclaimer">Pigeon vastuuvapauslauseke</string>
   <string name="RegistrationActivity_terms_and_privacy">Signal käyttöehdot ja yksityisyydensuoja</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon tarvitsee yhteystietojen ja median käyttöoikeuden helpottaakseen kavereihin yhdistämistä ja viestien lähetykseen. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljasti Signal- ja Pigeon-palvelulle.</string>
+  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon tarvitsee yhteystietojesi käyttöoikeuden helpottaakseen kavereihin yhdistämistä. Yhteystietosi lähetetään käyttäen Signalin yksityistä yhteystietohakua, eli ne on suojattu päästä päähän -salauksella, eivätkä missään vaiheessa paljastu Signal- ja Pigeon-palvelulle.</string>
   <string name="RegistrationActivity_no_browser">Tätä linkkiä ei voida avata. Verkkoselainta ei löydetty.</string>
   <string name="RegistrationActivity_more_information">Näytä lisää</string>
   <string name="RegistrationActivity_less_information">Näytä vähemmän</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Pigeon tarvitsee lupaa käyttää yhteystietojasi ja mediaa, jotta voit olla yhteydessä ystäviisi, viestitellä ja soitella turvallisesti.</string>
-  <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pigeon tarvitsee lupaa käyttää yhteystietojasi, jotta voit olla yhteydessä ystäviisi, viestitellä ja soitella turvallisesti.</string>
   <string name="RegistrationActivity_rate_limited_to_service">Olet yrittänyt rekisteröidä tätä numeroa liian monta kertaa. Yritä myöhemmin uudelleen.</string>
   <string name="RegistrationActivity_unable_to_connect_to_service">Yhteyttä ei voitu muodostaa palveluun. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
+  <string name="RegistrationActivity_non_standard_number_format">Epästandardi numeron muoto</string>
+  <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Syöttämäsi numero (%1$s) ei näytä olevan vakiomuotoinen.\n\nTarkoititko %2$s?</string>
+  <string name="RegistrationActivity_signal_android_phone_number_format">Signal Androidille - Puhelinnumeron muoto</string>
+  <string name="RegistrationActivity_call_requested">Soittoa pyydetty</string>
   <string name="RegistrationActivity_to_easily_verify_your_phone_number_signal_can_automatically_detect_your_verification_code">Jotta voit helposti vahvistaa puhelinnumerosi, Pigeon voi automaattisesti lukea saamasi vahvistustekstiviestin, jos annat Signalille luvan lukea tesktiviestejäsi.</string>
   <plurals name="RegistrationActivity_debug_log_hint">
     <item quantity="one">Olet tällä hetkellä %d askeleen päässä virheenkorjauslokin lähettämisestä.</item>
@@ -1384,6 +1475,8 @@ puhelinnumero</string>
   <string name="SharedContactView_add_to_contacts">Lisää yhteystietoihin</string>
   <string name="SharedContactView_invite_to_signal">Kutsu yhteystietoja</string>
   <string name="SharedContactView_message">Pigeon-viesti</string>
+  <!--SignalBottomActionBar-->
+  <string name="SignalBottomActionBar_more">Lisää</string>
   <!--SignalPinReminders-->
   <string name="SignalPinReminders_well_remind_you_again_later">Muistutamme sinua myöhemmin uudelleen.</string>
   <string name="SignalPinReminders_well_remind_you_again_tomorrow">Muistutamme sinua jälleen huomenna.</string>
@@ -1573,6 +1666,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MessageNotifier_reacted_s_to_s">Reagoi %1$s viestiin: \"%2$s\"</string>
   <string name="MessageNotifier_reacted_s_to_your_video">Reagoi %1$s videollesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_image">Reagoi %1$s kuvallesi.</string>
+  <string name="MessageNotifier_reacted_s_to_your_gif">Reagoi %1$s GIF:illesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_file">Reagoi %1$s tiedostollesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_audio">Reagoi %1$s ääniviestillesi.</string>
   <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reagoi %1$s kerran katsottavalle mediallesi.</string>
@@ -1753,6 +1847,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationUpdateItem_call_is_full">Puhelu on täynnä</string>
   <string name="ConversationUpdateItem_invite_friends">Kutsu ystäviä</string>
   <string name="ConversationUpdateItem_enable_call_notifications">Näytä ilmoitukset puheluista</string>
+  <string name="ConversationUpdateItem_update_contact">Päivitä yhteystieto</string>
   <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ei yhteisiä ryhmiä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Ei kontakteja tässä ryhmässä. Tarkista pyynnöt huolellisesti.</string>
   <string name="ConversationUpdateItem_view">Näytä</string>
@@ -1765,6 +1860,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_audio">Äänitallenne</string>
   <string name="QuoteView_video">Video</string>
   <string name="QuoteView_photo">Kuva</string>
+  <string name="QuoteView_gif">GIF</string>
   <string name="QuoteView_view_once_media">Kerran katsottava media</string>
   <string name="QuoteView_sticker">Tarra</string>
   <string name="QuoteView_document">Dokumentti</string>
@@ -1772,6 +1868,13 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="QuoteView_original_missing">Alkuperäistä viestiä ei löytynyt</string>
   <!--conversation_fragment-->
   <string name="conversation_fragment__scroll_to_the_bottom_content_description">Vieritä alas</string>
+  <!--BubbleOptOutTooltip-->
+  <!--Message to inform the user of what Android chat bubbles are-->
+  <string name="BubbleOptOutTooltip__description">Kuplat on Android-ominaisuus, jonka voit poistaa käytöstä Signalin keskusteluista.</string>
+  <!--Button to dismiss the tooltip for opting out of using Android bubbles-->
+  <string name="BubbleOptOutTooltip__not_now">Ei nyt</string>
+  <!--Button to move to the system settings to control the use of Android bubbles-->
+  <string name="BubbleOptOutTooltip__turn_off">Poista käytöstä</string>
   <!--safety_number_change_dialog-->
   <string name="safety_number_change_dialog__safety_number_changes">Turvanumeroiden vaihdot</string>
   <string name="safety_number_change_dialog__send_anyway">Lähetä joka tapauksessa</string>
@@ -1942,12 +2045,28 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="unknown_sender_view__add_to_contacts">LISÄÄ YHTEYSTIETOIHIN</string>
   <string name="unknown_sender_view__don_t_add_but_make_my_profile_visible">ÄLÄ LISÄÄ, MUTTA TEE PROFIILINI NÄKYVÄKSI</string>
   <!--verify_display_fragment-->
-  <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Jos haluat varmentaa sinun ja kontaktin %s välisen salauksen tietoturvan, vertaa ylläolevia numeroita hänen laitteessaan näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan, tai pyytä häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lue lisää.</a>]]></string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__if_you_wish_to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Voit varmentaa yhteystiedon %s kanssa käytävän keskustelun salauksen vertaamalla ylläolevia numeroita toisessa laitteessa näkyviin vastaaviin numeroihin. Vaihtoehtoisesti voit skannata koodin hänen puhelimestaan tai pyytää häntä skannaamaan sinun koodisi. <a href="https://signal.org/redirect/safety-numbers">Lisätietoa</a>]]></string> -->
+  <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Varmentaaksesi päästä päähän -salauksen tietoturvan henkilön %s kanssa, vertaa yllä näkyviä numeroita vastapuolen laitteen kanssa. Voit myös skannata koodin vastapuolen puhelimesta. <a href="https://signal.org/redirect/safety-numbers">Lue lisää.</a>]]></string>
+  <string name="verify_display_fragment__successful_match">Vastaavuus varmistettu</string>
+  <string name="verify_display_fragment__failed_to_verify_safety_number">Turvanumeron varmentaminen epäonnistui</string>
   <string name="verify_display_fragment__tap_to_scan">Skannaa napauttamalla</string>
+  <string name="verify_display_fragment__clear_verification">Poista varmennus</string>
+  <string name="ImageEditorHud__clear_all">Tyhjennä kaikki</string>
+  <string name="MediaReviewFragment__send_to">Lähetä kontaktille</string>
+  <string name="MediaReviewFragment__view_once_message">Kerran katsottava viesti</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_too_large">Yksi tai useampi valinnoista olivat liian suuria</string>
+  <string name="MediaReviewFragment__one_or_more_items_were_invalid">Yksi tai useampi valinnoista olivat virheellisiä</string>
+  <string name="MediaReviewFragment__too_many_items_selected">Liikaa valintoja</string>
+  <string name="ImageEditorHud__toggle_between_text_styles">Vaihda tekstityylien välillä</string>
+  <string name="ImageEditorHud__draw">Piirrä</string>
   <string name="verify_display_fragment__loading">Ladataan…</string>
-  <string name="verify_display_fragment__verified">Varmennettu</string>
+  <string name="ImageEditorHud__blur">Sumenna</string>
+  <string name="ImageEditorHud__done_editing">Muokkaus valmis</string>
+  <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Vaihda kynän ja korostekynän välillä</string>
+  <!-- Removed by excludeNonTranslatables <string name="verify_display_fragment__verified">Varmennettu</string> -->
   <!--verify_identity-->
   <string name="verify_identity__share_safety_number">Jaa turvanumero</string>
+  <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Skannaa yhteystietosi laitteessa näkyvä QR-koodi.</string>
   <!--webrtc_answer_decline_button-->
   <string name="webrtc_answer_decline_button__swipe_up_to_answer">Pyyhkäise ylös vastataksesi</string>
   <string name="webrtc_answer_decline_button__swipe_down_to_reject">Pyyhkäise alas hylätäksesi</string>
@@ -1956,7 +2075,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="message_details_header__sent">Lähetetty</string>
   <string name="message_details_header__received">Vastaanotettu</string>
   <string name="message_details_header__disappears">Katoamisaika</string>
-  <string name="message_details_header__via">Tyyppi</string>
+  <string name="message_details_header__via">Kautta:</string>
   <!--message_details_recipient_header-->
   <string name="message_details_recipient_header__pending_send">Käsiteltävänä</string>
   <string name="message_details_recipient_header__sent_to">Lähetetty käyttäjälle</string>
@@ -2004,14 +2123,15 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__could_not_upload_logs">Lokien lähettäminen ei onnistunut</string>
   <string name="HelpFragment__signal_support">Pigeon-tuki</string>
   <string name="HelpFragment__please_be_as_descriptive_as_possible">Auta meitä ymmärtämään asiaa olemalla mahdollisimman kuvaileva.</string>
-  <string-array name="HelpFragment__categories">
-    <item>-- Valitse jokin näistä --</item>
+  <string-array name="HelpFragment__categories_3">
+    <item>\-\- Valitse aihe \-\-</item>
     <item>Jokin ei toimi</item>
-    <item>Parannusehdotus</item>
+    <item>Kehitysehdotus</item>
     <item>Kysymys</item>
     <item>Palaute</item>
-    <item>Muu</item>
-    <item>Maksut</item>
+    <item>Muu aihe</item>
+    <item>Maksut (MobileCoin)</item>
+    <item>Tukijat ja Signal Boost</item>
   </string-array>
   <string name="HelpFragment__no_email_app_found">Sähköpostiohjelmaa ei löytynyt.</string>
   <!--ReactWithAnyEmojiBottomSheetDialogFragment-->
@@ -2111,6 +2231,9 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="preferences__slow">Hidas</string>
   <string name="preferences__help">Tiedot </string>
   <string name="preferences__advanced">Lisäasetukset</string>
+  <string name="preferences__subscription">Tilaus</string>
+  <string name="preferences__become_a_signal_sustainer">Ryhdy Signalin Tukijaksi</string>
+  <string name="preferences__signal_boost">Signal Boost</string>
   <string name="preferences__privacy">Yksityisyys</string>
   <string name="preferences__mms_user_agent">MMS User Agent</string>
   <string name="preferences__advanced_mms_access_point_names">Manuaaliset MMS-asetukset</string>
@@ -2480,7 +2603,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="Insights__title">Tilastot</string>
   <string name="InsightsDashboardFragment__title">Tilastot</string>
   <string name="InsightsDashboardFragment__signal_protocol_automatically_protected">Pigeon Protokolla suojasi automaattisesti %1$d %% lähtevistä viesteistäsi viimeisen %2$d päivän aikana. Signalin käyttäjien väliset keskustelut ovat aina salattuja päästä päähän.</string>
-  <string name="InsightsDashboardFragment__boost_your_signal">Signaalin vahvistus</string>
+  <string name="InsightsDashboardFragment__spread_the_word">Levitä tietoa</string>
   <string name="InsightsDashboardFragment__not_enough_data">Ei tarpeeksi tietoa</string>
   <string name="InsightsDashboardFragment__your_insights_percentage_is_calculated_based_on">Tilastoprosentti lasketaan niiden lähetettyjen viestien perusteella, joita ei ole kadonnut tai poistettu viimeisen %1$d päivän aikana.</string>
   <string name="InsightsDashboardFragment__start_a_conversation">Aloita keskustelu</string>
@@ -2494,7 +2617,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="InsightsModalFragment__view_insights">Näytä tilastot</string>
   <string name="FirstInviteReminder__title">Kutsu yhteystietoja</string>
   <string name="FirstInviteReminder__description">Voisit lisätä lähettämiesi salattujen viestien määrää %1$d %%</string>
-  <string name="SecondInviteReminder__title">Vahvista signaalia</string>
+  <string name="SecondInviteReminder__title">Boostaa Signaliasi</string>
   <string name="SecondInviteReminder__description">Kutsu %1$s</string>
   <string name="InsightsReminder__view_insights">Näytä tilastot</string>
   <string name="InsightsReminder__invite">Kutsu</string>
@@ -2657,7 +2780,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ChatsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Pigeon tarvitsee lupaa käyttää laitteesi tallennustilaa varmuuskopioiden luomista varten, mutta tämä käyttöoikeus on pysyvästi evätty Signalilta. Voit muuttaa tätä menemällä sovellusten asetuksiin, valitsemalla \"Sovelluksen käyttöoikeudet\" ja laittamalla päälle \"Tallennustila\".</string>
   <string name="ChatsPreferenceFragment_last_backup_s">Viimeksi varmuuskopioitu: %s</string>
   <string name="ChatsPreferenceFragment_in_progress">Meneillään</string>
-  <string name="LocalBackupJob_creating_backup">Luodaan varmuuskopiota…</string>
+  <!-- Removed by excludeNonTranslatables <string name="LocalBackupJob_creating_backup">Luodaan varmuuskopiota…</string> -->
   <string name="LocalBackupJobApi29_backup_failed">Varmuuskopio epäonnistui</string>
   <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Varmuuskopiohakemisto on poistettu tai siirretty.</string>
   <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Varmuuskopiotiedosto on liian suuri tallennettavaksi tälle levylle.</string>
@@ -2805,7 +2928,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--DeviceTransferFragment-->
   <string name="DeviceTransfer__transferring_data">Siirretään tietoja</string>
   <string name="DeviceTransfer__keep_both_devices_near_each_other">Pidä laitteet lähekkäin. Älä sammuta niitä ja pidä Pigeon päällä. Siirto on päästä päähän salattu.</string>
-  <string name="DeviceTransfer__d_messages_so_far">%1$dviestiä tähän asti…</string>
+  <string name="DeviceTransfer__d_messages_so_far">%1$d viestiä tähän mennessä…</string>
   <string name="DeviceTransfer__stop_transfer_question">Pysäytä siirto?</string>
   <string name="DeviceTransfer__stop_transfer">Pysäytä siirto</string>
   <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Siirto joudutaan aloittamaan seuraavalla kerralla alusta</string>
@@ -2849,6 +2972,8 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="RecipientBottomSheet_block">Estä</string>
   <string name="RecipientBottomSheet_unblock">Poista esto</string>
   <string name="RecipientBottomSheet_add_to_contacts">Lisää yhteystietoihin</string>
+  <!--Error message that displays when a user tries to tap to view system contact details but has no app that supports it-->
+  <string name="RecipientBottomSheet_unable_to_open_contacts">Yhteystietojen avaukseen soveltuvaa sovellusta ei löydy.</string>
   <string name="RecipientBottomSheet_add_to_a_group">Lisää ryhmään</string>
   <string name="RecipientBottomSheet_add_to_another_group">Lisää toiseen ryhmään</string>
   <string name="RecipientBottomSheet_view_safety_number">Näytä turvanumero</string>
@@ -2936,7 +3061,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeleteAccountFragment__deleting_your_account_will">Tilisi poistaminen tulee:</string>
   <string name="DeleteAccountFragment__enter_your_phone_number">Syötä puhelinnumerosi</string>
   <string name="DeleteAccountFragment__delete_account">Poista tili</string>
-  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Poistamaan tilisi tiedot ja profiilikuvasi</string>
+  <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">Poista tilisi tiedot ja profiilikuva</string>
   <string name="DeleteAccountFragment__delete_all_your_messages">Poistamaan kaikki viestisi</string>
   <string name="DeleteAccountFragment__no_country_code">Maatunnusta ei ole määritetty</string>
   <string name="DeleteAccountFragment__no_number">Numeroa ei ole määritetty</string>
@@ -2946,6 +3071,18 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="DeleteAccountFragment__failed_to_delete_account">Tilin poistaminen epäonnistui. Onko sinulla verkkoyhteys?</string>
   <string name="DeleteAccountFragment__failed_to_delete_local_data">Paikallisten tietojen poistaminen epäonnistui. Voit poistaa ne manuaalisesti järjestelmän sovellusasetuksien kautta.</string>
   <string name="DeleteAccountFragment__launch_app_settings">Avaa sovelluksen asetukset</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process is leaving all groups-->
+  <string name="DeleteAccountFragment__leaving_groups">Erotaan ryhmistä…</string>
+  <!--Title of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_account">Poistetaan tiliä…</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process is leaving groups-->
+  <string name="DeleteAccountFragment__depending_on_the_number_of_groups">Tämä saattaa kestää muutamia minuutteja riippuen siitä, miten monen ryhmän jäsen olet.</string>
+  <!--Message of progress dialog shown when a user deletes their account and the process has left all groups-->
+  <string name="DeleteAccountFragment__deleting_all_user_data_and_resetting">Ppistetaan käyttäjätietoja ja palautetaan sovelluksen oletuksia</string>
+  <!--Title of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__account_not_deleted">Tiliä ei poistettu</string>
+  <!--Message of error dialog shown when a network error occurs during account deletion-->
+  <string name="DeleteAccountFragment__there_was_a_problem">Poiston aikana ilmeni ongelma. Tarkista verkkoyhteytesi ja yritä uudelleen.</string>
   <!--DeleteAccountCountryPickerFragment-->
   <string name="DeleteAccountCountryPickerFragment__search_countries">Hae maa</string>
   <!--CreateGroupActivity-->
@@ -3086,6 +3223,47 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AccountSettingsFragment__account">Tili</string>
   <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Kysymme harvemmin ajan kuluessa</string>
   <string name="AccountSettingsFragment__require_your_signal_pin">Vaadi Signal-tunnuslukua aina kun tällä puhelinnumerolla rekisteröidytään Signaliin uudestaan.</string>
+  <string name="AccountSettingsFragment__change_phone_number">Vaihda puhelinnumero</string>
+  <!--ChangeNumberFragment-->
+  <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Voit vaihtaa nykyisen puhelinnumerosi uuteen numeroon. Et voi perua tätä muutosta.\n\nEnnen kuin jatkat, varmista että uusi numero voi vastaanottaa tekstiviestejä tai puheluja.</string>
+  <string name="ChangeNumberFragment__continue">Jatka</string>
+  <string name="ChangeNumber__your_phone_number_has_been_changed">Puhelinnumerosi on vaihdettu.</string>
+  <!--ChangeNumberEnterPhoneNumberFragment-->
+  <string name="ChangeNumberEnterPhoneNumberFragment__change_number">Muokkaa numeroa</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_old_number">Vanha numerosi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Vanha puhelinnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Uusi puhelinnumerosi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Uusi puhelinnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Syöttämäsi puhelinnumero ei vastaa tilisi puhelinnumeroa.</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Sinun tulee määrittää vanhan numeron maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Sinun tulee määrittää vanha puhelinnumero</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Sinun tulee määrittää uuden puhelinnumeron maakoodi</string>
+  <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Sinun tulee vahvistaa uusi puhelinnumerosi</string>
+  <!--ChangeNumberVerifyFragment-->
+  <string name="ChangeNumberVerifyFragment__change_number">Muokkaa numeroa</string>
+  <string name="ChangeNumberVerifyFragment__verifying_s">Varmennetaan %1$s</string>
+  <string name="ChangeNumberVerifyFragment__captcha_required">Captcha vaaditaan</string>
+  <!--ChangeNumberConfirmFragment-->
+  <string name="ChangeNumberConfirmFragment__change_number">Vaihda numero</string>
+  <string name="ChangeNumberConfirmFragment__you_are_about_to_change_your_phone_number_from_s_to_s">Olet aikeissa vaihtaa puhelinnumerosi numerosta %1$s numeroon %2$s.\n\nEnnen kuin jatkat, varmista että alla oleva numero on oikein.</string>
+  <string name="ChangeNumberConfirmFragment__edit_number">Muokkaa numeroa</string>
+  <!--ChangeNumberRegistrationLockFragment-->
+  <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Signalin numeronvaihto - Tarvitsen apua tunnusluvun kanssa Androidilla (v2 PIN)</string>
+  <!--ChangeNumberPinDiffersFragment-->
+  <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Tunnusluvut eivät täsmää</string>
+  <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Uudella ja vanhalla numerolllasi on eri tunnusluvut. Haluatko pitää vanhan tunnuslukusi vai päivittää sen?</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Säilytä vanha tunnusluku</string>
+  <string name="ChangeNumberPinDiffersFragment__update_pin">Päivitä tunnusluku</string>
+  <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Säilytetäänkö vanha tunnusluku?</string>
+  <!--ChangeNumberLockActivity-->
+  <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Vaikuttaa siltä että yritit vaihtaa numerosi, mutta emme pystyneet vahvistamaan että se onnistui.\n\nTarkistetaan uudestaan…</string>
+  <string name="ChangeNumberLockActivity__change_status_confirmed">Muutostila vahvistettu</string>
+  <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numeroksesi on vahvistettu %1$s. Jos tämä ei ole numerosi, ole hyvä ja aloita numeronvaihtoprosessi alusta.</string>
+  <string name="ChangeNumberLockActivity__change_status_unconfirmed">Muutostila vahvistamaton</string>
+  <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Puhelinnumeron vaihtopyynnön tilaa ei voitu määrittää.\n\n(Virhe: %1$s)</string>
+  <string name="ChangeNumberLockActivity__retry">Yritä uudelleen</string>
+  <string name="ChangeNumberLockActivity__leave">Poistu</string>
+  <string name="ChangeNumberLockActivity__submit_debug_log">Lähetä virheenkorjausloki</string>
   <!--ChatsSettingsFragment-->
   <string name="ChatsSettingsFragment__keyboard">Näppäimistö</string>
   <string name="ChatsSettingsFragment__enter_key_sends">Rivinvaihto lähettää</string>
@@ -3096,6 +3274,17 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="NotificationsSettingsFragment__calls">Puhelut</string>
   <string name="NotificationsSettingsFragment__notify_when">Ilmoita minulle</string>
   <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakti liittyy Signaliin</string>
+  <!--Notification preference header-->
+  <string name="NotificationsSettingsFragment__notification_profiles">Ilmoitusprofiilit</string>
+  <!--Notification preference option header-->
+  <string name="NotificationsSettingsFragment__profiles">Profiilit</string>
+  <!--Notification preference summary text-->
+  <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Luo oma profiili vastaanottaaksesi ilmoituksia vain valitsemiltasi yhteystiedoilta ja ryhmiltä.</string>
+  <!--NotificationProfilesFragment-->
+  <!--Title for notification profiles screen that shows all existing profiles-->
+  <string name="NotificationProfilesFragment__notification_profiles">Ilmoitusprofiilit</string>
+  <!--Button text to create a notification profile-->
+  <string name="NotificationProfilesFragment__create_profile">Luo profiili</string>
   <!--PrivacySettingsFragment-->
   <string name="PrivacySettingsFragment__blocked">Estetty</string>
   <string name="PrivacySettingsFragment__d_contacts">%1$d kontaktia</string>
@@ -3137,6 +3326,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
   <string name="HelpFragment__licenced_under_the_gplv3">Lisensoitu GPLv3-lisenssillä</string>
   <!--DataAndStorageSettingsFragment-->
+  <string name="DataAndStorageSettingsFragment__media_quality">Median laatu</string>
+  <string name="DataAndStorageSettingsFragment__sent_media_quality">Lähetettävän median laatu</string>
+  <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Korkealaatuiden median lähetys kuluttaa enemmän dataa.</string>
+  <string name="DataAndStorageSettingsFragment__high">Korkea</string>
+  <string name="DataAndStorageSettingsFragment__standard">Vakio</string>
   <string name="DataAndStorageSettingsFragment__calls">Puhelut</string>
   <!--ChatColorSelectionFragment-->
   <string name="ChatColorSelectionFragment__auto">Auto</string>
@@ -3183,6 +3377,11 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Valitse ulkoasu ja väri tai mukauta nimikirjaimiasi.</string>
   <string name="AddAProfilePhotoMegaphone__not_now">Ei nyt</string>
   <string name="AddAProfilePhotoMegaphone__add_photo">Lisää kuva</string>
+  <!--BecomeASustainerMegaphone-->
+  <string name="BecomeASustainerMegaphone__become_a_sustainer">Ryhdy Tukijaksi</string>
+  <string name="BecomeASustainerMegaphone__signal_is_powered">Signal toimii kaltaistesi käyttäjien panoksella. Osallistu ja ansaitse profiiliisi merkki.</string>
+  <string name="BecomeASustainerMegaphone__no_thanks">Ei kiitos</string>
+  <string name="BecomeASustainerMegaphone__contribute">Osallistu</string>
   <!--KeyboardPagerFragment-->
   <string name="KeyboardPagerFragment_emoji">Emojit</string>
   <string name="KeyboardPagerFragment_open_emoji_search">Avaa emojihaku</string>
@@ -3231,6 +3430,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="ConversationSettingsFragment__conversation_muted_forever">Keskustelu mykistetty lopullisesti</string>
   <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Puhelinnumero kopioitu leikepöydälle.</string>
   <string name="ConversationSettingsFragment__phone_number">Puhelinnumero</string>
+  <string name="ConversationSettingsFragment__get_badges">Ansaiset profiiliisi merkkejä tukemalla Signalia. Napauta merkkiä lukeaksesi lisää.</string>
   <!--PermissionsSettingsFragment-->
   <string name="PermissionsSettingsFragment__add_members">Lisää jäseniä</string>
   <string name="PermissionsSettingsFragment__edit_group_info">Muokkaa ryhmän tietoja</string>
@@ -3253,6 +3453,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--PlaybackSpeedToggleTextView-->
   <string name="PlaybackSpeedToggleTextView__p5x">.5x</string>
   <string name="PlaybackSpeedToggleTextView__1x">1x</string>
+  <string name="PlaybackSpeedToggleTextView__1p5x">1.5x</string>
   <string name="PlaybackSpeedToggleTextView__2x">2x</string>
   <!--PaymentRecipientSelectionFragment-->
   <string name="PaymentRecipientSelectionFragment__new_payment">Uusi maksu</string>
@@ -3261,7 +3462,7 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <!--ContactFilterView-->
   <string name="ContactFilterView__search_name_or_number">Etsi nimellä tai numerolla</string>
   <!--VoiceNotePlayerView-->
-  <string name="VoiceNotePlayerView__s_dot_s">%1$s · %2$s</string>
+  <string name="VoiceNotePlayerView__dot_s">%1$s</string>
   <string name="VoiceNotePlayerView__stop_voice_message">Pysäytä ääniviesti</string>
   <string name="VoiceNotePlayerView__change_voice_message_speed">Muuta ääniviestin nopeutta</string>
   <string name="VoiceNotePlayerView__pause_voice_message">Tauota ääniviesti</string>
@@ -3295,8 +3496,261 @@ Vastaanotetiin avaintenvaihtoviesti, joka kuuluu väärälle protokollaversiolle
   <string name="MultiselectForwardFragment__add_a_message">Lisää viesti</string>
   <string name="MultiselectForwardFragment__faster_forwards">Nopeammat etenemiset</string>
   <string name="MultiselectForwardFragment__forwarded_messages_are_now">Edelleenlähetetyt viestit lähetetään nyt heti.</string>
+  <plurals name="MultiselectForwardFragment_send_d_messages">
+    <item quantity="one">Lähetä %1$d viesti</item>
+    <item quantity="other">Lähetä %1$d viestiä</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_sent">
+    <item quantity="one">Viesti lähetetty</item>
+    <item quantity="other">Viestit lähetetty</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment_messages_failed_to_send">
+    <item quantity="one">Viestin lähetys epäonnistui</item>
+    <item quantity="other">Viestien lähetys epäonnistui</item>
+  </plurals>
+  <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
+    <item quantity="one">Viestin eteenpäinlähetys epäonnistui koska se ei enää ole saatavilla.</item>
+    <item quantity="other">Viestien eteenpäinlähetys epäonnistui koska ne eivät enää ole saatavilla.</item>
+  </plurals>
   <string name="MultiselectForwardFragment__limit_reached">Yläraja saavutettu</string>
+  <string name="ImageEditorHud__delete">Poista</string>
+  <string name="BadgesOverviewFragment__my_badges">Omat merkkini</string>
+  <string name="BadgesOverviewFragment__featured_badge">Esitelty merkki</string>
+  <string name="BadgesOverviewFragment__display_badges_on_profile">Näytä merkit profiilissa</string>
+  <string name="BadgesOverviewFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
+  <string name="BadgeSelectionFragment__select_badges">Valitse merkki</string>
+  <string name="SelectFeaturedBadgeFragment__preview">Esikatselu</string>
+  <string name="SelectFeaturedBadgeFragment__select_a_badge">Valitse merkki</string>
+  <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Sinun tulee valita merkki</string>
+  <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Profiilin päivitys epäonnistui</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy Tukijaksi</string>
+  <string name="ImageView__badge">Merkki</string>
+  <string name="SubscribeFragment__signal_is_powered_by_people_like_you">Kaltaisesti ihmiset pitävät Signalin tehokkaana.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tue teknologiaa joka on rakennettu sinulle—ei datallesi—liittymällä yhteisöön joka pitää sitä yllä.</string>
+  <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Tue sinulle, eikä tiedollesi kehitettyä teknologiaa liittymällä Signalia ylläpitävään yhteisöön.</string>
+  <string name="SubscribeFragment__currency">Valuutta</string>
+  <string name="SubscribeFragment__more_payment_options">Enemmän maksuvaihtoehtoja</string>
+  <string name="SubscribeFragment__cancel_subscription">Peru tilaus</string>
+  <string name="SubscribeFragment__confirm_cancellation">Vahvistatko peruutuksen?</string>
+  <string name="SubscribeFragment__you_wont_be_charged_again">Sinua ei veloiteta uudelleen. Merkki poistetaan profiilistasi laskutusjaksosi lopussa.</string>
+  <string name="SubscribeFragment__not_now">Ei nyt</string>
+  <string name="SubscribeFragment__confirm">Vahvista</string>
+  <string name="SubscribeFragment__update_subscription">Päivitä tilaus</string>
+  <string name="SubscribeFragment__your_subscription_has_been_cancelled">Tilauksesi on peruttu.</string>
+  <string name="SubscribeFragment__update_subscription_question">Päivitä tilaus?</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__done">Valmis</string>
+  <string name="Boost__enter_custom_amount">Syöltä muu summa</string>
+  <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Sinulta veloitetaan uuden tilauksen täysi summa (%1$s) tänään. Tilauksesi uudistetaan kuukausittain.</string>
+  <string name="Subscription__s_per_month">%s/kk</string>
+  <string name="Subscription__s_per_month_dot_renews_s">%1$s/kk· Uudistetaan %2$s</string>
+  <string name="Subscription__s_per_month_dot_expires_s">%1$s/kk· Loppuu %2$s</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Kiitämme tuestasi!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_the_boost">Kiitos Boostista!</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_s_badge_help_signal">Olet ansainnut %s -merkin! Auta Signalia lisäämään tietoisuutta näyttämällä tämän merkin profiilissasi.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_boost_badge_help_signal">Olet ansainnut Boost-merkin! Auta Signalia lisäämään tietoisuutta näyttämällä tämän merkin profiilissasi.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Voit myös</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">ryhdy kuukausittaiseksi Tukijaksi.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Näytä profiilissa</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Ei nyt</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_sustainer">Tukija-tilauksesi on lopetettu automaattisesti, koska olit liian pitkään toimettomana. %1$s -merkkisi ei ole enää nähtävillä profiilissasi.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can">Voit jatkaa Signalin käyttöä, mutta tukeaksesi sovellusta ja aktivoidaksesi merkkisi uudelleen, uudista nyt.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__renew_subscription">Uudista tilaus</string>
+  <string name="ManageDonationsFragment__my_support">Antamani tuki</string>
+  <string name="ManageDonationsFragment__manage_subscription">Hallinnoi tilausta</string>
+  <string name="ManageDonationsFragment__subscription_faq">Tilausten UKK</string>
+  <string name="ManageDonationsFragment__error_getting_subscription">Virhe tilausta hakiessa.</string>
+  <string name="BoostFragment__give_signal_a_boost">Boostaa Signalia</string>
+  <string name="Subscription__contact_support">Ota yhteyttä tukeen</string>
+  <string name="Boost__one_time_contribution">Kertalahjoitus</string>
+  <string name="MySupportPreference__add_a_signal_boost">Lisää Signal Boost</string>
+  <string name="MySupportPreference__s_per_month">%1$s/kk</string>
+  <string name="MySupportPreference__renews_s">Uudistuu%1$s</string>
+  <string name="MySupportPreference__processing_transaction">Käsitellään transaktiota…</string>
+  <!--Displayed on "My Support" screen when user badge failed to be added to their account-->
+  <string name="MySupportPreference__couldnt_add_badge_s">Merkkiä ei voitu lisätä. %1$s</string>
+  <string name="MySupportPreference__please_contact_support">Ota yhteys tukeen.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__badge_expired">Merkki on erääntynyt</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__subscription_cancelled">Tilaus on peruttu</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_boost_badge_has_expired">Boost-merkkisi on erääntynyt, eikä se näy enää muille profiilissasi.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Voit aktivoida Boost-merkkisi uudelleen 30-päiväksi kertaluontoisella lahjoituksella.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__to_continue_supporting_technology">Harkitse kuukausittaiseksi Tukijaksi ryhtymistä, jos haluat jatkaa sinua, eikä tietojasi varten kehitetyn teknologian tukemista.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Lisää Boostaus</string>
+  <!-- Removed by excludeNonTranslatables <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_subscriber">Ryhdy tilaajaksi</string> -->
+  <string name="SubscribeFragment__processing_payment">Käsitellään maksua…</string>
+  <!--Displayed in notification when user payment fails to process on Stripe-->
+  <string name="DonationsErrors__error_processing_payment">Virhe käsiteltäessä maksua</string>
+  <!--Displayed on "My Support" screen when user subscription payment method failed.-->
+  <string name="DonationsErrors__error_processing_payment_s">Virhe käsiteltäessä maksua. %1$s</string>
+  <string name="DonationsErrors__your_badge_could_not_be_added">Merkkiäsi ei voitu lisätä tilillesi, mutta sinua on veloitettu. Ota yhteyttä tukeen.</string>
+  <string name="DonationsErrors__your_payment">Maksuasi ei pystytty käsittelemään joten sinua ei ole veloitettu. Ole hyvä ja yritä uudelleen.</string>
+  <string name="DonationsErrors__google_pay_unavailable">Google Pay ei saatavilla</string>
+  <string name="DonationsErrors__couldnt_add_badge">Merkkiä ei voitu lisätä</string>
+  <string name="DonationsErrors__your_badge_could_not">Merkkiäsi ei voitu lisätä tilillesi, mutta sivua on veloitettu. Ota yhteyttä tukeen.</string>
+  <string name="DonationsErrors__failed_to_cancel_subscription">Tilauksen peruutus epäonnistui</string>
+  <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Tilauksen peruutus vaatii Internet-yhteyden.</string>
+  <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Laitteesi ei tue Google Payta, joten et voi tehdä tilausta ansaitaksesi merkin. Voit silti tukea Signalia tekemällä lahjoituksen verkkosivustomme kautta.</string>
+  <string name="SubscribeFragment__update">Päivitä</string>
+
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_a_non_profit_with_no">Signal on voittoa tavoittelematon yhtiö, jolla ei ole mainostajia tai sijoittajia, ja sitä ylläpitävät vain ihmiset, jotka käyttävät ja arvostavat sitä. Tee toistuva kuukausittainen lahjoitus ja vastaanota profiilimerkki, jotta voit jakaa tukesi.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__why_contribute">Miksi avustaa?</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__signal_is_committed_to_developing">Signal on sitoutunut kehittämään avoimen lähdekoodin tietosuojateknologiaa, joka suojaa vapaata ilmaisua ja mahdollistaa turvallisen viestinnän.</string>
+  <string name="SubscribeLearnMoreBottomSheetDialogFragment__your_contribution">Panoksesi vahvistaa tätä ja kattaa miljoonien yksityiseen viestintään käyttämän sovelluksen kehitys- ja ylläpitokulut. Ei mainoksia. Ei seurantaa. Ei valetta.</string>
+  <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Aseta esiteltäväksi merkiksi</string>
+  <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kun sinulla on useampi kuin yksi merkki, voit valita yhden esille muiden nähtäväksi profiilissasi.</string>
+  <string name="BecomeASustainerFragment__get_badges">Hanki profiiliisi merkkejä tukemalla Signalia.</string>
+  <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal on voittoa tavoittelematon järjestö, joka toimii ilman mainostajia tai sijoittajia pelkästään kaltaistesi käyttäjien tuella.</string>
+  <string name="ManageDonationsFragment__badges">Merkit</string>
+  <string name="BoostFragment__say_thanks_and_earn">Sano \"Kiitos!\" ja ansaitse Boost-merkki %1$d päivän ajaksi.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__your_badge_has_expired">Merkkisi on vanhentunut</string>
+  <string name="Subscription__please_contact_support_for_more_information">Ota yhteyttä tukeen saadaksesi lisätietoja.</string>
+  <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Ryhdy Tukijaksi</string>
+  <string name="Subscription__earn_a_s_badge">Ansaitse %1$s merkki</string>
+  <string name="DonationsErrors__still_processing">Käsitellään edelleen</string>
+  <string name="DonationsErrors__your_payment_is_still">Maksuasi käsitellään vielä. Tämä voi kestää muutamia minuutteja yhteydestäsi riippuen.</string>
+  <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Sinun on määritettävä ja otettava käyttöön Google Pay, jotta voit lahjoittaa sovelluksessa.</string>
+  <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Verkkovirhe. Tarkista yhteys ja yritä uudelleen.</string>
+  <string name="NetworkFailure__retry">Yritä uudelleen</string>
+  <!--Title of create notification profile screen-->
+  <string name="EditNotificationProfileFragment__name_your_profile">Nimeä profiili</string>
+  <!--Hint text for create/edit notification profile name-->
+  <string name="EditNotificationProfileFragment__profile_name">Profiilin nimi</string>
+  <!--Name has a max length, this shows how many characters are used out of the max-->
+  <string name="EditNotificationProfileFragment__count">%1$d/%2$d</string>
+  <!--Call to action button to continue to the next step-->
+  <string name="EditNotificationProfileFragment__next">Seuraava</string>
+  <!--Call to action button once the profile is named to create the profile and continue to the customization steps-->
+  <string name="EditNotificationProfileFragment__create">Luo</string>
+  <!--Call to action button once the profile name is edited-->
+  <string name="EditNotificationProfileFragment__save">Tallenna</string>
+  <!--Title of edit notification profile screen-->
+  <string name="EditNotificationProfileFragment__edit_this_profile">Muokkaa profiilia</string>
+  <!--Error message shown when attempting to create or edit a profile name to an existing profile name-->
+  <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Tämän niminen profiili on jo olemassa</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__work">Työ</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__sleep">Nukkuminen</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__driving">Ajaminen</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__downtime">Vapaa-ajalla</string>
+  <!--Preset selectable name for a profile name, shown as list in edit/create screen-->
+  <string name="EditNotificationProfileFragment__focus">Keskittyminen</string>
+  <!--Error message shown when attempting to next/save without a profile name-->
+  <string name="EditNotificationProfileFragment__profile_must_have_a_name">Nimi vaaditaan</string>
+  <!--Title for add recipients to notification profile screen in create flow-->
+  <string name="AddAllowedMembers__allowed_notifications">Sallitut ilmoitukset</string>
+  <!--Description of what the user should be doing with this screen-->
+  <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Lisää yhteystietoja ja ryhmiä, joilta haluat ilmoituksia ja puheluita, kun tämä profiili on aktiivinen.</string>
+  <!--Button text that launches the contact picker to select from-->
+  <string name="AddAllowedMembers__add_people_or_groups">Lisää yhteystietoja tai ryhmiä</string>
+  <!--Call to action button on contact picker for adding to profile-->
+  <string name="SelectRecipientsFragment__add">Lisää</string>
+  <!--Notification profiles home fragment, shown when no profiles have been created yet-->
+  <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Luo profiili saadaksesi ilmoituksia ja puheluita vain haluamiltasi yhteystiedoilta ja ryhmiltä.</string>
+  <!--Header shown above list of all notification profiles-->
+  <string name="NotificationProfilesFragment__profiles">Profiilit</string>
+  <!--Button that starts the create new notification profile flow-->
+  <string name="NotificationProfilesFragment__new_profile">Uusi profiili</string>
+  <!--Profile active status, indicating the current profile is on for an unknown amount of time-->
+  <string name="NotificationProfilesFragment__on">Käytössä</string>
+  <!--Button use to permanently delete a notification profile-->
+  <string name="NotificationProfileDetails__delete_profile">Poista profiili</string>
+  <!--Snakbar message shown when removing a recipient from a profile-->
+  <string name="NotificationProfileDetails__s_removed">\"%1$s\" poistettiin.</string>
+  <!--Snackbar button text that will undo the recipient remove-->
+  <string name="NotificationProfileDetails__undo">Kumoa</string>
+  <!--Dialog message shown to confirm deleting a profile-->
+  <string name="NotificationProfileDetails__permanently_delete_profile">Poistetaanko profiili pysyvästi?</string>
+  <!--Dialog button to delete profile-->
+  <string name="NotificationProfileDetails__delete">Poista</string>
+  <!--Title/accessibility text for edit icon to edit profile emoji/name-->
+  <string name="NotificationProfileDetails__edit_notification_profile">Muokkaa ilmoitusprofiilia</string>
+  <!--Schedule description if all days are selected-->
+  <string name="NotificationProfileDetails__everyday">Joka päivä</string>
+  <!--Profile status on if it is the active profile-->
+  <string name="NotificationProfileDetails__on">Käytössä</string>
+  <!--Profile status on if it is not the active profile-->
+  <string name="NotificationProfileDetails__off">Ei käytössä</string>
+  <!--Description of hours for schedule (start to end) times-->
+  <string name="NotificationProfileDetails__s_to_s">%1$s henkilölle %2$s</string>
+  <!--Section header for exceptions to the notification profile-->
+  <string name="NotificationProfileDetails__exceptions">Poikkeukset</string>
+  <!--Profile exception to allow all calls through the profile restrictions-->
+  <string name="NotificationProfileDetails__allow_all_calls">Salli kaikki puhelut</string>
+  <!--Profile exception to allow all @mentions through the profile restrictions-->
+  <string name="NotificationProfileDetails__notify_for_all_mentions">Ilmoita kaikki @maininnat</string>
+  <!--Section header for showing schedule information-->
+  <string name="NotificationProfileDetails__schedule">Ajoitus</string>
+  <!--If member list is long, will truncate the list and show an option to then see all when tapped-->
+  <string name="NotificationProfileDetails__see_all">Näytä kaikki</string>
+  <!--Title for add schedule to profile in create flow-->
+  <string name="EditNotificationProfileSchedule__add_a_schedule">Lisää ajoitus</string>
+  <!--Descriptor text indicating what the user can do with this screen-->
+  <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Määritä ajoitus ohjataksesi profiilin käyttöä automaattisesti.</string>
+  <!--Text shown next to toggle switch to enable/disable schedule-->
+  <string name="EditNotificationProfileSchedule__schedule">Ajoita</string>
+  <!--Label for showing the start time for the schedule-->
+  <string name="EditNotificationProfileSchedule__start">Aloita</string>
+  <!--Label for showing the end time for the schedule-->
+  <string name="EditNotificationProfileSchedule__end">Lopeta</string>
+  <!--First letter of Sunday-->
+  <string name="EditNotificationProfileSchedule__sunday_first_letter">S</string>
+  <!--First letter of Monday-->
+  <string name="EditNotificationProfileSchedule__monday_first_letter">M</string>
+  <!--First letter of Tuesday-->
+  <string name="EditNotificationProfileSchedule__tuesday_first_letter">T</string>
+  <!--First letter of Wednesday-->
+  <string name="EditNotificationProfileSchedule__wednesday_first_letter">K</string>
+  <!--First letter of Thursday-->
+  <string name="EditNotificationProfileSchedule__thursday_first_letter">T</string>
+  <!--First letter of Friday-->
+  <string name="EditNotificationProfileSchedule__friday_first_letter">P</string>
+  <!--First letter of Saturday-->
+  <string name="EditNotificationProfileSchedule__saturday_first_letter">L</string>
+  <!--Title of select time dialog shown when setting start time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_start_time">Aseta aloitusaika</string>
+  <!--Title of select time dialog shown when setting end time for schedule-->
+  <string name="EditNotificationProfileSchedule__set_end_time">Aseta lopetusaika</string>
+  <!--If in edit mode, call to action button text show to save schedule to profile-->
+  <string name="EditNotificationProfileSchedule__save">Tallenna</string>
+  <!--If in create mode, call to action button text to show to skip enabling a schedule-->
+  <string name="EditNotificationProfileSchedule__skip">Ohita</string>
+  <!--If in create mode, call to action button text to show to use the enabled schedule and move to the next screen-->
+  <string name="EditNotificationProfileSchedule__next">Seuraava</string>
+  <!--Error message shown if trying to save/use a schedule with no days selected-->
+  <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Ajoitus vaatii ainakin yhden päivän</string>
+  <!--Title for final screen shown after completing a profile creation-->
+  <string name="NotificationProfileCreated__profile_created">Profiili on luotu</string>
+  <!--Call to action button to press to close the created screen and move to the profile details screen-->
+  <string name="NotificationProfileCreated__done">Valmis</string>
+  <!--Descriptor text shown to indicate how to manually turn a profile on/off-->
+  <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Voit kytkeä profiilin käyttöön tai pois käytöstä manuaalisesti keskustelulistan valikosta.</string>
+  <!--Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow-->
+  <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Lisää ajoitus asetuksista automatisoidaksesi profiilin käytön.</string>
+  <!--Descriptor text shown to indicate your profile will follow the schedule set during create flow-->
+  <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profiili kytketään käyttöön ja pois käytöstä automaattisesti määrittämäsi ajoituksen mukaisesti.</string>
+  <!--Button text shown in profile selection bottom sheet to create a new profile-->
+  <string name="NotificationProfileSelection__new_profile">Uusi profiili</string>
+  <!--Manual enable option to manually enable a profile for 1 hour-->
+  <string name="NotificationProfileSelection__for_1_hour">Tunniksi</string>
+  <!--Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next)-->
+  <string name="NotificationProfileSelection__until_s">%1$s asti</string>
+  <!--Option to view profile details-->
+  <string name="NotificationProfileSelection__view_settings">Näytä asetukset</string>
+  <!--Descriptor text indicating how long a profile will be on when there is a time component associated with it-->
+  <string name="NotificationProfileSelection__on_until_s">Käytössä %1$s saakka</string>
+  <!--Title for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__notification_profiles">Ilmoitusprofiilit</string>
+  <!--Description for notification profile megaphone-->
+  <string name="NotificationProfilesMegaphone__only_get_notifications_from_the_people_and_groups_you_choose">Vastaanota ilmoituksia vain valitsemiltasi yhteystiedoilta ja ryhmiltä.</string>
+  <!--Call to action button to create a profile from megaphone-->
+  <string name="NotificationProfilesMegaphone__not_now">Ei nyt</string>
+  <string name="NotificationProfilesMegaphone__create_a_profile">Luo profiili</string>
+  <!--Button to dismiss notification profile megaphone-->
+  <string name="NotificationSettingsFragment__failed_to_open_picker">Valitsimen avaus epäonnistui.</string>
   <!--EOF-->
+  <!--Displayed in a toast when we fail to open the ringtone picker-->
   <string name="save_options_new_contact">Uusi yhteystieto</string>
   <string name="save_options_add_to_existing">Lisää nykyiseen</string>
 

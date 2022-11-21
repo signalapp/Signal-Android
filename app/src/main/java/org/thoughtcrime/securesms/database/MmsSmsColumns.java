@@ -24,11 +24,11 @@ public interface MmsSmsColumns {
   public static final String NOTIFIED                 = "notified";
   public static final String NOTIFIED_TIMESTAMP       = "notified_timestamp";
   public static final String UNIDENTIFIED             = "unidentified";
-  public static final String REACTIONS                = "reactions";
   public static final String REACTIONS_UNREAD         = "reactions_unread";
   public static final String REACTIONS_LAST_SEEN      = "reactions_last_seen";
   public static final String REMOTE_DELETED           = "remote_deleted";
   public static final String SERVER_GUID              = "server_guid";
+  public static final String RECEIPT_TIMESTAMP        = "receipt_timestamp";
 
   /**
    * For storage efficiency, all types are stored within a single 64-bit integer column in the
@@ -76,6 +76,7 @@ public interface MmsSmsColumns {
     protected static final long OUTGOING_VIDEO_CALL_TYPE           = 11;
     protected static final long GROUP_CALL_TYPE                    = 12;
     protected static final long BAD_DECRYPT_TYPE                   = 13;
+    protected static final long CHANGE_NUMBER_TYPE                 = 14;
 
     protected static final long BASE_INBOX_TYPE                    = 20;
     protected static final long BASE_OUTBOX_TYPE                   = 21;
@@ -116,9 +117,11 @@ public interface MmsSmsColumns {
 
     // Group Message Information
     protected static final long GROUP_UPDATE_BIT            = 0x10000;
-    protected static final long GROUP_QUIT_BIT              = 0x20000;
+    // Note: Leave bit was previous QUIT bit for GV1, now also general member leave for GV2
+    protected static final long GROUP_LEAVE_BIT             = 0x20000;
     protected static final long EXPIRATION_TIMER_UPDATE_BIT = 0x40000;
     protected static final long GROUP_V2_BIT                = 0x80000;
+    protected static final long GROUP_V2_LEAVE_BITS         = GROUP_V2_BIT | GROUP_LEAVE_BIT | GROUP_UPDATE_BIT;
 
     // Encrypted Storage Information XXX
     public    static final long ENCRYPTION_MASK                  = 0xFF000000;
@@ -301,7 +304,7 @@ public interface MmsSmsColumns {
     }
 
     public static boolean isGroupQuit(long type) {
-      return (type & GROUP_QUIT_BIT) != 0;
+      return (type & GROUP_LEAVE_BIT) != 0 && (type & GROUP_V2_BIT) == 0;
     }
 
     public static boolean isChatSessionRefresh(long type) {
@@ -331,6 +334,14 @@ public interface MmsSmsColumns {
 
     public static boolean isGroupV1MigrationEvent(long type) {
       return type == GV1_MIGRATION_TYPE;
+    }
+
+    public static boolean isChangeNumber(long type) {
+      return type == CHANGE_NUMBER_TYPE;
+    }
+
+    public static boolean isGroupV2LeaveOnly(long type) {
+      return (type & GROUP_V2_LEAVE_BITS) == GROUP_V2_LEAVE_BITS;
     }
 
     public static long translateFromSystemBaseType(long theirType) {

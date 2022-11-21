@@ -8,11 +8,11 @@ import androidx.annotation.AnyThread;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 
-import net.sqlcipher.database.SQLiteDatabase;
+import net.zetetic.database.sqlcipher.SQLiteDatabase;
 
-import com.annimon.stream.Stream;
-
+import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.concurrent.TracingExecutorService;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.DatabaseFactory;
 import org.thoughtcrime.securesms.database.RecipientDatabase;
@@ -25,9 +25,9 @@ import org.thoughtcrime.securesms.util.LRUCache;
 import org.thoughtcrime.securesms.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.concurrent.FilteredExecutor;
+
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -62,7 +62,7 @@ public final class LiveRecipientCache {
     this.localRecipientId  = new AtomicReference<>(null);
     this.unknown           = new LiveRecipient(context, new MutableLiveData<>(), Recipient.UNKNOWN);
     this.db                = DatabaseFactory.getInstance(context).getRawDatabase();
-    this.resolveExecutor   = new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction());
+    this.resolveExecutor   = ThreadUtil.trace(new FilteredExecutor(SignalExecutors.BOUNDED, () -> !db.inTransaction()));
   }
 
   @AnyThread
@@ -85,18 +85,7 @@ public final class LiveRecipientCache {
     }
 
     if (needsResolve) {
-      final LiveRecipient toResolve = live;
-
-      MissingRecipientException prettyStackTraceError = new MissingRecipientException(toResolve.getId());
-
-      resolveExecutor.execute(() -> {
-        try {
-          toResolve.resolve();
-        } catch (MissingRecipientException e) {
-          throw prettyStackTraceError;
-        }
-      });
-
+      resolveExecutor.execute(live::resolve);
     }
 
     return live;
@@ -165,7 +154,7 @@ public final class LiveRecipientCache {
     }
 
     if (selfId == null) {
-      UUID   localUuid = TextSecurePreferences.getLocalUuid(context);
+      UUID localUuid = TextSecurePreferences.getLocalUuid(context);
       String localE164 = TextSecurePreferences.getLocalNumber(context);
 
       if (localUuid != null) {

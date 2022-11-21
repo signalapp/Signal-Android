@@ -85,6 +85,10 @@
         <item name="android:minHeight">48dp</item>
     </style>
 
+    <style name="Signal.Widget.Button.Large.Secondary.NoOutline">
+        <item name="strokeWidth">0dp</item>
+    </style>
+
     <style name="Signal.Widget.Button.Medium.Secondary" parent="@style/Signal.Widget.Button.Base.Secondary">
         <item name="android:minHeight">36dp</item>
         <item name="strokeWidth">0dp</item>
@@ -120,6 +124,10 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
+    </style>
+
+    <style name="Signal.Media.Dialog.AddMessageDialog" parent="TextSecure.MediaPreview">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.AddMessageDialog</item>
     </style>
 
     <style name="Signal.ThemeOverlay.Dialog.Rounded" parent="@style/ThemeOverlay.MaterialComponents.MaterialAlertDialog">

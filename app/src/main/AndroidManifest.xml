@@ -229,7 +229,6 @@
             android:name=".sharing.ShareActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:excludeFromRecents="true"
-            android:launchMode="singleTask"
             android:taskAffinity=""
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden">
@@ -409,7 +408,8 @@
             android:name=".messagedetails.MessageDetailsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"
+            android:theme="@style/Signal.DayNight.NoActionBar"/>
 
         <activity
             android:name=".groups.ui.invitesandrequests.ManagePendingAndRequestingMembersActivity"
@@ -430,6 +430,10 @@
             android:name=".recipients.ui.managerecipient.ManageRecipientActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:windowSoftInputMode="stateAlwaysHidden" />
+
+        <activity android:name=".components.settings.app.changenumber.ChangeNumberLockActivity"
+            android:theme="@style/Signal.DayNight.NoActionBar"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity android:name=".components.settings.conversation.ConversationSettingsActivity"
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
@@ -486,12 +490,11 @@
             android:theme="@style/Theme.Signal.DayNight.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
 
-        <activity
-            android:name=".mediasend.MediaSendActivity"
-            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-            android:launchMode="singleTop"
+        <activity android:name=".mediasend.v2.MediaSelectionActivity"
             android:theme="@style/TextSecure.FullScreenMedia"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateAlwaysHidden|adjustNothing"
+            android:launchMode="singleTop"
+            android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
         <activity
             android:name=".PassphraseChangeActivity"

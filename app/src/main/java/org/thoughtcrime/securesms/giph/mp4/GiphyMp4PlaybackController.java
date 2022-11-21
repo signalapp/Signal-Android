@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.giph.mp4;
 
+import android.graphics.Canvas;
 import android.view.View;
 
 import androidx.annotation.NonNull;
@@ -43,16 +44,12 @@ public final class GiphyMp4PlaybackController extends RecyclerView.OnScrollListe
 
   @Override
   public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-    enqueuePlaybackUpdate(recyclerView);
+    performPlaybackUpdate(recyclerView);
   }
 
   @Override
   public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
     RecyclerView recyclerView = (RecyclerView) v;
-    enqueuePlaybackUpdate(recyclerView);
-  }
-
-  private void enqueuePlaybackUpdate(@NonNull RecyclerView recyclerView) {
     performPlaybackUpdate(recyclerView);
   }
 
@@ -126,8 +123,9 @@ public final class GiphyMp4PlaybackController extends RecyclerView.OnScrollListe
     }
   }
 
-  interface Callback {
+  public interface Callback {
     void update(@NonNull RecyclerView recyclerView, @NonNull List<GiphyMp4Playable> holders, @NonNull Set<Integer> playbackSet);
+    void updateVideoDisplayPositionAndSize(@NonNull RecyclerView recyclerView, @NonNull GiphyMp4Playable holder);
   }
 
   @VisibleForTesting

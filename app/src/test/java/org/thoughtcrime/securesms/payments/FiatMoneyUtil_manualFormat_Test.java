@@ -24,7 +24,7 @@ public final class FiatMoneyUtil_manualFormat_Test {
 
     String format = FiatMoneyUtil.manualFormat(Currency.getInstance("EUR"), "2");
 
-    assertEquals("2 €", format);
+    assertEquals("2€", format);
   }
 
   @Test
@@ -33,7 +33,7 @@ public final class FiatMoneyUtil_manualFormat_Test {
 
     String format = FiatMoneyUtil.manualFormat(Currency.getInstance("AUD"), "1");
 
-    assertEquals("1 AUD", format);
+    assertEquals("1$AU", format);
   }
 
   @Test
@@ -51,7 +51,7 @@ public final class FiatMoneyUtil_manualFormat_Test {
 
     String format = FiatMoneyUtil.manualFormat(Currency.getInstance("CAD"), "5.00");
 
-    assertEquals("CAD5.00", format);
+    assertEquals("CA$5.00", format);
   }
 
   @Test

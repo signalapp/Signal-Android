@@ -5,7 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.DialogInterface
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.BuildConfig
@@ -16,11 +16,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
-import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
-import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
-import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
-import org.thoughtcrime.securesms.jobs.RotateProfileKeyJob
-import org.thoughtcrime.securesms.jobs.StorageForcePushJob
+import org.thoughtcrime.securesms.jobs.*
 import org.thoughtcrime.securesms.payments.DataExportUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.concurrent.SimpleTask
@@ -32,7 +28,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     val repository = InternalSettingsRepository(requireContext())
     val factory = InternalSettingsViewModel.Factory(repository)
-    viewModel = ViewModelProviders.of(this, factory)[InternalSettingsViewModel::class.java]
+    viewModel = ViewModelProvider(this, factory)[InternalSettingsViewModel::class.java]
 
     viewModel.state.observe(viewLifecycleOwner) {
       adapter.submitList(getConfiguration(it).toMappingModelList())
@@ -48,6 +44,13 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(R.string.preferences__internal_payment_copy_data_description),
         onClick = {
           copyPaymentsDataToClipboard()
+        }
+      )
+      clickPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download),
+        summary = DSLSettingsText.from(R.string.preferences__internal_force_emoji_download_description),
+        onClick = {
+          ApplicationDependencies.getJobManager().add(DownloadLatestEmojiDataJob(true))
         }
       )
 
@@ -104,6 +107,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(R.string.preferences__internal_storage_service)
+
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service),
+        summary = DSLSettingsText.from(R.string.preferences__internal_disable_storage_service_description),
+        isChecked = state.disableStorageService,
+        onClick = {
+          viewModel.setDisableStorageService(!state.disableStorageService)
+        }
+      )
 
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__internal_force_storage_service_sync),
@@ -219,7 +231,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         summary = DSLSettingsText.from(emojiSummary),
         isChecked = state.useBuiltInEmojiSet,
         onClick = {
-          viewModel.setDisableAutoMigrationNotification(!state.useBuiltInEmojiSet)
+          viewModel.setUseBuiltInEmoji(!state.useBuiltInEmojiSet)
         }
       )
 
@@ -270,12 +282,12 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       .setPositiveButton(
         "Copy"
       ) { _: DialogInterface?, _: Int ->
+        val context: Context = ApplicationDependencies.getApplication()
+        val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
         SimpleTask.run<Any?>(
           SignalExecutors.UNBOUNDED,
           {
-            val context: Context = ApplicationDependencies.getApplication()
-            val clipboard =
-              context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
             val tsv = DataExportUtil.createTsv()
             val clip = ClipData.newPlainText(context.getString(R.string.app_name), tsv)
             clipboard.setPrimaryClip(clip)

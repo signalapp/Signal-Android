@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.settings.conversation
 import android.database.Cursor
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -16,6 +16,7 @@ data class ConversationSettingsState(
   val canModifyBlockedState: Boolean = false,
   val sharedMedia: Cursor? = null,
   val sharedMediaIds: List<Long> = listOf(),
+  val displayInternalRecipientDetails: Boolean = false,
   private val sharedMediaLoaded: Boolean = false,
   private val specificSettingsState: SpecificSettingsState,
 ) {
@@ -43,14 +44,13 @@ sealed class SpecificSettingsState {
   abstract val isLoaded: Boolean
 
   data class RecipientSettingsState(
-    val identityRecord: IdentityDatabase.IdentityRecord? = null,
+    val identityRecord: IdentityRecord? = null,
     val allGroupsInCommon: List<Recipient> = listOf(),
     val groupsInCommon: List<Recipient> = listOf(),
     val selfHasGroups: Boolean = false,
     val canShowMoreGroupsInCommon: Boolean = false,
     val groupsInCommonExpanded: Boolean = false,
-    val contactLinkState: ContactLinkState = ContactLinkState.NONE,
-    val displayInternalRecipientDetails: Boolean
+    val contactLinkState: ContactLinkState = ContactLinkState.NONE
   ) : SpecificSettingsState() {
 
     override val isLoaded: Boolean = true

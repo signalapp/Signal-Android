@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.imageeditor.renderers;
 
 import android.animation.ValueAnimator;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
@@ -16,6 +17,8 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.imageeditor.Bounds;
 import org.thoughtcrime.securesms.imageeditor.ColorableRenderer;
 import org.thoughtcrime.securesms.imageeditor.RendererContext;
+import org.thoughtcrime.securesms.imageeditor.SelectableRenderer;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +30,9 @@ import static java.util.Collections.emptyList;
  * <p>
  * Scales down the text size of long lines to fit inside the {@link Bounds} width.
  */
-public final class MultiLineTextRenderer extends InvalidateableRenderer implements ColorableRenderer {
+public final class MultiLineTextRenderer extends InvalidateableRenderer implements ColorableRenderer, SelectableRenderer {
+
+  private static final float HIT_PADDING = ViewUtil.dpToPx(30);
 
   @NonNull
   private String text = "";
@@ -43,6 +48,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   private int     selStart;
   private int     selEnd;
   private boolean hasFocus;
+  private boolean selected;
 
   private List<Line> lines = emptyList();
 
@@ -50,6 +56,9 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   private float         cursorAnimatedValue;
 
   private final Matrix recommendedEditorMatrix = new Matrix();
+
+  private final SelectedElementGuideRenderer selectedElementGuideRenderer = new SelectedElementGuideRenderer();
+  private final RectF                        textBounds                   = new RectF();
 
   public MultiLineTextRenderer(@Nullable String text, @ColorInt int color) {
     setColor(color);
@@ -67,8 +76,17 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
   public void render(@NonNull RendererContext rendererContext) {
     super.render(rendererContext);
 
+    float height = 0;
+    float width  = 0;
     for (Line line : lines) {
       line.render(rendererContext);
+      height += line.heightInBounds - line.ascentInBounds + line.descentInBounds;
+      width = Math.max(line.textBounds.width(), width);
+    }
+
+    if (selected && rendererContext.isEditing()) {
+      textBounds.set(-width, -height / 2f, width, 0f);
+      selectedElementGuideRenderer.render(rendererContext, textBounds);
     }
   }
 
@@ -139,6 +157,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
     private final Matrix inverseProjectionMatrix = new Matrix();
     private final RectF  selectionBounds         = new RectF();
     private final RectF  textBounds              = new RectF();
+    private final RectF  hitBounds               = new RectF();
 
     private String text;
     private int    selStart;
@@ -159,6 +178,12 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
       getTextBoundsWithoutTrim(text, 0, text.length(), temp);
       textBounds.set(temp);
+      hitBounds.set(textBounds);
+
+      hitBounds.left   -= HIT_PADDING;
+      hitBounds.right  += HIT_PADDING;
+      hitBounds.top    -= HIT_PADDING;
+      hitBounds.bottom += HIT_PADDING;
 
       maxTextBounds.set(textBounds);
       float widthLimit = 150 * textScale;
@@ -250,7 +275,7 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
 
       inverseProjectionMatrix.mapPoints(dst, new float[]{ x, y });
 
-      return textBounds.contains(dst[0], dst[1]);
+      return hitBounds.contains(dst[0], dst[1]);
     }
 
     void setText(String text) {
@@ -311,6 +336,13 @@ public final class MultiLineTextRenderer extends InvalidateableRenderer implemen
       paint.setColor(color);
       selectionPaint.setColor(color);
       invalidate();
+    }
+  }
+
+  @Override
+  public void onSelected(boolean selected) {
+    if (this.selected != selected) {
+      this.selected = selected;
     }
   }
 
