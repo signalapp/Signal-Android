@@ -11,16 +11,15 @@
 
     <org.thoughtcrime.securesms.components.ThumbnailView
         android:id="@+id/rail_item_image"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="@dimen/media_rail_thumbnail_size"
+        android:layout_height="@dimen/media_rail_thumbnail_size"
         android:layout_gravity="center"
-        android:background="@drawable/mediarail_media_outline"
         app:thumbnail_radius="8dp"/>
 
     <ImageView
         android:id="@+id/rail_item_outline"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
+        android:layout_width="@dimen/media_rail_item_size"
+        android:layout_height="@dimen/media_rail_item_size"
         android:layout_gravity="center"
         android:src="@drawable/mediarail_media_outline"
         android:visibility="gone"

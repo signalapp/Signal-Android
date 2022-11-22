@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), MediaPreviewFragment.Events {
   private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
@@ -78,9 +79,12 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private lateinit var fullscreenHelper: FullscreenHelper
   private lateinit var albumRailAdapter: MediaRailAdapter
 
+  private var individualItemWidth: Int = 0
+
   override fun onAttach(context: Context) {
     super.onAttach(context)
     fullscreenHelper = FullscreenHelper(requireActivity())
+    individualItemWidth = context.resources.getDimension(R.dimen.media_rail_item_size).roundToInt()
   }
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -293,19 +297,14 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     val currentItemPosition = albumRailAdapter.currentItemPosition
     val currentList = albumRailAdapter.currentList
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
-    var selectedItemWidth = -1
+    albumRail.scrollToPosition(currentItemPosition)
     for (i in currentList.indices) {
       val isSelected = i == currentItemPosition
       val stableId = albumRailAdapter.getItemId(i)
       val viewHolder = albumRail.findViewHolderForItemId(stableId) as? MediaRailAdapter.MediaRailViewHolder
-      if (viewHolder != null) {
-        viewHolder.setSelectedItem(isSelected)
-        if (isSelected) {
-          selectedItemWidth = viewHolder.itemView.width
-        }
-      }
+      viewHolder?.setSelectedItem(isSelected)
     }
-    val offsetFromStart = (albumRail.width - selectedItemWidth) / 2
+    val offsetFromStart = (albumRail.width - individualItemWidth) / 2
     val smoothScroller = OffsetSmoothScroller(requireContext(), offsetFromStart)
     smoothScroller.targetPosition = currentItemPosition
     val layoutManager = albumRail.layoutManager as LinearLayoutManager
