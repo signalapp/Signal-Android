@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -146,12 +145,12 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
   private void handleRegister(@NonNull Context context) {
     if (TextUtils.isEmpty(countryCode.getText())) {
-      Toast.makeText(context, getString(R.string.RegistrationActivity_you_must_specify_your_country_code), Toast.LENGTH_LONG).show();
+      showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_country_code));
       return;
     }
 
     if (TextUtils.isEmpty(this.number.getText())) {
-      Toast.makeText(context, getString(R.string.RegistrationActivity_you_must_specify_your_phone_number), Toast.LENGTH_LONG).show();
+      showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_phone_number));
       return;
     }
 
@@ -255,7 +254,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       SafeNavigation.safeNavigate(navController, EnterPhoneNumberFragmentDirections.actionRequestCaptcha());
                                     } else if (processor.rateLimit()) {
                                       Log.i(TAG, "Unable to request sms code due to rate limit");
-                                      Toast.makeText(register.getContext(), R.string.RegistrationActivity_rate_limited_to_service, Toast.LENGTH_LONG).show();
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_rate_limited_to_service));
                                     } else if (processor.isImpossibleNumber()) {
                                       Log.w(TAG, "Impossible number", processor.getError());
                                       Dialogs.showAlertDialog(requireContext(),
@@ -265,7 +264,7 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                       handleNonNormalizedNumberError(processor.getOriginalNumber(), processor.getNormalizedNumber(), mode);
                                     } else {
                                       Log.i(TAG, "Unknown error during verification code request", processor.getError());
-                                      Toast.makeText(register.getContext(), R.string.RegistrationActivity_unable_to_connect_to_service, Toast.LENGTH_LONG).show();
+                                      showErrorDialog(register.getContext(), getString(R.string.RegistrationActivity_unable_to_connect_to_service));
                                     }
 
                                     register.cancelSpinning();
@@ -273,6 +272,10 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                   });
 
     disposables.add(request);
+  }
+
+  public void showErrorDialog(Context context, String msg) {
+    new MaterialAlertDialogBuilder(context).setMessage(msg).setPositiveButton(R.string.ok, null).show();
   }
 
   @Override
