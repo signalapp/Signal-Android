@@ -625,7 +625,6 @@ public class ConversationParentFragment extends Fragment
     }
 
     if (requireActivity().isFinishing()) requireActivity().overridePendingTransition(R.anim.fade_scale_in, R.anim.slide_to_end);
-    inputPanel.onPause();
 
     fragment.setLastSeen(System.currentTimeMillis());
     markLastSeen();

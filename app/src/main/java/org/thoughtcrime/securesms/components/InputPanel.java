@@ -451,9 +451,6 @@ public class InputPanel extends LinearLayout
     if (listener != null) listener.onRecorderLocked();
   }
 
-  public void onPause() {
-    this.microphoneRecorderView.cancelAction();
-  }
 
   public @NonNull Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
     return voiceNoteDraftView.getPlaybackStateObserver();
