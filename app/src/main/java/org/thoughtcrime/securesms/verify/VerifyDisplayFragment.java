@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.IdentityDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.qr.QrCode;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -393,9 +394,12 @@ public class VerifyDisplayFragment extends Fragment implements ViewTreeObserver.
   }
 
   private void setRecipientText(Recipient recipient) {
-    String escapedDisplayName = Html.escapeHtml(recipient.getDisplayName(getContext()));
-
-    description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s), escapedDisplayName)));
+    String escapedDisplayName   = Html.escapeHtml(recipient.getDisplayName(getContext()));
+    String phoneNumber          = recipient.getE164().isPresent() ? recipient.getE164().get()
+                                                                  : "";
+    String formattedPhoneNumber = PhoneNumberFormatter.get(getContext()).format(phoneNumber);
+    String nameAndNumber        = escapedDisplayName + " " + formattedPhoneNumber;
+    description.setText(Html.fromHtml(String.format(getActivity().getString(R.string.verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s), nameAndNumber)));
     description.setMovementMethod(LinkMovementMethod.getInstance());
   }
 
