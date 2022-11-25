@@ -487,9 +487,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">தடுக்கப்பட்ட</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">ஃபில்டரை அழி</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">படிக்காத சாட்ஸ் எதுவுமில்லை</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">தேர்ந்தெடுக்கப்பட்ட உரையாடலை அழி ?</item>
         <item quantity="other">தேர்ந்தெடுக்கப்பட்ட உரையாடலைகளை நீக்கவா?</item>
@@ -3202,7 +3202,7 @@
     <string name="text_secure_normal__mark_all_as_read">அனைத்தையும் படித்தாக குறியிடு</string>
     <string name="text_secure_normal__invite_friends">நண்பர்களை அழை</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">படிக்காத சாட்ஸை ஃபில்டர் செய்</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
@@ -4025,7 +4025,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">எஸ்.எம்.எஸ் செய்திகளை ஏற்றுமதி செய்</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">SMS மெசேஜ்களை மீண்டும் ஏற்றுமதி செய்க</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">எஸ்.எம்.எஸ் செய்திகளை அகற்று</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4035,7 +4035,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">உங்கள் எஸ்.எம்.எஸ் செய்திகளை உங்கள் தொலைபேசியின் எஸ்.எம்.எஸ் தரவுத்தளத்திற்கு ஏற்றுமதி செய்யலாம்</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">மீண்டும் ஏற்றுமதி செய்வதால் நகல் செய்திகள் உருவாகலாம்.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">சேமிப்பிடத்தை அழிக்க சிக்னலில் இருந்து எஸ்.எம்.எஸ் செய்திகளை அகற்றவும்.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5447,9 +5447,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">ரத்து</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMSஐ மீண்டும் ஏற்றுமதி செய்ய வேண்டுமா?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">நீங்கள் ஏற்கனவே உங்கள் SMS மெசேஜ்களை ஏற்றுமதி செய்துள்ளீர்கள்.\nஎச்சரிக்கை: நீங்கள் தொடர்ந்தால், நகல் செய்திகள் உருவாகலாம்.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5601,13 +5601,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">அறிமுகப்படுத்துகிறோம்: குழு ஸ்டோரீஸ்</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">நீங்கள் ஏற்கனவே இருக்கும் குழு சாட்டில் ஸ்டோரி புதுப்பிப்புகளைப் பகிரவும்.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">குழு சாட்டில் உள்ள எவரும் ஸ்டோரியில் சேர்க்கலாம்.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">அனைத்து குழு சாட்ஸ் உறுப்பினர்களும் ஸ்டோரி பதில்களைப் பார்க்கலாம்.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">அடுத்தது</string>
 

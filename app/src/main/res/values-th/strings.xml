@@ -480,9 +480,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">ถูกปิดกั้น</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">ล้างตัวกรอง</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">ไม่มีแชทที่ยังไม่ได้อ่าน</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="other">ลบการสนทนาที่เลือกหรือไม่?</item>
     </plurals>
@@ -3115,7 +3115,7 @@
     <string name="text_secure_normal__mark_all_as_read">ทำเครื่องหมายทั้งหมดว่าอ่านแล้ว</string>
     <string name="text_secure_normal__invite_friends">เชิญเพื่อน</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">กรองแชทที่ยังไม่ได้อ่าน</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">คัดลอกไปยังคลิปบอร์ด</string>
@@ -3927,7 +3927,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">ส่งออกข้อความ SMS</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">ส่งออกข้อความ SMS อีกครั้ง</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">ลบข้อความ SMS</string>
     <!-- Snackbar text to confirm deletion -->
@@ -3937,7 +3937,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">คุณสามารถส่งออกข้อความ SMS ไปยังฐานข้อมูล SMS ของโทรศัพท์คุณได้</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">การส่งออกอีกครั้งอาจทำให้มีข้อความซ้ำ</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">ลบข้อความ SMS ออกจาก Signal เพื่อเพิ่มพื้นที่จัดเก็บข้อมูล</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5325,9 +5325,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">ยกเลิก</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">ส่งออก SMS อีกครั้งใช่หรือไม่</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">คุณเคยส่งออกข้อความ SMS แล้ว\nคำเตือน: หากดำเนินการต่อ อาจทำให้มีข้อความซ้ำ</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5476,13 +5476,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">ขอแนะนำ: สตอรี่กลุ่ม</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">แชร์สตอรี่ไปยังกลุ่มแชทที่คุณเป็นสมาชิกอยู่แล้ว</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">ทุกคนในกลุ่มแชทสามารถเพิ่มสตอรี่ได้</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">สมาชิกทุกคนในกลุ่มแชทจะเห็นการตอบกลับสตอรี่</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">ถัดไป</string>
 

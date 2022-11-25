@@ -487,9 +487,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Bloqueada</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">Limpar filtro</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">Sem chats não lidos</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Excluir conversa selecionada?</item>
         <item quantity="other">Excluir conversas selecionadas?</item>
@@ -3202,7 +3202,7 @@
     <string name="text_secure_normal__mark_all_as_read">Marcar todas como lidas</string>
     <string name="text_secure_normal__invite_friends">Convidar amigos</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">Filtrar chats não lidos</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copiar para a área de transferência</string>
@@ -4025,7 +4025,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">Exportar mensagens SMS</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">Exportar mensagens SMS novamente</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Remover mensagens SMS</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4035,7 +4035,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Você pode exportar suas mensagens de SMS para a base de dados de SMS do seu telefone</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exportar novamente pode resultar em mensagens duplicadas.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Remova as mensagens de SMS do Signal para liberar espaço de armazenamento.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5447,9 +5447,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">Cancelar</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Quer exportar mensagens SMS novamente?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Você já exportou suas mensagens SMS.\nAVISO: se continuar, você pode ficar com mensagens duplicadas.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5601,13 +5601,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Apresentamos os stories de grupo</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Compartilhe atualizações de stories em um chat em grupo do qual você faz parte.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Qualquer pessoa no seu chat em grupo poderá adicionar conteúdo aos stories.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Todos os membros do chat em grupo podem ver respostas aos stories.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Próximo</string>
 

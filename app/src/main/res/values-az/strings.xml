@@ -487,9 +487,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Əngəlləndi</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">Filtri təmizlə</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">Oxunmamış çatlar yoxdur</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Seçilmiş danışıq silinsin?</item>
         <item quantity="other">Seçilmiş danışıqlar silinsin?</item>
@@ -3202,7 +3202,7 @@
     <string name="text_secure_normal__mark_all_as_read">Hamısını oxundu olaraq işarələ</string>
     <string name="text_secure_normal__invite_friends">Dostları dəvət et</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">Oxunmamış çatları filtrlə</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Lövhəyə kopyala</string>
@@ -4025,7 +4025,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">SMS mesajlarını ixrac et</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">SMS mesajlarını yenidən ixrac et</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS mesajlarını sil</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4035,7 +4035,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS mesajlarınızı telefonunuzun SMS verilənlər bazasına ixrac edə bilərsiniz.</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Yenidən ixrac etmə mesajların çoxalması ilə nəticələnə bilər.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Yaddaşda yer açmaq üçün SMS mesajlarını Signal-dan silin.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5447,9 +5447,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">İmtina</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS yenidən ixrac edilsin?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Artıq SMS mesajlarınızı ixrac etmisiniz.\nXƏBƏRDARLIQ: Davam etsəniz mesajlar çoxalacaq.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5601,13 +5601,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Təqdimat: Qrup hekayələri</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Hekayə yeniləmələrini artıq qoşulduğunuz bir qrup söhbətində paylaşın.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Qrup söhbətində olan istənilən şəxs hekayəyə əlavə edə bilər.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Qrup söhbətində olan bütün üzvlər hekayəyə verilən cavabları görə bilər.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Növbəti</string>
 

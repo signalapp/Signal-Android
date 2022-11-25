@@ -494,9 +494,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Bloķēts</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">Noņemt filtru</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">Nav nelasītu sarunu</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="zero">Vai izdzēst izvēlētās sarunas?</item>
         <item quantity="one">Vai izdzēst izvēlētās sarunu?</item>
@@ -3289,7 +3289,7 @@
     <string name="text_secure_normal__mark_all_as_read">Atzīmēt visus kā lasītus</string>
     <string name="text_secure_normal__invite_friends">Uzaicināt draugus</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">Filtrēt nelasītās sarunas</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopēt starpliktuvē</string>
@@ -4123,7 +4123,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">Eksportēt SMS ziņas</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">Vēlreiz eksportēt SMS ziņas</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Dzēst SMS ziņas</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4133,7 +4133,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Varat eksportēt SMS ziņas uz tālruņa SMS datu bāzi</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Atkārtoti eksportējot, ziņas var tikt dublētas.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Izdzēsiet SMS ziņas no Signal, lai atbrīvotu vietu krātuvē.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5569,9 +5569,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">Atcelt</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Vai eksportēt SMS vēlreiz?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Jūs jau eksportējāt SMS ziņas.\nBRĪDINĀJUMS. Ja turpināsiet, ziņas var tikt dublētas.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5726,13 +5726,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Jaunums: grupu stāsti</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Kopīgojiet stāsta papildinājumus grupas čatā, kurā jau piedalāties.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Jebkurš grupas čata dalībnieks var papildināt stāstu.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Visi grupas čata dalībnieki var skatīt stāstu atbildes.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Tālāk</string>
 

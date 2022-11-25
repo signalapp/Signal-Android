@@ -487,9 +487,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">Bllokuar</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">Pastro filtrin</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">Nuk ka biseda të palexuara</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">Të fshihet biseda e përzgjedhur?</item>
         <item quantity="other">Dëshironi të fshini bisedat e përzgjedhura?</item>
@@ -3202,7 +3202,7 @@
     <string name="text_secure_normal__mark_all_as_read">Shënoji krejt si të lexuar</string>
     <string name="text_secure_normal__invite_friends">Ftoni shokë</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">Filtro bisedat e palexuara</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Kopjoje në të papastër</string>
@@ -4025,7 +4025,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">Eksporto mesazhet SMS</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">Eksporto përsëri mesazhet SMS</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">Hiq mesazhet SMS</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4035,7 +4035,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">Mund të eksportosh mesazhet e tua SMS në bazën e të dhënave SMS të telefonit tënd</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Po t\'i eksportosh sërish mund të kesh mesazhe të dyfishuara.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Hiq mesazhet SMS nga Signal për të liruar hapësirën e ruajtjes.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5447,9 +5447,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">Anuloje</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Të eksportohen sërish SMS-të?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">Tashmë i ke eksportuar mesazhet e tua SMS.\nPARALAJMËRIM: Nëse vazhdon, mund të përfundosh me mesazhe të dyfishuara.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5601,13 +5601,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">Paraqesim: Postimet e përkohshme të grupit</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Ndaj përditësimet e postimit të përkohshëm në një bisedë në grup, ku bën pjesë.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Çdokush në bisedën në grup mund të të shtojë në postimin e përkohshëm.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Të gjithë anëtarët e bisedës në grup mund të shikojnë përgjigjet e postimit të përkohshëm.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Tjetër</string>
 

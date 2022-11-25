@@ -480,9 +480,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">차단함</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">필터 지우기</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">안 읽은 채팅 없음</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="other">선택한 대화를 삭제하시겠습니까?</item>
     </plurals>
@@ -3115,7 +3115,7 @@
     <string name="text_secure_normal__mark_all_as_read">모두 읽음으로 표시</string>
     <string name="text_secure_normal__invite_friends">친구 초대</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">안 읽은 채팅 필터</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">클립보드에 복사</string>
@@ -3927,7 +3927,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">SMS 메시지 내보내기</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">SMS 메시지 다시 내보내기</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS 메시지 제거</string>
     <!-- Snackbar text to confirm deletion -->
@@ -3937,7 +3937,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">SMS 메시지를 휴대폰 SMS 데이터베이스로 내보낼 수 있습니다.</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">다시 내보내면 중복 메시지가 생길 수 있습니다.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">Signal에서 SMS 메시지를 삭제하여 저장 공간을 확보하세요.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5325,9 +5325,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">취소</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS를 다시 내보낼까요?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">SMS 메시지를 이미 내보냈습니다.\n경고: 계속 진행할 경우 중복 메시지가 생길 수 있습니다.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5476,13 +5476,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">그룹 스토리 출시</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">이미 속해 있는 그룹 채팅에 스토리 업데이트를 공유하세요.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">그룹 채팅에 있는 사용자 누구나 스토리에 추가할 수 있습니다.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">모든 그룹 채팅 멤버가 스토리 답장을 볼 수 있습니다.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">다음</string>
 

@@ -487,9 +487,9 @@
     <!-- Message shown after successfully blocking join requests for a user -->
     <string name="ConversationFragment__blocked">തടഞ്ഞു</string>
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
-    <string name="ConversationListFragment__clear_filter">Clear filter</string>
+    <string name="ConversationListFragment__clear_filter">ഫിൽട്ടർ മായ്‌ക്കുക</string>
     <!-- Notice on chat list when no unread chats are available, centered on display -->
-    <string name="ConversationListFragment__no_unread_chats">No unread chats</string>
+    <string name="ConversationListFragment__no_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ ഒന്നുമില്ല</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
         <item quantity="one">തിരഞ്ഞെടുത്ത സംഭാഷണം ഇല്ലാതാക്കണോ?</item>
         <item quantity="other">തിരഞ്ഞെടുത്ത സംഭാഷണങ്ങൾ ഇല്ലാതാക്കണോ?</item>
@@ -3202,7 +3202,7 @@
     <string name="text_secure_normal__mark_all_as_read">എല്ലാം വായിച്ചതായി കാണിക്കൂ</string>
     <string name="text_secure_normal__invite_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
     <!-- Overflow menu entry to filter unread chats -->
-    <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <string name="text_secure_normal__filter_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ ഫിൽട്ടർ ചെയ്യുക</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
@@ -4025,7 +4025,7 @@
     <!-- Preference title to export sms -->
     <string name="SmsSettingsFragment__export_sms_messages">SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്യുക</string>
     <!-- Preference title to re-export sms -->
-    <string name="SmsSettingsFragment__export_sms_messages_again">Export SMS messages again</string>
+    <string name="SmsSettingsFragment__export_sms_messages_again">SMS സന്ദേശങ്ങൾ വീണ്ടും എക്‌സ്പോർട്ട് ചെയ്യുക</string>
     <!-- Preference title to delete sms -->
     <string name="SmsSettingsFragment__remove_sms_messages">SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക</string>
     <!-- Snackbar text to confirm deletion -->
@@ -4035,7 +4035,7 @@
     <!-- Description for export sms preference -->
     <string name="SmsSettingsFragment__you_can_export_your_sms_messages_to_your_phones_sms_database">നിങ്ങളുടെ ഫോണിന്റെ SMS ഡാറ്റാബേസിലേക്ക് നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്സ്പോർട്ട് ചെയ്യാൻ നിങ്ങൾക്ക് കഴിയും</string>
     <!-- Description for re-export sms preference -->
-    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">Exporting again can result in duplicate messages.</string>
+    <string name="SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages">വീണ്ടും എക്‌സ്‌പോർട്ട് ചെയ്യുന്നത് ഡ്യൂപ്ലിക്കേറ്റ് സന്ദേശങ്ങൾക്ക് കാരണമാകും.</string>
     <!-- Description for remove sms preference -->
     <string name="SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space">സംഭരണ സ്ഥലം കൂട്ടാൻ Signal-ൽ നിന്ന് SMS സന്ദേശങ്ങൾ നീക്കം ചെയ്യുക.</string>
     <!-- Information message shown at the top of sms settings to indicate it is being removed soon. -->
@@ -5447,9 +5447,9 @@
     <!-- Action button to cancel re-export process -->
     <string name="ReExportSmsMessagesDialogFragment__cancel">റദ്ദാക്കുക</string>
     <!-- Title of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">Export SMS again?</string>
+    <string name="ReExportSmsMessagesDialogFragment__export_sms_again">SMS വീണ്ടും എക്‌സ്പോർട്ട് ചെയ്യണോ?</string>
     <!-- Message of dialog -->
-    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">You already exported your SMS messages.\nWARNING: If you continue, you may end up with duplicate messages.</string>
+    <string name="ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages">നിങ്ങൾ ഇതിനകം തന്നെ നിങ്ങളുടെ SMS സന്ദേശങ്ങൾ എക്‌സ്‌പോർട്ട് ചെയ്‌തു.\nമുന്നറിയിപ്പ്: നിങ്ങൾ തുടരുകയാണെങ്കിൽ, നിങ്ങൾക്ക് ഡ്യൂപ്ലിക്കേറ്റ് സന്ദേശങ്ങൾ ലഭിച്ചേക്കാം.</string>
 
     <!-- SetSignalAsDefaultSmsAppFragment -->
     <!-- Title of the screen -->
@@ -5601,13 +5601,13 @@
 
     <!-- GroupStoryEducationSheet -->
     <!-- Displayed as the title of the education bottom sheet -->
-    <string name="GroupStoryEducationSheet__introducing_group_stories">Introducing: Group Stories</string>
+    <string name="GroupStoryEducationSheet__introducing_group_stories">അവതരിപ്പിക്കുന്നു: ഗ്രൂപ്പ് സ്റ്റോറികൾ</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Share story updates to a group chat you\'re already in.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">നിങ്ങൾ ഇതിനകം ഉള്ള ഒരു ഗ്രൂപ്പ് ചാറ്റിലേക്ക് സ്റ്റോറി അപ്‌ഡേറ്റുകൾ പങ്കിടുക.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Anyone in the group chat can add to the story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">ഗ്രൂപ്പ് ചാറ്റിലുള്ള ആർക്കും സ്റ്റോറിയിൽ ചേർക്കാൻ കഴിയുന്നതാണ്.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">All group chat members can view story replies.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">എല്ലാ ഗ്രൂപ്പ് ചാറ്റ് അംഗങ്ങൾക്കും സ്റ്റോറി മറുപടികൾ കാണാൻ കഴിയും.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">അടുത്തത്</string>
 
