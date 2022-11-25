@@ -2,8 +2,10 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
 import android.content.Intent
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.NavHostFragment
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
@@ -18,9 +20,7 @@ class DonateToSignalActivity : FragmentWrapperActivity(), DonationPaymentCompone
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun getFragment(): Fragment {
-    return DonateToSignalFragment().apply {
-      arguments = DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle()
-    }
+     return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle())
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
