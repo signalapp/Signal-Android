@@ -75,12 +75,13 @@ class GiftSendJob private constructor(parameters: Parameters, private val recipi
     return if (didInsert) {
       Log.i(TAG, "Successfully inserted outbox message for gift", true)
 
-      if (additionalMessage != null) {
+      val trimmedMessage = additionalMessage?.trim()
+      if (!trimmedMessage.isNullOrBlank()) {
         Log.i(TAG, "Sending additional message...")
 
         val result = MultiShareSender.sendSync(
           MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipientId)))
-            .withDraftText(additionalMessage)
+            .withDraftText(trimmedMessage)
             .build()
         )
 
