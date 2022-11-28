@@ -166,6 +166,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.i(TAG, "Subscription is valid, proceeding with request for ReceiptCredentialResponse", true);
       long storedEndOfPeriod = SignalStore.donationsValues().getLastEndOfPeriod();
       if (storedEndOfPeriod < subscription.getEndOfCurrentPeriod()) {
+        Log.i(TAG, "Storing lastEndOfPeriod and syncing with linked devices", true);
         SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
         MultiDeviceSubscriptionSyncRequestJob.enqueue();
       }
@@ -264,7 +265,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new Exception(response.getApplicationError().get());
       case 409:
         onAlreadyRedeemed(response);
-        throw new Exception(response.getApplicationError().get());
+        break;
       default:
         Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
         throw new RetryableException();
@@ -320,12 +321,17 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) {
+  /**
+   * Handle 409 error code. This is a permanent failure for new subscriptions but an ignorable error for keep-alive messages.
+   */
+  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
     if (isForKeepAlive) {
       Log.i(TAG, "KeepAlive: Latest paid receipt on subscription already redeemed with a different request credential, ignoring.", response.getApplicationError().get(), true);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).build());
     } else {
       Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
       DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+      throw new Exception(response.getApplicationError().get());
     }
   }
 

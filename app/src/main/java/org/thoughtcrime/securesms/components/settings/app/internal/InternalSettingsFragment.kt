@@ -430,6 +430,16 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
             findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDonorErrorConfigurationFragment())
           }
         )
+
+        clickPref(
+          title = DSLSettingsText.from("Clear keep-alive timestamps"),
+          onClick = {
+            SignalStore.donationsValues().subscriptionEndOfPeriodRedemptionStarted = 0L
+            SignalStore.donationsValues().subscriptionEndOfPeriodConversionStarted = 0L
+            SignalStore.donationsValues().setLastEndOfPeriod(0L)
+            Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT)
+          }
+        )
       }
 
       dividerPref()

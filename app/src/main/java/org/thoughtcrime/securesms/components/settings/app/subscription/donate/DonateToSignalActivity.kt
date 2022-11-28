@@ -20,7 +20,7 @@ class DonateToSignalActivity : FragmentWrapperActivity(), DonationPaymentCompone
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 
   override fun getFragment(): Fragment {
-     return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle())
+    return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle())
   }
 
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

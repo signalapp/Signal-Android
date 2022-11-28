@@ -39,6 +39,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   public static final String SUBSCRIPTION_QUEUE                    = "ReceiptRedemption";
   public static final String KEY                                   = "DonationReceiptRedemptionJob";
   public static final String INPUT_RECEIPT_CREDENTIAL_PRESENTATION = "data.receipt.credential.presentation";
+  public static final String INPUT_KEEP_ALIVE_409                  = "data.keep.alive.409";
   public static final String DATA_ERROR_SOURCE                     = "data.error.source";
   public static final String DATA_GIFT_MESSAGE_ID                  = "data.gift.message.id";
   public static final String DATA_PRIMARY                          = "data.primary";
@@ -160,6 +161,12 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private void doRun() throws Exception {
+    boolean isKeepAlive409 = getInputData() != null && getInputData().getBooleanOrDefault(INPUT_KEEP_ALIVE_409, false);
+    if (isKeepAlive409) {
+      Log.d(TAG, "Keep-Alive redemption job hit a 409. Exiting.", true);
+      return;
+    }
+
     ReceiptCredentialPresentation presentation = getPresentation();
     if (presentation == null) {
       Log.d(TAG, "No presentation available. Exiting.", true);
