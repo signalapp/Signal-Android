@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
+import android.content.Intent
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
@@ -9,9 +11,11 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.database.AttachmentDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase
 import org.thoughtcrime.securesms.database.MediaDatabase.Sorting
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.AttachmentUtil
@@ -79,6 +83,18 @@ class MediaPreviewRepository {
     return Completable.fromRunnable {
       MessageSender.sendRemoteDelete(attachment.mmsId, true)
     }.subscribeOn(Schedulers.io())
+  }
+
+  fun getMessagePositionIntent(context: Context, messageId: Long): Single<Intent> {
+    return Single.fromCallable {
+      val messageRecord = SignalDatabase.mms.getMessageRecord(messageId)
+      val messagePosition = SignalDatabase.mmsSms.getMessagePositionInConversation(messageRecord.threadId, messageRecord.dateReceived)
+      ConversationIntents.createBuilder(context, messageRecord.recipient.id, messageRecord.threadId)
+        .withStartingPosition(messagePosition)
+        .build()
+    }
+      .subscribeOn(Schedulers.io())
+      .observeOn(AndroidSchedulers.mainThread())
   }
 
   data class Result(val initialPosition: Int, val records: List<MediaDatabase.MediaRecord>)

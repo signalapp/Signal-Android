@@ -6,8 +6,11 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.os.Build
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
@@ -19,6 +22,7 @@ import android.view.animation.PathInterpolator
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -54,6 +58,7 @@ import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
@@ -61,6 +66,7 @@ import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteDeleteUtil
 import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
@@ -232,6 +238,18 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
   private fun bindTextViews(currentItem: MediaDatabase.MediaRecord, showThread: Boolean) {
     binding.toolbar.title = getTitleText(currentItem, showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)
+    val messageId: Long? = currentItem.attachment?.mmsId
+    if (messageId != null) {
+      binding.toolbar.setOnClickListener { v ->
+        viewModel.jumpToFragment(v.context, messageId).subscribeBy(
+          onSuccess = { startActivity(it) },
+          onError = {
+            Log.e(TAG, "Could not find message position for message ID: $messageId", it)
+            Toast.makeText(v.context, R.string.MediaPreviewActivity_error_finding_message, Toast.LENGTH_LONG).show()
+          }
+        )
+      }
+    }
 
     val caption = currentItem.attachment?.caption
     binding.mediaPreviewCaption.text = caption
@@ -366,12 +384,21 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun getSubTitleText(mediaRecord: MediaDatabase.MediaRecord): String =
-    if (mediaRecord.date > 0) {
+  private fun getSubTitleText(mediaRecord: MediaDatabase.MediaRecord): CharSequence {
+    val text = if (mediaRecord.date > 0) {
       DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), mediaRecord.date)
     } else {
       getString(R.string.MediaPreviewActivity_draft)
     }
+    val builder = SpannableStringBuilder(text)
+
+    val onSurfaceColor = ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurface)
+    val chevron = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_chevron_end_24)
+    chevron.colorFilter = PorterDuffColorFilter(onSurfaceColor, PorterDuff.Mode.SRC_IN)
+
+    SpanUtil.appendCenteredImageSpan(builder, chevron, 10, 10)
+    return builder
+  }
 
   private fun anchorMarginsToBottomInsets(viewToAnchor: View) {
     ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor) { view: View, windowInsetsCompat: WindowInsetsCompat ->

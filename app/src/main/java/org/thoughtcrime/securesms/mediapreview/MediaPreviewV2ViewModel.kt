@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
+import android.content.Intent
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -80,6 +82,10 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   fun localDelete(context: Context, attachment: DatabaseAttachment): Completable {
     return repository.localDelete(context, attachment).subscribeOn(Schedulers.io())
+  }
+
+  fun jumpToFragment(context: Context, messageId: Long): Single<Intent> {
+    return repository.getMessagePositionIntent(context, messageId)
   }
 
   override fun onCleared() {
