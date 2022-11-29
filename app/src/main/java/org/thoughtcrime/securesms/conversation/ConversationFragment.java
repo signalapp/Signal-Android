@@ -1052,7 +1052,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     builder.setTitle(getActivity().getResources().getQuantityString(R.plurals.ConversationFragment_delete_selected_messages, messagesCount, messagesCount));
     builder.setCancelable(true);
 
-    int deleteForMeResId = isNoteToSelfDelete(messageRecords) ? R.string.ConversationFragment_delete_on_this_device : R.string.ConversationFragment_delete_for_me;
+    boolean isNoteToSelfDelete = isNoteToSelfDelete(messageRecords);
+
+    int deleteForMeResId = isNoteToSelfDelete ? R.string.ConversationFragment_delete_on_this_device : R.string.ConversationFragment_delete_for_me;
     builder.setPositiveButton(deleteForMeResId, (dialog, which) -> {
       new ProgressDialogAsyncTask<Void, Void, Void>(getActivity(),
                                                     R.string.ConversationFragment_deleting,
@@ -1082,9 +1084,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
     });
 
-    int deleteForEveryoneResId = isNoteToSelfDelete(messageRecords) ? R.string.ConversationFragment_delete_everywhere : R.string.ConversationFragment_delete_for_everyone;
+    int deleteForEveryoneResId = isNoteToSelfDelete ? R.string.ConversationFragment_delete_everywhere : R.string.ConversationFragment_delete_for_everyone;
 
-    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis())) {
+    if (RemoteDeleteUtil.isValidSend(messageRecords, System.currentTimeMillis()) && (!isNoteToSelfDelete || TextSecurePreferences.isMultiDevice(requireContext()))) {
       builder.setNeutralButton(deleteForEveryoneResId, (dialog, which) -> handleDeleteForEveryone(messageRecords));
     }
 
