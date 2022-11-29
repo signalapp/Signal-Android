@@ -49,7 +49,7 @@ class StoriesLandingRepository(context: Context) {
             mapping[myStories] = list + it
           }
 
-          if (!recipient.isDistributionList) {
+          if (!recipient.isDistributionList && !recipient.isBlocked) {
             val list = mapping[recipient] ?: emptyList()
             mapping[recipient] = list + it
           }
