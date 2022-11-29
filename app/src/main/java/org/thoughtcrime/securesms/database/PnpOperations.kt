@@ -7,7 +7,7 @@ import org.whispersystems.signalservice.api.push.ACI
 import org.whispersystems.signalservice.api.push.PNI
 
 /**
- * Encapsulates data around processing a tuple of user data into a user entry in [RecipientDatabase].
+ * Encapsulates data around processing a tuple of user data into a user entry in [RecipientTable].
  * Also lets you apply a list of [PnpOperation]s to get what the resulting dataset would be.
  */
 data class PnpDataSet(
@@ -132,7 +132,7 @@ data class PnpDataSet(
 
 /**
  * Represents a set of actions that need to be applied to incorporate a tuple of user data
- * into [RecipientDatabase].
+ * into [RecipientTable].
  */
 data class PnpChangeSet(
   val id: PnpIdResolver,
@@ -172,7 +172,7 @@ sealed class PnpIdResolver {
 }
 
 /**
- * An operation that needs to be performed on the [RecipientDatabase] as part of merging in new user data.
+ * An operation that needs to be performed on the [RecipientTable] as part of merging in new user data.
  * Lets us describe various situations as a series of operations, making code clearer and tests easier.
  */
 sealed class PnpOperation {

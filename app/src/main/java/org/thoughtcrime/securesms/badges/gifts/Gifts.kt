@@ -4,7 +4,7 @@ import android.content.Context
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
@@ -38,7 +38,7 @@ object Gifts {
       Base64.encodeBytes(giftBadge.toByteArray()),
       listOf(),
       sentTimestamp,
-      ThreadDatabase.DistributionTypes.CONVERSATION,
+      ThreadTable.DistributionTypes.CONVERSATION,
       expiresIn,
       false,
       StoryType.NONE,

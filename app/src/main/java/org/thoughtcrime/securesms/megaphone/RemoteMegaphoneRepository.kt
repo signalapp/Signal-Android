@@ -12,7 +12,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalActivity
-import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
+import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord.ActionId
@@ -34,7 +34,7 @@ object RemoteMegaphoneRepository {
 
   private val TAG = Log.tag(RemoteMegaphoneRepository::class.java)
 
-  private val db: RemoteMegaphoneDatabase = SignalDatabase.remoteMegaphones
+  private val db: RemoteMegaphoneTable = SignalDatabase.remoteMegaphones
   private val context: Application = ApplicationDependencies.getApplication()
 
   private val snooze: Action = Action { _, controller, remote ->

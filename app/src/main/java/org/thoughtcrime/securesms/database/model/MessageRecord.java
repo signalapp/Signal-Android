@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -494,7 +494,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isPush() {
-    return SmsDatabase.Types.isPushType(type) && !SmsDatabase.Types.isForcedSms(type);
+    return SmsTable.Types.isPushType(type) && !SmsTable.Types.isForcedSms(type);
   }
 
   public long getTimestamp() {
@@ -509,15 +509,15 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isForcedSms() {
-    return SmsDatabase.Types.isForcedSms(type);
+    return SmsTable.Types.isForcedSms(type);
   }
 
   public boolean isIdentityVerified() {
-    return SmsDatabase.Types.isIdentityVerified(type);
+    return SmsTable.Types.isIdentityVerified(type);
   }
 
   public boolean isIdentityDefault() {
-    return SmsDatabase.Types.isIdentityDefault(type);
+    return SmsTable.Types.isIdentityDefault(type);
   }
 
   public boolean isIdentityMismatchFailure() {
@@ -525,23 +525,23 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isBundleKeyExchange() {
-    return SmsDatabase.Types.isBundleKeyExchange(type);
+    return SmsTable.Types.isBundleKeyExchange(type);
   }
 
   public boolean isContentBundleKeyExchange() {
-    return SmsDatabase.Types.isContentBundleKeyExchange(type);
+    return SmsTable.Types.isContentBundleKeyExchange(type);
   }
 
   public boolean isRateLimited() {
-    return SmsDatabase.Types.isRateLimited(type);
+    return SmsTable.Types.isRateLimited(type);
   }
 
   public boolean isIdentityUpdate() {
-    return SmsDatabase.Types.isIdentityUpdate(type);
+    return SmsTable.Types.isIdentityUpdate(type);
   }
 
   public boolean isCorruptedKeyExchange() {
-    return SmsDatabase.Types.isCorruptedKeyExchange(type);
+    return SmsTable.Types.isCorruptedKeyExchange(type);
   }
 
   public boolean isBadDecryptType() {
@@ -557,11 +557,11 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isInvalidVersionKeyExchange() {
-    return SmsDatabase.Types.isInvalidVersionKeyExchange(type);
+    return SmsTable.Types.isInvalidVersionKeyExchange(type);
   }
 
   public boolean isGroupV1MigrationEvent() {
-    return SmsDatabase.Types.isGroupV1MigrationEvent(type);
+    return SmsTable.Types.isGroupV1MigrationEvent(type);
   }
 
   public @NonNull GroupMigrationMembershipChange getGroupV1MigrationMembershipChanges() {

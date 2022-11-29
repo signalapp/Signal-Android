@@ -8,7 +8,7 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.thoughtcrime.securesms.database.SessionDatabase;
+import org.thoughtcrime.securesms.database.SessionTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -145,9 +145,9 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   public void archiveSiblingSessions(@NonNull SignalProtocolAddress address) {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> sessions = SignalDatabase.sessions().getAllFor(accountId, address.getName());
+      List<SessionTable.SessionRow> sessions = SignalDatabase.sessions().getAllFor(accountId, address.getName());
 
-      for (SessionDatabase.SessionRow row : sessions) {
+      for (SessionTable.SessionRow row : sessions) {
         if (row.getDeviceId() != address.getDeviceId()) {
           row.getRecord().archiveCurrentState();
           storeSession(new SignalProtocolAddress(row.getAddress(), row.getDeviceId()), row.getRecord());
@@ -158,9 +158,9 @@ public class TextSecureSessionStore implements SignalServiceSessionStore {
 
   public void archiveAllSessions() {
     synchronized (LOCK) {
-      List<SessionDatabase.SessionRow> sessions = SignalDatabase.sessions().getAll(accountId);
+      List<SessionTable.SessionRow> sessions = SignalDatabase.sessions().getAll(accountId);
 
-      for (SessionDatabase.SessionRow row : sessions) {
+      for (SessionTable.SessionRow row : sessions) {
         row.getRecord().archiveCurrentState();
         storeSession(new SignalProtocolAddress(row.getAddress(), row.getDeviceId()), row.getRecord());
       }

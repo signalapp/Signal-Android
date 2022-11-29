@@ -8,7 +8,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -77,8 +77,8 @@ class DeleteAccountRepository {
       Log.i(TAG, "deleteAccount: attempting to leave groups...");
 
       int groupsLeft = 0;
-      try (GroupDatabase.Reader groups = SignalDatabase.groups().getGroups()) {
-        GroupDatabase.GroupRecord groupRecord = groups.getNext();
+      try (GroupTable.Reader groups = SignalDatabase.groups().getGroups()) {
+        GroupTable.GroupRecord groupRecord = groups.getNext();
         onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), 0));
         Log.i(TAG, "deleteAccount: found " + groups.getCount() + " groups to leave.");
 

@@ -18,8 +18,8 @@ import androidx.core.graphics.drawable.IconCompat
 import org.signal.core.util.PendingIntentFlags.mutable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
-import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -117,7 +117,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   fun addReplyActions(conversation: NotificationConversation) {
     if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
       if (conversation.recipient.isPushV2Group) {
-        val group: Optional<GroupDatabase.GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
+        val group: Optional<GroupTable.GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
         if (group.isPresent && group.get().isAnnouncementGroup && !group.get().isAdmin(Recipient.self())) {
           return
         }
@@ -342,7 +342,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.setSound(ringtone)
       }
 
-      if (vibrate == RecipientDatabase.VibrateState.ENABLED || vibrate == RecipientDatabase.VibrateState.DEFAULT && defaultVibrate) {
+      if (vibrate == RecipientTable.VibrateState.ENABLED || vibrate == RecipientTable.VibrateState.DEFAULT && defaultVibrate) {
         builder.setDefaults(Notification.DEFAULT_VIBRATE)
       }
     }

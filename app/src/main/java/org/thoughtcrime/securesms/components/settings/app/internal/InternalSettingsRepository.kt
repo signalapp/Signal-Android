@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.components.settings.app.internal
 
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.addStyle
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
@@ -38,7 +38,7 @@ class InternalSettingsRepository(context: Context) {
       val recipientId = SignalStore.releaseChannelValues().releaseChannelRecipientId!!
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
 
-      val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
+      val insertResult: MessageTable.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
         recipientId = recipientId,
         body = body,
         threadId = threadId,

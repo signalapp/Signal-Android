@@ -4,9 +4,9 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MmsSmsColumns
-import org.thoughtcrime.securesms.database.MmsSmsDatabase
+import org.thoughtcrime.securesms.database.MmsSmsTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -31,7 +31,7 @@ object NotificationStateProvider {
         return NotificationState.EMPTY
       }
 
-      MmsSmsDatabase.readerFor(unreadMessages).use { reader ->
+      MmsSmsTable.readerFor(unreadMessages).use { reader ->
         var record: MessageRecord? = reader.next
         while (record != null) {
           val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
@@ -165,7 +165,7 @@ object NotificationStateProvider {
     }
 
     private val Recipient.isDoNotNotifyMentions: Boolean
-      get() = mentionSetting == RecipientDatabase.MentionSetting.DO_NOT_NOTIFY
+      get() = mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
   }
 
   private enum class MessageInclusion {

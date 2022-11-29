@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper
 import org.thoughtcrime.securesms.database.KeyValueDatabase
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.helpers.PreKeyMigrationHelper
 import org.thoughtcrime.securesms.database.helpers.RecipientIdCleanupHelper
 import org.thoughtcrime.securesms.database.helpers.RecipientIdMigrationHelper
@@ -212,7 +212,7 @@ object V149_LegacyMigrations : SignalDatabaseMigration {
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
     if (oldVersion < RECIPIENT_CALL_RINGTONE_VERSION) {
       db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_ringtone TEXT DEFAULT NULL")
-      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientDatabase.VibrateState.DEFAULT.id)
+      db.execSQL("ALTER TABLE recipient_preferences ADD COLUMN call_vibrate INTEGER DEFAULT " + RecipientTable.VibrateState.DEFAULT.id)
     }
 
     if (oldVersion < MIGRATE_PREKEYS_VERSION) {

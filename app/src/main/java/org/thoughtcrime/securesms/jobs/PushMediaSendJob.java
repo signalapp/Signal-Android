@@ -10,11 +10,11 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PaymentDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.PaymentTable;
+import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -83,8 +83,8 @@ public class PushMediaSendJob extends PushSendJob {
         throw new AssertionError("No ServiceId!");
       }
 
-      MessageDatabase      database            = SignalDatabase.mms();
-      OutgoingMediaMessage message             = database.getOutgoingMessage(messageId);
+      MessageTable         database = SignalDatabase.mms();
+      OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
       Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       jobManager.add(new PushMediaSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
@@ -116,7 +116,7 @@ public class PushMediaSendJob extends PushSendJob {
       throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException
   {
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-    MessageDatabase        database          = SignalDatabase.mms();
+    MessageTable           database          = SignalDatabase.mms();
     OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
     long                   threadId          = database.getMessageRecord(messageId).getThreadId();
 
@@ -286,8 +286,8 @@ public class PushMediaSendJob extends PushSendJob {
 
   private SignalServiceDataMessage.Payment getPayment(OutgoingMediaMessage message) {
     if (message.isPaymentsNotification()) {
-      UUID paymentUuid = UuidUtil.parseOrThrow(message.getBody());
-      PaymentDatabase.PaymentTransaction payment = SignalDatabase.payments().getPayment(paymentUuid);
+      UUID                            paymentUuid = UuidUtil.parseOrThrow(message.getBody());
+      PaymentTable.PaymentTransaction payment     = SignalDatabase.payments().getPayment(paymentUuid);
 
       if (payment == null) {
         Log.w(TAG, "Could not find payment, cannot send notification " + paymentUuid);

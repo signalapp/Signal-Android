@@ -15,8 +15,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -119,13 +119,13 @@ final class ConversationGroupViewModel extends ViewModel {
 
   boolean isNonAdminInAnnouncementGroup() {
     ConversationMemberLevel level = selfMembershipLevel.getValue();
-    return level != null && level.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR && level.isAnnouncementGroup();
+    return level != null && level.getMemberLevel() != GroupTable.MemberLevel.ADMINISTRATOR && level.isAnnouncementGroup();
   }
 
   private static @Nullable GroupRecord getGroupRecordForRecipient(@Nullable Recipient recipient) {
     if (recipient != null && recipient.isGroup()) {
-      Application context         = ApplicationDependencies.getApplication();
-      GroupDatabase groupDatabase = SignalDatabase.groups();
+      Application context       = ApplicationDependencies.getApplication();
+      GroupTable  groupDatabase = SignalDatabase.groups();
       return groupDatabase.getGroup(recipient.getId()).orElse(null);
     } else {
       return null;
@@ -135,7 +135,7 @@ final class ConversationGroupViewModel extends ViewModel {
   private static int mapToActionableRequestingMemberCount(@Nullable GroupRecord record) {
     if (record != null                          &&
         record.isV2Group()                      &&
-        record.memberLevel(Recipient.self()) == GroupDatabase.MemberLevel.ADMINISTRATOR)
+        record.memberLevel(Recipient.self()) == GroupTable.MemberLevel.ADMINISTRATOR)
     {
       return record.requireV2GroupProperties()
                    .getDecryptedGroup()
@@ -266,15 +266,15 @@ final class ConversationGroupViewModel extends ViewModel {
   }
 
   static final class ConversationMemberLevel {
-    private final GroupDatabase.MemberLevel memberLevel;
-    private final boolean                   isAnnouncementGroup;
+    private final GroupTable.MemberLevel memberLevel;
+    private final boolean                isAnnouncementGroup;
 
-    private ConversationMemberLevel(GroupDatabase.MemberLevel memberLevel, boolean isAnnouncementGroup) {
+    private ConversationMemberLevel(GroupTable.MemberLevel memberLevel, boolean isAnnouncementGroup) {
       this.memberLevel         = memberLevel;
       this.isAnnouncementGroup = isAnnouncementGroup;
     }
 
-    public @NonNull GroupDatabase.MemberLevel getMemberLevel() {
+    public @NonNull GroupTable.MemberLevel getMemberLevel() {
       return memberLevel;
     }
 

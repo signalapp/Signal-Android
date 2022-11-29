@@ -32,7 +32,7 @@ object FakeMessageRecords {
     hasData: Boolean = true,
     hasThumbnail: Boolean = true,
     contentType: String = MediaUtil.IMAGE_JPEG,
-    transferProgress: Int = AttachmentDatabase.TRANSFER_PROGRESS_DONE,
+    transferProgress: Int = AttachmentTable.TRANSFER_PROGRESS_DONE,
     size: Long = 0L,
     fileName: String = "",
     cdnNumber: Int = 1,
@@ -51,7 +51,7 @@ object FakeMessageRecords {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentDatabase.TransformProperties? = null,
+    transformProperties: AttachmentTable.TransformProperties? = null,
     displayOrder: Int = 0,
     uploadTimestamp: Long = 200
   ): DatabaseAttachment {

@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.TextSecureExpiredException;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -56,7 +56,7 @@ public abstract class SendJob extends BaseJob {
       attachments.addAll(message.getOutgoingQuote().getAttachments());
     }
 
-    AttachmentDatabase database = SignalDatabase.attachments();
+    AttachmentTable database = SignalDatabase.attachments();
 
     for (Attachment attachment : attachments) {
       database.markAttachmentUploaded(messageId, attachment);

@@ -23,7 +23,7 @@ import java.util.concurrent.Executor;
 /**
  * Allows listening to database changes to varying degrees of specificity.
  *
- * A replacement for the observer system in {@link Database}. We should move to this over time.
+ * A replacement for the observer system in {@link DatabaseTable}. We should move to this over time.
  */
 public class DatabaseObserver {
 

@@ -21,20 +21,18 @@ import androidx.annotation.UiThread;
 import androidx.appcompat.widget.AppCompatImageView;
 
 import com.bumptech.glide.RequestBuilder;
-import com.bumptech.glide.TransitionOptions;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -347,7 +345,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (slide.getUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
+        (slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || isPreview))
     {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
@@ -579,7 +577,7 @@ public class ThumbnailView extends FrameLayout {
     public void onClick(View view) {
       boolean validThumbnail = slide != null &&
                                slide.asAttachment().getUri() != null &&
-                               slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+                               slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE;
 
       boolean permanentFailure = slide != null && slide.asAttachment().isPermanentlyFailed();
 

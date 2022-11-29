@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.mms;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -53,8 +52,8 @@ import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.location.SignalMapView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.giph.ui.GiphyActivity;
 import org.thoughtcrime.securesms.maps.PlacePickerActivity;
@@ -62,7 +61,6 @@ import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Fragment;
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
-import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress;
 import org.thoughtcrime.securesms.payments.PaymentsAddressException;
 import org.thoughtcrime.securesms.payments.create.CreatePaymentFragmentArgs;
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity;
@@ -93,7 +91,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.TimeUnit;
 
 
 public class AttachmentManager {
@@ -346,8 +343,8 @@ public class AttachmentManager {
         Long                                   mediaSize           = null;
         String                                 fileName            = null;
         String                                 mimeType            = null;
-        boolean                                gif                 = false;
-        AttachmentDatabase.TransformProperties transformProperties = null;
+        boolean                             gif                 = false;
+        AttachmentTable.TransformProperties transformProperties = null;
 
         if (PartAuthority.isLocalUri(uri)) {
           mediaSize           = PartAuthority.getAttachmentSize(context, uri);
@@ -529,7 +526,7 @@ public class AttachmentManager {
           false,
           false,
           false,
-          MediaDatabase.Sorting.Newest,
+          MediaTable.Sorting.Newest,
           slide.isVideoGif());
       context.startActivity(MediaIntentFactory.create(context, args));
     }

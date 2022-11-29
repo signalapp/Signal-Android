@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
@@ -44,7 +44,7 @@ class UploadDependencyGraph private constructor(
    */
   private data class AttachmentKey<A : Attachment>(
     val attachment: A,
-    private val transformProperties: AttachmentDatabase.TransformProperties = attachment.transformProperties
+    private val transformProperties: AttachmentTable.TransformProperties = attachment.transformProperties
   )
 
   private var hasConsumedJobQueue = false

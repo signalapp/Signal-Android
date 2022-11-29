@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.util.Base64;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
@@ -102,7 +102,7 @@ public class PointerAttachment extends Attachment {
     }
 
     return Optional.of(new PointerAttachment(pointer.get().getContentType(),
-                                             AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+                                             AttachmentTable.TRANSFER_PROGRESS_PENDING,
                                              pointer.get().asPointer().getSize().orElse(0),
                                              pointer.get().asPointer().getFileName().orElse(null),
                                              pointer.get().asPointer().getCdnNumber(),
@@ -126,7 +126,7 @@ public class PointerAttachment extends Attachment {
     SignalServiceAttachment thumbnail = pointer.getThumbnail();
 
     return Optional.of(new PointerAttachment(pointer.getContentType(),
-                                             AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+                                             AttachmentTable.TRANSFER_PROGRESS_PENDING,
                                              thumbnail != null ? thumbnail.asPointer().getSize().orElse(0) : 0,
                                              pointer.getFileName(),
                                              thumbnail != null ? thumbnail.asPointer().getCdnNumber() : 0,

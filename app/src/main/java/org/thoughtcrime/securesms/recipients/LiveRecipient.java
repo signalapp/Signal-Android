@@ -13,10 +13,10 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.DistributionListDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.DistributionListTables;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListRecord;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
@@ -41,20 +41,20 @@ public final class LiveRecipient {
   private final LiveData<Recipient>           observableLiveDataResolved;
   private final Set<RecipientForeverObserver> observers;
   private final Observer<Recipient>           foreverObserver;
-  private final AtomicReference<Recipient>    recipient;
-  private final RecipientDatabase             recipientDatabase;
-  private final GroupDatabase                 groupDatabase;
-  private final DistributionListDatabase      distributionListDatabase;
-  private final MutableLiveData<Object>       refreshForceNotify;
+  private final AtomicReference<Recipient> recipient;
+  private final RecipientTable             recipientTable;
+  private final GroupTable                 groupDatabase;
+  private final DistributionListTables distributionListTables;
+  private final MutableLiveData<Object> refreshForceNotify;
 
   LiveRecipient(@NonNull Context context, @NonNull Recipient defaultRecipient) {
     this.context                  = context.getApplicationContext();
     this.liveData                 = new MutableLiveData<>(defaultRecipient);
-    this.recipient                = new AtomicReference<>(defaultRecipient);
-    this.recipientDatabase        = SignalDatabase.recipients();
-    this.groupDatabase            = SignalDatabase.groups();
-    this.distributionListDatabase = SignalDatabase.distributionLists();
-    this.observers                = new CopyOnWriteArraySet<>();
+    this.recipient      = new AtomicReference<>(defaultRecipient);
+    this.recipientTable = SignalDatabase.recipients();
+    this.groupDatabase  = SignalDatabase.groups();
+    this.distributionListTables = SignalDatabase.distributionLists();
+    this.observers              = new CopyOnWriteArraySet<>();
     this.foreverObserver          = recipient -> {
       ThreadUtil.postToMain(() -> {
         for (RecipientForeverObserver o : observers) {
@@ -191,7 +191,7 @@ public final class LiveRecipient {
   }
 
   private @NonNull Recipient fetchAndCacheRecipientFromDisk(@NonNull RecipientId id) {
-    RecipientRecord  record  = recipientDatabase.getRecord(id);
+    RecipientRecord  record  = recipientTable.getRecord(id);
     RecipientDetails details;
     if (record.getGroupId() != null) {
       details = getGroupRecipientDetails(record);
@@ -227,7 +227,7 @@ public final class LiveRecipient {
 
   @WorkerThread
   private @NonNull RecipientDetails getDistributionListRecipientDetails(@NonNull RecipientRecord record) {
-    DistributionListRecord groupRecord = distributionListDatabase.getList(Objects.requireNonNull(record.getDistributionListId()));
+    DistributionListRecord groupRecord = distributionListTables.getList(Objects.requireNonNull(record.getDistributionListId()));
 
     // TODO [stories] We'll have to see what the perf is like for very large distribution lists. We may not be able to support fetching all the members.
     if (groupRecord != null) {

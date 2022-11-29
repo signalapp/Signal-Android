@@ -34,7 +34,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.audio.AudioWaveForm;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
@@ -192,7 +192,7 @@ public final class AudioView extends FrameLayout {
         if (circleProgress.isSpinning()) circleProgress.stopSpinning();
         circleProgress.setVisibility(View.GONE);
       }
-    } else if (showControls && audio.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED) {
+    } else if (showControls && audio.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
       controlToggle.displayQuick(progressAndPlay);
       seekBar.setEnabled(false);
       if (circleProgress != null) {

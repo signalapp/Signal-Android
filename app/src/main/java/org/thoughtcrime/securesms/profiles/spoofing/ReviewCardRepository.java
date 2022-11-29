@@ -9,7 +9,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -86,10 +86,10 @@ class ReviewCardRepository {
         ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 
-      ThreadDatabase threadDatabase = SignalDatabase.threads();
-      long           threadId       = Objects.requireNonNull(threadDatabase.getThreadIdFor(recipientId));
+      ThreadTable threadTable = SignalDatabase.threads();
+      long        threadId    = Objects.requireNonNull(threadTable.getThreadIdFor(recipientId));
 
-      threadDatabase.deleteConversation(threadId);
+      threadTable.deleteConversation(threadId);
       onActionCompleteListener.run();
     });
   }

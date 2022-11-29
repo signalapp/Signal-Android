@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.components.settings.app.chats.sms
 import androidx.annotation.WorkerThread
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.util.FeatureFlags
 
 class SmsSettingsRepository(
-  private val smsDatabase: MessageDatabase = SignalDatabase.sms,
-  private val mmsDatabase: MessageDatabase = SignalDatabase.mms
+  private val smsDatabase: MessageTable = SignalDatabase.sms,
+  private val mmsDatabase: MessageTable = SignalDatabase.mms
 ) {
   fun getSmsExportState(): Single<SmsExportState> {
     if (!FeatureFlags.smsExporter()) {

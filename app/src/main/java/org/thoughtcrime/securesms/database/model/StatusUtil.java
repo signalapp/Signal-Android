@@ -1,14 +1,14 @@
 package org.thoughtcrime.securesms.database.model;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SmsTable;
 
 final class StatusUtil {
   private StatusUtil() {}
 
   static boolean isDelivered(long deliveryStatus, int deliveryReceiptCount) {
-    return (deliveryStatus >= SmsDatabase.Status.STATUS_COMPLETE &&
-            deliveryStatus < SmsDatabase.Status.STATUS_PENDING)  || deliveryReceiptCount > 0;
+    return (deliveryStatus >= SmsTable.Status.STATUS_COMPLETE &&
+            deliveryStatus < SmsTable.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
   }
 
   static boolean isPending(long type) {
@@ -20,10 +20,10 @@ final class StatusUtil {
   static boolean isFailed(long type, long deliveryStatus) {
     return MmsSmsColumns.Types.isFailedMessageType(type)            ||
            MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-           deliveryStatus >= SmsDatabase.Status.STATUS_FAILED;
+           deliveryStatus >= SmsTable.Status.STATUS_FAILED;
   }
 
   static boolean isVerificationStatusChange(long type) {
-    return SmsDatabase.Types.isIdentityDefault(type) || SmsDatabase.Types.isIdentityVerified(type);
+    return SmsTable.Types.isIdentityDefault(type) || SmsTable.Types.isIdentityVerified(type);
   }
 }

@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.mediapreview
 
-import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.mediasend.Media
 
 data class MediaPreviewV2State(
-  val mediaRecords: List<MediaDatabase.MediaRecord> = emptyList(),
+  val mediaRecords: List<MediaTable.MediaRecord> = emptyList(),
   val loadState: LoadState = LoadState.INIT,
   val position: Int = 0,
   val showThread: Boolean = false,

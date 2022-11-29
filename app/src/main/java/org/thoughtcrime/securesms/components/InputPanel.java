@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
-import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -518,7 +518,7 @@ public class InputPanel extends LinearLayout
     microphoneRecorderView.unlockAction();
   }
 
-  public void setVoiceNoteDraft(@Nullable DraftDatabase.Draft voiceNoteDraft) {
+  public void setVoiceNoteDraft(@Nullable DraftTable.Draft voiceNoteDraft) {
     if (voiceNoteDraft != null) {
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
@@ -531,7 +531,7 @@ public class InputPanel extends LinearLayout
     }
   }
 
-  public @Nullable DraftDatabase.Draft getVoiceNoteDraft() {
+  public @Nullable DraftTable.Draft getVoiceNoteDraft() {
     return voiceNoteDraftView.getDraft();
   }
 

@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.models.Badge
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
@@ -40,13 +40,13 @@ class BadgeRepository(context: Context) {
   ): List<Badge> {
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Setting badge visibility...", true)
 
-    val recipientDatabase: RecipientDatabase = SignalDatabase.recipients
+    val recipientTable: RecipientTable = SignalDatabase.recipients
     val badges = selfBadges.map { it.copy(visible = displayBadgesOnProfile) }
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Uploading profile...", true)
     ProfileUtil.uploadProfileWithBadges(context, badges)
     SignalStore.donationsValues().setDisplayBadgesOnProfile(displayBadgesOnProfile)
-    recipientDatabase.markNeedsSync(Recipient.self().id)
+    recipientTable.markNeedsSync(Recipient.self().id)
 
     Log.d(TAG, "[setVisibilityForAllBadgesSync] Requesting data change sync...", true)
     StorageSyncHelper.scheduleSyncForDataChange()

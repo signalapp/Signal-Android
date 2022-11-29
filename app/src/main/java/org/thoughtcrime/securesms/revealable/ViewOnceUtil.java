@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.revealable;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 
 import java.util.concurrent.TimeUnit;
@@ -28,7 +28,7 @@ public class ViewOnceUtil {
       return false;
     }
 
-    if (message.getSlideDeck().getThumbnailSlide().getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    if (message.getSlideDeck().getThumbnailSlide().getTransferState() != AttachmentTable.TRANSFER_PROGRESS_DONE) {
       return false;
     }
 
@@ -48,7 +48,7 @@ public class ViewOnceUtil {
       return true;
     }
 
-    if (message.getSlideDeck().getThumbnailSlide() != null && message.getSlideDeck().getThumbnailSlide().getTransferState() != AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    if (message.getSlideDeck().getThumbnailSlide() != null && message.getSlideDeck().getThumbnailSlide().getTransferState() != AttachmentTable.TRANSFER_PROGRESS_DONE) {
       return false;
     }
 

@@ -24,11 +24,11 @@ import org.thoughtcrime.securesms.backup.BackupProtos.SqlStatement;
 import org.thoughtcrime.securesms.backup.BackupProtos.Sticker;
 import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.EmojiSearchDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
-import org.thoughtcrime.securesms.database.SearchDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
+import org.thoughtcrime.securesms.database.SearchTable;
+import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeyValueDataSet;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -132,9 +132,9 @@ public class FullBackupImporter extends FullBackupBase {
   }
 
   private static void processStatement(@NonNull SQLiteDatabase db, SqlStatement statement) {
-    boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.SMS_FTS_TABLE_NAME + "_");
-    boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchDatabase.MMS_FTS_TABLE_NAME + "_");
-    boolean isForEmojiSecretTable  = statement.getStatement().contains(EmojiSearchDatabase.TABLE_NAME + "_");
+    boolean isForSmsFtsSecretTable = statement.getStatement().contains(SearchTable.SMS_FTS_TABLE_NAME + "_");
+    boolean isForMmsFtsSecretTable = statement.getStatement().contains(SearchTable.MMS_FTS_TABLE_NAME + "_");
+    boolean isForEmojiSecretTable  = statement.getStatement().contains(EmojiSearchTable.TABLE_NAME + "_");
     boolean isForSqliteSecretTable = statement.getStatement().toLowerCase().startsWith("create table sqlite_");
 
     if (isForSmsFtsSecretTable || isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable) {
@@ -159,7 +159,7 @@ public class FullBackupImporter extends FullBackupBase {
   private static void processAttachment(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Attachment attachment, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File                       dataFile = AttachmentDatabase.newFile(context);
+    File                       dataFile = AttachmentTable.newFile(context);
     Pair<byte[], OutputStream> output   = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
 
     ContentValues contentValues = new ContentValues();
@@ -167,24 +167,24 @@ public class FullBackupImporter extends FullBackupBase {
     try {
       inputStream.readAttachmentTo(output.second, attachment.getLength());
 
-      contentValues.put(AttachmentDatabase.DATA, dataFile.getAbsolutePath());
-      contentValues.put(AttachmentDatabase.DATA_RANDOM, output.first);
+      contentValues.put(AttachmentTable.DATA, dataFile.getAbsolutePath());
+      contentValues.put(AttachmentTable.DATA_RANDOM, output.first);
     } catch (BackupRecordInputStream.BadMacException e) {
       Log.w(TAG, "Bad MAC for attachment " + attachment.getAttachmentId() + "! Can't restore it.", e);
       dataFile.delete();
-      contentValues.put(AttachmentDatabase.DATA, (String) null);
-      contentValues.put(AttachmentDatabase.DATA_RANDOM, (String) null);
+      contentValues.put(AttachmentTable.DATA, (String) null);
+      contentValues.put(AttachmentTable.DATA_RANDOM, (String) null);
     }
 
-    db.update(AttachmentDatabase.TABLE_NAME, contentValues,
-              AttachmentDatabase.ROW_ID + " = ? AND " + AttachmentDatabase.UNIQUE_ID + " = ?",
+    db.update(AttachmentTable.TABLE_NAME, contentValues,
+              AttachmentTable.ROW_ID + " = ? AND " + AttachmentTable.UNIQUE_ID + " = ?",
               new String[] {String.valueOf(attachment.getRowId()), String.valueOf(attachment.getAttachmentId())});
   }
 
   private static void processSticker(@NonNull Context context, @NonNull AttachmentSecret attachmentSecret, @NonNull SQLiteDatabase db, @NonNull Sticker sticker, BackupRecordInputStream inputStream)
       throws IOException
   {
-    File stickerDirectory = context.getDir(StickerDatabase.DIRECTORY, Context.MODE_PRIVATE);
+    File stickerDirectory = context.getDir(StickerTable.DIRECTORY, Context.MODE_PRIVATE);
     File dataFile         = File.createTempFile("sticker", ".mms", stickerDirectory);
 
     Pair<byte[], OutputStream> output = ModernEncryptingPartOutputStream.createFor(attachmentSecret, dataFile, false);
@@ -192,12 +192,12 @@ public class FullBackupImporter extends FullBackupBase {
     inputStream.readAttachmentTo(output.second, sticker.getLength());
 
     ContentValues contentValues = new ContentValues();
-    contentValues.put(StickerDatabase.FILE_PATH, dataFile.getAbsolutePath());
-    contentValues.put(StickerDatabase.FILE_LENGTH, sticker.getLength());
-    contentValues.put(StickerDatabase.FILE_RANDOM, output.first);
+    contentValues.put(StickerTable.FILE_PATH, dataFile.getAbsolutePath());
+    contentValues.put(StickerTable.FILE_LENGTH, sticker.getLength());
+    contentValues.put(StickerTable.FILE_RANDOM, output.first);
 
-    db.update(StickerDatabase.TABLE_NAME, contentValues,
-              StickerDatabase._ID + " = ?",
+    db.update(StickerTable.TABLE_NAME, contentValues,
+              StickerTable._ID + " = ?",
               new String[] {String.valueOf(sticker.getRowId())});
   }
 

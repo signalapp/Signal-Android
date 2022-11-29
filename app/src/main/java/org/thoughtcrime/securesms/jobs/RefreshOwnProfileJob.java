@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.badges.BadgeRepository;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -151,8 +151,8 @@ public class RefreshOwnProfileJob extends BaseJob {
                                                @NonNull ProfileKey recipientProfileKey,
                                                @NonNull ExpiringProfileKeyCredential credential)
   {
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    recipientDatabase.setProfileKeyCredential(recipient.getId(), recipientProfileKey, credential);
+    RecipientTable recipientTable = SignalDatabase.recipients();
+    recipientTable.setProfileKeyCredential(recipient.getId(), recipientProfileKey, credential);
   }
 
   private static SignalServiceProfile.RequestType getRequestType(@NonNull Recipient recipient) {

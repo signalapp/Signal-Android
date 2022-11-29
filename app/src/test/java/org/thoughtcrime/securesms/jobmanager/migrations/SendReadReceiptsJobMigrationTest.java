@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 public class SendReadReceiptsJobMigrationTest {
 
-  private final MmsSmsDatabase               mockDatabase = mock(MmsSmsDatabase.class);
+  private final MmsSmsTable                  mockDatabase = mock(MmsSmsTable.class);
   private final SendReadReceiptsJobMigration testSubject  = new SendReadReceiptsJobMigration(mockDatabase);
 
   @Test

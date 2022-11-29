@@ -109,10 +109,10 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.conversation.quotes.MessageQuotesBottomSheet;
 import org.thoughtcrime.securesms.conversation.ui.error.EnableCallNotificationSettingsDialog;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -1198,7 +1198,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public long stageOutgoingMessage(OutgoingMediaMessage message) {
-    MessageRecord messageRecord = MmsDatabase.readerFor(message, threadId).getCurrent();
+    MessageRecord messageRecord = MmsTable.readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
       setLastSeen(0);
@@ -1209,7 +1209,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   }
 
   public long stageOutgoingMessage(OutgoingTextMessage message, long messageId) {
-    MessageRecord messageRecord = SmsDatabase.readerFor(message, threadId, messageId).getCurrent();
+    MessageRecord messageRecord = SmsTable.readerFor(message, threadId, messageId).getCurrent();
 
     if (getListAdapter() != null) {
       setLastSeen(0);
@@ -1825,7 +1825,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
           ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
 
-          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageDatabase.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
+          ApplicationDependencies.getJobManager().add(new MultiDeviceViewOnceOpenJob(new MessageTable.SyncMessageId(messageRecord.getIndividualRecipient().getId(), messageRecord.getDateSent())));
 
           return tempUri;
         } catch (IOException e) {

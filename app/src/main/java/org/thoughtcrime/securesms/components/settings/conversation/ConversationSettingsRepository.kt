@@ -11,8 +11,8 @@ import org.signal.core.util.logging.Log
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
-import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
@@ -42,7 +42,7 @@ class ConversationSettingsRepository(
     return if (threadId <= 0) {
       Optional.empty()
     } else {
-      Optional.of(SignalDatabase.media.getGalleryMediaForThread(threadId, MediaDatabase.Sorting.Newest))
+      Optional.of(SignalDatabase.media.getGalleryMediaForThread(threadId, MediaTable.Sorting.Newest))
     }
   }
 
@@ -91,7 +91,7 @@ class ConversationSettingsRepository(
           .getPushGroupsContainingMember(recipientId)
           .asSequence()
           .filter { it.members.contains(Recipient.self().id) }
-          .map(GroupDatabase.GroupRecord::getRecipientId)
+          .map(GroupTable.GroupRecord::getRecipientId)
           .map(Recipient::resolved)
           .sortedBy { gr -> gr.getDisplayName(context) }
           .toList()
@@ -129,7 +129,7 @@ class ConversationSettingsRepository(
 
   fun getGroupCapacity(groupId: GroupId, consumer: (GroupCapacityResult) -> Unit) {
     SignalExecutors.BOUNDED.execute {
-      val groupRecord: GroupDatabase.GroupRecord = SignalDatabase.groups.getGroup(groupId).get()
+      val groupRecord: GroupTable.GroupRecord = SignalDatabase.groups.getGroup(groupId).get()
       consumer(
         if (groupRecord.isV2Group) {
           val decryptedGroup: DecryptedGroup = groupRecord.requireV2GroupProperties().decryptedGroup

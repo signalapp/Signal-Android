@@ -169,14 +169,14 @@ import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryViewMod
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewModel;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
-import org.thoughtcrime.securesms.database.DraftDatabase.Draft;
-import org.thoughtcrime.securesms.database.DraftDatabase.Drafts;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState;
+import org.thoughtcrime.securesms.database.DraftTable.Draft;
+import org.thoughtcrime.securesms.database.DraftTable.Drafts;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -331,7 +331,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-import static org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import static org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
 
 /**
  * Fragment for displaying a message thread, as well as
@@ -946,7 +946,7 @@ public class ConversationParentFragment extends Fragment
 
       if (!isPushGroupConversation()) {
         inflater.inflate(R.menu.conversation_mms_group_options, menu);
-        if (distributionType == ThreadDatabase.DistributionTypes.BROADCAST) {
+        if (distributionType == ThreadTable.DistributionTypes.BROADCAST) {
           menu.findItem(R.id.menu_distribution_broadcast).setChecked(true);
         } else {
           menu.findItem(R.id.menu_distribution_conversation).setChecked(true);
@@ -1429,7 +1429,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void handleDistributionBroadcastEnabled(MenuItem item) {
-    distributionType = ThreadDatabase.DistributionTypes.BROADCAST;
+    distributionType = ThreadTable.DistributionTypes.BROADCAST;
     draftViewModel.setDistributionType(distributionType);
     item.setChecked(true);
 
@@ -1437,7 +1437,7 @@ public class ConversationParentFragment extends Fragment
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          SignalDatabase.threads().setDistributionType(threadId, ThreadDatabase.DistributionTypes.BROADCAST);
+          SignalDatabase.threads().setDistributionType(threadId, ThreadTable.DistributionTypes.BROADCAST);
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1445,7 +1445,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void handleDistributionConversationEnabled(MenuItem item) {
-    distributionType = ThreadDatabase.DistributionTypes.CONVERSATION;
+    distributionType = ThreadTable.DistributionTypes.CONVERSATION;
     draftViewModel.setDistributionType(distributionType);
     item.setChecked(true);
 
@@ -1453,7 +1453,7 @@ public class ConversationParentFragment extends Fragment
       new AsyncTask<Void, Void, Void>() {
         @Override
         protected Void doInBackground(Void... params) {
-          SignalDatabase.threads().setDistributionType(threadId, ThreadDatabase.DistributionTypes.CONVERSATION);
+          SignalDatabase.threads().setDistributionType(threadId, ThreadTable.DistributionTypes.CONVERSATION);
           return null;
         }
       }.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
@@ -1732,7 +1732,7 @@ public class ConversationParentFragment extends Fragment
             throw new AssertionError();
         }
 
-        if (!leftGroup && !canCancelRequest && selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupDatabase.MemberLevel.ADMINISTRATOR) {
+        if (!leftGroup && !canCancelRequest && selfMembership.isAnnouncementGroup() && selfMembership.getMemberLevel() != GroupTable.MemberLevel.ADMINISTRATOR) {
           canSendMessages = false;
           cannotSendInAnnouncementGroupBanner.get().setVisibility(View.VISIBLE);
           cannotSendInAnnouncementGroupBanner.get().setMovementMethod(LinkMovementMethod.getInstance());
@@ -1958,7 +1958,7 @@ public class ConversationParentFragment extends Fragment
         List<Recipient> recipients;
 
         if (params[0].isGroup()) {
-          recipients = SignalDatabase.groups().getGroupMembers(params[0].requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+          recipients = SignalDatabase.groups().getGroupMembers(params[0].requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
         } else {
           recipients = Collections.singletonList(params[0]);
         }
@@ -3186,12 +3186,12 @@ public class ConversationParentFragment extends Fragment
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected Void doInBackground(Void... params) {
-        RecipientDatabase recipientDatabase = SignalDatabase.recipients();
+        RecipientTable recipientTable = SignalDatabase.recipients();
 
-        recipientDatabase.setDefaultSubscriptionId(recipient.getId(), sendType.getSimSubscriptionIdOr(-1));
+        recipientTable.setDefaultSubscriptionId(recipient.getId(), sendType.getSimSubscriptionIdOr(-1));
 
         if (!recipient.resolve().isPushGroup()) {
-          recipientDatabase.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && sendType.usesSmsTransport());
+          recipientTable.setForceSmsSelection(recipient.getId(), recipient.get().getRegistered() == RegisteredState.REGISTERED && sendType.usesSmsTransport());
         }
 
         return null;

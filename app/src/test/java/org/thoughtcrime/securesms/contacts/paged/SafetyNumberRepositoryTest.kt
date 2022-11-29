@@ -23,7 +23,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -90,7 +90,7 @@ class SafetyNumberRepositoryTest {
       val record = IdentityRecord(
         recipientId = recipient.id,
         identityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey,
-        verifiedStatus = IdentityDatabase.VerifiedStatus.DEFAULT,
+        verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
         firstUse = false,
         timestamp = 0,
         nonblockingApproval = false

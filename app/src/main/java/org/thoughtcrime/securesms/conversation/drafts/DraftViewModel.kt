@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import org.thoughtcrime.securesms.components.location.SignalPlace
 import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
-import org.thoughtcrime.securesms.database.DraftDatabase.Draft
+import org.thoughtcrime.securesms.database.DraftTable.Draft
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList

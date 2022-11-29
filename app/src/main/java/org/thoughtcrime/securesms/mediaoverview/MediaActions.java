@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.SaveAttachmentTask;
@@ -29,7 +29,7 @@ final class MediaActions {
   }
 
   static void handleSaveMedia(@NonNull Fragment fragment,
-                              @NonNull Collection<MediaDatabase.MediaRecord> mediaRecords,
+                              @NonNull Collection<MediaTable.MediaRecord> mediaRecords,
                               @Nullable Runnable postExecute)
   {
     Context context = fragment.requireContext();
@@ -49,7 +49,7 @@ final class MediaActions {
   }
 
   static void handleDeleteMedia(@NonNull Context context,
-                                @NonNull Collection<MediaDatabase.MediaRecord> mediaRecords)
+                                @NonNull Collection<MediaTable.MediaRecord> mediaRecords)
   {
     int       recordCount    = mediaRecords.size();
     Resources res            = context.getResources();
@@ -65,29 +65,29 @@ final class MediaActions {
                                                                                 .setCancelable(true);
 
     builder.setPositiveButton(R.string.delete, (dialogInterface, i) ->
-      new ProgressDialogAsyncTask<MediaDatabase.MediaRecord, Void, Void>(context,
-                                                                         R.string.MediaOverviewActivity_Media_delete_progress_title,
-                                                                         R.string.MediaOverviewActivity_Media_delete_progress_message)
+      new ProgressDialogAsyncTask<MediaTable.MediaRecord, Void, Void>(context,
+                                                                      R.string.MediaOverviewActivity_Media_delete_progress_title,
+                                                                      R.string.MediaOverviewActivity_Media_delete_progress_message)
       {
         @Override
-        protected Void doInBackground(MediaDatabase.MediaRecord... records) {
+        protected Void doInBackground(MediaTable.MediaRecord... records) {
           if (records == null || records.length == 0) {
             return null;
           }
 
-          for (MediaDatabase.MediaRecord record : records) {
+          for (MediaTable.MediaRecord record : records) {
             AttachmentUtil.deleteAttachment(context, record.getAttachment());
           }
           return null;
         }
 
-      }.execute(mediaRecords.toArray(new MediaDatabase.MediaRecord[0]))
+      }.execute(mediaRecords.toArray(new MediaTable.MediaRecord[0]))
     );
     builder.setNegativeButton(android.R.string.cancel, null);
     builder.show();
   }
 
-  private static void performSaveToDisk(@NonNull Context context, @NonNull Collection<MediaDatabase.MediaRecord> mediaRecords, @Nullable Runnable postExecute) {
+  private static void performSaveToDisk(@NonNull Context context, @NonNull Collection<MediaTable.MediaRecord> mediaRecords, @Nullable Runnable postExecute) {
     new ProgressDialogAsyncTask<Void, Void, List<SaveAttachmentTask.Attachment>>(context,
                                                                                  R.string.MediaOverviewActivity_collecting_attachments,
                                                                                  R.string.please_wait)
@@ -96,7 +96,7 @@ final class MediaActions {
       protected List<SaveAttachmentTask.Attachment> doInBackground(Void... params) {
         List<SaveAttachmentTask.Attachment> attachments = new LinkedList<>();
 
-        for (MediaDatabase.MediaRecord mediaRecord : mediaRecords) {
+        for (MediaTable.MediaRecord mediaRecord : mediaRecords) {
           if (mediaRecord.getAttachment().getUri() != null) {
             attachments.add(new SaveAttachmentTask.Attachment(mediaRecord.getAttachment().getUri(),
                                                               mediaRecord.getContentType(),

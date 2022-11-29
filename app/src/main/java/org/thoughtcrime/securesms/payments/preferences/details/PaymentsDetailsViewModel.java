@@ -8,7 +8,7 @@ import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.payments.PaymentTransactionLiveData;
 import org.thoughtcrime.securesms.payments.UnreadPaymentsRepository;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -46,10 +46,10 @@ final class PaymentsDetailsViewModel extends ViewModel {
 
   static class ViewState {
 
-    private final PaymentDatabase.PaymentTransaction payment;
-    private final Recipient                          recipient;
+    private final PaymentTable.PaymentTransaction payment;
+    private final Recipient                       recipient;
 
-    private ViewState(@NonNull PaymentDatabase.PaymentTransaction payment, @NonNull Recipient recipient) {
+    private ViewState(@NonNull PaymentTable.PaymentTransaction payment, @NonNull Recipient recipient) {
       this.payment   = payment;
       this.recipient = recipient;
     }
@@ -58,7 +58,7 @@ final class PaymentsDetailsViewModel extends ViewModel {
       return recipient;
     }
 
-    PaymentDatabase.PaymentTransaction getPayment() {
+    PaymentTable.PaymentTransaction getPayment() {
       return payment;
     }
 

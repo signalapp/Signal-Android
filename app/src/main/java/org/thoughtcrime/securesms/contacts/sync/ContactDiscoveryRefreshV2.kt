@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.InputResult
 import org.thoughtcrime.securesms.contacts.sync.FuzzyPhoneNumberHelper.OutputResult
-import org.thoughtcrime.securesms.database.RecipientDatabase.CdsV2Result
+import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob

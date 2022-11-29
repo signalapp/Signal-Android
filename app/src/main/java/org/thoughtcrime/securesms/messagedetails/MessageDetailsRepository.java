@@ -11,9 +11,9 @@ import androidx.lifecycle.MutableLiveData;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupReceiptTable;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
@@ -38,7 +38,7 @@ public final class MessageDetailsRepository {
   private final Context context = ApplicationDependencies.getApplication();
 
   @NonNull LiveData<MessageRecord> getMessageRecord(String type, Long messageId) {
-    return new MessageRecordLiveData(new MessageId(messageId, type.equals(MmsSmsDatabase.MMS_TRANSPORT)));
+    return new MessageRecordLiveData(new MessageId(messageId, type.equals(MmsSmsTable.MMS_TRANSPORT)));
   }
 
   @NonNull LiveData<MessageDetails> getMessageDetails(@Nullable MessageRecord messageRecord) {
@@ -88,10 +88,10 @@ public final class MessageDetailsRepository {
                                                  getNetworkFailure(messageRecord, messageRecord.getRecipient()),
                                                  getKeyMismatchFailure(messageRecord, messageRecord.getRecipient())));
     } else {
-      List<GroupReceiptDatabase.GroupReceiptInfo> receiptInfoList = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageRecord.getId());
+      List<GroupReceiptTable.GroupReceiptInfo> receiptInfoList = SignalDatabase.groupReceipts().getGroupReceiptInfo(messageRecord.getId());
 
       if (receiptInfoList.isEmpty() && messageRecord.getRecipient().isGroup()) {
-        List<Recipient> group = SignalDatabase.groups().getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        List<Recipient> group = SignalDatabase.groups().getGroupMembers(messageRecord.getRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
         for (Recipient recipient : group) {
           recipients.add(new RecipientDeliveryStatus(messageRecord,
@@ -117,7 +117,7 @@ public final class MessageDetailsRepository {
                                                      getKeyMismatchFailure(messageRecord, recipient)));
         }
       } else {
-        for (GroupReceiptDatabase.GroupReceiptInfo info : receiptInfoList) {
+        for (GroupReceiptTable.GroupReceiptInfo info : receiptInfoList) {
           Recipient           recipient        = Recipient.resolved(info.getRecipientId());
           NetworkFailure      failure          = getNetworkFailure(messageRecord, recipient);
           IdentityKeyMismatch mismatch         = getKeyMismatchFailure(messageRecord, recipient);
@@ -170,14 +170,14 @@ public final class MessageDetailsRepository {
   }
 
   private @NonNull RecipientDeliveryStatus.Status getStatusFor(int groupStatus, boolean pending, boolean failed) {
-    if      (groupStatus == GroupReceiptDatabase.STATUS_READ)                    return RecipientDeliveryStatus.Status.READ;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_DELIVERED)               return RecipientDeliveryStatus.Status.DELIVERED;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && failed)   return RecipientDeliveryStatus.Status.UNKNOWN;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_VIEWED)                  return RecipientDeliveryStatus.Status.VIEWED;
-    else if (groupStatus == GroupReceiptDatabase.STATUS_SKIPPED)                 return RecipientDeliveryStatus.Status.SKIPPED;
+    if      (groupStatus == GroupReceiptTable.STATUS_READ)                    return RecipientDeliveryStatus.Status.READ;
+    else if (groupStatus == GroupReceiptTable.STATUS_DELIVERED)               return RecipientDeliveryStatus.Status.DELIVERED;
+    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && failed)   return RecipientDeliveryStatus.Status.UNKNOWN;
+    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
+    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
+    else if (groupStatus == GroupReceiptTable.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
+    else if (groupStatus == GroupReceiptTable.STATUS_VIEWED)                  return RecipientDeliveryStatus.Status.VIEWED;
+    else if (groupStatus == GroupReceiptTable.STATUS_SKIPPED)                 return RecipientDeliveryStatus.Status.SKIPPED;
     throw new AssertionError();
   }
 }

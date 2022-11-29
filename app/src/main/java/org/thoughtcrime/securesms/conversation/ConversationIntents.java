@@ -10,7 +10,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -112,7 +112,7 @@ public class ConversationIntents {
                         null,
                         null,
                         false,
-                        ThreadDatabase.DistributionTypes.DEFAULT,
+                        ThreadTable.DistributionTypes.DEFAULT,
                         -1,
                         false,
                         false,
@@ -126,7 +126,7 @@ public class ConversationIntents {
                       arguments.getParcelableArrayList(EXTRA_MEDIA),
                       arguments.getParcelable(EXTRA_STICKER),
                       arguments.getBoolean(EXTRA_BORDERLESS, false),
-                      arguments.getInt(EXTRA_DISTRIBUTION_TYPE, ThreadDatabase.DistributionTypes.DEFAULT),
+                      arguments.getInt(EXTRA_DISTRIBUTION_TYPE, ThreadTable.DistributionTypes.DEFAULT),
                       arguments.getInt(EXTRA_STARTING_POSITION, -1),
                       arguments.getBoolean(EXTRA_FIRST_TIME_IN_SELF_CREATED_GROUP, false),
                       arguments.getBoolean(EXTRA_WITH_SEARCH_OPEN, false),
@@ -228,7 +228,7 @@ public class ConversationIntents {
     private List<Media>    media;
     private StickerLocator stickerLocator;
     private boolean        isBorderless;
-    private int            distributionType = ThreadDatabase.DistributionTypes.DEFAULT;
+    private int            distributionType = ThreadTable.DistributionTypes.DEFAULT;
     private int            startingPosition = -1;
     private Uri            dataUri;
     private String         dataType;

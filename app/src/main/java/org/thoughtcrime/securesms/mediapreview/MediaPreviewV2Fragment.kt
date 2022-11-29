@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
@@ -122,7 +122,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
         }.show()
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
-    val sorting = MediaDatabase.Sorting.deserialize(args.sorting.ordinal)
+    val sorting = MediaTable.Sorting.deserialize(args.sorting.ordinal)
     viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
@@ -213,7 +213,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
 
     val currentPosition = currentState.position
-    val currentItem: MediaDatabase.MediaRecord = currentState.mediaRecords[currentPosition]
+    val currentItem: MediaTable.MediaRecord = currentState.mediaRecords[currentPosition]
 
     // pause all other fragments
     childFragmentManager.fragments.map { fragment ->
@@ -235,7 +235,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     crossfadeViewIn(binding.mediaPreviewDetailsContainer)
   }
 
-  private fun bindTextViews(currentItem: MediaDatabase.MediaRecord, showThread: Boolean) {
+  private fun bindTextViews(currentItem: MediaTable.MediaRecord, showThread: Boolean) {
     binding.toolbar.title = getTitleText(currentItem, showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)
     val messageId: Long? = currentItem.attachment?.mmsId
@@ -256,7 +256,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     binding.mediaPreviewCaption.visible = caption != null
   }
 
-  private fun bindMenuItems(currentItem: MediaDatabase.MediaRecord) {
+  private fun bindMenuItems(currentItem: MediaTable.MediaRecord) {
     val menu: Menu = binding.toolbar.menu
     if (currentItem.threadId == MediaIntentFactory.NOT_IN_A_THREAD.toLong()) {
       menu.findItem(R.id.delete).isVisible = false
@@ -274,7 +274,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun bindMediaPreviewPlaybackControls(currentItem: MediaDatabase.MediaRecord, currentFragment: MediaPreviewFragment?) {
+  private fun bindMediaPreviewPlaybackControls(currentItem: MediaTable.MediaRecord, currentFragment: MediaPreviewFragment?) {
     val mediaType: MediaPreviewPlayerControlView.MediaMode = if (currentItem.attachment?.isVideoGif == true) {
       MediaPreviewPlayerControlView.MediaMode.IMAGE
     } else {
@@ -293,7 +293,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
   }
 
-  private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaDatabase.MediaRecord) {
+  private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
     if (albumThumbnailMedia.size > 1) {
       val albumPosition = albumThumbnailMedia.indexOfFirst { it.uri == currentItem.attachment?.uri }
@@ -357,7 +357,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     binding.mediaPager.setCurrentItem(position, true)
   }
 
-  private fun getTitleText(mediaRecord: MediaDatabase.MediaRecord, showThread: Boolean): String {
+  private fun getTitleText(mediaRecord: MediaTable.MediaRecord, showThread: Boolean): String {
     val recipient: Recipient = Recipient.live(mediaRecord.recipientId).get()
     val defaultFromString: String = if (mediaRecord.isOutgoing) {
       getString(R.string.MediaPreviewActivity_you)
@@ -384,7 +384,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun getSubTitleText(mediaRecord: MediaDatabase.MediaRecord): CharSequence {
+  private fun getSubTitleText(mediaRecord: MediaTable.MediaRecord): CharSequence {
     val text = if (mediaRecord.date > 0) {
       DateUtils.getExtendedRelativeTimeSpanString(requireContext(), Locale.getDefault(), mediaRecord.date)
     } else {
@@ -436,7 +436,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     debouncer.clear()
   }
 
-  private fun forward(mediaItem: MediaDatabase.MediaRecord) {
+  private fun forward(mediaItem: MediaTable.MediaRecord) {
     val attachment = mediaItem.attachment
     val uri = attachment?.uri
     if (attachment != null && uri != null) {
@@ -451,7 +451,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun share(mediaItem: MediaDatabase.MediaRecord) {
+  private fun share(mediaItem: MediaTable.MediaRecord) {
     val attachment = mediaItem.attachment
     val uri = attachment?.uri
     if (attachment != null && uri != null) {
@@ -472,7 +472,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun saveToDisk(mediaItem: MediaDatabase.MediaRecord) {
+  private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
     SaveAttachmentTask.showWarningDialog(requireContext()) { _: DialogInterface?, _: Int ->
       if (StorageUtil.canWriteToMediaStore()) {
         performSaveToDisk(mediaItem)
@@ -488,7 +488,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  fun performSaveToDisk(mediaItem: MediaDatabase.MediaRecord) {
+  fun performSaveToDisk(mediaItem: MediaTable.MediaRecord) {
     val saveTask = SaveAttachmentTask(requireContext())
     val saveDate = if (mediaItem.date > 0) mediaItem.date else System.currentTimeMillis()
     val attachment = mediaItem.attachment
@@ -498,7 +498,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     }
   }
 
-  private fun deleteMedia(mediaItem: MediaDatabase.MediaRecord) {
+  private fun deleteMedia(mediaItem: MediaTable.MediaRecord) {
     val attachment: DatabaseAttachment = mediaItem.attachment ?: return
 
     MaterialAlertDialogBuilder(requireContext()).apply {
@@ -547,7 +547,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     return attachmentCount <= 1 && RemoteDeleteUtil.isValidSend(listOf(SignalDatabase.mms.getMessageRecord(mmsId)), System.currentTimeMillis())
   }
 
-  private fun editMediaItem(currentItem: MediaDatabase.MediaRecord) {
+  private fun editMediaItem(currentItem: MediaTable.MediaRecord) {
     val media = currentItem.toMedia()
     if (media == null) {
       val rootView = view

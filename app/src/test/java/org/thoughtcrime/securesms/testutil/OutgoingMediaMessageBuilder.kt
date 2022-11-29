@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.testutil
 
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.contactshare.Contact
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch
 import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.model.Mention
@@ -24,7 +24,7 @@ object OutgoingMediaMessageBuilder {
     subscriptionId: Int = -1,
     expiresIn: Long = -1,
     viewOnce: Boolean = false,
-    distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
+    distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
     isStoryReaction: Boolean = false,

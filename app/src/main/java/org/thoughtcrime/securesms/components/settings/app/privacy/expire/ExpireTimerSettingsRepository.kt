@@ -5,7 +5,7 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -57,8 +57,8 @@ class ExpireTimerSettingsRepository(val context: Context) {
 
   @WorkerThread
   private fun getThreadId(recipientId: RecipientId): Long {
-    val threadDatabase: ThreadDatabase = SignalDatabase.threads
+    val threadTable: ThreadTable = SignalDatabase.threads
     val recipient: Recipient = Recipient.resolved(recipientId)
-    return threadDatabase.getOrCreateThreadIdFor(recipient)
+    return threadTable.getOrCreateThreadIdFor(recipient)
   }
 }

@@ -5,7 +5,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -25,11 +25,11 @@ import java.util.Set;
 
 public class GroupCandidateHelper {
   private final SignalServiceAccountManager signalServiceAccountManager;
-  private final RecipientDatabase           recipientDatabase;
+  private final RecipientTable              recipientTable;
 
   public GroupCandidateHelper() {
     signalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
-    recipientDatabase           = SignalDatabase.recipients();
+    recipientTable              = SignalDatabase.recipients();
   }
 
   private static final String TAG = Log.tag(GroupCandidateHelper.class);
@@ -54,7 +54,7 @@ public class GroupCandidateHelper {
     GroupCandidate                         candidate                    = new GroupCandidate(serviceId.uuid(), expiringProfileKeyCredential);
 
     if (!candidate.hasValidProfileKeyCredential()) {
-      recipientDatabase.clearProfileKeyCredential(recipient.getId());
+      recipientTable.clearProfileKeyCredential(recipient.getId());
 
       Optional<ExpiringProfileKeyCredential> credential = ProfileUtil.updateExpiringProfileKeyCredential(recipient);
       if (credential.isPresent()) {

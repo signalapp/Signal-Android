@@ -13,9 +13,8 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -94,16 +93,16 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
   @Override
   public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
-    Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
-    MmsSmsDatabase      db               = SignalDatabase.mmsSms();
-    List<MessageRecord> records          = new ArrayList<>(length);
+    Stopwatch           stopwatch = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
+    MmsSmsTable         db        = SignalDatabase.mmsSms();
+    List<MessageRecord> records   = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
     ReactionHelper      reactionHelper   = new ReactionHelper();
     PaymentHelper       paymentHelper    = new PaymentHelper();
     Set<ServiceId>      referencedIds    = new HashSet<>();
 
-    try (MmsSmsDatabase.Reader reader = MmsSmsDatabase.readerFor(db.getConversation(threadId, start, length))) {
+    try (MmsSmsTable.Reader reader = MmsSmsTable.readerFor(db.getConversation(threadId, start, length))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         records.add(record);
@@ -167,9 +166,9 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
   @Override
   public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
-    Stopwatch       stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
-    MessageDatabase database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
-    MessageRecord   record    = database.getMessageRecordOrNull(messageId.getId());
+    Stopwatch     stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
+    MessageTable  database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
+    MessageRecord record    = database.getMessageRecordOrNull(messageId.getId());
 
     if (record instanceof MediaMmsMessageRecord &&
         ((MediaMmsMessageRecord) record).getParentStoryId() != null &&

@@ -30,7 +30,7 @@ import org.signal.ringrtc.Remote;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
@@ -677,7 +677,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     networkExecutor.execute(() -> {
       try {
         GroupId         groupId    = GroupId.v2(new GroupIdentifier(groupIdBytes));
-        List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
         recipients = RecipientUtil.getEligibleForSending((recipients.stream()
                                                                     .map(Recipient::resolve)
@@ -745,9 +745,9 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
-      GroupId.V2                groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      GroupDatabase.GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
-      Recipient                 senderRecipient = Recipient.externalPush(ServiceId.from(sender));
+      GroupId.V2             groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
+      GroupTable.GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      Recipient              senderRecipient = Recipient.externalPush(ServiceId.from(sender));
 
       if (group != null &&
           group.isActive() &&

@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase
+import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -44,7 +44,7 @@ class StoryViewsRepository {
       fun refresh() {
         emitter.onNext(
           SignalDatabase.groupReceipts.getGroupReceiptInfo(storyId).filter {
-            it.status == GroupReceiptDatabase.STATUS_VIEWED
+            it.status == GroupReceiptTable.STATUS_VIEWED
           }.filter {
             filterIds.isEmpty() || it.recipientId in filterIds
           }.map {

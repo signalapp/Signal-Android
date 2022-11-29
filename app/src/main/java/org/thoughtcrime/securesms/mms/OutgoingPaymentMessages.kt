@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mms
 
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.LinkedList
@@ -17,7 +17,7 @@ class OutgoingRequestToActivatePaymentMessages(
   "",
   LinkedList(),
   sentTimeMillis,
-  ThreadDatabase.DistributionTypes.CONVERSATION,
+  ThreadTable.DistributionTypes.CONVERSATION,
   expiresIn,
   false,
   StoryType.NONE,
@@ -46,7 +46,7 @@ class OutgoingPaymentsActivatedMessages(
   "",
   LinkedList(),
   sentTimeMillis,
-  ThreadDatabase.DistributionTypes.CONVERSATION,
+  ThreadTable.DistributionTypes.CONVERSATION,
   expiresIn,
   false,
   StoryType.NONE,
@@ -72,7 +72,7 @@ class OutgoingPaymentsNotificationMessage(
   paymentUuid,
   LinkedList(),
   sentTimeMillis,
-  ThreadDatabase.DistributionTypes.CONVERSATION,
+  ThreadTable.DistributionTypes.CONVERSATION,
   expiresIn,
   false,
   StoryType.NONE,

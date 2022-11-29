@@ -21,7 +21,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.AudioWaveFormData;
 import org.thoughtcrime.securesms.media.DecryptableUriMediaInput;
@@ -100,7 +100,7 @@ public final class AudioWaveForm {
 
       if (attachment instanceof DatabaseAttachment) {
         try {
-          AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
+          AttachmentTable    attachmentDatabase = SignalDatabase.attachments();
           DatabaseAttachment dbAttachment       = (DatabaseAttachment) attachment;
           long               startTime          = System.currentTimeMillis();
 

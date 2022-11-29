@@ -16,9 +16,9 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.IdentityTable;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -114,9 +114,9 @@ public final class SafetyNumberChangeRepository {
   private @Nullable MessageRecord getMessageRecord(Long messageId, String messageType) {
     try {
       switch (messageType) {
-        case MmsSmsDatabase.SMS_TRANSPORT:
+        case MmsSmsTable.SMS_TRANSPORT:
           return SignalDatabase.sms().getMessageRecord(messageId);
-        case MmsSmsDatabase.MMS_TRANSPORT:
+        case MmsSmsTable.MMS_TRANSPORT:
           return SignalDatabase.mms().getMessageRecord(messageId);
         default:
           throw new AssertionError("no valid message type specified");
@@ -139,7 +139,7 @@ public final class SafetyNumberChangeRepository {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as verified");
           ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
                                                                                     identityRecord.getIdentityKey(),
-                                                                                    IdentityDatabase.VerifiedStatus.DEFAULT);
+                                                                                    IdentityTable.VerifiedStatus.DEFAULT);
         } else {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as approved");
           identityStore.setApproval(identityRecord.getRecipientId(), true);
@@ -185,8 +185,8 @@ public final class SafetyNumberChangeRepository {
   @WorkerThread
   private void processOutgoingMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
     Log.d(TAG, "processOutgoingMessageRecord");
-    MessageDatabase  smsDatabase = SignalDatabase.sms();
-    MessageDatabase  mmsDatabase = SignalDatabase.mms();
+    MessageTable     smsDatabase = SignalDatabase.sms();
+    MessageTable     mmsDatabase = SignalDatabase.mms();
     Set<RecipientId> resendIds   = new HashSet<>();
 
     for (ChangedRecipient changedRecipient : changedRecipients) {

@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -76,7 +76,7 @@ final class RequestGroupV2InfoWorkerJob extends BaseJob {
       Log.i(TAG, "Updating group to revision " + toRevision);
     }
 
-    Optional<GroupDatabase.GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
+    Optional<GroupTable.GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
 
     if (!group.isPresent()) {
       Log.w(TAG, "Group not found");

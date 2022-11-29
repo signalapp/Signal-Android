@@ -6,11 +6,11 @@ import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
-import org.thoughtcrime.securesms.database.DistributionListDatabase
-import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord
+import org.thoughtcrime.securesms.database.DistributionListTables
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
@@ -53,7 +53,7 @@ open class ContactSearchPagedDataSourceRepository(
     query: String?
   ): ContactSearchIterator<GroupRecord> {
     return SignalDatabase.groups.queryGroups(
-      GroupDatabase.GroupQuery.Builder()
+      GroupTable.GroupQuery.Builder()
         .withSearchQuery(query)
         .withInactiveGroups(section.includeInactive)
         .withMmsGroups(section.includeMms)
@@ -80,15 +80,15 @@ open class ContactSearchPagedDataSourceRepository(
   }
 
   open fun getRecipientFromDistributionListCursor(cursor: Cursor): Recipient {
-    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, DistributionListDatabase.RECIPIENT_ID)))
+    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, DistributionListTables.RECIPIENT_ID)))
   }
 
   open fun getPrivacyModeFromDistributionListCursor(cursor: Cursor): DistributionListPrivacyMode {
-    return DistributionListPrivacyMode.deserialize(CursorUtil.requireLong(cursor, DistributionListDatabase.PRIVACY_MODE))
+    return DistributionListPrivacyMode.deserialize(CursorUtil.requireLong(cursor, DistributionListTables.PRIVACY_MODE))
   }
 
   open fun getRecipientFromThreadCursor(cursor: Cursor): Recipient {
-    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID)))
+    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
   }
 
   open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {

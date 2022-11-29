@@ -16,8 +16,8 @@ import com.google.android.gms.common.api.Status;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -154,7 +154,7 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   private Optional<InsertResult> storeMessage(IncomingTextMessage message) throws MigrationPendingException {
-    MessageDatabase database = SignalDatabase.sms();
+    MessageTable database = SignalDatabase.sms();
     database.ensureMigration();
 
     if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {

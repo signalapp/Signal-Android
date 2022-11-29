@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.WorkerThread
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -27,7 +27,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
         if (recipient.notificationChannel != null) {
           val ringtoneUri: Uri? = NotificationChannels.getInstance().getMessageRingtone(recipient)
           database.setMessageRingtone(recipient.id, if (ringtoneUri == Uri.EMPTY) null else ringtoneUri)
-          database.setMessageVibrate(recipient.id, RecipientDatabase.VibrateState.fromBoolean(NotificationChannels.getInstance().getMessageVibrate(recipient)))
+          database.setMessageVibrate(recipient.id, RecipientTable.VibrateState.fromBoolean(NotificationChannels.getInstance().getMessageVibrate(recipient)))
         }
       }
 
@@ -45,7 +45,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
     }
   }
 
-  fun setMessageVibrate(recipientId: RecipientId, vibrateState: RecipientDatabase.VibrateState) {
+  fun setMessageVibrate(recipientId: RecipientId, vibrateState: RecipientTable.VibrateState) {
     executor.execute {
       val recipient: Recipient = Recipient.resolved(recipientId)
 
@@ -54,7 +54,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
     }
   }
 
-  fun setCallingVibrate(recipientId: RecipientId, vibrateState: RecipientDatabase.VibrateState) {
+  fun setCallingVibrate(recipientId: RecipientId, vibrateState: RecipientTable.VibrateState) {
     executor.execute {
       SignalDatabase.recipients.setCallVibrate(recipientId, vibrateState)
     }

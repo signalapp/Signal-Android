@@ -37,9 +37,9 @@ import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.thoughtcrime.securesms.SignalStoreRule
-import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.GroupStateTestData
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.database.model.databaseprotos.requestingMember
@@ -72,8 +72,8 @@ class GroupsV2StateProcessorTest {
     private val others: List<DecryptedMember> = listOf(member(otherSid))
   }
 
-  private lateinit var groupDatabase: GroupDatabase
-  private lateinit var recipientDatabase: RecipientDatabase
+  private lateinit var groupTable: GroupTable
+  private lateinit var recipientTable: RecipientTable
   private lateinit var groupsV2API: GroupsV2Api
   private lateinit var groupsV2Authorization: GroupsV2Authorization
   private lateinit var profileAndMessageHelper: GroupsV2StateProcessor.ProfileAndMessageHelper
@@ -88,13 +88,13 @@ class GroupsV2StateProcessorTest {
     Log.initialize(SystemOutLogger())
     SignalProtocolLoggerProvider.setProvider(CustomSignalProtocolLogger())
 
-    groupDatabase = mock(GroupDatabase::class.java)
-    recipientDatabase = mock(RecipientDatabase::class.java)
+    groupTable = mock(GroupTable::class.java)
+    recipientTable = mock(RecipientTable::class.java)
     groupsV2API = mock(GroupsV2Api::class.java)
     groupsV2Authorization = mock(GroupsV2Authorization::class.java)
     profileAndMessageHelper = mock(GroupsV2StateProcessor.ProfileAndMessageHelper::class.java)
 
-    processor = GroupsV2StateProcessor.StateProcessorForGroup(serviceIds, ApplicationProvider.getApplicationContext(), groupDatabase, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
+    processor = GroupsV2StateProcessor.StateProcessorForGroup(serviceIds, ApplicationProvider.getApplicationContext(), groupTable, groupsV2API, groupsV2Authorization, masterKey, profileAndMessageHelper)
   }
 
   @After
@@ -105,8 +105,8 @@ class GroupsV2StateProcessorTest {
   private fun given(init: GroupStateTestData.() -> Unit) {
     val data = givenData(init)
 
-    doReturn(data.groupRecord).`when`(groupDatabase).getGroup(any(GroupId.V2::class.java))
-    doReturn(!data.groupRecord.isPresent).`when`(groupDatabase).isUnknownGroup(any())
+    doReturn(data.groupRecord).`when`(groupTable).getGroup(any(GroupId.V2::class.java))
+    doReturn(!data.groupRecord.isPresent).`when`(groupTable).isUnknownGroup(any())
 
     data.serverState?.let { serverState ->
       val testPartial = object : PartialDecryptedGroup(null, serverState, null, null) {
@@ -306,7 +306,7 @@ class GroupsV2StateProcessorTest {
       apiCallParameters(2, true)
     }
 
-    doReturn(true).`when`(groupDatabase).isUnknownGroup(any())
+    doReturn(true).`when`(groupTable).isUnknownGroup(any())
 
     val result = processor.updateLocalGroupToRevision(2, 0, DecryptedGroupChange.getDefaultInstance())
 

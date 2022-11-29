@@ -11,8 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.service.TimedEventManager;
@@ -24,8 +24,8 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
 
   private static final String TAG = Log.tag(ViewOnceMessageManager.class);
 
-  private final MessageDatabase    mmsDatabase;
-  private final AttachmentDatabase attachmentDatabase;
+  private final MessageTable    mmsDatabase;
+  private final AttachmentTable attachmentDatabase;
 
   public ViewOnceMessageManager(@NonNull Application application) {
     super(application, "RevealableMessageManager");

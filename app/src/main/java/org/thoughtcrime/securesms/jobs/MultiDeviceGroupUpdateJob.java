@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -97,11 +97,11 @@ public class MultiDeviceGroupUpdateJob extends BaseJob {
                                                                                         () -> Log.i(TAG, "Write successful."),
                                                                                         e  -> Log.w(TAG, "Error during write.", e));
 
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().getGroups()) {
+    try (GroupTable.Reader reader = SignalDatabase.groups().getGroups()) {
       DeviceGroupsOutputStream out     = new DeviceGroupsOutputStream(new ParcelFileDescriptor.AutoCloseOutputStream(pipe[1]));
       boolean                  hasData = false;
 
-      GroupDatabase.GroupRecord record;
+      GroupTable.GroupRecord record;
 
       while ((record = reader.getNext()) != null) {
         if (record.isV1Group()) {

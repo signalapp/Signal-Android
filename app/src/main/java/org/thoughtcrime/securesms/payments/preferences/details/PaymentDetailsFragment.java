@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.payments.Direction;
 import org.thoughtcrime.securesms.payments.MoneyView;
 import org.thoughtcrime.securesms.payments.Payee;
@@ -211,7 +211,7 @@ public final class PaymentDetailsFragment extends LoggingFragment {
     }
   }
 
-  private @NonNull CharSequence describeSentTo(@NonNull PaymentsDetailsViewModel.ViewState state, @NonNull PaymentDatabase.PaymentTransaction payment) {
+  private @NonNull CharSequence describeSentTo(@NonNull PaymentsDetailsViewModel.ViewState state, @NonNull PaymentTable.PaymentTransaction payment) {
     if (payment.getDirection().isSent()) {
       return SpanUtil.insertSingleSpan(getResources(), R.string.PaymentsDetailsFragment__sent_to_s, describe(payment.getPayee(), state.getRecipient()));
     } else {
@@ -219,7 +219,7 @@ public final class PaymentDetailsFragment extends LoggingFragment {
     }
   }
 
-  private @NonNull CharSequence describeStatus(@NonNull PaymentDatabase.PaymentTransaction payment) {
+  private @NonNull CharSequence describeStatus(@NonNull PaymentTable.PaymentTransaction payment) {
     switch (payment.getState()) {
       case INITIAL:
         return getResources().getString(R.string.PaymentsDetailsFragment__submitting_payment);

@@ -4,11 +4,13 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 
+import org.thoughtcrime.securesms.database.StickerTable;
+
 import java.util.Objects;
 import java.util.Optional;
 
 /**
- * Represents a record for a sticker pack in the {@link org.thoughtcrime.securesms.database.StickerDatabase}.
+ * Represents a record for a sticker pack in the {@link StickerTable}.
  */
 public final class StickerPackRecord {
 

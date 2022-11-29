@@ -9,11 +9,11 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -51,15 +51,15 @@ final class MessageRequestRepository {
 
   void getGroups(@NonNull RecipientId recipientId, @NonNull Consumer<List<String>> onGroupsLoaded) {
     executor.execute(() -> {
-      GroupDatabase groupDatabase = SignalDatabase.groups();
+      GroupTable groupDatabase = SignalDatabase.groups();
       onGroupsLoaded.accept(groupDatabase.getPushGroupNamesContainingMember(recipientId));
     });
   }
 
   void getGroupInfo(@NonNull RecipientId recipientId, @NonNull Consumer<GroupInfo> onGroupInfoLoaded) {
     executor.execute(() -> {
-      GroupDatabase                       groupDatabase = SignalDatabase.groups();
-      Optional<GroupDatabase.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
+      GroupTable                       groupDatabase = SignalDatabase.groups();
+      Optional<GroupTable.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
       onGroupInfoLoaded.accept(groupRecord.map(record -> {
         if (record.isV2Group()) {
           DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();
@@ -132,8 +132,8 @@ final class MessageRequestRepository {
           Log.i(TAG, "GV2 accepting invite");
           GroupManager.acceptInvite(context, liveRecipient.get().requireGroupId().requireV2());
 
-          RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-          recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
+          RecipientTable recipientTable = SignalDatabase.recipients();
+          recipientTable.setProfileSharing(liveRecipient.getId(), true);
 
           onMessageRequestAccepted.run();
         } catch (GroupChangeException | IOException e) {
@@ -141,16 +141,16 @@ final class MessageRequestRepository {
           error.onError(GroupChangeFailureReason.fromException(e));
         }
       } else {
-        RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-        recipientDatabase.setProfileSharing(liveRecipient.getId(), true);
+        RecipientTable recipientTable = SignalDatabase.recipients();
+        recipientTable.setProfileSharing(liveRecipient.getId(), true);
 
         MessageSender.sendProfileKey(threadId);
 
-        List<MessageDatabase.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
+        List<MessageTable.MarkedMessageInfo> messageIds = SignalDatabase.threads().setEntireThreadRead(threadId);
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
-        List<MessageDatabase.MarkedMessageInfo> viewedInfos = SignalDatabase.mms().getViewedIncomingMessages(threadId);
+        List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.mms().getViewedIncomingMessages(threadId);
 
         SendViewedReceiptJob.enqueue(threadId, liveRecipient.getId(), viewedInfos);
 
@@ -193,8 +193,8 @@ final class MessageRequestRepository {
         ApplicationDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipient.getId()));
       }
 
-      ThreadDatabase threadDatabase = SignalDatabase.threads();
-      threadDatabase.deleteConversation(threadId);
+      ThreadTable threadTable = SignalDatabase.threads();
+      threadTable.deleteConversation(threadId);
 
       onMessageRequestDeleted.run();
     });
@@ -263,11 +263,11 @@ final class MessageRequestRepository {
     });
   }
 
-  private GroupDatabase.MemberLevel getGroupMemberLevel(@NonNull RecipientId recipientId) {
+  private GroupTable.MemberLevel getGroupMemberLevel(@NonNull RecipientId recipientId) {
     return SignalDatabase.groups()
                           .getGroup(recipientId)
                           .map(g -> g.memberLevel(Recipient.self()))
-                          .orElse(GroupDatabase.MemberLevel.NOT_A_MEMBER);
+                          .orElse(GroupTable.MemberLevel.NOT_A_MEMBER);
   }
 
 

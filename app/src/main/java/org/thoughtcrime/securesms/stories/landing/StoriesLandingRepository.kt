@@ -7,7 +7,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -170,7 +170,7 @@ class StoriesLandingRepository(context: Context) {
    */
   fun markStoriesRead() {
     SignalExecutors.BOUNDED_IO.execute {
-      val messageInfos: List<MessageDatabase.MarkedMessageInfo> = SignalDatabase.mms.markAllIncomingStoriesRead()
+      val messageInfos: List<MessageTable.MarkedMessageInfo> = SignalDatabase.mms.markAllIncomingStoriesRead()
       val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
 
       MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })

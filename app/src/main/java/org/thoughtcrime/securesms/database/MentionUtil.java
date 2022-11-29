@@ -12,7 +12,7 @@ import com.annimon.stream.function.Function;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
+import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;

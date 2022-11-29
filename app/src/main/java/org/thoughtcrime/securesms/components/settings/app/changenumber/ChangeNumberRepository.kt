@@ -12,7 +12,7 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.database.model.toProtoByteString
@@ -237,7 +237,7 @@ class ChangeNumberRepository(
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(
         Recipient.self().id,
         pniProtocolStore.identityKeyPair.publicKey,
-        IdentityDatabase.VerifiedStatus.VERIFIED,
+        IdentityTable.VerifiedStatus.VERIFIED,
         true,
         System.currentTimeMillis(),
         true

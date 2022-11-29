@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.SmsTable;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
@@ -36,11 +36,11 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
   private static final String TAG = Log.tag(ConversationListDataSource.class);
 
-  protected final ThreadDatabase     threadDatabase;
+  protected final ThreadTable        threadTable;
   protected final ConversationFilter conversationFilter;
 
   protected ConversationListDataSource(@NonNull ConversationFilter conversationFilter) {
-    this.threadDatabase     = SignalDatabase.threads();
+    this.threadTable        = SignalDatabase.threads();
     this.conversationFilter = conversationFilter;
   }
 
@@ -77,9 +77,9 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         recipients.add(record.getRecipient());
         needsResolve.add(record.getGroupMessageSender());
 
-        if (!SmsDatabase.Types.isGroupV2(record.getType())) {
+        if (!SmsTable.Types.isGroupV2(record.getType())) {
           needsResolve.add(record.getRecipient().getId());
-        } else if (SmsDatabase.Types.isGroupUpdate(record.getType())) {
+        } else if (SmsTable.Types.isGroupUpdate(record.getType())) {
           UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
           needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
         }
@@ -130,14 +130,14 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     @Override
     protected int getTotalCount() {
-      totalCount = threadDatabase.getArchivedConversationListCount(conversationFilter);
+      totalCount = threadTable.getArchivedConversationListCount(conversationFilter);
       return totalCount;
     }
 
     @Override
     protected Cursor getCursor(long offset, long limit) {
       List<Cursor> cursors = new ArrayList<>(2);
-      Cursor       cursor  = threadDatabase.getArchivedConversationList(conversationFilter, offset, limit);
+      Cursor       cursor  = threadTable.getArchivedConversationList(conversationFilter, offset, limit);
 
       cursors.add(cursor);
       if (offset + limit >= totalCount && totalCount > 0 && conversationFilter != ConversationFilter.OFF) {
@@ -164,10 +164,10 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     @Override
     protected int getTotalCount() {
-      int unarchivedCount = threadDatabase.getUnarchivedConversationListCount(conversationFilter);
+      int unarchivedCount = threadTable.getUnarchivedConversationListCount(conversationFilter);
 
-      pinnedCount   = threadDatabase.getPinnedConversationListCount(conversationFilter);
-      archivedCount = threadDatabase.getArchivedConversationListCount(conversationFilter);
+      pinnedCount   = threadTable.getPinnedConversationListCount(conversationFilter);
+      archivedCount = threadTable.getArchivedConversationListCount(conversationFilter);
       unpinnedCount = unarchivedCount - pinnedCount;
       totalCount    = unarchivedCount;
 
@@ -198,7 +198,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         limit--;
       }
 
-      Cursor pinnedCursor = threadDatabase.getUnarchivedConversationList(conversationFilter, true, offset, limit);
+      Cursor pinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, true, offset, limit);
       cursors.add(pinnedCursor);
       limit -= pinnedCursor.getCount();
 
@@ -210,7 +210,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       }
 
       long   unpinnedOffset = Math.max(0, offset - pinnedCount - getHeaderOffset());
-      Cursor unpinnedCursor = threadDatabase.getUnarchivedConversationList(conversationFilter, false, unpinnedOffset, limit);
+      Cursor unpinnedCursor = threadTable.getUnarchivedConversationList(conversationFilter, false, unpinnedOffset, limit);
       cursors.add(unpinnedCursor);
 
       boolean shouldInsertConversationFilterFooter = offset + originalLimit >= totalCount && hasConversationFilterFooter();

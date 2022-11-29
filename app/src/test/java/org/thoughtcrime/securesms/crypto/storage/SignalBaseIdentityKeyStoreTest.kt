@@ -11,7 +11,7 @@ import org.mockito.Mockito.`when`
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECPublicKey
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.model.IdentityStoreRecord
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil.assumeLibSignalSupportedOnOS
 
@@ -28,7 +28,7 @@ class SignalBaseIdentityKeyStoreTest {
 
   @Test
   fun `getIdentity() hits disk on first retrieve but not the second`() {
-    val mockDb = mock(IdentityDatabase::class.java)
+    val mockDb = mock(IdentityTable::class.java)
     val subject = SignalBaseIdentityKeyStore(mock(Context::class.java), mockDb)
     val identityKey = IdentityKey(ECPublicKey.fromPublicKeyBytes(ByteArray(32)))
     val record = mockRecord(ADDRESS, identityKey)
@@ -44,7 +44,7 @@ class SignalBaseIdentityKeyStoreTest {
 
   @Test
   fun `invalidate() evicts cache entry`() {
-    val mockDb = mock(IdentityDatabase::class.java)
+    val mockDb = mock(IdentityTable::class.java)
     val subject = SignalBaseIdentityKeyStore(mock(Context::class.java), mockDb)
     val identityKey = IdentityKey(ECPublicKey.fromPublicKeyBytes(ByteArray(32)))
     val record = mockRecord(ADDRESS, identityKey)
@@ -64,7 +64,7 @@ class SignalBaseIdentityKeyStoreTest {
     return IdentityStoreRecord(
       addressName = addressName,
       identityKey = identityKey,
-      verifiedStatus = IdentityDatabase.VerifiedStatus.DEFAULT,
+      verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
       firstUse = false,
       timestamp = 1,
       nonblockingApproval = true

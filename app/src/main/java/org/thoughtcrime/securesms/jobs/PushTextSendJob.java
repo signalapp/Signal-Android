@@ -4,10 +4,10 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
@@ -78,7 +78,7 @@ public class PushTextSendJob extends PushSendJob {
     SignalLocalMetrics.IndividualMessageSend.onJobStarted(messageId);
 
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-    MessageDatabase        database          = SignalDatabase.sms();
+    MessageTable           database          = SignalDatabase.sms();
     SmsMessageRecord       record            = database.getSmsMessage(messageId);
 
     if (!record.isPending() && !record.isFailed()) {

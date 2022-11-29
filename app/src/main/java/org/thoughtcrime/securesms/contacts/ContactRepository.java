@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
 import org.signal.libsignal.protocol.util.Pair;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -32,8 +32,8 @@ import java.util.Map;
  */
 public class ContactRepository {
 
-  private final RecipientDatabase recipientDatabase;
-  private final String            noteToSelfTitle;
+  private final RecipientTable recipientTable;
+  private final String         noteToSelfTitle;
   private final Context           context;
 
   public static final String ID_COLUMN           = "id";
@@ -53,18 +53,18 @@ public class ContactRepository {
 
   /** Maps the recipient results to the legacy contact column names */
   private static final List<Pair<String, ValueMapper>> SEARCH_CURSOR_MAPPERS = new ArrayList<Pair<String, ValueMapper>>() {{
-    add(new Pair<>(ID_COLUMN, cursor -> CursorUtil.requireLong(cursor, RecipientDatabase.ID)));
+    add(new Pair<>(ID_COLUMN, cursor -> CursorUtil.requireLong(cursor, RecipientTable.ID)));
 
     add(new Pair<>(NAME_COLUMN, cursor -> {
-      String system  = CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_JOINED_NAME);
-      String profile = CursorUtil.requireString(cursor, RecipientDatabase.SEARCH_PROFILE_NAME);
+      String system  = CursorUtil.requireString(cursor, RecipientTable.SYSTEM_JOINED_NAME);
+      String profile = CursorUtil.requireString(cursor, RecipientTable.SEARCH_PROFILE_NAME);
 
       return Util.getFirstNonEmpty(system, profile);
     }));
 
     add(new Pair<>(NUMBER_COLUMN, cursor -> {
-      String phone = CursorUtil.requireString(cursor, RecipientDatabase.PHONE);
-      String email = CursorUtil.requireString(cursor, RecipientDatabase.EMAIL);
+      String phone = CursorUtil.requireString(cursor, RecipientTable.PHONE);
+      String email = CursorUtil.requireString(cursor, RecipientTable.EMAIL);
 
       if (phone != null) {
         phone = PhoneNumberFormatter.prettyPrint(phone);
@@ -73,18 +73,18 @@ public class ContactRepository {
       return Util.getFirstNonEmpty(phone, email);
     }));
 
-    add(new Pair<>(NUMBER_TYPE_COLUMN, cursor -> CursorUtil.requireInt(cursor, RecipientDatabase.SYSTEM_PHONE_TYPE)));
+    add(new Pair<>(NUMBER_TYPE_COLUMN, cursor -> CursorUtil.requireInt(cursor, RecipientTable.SYSTEM_PHONE_TYPE)));
 
-    add(new Pair<>(LABEL_COLUMN, cursor -> CursorUtil.requireString(cursor, RecipientDatabase.SYSTEM_PHONE_LABEL)));
+    add(new Pair<>(LABEL_COLUMN, cursor -> CursorUtil.requireString(cursor, RecipientTable.SYSTEM_PHONE_LABEL)));
 
     add(new Pair<>(CONTACT_TYPE_COLUMN, cursor -> {
-      int registered = CursorUtil.requireInt(cursor, RecipientDatabase.REGISTERED);
-      return registered == RecipientDatabase.RegisteredState.REGISTERED.getId() ? PUSH_TYPE : NORMAL_TYPE;
+      int registered = CursorUtil.requireInt(cursor, RecipientTable.REGISTERED);
+      return registered == RecipientTable.RegisteredState.REGISTERED.getId() ? PUSH_TYPE : NORMAL_TYPE;
     }));
 
     add(new Pair<>(ABOUT_COLUMN, cursor -> {
-      String aboutEmoji = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT_EMOJI);
-      String about      = CursorUtil.requireString(cursor, RecipientDatabase.ABOUT);
+      String aboutEmoji = CursorUtil.requireString(cursor, RecipientTable.ABOUT_EMOJI);
+      String about      = CursorUtil.requireString(cursor, RecipientTable.ABOUT);
 
       if (!Util.isEmpty(aboutEmoji)) {
         if (!Util.isEmpty(about)) {
@@ -101,8 +101,8 @@ public class ContactRepository {
   }};
 
   public ContactRepository(@NonNull Context context, @NonNull String noteToSelfTitle) {
-    this.recipientDatabase = SignalDatabase.recipients();
-    this.noteToSelfTitle   = noteToSelfTitle;
+    this.recipientTable  = SignalDatabase.recipients();
+    this.noteToSelfTitle = noteToSelfTitle;
     this.context           = context.getApplicationContext();
   }
 
@@ -113,8 +113,8 @@ public class ContactRepository {
 
   @WorkerThread
   public @NonNull Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getSignalContacts(includeSelf)
-                                             : recipientDatabase.querySignalContacts(query, includeSelf);
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getSignalContacts(includeSelf)
+                                             : recipientTable.querySignalContacts(query, includeSelf);
 
     cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
 
@@ -123,8 +123,8 @@ public class ContactRepository {
 
   @WorkerThread
   public @NonNull Cursor queryNonGroupContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getNonGroupContacts(includeSelf)
-                                             : recipientDatabase.queryNonGroupContacts(query, includeSelf);
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getNonGroupContacts(includeSelf)
+                                             : recipientTable.queryNonGroupContacts(query, includeSelf);
 
     cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
 
@@ -139,8 +139,8 @@ public class ContactRepository {
       boolean   shouldAdd   = !nameMatch && !numberMatch;
 
       if (shouldAdd) {
-        MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION_NAMES);
-        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().orElse(""), self.getEmail().orElse(null), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), null, true, noteToSelfTitle, noteToSelfTitle });
+        MatrixCursor selfCursor = new MatrixCursor(RecipientTable.SEARCH_PROJECTION_NAMES);
+        selfCursor.addRow(new Object[]{ self.getId().serialize(), noteToSelfTitle, self.getE164().orElse(""), self.getEmail().orElse(null), null, -1, RecipientTable.RegisteredState.REGISTERED.getId(), self.getAbout(), self.getAboutEmoji(), null, true, noteToSelfTitle, noteToSelfTitle });
 
         cursor = cursor == null ? selfCursor : new MergeCursor(new Cursor[]{ cursor, selfCursor });
       }
@@ -150,8 +150,8 @@ public class ContactRepository {
 
   @WorkerThread
   public Cursor queryNonSignalContacts(@NonNull String query) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getNonSignalContacts()
-                                             : recipientDatabase.queryNonSignalContacts(query);
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getNonSignalContacts()
+                                             : recipientTable.queryNonSignalContacts(query);
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }
 

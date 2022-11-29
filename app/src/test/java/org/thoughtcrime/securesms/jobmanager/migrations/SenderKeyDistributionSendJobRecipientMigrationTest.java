@@ -1,29 +1,25 @@
 package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.FailingJob;
-import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
 import org.thoughtcrime.securesms.jobs.SenderKeyDistributionSendJob;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class SenderKeyDistributionSendJobRecipientMigrationTest {
 
-  private final GroupDatabase                                  mockDatabase = mock(GroupDatabase.class);
+  private final GroupTable                                     mockDatabase = mock(GroupTable.class);
   private final SenderKeyDistributionSendJobRecipientMigration testSubject  = new SenderKeyDistributionSendJobRecipientMigration(mockDatabase);
 
   private static final GroupId GROUP_ID = GroupId.pushOrThrow(Util.getSecretBytes(32));
@@ -38,7 +34,7 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
                                                                     .putBlobAsString("group_id", GROUP_ID.getDecodedId())
                                                                     .build());
 
-    GroupDatabase.GroupRecord mockGroup = mock(GroupDatabase.GroupRecord.class);
+    GroupTable.GroupRecord mockGroup = mock(GroupTable.GroupRecord.class);
     when(mockGroup.getRecipientId()).thenReturn(RecipientId.from(2));
     when(mockDatabase.getGroup(GROUP_ID)).thenReturn(Optional.of(mockGroup));
 

@@ -8,7 +8,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
@@ -135,8 +135,8 @@ public class RemoteDeleteSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    MessageDatabase db;
-    MessageRecord   message;
+    MessageTable  db;
+    MessageRecord message;
 
     if (isMms) {
       db      = SignalDatabase.mms();

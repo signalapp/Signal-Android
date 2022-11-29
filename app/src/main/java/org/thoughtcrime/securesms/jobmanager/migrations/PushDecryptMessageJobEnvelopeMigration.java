@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
@@ -21,7 +21,7 @@ public class PushDecryptMessageJobEnvelopeMigration extends JobMigration {
 
   private static final String TAG = Log.tag(PushDecryptMessageJobEnvelopeMigration.class);
 
-  private final PushDatabase pushDatabase;
+  private final PushTable pushDatabase;
 
   public PushDecryptMessageJobEnvelopeMigration(@NonNull Context context) {
     super(8);
@@ -38,7 +38,7 @@ public class PushDecryptMessageJobEnvelopeMigration extends JobMigration {
     }
   }
 
-  private static @NonNull JobData migratePushDecryptMessageJob(@NonNull PushDatabase pushDatabase, @NonNull JobData jobData) {
+  private static @NonNull JobData migratePushDecryptMessageJob(@NonNull PushTable pushDatabase, @NonNull JobData jobData) {
     Data data = jobData.getData();
 
     if (data.hasLong("message_id")) {

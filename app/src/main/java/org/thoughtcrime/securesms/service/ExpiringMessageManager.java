@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
+import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 import java.util.Comparator;
@@ -21,9 +21,9 @@ public class ExpiringMessageManager {
   private final TreeSet<ExpiringMessageReference> expiringMessageReferences = new TreeSet<>(new ExpiringMessageComparator());
   private final Executor                          executor                  = Executors.newSingleThreadExecutor();
 
-  private final MessageDatabase smsDatabase;
-  private final MessageDatabase mmsDatabase;
-  private final Context         context;
+  private final MessageTable smsDatabase;
+  private final MessageTable mmsDatabase;
+  private final Context      context;
 
   public ExpiringMessageManager(Context context) {
     this.context     = context.getApplicationContext();
@@ -55,8 +55,8 @@ public class ExpiringMessageManager {
 
   private class LoadTask implements Runnable {
     public void run() {
-      SmsDatabase.Reader smsReader = SmsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
-      MmsDatabase.Reader mmsReader = MmsDatabase.readerFor(mmsDatabase.getExpirationStartedMessages());
+      SmsTable.Reader smsReader = SmsTable.readerFor(smsDatabase.getExpirationStartedMessages());
+      MmsTable.Reader mmsReader = MmsTable.readerFor(mmsDatabase.getExpirationStartedMessages());
 
       MessageRecord messageRecord;
 

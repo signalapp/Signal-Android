@@ -11,13 +11,12 @@ import org.mockito.Mock
 import org.mockito.MockedStatic
 import org.mockito.Mockito
 import org.mockito.Mockito.mock
-import org.mockito.Mockito.`when`
 import org.mockito.internal.configuration.plugins.Plugins
 import org.mockito.internal.junit.JUnitRule
 import org.mockito.junit.MockitoRule
 import org.mockito.quality.Strictness
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.EmptyLogger
@@ -36,7 +35,7 @@ class ContactRecordProcessorTest {
   val mockitoRule: MockitoRule = JUnitRule(Plugins.getMockitoLogger(), Strictness.STRICT_STUBS)
 
   @Mock
-  lateinit var recipientDatabase: RecipientDatabase
+  lateinit var recipientTable: RecipientTable
 
   @Mock
   lateinit var featureFlags: MockedStatic<FeatureFlags>
@@ -54,7 +53,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, normal, false`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceId(ACI_B.toString())
@@ -72,7 +71,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, missing serviceId, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceE164(E164_B)
@@ -88,7 +87,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, e164 matches self, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceId(ACI_B.toString())
@@ -105,7 +104,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, aci matches self, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceId(ACI_A.toString())
@@ -121,7 +120,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, pni matches self as serviceId, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceId(PNI_A.toString())
@@ -137,7 +136,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, pni matches self as pni, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     val record = buildRecord {
       setServiceId(ACI_B.toString())
@@ -154,7 +153,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, pniOnly pnpDisabled, true`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(false)
 
@@ -173,7 +172,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `isInvalid, pniOnly pnpEnabled, false`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
@@ -192,7 +191,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, e164MatchesButPnisDont pnpEnabled, keepLocal`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
@@ -220,7 +219,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, pnisMatchButE164sDont pnpEnabled, keepLocal`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
@@ -248,7 +247,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, e164AndPniChange pnpEnabled, useRemote`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(true)
 
@@ -276,7 +275,7 @@ class ContactRecordProcessorTest {
   @Test
   fun `merge, pnpDisabled, pniDropped`() {
     // GIVEN
-    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientDatabase)
+    val subject = ContactRecordProcessor(ACI_A, PNI_A, E164_A, recipientTable)
 
     featureFlags.`when`<Boolean> { FeatureFlags.phoneNumberPrivacy() }.thenReturn(false)
 

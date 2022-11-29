@@ -1,16 +1,14 @@
 package org.thoughtcrime.securesms.jobs;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
 import org.thoughtcrime.securesms.groups.GroupNotAMemberException;
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
@@ -20,7 +18,6 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 
 import java.io.IOException;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Scheduled by {@link ForceUpdateGroupV2Job} after message queues are drained.
@@ -64,7 +61,7 @@ final class ForceUpdateGroupV2WorkerJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
-    Optional<GroupDatabase.GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
+    Optional<GroupTable.GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
 
     if (!group.isPresent()) {
       Log.w(TAG, "Group not found");

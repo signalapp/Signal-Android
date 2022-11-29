@@ -21,9 +21,9 @@ import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
@@ -249,7 +249,7 @@ public final class MultiShareSender {
                                                                              subscriptionId,
                                                                              0L,
                                                                              false,
-                                                                             ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                             ThreadTable.DistributionTypes.DEFAULT,
                                                                              storyType.toTextStoryType(),
                                                                              null,
                                                                              false,
@@ -288,7 +288,7 @@ public final class MultiShareSender {
                                                                                subscriptionId,
                                                                                0L,
                                                                                false,
-                                                                               ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                               ThreadTable.DistributionTypes.DEFAULT,
                                                                                storyType,
                                                                                null,
                                                                                false,
@@ -309,7 +309,7 @@ public final class MultiShareSender {
                                                                            subscriptionId,
                                                                            expiresIn,
                                                                            isViewOnce,
-                                                                           ThreadDatabase.DistributionTypes.DEFAULT,
+                                                                           ThreadTable.DistributionTypes.DEFAULT,
                                                                            StoryType.NONE,
                                                                            null,
                                                                            false,
@@ -388,7 +388,7 @@ public final class MultiShareSender {
           attachment.isBorderless(),
           attachment.getCaption(),
           attachment.getBlurHash(),
-          AttachmentDatabase.TransformProperties.empty()
+          AttachmentTable.TransformProperties.empty()
       );
     } else {
       return imageSlide;
@@ -436,7 +436,7 @@ public final class MultiShareSender {
         -1,
         0,
         false,
-        ThreadDatabase.DistributionTypes.DEFAULT,
+        ThreadTable.DistributionTypes.DEFAULT,
         storyType.toTextStoryType(),
         null,
         false,

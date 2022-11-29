@@ -16,10 +16,10 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.VCardUtil;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
-import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
+import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -110,8 +110,8 @@ public class MmsDownloadJob extends BaseJob {
       throw new NotReadyException();
     }
 
-    MessageDatabase                           database     = SignalDatabase.mms();
-    Optional<MmsDatabase.MmsNotificationInfo> notification = database.getNotification(messageId);
+    MessageTable                           database     = SignalDatabase.mms();
+    Optional<MmsTable.MmsNotificationInfo> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
       Log.w(TAG, "No notification for ID: " + messageId);
@@ -127,7 +127,7 @@ public class MmsDownloadJob extends BaseJob {
         throw new MmsException("Not registered");
       }
 
-      database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_CONNECTING);
+      database.markDownloadState(messageId, MmsTable.Status.DOWNLOAD_CONNECTING);
 
       String contentLocation = notification.get().getContentLocation();
       byte[] transactionId   = new byte[0];
@@ -153,25 +153,25 @@ public class MmsDownloadJob extends BaseJob {
       storeRetrievedMms(contentLocation, messageId, threadId, retrieveConf, notification.get().getSubscriptionId(), notification.get().getFrom());
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
-      handleDownloadError(messageId, threadId, MmsDatabase.Status.DOWNLOAD_APN_UNAVAILABLE,
+      handleDownloadError(messageId, threadId, MmsTable.Status.DOWNLOAD_APN_UNAVAILABLE,
                           automatic);
     } catch (MmsException e) {
       Log.w(TAG, e);
       handleDownloadError(messageId, threadId,
-                          MmsDatabase.Status.DOWNLOAD_HARD_FAILURE,
+                          MmsTable.Status.DOWNLOAD_HARD_FAILURE,
                           automatic);
     } catch (MmsRadioException | IOException e) {
       Log.w(TAG, e);
       handleDownloadError(messageId, threadId,
-                          MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE,
+                          MmsTable.Status.DOWNLOAD_SOFT_FAILURE,
                           automatic);
     }
   }
 
   @Override
   public void onFailure() {
-    MessageDatabase database = SignalDatabase.mms();
-    database.markDownloadState(messageId, MmsDatabase.Status.DOWNLOAD_SOFT_FAILURE);
+    MessageTable database = SignalDatabase.mms();
+    database.markDownloadState(messageId, MmsTable.Status.DOWNLOAD_SOFT_FAILURE);
 
     if (automatic) {
       database.markIncomingNotificationReceived(threadId);
@@ -189,8 +189,8 @@ public class MmsDownloadJob extends BaseJob {
                                  int subscriptionId, @Nullable RecipientId notificationFrom)
       throws MmsException
   {
-    MessageDatabase   database    = SignalDatabase.mms();
-    Optional<GroupId> group       = Optional.empty();
+    MessageTable      database = SignalDatabase.mms();
+    Optional<GroupId> group    = Optional.empty();
     Set<RecipientId>  members     = new HashSet<>();
     String            body        = null;
     List<Attachment>  attachments = new LinkedList<>();
@@ -238,8 +238,8 @@ public class MmsDownloadJob extends BaseJob {
             if (part.getName() != null) name = Util.toIsoString(part.getName());
 
             attachments.add(new UriAttachment(uri, Util.toIsoString(part.getContentType()),
-                            AttachmentDatabase.TRANSFER_PROGRESS_DONE,
-                            part.getData().length, name, false, false, false, false, null, null, null, null, null));
+                                              AttachmentTable.TRANSFER_PROGRESS_DONE,
+                                              part.getData().length, name, false, false, false, false, null, null, null, null, null));
           }
         }
       }
@@ -260,7 +260,7 @@ public class MmsDownloadJob extends BaseJob {
 
   private void handleDownloadError(long messageId, long threadId, int downloadStatus, boolean automatic)
   {
-    MessageDatabase db = SignalDatabase.mms();
+    MessageTable db = SignalDatabase.mms();
 
     db.markDownloadState(messageId, downloadStatus);
 

@@ -6,13 +6,13 @@ import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus
-import org.thoughtcrime.securesms.database.RecipientDatabase
-import org.thoughtcrime.securesms.database.RecipientDatabase.InsightsBannerTier
-import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting
-import org.thoughtcrime.securesms.database.RecipientDatabase.RegisteredState
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode
-import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState
+import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
+import org.thoughtcrime.securesms.database.RecipientTable
+import org.thoughtcrime.securesms.database.RecipientTable.InsightsBannerTier
+import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting
+import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
+import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode
+import org.thoughtcrime.securesms.database.RecipientTable.VibrateState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -23,7 +23,7 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.Optional
 
 /**
- * Database model for [RecipientDatabase].
+ * Database model for [RecipientTable].
  */
 data class RecipientRecord(
   val id: RecipientId,
@@ -34,7 +34,7 @@ data class RecipientRecord(
   val email: String?,
   val groupId: GroupId?,
   val distributionListId: DistributionListId?,
-  val groupType: RecipientDatabase.GroupType,
+  val groupType: RecipientTable.GroupType,
   val isBlocked: Boolean,
   val muteUntil: Long,
   val messageVibrateState: VibrateState,

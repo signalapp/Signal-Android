@@ -4,7 +4,7 @@ import androidx.annotation.CheckResult
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.database.GroupDatabase
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.GroupId
@@ -42,7 +42,7 @@ class ContactSearchRepository {
   @CheckResult
   fun markDisplayAsStory(recipientIds: Collection<RecipientId>): Completable {
     return Completable.fromAction {
-      SignalDatabase.groups.setShowAsStoryState(recipientIds, GroupDatabase.ShowAsStoryState.ALWAYS)
+      SignalDatabase.groups.setShowAsStoryState(recipientIds, GroupTable.ShowAsStoryState.ALWAYS)
       SignalDatabase.recipients.markNeedsSync(recipientIds)
       StorageSyncHelper.scheduleSyncForDataChange()
     }.subscribeOn(Schedulers.io())
@@ -51,7 +51,7 @@ class ContactSearchRepository {
   @CheckResult
   fun unmarkDisplayAsStory(groupId: GroupId): Completable {
     return Completable.fromAction {
-      SignalDatabase.groups.setShowAsStoryState(groupId, GroupDatabase.ShowAsStoryState.NEVER)
+      SignalDatabase.groups.setShowAsStoryState(groupId, GroupTable.ShowAsStoryState.NEVER)
       SignalDatabase.recipients.markNeedsSync(Recipient.externalGroupExact(groupId).id)
       StorageSyncHelper.scheduleSyncForDataChange()
     }.subscribeOn(Schedulers.io())

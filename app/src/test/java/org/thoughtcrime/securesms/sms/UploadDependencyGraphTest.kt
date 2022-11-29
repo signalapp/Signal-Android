@@ -14,7 +14,7 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
@@ -84,7 +84,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentDatabase.TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code)
+        transformProperties = AttachmentTable.TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code)
       )
     }
 
@@ -126,7 +126,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = if (it != 1) AttachmentDatabase.TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code) else null
+        transformProperties = if (it != 1) AttachmentTable.TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code) else null
       )
     }
 
@@ -186,7 +186,7 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         1L,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentDatabase.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
+        transformProperties = AttachmentTable.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
       )
     }
 
@@ -229,11 +229,11 @@ class UploadDependencyGraphTest {
   private fun getAttachmentForPreUpload(id: Long, attachment: Attachment): DatabaseAttachment {
     return DatabaseAttachment(
       AttachmentId(id, id),
-      AttachmentDatabase.PREUPLOAD_MESSAGE_ID,
+      AttachmentTable.PREUPLOAD_MESSAGE_ID,
       false,
       false,
       attachment.contentType,
-      AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+      AttachmentTable.TRANSFER_PROGRESS_PENDING,
       attachment.size,
       attachment.fileName,
       attachment.cdnNumber,

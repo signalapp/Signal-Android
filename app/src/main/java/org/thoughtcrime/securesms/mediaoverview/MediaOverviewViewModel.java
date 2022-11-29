@@ -9,7 +9,7 @@ import androidx.lifecycle.SavedStateViewModelFactory;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
+import org.thoughtcrime.securesms.database.MediaTable.Sorting;
 
 public class MediaOverviewViewModel extends ViewModel {
 

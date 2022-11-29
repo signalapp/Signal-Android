@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -237,7 +237,7 @@ public class CommunicationActions {
     GroupId.V2 groupId = GroupId.v2(groupInviteLinkUrl.getGroupMasterKey());
 
     SimpleTask.run(SignalExecutors.BOUNDED, () -> {
-      GroupDatabase.GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      GroupTable.GroupRecord group = SignalDatabase.groups().getGroup(groupId).orElse(null);
 
       return group != null && group.isActive() ? Recipient.resolved(group.getRecipientId())
                                                : null;

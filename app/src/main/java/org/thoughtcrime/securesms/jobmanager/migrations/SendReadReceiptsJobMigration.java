@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 
@@ -11,9 +11,9 @@ import java.util.TreeSet;
 
 public class SendReadReceiptsJobMigration extends JobMigration {
 
-  private final MmsSmsDatabase mmsSmsDatabase;
+  private final MmsSmsTable mmsSmsDatabase;
 
-  public SendReadReceiptsJobMigration(@NonNull MmsSmsDatabase mmsSmsDatabase) {
+  public SendReadReceiptsJobMigration(@NonNull MmsSmsTable mmsSmsDatabase) {
     super(5);
     this.mmsSmsDatabase = mmsSmsDatabase;
   }
@@ -26,7 +26,7 @@ public class SendReadReceiptsJobMigration extends JobMigration {
     return jobData;
   }
 
-  private static @NonNull JobData migrateSendReadReceiptJob(@NonNull MmsSmsDatabase mmsSmsDatabase, @NonNull JobData jobData) {
+  private static @NonNull JobData migrateSendReadReceiptJob(@NonNull MmsSmsTable mmsSmsDatabase, @NonNull JobData jobData) {
     Data data = jobData.getData();
 
     if (!data.hasLong("thread")) {

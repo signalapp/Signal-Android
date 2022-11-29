@@ -22,7 +22,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.util.IOFunction;
 import org.thoughtcrime.securesms.util.Util;
@@ -244,8 +244,8 @@ public class BlobProvider {
       return;
     }
 
-    DraftDatabase        draftDatabase   = SignalDatabase.drafts();
-    DraftDatabase.Drafts voiceNoteDrafts = draftDatabase.getAllVoiceNoteDrafts();
+    DraftTable        draftDatabase   = SignalDatabase.drafts();
+    DraftTable.Drafts voiceNoteDrafts = draftDatabase.getAllVoiceNoteDrafts();
 
     @SuppressWarnings("ConstantConditions")
     List<String> draftFileNames = voiceNoteDrafts.stream()

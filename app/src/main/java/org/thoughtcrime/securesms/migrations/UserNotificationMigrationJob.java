@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.NewConversationActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -75,10 +75,10 @@ public class UserNotificationMigrationJob extends MigrationJob {
       return;
     }
 
-    ThreadDatabase threadDatabase = SignalDatabase.threads();
+    ThreadTable threadTable = SignalDatabase.threads();
 
-    int threadCount = threadDatabase.getUnarchivedConversationListCount(ConversationFilter.OFF) +
-                      threadDatabase.getArchivedConversationListCount(ConversationFilter.OFF);
+    int threadCount = threadTable.getUnarchivedConversationListCount(ConversationFilter.OFF) +
+                      threadTable.getArchivedConversationListCount(ConversationFilter.OFF);
 
     if (threadCount >= 3) {
       Log.w(TAG, "Already have 3 or more threads. Skipping.");
@@ -88,7 +88,7 @@ public class UserNotificationMigrationJob extends MigrationJob {
     List<RecipientId> registered               = SignalDatabase.recipients().getRegistered();
     List<RecipientId> systemContacts           = SignalDatabase.recipients().getSystemContacts();
     Set<RecipientId>  registeredSystemContacts = SetUtil.intersection(registered, systemContacts);
-    Set<RecipientId>  threadRecipients         = threadDatabase.getAllThreadRecipients();
+    Set<RecipientId>  threadRecipients         = threadTable.getAllThreadRecipients();
 
     if (threadRecipients.containsAll(registeredSystemContacts)) {
       Log.w(TAG, "Threads already exist for all relevant contacts. Skipping.");

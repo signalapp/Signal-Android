@@ -13,7 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.database.MediaDatabase
+import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
@@ -26,10 +26,10 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
-  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaDatabase.Sorting, forceRefresh: Boolean = false) {
+  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
       disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
-        val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaDatabase.MediaRecord ->
+        val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
           val attachment = mediaRecord.attachment
           if (attachment != null) {
             val convertedMedia = mediaRecord.toMedia() ?: return@fold acc
@@ -100,7 +100,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
   }
 }
 
-fun MediaDatabase.MediaRecord.toMedia(): Media? {
+fun MediaTable.MediaRecord.toMedia(): Media? {
   val attachment = this.attachment
   val uri = attachment?.uri
   if (attachment == null || uri == null) {

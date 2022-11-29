@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.releasechannel
 
 import org.thoughtcrime.securesms.attachments.PointerAttachment
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
@@ -30,7 +30,7 @@ object ReleaseChannel {
     serverUuid: String? = UUID.randomUUID().toString(),
     messageRanges: BodyRangeList? = null,
     storyType: StoryType = StoryType.NONE
-  ): MessageDatabase.InsertResult? {
+  ): MessageTable.InsertResult? {
 
     val attachments: Optional<List<SignalServiceAttachment>> = if (image != null) {
       val attachment = SignalServiceAttachmentPointer(

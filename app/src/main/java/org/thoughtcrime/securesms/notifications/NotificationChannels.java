@@ -6,7 +6,6 @@ import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioAttributes;
@@ -27,8 +26,8 @@ import com.annimon.stream.Stream;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.VibrateState;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.RecipientTable.VibrateState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -190,9 +189,9 @@ public class NotificationChannels {
       return;
     }
 
-    RecipientDatabase db = SignalDatabase.recipients();
+    RecipientTable db = SignalDatabase.recipients();
 
-    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
+    try (RecipientTable.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
       while ((recipient = reader.getNext()) != null) {
         NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
@@ -559,11 +558,11 @@ public class NotificationChannels {
     Log.d(TAG, "ensureCustomChannelConsistency()");
 
     NotificationManager notificationManager = ServiceUtil.getNotificationManager(context);
-    RecipientDatabase   db                  = SignalDatabase.recipients();
+    RecipientTable      db                  = SignalDatabase.recipients();
     List<Recipient>     customRecipients    = new ArrayList<>();
     Set<String>         customChannelIds    = new HashSet<>();
 
-    try (RecipientDatabase.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
+    try (RecipientTable.RecipientReader reader = db.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
       while ((recipient = reader.getNext()) != null) {
         customRecipients.add(recipient);
@@ -733,9 +732,9 @@ public class NotificationChannels {
   @WorkerThread
   @TargetApi(26)
   private void updateAllRecipientChannelLedColors(@NonNull NotificationManager notificationManager, @NonNull String color) {
-    RecipientDatabase database = SignalDatabase.recipients();
+    RecipientTable database = SignalDatabase.recipients();
 
-    try (RecipientDatabase.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {
+    try (RecipientTable.RecipientReader recipients = database.getRecipientsWithNotificationChannels()) {
       Recipient recipient;
       while ((recipient = recipients.getNext()) != null) {
         assert recipient.getNotificationChannel() != null;

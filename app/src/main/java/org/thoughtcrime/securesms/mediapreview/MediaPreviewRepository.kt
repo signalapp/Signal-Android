@@ -12,9 +12,9 @@ import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.conversation.ConversationIntents
-import org.thoughtcrime.securesms.database.AttachmentDatabase
-import org.thoughtcrime.securesms.database.MediaDatabase
-import org.thoughtcrime.securesms.database.MediaDatabase.Sorting
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.MediaTable
+import org.thoughtcrime.securesms.database.MediaTable.Sorting
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -38,11 +38,11 @@ class MediaPreviewRepository {
   fun getAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: Sorting, limit: Int = 500): Flowable<Result> {
     return Single.fromCallable {
       media.getGalleryMediaForThread(threadId, sorting).use { cursor ->
-        val mediaRecords = mutableListOf<MediaDatabase.MediaRecord>()
+        val mediaRecords = mutableListOf<MediaTable.MediaRecord>()
         var startingRow = -1
         while (cursor.moveToNext()) {
-          if (startingAttachmentId.rowId == cursor.requireLong(AttachmentDatabase.ROW_ID) &&
-            startingAttachmentId.uniqueId == cursor.requireLong(AttachmentDatabase.UNIQUE_ID)
+          if (startingAttachmentId.rowId == cursor.requireLong(AttachmentTable.ROW_ID) &&
+            startingAttachmentId.uniqueId == cursor.requireLong(AttachmentTable.UNIQUE_ID)
           ) {
             startingRow = cursor.position
             break
@@ -59,7 +59,7 @@ class MediaPreviewRepository {
           cursor.moveToPosition(windowStart)
 
           for (i in 0..limit) {
-            val element = MediaDatabase.MediaRecord.from(cursor)
+            val element = MediaTable.MediaRecord.from(cursor)
             if (element != null) {
               mediaRecords.add(element)
             }
@@ -97,5 +97,5 @@ class MediaPreviewRepository {
       .observeOn(AndroidSchedulers.mainThread())
   }
 
-  data class Result(val initialPosition: Int, val records: List<MediaDatabase.MediaRecord>)
+  data class Result(val initialPosition: Int, val records: List<MediaTable.MediaRecord>)
 }

@@ -27,11 +27,11 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -80,7 +80,7 @@ public final class MmsSendJob extends SendJob {
   /** Enqueues compression jobs for attachments and finally the MMS send job. */
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId) {
-    MessageDatabase      database = SignalDatabase.mms();
+    MessageTable         database = SignalDatabase.mms();
     OutgoingMediaMessage message;
 
     try {
@@ -122,7 +122,7 @@ public final class MmsSendJob extends SendJob {
 
   @Override
   public void onSend() throws MmsException, NoSuchMessageException, IOException {
-    MessageDatabase      database = SignalDatabase.mms();
+    MessageTable         database = SignalDatabase.mms();
     OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
 
     if (database.isSent(messageId)) {
@@ -240,14 +240,14 @@ public final class MmsSendJob extends SendJob {
     }
 
     if (message.getRecipient().isMmsGroup()) {
-      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       for (Recipient member : members) {
         if (!member.hasSmsAddress()) {
           throw new UndeliverableMessageException("One of the group recipients did not have an SMS address! " + member.getId());
         }
 
-        if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
+        if (message.getDistributionType() == ThreadTable.DistributionTypes.BROADCAST) {
           req.addBcc(new EncodedStringValue(member.requireSmsAddress()));
         } else {
           req.addTo(new EncodedStringValue(member.requireSmsAddress()));

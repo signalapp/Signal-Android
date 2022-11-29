@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -72,8 +72,8 @@ public class RetrieveProfileAvatarJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    RecipientDatabase database   = SignalDatabase.recipients();
-    ProfileKey        profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
+    RecipientTable database   = SignalDatabase.recipients();
+    ProfileKey     profileKey = ProfileKeyUtil.profileKeyOrNull(recipient.resolve().getProfileKey());
 
     if (profileKey == null) {
       Log.w(TAG, "Recipient profile key is gone!");

@@ -8,11 +8,11 @@ import androidx.preference.PreferenceManager;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase.Reader;
-import org.thoughtcrime.securesms.database.PushDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MmsTable;
+import org.thoughtcrime.securesms.database.MmsTable.Reader;
+import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -245,18 +245,18 @@ public class LegacyMigrationJob extends MigrationJob {
   }
 
   private void schedulePendingIncomingParts(Context context) {
-    final AttachmentDatabase       attachmentDb       = SignalDatabase.attachments();
-    final MessageDatabase          mmsDb              = SignalDatabase.mms();
+    final AttachmentTable          attachmentDb       = SignalDatabase.attachments();
+    final MessageTable             mmsDb              = SignalDatabase.mms();
     final List<DatabaseAttachment> pendingAttachments = SignalDatabase.attachments().getPendingAttachments();
 
     Log.i(TAG, pendingAttachments.size() + " pending parts.");
     for (DatabaseAttachment attachment : pendingAttachments) {
-      final Reader        reader = MmsDatabase.readerFor(mmsDb.getMessageCursor(attachment.getMmsId()));
+      final Reader        reader = MmsTable.readerFor(mmsDb.getMessageCursor(attachment.getMmsId()));
       final MessageRecord record = reader.getNext();
 
       if (attachment.hasData()) {
         Log.i(TAG, "corrected a pending media part " + attachment.getAttachmentId() + "that already had data.");
-        attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentDatabase.TRANSFER_PROGRESS_DONE);
+        attachmentDb.setTransferState(attachment.getMmsId(), attachment.getAttachmentId(), AttachmentTable.TRANSFER_PROGRESS_DONE);
       } else if (record != null && !record.isOutgoing() && record.isPush()) {
         Log.i(TAG, "queuing new attachment download job for incoming push part " + attachment.getAttachmentId() + ".");
         ApplicationDependencies.getJobManager().add(new AttachmentDownloadJob(attachment.getMmsId(), attachment.getAttachmentId(), false));
@@ -266,10 +266,10 @@ public class LegacyMigrationJob extends MigrationJob {
   }
 
   private static void scheduleMessagesInPushDatabase(@NonNull Context context) {
-    PushDatabase pushDatabase = SignalDatabase.push();
-    JobManager   jobManager   = ApplicationDependencies.getJobManager();
+    PushTable  pushDatabase = SignalDatabase.push();
+    JobManager jobManager   = ApplicationDependencies.getJobManager();
 
-    try (PushDatabase.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
+    try (PushTable.Reader pushReader = pushDatabase.readerFor(pushDatabase.getPending())) {
       SignalServiceEnvelope envelope;
       while ((envelope = pushReader.getNext()) != null) {
         jobManager.add(new PushDecryptMessageJob(context, envelope));

@@ -25,10 +25,10 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -193,12 +193,12 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private Cursor getRecentConversationsCursor(boolean groupsOnly) {
-    ThreadDatabase threadDatabase = SignalDatabase.threads();
+    ThreadTable threadTable = SignalDatabase.threads();
 
     MatrixCursor recentConversations = ContactsCursorRows.createMatrixCursor(RECENT_CONVERSATION_MAX);
-    try (Cursor rawConversations = threadDatabase.getRecentConversationList(RECENT_CONVERSATION_MAX, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), false, groupsOnly, hideGroupsV1(mode), !smsEnabled(mode), false)) {
-      ThreadDatabase.Reader reader = threadDatabase.readerFor(rawConversations);
-      ThreadRecord          threadRecord;
+    try (Cursor rawConversations = threadTable.getRecentConversationList(RECENT_CONVERSATION_MAX, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), false, groupsOnly, hideGroupsV1(mode), !smsEnabled(mode), false)) {
+      ThreadTable.Reader reader = threadTable.readerFor(rawConversations);
+      ThreadRecord       threadRecord;
       while ((threadRecord = reader.getNext()) != null) {
         recentConversations.addRow(ContactsCursorRows.forRecipient(getContext(), threadRecord.getRecipient()));
       }
@@ -221,11 +221,11 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private Cursor getGroupsCursor() {
-    MatrixCursor                                groupContacts = ContactsCursorRows.createMatrixCursor();
-    Map<RecipientId, GroupDatabase.GroupRecord> groups        = new LinkedHashMap<>();
+    MatrixCursor                             groupContacts = ContactsCursorRows.createMatrixCursor();
+    Map<RecipientId, GroupTable.GroupRecord> groups        = new LinkedHashMap<>();
 
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
-      GroupDatabase.GroupRecord groupRecord;
+    try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
+      GroupTable.GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groups.put(groupRecord.getRecipientId(), groupRecord);
       }
@@ -235,19 +235,19 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       Set<RecipientId> filteredContacts = new HashSet<>();
       try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(getFilter())) {
         while (cursor != null && cursor.moveToNext()) {
-          filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
+          filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientTable.ID)));
         }
       }
 
-      try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
-        GroupDatabase.GroupRecord groupRecord;
+      try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
+        GroupTable.GroupRecord groupRecord;
         while ((groupRecord = reader.getNext()) != null) {
           groups.put(groupRecord.getRecipientId(), groupRecord);
         }
       }
     }
 
-    for (GroupDatabase.GroupRecord groupRecord : groups.values()) {
+    for (GroupTable.GroupRecord groupRecord : groups.values()) {
       groupContacts.addRow(ContactsCursorRows.forGroup(groupRecord));
     }
 

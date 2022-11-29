@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.GroupDatabase
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.stories.Stories
 class StoriesPrivacySettingsRepository {
   fun markGroupsAsStories(groups: List<RecipientId>): Completable {
     return Completable.fromCallable {
-      SignalDatabase.groups.setShowAsStoryState(groups, GroupDatabase.ShowAsStoryState.ALWAYS)
+      SignalDatabase.groups.setShowAsStoryState(groups, GroupTable.ShowAsStoryState.ALWAYS)
       SignalDatabase.recipients.markNeedsSync(groups)
       StorageSyncHelper.scheduleSyncForDataChange()
     }

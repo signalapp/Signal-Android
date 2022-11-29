@@ -4,13 +4,13 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.signal.core.util.CursorUtil;
 
-public class ConversationReader extends ThreadDatabase.StaticReader {
+public class ConversationReader extends ThreadTable.StaticReader {
 
   public static final String[] HEADER_COLUMN              = { "header" };
   public static final String[] ARCHIVED_COLUMNS           = { "header", "count" };

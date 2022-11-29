@@ -14,8 +14,8 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
-import org.thoughtcrime.securesms.database.AttachmentDatabase
-import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -337,11 +337,11 @@ object Stories {
           error("Illegal clip: $startTimeUs > $endTimeUs for clip $clipIndex")
         }
 
-        AttachmentDatabase.TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code)
+        AttachmentTable.TransformProperties(false, true, startTimeUs, endTimeUs, SentMediaQuality.STANDARD.code)
       }.map { transformMedia(media, it) }
     }
 
-    private fun transformMedia(media: Media, transformProperties: AttachmentDatabase.TransformProperties): Media {
+    private fun transformMedia(media: Media, transformProperties: AttachmentTable.TransformProperties): Media {
       Log.d(TAG, "Transforming media clip: ${transformProperties.videoTrimStartTimeUs.microseconds.inWholeSeconds}s to ${transformProperties.videoTrimEndTimeUs.microseconds.inWholeSeconds}s")
       return Media(
         media.uri,

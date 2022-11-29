@@ -15,15 +15,15 @@ import org.signal.core.util.concurrent.LatestPrioritizedSerialExecutor;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MentionDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.MentionTable;
 import org.thoughtcrime.securesms.database.MentionUtil;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.SearchDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -37,10 +37,7 @@ import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -49,7 +46,7 @@ import java.util.Set;
 import java.util.concurrent.Executor;
 import java.util.function.Consumer;
 
-import static org.thoughtcrime.securesms.database.SearchDatabase.SNIPPET_WRAP;
+import static org.thoughtcrime.securesms.database.SearchTable.SNIPPET_WRAP;
 
 /**
  * Manages data retrieval for search.
@@ -60,12 +57,12 @@ public class SearchRepository {
 
   private final Context           context;
   private final String            noteToSelfTitle;
-  private final SearchDatabase    searchDatabase;
+  private final SearchTable       searchDatabase;
   private final ContactRepository contactRepository;
-  private final ThreadDatabase    threadDatabase;
-  private final RecipientDatabase recipientDatabase;
-  private final MentionDatabase   mentionDatabase;
-  private final MessageDatabase   mmsDatabase;
+  private final ThreadTable       threadTable;
+  private final RecipientTable    recipientTable;
+  private final MentionTable   mentionDatabase;
+  private final MessageTable mmsDatabase;
 
   private final LatestPrioritizedSerialExecutor searchExecutor;
   private final Executor                        serialExecutor;
@@ -73,10 +70,10 @@ public class SearchRepository {
   public SearchRepository(@NonNull String noteToSelfTitle) {
     this.context           = ApplicationDependencies.getApplication().getApplicationContext();
     this.noteToSelfTitle   = noteToSelfTitle;
-    this.searchDatabase    = SignalDatabase.messageSearch();
-    this.threadDatabase    = SignalDatabase.threads();
-    this.recipientDatabase = SignalDatabase.recipients();
-    this.mentionDatabase   = SignalDatabase.mentions();
+    this.searchDatabase = SignalDatabase.messageSearch();
+    this.threadTable    = SignalDatabase.threads();
+    this.recipientTable = SignalDatabase.recipients();
+    this.mentionDatabase = SignalDatabase.mentions();
     this.mmsDatabase       = SignalDatabase.mms();
     this.contactRepository = new ContactRepository(context, noteToSelfTitle);
     this.searchExecutor    = new LatestPrioritizedSerialExecutor(SignalExecutors.BOUNDED);
@@ -166,7 +163,7 @@ public class SearchRepository {
     Set<RecipientId> filteredContacts = new LinkedHashSet<>();
     try (Cursor cursor = SignalDatabase.recipients().queryAllContacts(query)) {
       while (cursor != null && cursor.moveToNext()) {
-        filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientDatabase.ID)));
+        filteredContacts.add(RecipientId.from(CursorUtil.requireString(cursor, RecipientTable.ID)));
       }
     }
 
@@ -178,8 +175,8 @@ public class SearchRepository {
 
     Set<RecipientId> groupsByTitleIds = new LinkedHashSet<>();
 
-    GroupDatabase.GroupRecord record;
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
+    GroupTable.GroupRecord record;
+    try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         groupsByTitleIds.add(record.getRecipientId());
       }
@@ -187,7 +184,7 @@ public class SearchRepository {
 
     Set<RecipientId> groupsByMemberIds = new LinkedHashSet<>();
 
-    try (GroupDatabase.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, true, false, false)) {
+    try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         groupsByMemberIds.add(record.getRecipientId());
       }
@@ -203,8 +200,8 @@ public class SearchRepository {
   }
 
   private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds) {
-    try (Cursor cursor = threadDatabase.getFilteredConversationList(new ArrayList<>(recipientIds))) {
-      return readToList(cursor, new ThreadModelBuilder(threadDatabase));
+    try (Cursor cursor = threadTable.getFilteredConversationList(new ArrayList<>(recipientIds))) {
+      return readToList(cursor, new ThreadModelBuilder(threadTable));
     }
   }
 
@@ -293,7 +290,7 @@ public class SearchRepository {
   private @NonNull List<MessageResult> queryMentions(@NonNull List<String> cleanQueries) {
     Set<RecipientId> recipientIds = new HashSet<>();
     for (String cleanQuery : cleanQueries) {
-      for (Recipient recipient : recipientDatabase.queryRecipientsForMentions(cleanQuery)) {
+      for (Recipient recipient : recipientTable.queryRecipientsForMentions(cleanQuery)) {
         recipientIds.add(recipient.getId());
       }
     }
@@ -306,7 +303,7 @@ public class SearchRepository {
 
     List<MessageResult> results = new ArrayList<>();
 
-    try (MessageDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
+    try (MessageTable.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         List<Mention> mentions = mentionQueryResults.get(record.getId());
@@ -316,7 +313,7 @@ public class SearchRepository {
           String                             updatedSnippet = makeSnippet(cleanQueries, updatedBody);
 
           //noinspection ConstantConditions
-          results.add(new MessageResult(threadDatabase.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
+          results.add(new MessageResult(threadTable.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), updatedBody, updatedSnippet, record.getThreadId(), record.getId(), record.getDateReceived(), true));
         }
       }
     }
@@ -327,7 +324,7 @@ public class SearchRepository {
   private @NonNull List<MessageResult> queryMentions(@NonNull List<String> cleanQueries, long threadId) {
     Set<RecipientId> recipientIds = new HashSet<>();
     for (String cleanQuery : cleanQueries) {
-      for (Recipient recipient : recipientDatabase.queryRecipientsForMentions(cleanQuery)) {
+      for (Recipient recipient : recipientTable.queryRecipientsForMentions(cleanQuery)) {
         recipientIds.add(recipient.getId());
       }
     }
@@ -340,11 +337,11 @@ public class SearchRepository {
 
     List<MessageResult> results = new ArrayList<>();
 
-    try (MessageDatabase.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
+    try (MessageTable.Reader reader = mmsDatabase.getMessages(mentionQueryResults.keySet())) {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         //noinspection ConstantConditions
-        results.add(new MessageResult(threadDatabase.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), record.getBody(), record.getBody(), record.getThreadId(), record.getId(), record.getDateReceived(), true));
+        results.add(new MessageResult(threadTable.getRecipientForThreadId(record.getThreadId()), record.getRecipient(), record.getBody(), record.getBody(), record.getThreadId(), record.getId(), record.getDateReceived(), true));
       }
     }
 
@@ -432,15 +429,15 @@ public class SearchRepository {
 
   private static class ThreadModelBuilder implements ModelBuilder<ThreadRecord> {
 
-    private final ThreadDatabase threadDatabase;
+    private final ThreadTable threadTable;
 
-    ThreadModelBuilder(@NonNull ThreadDatabase threadDatabase) {
-      this.threadDatabase = threadDatabase;
+    ThreadModelBuilder(@NonNull ThreadTable threadTable) {
+      this.threadTable = threadTable;
     }
 
     @Override
     public ThreadRecord build(@NonNull Cursor cursor) {
-      return threadDatabase.readerFor(cursor).getCurrent();
+      return threadTable.readerFor(cursor).getCurrent();
     }
   }
 
@@ -448,16 +445,16 @@ public class SearchRepository {
 
     @Override
     public MessageResult build(@NonNull Cursor cursor) {
-      RecipientId conversationRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, SearchDatabase.CONVERSATION_RECIPIENT));
-      RecipientId messageRecipientId      = RecipientId.from(CursorUtil.requireLong(cursor, SearchDatabase.MESSAGE_RECIPIENT));
+      RecipientId conversationRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.CONVERSATION_RECIPIENT));
+      RecipientId messageRecipientId      = RecipientId.from(CursorUtil.requireLong(cursor, SearchTable.MESSAGE_RECIPIENT));
       Recipient   conversationRecipient   = Recipient.live(conversationRecipientId).get();
       Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
-      String      body                    = CursorUtil.requireString(cursor, SearchDatabase.BODY);
-      String      bodySnippet             = CursorUtil.requireString(cursor, SearchDatabase.SNIPPET);
+      String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
+      String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
       long        receivedMs              = CursorUtil.requireLong(cursor, MmsSmsColumns.NORMALIZED_DATE_RECEIVED);
       long        threadId                = CursorUtil.requireLong(cursor, MmsSmsColumns.THREAD_ID);
-      int         messageId               = CursorUtil.requireInt(cursor, SearchDatabase.MESSAGE_ID);
-      boolean     isMms                   = CursorUtil.requireInt(cursor, SearchDatabase.IS_MMS) == 1;
+      int         messageId               = CursorUtil.requireInt(cursor, SearchTable.MESSAGE_ID);
+      boolean     isMms                   = CursorUtil.requireInt(cursor, SearchTable.IS_MMS) == 1;
 
       return new MessageResult(conversationRecipient, messageRecipient, body, bodySnippet, threadId, messageId, receivedMs, isMms);
     }

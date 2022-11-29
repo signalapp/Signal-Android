@@ -11,10 +11,9 @@ import androidx.core.util.Pair;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.MediaDatabase;
-import org.thoughtcrime.securesms.database.MediaDatabase.Sorting;
+import org.thoughtcrime.securesms.database.MediaTable.Sorting;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -49,7 +48,7 @@ public final class PagingMediaLoader extends AsyncLoader<Pair<Cursor, Integer>> 
     Cursor cursor = SignalDatabase.media().getGalleryMediaForThread(threadId, sorting);
 
     while (cursor.moveToNext()) {
-      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentDatabase.UNIQUE_ID)));
+      AttachmentId attachmentId  = new AttachmentId(cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.ROW_ID)), cursor.getLong(cursor.getColumnIndexOrThrow(AttachmentTable.UNIQUE_ID)));
       Uri          attachmentUri = PartAuthority.getAttachmentDataUri(attachmentId);
 
       if (attachmentUri.equals(uri)) {

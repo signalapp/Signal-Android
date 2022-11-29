@@ -37,109 +37,109 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   ),
   SignalDatabaseOpenHelper {
 
-  val sms: SmsDatabase = SmsDatabase(context, this)
-  val mms: MmsDatabase = MmsDatabase(context, this)
-  val attachments: AttachmentDatabase = AttachmentDatabase(context, this, attachmentSecret)
-  val media: MediaDatabase = MediaDatabase(context, this)
-  val thread: ThreadDatabase = ThreadDatabase(context, this)
-  val mmsSmsDatabase: MmsSmsDatabase = MmsSmsDatabase(context, this)
-  val identityDatabase: IdentityDatabase = IdentityDatabase(context, this)
-  val draftDatabase: DraftDatabase = DraftDatabase(context, this)
-  val pushDatabase: PushDatabase = PushDatabase(context, this)
-  val groupDatabase: GroupDatabase = GroupDatabase(context, this)
-  val recipientDatabase: RecipientDatabase = RecipientDatabase(context, this)
-  val groupReceiptDatabase: GroupReceiptDatabase = GroupReceiptDatabase(context, this)
-  val preKeyDatabase: OneTimePreKeyDatabase = OneTimePreKeyDatabase(context, this)
-  val signedPreKeyDatabase: SignedPreKeyDatabase = SignedPreKeyDatabase(context, this)
-  val sessionDatabase: SessionDatabase = SessionDatabase(context, this)
-  val senderKeyDatabase: SenderKeyDatabase = SenderKeyDatabase(context, this)
-  val senderKeySharedDatabase: SenderKeySharedDatabase = SenderKeySharedDatabase(context, this)
-  val pendingRetryReceiptDatabase: PendingRetryReceiptDatabase = PendingRetryReceiptDatabase(context, this)
-  val searchDatabase: SearchDatabase = SearchDatabase(context, this)
-  val stickerDatabase: StickerDatabase = StickerDatabase(context, this, attachmentSecret)
-  val storageIdDatabase: UnknownStorageIdDatabase = UnknownStorageIdDatabase(context, this)
-  val remappedRecordsDatabase: RemappedRecordsDatabase = RemappedRecordsDatabase(context, this)
-  val mentionDatabase: MentionDatabase = MentionDatabase(context, this)
-  val paymentDatabase: PaymentDatabase = PaymentDatabase(context, this)
-  val chatColorsDatabase: ChatColorsDatabase = ChatColorsDatabase(context, this)
-  val emojiSearchDatabase: EmojiSearchDatabase = EmojiSearchDatabase(context, this)
-  val messageSendLogDatabase: MessageSendLogDatabase = MessageSendLogDatabase(context, this)
+  val sms: SmsTable = SmsTable(context, this)
+  val mms: MmsTable = MmsTable(context, this)
+  val attachments: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
+  val media: MediaTable = MediaTable(context, this)
+  val thread: ThreadTable = ThreadTable(context, this)
+  val mmsSmsTable: MmsSmsTable = MmsSmsTable(context, this)
+  val identityTable: IdentityTable = IdentityTable(context, this)
+  val draftTable: DraftTable = DraftTable(context, this)
+  val pushTable: PushTable = PushTable(context, this)
+  val groupTable: GroupTable = GroupTable(context, this)
+  val recipientTable: RecipientTable = RecipientTable(context, this)
+  val groupReceiptTable: GroupReceiptTable = GroupReceiptTable(context, this)
+  val preKeyDatabase: OneTimePreKeyTable = OneTimePreKeyTable(context, this)
+  val signedPreKeyTable: SignedPreKeyTable = SignedPreKeyTable(context, this)
+  val sessionTable: SessionTable = SessionTable(context, this)
+  val senderKeyTable: SenderKeyTable = SenderKeyTable(context, this)
+  val senderKeySharedTable: SenderKeySharedTable = SenderKeySharedTable(context, this)
+  val pendingRetryReceiptTable: PendingRetryReceiptTable = PendingRetryReceiptTable(context, this)
+  val searchTable: SearchTable = SearchTable(context, this)
+  val stickerTable: StickerTable = StickerTable(context, this, attachmentSecret)
+  val storageIdDatabase: UnknownStorageIdTable = UnknownStorageIdTable(context, this)
+  val remappedRecordTables: RemappedRecordTables = RemappedRecordTables(context, this)
+  val mentionTable: MentionTable = MentionTable(context, this)
+  val paymentTable: PaymentTable = PaymentTable(context, this)
+  val chatColorsTable: ChatColorsTable = ChatColorsTable(context, this)
+  val emojiSearchTable: EmojiSearchTable = EmojiSearchTable(context, this)
+  val messageSendLogTables: MessageSendLogTables = MessageSendLogTables(context, this)
   val avatarPickerDatabase: AvatarPickerDatabase = AvatarPickerDatabase(context, this)
-  val groupCallRingDatabase: GroupCallRingDatabase = GroupCallRingDatabase(context, this)
-  val reactionDatabase: ReactionDatabase = ReactionDatabase(context, this)
+  val groupCallRingTable: GroupCallRingTable = GroupCallRingTable(context, this)
+  val reactionTable: ReactionTable = ReactionTable(context, this)
   val notificationProfileDatabase: NotificationProfileDatabase = NotificationProfileDatabase(context, this)
-  val donationReceiptDatabase: DonationReceiptDatabase = DonationReceiptDatabase(context, this)
-  val distributionListDatabase: DistributionListDatabase = DistributionListDatabase(context, this)
-  val storySendsDatabase: StorySendsDatabase = StorySendsDatabase(context, this)
-  val cdsDatabase: CdsDatabase = CdsDatabase(context, this)
-  val remoteMegaphoneDatabase: RemoteMegaphoneDatabase = RemoteMegaphoneDatabase(context, this)
-  val pendingPniSignatureMessageDatabase: PendingPniSignatureMessageDatabase = PendingPniSignatureMessageDatabase(context, this)
+  val donationReceiptTable: DonationReceiptTable = DonationReceiptTable(context, this)
+  val distributionListTables: DistributionListTables = DistributionListTables(context, this)
+  val storySendTable: StorySendTable = StorySendTable(context, this)
+  val cdsTable: CdsTable = CdsTable(context, this)
+  val remoteMegaphoneTable: RemoteMegaphoneTable = RemoteMegaphoneTable(context, this)
+  val pendingPniSignatureMessageTable: PendingPniSignatureMessageTable = PendingPniSignatureMessageTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
   }
 
   override fun onCreate(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
-    db.execSQL(SmsDatabase.CREATE_TABLE)
-    db.execSQL(MmsDatabase.CREATE_TABLE)
-    db.execSQL(AttachmentDatabase.CREATE_TABLE)
-    db.execSQL(ThreadDatabase.CREATE_TABLE)
-    db.execSQL(IdentityDatabase.CREATE_TABLE)
-    db.execSQL(DraftDatabase.CREATE_TABLE)
-    db.execSQL(PushDatabase.CREATE_TABLE)
-    db.execSQL(GroupDatabase.CREATE_TABLE)
-    db.execSQL(RecipientDatabase.CREATE_TABLE)
-    db.execSQL(GroupReceiptDatabase.CREATE_TABLE)
-    db.execSQL(OneTimePreKeyDatabase.CREATE_TABLE)
-    db.execSQL(SignedPreKeyDatabase.CREATE_TABLE)
-    db.execSQL(SessionDatabase.CREATE_TABLE)
-    db.execSQL(SenderKeyDatabase.CREATE_TABLE)
-    db.execSQL(SenderKeySharedDatabase.CREATE_TABLE)
-    db.execSQL(PendingRetryReceiptDatabase.CREATE_TABLE)
-    db.execSQL(StickerDatabase.CREATE_TABLE)
-    db.execSQL(UnknownStorageIdDatabase.CREATE_TABLE)
-    db.execSQL(MentionDatabase.CREATE_TABLE)
-    db.execSQL(PaymentDatabase.CREATE_TABLE)
-    db.execSQL(ChatColorsDatabase.CREATE_TABLE)
-    db.execSQL(EmojiSearchDatabase.CREATE_TABLE)
+    db.execSQL(SmsTable.CREATE_TABLE)
+    db.execSQL(MmsTable.CREATE_TABLE)
+    db.execSQL(AttachmentTable.CREATE_TABLE)
+    db.execSQL(ThreadTable.CREATE_TABLE)
+    db.execSQL(IdentityTable.CREATE_TABLE)
+    db.execSQL(DraftTable.CREATE_TABLE)
+    db.execSQL(PushTable.CREATE_TABLE)
+    db.execSQL(GroupTable.CREATE_TABLE)
+    db.execSQL(RecipientTable.CREATE_TABLE)
+    db.execSQL(GroupReceiptTable.CREATE_TABLE)
+    db.execSQL(OneTimePreKeyTable.CREATE_TABLE)
+    db.execSQL(SignedPreKeyTable.CREATE_TABLE)
+    db.execSQL(SessionTable.CREATE_TABLE)
+    db.execSQL(SenderKeyTable.CREATE_TABLE)
+    db.execSQL(SenderKeySharedTable.CREATE_TABLE)
+    db.execSQL(PendingRetryReceiptTable.CREATE_TABLE)
+    db.execSQL(StickerTable.CREATE_TABLE)
+    db.execSQL(UnknownStorageIdTable.CREATE_TABLE)
+    db.execSQL(MentionTable.CREATE_TABLE)
+    db.execSQL(PaymentTable.CREATE_TABLE)
+    db.execSQL(ChatColorsTable.CREATE_TABLE)
+    db.execSQL(EmojiSearchTable.CREATE_TABLE)
     db.execSQL(AvatarPickerDatabase.CREATE_TABLE)
-    db.execSQL(GroupCallRingDatabase.CREATE_TABLE)
-    db.execSQL(ReactionDatabase.CREATE_TABLE)
-    db.execSQL(DonationReceiptDatabase.CREATE_TABLE)
-    db.execSQL(StorySendsDatabase.CREATE_TABLE)
-    db.execSQL(CdsDatabase.CREATE_TABLE)
-    db.execSQL(RemoteMegaphoneDatabase.CREATE_TABLE)
-    db.execSQL(PendingPniSignatureMessageDatabase.CREATE_TABLE)
-    executeStatements(db, SearchDatabase.CREATE_TABLE)
-    executeStatements(db, RemappedRecordsDatabase.CREATE_TABLE)
-    executeStatements(db, MessageSendLogDatabase.CREATE_TABLE)
+    db.execSQL(GroupCallRingTable.CREATE_TABLE)
+    db.execSQL(ReactionTable.CREATE_TABLE)
+    db.execSQL(DonationReceiptTable.CREATE_TABLE)
+    db.execSQL(StorySendTable.CREATE_TABLE)
+    db.execSQL(CdsTable.CREATE_TABLE)
+    db.execSQL(RemoteMegaphoneTable.CREATE_TABLE)
+    db.execSQL(PendingPniSignatureMessageTable.CREATE_TABLE)
+    executeStatements(db, SearchTable.CREATE_TABLE)
+    executeStatements(db, RemappedRecordTables.CREATE_TABLE)
+    executeStatements(db, MessageSendLogTables.CREATE_TABLE)
     executeStatements(db, NotificationProfileDatabase.CREATE_TABLE)
-    executeStatements(db, DistributionListDatabase.CREATE_TABLE)
+    executeStatements(db, DistributionListTables.CREATE_TABLE)
 
-    executeStatements(db, RecipientDatabase.CREATE_INDEXS)
-    executeStatements(db, SmsDatabase.CREATE_INDEXS)
-    executeStatements(db, MmsDatabase.CREATE_INDEXS)
-    executeStatements(db, AttachmentDatabase.CREATE_INDEXS)
-    executeStatements(db, ThreadDatabase.CREATE_INDEXS)
-    executeStatements(db, DraftDatabase.CREATE_INDEXS)
-    executeStatements(db, GroupDatabase.CREATE_INDEXS)
-    executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES)
-    executeStatements(db, StickerDatabase.CREATE_INDEXES)
-    executeStatements(db, UnknownStorageIdDatabase.CREATE_INDEXES)
-    executeStatements(db, MentionDatabase.CREATE_INDEXES)
-    executeStatements(db, PaymentDatabase.CREATE_INDEXES)
-    executeStatements(db, MessageSendLogDatabase.CREATE_INDEXES)
-    executeStatements(db, GroupCallRingDatabase.CREATE_INDEXES)
+    executeStatements(db, RecipientTable.CREATE_INDEXS)
+    executeStatements(db, SmsTable.CREATE_INDEXS)
+    executeStatements(db, MmsTable.CREATE_INDEXS)
+    executeStatements(db, AttachmentTable.CREATE_INDEXS)
+    executeStatements(db, ThreadTable.CREATE_INDEXS)
+    executeStatements(db, DraftTable.CREATE_INDEXS)
+    executeStatements(db, GroupTable.CREATE_INDEXS)
+    executeStatements(db, GroupReceiptTable.CREATE_INDEXES)
+    executeStatements(db, StickerTable.CREATE_INDEXES)
+    executeStatements(db, UnknownStorageIdTable.CREATE_INDEXES)
+    executeStatements(db, MentionTable.CREATE_INDEXES)
+    executeStatements(db, PaymentTable.CREATE_INDEXES)
+    executeStatements(db, MessageSendLogTables.CREATE_INDEXES)
+    executeStatements(db, GroupCallRingTable.CREATE_INDEXES)
     executeStatements(db, NotificationProfileDatabase.CREATE_INDEXES)
-    executeStatements(db, DonationReceiptDatabase.CREATE_INDEXS)
-    executeStatements(db, StorySendsDatabase.CREATE_INDEXS)
-    executeStatements(db, DistributionListDatabase.CREATE_INDEXES)
-    executeStatements(db, PendingPniSignatureMessageDatabase.CREATE_INDEXES)
+    executeStatements(db, DonationReceiptTable.CREATE_INDEXS)
+    executeStatements(db, StorySendTable.CREATE_INDEXS)
+    executeStatements(db, DistributionListTables.CREATE_INDEXES)
+    executeStatements(db, PendingPniSignatureMessageTable.CREATE_INDEXES)
 
-    executeStatements(db, MessageSendLogDatabase.CREATE_TRIGGERS)
-    executeStatements(db, ReactionDatabase.CREATE_TRIGGERS)
+    executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
+    executeStatements(db, ReactionTable.CREATE_TRIGGERS)
 
-    DistributionListDatabase.insertInitialDistributionListAtCreationTime(db)
+    DistributionListTables.insertInitialDistributionListAtCreationTime(db)
 
     if (context.getDatabasePath(ClassicOpenHelper.NAME).exists()) {
       val legacyHelper = ClassicOpenHelper(context)
@@ -269,7 +269,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         instance!!.sms.deleteAbandonedMessages()
         instance!!.mms.deleteAbandonedMessages()
         instance!!.mms.trimEntriesForExpiredMessages()
-        instance!!.reactionDatabase.deleteAbandonedReactions()
+        instance!!.reactionTable.deleteAbandonedReactions()
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
         instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
@@ -334,7 +334,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("attachments")
-    val attachments: AttachmentDatabase
+    val attachments: AttachmentTable
       get() = instance!!.attachments
 
     @get:JvmStatic
@@ -344,83 +344,83 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("cds")
-    val cds: CdsDatabase
-      get() = instance!!.cdsDatabase
+    val cds: CdsTable
+      get() = instance!!.cdsTable
 
     @get:JvmStatic
     @get:JvmName("chatColors")
-    val chatColors: ChatColorsDatabase
-      get() = instance!!.chatColorsDatabase
+    val chatColors: ChatColorsTable
+      get() = instance!!.chatColorsTable
 
     @get:JvmStatic
     @get:JvmName("distributionLists")
-    val distributionLists: DistributionListDatabase
-      get() = instance!!.distributionListDatabase
+    val distributionLists: DistributionListTables
+      get() = instance!!.distributionListTables
 
     @get:JvmStatic
     @get:JvmName("donationReceipts")
-    val donationReceipts: DonationReceiptDatabase
-      get() = instance!!.donationReceiptDatabase
+    val donationReceipts: DonationReceiptTable
+      get() = instance!!.donationReceiptTable
 
     @get:JvmStatic
     @get:JvmName("drafts")
-    val drafts: DraftDatabase
-      get() = instance!!.draftDatabase
+    val drafts: DraftTable
+      get() = instance!!.draftTable
 
     @get:JvmStatic
     @get:JvmName("emojiSearch")
-    val emojiSearch: EmojiSearchDatabase
-      get() = instance!!.emojiSearchDatabase
+    val emojiSearch: EmojiSearchTable
+      get() = instance!!.emojiSearchTable
 
     @get:JvmStatic
     @get:JvmName("groupCallRings")
-    val groupCallRings: GroupCallRingDatabase
-      get() = instance!!.groupCallRingDatabase
+    val groupCallRings: GroupCallRingTable
+      get() = instance!!.groupCallRingTable
 
     @get:JvmStatic
     @get:JvmName("groupReceipts")
-    val groupReceipts: GroupReceiptDatabase
-      get() = instance!!.groupReceiptDatabase
+    val groupReceipts: GroupReceiptTable
+      get() = instance!!.groupReceiptTable
 
     @get:JvmStatic
     @get:JvmName("groups")
-    val groups: GroupDatabase
-      get() = instance!!.groupDatabase
+    val groups: GroupTable
+      get() = instance!!.groupTable
 
     @get:JvmStatic
     @get:JvmName("identities")
-    val identities: IdentityDatabase
-      get() = instance!!.identityDatabase
+    val identities: IdentityTable
+      get() = instance!!.identityTable
 
     @get:JvmStatic
     @get:JvmName("media")
-    val media: MediaDatabase
+    val media: MediaTable
       get() = instance!!.media
 
     @get:JvmStatic
     @get:JvmName("mentions")
-    val mentions: MentionDatabase
-      get() = instance!!.mentionDatabase
+    val mentions: MentionTable
+      get() = instance!!.mentionTable
 
     @get:JvmStatic
     @get:JvmName("messageSearch")
-    val messageSearch: SearchDatabase
-      get() = instance!!.searchDatabase
+    val messageSearch: SearchTable
+      get() = instance!!.searchTable
 
     @get:JvmStatic
     @get:JvmName("messageLog")
-    val messageLog: MessageSendLogDatabase
-      get() = instance!!.messageSendLogDatabase
+    val messageLog: MessageSendLogTables
+      get() = instance!!.messageSendLogTables
 
     @get:JvmStatic
     @get:JvmName("mms")
-    val mms: MmsDatabase
+    val mms: MmsTable
       get() = instance!!.mms
 
     @get:JvmStatic
     @get:JvmName("mmsSms")
-    val mmsSms: MmsSmsDatabase
-      get() = instance!!.mmsSmsDatabase
+    val mmsSms: MmsSmsTable
+      get() = instance!!.mmsSmsTable
 
     @get:JvmStatic
     @get:JvmName("notificationProfiles")
@@ -429,93 +429,93 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("payments")
-    val payments: PaymentDatabase
-      get() = instance!!.paymentDatabase
+    val payments: PaymentTable
+      get() = instance!!.paymentTable
 
     @get:JvmStatic
     @get:JvmName("pendingRetryReceipts")
-    val pendingRetryReceipts: PendingRetryReceiptDatabase
-      get() = instance!!.pendingRetryReceiptDatabase
+    val pendingRetryReceipts: PendingRetryReceiptTable
+      get() = instance!!.pendingRetryReceiptTable
 
     @get:JvmStatic
     @get:JvmName("oneTimePreKeys")
-    val oneTimePreKeys: OneTimePreKeyDatabase
+    val oneTimePreKeys: OneTimePreKeyTable
       get() = instance!!.preKeyDatabase
 
     @get:Deprecated("This only exists to migrate from legacy storage. There shouldn't be any new usages.")
     @get:JvmStatic
     @get:JvmName("push")
-    val push: PushDatabase
-      get() = instance!!.pushDatabase
+    val push: PushTable
+      get() = instance!!.pushTable
 
     @get:JvmStatic
     @get:JvmName("recipients")
-    val recipients: RecipientDatabase
-      get() = instance!!.recipientDatabase
+    val recipients: RecipientTable
+      get() = instance!!.recipientTable
 
     @get:JvmStatic
     @get:JvmName("signedPreKeys")
-    val signedPreKeys: SignedPreKeyDatabase
-      get() = instance!!.signedPreKeyDatabase
+    val signedPreKeys: SignedPreKeyTable
+      get() = instance!!.signedPreKeyTable
 
     @get:JvmStatic
     @get:JvmName("sms")
-    val sms: SmsDatabase
+    val sms: SmsTable
       get() = instance!!.sms
 
     @get:JvmStatic
     @get:JvmName("threads")
-    val threads: ThreadDatabase
+    val threads: ThreadTable
       get() = instance!!.thread
 
     @get:JvmStatic
     @get:JvmName("reactions")
-    val reactions: ReactionDatabase
-      get() = instance!!.reactionDatabase
+    val reactions: ReactionTable
+      get() = instance!!.reactionTable
 
     @get:JvmStatic
     @get:JvmName("remappedRecords")
-    val remappedRecords: RemappedRecordsDatabase
-      get() = instance!!.remappedRecordsDatabase
+    val remappedRecords: RemappedRecordTables
+      get() = instance!!.remappedRecordTables
 
     @get:JvmStatic
     @get:JvmName("senderKeys")
-    val senderKeys: SenderKeyDatabase
-      get() = instance!!.senderKeyDatabase
+    val senderKeys: SenderKeyTable
+      get() = instance!!.senderKeyTable
 
     @get:JvmStatic
     @get:JvmName("senderKeyShared")
-    val senderKeyShared: SenderKeySharedDatabase
-      get() = instance!!.senderKeySharedDatabase
+    val senderKeyShared: SenderKeySharedTable
+      get() = instance!!.senderKeySharedTable
 
     @get:JvmStatic
     @get:JvmName("sessions")
-    val sessions: SessionDatabase
-      get() = instance!!.sessionDatabase
+    val sessions: SessionTable
+      get() = instance!!.sessionTable
 
     @get:JvmStatic
     @get:JvmName("stickers")
-    val stickers: StickerDatabase
-      get() = instance!!.stickerDatabase
+    val stickers: StickerTable
+      get() = instance!!.stickerTable
 
     @get:JvmStatic
     @get:JvmName("storySends")
-    val storySends: StorySendsDatabase
-      get() = instance!!.storySendsDatabase
+    val storySends: StorySendTable
+      get() = instance!!.storySendTable
 
     @get:JvmStatic
     @get:JvmName("unknownStorageIds")
-    val unknownStorageIds: UnknownStorageIdDatabase
+    val unknownStorageIds: UnknownStorageIdTable
       get() = instance!!.storageIdDatabase
 
     @get:JvmStatic
     @get:JvmName("remoteMegaphones")
-    val remoteMegaphones: RemoteMegaphoneDatabase
-      get() = instance!!.remoteMegaphoneDatabase
+    val remoteMegaphones: RemoteMegaphoneTable
+      get() = instance!!.remoteMegaphoneTable
 
     @get:JvmStatic
     @get:JvmName("pendingPniSignatureMessages")
-    val pendingPniSignatureMessages: PendingPniSignatureMessageDatabase
-      get() = instance!!.pendingPniSignatureMessageDatabase
+    val pendingPniSignatureMessages: PendingPniSignatureMessageTable
+      get() = instance!!.pendingPniSignatureMessageTable
   }
 }

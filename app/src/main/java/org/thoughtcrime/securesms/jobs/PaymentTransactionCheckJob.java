@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -52,9 +52,9 @@ public final class PaymentTransactionCheckJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    PaymentDatabase paymentDatabase = SignalDatabase.payments();
+    PaymentTable paymentDatabase = SignalDatabase.payments();
 
-    PaymentDatabase.PaymentTransaction payment = paymentDatabase.getPayment(uuid);
+    PaymentTable.PaymentTransaction payment = paymentDatabase.getPayment(uuid);
 
     if (payment == null) {
       Log.w(TAG, "No payment found for UUID " + uuid);

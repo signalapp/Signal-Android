@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AudioView
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
-import org.thoughtcrime.securesms.database.DraftDatabase
+import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.mms.AudioSlide
 
 class VoiceNoteDraftView @JvmOverloads constructor(
@@ -20,7 +20,7 @@ class VoiceNoteDraftView @JvmOverloads constructor(
 
   var listener: Listener? = null
 
-  var draft: DraftDatabase.Draft? = null
+  var draft: DraftTable.Draft? = null
     private set
 
   private lateinit var audioView: AudioView
@@ -49,7 +49,7 @@ class VoiceNoteDraftView @JvmOverloads constructor(
     this.draft = null
   }
 
-  fun setDraft(draft: DraftDatabase.Draft) {
+  fun setDraft(draft: DraftTable.Draft) {
     audioView.setAudio(
       AudioSlide.createFromVoiceNoteDraft(context, draft),
       AudioViewCallbacksAdapter(),

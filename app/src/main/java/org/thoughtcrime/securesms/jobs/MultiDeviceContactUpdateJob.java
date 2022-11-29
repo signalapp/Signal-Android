@@ -16,7 +16,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.conversation.colors.ChatColorsMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.permissions.Permissions;
-import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -144,7 +143,7 @@ public class MultiDeviceContactUpdateJob extends BaseJob {
       DeviceContactsOutputStream out       = new DeviceContactsOutputStream(writeDetails.outputStream);
       Recipient                  recipient = Recipient.resolved(recipientId);
 
-      if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
+      if (recipient.getRegistered() == RecipientTable.RegisteredState.NOT_REGISTERED) {
         Log.w(TAG, recipientId + " not registered!");
         return;
       }

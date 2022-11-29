@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.conversation.drafts
 
-import org.thoughtcrime.securesms.database.DraftDatabase
-import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
+import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.DraftTable.Drafts
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -13,11 +13,11 @@ data class DraftState(
   val recipientId: RecipientId = RecipientId.UNKNOWN,
   val threadId: Long = -1,
   val distributionType: Int = 0,
-  val textDraft: DraftDatabase.Draft? = null,
-  val mentionsDraft: DraftDatabase.Draft? = null,
-  val quoteDraft: DraftDatabase.Draft? = null,
-  val locationDraft: DraftDatabase.Draft? = null,
-  val voiceNoteDraft: DraftDatabase.Draft? = null,
+  val textDraft: DraftTable.Draft? = null,
+  val mentionsDraft: DraftTable.Draft? = null,
+  val quoteDraft: DraftTable.Draft? = null,
+  val locationDraft: DraftTable.Draft? = null,
+  val voiceNoteDraft: DraftTable.Draft? = null,
 ) {
 
   fun copyAndClearDrafts(threadId: Long = this.threadId): DraftState {
@@ -37,11 +37,11 @@ data class DraftState(
   fun copyAndSetDrafts(threadId: Long, drafts: Drafts): DraftState {
     return copy(
       threadId = threadId,
-      textDraft = drafts.getDraftOfType(DraftDatabase.Draft.TEXT),
-      mentionsDraft = drafts.getDraftOfType(DraftDatabase.Draft.MENTION),
-      quoteDraft = drafts.getDraftOfType(DraftDatabase.Draft.QUOTE),
-      locationDraft = drafts.getDraftOfType(DraftDatabase.Draft.LOCATION),
-      voiceNoteDraft = drafts.getDraftOfType(DraftDatabase.Draft.VOICE_NOTE),
+      textDraft = drafts.getDraftOfType(DraftTable.Draft.TEXT),
+      mentionsDraft = drafts.getDraftOfType(DraftTable.Draft.MENTION),
+      quoteDraft = drafts.getDraftOfType(DraftTable.Draft.QUOTE),
+      locationDraft = drafts.getDraftOfType(DraftTable.Draft.LOCATION),
+      voiceNoteDraft = drafts.getDraftOfType(DraftTable.Draft.VOICE_NOTE),
     )
   }
 }

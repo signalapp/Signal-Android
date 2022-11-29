@@ -10,8 +10,8 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -34,8 +34,8 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsightsData(@NonNull Consumer<InsightsData> insightsDataConsumer) {
     SimpleTask.run(() -> {
-      MmsSmsDatabase mmsSmsDatabase = SignalDatabase.mmsSms();
-      int            insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
+      MmsSmsTable mmsSmsDatabase = SignalDatabase.mmsSms();
+      int         insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
       int            secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
 
       if (insecure + secure == 0) {
@@ -49,8 +49,8 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsecureRecipients(@NonNull Consumer<List<Recipient>> insecureRecipientsConsumer) {
     SimpleTask.run(() -> {
-      RecipientDatabase recipientDatabase      = SignalDatabase.recipients();
-      List<RecipientId> unregisteredRecipients = recipientDatabase.getUninvitedRecipientsForInsights();
+      RecipientTable    recipientTable         = SignalDatabase.recipients();
+      List<RecipientId> unregisteredRecipients = recipientTable.getUninvitedRecipientsForInsights();
 
       return Stream.of(unregisteredRecipients)
                    .map(Recipient::resolved)
@@ -80,7 +80,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
 
       MessageSender.send(context, new OutgoingTextMessage(resolved, message, subscriptionId), -1L, true, null, null);
 
-      RecipientDatabase database = SignalDatabase.recipients();
+      RecipientTable database = SignalDatabase.recipients();
       database.setHasSentInvite(recipient.getId());
 
       return null;

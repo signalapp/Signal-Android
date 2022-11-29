@@ -16,8 +16,8 @@ import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord;
-import org.thoughtcrime.securesms.database.OneTimePreKeyDatabase;
-import org.thoughtcrime.securesms.database.SignedPreKeyDatabase;
+import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
+import org.thoughtcrime.securesms.database.SignedPreKeyTable;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -48,10 +48,10 @@ public final class PreKeyMigrationHelper {
             PreKeyRecord preKey = new PreKeyRecord(loadSerializedRecord(preKeyFile));
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(OneTimePreKeyDatabase.KEY_ID, preKey.getId());
-            contentValues.put(OneTimePreKeyDatabase.PUBLIC_KEY, Base64.encodeBytes(preKey.getKeyPair().getPublicKey().serialize()));
-            contentValues.put(OneTimePreKeyDatabase.PRIVATE_KEY, Base64.encodeBytes(preKey.getKeyPair().getPrivateKey().serialize()));
-            database.insert(OneTimePreKeyDatabase.TABLE_NAME, null, contentValues);
+            contentValues.put(OneTimePreKeyTable.KEY_ID, preKey.getId());
+            contentValues.put(OneTimePreKeyTable.PUBLIC_KEY, Base64.encodeBytes(preKey.getKeyPair().getPublicKey().serialize()));
+            contentValues.put(OneTimePreKeyTable.PRIVATE_KEY, Base64.encodeBytes(preKey.getKeyPair().getPrivateKey().serialize()));
+            database.insert(OneTimePreKeyTable.TABLE_NAME, null, contentValues);
             Log.i(TAG, "Migrated one-time prekey: " + preKey.getId());
           } catch (IOException | InvalidMessageException | InvalidKeyException e) {
             Log.w(TAG, e);
@@ -70,12 +70,12 @@ public final class PreKeyMigrationHelper {
             SignedPreKeyRecord signedPreKey = new SignedPreKeyRecord(loadSerializedRecord(signedPreKeyFile));
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SignedPreKeyDatabase.KEY_ID, signedPreKey.getId());
-            contentValues.put(SignedPreKeyDatabase.PUBLIC_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPublicKey().serialize()));
-            contentValues.put(SignedPreKeyDatabase.PRIVATE_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPrivateKey().serialize()));
-            contentValues.put(SignedPreKeyDatabase.SIGNATURE, Base64.encodeBytes(signedPreKey.getSignature()));
-            contentValues.put(SignedPreKeyDatabase.TIMESTAMP, signedPreKey.getTimestamp());
-            database.insert(SignedPreKeyDatabase.TABLE_NAME, null, contentValues);
+            contentValues.put(SignedPreKeyTable.KEY_ID, signedPreKey.getId());
+            contentValues.put(SignedPreKeyTable.PUBLIC_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPublicKey().serialize()));
+            contentValues.put(SignedPreKeyTable.PRIVATE_KEY, Base64.encodeBytes(signedPreKey.getKeyPair().getPrivateKey().serialize()));
+            contentValues.put(SignedPreKeyTable.SIGNATURE, Base64.encodeBytes(signedPreKey.getSignature()));
+            contentValues.put(SignedPreKeyTable.TIMESTAMP, signedPreKey.getTimestamp());
+            database.insert(SignedPreKeyTable.TABLE_NAME, null, contentValues);
             Log.i(TAG, "Migrated signed prekey: " + signedPreKey.getId());
           } catch (IOException | InvalidMessageException e) {
             Log.w(TAG, e);

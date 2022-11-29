@@ -13,8 +13,8 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
-import org.thoughtcrime.securesms.database.AttachmentDatabase
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
@@ -70,7 +70,7 @@ sealed class ConversationSettingsViewModel(
         val ids: List<Long> = cursor.map<List<Long>> {
           val result = mutableListOf<Long>()
           while (it.moveToNext()) {
-            result.add(CursorUtil.requireLong(it, AttachmentDatabase.ROW_ID))
+            result.add(CursorUtil.requireLong(it, AttachmentTable.ROW_ID))
           }
           result
         }.orElse(listOf())
@@ -148,9 +148,9 @@ sealed class ConversationSettingsViewModel(
         state.copy(
           recipient = recipient,
           buttonStripState = ButtonStripPreference.State(
-            isVideoAvailable = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
+            isVideoAvailable = recipient.registered == RecipientTable.RegisteredState.REGISTERED && !recipient.isSelf && !recipient.isBlocked && !recipient.isReleaseNotes,
             isAudioAvailable = isAudioAvailable,
-            isAudioSecure = recipient.registered == RecipientDatabase.RegisteredState.REGISTERED,
+            isAudioSecure = recipient.registered == RecipientTable.RegisteredState.REGISTERED,
             isMuted = recipient.isMuted,
             isMuteAvailable = !recipient.isSelf,
             isSearchAvailable = true

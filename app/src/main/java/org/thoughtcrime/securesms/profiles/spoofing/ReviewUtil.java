@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
@@ -60,7 +60,7 @@ public final class ReviewUtil {
     }
 
     List<Recipient> members = SignalDatabase.groups()
-                                             .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
+                                             .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_INCLUDING_SELF);
 
     List<ReviewRecipient> changed = Stream.of(profileChangeRecords)
                                           .distinctBy(record -> record.getRecipient().getId())
@@ -105,7 +105,7 @@ public final class ReviewUtil {
     return Stream.of(SignalDatabase.groups()
                  .getPushGroupsContainingMember(recipientId))
                  .filter(g -> g.getMembers().contains(Recipient.self().getId()))
-                 .map(GroupDatabase.GroupRecord::getRecipientId)
+                 .map(GroupTable.GroupRecord::getRecipientId)
                  .toList()
                  .size();
   }

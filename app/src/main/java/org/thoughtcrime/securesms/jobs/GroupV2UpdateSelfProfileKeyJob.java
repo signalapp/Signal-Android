@@ -8,7 +8,7 @@ import com.google.protobuf.ByteString;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -112,7 +112,7 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
       boolean foundMismatch = false;
 
       for (GroupId.V2 id : SignalDatabase.groups().getAllGroupV2Ids()) {
-        Optional<GroupDatabase.GroupRecord> group = SignalDatabase.groups().getGroup(id);
+        Optional<GroupTable.GroupRecord> group = SignalDatabase.groups().getGroup(id);
         if (!group.isPresent()) {
           Log.w(TAG, "Group " + group + " no longer exists?");
           continue;

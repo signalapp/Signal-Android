@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
-import org.thoughtcrime.securesms.database.MmsDatabase
 import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MmsTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -18,7 +18,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
     val results: MutableList<ReplyBody> = ArrayList(length)
     SignalDatabase.mms.getStoryReplies(parentStoryId).use { cursor ->
       cursor.moveToPosition(start - 1)
-      val reader = MmsDatabase.Reader(cursor)
+      val reader = MmsTable.Reader(cursor)
       while (cursor.moveToNext() && cursor.position < start + length) {
         results.add(readRowFromRecord(reader.current as MmsMessageRecord))
       }

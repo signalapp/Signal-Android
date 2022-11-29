@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.avatar.AvatarPickerStorage;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.emoji.EmojiFiles;
 import org.thoughtcrime.securesms.providers.BlobProvider;
@@ -153,7 +153,7 @@ public class PartAuthority {
     }
   }
 
-  public static @Nullable AttachmentDatabase.TransformProperties getAttachmentTransformProperties(@NonNull Uri uri) {
+  public static @Nullable AttachmentTable.TransformProperties getAttachmentTransformProperties(@NonNull Uri uri) {
     int match = uriMatcher.match(uri);
     switch (match) {
       case PART_ROW:

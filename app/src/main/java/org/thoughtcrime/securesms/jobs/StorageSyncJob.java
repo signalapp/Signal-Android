@@ -11,9 +11,9 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdTable;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -131,7 +131,7 @@ import java.util.stream.Collectors;
  *     - Adding the parameter to the builder chain when creating a merged model
  * - Update builder usage in StorageSyncModels
  * - Handle the new data when writing to the local storage
- *   (i.e. {@link RecipientDatabase#applyStorageSyncContactUpdate(StorageRecordUpdate)}).
+ *   (i.e. {@link RecipientTable#applyStorageSyncContactUpdate(StorageRecordUpdate)}).
  * - Make sure that whenever you change the field in the UI, we rotate the storageId for that row
  *   and call {@link StorageSyncHelper#scheduleSyncForDataChange()}.
  * - If you're syncing a field that was otherwise already present in the UI, you'll probably want
@@ -227,7 +227,7 @@ public class StorageSyncJob extends BaseJob {
     final Stopwatch                   stopwatch         = new Stopwatch("StorageSync");
     final SQLiteDatabase              db                = SignalDatabase.getRawDatabase();
     final SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    final UnknownStorageIdDatabase    storageIdDatabase = SignalDatabase.unknownStorageIds();
+    final UnknownStorageIdTable       storageIdDatabase = SignalDatabase.unknownStorageIds();
     final StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
 
     final SignalStorageManifest localManifest  = SignalStore.storageService().getManifest();
@@ -428,8 +428,8 @@ public class StorageSyncJob extends BaseJob {
       return Collections.emptyList();
     }
 
-    RecipientDatabase        recipientDatabase = SignalDatabase.recipients();
-    UnknownStorageIdDatabase storageIdDatabase = SignalDatabase.unknownStorageIds();
+    RecipientTable        recipientTable    = SignalDatabase.recipients();
+    UnknownStorageIdTable storageIdDatabase = SignalDatabase.unknownStorageIds();
 
     List<SignalStorageRecord> records = new ArrayList<>(ids.size());
 
@@ -438,9 +438,9 @@ public class StorageSyncJob extends BaseJob {
         case ManifestRecord.Identifier.Type.CONTACT_VALUE:
         case ManifestRecord.Identifier.Type.GROUPV1_VALUE:
         case ManifestRecord.Identifier.Type.GROUPV2_VALUE:
-          RecipientRecord settings = recipientDatabase.getByStorageId(id.getRaw());
+          RecipientRecord settings = recipientTable.getByStorageId(id.getRaw());
           if (settings != null) {
-            if (settings.getGroupType() == RecipientDatabase.GroupType.SIGNAL_V2 && settings.getSyncExtras().getGroupMasterKey() == null) {
+            if (settings.getGroupType() == RecipientTable.GroupType.SIGNAL_V2 && settings.getSyncExtras().getGroupMasterKey() == null) {
               throw new MissingGv2MasterKeyError();
             } else {
               records.add(StorageSyncModels.localToRemoteRecord(settings));
@@ -456,7 +456,7 @@ public class StorageSyncJob extends BaseJob {
           records.add(StorageSyncHelper.buildAccountRecord(context, self));
           break;
         case ManifestRecord.Identifier.Type.STORY_DISTRIBUTION_LIST_VALUE:
-          RecipientRecord record = recipientDatabase.getByStorageId(id.getRaw());
+          RecipientRecord record = recipientTable.getByStorageId(id.getRaw());
           if (record != null) {
             if (record.getDistributionListId() != null) {
               records.add(StorageSyncModels.localToRemoteRecord(record));

@@ -24,9 +24,9 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.Badges;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.UnidentifiedAccessMode;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.RecipientTable.UnidentifiedAccessMode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -121,7 +121,7 @@ public class RetrieveProfileJob extends BaseJob {
     if (recipient.isSelf()) {
       return new RefreshOwnProfileJob();
     } else if (recipient.isGroup()) {
-      List<RecipientId> recipients = SignalDatabase.groups().getGroupMemberIds(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      List<RecipientId> recipients = SignalDatabase.groups().getGroupMemberIds(recipient.requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       return new RetrieveProfileJob(new HashSet<>(recipients));
     } else {
@@ -146,7 +146,7 @@ public class RetrieveProfileJob extends BaseJob {
       if (recipient.isSelf()) {
         includeSelf = true;
       } else if (recipient.isGroup()) {
-        List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(recipient.requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+        List<Recipient> recipients = SignalDatabase.groups().getGroupMembers(recipient.requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
         combined.addAll(Stream.of(recipients).map(Recipient::getId).toList());
       } else {
         combined.add(recipientId);
@@ -186,8 +186,8 @@ public class RetrieveProfileJob extends BaseJob {
     }
 
     SignalExecutors.BOUNDED.execute(() -> {
-      RecipientDatabase db      = SignalDatabase.recipients();
-      long              current = System.currentTimeMillis();
+      RecipientTable db      = SignalDatabase.recipients();
+      long           current = System.currentTimeMillis();
 
       List<RecipientId> ids = db.getRecipientsForRoutineProfileFetch(current - TimeUnit.DAYS.toMillis(30),
                                                                      current - TimeUnit.DAYS.toMillis(1),
@@ -243,11 +243,11 @@ public class RetrieveProfileJob extends BaseJob {
       return;
     }
 
-    Stopwatch         stopwatch         = new Stopwatch("RetrieveProfile");
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
+    Stopwatch      stopwatch      = new Stopwatch("RetrieveProfile");
+    RecipientTable recipientTable = SignalDatabase.recipients();
 
     RecipientUtil.ensureUuidsAreAvailable(context, Stream.of(Recipient.resolvedList(recipientIds))
-                                                         .filter(r -> r.getRegistered() != RecipientDatabase.RegisteredState.NOT_REGISTERED)
+                                                         .filter(r -> r.getRegistered() != RecipientTable.RegisteredState.NOT_REGISTERED)
                                                          .toList());
 
     List<Recipient> recipients = Recipient.resolvedList(recipientIds);
@@ -301,11 +301,11 @@ public class RetrieveProfileJob extends BaseJob {
       });
     });
 
-    recipientDatabase.markProfilesFetched(success, System.currentTimeMillis());
+    recipientTable.markProfilesFetched(success, System.currentTimeMillis());
     // XXX The service hasn't implemented profiles for PNIs yet, so if using PNP CDS we don't want to mark users without profiles as unregistered.
     if ((operationState.unregistered.size() > 0 || newlyRegistered.size() > 0) && !FeatureFlags.phoneNumberPrivacy()) {
       Log.i(TAG, "Marking " + newlyRegistered.size() + " users as registered and " + operationState.unregistered.size() + " users as unregistered.");
-      recipientDatabase.bulkUpdatedRegisteredStatus(newlyRegistered, operationState.unregistered);
+      recipientTable.bulkUpdatedRegisteredStatus(newlyRegistered, operationState.unregistered);
     }
 
     stopwatch.split("process");
@@ -377,8 +377,8 @@ public class RetrieveProfileJob extends BaseJob {
                                                @NonNull ProfileKey recipientProfileKey,
                                                @NonNull ExpiringProfileKeyCredential credential)
   {
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    recipientDatabase.setProfileKeyCredential(recipient.getId(), recipientProfileKey, credential);
+    RecipientTable recipientTable = SignalDatabase.recipients();
+    recipientTable.setProfileKeyCredential(recipient.getId(), recipientProfileKey, credential);
   }
 
   private static SignalServiceProfile.RequestType getRequestType(@NonNull Recipient recipient) {
@@ -407,18 +407,18 @@ public class RetrieveProfileJob extends BaseJob {
   }
 
   private void setUnidentifiedAccessMode(Recipient recipient, String unidentifiedAccessVerifier, boolean unrestrictedUnidentifiedAccess) {
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    ProfileKey        profileKey        = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
+    RecipientTable recipientTable = SignalDatabase.recipients();
+    ProfileKey     profileKey     = ProfileKeyUtil.profileKeyOrNull(recipient.getProfileKey());
 
     if (unrestrictedUnidentifiedAccess && unidentifiedAccessVerifier != null) {
       if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.UNRESTRICTED) {
         Log.i(TAG, "Marking recipient UD status as unrestricted.");
-        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
+        recipientTable.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.UNRESTRICTED);
       }
     } else if (profileKey == null || unidentifiedAccessVerifier == null) {
       if (recipient.getUnidentifiedAccessMode() != UnidentifiedAccessMode.DISABLED) {
         Log.i(TAG, "Marking recipient UD status as disabled.");
-        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
+        recipientTable.setUnidentifiedAccessMode(recipient.getId(), UnidentifiedAccessMode.DISABLED);
       }
     } else {
       ProfileCipher profileCipher = new ProfileCipher(profileKey);
@@ -435,7 +435,7 @@ public class RetrieveProfileJob extends BaseJob {
 
       if (recipient.getUnidentifiedAccessMode() != mode) {
         Log.i(TAG, "Marking recipient UD status as " + mode.name() + " after verification.");
-        recipientDatabase.setUnidentifiedAccessMode(recipient.getId(), mode);
+        recipientTable.setUnidentifiedAccessMode(recipient.getId(), mode);
       }
     }
   }

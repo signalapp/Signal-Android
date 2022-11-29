@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.ReactionDatabase;
+import org.thoughtcrime.securesms.database.ReactionTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -138,7 +138,7 @@ public class ReactionSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
+    ReactionTable reactionTable = SignalDatabase.reactions();
 
     MessageRecord  message;
 
@@ -155,12 +155,12 @@ public class ReactionSendJob extends BaseJob {
       return;
     }
 
-    if (!remove && !reactionDatabase.hasReaction(messageId, reaction)) {
+    if (!remove && !reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to add a reaction, but it's no longer present on the message!");
       return;
     }
 
-    if (remove && reactionDatabase.hasReaction(messageId, reaction)) {
+    if (remove && reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to remove a reaction, but it's still there!");
       return;
     }
@@ -209,14 +209,14 @@ public class ReactionSendJob extends BaseJob {
 
     Log.w(TAG, "Failed to send the reaction to all recipients!");
 
-    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
+    ReactionTable reactionTable = SignalDatabase.reactions();
 
-    if (remove && !reactionDatabase.hasReaction(messageId, reaction)) {
+    if (remove && !reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Reaction removal failed, so adding the reaction back.");
-      reactionDatabase.addReaction(messageId, reaction);
-    } else if (!remove && reactionDatabase.hasReaction(messageId, reaction)){
+      reactionTable.addReaction(messageId, reaction);
+    } else if (!remove && reactionTable.hasReaction(messageId, reaction)){
       Log.w(TAG, "Reaction addition failed, so removing the reaction.");
-      reactionDatabase.deleteReaction(messageId, reaction.getAuthor());
+      reactionTable.deleteReaction(messageId, reaction.getAuthor());
     } else {
       Log.w(TAG, "Reaction state didn't match what we'd expect to revert it, so we're just leaving it alone.");
     }

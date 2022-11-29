@@ -9,9 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -20,13 +20,13 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
 
   private static final String TAG = Log.tag(TrimThreadsByDateManager.class);
 
-  private final ThreadDatabase threadDatabase;
-  private final MmsSmsDatabase mmsSmsDatabase;
+  private final ThreadTable threadTable;
+  private final MmsSmsTable mmsSmsDatabase;
 
   public TrimThreadsByDateManager(@NonNull Application application) {
     super(application, "TrimThreadsByDateManager");
 
-    threadDatabase = SignalDatabase.threads();
+    threadTable    = SignalDatabase.threads();
     mmsSmsDatabase = SignalDatabase.mmsSms();
 
     scheduleIfNecessary();
@@ -60,13 +60,13 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
     KeepMessagesDuration keepMessagesDuration = SignalStore.settings().getKeepMessagesDuration();
 
     int trimLength = SignalStore.settings().isTrimByLengthEnabled() ? SignalStore.settings().getThreadTrimLength()
-                                                                    : ThreadDatabase.NO_TRIM_MESSAGE_COUNT_SET;
+                                                                    : ThreadTable.NO_TRIM_MESSAGE_COUNT_SET;
 
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
-                                                                               : ThreadDatabase.NO_TRIM_BEFORE_DATE_SET;
+                                                                               : ThreadTable.NO_TRIM_BEFORE_DATE_SET;
 
     Log.i(TAG, "Trimming all threads with length: " + trimLength + " before: " + trimBeforeDate);
-    threadDatabase.trimAllThreads(trimLength, trimBeforeDate);
+    threadTable.trimAllThreads(trimLength, trimBeforeDate);
   }
 
   @Override

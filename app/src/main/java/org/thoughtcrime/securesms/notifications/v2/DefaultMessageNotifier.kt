@@ -14,7 +14,7 @@ import me.leolin.shortcutbadger.ShortcutBadger
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -141,16 +141,16 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     if (state.muteFilteredMessages.isNotEmpty()) {
       Log.i(TAG, "Marking ${state.muteFilteredMessages.size} muted messages as notified to skip notification")
       state.muteFilteredMessages.forEach { item ->
-        val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
-        messageDatabase.markAsNotified(item.id)
+        val messageTable: MessageTable = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+        messageTable.markAsNotified(item.id)
       }
     }
 
     if (state.profileFilteredMessages.isNotEmpty()) {
       Log.i(TAG, "Marking ${state.profileFilteredMessages.size} profile filtered messages as notified to skip notification")
       state.profileFilteredMessages.forEach { item ->
-        val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
-        messageDatabase.markAsNotified(item.id)
+        val messageTable: MessageTable = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+        messageTable.markAsNotified(item.id)
       }
     }
 
@@ -158,8 +158,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
       Log.i(TAG, "Marking ${state.conversations.size} conversations as notified to skip notification")
       state.conversations.forEach { conversation ->
         conversation.notificationItems.forEach { item ->
-          val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
-          messageDatabase.markAsNotified(item.id)
+          val messageTable: MessageTable = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+          messageTable.markAsNotified(item.id)
         }
       }
       return
@@ -172,8 +172,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
         .forEach { conversation ->
           cleanedUpThreads += conversation.thread
           conversation.notificationItems.forEach { item ->
-            val messageDatabase: MessageDatabase = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
-            messageDatabase.markAsNotified(item.id)
+            val messageTable: MessageTable = if (item.isMms) SignalDatabase.mms else SignalDatabase.sms
+            messageTable.markAsNotified(item.id)
           }
         }
       if (cleanedUpThreads.isNotEmpty()) {

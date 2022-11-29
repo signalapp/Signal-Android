@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DeviceLastResetTime;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -121,7 +121,7 @@ public class AutomaticSessionResetJob extends BaseJob {
   }
 
   private void insertLocalMessage() {
-    MessageDatabase.InsertResult result = SignalDatabase.sms().insertChatSessionRefreshedMessage(recipientId, deviceId, sentTimestamp);
+    MessageTable.InsertResult result = SignalDatabase.sms().insertChatSessionRefreshedMessage(recipientId, deviceId, sentTimestamp);
     ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(result.getThreadId()));
   }
 

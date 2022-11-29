@@ -12,9 +12,9 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase.ExpirationInfo;
-import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MessageTable.ExpirationInfo;
+import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;

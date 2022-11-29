@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListRecord
@@ -42,7 +42,7 @@ class BaseStoryRecipientSelectionRepository {
       SignalDatabase.recipients.getSignalContacts(false)?.use {
         val recipientSet = mutableSetOf<RecipientId>()
         while (it.moveToNext()) {
-          recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, RecipientDatabase.ID)))
+          recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
         }
 
         recipientSet

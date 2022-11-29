@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord;
+import org.thoughtcrime.securesms.database.SenderKeyTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.whispersystems.signalservice.api.SignalServiceSenderKeyStore;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -18,7 +19,7 @@ import javax.annotation.Nullable;
 
 /**
  * An implementation of the storage interface used by the protocol layer to store sender keys. For
- * more details around sender keys, see {@link org.thoughtcrime.securesms.database.SenderKeyDatabase}.
+ * more details around sender keys, see {@link SenderKeyTable}.
  */
 public final class SignalSenderKeyStore implements SignalServiceSenderKeyStore {
 

@@ -17,7 +17,7 @@ import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -378,7 +378,7 @@ public final class ProfileUtil {
   }
 
   private static @NonNull SignalServiceAddress toSignalServiceAddress(@NonNull Context context, @NonNull Recipient recipient) throws IOException {
-    if (recipient.getRegistered() == RecipientDatabase.RegisteredState.NOT_REGISTERED) {
+    if (recipient.getRegistered() == RecipientTable.RegisteredState.NOT_REGISTERED) {
       if (recipient.hasServiceId()) {
         return new SignalServiceAddress(recipient.requireServiceId(), recipient.getE164().orElse(null));
       } else {

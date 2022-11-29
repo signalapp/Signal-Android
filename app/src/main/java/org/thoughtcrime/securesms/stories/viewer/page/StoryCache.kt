@@ -7,7 +7,7 @@ import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -38,7 +38,7 @@ class StoryCache(
       .asSequence()
       .filter { it.uri != null && it.uri !in cache }
       .filter { MediaUtil.isImage(it) || it.blurHash != null }
-      .filter { it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE }
+      .filter { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
       .toList()
 
     val newMappings: Map<Uri, StoryCacheValue> = prefetchableAttachments.associateWith { attachment ->

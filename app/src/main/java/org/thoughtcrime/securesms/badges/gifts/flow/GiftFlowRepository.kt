@@ -8,7 +8,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -70,7 +70,7 @@ class GiftFlowRepository {
         throw DonationError.GiftRecipientVerificationError.SelectedRecipientDoesNotSupportGifts
       }
 
-      if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientDatabase.RegisteredState.REGISTERED) {
+      if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
         Log.w(TAG, "Invalid badge recipient $badgeRecipient. Verification failed.", true)
         throw DonationError.GiftRecipientVerificationError.SelectedRecipientIsInvalid
       }

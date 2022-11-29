@@ -5,19 +5,19 @@ import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 
 public final class ThreadMediaLoader extends MediaLoader {
 
            private final long                  threadId;
-  @NonNull private final MediaType             mediaType;
-  @NonNull private final MediaDatabase.Sorting sorting;
+  @NonNull private final MediaType          mediaType;
+  @NonNull private final MediaTable.Sorting sorting;
 
   public ThreadMediaLoader(@NonNull Context context,
                            long threadId,
                            @NonNull MediaType mediaType,
-                           @NonNull MediaDatabase.Sorting sorting)
+                           @NonNull MediaTable.Sorting sorting)
   {
     super(context);
     this.threadId  = threadId;
@@ -33,8 +33,8 @@ public final class ThreadMediaLoader extends MediaLoader {
   static Cursor createThreadMediaCursor(@NonNull Context context,
                                         long threadId,
                                         @NonNull MediaType mediaType,
-                                        @NonNull MediaDatabase.Sorting sorting) {
-    MediaDatabase mediaDatabase = SignalDatabase.media();
+                                        @NonNull MediaTable.Sorting sorting) {
+    MediaTable mediaDatabase = SignalDatabase.media();
 
     switch (mediaType) {
       case GALLERY : return mediaDatabase.getGalleryMediaForThread(threadId, sorting);

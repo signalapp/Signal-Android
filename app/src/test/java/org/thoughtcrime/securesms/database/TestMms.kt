@@ -23,7 +23,7 @@ object TestMms {
     subscriptionId: Int = -1,
     expiresIn: Long = 0,
     viewOnce: Boolean = false,
-    distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
+    distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
     type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
     unread: Boolean = false,
     viewed: Boolean = false,
@@ -76,41 +76,41 @@ object TestMms {
     receivedTimestampMillis: Long = System.currentTimeMillis(),
   ): Long {
     val contentValues = ContentValues().apply {
-      put(MmsDatabase.DATE_SENT, message.sentTimeMillis)
-      put(MmsDatabase.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
+      put(MmsTable.DATE_SENT, message.sentTimeMillis)
+      put(MmsTable.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
-      put(MmsDatabase.MESSAGE_BOX, type)
+      put(MmsTable.MESSAGE_BOX, type)
       put(MmsSmsColumns.THREAD_ID, threadId)
       put(MmsSmsColumns.READ, if (unread) 0 else 1)
-      put(MmsDatabase.DATE_RECEIVED, receivedTimestampMillis)
+      put(MmsTable.DATE_RECEIVED, receivedTimestampMillis)
       put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
-      put(MmsDatabase.VIEW_ONCE, message.isViewOnce)
+      put(MmsTable.VIEW_ONCE, message.isViewOnce)
       put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
       put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
       put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
       put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
-      put(MmsDatabase.STORY_TYPE, message.storyType.code)
+      put(MmsTable.STORY_TYPE, message.storyType.code)
 
       put(MmsSmsColumns.BODY, body)
-      put(MmsDatabase.PART_COUNT, 0)
-      put(MmsDatabase.MENTIONS_SELF, 0)
+      put(MmsTable.PART_COUNT, 0)
+      put(MmsTable.MENTIONS_SELF, 0)
     }
 
-    return db.insert(MmsDatabase.TABLE_NAME, null, contentValues)
+    return db.insert(MmsTable.TABLE_NAME, null, contentValues)
   }
 
   fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {
     val values = ContentValues()
     values.put(MmsSmsColumns.REMOTE_DELETED, 1)
     values.putNull(MmsSmsColumns.BODY)
-    values.putNull(MmsDatabase.QUOTE_BODY)
-    values.putNull(MmsDatabase.QUOTE_AUTHOR)
-    values.putNull(MmsDatabase.QUOTE_ATTACHMENT)
-    values.put(MmsDatabase.QUOTE_TYPE, -1)
-    values.putNull(MmsDatabase.QUOTE_ID)
-    values.putNull(MmsDatabase.LINK_PREVIEWS)
-    values.putNull(MmsDatabase.SHARED_CONTACTS)
-    db.update(MmsDatabase.TABLE_NAME, values, Database.ID_WHERE, arrayOf(messageId.toString()))
+    values.putNull(MmsTable.QUOTE_BODY)
+    values.putNull(MmsTable.QUOTE_AUTHOR)
+    values.putNull(MmsTable.QUOTE_ATTACHMENT)
+    values.put(MmsTable.QUOTE_TYPE, -1)
+    values.putNull(MmsTable.QUOTE_ID)
+    values.putNull(MmsTable.LINK_PREVIEWS)
+    values.putNull(MmsTable.SHARED_CONTACTS)
+    db.update(MmsTable.TABLE_NAME, values, DatabaseTable.ID_WHERE, arrayOf(messageId.toString()))
   }
 }

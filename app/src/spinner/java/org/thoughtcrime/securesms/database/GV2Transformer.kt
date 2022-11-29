@@ -14,16 +14,16 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 
 object GV2Transformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == GroupDatabase.V2_DECRYPTED_GROUP || columnName == GroupDatabase.MEMBERS
+    return columnName == GroupTable.V2_DECRYPTED_GROUP || columnName == GroupTable.MEMBERS
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
-    return if (columnName == GroupDatabase.V2_DECRYPTED_GROUP) {
-      val groupBytes = cursor.requireBlob(GroupDatabase.V2_DECRYPTED_GROUP)
+    return if (columnName == GroupTable.V2_DECRYPTED_GROUP) {
+      val groupBytes = cursor.requireBlob(GroupTable.V2_DECRYPTED_GROUP)
       val group = DecryptedGroup.parseFrom(groupBytes)
       group.formatAsHtml()
     } else {
-      val members = cursor.requireString(GroupDatabase.MEMBERS)
+      val members = cursor.requireString(GroupTable.MEMBERS)
       members?.split(',')?.chunked(20)?.joinToString("<br>") { it.joinToString(",") } ?: ""
     }
   }

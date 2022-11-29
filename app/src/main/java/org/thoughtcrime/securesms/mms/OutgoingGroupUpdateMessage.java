@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
@@ -36,7 +36,7 @@ public final class OutgoingGroupUpdateMessage extends OutgoingSecureMediaMessage
           groupContext.getEncodedGroupContext(),
           avatar,
           sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION,
+          ThreadTable.DistributionTypes.CONVERSATION,
           expiresIn,
           viewOnce,
           StoryType.NONE,

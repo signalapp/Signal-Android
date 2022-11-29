@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -60,8 +60,8 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException {
-    GroupDatabase         database   = SignalDatabase.groups();
-    Optional<GroupRecord> record     = database.getGroup(groupId);
+    GroupTable            database = SignalDatabase.groups();
+    Optional<GroupRecord> record   = database.getGroup(groupId);
     File                  attachment = null;
 
     try {

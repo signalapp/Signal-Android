@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -129,7 +129,7 @@ public final class AttachmentCompressionJob extends BaseJob {
   public void onRun() throws Exception {
     Log.d(TAG, "Running for: " + attachmentId);
 
-    AttachmentDatabase database           = SignalDatabase.attachments();
+    AttachmentTable    database           = SignalDatabase.attachments();
     DatabaseAttachment databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {
@@ -155,7 +155,7 @@ public final class AttachmentCompressionJob extends BaseJob {
     return exception instanceof IOException;
   }
 
-  private void compress(@NonNull AttachmentDatabase attachmentDatabase,
+  private void compress(@NonNull AttachmentTable attachmentDatabase,
                         @NonNull MediaConstraints constraints,
                         @NonNull DatabaseAttachment attachment)
       throws UndeliverableMessageException
@@ -187,14 +187,14 @@ public final class AttachmentCompressionJob extends BaseJob {
   }
 
   private static @NonNull DatabaseAttachment transcodeVideoIfNeededToDatabase(@NonNull Context context,
-                                                                              @NonNull AttachmentDatabase attachmentDatabase,
+                                                                              @NonNull AttachmentTable attachmentDatabase,
                                                                               @NonNull DatabaseAttachment attachment,
                                                                               @NonNull MediaConstraints constraints,
                                                                               @NonNull EventBus eventBus,
                                                                               @NonNull TranscoderCancelationSignal cancelationSignal)
       throws UndeliverableMessageException
   {
-    AttachmentDatabase.TransformProperties transformProperties = attachment.getTransformProperties();
+    AttachmentTable.TransformProperties transformProperties = attachment.getTransformProperties();
 
     boolean allowSkipOnFailure = false;
 

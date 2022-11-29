@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -82,7 +82,7 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
       )
 
       if (state.hasMentionsSupport) {
-        val mentionSelection = if (state.mentionSetting == RecipientDatabase.MentionSetting.ALWAYS_NOTIFY) {
+        val mentionSelection = if (state.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY) {
           0
         } else {
           1
@@ -96,9 +96,9 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
           onSelected = {
             viewModel.setMentionSetting(
               if (it == 0) {
-                RecipientDatabase.MentionSetting.ALWAYS_NOTIFY
+                RecipientTable.MentionSetting.ALWAYS_NOTIFY
               } else {
-                RecipientDatabase.MentionSetting.DO_NOT_NOTIFY
+                RecipientTable.MentionSetting.DO_NOT_NOTIFY
               }
             )
           }

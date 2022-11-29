@@ -8,7 +8,7 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
@@ -86,7 +86,7 @@ class TextStoryPostSendRepository {
           -1,
           0,
           false,
-          ThreadDatabase.DistributionTypes.DEFAULT,
+          ThreadTable.DistributionTypes.DEFAULT,
           storyType.toTextStoryType(),
           null,
           false,

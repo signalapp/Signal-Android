@@ -12,9 +12,8 @@ import org.signal.libsignal.protocol.InvalidRegistrationIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.MessageSendLogDatabase;
-import org.thoughtcrime.securesms.database.SentStorySyncManifest;
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
+import org.thoughtcrime.securesms.database.MessageSendLogTables;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -52,7 +51,6 @@ import org.whispersystems.signalservice.internal.push.http.PartialSendCompleteLi
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -372,8 +370,8 @@ public final class GroupSendUtil {
       List<Optional<UnidentifiedAccessPair>> access          = legacyTargets.stream().map(r -> recipients.getAccessPair(r.getId())).collect(Collectors.toList());
       boolean                                recipientUpdate = isRecipientUpdate || allResults.size() > 0;
 
-      final MessageSendLogDatabase messageLogDatabase  = SignalDatabase.messageLog();
-      final AtomicLong             entryId             = new AtomicLong(-1);
+      final MessageSendLogTables messageLogDatabase = SignalDatabase.messageLog();
+      final AtomicLong           entryId            = new AtomicLong(-1);
       final boolean                includeInMessageLog = sendOperation.shouldIncludeInMessageLog();
 
       List<SendMessageResult> results = sendOperation.sendLegacy(messageSender, targets, legacyTargets, access, recipientUpdate, result -> {

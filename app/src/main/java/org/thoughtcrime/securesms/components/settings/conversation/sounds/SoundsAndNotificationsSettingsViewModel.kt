@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.settings.conversation.sounds
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -38,7 +38,7 @@ class SoundsAndNotificationsSettingsViewModel(
     repository.setMuteUntil(recipientId, 0L)
   }
 
-  fun setMentionSetting(mentionSetting: RecipientDatabase.MentionSetting) {
+  fun setMentionSetting(mentionSetting: RecipientTable.MentionSetting) {
     repository.setMentionSetting(recipientId, mentionSetting)
   }
 

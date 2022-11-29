@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.PointerAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHashEncoder;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -125,7 +125,7 @@ public final class AttachmentUploadJob extends BaseJob {
     }
 
     SignalServiceMessageSender messageSender      = ApplicationDependencies.getSignalServiceMessageSender();
-    AttachmentDatabase         database           = SignalDatabase.attachments();
+    AttachmentTable            database           = SignalDatabase.attachments();
     DatabaseAttachment         databaseAttachment = database.getAttachment(attachmentId);
 
     if (databaseAttachment == null) {

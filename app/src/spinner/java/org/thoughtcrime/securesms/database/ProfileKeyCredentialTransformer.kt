@@ -13,11 +13,11 @@ import java.security.MessageDigest
 
 object ProfileKeyCredentialTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == RecipientDatabase.EXPIRING_PROFILE_KEY_CREDENTIAL && (tableName == null || tableName == RecipientDatabase.TABLE_NAME)
+    return columnName == RecipientTable.EXPIRING_PROFILE_KEY_CREDENTIAL && (tableName == null || tableName == RecipientTable.TABLE_NAME)
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
-    val columnDataString = cursor.requireString(RecipientDatabase.EXPIRING_PROFILE_KEY_CREDENTIAL) ?: return DefaultColumnTransformer.transform(tableName, columnName, cursor)
+    val columnDataString = cursor.requireString(RecipientTable.EXPIRING_PROFILE_KEY_CREDENTIAL) ?: return DefaultColumnTransformer.transform(tableName, columnName, cursor)
     val columnDataBytes = Base64.decode(columnDataString)
     val columnData = ExpiringProfileKeyCredentialColumnData.parseFrom(columnDataBytes)
     val credential = ExpiringProfileKeyCredential(columnData.expiringProfileKeyCredential.toByteArray())

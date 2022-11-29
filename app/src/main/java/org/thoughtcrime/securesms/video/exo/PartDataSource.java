@@ -12,7 +12,7 @@ import com.google.android.exoplayer2.upstream.DataSpec;
 import com.google.android.exoplayer2.upstream.TransferListener;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 
@@ -44,8 +44,8 @@ class PartDataSource implements DataSource {
   public long open(DataSpec dataSpec) throws IOException {
     this.uri = dataSpec.uri;
 
-    AttachmentDatabase attachmentDatabase = SignalDatabase.attachments();
-    PartUriParser      partUri            = new PartUriParser(uri);
+    AttachmentTable attachmentDatabase = SignalDatabase.attachments();
+    PartUriParser   partUri            = new PartUriParser(uri);
     Attachment         attachment         = attachmentDatabase.getAttachment(partUri.getPartId());
 
     if (attachment == null) throw new IOException("Attachment not found");

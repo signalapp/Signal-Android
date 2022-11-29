@@ -29,16 +29,16 @@ import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.DraftDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.PushDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.DraftTable;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupReceiptTable;
+import org.thoughtcrime.securesms.database.IdentityTable;
+import org.thoughtcrime.securesms.database.MmsTable;
+import org.thoughtcrime.securesms.database.PushTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.SmsTable;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
@@ -128,24 +128,24 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-    db.execSQL(SmsDatabase.CREATE_TABLE);
-    db.execSQL(MmsDatabase.CREATE_TABLE);
-    db.execSQL(AttachmentDatabase.CREATE_TABLE);
-    db.execSQL(ThreadDatabase.CREATE_TABLE);
-    db.execSQL(IdentityDatabase.CREATE_TABLE);
-    db.execSQL(DraftDatabase.CREATE_TABLE);
-    db.execSQL(PushDatabase.CREATE_TABLE);
-    db.execSQL(GroupDatabase.CREATE_TABLE);
-    db.execSQL(RecipientDatabase.CREATE_TABLE);
-    db.execSQL(GroupReceiptDatabase.CREATE_TABLE);
+    db.execSQL(SmsTable.CREATE_TABLE);
+    db.execSQL(MmsTable.CREATE_TABLE);
+    db.execSQL(AttachmentTable.CREATE_TABLE);
+    db.execSQL(ThreadTable.CREATE_TABLE);
+    db.execSQL(IdentityTable.CREATE_TABLE);
+    db.execSQL(DraftTable.CREATE_TABLE);
+    db.execSQL(PushTable.CREATE_TABLE);
+    db.execSQL(GroupTable.CREATE_TABLE);
+    db.execSQL(RecipientTable.CREATE_TABLE);
+    db.execSQL(GroupReceiptTable.CREATE_TABLE);
 
-    executeStatements(db, SmsDatabase.CREATE_INDEXS);
-    executeStatements(db, MmsDatabase.CREATE_INDEXS);
-    executeStatements(db, AttachmentDatabase.CREATE_INDEXS);
-    executeStatements(db, ThreadDatabase.CREATE_INDEXS);
-    executeStatements(db, DraftDatabase.CREATE_INDEXS);
-    executeStatements(db, GroupDatabase.CREATE_INDEXS);
-    executeStatements(db, GroupReceiptDatabase.CREATE_INDEXES);
+    executeStatements(db, SmsTable.CREATE_INDEXS);
+    executeStatements(db, MmsTable.CREATE_INDEXS);
+    executeStatements(db, AttachmentTable.CREATE_INDEXS);
+    executeStatements(db, ThreadTable.CREATE_INDEXS);
+    executeStatements(db, DraftTable.CREATE_INDEXS);
+    executeStatements(db, GroupTable.CREATE_INDEXS);
+    executeStatements(db, GroupReceiptTable.CREATE_INDEXES);
   }
 
   public void onApplicationLevelUpgrade(Context context, MasterSecret masterSecret, int fromVersion,
@@ -404,10 +404,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
         Cursor       cursor       = null;
 
         try {
-          cursor = db.query(SmsDatabase.TABLE_NAME,
-                            new String[] {SmsDatabase.ID, SmsDatabase.BODY, SmsDatabase.TYPE},
-                            SmsDatabase.TYPE + " & ? == 0",
-                            new String[] {String.valueOf(SmsDatabase.Types.ENCRYPTION_MASK)},
+          cursor = db.query(SmsTable.TABLE_NAME,
+                            new String[] { SmsTable.ID, SmsTable.BODY, SmsTable.TYPE},
+                            SmsTable.TYPE + " & ? == 0",
+                            new String[] {String.valueOf(SmsTable.Types.ENCRYPTION_MASK)},
                             null, null, null);
 
           while (cursor.moveToNext()) {
@@ -418,10 +418,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
             String encryptedBody = masterCipher.encryptBody(body);
 
             ContentValues update = new ContentValues();
-            update.put(SmsDatabase.BODY, encryptedBody);
-            update.put(SmsDatabase.TYPE, type | 0x80000000); // Inline now deprecated symmetric encryption type
+            update.put(SmsTable.BODY, encryptedBody);
+            update.put(SmsTable.TYPE, type | 0x80000000); // Inline now deprecated symmetric encryption type
 
-            db.update(SmsDatabase.TABLE_NAME, update, SmsDatabase.ID  + " = ?",
+            db.update(SmsTable.TABLE_NAME, update, SmsTable.ID + " = ?",
                       new String[] {String.valueOf(id)});
           }
         } finally {

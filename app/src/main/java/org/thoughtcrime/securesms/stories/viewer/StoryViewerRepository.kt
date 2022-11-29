@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.stories.viewer
 
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -22,7 +22,7 @@ open class StoryViewerRepository {
     } else {
       Single.fromCallable {
         val recipient = Recipient.resolved(recipientId)
-        val reader: MessageDatabase.Reader = if (recipient.isMyStory || recipient.isSelf) {
+        val reader: MessageTable.Reader = if (recipient.isMyStory || recipient.isSelf) {
           SignalDatabase.mms.getAllOutgoingStories(false, 1)
         } else {
           val unread = SignalDatabase.mms.getUnreadStories(recipientId, 1)

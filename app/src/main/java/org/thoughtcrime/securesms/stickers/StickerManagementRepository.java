@@ -6,10 +6,10 @@ import android.database.Cursor;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase.StickerPackRecordReader;
+import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -22,9 +22,9 @@ import java.util.List;
 
 final class StickerManagementRepository {
 
-  private final Context            context;
-  private final StickerDatabase    stickerDatabase;
-  private final AttachmentDatabase attachmentDatabase;
+  private final Context         context;
+  private final StickerTable    stickerDatabase;
+  private final AttachmentTable attachmentDatabase;
 
   StickerManagementRepository(@NonNull Context context) {
     this.context            = context.getApplicationContext();
@@ -42,8 +42,8 @@ final class StickerManagementRepository {
 
       try (Cursor cursor = attachmentDatabase.getUnavailableStickerPacks()) {
         while (cursor != null && cursor.moveToNext()) {
-          String packId  = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.STICKER_PACK_ID));
-          String packKey = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentDatabase.STICKER_PACK_KEY));
+          String packId  = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentTable.STICKER_PACK_ID));
+          String packKey = cursor.getString(cursor.getColumnIndexOrThrow(AttachmentTable.STICKER_PACK_KEY));
 
           jobManager.add(StickerPackDownloadJob.forReference(packId, packKey));
         }

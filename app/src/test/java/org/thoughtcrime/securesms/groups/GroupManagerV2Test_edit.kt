@@ -27,8 +27,8 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedMember
 import org.thoughtcrime.securesms.SignalStoreRule
 import org.thoughtcrime.securesms.TestZkGroupServer
-import org.thoughtcrime.securesms.database.GroupDatabase
 import org.thoughtcrime.securesms.database.GroupStateTestData
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.databaseprotos.member
 import org.thoughtcrime.securesms.groups.v2.GroupCandidateHelper
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
@@ -62,7 +62,7 @@ class GroupManagerV2Test_edit {
     val others: List<DecryptedMember> = listOf(member(otherSid))
   }
 
-  private lateinit var groupDatabase: GroupDatabase
+  private lateinit var groupTable: GroupTable
   private lateinit var groupsV2API: GroupsV2Api
   private lateinit var groupsV2Operations: GroupsV2Operations
   private lateinit var groupsV2Authorization: GroupsV2Authorization
@@ -87,7 +87,7 @@ class GroupManagerV2Test_edit {
 
     val clientZkOperations = ClientZkOperations(server.getServerPublicParams())
 
-    groupDatabase = mock(GroupDatabase::class.java)
+    groupTable = mock(GroupTable::class.java)
     groupsV2API = mock(GroupsV2Api::class.java)
     groupsV2Operations = GroupsV2Operations(clientZkOperations, 1000)
     groupsV2Authorization = mock(GroupsV2Authorization::class.java)
@@ -100,7 +100,7 @@ class GroupManagerV2Test_edit {
 
     manager = GroupManagerV2(
       ApplicationProvider.getApplicationContext(),
-      groupDatabase,
+      groupTable,
       groupsV2API,
       groupsV2Operations,
       groupsV2Authorization,
@@ -115,8 +115,8 @@ class GroupManagerV2Test_edit {
     val data = GroupStateTestData(masterKey, groupOperations)
     data.init()
 
-    Mockito.doReturn(data.groupRecord).`when`(groupDatabase).getGroup(groupId)
-    Mockito.doReturn(data.groupRecord.get()).`when`(groupDatabase).requireGroup(groupId)
+    Mockito.doReturn(data.groupRecord).`when`(groupTable).getGroup(groupId)
+    Mockito.doReturn(data.groupRecord.get()).`when`(groupTable).requireGroup(groupId)
 
     Mockito.doReturn(GroupManagerV2.RecipientAndThread(Recipient.UNKNOWN, 1)).`when`(sendGroupUpdateHelper).sendGroupUpdate(Mockito.eq(masterKey), Mockito.any(), Mockito.any(), Mockito.anyBoolean())
 
@@ -128,7 +128,7 @@ class GroupManagerV2Test_edit {
   }
 
   private fun then(then: (DecryptedGroup) -> Unit) {
-    Mockito.verify(groupDatabase).update(Mockito.eq(groupId), patchedDecryptedGroup.capture())
+    Mockito.verify(groupTable).update(Mockito.eq(groupId), patchedDecryptedGroup.capture())
     then(patchedDecryptedGroup.value)
   }
 

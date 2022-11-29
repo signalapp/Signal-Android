@@ -4,7 +4,7 @@ import android.net.Uri
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.blurhash.BlurHash
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
 
 object UriAttachmentBuilder {
@@ -12,7 +12,7 @@ object UriAttachmentBuilder {
     id: Long,
     uri: Uri = Uri.parse("content://$id"),
     contentType: String,
-    transferState: Int = AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+    transferState: Int = AttachmentTable.TRANSFER_PROGRESS_PENDING,
     size: Long = 0L,
     fileName: String = "file$id",
     voiceNote: Boolean = false,
@@ -23,7 +23,7 @@ object UriAttachmentBuilder {
     stickerLocator: StickerLocator? = null,
     blurHash: BlurHash? = null,
     audioHash: AudioHash? = null,
-    transformProperties: AttachmentDatabase.TransformProperties? = null
+    transformProperties: AttachmentTable.TransformProperties? = null
   ): UriAttachment {
     return UriAttachment(
       uri,

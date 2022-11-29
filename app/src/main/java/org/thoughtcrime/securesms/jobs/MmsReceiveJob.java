@@ -9,7 +9,7 @@ import com.google.android.mms.pdu_alt.PduParser;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -76,7 +76,7 @@ public class MmsReceiveJob extends BaseJob {
     } else if (isNotification(pdu) && isSelf(pdu)) {
       Log.w(TAG, "Received an MMS from ourselves! Ignoring.");
     } else if (isNotification(pdu)) {
-      MessageDatabase  database           = SignalDatabase.mms();
+      MessageTable     database           = SignalDatabase.mms();
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
       Log.i(TAG, "Inserted received MMS notification...");

@@ -10,8 +10,8 @@ import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
-import org.thoughtcrime.securesms.database.MessageDatabase
-import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
+import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.addButton
@@ -203,7 +203,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         }
 
         ThreadUtil.sleep(5)
-        val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
+        val insertResult: MessageTable.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
           recipientId = values.releaseChannelRecipientId!!,
           body = body,
           threadId = threadId,
@@ -294,7 +294,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val megaphonesToDelete = existingMegaphones
       .filterKeys { !manifestMegaphones.contains(it) }
-      .filterValues { it.minimumVersion != RemoteMegaphoneDatabase.VERSION_FINISHED }
+      .filterValues { it.minimumVersion != RemoteMegaphoneTable.VERSION_FINISHED }
 
     if (megaphonesToDelete.isNotEmpty()) {
       Log.i(TAG, "Clearing ${megaphonesToDelete.size} stale megaphones ${megaphonesToDelete.keys}")

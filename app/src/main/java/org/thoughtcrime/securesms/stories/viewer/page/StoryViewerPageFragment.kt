@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardBottomSheet
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewFragment
 import org.thoughtcrime.securesms.mediapreview.VideoControlsDelegate
@@ -693,7 +693,7 @@ class StoryViewerPageFragment :
 
   private fun markViewedIfAble() {
     val post = viewModel.getPost() ?: return
-    if (post.content.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE) {
+    if (post.content.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
       if (isResumed) {
         viewModel.markViewed(post)
       }
@@ -737,27 +737,27 @@ class StoryViewerPageFragment :
     }
 
     when (post.content.transferState) {
-      AttachmentDatabase.TRANSFER_PROGRESS_DONE -> {
+      AttachmentTable.TRANSFER_PROGRESS_DONE -> {
         storySlate.moveToState(StorySlateView.State.HIDDEN, post.id)
         viewModel.setIsDisplayingSlate(false)
         markViewedIfAble()
       }
-      AttachmentDatabase.TRANSFER_PROGRESS_PENDING -> {
+      AttachmentTable.TRANSFER_PROGRESS_PENDING -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
-      AttachmentDatabase.TRANSFER_PROGRESS_STARTED -> {
+      AttachmentTable.TRANSFER_PROGRESS_STARTED -> {
         storySlate.moveToState(StorySlateView.State.LOADING, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
-      AttachmentDatabase.TRANSFER_PROGRESS_FAILED -> {
+      AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
         storySlate.moveToState(StorySlateView.State.ERROR, post.id)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)
       }
-      AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
+      AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
         storySlate.moveToState(StorySlateView.State.FAILED, post.id, post.sender)
         sharedViewModel.setContentIsReady()
         viewModel.setIsDisplayingSlate(true)

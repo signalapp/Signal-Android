@@ -85,16 +85,16 @@ public class SmsMigrator {
     int columnIndex = cursor.getColumnIndexOrThrow(key);
 
     if (cursor.isNull(columnIndex)) {
-      statement.bindLong(index, SmsDatabase.Types.BASE_INBOX_TYPE);
+      statement.bindLong(index, SmsTable.Types.BASE_INBOX_TYPE);
     } else {
       long theirType = cursor.getLong(columnIndex);
-      statement.bindLong(index, SmsDatabase.Types.translateFromSystemBaseType(theirType));
+      statement.bindLong(index, SmsTable.Types.translateFromSystemBaseType(theirType));
     }
   }
 
   private static boolean isAppropriateTypeForMigration(Cursor cursor, int columnIndex) {
     long systemType = cursor.getLong(columnIndex);
-    long ourType    = SmsDatabase.Types.translateFromSystemBaseType(systemType);
+    long ourType    = SmsTable.Types.translateFromSystemBaseType(systemType);
 
     return ourType == MmsSmsColumns.Types.BASE_INBOX_TYPE ||
            ourType == MmsSmsColumns.Types.BASE_SENT_TYPE ||
@@ -163,8 +163,8 @@ public class SmsMigrator {
                                           ProgressDescription progress,
                                           long theirThreadId, long ourThreadId)
   {
-    MessageDatabase ourSmsDatabase = SignalDatabase.sms();
-    Cursor          cursor         = null;
+    MessageTable ourSmsDatabase = SignalDatabase.sms();
+    Cursor       cursor         = null;
     SQLiteStatement statement      = null;
 
     try {
@@ -183,7 +183,7 @@ public class SmsMigrator {
 
       while (cursor != null && cursor.moveToNext()) {
         int addressColumn = cursor.getColumnIndexOrThrow(SystemColumns.ADDRESS);
-        int typeColumn    = cursor.getColumnIndex(SmsDatabase.TYPE);
+        int typeColumn    = cursor.getColumnIndex(SmsTable.TYPE);
 
         if (!cursor.isNull(addressColumn) && (cursor.isNull(typeColumn) || isAppropriateTypeForMigration(cursor, typeColumn))) {
           getContentValuesForRow(context, cursor, ourThreadId, statement);
@@ -211,8 +211,8 @@ public class SmsMigrator {
 //    if (context.getSharedPreferences("SecureSMS", Context.MODE_PRIVATE).getBoolean("migrated", false))
 //      return;
 
-    ThreadDatabase threadDatabase = SignalDatabase.threads();
-    Cursor cursor                 = null;
+    ThreadTable threadTable = SignalDatabase.threads();
+    Cursor      cursor      = null;
 
     try {
       Uri threadListUri = Uri.parse("content://mms-sms/conversations?simple=true");
@@ -226,7 +226,7 @@ public class SmsMigrator {
 
         if (ourRecipients != null) {
           if (ourRecipients.size() == 1) {
-            long ourThreadId = threadDatabase.getOrCreateThreadIdFor(ourRecipients.iterator().next());
+            long ourThreadId = threadTable.getOrCreateThreadIdFor(ourRecipients.iterator().next());
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           } else if (ourRecipients.size() > 1) {
             ourRecipients.add(Recipient.self());
@@ -236,7 +236,7 @@ public class SmsMigrator {
             GroupId.Mms ourGroupId          = SignalDatabase.groups().getOrCreateMmsGroupForMembers(recipientIds);
             RecipientId ourGroupRecipientId = SignalDatabase.recipients().getOrInsertFromGroupId(ourGroupId);
             Recipient   ourGroupRecipient   = Recipient.resolved(ourGroupRecipientId);
-            long        ourThreadId         = threadDatabase.getOrCreateThreadIdFor(ourGroupRecipient, ThreadDatabase.DistributionTypes.CONVERSATION);
+            long        ourThreadId         = threadTable.getOrCreateThreadIdFor(ourGroupRecipient, ThreadTable.DistributionTypes.CONVERSATION);
 
             migrateConversation(context, listener, progress, theirThreadId, ourThreadId);
           }

@@ -99,7 +99,7 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
 class GroupStateTestData(private val masterKey: GroupMasterKey, private val groupOperations: GroupsV2Operations.GroupOperations? = null) {
 
   var localState: DecryptedGroup? = null
-  var groupRecord: Optional<GroupDatabase.GroupRecord> = Optional.empty()
+  var groupRecord: Optional<GroupTable.GroupRecord> = Optional.empty()
   var serverState: DecryptedGroup? = null
   var changeSet: ChangeSet? = null
   var groupChange: GroupChange? = null
@@ -172,9 +172,9 @@ fun groupRecord(
   avatarDigest: ByteArray = ByteArray(0),
   mms: Boolean = false,
   distributionId: DistributionId? = null
-): Optional<GroupDatabase.GroupRecord> {
+): Optional<GroupTable.GroupRecord> {
   return Optional.of(
-    GroupDatabase.GroupRecord(
+    GroupTable.GroupRecord(
       id,
       recipientId,
       decryptedGroup.title,

@@ -8,7 +8,7 @@ import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -206,7 +206,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
     } else if (giftMessageId != NO_ID) {
       Log.d(TAG, "Marking gift redemption completed for " + giftMessageId);
       SignalDatabase.mms().markGiftRedemptionCompleted(giftMessageId);
-      MessageDatabase.MarkedMessageInfo markedMessageInfo = SignalDatabase.mms().setIncomingMessageViewed(giftMessageId);
+      MessageTable.MarkedMessageInfo markedMessageInfo = SignalDatabase.mms().setIncomingMessageViewed(giftMessageId);
       if (markedMessageInfo != null) {
         Log.d(TAG, "Marked gift message viewed for " + giftMessageId);
         MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));

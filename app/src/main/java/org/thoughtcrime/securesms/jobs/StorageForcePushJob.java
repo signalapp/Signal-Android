@@ -6,9 +6,9 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.UnknownStorageIdDatabase;
+import org.thoughtcrime.securesms.database.UnknownStorageIdTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -88,16 +88,16 @@ public class StorageForcePushJob extends BaseJob {
 
     StorageKey                  storageServiceKey = SignalStore.storageService().getOrCreateStorageKey();
     SignalServiceAccountManager accountManager    = ApplicationDependencies.getSignalServiceAccountManager();
-    RecipientDatabase           recipientDatabase = SignalDatabase.recipients();
-    UnknownStorageIdDatabase    storageIdDatabase = SignalDatabase.unknownStorageIds();
+    RecipientTable        recipientTable    = SignalDatabase.recipients();
+    UnknownStorageIdTable storageIdDatabase = SignalDatabase.unknownStorageIds();
 
     long                        currentVersion       = accountManager.getStorageManifestVersion();
-    Map<RecipientId, StorageId> oldContactStorageIds = recipientDatabase.getContactStorageSyncIdsMap();
+    Map<RecipientId, StorageId> oldContactStorageIds = recipientTable.getContactStorageSyncIdsMap();
 
     long                        newVersion           = currentVersion + 1;
     Map<RecipientId, StorageId> newContactStorageIds = generateContactStorageIds(oldContactStorageIds);
     List<SignalStorageRecord>   inserts              = Stream.of(oldContactStorageIds.keySet())
-                                                             .map(recipientDatabase::getRecordForSync)
+                                                             .map(recipientTable::getRecordForSync)
                                                              .withoutNulls()
                                                              .map(s -> StorageSyncModels.localToRemoteRecord(s, Objects.requireNonNull(newContactStorageIds.get(s.getId())).getRaw()))
                                                              .toList();
@@ -132,8 +132,8 @@ public class StorageForcePushJob extends BaseJob {
 
     Log.i(TAG, "Force push succeeded. Updating local manifest version to: " + newVersion);
     SignalStore.storageService().setManifest(manifest);
-    recipientDatabase.applyStorageIdUpdates(newContactStorageIds);
-    recipientDatabase.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
+    recipientTable.applyStorageIdUpdates(newContactStorageIds);
+    recipientTable.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().getId(), accountRecord.getId()));
     storageIdDatabase.deleteAll();
   }
 

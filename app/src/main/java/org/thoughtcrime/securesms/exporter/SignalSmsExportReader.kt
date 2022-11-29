@@ -4,10 +4,10 @@ import org.signal.core.util.logging.Log
 import org.signal.smsexporter.ExportableMessage
 import org.signal.smsexporter.SmsExportState
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.database.MessageDatabase
-import org.thoughtcrime.securesms.database.MmsDatabase
+import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.MmsTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.SmsDatabase
+import org.thoughtcrime.securesms.database.SmsTable
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -23,8 +23,8 @@ import kotlin.time.Duration.Companion.milliseconds
  * we "page" through the unexported messages to reduce chances of exceeding that limit.
  */
 class SignalSmsExportReader(
-  private val smsDatabase: MessageDatabase = SignalDatabase.sms,
-  private val mmsDatabase: MessageDatabase = SignalDatabase.mms
+  private val smsDatabase: MessageTable = SignalDatabase.sms,
+  private val mmsDatabase: MessageTable = SignalDatabase.mms
 ) : Iterable<ExportableMessage>, Closeable {
 
   companion object {
@@ -32,9 +32,9 @@ class SignalSmsExportReader(
     private const val CURSOR_LIMIT = 1000
   }
 
-  private var smsReader: SmsDatabase.Reader? = null
+  private var smsReader: SmsTable.Reader? = null
   private var smsDone: Boolean = false
-  private var mmsReader: MmsDatabase.Reader? = null
+  private var mmsReader: MmsTable.Reader? = null
   private var mmsDone: Boolean = false
 
   override fun iterator(): Iterator<ExportableMessage> {
@@ -55,7 +55,7 @@ class SignalSmsExportReader(
       smsReader?.close()
       smsReader = null
 
-      val refreshedSmsReader = SmsDatabase.readerFor(smsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
+      val refreshedSmsReader = SmsTable.readerFor(smsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
       if (refreshedSmsReader.count > 0) {
         smsReader = refreshedSmsReader
         return
@@ -69,7 +69,7 @@ class SignalSmsExportReader(
       mmsReader?.close()
       mmsReader = null
 
-      val refreshedMmsReader = MmsDatabase.readerFor(mmsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
+      val refreshedMmsReader = MmsTable.readerFor(mmsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
       if (refreshedMmsReader.count > 0) {
         mmsReader = refreshedMmsReader
         return

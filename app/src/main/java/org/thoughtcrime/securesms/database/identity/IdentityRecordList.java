@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.identity;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.IdentityDatabase.VerifiedStatus;
+import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 

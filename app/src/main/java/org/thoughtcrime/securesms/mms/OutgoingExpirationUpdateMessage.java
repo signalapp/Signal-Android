@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.mms;
 
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -14,7 +14,7 @@ public class OutgoingExpirationUpdateMessage extends OutgoingSecureMediaMessage 
           "",
           new LinkedList<>(),
           sentTimeMillis,
-          ThreadDatabase.DistributionTypes.CONVERSATION,
+          ThreadTable.DistributionTypes.CONVERSATION,
           expiresIn,
           false,
           StoryType.NONE,

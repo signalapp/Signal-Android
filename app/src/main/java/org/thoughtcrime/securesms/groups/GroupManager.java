@@ -13,11 +13,10 @@ import org.signal.libsignal.zkgroup.groups.UuidCiphertext;
 import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
 import org.thoughtcrime.securesms.groups.v2.GroupLinkPassword;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -85,7 +84,7 @@ public final class GroupManager {
       }
     } else if (groupId.isV1()) {
       List<Recipient> members = SignalDatabase.groups()
-                                              .getGroupMembers(groupId, GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+                                              .getGroupMembers(groupId, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       Set<RecipientId> recipientIds = getMemberIds(new HashSet<>(members));
 
@@ -296,8 +295,8 @@ public final class GroupManager {
                          @NonNull RecipientId recipientId)
       throws GroupChangeBusyException, IOException, GroupChangeFailedException, GroupNotAMemberException, GroupInsufficientRightsException
   {
-    GroupDatabase.V2GroupProperties groupProperties = SignalDatabase.groups().requireGroup(groupId).requireV2GroupProperties();
-    Recipient                       recipient       = Recipient.resolved(recipientId);
+    GroupTable.V2GroupProperties groupProperties = SignalDatabase.groups().requireGroup(groupId).requireV2GroupProperties();
+    Recipient                    recipient       = Recipient.resolved(recipientId);
 
     if (groupProperties.getBannedMembers().contains(recipient.requireServiceId().uuid())) {
       Log.i(TAG, "Attempt to ban already banned recipient: " + recipientId);
@@ -403,14 +402,14 @@ public final class GroupManager {
       throws GroupChangeFailedException, GroupInsufficientRightsException, IOException, GroupNotAMemberException, GroupChangeBusyException, MembershipNotSuitableForV2Exception
   {
     if (groupId.isV2()) {
-      GroupDatabase.GroupRecord groupRecord  = SignalDatabase.groups().requireGroup(groupId);
+      GroupTable.GroupRecord groupRecord = SignalDatabase.groups().requireGroup(groupId);
 
       try (GroupManagerV2.GroupEditor editor = new GroupManagerV2(context).edit(groupId.requireV2())) {
         return editor.addMembers(newMembers, groupRecord.requireV2GroupProperties().getBannedMembers());
       }
     } else {
-      GroupDatabase.GroupRecord groupRecord  = SignalDatabase.groups().requireGroup(groupId);
-      List<RecipientId>         members      = groupRecord.getMembers();
+      GroupTable.GroupRecord groupRecord = SignalDatabase.groups().requireGroup(groupId);
+      List<RecipientId>      members     = groupRecord.getMembers();
       byte[]                    avatar       = groupRecord.hasAvatar() ? AvatarHelper.getAvatarBytes(context, groupRecord.getRecipientId()) : null;
       Set<RecipientId>          recipientIds = new HashSet<>(members);
       int                       originalSize = recipientIds.size();

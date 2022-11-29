@@ -29,8 +29,8 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import org.thoughtcrime.securesms.database.MmsTable;
+import org.thoughtcrime.securesms.database.SmsTable.Status;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -125,11 +125,11 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   @Override
   @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (MmsDatabase.Types.isChatSessionRefresh(type)) {
+    if (MmsTable.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
-    } else if (MmsDatabase.Types.isDuplicateMessageType(type)) {
+    } else if (MmsTable.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (MmsDatabase.Types.isNoRemoteSessionType(type)) {
+    } else if (MmsTable.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));
@@ -189,7 +189,7 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     Quote             quote                  = updateQuote(context, getQuote(), attachments);
 
     List<DatabaseAttachment> slideAttachments = attachments.stream().filter(a -> !contactAttachments.contains(a)).filter(a -> !linkPreviewAttachments.contains(a)).collect(Collectors.toList());
-    SlideDeck                slideDeck        = MmsDatabase.Reader.buildSlideDeck(context, slideAttachments);
+    SlideDeck                slideDeck        = MmsTable.Reader.buildSlideDeck(context, slideAttachments);
 
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
                                      getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),

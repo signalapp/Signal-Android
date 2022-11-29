@@ -17,8 +17,8 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.IdentityTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
@@ -158,13 +158,13 @@ public final class RegistrationRepository {
       accountManager.setGcmId(Optional.ofNullable(registrationData.getFcmToken()));
     }
 
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    RecipientId       selfId            = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
+    RecipientTable recipientTable = SignalDatabase.recipients();
+    RecipientId    selfId         = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
 
-    recipientDatabase.setProfileSharing(selfId, true);
-    recipientDatabase.markRegisteredOrThrow(selfId, aci);
-    recipientDatabase.linkIdsForSelf(aci, pni, registrationData.getE164());
-    recipientDatabase.setProfileKey(selfId, registrationData.getProfileKey());
+    recipientTable.setProfileSharing(selfId, true);
+    recipientTable.markRegisteredOrThrow(selfId, aci);
+    recipientTable.linkIdsForSelf(aci, pni, registrationData.getE164());
+    recipientTable.setProfileKey(selfId, registrationData.getProfileKey());
 
     ApplicationDependencies.getRecipientCache().clearSelf();
 
@@ -201,7 +201,7 @@ public final class RegistrationRepository {
   private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
     protocolStore.identities().saveIdentityWithoutSideEffects(selfId,
                                                               protocolStore.getIdentityKeyPair().getPublicKey(),
-                                                              IdentityDatabase.VerifiedStatus.VERIFIED,
+                                                              IdentityTable.VerifiedStatus.VERIFIED,
                                                               true,
                                                               now,
                                                               true);
@@ -209,8 +209,8 @@ public final class RegistrationRepository {
 
   @WorkerThread
   private static @Nullable ProfileKey findExistingProfileKey(@NonNull String e164number) {
-    RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
-    Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
+    RecipientTable        recipientTable = SignalDatabase.recipients();
+    Optional<RecipientId> recipient      = recipientTable.getByE164(e164number);
 
     if (recipient.isPresent()) {
       return ProfileKeyUtil.profileKeyOrNull(Recipient.resolved(recipient.get()).getProfileKey());

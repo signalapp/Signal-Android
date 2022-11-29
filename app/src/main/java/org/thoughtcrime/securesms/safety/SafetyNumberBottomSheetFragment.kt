@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.components.settings.models.SplashImage
 import org.thoughtcrime.securesms.conversation.ui.error.SafetyNumberChangeRepository
 import org.thoughtcrime.securesms.conversation.ui.error.TrustAndVerifyResult
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.safety.review.SafetyNumberReviewConnectionsFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.findListener
@@ -156,7 +156,7 @@ class SafetyNumberBottomSheetFragment : DSLSettingsBottomSheetFragment(layoutId 
           customPref(
             SafetyNumberRecipientRowItem.Model(
               recipient = it.recipient,
-              isVerified = it.identityRecord.verifiedStatus == IdentityDatabase.VerifiedStatus.VERIFIED,
+              isVerified = it.identityRecord.verifiedStatus == IdentityTable.VerifiedStatus.VERIFIED,
               distributionListMembershipCount = it.distributionListMembershipCount,
               groupMembershipCount = it.groupMembershipCount,
               getContextMenuActions = { model ->

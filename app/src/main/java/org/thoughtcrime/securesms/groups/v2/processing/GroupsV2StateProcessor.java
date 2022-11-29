@@ -19,12 +19,12 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.signal.storageservice.protos.groups.local.DecryptedMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMember;
 import org.signal.storageservice.protos.groups.local.DecryptedPendingMemberRemoval;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.GroupDatabase.GroupRecord;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupDoesNotExistException;
@@ -91,22 +91,22 @@ public class GroupsV2StateProcessor {
    */
   public static final int RESTORE_PLACEHOLDER_REVISION = GroupStateMapper.RESTORE_PLACEHOLDER_REVISION;
 
-  private final Context               context;
-  private final RecipientDatabase     recipientDatabase;
-  private final GroupDatabase         groupDatabase;
+  private final Context        context;
+  private final RecipientTable recipientTable;
+  private final GroupTable     groupDatabase;
   private final GroupsV2Authorization groupsV2Authorization;
   private final GroupsV2Api           groupsV2Api;
 
   public GroupsV2StateProcessor(@NonNull Context context) {
     this.context               = context.getApplicationContext();
     this.groupsV2Authorization = ApplicationDependencies.getGroupsV2Authorization();
-    this.groupsV2Api           = ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api();
-    this.recipientDatabase     = SignalDatabase.recipients();
-    this.groupDatabase         = SignalDatabase.groups();
+    this.groupsV2Api    = ApplicationDependencies.getSignalServiceAccountManager().getGroupsV2Api();
+    this.recipientTable = SignalDatabase.recipients();
+    this.groupDatabase  = SignalDatabase.groups();
   }
 
   public StateProcessorForGroup forGroup(@NonNull ServiceIds serviceIds, @NonNull GroupMasterKey groupMasterKey) {
-    ProfileAndMessageHelper profileAndMessageHelper = new ProfileAndMessageHelper(context, serviceIds.getAci(), groupMasterKey, GroupId.v2(groupMasterKey), recipientDatabase);
+    ProfileAndMessageHelper profileAndMessageHelper = new ProfileAndMessageHelper(context, serviceIds.getAci(), groupMasterKey, GroupId.v2(groupMasterKey), recipientTable);
 
     return new StateProcessorForGroup(serviceIds, context, groupDatabase, groupsV2Api, groupsV2Authorization, groupMasterKey, profileAndMessageHelper);
   }
@@ -143,9 +143,9 @@ public class GroupsV2StateProcessor {
 
   public static final class StateProcessorForGroup {
     private final ServiceIds              serviceIds;
-    private final Context                 context;
-    private final GroupDatabase           groupDatabase;
-    private final GroupsV2Api             groupsV2Api;
+    private final Context     context;
+    private final GroupTable  groupDatabase;
+    private final GroupsV2Api groupsV2Api;
     private final GroupsV2Authorization   groupsV2Authorization;
     private final GroupMasterKey          masterKey;
     private final GroupId.V2              groupId;
@@ -154,7 +154,7 @@ public class GroupsV2StateProcessor {
 
     @VisibleForTesting StateProcessorForGroup(@NonNull ServiceIds serviceIds,
                                               @NonNull Context context,
-                                              @NonNull GroupDatabase groupDatabase,
+                                              @NonNull GroupTable groupDatabase,
                                               @NonNull GroupsV2Api groupsV2Api,
                                               @NonNull GroupsV2Authorization groupsV2Authorization,
                                               @NonNull GroupMasterKey groupMasterKey,
@@ -515,12 +515,12 @@ public class GroupsV2StateProcessor {
       OutgoingGroupUpdateMessage leaveMessage            = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
 
       try {
-        MessageDatabase mmsDatabase    = SignalDatabase.mms();
-        ThreadDatabase  threadDatabase = SignalDatabase.threads();
-        long            threadId       = threadDatabase.getOrCreateThreadIdFor(groupRecipient);
-        long            id             = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
+        MessageTable mmsDatabase = SignalDatabase.mms();
+        ThreadTable  threadTable = SignalDatabase.threads();
+        long         threadId    = threadTable.getOrCreateThreadIdFor(groupRecipient);
+        long         id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
         mmsDatabase.markAsSent(id, true);
-        threadDatabase.update(threadId, false, false);
+        threadTable.update(threadId, false, false);
       } catch (MmsException e) {
         warn( "Failed to insert leave message.", e);
       }
@@ -607,18 +607,18 @@ public class GroupsV2StateProcessor {
 
     private final Context           context;
     private final ServiceId         serviceId;
-    private final GroupId.V2        groupId;
-    private final RecipientDatabase recipientDatabase;
+    private final GroupId.V2     groupId;
+    private final RecipientTable recipientTable;
 
     @VisibleForTesting
     GroupMasterKey masterKey;
 
-    ProfileAndMessageHelper(@NonNull Context context, @NonNull ServiceId serviceId, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientDatabase recipientDatabase) {
-      this.context           = context;
-      this.serviceId         = serviceId;
-      this.masterKey         = masterKey;
-      this.groupId           = groupId;
-      this.recipientDatabase = recipientDatabase;
+    ProfileAndMessageHelper(@NonNull Context context, @NonNull ServiceId serviceId, @NonNull GroupMasterKey masterKey, @NonNull GroupId.V2 groupId, @NonNull RecipientTable recipientTable) {
+      this.context        = context;
+      this.serviceId      = serviceId;
+      this.masterKey      = masterKey;
+      this.groupId        = groupId;
+      this.recipientTable = recipientTable;
     }
 
     void determineProfileSharing(@NonNull GlobalGroupState inputGroupState, @NonNull DecryptedGroup newLocalState) {
@@ -658,7 +658,7 @@ public class GroupsV2StateProcessor {
           } else if (addedBy.isSystemContact() || addedBy.isProfileSharing()) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact() + ", profileSharing: " + addedBy.isProfileSharing());
             Log.i(TAG, "Added to a group and auto-enabling profile sharing");
-            recipientDatabase.setProfileSharing(Recipient.externalGroupExact(groupId).getId(), true);
+            recipientTable.setProfileSharing(Recipient.externalGroupExact(groupId).getId(), true);
           } else {
             Log.i(TAG, "Added to a group, but not enabling profile sharing, as 'adder' is not trusted");
           }
@@ -720,7 +720,7 @@ public class GroupsV2StateProcessor {
     }
 
     void persistLearnedProfileKeys(@NonNull ProfileKeySet profileKeys) {
-      Set<RecipientId> updated = recipientDatabase.persistProfileKeySet(profileKeys);
+      Set<RecipientId> updated = recipientTable.persistProfileKeySet(profileKeys);
 
       if (!updated.isEmpty()) {
         Log.i(TAG, String.format(Locale.US, "Learned %d new profile keys, fetching profiles", updated.size()));
@@ -738,25 +738,25 @@ public class GroupsV2StateProcessor {
 
       if (outgoing) {
         try {
-          MessageDatabase            mmsDatabase     = SignalDatabase.mms();
-          ThreadDatabase             threadDatabase  = SignalDatabase.threads();
-          RecipientId                recipientId     = recipientDatabase.getOrInsertFromGroupId(groupId);
+          MessageTable               mmsDatabase     = SignalDatabase.mms();
+          ThreadTable                threadTable     = SignalDatabase.threads();
+          RecipientId                recipientId     = recipientTable.getOrInsertFromGroupId(groupId);
           Recipient                  recipient       = Recipient.resolved(recipientId);
           OutgoingGroupUpdateMessage outgoingMessage = new OutgoingGroupUpdateMessage(recipient, decryptedGroupV2Context, timestamp);
-          long                       threadId        = threadDatabase.getOrCreateThreadIdFor(recipient);
+          long                       threadId        = threadTable.getOrCreateThreadIdFor(recipient);
           long                       messageId       = mmsDatabase.insertMessageOutbox(outgoingMessage, threadId, false, null);
 
           mmsDatabase.markAsSent(messageId, true);
-          threadDatabase.update(threadId, false, false);
+          threadTable.update(threadId, false, false);
         } catch (MmsException e) {
           Log.w(TAG, e);
         }
       } else {
-        MessageDatabase                        smsDatabase  = SignalDatabase.sms();
-        RecipientId                            sender       = RecipientId.from(editor.get());
+        MessageTable                        smsDatabase  = SignalDatabase.sms();
+        RecipientId                         sender       = RecipientId.from(editor.get());
         IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
-        IncomingGroupUpdateMessage             groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
-        Optional<MessageDatabase.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
+        IncomingGroupUpdateMessage          groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);
+        Optional<MessageTable.InsertResult> insertResult = smsDatabase.insertMessageInbox(groupMessage);
 
         if (insertResult.isPresent()) {
           SignalDatabase.threads().update(insertResult.get().getThreadId(), false, false);
