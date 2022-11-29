@@ -112,8 +112,6 @@ public abstract class BaseEnterCodeFragment<ViewModel extends BaseRegistrationVi
       if(position == 0 && mMinFinished == 0 && mSecFinished == 0){
 
         CallClick(view);
-        Navigation.findNavController(view)
-                .navigate(EnterCodeFragmentDirections.actionRequestCaptcha());
       }else if (position == 2){
         Navigation.findNavController(view).navigate(EnterCodeFragmentDirections.actionWrongNumber());
       }

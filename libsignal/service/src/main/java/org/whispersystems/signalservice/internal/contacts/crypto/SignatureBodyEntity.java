@@ -16,12 +16,26 @@ public class SignatureBodyEntity {
   @JsonProperty
   private String timestamp;
 
+  @JsonProperty
+  private String advisoryURL;
+
+  @JsonProperty
+  private String[] advisoryIDs;
+
   public byte[] getIsvEnclaveQuoteBody() {
     return isvEnclaveQuoteBody;
   }
 
   public String getIsvEnclaveQuoteStatus() {
     return isvEnclaveQuoteStatus;
+  }
+
+  public String getAdvisoryUrl() {
+    return advisoryURL;
+  }
+
+  public String[] getAdvisoryIds() {
+    return advisoryIDs;
   }
 
   public Long getVersion() {

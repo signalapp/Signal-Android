@@ -1,19 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/media_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="0dp"
+        android:nextFocusDown="@id/send"
+        app:layout_constraintBottom_toTopOf="@id/send"
+        android:layout_weight="3"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/controls"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            tools:ignore="MissingConstraints"
+            android:orientation="vertical">
 
         <View
             android:id="@+id/controls_shade"
@@ -134,7 +147,8 @@
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/transparent_white_60"
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
-            tools:alpha="1" />
+                tools:alpha="1"
+                android:visibility="gone"/>
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/add_a_message"
@@ -148,7 +162,16 @@
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white"
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
-            tools:alpha="1" />
+                tools:alpha="1"
+                android:visibility="gone"/>
+        </LinearLayout>
+
+       <LinearLayout
+           android:layout_width="wrap_content"
+           android:layout_height="0dp"
+           android:visibility="gone"
+           tools:ignore="MissingConstraints"
+           android:orientation="vertical">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/add_a_message_entry"
@@ -158,7 +181,7 @@
             android:layout_marginTop="12dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="20dp"
-            android:background="@drawable/rounded_rectangle_secondary_dark"
+               android:background="@color/white"
             android:gravity="start|center_vertical"
             android:minHeight="36dp"
             android:paddingStart="12dp"
@@ -167,11 +190,8 @@
             android:paddingBottom="6dp"
             android:textAppearance="@style/Signal.Text.Body"
             android:textColor="@color/core_white"
-            android:visibility="gone"
-            android:inputType="none"
-            android:enabled="false"
-            android:focusable="false"
-            android:cursorVisible="false"
+               android:focusable="true"
+               android:nextFocusDown="@id/send"
             android:maxLines="3"
             app:layout_constraintBottom_toTopOf="@id/button_barrier"
             app:layout_constraintTop_toTopOf="@id/add_a_message_barrier"
@@ -182,14 +202,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="add_a_message,add_a_message_entry,view_once_message" />
+               android:focusable="false"
+               app:constraint_referenced_ids="add_a_message_entry" />
 
         <androidx.constraintlayout.widget.Barrier
             android:id="@+id/button_barrier"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:barrierDirection="top"
-            app:constraint_referenced_ids="crop_and_rotate_tool,draw_tool,quality_selector,save_to_media,send"
+               android:focusable="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -250,7 +271,7 @@
             app:tint="@color/core_white"
             tools:alpha="1"
             tools:translationY="0dp"
-            tools:visibility="visible" />
+               tools:visibility="gone" />
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/save_to_media"
@@ -267,8 +288,9 @@
             app:srcCompat="@drawable/ic_save_36"
             app:tint="@color/core_white"
             tools:translationY="0dp" />
+       </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <!--<androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/send"
             android:layout_width="36dp"
             android:layout_height="36dp"
@@ -282,9 +304,27 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
-            app:layout_constraintStart_toEndOf="@id/save_to_media"
             app:layout_goneMarginStart="10dp"
             app:srcCompat="@drawable/ic_send_24"
+            tools:translationY="0dp" />-->
+
+        <TextView
+            android:id="@+id/send"
+            android:layout_width="match_parent"
+            android:layout_height="50px"
+            android:defaultFocusHighlightEnabled="true"
+            android:paddingLeft="25dp"
+            android:text="@string/conversation_activity__send"
+            android:textColor="@color/grey"
+            android:background="@color/black"
+            android:textSize="25dp"
+            android:translationY="48dp"
+            android:focusable="true"
+            android:focusedByDefault="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_goneMarginStart="10dp"
             tools:translationY="0dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -292,10 +332,11 @@
     <org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
         android:id="@+id/progress_wrapper"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:alpha="0"
         android:background="@color/transparent_black_60"
         android:visibility="gone"
+        android:focusable="false"
         tools:alpha="1"
         tools:visibility="visible">
 
@@ -308,4 +349,4 @@
             android:indeterminateBehavior="cycle" />
     </org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout>
 
-</FrameLayout>
+</LinearLayout>

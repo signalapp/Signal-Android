@@ -18,13 +18,19 @@ import java.security.MessageDigest;
 import java.security.SignatureException;
 import java.security.cert.CertPathValidatorException;
 import java.security.cert.CertificateException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public final class RemoteAttestationCipher {
 
   private RemoteAttestationCipher() {
   }
 
-  private static final long SIGNATURE_BODY_VERSION = 3L;
+  private static final Set<Long> SIGNATURE_BODY_VERSIONS = new HashSet<Long>() {{
+    add(3L);
+    add(4L);
+  }};
 
   public static byte[] getRequestId(RemoteAttestationKeys keys, RemoteAttestationResponse response) throws InvalidCiphertextException {
     return AESCipher.decrypt(keys.getServerKey(), response.getIv(), response.getCiphertext(), response.getTag());
@@ -66,7 +72,7 @@ public final class RemoteAttestationCipher {
 
       SignatureBodyEntity signatureBodyEntity = JsonUtil.fromJson(signatureBody, SignatureBodyEntity.class);
 
-      if (signatureBodyEntity.getVersion() != SIGNATURE_BODY_VERSION) {
+      if (!SIGNATURE_BODY_VERSIONS.contains(signatureBodyEntity.getVersion())) {
         throw new SignatureException("Unexpected signed quote version " + signatureBodyEntity.getVersion());
       }
 
@@ -74,8 +80,8 @@ public final class RemoteAttestationCipher {
         throw new SignatureException("Signed quote is not the same as RA quote: " + Hex.toStringCondensed(signatureBodyEntity.getIsvEnclaveQuoteBody()) + " vs " + Hex.toStringCondensed(quote.getQuoteBytes()));
       }
 
-      if (!"OK".equals(signatureBodyEntity.getIsvEnclaveQuoteStatus())) {
-        throw new SignatureException("Quote status is: " + signatureBodyEntity.getIsvEnclaveQuoteStatus());
+      if (!hasValidStatus(signatureBodyEntity)) {
+        throw new SignatureException("Quote status is: " + signatureBodyEntity.getIsvEnclaveQuoteStatus() + " and advisories are: " + Arrays.toString(signatureBodyEntity.getAdvisoryIds()));
       }
 
       if (Instant.from(ZonedDateTime.of(LocalDateTime.from(DateTimeFormatter.ofPattern("yyy-MM-dd'T'HH:mm:ss.SSSSSS").parse(signatureBodyEntity.getTimestamp())), ZoneId.of("UTC")))
@@ -87,6 +93,16 @@ public final class RemoteAttestationCipher {
 
     } catch (CertificateException | CertPathValidatorException | IOException e) {
       throw new SignatureException(e);
+    }
+  }
+
+  private static boolean hasValidStatus(SignatureBodyEntity entity) {
+    if ("OK".equals(entity.getIsvEnclaveQuoteStatus())) {
+      return true;
+    } else if ("SW_HARDENING_NEEDED".equals(entity.getIsvEnclaveQuoteStatus())) {
+      return entity.getAdvisoryIds().length == 1 && "INTEL-SA-00334".equals(entity.getAdvisoryIds()[0]);
+    } else {
+      return false;
     }
   }
 }

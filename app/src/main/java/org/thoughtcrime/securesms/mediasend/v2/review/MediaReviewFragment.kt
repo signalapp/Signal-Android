@@ -56,7 +56,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   private lateinit var cropAndRotateButton: View
   private lateinit var qualityButton: ImageView
   private lateinit var saveButton: View
-  private lateinit var sendButton: View
+  private lateinit var sendButton: TextView
   private lateinit var addMediaButton: View
   private lateinit var viewOnceButton: ViewSwitcher
   private lateinit var viewOnceMessage: TextView
@@ -144,6 +144,14 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
         MultiselectForwardFragment.show(parentFragmentManager, args)
       } else {
         performSend()
+      }
+    }
+
+    sendButton.setOnFocusChangeListener { _, hasFocus ->
+      if (hasFocus) {
+        sendButton.setTextColor(this.getResources().getColor(R.color.white))
+      } else {
+        sendButton.setTextColor(this.getResources().getColor(R.color.grey))
       }
     }
 

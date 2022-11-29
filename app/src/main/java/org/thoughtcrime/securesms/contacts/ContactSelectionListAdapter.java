@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.components.mp02anim.ItemAnimViewController2;
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CharacterIterable;
 import org.thoughtcrime.securesms.util.CursorUtil;
@@ -102,6 +103,7 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
   private Animation animDownAndGone, animDownAndVisible, animUpAndGone, animUpAndVisible;
   private ItemAnimViewController2 mItemAnimController;
   private static boolean isScorllUp = true;
+  private static boolean isCreatingGroup = false;
   public void clearSelectedContacts() {
     selectedContacts.clear();
   }
@@ -346,6 +348,9 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
     ContactSelectionListItem CSLitem;
     if (viewHolder.itemView instanceof ContactSelectionListItem) {
       CSLitem = (ContactSelectionListItem) (viewHolder.itemView);
+      if (isCreatingGroup && (CSLitem.getRecipient().getId()).equals(Recipient.self().getId())) {
+        CSLitem.setVisibility(View.GONE);
+      }
       CSLitem.setOnFocusChangeListener(new View.OnFocusChangeListener() {
         @Override
         public void onFocusChange(View v, boolean hasFocus) {
@@ -647,6 +652,10 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
 
   private boolean isPush(int position) {
     return getContactType(position) == ContactRepository.PUSH_TYPE;
+  }
+
+  public void setIsCreatingGroup(boolean isCreating) {
+    isCreatingGroup = isCreating;
   }
 
   public interface ItemClickListener {

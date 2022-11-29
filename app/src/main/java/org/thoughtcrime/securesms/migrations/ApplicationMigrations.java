@@ -91,8 +91,9 @@ public class ApplicationMigrations {
     static final int DEFAULT_REACTIONS_SYNC        = 47;
     static final int DB_REACTIONS_MIGRATION        = 48;
 //    static final int CHANGE_NUMBER_CAPABILITY_3    = 49;
+    static final int KBS_MIGRATION                 = 55;
   }
-  public static final int CURRENT_VERSION = 49;
+  public static final int CURRENT_VERSION = 55;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -391,6 +392,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.DB_REACTIONS_MIGRATION) {
       jobs.put(Version.DB_REACTIONS_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.KBS_MIGRATION) {
+      jobs.put(Version.KBS_MIGRATION, new KbsEnclaveMigrationJob());
     }
 
     return jobs;

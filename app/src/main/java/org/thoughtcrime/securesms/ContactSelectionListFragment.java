@@ -76,6 +76,7 @@ import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.contacts.sync.DirectoryHelper;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog;
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity;
 import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.permissions.Permissions;
@@ -452,6 +453,7 @@ public final class ContactSelectionListFragment extends LoggingFragment
                                                                 shareConfirmClickListener,
                                                                 isSharing);
 
+    cursorRecyclerViewAdapter.setIsCreatingGroup((getActivity() instanceof CreateGroupActivity));
     RecyclerViewConcatenateAdapterStickyHeader concatenateAdapter = new RecyclerViewConcatenateAdapterStickyHeader();
 
     if (searchCallBack != null) {

@@ -135,13 +135,14 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
 
   public static ImageEditorFragment newInstanceForAvatar(@NonNull Uri imageUri) {
     ImageEditorFragment fragment = newInstance(imageUri);
-    fragment.requireArguments().putBoolean(KEY_IS_AVATAR_MODE, true);
+    fragment.requireArguments().putString(KEY_MODE, Mode.AVATAR_EDIT.code);
     return fragment;
   }
 
   public static ImageEditorFragment newInstance(@NonNull Uri imageUri) {
     Bundle args = new Bundle();
     args.putParcelable(KEY_IMAGE_URI, imageUri);
+    args.putString(KEY_MODE, Mode.NORMAL.code);
 
     ImageEditorFragment fragment = new ImageEditorFragment();
     fragment.setArguments(args);
@@ -167,10 +168,15 @@ public final class ImageEditorFragment extends Fragment implements ImageEditorHu
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (!(getActivity() instanceof Controller)) {
+    Fragment parent = getParentFragment();
+    if (parent instanceof Controller) {
+      controller = (Controller) parent;
+    } else if (getActivity() instanceof Controller) {
+      controller = (Controller) getActivity();
+    } else {
       throw new IllegalStateException("Parent must implement Controller interface.");
     }
-    controller = (Controller) getActivity();
+
     Bundle arguments = getArguments();
     if (arguments != null) {
       imageUri = arguments.getParcelable(KEY_IMAGE_URI);
