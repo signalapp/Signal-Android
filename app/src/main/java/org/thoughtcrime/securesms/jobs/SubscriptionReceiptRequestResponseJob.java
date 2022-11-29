@@ -300,7 +300,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         paymentSetupError = new DonationError.PaymentSetupError.DeclinedError(
             getErrorSource(),
             new Exception(chargeFailure.getMessage()),
-            declineCode
+            declineCode,
+            SignalStore.donationsValues().getSubscriptionPaymentSourceType()
         );
       } else {
         paymentSetupError = new DonationError.PaymentSetupError.CodedError(

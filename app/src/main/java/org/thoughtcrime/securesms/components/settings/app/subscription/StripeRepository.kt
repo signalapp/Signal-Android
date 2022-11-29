@@ -11,6 +11,7 @@ import org.signal.core.util.money.FiatMoney
 import org.signal.donations.GooglePayApi
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
+import org.signal.donations.StripePaymentSourceType
 import org.signal.donations.json.StripeIntentStatus
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
@@ -86,12 +87,13 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     price: FiatMoney,
     badgeRecipient: RecipientId,
     badgeLevel: Long,
+    paymentSourceType: StripePaymentSourceType
   ): Single<StripeIntentAccessor> {
     Log.d(TAG, "Creating payment intent for $price...", true)
 
     return stripeApi.createPaymentIntent(price, badgeLevel)
       .onErrorResumeNext {
-        handleCreatePaymentIntentError(it, badgeRecipient)
+        handleCreatePaymentIntentError(it, badgeRecipient, paymentSourceType)
       }
       .flatMap { result ->
         val recipient = Recipient.resolved(badgeRecipient)
@@ -127,7 +129,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     Log.d(TAG, "Confirming payment intent...", true)
     return stripeApi.confirmPaymentIntent(paymentSource, paymentIntent)
       .onErrorResumeNext {
-        Single.error(DonationError.getPaymentSetupError(donationErrorSource, it))
+        Single.error(DonationError.getPaymentSetupError(donationErrorSource, it, paymentSource.type))
       }
   }
 
@@ -196,7 +198,10 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     }
   }
 
-  fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
+  fun setDefaultPaymentMethod(
+    paymentMethodId: String,
+    paymentSourceType: StripePaymentSourceType
+  ): Completable {
     return Single.fromCallable {
       Log.d(TAG, "Getting the subscriber...")
       SignalStore.donationsValues().requireSubscriber()
@@ -209,6 +214,9 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
+    }.andThen {
+      Log.d(TAG, "Storing the subscription payment source type locally.")
+      SignalStore.donationsValues().setSubscriptionPaymentSourceType(paymentSourceType)
     }
   }
 
@@ -216,7 +224,7 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
     Log.d(TAG, "Creating credit card payment source via Stripe api...")
     return stripeApi.createPaymentSourceFromCardData(cardData).map {
       when (it) {
-        is StripeApi.CreatePaymentSourceFromCardDataResult.Failure -> throw DonationError.getPaymentSetupError(donationErrorSource, it.reason)
+        is StripeApi.CreatePaymentSourceFromCardDataResult.Failure -> throw DonationError.getPaymentSetupError(donationErrorSource, it.reason, StripePaymentSourceType.CREDIT_CARD)
         is StripeApi.CreatePaymentSourceFromCardDataResult.Success -> it.paymentSource
       }
     }
@@ -230,13 +238,13 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
   companion object {
     private val TAG = Log.tag(StripeRepository::class.java)
 
-    fun <T> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId): Single<T> {
+    private fun <T> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: StripePaymentSourceType): Single<T> {
       return if (throwable is DonationError) {
         Single.error(throwable)
       } else {
         val recipient = Recipient.resolved(badgeRecipient)
         val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
-        Single.error(DonationError.getPaymentSetupError(errorSource, throwable))
+        Single.error(DonationError.getPaymentSetupError(errorSource, throwable, paymentSourceType))
       }
     }
   }

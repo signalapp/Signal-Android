@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeError
+import org.signal.donations.StripePaymentSourceType
 
 sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : Exception(cause) {
 
@@ -55,7 +56,7 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     /**
      * Payment failed by the credit card processor, with a specific reason told to us by Stripe.
      */
-    class DeclinedError(source: DonationErrorSource, cause: Throwable, val declineCode: StripeDeclineCode) : PaymentSetupError(source, cause)
+    class DeclinedError(source: DonationErrorSource, cause: Throwable, val declineCode: StripeDeclineCode, val method: StripePaymentSourceType) : PaymentSetupError(source, cause)
   }
 
   /**
@@ -132,13 +133,13 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * charge has occurred.
      */
     @JvmStatic
-    fun getPaymentSetupError(source: DonationErrorSource, throwable: Throwable): DonationError {
+    fun getPaymentSetupError(source: DonationErrorSource, throwable: Throwable, method: StripePaymentSourceType): DonationError {
       return if (throwable is StripeError.PostError) {
         val declineCode: StripeDeclineCode? = throwable.declineCode
         val errorCode: String? = throwable.errorCode
 
         when {
-          declineCode != null -> PaymentSetupError.DeclinedError(source, throwable, declineCode)
+          declineCode != null -> PaymentSetupError.DeclinedError(source, throwable, declineCode, method)
           errorCode != null -> PaymentSetupError.CodedError(source, throwable, errorCode)
           else -> PaymentSetupError.GenericError(source, throwable)
         }

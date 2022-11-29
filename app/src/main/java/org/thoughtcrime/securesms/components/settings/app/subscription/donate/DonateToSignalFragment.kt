@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
+import android.content.Context
 import android.content.DialogInterface
 import android.text.SpannableStringBuilder
 import android.view.View
@@ -31,6 +32,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boo
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.CurrencySelection
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.NetworkFailure
@@ -395,9 +397,22 @@ class DonateToSignalFragment :
       errorDialog = DonationErrorDialogs.show(
         requireContext(), throwable,
         object : DonationErrorDialogs.DialogCallback() {
+          var tryCCAgain = false
+
+          override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit>? {
+            return DonationErrorParams.ErrorAction(
+              label = R.string.DeclineCode__try,
+              action = {
+                tryCCAgain = true
+              }
+            )
+          }
+
           override fun onDialogDismissed() {
             errorDialog = null
-            findNavController().popBackStack()
+            if (!tryCCAgain) {
+              findNavController().popBackStack()
+            }
           }
         }
       )

@@ -6,6 +6,7 @@ import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
+import org.signal.donations.StripePaymentSourceType
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -95,6 +96,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * assumed that there is no work to be done.
      */
     private const val SUBSCRIPTION_EOP_REDEEMED = "subscription.eop.redeemed"
+
+    /**
+     * Notes the type of payment the user utilized for the latest subscription. This is useful
+     * in determining which error messaging they should see if something goes wrong.
+     */
+    private const val SUBSCRIPTION_PAYMENT_SOURCE_TYPE = "subscription.payment.source.type"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -112,7 +119,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     SUBSCRIPTION_CREDENTIAL_RECEIPT,
     SUBSCRIPTION_EOP_STARTED_TO_CONVERT,
     SUBSCRIPTION_EOP_STARTED_TO_REDEEM,
-    SUBSCRIPTION_EOP_REDEEMED
+    SUBSCRIPTION_EOP_REDEEMED,
+    SUBSCRIPTION_PAYMENT_SOURCE_TYPE
   )
 
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
@@ -440,6 +448,14 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun clearSubscriptionReceiptCredential() {
     remove(SUBSCRIPTION_CREDENTIAL_RECEIPT)
+  }
+
+  fun setSubscriptionPaymentSourceType(stripePaymentSourceType: StripePaymentSourceType) {
+    putString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, stripePaymentSourceType.code)
+  }
+
+  fun getSubscriptionPaymentSourceType(): StripePaymentSourceType {
+    return StripePaymentSourceType.fromCode(getString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, null))
   }
 
   var subscriptionEndOfPeriodConversionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_CONVERT, 0L)

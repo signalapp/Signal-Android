@@ -36,7 +36,7 @@ object DonationErrorDialogs {
     return builder.show()
   }
 
-  open class DialogCallback : DonationErrorParams.Callback<Unit> {
+  abstract class DialogCallback : DonationErrorParams.Callback<Unit> {
 
     override fun onCancel(context: Context): DonationErrorParams.ErrorAction<Unit>? {
       return DonationErrorParams.ErrorAction(
@@ -58,6 +58,13 @@ object DonationErrorDialogs {
         action = {
           CommunicationActions.openBrowserLink(context, context.getString(R.string.google_pay_url))
         }
+      )
+    }
+
+    override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit>? {
+      return DonationErrorParams.ErrorAction(
+        label = R.string.DeclineCode__try,
+        action = {}
       )
     }
 
