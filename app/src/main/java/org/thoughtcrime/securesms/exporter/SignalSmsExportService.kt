@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.exporter
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import androidx.core.content.ContextCompat
 import app.cash.exhaustive.Exhaustive
 import org.signal.core.util.PendingIntentFlags
 import org.signal.smsexporter.ExportableMessage
@@ -15,6 +14,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.notifications.v2.NotificationPendingIntentHelper
@@ -34,7 +34,7 @@ class SignalSmsExportService : SmsExportService() {
     fun start(context: Context, clearPreviousExportState: Boolean) {
       val intent = Intent(context, SignalSmsExportService::class.java)
         .apply { putExtra(CLEAR_PREVIOUS_EXPORT_STATE_EXTRA, clearPreviousExportState) }
-      ContextCompat.startForegroundService(context, intent)
+      ForegroundServiceUtil.startOrThrow(context, intent)
     }
   }
 

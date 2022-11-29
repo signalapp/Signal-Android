@@ -165,7 +165,7 @@ public final class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       Log.w(TAG, "This should not happen on API < 31");
       throw new AssertionError(e);
     } finally {

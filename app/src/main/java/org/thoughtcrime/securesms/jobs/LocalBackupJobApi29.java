@@ -6,7 +6,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.documentfile.provider.DocumentFileHelper;
 
@@ -101,7 +100,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
                                                                   context.getString(R.string.LocalBackupJob_creating_signal_backup),
                                                                   NotificationChannels.BACKUPS,
                                                                   R.drawable.ic_signal_backup);
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       Log.w(TAG, "Unable to start foreground backup service, continuing without service");
     }
 

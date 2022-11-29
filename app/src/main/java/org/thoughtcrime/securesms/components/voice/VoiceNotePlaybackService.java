@@ -16,7 +16,6 @@ import android.support.v4.media.session.PlaybackStateCompat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.media.MediaBrowserServiceCompat;
 
 import com.google.android.exoplayer2.C;
@@ -34,8 +33,10 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.jobs.SendViewedReceiptJob;
+import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 
@@ -275,9 +276,13 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
     @Override
     public void onNotificationPosted(int notificationId, Notification notification, boolean ongoing) {
       if (ongoing && !isForegroundService) {
-        ContextCompat.startForegroundService(getApplicationContext(), new Intent(getApplicationContext(), VoiceNotePlaybackService.class));
-        startForeground(notificationId, notification);
-        isForegroundService = true;
+        try {
+          ForegroundServiceUtil.startWhenCapable(getApplicationContext(), new Intent(getApplicationContext(), VoiceNotePlaybackService.class));
+          startForeground(notificationId, notification);
+          isForegroundService = true;
+        } catch (UnableToStartException e) {
+          Log.e(TAG, "Unable to start foreground service!", e);
+        }
       }
     }
 

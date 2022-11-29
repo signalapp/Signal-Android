@@ -3,10 +3,10 @@ package org.thoughtcrime.securesms.gcm
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.core.content.ContextCompat
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil
 import org.thoughtcrime.securesms.jobs.PushNotificationReceiveJob
 import org.thoughtcrime.securesms.messages.RestStrategy
 import org.thoughtcrime.securesms.util.concurrent.SerialMonoLifoExecutor
@@ -48,7 +48,7 @@ object FcmFetchManager {
       try {
         if (foreground) {
           Log.i(TAG, "Starting in the foreground.")
-          ContextCompat.startForegroundService(context, Intent(context, FcmFetchForegroundService::class.java))
+          ForegroundServiceUtil.startWhenCapableOrThrow(context, Intent(context, FcmFetchForegroundService::class.java))
           startedForeground = true
         } else {
           Log.i(TAG, "Starting in the background.")

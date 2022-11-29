@@ -12,7 +12,6 @@ import android.os.IBinder;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
-import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
@@ -21,7 +20,9 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
 import org.thoughtcrime.securesms.jobs.PushDecryptDrainedJob;
+import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.IncomingMessageProcessor.Processor;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -82,7 +83,11 @@ public class IncomingMessageObserver {
     new MessageRetrievalThread().start();
 
     if (!SignalStore.account().isFcmEnabled() || SignalStore.internalValues().isWebsocketModeForced()) {
-      ContextCompat.startForegroundService(context, new Intent(context, ForegroundService.class));
+      try {
+        ForegroundServiceUtil.startWhenCapable(context, new Intent(context, ForegroundService.class));
+      } catch (UnableToStartException e) {
+        Log.w(TAG, "Unable to start foreground service for websocket!", e);
+      }
     }
 
     ApplicationDependencies.getAppForegroundObserver().addListener(new AppForegroundObserver.Listener() {

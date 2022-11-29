@@ -19,7 +19,8 @@ public final class Registry extends IssueRegistry {
                          AlertDialogBuilderDetector.ALERT_DIALOG_BUILDER_USAGE,
                          BlockingGetDetector.UNSAFE_BLOCKING_GET,
                          RecipientIdDatabaseDetector.RECIPIENT_ID_DATABASE_REFERENCE_ISSUE,
-                         ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE);
+                         ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE,
+                         StartForegroundServiceDetector.START_FOREGROUND_SERVICE_ISSUE);
   }
 
   @Override

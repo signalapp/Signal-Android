@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.service;
 
-import android.app.ForegroundServiceStartNotAllowedException;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
@@ -19,6 +18,8 @@ import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.jobs.ForegroundServiceUtil;
+import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.whispersystems.signalservice.api.util.Preconditions;
 
@@ -173,20 +174,7 @@ public final class GenericForegroundService extends Service {
 
     Log.i(TAG, String.format(Locale.US, "Starting foreground service (%s) id=%d", task, id));
 
-    if (Build.VERSION.SDK_INT < 31) {
-      ContextCompat.startForegroundService(context, intent);
-    } else {
-      try {
-        ContextCompat.startForegroundService(context, intent);
-      } catch (IllegalStateException e) {
-        if (e instanceof ForegroundServiceStartNotAllowedException) {
-          Log.e(TAG, "Unable to start foreground service", e);
-          throw new UnableToStartException(e);
-        } else {
-          throw e;
-        }
-      }
-    }
+    ForegroundServiceUtil.start(context, intent);
 
     return new NotificationController(context, id);
   }
@@ -197,7 +185,7 @@ public final class GenericForegroundService extends Service {
     intent.putExtra(EXTRA_ID, id);
 
     Log.i(TAG, String.format(Locale.US, "Stopping foreground service id=%d", id));
-    ContextCompat.startForegroundService(context, intent);
+    ForegroundServiceUtil.startWhenCapableOrThrow(context, intent);
   }
 
   synchronized void replaceTitle(int id, @NonNull String title) {
@@ -323,12 +311,6 @@ public final class GenericForegroundService extends Service {
     GenericForegroundService getService() {
       // Return this instance of LocalService so clients can call public methods
       return GenericForegroundService.this;
-    }
-  }
-
-  public static final class UnableToStartException extends Exception {
-    public UnableToStartException(Throwable cause) {
-      super(cause);
     }
   }
 }

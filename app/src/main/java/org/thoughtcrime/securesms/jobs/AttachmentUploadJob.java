@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -160,8 +159,8 @@ public final class AttachmentUploadJob extends BaseJob {
   private @Nullable NotificationController getNotificationForAttachment(@NonNull Attachment attachment) {
     if (attachment.getSize() >= FOREGROUND_LIMIT) {
       try {
-        return ForegroundUtil.requireForegroundTask(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
-      } catch (GenericForegroundService.UnableToStartException e) {
+        return ForegroundServiceUtil.startGenericTaskWhenCapable(context, context.getString(R.string.AttachmentUploadJob_uploading_media));
+      } catch (UnableToStartException e) {
         Log.w(TAG, "Unable to start foreground service", e);
         return null;
       }
