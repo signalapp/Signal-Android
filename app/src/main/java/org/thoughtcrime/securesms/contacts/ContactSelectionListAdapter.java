@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.HeaderVie
 import org.thoughtcrime.securesms.contacts.ContactSelectionListAdapter.ViewHolder;
 import org.thoughtcrime.securesms.database.CursorRecyclerViewAdapter;
 import org.thoughtcrime.securesms.mms.GlideRequests;
+import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.signal.core.util.CharacterIterable;
 import org.signal.core.util.CursorUtil;
@@ -313,13 +314,22 @@ public class ContactSelectionListAdapter extends CursorRecyclerViewAdapter<ViewH
       return null;
     }
 
+    Recipient        self              = Recipient.self();
+    String           id                = CursorUtil.requireString(cursor, ContactRepository.ID_COLUMN);
+    RecipientId      recipientId       = id != null ? RecipientId.from(id)
+                                                    : null;
+    boolean          isSelf            = recipientId != null
+                                                     && recipientId.equals(self.getId());
+
     Iterator<String> characterIterator = new CharacterIterable(name).iterator();
 
     if (!TextUtils.isEmpty(name) && characterIterator.hasNext()) {
       String next = characterIterator.next();
 
-      if (Character.isLetter(next.codePointAt(0))) {
+      if (Character.isLetter(next.codePointAt(0)) && !isSelf) {
         return next.toUpperCase();
+      } else if (isSelf) {
+        return "*";
       } else {
         return "#";
       }
