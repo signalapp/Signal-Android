@@ -126,7 +126,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal"
             app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

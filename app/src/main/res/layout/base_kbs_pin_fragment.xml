@@ -103,7 +103,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/edit_kbs_pin_confirm"
-            style="@style/Signal.Widget.Button.Large.Primary"
+            style="@style/Signal.Widget.Button.Large.Tonal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"

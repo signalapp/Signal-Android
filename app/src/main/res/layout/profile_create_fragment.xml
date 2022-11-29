@@ -273,7 +273,7 @@
             android:layout_marginBottom="16dp"
             android:enabled="false"
             app:circularProgressMaterialButton__label="@string/CreateProfileActivity_next"
-            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary" />
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />
 
     </LinearLayout>
 
