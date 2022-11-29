@@ -66,8 +66,8 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 793
-def canonicalVersionName = "Pigeon 1.2.0793 upon Signal 5.28.8"
+def canonicalVersionCode = 794
+def canonicalVersionName = "Pigeon 1.2.0794 upon Signal 5.28.8"
 
 def postFixSize = 100
 def abiPostFix = ['universal'  : 0,
@@ -98,7 +98,6 @@ def selectableVariants = [
 ]
 
 android {
-    buildToolsVersion BUILD_TOOL_VERSION
     compileSdkVersion COMPILE_SDK
 
     flavorDimensions 'distribution', 'environment'

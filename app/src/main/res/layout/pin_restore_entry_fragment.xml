@@ -76,22 +76,24 @@
             android:layout_marginTop="5dp"
             android:background="@null"
             android:text="@string/PinRestoreEntryFragment_need_help"
+            android:textAllCaps="false"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_input_label"
-            tools:visibility="visible"/>
+            app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_input_label"/>
+<!--            tools:visibility="visible" -->
 
         <Button
             android:id="@+id/pin_restore_keyboard_toggle"
             style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:background="@null"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@id/pin_restore_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_forgot_pin"
             app:layout_constraintVertical_bias="1.0"
+            tools:layout_editor_absoluteX="5dp"
             tools:text="Create Alphanumeric Pin" />
 
         <Button
@@ -100,9 +102,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
             android:background="@null"
             android:text="@string/RegistrationActivity_continue"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toTopOf="@+id/pin_restore_skip_button"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -111,11 +113,11 @@
             style="@style/Mp02.Signal.Text.CommonTextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/PinRestoreEntryFragment_skip"
-            android:background="@null"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="5dp"
+            android:background="@null"
             android:fontFamily="sans-serif-medium"
+            android:text="@string/PinRestoreEntryFragment_skip"
+            android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:visibility="visible" />

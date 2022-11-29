@@ -60,9 +60,9 @@ public final class CaptchaFragment extends LoggingFragment {
       }
       public void onPageFinished(WebView view, String url) {
         view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(),
-          SystemClock.uptimeMillis(),MotionEvent.ACTION_DOWN,1, 1, 0));
+          SystemClock.uptimeMillis(),MotionEvent.ACTION_DOWN,160, 120, 0));
         view.dispatchTouchEvent(MotionEvent.obtain(SystemClock.uptimeMillis(),
-          SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,1, 1, 0));
+          SystemClock.uptimeMillis(),MotionEvent.ACTION_UP,160, 120, 0));
       }
 
     });
