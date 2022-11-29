@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import app.cash.exhaustive.Exhaustive
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
@@ -200,6 +201,12 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
         } else {
           multiselectLauncher.launch(args)
         }
+      } else if (sharedViewModel.isAddToGroupStoryFlow) {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage(getString(R.string.MediaReviewFragment__add_to_the_group_story, sharedViewModel.state.value!!.recipient!!.getDisplayName(requireContext())))
+          .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend() }
+          .setNegativeButton(android.R.string.cancel) { _, _ -> }
+          .show()
       } else {
         performSend()
       }
@@ -317,7 +324,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       .setInterpolator(MediaAnimations.interpolator)
       .alpha(1f)
 
-    sharedViewModel
+    disposables += sharedViewModel
       .send(selection.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
       .subscribe(
         { result -> callback.onSentWithResult(result) },

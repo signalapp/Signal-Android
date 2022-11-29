@@ -45,6 +45,7 @@ class MediaSelectionViewModel(
   initialMessage: CharSequence?,
   val isReply: Boolean,
   isStory: Boolean,
+  val isAddToGroupStoryFlow: Boolean,
   private val repository: MediaSelectionRepository,
   private val identityChangesSince: Long = System.currentTimeMillis()
 ) : ViewModel() {
@@ -360,10 +361,10 @@ class MediaSelectionViewModel(
       return
     }
 
-    val filteredPreUploadMedia = if (Stories.isFeatureEnabled()) {
-      media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
-    } else {
+    val filteredPreUploadMedia = if (destination is MediaSelectionDestination.SingleRecipient || !Stories.isFeatureEnabled()) {
       media
+    } else {
+      media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
     }
 
     repository.uploadRepository.startUpload(filteredPreUploadMedia, store.state.recipient)
@@ -482,10 +483,11 @@ class MediaSelectionViewModel(
     private val initialMessage: CharSequence?,
     private val isReply: Boolean,
     private val isStory: Boolean,
+    private val isAddToGroupStoryFlow: Boolean,
     private val repository: MediaSelectionRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, sendType, initialMedia, initialMessage, isReply, isStory, repository)))
+      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, sendType, initialMedia, initialMessage, isReply, isStory, isAddToGroupStoryFlow, repository)))
     }
   }
 }

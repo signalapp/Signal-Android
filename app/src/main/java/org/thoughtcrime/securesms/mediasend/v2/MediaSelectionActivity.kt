@@ -93,8 +93,9 @@ class MediaSelectionActivity :
     val initialMedia: List<Media> = intent.getParcelableArrayListExtra(MEDIA) ?: listOf()
     val message: CharSequence? = if (shareToTextStory) null else draftText
     val isReply: Boolean = intent.getBooleanExtra(IS_REPLY, false)
+    val isAddToGroupStoryFlow: Boolean = intent.getBooleanExtra(IS_ADD_TO_GROUP_STORY_FLOW, false)
 
-    val factory = MediaSelectionViewModel.Factory(destination, sendType, initialMedia, message, isReply, isStory, MediaSelectionRepository(this))
+    val factory = MediaSelectionViewModel.Factory(destination, sendType, initialMedia, message, isReply, isStory, isAddToGroupStoryFlow, MediaSelectionRepository(this))
     viewModel = ViewModelProvider(this, factory)[MediaSelectionViewModel::class.java]
 
     val textStoryToggle: ConstraintLayout = findViewById(R.id.switch_widget)
@@ -221,7 +222,7 @@ class MediaSelectionActivity :
     return Stories.isFeatureEnabled() &&
       isCameraFirst() &&
       !viewModel.hasSelectedMedia() &&
-      destination == MediaSelectionDestination.ChooseAfterMediaSelection
+      (destination == MediaSelectionDestination.ChooseAfterMediaSelection || destination is MediaSelectionDestination.SingleStory)
   }
 
   override fun onSaveInstanceState(outState: Bundle) {
@@ -348,6 +349,7 @@ class MediaSelectionActivity :
     private const val IS_REPLY = "is_reply"
     private const val IS_STORY = "is_story"
     private const val AS_TEXT_STORY = "as_text_story"
+    private const val IS_ADD_TO_GROUP_STORY_FLOW = "is_add_to_group_story_flow"
 
     @JvmStatic
     fun camera(context: Context): Intent {
@@ -360,6 +362,19 @@ class MediaSelectionActivity :
         context = context,
         startAction = R.id.action_directly_to_mediaCaptureFragment,
         isStory = isStory
+      )
+    }
+
+    fun addToGroupStory(
+      context: Context,
+      recipientId: RecipientId
+    ): Intent {
+      return buildIntent(
+        context = context,
+        startAction = R.id.action_directly_to_mediaCaptureFragment,
+        isStory = true,
+        isAddToGroupStoryFlow = true,
+        destination = MediaSelectionDestination.SingleStory(recipientId)
       )
     }
 
@@ -457,7 +472,8 @@ class MediaSelectionActivity :
       message: CharSequence? = null,
       isReply: Boolean = false,
       isStory: Boolean = false,
-      asTextStory: Boolean = false
+      asTextStory: Boolean = false,
+      isAddToGroupStoryFlow: Boolean = false
     ): Intent {
       return Intent(context, MediaSelectionActivity::class.java).apply {
         putExtra(START_ACTION, startAction)
@@ -468,6 +484,7 @@ class MediaSelectionActivity :
         putExtra(IS_REPLY, isReply)
         putExtra(IS_STORY, isStory)
         putExtra(AS_TEXT_STORY, asTextStory)
+        putExtra(IS_ADD_TO_GROUP_STORY_FLOW, isAddToGroupStoryFlow)
       }
     }
   }

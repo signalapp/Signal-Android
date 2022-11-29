@@ -18,6 +18,29 @@
         android:paddingBottom="16dp">
 
         <LinearLayout
+            android:id="@+id/button_strip_add_to_story_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_weight="1"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/add_to_story"
+                style="@style/Signal.Widget.ImageView.ActionButton"
+                android:contentDescription="@string/ConversationSettingsFragment__story"
+                app:srcCompat="@drawable/add_to_story_24" />
+
+            <TextView
+                android:id="@+id/add_to_story_label"
+                style="@style/Signal.Widget.TextView.ActionButton"
+                android:text="@string/ConversationSettingsFragment__story" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:id="@+id/button_strip_message_container"
             android:layout_width="0dp"
             android:layout_height="match_parent"

@@ -38,6 +38,16 @@ sealed class MediaSelectionDestination {
     }
   }
 
+  class SingleStory(private val id: RecipientId) : MediaSelectionDestination() {
+    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey.Story(id)
+
+    override fun toBundle(): Bundle {
+      return Bundle().apply {
+        putParcelable(STORY, id)
+      }
+    }
+  }
+
   class MultipleRecipients(val recipientSearchKeys: List<ContactSearchKey.RecipientSearchKey>) : MediaSelectionDestination() {
 
     companion object {
@@ -72,6 +82,7 @@ sealed class MediaSelectionDestination {
     private const val WALLPAPER = "wallpaper"
     private const val AVATAR = "avatar"
     private const val RECIPIENT = "recipient"
+    private const val STORY = "story"
     private const val RECIPIENT_LIST = "recipient_list"
 
     fun fromBundle(bundle: Bundle): MediaSelectionDestination {
@@ -79,6 +90,7 @@ sealed class MediaSelectionDestination {
         bundle.containsKey(WALLPAPER) -> Wallpaper
         bundle.containsKey(AVATAR) -> Avatar
         bundle.containsKey(RECIPIENT) -> SingleRecipient(requireNotNull(bundle.getParcelable(RECIPIENT)))
+        bundle.containsKey(STORY) -> SingleStory(requireNotNull(bundle.getParcelable(STORY)))
         bundle.containsKey(RECIPIENT_LIST) -> MultipleRecipients.fromParcel(requireNotNull(bundle.getParcelableArrayList(RECIPIENT_LIST)))
         else -> ChooseAfterMediaSelection
       }

@@ -105,6 +105,8 @@ class MediaSelectionRepository(context: Context) {
       val singleRecipient: Recipient? = singleContact?.let { Recipient.resolved(it.recipientId) }
       val storyType: StoryType = if (singleRecipient?.isDistributionList == true) {
         SignalDatabase.distributionLists.getStoryType(singleRecipient.requireDistributionListId())
+      } else if (singleRecipient?.isGroup == true && singleContact.isStory) {
+        StoryType.STORY_WITH_REPLIES
       } else {
         StoryType.NONE
       }

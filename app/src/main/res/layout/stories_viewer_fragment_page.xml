@@ -201,6 +201,42 @@
         app:srcCompat="@drawable/ic_x_24"
         app:tint="@color/core_white" />
 
+    <FrameLayout
+        android:id="@+id/add_wrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add"
+            style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:insetTop="8dp"
+            android:insetBottom="8dp"
+            android:minWidth="0dp"
+            android:minHeight="48dp"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:text="@string/StoryViewerPageFragment__add"
+            android:textAllCaps="false"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:textColor="@color/signal_dark_colorOnSurface"
+            android:visibility="gone"
+            app:backgroundTint="@color/signal_colorSurfaceVariant_64"
+            app:backgroundTintMode="src_in"
+            app:cornerRadius="16dp"
+            app:icon="@drawable/add_to_story_16"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="16dp"
+            app:iconTint="@color/signal_dark_colorOnSurface"
+            tools:visibility="visible" />
+    </FrameLayout>
+
     <org.thoughtcrime.securesms.components.AvatarImageView
         android:id="@+id/sender_avatar"
         android:layout_width="32dp"

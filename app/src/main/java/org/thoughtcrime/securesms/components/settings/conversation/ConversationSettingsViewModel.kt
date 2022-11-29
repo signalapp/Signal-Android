@@ -272,7 +272,8 @@ sealed class ConversationSettingsViewModel(
             isAudioSecure = recipient.isPushV2Group,
             isMuted = recipient.isMuted,
             isMuteAvailable = true,
-            isSearchAvailable = true
+            isSearchAvailable = true,
+            isAddToStoryAvailable = recipient.isPushV2Group && !recipient.isBlocked && isActive
           ),
           canModifyBlockedState = RecipientUtil.isBlockable(recipient),
           specificSettingsState = state.requireGroupSettingsState().copy(
