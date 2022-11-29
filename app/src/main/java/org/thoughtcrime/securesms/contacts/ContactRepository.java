@@ -113,22 +113,40 @@ public class ContactRepository {
 
   @WorkerThread
   public @NonNull Cursor querySignalContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getSignalContacts(includeSelf)
-                                             : recipientDatabase.querySignalContacts(query, includeSelf);
-
-    cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getSignalContacts(false)
+                                             : recipientDatabase.querySignalContacts(query, false);
+           cursor = handleOwnerContact(query, includeSelf, cursor);
+           cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
 
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }
 
   @WorkerThread
   public @NonNull Cursor queryNonGroupContacts(@NonNull String query, boolean includeSelf) {
-    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getNonGroupContacts(includeSelf)
-                                             : recipientDatabase.queryNonGroupContacts(query, includeSelf);
-
-    cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientDatabase.getNonGroupContacts(false)
+                                             : recipientDatabase.queryNonGroupContacts(query, false);
+           cursor = handleOwnerContact(query, includeSelf, cursor);
+           cursor = handleNoteToSelfQuery(query, includeSelf, cursor);
 
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
+  }
+
+  private Cursor handleOwnerContact(String query, boolean includeSelf, Cursor cursor) {
+    if (includeSelf) {
+      Recipient self        = Recipient.self();
+      boolean   nameMatch   = self.getDisplayName(context).toLowerCase().contains(query.toLowerCase());
+      boolean   numberMatch = self.getE164().isPresent() && self.requireE164().contains(query);
+      boolean   addSelf     = nameMatch || numberMatch;
+
+      if (TextUtils.isEmpty(query) || addSelf) {
+        MatrixCursor selfCursor = new MatrixCursor(RecipientDatabase.SEARCH_PROJECTION_NAMES);
+        selfCursor.addRow(new Object[]{self.getId().serialize(), noteToSelfTitle, self.getE164().orElse(""),
+                self.getEmail().orElse(null), null, -1, RecipientDatabase.RegisteredState.REGISTERED.getId(),
+                self.getAbout(), self.getAboutEmoji(), null, true, noteToSelfTitle, noteToSelfTitle});
+        cursor = new MergeCursor(new Cursor[]{selfCursor, cursor});
+      }
+    }
+    return cursor;
   }
 
   private @NonNull Cursor handleNoteToSelfQuery(@NonNull String query, boolean includeSelf, Cursor cursor) {
