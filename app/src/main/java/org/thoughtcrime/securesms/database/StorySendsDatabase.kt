@@ -231,50 +231,13 @@ class StorySendsDatabase(context: Context, databaseHelper: SignalDatabase) : Dat
   }
 
   /**
-   * Gets the manifest after a change to the available distribution lists occurs. This will only include the recipients
-   * as specified by onlyInclude, and is meant to represent a delta rather than an entire manifest.
+   * Gets the manifest after a change to the available distribution lists occurs.
    */
-  fun getSentStorySyncManifestForUpdate(sentTimestamp: Long, onlyInclude: Set<RecipientId>): SentStorySyncManifest {
+  fun getSentStorySyncManifestForUpdate(sentTimestamp: Long): SentStorySyncManifest {
     val localManifest: SentStorySyncManifest = getLocalManifest(sentTimestamp)
-    val entries: List<SentStorySyncManifest.Entry> = localManifest.entries.filter { it.recipientId in onlyInclude }
+    val entries: List<SentStorySyncManifest.Entry> = localManifest.entries
 
     return SentStorySyncManifest(entries)
-  }
-
-  /**
-   * Manifest updates should only include the specific recipients who have changes (normally, one less distribution list),
-   * and of those, only the ones that have a non-empty set of distribution lists.
-   *
-   * @return A set of recipients who were able to receive the deleted story, and still have other stories at the same timestamp.
-   */
-  fun getRecipientIdsForManifestUpdate(sentTimestamp: Long, deletedMessageId: Long): Set<RecipientId> {
-    // language=sql
-    val query = """
-      SELECT $RECIPIENT_ID
-      FROM $TABLE_NAME
-      WHERE $SENT_TIMESTAMP = ?
-          AND $RECIPIENT_ID IN (
-            SELECT $RECIPIENT_ID
-            FROM $TABLE_NAME
-            WHERE $MESSAGE_ID = ?
-          )
-          AND $MESSAGE_ID IN (
-            SELECT ${MmsDatabase.ID}
-            FROM ${MmsDatabase.TABLE_NAME}
-            WHERE ${MmsDatabase.REMOTE_DELETED} = 0
-          )
-    """.trimIndent()
-
-    return readableDatabase.rawQuery(query, arrayOf(sentTimestamp, deletedMessageId)).use { cursor ->
-      if (cursor.count == 0) emptyList<RecipientId>()
-
-      val results: MutableSet<RecipientId> = hashSetOf()
-      while (cursor.moveToNext()) {
-        results.add(RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID)))
-      }
-
-      results
-    }
   }
 
   /**

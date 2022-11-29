@@ -55,13 +55,7 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
   override fun getFactoryKey(): String = KEY
 
   override fun onRun() {
-    val recipientIds = SignalDatabase.storySends.getRecipientIdsForManifestUpdate(sentTimestamp, deletedMessageId)
-    if (recipientIds.isEmpty()) {
-      Log.i(TAG, "No recipients requiring a manifest update. Dropping.")
-      return
-    }
-
-    val updateManifest = SignalDatabase.storySends.getSentStorySyncManifestForUpdate(sentTimestamp, recipientIds)
+    val updateManifest = SignalDatabase.storySends.getSentStorySyncManifestForUpdate(sentTimestamp)
 
     if (updateManifest.entries.isEmpty()) {
       Log.i(TAG, "No entries in updated manifest. Dropping.")
