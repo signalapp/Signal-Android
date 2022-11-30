@@ -197,7 +197,12 @@ public final class LocalBackupJobApi29 extends BaseJob {
       ThreadUtil.sleep(WAIT_FOR_SCOPED_STORAGE[attempts]);
 
       try (InputStream cipherStream = context.getContentResolver().openInputStream(temporaryFile.getUri())) {
-        valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount());
+        try {
+          valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount());
+        } catch (IOException e) {
+          Log.w(TAG, "Unable to verify backup", e);
+          valid = false;
+        }
       } catch (IOException e) {
         attempts++;
         Log.w(TAG, "Unable to find backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS);

@@ -15,6 +15,7 @@ object BackupVerifier {
   private val TAG = Log.tag(BackupVerifier::class.java)
 
   @JvmStatic
+  @Throws(IOException::class)
   fun verifyFile(cipherStream: InputStream, passphrase: String, expectedCount: Long): Boolean {
     val inputStream = BackupRecordInputStream(cipherStream, passphrase)
 
