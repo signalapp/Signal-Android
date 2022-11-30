@@ -17,8 +17,7 @@ import java.util.concurrent.TimeUnit
 
 /**
  * Transmits a sent sync transcript to linked devices containing the story sync manifest for the given sent timestamp.
- * The transmitted message is sent as a recipient update, and will only contain affected recipients that still have a
- * live story for the given timestamp.
+ * The transmitted message will contain all current recipients of a given story.
  */
 class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, private val sentTimestamp: Long, private val deletedMessageId: Long) : BaseJob(parameters) {
 
@@ -55,20 +54,18 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
   override fun getFactoryKey(): String = KEY
 
   override fun onRun() {
-    val updateManifest = SignalDatabase.storySends.getSentStorySyncManifestForUpdate(sentTimestamp)
-
-    if (updateManifest.entries.isEmpty()) {
-      Log.i(TAG, "No entries in updated manifest. Dropping.")
-      return
-    }
-
-    val recipientsSet = updateManifest.toRecipientsSet()
+    val updateManifest = SignalDatabase.storySends.getLocalManifest(sentTimestamp)
+    val recipientsSet: Set<SignalServiceStoryMessageRecipient> = updateManifest.toRecipientsSet()
     val transcriptMessage: SignalServiceSyncMessage = SignalServiceSyncMessage.forSentTranscript(buildSentTranscript(recipientsSet))
     val sendMessageResult = ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(transcriptMessage, Optional.empty())
+
+    Log.i(TAG, "Sent transcript message with ${recipientsSet.size} recipients")
 
     if (!sendMessageResult.isSuccess) {
       throw RetryableException()
     }
+
+    SignalDatabase.mms.deleteRemotelyDeletedStory(deletedMessageId)
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

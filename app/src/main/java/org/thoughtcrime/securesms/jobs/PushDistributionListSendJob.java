@@ -138,8 +138,8 @@ public final class PushDistributionListSendJob extends PushSendJob {
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
-    MessageTable         database = SignalDatabase.mms();
-    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
+    MessageTable             database                   = SignalDatabase.mms();
+    OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
     Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
 
@@ -212,6 +212,8 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
       SentStorySyncManifest                   manifest           = SignalDatabase.storySends().getFullSentStorySyncManifest(messageId, message.getSentTimeMillis());
       Set<SignalServiceStoryMessageRecipient> manifestCollection = manifest != null ? manifest.toRecipientsSet() : Collections.emptySet();
+
+      Log.d(TAG, "[" + messageId + "] Sending a story message with a manifest of size " + manifestCollection.size());
 
       return GroupSendUtil.sendStoryMessage(context, message.getRecipient().requireDistributionListId(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage, manifestCollection);
     } catch (ServerRejectedException e) {

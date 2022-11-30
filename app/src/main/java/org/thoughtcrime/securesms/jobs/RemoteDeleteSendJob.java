@@ -189,10 +189,6 @@ public class RemoteDeleteSendJob extends BaseJob {
 
     if (recipients.isEmpty()) {
       db.markAsSent(messageId, true);
-
-      if (MessageRecordUtil.isStory(message)) {
-        db.deleteRemotelyDeletedStory(messageId);
-      }
     } else {
       Log.w(TAG, "Still need to send to " + recipients.size() + " recipients. Retrying.");
       throw new RetryLaterException();

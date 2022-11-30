@@ -278,6 +278,11 @@ public class SignalServiceMessageSender {
                                    Set<SignalServiceStoryMessageRecipient> manifest)
       throws IOException, UntrustedIdentityException
   {
+    if (manifest.isEmpty()) {
+      Log.w(TAG, "Refusing to send sync message for empty manifest.");
+      return;
+    }
+
     SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
     sendSyncMessage(syncMessage, Optional.empty());
   }
@@ -300,8 +305,7 @@ public class SignalServiceMessageSender {
     List<SendMessageResult>  sendMessageResults = sendGroupMessage(distributionId, recipients, unidentifiedAccess, timestamp, content, ContentHint.IMPLICIT, groupId, false, SenderKeyGroupEvents.EMPTY, false, true);
 
     if (aciStore.isMultiDevice()) {
-      SignalServiceSyncMessage syncMessage = createSelfSendSyncMessageForStory(message, timestamp, isRecipientUpdate, manifest);
-      sendSyncMessage(syncMessage, Optional.empty());
+      sendStorySyncMessage(message, timestamp, isRecipientUpdate, manifest);
     }
 
     return sendMessageResults;

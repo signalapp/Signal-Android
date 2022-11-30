@@ -763,8 +763,10 @@ public final class SignalServiceContent {
 
       if (!address.isPresent()                                                        &&
           !dataMessage.flatMap(SignalServiceDataMessage::getGroupContext).isPresent() &&
-          !storyMessage.flatMap(SignalServiceStoryMessage::getGroupContext).isPresent()) {
-        throw new InvalidMessageStructureException("SyncMessage missing both destination and group ID!");
+          !storyMessage.flatMap(SignalServiceStoryMessage::getGroupContext).isPresent() &&
+          recipientManifest.isEmpty())
+      {
+        throw new InvalidMessageStructureException("SyncMessage missing destination, group ID, and recipient manifest!");
       }
 
       for (SignalServiceProtos.SyncMessage.Sent.UnidentifiedDeliveryStatus status : sentContent.getUnidentifiedStatusList()) {

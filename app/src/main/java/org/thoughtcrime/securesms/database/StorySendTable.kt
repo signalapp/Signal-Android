@@ -231,16 +231,6 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
   }
 
   /**
-   * Gets the manifest after a change to the available distribution lists occurs.
-   */
-  fun getSentStorySyncManifestForUpdate(sentTimestamp: Long): SentStorySyncManifest {
-    val localManifest: SentStorySyncManifest = getLocalManifest(sentTimestamp)
-    val entries: List<SentStorySyncManifest.Entry> = localManifest.entries
-
-    return SentStorySyncManifest(entries)
-  }
-
-  /**
    * Applies the given manifest to the local database. This method will:
    *
    * 1. Generate the local manifest
@@ -331,34 +321,34 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     }
   }
 
-  private fun getLocalManifest(sentTimestamp: Long): SentStorySyncManifest {
+  fun getLocalManifest(sentTimestamp: Long): SentStorySyncManifest {
     val entries = readableDatabase.rawQuery(
       // language=sql
       """
         SELECT 
             $RECIPIENT_ID,
             $ALLOWS_REPLIES,
-            $DISTRIBUTION_ID
+            $DISTRIBUTION_ID,
+            ${MmsTable.REMOTE_DELETED}
         FROM $TABLE_NAME
-        WHERE $TABLE_NAME.$SENT_TIMESTAMP = ? AND (
-          SELECT ${MmsTable.REMOTE_DELETED}
-          FROM ${MmsTable.TABLE_NAME}
-          WHERE ${MmsTable.ID} = $TABLE_NAME.$MESSAGE_ID
-        ) = 0
+        INNER JOIN ${MmsTable.TABLE_NAME} ON ${MmsTable.TABLE_NAME}.${MmsTable.ID} = $TABLE_NAME.$MESSAGE_ID
+        WHERE $TABLE_NAME.$SENT_TIMESTAMP = ?
       """.trimIndent(),
       arrayOf(sentTimestamp)
     ).use { cursor ->
       val results: MutableMap<RecipientId, SentStorySyncManifest.Entry> = mutableMapOf()
       while (cursor.moveToNext()) {
+        val isRemoteDeleted = CursorUtil.requireBoolean(cursor, MmsTable.REMOTE_DELETED)
         val recipientId = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID))
         val distributionId = DistributionId.from(CursorUtil.requireString(cursor, DISTRIBUTION_ID))
+        val distributionIdList: List<DistributionId> = if (isRemoteDeleted) emptyList() else listOf(distributionId)
         val allowsReplies = CursorUtil.requireBoolean(cursor, ALLOWS_REPLIES)
         val entry = results[recipientId]?.let {
           it.copy(
             allowedToReply = it.allowedToReply or allowsReplies,
-            distributionLists = it.distributionLists + distributionId
+            distributionLists = it.distributionLists + distributionIdList
           )
-        } ?: SentStorySyncManifest.Entry(recipientId, canReply(recipientId, sentTimestamp), listOf(distributionId))
+        } ?: SentStorySyncManifest.Entry(recipientId, canReply(recipientId, sentTimestamp), distributionIdList)
 
         results[recipientId] = entry
       }
