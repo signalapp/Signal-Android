@@ -214,7 +214,6 @@ class StripeRepository(activity: Activity) : StripeApi.PaymentIntentFetcher, Str
       }
     }.flatMap(ServiceResponse<EmptyResponse>::flattenResult).ignoreElement().doOnComplete {
       Log.d(TAG, "Set default payment method via Signal service!")
-    }.andThen {
       Log.d(TAG, "Storing the subscription payment source type locally.")
       SignalStore.donationsValues().setSubscriptionPaymentSourceType(paymentSourceType)
     }
