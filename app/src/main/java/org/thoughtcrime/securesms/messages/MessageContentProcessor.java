@@ -1807,11 +1807,6 @@ public final class MessageContentProcessor {
   {
     log(message.getTimestamp(), "Gift message.");
 
-    if (!FeatureFlags.giftBadgeReceiveSupport()) {
-      warn(message.getTimestamp(), "Dropping unsupported gift badge message.");
-      return null;
-    }
-
     notifyTypingStoppedFromIncomingMessage(senderRecipient, threadRecipient, content.getSenderDevice());
 
     Optional<InsertResult> insertResult;
