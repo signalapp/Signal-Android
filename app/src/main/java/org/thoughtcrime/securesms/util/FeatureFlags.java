@@ -107,6 +107,7 @@ public final class FeatureFlags {
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
   private static final String PAYMENTS_IN_CHAT_MESSAGES         = "android.payments.inChatMessages";
   private static final String CHAT_FILTERS                      = "android.chat.filters";
+  private static final String PAYPAL_DONATIONS                  = "android.donations.paypal";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -166,7 +167,8 @@ public final class FeatureFlags {
       KEEP_MUTED_CHATS_ARCHIVED,
       CDS_HARD_LIMIT,
       PAYMENTS_IN_CHAT_MESSAGES,
-      CHAT_FILTERS
+      CHAT_FILTERS,
+      PAYPAL_DONATIONS
   );
 
   @VisibleForTesting
@@ -538,8 +540,6 @@ public final class FeatureFlags {
 
   /**
    * Whether or not we should allow credit card payments for donations
-   *
-   * WARNING: This feature is not done, and this should not be enabled.
    */
   public static boolean creditCardPayments() {
     return getBoolean(CREDIT_CARD_PAYMENTS, Environment.IS_STAGING);
@@ -595,6 +595,13 @@ public final class FeatureFlags {
    */
   public static boolean chatFilters() {
     return getBoolean(CHAT_FILTERS, false);
+  }
+
+  /**
+   * Whether or not we should allow PayPal payments for donations
+   */
+  public static boolean paypalDonations() {
+    return getBoolean(PAYPAL_DONATIONS, Environment.IS_STAGING);
   }
 
   /** Only for rendering debug info. */

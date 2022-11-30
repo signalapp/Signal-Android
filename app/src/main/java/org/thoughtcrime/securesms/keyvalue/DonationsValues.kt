@@ -5,8 +5,8 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
-import org.signal.donations.StripePaymentSourceType
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
@@ -450,12 +450,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     remove(SUBSCRIPTION_CREDENTIAL_RECEIPT)
   }
 
-  fun setSubscriptionPaymentSourceType(stripePaymentSourceType: StripePaymentSourceType) {
-    putString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, stripePaymentSourceType.code)
+  fun setSubscriptionPaymentSourceType(paymentSourceType: PaymentSourceType) {
+    putString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, paymentSourceType.code)
   }
 
-  fun getSubscriptionPaymentSourceType(): StripePaymentSourceType {
-    return StripePaymentSourceType.fromCode(getString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, null))
+  fun getSubscriptionPaymentSourceType(): PaymentSourceType {
+    return PaymentSourceType.fromCode(getString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, null))
   }
 
   var subscriptionEndOfPeriodConversionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_CONVERT, 0L)

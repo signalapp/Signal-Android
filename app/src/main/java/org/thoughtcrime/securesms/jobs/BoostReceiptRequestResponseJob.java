@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.internal.ServiceResponse;
+import org.whispersystems.signalservice.internal.push.DonationProcessor;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -44,18 +45,20 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   private static final String BOOST_QUEUE = "BoostReceiptRedemption";
   private static final String GIFT_QUEUE = "GiftReceiptRedemption";
 
-  private static final String DATA_REQUEST_BYTES     = "data.request.bytes";
-  private static final String DATA_PAYMENT_INTENT_ID = "data.payment.intent.id";
-  private static final String DATA_ERROR_SOURCE      = "data.error.source";
-  private static final String DATA_BADGE_LEVEL       = "data.badge.level";
+  private static final String DATA_REQUEST_BYTES      = "data.request.bytes";
+  private static final String DATA_PAYMENT_INTENT_ID  = "data.payment.intent.id";
+  private static final String DATA_ERROR_SOURCE       = "data.error.source";
+  private static final String DATA_BADGE_LEVEL        = "data.badge.level";
+  private static final String DATA_DONATION_PROCESSOR = "data.donation.processor";
 
   private ReceiptCredentialRequestContext requestContext;
 
   private final DonationErrorSource donationErrorSource;
   private final String              paymentIntentId;
   private final long                badgeLevel;
+  private final DonationProcessor   donationProcessor;
 
-  private static BoostReceiptRequestResponseJob createJob(String paymentIntentId, DonationErrorSource donationErrorSource, long badgeLevel) {
+  private static BoostReceiptRequestResponseJob createJob(String paymentIntentId, DonationErrorSource donationErrorSource, long badgeLevel, DonationProcessor donationProcessor) {
     return new BoostReceiptRequestResponseJob(
         new Parameters
             .Builder()
@@ -67,12 +70,13 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
         null,
         paymentIntentId,
         donationErrorSource,
-        badgeLevel
+        badgeLevel,
+        donationProcessor
     );
   }
 
-  public static JobManager.Chain createJobChainForBoost(@NonNull String paymentIntentId) {
-    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+  public static JobManager.Chain createJobChainForBoost(@NonNull String paymentIntentId, @NonNull DonationProcessor donationProcessor) {
+    BoostReceiptRequestResponseJob     requestReceiptJob                  = createJob(paymentIntentId, DonationErrorSource.BOOST, Long.parseLong(SubscriptionLevels.BOOST_LEVEL), donationProcessor);
     DonationReceiptRedemptionJob       redeemReceiptJob                   = DonationReceiptRedemptionJob.createJobForBoost();
     RefreshOwnProfileJob               refreshOwnProfileJob               = RefreshOwnProfileJob.forBoost();
     MultiDeviceProfileContentUpdateJob multiDeviceProfileContentUpdateJob = new MultiDeviceProfileContentUpdateJob();
@@ -87,9 +91,10 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   public static JobManager.Chain createJobChainForGift(@NonNull String paymentIntentId,
                                                        @NonNull RecipientId recipientId,
                                                        @Nullable String additionalMessage,
-                                                       long badgeLevel)
+                                                       long badgeLevel,
+                                                       @NonNull DonationProcessor donationProcessor)
   {
-    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntentId, DonationErrorSource.GIFT, badgeLevel);
+    BoostReceiptRequestResponseJob requestReceiptJob = createJob(paymentIntentId, DonationErrorSource.GIFT, badgeLevel, donationProcessor);
     GiftSendJob                    giftSendJob       = new GiftSendJob(recipientId, additionalMessage);
 
 
@@ -102,20 +107,23 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
                                          @Nullable ReceiptCredentialRequestContext requestContext,
                                          @NonNull String paymentIntentId,
                                          @NonNull DonationErrorSource donationErrorSource,
-                                         long badgeLevel)
+                                         long badgeLevel,
+                                         @NonNull DonationProcessor donationProcessor)
   {
     super(parameters);
     this.requestContext      = requestContext;
     this.paymentIntentId     = paymentIntentId;
     this.donationErrorSource = donationErrorSource;
     this.badgeLevel          = badgeLevel;
+    this.donationProcessor   = donationProcessor;
   }
 
   @Override
   public @NonNull Data serialize() {
     Data.Builder builder = new Data.Builder().putString(DATA_PAYMENT_INTENT_ID, paymentIntentId)
                                              .putString(DATA_ERROR_SOURCE, donationErrorSource.serialize())
-                                             .putLong(DATA_BADGE_LEVEL, badgeLevel);
+                                             .putLong(DATA_BADGE_LEVEL, badgeLevel)
+                                             .putString(DATA_DONATION_PROCESSOR, donationProcessor.getCode());
 
     if (requestContext != null) {
       builder.putBlobAsString(DATA_REQUEST_BYTES, requestContext.serialize());
@@ -153,7 +161,7 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
 
     Log.d(TAG, "Submitting credential to server", true);
     ServiceResponse<ReceiptCredentialResponse> response = ApplicationDependencies.getDonationsService()
-                                                                                 .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest());
+                                                                                 .submitBoostReceiptCredentialRequestSync(paymentIntentId, requestContext.getRequest(), donationProcessor);
 
     if (response.getApplicationError().isPresent()) {
       handleApplicationError(context, response, donationErrorSource);
@@ -258,18 +266,20 @@ public class BoostReceiptRequestResponseJob extends BaseJob {
   public static class Factory implements Job.Factory<BoostReceiptRequestResponseJob> {
     @Override
     public @NonNull BoostReceiptRequestResponseJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      String              paymentIntentId     = data.getString(DATA_PAYMENT_INTENT_ID);
-      DonationErrorSource donationErrorSource = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
-      long                badgeLevel          = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+      String              paymentIntentId      = data.getString(DATA_PAYMENT_INTENT_ID);
+      DonationErrorSource donationErrorSource  = DonationErrorSource.deserialize(data.getStringOrDefault(DATA_ERROR_SOURCE, DonationErrorSource.BOOST.serialize()));
+      long                badgeLevel           = data.getLongOrDefault(DATA_BADGE_LEVEL, Long.parseLong(SubscriptionLevels.BOOST_LEVEL));
+      String              rawDonationProcessor = data.getStringOrDefault(DATA_DONATION_PROCESSOR, DonationProcessor.STRIPE.getCode());
+      DonationProcessor   donationProcessor    = DonationProcessor.fromCode(rawDonationProcessor);
 
       try {
         if (data.hasString(DATA_REQUEST_BYTES)) {
           byte[]                          blob           = data.getStringAsBlob(DATA_REQUEST_BYTES);
           ReceiptCredentialRequestContext requestContext = new ReceiptCredentialRequestContext(blob);
 
-          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel);
+          return new BoostReceiptRequestResponseJob(parameters, requestContext, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor);
         } else {
-          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel);
+          return new BoostReceiptRequestResponseJob(parameters, null, paymentIntentId, donationErrorSource, badgeLevel, donationProcessor);
         }
       } catch (InvalidInputException e) {
         throw new IllegalStateException(e);

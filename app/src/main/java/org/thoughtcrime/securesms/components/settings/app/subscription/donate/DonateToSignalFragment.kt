@@ -452,6 +452,15 @@ class DonateToSignalFragment :
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
   }
 
+  override fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(
+      DonateToSignalFragmentDirections.actionDonateToSignalFragmentToPaypalPaymentInProgressFragment(
+        DonationProcessorAction.PROCESS_NEW_DONATION,
+        gatewayRequest
+      )
+    )
+  }
+
   override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(DonateToSignalFragmentDirections.actionDonateToSignalFragmentToCreditCardFragment(gatewayRequest))
   }

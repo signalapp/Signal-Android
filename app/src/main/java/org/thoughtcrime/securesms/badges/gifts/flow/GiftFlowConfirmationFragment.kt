@@ -282,6 +282,10 @@ class GiftFlowConfirmationFragment :
     findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
   }
 
+  override fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  }
+
   override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
     findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(gatewayRequest))
   }

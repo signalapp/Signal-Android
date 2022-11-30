@@ -32,7 +32,7 @@ object InAppDonations {
    * Whether the user is in a region that supports PayPal, based off local phone number.
    */
   fun isPayPalAvailable(): Boolean {
-    return false
+    return FeatureFlags.paypalDonations() && !LocaleFeatureFlags.isPayPalDisabled()
   }
 
   /**

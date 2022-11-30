@@ -2,8 +2,8 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.errors
 
 import android.content.Context
 import androidx.annotation.StringRes
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
-import org.signal.donations.StripePaymentSourceType
 import org.thoughtcrime.securesms.R
 
 class DonationErrorParams<V> private constructor(
@@ -25,7 +25,7 @@ class DonationErrorParams<V> private constructor(
     ): DonationErrorParams<V> {
       return when (throwable) {
         is DonationError.GiftRecipientVerificationError -> getVerificationErrorParams(context, throwable, callback)
-        is DonationError.PaymentSetupError.DeclinedError -> getDeclinedErrorParams(context, throwable, callback)
+        is DonationError.PaymentSetupError.StripeDeclinedError -> getDeclinedErrorParams(context, throwable, callback)
         is DonationError.PaymentSetupError -> DonationErrorParams(
           title = R.string.DonationsErrors__error_processing_payment,
           message = R.string.DonationsErrors__your_payment,
@@ -88,10 +88,10 @@ class DonationErrorParams<V> private constructor(
       }
     }
 
-    private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.DeclinedError, callback: Callback<V>): DonationErrorParams<V> {
+    private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.StripeDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
       val getStripeDeclineCodePositiveActionParams: (Context, Callback<V>, Int) -> DonationErrorParams<V> = when (declinedError.method) {
-        StripePaymentSourceType.CREDIT_CARD -> this::getTryCreditCardAgainParams
-        StripePaymentSourceType.GOOGLE_PAY -> this::getGoToGooglePayParams
+        PaymentSourceType.Stripe.GooglePay -> this::getTryCreditCardAgainParams
+        PaymentSourceType.Stripe.CreditCard -> this::getGoToGooglePayParams
       }
 
       return when (declinedError.declineCode) {
@@ -99,66 +99,66 @@ class DonationErrorParams<V> private constructor(
           StripeDeclineCode.Code.APPROVE_WITH_ID -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again
             }
           )
           StripeDeclineCode.Code.CALL_ISSUER -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem
             }
           )
           StripeDeclineCode.Code.CARD_NOT_SUPPORTED -> getLearnMoreParams(context, callback, R.string.DeclineCode__your_card_does_not_support_this_type_of_purchase)
           StripeDeclineCode.Code.EXPIRED_CARD -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__your_card_has_expired_verify_your_card_details
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__your_card_has_expired
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_has_expired_verify_your_card_details
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_has_expired
             }
           )
           StripeDeclineCode.Code.INCORRECT_NUMBER -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__your_card_number_is_incorrect
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_number_is_incorrect
             }
           )
           StripeDeclineCode.Code.INCORRECT_CVC -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
             }
           )
           StripeDeclineCode.Code.INSUFFICIENT_FUNDS -> getLearnMoreParams(context, callback, R.string.DeclineCode__your_card_does_not_have_sufficient_funds)
           StripeDeclineCode.Code.INVALID_CVC -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_cards_cvc_number_is_incorrect
             }
           )
           StripeDeclineCode.Code.INVALID_EXPIRY_MONTH -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__the_expiration_month_on_your_card_is_incorrect
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__the_expiration_month
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__the_expiration_month_on_your_card_is_incorrect
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__the_expiration_month
             }
           )
           StripeDeclineCode.Code.INVALID_EXPIRY_YEAR -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__the_expiration_year_on_your_card_is_incorrect
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__the_expiration_year
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__the_expiration_year_on_your_card_is_incorrect
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__the_expiration_year
             }
           )
           StripeDeclineCode.Code.INVALID_NUMBER -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              StripePaymentSourceType.CREDIT_CARD -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
-              StripePaymentSourceType.GOOGLE_PAY -> R.string.DeclineCode__your_card_number_is_incorrect
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__your_card_number_is_incorrect_verify_your_card_details
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__your_card_number_is_incorrect
             }
           )
           StripeDeclineCode.Code.ISSUER_NOT_AVAILABLE -> getLearnMoreParams(context, callback, R.string.DeclineCode__try_completing_the_payment_again)

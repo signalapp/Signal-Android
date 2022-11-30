@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
@@ -21,6 +22,7 @@ import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.DonationProcessor
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
@@ -31,6 +33,16 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
 
   companion object {
     private val TAG = Log.tag(OneTimeDonationRepository::class.java)
+
+    fun <T> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
+      return if (throwable is DonationError) {
+        Single.error(throwable)
+      } else {
+        val recipient = Recipient.resolved(badgeRecipient)
+        val errorSource = if (recipient.isSelf) DonationErrorSource.BOOST else DonationErrorSource.GIFT
+        Single.error(DonationError.getPaymentSetupError(errorSource, throwable, paymentSourceType))
+      }
+    }
   }
 
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
@@ -62,6 +74,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
     badgeRecipient: RecipientId,
     additionalMessage: String?,
     badgeLevel: Long,
+    donationProcessor: DonationProcessor
   ): Completable {
     val isBoost = badgeRecipient == Recipient.self().id
     val donationErrorSource: DonationErrorSource = if (isBoost) DonationErrorSource.BOOST else DonationErrorSource.GIFT
@@ -81,9 +94,9 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       val countDownLatch = CountDownLatch(1)
       var finalJobState: JobTracker.JobState? = null
       val chain = if (isBoost) {
-        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId)
+        BoostReceiptRequestResponseJob.createJobChainForBoost(paymentIntentId, donationProcessor)
       } else {
-        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel)
+        BoostReceiptRequestResponseJob.createJobChainForGift(paymentIntentId, badgeRecipient, additionalMessage, badgeLevel, donationProcessor)
       }
 
       chain.enqueue { _, jobState ->

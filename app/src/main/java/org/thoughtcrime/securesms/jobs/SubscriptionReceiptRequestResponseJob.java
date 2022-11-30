@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
+import org.signal.donations.PaymentSourceType;
 import org.signal.donations.StripeDeclineCode;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -295,19 +296,26 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
       DonationError.PaymentSetupError paymentSetupError;
+      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      boolean                         isStripeSource = paymentSourceType instanceof PaymentSourceType.Stripe;
 
-      if (declineCode.isKnown()) {
-        paymentSetupError = new DonationError.PaymentSetupError.DeclinedError(
+      if (declineCode.isKnown() && isStripeSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.StripeDeclinedError(
             getErrorSource(),
             new Exception(chargeFailure.getMessage()),
             declineCode,
-            SignalStore.donationsValues().getSubscriptionPaymentSourceType()
+            (PaymentSourceType.Stripe) paymentSourceType
         );
-      } else {
-        paymentSetupError = new DonationError.PaymentSetupError.CodedError(
+      } else if (isStripeSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.StripeCodedError(
             getErrorSource(),
             new Exception("Card was declined. " + chargeFailure.getCode()),
             chargeFailure.getCode()
+        );
+      } else {
+        paymentSetupError = new DonationError.PaymentSetupError.GenericError(
+            getErrorSource(),
+            new Exception("Payment Failed for " + paymentSourceType.getCode())
         );
       }
 

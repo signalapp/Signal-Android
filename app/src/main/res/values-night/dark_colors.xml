@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="paypal_outline">#00000000</color>
+
     <color name="conversation_toolbar_color">@color/signal_colorSurface</color>
     <color name="conversation_toolbar_color_wallpaper">@color/signal_colorTransparentInverse5</color>
     <color name="conversation_toolbar_color_wallpaper_scrolled">@color/signal_colorTransparentInverse5</color>

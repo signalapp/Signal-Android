@@ -520,7 +520,7 @@ class StripeApi(
   ) : Parcelable
 
   interface PaymentSource {
-    val type: StripePaymentSourceType
+    val type: PaymentSourceType
     fun parameterize(): JSONObject
     fun getTokenId(): String
     fun email(): String?

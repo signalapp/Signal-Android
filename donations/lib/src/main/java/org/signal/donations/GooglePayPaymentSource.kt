@@ -4,7 +4,7 @@ import com.google.android.gms.wallet.PaymentData
 import org.json.JSONObject
 
 class GooglePayPaymentSource(private val paymentData: PaymentData) : StripeApi.PaymentSource {
-  override val type = StripePaymentSourceType.GOOGLE_PAY
+  override val type = PaymentSourceType.Stripe.GooglePay
 
   override fun parameterize(): JSONObject {
     val jsonData = JSONObject(paymentData.toJson())

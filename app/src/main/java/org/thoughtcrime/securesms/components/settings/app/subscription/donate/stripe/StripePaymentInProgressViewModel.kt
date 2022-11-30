@@ -12,9 +12,9 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayPaymentSource
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.donations.StripeIntentAccessor
-import org.signal.donations.StripePaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.util.Preconditions
+import org.whispersystems.signalservice.internal.push.DonationProcessor
 
 class StripePaymentInProgressViewModel(
   private val stripeRepository: StripeRepository,
@@ -93,11 +94,11 @@ class StripePaymentInProgressViewModel(
       paymentData == null && cardData == null -> error("No payment provider available.")
       paymentData != null && cardData != null -> error("Too many providers available")
       paymentData != null -> PaymentSourceProvider(
-        StripePaymentSourceType.GOOGLE_PAY,
+        PaymentSourceType.Stripe.GooglePay,
         Single.just<StripeApi.PaymentSource>(GooglePayPaymentSource(paymentData)).doAfterTerminate { clearPaymentInformation() }
       )
       cardData != null -> PaymentSourceProvider(
-        StripePaymentSourceType.CREDIT_CARD,
+        PaymentSourceType.Stripe.CreditCard,
         stripeRepository.createCreditCardPaymentSource(errorSource, cardData).doAfterTerminate { clearPaymentInformation() }
       )
       else -> error("This should never happen.")
@@ -187,11 +188,12 @@ class StripePaymentInProgressViewModel(
         .flatMap { stripeRepository.getStatusAndPaymentMethodId(it) }
         .flatMapCompletable {
           oneTimeDonationRepository.waitForOneTimeRedemption(
-            amount,
-            paymentIntent.intentId,
-            request.recipientId,
-            request.additionalMessage,
-            request.level
+            price = amount,
+            paymentIntentId = paymentIntent.intentId,
+            badgeRecipient = request.recipientId,
+            additionalMessage = request.additionalMessage,
+            badgeLevel = request.level,
+            donationProcessor = DonationProcessor.STRIPE
           )
         }
     }.subscribeBy(
@@ -257,7 +259,7 @@ class StripePaymentInProgressViewModel(
   }
 
   private data class PaymentSourceProvider(
-    val paymentSourceType: StripePaymentSourceType,
+    val paymentSourceType: PaymentSourceType,
     val paymentSource: Single<StripeApi.PaymentSource>
   )
 

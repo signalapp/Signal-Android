@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.ca
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalPaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -77,12 +78,17 @@ class DonationCheckoutDelegate(
       val result: CreditCardResult = bundle.getParcelable(CreditCardFragment.REQUEST_KEY)!!
       handleCreditCardResult(result)
     }
+
+    fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
+      val result: DonationProcessorActionResult = bundle.getParcelable(PayPalPaymentInProgressFragment.REQUEST_KEY)!!
+      handleDonationProcessorActionResult(result)
+    }
   }
 
   private fun handleGatewaySelectionResponse(gatewayResponse: GatewayResponse) {
     when (gatewayResponse.gateway) {
       GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
-      GatewayResponse.Gateway.PAYPAL -> error("PayPal is not currently supported.")
+      GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
       GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
     }
   }
@@ -121,6 +127,14 @@ class DonationCheckoutDelegate(
         .show()
     } else {
       Log.w(TAG, "Stripe action failed: ${result.action}")
+    }
+  }
+
+  private fun launchPayPal(gatewayResponse: GatewayResponse) {
+    if (InAppDonations.isPayPalAvailable()) {
+      callback.navigateToPayPalPaymentInProgress(gatewayResponse.request)
+    } else {
+      error("PayPal is not currently enabled.")
     }
   }
 
@@ -186,6 +200,7 @@ class DonationCheckoutDelegate(
 
   interface Callback {
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
+    fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
     fun onPaymentComplete(gatewayRequest: GatewayRequest)
     fun onProcessorActionProcessed()

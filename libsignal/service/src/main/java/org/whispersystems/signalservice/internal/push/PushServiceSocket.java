@@ -86,6 +86,9 @@ import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedExc
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
+import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -261,17 +264,21 @@ public class PushServiceSocket {
 
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
 
-  private static final String SUBSCRIPTION_LEVELS                 = "/v1/subscription/levels";
-  private static final String UPDATE_SUBSCRIPTION_LEVEL           = "/v1/subscription/%s/level/%s/%s/%s";
-  private static final String SUBSCRIPTION                        = "/v1/subscription/%s";
-  private static final String CREATE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
-  private static final String DEFAULT_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
-  private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS    = "/v1/subscription/%s/receipt_credentials";
-  private static final String BOOST_AMOUNTS                       = "/v1/subscription/boost/amounts";
-  private static final String GIFT_AMOUNT                         = "/v1/subscription/boost/amounts/gift";
-  private static final String CREATE_BOOST_PAYMENT_INTENT         = "/v1/subscription/boost/create";
-  private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
-  private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
+  private static final String SUBSCRIPTION_LEVELS                        = "/v1/subscription/levels";
+  private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
+  private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
+  private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
+  private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
+  private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
+  private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/paypal/%s";
+  private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
+  private static final String BOOST_AMOUNTS                              = "/v1/subscription/boost/amounts";
+  private static final String GIFT_AMOUNT                                = "/v1/subscription/boost/amounts/gift";
+  private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
+  private static final String CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/paypal/create";
+  private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
+  private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
+  private static final String BOOST_BADGES                               = "/v1/subscription/boost/badges";
 
   private static final String CDSI_AUTH = "/v2/directory/auth";
 
@@ -1019,9 +1026,32 @@ public class PushServiceSocket {
 
   public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, long amount, long level) throws IOException {
     String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level));
-    String result  = makeServiceRequestWithoutAuthentication(CREATE_BOOST_PAYMENT_INTENT, "POST", payload);
+    String result  = makeServiceRequestWithoutAuthentication(CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT, "POST", payload);
     return JsonUtil.fromJsonResponse(result, StripeClientSecret.class);
   }
+
+  public PayPalCreatePaymentIntentResponse createPayPalOneTimePaymentIntent(Locale locale, String currencyCode, long amount, long level, String returnUrl, String cancelUrl) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              payload = JsonUtil.toJson(new PayPalCreateOneTimePaymentIntentPayload(amount, currencyCode, level, returnUrl, cancelUrl));
+    String              result  = makeServiceRequestWithoutAuthentication(CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, headers, NO_HANDLER);
+
+    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentIntentResponse.class);
+  }
+
+  public PayPalConfirmPaymentIntentResponse confirmPayPalOneTimePaymentIntent(String currency, String amount, long level, String payerId, String paymentId, String paymentToken) throws IOException {
+    String payload = JsonUtil.toJson(new PayPalConfirmOneTimePaymentIntentPayload(amount, currency, level, payerId, paymentId, paymentToken));
+    Log.d(TAG, payload);
+    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload);
+    return JsonUtil.fromJsonResponse(result, PayPalConfirmPaymentIntentResponse.class);
+  }
+
+  public PayPalCreatePaymentMethodResponse createPayPalPaymentMethod(Locale locale, String subscriberId, String returnUrl, String cancelUrl) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              payload = JsonUtil.toJson(new PayPalCreatePaymentMethodPayload(returnUrl, cancelUrl));
+    String              result  = makeServiceRequestWithoutAuthentication(String.format(CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", payload);
+    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentMethodResponse.class);
+  }
+
 
   public Map<String, List<BigDecimal>> getBoostAmounts() throws IOException {
     String result = makeServiceRequestWithoutAuthentication(BOOST_AMOUNTS, "GET", null);
@@ -1040,8 +1070,8 @@ public class PushServiceSocket {
     return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
   }
 
-  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
-    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest));
+  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) throws IOException {
+    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest, processor));
     String response = makeServiceRequestWithoutAuthentication(
         BOOST_RECEIPT_CREDENTIALS,
         "POST",
@@ -1082,13 +1112,17 @@ public class PushServiceSocket {
     makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "DELETE", null);
   }
 
-  public StripeClientSecret createSubscriptionPaymentMethod(String subscriberId) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
+  public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId) throws IOException {
+    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
     return JsonUtil.fromJson(response, StripeClientSecret.class);
   }
 
-  public void setDefaultSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+  public void setDefaultStripeSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+  }
+
+  public void setDefaultPaypalSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
   }
 
   public ReceiptCredentialResponse submitReceiptCredentials(String subscriptionId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {

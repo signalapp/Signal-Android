@@ -9,6 +9,9 @@ import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
+import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
 import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
@@ -16,6 +19,7 @@ import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.push.DonationProcessor;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
@@ -87,8 +91,8 @@ public class DonationsService {
    * @param paymentIntentId          PaymentIntent ID from a boost donation intent response.
    * @param receiptCredentialRequest Client-generated request token
    */
-  public ServiceResponse<ReceiptCredentialResponse> submitBoostReceiptCredentialRequestSync(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest), 200));
+  public ServiceResponse<ReceiptCredentialResponse> submitBoostReceiptCredentialRequestSync(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) {
+    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest, processor), 200));
   }
 
   /**
@@ -217,21 +221,126 @@ public class DonationsService {
 
   public ServiceResponse<EmptyResponse> setDefaultStripePaymentMethod(SubscriberId subscriberId, String paymentMethodId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.setDefaultSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
+      pushServiceSocket.setDefaultStripeSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
   /**
-   *
-   * @param subscriberId  The subscriber ID to create a payment method for.
-   * @return              Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
-   *                      but instead with the SetupIntent stripe APIs.
+   * @param subscriberId The subscriber ID to create a payment method for.
+   * @return Client secret for a SetupIntent. It should not be used with the PaymentIntent stripe APIs
+   * but instead with the SetupIntent stripe APIs.
    */
   public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
-      StripeClientSecret clientSecret = pushServiceSocket.createSubscriptionPaymentMethod(subscriberId.serialize());
+      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize());
       return new Pair<>(clientSecret, 200);
+    });
+  }
+
+  /**
+   * Creates a PayPal one-time payment and returns the approval URL
+   * Response Codes
+   * 200 — success
+   * 400 — request error
+   * 409 — level requires a valid currency/amount combination that does not match
+   *
+   * @param locale        User locale for proper language presentation
+   * @param currencyCode  3 letter currency code of the desired currency
+   * @param amount        Stringified minimum precision amount
+   * @param level         The badge level to purchase
+   * @param returnUrl     The 'return' url after a successful login and confirmation
+   * @param cancelUrl     The 'cancel' url for a cancelled confirmation
+   * @return              Wrapped response with either an error code or a payment id and approval URL
+   */
+  public ServiceResponse<PayPalCreatePaymentIntentResponse> createPayPalOneTimePaymentIntent(Locale locale,
+                                                                                             String currencyCode,
+                                                                                             String amount,
+                                                                                             long level,
+                                                                                             String returnUrl,
+                                                                                             String cancelUrl)
+  {
+    return wrapInServiceResponse(() -> {
+      PayPalCreatePaymentIntentResponse response = pushServiceSocket.createPayPalOneTimePaymentIntent(
+          locale,
+          currencyCode.toUpperCase(Locale.US), // Chris Eager to make this case insensitive in the next build
+          Long.parseLong(amount),
+          level,
+          returnUrl,
+          cancelUrl
+      );
+      return new Pair<>(response, 200);
+    });
+  }
+
+  /**
+   * Confirms a PayPal one-time payment and returns the paymentId for receipt credentials
+   * Response Codes
+   * 200 — success
+   * 400 — request error
+   * 409 — level requires a valid currency/amount combination that does not match
+   *
+   * @param currency      3 letter currency code of the desired currency
+   * @param amount        Stringified minimum precision amount
+   * @param level         The badge level to purchase
+   * @param payerId       Passed as a URL parameter back to returnUrl
+   * @param paymentId     Passed as a URL parameter back to returnUrl
+   * @param paymentToken  Passed as a URL parameter back to returnUrl
+   * @return              Wrapped response with either an error code or a payment id
+   */
+  public ServiceResponse<PayPalConfirmPaymentIntentResponse> confirmPayPalOneTimePaymentIntent(String currency,
+                                                                                               String amount,
+                                                                                               long level,
+                                                                                               String payerId,
+                                                                                               String paymentId,
+                                                                                               String paymentToken)
+  {
+    return wrapInServiceResponse(() -> {
+      PayPalConfirmPaymentIntentResponse response = pushServiceSocket.confirmPayPalOneTimePaymentIntent(currency, amount, level, payerId, paymentId, paymentToken);
+      return new Pair<>(response, 200);
+    });
+  }
+
+  /**
+   * Sets up a payment method via PayPal for recurring charges.
+   *
+   * Response Codes
+   * 200 — success
+   * 403 — subscriberId password mismatches OR account authentication is present
+   * 404 — subscriberId is not found or malformed
+   *
+   * @param locale        User locale
+   * @param subscriberId  User subscriber id
+   * @param returnUrl     A success URL
+   * @param cancelUrl     A cancel URL
+   * @return              A response with an approval url and token
+   */
+  public ServiceResponse<PayPalCreatePaymentMethodResponse> createPayPalPaymentMethod(Locale locale,
+                                                                                      SubscriberId subscriberId,
+                                                                                      String returnUrl,
+                                                                                      String cancelUrl) {
+    return wrapInServiceResponse(() -> {
+      PayPalCreatePaymentMethodResponse response = pushServiceSocket.createPayPalPaymentMethod(locale, subscriberId.serialize(), returnUrl, cancelUrl);
+      return new Pair<>(response, 200);
+    });
+  }
+
+  /**
+   * Sets the given payment method as the default in PayPal
+   *
+   * Response Codes
+   * 200 — success
+   * 403 — subscriberId password mismatches OR account authentication is present
+   * 404 — subscriberId is not found or malformed
+   * 409 — subscriber record is missing customer ID - must call POST /v1/subscription/{subscriberId}/create_payment_method first
+   *
+   * @param subscriberId    User subscriber id
+   * @param paymentMethodId Payment method id to make default
+   */
+  public ServiceResponse<EmptyResponse> setDefaultPayPalPaymentMethod(SubscriberId subscriberId, String paymentMethodId) {
+    return wrapInServiceResponse(() -> {
+      pushServiceSocket.setDefaultPaypalSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
+      return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
