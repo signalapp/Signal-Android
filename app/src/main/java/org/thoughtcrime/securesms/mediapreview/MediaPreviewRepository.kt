@@ -17,6 +17,8 @@ import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.MediaTable.Sorting
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.media
+import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.AttachmentUtil
 
@@ -87,9 +89,11 @@ class MediaPreviewRepository {
 
   fun getMessagePositionIntent(context: Context, messageId: Long): Single<Intent> {
     return Single.fromCallable {
-      val messageRecord = SignalDatabase.mms.getMessageRecord(messageId)
-      val messagePosition = SignalDatabase.mmsSms.getMessagePositionInConversation(messageRecord.threadId, messageRecord.dateReceived)
-      ConversationIntents.createBuilder(context, messageRecord.recipient.id, messageRecord.threadId)
+      val messageRecord: MessageRecord = SignalDatabase.mms.getMessageRecord(messageId)
+      val threadId: Long = messageRecord.threadId
+      val messagePosition: Int = SignalDatabase.mmsSms.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
+      val recipientId: RecipientId = SignalDatabase.threads.getRecipientForThreadId(threadId)?.id ?: throw IllegalStateException("Could not find recipient for thread ID $threadId")
+      ConversationIntents.createBuilder(context, recipientId, threadId)
         .withStartingPosition(messagePosition)
         .build()
     }
