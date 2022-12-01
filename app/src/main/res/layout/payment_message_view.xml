@@ -46,11 +46,12 @@
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/payment_note"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:textAppearance="@style/TextAppearance.Signal.Body1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/payment_amount_layout"
+        app:layout_constraintStart_toStartOf="@+id/payment_amount_layout"
         app:layout_constraintTop_toBottomOf="@+id/payment_amount_layout"
         tools:text="It was my treat" />
 
