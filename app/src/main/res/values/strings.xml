@@ -1723,12 +1723,19 @@
         <item quantity="other">%1$s, %2$s, and %3$d others are in this call</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Flip</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Speaker</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Camera</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Unmute</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Mute</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Ring</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">End call</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2199,8 +2206,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Swipe up to change views</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Decline</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Answer</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Answer without video</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -3122,23 +3132,23 @@
     <string name="conversation_expiring_off__disappearing_messages">Disappearing messages</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Info</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Copy</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Delete</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Forward</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Reply</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Save</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Resend</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Select</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message's full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Payment details</string>
 
     <!-- conversation_expiring_on -->
@@ -4062,7 +4072,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Create a profile to receive notifications only from people and groups you choose.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Notification profiles</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Create profile</string>
@@ -4225,13 +4235,21 @@
     <string name="ConversationSettingsFragment__send_message">Send message</string>
     <string name="ConversationSettingsFragment__start_video_call">Start video call</string>
     <string name="ConversationSettingsFragment__start_audio_call">Start audio call</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Story</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Message</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Video</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Audio</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Call</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Mute</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Muted</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Search</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Disappearing messages</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sounds &amp; notifications</string>
