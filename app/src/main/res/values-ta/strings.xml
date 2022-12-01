@@ -2071,9 +2071,12 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s இடமிருந்து உங்களுக்கு</string>
     <string name="MediaPreviewActivity_media_no_longer_available">இந்த ஊடகம் சேமிப்பகத்தில் இல்லை.</string>
+    <string name="MediaPreviewActivity_error_finding_message">Error finding message.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">இந்த மீடியாவைப் பகிரக்கூடிய பயன்பாட்டைக் கண்டுபிடிக்க முடியவில்லை.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">நெருக்கமான</string>
     <string name="MediaPreviewFragment_edit_media_error">மீடியா பிழை</string>
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <string name="MediaPreviewFragment_media_delete_error">Error Deleting Message, Message May Still Exist</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
@@ -4208,11 +4211,16 @@
     <string name="NotificationsSettingsFragment__unknown_ringtone">தெரியவில்லை ரிங்டோன்</string>
 
     <!-- ConversationSettingsFragment -->
+    <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">Can\'t add to group story</string>
+    <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
+    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Only admins of this group can add to its story</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">தொடர்புகள் பயன்பாடு காணவில்லை</string>
     <string name="ConversationSettingsFragment__send_message">அனுப்பு செய்தி</string>
     <string name="ConversationSettingsFragment__start_video_call">தொடங்கு காணொளி அழைப்பு</string>
     <string name="ConversationSettingsFragment__start_audio_call">தொடங்கு ஆடியோ அழைப்பு</string>
+    <string name="ConversationSettingsFragment__story">Story</string>
     <string name="ConversationSettingsFragment__message">செய்தி</string>
     <string name="ConversationSettingsFragment__video">காணொளி</string>
     <string name="ConversationSettingsFragment__audio">ஒலி</string>
@@ -4377,6 +4385,10 @@
     <string name="MultiselectForwardFragment__limit_reached">வரம்பை எட்டியது</string>
 
     <!-- Media V2 -->
+    <!-- Dialog message when sending a story via an add to group story button -->
+    <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
+    <!-- Positive dialog action when sending a story via an add to group story button -->
+    <string name="MediaReviewFragment__add_to_story">Add to story</string>
     <string name="MediaReviewFragment__add_a_message">கூட்டு ஒரு செய்தி</string>
     <string name="MediaReviewFragment__add_a_reply">ஒரு பதிலைச் சேர்க்கவும்</string>
     <string name="MediaReviewFragment__send_to">அனுப்பவும்</string>
@@ -4885,6 +4897,8 @@
         <item quantity="one">%1$d பதில்</item>
         <item quantity="other">%1$d பதில்கள்</item>
     </plurals>
+    <!-- Label on group stories to add a story -->
+    <string name="StoryViewerPageFragment__add">Add</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">பார்வைகள் முடக்கப்பட்டுள்ளன</string>
     <!-- Used to join views and replies when both exist on a story item -->
@@ -5229,6 +5243,11 @@
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
         <item quantity="one">%1$s · %2$d பார்வையாளர்</item>
         <item quantity="other">%1$s · %2$d பார்வையாளர்கள்</item>
+    </plurals>
+    <!-- Label under name for my story -->
+    <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
+        <item quantity="one">%1$s · %2$d excluded</item>
+        <item quantity="other">%1$s · %2$d excluded</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">உங்கள் பார்வையாளர்களைத் தேர்ந்தெடுக்க தட்டவும்</string>
