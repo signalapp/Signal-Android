@@ -42,24 +42,7 @@ public final class PaymentNotificationSendJob extends BaseJob {
   private final UUID        uuid;
 
   public static Job create(@NonNull RecipientId recipientId, @NonNull UUID uuid, @NonNull String queue) {
-    if (FeatureFlags.paymentsInChatMessages()) {
-      return new PaymentNotificationSendJobV2(recipientId, uuid);
-    } else {
-      return new PaymentNotificationSendJob(recipientId, uuid, queue);
-    }
-  }
-
-  private PaymentNotificationSendJob(@NonNull RecipientId recipientId,
-                             @NonNull UUID uuid,
-                             @NonNull String queue)
-  {
-    this(new Parameters.Builder()
-                       .setQueue(queue)
-                       .setLifespan(TimeUnit.DAYS.toMillis(1))
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       .build(),
-         recipientId,
-         uuid);
+    return new PaymentNotificationSendJobV2(recipientId, uuid);
   }
 
   private PaymentNotificationSendJob(@NonNull Parameters parameters,

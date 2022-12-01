@@ -542,6 +542,20 @@ public abstract class MessageTable extends DatabaseTable implements MmsSmsColumn
     return CursorExtensionsKt.readToList(cursor, c -> CursorUtil.requireLong(c, THREAD_ID));
   }
 
+  public @Nullable MessageId getPaymentMessage(@NonNull UUID paymentUuid) {
+    Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), ID)
+                                              .from(getTableName())
+                                              .where(getTypeField() + " & ? != 0 AND body = ?", Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION, paymentUuid)
+                                              .run();
+
+    long id = CursorExtensionsKt.readToSingleLong(cursor, -1);
+    if (id != -1) {
+      return new MessageId(id, getTableName().equals(MmsTable.TABLE_NAME));
+    } else {
+      return null;
+    }
+  }
+
   @Override
   public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
     ContentValues values = new ContentValues();

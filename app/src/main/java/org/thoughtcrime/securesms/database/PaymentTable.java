@@ -18,6 +18,7 @@ import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -33,6 +34,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.Base64;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SqlUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.util.UuidUtil;
@@ -647,6 +649,10 @@ public final class PaymentTable extends DatabaseTable implements RecipientIdData
   private void notifyUuidChanged(@Nullable UUID uuid) {
     if (uuid != null) {
       ApplicationDependencies.getDatabaseObserver().notifyPaymentListeners(uuid);
+      MessageId messageId = SignalDatabase.mms().getPaymentMessage(uuid);
+      if (messageId != null) {
+        ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(messageId);
+      }
     }
   }
 

@@ -105,7 +105,6 @@ public final class FeatureFlags {
   public  static final String CREDIT_CARD_DISABLED_REGIONS      = "global.donations.ccDisabledRegions";
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
-  private static final String PAYMENTS_IN_CHAT_MESSAGES         = "android.payments.inChatMessages";
   private static final String CHAT_FILTERS                      = "android.chat.filters";
   private static final String PAYPAL_DONATIONS                  = "android.donations.paypal";
 
@@ -166,7 +165,6 @@ public final class FeatureFlags {
       PAYPAL_DISABLED_REGIONS,
       KEEP_MUTED_CHATS_ARCHIVED,
       CDS_HARD_LIMIT,
-      PAYMENTS_IN_CHAT_MESSAGES,
       CHAT_FILTERS,
       PAYPAL_DONATIONS
   );
@@ -232,8 +230,7 @@ public final class FeatureFlags {
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
       KEEP_MUTED_CHATS_ARCHIVED,
-      CDS_HARD_LIMIT,
-      PAYMENTS_IN_CHAT_MESSAGES
+      CDS_HARD_LIMIT
   );
 
   /**
@@ -548,11 +545,6 @@ public final class FeatureFlags {
   /** Whether client supports sending a request to another to activate payments */
   public static boolean paymentsRequestActivateFlow() {
     return getBoolean(PAYMENTS_REQUEST_ACTIVATE_FLOW, false);
-  }
-
-  /** Whether client supports processing a payment notification as a in-chat message */
-  public static boolean paymentsInChatMessages() {
-    return getBoolean(PAYMENTS_IN_CHAT_MESSAGES, false);
   }
 
   /**

@@ -212,7 +212,8 @@ public class MmsTable extends MessageTable {
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
-    "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");"
+    "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");",
+    "CREATE INDEX IF NOT EXISTS mms_id_msg_box_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + MESSAGE_BOX + ") WHERE " + MESSAGE_BOX + " & " + Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {

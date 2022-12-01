@@ -6,7 +6,11 @@ import android.text.style.TypefaceSpan
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import androidx.annotation.ColorInt
 import androidx.core.view.ViewCompat
+import com.google.android.material.progressindicator.CircularProgressIndicatorSpec
+import com.google.android.material.progressindicator.IndeterminateDrawable
+import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.quotes.QuoteViewColorTheme
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
@@ -51,10 +55,31 @@ class PaymentMessageView @JvmOverloads constructor(
 
     val quoteViewColorTheme = QuoteViewColorTheme.resolveTheme(outgoing, false, recipient.hasWallpaper())
 
-    binding.paymentAmount.setTextColor(quoteViewColorTheme.getForegroundColor(context))
-    binding.paymentAmount.setMoney(payment.amount, 0L, currencyTypefaceSpan)
+    if (payment.state.isInProgress) {
+      binding.paymentAmount.visible = false
+      binding.paymentInprogress.visible = true
+      binding.paymentInprogress.setImageDrawable(getInProgressDrawable(quoteViewColorTheme.getForegroundColor(context)))
+    } else {
+      binding.paymentAmount.visible = true
+      binding.paymentInprogress.visible = false
+      binding.paymentAmount.setTextColor(quoteViewColorTheme.getForegroundColor(context))
+      binding.paymentAmount.setMoney(payment.amount, 0L, currencyTypefaceSpan)
+    }
 
     ViewCompat.setBackgroundTintList(binding.paymentAmountLayout, ColorStateList.valueOf(quoteViewColorTheme.getBackgroundColor(context)))
+  }
+
+  private fun getInProgressDrawable(@ColorInt color: Int): IndeterminateDrawable<CircularProgressIndicatorSpec> {
+    val spec = CircularProgressIndicatorSpec(context, null).apply {
+      indicatorInset = 0
+      indicatorColors = intArrayOf(color)
+      indicatorSize = 20.dp
+      trackThickness = 2.dp
+    }
+
+    val drawable = IndeterminateDrawable.createCircularDrawable(context, spec)
+    drawable.setBounds(0, 0, spec.indicatorSize, spec.indicatorSize)
+    return drawable
   }
 
   companion object {

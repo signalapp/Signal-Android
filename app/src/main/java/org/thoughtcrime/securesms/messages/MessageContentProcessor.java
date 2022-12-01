@@ -465,21 +465,19 @@ public final class MessageContentProcessor {
                                             Money.MobileCoin.ZERO,
                                             Money.MobileCoin.ZERO,
                                             paymentNotification.getReceipt(),
-                                            FeatureFlags.paymentsInChatMessages());
+                                            true);
 
-      if (FeatureFlags.paymentsInChatMessages()) {
-        IncomingMediaMessage mediaMessage = IncomingMediaMessage.createIncomingPaymentNotification(senderRecipient.getId(),
-                                                                                                   content,
-                                                                                                   receivedTime,
-                                                                                                   TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
-                                                                                                   uuid);
+      IncomingMediaMessage mediaMessage = IncomingMediaMessage.createIncomingPaymentNotification(senderRecipient.getId(),
+                                                                                                 content,
+                                                                                                 receivedTime,
+                                                                                                 TimeUnit.SECONDS.toMillis(message.getExpiresInSeconds()),
+                                                                                                 uuid);
 
-        Optional<InsertResult> insertResult = SignalDatabase.mms().insertSecureDecryptedMessageInbox(mediaMessage, -1);
-        smsMessageId.ifPresent(smsId -> SignalDatabase.sms().deleteMessage(smsId));
-        if (insertResult.isPresent()) {
-          messageId = new MessageId(insertResult.get().getMessageId(), true);
-          ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
-        }
+      Optional<InsertResult> insertResult = SignalDatabase.mms().insertSecureDecryptedMessageInbox(mediaMessage, -1);
+      smsMessageId.ifPresent(smsId -> SignalDatabase.sms().deleteMessage(smsId));
+      if (insertResult.isPresent()) {
+        messageId = new MessageId(insertResult.get().getMessageId(), true);
+        ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } catch (PaymentTable.PublicKeyConflictException e) {
       warn(content.getTimestamp(), "Ignoring payment with public key already in database");

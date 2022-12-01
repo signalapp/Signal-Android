@@ -36,6 +36,12 @@
             app:autoSizeTextType="uniform"
             app:money="MOB:275000000000000" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/payment_inprogress"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center" />
+
     </FrameLayout>
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
