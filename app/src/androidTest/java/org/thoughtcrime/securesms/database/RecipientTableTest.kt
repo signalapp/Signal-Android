@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 
 @RunWith(AndroidJUnit4::class)
-class RecipientDatabaseTest {
+class RecipientTableTest {
 
   @get:Rule
   val harness = SignalActivityRule()
@@ -38,7 +38,7 @@ class RecipientDatabaseTest {
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getSignalContacts(false)?.use {
       val ids = mutableListOf<RecipientId>()
       while (it.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientDatabase.ID)))
+        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
       }
 
       ids
@@ -79,7 +79,7 @@ class RecipientDatabaseTest {
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getNonGroupContacts(false)?.use {
       val ids = mutableListOf<RecipientId>()
       while (it.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientDatabase.ID)))
+        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
       }
 
       ids
@@ -109,7 +109,7 @@ class RecipientDatabaseTest {
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getSignalContacts(false)?.use {
       val ids = mutableListOf<RecipientId>()
       while (it.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientDatabase.ID)))
+        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
       }
 
       ids
@@ -150,7 +150,7 @@ class RecipientDatabaseTest {
     val results: MutableList<RecipientId> = SignalDatabase.recipients.getNonGroupContacts(false)?.use {
       val ids = mutableListOf<RecipientId>()
       while (it.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientDatabase.ID)))
+        ids.add(RecipientId.from(CursorUtil.requireLong(it, RecipientTable.ID)))
       }
 
       ids

@@ -6,13 +6,14 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.signal.core.util.CursorUtil
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.util.UUID
 
 @Suppress("ClassName")
-class ThreadDatabaseTest_pinned {
+class ThreadTableTest_pinned {
 
   @Rule
   @JvmField
@@ -51,7 +52,7 @@ class ThreadDatabaseTest_pinned {
     SignalDatabase.mms.deleteMessage(messageId)
 
     // THEN
-    val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount()
+    val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount(ConversationFilter.OFF)
     assertEquals(1, unarchivedCount)
   }
 
@@ -66,9 +67,9 @@ class ThreadDatabaseTest_pinned {
     SignalDatabase.mms.deleteMessage(messageId)
 
     // THEN
-    SignalDatabase.threads.getUnarchivedConversationList(true, 0, 1).use {
+    SignalDatabase.threads.getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 1).use {
       it.moveToFirst()
-      assertEquals(threadId, CursorUtil.requireLong(it, ThreadDatabase.ID))
+      assertEquals(threadId, CursorUtil.requireLong(it, ThreadTable.ID))
     }
   }
 }

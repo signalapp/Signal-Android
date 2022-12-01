@@ -15,7 +15,7 @@ import java.util.UUID
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
-class ThreadDatabaseTest_recents {
+class ThreadTableTest_recents {
 
   @Rule
   @JvmField
@@ -40,7 +40,7 @@ class ThreadDatabaseTest_recents {
     val results: MutableList<RecipientId> = SignalDatabase.threads.getRecentConversationList(10, false, false, false, false, false, false).use { cursor ->
       val ids = mutableListOf<RecipientId>()
       while (cursor.moveToNext()) {
-        ids.add(RecipientId.from(CursorUtil.requireLong(cursor, ThreadDatabase.RECIPIENT_ID)))
+        ids.add(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
       }
 
       ids

@@ -24,9 +24,9 @@ import java.util.concurrent.TimeUnit
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
-class MmsDatabaseTest_stories {
+class MmsTableTest_stories {
 
-  private lateinit var mms: MmsDatabase
+  private lateinit var mms: MmsTable
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())

@@ -21,7 +21,7 @@ object MmsHelper {
     subscriptionId: Int = -1,
     expiresIn: Long = 0,
     viewOnce: Boolean = false,
-    distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
+    distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
     threadId: Long = 1,
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
@@ -62,13 +62,13 @@ object MmsHelper {
     message: OutgoingMediaMessage,
     threadId: Long
   ): Long {
-    return SignalDatabase.mms.insertMessageOutbox(message, threadId, false, GroupReceiptDatabase.STATUS_UNKNOWN, null)
+    return SignalDatabase.mms.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
   }
 
   fun insert(
     message: IncomingMediaMessage,
     threadId: Long
-  ): Optional<MessageDatabase.InsertResult> {
+  ): Optional<MessageTable.InsertResult> {
     return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId)
   }
 }

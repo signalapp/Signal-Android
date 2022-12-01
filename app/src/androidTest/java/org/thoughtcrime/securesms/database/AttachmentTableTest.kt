@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import java.util.Optional
 
 @RunWith(AndroidJUnit4::class)
-class AttachmentDatabaseTest {
+class AttachmentTableTest {
 
   @Before
   fun setUp() {
@@ -39,7 +39,7 @@ class AttachmentDatabaseTest {
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
     val highQualityProperties = createHighQualityTransformProperties()
     val highQualityImage = createAttachment(1, blob, highQualityProperties)
-    val lowQualityImage = createAttachment(1, blob, AttachmentDatabase.TransformProperties.empty())
+    val lowQualityImage = createAttachment(1, blob, AttachmentTable.TransformProperties.empty())
     val attachment = SignalDatabase.attachments.insertAttachmentForPreUpload(highQualityImage)
     val attachment2 = SignalDatabase.attachments.insertAttachmentForPreUpload(lowQualityImage)
 
@@ -55,8 +55,8 @@ class AttachmentDatabaseTest {
       false
     )
 
-    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentDatabase.DATA)
-    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentDatabase.DATA)
+    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA)
+    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA)
 
     assertNotEquals(attachment1Info, attachment2Info)
   }
@@ -81,13 +81,13 @@ class AttachmentDatabaseTest {
       true
     )
 
-    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentDatabase.DATA)
-    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentDatabase.DATA)
+    val attachment1Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment.attachmentId, AttachmentTable.DATA)
+    val attachment2Info = SignalDatabase.attachments.getAttachmentDataFileInfo(attachment2.attachmentId, AttachmentTable.DATA)
 
     assertNotEquals(attachment1Info, attachment2Info)
   }
 
-  private fun createAttachment(id: Long, uri: Uri, transformProperties: AttachmentDatabase.TransformProperties): UriAttachment {
+  private fun createAttachment(id: Long, uri: Uri, transformProperties: AttachmentTable.TransformProperties): UriAttachment {
     return UriAttachmentBuilder.build(
       id,
       uri = uri,
@@ -96,8 +96,8 @@ class AttachmentDatabaseTest {
     )
   }
 
-  private fun createHighQualityTransformProperties(): AttachmentDatabase.TransformProperties {
-    return AttachmentDatabase.TransformProperties.forSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH)
+  private fun createHighQualityTransformProperties(): AttachmentTable.TransformProperties {
+    return AttachmentTable.TransformProperties.forSentMediaQuality(Optional.empty(), SentMediaQuality.HIGH)
   }
 
   private fun createMediaStream(byteArray: ByteArray): MediaStream {

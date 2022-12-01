@@ -11,6 +11,7 @@ android {
     defaultConfig {
         minSdkVersion MINIMUM_SDK
         targetSdkVersion TARGET_SDK
+        multiDexEnabled true
     }
 
     compileOptions {
@@ -33,6 +34,7 @@ dependencies {
 
     implementation libs.androidx.appcompat
     implementation libs.material.material
+    implementation libs.androidx.multidex
     implementation libs.androidx.sqlite
     implementation project(':core-util')
     testImplementation testLibs.junit.junit

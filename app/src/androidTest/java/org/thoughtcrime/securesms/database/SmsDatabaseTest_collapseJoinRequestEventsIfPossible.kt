@@ -31,8 +31,8 @@ import java.util.UUID
 @RunWith(AndroidJUnit4::class)
 class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
 
-  private lateinit var recipients: RecipientDatabase
-  private lateinit var sms: SmsDatabase
+  private lateinit var recipients: RecipientTable
+  private lateinit var sms: SmsTable
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())
@@ -163,7 +163,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
    */
   @Test
   fun previousJoinRequestCollapse() {
-    val latestMessage: MessageDatabase.InsertResult = sms.insertMessageInbox(
+    val latestMessage: MessageTable.InsertResult = sms.insertMessageInbox(
       groupUpdateMessage(
         sender = alice,
         groupContext = groupContext(masterKey = masterKey) {
@@ -197,7 +197,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
   fun previousJoinThenTextCollapse() {
     val secondLatestMessage = sms.insertMessageInbox(smsMessage(sender = alice, body = "What up")).get()
 
-    val latestMessage: MessageDatabase.InsertResult = sms.insertMessageInbox(
+    val latestMessage: MessageTable.InsertResult = sms.insertMessageInbox(
       groupUpdateMessage(
         sender = alice,
         groupContext = groupContext(masterKey = masterKey) {
@@ -231,7 +231,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
    */
   @Test
   fun previousCollapseAndJoinRequestDoubleCollapse() {
-    val secondLatestMessage: MessageDatabase.InsertResult = sms.insertMessageInbox(
+    val secondLatestMessage: MessageTable.InsertResult = sms.insertMessageInbox(
       groupUpdateMessage(
         sender = alice,
         groupContext = groupContext(masterKey = masterKey) {
@@ -243,7 +243,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
       )
     ).get()
 
-    val latestMessage: MessageDatabase.InsertResult = sms.insertMessageInbox(
+    val latestMessage: MessageTable.InsertResult = sms.insertMessageInbox(
       groupUpdateMessage(
         sender = alice,
         groupContext = groupContext(masterKey = masterKey) {

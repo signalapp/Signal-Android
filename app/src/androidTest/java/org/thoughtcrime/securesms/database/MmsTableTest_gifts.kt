@@ -17,8 +17,8 @@ import java.util.UUID
 
 @Suppress("ClassName")
 @RunWith(AndroidJUnit4::class)
-class MmsDatabaseTest_gifts {
-  private lateinit var mms: MmsDatabase
+class MmsTableTest_gifts {
+  private lateinit var mms: MmsTable
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())

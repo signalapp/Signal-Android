@@ -9,7 +9,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
 import org.signal.storageservice.protos.groups.local.DecryptedMember
-import org.thoughtcrime.securesms.database.MessageDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MmsHelper
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
@@ -74,7 +74,7 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
 
     val replyId = SignalDatabase.mmsSms.getConversation(senderThreadId, 0, 1).use {
       it.moveToFirst()
-      it.requireLong(MessageDatabase.ID)
+      it.requireLong(MessageTable.ID)
     }
 
     val replyRecord = SignalDatabase.mms.getMessageRecord(replyId) as MediaMmsMessageRecord
@@ -140,7 +140,7 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
     val replyId = SignalDatabase.mms.getStoryReplies(insertResult.get().messageId).use { cursor ->
       assertEquals(1, cursor.count)
       cursor.moveToFirst()
-      cursor.requireLong(MessageDatabase.ID)
+      cursor.requireLong(MessageTable.ID)
     }
 
     val replyRecord = SignalDatabase.mms.getMessageRecord(replyId) as MediaMmsMessageRecord

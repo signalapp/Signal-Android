@@ -15,7 +15,7 @@ import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
@@ -130,7 +130,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     return ApplicationDependencies.getProtocolStore().aci().identities().getIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0))
   }
 
-  fun setVerified(recipient: Recipient, status: IdentityDatabase.VerifiedStatus) {
-    ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityDatabase.VerifiedStatus.VERIFIED)
+  fun setVerified(recipient: Recipient, status: IdentityTable.VerifiedStatus) {
+    ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityTable.VerifiedStatus.VERIFIED)
   }
 }

@@ -10,9 +10,9 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.push.ACI
 import java.util.UUID
 
-class DistributionListDatabaseTest {
+class DistributionListTablesTest {
 
-  private lateinit var distributionDatabase: DistributionListDatabase
+  private lateinit var distributionDatabase: DistributionListTables
 
   @Before
   fun setup() {

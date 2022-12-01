@@ -18,13 +18,13 @@ import java.lang.IllegalStateException
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
-class RecipientDatabaseTest_processPnpTupleToChangeSet {
+class RecipientTableTest_processPnpTupleToChangeSet {
 
   @Rule
   @JvmField
   val databaseRule = SignalDatabaseRule(deleteAllThreadsOnEachRun = false)
 
-  private lateinit var db: RecipientDatabase
+  private lateinit var db: RecipientTable
 
   @Before
   fun setup() {
@@ -711,13 +711,13 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
 
   private fun insert(e164: String?, pni: PNI?, aci: ACI?): RecipientId {
     val id: Long = SignalDatabase.rawDatabase.insert(
-      RecipientDatabase.TABLE_NAME,
+      RecipientTable.TABLE_NAME,
       null,
       contentValuesOf(
-        RecipientDatabase.PHONE to e164,
-        RecipientDatabase.SERVICE_ID to (aci ?: pni)?.toString(),
-        RecipientDatabase.PNI_COLUMN to pni?.toString(),
-        RecipientDatabase.REGISTERED to RecipientDatabase.RegisteredState.REGISTERED.id
+        RecipientTable.PHONE to e164,
+        RecipientTable.SERVICE_ID to (aci ?: pni)?.toString(),
+        RecipientTable.PNI_COLUMN to pni?.toString(),
+        RecipientTable.REGISTERED to RecipientTable.RegisteredState.REGISTERED.id
       )
     )
 
@@ -726,12 +726,12 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
 
   private fun insertMockSessionFor(account: ServiceId, address: ServiceId) {
     SignalDatabase.rawDatabase.insert(
-      SessionDatabase.TABLE_NAME, null,
+      SessionTable.TABLE_NAME, null,
       contentValuesOf(
-        SessionDatabase.ACCOUNT_ID to account.toString(),
-        SessionDatabase.ADDRESS to address.toString(),
-        SessionDatabase.DEVICE to 1,
-        SessionDatabase.RECORD to Util.getSecretBytes(32)
+        SessionTable.ACCOUNT_ID to account.toString(),
+        SessionTable.ADDRESS to address.toString(),
+        SessionTable.DEVICE to 1,
+        SessionTable.RECORD to Util.getSecretBytes(32)
       )
     )
   }
@@ -762,7 +762,7 @@ class RecipientDatabaseTest_processPnpTupleToChangeSet {
   }
 
   /**
-   * Helper method that will call insert your recipients, call [RecipientDatabase.processPnpTupleToChangeSet] with your params,
+   * Helper method that will call insert your recipients, call [RecipientTable.processPnpTupleToChangeSet] with your params,
    * and then verify your output matches what you expect.
    *
    * It results the inserted ID's and changeset for additional verification.

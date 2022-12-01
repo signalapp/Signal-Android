@@ -39,7 +39,7 @@ import java.util.Optional
 import java.util.UUID
 
 @RunWith(AndroidJUnit4::class)
-class RecipientDatabaseTest_getAndPossiblyMerge {
+class RecipientTableTest_getAndPossiblyMerge {
 
   @Before
   fun setup() {
@@ -413,8 +413,8 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     val identityKeyAci: IdentityKey = identityKey(1)
     val identityKeyE164: IdentityKey = identityKey(2)
 
-    SignalDatabase.identities.saveIdentity(ACI_A.toString(), recipientIdAci, identityKeyAci, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
-    SignalDatabase.identities.saveIdentity(E164_A, recipientIdE164, identityKeyE164, IdentityDatabase.VerifiedStatus.VERIFIED, false, 0, false)
+    SignalDatabase.identities.saveIdentity(ACI_A.toString(), recipientIdAci, identityKeyAci, IdentityTable.VerifiedStatus.VERIFIED, false, 0, false)
+    SignalDatabase.identities.saveIdentity(E164_A, recipientIdE164, identityKeyE164, IdentityTable.VerifiedStatus.VERIFIED, false, 0, false)
 
     SignalDatabase.sessions.store(ACI_SELF, SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
 
@@ -485,7 +485,7 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     assertEquals(retrievedThreadId, mention2.threadId)
 
     // Group receipt validation
-    val groupReceipts: List<GroupReceiptDatabase.GroupReceiptInfo> = SignalDatabase.groupReceipts.getGroupReceiptInfo(mmsId1)
+    val groupReceipts: List<GroupReceiptTable.GroupReceiptInfo> = SignalDatabase.groupReceipts.getGroupReceiptInfo(mmsId1)
     assertEquals(retrievedId, groupReceipts[0].recipientId)
     assertEquals(retrievedId, groupReceipts[1].recipientId)
 
@@ -539,11 +539,11 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
   }
 
   private fun getMention(messageId: Long): MentionModel {
-    SignalDatabase.rawDatabase.rawQuery("SELECT * FROM ${MentionDatabase.TABLE_NAME} WHERE ${MentionDatabase.MESSAGE_ID} = $messageId").use { cursor ->
+    SignalDatabase.rawDatabase.rawQuery("SELECT * FROM ${MentionTable.TABLE_NAME} WHERE ${MentionTable.MESSAGE_ID} = $messageId").use { cursor ->
       cursor.moveToFirst()
       return MentionModel(
-        recipientId = RecipientId.from(CursorUtil.requireLong(cursor, MentionDatabase.RECIPIENT_ID)),
-        threadId = CursorUtil.requireLong(cursor, MentionDatabase.THREAD_ID)
+        recipientId = RecipientId.from(CursorUtil.requireLong(cursor, MentionTable.RECIPIENT_ID)),
+        threadId = CursorUtil.requireLong(cursor, MentionTable.THREAD_ID)
       )
     }
   }
@@ -660,8 +660,8 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
     fun expectDeleted(id: RecipientId) {
       SignalDatabase.rawDatabase
         .select("1")
-        .from(RecipientDatabase.TABLE_NAME)
-        .where("${RecipientDatabase.ID} = ?", id)
+        .from(RecipientTable.TABLE_NAME)
+        .where("${RecipientTable.ID} = ?", id)
         .run()
         .use { !it.moveToFirst() }
     }
@@ -681,13 +681,13 @@ class RecipientDatabaseTest_getAndPossiblyMerge {
       val pniString: String? = pni?.toString()
 
       val id: Long = SignalDatabase.rawDatabase.insert(
-        RecipientDatabase.TABLE_NAME,
+        RecipientTable.TABLE_NAME,
         null,
         contentValuesOf(
-          RecipientDatabase.PHONE to e164,
-          RecipientDatabase.SERVICE_ID to serviceIdString,
-          RecipientDatabase.PNI_COLUMN to pniString,
-          RecipientDatabase.REGISTERED to RecipientDatabase.RegisteredState.REGISTERED.id
+          RecipientTable.PHONE to e164,
+          RecipientTable.SERVICE_ID to serviceIdString,
+          RecipientTable.PNI_COLUMN to pniString,
+          RecipientTable.REGISTERED to RecipientTable.RegisteredState.REGISTERED.id
         )
       )
 
