@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.rx.RxStore
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
 
 class StoryPostViewModel(private val repository: StoryTextPostRepository) : ViewModel() {
@@ -40,11 +41,25 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
           store.update { StoryPostState.None() }
         } else if (storyPostContent.isVideo()) {
           store.update {
+            val shouldSkipTransform = storyPostContent.attachment.transformProperties.shouldSkipTransform()
+
+            val clipStart: Duration = if (shouldSkipTransform) {
+              0L.microseconds
+            } else {
+              storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds
+            }
+
+            val clipEnd: Duration = if (shouldSkipTransform) {
+              0L.microseconds
+            } else {
+              storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+            }
+
             StoryPostState.VideoPost(
               videoUri = storyPostContent.uri,
               size = storyPostContent.attachment.size,
-              clipStart = storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds,
-              clipEnd = storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds,
+              clipStart = clipStart,
+              clipEnd = clipEnd,
               blurHash = storyPostContent.attachment.blurHash
             )
           }
