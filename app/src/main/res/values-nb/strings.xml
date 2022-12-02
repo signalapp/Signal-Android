@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Legg til i story</string>
     <string name="MediaReviewFragment__add_a_message">Legg til en melding</string>
     <string name="MediaReviewFragment__add_a_reply">Legg til et svar</string>
     <string name="MediaReviewFragment__send_to">Send til</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Gå til Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Prøv igjen</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Kortnummeret stemmer ikke. Oppdater det i Google Pay og prøv på nytt.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d svar</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Legg til</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Visninger er slått av</string>
     <!-- Used to join views and replies when both exist on a story item -->

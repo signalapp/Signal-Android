@@ -4284,7 +4284,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Thêm vào story</string>
     <string name="MediaReviewFragment__add_a_message">Thêm vào một tin nhắn</string>
     <string name="MediaReviewFragment__add_a_reply">Thêm trả lời</string>
     <string name="MediaReviewFragment__send_to">Gửi đến</string>
@@ -4510,7 +4510,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Truy cập Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Thử lại</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Số thẻ của bạn không đúng. Hãy cập nhật trên Google Pay và thử lại.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4790,7 +4790,7 @@
         <item quantity="other">%1$d câu trả lời</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Thêm</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Đã tắt thông báo đã xem</string>
     <!-- Used to join views and replies when both exist on a story item -->

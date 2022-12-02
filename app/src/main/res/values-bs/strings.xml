@@ -4420,7 +4420,7 @@
     <string name="ConversationSettingsFragment__send_message">Pošalji poruku</string>
     <string name="ConversationSettingsFragment__start_video_call">Započni videopoziv</string>
     <string name="ConversationSettingsFragment__start_audio_call">Započni audiopoziv</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Priča</string>
     <string name="ConversationSettingsFragment__message">Poruka</string>
     <string name="ConversationSettingsFragment__video">Videopoziv</string>
     <string name="ConversationSettingsFragment__audio">Audiopoziv</string>
@@ -4596,7 +4596,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Dodaj u priču</string>
     <string name="MediaReviewFragment__add_a_message">Napiši poruku</string>
     <string name="MediaReviewFragment__add_a_reply">Odgovor</string>
     <string name="MediaReviewFragment__send_to">Pošalji za</string>
@@ -4825,7 +4825,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Idi na Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Pokušajte ponovo</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Broj Vaše kartice nije tačan. Ažurirajte ga na Google Payu i pokušajte ponovo.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -5114,7 +5114,7 @@
         <item quantity="other">%1$d odgovora</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Dodaj</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Pregledi su isključeni</string>
     <!-- Used to join views and replies when both exist on a story item -->

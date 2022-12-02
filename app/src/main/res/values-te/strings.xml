@@ -4220,7 +4220,7 @@
     <string name="ConversationSettingsFragment__send_message">సందేశం పంపాల</string>
     <string name="ConversationSettingsFragment__start_video_call">వీడియో కాల్ ప్రారంభించాలా</string>
     <string name="ConversationSettingsFragment__start_audio_call">ఆడియో కాల్ ప్రారంభించండి</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">కథ</string>
     <string name="ConversationSettingsFragment__message">సందేశం</string>
     <string name="ConversationSettingsFragment__video">వీడియో</string>
     <string name="ConversationSettingsFragment__audio">ఆడియో</string>
@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">స్టోరీకు జోడించండి</string>
     <string name="MediaReviewFragment__add_a_message">ఒక సందేశాన్ని జోడించండి</string>
     <string name="MediaReviewFragment__add_a_reply">రిప్లై జోడించండి</string>
     <string name="MediaReviewFragment__send_to">వీరికి పంపండి</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Google Pay కు వెళ్లండి</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">మళ్ళీ ప్రయత్నించండి</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">మీ కార్డు నెంబరు తప్పుగా ఉంది. Google Pay లో దానిని అప్‌డేట్ చేసి, మళ్లీ ప్రయత్నించండి.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d రిప్లైలు</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">చేర్చు</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">వీక్షణలు ఆఫ్ చేయబడ్డాయి</string>
     <!-- Used to join views and replies when both exist on a story item -->

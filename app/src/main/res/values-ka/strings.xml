@@ -4220,7 +4220,7 @@
     <string name="ConversationSettingsFragment__send_message">შეტყობინების გაგზავნა</string>
     <string name="ConversationSettingsFragment__start_video_call">ვიდეო ზარის დაწყება</string>
     <string name="ConversationSettingsFragment__start_audio_call">აუდიო ზარის დაწყება</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Story-ი</string>
     <string name="ConversationSettingsFragment__message">მიწერა</string>
     <string name="ConversationSettingsFragment__video">ვიდეო</string>
     <string name="ConversationSettingsFragment__audio">აუდიო</string>
@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Story-ში დამატება</string>
     <string name="MediaReviewFragment__add_a_message">შეტყობინების დამატება</string>
     <string name="MediaReviewFragment__add_a_reply">პასუხის დამატება</string>
     <string name="MediaReviewFragment__send_to">გაეგზავნოთ ჩამოთვლილებს</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Google Pay-ში შესვლა</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">ახლიდან სცადე</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">შენი ბარათის ნომერი არასწორია. განაახლე ის Google Pay-ში და თავიდან სცადე.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d პასუხი</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">დამატება</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">ნახვები გამორთულია</string>
     <!-- Used to join views and replies when both exist on a story item -->

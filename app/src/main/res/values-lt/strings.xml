@@ -4420,7 +4420,7 @@
     <string name="ConversationSettingsFragment__send_message">Siųsti žinutę</string>
     <string name="ConversationSettingsFragment__start_video_call">Pradėti vaizdo skambutį</string>
     <string name="ConversationSettingsFragment__start_audio_call">Pradėti garso skambutį</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Istorija</string>
     <string name="ConversationSettingsFragment__message">Žinutė</string>
     <string name="ConversationSettingsFragment__video">Vaizdo skamb.</string>
     <string name="ConversationSettingsFragment__audio">Garso skamb.</string>
@@ -4596,7 +4596,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Pridėti į istoriją</string>
     <string name="MediaReviewFragment__add_a_message">Pridėti žinutę</string>
     <string name="MediaReviewFragment__add_a_reply">Pridėti atsakymą</string>
     <string name="MediaReviewFragment__send_to">Kam siųsti</string>
@@ -4825,7 +4825,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Pereiti į „Google Pay“</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Bandykite dar kartą</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Jūsų kortelės numeris yra neteisingas. Atnaujinkite jį „Google Pay“ sistemoje ir bandykite dar kartą.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -5114,7 +5114,7 @@
         <item quantity="other">%1$d atsakymas</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Pridėti</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Peržiūros išjungtos</string>
     <!-- Used to join views and replies when both exist on a story item -->

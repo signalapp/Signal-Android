@@ -4520,7 +4520,7 @@
     <string name="ConversationSettingsFragment__send_message">Seol teachtaireacht</string>
     <string name="ConversationSettingsFragment__start_video_call">Tosaigh físghlao</string>
     <string name="ConversationSettingsFragment__start_audio_call">Tosaigh guthghlao</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Scéal</string>
     <string name="ConversationSettingsFragment__message">Teachtaireacht</string>
     <string name="ConversationSettingsFragment__video">Físeán</string>
     <string name="ConversationSettingsFragment__audio">Fuaim</string>
@@ -4700,7 +4700,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Cuir leis an scéal</string>
     <string name="MediaReviewFragment__add_a_message">Cuir teachtaireacht leis</string>
     <string name="MediaReviewFragment__add_a_reply">Cuir freagra leis</string>
     <string name="MediaReviewFragment__send_to">Seol chuig</string>
@@ -4930,7 +4930,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Téigh chuig Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Féach arís é</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Tá uimhir do chárta mícheart. Nuashonraigh in Google Pay í agus triail arís.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -5222,7 +5222,7 @@
         <item quantity="other">%1$d freagra</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Cuir leis</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Amhairc casta as</string>
     <!-- Used to join views and replies when both exist on a story item -->

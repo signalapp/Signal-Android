@@ -4220,7 +4220,7 @@
     <string name="ConversationSettingsFragment__send_message">મેસેજ મોકલો</string>
     <string name="ConversationSettingsFragment__start_video_call">વિડિયો કૉલ શરૂ કરો</string>
     <string name="ConversationSettingsFragment__start_audio_call">ઓડિયો કૉલ શરૂ કરો</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">સ્ટોરી</string>
     <string name="ConversationSettingsFragment__message">મેસેજ</string>
     <string name="ConversationSettingsFragment__video">વિડિયો</string>
     <string name="ConversationSettingsFragment__audio">ઓડિયો</string>
@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">સ્ટોરીમાં ઉમેરો</string>
     <string name="MediaReviewFragment__add_a_message">મેસેજ ઉમેરો</string>
     <string name="MediaReviewFragment__add_a_reply">જવાબ ઉમેરો</string>
     <string name="MediaReviewFragment__send_to">આમને મોકલો</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Google Pay પર જાઓ</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">ફરીથી પ્રયત્ન કરો</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">તમારો કાર્ડ નંબર ખોટો છે. તેને Google Payમાં અપડેટ કરો અને ફરી પ્રયાસ કરો.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d જવાબો</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">ઉમેરો</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">દ્રશ્યો બંધ છે</string>
     <!-- Used to join views and replies when both exist on a story item -->

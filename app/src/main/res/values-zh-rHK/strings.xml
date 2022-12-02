@@ -4120,7 +4120,7 @@
     <string name="ConversationSettingsFragment__send_message">傳送訊息</string>
     <string name="ConversationSettingsFragment__start_video_call">開始視像通話</string>
     <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">限時動態</string>
     <string name="ConversationSettingsFragment__message">訊息</string>
     <string name="ConversationSettingsFragment__video">視像</string>
     <string name="ConversationSettingsFragment__audio">語音</string>
@@ -4284,7 +4284,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">新增至限時動態</string>
     <string name="MediaReviewFragment__add_a_message">新增訊息</string>
     <string name="MediaReviewFragment__add_a_reply">新增回覆</string>
     <string name="MediaReviewFragment__send_to">傳送給</string>
@@ -4510,7 +4510,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">前往 Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">再試一次</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">您的信用卡號碼不正確。請到 Google Pay 更新此資訊，然後再試一次。</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4790,7 +4790,7 @@
         <item quantity="other">%1$d 則回覆</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">新增</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">已讀標記已關閉</string>
     <!-- Used to join views and replies when both exist on a story item -->

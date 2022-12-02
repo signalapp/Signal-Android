@@ -453,9 +453,9 @@
     <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
     <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Verwijderen van dit apparaat.</string>
+    <string name="ConversationFragment_delete_on_this_device">Wissen van dit apparaat.</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
-    <string name="ConversationFragment_delete_everywhere">Overal verwijderen</string>
+    <string name="ConversationFragment_delete_everywhere">Overal wissen</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht zal voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist worden. Ze zullen wel een berichtbubbel zien waarin staat dat je een bericht hebt gewist.</string>
     <string name="ConversationFragment_quoted_message_not_found">Oorspronkelijk bericht niet gevonden</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Het oorspronkelijke bericht is niet langer beschikbaar</string>
@@ -495,8 +495,8 @@
         <item quantity="other">Geselecteerde gesprekken wissen?</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
-        <item quantity="one">Dit zal het geselecteerde gesprek permanent van je apparaat verwijderen.</item>
-        <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent van je apparaat verwijderen.</item>
+        <item quantity="one">Dit zal %1$d geselecteerd gesprek permanent van je apparaat wissen.</item>
+        <item quantity="other">Dit zal alle %1$d geselecteerde gesprekken permanent van je apparaat wissen.</item>
     </plurals>
     <string name="ConversationListFragment_deleting">Aan het wissen</string>
     <string name="ConversationListFragment_deleting_selected_conversations">Geselecteerde gesprekken aan het wissen …</string>
@@ -3431,7 +3431,7 @@
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
     <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Je recente backup kon niet gecreëerd en geverifieerd worden. Probeer het opnieuw.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Je back-up bevat een erg groot bestand dat niet opgeslagen kan worden. Verwijder het en probeer het opnieuw.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Je back-up bevat een erg groot bestand dat niet opgeslagen kan worden. Wis het en probeer het opnieuw.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik hier om het maken van back-upbestanden in te stellen.</string>
     <string name="ProgressPreference_d_messages_so_far">%1$d berichten tot nu toe</string>
     <string name="RegistrationActivity_wrong_number">Verkeerd telefoon­nummer</string>
@@ -4220,7 +4220,7 @@
     <string name="ConversationSettingsFragment__send_message">Bericht verzenden</string>
     <string name="ConversationSettingsFragment__start_video_call">Video-oproep beginnen</string>
     <string name="ConversationSettingsFragment__start_audio_call">Audio-oproep beginnen</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Verhaal</string>
     <string name="ConversationSettingsFragment__message">Berichten</string>
     <string name="ConversationSettingsFragment__video">Video-oproep</string>
     <string name="ConversationSettingsFragment__audio">Audio-oproep</string>
@@ -4305,7 +4305,7 @@
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Kan %1$s niet verwijderen</string>
     <!-- Dialog message when remove target contact is in system contacts -->
-    <string name="NewConversationActivity__this_person_is_saved_to_your">Deze persoon is opgeslagen in de contactenlijst van je apparaat. Verwijder ze uit je Contacten en probeer het opnieuw.</string>
+    <string name="NewConversationActivity__this_person_is_saved_to_your">Deze persoon is opgeslagen in de contactenlijst van je apparaat. Wis ze van je Contacten en probeer het opnieuw.</string>
     <!-- Dialog action to view contact when they can't be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Contact bekijken</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Een verhaal toevoegen</string>
     <string name="MediaReviewFragment__add_a_message">Berichttekst toevoegen</string>
     <string name="MediaReviewFragment__add_a_reply">Een reactie toevoegen</string>
     <string name="MediaReviewFragment__send_to">Verzonden aan</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Google Pay openen</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Opnieuw proberen</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Je betaalkaartnummer is niet juist. Werk eerst je betalingsinformatie bij in Google Pay en probeer het vervolgens opnieuw.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d reacties</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Toevoegen</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Weergaven uit</string>
     <!-- Used to join views and replies when both exist on a story item -->
@@ -5007,7 +5007,7 @@
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Persoon toevoegen</string>
     <!-- Clickable option to delete a custom story -->
-    <string name="PrivateStorySettingsFragment__delete_custom_story">Aangepast verhaal verwijderen</string>
+    <string name="PrivateStorySettingsFragment__delete_custom_story">Aangepast verhaal wissen</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">%1$s verwijderen?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
@@ -5059,7 +5059,7 @@
     <!-- Dialog positive action for removing a group story -->
     <string name="StoryDialogs__remove">Verwijderen</string>
     <!-- Dialog title for deleting a custom story -->
-    <string name="StoryDialogs__delete_custom_story">Aangepast verhaal verwijderen?</string>
+    <string name="StoryDialogs__delete_custom_story">Aangepast verhaal wissen?</string>
     <!-- Dialog message for deleting a custom story -->
     <string name="StoryDialogs__s_and_updates_shared">\"%1$s\" en updates die op dit verhaal zijn gedeeld, worden verwijderd.</string>
     <!-- Dialog positive action for deleting a custom story -->
@@ -5081,7 +5081,7 @@
     <!-- Error message dialog button to resend a previously failed story send -->
     <string name="StoryDialogs__send">Uploaden</string>
     <!-- Action button for turning off stories when stories are present on the device -->
-    <string name="StoryDialogs__turn_off_and_delete">Uitschakelen en verwijderen</string>
+    <string name="StoryDialogs__turn_off_and_delete">Uitschakelen en wissen</string>
     <!-- Privacy Settings toggle title for stories -->
     <string name="PrivacySettingsFragment__share_and_view_stories">Verhaal weergeven &amp; doorsturen</string>
     <!-- Privacy Settings toggle summary for stories -->
@@ -5256,7 +5256,7 @@
     <!-- Label for context menu item to remove a group story from contact results -->
     <string name="ContactSearchItems__remove_story">Verhaal verwijderen</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Verhaal verwijderen</string>
+    <string name="ContactSearchItems__delete_story">Verhaal wissen</string>
     <!-- Dialog title for removing a group story -->
     <string name="ContactSearchMediator__remove_group_story">Verhaal verwijderen?</string>
     <!-- Dialog message for removing a group story -->
@@ -5266,7 +5266,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="ContactSearchMediator__delete_story">Verhaal wissen?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="ContactSearchMediator__delete_the_custom">Aangepast verhaal \"%1$s\" verwijderen?</string>
+    <string name="ContactSearchMediator__delete_the_custom">Aangepast verhaal \"%1$s\" wissen?</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">Wissen</string>
     <!-- Gift expiry days remaining -->

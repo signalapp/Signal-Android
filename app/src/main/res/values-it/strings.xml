@@ -4220,7 +4220,7 @@
     <string name="ConversationSettingsFragment__send_message">Invia messaggio</string>
     <string name="ConversationSettingsFragment__start_video_call">Inizia videochiamata</string>
     <string name="ConversationSettingsFragment__start_audio_call">Inizia chiamata audio</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Storia</string>
     <string name="ConversationSettingsFragment__message">Messaggio</string>
     <string name="ConversationSettingsFragment__video">Video</string>
     <string name="ConversationSettingsFragment__audio">Audio</string>
@@ -4388,7 +4388,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Aggiungi alla Storia</string>
     <string name="MediaReviewFragment__add_a_message">Aggiungi un messaggio</string>
     <string name="MediaReviewFragment__add_a_reply">Aggiungi una risposta</string>
     <string name="MediaReviewFragment__send_to">Inviato a</string>
@@ -4615,7 +4615,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Vai a Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Riprova</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Il numero della tua carta non è corretto. Aggiornalo in Google Pay e riprova.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4898,7 +4898,7 @@
         <item quantity="other">%1$d risposte</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Aggiungi</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Conferme di lettura disattivate</string>
     <!-- Used to join views and replies when both exist on a story item -->

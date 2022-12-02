@@ -4320,7 +4320,7 @@
     <string name="ConversationSettingsFragment__send_message">Trimite mesaj</string>
     <string name="ConversationSettingsFragment__start_video_call">Începe un apel video</string>
     <string name="ConversationSettingsFragment__start_audio_call">Începe un apel audio</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">Poveste</string>
     <string name="ConversationSettingsFragment__message">Mesaj</string>
     <string name="ConversationSettingsFragment__video">Video</string>
     <string name="ConversationSettingsFragment__audio">Audio</string>
@@ -4492,7 +4492,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">Adaugă la poveste</string>
     <string name="MediaReviewFragment__add_a_message">Adaugă un mesaj</string>
     <string name="MediaReviewFragment__add_a_reply">Adaugă un răspuns</string>
     <string name="MediaReviewFragment__send_to">Trimite către</string>
@@ -4720,7 +4720,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Deschide Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">Încearcă din nou</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">Numărul cardului tău este incorect. Actualizează-l în Google Pay și încearcă din nou.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -5006,7 +5006,7 @@
         <item quantity="other">%1$d răspunsuri</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">Adaugă</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">Fără vizualizări</string>
     <!-- Used to join views and replies when both exist on a story item -->

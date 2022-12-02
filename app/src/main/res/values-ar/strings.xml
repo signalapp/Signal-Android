@@ -4620,7 +4620,7 @@
     <string name="ConversationSettingsFragment__send_message">إرسال الرسالة</string>
     <string name="ConversationSettingsFragment__start_video_call">بدء مكالمة بالصورة</string>
     <string name="ConversationSettingsFragment__start_audio_call">بدء مكالمة صوتية</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">القصص</string>
     <string name="ConversationSettingsFragment__message">رِسالَة</string>
     <string name="ConversationSettingsFragment__video">مقاطع الڤيديو</string>
     <string name="ConversationSettingsFragment__audio">الصوت</string>
@@ -4804,7 +4804,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">إضافة للقصة</string>
     <string name="MediaReviewFragment__add_a_message">إضافة نص</string>
     <string name="MediaReviewFragment__add_a_reply">إضافة رد</string>
     <string name="MediaReviewFragment__send_to">إرسال إلى</string>
@@ -5035,7 +5035,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">انتقل الى Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">حاول مجددا</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">إن رقم بطاقتك غير صحيح. يُرجى تحديثها في Google Pay ثم المحاولة مرة أخرى.</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -5330,7 +5330,7 @@
         <item quantity="other">%1$d جواب</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">إضافة</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">مشاهدات غير مشغلة</string>
     <!-- Used to join views and replies when both exist on a story item -->

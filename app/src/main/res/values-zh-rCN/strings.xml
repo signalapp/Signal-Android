@@ -4120,7 +4120,7 @@
     <string name="ConversationSettingsFragment__send_message">发送消息</string>
     <string name="ConversationSettingsFragment__start_video_call">发起视频通话</string>
     <string name="ConversationSettingsFragment__start_audio_call">发起语音通话</string>
-    <string name="ConversationSettingsFragment__story">Story</string>
+    <string name="ConversationSettingsFragment__story">动态</string>
     <string name="ConversationSettingsFragment__message">消息</string>
     <string name="ConversationSettingsFragment__video">视频</string>
     <string name="ConversationSettingsFragment__audio">音频</string>
@@ -4284,7 +4284,7 @@
     <!-- Dialog message when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Add to story</string>
+    <string name="MediaReviewFragment__add_to_story">添加到动态</string>
     <string name="MediaReviewFragment__add_a_message">添加消息</string>
     <string name="MediaReviewFragment__add_a_reply">添加回复</string>
     <string name="MediaReviewFragment__send_to">发送给</string>
@@ -4510,7 +4510,7 @@
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">前往 Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
-    <string name="DeclineCode__try">Try again</string>
+    <string name="DeclineCode__try">重试</string>
     <!-- Stripe decline code incorrect card number -->
     <string name="DeclineCode__your_card_number_is_incorrect">您的卡号不正确。请在 Google Pay 中更新卡号，然后重试。</string>
     <!-- Stripe decline code incorrect cvc -->
@@ -4790,7 +4790,7 @@
         <item quantity="other">%1$d 个回复</item>
     </plurals>
     <!-- Label on group stories to add a story -->
-    <string name="StoryViewerPageFragment__add">Add</string>
+    <string name="StoryViewerPageFragment__add">添加</string>
     <!-- Used when view receipts are disabled -->
     <string name="StoryViewerPageFragment__views_off">查看功能关闭</string>
     <!-- Used to join views and replies when both exist on a story item -->
