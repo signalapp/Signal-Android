@@ -520,6 +520,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val allCount: Long = readableDatabase
       .select("SUM($UNREAD_COUNT)")
       .from(TABLE_NAME)
+      .where("$ARCHIVED = ?", 0)
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
@@ -532,7 +533,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val forcedUnreadCount: Long = readableDatabase
       .select("COUNT(*)")
       .from(TABLE_NAME)
-      .where("$READ = ?", ReadStatus.FORCED_UNREAD.serialize())
+      .where("$READ = ? AND $ARCHIVED = ?", ReadStatus.FORCED_UNREAD.serialize(), 0)
       .run()
       .use { cursor ->
         if (cursor.moveToFirst()) {
