@@ -90,8 +90,8 @@ class DonationErrorParams<V> private constructor(
 
     private fun <V> getDeclinedErrorParams(context: Context, declinedError: DonationError.PaymentSetupError.StripeDeclinedError, callback: Callback<V>): DonationErrorParams<V> {
       val getStripeDeclineCodePositiveActionParams: (Context, Callback<V>, Int) -> DonationErrorParams<V> = when (declinedError.method) {
-        PaymentSourceType.Stripe.GooglePay -> this::getTryCreditCardAgainParams
-        PaymentSourceType.Stripe.CreditCard -> this::getGoToGooglePayParams
+        PaymentSourceType.Stripe.CreditCard -> this::getTryCreditCardAgainParams
+        PaymentSourceType.Stripe.GooglePay -> this::getGoToGooglePayParams
       }
 
       return when (declinedError.declineCode) {
@@ -99,8 +99,8 @@ class DonationErrorParams<V> private constructor(
           StripeDeclineCode.Code.APPROVE_WITH_ID -> getStripeDeclineCodePositiveActionParams(
             context, callback,
             when (declinedError.method) {
-              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again
-              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again
+              PaymentSourceType.Stripe.CreditCard -> R.string.DeclineCode__verify_your_card_details_are_correct_and_try_again
+              PaymentSourceType.Stripe.GooglePay -> R.string.DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again
             }
           )
           StripeDeclineCode.Code.CALL_ISSUER -> getStripeDeclineCodePositiveActionParams(

@@ -14,7 +14,6 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.codewaves.stickyheadergrid.StickyHeaderGridLayoutManager.LayoutParams
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
@@ -67,7 +66,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     }
 
     binding.cardCvv.setOnEditorActionListener { _, actionId, _ ->
-      if (actionId == EditorInfo.IME_ACTION_DONE) {
+      if (actionId == EditorInfo.IME_ACTION_DONE && binding.continueButton.isEnabled) {
         binding.continueButton.performClick()
         true
       } else {
