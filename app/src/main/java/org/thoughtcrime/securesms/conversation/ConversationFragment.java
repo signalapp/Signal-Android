@@ -1131,7 +1131,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     MultiselectForwardFragmentArgs.create(requireContext(),
                                           multiselectParts,
                                           args -> MultiselectForwardFragment.showBottomSheet(getChildFragmentManager(),
-                                                                                             args.withSendButtonTint(listener.getSendButtonTint())));
+                                                                                             args));
   }
 
   private void handleResendMessage(final MessageRecord message) {
