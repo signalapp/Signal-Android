@@ -54,15 +54,12 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.CachedInflater;
 import org.thoughtcrime.securesms.util.DateUtils;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.ProjectionList;
 import org.thoughtcrime.securesms.util.StickyHeaderDecoration;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
@@ -111,7 +108,6 @@ public class ConversationAdapter
 
   private final Set<MultiselectPart>         selected;
   private final Calendar                     calendar;
-  private final MessageDigest                digest;
 
   private String              searchQuery;
   private ConversationMessage recordToPulse;
@@ -154,7 +150,6 @@ public class ConversationAdapter
     this.recipient                    = recipient;
     this.selected                     = new HashSet<>();
     this.calendar                     = Calendar.getInstance();
-    this.digest                       = getMessageDigestOrThrow();
     this.hasWallpaper                 = recipient.hasWallpaper();
     this.isMessageRequestAccepted     = true;
     this.colorizer                    = colorizer;
@@ -596,14 +591,6 @@ public class ConversationAdapter
       case MESSAGE_TYPE_INCOMING_MULTIMEDIA: return R.layout.conversation_item_received_multimedia;
       case MESSAGE_TYPE_UPDATE:              return R.layout.conversation_item_update;
       default:                               throw new IllegalArgumentException("Unknown type!");
-    }
-  }
-
-  private static MessageDigest getMessageDigestOrThrow() {
-    try {
-      return MessageDigest.getInstance("SHA1");
-    } catch (NoSuchAlgorithmException e) {
-      throw new AssertionError(e);
     }
   }
 
