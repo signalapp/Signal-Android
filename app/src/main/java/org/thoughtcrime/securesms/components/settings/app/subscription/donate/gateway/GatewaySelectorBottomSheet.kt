@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
@@ -82,7 +81,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         )
       }
 
-      if (InAppDonations.isPayPalAvailable()) {
+      if (state.isPayPalAvailable) {
         space(8.dp)
 
         customPref(
@@ -97,7 +96,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         )
       }
 
-      if (InAppDonations.isCreditCardAvailable()) {
+      if (state.isCreditCardAvailable) {
         space(8.dp)
 
         primaryButton(

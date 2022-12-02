@@ -86,10 +86,14 @@ class DonationCheckoutDelegate(
   }
 
   private fun handleGatewaySelectionResponse(gatewayResponse: GatewayResponse) {
-    when (gatewayResponse.gateway) {
-      GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
-      GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
-      GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
+    if (InAppDonations.isPaymentSourceAvailable(gatewayResponse.gateway.toPaymentSourceType(), gatewayResponse.request.donateToSignalType)) {
+      when (gatewayResponse.gateway) {
+        GatewayResponse.Gateway.GOOGLE_PAY -> launchGooglePay(gatewayResponse)
+        GatewayResponse.Gateway.PAYPAL -> launchPayPal(gatewayResponse)
+        GatewayResponse.Gateway.CREDIT_CARD -> launchCreditCard(gatewayResponse)
+      }
+    } else {
+      error("Unsupported combination! ${gatewayResponse.gateway} ${gatewayResponse.request.donateToSignalType}")
     }
   }
 
@@ -131,11 +135,7 @@ class DonationCheckoutDelegate(
   }
 
   private fun launchPayPal(gatewayResponse: GatewayResponse) {
-    if (InAppDonations.isPayPalAvailable()) {
-      callback.navigateToPayPalPaymentInProgress(gatewayResponse.request)
-    } else {
-      error("PayPal is not currently enabled.")
-    }
+    callback.navigateToPayPalPaymentInProgress(gatewayResponse.request)
   }
 
   private fun launchGooglePay(gatewayResponse: GatewayResponse) {
@@ -148,11 +148,7 @@ class DonationCheckoutDelegate(
   }
 
   private fun launchCreditCard(gatewayResponse: GatewayResponse) {
-    if (InAppDonations.isCreditCardAvailable()) {
-      callback.navigateToCreditCardForm(gatewayResponse.request)
-    } else {
-      error("Credit cards are not currently enabled.")
-    }
+    callback.navigateToCreditCardForm(gatewayResponse.request)
   }
 
   private fun registerGooglePayCallback() {

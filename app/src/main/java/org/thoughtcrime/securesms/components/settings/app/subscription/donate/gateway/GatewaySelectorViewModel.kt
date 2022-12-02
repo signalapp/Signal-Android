@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.util.rx.RxStore
 
@@ -13,7 +15,14 @@ class GatewaySelectorViewModel(
   private val repository: StripeRepository
 ) : ViewModel() {
 
-  private val store = RxStore(GatewaySelectorState(args.request.badge))
+  private val store = RxStore(
+    GatewaySelectorState(
+      badge = args.request.badge,
+      isGooglePayAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.GooglePay, args.request.donateToSignalType),
+      isCreditCardAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.Stripe.CreditCard, args.request.donateToSignalType),
+      isPayPalAvailable = InAppDonations.isPaymentSourceAvailable(PaymentSourceType.PayPal, args.request.donateToSignalType)
+    )
+  )
   private val disposables = CompositeDisposable()
 
   val state = store.stateFlowable

@@ -106,7 +106,8 @@ public final class FeatureFlags {
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
   private static final String CHAT_FILTERS                      = "android.chat.filters";
-  private static final String PAYPAL_DONATIONS                  = "android.donations.paypal";
+  private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations";
+  private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -166,7 +167,8 @@ public final class FeatureFlags {
       KEEP_MUTED_CHATS_ARCHIVED,
       CDS_HARD_LIMIT,
       CHAT_FILTERS,
-      PAYPAL_DONATIONS
+      PAYPAL_ONE_TIME_DONATIONS,
+      PAYPAL_RECURRING_DONATIONS
   );
 
   @VisibleForTesting
@@ -590,10 +592,17 @@ public final class FeatureFlags {
   }
 
   /**
-   * Whether or not we should allow PayPal payments for donations
+   * Whether or not we should allow PayPal payments for one-time donations
    */
-  public static boolean paypalDonations() {
-    return getBoolean(PAYPAL_DONATIONS, Environment.IS_STAGING);
+  public static boolean paypalOneTimeDonations() {
+    return getBoolean(PAYPAL_ONE_TIME_DONATIONS, Environment.IS_STAGING);
+  }
+
+  /**
+   * Whether or not we should allow PayPal payments for recurring donations
+   */
+  public static boolean paypalRecurringDonations() {
+    return getBoolean(PAYPAL_RECURRING_DONATIONS, false);
   }
 
   /** Only for rendering debug info. */
