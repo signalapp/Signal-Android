@@ -8,8 +8,12 @@ import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
+import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 
-class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_v2) {
+class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_v2), VoiceNoteMediaControllerOwner {
+
+  override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
   override fun attachBaseContext(newBase: Context) {
     delegate.localNightMode = AppCompatDelegate.MODE_NIGHT_YES
@@ -19,6 +23,9 @@ class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setTheme(R.style.TextSecure_MediaPreview)
+
+    voiceNoteMediaController = VoiceNoteMediaController(this)
+
     if (Build.VERSION.SDK_INT >= 21) {
       val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
       window.statusBarColor = systemBarColor
