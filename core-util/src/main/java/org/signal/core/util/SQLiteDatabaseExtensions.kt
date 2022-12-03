@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
+import org.intellij.lang.annotations.Language
 
 /**
  * Begins a transaction on the `this` database, runs the provided [block] providing the `this` value as it's argument
@@ -85,7 +86,7 @@ class SelectBuilderPart2(
   private val columns: Array<String>,
   private val tableName: String
 ) {
-  fun where(where: String, vararg whereArgs: Any): SelectBuilderPart3 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): SelectBuilderPart3 {
     return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
@@ -213,7 +214,7 @@ class UpdateBuilderPart2(
   private val tableName: String,
   private val values: ContentValues
 ) {
-  fun where(where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
     return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(*whereArgs))
   }
 
@@ -239,7 +240,7 @@ class DeleteBuilderPart1(
   private val db: SupportSQLiteDatabase,
   private val tableName: String
 ) {
-  fun where(where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
     return DeleteBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 

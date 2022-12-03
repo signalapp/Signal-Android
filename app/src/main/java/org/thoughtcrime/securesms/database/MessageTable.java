@@ -197,7 +197,6 @@ public abstract class MessageTable extends DatabaseTable implements MmsSmsColumn
   public abstract void endTransaction(SQLiteDatabase database);
   public abstract void setTransactionSuccessful();
   public abstract void endTransaction();
-  public abstract SQLiteStatement createInsertStatement(SQLiteDatabase database);
 
   public abstract void ensureMigration();
 
@@ -233,7 +232,7 @@ public abstract class MessageTable extends DatabaseTable implements MmsSmsColumn
   final @NonNull String getOutgoingTypeClause() {
     List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);
     for (long outgoingMessageType : Types.OUTGOING_MESSAGE_TYPES) {
-      segments.add("(" + getTypeField() + " & " + Types.BASE_TYPE_MASK + " = " + outgoingMessageType + ")");
+      segments.add("(" + getTableName() + "." + getTypeField() + " & " + Types.BASE_TYPE_MASK + " = " + outgoingMessageType + ")");
     }
 
     return Util.join(segments, " OR ");

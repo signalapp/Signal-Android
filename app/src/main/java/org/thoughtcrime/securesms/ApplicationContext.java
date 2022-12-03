@@ -146,7 +146,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                               SignalDatabase.init(this,
                                                   DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
                                                   AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
-                              SignalDatabase.triggerDatabaseAccess();
                             })
                             .addBlocking("logging", () -> {
                               initializeLogging();

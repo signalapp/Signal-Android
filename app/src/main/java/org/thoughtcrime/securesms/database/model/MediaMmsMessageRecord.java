@@ -60,7 +60,6 @@ import java.util.stream.Collectors;
 public class MediaMmsMessageRecord extends MmsMessageRecord {
   private final static String TAG = Log.tag(MediaMmsMessageRecord.class);
 
-  private final int           partCount;
   private final boolean       mentionsSelf;
   private final BodyRangeList messageRanges;
   private final Payment       payment;
@@ -76,7 +75,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
                                long threadId,
                                String body,
                                @NonNull SlideDeck slideDeck,
-                               int partCount,
                                long mailbox,
                                Set<IdentityKeyMismatch> mismatches,
                                Set<NetworkFailure> failures,
@@ -106,7 +104,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
           subscriptionId, expiresIn, expireStarted, viewOnce, slideDeck,
           readReceiptCount, quote, contacts, linkPreviews, unidentified, reactions, remoteDelete, notifiedTimestamp, viewedReceiptCount, receiptTimestamp,
           storyType, parentStoryId, giftBadge);
-    this.partCount     = partCount;
     this.mentionsSelf  = mentionsSelf;
     this.messageRanges = messageRanges;
     this.payment       = payment;
@@ -140,10 +137,6 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return super.getDisplayBody(context);
   }
 
-  public int getPartCount() {
-    return partCount;
-  }
-
   public @Nullable BodyRangeList getMessageRanges() {
     return messageRanges;
   }
@@ -164,14 +157,14 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
   public @NonNull MediaMmsMessageRecord withReactions(@NonNull List<ReactionRecord> reactions) {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
-                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), reactions, isRemoteDelete(), mentionsSelf,
                                      getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
   }
 
   public @NonNull MediaMmsMessageRecord withoutQuote() {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
-                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), null, getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                      getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
   }
@@ -192,14 +185,14 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     SlideDeck                slideDeck        = MmsTable.Reader.buildSlideDeck(context, slideAttachments);
 
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), slideDeck,
-                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), quote, contacts, linkPreviews, isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                      getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), getPayment());
   }
 
   public @NonNull MediaMmsMessageRecord withPayment(@NonNull Payment payment) {
     return new MediaMmsMessageRecord(getId(), getRecipient(), getIndividualRecipient(), getRecipientDeviceId(), getDateSent(), getDateReceived(), getServerTimestamp(), getDeliveryReceiptCount(), getThreadId(), getBody(), getSlideDeck(),
-                                     getPartCount(), getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
+                                     getType(), getIdentityKeyMismatches(), getNetworkFailures(), getSubscriptionId(), getExpiresIn(), getExpireStarted(), isViewOnce(),
                                      getReadReceiptCount(), getQuote(), getSharedContacts(), getLinkPreviews(), isUnidentified(), getReactions(), isRemoteDelete(), mentionsSelf,
                                      getNotifiedTimestamp(), getViewedReceiptCount(), getReceiptTimestamp(), getMessageRanges(), getStoryType(), getParentStoryId(), getGiftBadge(), payment);
   }

@@ -4,21 +4,21 @@ package org.thoughtcrime.securesms.database;
 public interface MmsSmsColumns {
 
   public static final String ID                       = "_id";
-  public static final String NORMALIZED_DATE_SENT     = "date_sent";
-  public static final String NORMALIZED_DATE_RECEIVED = "date_received";
-  public static final String NORMALIZED_TYPE          = "type";
+  public static final String DATE_SENT                = "date_sent";
+  public static final String DATE_RECEIVED            = "date_received";
+  public static final String TYPE                     = "type";
   public static final String DATE_SERVER              = "date_server";
   public static final String THREAD_ID                = "thread_id";
   public static final String READ                     = "read";
   public static final String BODY                     = "body";
-  public static final String RECIPIENT_ID             = "address";
-  public static final String ADDRESS_DEVICE_ID        = "address_device_id";
+  public static final String RECIPIENT_ID             = "recipient_id";
+  public static final String RECIPIENT_DEVICE_ID      = "recipient_device_id";
   public static final String DELIVERY_RECEIPT_COUNT   = "delivery_receipt_count";
   public static final String READ_RECEIPT_COUNT       = "read_receipt_count";
   public static final String VIEWED_RECEIPT_COUNT     = "viewed_receipt_count";
   public static final String MISMATCHED_IDENTITIES    = "mismatched_identities";
   public static final String UNIQUE_ROW_ID            = "unique_row_id";
-  public static final String SUBSCRIPTION_ID          = "subscription_id";
+  public static final String SMS_SUBSCRIPTION_ID      = "subscription_id";
   public static final String EXPIRES_IN               = "expires_in";
   public static final String EXPIRE_STARTED           = "expire_started";
   public static final String NOTIFIED                 = "notified";

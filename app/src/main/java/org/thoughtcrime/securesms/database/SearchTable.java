@@ -61,9 +61,9 @@ public class SearchTable extends DatabaseTable {
   private static final String MESSAGES_QUERY =
       "SELECT " +
       ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
-      MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
+      SmsTable.TABLE_NAME + "." + MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
       "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
-      SmsTable.TABLE_NAME + "." + SmsTable.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+      SmsTable.TABLE_NAME + "." + MmsSmsColumns.DATE_RECEIVED + ", " +
       SMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
       SMS_FTS_TABLE_NAME + "." + BODY + ", " +
       SMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
@@ -78,9 +78,9 @@ public class SearchTable extends DatabaseTable {
       "UNION ALL " +
       "SELECT " +
       ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
-      MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
+      MmsTable.TABLE_NAME + "." + MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
       "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
-      MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+      MmsTable.TABLE_NAME + "." + MmsSmsColumns.DATE_RECEIVED + ", " +
       MMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
       MMS_FTS_TABLE_NAME + "." + BODY + ", " +
       MMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
@@ -89,17 +89,17 @@ public class SearchTable extends DatabaseTable {
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsTable.TABLE_NAME + "." + MmsTable.ID + " " +
       "INNER JOIN " + ThreadTable.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? " +
-      "AND " + MmsTable.TABLE_NAME + "." + MmsTable.MESSAGE_BOX + " & " + MmsSmsColumns.Types.GROUP_V2_BIT + " = 0 " +
-      "AND " + MmsTable.TABLE_NAME + "." + MmsTable.MESSAGE_BOX + " & " + MmsSmsColumns.Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " = 0 " +
-      "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
+      "AND " + MmsTable.TABLE_NAME + "." + MmsTable.TYPE + " & " + MmsSmsColumns.Types.GROUP_V2_BIT + " = 0 " +
+      "AND " + MmsTable.TABLE_NAME + "." + MmsTable.TYPE + " & " + MmsSmsColumns.Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " = 0 " +
+      "ORDER BY " + MmsSmsColumns.DATE_RECEIVED + " DESC " +
       "LIMIT 500";
 
   private static final String MESSAGES_FOR_THREAD_QUERY =
       "SELECT " +
       ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
-      MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
+      SmsTable.TABLE_NAME + "." + MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
       "snippet(" + SMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
-      SmsTable.TABLE_NAME + "." + SmsTable.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+      SmsTable.TABLE_NAME + "." + MmsSmsColumns.DATE_RECEIVED + ", " +
       SMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
       SMS_FTS_TABLE_NAME + "." + BODY + ", " +
       SMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
@@ -111,9 +111,9 @@ public class SearchTable extends DatabaseTable {
       "UNION ALL " +
       "SELECT " +
       ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " AS " + CONVERSATION_RECIPIENT + ", " +
-      MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
+      MmsTable.TABLE_NAME + "." + MmsSmsColumns.RECIPIENT_ID + " AS " + MESSAGE_RECIPIENT + ", " +
       "snippet(" + MMS_FTS_TABLE_NAME + ", -1, '', '', '" + SNIPPET_WRAP + "', 7) AS " + SNIPPET + ", " +
-      MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + " AS " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + ", " +
+      MmsTable.TABLE_NAME + "." + MmsSmsColumns.DATE_RECEIVED + ", " +
       MMS_FTS_TABLE_NAME + "." + THREAD_ID + ", " +
       MMS_FTS_TABLE_NAME + "." + BODY + ", " +
       MMS_FTS_TABLE_NAME + "." + ID + " AS " + MESSAGE_ID + ", " +
@@ -122,7 +122,7 @@ public class SearchTable extends DatabaseTable {
       "INNER JOIN " + MMS_FTS_TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + ID + " = " + MmsTable.TABLE_NAME + "." + MmsTable.ID + " " +
       "INNER JOIN " + ThreadTable.TABLE_NAME + " ON " + MMS_FTS_TABLE_NAME + "." + THREAD_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + " " +
       "WHERE " + MMS_FTS_TABLE_NAME + " MATCH ? AND " + MmsTable.TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? " +
-      "ORDER BY " + MmsSmsColumns.NORMALIZED_DATE_RECEIVED + " DESC " +
+      "ORDER BY " + MmsSmsColumns.DATE_RECEIVED + " DESC " +
       "LIMIT 500";
 
   public SearchTable(@NonNull Context context, @NonNull SignalDatabase databaseHelper) {

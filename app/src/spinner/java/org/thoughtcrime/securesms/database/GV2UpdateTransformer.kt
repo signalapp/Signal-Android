@@ -39,8 +39,7 @@ object GV2UpdateTransformer : ColumnTransformer {
 
 private fun Cursor.getMessageType(): Long {
   return when {
-    getColumnIndex(SmsTable.TYPE) != -1 -> requireLong(SmsTable.TYPE)
-    getColumnIndex(MmsTable.MESSAGE_BOX) != -1 -> requireLong(MmsTable.MESSAGE_BOX)
+    getColumnIndex(MmsSmsColumns.TYPE) != -1 -> requireLong(MmsSmsColumns.TYPE)
     else -> -1
   }
 }

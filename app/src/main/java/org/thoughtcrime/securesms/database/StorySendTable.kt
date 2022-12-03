@@ -326,7 +326,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       // language=sql
       """
         SELECT 
-            $RECIPIENT_ID,
+            $TABLE_NAME.$RECIPIENT_ID,
             $ALLOWS_REPLIES,
             $DISTRIBUTION_ID,
             ${MmsTable.REMOTE_DELETED}

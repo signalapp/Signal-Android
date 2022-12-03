@@ -77,13 +77,13 @@ object TestMms {
   ): Long {
     val contentValues = ContentValues().apply {
       put(MmsTable.DATE_SENT, message.sentTimeMillis)
-      put(MmsTable.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
+      put(MmsTable.MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
-      put(MmsTable.MESSAGE_BOX, type)
+      put(MmsTable.TYPE, type)
       put(MmsSmsColumns.THREAD_ID, threadId)
       put(MmsSmsColumns.READ, if (unread) 0 else 1)
       put(MmsTable.DATE_RECEIVED, receivedTimestampMillis)
-      put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
+      put(MmsSmsColumns.SMS_SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
       put(MmsTable.VIEW_ONCE, message.isViewOnce)
       put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
@@ -93,7 +93,6 @@ object TestMms {
       put(MmsTable.STORY_TYPE, message.storyType.code)
 
       put(MmsSmsColumns.BODY, body)
-      put(MmsTable.PART_COUNT, 0)
       put(MmsTable.MENTIONS_SELF, 0)
     }
 
@@ -106,7 +105,6 @@ object TestMms {
     values.putNull(MmsSmsColumns.BODY)
     values.putNull(MmsTable.QUOTE_BODY)
     values.putNull(MmsTable.QUOTE_AUTHOR)
-    values.putNull(MmsTable.QUOTE_ATTACHMENT)
     values.put(MmsTable.QUOTE_TYPE, -1)
     values.putNull(MmsTable.QUOTE_ID)
     values.putNull(MmsTable.LINK_PREVIEWS)

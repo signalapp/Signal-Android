@@ -31,8 +31,6 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.zetetic.database.sqlcipher.SQLiteStatement;
-
 import org.signal.core.util.CursorExtensionsKt;
 import org.signal.core.util.CursorUtil;
 import org.signal.core.util.SQLiteDatabaseExtensionsKt;
@@ -100,36 +98,23 @@ public class SmsTable extends MessageTable {
 
   private static final String TAG = Log.tag(SmsTable.class);
 
-  public  static final String TABLE_NAME         = "sms";
-  public  static final String PERSON             = "person";
-          static final String DATE_RECEIVED      = "date";
-          static final String DATE_SENT          = "date_sent";
-  public  static final String PROTOCOL           = "protocol";
-  public  static final String STATUS             = "status";
-  public  static final String TYPE               = "type";
-  public  static final String REPLY_PATH_PRESENT = "reply_path_present";
-  public  static final String SUBJECT            = "subject";
-  public  static final String SERVICE_CENTER     = "service_center";
+  public  static final String TABLE_NAME = "sms";
+  public  static final String SMS_STATUS = "status";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                  THREAD_ID              + " INTEGER, " +
-                                                                                  RECIPIENT_ID           + " INTEGER, " +
-                                                                                  ADDRESS_DEVICE_ID      + " INTEGER DEFAULT 1, " +
-                                                                                  PERSON                 + " INTEGER, " +
-                                                                                  DATE_RECEIVED          + " INTEGER, " +
-                                                                                  DATE_SENT              + " INTEGER, " +
+                                                                                  DATE_SENT              + " INTEGER NOT NULL, " +
+                                                                                  DATE_RECEIVED          + " INTEGER NOT NULL, " +
                                                                                   DATE_SERVER            + " INTEGER DEFAULT -1, " +
-                                                                                  PROTOCOL               + " INTEGER, " +
-                                                                                  READ                   + " INTEGER DEFAULT 0, " +
-                                                                                  STATUS                 + " INTEGER DEFAULT -1," +
+                                                                                  THREAD_ID              + " INTEGER NOT NULL REFERENCES " + ThreadTable.TABLE_NAME + " (" + ThreadTable.ID + ") ON DELETE CASCADE, " +
+                                                                                  RECIPIENT_ID           + " INTEGER NOT NULL REFERENCES " + RecipientTable.TABLE_NAME + " (" + RecipientTable.ID + ") ON DELETE CASCADE, " +
+                                                                                  RECIPIENT_DEVICE_ID    + " INTEGER DEFAULT 1, " +
                                                                                   TYPE                   + " INTEGER, " +
-                                                                                  REPLY_PATH_PRESENT     + " INTEGER, " +
-                                                                                  DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0," +
-                                                                                  SUBJECT                + " TEXT, " +
                                                                                   BODY                   + " TEXT, " +
+                                                                                  READ                   + " INTEGER DEFAULT 0, " +
+                                                                                  SMS_STATUS             + " INTEGER DEFAULT -1," +
+                                                                                  DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0," +
                                                                                   MISMATCHED_IDENTITIES  + " TEXT DEFAULT NULL, " +
-                                                                                  SERVICE_CENTER         + " TEXT, " +
-                                                                                  SUBSCRIPTION_ID        + " INTEGER DEFAULT -1, " +
+                                                                                  SMS_SUBSCRIPTION_ID    + " INTEGER DEFAULT -1, " +
                                                                                   EXPIRES_IN             + " INTEGER DEFAULT 0, " +
                                                                                   EXPIRE_STARTED         + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED               + " DEFAULT 0, " +
@@ -155,15 +140,30 @@ public class SmsTable extends MessageTable {
   };
 
   private static final String[] MESSAGE_PROJECTION = new String[] {
-      ID, THREAD_ID, RECIPIENT_ID, ADDRESS_DEVICE_ID, PERSON,
-      DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
-      DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
+      ID,
+      THREAD_ID,
+      RECIPIENT_ID,
+      RECIPIENT_DEVICE_ID,
+      DATE_RECEIVED,
+      DATE_SENT,
       DATE_SERVER,
-      PROTOCOL, READ, STATUS, TYPE,
-      REPLY_PATH_PRESENT, SUBJECT, BODY, SERVICE_CENTER, DELIVERY_RECEIPT_COUNT,
-      MISMATCHED_IDENTITIES, SUBSCRIPTION_ID, EXPIRES_IN, EXPIRE_STARTED,
-      NOTIFIED, READ_RECEIPT_COUNT, UNIDENTIFIED, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
-      REMOTE_DELETED, NOTIFIED_TIMESTAMP, RECEIPT_TIMESTAMP
+      READ,
+      SMS_STATUS,
+      TYPE,
+      BODY,
+      DELIVERY_RECEIPT_COUNT,
+      MISMATCHED_IDENTITIES,
+      SMS_SUBSCRIPTION_ID,
+      EXPIRES_IN,
+      EXPIRE_STARTED,
+      NOTIFIED,
+      READ_RECEIPT_COUNT,
+      UNIDENTIFIED,
+      REACTIONS_UNREAD,
+      REACTIONS_LAST_SEEN,
+      REMOTE_DELETED,
+      NOTIFIED_TIMESTAMP,
+      RECEIPT_TIMESTAMP
   };
 
   @VisibleForTesting
@@ -489,7 +489,7 @@ public class SmsTable extends MessageTable {
   public void markSmsStatus(long id, int status) {
     Log.i(TAG, "Updating ID: " + id + " to status: " + status);
     ContentValues contentValues = new ContentValues();
-    contentValues.put(STATUS, status);
+    contentValues.put(SMS_STATUS, status);
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {id+""});
@@ -731,7 +731,7 @@ public class SmsTable extends MessageTable {
 
         ContentValues values = new ContentValues();
         values.put(RECIPIENT_ID, sender.serialize());
-        values.put(ADDRESS_DEVICE_ID, 1);
+        values.put(RECIPIENT_DEVICE_ID, 1);
         values.put(DATE_RECEIVED, timestamp);
         values.put(DATE_SENT, timestamp);
         values.put(READ, markRead ? 1 : 0);
@@ -808,7 +808,7 @@ public class SmsTable extends MessageTable {
 
         ContentValues values = new ContentValues();
         values.put(RECIPIENT_ID, sender.serialize());
-        values.put(ADDRESS_DEVICE_ID, 1);
+        values.put(RECIPIENT_DEVICE_ID, 1);
         values.put(DATE_RECEIVED, timestamp);
         values.put(DATE_SENT, timestamp);
         values.put(READ, 0);
@@ -880,7 +880,7 @@ public class SmsTable extends MessageTable {
 
     ContentValues values = new ContentValues(6);
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID,  1);
+    values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, timestamp);
     values.put(READ, unread ? 0 : 1);
@@ -1008,7 +1008,7 @@ public class SmsTable extends MessageTable {
             .forEach(threadId -> {
               ContentValues values = new ContentValues();
               values.put(RECIPIENT_ID, recipient.getId().serialize());
-              values.put(ADDRESS_DEVICE_ID, 1);
+              values.put(RECIPIENT_DEVICE_ID, 1);
               values.put(DATE_RECEIVED, System.currentTimeMillis());
               values.put(DATE_SENT, System.currentTimeMillis());
               values.put(READ, 1);
@@ -1056,7 +1056,7 @@ public class SmsTable extends MessageTable {
   {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID, 1);
+    values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
@@ -1092,7 +1092,7 @@ public class SmsTable extends MessageTable {
                        .forEach(threadId -> {
                          ContentValues values = new ContentValues();
                          values.put(RECIPIENT_ID, recipientId.serialize());
-                         values.put(ADDRESS_DEVICE_ID, 1);
+                         values.put(RECIPIENT_DEVICE_ID, 1);
                          values.put(DATE_RECEIVED, System.currentTimeMillis());
                          values.put(DATE_SENT, System.currentTimeMillis());
                          values.put(READ, 1);
@@ -1121,7 +1121,7 @@ public class SmsTable extends MessageTable {
   public void insertBoostRequestMessage(@NonNull RecipientId recipientId, long threadId) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID, 1);
+    values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
@@ -1136,7 +1136,7 @@ public class SmsTable extends MessageTable {
   public void insertThreadMergeEvent(@NonNull RecipientId recipientId, long threadId, @NonNull ThreadMergeEvent event) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID, 1);
+    values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
@@ -1153,7 +1153,7 @@ public class SmsTable extends MessageTable {
   public void insertSmsExportMessage(@NonNull RecipientId recipientId, long threadId) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID, 1);
+    values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
@@ -1251,21 +1251,14 @@ public class SmsTable extends MessageTable {
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, message.getSender().serialize());
-    values.put(ADDRESS_DEVICE_ID,  message.getSenderDeviceId());
+    values.put(RECIPIENT_DEVICE_ID, message.getSenderDeviceId());
     values.put(DATE_RECEIVED, message.getReceivedTimestampMillis());
     values.put(DATE_SENT, message.getSentTimestampMillis());
     values.put(DATE_SERVER, message.getServerTimestampMillis());
-    values.put(PROTOCOL, message.getProtocol());
     values.put(READ, unread ? 0 : 1);
-    values.put(SUBSCRIPTION_ID, message.getSubscriptionId());
+    values.put(SMS_SUBSCRIPTION_ID, message.getSubscriptionId());
     values.put(EXPIRES_IN, message.getExpiresIn());
     values.put(UNIDENTIFIED, message.isUnidentified());
-
-    if (!TextUtils.isEmpty(message.getPseudoSubject()))
-      values.put(SUBJECT, message.getPseudoSubject());
-
-    values.put(REPLY_PATH_PRESENT, message.isReplyPathPresent());
-    values.put(SERVICE_CENTER, message.getServiceCenterAddress());
     values.put(BODY, message.getMessageBody());
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
@@ -1316,7 +1309,7 @@ public class SmsTable extends MessageTable {
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID,  senderDeviceId);
+    values.put(RECIPIENT_DEVICE_ID, senderDeviceId);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, sentTimestamp);
     values.put(DATE_SERVER, -1);
@@ -1341,7 +1334,7 @@ public class SmsTable extends MessageTable {
   public void insertBadDecryptMessage(@NonNull RecipientId recipientId, int senderDevice, long sentTimestamp, long receivedTimestamp, long threadId) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
-    values.put(ADDRESS_DEVICE_ID, senderDevice);
+    values.put(RECIPIENT_DEVICE_ID, senderDevice);
     values.put(DATE_SENT, sentTimestamp);
     values.put(DATE_RECEIVED, receivedTimestamp);
     values.put(DATE_SERVER, -1);
@@ -1387,7 +1380,7 @@ public class SmsTable extends MessageTable {
     contentValues.put(DATE_SENT, date);
     contentValues.put(READ, 1);
     contentValues.put(TYPE, type);
-    contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
+    contentValues.put(SMS_SUBSCRIPTION_ID, message.getSubscriptionId());
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getCount).sum());
     contentValues.put(RECEIPT_TIMESTAMP, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getTimestamp).max().orElse(-1));
@@ -1733,24 +1726,6 @@ public class SmsTable extends MessageTable {
   }
 
   @Override
-  public SQLiteStatement createInsertStatement(SQLiteDatabase database) {
-    return database.compileStatement("INSERT INTO " + TABLE_NAME + " (" + RECIPIENT_ID + ", " +
-                                                                          PERSON + ", " +
-                                                                          DATE_SENT + ", " +
-                                                                          DATE_RECEIVED  + ", " +
-                                                                          PROTOCOL + ", " +
-                                                                          READ + ", " +
-                                                                          STATUS + ", " +
-                                                                          TYPE + ", " +
-                                                                          REPLY_PATH_PRESENT + ", " +
-                                                                          SUBJECT + ", " +
-                                                                          BODY + ", " +
-                                                                          SERVICE_CENTER +
-                                                                          ", " + THREAD_ID + ") " +
-                                     " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-  }
-
-  @Override
   public @Nullable ViewOnceExpirationInfo getNearestExpiringViewOnceMessage() {
     throw new UnsupportedOperationException();
   }
@@ -1948,17 +1923,17 @@ public class SmsTable extends MessageTable {
     public SmsMessageRecord getCurrent() {
       long                 messageId            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.ID));
       long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.RECIPIENT_ID));
-      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.ADDRESS_DEVICE_ID));
+      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.RECIPIENT_DEVICE_ID));
       long                 type                 = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.TYPE));
-      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.NORMALIZED_DATE_RECEIVED));
-      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.NORMALIZED_DATE_SENT));
+      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.DATE_RECEIVED));
+      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.DATE_SENT));
       long                 dateServer           = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.DATE_SERVER));
       long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.THREAD_ID));
-      int                  status               = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.STATUS));
+      int                  status               = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.SMS_STATUS));
       int                  deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.DELIVERY_RECEIPT_COUNT));
       int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.READ_RECEIPT_COUNT));
       String               mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(SmsTable.MISMATCHED_IDENTITIES));
-      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.SUBSCRIPTION_ID));
+      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(SmsTable.SMS_SUBSCRIPTION_ID));
       long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.EXPIRES_IN));
       long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(SmsTable.EXPIRE_STARTED));
       String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(SmsTable.BODY));

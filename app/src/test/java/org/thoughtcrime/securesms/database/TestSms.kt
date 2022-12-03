@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.ContentValues
-import android.text.TextUtils
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.IncomingTextMessage
@@ -61,22 +60,14 @@ object TestSms {
   ): Long {
     val values = ContentValues().apply {
       put(MmsSmsColumns.RECIPIENT_ID, message.sender.serialize())
-      put(MmsSmsColumns.ADDRESS_DEVICE_ID, message.senderDeviceId)
+      put(MmsSmsColumns.RECIPIENT_DEVICE_ID, message.senderDeviceId)
       put(SmsTable.DATE_RECEIVED, message.receivedTimestampMillis)
       put(SmsTable.DATE_SENT, message.sentTimestampMillis)
       put(MmsSmsColumns.DATE_SERVER, message.serverTimestampMillis)
-      put(SmsTable.PROTOCOL, message.protocol)
       put(MmsSmsColumns.READ, if (unread) 0 else 1)
-      put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
+      put(MmsSmsColumns.SMS_SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
       put(MmsSmsColumns.UNIDENTIFIED, message.isUnidentified)
-
-      if (!TextUtils.isEmpty(message.pseudoSubject)) {
-        put(SmsTable.SUBJECT, message.pseudoSubject)
-      }
-
-      put(SmsTable.REPLY_PATH_PRESENT, message.isReplyPathPresent)
-      put(SmsTable.SERVICE_CENTER, message.serviceCenterAddress)
       put(MmsSmsColumns.BODY, message.messageBody)
       put(SmsTable.TYPE, type)
       put(MmsSmsColumns.THREAD_ID, threadId)

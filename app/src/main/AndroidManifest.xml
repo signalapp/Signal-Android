@@ -332,11 +332,6 @@
               android:theme="@style/Signal.DayNight.NoActionBar"
               android:windowSoftInputMode="adjustResize"/>
 
-    <activity android:name=".DatabaseMigrationActivity"
-              android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
-
     <activity android:name=".migrations.ApplicationMigrationActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:launchMode="singleTask"
@@ -702,7 +697,6 @@
 
     <service android:enabled="true" android:name=".exporter.SignalSmsExportService" android:foregroundServiceType="dataSync" />
     <service android:enabled="true" android:name=".service.webrtc.WebRtcCallService" android:foregroundServiceType="camera|microphone"/>
-    <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".messages.IncomingMessageObserver$ForegroundService"/>
     <service android:name=".service.webrtc.AndroidCallConnectionService"

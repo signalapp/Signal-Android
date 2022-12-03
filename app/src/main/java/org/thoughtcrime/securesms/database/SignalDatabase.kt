@@ -156,15 +156,25 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   }
 
   override fun onUpgrade(db: net.zetetic.database.sqlcipher.SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    // The caller of onUpgrade starts a transaction, which prevents us from turning off foreign keys.
+    // At this point it hasn't done anything, so we can just end it and then start it again ourselves.
+    db.endTransaction()
+
     Log.i(TAG, "Upgrading database: $oldVersion, $newVersion")
     val startTime = System.currentTimeMillis()
+    db.setForeignKeyConstraintsEnabled(false)
     db.beginTransaction()
     try {
       migrate(context, db, oldVersion, newVersion)
       db.setTransactionSuccessful()
     } finally {
       db.endTransaction()
+      db.setForeignKeyConstraintsEnabled(true)
+
+      // We have to re-begin the transaction for the calling code (see comment at start of method)
+      db.beginTransaction()
     }
+
     migratePostTransaction(context, oldVersion)
     Log.i(TAG, "Upgrade complete. Took " + (System.currentTimeMillis() - startTime) + " ms.")
   }

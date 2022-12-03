@@ -151,7 +151,6 @@ object FakeMessageRecords {
       threadId,
       body,
       slideDeck,
-      partCount,
       mailbox,
       mismatches,
       failures,

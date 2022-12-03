@@ -137,7 +137,7 @@ public class GroupTable extends DatabaseTable implements RecipientIdDatabaseRefe
       TIMESTAMP, ACTIVE, MMS, V2_MASTER_KEY, V2_REVISION, V2_DECRYPTED_GROUP, LAST_FORCE_UPDATE_TIMESTAMP
   };
 
-  static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).map(columnName -> TABLE_NAME + "." + columnName).toList();
+  static final List<String> TYPED_GROUP_PROJECTION = Stream.of(GROUP_PROJECTION).filterNot(it -> it.equals(RECIPIENT_ID)).map(columnName -> TABLE_NAME + "." + columnName).toList();
 
   public GroupTable(Context context, SignalDatabase databaseHelper) {
     super(context, databaseHelper);

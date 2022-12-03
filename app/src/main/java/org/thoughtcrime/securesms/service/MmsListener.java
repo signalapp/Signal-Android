@@ -31,10 +31,6 @@ public class MmsListener extends BroadcastReceiver {
   private static final String TAG = Log.tag(MmsListener.class);
 
   private boolean isRelevant(Context context, Intent intent) {
-    if (!ApplicationMigrationService.isDatabaseImported(context)) {
-      return false;
-    }
-
     if (Telephony.Sms.Intents.WAP_PUSH_RECEIVED_ACTION.equals(intent.getAction()) && Util.isDefaultSmsProvider(context)) {
       return false;
     }

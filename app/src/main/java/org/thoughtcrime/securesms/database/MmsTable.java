@@ -31,8 +31,6 @@ import com.google.android.mms.pdu_alt.NotificationInd;
 import com.google.android.mms.pdu_alt.PduHeaders;
 import com.google.protobuf.InvalidProtocolBufferException;
 
-import net.zetetic.database.sqlcipher.SQLiteStatement;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -121,80 +119,73 @@ public class MmsTable extends MessageTable {
 
   private static final String TAG = Log.tag(MmsTable.class);
 
-  public  static final String TABLE_NAME         = "mms";
-          static final String DATE_SENT          = "date";
-          static final String DATE_RECEIVED      = "date_received";
-  public  static final String MESSAGE_BOX        = "msg_box";
-          static final String CONTENT_LOCATION   = "ct_l";
-          static final String EXPIRY             = "exp";
-  public  static final String MESSAGE_TYPE       = "m_type";
-          static final String MESSAGE_SIZE       = "m_size";
-          static final String STATUS             = "st";
-          static final String TRANSACTION_ID     = "tr_id";
-          static final String PART_COUNT         = "part_count";
-          static final String NETWORK_FAILURE    = "network_failures";
+  public  static final String TABLE_NAME           = "mms";
+          static final String MMS_CONTENT_LOCATION = "ct_l";
+          static final String MMS_EXPIRY           = "exp";
+  public  static final String MMS_MESSAGE_TYPE     = "m_type";
+          static final String MMS_MESSAGE_SIZE     = "m_size";
+          static final String MMS_STATUS           = "st";
+          static final String MMS_TRANSACTION_ID   = "tr_id";
+          static final String NETWORK_FAILURES     = "network_failures";
 
           static final String QUOTE_ID         = "quote_id";
           static final String QUOTE_AUTHOR     = "quote_author";
           static final String QUOTE_BODY       = "quote_body";
-          static final String QUOTE_ATTACHMENT = "quote_attachment";
           static final String QUOTE_MISSING    = "quote_missing";
           static final String QUOTE_MENTIONS   = "quote_mentions";
           static final String QUOTE_TYPE       = "quote_type";
 
           static final String SHARED_CONTACTS = "shared_contacts";
-          static final String LINK_PREVIEWS   = "previews";
+          static final String LINK_PREVIEWS   = "link_previews";
           static final String MENTIONS_SELF   = "mentions_self";
-          static final String MESSAGE_RANGES  = "ranges";
+          static final String MESSAGE_RANGES  = "message_ranges";
 
-  public  static final String VIEW_ONCE       = "reveal_duration";
-  public  static final String STORY_TYPE      = "is_story";
+  public  static final String VIEW_ONCE       = "view_once";
+  public  static final String STORY_TYPE      = "story_type";
           static final String PARENT_STORY_ID = "parent_story_id";
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-                                                                                  THREAD_ID              + " INTEGER, " +
-                                                                                  DATE_SENT              + " INTEGER, " +
-                                                                                  DATE_RECEIVED          + " INTEGER, " +
+                                                                                  DATE_SENT              + " INTEGER NOT NULL, " +
+                                                                                  DATE_RECEIVED          + " INTEGER NOT NULL, " +
                                                                                   DATE_SERVER            + " INTEGER DEFAULT -1, " +
-                                                                                  MESSAGE_BOX            + " INTEGER, " +
-                                                                                  READ                   + " INTEGER DEFAULT 0, " +
+                                                                                  THREAD_ID              + " INTEGER NOT NULL REFERENCES " + ThreadTable.TABLE_NAME + " (" + ThreadTable.ID + ") ON DELETE CASCADE, " +
+                                                                                  RECIPIENT_ID           + " INTEGER NOT NULL REFERENCES " + RecipientTable.TABLE_NAME + " (" + RecipientTable.ID + ") ON DELETE CASCADE, " +
+                                                                                  RECIPIENT_DEVICE_ID    + " INTEGER, " +
+                                                                                  TYPE                   + " INTEGER NOT NULL, " +
                                                                                   BODY                   + " TEXT, " +
-                                                                                  PART_COUNT             + " INTEGER, " +
-                                                                                  CONTENT_LOCATION       + " TEXT, " +
-                                                                                  RECIPIENT_ID           + " INTEGER, " +
-                                                                                  ADDRESS_DEVICE_ID      + " INTEGER, " +
-                                                                                  EXPIRY                 + " INTEGER, " +
-                                                                                  MESSAGE_TYPE           + " INTEGER, " +
-                                                                                  MESSAGE_SIZE           + " INTEGER, " +
-                                                                                  STATUS                 + " INTEGER, " +
-                                                                                  TRANSACTION_ID         + " TEXT, " +
+                                                                                  READ                   + " INTEGER DEFAULT 0, " +
+                                                                                  MMS_CONTENT_LOCATION   + " TEXT, " +
+                                                                                  MMS_EXPIRY             + " INTEGER, " +
+                                                                                  MMS_MESSAGE_TYPE       + " INTEGER, " +
+                                                                                  MMS_MESSAGE_SIZE       + " INTEGER, " +
+                                                                                  MMS_STATUS             + " INTEGER, " +
+                                                                                  MMS_TRANSACTION_ID     + " TEXT, " +
+                                                                                  SMS_SUBSCRIPTION_ID    + " INTEGER DEFAULT -1, " +
+                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1, " +
                                                                                   DELIVERY_RECEIPT_COUNT + " INTEGER DEFAULT 0, " +
+                                                                                  READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
+                                                                                  VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0, " +
                                                                                   MISMATCHED_IDENTITIES  + " TEXT DEFAULT NULL, " +
-                                                                                  NETWORK_FAILURE        + " TEXT DEFAULT NULL," +
-                                                                                  SUBSCRIPTION_ID        + " INTEGER DEFAULT -1, " +
+                                                                                  NETWORK_FAILURES       + " TEXT DEFAULT NULL," +
                                                                                   EXPIRES_IN             + " INTEGER DEFAULT 0, " +
                                                                                   EXPIRE_STARTED         + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED               + " INTEGER DEFAULT 0, " +
-                                                                                  READ_RECEIPT_COUNT     + " INTEGER DEFAULT 0, " +
                                                                                   QUOTE_ID               + " INTEGER DEFAULT 0, " +
-                                                                                  QUOTE_AUTHOR           + " TEXT, " +
-                                                                                  QUOTE_BODY             + " TEXT, " +
-                                                                                  QUOTE_ATTACHMENT       + " INTEGER DEFAULT -1, " +
+                                                                                  QUOTE_AUTHOR           + " INTEGER DEFAULT 0, " +
+                                                                                  QUOTE_BODY             + " TEXT DEFAULT NULL, " +
                                                                                   QUOTE_MISSING          + " INTEGER DEFAULT 0, " +
                                                                                   QUOTE_MENTIONS         + " BLOB DEFAULT NULL," +
                                                                                   QUOTE_TYPE             + " INTEGER DEFAULT 0," +
-                                                                                  SHARED_CONTACTS        + " TEXT, " +
+                                                                                  SHARED_CONTACTS        + " TEXT DEFAULT NULL, " +
                                                                                   UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
-                                                                                  LINK_PREVIEWS          + " TEXT, " +
+                                                                                  LINK_PREVIEWS          + " TEXT DEFAULT NULL, " +
                                                                                   VIEW_ONCE              + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS_UNREAD       + " INTEGER DEFAULT 0, " +
                                                                                   REACTIONS_LAST_SEEN    + " INTEGER DEFAULT -1, " +
                                                                                   REMOTE_DELETED         + " INTEGER DEFAULT 0, " +
                                                                                   MENTIONS_SELF          + " INTEGER DEFAULT 0, " +
                                                                                   NOTIFIED_TIMESTAMP     + " INTEGER DEFAULT 0, " +
-                                                                                  VIEWED_RECEIPT_COUNT   + " INTEGER DEFAULT 0, " +
                                                                                   SERVER_GUID            + " TEXT DEFAULT NULL, " +
-                                                                                  RECEIPT_TIMESTAMP      + " INTEGER DEFAULT -1, " +
                                                                                   MESSAGE_RANGES         + " BLOB DEFAULT NULL, " +
                                                                                   STORY_TYPE             + " INTEGER DEFAULT 0, " +
                                                                                   PARENT_STORY_ID        + " INTEGER DEFAULT 0, " +
@@ -203,33 +194,64 @@ public class MmsTable extends MessageTable {
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
-    "CREATE INDEX IF NOT EXISTS mms_message_box_index ON " + TABLE_NAME + " (" + MESSAGE_BOX + ");",
+    "CREATE INDEX IF NOT EXISTS mms_type_index ON " + TABLE_NAME + " (" + TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ", " + RECIPIENT_ID + ", " + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_server_index ON " + TABLE_NAME + " (" + DATE_SERVER + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");",
     "CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON " + TABLE_NAME + " (" + REACTIONS_UNREAD + ");",
-    "CREATE INDEX IF NOT EXISTS mms_is_story_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
+    "CREATE INDEX IF NOT EXISTS mms_story_type_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
     "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");",
-    "CREATE INDEX IF NOT EXISTS mms_id_msg_box_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + MESSAGE_BOX + ") WHERE " + MESSAGE_BOX + " & " + Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
+    "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
   };
 
   private static final String[] MMS_PROJECTION = new String[] {
       MmsTable.TABLE_NAME + "." + ID + " AS " + ID,
-      THREAD_ID, DATE_SENT + " AS " + NORMALIZED_DATE_SENT,
-      DATE_RECEIVED + " AS " + NORMALIZED_DATE_RECEIVED,
+      THREAD_ID,
+      DATE_SENT,
+      DATE_RECEIVED,
       DATE_SERVER,
-      MESSAGE_BOX, READ,
-      CONTENT_LOCATION, EXPIRY, MESSAGE_TYPE,
-      MESSAGE_SIZE, STATUS, TRANSACTION_ID,
-      BODY, PART_COUNT, RECIPIENT_ID, ADDRESS_DEVICE_ID,
-      DELIVERY_RECEIPT_COUNT, READ_RECEIPT_COUNT, MISMATCHED_IDENTITIES, NETWORK_FAILURE, SUBSCRIPTION_ID,
-      EXPIRES_IN, EXPIRE_STARTED, NOTIFIED, QUOTE_ID, QUOTE_AUTHOR, QUOTE_BODY, QUOTE_ATTACHMENT, QUOTE_TYPE, QUOTE_MISSING, QUOTE_MENTIONS,
-      SHARED_CONTACTS, LINK_PREVIEWS, UNIDENTIFIED, VIEW_ONCE, REACTIONS_UNREAD, REACTIONS_LAST_SEEN,
-      REMOTE_DELETED, MENTIONS_SELF, NOTIFIED_TIMESTAMP, VIEWED_RECEIPT_COUNT, RECEIPT_TIMESTAMP, MESSAGE_RANGES,
-      STORY_TYPE, PARENT_STORY_ID,
+      TYPE,
+      READ,
+      MMS_CONTENT_LOCATION,
+      MMS_EXPIRY,
+      MMS_MESSAGE_TYPE,
+      MMS_MESSAGE_SIZE,
+      MMS_STATUS,
+      MMS_TRANSACTION_ID,
+      BODY,
+      RECIPIENT_ID,
+      RECIPIENT_DEVICE_ID,
+      DELIVERY_RECEIPT_COUNT,
+      READ_RECEIPT_COUNT,
+      MISMATCHED_IDENTITIES,
+      NETWORK_FAILURES,
+      SMS_SUBSCRIPTION_ID,
+      EXPIRES_IN,
+      EXPIRE_STARTED,
+      NOTIFIED,
+      QUOTE_ID,
+      QUOTE_AUTHOR,
+      QUOTE_BODY,
+      QUOTE_TYPE,
+      QUOTE_MISSING,
+      QUOTE_MENTIONS,
+      SHARED_CONTACTS,
+      LINK_PREVIEWS,
+      UNIDENTIFIED,
+      VIEW_ONCE,
+      REACTIONS_UNREAD,
+      REACTIONS_LAST_SEEN,
+      REMOTE_DELETED,
+      MENTIONS_SELF,
+      NOTIFIED_TIMESTAMP,
+      VIEWED_RECEIPT_COUNT,
+      RECEIPT_TIMESTAMP,
+      MESSAGE_RANGES,
+      STORY_TYPE,
+      PARENT_STORY_ID,
       "json_group_array(json_object(" +
       "'" + AttachmentTable.ROW_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.ROW_ID + ", " +
       "'" + AttachmentTable.UNIQUE_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UNIQUE_ID + ", " +
@@ -266,9 +288,6 @@ public class MmsTable extends MessageTable {
 
   private static final String RAW_ID_WHERE = TABLE_NAME + "._id = ?";
 
-  private static final String OUTGOING_INSECURE_MESSAGES_CLAUSE = "(" + MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND NOT (" + MESSAGE_BOX + " & " + Types.SECURE_MESSAGE_BIT + ")";
-  private static final String OUTGOING_SECURE_MESSAGES_CLAUSE   = "(" + MESSAGE_BOX + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND (" + MESSAGE_BOX + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
-
   private final EarlyReceiptCache earlyDeliveryReceiptCache = new EarlyReceiptCache("MmsDelivery");
 
   public MmsTable(Context context, SignalDatabase databaseHelper) {
@@ -292,7 +311,7 @@ public class MmsTable extends MessageTable {
 
   @Override
   protected String getTypeField() {
-    return MESSAGE_BOX;
+    return TYPE;
   }
 
   @Override
@@ -384,8 +403,8 @@ public class MmsTable extends MessageTable {
   @Override
   public @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId) {
     SQLiteDatabase db      = databaseHelper.getSignalReadableDatabase();
-    String[]       columns = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID, STORY_TYPE};
-    String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + MESSAGE_BOX + " & " + Types.BASE_INBOX_TYPE + " = " + Types.BASE_INBOX_TYPE;
+    String[]       columns = new String[]{ ID, RECIPIENT_ID, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE};
+    String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + TYPE + " & " + Types.BASE_INBOX_TYPE + " = " + Types.BASE_INBOX_TYPE;
     String[]       args    = SqlUtil.buildArgs(threadId);
 
 
@@ -427,21 +446,20 @@ public class MmsTable extends MessageTable {
     }
 
     SQLiteDatabase          database    = databaseHelper.getSignalWritableDatabase();
-    String[]                columns     = new String[]{ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, THREAD_ID, STORY_TYPE};
+    String[]                columns     = new String[]{ ID, RECIPIENT_ID, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE};
     String                  where       = ID + " IN (" + Util.join(messageIds, ",") + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
     List<MarkedMessageInfo> results     = new LinkedList<>();
 
     database.beginTransaction();
     try (Cursor cursor = database.query(TABLE_NAME, columns, where, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        long type = CursorUtil.requireLong(cursor, MESSAGE_BOX);
+        long type = CursorUtil.requireLong(cursor, TYPE);
         if (Types.isSecureType(type) && Types.isInboxType(type)) {
           long          messageId     = CursorUtil.requireLong(cursor, ID);
           long          threadId      = CursorUtil.requireLong(cursor, THREAD_ID);
           RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
           SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
-          StoryType      storyType    = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
           results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
 
@@ -597,11 +615,6 @@ public class MmsTable extends MessageTable {
   @Override
   public void endTransaction(SQLiteDatabase database) {
     database.endTransaction();
-  }
-
-  @Override
-  public SQLiteStatement createInsertStatement(SQLiteDatabase database) {
-    throw new UnsupportedOperationException();
   }
 
   @Override
@@ -827,7 +840,7 @@ public class MmsTable extends MessageTable {
   @Override
   public @NonNull List<RecipientId> getUnreadStoryThreadRecipientIds() {
     SQLiteDatabase db    = getReadableDatabase();
-    String         query = "SELECT DISTINCT " + ThreadTable.RECIPIENT_ID + "\n"
+    String         query = "SELECT DISTINCT " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + "\n"
                            + "FROM " + TABLE_NAME + "\n"
                            + "JOIN " + ThreadTable.TABLE_NAME + "\n"
                            + "ON " + TABLE_NAME + "." + THREAD_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + "\n"
@@ -849,27 +862,27 @@ public class MmsTable extends MessageTable {
 
   @Override
   public @NonNull List<StoryResult> getOrderedStoryRecipientsAndIds(boolean isOutgoingOnly) {
-    String         where = "WHERE is_story > 0 AND remote_deleted = 0" + (isOutgoingOnly ? " AND is_outgoing != 0" : "") + "\n";
+    String         where = "WHERE " + STORY_TYPE + " > 0 AND " + REMOTE_DELETED + " = 0" + (isOutgoingOnly ? " AND is_outgoing != 0" : "") + "\n";
     SQLiteDatabase db    = getReadableDatabase();
     String         query = "SELECT\n"
-                           + " mms.date AS sent_timestamp,\n"
-                           + " mms._id AS mms_id,\n"
-                           + " thread_recipient_id,\n"
+                           + " " + TABLE_NAME + "." + DATE_SENT + " AS sent_timestamp,\n"
+                           + " " + TABLE_NAME + "." + ID + " AS mms_id,\n"
+                           + " " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + ",\n"
                            + " (" + getOutgoingTypeClause() + ") AS is_outgoing,\n"
-                           + " viewed_receipt_count,\n"
-                           + " mms.date,\n"
-                           + " receipt_timestamp,\n"
-                           + " (" + getOutgoingTypeClause() + ") = 0 AND viewed_receipt_count = 0 AS is_unread\n"
-                           + "FROM mms\n"
-                           + "JOIN thread\n"
-                           + "ON mms.thread_id = thread._id\n"
+                           + " " + VIEWED_RECEIPT_COUNT + ",\n"
+                           + " " + TABLE_NAME + "." + DATE_SENT + ",\n"
+                           + " " + RECEIPT_TIMESTAMP + ",\n"
+                           + " (" + getOutgoingTypeClause() + ") = 0 AND " + VIEWED_RECEIPT_COUNT + " = 0 AS is_unread\n"
+                           + "FROM " + TABLE_NAME + "\n"
+                           + "JOIN " + ThreadTable.TABLE_NAME + "\n"
+                           + "ON " + TABLE_NAME + "." + THREAD_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + "\n"
                            + where
                            + "ORDER BY\n"
                            + "is_unread DESC,\n"
                            + "CASE\n"
-                           + "WHEN is_outgoing = 0 AND viewed_receipt_count = 0 THEN mms.date\n"
-                           + "WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN receipt_timestamp\n"
-                           + "WHEN is_outgoing = 1 THEN mms.date\n"
+                           + "WHEN is_outgoing = 0 AND " + VIEWED_RECEIPT_COUNT + " = 0 THEN " + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SENT + "\n"
+                           + "WHEN is_outgoing = 0 AND viewed_receipt_count > 0 THEN " + MmsTable.RECEIPT_TIMESTAMP + "\n"
+                           + "WHEN is_outgoing = 1 THEN " + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SENT + "\n"
                            + "END DESC";
 
     List<StoryResult> results;
@@ -1047,7 +1060,7 @@ public class MmsTable extends MessageTable {
 
     String[] columns = new String[]{ID};
     long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
-    String   query   = ID + " = ? AND " + MESSAGE_BOX + " & " + type + " = " + type + " AND " + MESSAGE_BOX + " & " + Types.GROUP_V2_BIT + " = 0";
+    String   query   = ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + Types.GROUP_V2_BIT + " = 0";
     String[] args    = SqlUtil.buildArgs(messageId);
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null, null)) {
@@ -1065,7 +1078,7 @@ public class MmsTable extends MessageTable {
 
     String[] columns = new String[]{DATE_SENT};
     long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
-    String   query   = THREAD_ID + " = ? AND " + MESSAGE_BOX + " & " + type + " = " + type + " AND " + MESSAGE_BOX + " & " + Types.GROUP_V2_BIT + " = 0 AND " + DATE_SENT + " < ?";
+    String   query   = THREAD_ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + Types.GROUP_V2_BIT + " = 0 AND " + DATE_SENT + " < ?";
     String[] args    = new String[]{String.valueOf(threadId), String.valueOf(quitTimeBarrier)};
     String   orderBy = DATE_SENT + " DESC";
     String   limit   = "1";
@@ -1139,7 +1152,7 @@ public class MmsTable extends MessageTable {
   @Override
   public void addFailures(long messageId, List<NetworkFailure> failure) {
     try {
-      addToDocument(messageId, NETWORK_FAILURE, failure, NetworkFailureSet.class);
+      addToDocument(messageId, NETWORK_FAILURES, failure, NetworkFailureSet.class);
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -1148,7 +1161,7 @@ public class MmsTable extends MessageTable {
   @Override
   public void setNetworkFailures(long messageId, Set<NetworkFailure> failures) {
     try {
-      setDocument(databaseHelper.getSignalWritableDatabase(), messageId, NETWORK_FAILURE, new NetworkFailureSet(failures));
+      setDocument(databaseHelper.getSignalWritableDatabase(), messageId, NETWORK_FAILURES, new NetworkFailureSet(failures));
     } catch (IOException e) {
       Log.w(TAG, e);
     }
@@ -1174,13 +1187,13 @@ public class MmsTable extends MessageTable {
         throw new IllegalArgumentException("Unsupported qualifier: " + messageQualifier);
     }
 
-    try (Cursor cursor = SQLiteDatabaseExtensionsKt.select(database, ID, THREAD_ID, MESSAGE_BOX, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP)
+    try (Cursor cursor = SQLiteDatabaseExtensionsKt.select(database, ID, THREAD_ID, TYPE, RECIPIENT_ID, receiptType.getColumnName(), RECEIPT_TIMESTAMP)
                                                    .from(TABLE_NAME)
                                                    .where(DATE_SENT + " = ?" + qualifierWhere, messageId.getTimetamp())
                                                    .run())
     {
       while (cursor.moveToNext()) {
-        if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
+        if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, TYPE))) {
           RecipientId theirRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           RecipientId ourRecipientId   = messageId.getRecipientId();
           String      columnName       = receiptType.getColumnName();
@@ -1340,7 +1353,7 @@ public class MmsTable extends MessageTable {
     db.beginTransaction();
     try {
       db.execSQL("UPDATE " + TABLE_NAME +
-                 " SET " + MESSAGE_BOX + " = (" + MESSAGE_BOX + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                 " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
                  " WHERE " + ID + " = ?", new String[] { id + "" });
 
       if (threadId.isPresent()) {
@@ -1435,7 +1448,6 @@ public class MmsTable extends MessageTable {
       values.putNull(BODY);
       values.putNull(QUOTE_BODY);
       values.putNull(QUOTE_AUTHOR);
-      values.putNull(QUOTE_ATTACHMENT);
       values.putNull(QUOTE_TYPE);
       values.putNull(QUOTE_ID);
       values.putNull(LINK_PREVIEWS);
@@ -1469,7 +1481,7 @@ public class MmsTable extends MessageTable {
   public void markDownloadState(long messageId, long state) {
     SQLiteDatabase database     = databaseHelper.getSignalWritableDatabase();
     ContentValues contentValues = new ContentValues();
-    contentValues.put(STATUS, state);
+    contentValues.put(MMS_STATUS, state);
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
@@ -1608,10 +1620,10 @@ public class MmsTable extends MessageTable {
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] {ID, RECIPIENT_ID, DATE_SENT, MESSAGE_BOX, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME, new String[] { ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(CursorUtil.requireLong(cursor, MESSAGE_BOX))) {
+        if (Types.isSecureType(CursorUtil.requireLong(cursor, TYPE))) {
           long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
           RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
@@ -1712,9 +1724,9 @@ public class MmsTable extends MessageTable {
 
       if (cursor != null && cursor.moveToNext()) {
         return Optional.of(new MmsNotificationInfo(RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID))),
-                                                   cursor.getString(cursor.getColumnIndexOrThrow(CONTENT_LOCATION)),
-                                                   cursor.getString(cursor.getColumnIndexOrThrow(TRANSACTION_ID)),
-                                                   cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID))));
+                                                   cursor.getString(cursor.getColumnIndexOrThrow(MMS_CONTENT_LOCATION)),
+                                                   cursor.getString(cursor.getColumnIndexOrThrow(MMS_TRANSACTION_ID)),
+                                                   cursor.getInt(cursor.getColumnIndexOrThrow(SMS_SUBSCRIPTION_ID))));
       } else {
         return Optional.empty();
       }
@@ -1739,17 +1751,17 @@ public class MmsTable extends MessageTable {
         List<DatabaseAttachment> associatedAttachments = attachmentDatabase.getAttachmentsForMessage(messageId);
         List<Mention>            mentions              = mentionDatabase.getMentionsForMessage(messageId);
 
-        long             outboxType         = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        long             outboxType         = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
         String           body               = cursor.getString(cursor.getColumnIndexOrThrow(BODY));
-        long             timestamp          = cursor.getLong(cursor.getColumnIndexOrThrow(NORMALIZED_DATE_SENT));
-        int              subscriptionId     = cursor.getInt(cursor.getColumnIndexOrThrow(SUBSCRIPTION_ID));
+        long             timestamp          = cursor.getLong(cursor.getColumnIndexOrThrow(DATE_SENT));
+        int              subscriptionId     = cursor.getInt(cursor.getColumnIndexOrThrow(SMS_SUBSCRIPTION_ID));
         long             expiresIn          = cursor.getLong(cursor.getColumnIndexOrThrow(EXPIRES_IN));
         boolean          viewOnce           = cursor.getLong(cursor.getColumnIndexOrThrow(VIEW_ONCE)) == 1;
         long             recipientId        = cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID));
         long             threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_ID));
         int              distributionType   = SignalDatabase.threads().getDistributionType(threadId);
         String           mismatchDocument   = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.MISMATCHED_IDENTITIES));
-        String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.NETWORK_FAILURE));
+        String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.NETWORK_FAILURES));
         StoryType        storyType          = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
         ParentStoryId    parentStoryId      = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
 
@@ -1942,14 +1954,13 @@ public class MmsTable extends MessageTable {
     contentValues.put(DATE_SERVER, retrieved.getServerTimeMillis());
     contentValues.put(RECIPIENT_ID, retrieved.getFrom().serialize());
 
-    contentValues.put(MESSAGE_BOX, mailbox);
-    contentValues.put(MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF);
+    contentValues.put(TYPE, mailbox);
+    contentValues.put(MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_RETRIEVE_CONF);
     contentValues.put(THREAD_ID, threadId);
-    contentValues.put(CONTENT_LOCATION, contentLocation);
-    contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
+    contentValues.put(MMS_CONTENT_LOCATION, contentLocation);
+    contentValues.put(MMS_STATUS, Status.DOWNLOAD_INITIALIZED);
     contentValues.put(DATE_RECEIVED, retrieved.isPushMessage() ? retrieved.getReceivedTimeMillis() : generatePduCompatTimestamp(retrieved.getReceivedTimeMillis()));
-    contentValues.put(PART_COUNT, retrieved.getAttachments().size());
-    contentValues.put(SUBSCRIPTION_ID, retrieved.getSubscriptionId());
+    contentValues.put(SMS_SUBSCRIPTION_ID, retrieved.getSubscriptionId());
     contentValues.put(EXPIRES_IN, retrieved.getExpiresIn());
     contentValues.put(VIEW_ONCE, retrieved.isViewOnce() ? 1 : 0);
     contentValues.put(STORY_TYPE, retrieved.getStoryType().getCode());
@@ -2101,12 +2112,12 @@ public class MmsTable extends MessageTable {
 
     Log.i(TAG, "Message received type: " + notification.getMessageType());
 
-    contentBuilder.add(CONTENT_LOCATION, notification.getContentLocation());
+    contentBuilder.add(MMS_CONTENT_LOCATION, notification.getContentLocation());
     contentBuilder.add(DATE_SENT, System.currentTimeMillis());
-    contentBuilder.add(EXPIRY, notification.getExpiry());
-    contentBuilder.add(MESSAGE_SIZE, notification.getMessageSize());
-    contentBuilder.add(TRANSACTION_ID, notification.getTransactionId());
-    contentBuilder.add(MESSAGE_TYPE, notification.getMessageType());
+    contentBuilder.add(MMS_EXPIRY, notification.getExpiry());
+    contentBuilder.add(MMS_MESSAGE_SIZE, notification.getMessageSize());
+    contentBuilder.add(MMS_TRANSACTION_ID, notification.getTransactionId());
+    contentBuilder.add(MMS_MESSAGE_TYPE, notification.getMessageType());
 
     if (notification.getFrom() != null) {
       Recipient recipient = Recipient.external(context, Util.toIsoString(notification.getFrom().getTextString()));
@@ -2115,12 +2126,12 @@ public class MmsTable extends MessageTable {
       contentValues.put(RECIPIENT_ID, RecipientId.UNKNOWN.serialize());
     }
 
-    contentValues.put(MESSAGE_BOX, Types.BASE_INBOX_TYPE);
+    contentValues.put(TYPE, Types.BASE_INBOX_TYPE);
     contentValues.put(THREAD_ID, threadId);
-    contentValues.put(STATUS, Status.DOWNLOAD_INITIALIZED);
+    contentValues.put(MMS_STATUS, Status.DOWNLOAD_INITIALIZED);
     contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp(System.currentTimeMillis()));
     contentValues.put(READ, Util.isDefaultSmsProvider(context) ? 0 : 1);
-    contentValues.put(SUBSCRIPTION_ID, subscriptionId);
+    contentValues.put(SMS_SUBSCRIPTION_ID, subscriptionId);
 
     if (!contentValues.containsKey(DATE_SENT))
       contentValues.put(DATE_SENT, contentValues.getAsLong(DATE_RECEIVED));
@@ -2170,7 +2181,7 @@ public class MmsTable extends MessageTable {
 
   private void markGiftRedemptionState(long messageId, @NonNull GiftBadge.RedemptionState redemptionState) {
     String[] projection = SqlUtil.buildArgs(BODY, THREAD_ID);
-    String   where      = "(" + MESSAGE_BOX + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " +
+    String   where      = "(" + TYPE + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " +
                           ID + " = ?";
     String[] args       = SqlUtil.buildArgs(messageId);
     boolean  updated    = false;
@@ -2282,13 +2293,13 @@ public class MmsTable extends MessageTable {
 
     ContentValues contentValues = new ContentValues();
     contentValues.put(DATE_SENT, message.getSentTimeMillis());
-    contentValues.put(MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ);
+    contentValues.put(MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ);
 
-    contentValues.put(MESSAGE_BOX, type);
+    contentValues.put(TYPE, type);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(READ, 1);
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
-    contentValues.put(SUBSCRIPTION_ID, message.getSubscriptionId());
+    contentValues.put(SMS_SUBSCRIPTION_ID, message.getSubscriptionId());
     contentValues.put(EXPIRES_IN, message.getExpiresIn());
     contentValues.put(VIEW_ONCE, message.isViewOnce());
     contentValues.put(RECIPIENT_ID, message.getRecipient().getId().serialize());
@@ -2415,7 +2426,6 @@ public class MmsTable extends MessageTable {
     allAttachments.addAll(previewAttachments);
 
     contentValues.put(BODY, body);
-    contentValues.put(PART_COUNT, allAttachments.size());
     contentValues.put(MENTIONS_SELF, mentionsSelf ? 1 : 0);
 
     if (messageRanges != null) {
@@ -2568,9 +2578,9 @@ public class MmsTable extends MessageTable {
   @Override
   public boolean isSent(long messageId) {
     SQLiteDatabase database = databaseHelper.getSignalReadableDatabase();
-    try (Cursor cursor = database.query(TABLE_NAME, new String[] {  MESSAGE_BOX }, ID + " = ?", new String[] { String.valueOf(messageId)}, null, null, null)) {
+    try (Cursor cursor = database.query(TABLE_NAME, new String[] { TYPE }, ID + " = ?", new String[] { String.valueOf(messageId)}, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
-        long type = cursor.getLong(cursor.getColumnIndexOrThrow(MESSAGE_BOX));
+        long type = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
         return Types.isSentType(type);
       }
     }
@@ -2585,7 +2595,7 @@ public class MmsTable extends MessageTable {
   @Override
   public Set<Long> getAllRateLimitedMessageIds() {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
-    String         where = "(" + MESSAGE_BOX + " & " + Types.TOTAL_MASK + " & " + Types.MESSAGE_RATE_LIMITED_BIT + ") > 0";
+    String         where = "(" + TYPE + " & " + Types.TOTAL_MASK + " & " + Types.MESSAGE_RATE_LIMITED_BIT + ") > 0";
 
     Set<Long> ids = new HashSet<>();
 
@@ -2851,7 +2861,6 @@ public class MmsTable extends MessageTable {
                                        0,
                                        threadId, message.getBody(),
                                        slideDeck,
-                                       slideDeck.getSlides().size(),
                                        message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
                                        Collections.emptySet(),
                                        Collections.emptySet(),
@@ -2915,7 +2924,7 @@ public class MmsTable extends MessageTable {
 
     @Override
     public MessageRecord getCurrent() {
-      long mmsType = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_TYPE));
+      long mmsType = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MMS_MESSAGE_TYPE));
 
       if (mmsType == PduHeaders.MESSAGE_TYPE_NOTIFICATION_IND) {
         return getNotificationMmsMessageRecord(cursor);
@@ -2945,22 +2954,22 @@ public class MmsTable extends MessageTable {
 
     private NotificationMmsMessageRecord getNotificationMmsMessageRecord(Cursor cursor) {
       long      id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.ID));
-      long      dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.NORMALIZED_DATE_SENT));
-      long      dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.NORMALIZED_DATE_RECEIVED));
+      long      dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_SENT));
+      long      dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_RECEIVED));
       long      threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.THREAD_ID));
-      long      mailbox              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_BOX));
+      long      mailbox              = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE));
       long      recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_ID));
-      int       addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.ADDRESS_DEVICE_ID));
+      int       addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_DEVICE_ID));
       Recipient recipient            = Recipient.live(RecipientId.from(recipientId)).get();
 
-      String        contentLocation      = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.CONTENT_LOCATION));
-      String        transactionId        = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.TRANSACTION_ID));
-      long          messageSize          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_SIZE));
-      long          expiry               = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.EXPIRY));
-      int           status               = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.STATUS));
+      String        contentLocation      = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.MMS_CONTENT_LOCATION));
+      String        transactionId        = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.MMS_TRANSACTION_ID));
+      long          messageSize          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MMS_MESSAGE_SIZE));
+      long          expiry               = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MMS_EXPIRY));
+      int           status               = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.MMS_STATUS));
       int           deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.DELIVERY_RECEIPT_COUNT));
       int           readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.READ_RECEIPT_COUNT));
-      int           subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.SUBSCRIPTION_ID));
+      int           subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.SMS_SUBSCRIPTION_ID));
       int           viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
       long          receiptTimestamp     = CursorUtil.requireLong(cursor, MmsSmsColumns.RECEIPT_TIMESTAMP);
       StoryType     storyType            = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
@@ -3001,20 +3010,19 @@ public class MmsTable extends MessageTable {
 
     private MediaMmsMessageRecord getMediaMmsMessageRecord(Cursor cursor) {
       long                 id                   = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.ID));
-      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.NORMALIZED_DATE_SENT));
-      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.NORMALIZED_DATE_RECEIVED));
+      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_SENT));
+      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_RECEIVED));
       long                 dateServer           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_SERVER));
-      long                 box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_BOX));
+      long                 box                  = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE));
       long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.THREAD_ID));
       long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_ID));
-      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.ADDRESS_DEVICE_ID));
+      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_DEVICE_ID));
       int                  deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.DELIVERY_RECEIPT_COUNT));
       int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.READ_RECEIPT_COUNT));
       String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.BODY));
-      int                  partCount            = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.PART_COUNT));
       String               mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.MISMATCHED_IDENTITIES));
-      String               networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.NETWORK_FAILURE));
-      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.SUBSCRIPTION_ID));
+      String               networkDocument      = cursor.getString(cursor.getColumnIndexOrThrow(MmsTable.NETWORK_FAILURES));
+      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.SMS_SUBSCRIPTION_ID));
       long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.EXPIRES_IN));
       long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.EXPIRE_STARTED));
       boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsTable.UNIDENTIFIED)) == 1;
@@ -3067,7 +3075,7 @@ public class MmsTable extends MessageTable {
 
       return new MediaMmsMessageRecord(id, recipient, recipient,
                                        addressDeviceId, dateSent, dateReceived, dateServer, deliveryReceiptCount,
-                                       threadId, body, slideDeck, partCount, box, mismatches,
+                                       threadId, body, slideDeck, box, mismatches,
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, Collections.emptyList(),
                                        remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp, messageRanges,

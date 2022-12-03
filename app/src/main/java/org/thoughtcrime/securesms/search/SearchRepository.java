@@ -451,7 +451,7 @@ public class SearchRepository {
       Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
       String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
       String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
-      long        receivedMs              = CursorUtil.requireLong(cursor, MmsSmsColumns.NORMALIZED_DATE_RECEIVED);
+      long        receivedMs              = CursorUtil.requireLong(cursor, MmsSmsColumns.DATE_RECEIVED);
       long        threadId                = CursorUtil.requireLong(cursor, MmsSmsColumns.THREAD_ID);
       int         messageId               = CursorUtil.requireInt(cursor, SearchTable.MESSAGE_ID);
       boolean     isMms                   = CursorUtil.requireInt(cursor, SearchTable.IS_MMS) == 1;

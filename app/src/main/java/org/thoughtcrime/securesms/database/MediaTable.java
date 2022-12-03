@@ -48,7 +48,7 @@ public class MediaTable extends DatabaseTable {
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.CAPTION + ", "
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.NAME + ", "
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UPLOAD_TIMESTAMP + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.MESSAGE_BOX + ", "
+                                                   + MmsTable.TABLE_NAME + "." + MmsTable.TYPE + ", "
                                                    + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SENT + ", "
                                                    + MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + ", "
                                                    + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SERVER + ", "
@@ -67,7 +67,7 @@ public class MediaTable extends DatabaseTable {
                                                    + AttachmentTable.DATA + " IS NOT NULL AND "
                                                    + "(" + AttachmentTable.QUOTE + " = 0 OR (" + AttachmentTable.QUOTE + " = 1 AND " + AttachmentTable.DATA_HASH + " IS NULL)) AND "
                                                    + AttachmentTable.STICKER_PACK_ID + " IS NULL AND "
-                                                   + MmsTable.RECIPIENT_ID + " > 0 AND "
+                                                   + MmsTable.TABLE_NAME + "." + MmsTable.RECIPIENT_ID + " > 0 AND "
                                                    + THREAD_RECIPIENT_ID + " > 0";
 
    private static final String UNIQUE_MEDIA_QUERY = "SELECT "
@@ -194,11 +194,11 @@ public class MediaTable extends DatabaseTable {
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_ID)));
       long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.THREAD_ID));
-      boolean                  outgoing           = MessageTable.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_BOX)));
+      boolean                  outgoing           = MessageTable.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE)));
 
       long date;
 
-      if (MmsTable.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.MESSAGE_BOX)))) {
+      if (MmsTable.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE)))) {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_SENT));
       } else {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_RECEIVED));
