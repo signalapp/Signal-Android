@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.style.URLSpan;
@@ -27,13 +26,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.ProgressCard;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
 import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
-import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 
 import java.util.List;
 
@@ -48,16 +47,14 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   private View                           warningBanner;
   private View                           editBanner;
   private CircularProgressMaterialButton submitButton;
-  private AlertDialog                    loadingDialog;
   private View                           scrollToBottomButton;
   private View                           scrollToTopButton;
+  private ProgressCard                   progressCard;
 
   private MenuItem editMenuItem;
   private MenuItem doneMenuItem;
   private MenuItem searchMenuItem;
   private MenuItem saveMenuItem;
-
-  private AlertDialog fileProgressDialog;
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
@@ -160,7 +157,9 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     if (requestCode == CODE_SAVE && resultCode == Activity.RESULT_OK) {
       Uri uri = data != null ? data.getData() : null;
       viewModel.onDiskSaveLocationReady(uri);
-      fileProgressDialog = SimpleProgressDialog.show(this);
+      if (progressCard != null) {
+        progressCard.setVisibility(View.VISIBLE);
+      }
     }
   }
 
@@ -176,6 +175,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     this.submitButton         = findViewById(R.id.debug_log_submit_button);
     this.scrollToBottomButton = findViewById(R.id.debug_log_scroll_to_bottom);
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
+    this.progressCard         = findViewById(R.id.debug_log_progress_card);
 
     this.adapter = new SubmitDebugLogAdapter(this, viewModel.getPagingController());
 
@@ -204,8 +204,8 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
         }
       }
     });
+    this.progressCard.setVisibility(View.VISIBLE);
 
-    this.loadingDialog = SimpleProgressDialog.show(this);
   }
 
   private void initViewModel() {
@@ -215,9 +215,8 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void presentLines(@NonNull List<LogLine> lines) {
-    if (loadingDialog != null && lines.size() > 0) {
-      loadingDialog.dismiss();
-      loadingDialog = null;
+    if (progressCard != null && lines.size() > 0) {
+      progressCard.setVisibility(View.GONE);
 
       warningBanner.setVisibility(View.VISIBLE);
       submitButton.setVisibility(View.VISIBLE);
@@ -260,9 +259,8 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     switch (event) {
       case FILE_SAVE_SUCCESS:
         Toast.makeText(this, R.string.SubmitDebugLogActivity_save_complete, Toast.LENGTH_SHORT).show();
-        if (fileProgressDialog != null) {
-          fileProgressDialog.dismiss();
-          fileProgressDialog = null;
+        if (progressCard != null) {
+          progressCard.setVisibility(View.GONE);
         }
         break;
       case FILE_SAVE_ERROR:
