@@ -145,8 +145,8 @@ public class MessageSender {
     Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
     ThreadTable  threadTable = SignalDatabase.threads();
     MessageTable database    = SignalDatabase.mms();
-    List<Long>     messageIds     = new ArrayList<>(messages.size());
-    List<Long>            threads         = new ArrayList<>(messages.size());
+    List<Long>   messageIds  = new ArrayList<>(messages.size());
+    List<Long>   threads     = new ArrayList<>(messages.size());
     UploadDependencyGraph dependencyGraph;
 
     try {
