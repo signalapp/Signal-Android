@@ -5,8 +5,6 @@
 
     <color name="signal_accent_green">#4CAF50</color>
 
-    <color name="effectively_transparent_black">#01000000</color>
-
     <color name="story_gradient_start">#99000000</color>
     <color name="story_caption_gradient_start">#CC000000</color>
 
@@ -21,10 +19,8 @@
     <color name="transparent_black_60">#99000000</color>
     <color name="transparent_black_70">#b3000000</color>
     <color name="transparent_black_80">#CC000000</color>
-    <color name="transparent_black_90">#e6000000</color>
 
     <color name="transparent_white_05">#0Dffffff</color>
-    <color name="transparent_white_08">#14ffffff</color>
     <color name="transparent_white_10">#18ffffff</color>
     <color name="transparent_white_15">#26ffffff</color>
     <color name="transparent_white_20">#33ffffff</color>
@@ -36,7 +32,6 @@
     <color name="transparent_white_80">#ccffffff</color>
     <color name="transparent_white_87">#dfffffff</color>
     <color name="transparent_white_90">#e6ffffff</color>
-    <color name="transparent_white_95">#f3ffffff</color>
 
     <color name="paypal_outline">#80838089</color>
 
@@ -46,26 +41,12 @@
     <color name="touch_highlight">#400099cc</color>
     <color name="touch_highlight_material3">#14E2E1E5</color>
 
-    <color name="device_link_item_background_light">#ffffffff</color>
-    <color name="device_link_item_background_dark">#ff333333</color>
-
-    <color name="StickerPreviewActivity_remove_button_color">@color/conversation_crimson</color>
-    <color name="StickerPreviewActivity_install_button_color">@color/core_ultramarine</color>
-
     <color name="ConversationListTabs__unread">#FFCE4A40</color>
 
-    <color name="sticker_selected_color">#99ffffff</color>
     <color name="transparent">#00FFFFFF</color>
     <color name="transparent_black">#00000000</color>
 
-    <color name="MediaOverview_Media_selected_overlay">#99000000</color>
-
-    <color name="logsubmit_confirmation_background">#44ff2d00</color>
-
-    <color name="avatar_background">@color/transparent_black_40</color>
-
     <color name="media_preview_bar_background">#90010101</color>
-    <color name="media_preview_bar_shade_center">#88000000</color>
 
     <color name="storage_color_empty">@color/core_grey_50</color>
     <color name="storage_color_photos">#ff5951C8</color>

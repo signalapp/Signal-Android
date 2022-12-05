@@ -18,17 +18,14 @@
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/export_complete_done_icon"
-        android:layout_width="112dp"
-        android:layout_height="112dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/circle_tintable"
-        android:backgroundTint="@color/signal_colorSurface2"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/export_complete_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_complete_64"
-        app:tint="@color/signal_accent_green"
+        app:srcCompat="@drawable/complete"
         tools:ignore="UnusedAttribute,ImageContrastCheck" />
 
     <TextView

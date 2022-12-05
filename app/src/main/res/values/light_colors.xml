@@ -5,7 +5,6 @@
     <color name="conversation_toolbar_color_wallpaper_scrolled">@color/signal_colorTransparent5</color>
 
     <color name="signal_accent_primary">@color/core_ultramarine</color>
-    <color name="signal_accent_stroke_primary">@color/signal_colorBackground</color>
 
     <color name="signal_inverse_primary">@color/core_black</color>
 
@@ -20,7 +19,6 @@
     <color name="signal_text_primary_dialog">@color/core_grey_65</color>
 
     <color name="signal_text_secondary">@color/signal_colorOnSurfaceVariant</color>
-    <color name="signal_text_selected">@color/core_black</color>
 
     <color name="signal_text_hint">@color/core_grey_45</color>
 
@@ -51,14 +49,12 @@
     <color name="signal_alert_primary">@color/core_red_highlight</color>
 
     <color name="signal_transparent">@color/transparent</color>
-    <color name="signal_transparent_20">@color/transparent_white_20</color>
     <color name="signal_transparent_40">@color/transparent_white_40</color>
     <color name="signal_transparent_60">@color/transparent_white_60</color>
     <color name="signal_transparent_80">@color/transparent_white_80</color>
 
     <color name="signal_inverse_transparent">@color/transparent_black</color>
     <color name="signal_inverse_transparent_05">@color/transparent_black_05</color>
-    <color name="signal_inverse_transparent_08">@color/transparent_black_08</color>
     <color name="signal_inverse_transparent_10">@color/transparent_black_10</color>
     <color name="signal_inverse_transparent_15">@color/transparent_black_15</color>
     <color name="signal_inverse_transparent_20">@color/transparent_black_20</color>
@@ -135,7 +131,6 @@
     <color name="media_overview_header_foreground">@color/core_grey_50</color>
 
     <color name="quote_missing_icon_color">@color/core_grey_60</color>
-    <color name="quote_dismiss_button_tint">@color/core_grey_70</color>
 
     <color name="reactions_pill_text_color">@color/signal_colorOnSurfaceVariant</color>
     <color name="reactions_pill_selected_text_color">@color/core_grey_75</color>
@@ -145,19 +140,13 @@
     <color name="reactions_overlay_any_emoji_background">@color/signal_colorSurfaceVariant_16_no_alpha</color>
     <color name="reactions_overlay_any_emoji_foreground">@color/signal_colorOnSurfaceVariant</color>
 
-    <color name="recipient_contact_button_color">@color/core_grey_02</color>
-
     <color name="recipient_bottom_sheet_button_strip_background_color">@color/signal_colorSecondaryContainer</color>
 
     <color name="shared_contact_details_titlebar">@color/grey_400</color>
     <color name="shared_contact_item_button_color">@color/core_grey_02</color>
 
-    <color name="media_keyboard_button_color">@color/core_grey_60</color>
-
     <color name="megaphone_background_color">@color/core_white</color>
     <color name="megaphone_body_text_color">@color/signal_colorOnSurfaceVariant</color>
-    <color name="megaphone_reactions_shade">@color/core_grey_02</color>
-    <color name="megaphone_reactions_close_tint">@color/core_black</color>
 
     <color name="sticker_management_action_button_color">@color/core_grey_90</color>
 
@@ -165,7 +154,6 @@
 
     <color name="wallpaper_preview_background">@color/transparent_white_30</color>
     <color name="wallpaper_compose_background">@color/signal_colorTransparent4</color>
-    <color name="wallpaper_toolbar_background">@color/core_white</color>
     <color name="conversation_send_button_tint">@color/signal_colorNeutral</color>
     <color name="conversation_outgoing_body_color">@color/signal_colorNeutral</color>
     <color name="conversation_outgoing_footer_color">@color/signal_colorNeutralVariant</color>
@@ -194,10 +182,6 @@
     <color name="react_with_any_customize_background">@color/signal_colorSurfaceVariant</color>
 
     <color name="voice_note_player_view_background">@color/signal_colorSurface1</color>
-
-    <color name="signal_accent_primary_transparent_15">#262c6bed</color>
-
-    <color name="notification_profile_moon_tint">#5151F6</color>
 
     <color name="num_pad_key_background">#dce5f9</color>
 

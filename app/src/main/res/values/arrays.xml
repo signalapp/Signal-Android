@@ -277,21 +277,6 @@
 
     <!-- RedPhone -->
 
-    <integer-array name="expiration_times">
-        <item>0</item>
-        <item>5</item>
-        <item>10</item>
-        <item>30</item>
-        <item>60</item>
-        <item>300</item>
-        <item>1800</item>
-        <item>3600</item>
-        <item>21600</item>
-        <item>43200</item>
-        <item>86400</item>
-        <item>604800</item>
-    </integer-array>
-
     <integer-array name="conversation_length_limit">
         <item>0</item>
         <item>5000</item>
@@ -299,18 +284,6 @@
         <item>500</item>
         <item>100</item>
     </integer-array>
-
-    <array name="scribble_colors">
-        <item>#ffffff</item>
-        <item>#ff0000</item>
-        <item>#ff00ff</item>
-        <item>#0000ff</item>
-        <item>#00ffff</item>
-        <item>#00ff00</item>
-        <item>#ffff00</item>
-        <item>#ff5500</item>
-        <item>#000000</item>
-    </array>
 
     <string-array name="pref_message_font_size_entries">
         <item>@string/arrays__small</item>

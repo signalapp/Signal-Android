@@ -1,6 +1,0 @@
-<vector android:autoMirrored="true" android:height="18dp"
-    android:viewportHeight="18" android:viewportWidth="18"
-    android:width="18dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="@color/signal_icon_tint_primary" android:pathData="M9,18a9,9 0,1 1,9 -9A9,9 0,0 1,9 18ZM9,1.5A7.5,7.5 0,1 0,16.5 9,7.5 7.5,0 0,0 9,1.5Z"/>
-    <path android:fillColor="@color/signal_icon_tint_primary" android:pathData="M9.02,4.06l-0.96,0.95l2.58,2.57l1.01,0.72l-7.58,0l0,1.35l7.58,0l-0.94,0.66l-2.65,2.69l0.96,0.94l4.91,-4.97l-4.91,-4.91z"/>
-</vector>

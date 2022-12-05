@@ -425,10 +425,6 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
-    <style name="Signal.DayNight.Dialog.Animated" parent="Signal.DayNight">
-        <item name="android:windowAnimationStyle">@style/FadeScale</item>
-    </style>
-
     <style name="Signal.DayNight.Dialog.Animated.Bottom" parent="Signal.DayNight">
         <item name="android:windowAnimationStyle">@style/FakeBottomSheet</item>
     </style>

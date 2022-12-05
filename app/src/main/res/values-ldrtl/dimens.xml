@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="unread_count_bubble_barrier_margin">-4dp</dimen>
     <dimen name="message_audio_duration_margin_start">0dp</dimen>
 </resources>

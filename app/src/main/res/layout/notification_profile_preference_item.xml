@@ -18,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:backgroundTint="@color/blue_200"
+        tools:backgroundTint="@color/signal_colorPrimary"
         tools:srcCompat="@drawable/ic_advanced_24" />
 
     <TextView

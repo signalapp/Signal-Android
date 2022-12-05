@@ -2,7 +2,6 @@
 <resources>
     <dimen name="signal_m3_toolbar_height">64dp</dimen>
 
-    <dimen name="emoji_drawer_size">32sp</dimen>
     <dimen name="min_keyboard_size">60dp</dimen>
     <dimen name="default_custom_keyboard_size">220dp</dimen>
     <dimen name="min_custom_keyboard_size">110dp</dimen>
@@ -12,10 +11,7 @@
     <dimen name="conversation_item_body_text_size">16sp</dimen>
     <dimen name="conversation_item_date_text_size">12sp</dimen>
     <dimen name="transport_selection_popup_width">200sp</dimen>
-    <dimen name="transport_selection_popup_xoff">2dp</dimen>
-    <dimen name="transport_selection_popup_yoff">2dp</dimen>
     <dimen name="contact_photo_target_size">64dp</dimen>
-    <dimen name="contact_selection_photo_size">50dp</dimen>
     <dimen name="keyboard_toolbar_height">44dp</dimen>
 
     <dimen name="album_total_width">210dp</dimen>
@@ -61,15 +57,7 @@
     <dimen name="media_bubble_gif_width">240dp</dimen>
     <dimen name="message_audio_width">242dp</dimen>
     <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
-    <dimen name="message_bubble_same_line_footer_bottom_margin">-24dp</dimen>
     <dimen name="message_audio_duration_margin_start">56dp</dimen>
-
-    <dimen name="media_picker_folder_width">175dp</dimen>
-    <dimen name="media_picker_item_width">85dp</dimen>
-    <dimen name="media_picker_rail_padding_affordance">130dp</dimen>
-
-    <dimen name="media_keyboard_provider_icon_padding">5dp</dimen>
-    <dimen name="media_keyboard_provider_icon_margin">4dp</dimen>
 
     <dimen name="progress_dialog_size">120dp</dimen>
 
@@ -103,11 +91,9 @@
 
     <integer name="media_overview_cols">4</integer>
     <dimen name="media_overview_detail_item_height">72dp</dimen>
-    <dimen name="message_details_table_row_pad">8dp</dimen>
 
     <dimen name="sticker_page_item_padding">16dp</dimen>
     <dimen name="sticker_page_item_width">72dp</dimen>
-    <dimen name="sticker_page_item_multiplier">8dp</dimen>
 
     <dimen name="sticker_management_horizontal_margin">16dp</dimen>
 
@@ -120,16 +106,12 @@
     <dimen name="contact_selection_actions_tap_area">10dp</dimen>
 
     <dimen name="unread_count_bubble_radius">12.5dp</dimen>
-    <dimen name="unread_count_bubble_diameter">18dp</dimen>
-    <dimen name="unread_count_bubble_barrier_margin">4dp</dimen>
 
     <dimen name="insights_modal_title_margin_top">41dp</dimen>
     <dimen name="insights_modal_description_margin_top">12dp</dimen>
     <dimen name="insights_modal_progress_margin_top">23dp</dimen>
     <dimen name="insights_modal_progress_size">187dp</dimen>
     <dimen name="insights_modal_avatar_size">140dp</dimen>
-    <dimen name="insights_modal_percent_margin_top">6dp</dimen>
-    <dimen name="insights_modal_percent_sign_margin_top">15dp</dimen>
     <dimen name="insights_modal_view_insights_margin_top">41dp</dimen>
     <dimen name="insights_modal_percent_text_size">28sp</dimen>
     <dimen name="insights_modal_percent_sign_text_size">20sp</dimen>
@@ -174,18 +156,11 @@
 
     <dimen name="react_with_any_emoji_bottom_sheet_dialog_fragment_min_height">340dp</dimen>
 
-    <dimen name="group_manage_fragment_card_vertical_padding">12dp</dimen>
-    <dimen name="group_manage_fragment_row_height">52dp</dimen>
-    <dimen name="group_manage_fragment_row_horizontal_padding">16dp</dimen>
-
     <dimen name="wave_form_bar_width">2dp</dimen>
-
-    <dimen name="review_card_icon_arc_radius">14.5dp</dimen>
 
     <dimen name="conversation_update_vertical_margin">4dp</dimen>
     <dimen name="conversation_update_vertical_padding">20dp</dimen>
     <dimen name="conversation_update_vertical_padding_collapsed">4dp</dimen>
-    <dimen name="conversation_update_horizontal_padding">8dp</dimen>
 
     <dimen name="transfer_top_padding">64dp</dimen>
     <dimen name="transfer_split_top_padding">32dp</dimen>
@@ -237,7 +212,6 @@
     <dimen name="stories_landing_item_text_horizontal_margin">20dp</dimen>
 
     <dimen name="media_preview_video_timestamp_inset">20dp</dimen>
-    <dimen name="media_preview_bottom_bar_vertical_inner_margin">16dp</dimen>
     <dimen name="media_preview_bottom_bar_vertical_outer_margin">16dp</dimen>
     <dimen name="exo_media_preview_button_width">48dp</dimen>
     <dimen name="exo_media_preview_button_height">48dp</dimen>
