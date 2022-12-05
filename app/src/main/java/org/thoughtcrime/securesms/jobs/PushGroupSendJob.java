@@ -162,8 +162,8 @@ public final class PushGroupSendJob extends PushSendJob {
   {
     SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
 
-    MessageTable         database = SignalDatabase.mms();
-    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
+    MessageTable             database                   = SignalDatabase.mms();
+    OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
     long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
     Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
     Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
@@ -183,6 +183,10 @@ public final class PushGroupSendJob extends PushSendJob {
 
     if (groupRecipient.isPushV1Group()) {
       throw new MmsException("No GV1 messages can be sent anymore!");
+    }
+
+    if ((message.getStoryType().isStory() || message.getParentStoryId() != null) && !groupRecipient.isActiveGroup()) {
+      throw new MmsException("Not a member of the group!");
     }
 
     try {

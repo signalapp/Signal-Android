@@ -44,12 +44,12 @@ class StoriesLandingRepository(context: Context) {
 
         stories.forEach {
           val recipient = Recipient.resolved(it.recipientId)
-          if (recipient.isDistributionList || it.isOutgoing) {
+          if (recipient.isDistributionList || (it.isOutgoing && !recipient.isInactiveGroup())) {
             val list = mapping[myStories] ?: emptyList()
             mapping[myStories] = list + it
           }
 
-          if (!recipient.isDistributionList && !recipient.isBlocked) {
+          if (!recipient.isDistributionList && !recipient.isBlocked && !recipient.isInactiveGroup()) {
             val list = mapping[recipient] ?: emptyList()
             mapping[recipient] = list + it
           }

@@ -877,6 +877,10 @@ public class Recipient {
     return Stream.of(getParticipantIds()).anyMatch(p -> p.equals(selfId));
   }
 
+  public boolean isInactiveGroup() {
+    return isGroup() && !isActiveGroup();
+  }
+
   public @NonNull List<RecipientId> getParticipantIds() {
     return new ArrayList<>(participantIds);
   }

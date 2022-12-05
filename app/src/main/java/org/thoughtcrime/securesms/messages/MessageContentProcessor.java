@@ -1462,7 +1462,17 @@ public final class MessageContentProcessor {
   private void handleStoryMessage(@NonNull SignalServiceContent content, @NonNull SignalServiceStoryMessage message, @NonNull Recipient senderRecipient, @NonNull Recipient threadRecipient) throws StorageFailedException {
     log(content.getTimestamp(), "Story message.");
 
-    if (!threadRecipient.isActiveGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
+    if (threadRecipient.isInactiveGroup()) {
+      warn(content.getTimestamp(), "Dropping a group story from a group we're no longer in.");
+      return;
+    }
+
+    if (threadRecipient.isGroup() && !SignalDatabase.groups().isCurrentMember(threadRecipient.requireGroupId().requirePush(), senderRecipient.getId())) {
+      warn(content.getTimestamp(), "Dropping a group story from a user who's no longer a member.");
+      return;
+    }
+
+    if (!threadRecipient.isGroup() && !(senderRecipient.isProfileSharing() || senderRecipient.isSystemContact())) {
       warn(content.getTimestamp(), "Dropping story from an untrusted source.");
       return;
     }
