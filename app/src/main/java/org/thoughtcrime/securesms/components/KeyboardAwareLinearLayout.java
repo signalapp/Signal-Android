@@ -107,10 +107,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void updateKeyboardState() {
-    updateKeyboardState(Integer.MAX_VALUE);
-  }
-
-  private void updateKeyboardState(int previousHeight) {
     if (viewInset == 0 && Build.VERSION.SDK_INT >= 21) viewInset = getViewInset();
 
     getWindowVisibleDisplayFrame(rect);
@@ -130,11 +126,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
         onKeyboardOpen(keyboardHeight);
       }
     } else if (keyboardOpen) {
-      if (previousHeight == keyboardHeight) {
-        onKeyboardClose();
-      } else {
-        postDelayed(() -> updateKeyboardState(keyboardHeight), 100);
-      }
+      onKeyboardClose();
     }
   }
 
