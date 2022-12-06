@@ -91,7 +91,7 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
           title = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__customize),
           summary = DSLSettingsText.from(R.string.CustomNotificationsDialogFragment__change_sound_and_vibration),
           isEnabled = state.controlsEnabled,
-          onClick = { NotificationChannels.getInstance().openChannelSettings(state.recipient!!.notificationChannel!!, ConversationUtil.getShortcutId(state.recipient)) }
+          onClick = { NotificationChannels.getInstance().openChannelSettings(requireActivity(), state.recipient!!.notificationChannel!!, ConversationUtil.getShortcutId(state.recipient)) }
         )
       } else {
         clickPref(

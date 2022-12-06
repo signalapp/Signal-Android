@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.notifications;
 
 import android.annotation.TargetApi;
+import android.app.Activity;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
@@ -127,7 +128,7 @@ public class NotificationChannels {
   /**
    * Navigates the user to the system settings for the desired notification channel.
    */
-  public void openChannelSettings(@NonNull String channelId, @Nullable String conversationId) {
+  public void openChannelSettings(@NonNull Activity activityContext, @NonNull String channelId, @Nullable String conversationId) {
     if (!supported()) {
       return;
     }
@@ -139,10 +140,10 @@ public class NotificationChannels {
       if (conversationId != null && Build.VERSION.SDK_INT >= CONVERSATION_SUPPORT_VERSION) {
         intent.putExtra(Settings.EXTRA_CONVERSATION_ID, conversationId);
       }
-      context.startActivity(intent);
+      activityContext.startActivity(intent);
     } catch (ActivityNotFoundException e) {
       Log.w(TAG, "Channel settings activity not found", e);
-      Toast.makeText(context, R.string.NotificationChannels__no_activity_available_to_open_notification_channel_settings, Toast.LENGTH_SHORT).show();
+      Toast.makeText(activityContext, R.string.NotificationChannels__no_activity_available_to_open_notification_channel_settings, Toast.LENGTH_SHORT).show();
     }
   }
 

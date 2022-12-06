@@ -104,7 +104,7 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
           summary = DSLSettingsText.from(R.string.preferences__change_sound_and_vibration),
           isEnabled = state.messageNotificationsState.notificationsEnabled,
           onClick = {
-            NotificationChannels.getInstance().openChannelSettings(NotificationChannels.getInstance().messagesChannel, null)
+            NotificationChannels.getInstance().openChannelSettings(requireActivity(), NotificationChannels.getInstance().messagesChannel, null)
           }
         )
       } else {
