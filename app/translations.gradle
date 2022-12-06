@@ -29,12 +29,6 @@ def autoResConfig() {
             .sort()
 }
 
-task pullTranslations(type: Exec) {
-    group 'Translate'
-    description 'Pull translations, requires transifex client and api key.'
-    commandLine 'tx', 'pull', '-a', '--minimum-perc=79', '--force', '--parallel'
-}
-
 task replaceEllipsis {
     group 'Translate'
     description 'Process strings for ellipsis characters.'
@@ -48,7 +42,6 @@ task replaceEllipsis {
             }
         }
     }
-    mustRunAfter pullTranslations
 }
 
 task cleanApostropheErrors {
@@ -64,7 +57,6 @@ task cleanApostropheErrors {
             }
         }
     }
-    mustRunAfter replaceEllipsis
 }
 
 task excludeNonTranslatables {
@@ -120,14 +112,12 @@ task excludeNonTranslatables {
             }
         }
     }
-    mustRunAfter cleanApostropheErrors
 }
 
 task postTranslateQa {
     group 'Translate'
     description 'Runs QA to check validity of updated strings, and ensure presence of any new languages in internal lists.'
     dependsOn ':qa'
-    mustRunAfter excludeNonTranslatables
 }
 
 task postTranslateIpFetch {
@@ -147,8 +137,8 @@ task postTranslateIpFetch {
     }
 }
 
-task translate {
+task translateQa {
     group 'Translate'
-    description 'Pull translations and post-process for ellipsis, apostrophes and non-translatables.'
-    dependsOn pullTranslations, replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateIpFetch, postTranslateQa
+    description 'Post-process for ellipsis, apostrophes and non-translatables.'
+    dependsOn replaceEllipsis, cleanApostropheErrors, excludeNonTranslatables, postTranslateIpFetch, postTranslateQa
 }
