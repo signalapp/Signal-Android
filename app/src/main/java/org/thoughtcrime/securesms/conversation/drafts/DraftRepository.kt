@@ -46,7 +46,7 @@ class DraftRepository(
         }
 
         draftTable.replaceDrafts(actualThreadId, drafts)
-        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.uriSnippet, System.currentTimeMillis(), MmsSmsColumns.Types.BASE_DRAFT_TYPE, true)
+        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MmsSmsColumns.Types.BASE_DRAFT_TYPE, true)
       } else if (threadId > 0) {
         draftTable.clearDrafts(threadId)
         threadTable.update(threadId, unarchive = false, allowDeletion = false)

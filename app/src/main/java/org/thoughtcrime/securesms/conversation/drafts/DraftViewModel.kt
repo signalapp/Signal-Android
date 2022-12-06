@@ -74,7 +74,7 @@ class DraftViewModel @JvmOverloads constructor(
 
   fun setLocationDraft(place: SignalPlace) {
     store.update {
-      saveDrafts(it.copy(locationDraft = Draft(Draft.LOCATION, place.serialize())))
+      saveDrafts(it.copy(locationDraft = Draft(Draft.LOCATION, place.serialize() ?: "")))
     }
   }
 
