@@ -11,6 +11,9 @@ import org.signal.donations.StripeDeclineCode
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.UnexpectedSubscriptionCancellation
+import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostBadges
+import org.thoughtcrime.securesms.components.settings.app.subscription.getGiftBadges
+import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -29,28 +32,28 @@ class InternalDonorErrorConfigurationViewModel : ViewModel() {
     val giftBadges: Single<List<Badge>> = Single
       .fromCallable {
         ApplicationDependencies.getDonationsService()
-          .getGiftBadges(Locale.getDefault())
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
-      .map { results -> results.values.map { Badges.fromServiceBadge(it) } }
+      .map { it.getGiftBadges() }
       .subscribeOn(Schedulers.io())
 
     val boostBadges: Single<List<Badge>> = Single
       .fromCallable {
         ApplicationDependencies.getDonationsService()
-          .getBoostBadge(Locale.getDefault())
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
-      .map { listOf(Badges.fromServiceBadge(it)) }
+      .map { it.getBoostBadges() }
       .subscribeOn(Schedulers.io())
 
     val subscriptionBadges: Single<List<Badge>> = Single
       .fromCallable {
         ApplicationDependencies.getDonationsService()
-          .getSubscriptionLevels(Locale.getDefault())
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
-      .map { levels -> levels.levels.values.map { Badges.fromServiceBadge(it.badge) } }
+      .map { config -> config.getSubscriptionLevels().values.map { Badges.fromServiceBadge(it.badge) } }
       .subscribeOn(Schedulers.io())
 
     disposables += Single.zip(giftBadges, boostBadges, subscriptionBadges) { g, b, s ->

@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.core.util.money.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
@@ -25,7 +26,6 @@ import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
-import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId

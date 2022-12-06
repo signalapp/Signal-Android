@@ -264,7 +264,6 @@ public class PushServiceSocket {
 
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
 
-  private static final String SUBSCRIPTION_LEVELS                        = "/v1/subscription/levels";
   private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
   private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
   private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
@@ -272,13 +271,11 @@ public class PushServiceSocket {
   private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
   private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/paypal/%s";
   private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
-  private static final String BOOST_AMOUNTS                              = "/v1/subscription/boost/amounts";
-  private static final String GIFT_AMOUNT                                = "/v1/subscription/boost/amounts/gift";
   private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
   private static final String CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/paypal/create";
   private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
   private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
-  private static final String BOOST_BADGES                               = "/v1/subscription/boost/badges";
+  private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
 
   private static final String CDSI_AUTH = "/v2/directory/auth";
 
@@ -1048,26 +1045,8 @@ public class PushServiceSocket {
   public PayPalCreatePaymentMethodResponse createPayPalPaymentMethod(Locale locale, String subscriberId, String returnUrl, String cancelUrl) throws IOException {
     Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
     String              payload = JsonUtil.toJson(new PayPalCreatePaymentMethodPayload(returnUrl, cancelUrl));
-    String              result  = makeServiceRequestWithoutAuthentication(String.format(CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", payload);
+    String              result  = makeServiceRequestWithoutAuthentication(String.format(CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", payload, headers, NO_HANDLER);
     return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentMethodResponse.class);
-  }
-
-
-  public Map<String, List<BigDecimal>> getBoostAmounts() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(BOOST_AMOUNTS, "GET", null);
-    TypeReference<HashMap<String, List<BigDecimal>>> typeRef = new TypeReference<HashMap<String, List<BigDecimal>>>() {};
-    return JsonUtil.fromJsonResponse(result, typeRef);
-  }
-
-  public Map<String, BigDecimal> getGiftAmount() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(GIFT_AMOUNT, "GET", null);
-    TypeReference<HashMap<String, BigDecimal>> typeRef = new TypeReference<HashMap<String, BigDecimal>>() {};
-    return JsonUtil.fromJsonResponse(result, typeRef);
-  }
-
-  public SubscriptionLevels getBoostLevels(Locale locale) throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(BOOST_BADGES, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), NO_HANDLER);
-    return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
   }
 
   public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) throws IOException {
@@ -1089,10 +1068,14 @@ public class PushServiceSocket {
     }
   }
 
+  /**
+   * Get the DonationsConfiguration pointed at by /v1/subscriptions/configuration
+   */
+  public DonationsConfiguration getDonationsConfiguration(Locale locale) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              result  = makeServiceRequestWithoutAuthentication(DONATIONS_CONFIGURATION, "GET", null, headers, NO_HANDLER);
 
-  public SubscriptionLevels getSubscriptionLevels(Locale locale) throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(SUBSCRIPTION_LEVELS, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), NO_HANDLER);
-    return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
+    return JsonUtil.fromJson(result, DonationsConfiguration.class);
   }
 
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {

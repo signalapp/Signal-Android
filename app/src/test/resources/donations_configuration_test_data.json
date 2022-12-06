@@ -1,0 +1,245 @@
+{
+  "currencies": {
+    "JPY": {
+      "minimum": 300,
+      "oneTime": {
+        "1": [
+          500,
+          600,
+          700,
+          800,
+          900,
+          1000
+        ],
+        "100": [
+          3000
+        ]
+      },
+      "subscription": {
+        "2000": 35000,
+        "1000": 15000,
+        "500": 5000
+      },
+      "supportedPaymentMethods": [
+        "PAYPAL"
+      ]
+    },
+    "USD": {
+      "minimum": 2.5,
+      "oneTime": {
+        "1": [
+          5.5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "100": [
+          20
+        ]
+      },
+      "subscription": {
+        "2000": 35,
+        "1000": 15,
+        "500": 5
+      },
+      "supportedPaymentMethods": [
+        "CARD"
+      ]
+    },
+    "BIF": {
+      "minimum": 3000,
+      "oneTime": {
+        "1": [
+          5000,
+          6000,
+          7000,
+          8000,
+          9000,
+          10000
+        ],
+        "100": [
+          50000
+        ]
+      },
+      "subscription": {
+        "2000": 350000,
+        "1000": 150000,
+        "500": 50000
+      },
+      "supportedPaymentMethods": [
+        "CARD", "PAYPAL"
+      ]
+    }
+  },
+  "levels": {
+    "1": {
+      "name": "ZBOOST",
+      "badge": {
+        "id": "BOOST",
+        "category": "boost1",
+        "name": "boost1",
+        "description": "boost1",
+        "sprites6": [
+          "l",
+          "m",
+          "h",
+          "x",
+          "xx",
+          "xxx"
+        ],
+        "svg": "SVG",
+        "svgs": [
+          {
+            "light": "sl",
+            "dark": "sd"
+          },
+          {
+            "light": "ml",
+            "dark": "md"
+          },
+          {
+            "light": "ll",
+            "dark": "ld"
+          }
+        ],
+        "duration": 2592000,
+        "imageUrl": ""
+      }
+    },
+    "100": {
+      "name": "ZGIFT",
+      "badge": {
+        "id": "GIFT",
+        "category": "gift1",
+        "name": "gift1",
+        "description": "gift1",
+        "sprites6": [
+          "l",
+          "m",
+          "h",
+          "x",
+          "xx",
+          "xxx"
+        ],
+        "svg": "SVG",
+        "svgs": [
+          {
+            "light": "sl",
+            "dark": "sd"
+          },
+          {
+            "light": "ml",
+            "dark": "md"
+          },
+          {
+            "light": "ll",
+            "dark": "ld"
+          }
+        ],
+        "duration": 5184000,
+        "imageUrl": ""
+      }
+    },
+    "2000": {
+      "name": "Z3",
+      "badge": {
+        "id": "B3",
+        "category": "cat3",
+        "name": "name3",
+        "description": "desc3",
+        "sprites6": [
+          "l",
+          "m",
+          "h",
+          "x",
+          "xx",
+          "xxx"
+        ],
+        "svg": "SVG",
+        "svgs": [
+          {
+            "light": "sl",
+            "dark": "sd"
+          },
+          {
+            "light": "ml",
+            "dark": "md"
+          },
+          {
+            "light": "ll",
+            "dark": "ld"
+          }
+        ],
+        "imageUrl": ""
+      }
+    },
+    "1000": {
+      "name": "Z2",
+      "badge": {
+        "id": "B2",
+        "category": "cat2",
+        "name": "name2",
+        "description": "desc2",
+        "sprites6": [
+          "l",
+          "m",
+          "h",
+          "x",
+          "xx",
+          "xxx"
+        ],
+        "svg": "SVG",
+        "svgs": [
+          {
+            "light": "sl",
+            "dark": "sd"
+          },
+          {
+            "light": "ml",
+            "dark": "md"
+          },
+          {
+            "light": "ll",
+            "dark": "ld"
+          }
+        ],
+        "imageUrl": ""
+      }
+    },
+    "500": {
+      "name": "Z1",
+      "badge": {
+        "id": "B1",
+        "category": "cat1",
+        "name": "name1",
+        "description": "desc1",
+        "sprites6": [
+          "l",
+          "m",
+          "h",
+          "x",
+          "xx",
+          "xxx"
+        ],
+        "svg": "SVG",
+        "svgs": [
+          {
+            "light": "sl",
+            "dark": "sd"
+          },
+          {
+            "light": "ml",
+            "dark": "md"
+          },
+          {
+            "light": "ll",
+            "dark": "ld"
+          }
+        ],
+        "imageUrl": ""
+      }
+    }
+  }
+}

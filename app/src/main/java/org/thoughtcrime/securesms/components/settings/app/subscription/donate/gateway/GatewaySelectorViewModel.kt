@@ -8,6 +8,7 @@ import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class GatewaySelectorViewModel(
@@ -39,9 +40,11 @@ class GatewaySelectorViewModel(
   private fun checkIfGooglePayIsAvailable() {
     disposables += repository.isGooglePayAvailable().subscribeBy(
       onComplete = {
+        SignalStore.donationsValues().isGooglePayReady = true
         store.update { it.copy(isGooglePayAvailable = true) }
       },
       onError = {
+        SignalStore.donationsValues().isGooglePayReady = false
         store.update { it.copy(isGooglePayAvailable = false) }
       }
     )

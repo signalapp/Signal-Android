@@ -102,6 +102,12 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * in determining which error messaging they should see if something goes wrong.
      */
     private const val SUBSCRIPTION_PAYMENT_SOURCE_TYPE = "subscription.payment.source.type"
+
+    /**
+     * Marked whenever we check for Google Pay availability, to help make decisions without
+     * awaiting the background task.
+     */
+    private const val IS_GOOGLE_PAY_READY = "subscription.is.google.pay.ready"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -353,6 +359,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
   var shouldCancelSubscriptionBeforeNextSubscribeAttempt: Boolean
     get() = getBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, false)
     set(value) = putBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, value)
+
+  var isGooglePayReady: Boolean by booleanValue(IS_GOOGLE_PAY_READY, false)
 
   /**
    * Consolidates a bunch of data clears that should occur whenever a user manually cancels their

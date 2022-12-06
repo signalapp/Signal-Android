@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.receipts
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.badges.Badges
+import org.thoughtcrime.securesms.components.settings.app.subscription.getBoostBadges
+import org.thoughtcrime.securesms.components.settings.app.subscription.getSubscriptionLevels
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import java.util.Locale
@@ -12,23 +14,23 @@ class DonationReceiptListRepository {
     val boostBadges: Single<List<DonationReceiptBadge>> = Single
       .fromCallable {
         ApplicationDependencies.getDonationsService()
-          .getBoostBadge(Locale.getDefault())
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .map { response ->
         if (response.result.isPresent) {
-          listOf(DonationReceiptBadge(DonationReceiptRecord.Type.BOOST, -1, Badges.fromServiceBadge(response.result.get())))
+          listOf(DonationReceiptBadge(DonationReceiptRecord.Type.BOOST, -1, response.result.get().getBoostBadges().first()))
         } else {
           emptyList()
         }
       }
 
     val subBadges: Single<List<DonationReceiptBadge>> = Single
-      .fromCallable { ApplicationDependencies.getDonationsService().getSubscriptionLevels(Locale.getDefault()) }
+      .fromCallable { ApplicationDependencies.getDonationsService().getDonationsConfiguration(Locale.getDefault()) }
       .map { response ->
         if (response.result.isPresent) {
-          response.result.get().levels.map {
+          response.result.get().getSubscriptionLevels().map {
             DonationReceiptBadge(
-              level = it.key.toInt(),
+              level = it.key,
               badge = Badges.fromServiceBadge(it.value.badge),
               type = DonationReceiptRecord.Type.RECURRING
             )

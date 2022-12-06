@@ -6,7 +6,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
@@ -18,12 +17,8 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BoostReceiptRequestResponseJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
-import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.services.DonationsService
-import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.DonationProcessor
-import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.CountDownLatch
@@ -46,14 +41,15 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
   }
 
   fun getBoosts(): Single<Map<Currency, List<Boost>>> {
-    return Single.fromCallable { donationsService.boostAmounts }
+    return Single.fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
       .subscribeOn(Schedulers.io())
-      .flatMap(ServiceResponse<Map<String, List<BigDecimal>>>::flattenResult)
-      .map { result ->
-        result
-          .filter { PlatformCurrencyUtil.getAvailableCurrencyCodes().contains(it.key) }
-          .mapKeys { (code, _) -> Currency.getInstance(code) }
-          .mapValues { (currency, prices) -> prices.map { Boost(FiatMoney(it, currency)) } }
+      .flatMap { it.flattenResult() }
+      .map { config ->
+        config.getBoostAmounts().mapValues { (_, value) ->
+          value.map {
+            Boost(it)
+          }
+        }
       }
   }
 
@@ -61,11 +57,11 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
     return Single
       .fromCallable {
         ApplicationDependencies.getDonationsService()
-          .getBoostBadge(Locale.getDefault())
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .subscribeOn(Schedulers.io())
-      .flatMap(ServiceResponse<SignalServiceProfile.Badge>::flattenResult)
-      .map(Badges::fromServiceBadge)
+      .flatMap { it.flattenResult() }
+      .map { it.getBoostBadges().first() }
   }
 
   fun waitForOneTimeRedemption(

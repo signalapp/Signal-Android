@@ -1,4 +1,4 @@
-package org.thoughtcrime.securesms.util
+package org.signal.core.util.money
 
 import java.util.Currency
 

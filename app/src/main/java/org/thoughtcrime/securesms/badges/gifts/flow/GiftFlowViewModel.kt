@@ -83,7 +83,7 @@ class GiftFlowViewModel(
       onSuccess = { (giftLevel, giftBadge) ->
         store.update {
           it.copy(
-            giftLevel = giftLevel,
+            giftLevel = giftLevel.toLong(),
             giftBadge = giftBadge,
             stage = getLoadState(it, giftBadge = giftBadge)
           )
