@@ -130,6 +130,9 @@
         <action
             android:id="@+id/action_creditCardFragment_to_yourInformationIsPrivateBottomSheet"
             app:destination="@id/yourInformationIsPrivateBottomSheet" />
+        <action
+            android:id="@+id/action_creditCardFragment_to_stripePaymentInProgressFragment"
+            app:destination="@id/stripePaymentInProgressFragment" />
     </fragment>
 
     <dialog

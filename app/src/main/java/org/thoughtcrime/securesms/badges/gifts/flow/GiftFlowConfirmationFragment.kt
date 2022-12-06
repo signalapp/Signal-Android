@@ -87,7 +87,7 @@ class GiftFlowConfirmationFragment :
 
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
-    donationCheckoutDelegate = DonationCheckoutDelegate(this, this)
+    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, DonationErrorSource.GIFT)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)

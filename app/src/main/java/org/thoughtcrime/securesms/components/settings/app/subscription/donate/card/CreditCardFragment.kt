@@ -7,21 +7,30 @@ import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.StringRes
 import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.navigation.navGraphViewModels
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.databinding.CreditCardFragmentBinding
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
@@ -30,8 +39,30 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   private val args: CreditCardFragmentArgs by navArgs()
   private val viewModel: CreditCardViewModel by viewModels()
   private val lifecycleDisposable = LifecycleDisposable()
+  private val stripePaymentViewModel: StripePaymentInProgressViewModel by navGraphViewModels(
+    R.id.donate_to_signal,
+    factoryProducer = {
+      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
+    }
+  )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    val errorSource: DonationErrorSource = when (args.request.donateToSignalType) {
+      DonateToSignalType.ONE_TIME -> DonationErrorSource.BOOST
+      DonateToSignalType.MONTHLY -> DonationErrorSource.SUBSCRIPTION
+      DonateToSignalType.GIFT -> DonationErrorSource.GIFT
+    }
+
+    DonationCheckoutDelegate.ErrorHandler().attach(this, errorSource)
+
+    setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
+      val result: DonationProcessorActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
+      if (result.status == DonationProcessorActionResult.Status.SUCCESS) {
+        findNavController().popBackStack()
+        setFragmentResult(REQUEST_KEY, bundle)
+      }
+    }
+
     binding.title.text = if (args.request.donateToSignalType == DonateToSignalType.MONTHLY) {
       getString(
         R.string.CreditCardFragment__donation_amount_s_per_month,
@@ -85,16 +116,13 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
     }
 
     binding.continueButton.setOnClickListener {
-      findNavController().popBackStack()
-
-      val resultBundle = bundleOf(
-        REQUEST_KEY to CreditCardResult(
-          args.request,
-          viewModel.getCardData()
+      stripePaymentViewModel.provideCardData(viewModel.getCardData())
+      findNavController().safeNavigate(
+        CreditCardFragmentDirections.actionCreditCardFragmentToStripePaymentInProgressFragment(
+          DonationProcessorAction.PROCESS_NEW_DONATION,
+          args.request
         )
       )
-
-      setFragmentResult(REQUEST_KEY, resultBundle)
     }
 
     binding.toolbar.setNavigationOnClickListener {
@@ -195,7 +223,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
   }
 
   companion object {
-    val REQUEST_KEY = "card.data"
+    const val REQUEST_KEY = "card.result"
 
     private val NO_ERROR = ErrorState(false, -1)
   }

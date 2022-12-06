@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate
 
+import android.content.Context
+import android.content.DialogInterface
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -10,6 +12,8 @@ import androidx.navigation.navGraphViewModels
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -18,7 +22,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayResponse
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewaySelectorBottomSheet
@@ -26,6 +29,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.pa
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressViewModel
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorParams
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -36,7 +41,9 @@ import java.util.Currency
  */
 class DonationCheckoutDelegate(
   private val fragment: Fragment,
-  private val callback: Callback
+  private val callback: Callback,
+  errorSource: DonationErrorSource,
+  vararg additionalSources: DonationErrorSource
 ) : DefaultLifecycleObserver {
 
   companion object {
@@ -57,6 +64,7 @@ class DonationCheckoutDelegate(
 
   init {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
+    ErrorHandler().attach(fragment, errorSource, *additionalSources)
   }
 
   override fun onCreate(owner: LifecycleOwner) {
@@ -75,8 +83,8 @@ class DonationCheckoutDelegate(
     }
 
     fragment.setFragmentResultListener(CreditCardFragment.REQUEST_KEY) { _, bundle ->
-      val result: CreditCardResult = bundle.getParcelable(CreditCardFragment.REQUEST_KEY)!!
-      handleCreditCardResult(result)
+      val result: DonationProcessorActionResult = bundle.getParcelable(StripePaymentInProgressFragment.REQUEST_KEY)!!
+      handleDonationProcessorActionResult(result)
     }
 
     fragment.setFragmentResultListener(PayPalPaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
@@ -95,12 +103,6 @@ class DonationCheckoutDelegate(
     } else {
       error("Unsupported combination! ${gatewayResponse.gateway} ${gatewayResponse.request.donateToSignalType}")
     }
-  }
-
-  private fun handleCreditCardResult(creditCardResult: CreditCardResult) {
-    Log.d(TAG, "Received credit card information from fragment.")
-    stripePaymentViewModel.provideCardData(creditCardResult.creditCardData)
-    callback.navigateToStripePaymentInProgress(creditCardResult.gatewayRequest)
   }
 
   private fun handleDonationProcessorActionResult(result: DonationProcessorActionResult) {
@@ -191,6 +193,71 @@ class DonationCheckoutDelegate(
 
     override fun onCancelled() {
       Log.d(TAG, "Cancelled Google Pay.", true)
+    }
+  }
+
+  /**
+   * Shared logic for handling checkout errors.
+   */
+  class ErrorHandler : DefaultLifecycleObserver {
+
+    private var fragment: Fragment? = null
+    private var errorDialog: DialogInterface? = null
+
+    fun attach(fragment: Fragment, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+      this.fragment = fragment
+      val disposables = LifecycleDisposable()
+      fragment.viewLifecycleOwner.lifecycle.addObserver(this)
+
+      disposables.bindTo(fragment.viewLifecycleOwner)
+      disposables += registerErrorSource(errorSource)
+      additionalSources.forEach { source ->
+        disposables += registerErrorSource(source)
+      }
+    }
+
+    override fun onDestroy(owner: LifecycleOwner) {
+      errorDialog?.dismiss()
+      fragment = null
+    }
+
+    private fun registerErrorSource(errorSource: DonationErrorSource): Disposable {
+      return DonationError.getErrorsForSource(errorSource)
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe { error ->
+          showErrorDialog(error)
+        }
+    }
+
+    private fun showErrorDialog(throwable: Throwable) {
+      if (errorDialog != null) {
+        Log.d(TAG, "Already displaying an error dialog. Skipping.", throwable, true)
+        return
+      }
+
+      Log.d(TAG, "Displaying donation error dialog.", true)
+      errorDialog = DonationErrorDialogs.show(
+        fragment!!.requireContext(), throwable,
+        object : DonationErrorDialogs.DialogCallback() {
+          var tryCCAgain = false
+
+          override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit>? {
+            return DonationErrorParams.ErrorAction(
+              label = R.string.DeclineCode__try,
+              action = {
+                tryCCAgain = true
+              }
+            )
+          }
+
+          override fun onDialogDismissed() {
+            errorDialog = null
+            if (!tryCCAgain) {
+              fragment!!.findNavController().popBackStack()
+            }
+          }
+        }
+      )
     }
   }
 
