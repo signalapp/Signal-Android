@@ -242,6 +242,7 @@ class DonateToSignalFragment :
       when (state.donateToSignalType) {
         DonateToSignalType.ONE_TIME -> displayOneTimeSelection(state.areFieldsEnabled, state.oneTimeDonationState)
         DonateToSignalType.MONTHLY -> displayMonthlySelection(state.areFieldsEnabled, state.monthlyDonationState)
+        DonateToSignalType.GIFT -> error("This fragment does not support gifts.")
       }
 
       space(20.dp)
@@ -310,6 +311,8 @@ class DonateToSignalFragment :
             selectedBoost = state.selectedBoost,
             currency = state.customAmount.currency,
             isCustomAmountFocused = state.isCustomAmountFocused,
+            isCustomAmountTooSmall = state.shouldDisplayCustomAmountTooSmallError,
+            minimumAmount = state.minimumDonationAmountOfSelectedCurrency,
             isEnabled = areFieldsEnabled,
             onBoostClick = { view, boost ->
               startAnimationAboveSelectedBoost(view)

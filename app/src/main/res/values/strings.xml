@@ -4341,6 +4341,9 @@
     <string name="ManageDonationsFragment__gift_a_badge">Gift a badge</string>
 
     <string name="Boost__enter_custom_amount">Enter Custom Amount</string>
+    <string name="Boost__one_time_contribution">One-time contribution</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
     <string name="MySupportPreference__renews_s">Renews %1$s</string>

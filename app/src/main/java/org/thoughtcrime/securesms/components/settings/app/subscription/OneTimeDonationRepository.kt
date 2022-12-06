@@ -64,6 +64,13 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
       .map { it.getBoostBadges().first() }
   }
 
+  fun getMinimumDonationAmounts(): Single<Map<Currency, FiatMoney>> {
+    return Single.fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
+      .flatMap { it.flattenResult() }
+      .subscribeOn(Schedulers.io())
+      .map { it.getMinimumDonationAmounts() }
+  }
+
   fun waitForOneTimeRedemption(
     price: FiatMoney,
     paymentIntentId: String,

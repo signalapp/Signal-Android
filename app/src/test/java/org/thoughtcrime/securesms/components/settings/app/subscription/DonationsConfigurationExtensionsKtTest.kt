@@ -132,6 +132,30 @@ class DonationsConfigurationExtensionsKtTest {
   }
 
   @Test
+  fun `Given all methods are available, when I getMinimumDonationAmounts, then I expect BIF`() {
+    val minimumDonationAmounts = testSubject.getMinimumDonationAmounts(AllPaymentMethodsAvailability)
+
+    assertEquals(1, minimumDonationAmounts.size)
+    assertNotNull(minimumDonationAmounts[Currency.getInstance("BIF")])
+  }
+
+  @Test
+  fun `Given only PayPal available, when I getMinimumDonationAmounts, then I expect BIF and JPY`() {
+    val minimumDonationAmounts = testSubject.getMinimumDonationAmounts(PayPalOnly)
+
+    assertEquals(2, minimumDonationAmounts.size)
+    assertTrue(minimumDonationAmounts.map { it.key.currencyCode }.containsAll(setOf("JPY", "BIF")))
+  }
+
+  @Test
+  fun `Given only Card available, when I getMinimumDonationAmounts, then I expect BIF and USD`() {
+    val minimumDonationAmounts = testSubject.getMinimumDonationAmounts(CardOnly)
+
+    assertEquals(2, minimumDonationAmounts.size)
+    assertTrue(minimumDonationAmounts.map { it.key.currencyCode }.containsAll(setOf("USD", "BIF")))
+  }
+
+  @Test
   fun `Given GIFT_LEVEL, When I getBadge, then I expect the gift badge`() {
     mockkStatic(ApplicationDependencies::class) {
       every { ApplicationDependencies.getApplication() } returns ApplicationProvider.getApplicationContext()

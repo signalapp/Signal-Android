@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginTop="10dp"
-    android:layout_marginEnd="@dimen/dsl_settings_gutter">
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    tools:viewBindingIgnore="true">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/boost_1"
@@ -129,5 +129,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boost_4" />
+
+    <TextView
+        android:id="@+id/boost_custom_too_small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorError"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boost_custom"
+        tools:text="@string/Boost__the_minimum_amount_you_can_donate_is_s" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

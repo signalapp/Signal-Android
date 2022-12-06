@@ -81,9 +81,15 @@ data class DonateToSignalState(
     val customAmount: FiatMoney = FiatMoney(BigDecimal.ZERO, selectedCurrency),
     val isCustomAmountFocused: Boolean = false,
     val donationStage: DonationStage = DonationStage.INIT,
-    val selectableCurrencyCodes: List<String> = emptyList()
+    val selectableCurrencyCodes: List<String> = emptyList(),
+    private val minimumDonationAmounts: Map<Currency, FiatMoney> = emptyMap()
   ) {
-    val isSelectionValid: Boolean = if (isCustomAmountFocused) customAmount.amount > BigDecimal.ZERO else selectedBoost != null
+    val minimumDonationAmountOfSelectedCurrency: FiatMoney = minimumDonationAmounts[selectedCurrency] ?: FiatMoney(BigDecimal.ZERO, selectedCurrency)
+    private val isCustomAmountTooSmall: Boolean = if (isCustomAmountFocused) customAmount.amount < minimumDonationAmountOfSelectedCurrency.amount else false
+    private val isCustomAmountZero: Boolean = customAmount.amount == BigDecimal.ZERO
+
+    val isSelectionValid: Boolean = if (isCustomAmountFocused) !isCustomAmountTooSmall else selectedBoost != null
+    val shouldDisplayCustomAmountTooSmallError: Boolean = isCustomAmountTooSmall && !isCustomAmountZero
   }
 
   data class MonthlyDonationState(

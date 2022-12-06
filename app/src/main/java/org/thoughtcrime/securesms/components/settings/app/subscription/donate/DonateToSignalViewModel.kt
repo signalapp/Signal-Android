@@ -214,6 +214,15 @@ class DonateToSignalViewModel(
       }
     )
 
+    oneTimeDonationDisposables += oneTimeDonationRepository.getMinimumDonationAmounts().subscribeBy(
+      onSuccess = { amountMap ->
+        store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(minimumDonationAmounts = amountMap)) }
+      },
+      onError = {
+        Log.w(TAG, "Could not load minimum custom donation amounts.", it)
+      }
+    )
+
     val boosts: Observable<Map<Currency, List<Boost>>> = oneTimeDonationRepository.getBoosts().toObservable()
     val oneTimeCurrency: Observable<Currency> = SignalStore.donationsValues().observableOneTimeCurrency
 

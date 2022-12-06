@@ -85,6 +85,16 @@ fun DonationsConfiguration.getSubscriptionLevels(): Map<Int, LevelConfiguration>
   return levels.filterKeys { SUBSCRIPTION_LEVELS.contains(it) }.toSortedMap()
 }
 
+/**
+ * Get a map describing the minimum donation amounts per currency.
+ * This returns only the currencies available to the user.
+ */
+fun DonationsConfiguration.getMinimumDonationAmounts(paymentMethodAvailability: PaymentMethodAvailability = DefaultPaymentMethodAvailability): Map<Currency, FiatMoney> {
+  return getFilteredCurrencies(paymentMethodAvailability)
+    .mapKeys { Currency.getInstance(it.key.uppercase()) }
+    .mapValues { FiatMoney(it.value.minimum, it.key) }
+}
+
 private fun DonationsConfiguration.getFilteredCurrencies(paymentMethodAvailability: PaymentMethodAvailability): Map<String, DonationsConfiguration.CurrencyConfiguration> {
   val userPaymentMethods = paymentMethodAvailability.toSet()
   val availableCurrencyCodes = PlatformCurrencyUtil.getAvailableCurrencyCodes()
