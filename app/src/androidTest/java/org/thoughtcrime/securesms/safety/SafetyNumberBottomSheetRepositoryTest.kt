@@ -33,7 +33,7 @@ class SafetyNumberBottomSheetRepositoryTest {
 
     testScheduler.triggerActions()
 
-    result.assertValueAt(1) { map ->
+    result.assertValueAt(0) { map ->
       assertMatch(map, mapOf(SafetyNumberBucket.ContactsBucket to harness.others))
     }
   }

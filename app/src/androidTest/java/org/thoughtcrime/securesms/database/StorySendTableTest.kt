@@ -10,6 +10,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
+import org.junit.Assert.fail
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -355,8 +356,8 @@ class StorySendTableTest {
     assertEquals(expected, result)
   }
 
-  @Test
-  fun givenAManifest_whenIApplyRemoteManifestWithoutOneList_thenIExpectMessageToBeMarkedRemoteDeleted() {
+  @Test(expected = NoSuchMessageException::class)
+  fun givenAManifest_whenIApplyRemoteManifestWithoutOneList_thenIExpectMessageToBeDeleted() {
     val messageId4 = MmsHelper.insert(
       recipient = distributionListRecipient1,
       storyType = StoryType.STORY_WITHOUT_REPLIES,
@@ -376,7 +377,8 @@ class StorySendTableTest {
 
     storySends.applySentStoryManifest(remote, 200)
 
-    assertTrue(SignalDatabase.mms.getMessageRecord(messageId5).isRemoteDelete)
+    SignalDatabase.mms.getMessageRecord(messageId5)
+    fail("Expected messageId5 to no longer exist.")
   }
 
   @Test

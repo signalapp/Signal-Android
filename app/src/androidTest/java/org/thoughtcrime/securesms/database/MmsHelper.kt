@@ -22,7 +22,7 @@ object MmsHelper {
     expiresIn: Long = 0,
     viewOnce: Boolean = false,
     distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
-    threadId: Long = 1,
+    threadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(recipient, distributionType),
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
     isStoryReaction: Boolean = false,

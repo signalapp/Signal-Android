@@ -237,8 +237,7 @@ class MmsTableTest_stories {
     MmsHelper.insert(
       recipient = myStory,
       sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES,
-      threadId = -1L
+      storyType = StoryType.STORY_WITH_REPLIES
     )
 
     // WHEN
@@ -296,8 +295,7 @@ class MmsTableTest_stories {
     val groupStoryId = MmsHelper.insert(
       recipient = myStory,
       sentTimeMillis = 200,
-      storyType = StoryType.STORY_WITH_REPLIES,
-      threadId = -1L
+      storyType = StoryType.STORY_WITH_REPLIES
     )
 
     MmsHelper.insert(

@@ -252,7 +252,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       val query = """
         SELECT ${MmsTable.TABLE_NAME}.${MmsTable.ID} as $MESSAGE_ID, ${DistributionListTables.DISTRIBUTION_ID}
         FROM ${MmsTable.TABLE_NAME}
-        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.RECIPIENT_ID} = ${MmsTable.RECIPIENT_ID}
+        INNER JOIN ${DistributionListTables.LIST_TABLE_NAME} ON ${DistributionListTables.LIST_TABLE_NAME}.${DistributionListTables.RECIPIENT_ID} = ${MmsTable.TABLE_NAME}.${MmsTable.RECIPIENT_ID}
         WHERE ${MmsTable.DATE_SENT} = $sentTimestamp AND ${DistributionListTables.DISTRIBUTION_ID} IS NOT NULL
       """.trimIndent()
 

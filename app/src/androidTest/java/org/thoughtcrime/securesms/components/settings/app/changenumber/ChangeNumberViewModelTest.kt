@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.FlakyTest
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -166,6 +168,8 @@ class ChangeNumberViewModelTest {
    * and apply the pending state after confirming the change on the server.
    */
   @Test
+  @FlakyTest
+  @Ignore("Test sometimes requires manual intervention to continue.")
   fun testChangeNumber_givenNetworkFailedApiCallEnRouteToClient() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
