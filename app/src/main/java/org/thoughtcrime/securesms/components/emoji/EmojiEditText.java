@@ -4,12 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.AttributeSet;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.text.Spanned;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,15 +12,11 @@ import androidx.appcompat.widget.AppCompatEditText;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider.EmojiDrawable;
-import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
-import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.EditTextExtensionsKt;
-import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 
@@ -103,45 +94,5 @@ public class EmojiEditText extends AppCompatEditText {
     result[0] = new EmojiFilter(this, jumboEmoji);
 
     return result;
-  }
-
-  @Override
-  public boolean onTextContextMenuItem(int id) {
-    if (id == android.R.id.paste) {
-      ClipboardManager clipboardManager = ServiceUtil.getClipboardManager(getContext());
-      ClipData         originalClipData = clipboardManager.getPrimaryClip();
-      CharSequence     pendingPaste     = getTextFromClipData(originalClipData);
-
-      if (pendingPaste == null) {
-        return super.onTextContextMenuItem(id);
-      }
-
-      CharSequence sanitizedText = (pendingPaste instanceof Spanned) ? clearFormattingFromText(pendingPaste)
-                                                                     : pendingPaste;
-
-      clipboardManager.setPrimaryClip(ClipData.newPlainText("signal_sanitized", sanitizedText));
-      boolean performedAction = super.onTextContextMenuItem(id);
-
-      clipboardManager.setPrimaryClip(originalClipData);
-      return performedAction;
-    }
-    return super.onTextContextMenuItem(id);
-  }
-
-  private CharSequence clearFormattingFromText(CharSequence text) {
-    List<Mention> mentions          = MentionAnnotation.getMentionsFromAnnotations(text);
-    Spannable     withoutFormatting = new SpannableString(text.toString());
-
-    MentionAnnotation.setMentionAnnotations(withoutFormatting, mentions);
-
-    return withoutFormatting;
-  }
-
-  private @Nullable CharSequence getTextFromClipData(ClipData data) {
-    if (data != null && data.getItemCount() > 0) {
-      return data.getItemAt(0).coerceToText(getContext());
-    } else {
-      return null;
-    }
   }
 }
