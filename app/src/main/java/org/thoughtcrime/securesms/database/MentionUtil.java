@@ -5,6 +5,7 @@ import android.text.SpannableStringBuilder;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
@@ -64,7 +65,8 @@ public final class MentionUtil {
     return update(body, mentions, m -> MENTION_PLACEHOLDER);
   }
 
-  private static @NonNull UpdatedBodyAndMentions update(@Nullable CharSequence body, @NonNull List<Mention> mentions, @NonNull Function<Mention, CharSequence> replacementTextGenerator) {
+  @VisibleForTesting
+  static @NonNull UpdatedBodyAndMentions update(@Nullable CharSequence body, @NonNull List<Mention> mentions, @NonNull Function<Mention, CharSequence> replacementTextGenerator) {
     if (body == null || mentions.isEmpty()) {
       return new UpdatedBodyAndMentions(body, mentions);
     }
@@ -76,7 +78,7 @@ public final class MentionUtil {
     int bodyIndex = 0;
 
     for (Mention mention : sortedMentions) {
-      if (invalidMention(body, mention)) {
+      if (invalidMention(body, mention) || bodyIndex > mention.getStart()) {
         continue;
       }
 
