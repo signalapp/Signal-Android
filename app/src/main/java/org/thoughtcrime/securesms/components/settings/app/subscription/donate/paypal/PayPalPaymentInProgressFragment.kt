@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -57,7 +58,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         DonationProcessorAction.PROCESS_NEW_DONATION -> {
-          viewModel.processNewDonation(args.request, this::routeToOneTimeConfirmation, this::routeToMonthlyConfirmation)
+          viewModel.processNewDonation(args.request, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
         }
         DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
           viewModel.updateSubscription(args.request)
@@ -110,6 +111,18 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
     }
   }
 
+  private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
+    return routeToOneTimeConfirmation(createPaymentIntentResponse).flatMap {
+      displayCompleteOrderSheet(it)
+    }
+  }
+
+  private fun monthlyConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentMethodResponse): Single<PayPalPaymentMethodId> {
+    return routeToMonthlyConfirmation(createPaymentIntentResponse).flatMap {
+      displayCompleteOrderSheet(it)
+    }
+  }
+
   private fun routeToOneTimeConfirmation(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
     return Single.create<PayPalConfirmationResult> { emitter ->
       val listener = FragmentResultListener { _, bundle ->
@@ -117,10 +130,11 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result != null) {
           emitter.onSuccess(result)
         } else {
-          emitter.onError(Exception("User did not complete paypal confirmation."))
+          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
       }
 
+      parentFragmentManager.clearFragmentResult(PayPalConfirmationDialogFragment.REQUEST_KEY)
       parentFragmentManager.setFragmentResultListener(PayPalConfirmationDialogFragment.REQUEST_KEY, this, listener)
 
       findNavController().safeNavigate(
@@ -130,6 +144,8 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       )
 
       emitter.setCancellable {
+        Log.d(TAG, "Clearing one-time confirmation result listener.")
+        parentFragmentManager.clearFragmentResult(PayPalConfirmationDialogFragment.REQUEST_KEY)
         parentFragmentManager.clearFragmentResultListener(PayPalConfirmationDialogFragment.REQUEST_KEY)
       }
     }.subscribeOn(AndroidSchedulers.mainThread()).observeOn(Schedulers.io())
@@ -138,14 +154,15 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   private fun routeToMonthlyConfirmation(createPaymentIntentResponse: PayPalCreatePaymentMethodResponse): Single<PayPalPaymentMethodId> {
     return Single.create<PayPalPaymentMethodId> { emitter ->
       val listener = FragmentResultListener { _, bundle ->
-        val result: Boolean = bundle.getBoolean(REQUEST_KEY)
+        val result: Boolean = bundle.getBoolean(PayPalConfirmationDialogFragment.REQUEST_KEY)
         if (result) {
           emitter.onSuccess(PayPalPaymentMethodId(createPaymentIntentResponse.token))
         } else {
-          emitter.onError(Exception("User did not confirm paypal setup."))
+          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
       }
 
+      parentFragmentManager.clearFragmentResult(PayPalConfirmationDialogFragment.REQUEST_KEY)
       parentFragmentManager.setFragmentResultListener(PayPalConfirmationDialogFragment.REQUEST_KEY, this, listener)
 
       findNavController().safeNavigate(
@@ -155,7 +172,36 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       )
 
       emitter.setCancellable {
+        Log.d(TAG, "Clearing monthly confirmation result listener.")
+        parentFragmentManager.clearFragmentResult(PayPalConfirmationDialogFragment.REQUEST_KEY)
         parentFragmentManager.clearFragmentResultListener(PayPalConfirmationDialogFragment.REQUEST_KEY)
+      }
+    }.subscribeOn(AndroidSchedulers.mainThread()).observeOn(Schedulers.io())
+  }
+
+  private fun <T : Any> displayCompleteOrderSheet(confirmationData: T): Single<T> {
+    return Single.create<T> { emitter ->
+      val listener = FragmentResultListener { _, bundle ->
+        val result: Boolean = bundle.getBoolean(PayPalCompleteOrderBottomSheet.REQUEST_KEY)
+        if (result) {
+          Log.d(TAG, "User confirmed order. Continuing...")
+          emitter.onSuccess(confirmationData)
+        } else {
+          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+        }
+      }
+
+      parentFragmentManager.clearFragmentResult(PayPalCompleteOrderBottomSheet.REQUEST_KEY)
+      parentFragmentManager.setFragmentResultListener(PayPalCompleteOrderBottomSheet.REQUEST_KEY, this, listener)
+
+      findNavController().safeNavigate(
+        PayPalPaymentInProgressFragmentDirections.actionPaypalPaymentInProgressFragmentToPaypalCompleteOrderBottomSheet(args.request)
+      )
+
+      emitter.setCancellable {
+        Log.d(TAG, "Clearing complete order result listener.")
+        parentFragmentManager.clearFragmentResult(PayPalCompleteOrderBottomSheet.REQUEST_KEY)
+        parentFragmentManager.clearFragmentResultListener(PayPalCompleteOrderBottomSheet.REQUEST_KEY)
       }
     }.subscribeOn(AndroidSchedulers.mainThread()).observeOn(Schedulers.io())
   }

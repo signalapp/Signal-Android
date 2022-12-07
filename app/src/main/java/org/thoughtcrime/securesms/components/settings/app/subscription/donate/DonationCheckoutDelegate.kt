@@ -235,6 +235,12 @@ class DonationCheckoutDelegate(
         return
       }
 
+      if (throwable is DonationError.PayPalError.UserCancelledPaymentError) {
+        Log.d(TAG, "User cancelled out of paypal flow.", true)
+        fragment?.findNavController()?.popBackStack()
+        return
+      }
+
       Log.d(TAG, "Displaying donation error dialog.", true)
       errorDialog = DonationErrorDialogs.show(
         fragment!!.requireContext(), throwable,

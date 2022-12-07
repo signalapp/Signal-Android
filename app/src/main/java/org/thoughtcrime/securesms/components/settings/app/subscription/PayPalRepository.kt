@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.subscription
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalConfirmationResult
@@ -24,6 +25,8 @@ class PayPalRepository(private val donationsService: DonationsService) {
     const val ONE_TIME_RETURN_URL = "https://signaldonations.org/return/onetime"
     const val MONTHLY_RETURN_URL = "https://signaldonations.org/return/monthly"
     const val CANCEL_URL = "https://signaldonations.org/cancel"
+
+    private val TAG = Log.tag(PayPalRepository::class.java)
   }
 
   fun createOneTimePaymentIntent(
@@ -53,6 +56,7 @@ class PayPalRepository(private val donationsService: DonationsService) {
     paypalConfirmationResult: PayPalConfirmationResult
   ): Single<PayPalConfirmPaymentIntentResponse> {
     return Single.fromCallable {
+      Log.d(TAG, "Confirming one-time payment intent...", true)
       donationsService
         .confirmPayPalOneTimePaymentIntent(
           amount.currency.currencyCode,
@@ -78,11 +82,14 @@ class PayPalRepository(private val donationsService: DonationsService) {
 
   fun setDefaultPaymentMethod(paymentMethodId: String): Completable {
     return Single.fromCallable {
+      Log.d(TAG, "Setting default payment method...", true)
       donationsService.setDefaultPayPalPaymentMethod(
         SignalStore.donationsValues().requireSubscriber().subscriberId,
         paymentMethodId
       )
-    }.flatMap { it.flattenResult() }.ignoreElement().andThen {
+    }.flatMap { it.flattenResult() }.ignoreElement().doOnComplete {
+      Log.d(TAG, "Set default payment method.", true)
+      Log.d(TAG, "Storing the subscription payment source type locally.", true)
       SignalStore.donationsValues().setSubscriptionPaymentSourceType(PaymentSourceType.PayPal)
     }.subscribeOn(Schedulers.io())
   }
