@@ -130,7 +130,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result != null) {
           emitter.onSuccess(result)
         } else {
-          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
       }
 
@@ -158,7 +158,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result) {
           emitter.onSuccess(PayPalPaymentMethodId(createPaymentIntentResponse.token))
         } else {
-          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
       }
 
@@ -187,7 +187,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           Log.d(TAG, "User confirmed order. Continuing...")
           emitter.onSuccess(confirmationData)
         } else {
-          emitter.onError(DonationError.PayPalError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+          emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
         }
       }
 

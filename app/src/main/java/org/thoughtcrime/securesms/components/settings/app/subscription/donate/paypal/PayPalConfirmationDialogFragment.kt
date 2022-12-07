@@ -8,6 +8,7 @@ import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.ComponentDialog
 import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.setFragmentResult
@@ -18,6 +19,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.PayPalRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationWebViewOnBackPressedCallback
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
 import org.thoughtcrime.securesms.util.visible
 
@@ -55,6 +57,14 @@ class PayPalConfirmationDialogFragment : DialogFragment(R.layout.donation_webvie
     binding.webView.settings.javaScriptEnabled = true
     binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
     binding.webView.loadUrl(args.uri.toString())
+
+    (requireDialog() as ComponentDialog).onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      DonationWebViewOnBackPressedCallback(
+        this::dismissAllowingStateLoss,
+        binding.webView
+      )
+    )
   }
 
   override fun onDismiss(dialog: DialogInterface) {

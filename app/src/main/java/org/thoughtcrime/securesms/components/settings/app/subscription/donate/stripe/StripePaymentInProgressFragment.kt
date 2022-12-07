@@ -25,6 +25,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.DonationP
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -128,7 +129,7 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
             if (result != null) {
               emitter.onSuccess(result)
             } else {
-              emitter.onError(Exception("User did not complete 3DS Authorization."))
+              emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
             }
           }
 

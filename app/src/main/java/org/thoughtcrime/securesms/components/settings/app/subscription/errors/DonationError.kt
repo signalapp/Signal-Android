@@ -19,9 +19,10 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     class RequestTokenError(source: DonationErrorSource, cause: Throwable) : GooglePayError(source, cause)
   }
 
-  sealed class PayPalError(source: DonationErrorSource, cause: Throwable) : DonationError(source, cause) {
-    class UserCancelledPaymentError(source: DonationErrorSource) : DonationError(source, Exception("User cancelled payment."))
-  }
+  /**
+   * Utilized when the user cancels the payment flow, by either exiting a WebView or not confirming on the complete order sheet.
+   */
+  class UserCancelledPaymentError(source: DonationErrorSource) : DonationError(source, Exception("User cancelled payment."))
 
   /**
    * Gifting recipient validation errors, which occur before the user could be charged for a gift.

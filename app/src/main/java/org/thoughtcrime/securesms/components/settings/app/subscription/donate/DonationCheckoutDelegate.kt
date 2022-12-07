@@ -235,9 +235,9 @@ class DonationCheckoutDelegate(
         return
       }
 
-      if (throwable is DonationError.PayPalError.UserCancelledPaymentError) {
-        Log.d(TAG, "User cancelled out of paypal flow.", true)
-        fragment?.findNavController()?.popBackStack()
+      if (throwable is DonationError.UserCancelledPaymentError) {
+        Log.d(TAG, "User cancelled out of payment flow.", true)
+        fragment?.findNavController()?.popBackStack(R.id.donateToSignalFragment, false)
         return
       }
 
