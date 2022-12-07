@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.ringrtc.RemotePeer;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 
 import java.util.UUID;
@@ -93,6 +94,12 @@ public class IdleActionProcessor extends WebRtcActionProcessor {
                                                                   @NonNull CallManager.RingUpdate ringUpdate)
   {
     Log.i(TAG, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
+
+    int groupSize = remotePeerGroup.getRecipient().getParticipantIds().size();
+    if (groupSize > FeatureFlags.maxGroupCallRingSize()) {
+      Log.w(TAG, "Received ring request for large group, dropping. size: " + groupSize + " max: " + FeatureFlags.maxGroupCallRingSize());
+      return currentState;
+    }
 
     if (ringUpdate != CallManager.RingUpdate.REQUESTED) {
       SignalDatabase.groupCallRings().insertOrUpdateGroupRing(ringId, System.currentTimeMillis(), ringUpdate);
