@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.model.MessageExportStatus;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
@@ -288,6 +289,39 @@ public class MmsSmsTable extends DatabaseTable {
     try (Cursor cursor = getReadableDatabase().query(MmsTable.TABLE_NAME, new String[]{ "1" }, where, whereArgs, null, null, null, "1")) {
       return cursor.moveToFirst();
     }
+  }
+
+  public MessageId getRootOfQuoteChain(@NonNull MessageId id) {
+    if (!id.isMms()) {
+      return id;
+    }
+
+    MmsMessageRecord targetMessage;
+    try {
+      targetMessage = (MmsMessageRecord) SignalDatabase.mms().getMessageRecord(id.getId());
+    } catch (NoSuchMessageException e) {
+      throw new IllegalArgumentException("Invalid message ID!");
+    }
+
+    if (targetMessage.getQuote() == null) {
+      return id;
+    }
+
+    String query;
+    if (targetMessage.getQuote().getAuthor().equals(Recipient.self().getId())) {
+      query = MmsTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND (" + MmsSmsColumns.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + ") = " + MmsSmsColumns.Types.BASE_SENT_TYPE;
+    } else {
+      query = MmsTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND " + MmsTable.RECIPIENT_ID + " = '" + targetMessage.getQuote().getAuthor().serialize() + "'";
+    }
+
+    try (Reader reader = new Reader(queryTables(PROJECTION, query, null, "1", false))) {
+      MessageRecord record;
+      if ((record = reader.getNext()) != null) {
+        return getRootOfQuoteChain(new MessageId(record.getId(), record.isMms()));
+      }
+    }
+
+    return id;
   }
 
   public List<MessageRecord> getAllMessagesThatQuote(@NonNull MessageId id) {

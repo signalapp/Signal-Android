@@ -35,28 +35,30 @@ class MessageQuotesRepository {
       }
 
       val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
-      val observer = DatabaseObserver.Observer { emitter.onNext(getMessageInQuoteChainSync(application, messageId)) }
+      val observer = DatabaseObserver.Observer { emitter.onNext(getMessagesInQuoteChainSync(application, messageId)) }
 
       databaseObserver.registerConversationObserver(threadId, observer)
 
       emitter.setCancellable { databaseObserver.unregisterObserver(observer) }
-      emitter.onNext(getMessageInQuoteChainSync(application, messageId))
+      emitter.onNext(getMessagesInQuoteChainSync(application, messageId))
     }
   }
 
   @WorkerThread
-  private fun getMessageInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
-    var originalRecord: MessageRecord? = if (messageId.mms) {
-      SignalDatabase.mms.getMessageRecordOrNull(messageId.id)
+  private fun getMessagesInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
+    val rootMessageId: MessageId = SignalDatabase.mmsSms.getRootOfQuoteChain(messageId)
+
+    var originalRecord: MessageRecord? = if (rootMessageId.mms) {
+      SignalDatabase.mms.getMessageRecordOrNull(rootMessageId.id)
     } else {
-      SignalDatabase.sms.getMessageRecordOrNull(messageId.id)
+      SignalDatabase.sms.getMessageRecordOrNull(rootMessageId.id)
     }
 
     if (originalRecord == null) {
       return emptyList()
     }
 
-    val replyRecords: List<MessageRecord> = SignalDatabase.mmsSms.getAllMessagesThatQuote(messageId)
+    val replyRecords: List<MessageRecord> = SignalDatabase.mmsSms.getAllMessagesThatQuote(rootMessageId)
 
     val replies: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
       .apply {

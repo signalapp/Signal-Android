@@ -482,7 +482,7 @@ public class ConversationAdapter
   /**
    * Momentarily highlights a mention at the requested position.
    */
-  void pulseAtPosition(int position) {
+  public void pulseAtPosition(int position) {
     if (position >= 0 && position < getItemCount()) {
       int correctedPosition = isHeaderPosition(position) ? position + 1 : position;
 

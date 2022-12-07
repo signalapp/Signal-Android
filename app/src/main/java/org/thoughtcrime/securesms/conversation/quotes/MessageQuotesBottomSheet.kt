@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
@@ -93,7 +95,16 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
 
       messageAdapter.submitList(messages) {
         if (firstRender) {
-          (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(messages.size - 1, 100)
+          val targetMessageId = MessageId.deserialize(arguments?.getString(KEY_MESSAGE_ID, null) ?: throw IllegalArgumentException())
+          val targetMessagePosition = messages.indexOfFirst { it.messageRecord.id == targetMessageId.id && it.messageRecord.isMms == targetMessageId.mms }
+
+          (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(targetMessagePosition, 100)
+
+          if (targetMessagePosition != messages.size - 1) {
+            (dialog as BottomSheetDialog).behavior.state = BottomSheetBehavior.STATE_EXPANDED
+            messageAdapter.pulseAtPosition(targetMessagePosition)
+          }
+
           firstRender = false
         } else if (!list.canScrollVertically(1)) {
           list.layoutManager?.scrollToPosition(0)
