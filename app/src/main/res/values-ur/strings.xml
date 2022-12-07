@@ -2071,12 +2071,12 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s کی طرف سے آپ کے لیے</string>
     <string name="MediaPreviewActivity_media_no_longer_available">میڈیا اب دستیاب نہیں ہے۔</string>
-    <string name="MediaPreviewActivity_error_finding_message">Error finding message.</string>
+    <string name="MediaPreviewActivity_error_finding_message">میسج تلاش کرنے میں نقص پیش آیا۔</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">کوئی ایپ اس میڈیا کو شیئر کرنے کے قابل نہیں پاسکتی ہے۔</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">بند کریں</string>
     <string name="MediaPreviewFragment_edit_media_error">میڈیا کا نقص</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
-    <string name="MediaPreviewFragment_media_delete_error">Error Deleting Message, Message May Still Exist</string>
+    <string name="MediaPreviewFragment_media_delete_error">میسج حذف کرنے میں نقص پیش آیا، میسج اب بھی موجود ہو سکتا ہے</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dنئے پیغامات %2$dگفتگو میں</string>
@@ -4212,9 +4212,9 @@
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">Can\'t add to group story</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">گروپ سٹوری میں شامل نہیں کر سکتے</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Only admins of this group can add to its story</string>
+    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">صرف اس گروپ کے ایڈمنز اس سٹوری میں شامل کر سکتے ہیں</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">روابط کی ایپ نہیں ملی</string>
     <string name="ConversationSettingsFragment__send_message">پیغام بھیجیں</string>
@@ -4386,7 +4386,7 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">Add to the group story \"%1$s\"</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">گروپ سٹوری \"%1$s\" پر شامل کریں</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
     <string name="MediaReviewFragment__add_to_story">سٹوری میں شامل کریں</string>
     <string name="MediaReviewFragment__add_a_message">پیغام شامل کریں</string>
@@ -4633,19 +4633,19 @@
 
     <!-- Credit Card decline code error strings -->
     <!-- Stripe decline code approve_with_id for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again">توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Stripe decline code call_issuer for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">Verify your card details are correct and try again. If the problem continues, contact your bank.</string>
+    <string name="DeclineCode__verify_your_card_details_are_correct_and_try_again_if_the_problem_continues">توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔ اگر مسئلہ جاری رہتا ہے، تو اپنے بینک سے رابطہ کریں۔</string>
     <!-- Stripe decline code expired_card for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">Your card has expired. Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__your_card_has_expired_verify_your_card_details">آپ کا کارڈ زائد المیعاد ہو گیا ہے۔ توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Stripe decline code incorrect_cvc and invalid_cvc for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">Your card\'s CVC number is incorrect. Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect_verify_your_card_details">آپ کے کارڈ کا CVC نمبر غلط ہے۔ توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Stripe decline code invalid_expiry_month for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">The expiration month on your card is incorrect. Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__the_expiration_month_on_your_card_is_incorrect">آپ کے کارڈ پر زائد المیعاد ہونے کا مہینہ غلط ہے۔ توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Stripe decline code invalid_expiry_year for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">The expiration year on your card is incorrect. Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__the_expiration_year_on_your_card_is_incorrect">آپ کے کارڈ پر زائد المیعاد ہونے کا سال غلط ہے۔ توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
     <!-- Stripe decline code incorrect_number and invalid_number for credit cards displayed in a notification or dialog -->
-    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">Your card number is incorrect. Verify your card details are correct and try again.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect_verify_your_card_details">آپ کا کارڈ نمبر غلط ہے۔ توثیق کریں کہ آپ کے کارڈ کی تفصیلات درست ہیں اور دوبارہ کوشش کریں۔</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">اپنی پروفائل کو نام دیں</string>
@@ -5246,8 +5246,8 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
-        <item quantity="one">%1$s · %2$d excluded</item>
-        <item quantity="other">%1$s · %2$d excluded</item>
+        <item quantity="one">%1$s · %2$d خارج کر دیا گیا</item>
+        <item quantity="other">%1$s · %2$d خارج کر دیے گئے</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">اپنے ناظرین کے انتخاب کے لیے ٹیپ کریں</string>
