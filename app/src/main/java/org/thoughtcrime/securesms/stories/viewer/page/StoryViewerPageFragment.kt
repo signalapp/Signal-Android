@@ -469,6 +469,8 @@ class StoryViewerPageFragment :
           is StoryViewerDialog.GroupDirectReply -> {
             onStartDirectReply(sheet.storyId, sheet.recipientId)
           }
+          StoryViewerDialog.Delete,
+          StoryViewerDialog.Forward -> Unit
         }
       }
     }

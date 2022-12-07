@@ -31,8 +31,8 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoriesAdapter;
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
@@ -198,7 +198,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
     disposables.add(viewModel.getEmojiList().subscribe(pages -> emojiPageView.setList(pages, null)));
     disposables.add(viewModel.getCategories().subscribe(categoriesAdapter::submitList));
     disposables.add(viewModel.getSelectedKey().subscribe(key -> categoriesRecycler.post(() -> {
-      int index = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel.class, m -> m.getKey().equals(key));
+      int index = categoriesAdapter.indexOfFirst(KeyboardPageCategoryIconMappingModel.class, m -> m.getKey().equals(key));
 
       if (index != -1) {
         categoriesRecycler.smoothScrollToPosition(index);

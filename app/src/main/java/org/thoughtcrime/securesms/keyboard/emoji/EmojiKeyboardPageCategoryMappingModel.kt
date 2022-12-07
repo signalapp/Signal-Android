@@ -2,42 +2,42 @@ package org.thoughtcrime.securesms.keyboard.emoji
 
 import android.content.Context
 import android.graphics.drawable.Drawable
-import androidx.annotation.AttrRes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.emoji.EmojiCategory
 import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconMappingModel
 import org.thoughtcrime.securesms.util.ThemeUtil
 
-sealed class EmojiKeyboardPageCategoryMappingModel(
-  override val key: String,
-  @AttrRes val iconId: Int,
-  override val selected: Boolean
-) : KeyboardPageCategoryIconMappingModel<EmojiKeyboardPageCategoryMappingModel> {
+class RecentsMappingModel(override val selected: Boolean) : KeyboardPageCategoryIconMappingModel<RecentsMappingModel> {
+  override val key: String = RecentEmojiPageModel.KEY
 
   override fun getIcon(context: Context): Drawable {
-    return requireNotNull(ThemeUtil.getThemedDrawable(context, iconId))
+    return requireNotNull(ThemeUtil.getThemedDrawable(context, R.attr.emoji_category_recent))
   }
 
-  override fun areItemsTheSame(newItem: EmojiKeyboardPageCategoryMappingModel): Boolean {
+  override fun areItemsTheSame(newItem: RecentsMappingModel): Boolean {
     return newItem.key == key
   }
 
-  class RecentsMappingModel(selected: Boolean) : EmojiKeyboardPageCategoryMappingModel(RecentEmojiPageModel.KEY, R.attr.emoji_category_recent, selected) {
-    override fun areContentsTheSame(newItem: EmojiKeyboardPageCategoryMappingModel): Boolean {
-      return newItem is RecentsMappingModel && super.areContentsTheSame(newItem)
-    }
-  }
-
-  class EmojiCategoryMappingModel(private val emojiCategory: EmojiCategory, selected: Boolean) : EmojiKeyboardPageCategoryMappingModel(emojiCategory.key, emojiCategory.icon, selected) {
-    override fun areContentsTheSame(newItem: EmojiKeyboardPageCategoryMappingModel): Boolean {
-      return newItem is EmojiCategoryMappingModel &&
-        super.areContentsTheSame(newItem) &&
-        newItem.emojiCategory == emojiCategory
-    }
-  }
-
-  override fun areContentsTheSame(newItem: EmojiKeyboardPageCategoryMappingModel): Boolean {
+  override fun areContentsTheSame(newItem: RecentsMappingModel): Boolean {
     return areItemsTheSame(newItem) && selected == newItem.selected
+  }
+}
+
+class EmojiCategoryMappingModel(private val emojiCategory: EmojiCategory, override val selected: Boolean) : KeyboardPageCategoryIconMappingModel<EmojiCategoryMappingModel> {
+  override val key: String = emojiCategory.key
+
+  override fun getIcon(context: Context): Drawable {
+    return requireNotNull(ThemeUtil.getThemedDrawable(context, emojiCategory.icon))
+  }
+
+  override fun areItemsTheSame(newItem: EmojiCategoryMappingModel): Boolean {
+    return newItem.key == key
+  }
+
+  override fun areContentsTheSame(newItem: EmojiCategoryMappingModel): Boolean {
+    return areItemsTheSame(newItem) &&
+      selected == newItem.selected &&
+      newItem.emojiCategory == emojiCategory
   }
 }

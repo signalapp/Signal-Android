@@ -112,7 +112,7 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
     holder.bind(getItem(position));
   }
 
-  public <T extends MappingModel<T>> int indexOfFirst(@NonNull Class<T> clazz, @NonNull Function1<T, Boolean> predicate) {
+  public <T> int indexOfFirst(@NonNull Class<T> clazz, @NonNull Function1<T, Boolean> predicate) {
     return CollectionsKt.indexOfFirst(getCurrentList(), m -> {
       //noinspection unchecked
       return clazz.isAssignableFrom(m.getClass()) && predicate.invoke((T) m);

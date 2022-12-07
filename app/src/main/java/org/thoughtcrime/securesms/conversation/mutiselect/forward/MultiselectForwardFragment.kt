@@ -381,7 +381,6 @@ class MultiselectForwardFragment :
     }
 
     if (view != null && contactSet.any { it is ContactSearchKey.RecipientSearchKey && it.isStory }) {
-      @Suppress("NON_EXHAUSTIVE_WHEN_STATEMENT")
       when (storySendRequirements) {
         Stories.MediaTransform.SendRequirements.REQUIRES_CLIP -> {
           displayTooltip(view, R.string.MultiselectForwardFragment__videos_will_be_trimmed)
@@ -389,6 +388,7 @@ class MultiselectForwardFragment :
         Stories.MediaTransform.SendRequirements.CAN_NOT_SEND -> {
           displayTooltip(view, R.string.MultiselectForwardFragment__videos_sent_to_stories_cant)
         }
+        Stories.MediaTransform.SendRequirements.VALID_DURATION -> Unit
       }
     }
 

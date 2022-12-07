@@ -102,6 +102,7 @@ class StoryViewerFragment :
       when (state.crossfadeSource) {
         is StoryViewerState.CrossfadeSource.TextModel -> storyCrossfader.setSourceView(state.crossfadeSource.storyTextPostModel)
         is StoryViewerState.CrossfadeSource.ImageUri -> storyCrossfader.setSourceView(state.crossfadeSource.imageUri, state.crossfadeSource.imageBlur)
+        StoryViewerState.CrossfadeSource.None -> Unit
       }
 
       if (state.crossfadeTarget is StoryViewerState.CrossfadeTarget.Record) {

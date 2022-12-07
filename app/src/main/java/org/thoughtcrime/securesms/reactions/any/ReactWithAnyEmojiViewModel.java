@@ -13,7 +13,8 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.emoji.EmojiCategory;
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel;
+import org.thoughtcrime.securesms.keyboard.emoji.EmojiCategoryMappingModel;
+import org.thoughtcrime.securesms.keyboard.emoji.RecentsMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchRepository;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.reactions.ReactionsRepository;
@@ -72,12 +73,12 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
 
     this.categories = Observable.combineLatest(emojiPages, this.selectedKey.distinctUntilChanged(), (pages, selectedKey) -> {
       MappingModelList list = new MappingModelList();
-      list.add(new EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel(RecentEmojiPageModel.KEY.equals(selectedKey)));
+      list.add(new RecentsMappingModel(RecentEmojiPageModel.KEY.equals(selectedKey)));
       list.addAll(pages.stream()
                        .filter(p -> !RecentEmojiPageModel.KEY.equals(p.getKey()))
                        .map(p -> {
                          EmojiCategory category = EmojiCategory.forKey(p.getKey());
-                         return new EmojiKeyboardPageCategoryMappingModel.EmojiCategoryMappingModel(category, category.getKey().equals(selectedKey));
+                         return new EmojiCategoryMappingModel(category, category.getKey().equals(selectedKey));
                        })
                        .collect(Collectors.toList()));
       return list;

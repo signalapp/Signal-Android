@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.Emoj
 import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.emoji.EmojiCategory
-import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoryMappingModel.EmojiCategoryMappingModel
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList
@@ -49,7 +48,7 @@ class EmojiKeyboardPageViewModel(private val repository: EmojiKeyboardPageReposi
       val list = MappingModelList()
       list += models.map { m ->
         if (RecentEmojiPageModel.KEY == m.key) {
-          EmojiKeyboardPageCategoryMappingModel.RecentsMappingModel(m.key == selectedKey)
+          RecentsMappingModel(m.key == selectedKey)
         } else {
           val category = EmojiCategory.forKey(m.key)
           EmojiCategoryMappingModel(category, category.key == selectedKey)
