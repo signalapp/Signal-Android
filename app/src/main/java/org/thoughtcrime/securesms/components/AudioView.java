@@ -7,6 +7,7 @@ import android.graphics.PorterDuff;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.util.AttributeSet;
+import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -507,46 +508,15 @@ public final class AudioView extends FrameLayout {
   }
 
   private class LongTapAwareTouchListener implements OnTouchListener {
-    private static final int LONG_CLICK_DELAY = 1000;
-    private final int TOLERANCE = ViewUtil.dpToPx(5);
-
-    private long  longClickTime = 0;
-    private float initialX;
-    private float initialY;
+    private final GestureDetector gestureDetector = new GestureDetector(AudioView.this.getContext(), new GestureDetector.SimpleOnGestureListener() {
+      @Override public void onLongPress(MotionEvent e) {
+        performLongClick();
+      }
+    });
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-      switch (event.getAction()) {
-        case MotionEvent.ACTION_DOWN:
-          initLongClick(event);
-          break;
-        case MotionEvent.ACTION_CANCEL:
-        case MotionEvent.ACTION_UP:
-          endLongClick();
-          break;
-        case MotionEvent.ACTION_MOVE:
-          if (Math.abs(event.getX() - initialX) > TOLERANCE || Math.abs(event.getY() - initialY) > TOLERANCE) endLongClick();
-          break;
-      }
-      return false;
-    }
-
-    private void initLongClick(MotionEvent event) {
-      longClickTime = event.getEventTime();
-      initialX = event.getX();
-      initialY = event.getY();
-
-      postDelayed(() -> {
-        if (longClickTime != 0) {
-          performLongClick();
-        }
-      }, LONG_CLICK_DELAY);
-    }
-
-    private void endLongClick() {
-      longClickTime = 0;
-      initialX = 0;
-      initialY = 0;
+      return gestureDetector.onTouchEvent(event);
     }
   }
 
