@@ -642,7 +642,10 @@ public class AttachmentTable extends DatabaseTable {
       dataInfo.file.delete();
     } else {
       long threadId = SignalDatabase.mms().getThreadIdForMessage(mmsId);
-      SignalDatabase.threads().updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
+
+      if (!SignalDatabase.mms().isStory(mmsId)) {
+        SignalDatabase.threads().updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId));
+      }
 
       notifyConversationListeners(threadId);
       notifyConversationListListeners();
