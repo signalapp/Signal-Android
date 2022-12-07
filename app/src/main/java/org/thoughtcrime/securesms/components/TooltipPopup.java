@@ -18,10 +18,12 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.material.shape.MaterialShapeDrawable;
+import com.google.android.material.shape.ShapeAppearanceModel;
+
 import org.signal.core.util.DimensionUnit;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.util.ViewUtil;
 
 /**
  * Class for creating simple tooltips to show throughout the app. Utilizes a popup window so you
@@ -41,6 +43,8 @@ public class TooltipPopup extends PopupWindow {
   private final ImageView arrow;
   private final int position;
   private final int startMargin;
+
+  private final MaterialShapeDrawable shapeableBubbleBackground = new MaterialShapeDrawable();
 
   public static Builder forTarget(@NonNull View anchor) {
     return new Builder(anchor);
@@ -85,9 +89,11 @@ public class TooltipPopup extends PopupWindow {
     if (backgroundTint == 0) {
       bubble.getBackground().setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.MULTIPLY);
       arrow.setColorFilter(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color), PorterDuff.Mode.SRC_IN);
+      shapeableBubbleBackground.setTint(ContextCompat.getColor(anchor.getContext(), R.color.tooltip_default_color));
     } else {
       bubble.getBackground().setColorFilter(backgroundTint, PorterDuff.Mode.MULTIPLY);
       arrow.setColorFilter(backgroundTint, PorterDuff.Mode.SRC_IN);
+      shapeableBubbleBackground.setTint(backgroundTint);
     }
 
     if (iconGlideModel != null) {
@@ -160,6 +166,26 @@ public class TooltipPopup extends PopupWindow {
       case POSITION_RIGHT:
         xoffset -= startMargin;
     }
+
+    View bubble = getContentView().findViewById(R.id.tooltip_bubble);
+    ShapeAppearanceModel.Builder  shapeAppearanceModel  = ShapeAppearanceModel.builder()
+                                                                              .setAllCornerSizes(DimensionUnit.DP.toPixels(18));
+
+    // If the arrow is within the last 20dp of the right hand side, use RIGHT and set corner to 9dp
+    onLayout(() -> {
+      if (arrow.getX() > getContentView().getWidth() / 2f) {
+        arrow.setImageResource(R.drawable.ic_tooltip_arrow_up_right);
+      }
+
+      float arrowEnd = arrow.getX() + arrow.getRight();
+      if (arrowEnd > getContentView().getRight() - DimensionUnit.DP.toPixels(20)) {
+        shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopRightCornerSize(DimensionUnit.DP.toPixels(9f)).build());
+        bubble.setBackground(shapeableBubbleBackground);
+      } else if (arrowEnd < DimensionUnit.DP.toPixels(20)) {
+        shapeableBubbleBackground.setShapeAppearanceModel(shapeAppearanceModel.setTopLeftCornerSize(DimensionUnit.DP.toPixels(9f)).build());
+        bubble.setBackground(shapeableBubbleBackground);
+      }
+    });
 
     showAsDropDown(anchor, xoffset, yoffset);
   }
