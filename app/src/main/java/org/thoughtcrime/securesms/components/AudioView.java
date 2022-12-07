@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
+import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -337,7 +338,7 @@ public final class AudioView extends FrameLayout {
     super.setClickable(clickable);
     this.playPauseButton.setClickable(clickable);
     this.seekBar.setClickable(clickable);
-    this.seekBar.setOnTouchListener(clickable ? null : new TouchIgnoringListener());
+    this.seekBar.setOnTouchListener(clickable ? new LongTapAwareTouchListener() : new TouchIgnoringListener());
     this.downloadButton.setClickable(clickable);
   }
 
@@ -502,6 +503,50 @@ public final class AudioView extends FrameLayout {
           callbacks.onProgressUpdated(durationMillis, Math.round(durationMillis * getProgress()));
         }
       }
+    }
+  }
+
+  private class LongTapAwareTouchListener implements OnTouchListener {
+    private static final int LONG_CLICK_DELAY = 1000;
+    private final int TOLERANCE = ViewUtil.dpToPx(5);
+
+    private long  longClickTime = 0;
+    private float initialX;
+    private float initialY;
+
+    @Override
+    public boolean onTouch(View v, MotionEvent event) {
+      switch (event.getAction()) {
+        case MotionEvent.ACTION_DOWN:
+          initLongClick(event);
+          break;
+        case MotionEvent.ACTION_CANCEL:
+        case MotionEvent.ACTION_UP:
+          endLongClick();
+          break;
+        case MotionEvent.ACTION_MOVE:
+          if (Math.abs(event.getX() - initialX) > TOLERANCE || Math.abs(event.getY() - initialY) > TOLERANCE) endLongClick();
+          break;
+      }
+      return false;
+    }
+
+    private void initLongClick(MotionEvent event) {
+      longClickTime = event.getEventTime();
+      initialX = event.getX();
+      initialY = event.getY();
+
+      postDelayed(() -> {
+        if (longClickTime != 0) {
+          performLongClick();
+        }
+      }, LONG_CLICK_DELAY);
+    }
+
+    private void endLongClick() {
+      longClickTime = 0;
+      initialX = 0;
+      initialY = 0;
     }
   }
 
