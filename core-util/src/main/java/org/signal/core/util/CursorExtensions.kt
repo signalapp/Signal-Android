@@ -105,4 +105,16 @@ inline fun <T> Cursor.readToSet(predicate: (T) -> Boolean = { true }, mapper: (C
   return set
 }
 
+inline fun <T> Cursor.firstOrNull(predicate: (T) -> Boolean = { true }, mapper: (Cursor) -> T): T? {
+  use {
+    while (moveToNext()) {
+      val record = mapper(this)
+      if (predicate(record)) {
+        return record
+      }
+    }
+  }
+  return null
+}
+
 fun Boolean.toInt(): Int = if (this) 1 else 0
