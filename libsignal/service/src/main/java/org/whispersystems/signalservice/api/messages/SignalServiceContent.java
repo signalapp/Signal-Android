@@ -721,29 +721,27 @@ public final class SignalServiceContent {
                                                  metadata.getSenderDevice());
     }
 
-    return SignalServiceDataMessage.newBuilder()
-                                   .withTimestamp(metadata.getTimestamp())
-                                   .asGroupMessage(groupInfoV2)
-                                   .withAttachments(attachments)
-                                   .withBody(content.hasBody() ? content.getBody() : null)
-                                   .asEndSessionMessage(endSession)
-                                   .withExpiration(content.getExpireTimer())
-                                   .asExpirationUpdate(expirationUpdate)
-                                   .withProfileKey(content.hasProfileKey() ? content.getProfileKey().toByteArray() : null)
-                                   .asProfileKeyUpdate(profileKeyUpdate)
-                                   .withQuote(quote)
-                                   .withSharedContacts(sharedContacts)
-                                   .withPreviews(previews)
-                                   .withMentions(mentions)
-                                   .withSticker(sticker)
-                                   .withViewOnce(content.getIsViewOnce())
-                                   .withReaction(reaction)
-                                   .withRemoteDelete(remoteDelete)
-                                   .withGroupCallUpdate(groupCallUpdate)
-                                   .withPayment(payment)
-                                   .withStoryContext(storyContext)
-                                   .withGiftBadge(giftBadge)
-                                   .build();
+    return new SignalServiceDataMessage(metadata.getTimestamp(),
+                                        groupInfoV2,
+                                        attachments,
+                                        content.hasBody() ? content.getBody() : null,
+                                        endSession,
+                                        content.getExpireTimer(),
+                                        expirationUpdate,
+                                        content.hasProfileKey() ? content.getProfileKey().toByteArray() : null,
+                                        profileKeyUpdate,
+                                        quote,
+                                        sharedContacts,
+                                        previews,
+                                        mentions,
+                                        sticker,
+                                        content.getIsViewOnce(),
+                                        reaction,
+                                        remoteDelete,
+                                        groupCallUpdate,
+                                        payment,
+                                        storyContext,
+                                        giftBadge);
   }
 
   private static SignalServiceSyncMessage createSynchronizeMessage(SignalServiceMetadata metadata,
