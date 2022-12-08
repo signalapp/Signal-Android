@@ -68,7 +68,7 @@ public class PointerAttachment extends Attachment {
     return results;
   }
 
-  public static List<Attachment> forPointers(List<SignalServiceDataMessage.Quote.QuotedAttachment> pointers) {
+  public static List<Attachment> forPointers(@Nullable List<SignalServiceDataMessage.Quote.QuotedAttachment> pointers) {
     List<Attachment> results = new LinkedList<>();
 
     if (pointers != null) {
