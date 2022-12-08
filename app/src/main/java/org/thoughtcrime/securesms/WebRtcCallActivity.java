@@ -602,7 +602,7 @@ public class WebRtcCallActivity extends BaseActivity implements SafetyNumberChan
   }
 
   public void handleGroupMemberCountChange(int count) {
-    boolean canRing = count <= FeatureFlags.maxGroupCallRingSize() && FeatureFlags.groupCallRinging();
+    boolean canRing = count <= FeatureFlags.maxGroupCallRingSize();
     callScreen.enableRingGroup(canRing);
     ApplicationDependencies.getSignalCallManager().setRingGroup(canRing);
   }

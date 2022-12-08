@@ -8,7 +8,6 @@ import androidx.annotation.Px;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 
 import java.util.Set;
@@ -217,7 +216,7 @@ public final class WebRtcControls {
   }
 
   boolean displayRingToggle() {
-    return FeatureFlags.groupCallRinging() && isPreJoin() && isGroupCall() && !hasAtLeastOneRemote;
+    return isPreJoin() && isGroupCall() && !hasAtLeastOneRemote;
   }
 
   private boolean isError() {

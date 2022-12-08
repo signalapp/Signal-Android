@@ -80,7 +80,6 @@ public final class FeatureFlags {
   private static final String SENDER_KEY_MAX_AGE                = "android.senderKeyMaxAge";
   private static final String RETRY_RECEIPTS                    = "android.retryReceipts";
   private static final String MAX_GROUP_CALL_RING_SIZE          = "global.calling.maxGroupCallRingSize";
-  private static final String GROUP_CALL_RINGING                = "android.calling.groupCallRinging.3";
   private static final String STORIES_TEXT_FUNCTIONS            = "android.stories.text.functions";
   private static final String HARDWARE_AEC_BLOCKLIST_MODELS     = "android.calling.hardwareAecBlockList";
   private static final String SOFTWARE_AEC_BLOCKLIST_MODELS     = "android.calling.softwareAecBlockList";
@@ -140,7 +139,6 @@ public final class FeatureFlags {
       RETRY_RESPOND_MAX_AGE,
       RETRY_RECEIPTS,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING,
       SENDER_KEY_MAX_AGE,
       STORIES_TEXT_FUNCTIONS,
       HARDWARE_AEC_BLOCKLIST_MODELS,
@@ -216,7 +214,6 @@ public final class FeatureFlags {
       RETRY_RESPOND_MAX_AGE,
       RETRY_RECEIPTS,
       MAX_GROUP_CALL_RING_SIZE,
-      GROUP_CALL_RINGING,
       SENDER_KEY_MAX_AGE,
       DONATE_MEGAPHONE,
       HARDWARE_AEC_BLOCKLIST_MODELS,
@@ -438,11 +435,6 @@ public final class FeatureFlags {
   /** Max group size that can be use group call ringing. */
   public static long maxGroupCallRingSize() {
     return getLong(MAX_GROUP_CALL_RING_SIZE, 16);
-  }
-
-  /** Whether or not to show the group call ring toggle in the UI. */
-  public static boolean groupCallRinging() {
-    return getBoolean(GROUP_CALL_RINGING, false);
   }
 
   /** A comma-separated list of country codes where payments should be disabled. */
