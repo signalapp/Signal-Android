@@ -419,7 +419,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun isAssociated(serviceId: ServiceId, pni: PNI): Boolean {
-    return readableDatabase.exists(TABLE_NAME, "$SERVICE_ID = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString())
+    return readableDatabase.exists(TABLE_NAME).where("$SERVICE_ID = ? AND $PNI_COLUMN = ?", serviceId.toString(), pni.toString()).run()
   }
 
   @JvmOverloads

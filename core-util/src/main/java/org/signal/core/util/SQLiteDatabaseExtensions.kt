@@ -38,10 +38,8 @@ fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
 /**
  * Checks if a row exists that matches the query.
  */
-fun SupportSQLiteDatabase.exists(table: String, query: String, vararg args: Any): Boolean {
-  return this.query("SELECT EXISTS(SELECT 1 FROM $table WHERE $query)", SqlUtil.buildArgs(*args)).use { cursor ->
-    cursor.moveToFirst() && cursor.getInt(0) == 1
-  }
+fun SupportSQLiteDatabase.exists(table: String): ExistsBuilderPart1 {
+  return ExistsBuilderPart1(this, table)
 }
 
 /**
@@ -257,5 +255,34 @@ class DeleteBuilderPart2(
 ) {
   fun run(): Int {
     return db.delete(tableName, where, whereArgs)
+  }
+}
+
+class ExistsBuilderPart1(
+  private val db: SupportSQLiteDatabase,
+  private val tableName: String
+) {
+
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): ExistsBuilderPart2 {
+    return ExistsBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
+  }
+
+  fun run(): Boolean {
+    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName)", null).use { cursor ->
+      cursor.moveToFirst() && cursor.getInt(0) == 1
+    }
+  }
+}
+
+class ExistsBuilderPart2(
+  private val db: SupportSQLiteDatabase,
+  private val tableName: String,
+  private val where: String,
+  private val whereArgs: Array<String>
+) {
+  fun run(): Boolean {
+    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName WHERE $where)", SqlUtil.buildArgs(*whereArgs)).use { cursor ->
+      cursor.moveToFirst() && cursor.getInt(0) == 1
+    }
   }
 }

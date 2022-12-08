@@ -268,7 +268,9 @@ public abstract class MessageTable extends DatabaseTable implements MmsSmsColumn
   }
 
   public boolean hasSmsExportMessage(long threadId) {
-    return SQLiteDatabaseExtensionsKt.exists(getReadableDatabase(), getTableName(), THREAD_ID_WHERE + " AND " + getTypeField() + " = ?", threadId, Types.SMS_EXPORT_TYPE);
+    return SQLiteDatabaseExtensionsKt.exists(getReadableDatabase(), getTableName())
+        .where(THREAD_ID_WHERE + " AND " + getTypeField() + " = ?", threadId, Types.SMS_EXPORT_TYPE)
+        .run();
   }
 
   final int getSecureMessageCountForInsights() {

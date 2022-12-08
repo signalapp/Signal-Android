@@ -75,7 +75,7 @@ class PendingPniSignatureMessageTable(context: Context, databaseHelper: SignalDa
         return@withinTransaction
       }
 
-      val stillPending: Boolean = db.exists(TABLE_NAME, "$RECIPIENT_ID = ? AND $SENT_TIMESTAMP = ?", recipientId, sentTimestamps)
+      val stillPending: Boolean = db.exists(TABLE_NAME).where("$RECIPIENT_ID = ? AND $SENT_TIMESTAMP = ?", recipientId, sentTimestamps).run()
 
       if (!stillPending) {
         Log.i(TAG, "All devices for ($recipientId, $sentTimestamps) have acked the PNI signature message. Clearing flag and removing any other pending receipts.")
