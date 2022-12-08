@@ -114,6 +114,17 @@ android {
         unitTests {
             includeAndroidResources = true
         }
+
+        managedDevices {
+            devices {
+                pixel3api30 (com.android.build.api.dsl.ManagedVirtualDevice) {
+                    device = "Pixel 3"
+                    apiLevel = 30
+                    systemImageSource = "google-atd"
+                    require64Bit = false
+                }
+            }
+        }
     }
 
     lintOptions {
