@@ -299,7 +299,7 @@ public class IncomingMessageObserver {
     public int onStartCommand(Intent intent, int flags, int startId) {
       super.onStartCommand(intent, flags, startId);
 
-      NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NotificationChannels.BACKGROUND);
+      NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(), NotificationChannels.getInstance().BACKGROUND);
       builder.setContentTitle(getApplicationContext().getString(R.string.MessageRetrievalService_signal));
       builder.setContentText(getApplicationContext().getString(R.string.MessageRetrievalService_background_connection_enabled));
       builder.setPriority(NotificationCompat.PRIORITY_MIN);

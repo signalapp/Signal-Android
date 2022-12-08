@@ -31,7 +31,7 @@ public final class GroupCallSafetyNumberChangeNotificationUtil {
 
     PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, contentIntent, PendingIntentFlags.mutable());
 
-    Notification safetyNumberChangeNotification = new NotificationCompat.Builder(context, NotificationChannels.CALLS)
+    Notification safetyNumberChangeNotification = new NotificationCompat.Builder(context, NotificationChannels.getInstance().CALLS)
                                                                         .setSmallIcon(R.drawable.ic_notification)
                                                                         .setContentTitle(recipient.getDisplayName(context))
                                                                         .setContentText(context.getString(R.string.GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed))

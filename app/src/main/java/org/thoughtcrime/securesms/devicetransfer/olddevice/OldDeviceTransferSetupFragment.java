@@ -58,7 +58,7 @@ public final class OldDeviceTransferSetupFragment extends DeviceTransferSetupFra
     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
     PendingIntent pendingIntent = PendingIntent.getActivity(requireContext(), 0, intent, PendingIntentFlags.mutable());
 
-    DeviceToDeviceTransferService.TransferNotificationData notificationData = new DeviceToDeviceTransferService.TransferNotificationData(NotificationIds.DEVICE_TRANSFER, NotificationChannels.BACKUPS, R.drawable.ic_signal_backup);
+    DeviceToDeviceTransferService.TransferNotificationData notificationData = new DeviceToDeviceTransferService.TransferNotificationData(NotificationIds.DEVICE_TRANSFER, NotificationChannels.getInstance().BACKUPS, R.drawable.ic_signal_backup);
     DeviceToDeviceTransferService.startClient(requireContext(), new OldDeviceClientTask(), notificationData, pendingIntent);
   }
 

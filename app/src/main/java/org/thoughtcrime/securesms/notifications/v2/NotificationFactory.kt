@@ -323,7 +323,7 @@ object NotificationFactory {
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
       setAutoCancel(true)
       setAlarms(recipient)
-      setChannelId(NotificationChannels.FAILURES)
+      setChannelId(NotificationChannels.getInstance().FAILURES)
     }
 
     NotificationManagerCompat.from(context).safelyNotify(context, recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
@@ -353,7 +353,7 @@ object NotificationFactory {
       setOnlyAlertOnce(true)
       setAutoCancel(true)
       setAlarms(recipient)
-      setChannelId(NotificationChannels.FAILURES)
+      setChannelId(NotificationChannels.getInstance().FAILURES)
     }
 
     NotificationManagerCompat.from(context).safelyNotify(context, recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())

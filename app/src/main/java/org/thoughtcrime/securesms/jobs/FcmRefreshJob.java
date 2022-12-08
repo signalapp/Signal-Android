@@ -122,7 +122,7 @@ public class FcmRefreshJob extends BaseJob {
   private void notifyFcmFailure() {
     Intent                     intent        = new Intent(context, PlayServicesProblemActivity.class);
     PendingIntent              pendingIntent = PendingIntent.getActivity(context, 1122, intent, PendingIntentFlags.cancelCurrent());
-    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, NotificationChannels.FAILURES);
+    NotificationCompat.Builder builder       = new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES);
 
     builder.setSmallIcon(R.drawable.ic_notification);
     builder.setLargeIcon(BitmapFactory.decodeResource(context.getResources(),
