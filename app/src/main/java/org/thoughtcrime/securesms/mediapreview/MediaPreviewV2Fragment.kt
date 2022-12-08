@@ -338,7 +338,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
           view.visibility = VISIBLE
         }
         .withEndAction {
-          if (view == binding.mediaPreviewPlaybackControls.recyclerView) {
+          if (getView() != null && view == binding.mediaPreviewPlaybackControls.recyclerView) {
             scrollAlbumRailToCurrentAdapterPosition()
           }
         }
