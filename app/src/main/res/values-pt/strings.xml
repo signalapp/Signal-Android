@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">Sim</string>
     <string name="no">Não</string>
@@ -23,65 +22,40 @@
     <string name="save">Guardar</string>
     <string name="note_to_self">Nota para mim</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Nova mensagem</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">O Signal está a atualizar…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">Atualmente: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ainda não definiu uma frase-chave!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Desativar frase-chave?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Isto irá desbloquear permanentemente o Signal e as notificações de mensagens.</string>
     <string name="ApplicationPreferencesActivity_disable">Desativar</string>
-    <string name="ApplicationPreferencesActivity_unregistering">A eliminar o registo…</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">A eliminar o registo do serviço de mensagens e chamadas do Signal…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Desativar as mensagens e chamadas do Signal?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Desative as mensagens e chamadas do Signal eliminando o seu registo do servidor. Será necessário registar novamente o seu número de telefone caso as pretenda utilizar novamente no futuro.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Erro a establecer a ligação com o servidor!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS ativados</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Toque para alterar a sua aplicação de SMS padrão</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMS desativados</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Toque para tornar o Signal na sua aplicação SMS padrão</string>
-    <string name="ApplicationPreferencesActivity_on">on</string>
-    <string name="ApplicationPreferencesActivity_On">On</string>
-    <string name="ApplicationPreferencesActivity_off">off</string>
-    <string name="ApplicationPreferencesActivity_Off">Off</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Bloqueio de ecrã %1$s, Bloqueio de registo %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">Tema %1$s, Idioma %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Os PINs são necessários para o bloqueio do registo. Para desativar os PINs, primeiro desative o bloqueio do registo.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN criado.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN desativado.</string>
-    <string name="ApplicationPreferencesActivity_hide">Ocultar</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">Ocultar lembrete?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Gravar frase de recuperação de pagamentos</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Gravar frase</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Antes de desativar o seu PIN, você deverá registar a sua frase de recuperação de pagamentos para garantir que pode recuperar a sua conta de pagamentos.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$d minuto</item>
-        <item quantity="other">%1$d minutos</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(imagem)</string>
@@ -129,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">Bloquear utilizador?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" não será capaz de lhe telefonar ou enviar mensagens.</string>
     <string name="BlockedUsersActivity__block">Bloquear</string>
-    <string name="BlockedUsersActivity__unblock_user">Desbloquear utilizador?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Deseja desbloquear \"%1$s\"?</string>
-    <string name="BlockedUsersActivity__unblock">Desbloquear</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">Valor da doação: %1$s/mês</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Introduza as informações do seu cartão abaixo</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Introduza as informações do seu cartão. O Signal não recolhe nem armazena as suas informações pessoais.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -249,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Poderão ser aplicadas taxas. O número para o qual está a ligar não se encontra registado no Signal. Esta chamada será efetuada através da sua operadora e não através da internet.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">O seu número de segurança com %1$s foi alterado. Isto poderá significar que alguém está a tentar intercetar esta comunicação ou simplesmente que %2$s reinstalou o Signal.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Você poderá desejar verificar o seu número de segurança com este contacto.</string>
-    <string name="ConfirmIdentityDialog_accept">Aceitar</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Conversas recentes</string>
@@ -271,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">Editar nome</string>
     <string name="ContactNameEditActivity_given_name">Nome próprio</string>
     <string name="ContactNameEditActivity_family_name">Apelido</string>
     <string name="ContactNameEditActivity_prefix">Prefixo</string>
@@ -311,17 +277,17 @@
     <string name="ConversationItem_pending">  Pendente</string>
     <string name="ConversationItem_this_message_was_deleted">Esta mensagem foi eliminada.</string>
     <string name="ConversationItem_you_deleted_this_message">Eliminou esta mensagem.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Não é possível transferir a mensagem. %1$s terá de a enviar outra vez.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Não é possível transferir a imagem. %1$s terá de a enviar outra vez.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Não é possível transferir o vídeo. %1$s terá de a enviar outra vez.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Não é possível transferir a mensagem. {0} terá de a enviar outra vez.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Não é possível transferir a imagem. {0} terá de a enviar outra vez.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Não é possível transferir o vídeo. {0} terá de a enviar outra vez.</string>
 
     <!-- ConversationActivity -->
@@ -343,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS insegura (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">MMS inseguro</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS insegura (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Mensagem do Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Vamos mudar para o Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Por favor escolha um contacto</string>
@@ -389,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">Eliminar e abandonar</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Para ligar a %1$s, o Signal necessita de ter acesso ao microfone.</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">Agora mais opções nas \"Definições de grupo\"</string>
 
     <string name="ConversationActivity_join">Entrar</string>
     <string name="ConversationActivity_full">Cheio(a)</string>
@@ -410,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">As mensagens SMS já não são suportadas pelo Signal. Convide %1$s para o Signal para manter a conversa aqui.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Convidar para o Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Receberá um lembrete em breve.</string>
 
     <!-- ConversationAdapter -->
@@ -650,10 +614,6 @@
     <string name="CustomDefaultPreference_none">Nenhum</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Escolher fotografia</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Tirar fotografia</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Escolher da galeria</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Remover fotografia</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Tirar uma fotografia necessita da permissão de câmara,</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Ver a sua galeria exige ter permissão de armazenamento.</string>
 
@@ -709,8 +669,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Erro ao obter o GIF de resolução integral</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">Autocolantes</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Adicionar membro?</string>
@@ -735,7 +693,7 @@
     <string name="GroupManagement_access_level_all_members">Todos os membros</string>
     <string name="GroupManagement_access_level_only_admins">Apenas administradores</string>
     <string name="GroupManagement_access_level_no_one">Nenhum</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -866,7 +824,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Concluído</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Esta pessoa não pode ser adicionada aos grupos legados.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Esta pessoa não pode ser adicionada aos grupos anunciados.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Adicionar \"%1$s\" a \"%2$s\"?</item>
         <item quantity="other">Adicionar %3$d membros a \"%2$s\"?</item>
@@ -894,34 +851,13 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Selecionou um contacto que não suporta grupos do Signal. Este grupo será de MMS. Os nomes personalizados de grupos MMS e fotografias apenas serão visíveis para si. O suporte para grupos MMS será removido em breve, para nos focarmos em mensagens encriptadas.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">Pedidos e convites para membro</string>
-    <string name="ManageGroupActivity_add_members">Adicionar membros</string>
-    <string name="ManageGroupActivity_edit_group_info">Editar informação do grupo</string>
     <string name="ManageGroupActivity_who_can_add_new_members">Quem pode adicionar novos membros?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Quem pode editar a informação do grupo?</string>
-    <string name="ManageGroupActivity_group_link">Link do grupo</string>
-    <string name="ManageGroupActivity_block_group">Bloquear grupo</string>
-    <string name="ManageGroupActivity_unblock_group">Desbloquear grupo</string>
-    <string name="ManageGroupActivity_leave_group">Abandonar grupo</string>
-    <string name="ManageGroupActivity_mute_notifications">Silenciar notificações</string>
-    <string name="ManageGroupActivity_custom_notifications">Notificações personalizadas</string>
-    <string name="ManageGroupActivity_mentions">Menções</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">Cor e fundo de ecrã da conversa</string>
-    <string name="ManageGroupActivity_until_s">Até %1$s</string>
-    <string name="ManageGroupActivity_always">Sempre</string>
-    <string name="ManageGroupActivity_off">Off</string>
-    <string name="ManageGroupActivity_on">On</string>
-    <string name="ManageGroupActivity_view_all_members">Ver todos os membros</string>
-    <string name="ManageGroupActivity_see_all">Ver tudo</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d membro adicionado</item>
         <item quantity="other">%1$d membros adicionados</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Apenas os administradores podem ativar ou desativar o link partilhável do grupo.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Apenas os administradores podem ativar ou desativar a opção para aprovar novos membros.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Apenas os administradores podem repor o link partilhável do grupo.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Não tem permissões para fazer isto</string>
     <string name="ManageGroupActivity_not_capable">Alguém que você adicionou não suporta novos grupos e necessita de atualizar o Signal</string>
@@ -987,18 +923,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Alterar som e vibração</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Definições de chamada</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Toque</string>
-    <string name="CustomNotificationsDialogFragment__enabled">Ativado(a)</string>
-    <string name="CustomNotificationsDialogFragment__disabled">Desativado(a)</string>
     <string name="CustomNotificationsDialogFragment__default">Predefinição</string>
     <string name="CustomNotificationsDialogFragment__unknown">Desconhecido(a)</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Link do grupo partilhável</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Gerir e partilhar</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">Link do grupo</string>
     <string name="ShareableGroupLinkDialogFragment__share">Partilhar</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Redefinir link</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">Pedidos para membro</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Aprovar novos membros</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Solicite a um administrador que aprove a entrada de novos membros através do link para o grupo.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Tem a certeza que deseja redefinir o link para o grupo? As pessoas deixarão de poder entrar para o grupo através do link atual.</string>
@@ -1044,7 +975,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Atualize o Signal para utilizar hiperligações de grupo</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">A versão do Signal que está a utilizar não suporta links de grupo. Atualize para a última versão de forma a poder entrar para este grupo através do link do grupo.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Atualizar o Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Um ou mais dos seus dispositivos ligados estão a correr uma versão do Signal que não suporta ligações para grupos. Atualize o Signal nos seus dispositivos ligados para poder entrar para este grupo.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Link do grupo inválido</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1127,7 +1057,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">A eliminar</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">A eliminar mensagens…</string>
-    <string name="MediaOverviewActivity_Select_all">Selecionar tudo</string>
     <string name="MediaOverviewActivity_collecting_attachments">A recolher anexos…</string>
     <string name="MediaOverviewActivity_Sort_by">Ordenar por</string>
     <string name="MediaOverviewActivity_Newest">Mais recente</string>
@@ -1155,9 +1084,8 @@
     <string name="MediaOverviewActivity_audio">Áudio</string>
     <string name="MediaOverviewActivity_video">Vídeo</string>
     <string name="MediaOverviewActivity_image">Imagem</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">Mensagem de voz</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Enviado por %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Enviado por si</string>
@@ -1205,26 +1133,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Erro ao descarregar a mensagem MMS, toque para tentar novamente</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Enviar para %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">Abrir câmara</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Adicionar uma legenda…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Foi removido um item porque excedia o limite de tamanho</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Foi removido um item porque tinha um tipo desconhecido</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Foi removido um item porque excedia o limite de tamanho ou tinha um tipo desconhecido</string>
     <string name="MediaSendActivity_camera_unavailable">Câmara indisponível.</string>
-    <string name="MediaSendActivity_message_to_s">Mensagem para %1$s</string>
-    <string name="MediaSendActivity_message">Mensagem</string>
-    <string name="MediaSendActivity_select_recipients">Selecionar destinatários</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">O Signal necessita de ter acesso aos contactos para os poder mostrar.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">O Signal requer permissão de acesso aos contactos para mostrar os seus contactos, mas esta foi negada permanentemente. Por favor, aceda às definições das aplicações no seu telemóvel, selecione a aplicação Signal e em \"Permissões\" ative \"Contactos\".</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">Não pode partilhar mais do que %1$d item.</item>
-        <item quantity="other">Não pode partilhar mais do que %1$d itens.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">Selecionar destinatários</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Toque aqui para fazer esta mensagem desaparecer depois de ser vista.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Toda a multimédia</string>
@@ -1434,7 +1346,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Gosta desta nova funcionalidade? Ajude a apoiar o Signal fazendo uma doação única.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">O seu histórico de mensagens com %1$s e o seu número %2$s foram juntados.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">O seu histórico de mensagens com %1$s e outra conversa com esta pessoa foram juntados.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Enviou a %1$s um pedido para ativar os Pagamentos</string>
@@ -1497,7 +1409,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Juntar-se a este grupo e partilhar o seu nome e fotografia com estes membros? Você não irá ver as mensagens deles até que você aceite.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Juntar-se a este grupo? Eles não saberão que viu as mensagens deles até que aceite o convite.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Deseja desbloquear este grupo e partilhar o seu nome e fotografia com os seus membros? Você não receberá nenhuma mensagem até que o desbloqueie.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Ver</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membro de %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Membro de %1$s e %2$s</string>
@@ -1595,7 +1507,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Crie o seu PIN</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Esgotou todas as tentativas para introduzir o PIN, mas ainda pode aceder à sua conta do Signal criando um novo PIN. Para sua privacidade e segurança, a sua conta será restaurada sem nenhuma informação relativa ao perfil ou definições guardadas.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Criar PIN novo</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Aviso</string>
@@ -1633,7 +1545,6 @@
     <string name="RecipientPreferenceActivity_unblock">Desbloquear</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">Grupo sem nome</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">A atender…</string>
@@ -1648,9 +1559,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">Bom dia 💜!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Mostre o seu afeto ao tornar-se num apoiante do Signal.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Toque aqui para ativar a sua câmara</string>
@@ -1676,7 +1585,6 @@
     <string name="WebRtcCallView__join_call">Entrar na chamada</string>
     <string name="WebRtcCallView__call_is_full">A chamada encontra-se cheia</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Foi atingido o número máximo de %1$d participantes para esta chamada. Tente novamente mais tarde.</string>
-    <string name="WebRtcCallView__view_participants_list">Ver participantes</string>
     <string name="WebRtcCallView__your_video_is_off">O seu vídeo encontra-se desligado</string>
     <string name="WebRtcCallView__reconnecting">A ligar novamente…</string>
     <string name="WebRtcCallView__joining">A entrar…</string>
@@ -1715,19 +1623,25 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s está nesta chamada</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s estão nesta chamada</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s e %2$s estão nesta chamada</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s está a apresentar</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s e %3$d outro estão nesta chamada</item>
         <item quantity="other">%1$s, %2$s, e outros %3$d estão nesta chamada</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Girar</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Altifalante</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Câmara</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Alertar</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Silenciar</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Ligar</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">Terminar chamada</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1823,12 +1737,12 @@
     <string name="SearchFragment_header_messages">Mensagens</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Adicionar aos contactos</string>
@@ -1909,7 +1823,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registo será publicado online para ser consultado pelos contribuidores. Poderá analisá-lo antes de o carregar.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Filtro:</string>
     <string name="SupportEmailUtil_device_info">Informação do dispositivo:</string>
     <string name="SupportEmailUtil_android_version">Versão do Android:</string>
@@ -1990,11 +1904,9 @@
     <string name="UsernameEditFragment__choose_your_username">Escolha o seu nome de utilizador</string>
     <string name="UsernameEditFragment_username">Nome de utilizador</string>
     <string name="UsernameEditFragment_delete">Eliminar</string>
-    <string name="UsernameEditFragment_successfully_set_username">Nome de utilizador definido com sucesso.</string>
     <string name="UsernameEditFragment_successfully_removed_username">Nome de utilizador removido com sucesso.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Encontrado um erro de rede.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Este nome de utilizador já se encontra em utilização.</string>
-    <string name="UsernameEditFragment_this_username_is_available">Este nome de utilizador encontra-se disponível.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Os nomes de utilizadores apenas podem incluir a-Z, 0-9 e underscores.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Os nomes de utilizadores não podem começar com um número.</string>
     <string name="UsernameEditFragment_username_is_invalid">Nome de utilizador inválido.</string>
@@ -2031,10 +1943,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Primeiro deverá trocar mensagens de forma a poder ver o número de segurança de %1$s.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Mensagem encriptada para sessão inexistente</string>
@@ -2075,7 +1987,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Não foi possível encontrar uma aplicação capaz de partilhar este média.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Fechar</string>
     <string name="MediaPreviewFragment_edit_media_error">Erro de multimédia</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Erro ao eliminar mensagem, a mensagem pode ainda existir.</string>
 
     <!-- MessageNotifier -->
@@ -2095,8 +2007,6 @@
     <string name="MessageNotifier_reply">Responder</string>
     <string name="MessageNotifier_signal_message">Mensagem do Signal</string>
     <string name="MessageNotifier_unsecured_sms">SMS inseguro</string>
-    <string name="MessageNotifier_you_may_have_new_messages">Você poderá ter novas mensagens</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Abra o Signal para verificar se existem notificações recentes.</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Contacto</string>
     <string name="MessageNotifier_reacted_s_to_s">Reagiu %1$s a: \"%2$s\".</string>
@@ -2178,7 +2088,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Atualize o Signal para continuar a usar pagamentos. O seu saldo pode não estar atualizado.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Atualizar agora</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Para poder atender a chamada, conceda ao Signal o acesso ao seu microfone.</string>
@@ -2194,8 +2103,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Deslize para cima para alterar as vistas</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Recusar</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Atender</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Atender sem vídeo</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2213,7 +2125,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Repita a frase-chave nova</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">Introduza o nome ou número</string>
     <string name="contact_selection_activity__invite_to_signal">Convite para o Signal</string>
     <string name="contact_selection_activity__new_group">Novo grupo</string>
 
@@ -2351,7 +2262,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Alterações do número de segurança</string>
     <string name="safety_number_change_dialog__accept">Aceitar</string>
-    <string name="safety_number_change_dialog__send_anyway">Enviar mesmo assim</string>
     <string name="safety_number_change_dialog__call_anyway">Telefonar mesmo assim</string>
     <string name="safety_number_change_dialog__join_call">Entrar na chamada</string>
     <string name="safety_number_change_dialog__continue_call">Continuar chamada</string>
@@ -2499,8 +2409,6 @@
     <string name="CreateProfileActivity_first_name_required">Nome (obrigatório)</string>
     <string name="CreateProfileActivity_last_name_optional">Apelido (opcional)</string>
     <string name="CreateProfileActivity_next">Seguinte</string>
-    <string name="CreateProfileActivity__username">Nome de utilizador</string>
-    <string name="CreateProfileActivity__create_a_username">Criar um nome de utilizador</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Nome personalizados de grupos MMS e fotografias apenas serão visíveis para si.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">As descrições do grupo serão visíveis para os membros deste grupo e para as pessoas que foram convidadas</string>
 
@@ -2520,7 +2428,7 @@
     <string name="EditProfileFragment__edit_group">Editar o grupo</string>
     <string name="EditProfileFragment__group_name">Nome do grupo</string>
     <string name="EditProfileFragment__group_description">Descrição do grupo</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">O seu nome</string>
@@ -2533,7 +2441,6 @@
     <string name="recipient_preference_activity__shared_media">Ficheiros partilhados</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>Introduza um nome ou número</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Para verificar a segurança da sua encriptação ponta-a-ponta com %1$s, compare os números acima com o dispositivo da outra pessoa. Também pode digitalizar o código no telefone da outra pessoa. <a href=\"https://signal.org/redirect/safety-numbers\">Mais informações.</a>]]></string>
@@ -2580,7 +2487,6 @@
     <string name="AndroidManifest__select_contacts">Selecionar contactos</string>
     <string name="AndroidManifest__change_passphrase">Alterar frase-chave</string>
     <string name="AndroidManifest__verify_safety_number">Verificar número de segurança</string>
-    <string name="AndroidManifest__log_submit">Submeter registo de depuração</string>
     <string name="AndroidManifest__media_preview">Pré-visualização de multimédia</string>
     <string name="AndroidManifest__message_details">Detalhes da mensagem</string>
     <string name="AndroidManifest__linked_devices">Dispositivos associados</string>
@@ -2602,13 +2508,13 @@
     <string name="HelpFragment__whats_this">O que é isto?</string>
     <string name="HelpFragment__how_do_you_feel">Como se sente? (Opcional)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Diga-nos porque nos está a contactar.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Informação de suporte</string>
     <string name="HelpFragment__signal_android_support_request">Pedido de Suporte do Signal para Android</string>
     <string name="HelpFragment__debug_log">Relatório de depuração:</string>
@@ -2681,12 +2587,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS e MMS</string>
-    <string name="preferences__pref_all_sms_title">Receber todos os SMS</string>
-    <string name="preferences__pref_all_mms_title">Receber todos os MMS</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Utilizar o Signal para receber todas as mensagens de texto</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Utilizar o Signal para receber todas as mensagens de multimédia</string>
-    <string name="preferences__pref_enter_sends_title">Tecla de Enter envia</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Pressionar a tecla Enter envia as mensagens de texto</string>
     <string name="preferences__pref_use_address_book_photos">Utilizar fotografias do livro de endereços</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Exibir (se disponíveis) as fotografias de contactos a partir do seu livro de endereços</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2695,14 +2595,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">As conversas silenciadas que se encontram arquivadas irão permanecer arquivadas até que chegue uma nova mensagem.</string>
     <string name="preferences__generate_link_previews">Gerar pré-visualizações de links</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Recupere pré-visualizações de links diretamente a partir de websites para as mensagens que enviar.</string>
-    <string name="preferences__choose_identity">Escolher identidade</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Escolha a sua entrada de contacto da lista de contactos.</string>
     <string name="preferences__change_passphrase">Alterar frase-chave</string>
     <string name="preferences__change_your_passphrase">Alterar a sua frase-chave</string>
     <string name="preferences__enable_passphrase">Ativar o bloqueio de ecrã com frase-chave</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Bloquear ecrã e notificações com uma frase-chave</string>
     <string name="preferences__screen_security">Segurança de ecrã</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Bloquear a captura de ecrã na lista de aplicações recentes abertas e dentro da aplicação</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Bloquear automaticamente o Signal ao fim de um determinado tempo de inatividade</string>
     <string name="preferences__inactivity_timeout_passphrase">Validade da frase-chave por inatividade</string>
     <string name="preferences__inactivity_timeout_interval">Intervalo de expiração por inatividade</string>
@@ -2738,7 +2635,6 @@
     <string name="preferences__advanced">Avançado</string>
     <string name="preferences__donate_to_signal">Doar ao Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Doação única</string>
     <string name="preferences__privacy">Privacidade</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Histórias</string>
@@ -2765,7 +2661,6 @@
     <string name="preferences__dark_theme">Escuro</string>
     <string name="preferences__appearance">Aspeto</string>
     <string name="preferences__theme">Tema</string>
-    <string name="preferences__chat_wallpaper">Fundo de ecrã de conversas</string>
     <string name="preferences__chat_color_and_wallpaper">Cor e fundo de ecrã da conversa</string>
     <string name="preferences__disable_pin">Desativar PIN</string>
     <string name="preferences__enable_pin">Ativar PIN</string>
@@ -2787,8 +2682,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Se os indicadores de escrita estiverem desativados, não poderá ver os indicadores de escrita relativos a outros utilizadores.</string>
     <string name="preferences__request_keyboard_to_disable">Pedir ao teclado para desligar a aprendizagem de palavras.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Esta configuração não está garantida e o seu teclado poderá ignorá-la.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">Utilizadores bloqueados</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Ao utilizar os dados móveis</string>
     <string name="preferences_chats__when_using_wifi">Ao utilizar o Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Ao utilizar o roaming</string>
@@ -2816,32 +2710,22 @@
     <string name="preferences_storage__s_messages">%1$s mensagens</string>
     <string name="preferences_storage__custom">Personalizado</string>
     <string name="preferences_advanced__use_system_emoji">Utilizar os emojis do sistema</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Desativar o suporte de emojis próprios do Signal</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Passar todas as chamadas pelo servidor do Signal para evitar revelar o seu endereço IP ao destinatário. Ativar esta opção irá reduzir a qualidade da chamada.</string>
     <string name="preferences_advanced__always_relay_calls">Retransmitir todas as chamadas</string>
     <string name="preferences_app_protection__who_can">Quem pode…</string>
-    <string name="preferences_app_protection__app_access">Acesso da aplicação</string>
-    <string name="preferences_app_protection__communication">Comunicação</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Pagamentos</string>
     <string name="preferences_chats__chats">Conversas</string>
     <string name="preferences_data_and_storage__manage_storage">Gerir armazenamento</string>
-    <string name="preferences_data_and_storage__calls">Chamadas</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Utilizar menos dados para as chamadas</string>
     <string name="preferences_data_and_storage__never">Nunca</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-fi e dados móveis</string>
     <string name="preferences_data_and_storage__mobile_data_only">Apenas dados móveis</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">A utilização de menos dados poderá melhorar as chamadas em redes más</string>
-    <string name="preferences_notifications__messages">Mensagens</string>
-    <string name="preferences_notifications__events">Eventos</string>
     <string name="preferences_notifications__in_chat_sounds">Sons na conversa</string>
     <string name="preferences_notifications__show">Exibir</string>
-    <string name="preferences_notifications__calls">Chamadas</string>
     <string name="preferences_notifications__ringtone">Toque</string>
-    <string name="preferences_chats__show_invitation_prompts">Exibir notificações de convite</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Exibir notificações de convite para contactos sem o Signal</string>
     <string name="preferences_chats__message_text_size">Tamanho da letra da mensagem</string>
-    <string name="preferences_events__contact_joined_signal">Um contacto juntou-se ao Signal</string>
     <string name="preferences_notifications__priority">Prioridade</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Circunscrição de censura</string>
@@ -2857,8 +2741,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Circunscrição de censura só pode ser ativada enquanto existe ligação à internet.</string>
     <string name="preferences_communication__category_sealed_sender">Emissor selado</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">Indicadores de visualização</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"Exibe um ícone de estado quando você seleciona \"Detalhes da mensagem\" em mensagens que foram entregues utilizando o emissor selado."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Permitir de todos</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Ativar o emissor selado para mensagens recebidas de não-contactos e pessoas com as quais não partilhou o seu perfil.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Saber mais</string>
@@ -2884,9 +2766,9 @@
     <string name="configurable_single_select__customize_option">Personalizar opção</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2901,7 +2783,6 @@
     <string name="PaymentsHomeFragment__activating_payments">A ativar pagamentos…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Restaurar a conta de pagamentos</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Ainda sem atividade recente</string>
-    <string name="PaymentsHomeFragment__pending_requests">Pedidos pendentes</string>
     <string name="PaymentsHomeFragment__recent_activity">Atividade recente</string>
     <string name="PaymentsHomeFragment__see_all">Ver tudo</string>
     <string name="PaymentsHomeFragment__add_funds">Adicionar fundos</string>
@@ -2930,13 +2811,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Pagamentos desativados.</string>
     <string name="PaymentsHomeFragment__payment_failed">Falha de pagamento</string>
     <string name="PaymentsHomeFragment__details">Detalhes</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Você pode utilizar o Signal para enviar e receber MobileCoin. Todos os pagamentos estão sujeitos aos \'Termos de utilização\' de MobileCoins e MobileCoin Wallet. Este é um recurso beta, então você pode encontrar alguns problemas de pagamentos ou saldos que poderá perder e que não poderão ser recuperados. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Você pode utilizar o Signal para enviar e receber MobileCoin. Todos os pagamentos estão sujeitos aos \'Termos de utilização\' de MobileCoins e MobileCoin Wallet. Este é um recurso beta, então você pode encontrar alguns problemas de pagamentos ou saldos que poderá perder e que não poderão ser recuperados. </string> -->
     <string name="PaymentsHomeFragment__activate">Ativar</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Ver termos da MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Os pagamentos no Signal já não estão disponíveis. Você ainda pode transferir fundos para uma troca, mas deixou de poder enviar e receber pagamentos ou adicionar fundos.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Ativar o Bloqueio de Pagamento para envios futuros?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2980,7 +2861,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Copiar</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Copiado para a área de transferência</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Para adicionar fundos, envie MobileCoin para o endereço da sua carteira. Inicie uma transação a partir da sua conta numa troca compatível com MobileCoin e, em seguida, digitalize o código QR ou copie o endereço da carteira.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Detalhes</string>
@@ -3000,8 +2881,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Taxa de limpeza de moedas</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">É cobrada uma \"taxa de limpeza de moedas\" que se encontra na sua posse não podem ser combinadas para completar a transação. A limpeza irá permitir-lhe que continue a enviar pagamentos.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Sem mais detalhes relevantes para esta transação</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Pagamento enviado</string>
     <string name="PaymentsDetailsFragment__received_payment">Pagamento recebido</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Pagamento concluido %1$s</string>
@@ -3045,7 +2926,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">Adicionar nota</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">As conversas são apenas estimativas e poderão não ser precisas.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Nota</string>
@@ -3053,7 +2934,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirmar pagamento</string>
     <string name="ConfirmPayment__network_fee">Taxa de rede</string>
-    <string name="ConfirmPayment__error_getting_fee">Erro ao tentar obter taxa</string>
     <string name="ConfirmPayment__estimated_s">Estimado %1$s</string>
     <string name="ConfirmPayment__to">Para</string>
     <string name="ConfirmPayment__total_amount">Montante total</string>
@@ -3111,29 +2991,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">Guardar</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">Destruição de mensagens</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Info</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Copiar</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Eliminar</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Reencaminhar</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Responder</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Guardar</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Reenviar</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Selecionar</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Detalhes do pagamento</string>
 
     <!-- conversation_expiring_on -->
@@ -3142,14 +3021,6 @@
     <string name="conversation_insecure__invite">Convidar</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">Eliminar selecionado(s)</string>
-    <string name="conversation_list_batch__menu_pin_selected">Afixar selecionada(s)</string>
-    <string name="conversation_list_batch__menu_unpin_selected">Desafixar selecionada(s)</string>
-    <string name="conversation_list_batch__menu_select_all">Selecionar tudo</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">Arquivar selecionado(s)</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Desarquivar selecionado(s)</string>
-    <string name="conversation_list_batch__menu_mark_as_read">Marcar como lidas</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">Marcar como por ler</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Atalho para definições</string>
@@ -3170,7 +3041,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">Reiniciar sessão segura</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Não silenciar</string>
@@ -3218,20 +3088,17 @@
     <string name="reminder_header_push_text">Melhore a sua experiência de comunicação.</string>
     <string name="reminder_header_service_outage_text">O Signal está a experienciar problemas técnicos. Estamos a trabalhar arduamente para re-estabelecer o serviço o mais rapidamente possível.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">A descoberta privada de contactos do Signal não consegue temporariamente processar os contactos do seu telemóvel.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Saber mais</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">A descoberta privada de contactos do Signal não consegue processar os contactos do seu telemóvel.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Saber mais</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Guardar</string>
-    <string name="media_preview__forward_title">Reencaminhar</string>
-    <string name="media_preview__share_title">Partilhar</string>
-    <string name="media_preview__all_media_title">Toda a multimédia</string>
     <string name="media_preview__edit_title">Editar</string>
 
 
@@ -3273,7 +3140,7 @@
     <string name="BaseKbsPinFragment__next">Seguinte</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Criar um PIN alfanumérico</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Criar um PIN numérico</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3303,7 +3170,7 @@
     <string name="KbsSplashFragment__introducing_pins">Introdução aos PINs</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal. Não necessita do seu PIN para abrir a aplicação.</string>
     <string name="KbsSplashFragment__learn_more">Saber mais</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Bloqueio do registo = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">O seu \'Bloqueio de registo\' é agora chamado de PIN, e faz muito mais. Atualize agora.</string>
     <string name="KbsSplashFragment__update_pin">Atualizar PIN</string>
@@ -3324,7 +3191,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">A sua conta foi bloqueada para proteger a sua privacidade e segurança. Após %1$d dias de inatividade, ser-lhe-á permitido voltar a registar este número de telefone sem necessitar do seu PIN. Todo o conteúdo será eliminado.</string>
     <string name="AccountLockedFragment__next">Seguinte</string>
     <string name="AccountLockedFragment__learn_more">Saber mais</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Introduza o seu PIN</string>
@@ -3336,7 +3203,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">PIN incorreto</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Esqueceu-se do seu PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Restam-lhe poucas tentativas!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Registo Signal - Necessita de ajuda com o PIN para Android (v1 PIN)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Registo Signal - Necessita de ajuda com o PIN para Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3394,7 +3260,6 @@
     <string name="registration_activity__transfer_account">Transferir conta</string>
     <string name="registration_activity__skip">Saltar</string>
     <string name="preferences_chats__chat_backups">Cópias de segurança de conversas</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Executar cópia de segurança para armazenamento externo</string>
     <string name="preferences_chats__transfer_account">Transferir conta</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Transferir conta para um dispositivo Android novo</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Introduza a frase-chave da cópia de segurança</string>
@@ -3433,7 +3298,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A sua cópia de segurança contém um ficheiro muito grande que não pode ser copiado. Elimine esse ficheiro e crie uma nova cópia de segurança.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerir as cópias de segurança.</string>
-    <string name="ProgressPreference_d_messages_so_far">%1$d mensagens até à data</string>
     <string name="RegistrationActivity_wrong_number">Número errado</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Como alternativa, ligue-me \n (Disponível às %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contactar o Suporte do Signal</string>
@@ -3455,9 +3319,6 @@
     <string name="preferences_app_protection__create_a_pin">Criar um PIN</string>
     <string name="preferences_app_protection__change_your_pin">Alterar o seu PIN</string>
     <string name="preferences_app_protection__pin_reminders">Lembretes de PIN</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Os PINs mantém encriptada a informação guardada no Signal de forma a que apenas você lhe possa aceder. O seu perfil, definições e contactos serão restaurados quando reinstalar o Signal.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Adicione uma segurança extra ao pedir o seu PIN do Signal para registar o seu número de telefone novamente com o Signal.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Os lembretes ajudam-no a lembrar-se do seu PIN, pois ele não pode ser recuperado. Este, ser-lhe-á solicitado com menos frequência ao longo do tempo.</string>
     <string name="preferences_app_protection__turn_off">Desativar</string>
     <string name="preferences_app_protection__confirm_pin">Confirmar PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Confirme o seu PIN do Signal</string>
@@ -3493,9 +3354,9 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Toque na sua fotografia de perfil no canto superior esquerdo para abrir as \'Definições\'</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"Toque em 'Conta'"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"Toque em \'Conta\'"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Toque em 'Transferir conta' e depois em 'Continuar' em ambos os dispositivos"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Toque em \'Transferir conta\' e depois em \'Continuar\' em ambos os dispositivos"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">A preparar para ligar para um dispositivo Android antigo…</string>
@@ -3521,7 +3382,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Não foi possível abrir as \'Definições Wi-Fi\'. Por favor, ative o Wi-Fi manualmente.</string>
     <string name="DeviceTransferSetup__grant_location_permission">Conceder permissão de localização</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Ativar os serviços de localização</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">Não foi possível abrir as definições de localização.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Ativar o Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">Erro de ligação</string>
     <string name="DeviceTransferSetup__retry">Tentar novamente</string>
@@ -3530,7 +3390,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Confirme que o código abaixo coincide em ambos os seus dispositivos. Depois, toque em continuar.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Os números não coincidem</string>
     <string name="DeviceTransferSetup__continue">Continuar</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">O número não é o mesmo</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Se os números nos seus dispositivos não corresponderem, é possível que você se tenha ligado ao dispositivo errado. Para corrigir isso, pare a transferência e tente novamente, mantendo os dois dispositivos próximos.</string>
     <string name="DeviceTransferSetup__stop_transfer">Parar transferência</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Não foi possível encontrar o dispositivo antigo</string>
@@ -3560,7 +3419,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% das mensagens até ao momento…</string>
     <string name="DeviceTransfer__cancel">Cancelar</string>
     <string name="DeviceTransfer__try_again">Tentar novamente</string>
-    <string name="DeviceTransfer__stop_transfer_question">Parar transferência?</string>
     <string name="DeviceTransfer__stop_transfer">Parar transferência</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Todo o progresso de transferência será perdido.</string>
     <string name="DeviceTransfer__transfer_failed">Falha de transferência</string>
@@ -3568,17 +3426,15 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Transferir conta</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Pode transferir a sua conta do Signal ao configurar o Signal num dispositivo Android novo. Antes de continuar:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Faça o download do Signal no seu dispositivo Android novo</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Toque em 'Transferir ou restaurar conta'"</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Toque em \'Transferir ou restaurar conta\'"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecione 'Transferir de um dispositivo Android', quando solicitado carregue em 'Continuar'. Mantenha os dois dispositivos próximos."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecione \'Transferir de um dispositivo Android\', quando solicitado carregue em \'Continuar\'. Mantenha os dois dispositivos próximos."</string>
     <string name="OldDeviceTransferInstructions__continue">Continuar</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">Transferência completa</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Vá para o seu dispositivo novo</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Os seus dados do Signal foram transferidos para o seu novo dispositivo. Para terminar o processo de transferência, você deverá continuar o registo no seu novo dispositivo.</string>
     <string name="OldDeviceTransferComplete__close">Fechar</string>
@@ -3605,10 +3461,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cancelar e ativar este dispositivo</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Transferir saldo MOB?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Tem um saldo de %1$s. Se não transferir os seus fundos para outro endereço de carteira antes de eliminar a sua conta, você irá perdê-lo para sempre.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">Não transferir</string>
-    <string name="AdvancedPreferenceFragment__transfer">Transferir</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Bloquear</string>
@@ -3622,10 +3474,6 @@
     <string name="RecipientBottomSheet_make_admin">Tornar administrador</string>
     <string name="RecipientBottomSheet_remove_as_admin">Remover como administrador</string>
     <string name="RecipientBottomSheet_remove_from_group">Remover do grupo</string>
-    <string name="RecipientBottomSheet_message_description">Mensagem</string>
-    <string name="RecipientBottomSheet_voice_call_description">Chamada de voz</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">Chamada de voz insegura</string>
-    <string name="RecipientBottomSheet_video_call_description">Videochamada</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Remover %1$s de administrador de grupo?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" será capaz de editar este grupo e os seus membros."</string>
@@ -3731,7 +3579,6 @@
     <string name="DeleteAccountFragment__the_phone_number">O número de telefone que introduziu não coincide com as suas contas.</string>
     <string name="DeleteAccountFragment__are_you_sure">Deseja realmente eliminar a sua conta?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Isto irá eliminar a sua conta do Signal e repor a aplicação. A aplicação irá encerrar depois do processo estar completo.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">Falha ao eliminar conta. Tem alguma ligação à rede?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Falha ao eliminar os dados locais. Pode limpá-los manualmente nas definições das aplicações no sistema.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Iniciar as Definições das aplicações</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3763,7 +3610,6 @@
     <string name="ShareActivity__share">Partilhar</string>
     <string name="ShareActivity__send">Enviar</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">A partilha para várias conversas é apenas suportada para mensagens do Signal</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Não foi possível obter dados de partilha desejados.</string>
 
@@ -3772,7 +3618,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Apenas pode partilhar com até %1$d conversas</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">Fundo de ecrã de conversas</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Cor da conversa</string>
@@ -3783,7 +3628,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">O modo escuro escurece o fundo de ecrã</string>
     <string name="ChatWallpaperFragment__contact_name">Nome de contacto</string>
     <string name="ChatWallpaperFragment__reset">Reiniciar</string>
-    <string name="ChatWallpaperFragment__clear">Limpar</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Pré-visualização de fundo de ecrã</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Deseja modificar todas as cores das conversas?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Deseja modificar todos os fundos de ecrã?</string>
@@ -3808,7 +3652,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Ver a sua galeria exige ter permissão de armazenamento.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Escolha a imagem do fundo de ecrã</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pince para ampliar, arraste para ajustar</string>
@@ -3835,9 +3678,9 @@
     <string name="payment_info_card_with_a_high_balance">Com um saldo alto, você poderá querer atualizar para um PIN alfanumérico ou adicionar mais proteção à sua conta.</string>
     <string name="payment_info_card_update_pin">Atualizar PIN</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Desativar carteira</string>
@@ -3849,7 +3692,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Desativar sem transferir?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">O seu saldo irá ficar na sua carteira ligada ao Signal caso escolha reativar os pagamentos.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Erro ao desativar a carteira.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recuperar frase</string>
@@ -3885,13 +3728,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frase de recuperação inválida</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Certifique-se que introduziu %1$d palavras e tente novamente.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Seguinte</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Editar</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">Anterior</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">A sua frase de recuperação</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Anote as %1$d palavras seguintes em ordem. Guarde a sua lista num local seguro.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Certifique-se que introduziu a frase corretamente.</string>
@@ -3919,7 +3761,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Palavra inválida</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Área de transferência limpa.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">Ver</string>
@@ -3938,7 +3779,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nenhum dos seus contactos ou pessoas com quem conversa estão neste grupo. Reveja os pedidos com cuidado antes de os aceitar para evitar mensagens indesejáveis.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Acerca dos pedidos de mensagem</string>
     <string name="GroupsInCommonMessageRequest__okay">Ok</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Aqui está uma simulação da cor da conversa.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">A cor é visível apenas para si.</string>
 
@@ -4057,7 +3898,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Crie um perfil para receber notificações apenas das pessoas e dos grupos de que você deseja receber.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Perfis de notificações</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Criar perfil</string>
@@ -4073,7 +3914,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Temporizador padrão para conversas novas</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Defina um tempo padrão para a destruição de mensagens de todas as conversas novas iniciadas por si.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Controle as suas histórias e quem as pode ver</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Requerer bloqueio de ecrã Android ou impressão digital para transferir dinheiro</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Não é possível ativar o bloqueio de pagamento</string>
@@ -4082,12 +3922,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Ocorreu um erro ao aceder às definições de sistema</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">Vá às definições</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">Cancelar</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Exibir ícone de estado</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Exibe um ícone nos detalhes das mensagens quando elas foram entregues utilizando o emissor selado.</string>
 
@@ -4158,8 +3996,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">Seletor da borda superior</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">Seletor da borda inferior</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Doar ao Signal</string>
@@ -4217,20 +4053,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Só administradores deste grupo podem adicionar à sua história</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">App de contactos não encontrada</string>
-    <string name="ConversationSettingsFragment__send_message">Enviar mensagem</string>
     <string name="ConversationSettingsFragment__start_video_call">Iniciar videochamada</string>
     <string name="ConversationSettingsFragment__start_audio_call">Iniciar chamada de áudio</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">História</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Mensagem</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Vídeo</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Áudio</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Telefonar</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Silenciar</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Silenciado</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Procurar</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Destruição de mensagens</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sons e notificações</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Detalhes de contacto</string>
     <string name="ConversationSettingsFragment__view_safety_number">Ver número de segurança</string>
     <string name="ConversationSettingsFragment__block">Bloquear</string>
@@ -4264,7 +4107,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Silenciar notificações</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Não silenciado(a)</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Silenciada até %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Menções</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Notificar sempre</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Não notificar</string>
@@ -4306,7 +4148,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">Não foi possível remover %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Esta pessoa está guardada nos Contactos do seu dispositivo. Apague-a dos seus contactos e tente outra vez.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Ver contacto</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s não é um utilizador Signal</string>
@@ -4331,9 +4173,7 @@
     <string name="AvatarPickerFragment__photo">Fotografia</string>
     <string name="AvatarPickerFragment__text">Texto</string>
     <string name="AvatarPickerFragment__save">Guardar</string>
-    <string name="AvatarPickerFragment__select_an_avatar">Selecione um avatar</string>
     <string name="AvatarPickerFragment__clear_avatar">Remover avatar</string>
-    <string name="AvatarPickerFragment__edit">Editar</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">Falha ao guardar o avatar</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4406,7 +4246,6 @@
     <string name="ImageEditorHud__clear_all">Limpar tudo</string>
     <string name="ImageEditorHud__undo">Desfazer</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Alternar entre o marcador e o destacar</string>
-    <string name="ImageEditorHud__delete">Eliminar</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Alternar entre estilos de texto</string>
 
     <string name="MediaCountIndicatorButton__send">Enviar</string>
@@ -4418,7 +4257,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Descartar alterações?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Irá perder quaisquer alterações que fez nesta fotografia.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">Ocorreu um erro a tentar abrir a câmara</string>
 
     <string name="BadgesOverviewFragment__my_badges">Os meus crachás</string>
     <string name="BadgesOverviewFragment__featured_badge">Crachá em destaque</string>
@@ -4426,27 +4264,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Selecionar crachás</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">Pré-visualização</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Selecione um crachá</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Deverá selecionar um crachá</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Torne-se num Apoiante</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s apoia o Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s apoia o Signal com uma doação mensal. Signal é uma organização sem fins lucrativos, sem publicidade ou investidores, sustentada apenas por pessoas como você.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s apoia o Signal com uma doação. Signal é uma organização sem fins lucrativos, sem publicidade ou investidores, sustentada apenas por pessoas como você.</string>
 
     <string name="ImageView__badge">Crachá</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que a sustentam.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Apoie a tecnologia desenvolvida para si (não para os seus dados) juntando-se à comunidade de pessoas que sustentam o Signal.</string>
-    <string name="SubscribeFragment__currency">Moeda</string>
-    <string name="SubscribeFragment__more_payment_options">Mais opções de pagamento</string>
     <string name="SubscribeFragment__cancel_subscription">Cancelar assinatura</string>
     <string name="SubscribeFragment__confirm_cancellation">Confirma o concelamento?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Não será cobrado novamente. O seu crachá será removido do seu perfil no final do período de faturação</string>
@@ -4459,7 +4291,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Ser-lhe-á cobrado o valor total (%1$s) do novo preço da assinatura aos dias de hoje. A sua assinatura será renovada mensalmente.</string>
 
     <string name="Subscription__s_per_month">%1$s/mês</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">Renova a %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Expira a %1$s</string>
@@ -4491,7 +4323,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Mais</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">Recibos</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">O meu apoio</string>
     <string name="ManageDonationsFragment__manage_subscription">Gerir assinatura</string>
@@ -4499,7 +4330,6 @@
     <string name="ManageDonationsFragment__donation_receipts">Recibos de doações</string>
     <string name="ManageDonationsFragment__badges">Crachás</string>
     <string name="ManageDonationsFragment__subscription_faq">Assinatura - FAQ</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Ocorreu um erro ao tentar obter a assinatura.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Outras formas de doar</string>
     <!-- Preference label to launch badge gifting -->
@@ -4507,8 +4337,9 @@
 
     <string name="Boost__enter_custom_amount">Introduzir montante personalizado</string>
     <string name="Boost__one_time_contribution">Contribuição única</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Apoiar o Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/mês</string>
     <string name="MySupportPreference__renews_s">Renovações %1$s</string>
     <string name="MySupportPreference__processing_transaction">A processar a transação…</string>
@@ -4543,7 +4374,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Estamos com problemas para receber o seu pagamento do Apoiante do Signal. Verifique se a forma de pagamento se encontra atualizada. Se não estiver, atualize-a no Google Pay. O Signal tentará processar o pagamento novamente dentro de alguns dias.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Não exibir isto novamente</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">Por favor, contacte o \'Suporte\' para mais informações.</string>
     <string name="Subscription__contact_support">Contactar o Suporte</string>
     <string name="Subscription__get_a_s_badge">Obter um crachá de %1$s</string>
 
@@ -4552,7 +4382,6 @@
     <string name="DonationsErrors__error_processing_payment">Erro ao processar o pagamento</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Erro ao processar o pagamento. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Não foi possível adicionar o seu crachá à sua conta, mas poderá ter sido debitado dinheiro. Entre em contacto com a equipa de suporte.</string>
     <string name="DonationsErrors__your_payment">Não foi possível processar o seu pagamento e não lhe foi feita nenhuma cobrança. Tente novamente.</string>
     <string name="DonationsErrors__still_processing">Ainda a processar</string>
     <string name="DonationsErrors__couldnt_add_badge">Não foi possível adicionar o crachá</string>
@@ -4566,8 +4395,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">Não foi possível enviar o crachá de oferta. Contacte a equipa de suporte.</string>
     <string name="DonationsErrors__your_badge_could_not">Não foi possível adicionar o seu crachá à sua conta, mas poderá ter sido debitado dinheiro. Entre em contacto com a equipa de suporte.</string>
     <string name="DonationsErrors__your_payment_is_still">O seu pagamento ainda está a ser processado. Isto poderá demorar alguns minutos, dependendo da sua ligação.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay indisponível</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Definiu o Google Pay para as doações na app.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Ocorreu um erro ao tentar cancelar a assinatura</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">O cancelamento da sua assinatura requere ligação à internet.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">O seu dispositivo não é compatível com o Google Pay, como tal você não pode subscrever para ganhar um crachá. Ainda pode apoiar o Signal fazendo uma doação no nosso site.</string>
@@ -4584,11 +4411,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Crachá de presente</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">Dura durante %1$d mês</item>
-        <item quantity="other">Dura durante %1$d meses</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Resgatar</string>
     <!-- Gift badge view action label -->
@@ -4598,7 +4420,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">Resgatado</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Tente outro método de pagamento ou contacte o seu banco para mais informações.</string>
@@ -4802,9 +4623,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Oferta</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">Detalhes</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Tipo de doação</string>
     <!-- Donation receipts date paid heading -->
@@ -4944,7 +4763,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">A responder de forma privada a %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">Resposta privada</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Copiar</string>
     <!-- Context menu item to delete a story response -->
@@ -4961,11 +4779,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Quem pode ver esta história</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Ocultar história de</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Todos os contactos do Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">Partilhar com todos os contactos</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Todos exceto…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5015,19 +4831,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Remover</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">Tem a certeza?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">Essa ação não poderá ser desfeita.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Editar nome da história</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Nome da história</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">Guardar</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Toque para adicionar texto</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Adicionar texto</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5043,7 +4855,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Procurar</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Ocorreu um erro inesperado</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Introduza um link válido</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5065,17 +4876,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Eliminar</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">As histórias estão disponíveis apenas para os utilizadores do Signal versão beta.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">Se partilhar uma história, ela só estará disponível para pessoas que estejam na versão beta do Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Adicionar à história?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Adicionar conteúdo à sua história permitirá que as suas ligações no Signal o visualizem por 24 horas. Pode alterar quem vê a sua história nas \'Definições\'.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Adicionar à história</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">Editar visualizadores</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">A história não pode ser enviada. Verifique a sua ligação e tente novamente.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5083,9 +4888,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Desativar e eliminar</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Partilhar e ver histórias</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Deixará de ser capaz de partilhar ou ver histórias quando esta opção se encontrar desativada.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Escolher visualizadores</string>
     <!-- New story viewer selection action button label -->
@@ -5147,13 +4950,9 @@
     <string name="StoryDialogs__view_profile_photo">Ver fotografia de perfil</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Desativar a circunscrição de censura?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Agora pode ligar-se diretamente ao serviço Signal para uma melhor experiência.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">Não, obrigado</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">Desativar</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Você reagiu à história de %1$s</string>
@@ -5357,13 +5156,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Tamanho do ficheiro</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Enviar para</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Enviada de</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Falhou</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5385,7 +5180,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Histórias</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Visualizações da história</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Confirmações de leitura</string>
     <!-- Story view receipts toggle message -->
@@ -5437,7 +5231,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Precisa de aproximadamente %1$s para exportar as suas mensagens. Certifique-se de que tem espaço suficiente antes de continuar.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Continuar mesmo assim</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">O Signal requer permissão de acesso a SMS para exportar as suas mensagens SMS</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5552,9 +5346,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Certifique-se de que tem %1$s livres no seu telemóvel para exportar as suas mensagens</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Voltar a tentar exportação, o que apenas irá repetir as mensagens que ainda não foram exportadas</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Se o problema persistir, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Contacte-nos</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Tentar novamente</string>
@@ -5598,9 +5392,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">A cancelar…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Foram processados demasiados contactos</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">Outra tentativa de processar os seus contactos será feita no prazo de %1$d dia.</item>
         <item quantity="other">Outra tentativa de processar os seus contactos será feita no prazo de %1$d dias.</item>
@@ -5608,19 +5402,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">Para resolver esse problema mais cedo, pondere remover os contactos ou contas do seu telemóvel que estejam a sincronizar muitos contactos.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Abrir contactos</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Não foi encontrada nenhuma app de contactos</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Os seus contactos não podem ser processados</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">O número de contactos no seu telemóvel excede o limite que o Signal consegue processar. Para encontrar contactos no Signal, pondere remover os contactos ou contas do seu telemóvel que estejam a sincronizar muitos contactos.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Saber mais</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Abrir contactos</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Não foi encontrada nenhuma app de contactos</string>
 
     <!-- PaymentMessageView -->
@@ -5649,5 +5441,9 @@
     <string name="GroupStoryEducationSheet__next">Seguinte</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

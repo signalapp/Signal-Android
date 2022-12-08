@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">हो</string>
     <string name="no">नाही</string>
@@ -23,65 +22,40 @@
     <string name="save">जतन करा</string>
     <string name="note_to_self">स्वतःला संदेश</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">नवीन संदेश</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal अद्यतनित होत आहे…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">सध्या: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपण अजून पासफ्रेझ ठेवले नाही!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">पासफ्रेझ अक्षम करायचे?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">हे Signal आणि संदेश सूचना कायमचे अनलॉक करेल.</string>
     <string name="ApplicationPreferencesActivity_disable">अक्षम करा</string>
-    <string name="ApplicationPreferencesActivity_unregistering">नोंदणी काढत आहे</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal संदेश आणि कॉल नोंदणी काढत आहे…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal संदेश आणि कॉल अक्षम करायचे?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">सर्व्हर वरून नोंदणी काढून Signal संदेश आणि कॉल अक्षम करा. भविष्यात पुन्हा वापरण्यासाठी आपल्याला आपला फोन नंबरची पुन्हा नोंदणी करावी लागेल.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">सर्व्हर सोबत कनेक्ट करण्यात त्रुटी!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS सक्षम केले</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">आपला पूर्वनिर्धारित SMS अॅप बदलण्यासाठी स्पर्श करा</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMSअक्षम केले</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal आपले पूर्वनिर्धारित SMS अॅप बनवण्यासाठी स्पर्श करा</string>
-    <string name="ApplicationPreferencesActivity_on">चालू</string>
-    <string name="ApplicationPreferencesActivity_On">चालू</string>
-    <string name="ApplicationPreferencesActivity_off">बंद</string>
-    <string name="ApplicationPreferencesActivity_Off">बंद</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">स्क्रीन लॉक %1$s, नोंदणी लॉक %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">थीम %1$s, भाषा %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">नोंदणी लॉकसाठी पिन आवश्यक आहेत. पिन अक्षम करण्यासाठी, कृपया प्रथम नोंदणी लॉक अक्षम करा.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN तयार केला.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN अक्षम केले.</string>
-    <string name="ApplicationPreferencesActivity_hide">लपवा</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">स्मरणपत्र लपवायचे?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करा</string>
     <string name="ApplicationPreferencesActivity_record_phrase">फ्रेझ रेकॉर्ड करा</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">आपला PIN अक्षम करण्यापूर्वी, आपले पेमेंट खाते आपण रिकव्हर करू शकता हे सुनिश्चित करण्यासाठी आपली पेमेंट रिकव्हरी फ्रेझ रेकॉर्ड करणे आवश्यक आहे.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">बॅकस्पेस</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$d मिनिट</item>
-        <item quantity="other">%1$d मिनिटे</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(चित्र)</string>
@@ -129,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">वापरकर्ता अवरोधित करायचा?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" आपल्याला कॉल करण्यास किंवा संदेश पाठविण्यात सक्षम होणार नाही.</string>
     <string name="BlockedUsersActivity__block">अवरोधित करा</string>
-    <string name="BlockedUsersActivity__unblock_user">वापरकर्ता अनब्लॉक करायचा?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">आपण \"%1$s\" ला अनब्लॉक करू इच्छिता?</string>
-    <string name="BlockedUsersActivity__unblock">अनब्लॉक करा</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">देणगीची रक्कम: %1$s/महिना</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">खाली आपली कार्ड माहिती प्रविष्ट करा</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">आपल्या कार्डचा तपशील प्रविष्ट करा. Signal आपली वैयक्तिक माहिती संकलित किंवा संग्रहित करत नाही.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -249,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">वाहक शुल्क लागू शकते. आपण कॉल करीत असलेला नंबर Signal सह नोंदणीकृत नाही. हा कॉल इंटरनेटवरून नव्हे तर आपल्या मोबाइल कॅरियरद्वारे दिला जाईल.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s सोबतचा आपला सुरक्षितता नंबर बदलला आहे. ह्याचा अर्थ कुणीतरी आपले परस्परसंवादामध्ये अटकाव करण्याचा प्रयत्न करतो आहे किंवा %2$s याने Signal पुनर्स्थापित केले आहे असा होऊ शकतो.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">या संपर्कासोबत आपल्याला आपला सुरक्षितता नंबर सत्यापित करावेसे वाटू शकते.</string>
-    <string name="ConfirmIdentityDialog_accept">स्वीकार करा</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">अलीकडील चॅट</string>
@@ -271,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">नाव संपादित करा</string>
     <string name="ContactNameEditActivity_given_name">दिलेले नाव</string>
     <string name="ContactNameEditActivity_family_name">कुटूंब नाव</string>
     <string name="ContactNameEditActivity_prefix">प्रीफिक्स</string>
@@ -311,17 +277,17 @@
     <string name="ConversationItem_pending">  प्रलंबित</string>
     <string name="ConversationItem_this_message_was_deleted">हा संदेश हटविला गेला.</string>
     <string name="ConversationItem_you_deleted_this_message">आपण हा संदेश हटविला.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">संदेश डाउनलोड करु शकत नाही. %1$s ला तो पुन्हा पाठवण्याची गरज आहे.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">प्रतिमा डाउनलोड करु शकत नाही. %1$s ला तो पुन्हा पाठवण्याची गरज आहे.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">व्हिडिओ डाउनलोड करु शकत नाही. %1$s ला तो पुन्हा पाठवण्याची गरज आहे.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">संदेश डाउनलोड करु शकत नाही. आपणाला तो पुन्हा पाठवण्याची गरज आहे.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">प्रतिमा डाउनलोड करु शकत नाही. आपणाला तो पुन्हा पाठवण्याची गरज आहे.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">व्हिडिओ डाउनलोड करु शकत नाही. आपणाला तो पुन्हा पाठवण्याची गरज आहे.</string>
 
     <!-- ConversationActivity -->
@@ -343,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">असुरक्षित SMS (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">असुरक्षित MMS (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Signal संदेश</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal %1$s वर स्विच करूया</string>
     <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क निवडा</string>
@@ -389,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">गटातून बाहेत पडा आणि गट हटवा</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s ला कॉल करण्यासाठी, Signal ला आपल्या मायक्रोफोनचा अॅक्सेस हवा आहे</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">\"गट सेटिंग्ज\" मध्ये आता अधिक पर्याय</string>
 
     <string name="ConversationActivity_join">सामील व्हा</string>
     <string name="ConversationActivity_full">पूर्ण</string>
@@ -410,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">SMS संदेशन यापुढे Signal मध्ये समर्थित नाही. संभाषण येथे ठेवण्यासाठी %1$s ला Signal वर आमंत्रित करा.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal वर आमंत्रित करा</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">आपणाला पुन्हा लवकरच आठवण करून दिली जाईल.</string>
 
     <!-- ConversationAdapter -->
@@ -650,10 +614,6 @@
     <string name="CustomDefaultPreference_none">कुठलेही नाही</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">फोटो निवडा</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">फोटो काढा</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">गॅलरीमधून निवडा</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">फोटो हटवा</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">फोटो काढण्यासाठी कॅमेरा ची परवानगी आवश्यक आहे.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">आपली गॅलरी पहाण्यासाठी संचय परवानग्या आवश्यक आहेत.</string>
 
@@ -709,8 +669,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">पूर्ण रेझोल्यूशन GIF पुनर्प्राप्त करताना त्रुटी</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">स्टिकर</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">सदस्य जोडायचा?</string>
@@ -735,7 +693,7 @@
     <string name="GroupManagement_access_level_all_members">सर्व सदस्य</string>
     <string name="GroupManagement_access_level_only_admins">केवळ प्रशासक</string>
     <string name="GroupManagement_access_level_no_one">कोणीही नाही</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -866,7 +824,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">ठीक</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">या व्यक्तीस लेगसी गटात जोडले जाऊ शकत नाही.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">हा व्यक्ती घोषणा गटांत जोडला जाऊ शकत नाही.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%2$s\" मध्ये \"%1$s\" जोडायचे?</item>
         <item quantity="other">\"%2$s\" मध्ये %3$d सदस्य जोडायचे?</item>
@@ -894,34 +851,13 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपण Signal ग्रुप्सना सपोर्ट न करणारा संपर्क निवडला आहे, म्हणून हा MMS ग्रुप होईल. सानुकूलित MMS ग्रुपची नावं आणि फोटो फक्त आपल्याला दृश्यमान असतील. एन्क्रिप्टेड संदेशनावर लक्ष केंद्रित करण्यासाठी MMS ग्रुप्ससाठीचा सपोर्ट लवकरच काढला जाईल.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">सदस्य विनंत्या &amp; आमंत्रणे</string>
-    <string name="ManageGroupActivity_add_members">सदस्य जोडा</string>
-    <string name="ManageGroupActivity_edit_group_info">गट माहिती संपादित करा</string>
     <string name="ManageGroupActivity_who_can_add_new_members">नवीन सदस्य कोण जोडू शकतो?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">या गटाची माहिती कोण संपादित करू शकतो?</string>
-    <string name="ManageGroupActivity_group_link">गट लिंक</string>
-    <string name="ManageGroupActivity_block_group">गट अवरोधित करा</string>
-    <string name="ManageGroupActivity_unblock_group">गट अनवरोधित करा</string>
-    <string name="ManageGroupActivity_leave_group">गट सोडा</string>
-    <string name="ManageGroupActivity_mute_notifications">सूचना म्यूट करा</string>
-    <string name="ManageGroupActivity_custom_notifications">सानुकूल सूचना</string>
-    <string name="ManageGroupActivity_mentions">उल्लेख</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">चॅट रंग आणि वॉलपेपर</string>
-    <string name="ManageGroupActivity_until_s">%1$s पर्यंत</string>
-    <string name="ManageGroupActivity_always">नेहमी</string>
-    <string name="ManageGroupActivity_off">बंद</string>
-    <string name="ManageGroupActivity_on">चालू</string>
-    <string name="ManageGroupActivity_view_all_members">सर्व सदस्य बघा</string>
-    <string name="ManageGroupActivity_see_all">सर्व पहा</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d सदस्य जोडला.</item>
         <item quantity="other">%1$d सदस्य जोडले.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">शेअर करता येणारी गट लिंक फक्त अॅडमिन सक्षम किंवा अक्षम करू शकतात.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">नवीन सदस्यांना संमती देण्याचा पर्याय फक्त अॅडमिन सक्षम किंवा अक्षम करू शकतात.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">शेअर करता येणारी गट लिंक फक्त अॅडमिन रीसेट करू शकतात.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपल्याकडे हे करण्याचे अधिकार नाहीत</string>
     <string name="ManageGroupActivity_not_capable">आपण जोडलेला कोणीतरी नवीन गटांना समर्थन देत नाही आणि Signal अद्यतनित करण्याची आवश्यकता आहे</string>
@@ -987,18 +923,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">आवाज आणि कंपन बदला</string>
     <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
     <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
-    <string name="CustomNotificationsDialogFragment__enabled">सक्षम केले</string>
-    <string name="CustomNotificationsDialogFragment__disabled">अक्षम केले</string>
     <string name="CustomNotificationsDialogFragment__default">पूर्वनिर्धारित</string>
     <string name="CustomNotificationsDialogFragment__unknown">अज्ञात</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">शेअर करता येणारी गट लिंक</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">व्यवस्थापित आणि शेअर करा</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">गट लिंक</string>
     <string name="ShareableGroupLinkDialogFragment__share">सामायिक करा</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">लिंक रीसेट करा</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">सदस्य विनंत्या</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">नवीन सदस्य स्वीकारा</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">नवीन सदस्यांना गट लिंक द्वारा सामील होण्यासाठी अॅडमिनने स्वीकार करणे आवश्यक आहे.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">गट लिंक रीसेट करण्याची आपणास खात्री आहे का? वर्तमान लिंक वापरून लोक यापुढे गटात सामील होऊ शकणार नाहीत.</string>
@@ -1044,7 +975,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">गट लिंक वापरण्यासाठी Signal अद्यतनित करा</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">आपण वापरत असलेल्या Signal ची आवृत्ती या गट दुव्यास समर्थन देत नाही. दुव्याद्वारे या गटामध्ये सामील होण्यासाठी नवीनतम आवृत्तीवर अद्यतनित करा.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal अद्यतनित करा</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">आपल्यापैकी एक किंवा अधिक दुवे साधने Signalच्या आवृत्तीवर कार्यरत आहेत जी गट दुव्यांना समर्थन देत नाहीत. या गटामध्ये सामील होण्यासाठी आपल्या दुवा साधलेल्या डिव्हाइसवर सिग्नल अद्यतनित करा</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">गट लिंक वैध नाही</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1127,7 +1057,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">हटवत आहे</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">संदेश हटवत आहे…</string>
-    <string name="MediaOverviewActivity_Select_all">सर्व निवडा</string>
     <string name="MediaOverviewActivity_collecting_attachments">संलग्न गोळा करत आहे…</string>
     <string name="MediaOverviewActivity_Sort_by">द्वारे क्रमवारी लावा</string>
     <string name="MediaOverviewActivity_Newest">नवीनतम</string>
@@ -1155,9 +1084,8 @@
     <string name="MediaOverviewActivity_audio">ऑडिओ</string>
     <string name="MediaOverviewActivity_video">व्हिडिओ</string>
     <string name="MediaOverviewActivity_image">चित्र</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">व्हॉईस संदेश</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">%1$s ने पाठवले</string>
     <string name="MediaOverviewActivity_sent_by_you">आपण पाठवले</string>
@@ -1205,26 +1133,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS संदेश डाऊनलोड करण्यात त्रुटी, पुन्हा प्रयत्न करण्यासाठी टॅप करा</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">%1$s ला पाठवा</string>
     <string name="MediaPickerActivity__menu_open_camera">कॅमेरा उघडा</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">एक कॅप्शन जोडा…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">एक आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली होती</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">आयटम काढला गेला कारण त्यात एक अज्ञात प्रकार होता.</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">आयटम काढला गेला कारण त्याने आकार मर्यादा ओलांडली किंवा त्यात एक अज्ञात प्रकार होता.</string>
     <string name="MediaSendActivity_camera_unavailable">कॅमेरा अनुपलब्ध.</string>
-    <string name="MediaSendActivity_message_to_s">%1$s ला संदेश</string>
-    <string name="MediaSendActivity_message">संदेश</string>
-    <string name="MediaSendActivity_select_recipients">प्राप्तकर्ते निवडा</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">आपले संपर्क दाखविण्यासाठी Signal ला त्यांना अॅक्सेस करण्याची गरज आहे.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">संपर्क दाखवण्यासाठी Signal ला संपर्क परवानगीची आवश्यकता असते, पण ती कायमची नाकारली गेली आहे. कृपया अॅप सेटिंग मेनू मध्ये सुरू ठेवा, \"परवानग्या\" निवडा, आणि \"संपर्क\" सक्षम करा.</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">%1$dआयटम पेक्षा जास्त आपण सामायिक करू शकत नाही.</item>
-        <item quantity="other">आपण %1$d आयटम पेक्षा जास्त सामायिक करू शकत नाही.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">प्राप्तकर्ते निवडा</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">संदेश बघितल्यानंतर अदृश्य करण्यासाठी येथे टॅप करा.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">सर्व मिडिया</string>
@@ -1434,7 +1346,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">हे नवीन वैशिष्ट्य आवडले? एक-वेळ देणगी देऊन Signal ला समर्थन करण्यास मदत करा.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">आपला %1$s यांच्यासह असलेला संदेश इतिहास आणि त्यांचा नंबर %2$s एकत्रित करण्यात आला आहे.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">आपला %1$s यांच्यासह संदेश इतिहास आणि त्यांच्याशी संबंधित असलेले अन्य चॅट एकत्रित करण्यात आले आहेत.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">आपण %1$s ना पेमेंट्स सक्रिय करण्याची विनंती पाठवली आहे</string>
@@ -1497,7 +1409,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">या गटात सामील व्हा आणि आपले नाव आणि फोटो त्याचा सदस्यांसह शेअर करा? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहू शकणार नाही.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">या गटात सामील व्हायचे? आपण स्वीकार करेपर्यंत आपण त्यांचा संदेश पाहिला आहे हे त्यांना कळणार नाही.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">हा गट अनब्लॉक करायचा आणि आपले नाव आणि फोटो त्याच्या सदस्यांसह सामायिक करायचे? आपण त्यांना अनब्लॉक करेपर्यंत आपल्याला कोणतेही संदेश प्राप्त होणार नाहीत.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">बघा</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s चा सदस्य</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s आणि %2$s चा सदस्य</string>
@@ -1595,7 +1507,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">आपला PIN तयार करा</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">आपले PIN अंदाज संपले आहेत, पण तरीही नवीन PIN तयार करून आपण आपले Signal खाते अॅक्सेस करू शकता. आपल्या गोपनीयता आणि सुरक्षेसाठी आपले खाते कुठल्याही जतन केलेल्या प्रोफाईल माहिती किंवा सेटिंग विना पुनर्स्थित केले जाईल.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">नवीन PIN तयार करा</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">चेतावणी</string>
@@ -1633,7 +1545,6 @@
     <string name="RecipientPreferenceActivity_unblock">अनब्लॉक करा</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">अनामित गट</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">उत्तर देत आहे…</string>
@@ -1648,9 +1559,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">💜 दिवसाच्या शुभेच्छा!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Signal सस्टेनर बनून आपुलकी दाखवा.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">आपला व्हिडिओ चालू करण्यासाठी येथे टॅप करा</string>
@@ -1676,7 +1585,6 @@
     <string name="WebRtcCallView__join_call">कॉलमध्ये सामील व्हा</string>
     <string name="WebRtcCallView__call_is_full">कॉल पूर्ण आहे</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">या कॉलसाठी सहभागी व्यक्तींची %1$d कमाल संख्या पोहोचली आहे. नंतर पुन्हा प्रयत्न करा.</string>
-    <string name="WebRtcCallView__view_participants_list">सहभागी पहा</string>
     <string name="WebRtcCallView__your_video_is_off">आपला व्हिडिओ बंद आहे</string>
     <string name="WebRtcCallView__reconnecting">पुनःकनेक्ट करत आहे…</string>
     <string name="WebRtcCallView__joining">सामील होत आहे…</string>
@@ -1715,19 +1623,25 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s या कॉलमध्ये आहे</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s या काॅल मध्ये आहे</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s आणि %2$s या कॉलमध्ये आहेत</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s सादर करत आहे</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s, आणि %3$d इतर व्यक्ती गट कॉलमध्ये आहे</item>
         <item quantity="other">%1$s, %2$s, आणि %3$d इतर व्यक्ती कॉलमध्ये आहेत</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">स्विच</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">स्पीकर</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">कॅमेरा</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">अनम्यूट करा</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">म्यूट करा</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">रिंग</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">कॉल संपवा</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1823,12 +1737,12 @@
     <string name="SearchFragment_header_messages">संदेश</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">संपर्कात जोडा</string>
@@ -1909,7 +1823,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">अंशदात्यांना बघण्यासाठी हा लॉग सार्वजनिकरीत्या ऑनलाईन पोस्ट केला जाईल. आपण अपलोड करण्यापूर्वी त्यास तपासू शकता.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">फिल्टर:</string>
     <string name="SupportEmailUtil_device_info">डिव्हाईस माहिती:</string>
     <string name="SupportEmailUtil_android_version">Android आवृत्ती:</string>
@@ -1990,11 +1904,9 @@
     <string name="UsernameEditFragment__choose_your_username">आपले वापरकर्तानाव निवडा</string>
     <string name="UsernameEditFragment_username">वापरकर्तानाव</string>
     <string name="UsernameEditFragment_delete">हटवा</string>
-    <string name="UsernameEditFragment_successfully_set_username">वापरकर्तानाव यशस्वीरीत्या सेट.</string>
     <string name="UsernameEditFragment_successfully_removed_username">वापरकर्तानाव यशस्वीरीत्या काढले.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटी आढळली.</string>
     <string name="UsernameEditFragment_this_username_is_taken">हे वापरकर्तानाव घेतलेले आहे.</string>
-    <string name="UsernameEditFragment_this_username_is_available">हे वापरकर्तानाव उपलब्ध आहे.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">वापरकर्तानावांमध्ये फक्त a–Z, 0–9, आणि अंडरस्कोर याचा समावेश असू शकतो.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">वापरकर्तानाव अंकांसोबत सोबत चालू होऊ शकत नाही.</string>
     <string name="UsernameEditFragment_username_is_invalid">वापरकर्तानाव अवैध आहे.</string>
@@ -2031,10 +1943,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s चा सुरक्षितता नंबर पहाण्यासाठी आपल्याला पहिले संदेश विनिमय करावा लागेल.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">अस्तित्वात नसलेल्या सत्रा करिता संदेश एन्क्रिप्टेड आहे</string>
@@ -2075,7 +1987,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">हे मिडिया शेअर करण्यासाठी सक्षम असे अॅप सापडू शकले नाही.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">बंद करा</string>
     <string name="MediaPreviewFragment_edit_media_error">मिडिया त्रुटी</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">संदेश हटवण्यात त्रुटी, संदेश अद्याप अस्तित्वात असू शकतो</string>
 
     <!-- MessageNotifier -->
@@ -2095,8 +2007,6 @@
     <string name="MessageNotifier_reply">प्रत्युत्तर द्या</string>
     <string name="MessageNotifier_signal_message">Signal संदेश</string>
     <string name="MessageNotifier_unsecured_sms">असुरक्षित SMS</string>
-    <string name="MessageNotifier_you_may_have_new_messages">आपल्यासाठी नवीन संदेश असू शकतात</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">अलीकडील सूचनांसाठी Signal उघडा.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
     <string name="MessageNotifier_reacted_s_to_s">%1$s प्रतिसाद दिला यास: \"%2$s\".</string>
@@ -2178,7 +2088,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">पेमेंट्स वापरणे पुढे सुरु ठेवण्यासाठी Signal ला अद्ययावत करा. आपली शिल्लक कदाचित अद्ययावत नसेल.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">आता अद्यतनित करा</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉलला उत्तर देण्यासाठी, Signal ला तुमच्या मायक्रोफोनचा अॅक्सेस द्या.</string>
@@ -2194,8 +2103,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">दृश्य बदल्ण्यासाठी वर स्वाइप करा</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">नकार द्या</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">उत्तर द्या</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">विना व्हिडिओ उत्तर द्या</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2213,7 +2125,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">नवीन पासफ्रेझची पुनरावृत्ती करा</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">नाव किंवा नंबर प्रविष्ट करा</string>
     <string name="contact_selection_activity__invite_to_signal">Signal वर आमंत्रित करा</string>
     <string name="contact_selection_activity__new_group">नवीन गट</string>
 
@@ -2351,7 +2262,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">सुरक्षितता नंबर बदल</string>
     <string name="safety_number_change_dialog__accept">स्वीकारा</string>
-    <string name="safety_number_change_dialog__send_anyway">तरीही पाठवा</string>
     <string name="safety_number_change_dialog__call_anyway">तरीही कॉल करा</string>
     <string name="safety_number_change_dialog__join_call">कॉलमध्ये सामील व्हा</string>
     <string name="safety_number_change_dialog__continue_call">कॉल सुरू ठेवा</string>
@@ -2499,8 +2409,6 @@
     <string name="CreateProfileActivity_first_name_required">पहिले नाव (आवश्यक)</string>
     <string name="CreateProfileActivity_last_name_optional">शेवटचे नाव (पर्यायी)</string>
     <string name="CreateProfileActivity_next">पुढे</string>
-    <string name="CreateProfileActivity__username">वापरकर्तानाव</string>
-    <string name="CreateProfileActivity__create_a_username">एक वापरकर्तानाव तयार करा</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">सानुकूलित MMS गट नाव आणि फोटो फक्त आपल्याला दृश्यमान असतील.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">गट विवरण या गटाच्या सदस्यांना आणि आमंत्रित केलेल्या लोकांना दृश्यमान असेल.</string>
 
@@ -2520,7 +2428,7 @@
     <string name="EditProfileFragment__edit_group">गट संपादन करा</string>
     <string name="EditProfileFragment__group_name">गट नाव</string>
     <string name="EditProfileFragment__group_description">गट विवरण</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">आपले नाव</string>
@@ -2533,7 +2441,6 @@
     <string name="recipient_preference_activity__shared_media">सामायिक केलेली मिडिया</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>एक नाव किंवा नंबर प्रविष्ट करा</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[जर आपल्याला %1$s सोबत आपल्या एन्क्रिप्शनची सुरक्षा सत्यापित करायची असेल, तर त्यांचा डिव्हाईस वरील नंबरची तुलना करा. पर्यायीरीत्या, आपण त्यांच्या फोन वरील कोड स्कॅन करू शकता, किंवा त्यांना आपला कोड स्कॅन करण्यास विचारू शकता. <a href=\"https://signal.org/redirect/safety-numbers\">अधिक जाणा</a>]]></string>
@@ -2580,7 +2487,6 @@
     <string name="AndroidManifest__select_contacts">संपर्क निवडा</string>
     <string name="AndroidManifest__change_passphrase">पासफ्रेझ बदला</string>
     <string name="AndroidManifest__verify_safety_number">सुरक्षितता नंबर सत्यापित करा</string>
-    <string name="AndroidManifest__log_submit">डीबग लॉग प्रविष्ट करा</string>
     <string name="AndroidManifest__media_preview">मिडिया पुनरावलोकन</string>
     <string name="AndroidManifest__message_details">संदेश तपशील</string>
     <string name="AndroidManifest__linked_devices">लिंक केलेले डिव्हाईस</string>
@@ -2602,13 +2508,13 @@
     <string name="HelpFragment__whats_this">हे काय आहे?</string>
     <string name="HelpFragment__how_do_you_feel">आपल्याला कसे वाटत आहे? (पर्यायी)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">आपण का लिहित आहात ते कळवा.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">समर्थन माहिती</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android सपोर्ट विनंती</string>
     <string name="HelpFragment__debug_log">डीबग लॉग:</string>
@@ -2681,12 +2587,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">बीटा</string>
     <string name="preferences__sms_mms">SMS आणि MMS</string>
-    <string name="preferences__pref_all_sms_title">सर्व SMS प्राप्त करा</string>
-    <string name="preferences__pref_all_mms_title">सर्व MMS प्राप्त करा</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">सर्व येणाऱ्या संदेशांसाठी Signal वापरा</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">सर्व येणाऱ्या मल्टिमिडिया संदेशांसाठी Signal वापरा</string>
-    <string name="preferences__pref_enter_sends_title">प्रविष्ट करा की पाठवते</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">प्रविष्ट करा की दाबल्याने मजकूर संदेश पाठविले जातील</string>
     <string name="preferences__pref_use_address_book_photos">अॅड्रेस बुक फोटो वापरा</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">उपलब्ध असल्यास आपल्या अॅड्रेस बुकमधून संपर्क फोटो दाखवा</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2695,14 +2595,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">नवीन संदेश येईल तेव्हा आर्काईव्ह केलेले म्यूट केलेले चॅट्स हे आर्काईव्ह केलेलेच राहतील.</string>
     <string name="preferences__generate_link_previews">लिंक पुनरावलोकन उत्पन्न करा</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">तुम्ही पाठवलेल्या संदेशांसाठी थेट कोणत्याही वेबसाइटवरून लिंक पूर्वावलोकने प्राप्त करू शकता.</string>
-    <string name="preferences__choose_identity">ओळख निवडा</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">संपर्क यादी मधून आपली संपर्क प्रविष्टी निवडा.</string>
     <string name="preferences__change_passphrase">पासफ्रेझ बदला</string>
     <string name="preferences__change_your_passphrase">आपला पासफ्रेझ बदला</string>
     <string name="preferences__enable_passphrase">पासफ्रेझ स्क्रीन लॉक सक्षम करा</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">स्क्रीन आणि सूचना पासफ्रेजने लॉक करा</string>
     <string name="preferences__screen_security">स्क्रीन सुरक्षा</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">अलीकडील यादीमध्ये आणि अॅपच्या आत स्क्रीनशॉट अवरोधित करा</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">निष्क्रियतेच्या निर्दिष्ट काळानंतर Signal स्वयं-लॉक करा</string>
     <string name="preferences__inactivity_timeout_passphrase">निष्क्रियता टाईमआऊट पासफ्रेझ</string>
     <string name="preferences__inactivity_timeout_interval">निष्क्रियता टाईमआऊट काळ</string>
@@ -2738,7 +2635,6 @@
     <string name="preferences__advanced">प्रगत</string>
     <string name="preferences__donate_to_signal">Signal ला देणगी द्या</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">एक-वेळ देणगी</string>
     <string name="preferences__privacy">गोपनीयता</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">स्टोरीज</string>
@@ -2765,7 +2661,6 @@
     <string name="preferences__dark_theme">गडद</string>
     <string name="preferences__appearance">स्वरूप</string>
     <string name="preferences__theme">थीम</string>
-    <string name="preferences__chat_wallpaper">चॅट वॉलपेपर</string>
     <string name="preferences__chat_color_and_wallpaper">चॅट रंग आणि वॉलपेपर</string>
     <string name="preferences__disable_pin">PIN अक्षम करा</string>
     <string name="preferences__enable_pin">PIN सक्षम करा</string>
@@ -2787,8 +2682,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">जर टाईपिंग निर्देशक अक्षम केले आहेत, तर इतरांकडून आपल्याला टाईपिंग निर्देशक बघता येणार नाही.</string>
     <string name="preferences__request_keyboard_to_disable">वैयक्तिकृत शिकणे अक्षम करण्यासाठी कीबोर्डला विनंती करा.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">ही सेटिंग गॅरंटी नाही, आणि आपला कीबोर्ड त्याकडे दुर्लक्ष करू शकतो.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">अवरोधित वापरकर्ते</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">मोबाईल डेटा वापरताना</string>
     <string name="preferences_chats__when_using_wifi">Wi-Fi वापरताना</string>
     <string name="preferences_chats__when_roaming">रोमिंग असताना</string>
@@ -2816,32 +2710,22 @@
     <string name="preferences_storage__s_messages">%1$s संदेश</string>
     <string name="preferences_storage__custom">सानुकूलित</string>
     <string name="preferences_advanced__use_system_emoji">सिस्टिम ईमोजी वापरा</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal चे बिल्ट-इन ईमोजी समर्थन अक्षम करा</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">आपल्या संपर्काला आपला IP अॅड्रेस कळू न देण्यासाठी सर्व कॉल Signal सर्व्हर वरून रीले करा. सक्षम केल्याने कॉल दर्जा कमी होईल.</string>
     <string name="preferences_advanced__always_relay_calls">कॉल नेहमी रीले करा</string>
     <string name="preferences_app_protection__who_can">कोण करू शकतो…</string>
-    <string name="preferences_app_protection__app_access">अॅप अॅक्सेस</string>
-    <string name="preferences_app_protection__communication">परस्परसंवाद</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">पेमेंट</string>
     <string name="preferences_chats__chats">चॅट</string>
     <string name="preferences_data_and_storage__manage_storage">संचयन व्यवस्थापित करा</string>
-    <string name="preferences_data_and_storage__calls">कॉल</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">कॉल करिता कमी डेटा वापरा</string>
     <string name="preferences_data_and_storage__never">कधीही नाही</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi आणि मोबाईल डेटा</string>
     <string name="preferences_data_and_storage__mobile_data_only">फक्त मोबाईल डेटा</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">कमी डेटा वापरल्याने खराब नेटवर्कवर कॉल सुधारित होऊ शकतात</string>
-    <string name="preferences_notifications__messages">संदेश</string>
-    <string name="preferences_notifications__events">इव्हेंट</string>
     <string name="preferences_notifications__in_chat_sounds">चॅट-मधील ध्वनी</string>
     <string name="preferences_notifications__show">दाखवा</string>
-    <string name="preferences_notifications__calls">कॉल</string>
     <string name="preferences_notifications__ringtone">रिंगटोन</string>
-    <string name="preferences_chats__show_invitation_prompts">आमंत्रण सूचना दाखवा</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal विना असलेल्या संपर्कांसाठी आमंत्रण सूचना दाखवा</string>
     <string name="preferences_chats__message_text_size">संदेश फाँट आकार</string>
-    <string name="preferences_events__contact_joined_signal">संपर्क Signal मध्ये सामील झाला</string>
     <string name="preferences_notifications__priority">प्राधान्यता</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन</string>
@@ -2857,8 +2741,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">इंटरनेट सोबत कनेक्ट केल्यावरच सेंसॉरशिप सर्कंवेंशन सक्रिय करता येते.</string>
     <string name="preferences_communication__category_sealed_sender">सीलबंद प्रेषक</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">डिस्पले निर्देशक</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"जे सीलबंद प्रेषकद्वारे पोहोचवले होते त्या संदेशांवर आपण \"संदेश तपशील\" निवडल्यावर स्थिती चिन्ह दाखवा."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">कुणाकडूनही अनुमती द्या</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">विना-संपर्क आणि आपण ज्यांच्या सोबत आपली प्रोफाईल सामायिक केलेली नाही त्यांच्याकडून येणाऱ्या संदेशांकरिता सीलबंद प्रेषक सक्षम करा.</string>
     <string name="preferences_communication__sealed_sender_learn_more">अधिक जाणा</string>
@@ -2884,9 +2766,9 @@
     <string name="configurable_single_select__customize_option">पर्याय सानुकूलित करा</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2901,7 +2783,6 @@
     <string name="PaymentsHomeFragment__activating_payments">पेमेंट सक्रिय करत आहे…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">पेमेंट खाते पुनर्स्थापित करा</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">अलीकडील कुठलीही अॅक्टिव्हिटी नाही</string>
-    <string name="PaymentsHomeFragment__pending_requests">प्रलंबित विनंत्या</string>
     <string name="PaymentsHomeFragment__recent_activity">अलीकडील अॅक्टिव्हिटी</string>
     <string name="PaymentsHomeFragment__see_all">सर्व पहा</string>
     <string name="PaymentsHomeFragment__add_funds">फंड जोडा</string>
@@ -2930,13 +2811,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">पेमेंट निष्क्रिय केले गेले.</string>
     <string name="PaymentsHomeFragment__payment_failed">पेमेंट अयशस्वी झाले</string>
     <string name="PaymentsHomeFragment__details">तपशील</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी आपण Signal चा वापर करू शकता. सर्व पेमेंट MobileCoin आणि MobileCoin वॉलेट च्या वापराच्या अटींच्या अधीन आहेत. हे बीटा वैशिष्ट्य असल्यामुळे आपल्याला काही समस्या उद्भवू शकतात किंवा आपण गमावलेले बॅलंस पुन्हा प्राप्त केले जाऊ शकत नाही. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">MobileCoin पाठवण्यासाठी आणि प्राप्त करण्यासाठी आपण Signal चा वापर करू शकता. सर्व पेमेंट MobileCoin आणि MobileCoin वॉलेट च्या वापराच्या अटींच्या अधीन आहेत. हे बीटा वैशिष्ट्य असल्यामुळे आपल्याला काही समस्या उद्भवू शकतात किंवा आपण गमावलेले बॅलंस पुन्हा प्राप्त केले जाऊ शकत नाही. </string> -->
     <string name="PaymentsHomeFragment__activate">सक्रिय करा</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin च्या अटी पहा</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal मध्ये पेमेंट यापुढे उपलब्ध नाही. तरीही आपण फंड एक्सचेंजवर स्थानांतरित करू शकता पण आपण यापुढे पेमेंट पाठवू किंवा प्राप्त करू शकत नाही किंवा फंड जोडू शकत नाही.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">भविष्यात पाठवण्यासाठी पेमेंट लॉक चालू करायचे?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2980,7 +2861,7 @@
     <string name="PaymentsAddMoneyFragment__copy">कॉपी करा</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">क्लिपबोर्ड वर कॉपी केले</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">फंड जोडण्यासाठी, MobileCoin आपल्या वॉलेट पत्त्यावर पाठवा. MobileCoin चे समर्थन करत असलेल्या ऐक्सचेंजवर आपल्या खात्यावरून व्यवहार चालू करा, नंतर QR कोड स्कॅन करा किंवा वॉलेट पत्ता कॉपी करा.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">तपशील</string>
@@ -3000,8 +2881,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">कॉइन सफाई फी</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">आपल्याकडील कॉइन व्यव्हार पूर्ण करण्यासाठी वापरले जाऊ शकत नसल्यास \"कॉइन सफाई फी\" चार्ज केली जाते. सफाई आपल्याला पेमेंट पाठवण्यासाठी अनुमती देते.</string>
     <string name="PaymentsDetailsFragment__no_details_available">या व्यवहारासाठी कुठलाही पुढचा तपशील उपलब्ध नाही</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">पेमेंट पाठवले</string>
     <string name="PaymentsDetailsFragment__received_payment">पेमेंट प्राप्त झाले</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">पेमेंट पूर्ण झाले %1$s</string>
@@ -3045,7 +2926,7 @@
     <string name="CreatePaymentFragment__backspace">बॅकस्पेस</string>
     <string name="CreatePaymentFragment__add_note">टीप जोडा</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">रूपांतरण हा एक अंदाज असतो आणि तो कदाचित अचूक नसू शकतो.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">टीप लिहा</string>
@@ -3053,7 +2934,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">पेमेंटची पुष्टी करा</string>
     <string name="ConfirmPayment__network_fee">नेटवर्क फी</string>
-    <string name="ConfirmPayment__error_getting_fee">फी मिळवण्यात त्रुटी</string>
     <string name="ConfirmPayment__estimated_s">अंदाजे %1$s</string>
     <string name="ConfirmPayment__to">यांना</string>
     <string name="ConfirmPayment__total_amount">एकूण रक्कम</string>
@@ -3111,29 +2991,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">जतन करा</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">हरवणारे संदेश</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">माहिती</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">कॉपी करा</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">हटवा</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">फॉर्वर्ड करा</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">प्रत्युत्तर द्या</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">जतन करा</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">पुन्हा पाठवा</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">निवडा</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">पेमेंट तपशील</string>
 
     <!-- conversation_expiring_on -->
@@ -3142,14 +3021,6 @@
     <string name="conversation_insecure__invite">आमंत्रित करा</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">निवडलेले हटवा</string>
-    <string name="conversation_list_batch__menu_pin_selected">निवडलेले पिन करा</string>
-    <string name="conversation_list_batch__menu_unpin_selected">निवडलेले अनपिन करा</string>
-    <string name="conversation_list_batch__menu_select_all">सर्व निवडा</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">निवडलेले आर्काईव्ह करा</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">निवडलेले अनआर्काईव्ह करा</string>
-    <string name="conversation_list_batch__menu_mark_as_read">वाचले म्हणून चिन्हांकित करा</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">वाचले नाही असे चिन्हांकित करा</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">सेटिंग शॉर्टकट</string>
@@ -3170,7 +3041,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">सुरक्षित सत्र रीसेट करा</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">अनम्यूट करा</string>
@@ -3218,20 +3088,17 @@
     <string name="reminder_header_push_text">आपला परस्परसंवाद अनुभव वर्धित करा.</string>
     <string name="reminder_header_service_outage_text">Signal तांत्रिक समस्या अनुभवत आहे. आम्ही लवकरात लवकर सेवा पुनर्स्थित करण्यासाठी कठोर परिश्रम करत आहोत.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Signal चा खाजगी संपर्क शोध तात्पुरता आपल्या फोनच्या संपर्कांवर प्रक्रिया करु शकत नाही.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">अधिक जाणून घ्या</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Signal चा खाजगी\' संपर्क शोध आपल्या फोनच्या संपर्कावर प्रक्रिया करु शकत नाही.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">अधिक जाणून घ्या</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">जतन करा</string>
-    <string name="media_preview__forward_title">फॉर्वर्ड करा</string>
-    <string name="media_preview__share_title">सामायिक करा</string>
-    <string name="media_preview__all_media_title">सर्व मिडिया</string>
     <string name="media_preview__edit_title">संपादन</string>
 
 
@@ -3273,7 +3140,7 @@
     <string name="BaseKbsPinFragment__next">पुढे</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">अल्फान्यूमेरिक PIN तयार करा</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">न्यूमेरिक PIN तयार करा</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3303,7 +3170,7 @@
     <string name="KbsSplashFragment__introducing_pins">PIN ची ओळख करून देत आहे</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल. आपल्याला अॅप उघडण्यासाठी PIN ची गरज लागणार नाही.</string>
     <string name="KbsSplashFragment__learn_more">अधिक जाणा</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">नोंदणी लॉक = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">आपल्या नोंदणी लॉक ला आता PIN म्हटले जाते आणि ते अधिक करते. त्वरित अद्यतनित करा.</string>
     <string name="KbsSplashFragment__update_pin">PIN अद्यतनित करा</string>
@@ -3324,7 +3191,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">आपल्या गोपनीयतेसाठी आणि सुरक्षेसाठी आपले खाते लॉक केले गेले आहे. आपल्या खात्यामध्ये %1$d दिवसांच्या निष्क्रियतेनंतर आपल्या PIN विना आपल्याला या फोन नंबर सोबत पुन्हा नोंदणी करता येईल. सर्व मजकूर हटविला जाईल.</string>
     <string name="AccountLockedFragment__next">पुढे</string>
     <string name="AccountLockedFragment__learn_more">अधिक जाणा</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">आपला PIN प्रविष्ट करा</string>
@@ -3336,7 +3203,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">चुकीचा PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">आपला PIN विसरलात?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">जास्ती प्रयत्न उरलेले नाहीत!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal नोंदणी - Android (v1 PIN) साठी PIN ची मदत पाहिजे</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal नोंदणी - Android (v2 PIN) साठी PIN ची मदत पाहिजे</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3394,7 +3260,6 @@
     <string name="registration_activity__transfer_account">खाते स्थानांतरित करा</string>
     <string name="registration_activity__skip">वगळा</string>
     <string name="preferences_chats__chat_backups">चॅट बॅकअप</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">बाह्य संचयनात चॅट बॅकअप करा</string>
     <string name="preferences_chats__transfer_account">खाते स्थानांतरित करा</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">नवीन Android डिव्हाइसवर खाते स्थानांतरित करा</string>
     <string name="RegistrationActivity_enter_backup_passphrase">बॅकअप पासफ्रेझ प्रविष्ट करा</string>
@@ -3433,7 +3298,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपल्या बॅकअपमध्ये एक अतिशय मोठी फाईल आहे जिचा बॅकअप घेतला जाऊ शकत नाही. कृपया ती हटवा किंवा नवीन तयार करा.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">बॅकअप व्यवस्थापित करण्यासाठी टॅप करा.</string>
-    <string name="ProgressPreference_d_messages_so_far">आतापर्यंत %1$d संदेश</string>
     <string name="RegistrationActivity_wrong_number">चुकीचा नंबर</string>
     <string name="RegistrationActivity_call_me_instead_available_in">नाहीतर मला कॉल करा \n (%1$02d:%2$02d मध्ये उपलब्ध)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal समर्थनाशी संपर्क साधा</string>
@@ -3455,9 +3319,6 @@
     <string name="preferences_app_protection__create_a_pin">PIN तयार करा.</string>
     <string name="preferences_app_protection__change_your_pin">आपला PIN बदला</string>
     <string name="preferences_app_protection__pin_reminders">PIN स्मरणपत्रे</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Signal सोबत संचयित केलेली माहिती PIN एन्क्रिप्टेड ठेवतात जेणेकरून ती फक्त आपण अॅक्सेस करू शकता. आपण Signal पुन्हा स्थापन केल्यावर आपली प्रोफाईल, सेटिंग, आणि संपर्क पुनर्स्थित होईल.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Signal सोबत आपला फोन नंबर पुन्हा नोंदवण्यासाठी आपला Signal PIN आवश्यक करून अतिरिक्त सुरक्षा जोडा.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">ज्याअर्थी ते पुनर्स्थित केले जाऊ शकत नाहीत स्मरणपत्र आपल्याला PIN लक्षात ठेवण्यास मदत करतात. काही काळानंतर आपल्याला विचारण्याची वारंवारता कमी होईल.</string>
     <string name="preferences_app_protection__turn_off">बंद करा</string>
     <string name="preferences_app_protection__confirm_pin">PIN ची पुष्टी करा</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">आपल्या Signal PIN ची पुष्टी करा</string>
@@ -3521,7 +3382,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi सेटिंग उघडण्यात अक्षम. कृपया Wi-Fi व्यक्तीचलितपणे चालू करा.</string>
     <string name="DeviceTransferSetup__grant_location_permission">स्थान परवानगी मान्य करा</string>
     <string name="DeviceTransferSetup__turn_on_location_services">स्थान सेवा चालू करा</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">स्थान सेटिंग उघडण्यात अक्षम.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi चालू करा</string>
     <string name="DeviceTransferSetup__error_connecting">कनेक्ट करण्यात त्रुटी</string>
     <string name="DeviceTransferSetup__retry">पुन्हा प्रयत्न करा</string>
@@ -3530,7 +3390,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">खालील कोड आपल्या दोन्ही डिव्हाइसवर समान असल्याचे सत्यापित करा. नंतर सुरू ठेवा वर टॅप करा.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">नंबर जुळत नाही</string>
     <string name="DeviceTransferSetup__continue">सुरू ठेवा</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">नंबर समान नाही</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">आपल्या डिव्हाइसवरील नंबर जुळत नसल्यास, आपण चुकीच्या डिव्हाइससोबत कनेक्ट केले असल्याची शक्यता आहे. हे ठीक करण्यासाठी, स्थानांतरण थांबवा आणि पुन्हा प्रयत्न करा आणि आपले दोन्ही डिव्हाइस जवळ ठेवा.</string>
     <string name="DeviceTransferSetup__stop_transfer">स्थानांतरण थांबवा</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">जुना डिव्हाइस डिस्कव्हर करण्यात अक्षम</string>
@@ -3560,7 +3419,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% संदेश आतापर्यंत…</string>
     <string name="DeviceTransfer__cancel">रद्द करा</string>
     <string name="DeviceTransfer__try_again">पुन्हा प्रयत्न करा</string>
-    <string name="DeviceTransfer__stop_transfer_question">स्थानांतरण थांबवायचे?</string>
     <string name="DeviceTransfer__stop_transfer">स्थानांतरण थांबवा</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">सर्व स्थानांतरण प्रगती नाहीशी होईल.</string>
     <string name="DeviceTransfer__transfer_failed">स्थानांतरण अयशस्वी झाले</string>
@@ -3568,7 +3426,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">खाते स्थानांतरित करा</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">नवीन Android डिव्हाइसवर Signal सेट अप करताना आपण आपले Signal खाते स्थानांतरित करू शकता. सुरू ठेवण्यापूर्वी:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">१.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">आपल्या नवीन Android डिव्हाइसवर Signal डाऊनलोड करा</string>
     <string name="OldDeviceTransferInstructions__second_bullet">२.</string>
@@ -3578,7 +3435,6 @@
     <string name="OldDeviceTransferInstructions__continue">सुरू ठेवा</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">स्थानांतरण पूर्ण झाले</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">आपल्या नवीन डिव्हाइसवर जा</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">आपला Signal डेटा आपल्या नवीन डिव्हाइसवर स्थानांतरित केला गेला आहे. स्थानांतरण प्रक्रिया पूर्ण करण्यासाठी, आपल्याला आपल्या नवीन डिव्हाइसवर नोंदणी सुरू ठेवणे आवश्यक आहे.</string>
     <string name="OldDeviceTransferComplete__close">बंद करा</string>
@@ -3605,10 +3461,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">रद्द करा आणि हा डिव्हाइस सक्रिय करा</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB बॅलंस स्थानांतरित करायचा?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">आपल्याकडे %1$s चा बॅलंस आहे. आपण इतर वॉलेट पत्त्यावर आपले खाते हटवण्यापूर्वी आपले फंड स्थानांतरित न केल्यास, आपण ते कायमचे गमवाल.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">स्थानांतरित करू नका</string>
-    <string name="AdvancedPreferenceFragment__transfer">स्थानांतरित करा</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">अवरोधित करा</string>
@@ -3622,10 +3474,6 @@
     <string name="RecipientBottomSheet_make_admin">प्रशासक बनवा</string>
     <string name="RecipientBottomSheet_remove_as_admin">अॅडमिन म्हणून काढून टाका</string>
     <string name="RecipientBottomSheet_remove_from_group">गटातून काढा</string>
-    <string name="RecipientBottomSheet_message_description">संदेश</string>
-    <string name="RecipientBottomSheet_voice_call_description">व्हॉईस कॉल</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">असुरक्षित व्हॉईस कॉल</string>
-    <string name="RecipientBottomSheet_video_call_description">व्हिडिओ कॉल</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s ला गट अॅडमिन म्हणून काढायचे?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" हा गट आणि त्याचे सदस्य संपादित करू शकतील."</string>
@@ -3731,7 +3579,6 @@
     <string name="DeleteAccountFragment__the_phone_number">आपण प्रविष्ट केलेला फोन नंबर आपल्या खात्याशी जुळत नाही.</string>
     <string name="DeleteAccountFragment__are_you_sure">आपले खाते हटवायची आपणास खात्री आहे का?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">हे आपले Signal खाते हटवेल आणि अॅपलिकेशन रीसेट करेल. प्रक्रिया पूर्ण झाल्यावर अॅप बंद होईल.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">खाते हटवण्यात अयशस्वी. आपल्याकडे नेटवर्क कनेक्शन आहे का?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">स्थानिक डेटा हटवण्यात अयशस्वी. आपण त्यास सिस्टिम अॅपलिकेशन सेटिंग मधून व्यक्तीचलितपणे साफ करू शकता.</string>
     <string name="DeleteAccountFragment__launch_app_settings">अॅप सेटिंग लाँच करा</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3763,7 +3610,6 @@
     <string name="ShareActivity__share">सामायिक करा</string>
     <string name="ShareActivity__send">पाठवा</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">अनेक चॅट यांना शेअर करणे फक्त Signal संदेशांसाठी समर्थित आहे</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">इंटेन्टमधून शेअर डेटा मिळू शकत नाही.</string>
 
@@ -3772,7 +3618,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">आपण फक्त %1$d पर्यंत चॅट सोबत शेअर करू शकता</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">चॅट वॉलपेपर</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">चॅट रंग</string>
@@ -3783,7 +3628,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">गडद मोड वॉलपेपर अस्पष्ट बनवतो</string>
     <string name="ChatWallpaperFragment__contact_name">संपर्क नाव</string>
     <string name="ChatWallpaperFragment__reset">रीसेट करा</string>
-    <string name="ChatWallpaperFragment__clear">साफ करा</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">वॉलपेपर पुनरावलोकन</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">सर्व चॅटचे रंग ओव्हरराइड करण्यास आपण इच्छुक आहात का?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">सर्व वॉलपेपर ओव्हरराइड करण्यास आपण इच्छुक आहात का?</string>
@@ -3808,7 +3652,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">आपली गॅलरी पहाण्यासाठी संचय परवानगी आवश्यक आहेत.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">वॉलपेपर चित्र निवडा</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">झूम करण्यासाठी पिंच करा, अनुरूप करण्यासाठी ओढा.</string>
@@ -3835,9 +3678,9 @@
     <string name="payment_info_card_with_a_high_balance">उच्च बॅलंससह, आपल्या खात्याला अधिक संरक्षण जोडण्यासाठी आपल्याला अल्फान्यूमेरिक PIN अद्यतनित करावेसे वाटू शकते.</string>
     <string name="payment_info_card_update_pin">PIN अद्यतनित करा</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">वॉलेट निष्क्रिय करा</string>
@@ -3849,7 +3692,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">स्थानांतरित न करता निष्क्रिय करायचा?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">आपण पेमेंट पुन्हा सक्रिय करण्याचे निवडल्यास आपला बॅलंस आपल्या वॉलेट मध्ये Signal ला लिंक केलेला राहील.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">वॉलेट निष्क्रिय करण्यात त्रुटी.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">रिकव्हरी फ्रेझ</string>
@@ -3885,13 +3728,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">अवैध रिकव्हरी फ्रेझ</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">आपण %1$d शब्द प्रविष्ट केले असल्याची खात्री करा आणि पुन्हा प्रयत्न करा.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">पुढे</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">संपादन</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">मागील</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">आपला रिकव्हरी फ्रेझ</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">पुढील %1$d शब्द ओळीत लिहून ठेवा. आपली यादी सुरक्षित ठिकाणी ठेवा.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">आपला फ्रेझ आपण योग्यरित्या प्रविष्ट केला असल्याची खात्री करा.</string>
@@ -3919,7 +3761,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">अवैध शब्द</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">क्लिपबोर्ड साफ केले.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">बघा</string>
@@ -3938,7 +3779,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">आपले कुठलेही संपर्क किंवा आपल्यासोबत चॅट करत असलेल्या व्यक्ती या गटामध्ये नाहीत. नको असलेले संदेश टाळण्यासाठी विनंत्याचे काळजीपूर्वक पुनरावलोकन करा.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">संदेश विनंत्यांबद्दल</string>
     <string name="GroupsInCommonMessageRequest__okay">ठीक आहे</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">चॅट रंगाचा हे एक पुनरावलोकन आहे.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">रंग फक्त आपल्याला दृश्यमान आहे.</string>
 
@@ -4057,7 +3898,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">केवळ आपण निवडलेल्या लोकांकडून आणि गटांकडून सूचना प्राप्त करण्यासाठी प्रोफाइल तयार करा.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">सूचना प्रोफाइल</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">प्रोफाइल तयार करा</string>
@@ -4073,7 +3914,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">नवीन चॅटसाठी पूर्वनिर्धारित टायमर</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">आपल्याद्वारा चालू केलेल्या सर्व नवीन चॅटसाठी पूर्वनिर्धारित हरवणारे संदेश टायमर सेट करा.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">आपल्या स्टोरीज आणि त्यांना कोण पाहू शकते ते व्यवस्थापित करा</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">पैसे ट्रान्सफर करण्यासाठी Android स्क्रिन लॉक किंवा फिंगरप्रिंट आवश्यक आहे</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">पेमेंट लॉक सक्षम करू शकत नाही</string>
@@ -4082,12 +3922,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">सिस्टीम सेटिंग्ज मध्ये सुचालन करण्यात अपयशी</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">सेटिंग्ज वर जा</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">रद्द करा</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">स्टेटस चिन्ह दाखवा</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">सीलबंद प्रेषकद्वारे पोहोचवले गेल्यावर संदेश तपशीलामध्ये चिन्ह दाखवा.</string>
 
@@ -4158,8 +3996,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">सर्वात वरील कोपरा निवडणारा</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">तळाशी असलेला कोपरा निवडणारा</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Signal ला देणगी द्या</string>
@@ -4217,20 +4053,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">फक्त या ग्रुपचे अ‍ॅडमिन त्यांच्या स्टोरीज जोडू शकतात</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">संपर्क ॲप आढळले नाही</string>
-    <string name="ConversationSettingsFragment__send_message">संदेश पाठवा</string>
     <string name="ConversationSettingsFragment__start_video_call">व्हिडिओ कॉल चालू करा</string>
     <string name="ConversationSettingsFragment__start_audio_call">ऑडिओ कॉल चालू करा</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">स्टोरी</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">संदेश</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">व्हिडिओ</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">ऑडिओ</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">कॉल करा</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">म्यूट करा</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">म्यूट केलेले</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">शोध</string>
     <string name="ConversationSettingsFragment__disappearing_messages">हरवणारे संदेश</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">ध्वनी आणि सूचना</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">संपर्क तपशील</string>
     <string name="ConversationSettingsFragment__view_safety_number">सुरक्षितता नंबर बघा</string>
     <string name="ConversationSettingsFragment__block">अवरोधित करा</string>
@@ -4264,7 +4107,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">सूचना म्यूट करा</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">म्यूट केलेले नाही</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s पर्यंत म्यूट केले गेले</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">उल्लेख</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">नेहमी सूचित करा</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">सूचित करू नका</string>
@@ -4306,7 +4148,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">%1$s ला हटवू शकत नाही</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">ही व्यक्ती आपल्या डिव्हाइसच्या संपर्कामध्ये जतन केली. त्यांना आपल्या संपर्कातून हटवा आणि पुन्हा प्रयत्न करा.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">संपर्क पहा</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s हा Signal वापरकर्ता नाही</string>
@@ -4331,9 +4173,7 @@
     <string name="AvatarPickerFragment__photo">फोटो</string>
     <string name="AvatarPickerFragment__text">मजकूर</string>
     <string name="AvatarPickerFragment__save">जतन करा</string>
-    <string name="AvatarPickerFragment__select_an_avatar">अवतार निवडा</string>
     <string name="AvatarPickerFragment__clear_avatar">अवतार साफ करा</string>
-    <string name="AvatarPickerFragment__edit">संपादन</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">अवतार जतन करण्यात अयशस्वी</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4406,7 +4246,6 @@
     <string name="ImageEditorHud__clear_all">सर्व साफ करा</string>
     <string name="ImageEditorHud__undo">अनडू करा</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">मार्कर आणि हायलायटर यांच्या मध्ये टॉगल (पुढे मागे) करा</string>
-    <string name="ImageEditorHud__delete">हटवा</string>
     <string name="ImageEditorHud__toggle_between_text_styles">दोन टेक्स्ट शैलीत टॉगल करा</string>
 
     <string name="MediaCountIndicatorButton__send">पाठवा</string>
@@ -4418,7 +4257,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">बदल रद्द करायचे ?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">या फोटोमध्ये केलेले कोणतेही बदल तुम्ही गमावाल.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">कॅमेरा उघडण्यात अयशस्वी</string>
 
     <string name="BadgesOverviewFragment__my_badges">माझे बॅजेस</string>
     <string name="BadgesOverviewFragment__featured_badge">वैशिष्ट्यीकृत बॅज</string>
@@ -4426,27 +4264,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">बॅजेस निवडा</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">पुनरावलोकन</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">बॅज निवडा</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">आपणाला एक बॅज निवडणे आवश्यक आहे</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">प्रोफाइल अद्यतनित करण्यात अयशस्वी</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">सस्टेनर बना</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal ला सपोर्ट करतात</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s हे Signal ला मासिक देणगीसह सपोर्ट करत आहेत. Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s नी Signal ला देणगी देऊन सपोर्ट केला. Signal ही जाहिरातदार किंवा गुंतवणूकदार नसलेली विना-नफा संस्था आहे, केवळ आपल्यासारख्या लोकांकडून समर्थित आहे.</string>
 
     <string name="ImageView__badge">बॅज</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">या तंत्रज्ञानाचे समर्थन करा जे तुमच्या साठी बनवले आहे — तुमच्या डेटासाठी नाही — ते टिकवून ठेवणाऱ्या लोकांच्या समुदायात सामील होऊन.</string>
-    <string name="SubscribeFragment__currency">चलन</string>
-    <string name="SubscribeFragment__more_payment_options">अधिक पेमेंट पर्याय</string>
     <string name="SubscribeFragment__cancel_subscription">सदस्यत्व रद्द करा</string>
     <string name="SubscribeFragment__confirm_cancellation">रद्द करण्याची पुष्टी करायची ?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">आपणाकडून पुन्हा शुल्क आकारले जाणार नाही. आपला बिलिंग कालावधी संपल्यावर आपला बॅज आपल्या प्रोफाइलमधून काढून टाकला जाईल.</string>
@@ -4459,7 +4291,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">आपणाकडून आज नवीन सदस्यत्वाची पूर्ण रक्कम (%1$s)आकारली जाईल. आपल्या सदस्यत्वाचे मासिक नूतनीकरण होईल .</string>
 
     <string name="Subscription__s_per_month">%1$s/महिना</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">%1$s नी नूतनीकरण केले</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">%1$s ला कालबाह्य</string>
@@ -4491,7 +4323,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">अधिक</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">पावत्या</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">आपले समर्थन</string>
     <string name="ManageDonationsFragment__manage_subscription">सदस्यत्व व्यवस्थापित करा</string>
@@ -4499,7 +4330,6 @@
     <string name="ManageDonationsFragment__donation_receipts">देणगीच्या पावत्या</string>
     <string name="ManageDonationsFragment__badges">बॅजेस</string>
     <string name="ManageDonationsFragment__subscription_faq">सदस्यत्वाबद्दल वारंवार विचारले जाणारे प्रश्न</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">सदस्यत्व मिळविण्यात त्रुटी.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">देणगी देण्याचे इतर मार्ग</string>
     <!-- Preference label to launch badge gifting -->
@@ -4507,8 +4337,9 @@
 
     <string name="Boost__enter_custom_amount">सानुकूल रक्कम प्रविष्ट करा</string>
     <string name="Boost__one_time_contribution">एक वेळचे योगदान</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal बूस्ट जोडा</string>
     <string name="MySupportPreference__s_per_month">%1$s/महिना</string>
     <string name="MySupportPreference__renews_s">%1$s नी नूतनीकरण केले</string>
     <string name="MySupportPreference__processing_transaction">ट्रांझ्याक्शन प्रक्रिया करत आहे…</string>
@@ -4543,7 +4374,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">आपले Signal सस्टेनर पेमेंट गोळा करण्यात आम्हाला समस्या येत आहे. आपली पेमेंट पद्धत अद्ययावत असल्याची खात्री करा. तसे नसल्यास, ते Google Pay मध्ये अपडेट करा. Signal काही दिवसात पुन्हा पेमेंटवर प्रक्रिया करण्याचा प्रयत्न करेल.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">हे पुन्हा दाखवू नका</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">अधिक माहितीकरिता सपोर्टशी संपर्क करा.</string>
     <string name="Subscription__contact_support">समर्थन सोबत संपर्क साधा</string>
     <string name="Subscription__get_a_s_badge">एक %1$s बॅज मिळवा</string>
 
@@ -4552,7 +4382,6 @@
     <string name="DonationsErrors__error_processing_payment">पेमेंट प्रक्रिया करताना त्रुटी आली</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">पेमेंट प्रक्रिया करताना त्रुटी आली. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">आपला बॅज आपल्या खात्याला जोडला जाऊ शकत नाही, परंतु आपल्याकडून शुल्क आकारले गेले असल्यास, कृपया सपोर्टशी संपर्क साधा.</string>
     <string name="DonationsErrors__your_payment">आपल्या पेमेंट वर प्रक्रिया केली जाऊ शकले नाही आणि आपल्याकडून शुल्क आकारले गेले नाही. कृपया पुन्हा प्रयत्न करा.</string>
     <string name="DonationsErrors__still_processing">अजूनही प्रक्रिया करत आहे</string>
     <string name="DonationsErrors__couldnt_add_badge">बॅज जोडता आला नाही</string>
@@ -4566,8 +4395,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">भेट बॅज पाठवू शकलो नाही. कृपया सपोर्टशी संपर्क साधा.</string>
     <string name="DonationsErrors__your_badge_could_not">आपला बॅज आपल्या खात्याला जोडला जाऊ शकत नाही, परंतु आपल्याकडून शुल्क आकारले गेले असल्यास, कृपया सपोर्टशी संपर्क साधा.</string>
     <string name="DonationsErrors__your_payment_is_still">आपली पेमेंट प्रक्रिया अजूनही चालू आहे. आपल्या कनेक्शन नुसार यास काही मिनिटे लागू शकतात.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay अनुपलब्ध</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">अ‍ॅपमये देणगी देण्यास आपणाला Google Pay सेटअप करावे लागेल.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">सदस्यत्व रद्द करणे अयशस्वी झाले</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">सदस्यत्व रद्द करण्यास इंटरनेट कनेक्शन आवश्यक आहे.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">आपले डिव्हाइस Google Pay ला सपोर्ट करत नाही, त्यामुळे आपण बॅज मिळवण्यास सदस्यत्व घेऊ शकत नाही. आपण अजूनही आमच्या वेबसाइटवर देणगी देऊन Signal ला समर्थन देऊ शकता.</string>
@@ -4584,11 +4411,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">भेट बॅज</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">%1$d महिना राहील</item>
-        <item quantity="other">%1$d महिने राहील</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">रिडीम करा</string>
     <!-- Gift badge view action label -->
@@ -4598,7 +4420,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">रिडीम केले</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">दुसरी पेमेंट पद्धत वापरून पहा किंवा अधिक माहितीसाठी आपल्या बँकेशी संपर्क साधा.</string>
@@ -4802,9 +4623,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">भेट</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">बूस्ट करा</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">तपशील</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">देणगीचा प्रकार</string>
     <!-- Donation receipts date paid heading -->
@@ -4944,7 +4763,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$sला खाजगीपणे प्रत्त्युत्तर देत आहे</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">खाजगी प्रत्युत्तर</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">कॉपी करा</string>
     <!-- Context menu item to delete a story response -->
@@ -4961,11 +4779,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">ही स्टोरी कोण पाहू शकतात</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">यांच्यापासून स्टोरी लपवा</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">सर्व Signal कनेक्शन्स</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">सर्व कनेक्शन्ससोबत शेअर करा</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">…सोडून सर्व</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5015,19 +4831,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">काढा</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">तुम्हाला खात्री आहे ?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">ही क्रिया पूर्ववत केली जाऊ शकत नाही.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">स्टोरीचे नाव संपादित करा</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">स्टोरीचे नाव</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">जतन करा</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">मजकूर जोडण्यासाठी टॅप करा</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">मजकूर समाविष्ट करा</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5043,7 +4855,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">शोध</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">अनपेक्षित त्रूटी उद्भवली</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">कृपया वैध लिंक प्रविष्ट करा.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5065,17 +4876,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">काढून टाका</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">स्टोरीज या फक्त Signal बिटा वापरकर्त्यांना उपलब्ध असतील.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">आपण स्टोरीज शेअर केल्यास, ती केवळ Signal बिटा वरील लोकांना उपलब्ध असेल.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">स्टोरी मध्ये जोडायचे?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">आपल्या स्टोरी मध्‍ये अतिरिक्त मजकूर जोडल्‍याने आपल्या Signal कनेक्‍शन्सला 24 तास ते पाहण्‍याची अनुमती मिळते. आपली स्टोरी कोण पाहू शकते हे आपण सेटिंग्जमध्ये बदलू शकता.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">स्टोरीत जोडा</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">दृश्यांना संपादित करा</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">स्टोरी पाठवता आली नाही. आपले कनेक्शन तपासा आणि पुन्हा प्रयत्न करा.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5083,9 +4888,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">बंद करा आणि हटवा</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">स्टोरीज शेअर करा व पहा</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">हा पर्याय बंद असताना आपण यापुढे स्टोरीज शेअर करू किंवा पाहू शकणार नाही.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">दर्शक निवडा</string>
     <!-- New story viewer selection action button label -->
@@ -5147,13 +4950,9 @@
     <string name="StoryDialogs__view_profile_photo">प्रोफाइल फोटो पहा</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">सेंसॉरशिप सर्कंवेंशन बंद करायचे ?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">चांगल्या अनुभवासाठी आपण आता Signal सेवेशी थेट कनेक्ट होऊ शकता.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">नाही धन्यवाद</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">बंद करा</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">आपण %1$s च्या स्टोरीवर प्रतिक्रिया दिली</string>
@@ -5357,13 +5156,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">फाईल आकार</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">यांना पाठवले</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">यांनी पाठवले</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">अयशस्वी</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">माहिती</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5385,7 +5180,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">स्टोरीज</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">स्टोरी दृश्ये</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">पावत्या पहा</string>
     <!-- Story view receipts toggle message -->
@@ -5437,7 +5231,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">आपले संदेश एक्सपोर्ट करण्यास आपणाला अंदाजे %1$s ची गरज आहे, पुढे सुरु ठेवण्यापूर्वी आपणाकडे पुरेशी जागा असल्याची खात्री करा.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">तरीही सुरू ठेवा</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal ला आपले संदेश एक्सपोर्ट करण्यास सक्षम होण्यासाठी SMS परवानगीची गरज आहे.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5552,9 +5346,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">आपले संदेश एक्सपोर्ट करण्यासाठी आपल्या फोनवर अतिरिक्त %1$s मुक्त असल्याची खात्री करा</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">एक्सपोर्ट करण्याचा पुन्हा प्रयत्न करा, जे फक्त अद्याप एक्सपोर्ट न झालेल्या संदेशांना पुन्हा एक्सपोर्ट करण्याचा प्रयत्न करेल</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">समस्या कायम राहिल्यास, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">आमच्याशी संपर्क साधा</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">पुन्हा प्रयत्न करा</string>
@@ -5598,9 +5392,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">रद्द करत आहे…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">असंख्य संपर्कांवर प्रक्रिया करण्यात आली</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">आपल्या संपर्कावर प्रक्रिया करण्यासाठी %1$d दिवसाच्या आत आणखी प्रयत्न केला जाईल.</item>
         <item quantity="other">आपल्या संपर्कावर प्रक्रिया करण्यासाठी %1$d दिवसांच्या आत आणखी प्रयत्न केला जाईल.</item>
@@ -5608,19 +5402,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">ही समस्या लवकर सोडवण्यास, आपण आपल्या फोनवरील असंख्य संपर्कांना सिंक करणाऱ्या संपर्कांना किंवा अकाऊंट्सना काढून टाकण्याचा विचार करु शकता.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">संपर्क उघडा</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">कोणतेही संपर्क अ‍ॅप आढळले नाही</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">आपल्या संपर्कावर प्रक्रिया केली जाऊ शकणार नाही</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">Signal प्रक्रिया करु शकेल अशा संपर्कांच्या संख्येची मर्यादा आपल्या फोनने ओलंडली आहे. Singal वर संपर्क शोधण्यासाठी, आपल्या फोनवरील असंख्य संपर्कांना सिंक करणाऱ्या संपर्कांना किंवा अकाऊंट्सना काढून टाकण्याचा विचार करु शकता.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">अधिक जाणून घ्या</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">संपर्क उघडा</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">कोणतेही संपर्क अ‍ॅप आढळले नाही</string>
 
     <!-- PaymentMessageView -->
@@ -5649,5 +5441,9 @@
     <string name="GroupStoryEducationSheet__next">पुढे</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

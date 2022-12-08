@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">Ndio</string>
     <string name="no">Hapana</string>
@@ -23,65 +22,40 @@
     <string name="save">Hifadhi</string>
     <string name="note_to_self">Kiandiko Kwangu</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Ujumbe mpya</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">Hivi sasa: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado haujaweka sisitizo.</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Lemaza ufafanuzi</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe</string>
     <string name="ApplicationPreferencesActivity_disable">Lemaza</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Usajili unaghairiwa</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Usajili unaghairiwa kutoka jumbe za Signal na simu</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Lemaza jumbe za Signal na simu?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Lemaza jumbe na simu za Signal kwa kutosajili kutoka kwenye seva. Utatakiwa kusajili tena numberi yako ya simu ili uzitumie tena baadae.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu kuunganisha kwa mtambo.</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">Ujumbe mfupi wa simu umewezeshwa</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Gusa kubadili mpangilio msingi wa App ya jumbe</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">Ujumbe mfupi umelemazwa</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Gusa kufanya Signal mpangilio msingi wa App ya jumbe</string>
-    <string name="ApplicationPreferencesActivity_on">Washwa</string>
-    <string name="ApplicationPreferencesActivity_On">Washwa</string>
-    <string name="ApplicationPreferencesActivity_off">Zima</string>
-    <string name="ApplicationPreferencesActivity_Off">Zima</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">Ujumbe mfupi wa simu %1$s, Ujumbe mfupi wa picha %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Kifunga skrini%1$s, Kifunga usajili %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">Mandhari %1$s, Lugha %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Nenosiri limeundwa.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN imezimwa.</string>
-    <string name="ApplicationPreferencesActivity_hide">Ficha</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">Ungependa kuficha kikumbusho?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Rekodi maneno ya kurejesha malipo</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Rekodi maneno</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Kabla ya kuzima PIN yako, lazima urekodi kifungu chako cha kurejesha malipo ili uhakikishe kuwa unaweza kurejesha akaunti yako ya malipo.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Nafasi ya kurudi nyuma</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">dakika %1$d</item>
-        <item quantity="other">dakika %1$d</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(picha)</string>
@@ -129,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">Ungependa kumzuia mtumiaji?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" hawataweza kukupigia simu au kukutumia ujumbe.</string>
     <string name="BlockedUsersActivity__block">Zuia</string>
-    <string name="BlockedUsersActivity__unblock_user">Ungependa kuacha kumzuia mtumiaji?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Je, unataka kuacha kumzuia \"%1$s\"?</string>
-    <string name="BlockedUsersActivity__unblock">Fungua</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">Kiwango cha mchango: %1$s/kwa mwezi</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Ingiza taarifa za kadi yako hapa chini</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Ingiza taarifa za kadi yako. Signal haikusanyi wala kuhifadhi taarifa zako binafsi.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -249,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Huenda utatozwa gharama za mtoa huduma. Nambari unayopiga haijasajiliwa katika Signal. Simu hii itapigwa kupitia mtoa huduma wako wa simu wala si mtandaoni.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Nambari yako ya usalama ya 1 %1$s imebadilika. Hii inamaanisha kuwa aidha kuna mtu anajaribu kuingilia mawasiliano yako, ama tu 2 %2$s amesimiza upya Signal.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ungependa kuthibitisha nambari yako ya usalama na anwani hii.</string>
-    <string name="ConfirmIdentityDialog_accept">Kubali</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Gumzo za hivi karibuni</string>
@@ -271,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">Hariri jina</string>
     <string name="ContactNameEditActivity_given_name">Jina ulilopewa</string>
     <string name="ContactNameEditActivity_family_name">Jina la ukoo</string>
     <string name="ContactNameEditActivity_prefix">Kiambishi awali</string>
@@ -311,17 +277,17 @@
     <string name="ConversationItem_pending">  Inasubiriwa</string>
     <string name="ConversationItem_this_message_was_deleted">Ujumbe huu ulifutwa.</string>
     <string name="ConversationItem_you_deleted_this_message">Umefuta ujumbe huu.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Huwezi kupakua ujumbe. %1$s utahitaji kuituma tena.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Huwezi kupakua picha. %1$s utahitaji kuituma tena.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Huwezi kupakua video. %1$s utahitaji kuituma tena.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Huwezi kupakua ujumbe. Utahitaji kuituma tena.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Huwezi kupakua picha. Utahitaji kuituma tena.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Huwezi kupakua video. Utahitaji kuituma tena.</string>
 
     <!-- ConversationActivity -->
@@ -343,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">Ujumbe mfupi usio salama (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">MMS isiyo salama</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS isiyo salama (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Ujumbe wa Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Wacha tubadili kwa Signal 1%1$s</string>
     <string name="ConversationActivity_specify_recipient">Tafadhali chagua mawasiliano</string>
@@ -389,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">Futa na uondoke</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Ili kumpigia %1$s simu, Signal inahitaji kufikia maikrofoni yako</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">Chaguo zaidi sasa katika \";Mipangilio ya Kikundi\"</string>
 
     <string name="ConversationActivity_join">Jiunge</string>
     <string name="ConversationActivity_full">Imejaa</string>
@@ -410,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Huwezi tena kutuma jumbe za SMS kwenye Signal. Mkaribishe %1$s Signal ili kuendeleza mazungumzo hapa.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Mwalike kwenye Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Utakumbushwa tena hivi karibuni.</string>
 
     <!-- ConversationAdapter -->
@@ -650,10 +614,6 @@
     <string name="CustomDefaultPreference_none">Hakuna</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Chagua picha</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Piga picha</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Chagua kutoka kwenye matunzio</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Ondoa picha</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Unahitaji ruhusa ya kamera ili upige picha.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Unahitaji idhini ya kuhifadhi ili uangalie matunzio yako.</string>
 
@@ -709,8 +669,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Hitilafu wakati wa kurejesha GIF kamili ya azimio</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIFs</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">Vibandiko</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Ungependa kumwongeza mwanachama?</string>
@@ -735,7 +693,7 @@
     <string name="GroupManagement_access_level_all_members">Wanachama wote</string>
     <string name="GroupManagement_access_level_only_admins">Wasimamizi pekee</string>
     <string name="GroupManagement_access_level_no_one">Hakuna mtu</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -866,7 +824,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Imekamilika</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Mtu huyu hawezi kuongezwa kwenye vikundi vizee.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Mtu huyu hawezi kuongezwa kwenye vikundi vya matangazo.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Ongeza \"%1$s\" hadi \"%2$s\"?</item>
         <item quantity="other">Ongeza wanachama %3$d kwenye \"%2$s\"?</item>
@@ -894,34 +851,13 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Umechagua mwasiliani asiyetumia vikundi vya Signal, kwa hiyo kikundi hiki kitakuwa cha MMS. Ni wewe tu utakayeona majina na picha maalum za kikundi cha MMS. Hivi karibuni vikundi vya MMS vitaondolewa ili kuangazia kwenye jumbe za siri.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">Maombi na mialiko ya wanachama</string>
-    <string name="ManageGroupActivity_add_members">Ongeza wanachama</string>
-    <string name="ManageGroupActivity_edit_group_info">Hariri maelezo ya kikundi</string>
     <string name="ManageGroupActivity_who_can_add_new_members">Nani anaweza kuongeza wanachama wapya?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Ni nani anayeweza kuhariri maelezo ya kikundi hiki?</string>
-    <string name="ManageGroupActivity_group_link">Kiungo cha kikundi</string>
-    <string name="ManageGroupActivity_block_group">Zuia kikundi</string>
-    <string name="ManageGroupActivity_unblock_group">Acha kuzuia kikundi</string>
-    <string name="ManageGroupActivity_leave_group">Ondoka kwenye kikundi</string>
-    <string name="ManageGroupActivity_mute_notifications">Zima arifa</string>
-    <string name="ManageGroupActivity_custom_notifications">Taarifa kaida</string>
-    <string name="ManageGroupActivity_mentions">Kutajwa</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">Rangi ya gumzo na ya picha ya mandhari</string>
-    <string name="ManageGroupActivity_until_s">Mpaka %1$s</string>
-    <string name="ManageGroupActivity_always">Kila mara</string>
-    <string name="ManageGroupActivity_off">Zima</string>
-    <string name="ManageGroupActivity_on">Washwa</string>
-    <string name="ManageGroupActivity_view_all_members">Tazama Wanachama wote</string>
-    <string name="ManageGroupActivity_see_all">Tazama zote</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">Mwanachama %1$d ameongezwa.</item>
         <item quantity="other">Wanachama %1$dwameongezwa.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Ni wasimamizi pekee wanaoweza kuwezesha au kuzima kiungo cha kikundi kinachoweza kushirikiwa.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Ni wasimamizi pekee wanaoweza kuwezesha au kuzima chaguo la kuwaidhinisha wanachama wapya.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Ni wasimamizi pekee wanaoweza kuweka upya kiungo kinachoweza kushirikiwa.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Huna haki ya kufanya hivi</string>
     <string name="ManageGroupActivity_not_capable">Mtu uliyeongeza hana programu inayokubali vikundi vipya, kwa hivyo anahitaji kusasisha Signal</string>
@@ -987,18 +923,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Badili sauti na mtetemo</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Mpangilio wa kupiga simu</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Mlio wa simu</string>
-    <string name="CustomNotificationsDialogFragment__enabled">Imewezeshwa</string>
-    <string name="CustomNotificationsDialogFragment__disabled">Imelemazwa</string>
     <string name="CustomNotificationsDialogFragment__default">Chaguo msingi</string>
     <string name="CustomNotificationsDialogFragment__unknown">Isiyojulikana</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Kiungo cha kikundi kinachoweza kushirikiwa</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Dhibiti na ushiriki</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">Kiungo cha kikundi</string>
     <string name="ShareableGroupLinkDialogFragment__share">Shiriki</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Weka upya kiungo</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">Maombi ya wanachama</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Idhinisha wanachama wapya</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Itisha ruhusa ya msimamizi kuidhinisha wanachama wapya wanaojiunga kupitia kiungo cha kikundi.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Je, una hakika unataka kuweka upya kiungo cha kikundi? Watu hawataweza tena kujiunga na kikundi kwa kutumia kiungo cha sasa.</string>
@@ -1044,7 +975,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Sasisha Signal ili utumie viungo vya vikundi</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Toleo la Signal unalotumia halikubali kiungo hiki cha kikundi. Sakinisha toleo jipya ili ujiunge na kikundi hiki kupitia kiungo.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Sasisha Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Kifaa kimoja au vingi vyako vilichounganishwa vinatumia toleo la Signal ambalo halikubali viungo vya vikundi. Sasisha Signal kwenye (kifaa au) vifaa vyako vilivyounganishwa ili ujiunge na kikundi hiki.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Kiungo cha kikundi si sahihi</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1127,7 +1057,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Jumbe zinafutwa</string>
-    <string name="MediaOverviewActivity_Select_all">Chagua zote</string>
     <string name="MediaOverviewActivity_collecting_attachments">Inakusanya viambatisho</string>
     <string name="MediaOverviewActivity_Sort_by">Panga kwa</string>
     <string name="MediaOverviewActivity_Newest">Mpya kabisa</string>
@@ -1155,9 +1084,8 @@
     <string name="MediaOverviewActivity_audio">Sauti</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Picha</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">Ujumbe wa sauti</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Umetumwa na %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Uliyotuma</string>
@@ -1205,26 +1133,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Hitilafu kupakua ujumbe wa MMS, bofya ili ujaribu tena</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Tuma kwa %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">Fungua kamera</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Ongeza maelezo…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Kipengee kimetolewa kwa sababu kimezidi ukubwa unaokubalika</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Kipengee kimeondolewa kwa sababu kilikuwa na aina isiyojulikana</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Kipengele kimeondolewa kwa sababu kimezidi ukubwa au kina aina isiyojulikana</string>
     <string name="MediaSendActivity_camera_unavailable">Kamera haipatikani</string>
-    <string name="MediaSendActivity_message_to_s">Tuma ujumbe kwa %1$s</string>
-    <string name="MediaSendActivity_message">Ujumbe</string>
-    <string name="MediaSendActivity_select_recipients">Chagua wapokeaji</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal inahitaji upatikanaji wa anwani zako ili kuzionyesha.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal inahitaji ruhusa za Wawasiliani wako ili kuonyesha wawasiliani wako, lakini imekataliwa kabisa. Tafadhali enda kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Wawasiliani\".</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">Huwezi kugawiza kuliko vitu 1%1$d.</item>
-        <item quantity="other">Huwezi kushiriki zaidi ya %1$dvitu</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">Chagua wapokeaji</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Gusa hapa ili kufanya ujumbe huu kutoweka baada ya kusomwa.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Media zote</string>
@@ -1434,7 +1346,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Umependelea kipengele hiki kipya? Saidia kuiunga mkono Signal kwa mchango wa mara moja.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Historia ya jumbe zako na %1$s na nambari zao %2$s zimeunganishwa.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Historia ya jumbe zako na %1$s na gumzo lao lingine zimeunganishwa.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Umemtumia %1$s ombi la kuamilisha Malipo</string>
@@ -1497,7 +1409,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Jiunge na kundi hili na uwashirikishe wanachama picha na jina lako? Hutoona jumbe zao mpaka utakapokubali.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Ungependa kujiunga na kikundi hiki? Hawatajua umeona ujumbe wao hadi utakapokubali.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Zuia kikundi hiki na ushiriki jina na picha yako na washiriki wake? Hautapokea ujumbe wowote mpaka uwafungue.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Tazama</string>
     <string name="MessageRequestProfileView_member_of_one_group">Mwanachama wa %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Mwanachama wa %1$s na %2$s</string>
@@ -1595,7 +1507,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Unda Nenosiri lako</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Umefikia idadi ya juu zaidi ya majaribio ya PIN, lakini bado unaweza kufikia akaunti yako ya Signal kwa kuunda PIN mpya. Kwa faragha na usalama wako, akaunti yako itarejeshwa bila maelezo au mipangilio ya wasifu iliyohifadhiwa.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Unda PIN mpya</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Onyo</string>
@@ -1633,7 +1545,6 @@
     <string name="RecipientPreferenceActivity_unblock">Fungua</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">Kundi halina jina</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">Unajibu…</string>
@@ -1648,9 +1559,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">Sikukuu Njema ya 💜</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Onyesha upendo wako kwa kuwa mfadhili wa Signal.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Gusa hapa ili kuwasha video yako</string>
@@ -1676,7 +1585,6 @@
     <string name="WebRtcCallView__join_call">Jiunge na Mazungumzo ya Simu</string>
     <string name="WebRtcCallView__call_is_full">Mazungumzo ya simu yamejaa</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Mazungumzo haya ya simu yamefikia idadi ya juu zaidi ya washiriki %1$d. Jaribu tena baadaye.</string>
-    <string name="WebRtcCallView__view_participants_list">Tazama washiriki</string>
     <string name="WebRtcCallView__your_video_is_off">Video yako imezimwa</string>
     <string name="WebRtcCallView__reconnecting">Inaunganisha upya…</string>
     <string name="WebRtcCallView__joining">Inajiunga…</string>
@@ -1715,19 +1623,25 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s yuko katika mazungumzo haya ya simu</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s wanashiriki kwenye simu hii</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s na %2$s wako kwenye mazungumzo haya ya simu</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s anawasilisha</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s na %3$d wako katika mazungumzo haya ya simu</item>
         <item quantity="other">%1$s, %2$s, na %3$d wako katika mazungumzo haya ya simu</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Geuza</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Msemaji</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Kamera</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Washa</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Zima</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Piga</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">Mwisho wa simu</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1823,12 +1737,12 @@
     <string name="SearchFragment_header_messages">Jumbe</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Ongeza mawasiliano</string>
@@ -1909,7 +1823,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Kumbukumbu hii itachapishwa hadharani mtandaoni ili wachangiaji waitazame. Unaweza kuichunguza kabla ya kuipakia.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Kichujio:</string>
     <string name="SupportEmailUtil_device_info">Maelezo ya kifaa:</string>
     <string name="SupportEmailUtil_android_version">Toleo la Android:</string>
@@ -1990,11 +1904,9 @@
     <string name="UsernameEditFragment__choose_your_username">Chagua jina lako la mtumiaji</string>
     <string name="UsernameEditFragment_username">Jina la mtumiaji</string>
     <string name="UsernameEditFragment_delete">Futa</string>
-    <string name="UsernameEditFragment_successfully_set_username">Jina la mtumiaji limefanikiwa kuwekwa.</string>
     <string name="UsernameEditFragment_successfully_removed_username">Jina la mtumiaji limefanikiwa kuondolewa.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Imekumbana na hitilafu ya mtandao.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Jina hili la mtumiaji limechukuliwa.</string>
-    <string name="UsernameEditFragment_this_username_is_available">Jina hili la mtimiaji linapatikana.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Majina ya watumiaji yanaweza kujumuisha tu herufi za A hadi Z, nambari za 0 hadi 9, na vistari-chini.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Majina ya watumiaji hayawezi kuanza kwa nambari.</string>
     <string name="UsernameEditFragment_username_is_invalid">Jina la mtumiaji si halali.</string>
@@ -2031,10 +1943,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Sharti kwanza mtumiane ujumbe ili uone nambari ya usalama ya %1$s.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ujumbe umesimbwa kwa kipindi kisichopo</string>
@@ -2075,7 +1987,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Hatujapata programu inayoweza kushiriki media hii.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Funga</string>
     <string name="MediaPreviewFragment_edit_media_error">Hitilafu ya media</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Hitilafu Katika Kutafuta Ujumbe, Ujumbe Unaweza Ukawa Bado upo</string>
 
     <!-- MessageNotifier -->
@@ -2095,8 +2007,6 @@
     <string name="MessageNotifier_reply">Jibu</string>
     <string name="MessageNotifier_signal_message">Ujumbe wa Signal</string>
     <string name="MessageNotifier_unsecured_sms">Ujumbe usio salama</string>
-    <string name="MessageNotifier_you_may_have_new_messages">Inawezekana una jumbe mpya</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Fungua Signal kuangalia taarifa mpya</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Mawasiliano</string>
     <string name="MessageNotifier_reacted_s_to_s">Ametoa hisia %1$skwa: \"%2$s\".</string>
@@ -2178,7 +2088,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Sasisha Signal ili kuendelea kutumia malipo. Salio lako linaweza lisiwe la hivi sasa.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Sasisha sasa</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Kupokea simu, iwezeshe Signal kutumia maikrofoni yako.</string>
@@ -2194,8 +2103,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Telezesha kidole juu ili ubadilishe maoni</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Kataa</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Pokea</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Jibu bila video</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2213,7 +2125,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Rudia nenosiri mpya</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">Ingiza jina au nambari</string>
     <string name="contact_selection_activity__invite_to_signal">Mwalike kwenye Signal</string>
     <string name="contact_selection_activity__new_group">Kikundi kipya</string>
 
@@ -2351,7 +2262,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Mabadiliko ya Nambari ya Usalama</string>
     <string name="safety_number_change_dialog__accept">Kubali</string>
-    <string name="safety_number_change_dialog__send_anyway">Tuma tu</string>
     <string name="safety_number_change_dialog__call_anyway">Piga simu tu</string>
     <string name="safety_number_change_dialog__join_call">Jiunge na mazungumzo ya simu</string>
     <string name="safety_number_change_dialog__continue_call">Endelea na mazungumzo ya simu</string>
@@ -2499,8 +2409,6 @@
     <string name="CreateProfileActivity_first_name_required">Jina la kwanza (linahitajika)</string>
     <string name="CreateProfileActivity_last_name_optional">Jina la mwisho (la hiari)</string>
     <string name="CreateProfileActivity_next">Ifuatayo</string>
-    <string name="CreateProfileActivity__username">Jina la mtumiaji</string>
-    <string name="CreateProfileActivity__create_a_username">Unda jina la mtumiaji</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Ni wewe tu utakayeona majina na picha maalum za kikundi cha MMS zitaonekana.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Maelezo ya kikundi yataonekana kwa wanachama wa kikundi hiki na watu ambao wamealikwa.</string>
 
@@ -2520,7 +2428,7 @@
     <string name="EditProfileFragment__edit_group">Hariri kikundi</string>
     <string name="EditProfileFragment__group_name">Jina la kikundi</string>
     <string name="EditProfileFragment__group_description">Maelezo ya kikundi</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">jina lako</string>
@@ -2533,7 +2441,6 @@
     <string name="recipient_preference_activity__shared_media">Media iliyoshirikishwa</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>Ingiza jina au nambari</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ Ili kudhibitisha usalama wa mfumo wako wa end-to-end na %1$s, linganisha nambari hapo juu na kifaa chake. Pia unaweza kupitisha kwenye skana kodi ilio kwenye simu yao. <a href=\"https://signal.org/redirect/safety-numbers\"> Jifunze zaidi.</a>]]></string>
@@ -2580,7 +2487,6 @@
     <string name="AndroidManifest__select_contacts">Chagua wawasiliani</string>
     <string name="AndroidManifest__change_passphrase">Badili Nenosiri</string>
     <string name="AndroidManifest__verify_safety_number">Thibitisha nambari salama</string>
-    <string name="AndroidManifest__log_submit">Wasilisha tunzakumbukumbu ya kueua</string>
     <string name="AndroidManifest__media_preview">Uhakiki wa media</string>
     <string name="AndroidManifest__message_details">Maelezo ya ujumbe</string>
     <string name="AndroidManifest__linked_devices">Vifaa vilivyounganishwa</string>
@@ -2602,13 +2508,13 @@
     <string name="HelpFragment__whats_this">Hii ni nini?</string>
     <string name="HelpFragment__how_do_you_feel">Unahisije? (Si lazima)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Tuambie kwa nini unawasiliana nasi</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Maelezo ya Usaidizi</string>
     <string name="HelpFragment__signal_android_support_request">Ombi la Usaidizi wa Signal Android</string>
     <string name="HelpFragment__debug_log">Kumbukumbu ya Utatuzi:</string>
@@ -2681,12 +2587,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS na MMS</string>
-    <string name="preferences__pref_all_sms_title">Pokea SMS zote</string>
-    <string name="preferences__pref_all_mms_title">Pokea MMS zote</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Tumia Signal kwa ujumbe wote unaoingia</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Tumia Signal kwa ujumbe wote unaoingia wa multimedia</string>
-    <string name="preferences__pref_enter_sends_title">Ingiza za kutuma zilizo muhimu</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Kubonyeza kitufe cha ingizo kutatutuma ujumbe wa maandishi</string>
     <string name="preferences__pref_use_address_book_photos">Tumia picha za orodha ya waasiliani</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Onyesha picha za waasiliani zilizo kwenye orodha yako ya waasiliani ikiwa zipo</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2695,14 +2595,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Magumzo yaliyonyamazishwa yamehifadhiwa na yatabaki yamehifadhiwa pale arafa mpya itakapoingia.</string>
     <string name="preferences__generate_link_previews">Onyesha uhakiki wa viungo</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Chukua hakiki za viungo moja kwa moja kutoka kwenye tovuti kwa ujumbe unaotuma.</string>
-    <string name="preferences__choose_identity">Chagua utambulisho</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Chagua mwasiliani kutoka kwenye orodha yako ya wawasiliani</string>
     <string name="preferences__change_passphrase">Badili Nenosiri</string>
     <string name="preferences__change_your_passphrase">Badili Nenosiri lako</string>
     <string name="preferences__enable_passphrase">Wezesha Nenosiri la kufunga skriini</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Funga skriini na arifa pamoja na Nenosiri</string>
     <string name="preferences__screen_security">usalama wa skrini</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Zuia viwambo vya skrini katika orodha ya rekodi na ndani ya programu</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Funga Signal kiotomatiki baada ya muda fulani usio na utendaji</string>
     <string name="preferences__inactivity_timeout_passphrase">Nenosiri la uishaji muda</string>
     <string name="preferences__inactivity_timeout_interval">Kipindi cha uishaji muda</string>
@@ -2738,7 +2635,6 @@
     <string name="preferences__advanced">ya juu</string>
     <string name="preferences__donate_to_signal">Changia Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Mchango wa mara moja</string>
     <string name="preferences__privacy">Faragha</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Stori</string>
@@ -2765,7 +2661,6 @@
     <string name="preferences__dark_theme">Giza</string>
     <string name="preferences__appearance">Muonekano</string>
     <string name="preferences__theme">mandhari</string>
-    <string name="preferences__chat_wallpaper">Picha ya mandhari ya gumzo</string>
     <string name="preferences__chat_color_and_wallpaper">Rangi ya gumzo na ya picha ya mandhari</string>
     <string name="preferences__disable_pin">Zima PIN</string>
     <string name="preferences__enable_pin">Washa PIN</string>
@@ -2787,8 +2682,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Ikiwa viashiria vya kucharaza vimelemazwa, hutaweza kuona viashiria vya kucharaza kutoka kwa wengine.</string>
     <string name="preferences__request_keyboard_to_disable">Omba kiibodi ili uzime kipengele cha kujifunza inavyokufaa.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Mpangilio huu sio hakikisho, na kibodi yako inaweza kuipuuza.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">Watumiaji waliozuiwa</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Wakati unatumia mtandao wa simu</string>
     <string name="preferences_chats__when_using_wifi">Wakati unatumia WiFi</string>
     <string name="preferences_chats__when_roaming">Wakati unarandaranda</string>
@@ -2816,32 +2710,22 @@
     <string name="preferences_storage__s_messages">Jumbe %1$s</string>
     <string name="preferences_storage__custom">Maalum</string>
     <string name="preferences_advanced__use_system_emoji">Tumia emoji ya mfumo</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Lemaza emoji iliyojengwa ndani ya Signal</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Wasilisha simu zote kupitia Signal seva kuzuia kutambulisha anwani yako ya IP kwa mwasiliani wako. Kuwezesha kutapunguza ubora wa simu</string>
     <string name="preferences_advanced__always_relay_calls">Wasilisha simu kila mara</string>
     <string name="preferences_app_protection__who_can">Nani anayeweza…</string>
-    <string name="preferences_app_protection__app_access">Ufikiaji programu</string>
-    <string name="preferences_app_protection__communication">Mawasiliano</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Malipo</string>
     <string name="preferences_chats__chats">Gumzo</string>
     <string name="preferences_data_and_storage__manage_storage">Dhibiti hifadhi</string>
-    <string name="preferences_data_and_storage__calls">Simu</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Tumia kiasi kidogo cha data kupiga simu</string>
     <string name="preferences_data_and_storage__never">Kamwe</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi na mtandao wa simu</string>
     <string name="preferences_data_and_storage__mobile_data_only">Mtandao wa simu tu</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Kutumia kiasi kidogo cha data kunaweza kuboresha mazungumzo ya simu katika mitandao isiyo thabiti</string>
-    <string name="preferences_notifications__messages">Jumbe</string>
-    <string name="preferences_notifications__events">Matukio</string>
     <string name="preferences_notifications__in_chat_sounds">Sauti za gumzo</string>
     <string name="preferences_notifications__show">Onyesha</string>
-    <string name="preferences_notifications__calls">Simu</string>
     <string name="preferences_notifications__ringtone">Mlio wa simu</string>
-    <string name="preferences_chats__show_invitation_prompts">Onyesha mwaliko</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Onyesha mwaliko ya wawasiliani wasio na Signal</string>
     <string name="preferences_chats__message_text_size">ukubwa wa maandishi ya ujumbe</string>
-    <string name="preferences_events__contact_joined_signal">Mwasiliani amejiunga na Signal</string>
     <string name="preferences_notifications__priority">Kipaumbele</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Kukwepa udhibiti</string>
@@ -2857,8 +2741,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Kukwepa udhibiti kunaweza tu kuamlishwa ikiwa umeunganishwa kwenye mtandao.</string>
     <string name="preferences_communication__category_sealed_sender">Mtumaji mwenye muhuri</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">Onyesha viashiria</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"Onyesha icon ya hali wakati unapochagua \"Maelezo ya Ujumbe\" kwenye jumbe uliotolewa kupitia mtumaji mwenye muhuri."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Ruhusu kutoka kwa kila mtu</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Wezesha mtumaji mwenye muhuri kwa jumbe zinazoingia kutoka kwa wasio wasiliani na watu ambao hukushiriki wasifu wako</string>
     <string name="preferences_communication__sealed_sender_learn_more">Jifunze zaidi</string>
@@ -2884,9 +2766,9 @@
     <string name="configurable_single_select__customize_option">Badilisha chaguo likufae</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2901,7 +2783,6 @@
     <string name="PaymentsHomeFragment__activating_payments">Unawezesha malipo…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Rejesha akaunti ya malipo</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Bado hakuna shughuli za hivi majuzi</string>
-    <string name="PaymentsHomeFragment__pending_requests">Maombi yanayosubiri</string>
     <string name="PaymentsHomeFragment__recent_activity">Shughuli za hivi majuzi</string>
     <string name="PaymentsHomeFragment__see_all">Tazama zote</string>
     <string name="PaymentsHomeFragment__add_funds">Ongeza fedha</string>
@@ -2930,13 +2811,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Malipo yamezimwa.</string>
     <string name="PaymentsHomeFragment__payment_failed">Malipo hayajatumwa</string>
     <string name="PaymentsHomeFragment__details">Maelezo</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Unaweza kutumia Signal kutuma na kupokea MobileCoin. Malipo yote yanathibitiwa na Masharti ya Matumizi ya MobileCoin na Mkoba wa MobileCoin. Hii ni huduma ya jaribio kwa hivyo huenda ukakabiliwa na hitilafu ya malipo au masalio ambayo unaweza kupoteza hayawezi kurejeshwa. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Unaweza kutumia Signal kutuma na kupokea MobileCoin. Malipo yote yanathibitiwa na Masharti ya Matumizi ya MobileCoin na Mkoba wa MobileCoin. Hii ni huduma ya jaribio kwa hivyo huenda ukakabiliwa na hitilafu ya malipo au masalio ambayo unaweza kupoteza hayawezi kurejeshwa. </string> -->
     <string name="PaymentsHomeFragment__activate">Wezesha</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Angalia masharti ya MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Malipo katika Signal hayapatikani tena. Bado unaweza kuhamishia fedha kwenye ubadilishanaji lakini huwezi kutuma na kupokea malipo au kuongeza pesa.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Washa Payment Lock ili kutuma kwa baadae?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2980,7 +2861,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Nakili</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Imenakiliwa kwenye bodi ya kunakili</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Ili kuongeza pesa, tuma MobileCoin kwenye anwani yako ya mkoba. Anzisha muamala shughuli kutoka kwenye akaunti yako kwa ubadilishaji unatumia MobileCoin, kisha changanua msimbo wa QR au unakili anwani yako ya mkoba.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Maelezo</string>
@@ -3000,8 +2881,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Ada ya kusafisha sarafu</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">“Ada ya kusafisha sarafu” inatozwa wakati sarafu ulizonazo haziwezi kuunganishwa ili kukamilisha muamala. Usafishaji utakuwezesha kuendelea kutuma malipo.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Hakuna maelezo zaidi yanayopatikana kwa muamal huu</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Umepokea malipo</string>
     <string name="PaymentsDetailsFragment__received_payment">Ulipokea malipo</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Malipo yalitumwa tarehe %1$s</string>
@@ -3045,7 +2926,7 @@
     <string name="CreatePaymentFragment__backspace">Nafasi ya kurudi nyuma</string>
     <string name="CreatePaymentFragment__add_note">Ongeza dokezo</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Ubadilishaji ni makadirio tu na huenda yasiwe sahihi.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Kumbuka</string>
@@ -3053,7 +2934,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Thibitisha malipo</string>
     <string name="ConfirmPayment__network_fee">Ada ya mtandao</string>
-    <string name="ConfirmPayment__error_getting_fee">Hitilafu wakati wa kuchukua maelezo ya ada</string>
     <string name="ConfirmPayment__estimated_s">Kadirio la %1$s</string>
     <string name="ConfirmPayment__to">Kwa</string>
     <string name="ConfirmPayment__total_amount">Kiasi jumla</string>
@@ -3111,29 +2991,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">Hifadhi</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">Jumbe zinazotoweka</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Maelezo</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Nakili</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Futa</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Mbele</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Jibu</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Hifadhi</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Tuma tena</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Chagua</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Taarifa za malipo</string>
 
     <!-- conversation_expiring_on -->
@@ -3142,14 +3021,6 @@
     <string name="conversation_insecure__invite">Alika</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">Futa iliyochaguliwa</string>
-    <string name="conversation_list_batch__menu_pin_selected">Umechagua Pin</string>
-    <string name="conversation_list_batch__menu_unpin_selected">Umetendua kuchagua Pin</string>
-    <string name="conversation_list_batch__menu_select_all">Chagua zote</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">Jalidi iliyochaguliwa</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Ondoa kwenye jalada iliyochaguliwa</string>
-    <string name="conversation_list_batch__menu_mark_as_read">Weka alama kuwa umesoma</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">Weka alama kuwa hujaisoma</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Njia mkato ya mipangilio</string>
@@ -3170,7 +3041,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">Seti upya kikao salama</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Washa</string>
@@ -3218,20 +3088,17 @@
     <string name="reminder_header_push_text">Boresha uzoefu wako wa mawasiliano</string>
     <string name="reminder_header_service_outage_text">Signal inakabiliwa na matatizo ya kiufundi. Tunajitahidi kurejesha huduma haraka iwezekanavyo.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Ugunduzi wa anwani ya kibinafsi ya Signal hauwezi kuchakata anwani za simu yako kwa muda.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Jifunze zaidi</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Ugunduzi wa anwani ya kibinafsi ya Signal hauwezi kuchakata anwani za simu yako.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Jifunze zaidi</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Hifadhi</string>
-    <string name="media_preview__forward_title">Mbele</string>
-    <string name="media_preview__share_title">Shiriki</string>
-    <string name="media_preview__all_media_title">Media yote</string>
     <string name="media_preview__edit_title">Hariri</string>
 
 
@@ -3273,7 +3140,7 @@
     <string name="BaseKbsPinFragment__next">Ifuatayo</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Unda Nenosiri lenye herufi na nambari</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Unda Nenosiri lenye nambari</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3303,7 +3170,7 @@
     <string name="KbsSplashFragment__introducing_pins">Uanzishaji Nenosiri</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN hutumiwa kuhakikisha maelezo yaliyohifadhiwa katika Signal yamesimbwa kwa njia fiche hivi kwamba ni wewe tu unayeweza kuyafikia. Wasifu wako, mipangilio, na waasilian wako wa watarejeshwa utakapoisakinisha upya. Hutahitaji PIN yako kufungua programu.</string>
     <string name="KbsSplashFragment__learn_more">Jifunze Zaidi</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Kufuli ya Usajili = Nenosiri</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Kifunga usajili wako sasa kinaitwa Nenosiri, na kinafanya mengi zaidi. Kisasishe sasa.</string>
     <string name="KbsSplashFragment__update_pin">Sasisha Nenosiri</string>
@@ -3324,7 +3191,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Akaunti yako imefungwa ili kulinda faragha yako na usalama wako. Baada ya siku %1$d bila shughuli kwenye akaunti yako utaweza kusajili upya nambari hii ya simu bila kuhitaji Nenosiri lako. Yote yaliyomo yatafutwa.</string>
     <string name="AccountLockedFragment__next">Ifuatayo</string>
     <string name="AccountLockedFragment__learn_more">Jifunze Zaidi</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Ingiza Nenosiri lako</string>
@@ -3336,7 +3203,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">Nenosiri sio sahihi</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Umesahau Nenosiri lako?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Sio majaribio mengi yaliyosalia!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Usajili wa Signal - Unahitaji Usaidizi kuhusu PIN ya Android (v1 PIN)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Usajili wa Signal - Unahitaji Usaidizi kuhusu PIN ya Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3394,7 +3260,6 @@
     <string name="registration_activity__transfer_account">Hamisha akaunti</string>
     <string name="registration_activity__skip">Ruka</string>
     <string name="preferences_chats__chat_backups">Nakalahifadhi ya Gumzo</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Nakili Gumzo kwa hifadhi ya nje</string>
     <string name="preferences_chats__transfer_account">Hamisha akaunti</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Hamishia akaunti kwenye kifaa kipya cha Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ingiza nenosiri la nakalahifadhi</string>
@@ -3433,7 +3298,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Nakala rudufu yako ina faili kubwa ambalo haliweze kurudufiwa. Tafadhali lifute na tengeneza nakala rudufu mpya.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Gonga ili udhibiti nakala hifadhi.</string>
-    <string name="ProgressPreference_d_messages_so_far">1%1$d Jumbe hadi sasa</string>
     <string name="RegistrationActivity_wrong_number">Nambari sio sahihi</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Nipigie badala yake. \n (Inapatikana kwenye %1$02d : %2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Wasiliana na Msaada wa Signal</string>
@@ -3455,9 +3319,6 @@
     <string name="preferences_app_protection__create_a_pin">Unda Nenosiri</string>
     <string name="preferences_app_protection__change_your_pin">Badilisha PINI yako</string>
     <string name="preferences_app_protection__pin_reminders">Vikumbusho vya PIN</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PINI hufanya taarifa iliyohifadhiwa na Signal iliyosimbwa kuweza kufikiwa na wewe tu. Wasifu wako, mipangilio, na wawasiliani vitarejeshwa utakaposakinisha upya Signal.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Ongeza usalama wa ziada kwa kuitisha PIN yako ya Signal ili kusajili tena nambari yako ya simu kwenye Signal.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Vikumbusho hukusaidia kukumbuka PINI yako kwa sababu haiwezi kunusuriwa. Utaulizwa mara kwa mara baada ya muda.</string>
     <string name="preferences_app_protection__turn_off">Zima</string>
     <string name="preferences_app_protection__confirm_pin">Thibitisha PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Thibitisha PINI yako ya Signal</string>
@@ -3521,7 +3382,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Imeshindwa kufungua Mipangilio ya Wi-Fi. Tafadhali washa Wi-Fi mwenyewe.</string>
     <string name="DeviceTransferSetup__grant_location_permission">Ruhusu ufikiaji maelezo ya eneo</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Washa huduma za eneo</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">Imeshindwa kufungua mipangilio ya eneo.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Washa Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">Hitilafu Imetokea Wakati wa Kuunganisha</string>
     <string name="DeviceTransferSetup__retry">Jaribu Upya</string>
@@ -3530,7 +3390,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Thibitisha kuwa nambari iliyo hapa chini inalingana katika vifaa vyako vyote viwili. Kisha gusa endelea.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Nambari hazilingani</string>
     <string name="DeviceTransferSetup__continue">Endelea</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">Nambari hazifanani</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ikiwa nambari zilizo kwenye vifaa vyako hazilingani, inawezekana uliunganisha kwenye kifaa kisicho sahihi. Ili kurekebisha hitilafu hii, simamisha mchakato wa kuhamisha na ujaribu tena, na uviweke vifaa vyote viwili karibu.</string>
     <string name="DeviceTransferSetup__stop_transfer">Simamisha mchakato wa kuhamisha</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Imeshindwa kugundua kifaa cha awali</string>
@@ -3560,7 +3419,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% ya jumbe mpaka sasa…</string>
     <string name="DeviceTransfer__cancel">Ghairi</string>
     <string name="DeviceTransfer__try_again">Jaribu tena</string>
-    <string name="DeviceTransfer__stop_transfer_question">Ungependa kusimamisha mchakato wa kuhamisha</string>
     <string name="DeviceTransfer__stop_transfer">Acha kuhamisha</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Maendeleo yote ya uhamisho yatapotea.</string>
     <string name="DeviceTransfer__transfer_failed">Uhamishaji haukufaulu</string>
@@ -3568,7 +3426,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Hamisha Akaunti</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Unaweza kuhamisha akaunti yako ya Signal unapoweka mipangilio ya Signal kwenye kifaa kipya cha Android. Kabla ya kuendelea:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Pakua Signal kwenye kifaa chako kipya cha Android</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3578,7 +3435,6 @@
     <string name="OldDeviceTransferInstructions__continue">Endelea</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">Mchakato wa kuhamisha umekamilika</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Nenda kwenye kifaa chako kipya</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Data yako ya Signal imehamishiwa kwenye kifaa chako kipya. Ili kukamilisha mchakato wa kuhamisha, unatakiwa kuendelea na usajili kwenye kifaa chako kipya.</string>
     <string name="OldDeviceTransferComplete__close">Funga</string>
@@ -3605,10 +3461,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Ghairi na uwezeshe kifaa hiki</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Je, ungependa kuhamisha salio la MOB?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Una salio la %1$s. Usipohamishia fedha zako kwenye anwani nyingine ya mkoba kabla ya kufuta akaunti yako, utazipoteza daima.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">Usihamishe</string>
-    <string name="AdvancedPreferenceFragment__transfer">Hamisha</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Zuia</string>
@@ -3622,10 +3474,6 @@
     <string name="RecipientBottomSheet_make_admin">Mteue kuwa msimamizi</string>
     <string name="RecipientBottomSheet_remove_as_admin">Mwondoe kama msimamizi</string>
     <string name="RecipientBottomSheet_remove_from_group">Mwondoe kwenye kikundi</string>
-    <string name="RecipientBottomSheet_message_description">Ujumbe</string>
-    <string name="RecipientBottomSheet_voice_call_description">Simu ya sauti</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">Mazungumzo haya ya sauti si salama</string>
-    <string name="RecipientBottomSheet_video_call_description">Simu ya video</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Ungependa kumwondoa %1$s kama msimamizi wa kikundi?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" ataweza kubadilisha maelezo ya kikundi hiki na wanachama wake."</string>
@@ -3731,7 +3579,6 @@
     <string name="DeleteAccountFragment__the_phone_number">Nambari ya simu uliyoweka hailingani na iliyo katika akaunti yako.</string>
     <string name="DeleteAccountFragment__are_you_sure">Una uhakika unataka kufuta akaunti yako?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Hatua hii itafuta akaunti yako ya Signal na kuweka upya programu. Programu itafungwa baada ya mchakato huu kukamilika.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">Imeshindwa kufuta akaunti. Una muunganisho wa mtandao?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Imeshindwa kufuta data ya ndani ya kifaa. Unaweza kuifuta wewe mwenyewe katika mipangilio ya matumizi ya mfumo.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Zindua Mipangilio ya Programu</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3763,7 +3610,6 @@
     <string name="ShareActivity__share">Shiriki</string>
     <string name="ShareActivity__send">Tuma</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">Kushiriki kwenye gumzo nyingi kunawezekana tu kwa jumbe za Signal</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Haingeweza kushiriki data kutoka kwa mtandao.</string>
 
@@ -3772,7 +3618,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Unaweza tu kushiriki hadi gumzo %1$d</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">Picha ya mandhari ya gumzo</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Rangi ya gumzo</string>
@@ -3783,7 +3628,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Mandhari meusi yatapunguza mwangaza wa picha ya mandhari</string>
     <string name="ChatWallpaperFragment__contact_name">Jina la mwasiliani</string>
     <string name="ChatWallpaperFragment__reset">Seti upya tena</string>
-    <string name="ChatWallpaperFragment__clear">Futa</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Uhakiki wa picha ya mandhari</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Je, ungependa kubatilisha rangi zote za gumzo?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Je, ungependa kubatilisha pocha zote za mandhari?</string>
@@ -3808,7 +3652,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Unahitaji idhini ya kuhifadhi ili uangalie matunzio yako.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Chagua picha ya mandhari</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Bana ili uvute ndani, buruta ili urekebishe.</string>
@@ -3835,9 +3678,9 @@
     <string name="payment_info_card_with_a_high_balance">Ikiwa una salio kubwa, huenda utahitaji kubadilisha utumie PIN ya herufi na nambari ili kudumisha ulinzi kwenye akaunti yako.</string>
     <string name="payment_info_card_update_pin">Sasisha Nenosiri</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Zima Mkoba</string>
@@ -3849,7 +3692,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ungependa kuzima bila kuhamisha?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Salio lako litabaki kwenye mkoba wako uliounganishwa kwenye Signal ukichagua kuwezesha tena malipo.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Hitilafu imetokea wakati wa kuzima mkoba.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Maneno ya kurejesha</string>
@@ -3885,13 +3728,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Maneno ya kurejesha si sahihi</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Hakikisha umeweka maneno %1$d kisha ujaribu tena.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Ifuatayo</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Hariri</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">Iliyotangulia</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Maneno yako ya kurejesha</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Andika maneno %1$d yafuatayo kwa mpangilio maalum. Hifadhi orodha yako mahali salama.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Hakikisha umeweka maneno yako kwa usahihi.</string>
@@ -3919,7 +3761,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Neno si sahihi</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Maudhui yaliyo kwenye kibao cha kunakili yamefutwa.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">Tazama</string>
@@ -3938,7 +3779,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Hakuna waasiliani wako au watu unaozungumza nao walio kwenye kikundi hiki. Kagua maombi kwa uangalifu kabla ya kukubali ili kuepuka kutumiwa ujumbe usiohitajika.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Kuhusu maombi ya ujumbe</string>
     <string name="GroupsInCommonMessageRequest__okay">Sawa</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Hii hapa hakiki ya rangi ya gumzo.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Ni wewe tu unayeweza kuiona rangi hii.</string>
 
@@ -4057,7 +3898,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Tengeneza wasifu ili kupata arifa kutoka kwa watu na vikundi unavyovichagua.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Arifa za Wasifu</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Tengeneza wasifu</string>
@@ -4073,7 +3914,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Kipima muda chaguo-msingi cha gumzo mpya</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Weka kipima muda cha ujumbe unaotoweka kwa gumzo zote mpya zilizoanzishwa na wewe.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Dhibiti stori zako na nani anayeweza kuziona</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Inahitaji Android screen lock au alama za vidole ili kuhamisha fedha.</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Huwezi kuwezesha payment lock</string>
@@ -4082,12 +3922,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Imeshindwa kwenda kwenye mipangilio ya mfumo</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">Nenda kwenye mipangilio</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">Ghairi</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Onyesha aikoni ya hali</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Onyesha aikoni katika maelezo ya ujumbe wakati uliwasilishwa kwa kutumia huduma ya kuficha ujumbe.</string>
 
@@ -4158,8 +3996,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">Kiteuzi cha sehemu ya juu</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">Kiteuzi cha sehemu ya chini</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Changia Signal</string>
@@ -4217,20 +4053,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Admins wa kikundi hiki peke yao ndio wanaweza kuongeza kwenye stori</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Programu ya wawasiliani haipatikani</string>
-    <string name="ConversationSettingsFragment__send_message">Tuma ujumbe</string>
     <string name="ConversationSettingsFragment__start_video_call">Piga simu ya video</string>
     <string name="ConversationSettingsFragment__start_audio_call">Piga simu ya video</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Stori</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Ujumbe</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Video</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Sauti</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Simu</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Zima</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Imenyamazishwa</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Tafuta</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Jumbe zinazotoweka</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Sauti na arifa</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Maelezo ya mwasiliani</string>
     <string name="ConversationSettingsFragment__view_safety_number">Tazama nambari ya usalama</string>
     <string name="ConversationSettingsFragment__block">Zuia</string>
@@ -4264,7 +4107,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Zima arifa</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Haijanyamazishwa</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Imenyamazishwa hadi %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Kutajwa</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Arifu kila wakati</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Usiarifu</string>
@@ -4306,7 +4148,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">Imeshindikana kumuondoa %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Mtu huyu amehifadhiwa kwenye Wawasiliani wa kifaa chako. Wafute kutoka kwenye Wawasiliani wako na ujaribu tena.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Angalia muwasiliani</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s si mtumiaji wa Signal</string>
@@ -4331,9 +4173,7 @@
     <string name="AvatarPickerFragment__photo">Picha</string>
     <string name="AvatarPickerFragment__text">Maandishi</string>
     <string name="AvatarPickerFragment__save">Hifadhi</string>
-    <string name="AvatarPickerFragment__select_an_avatar">Chagua umbo</string>
     <string name="AvatarPickerFragment__clear_avatar">Futa umbo</string>
-    <string name="AvatarPickerFragment__edit">Hariri</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">Imeshindwa kuhifadhi umbo</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4406,7 +4246,6 @@
     <string name="ImageEditorHud__clear_all">Futa vyote</string>
     <string name="ImageEditorHud__undo">Tengua</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Geuza kati ya marker na highlighter</string>
-    <string name="ImageEditorHud__delete">Futa</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Geuza kati ya miandiko</string>
 
     <string name="MediaCountIndicatorButton__send">Tuma</string>
@@ -4418,7 +4257,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Ondoa mabadiliko?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utapoteza mabadiliko yoyote uliyofanya kwenye picha hii.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">Imeshindwa kufungua kamera</string>
 
     <string name="BadgesOverviewFragment__my_badges">Beji zangu</string>
     <string name="BadgesOverviewFragment__featured_badge">Beji inayoangaziwa</string>
@@ -4426,27 +4264,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Imeshindwa kusasisha wasifu wako</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Chagua beji</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">Hakikisho</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Chagua beji</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ni lazima uchague beji</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Imeshindwa kusasisha wasifu</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Kuwa mfadhili</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s anaichangia Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s anaiunga mkono Signal kwa mchango wa kila mwezi. Signal ni shirika lisilo la kifaida, halina matangazo au wawekezaji, linawezeshwa na watu kama wewe.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s ameiunga mkono Signal kwa mchango. Signal ni shirika lisilo la kibiashara, halina matangazo au wawekezaji, linawezeshwa na watu kama wewe.</string>
 
     <string name="ImageView__badge">Beji</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Wezesha teknolojia iliyotengenezwa kwa ajili yako --- sio kwa data yako --- kwa kujiunga na jamii ya watu wanaoifadhili.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Wezesha teknolojia iliyotengenezwa kwa ajili yako sio kwa sababu ya data yako, kwa kujiunga na jamii ya watu wanaoifadhili Signal.</string>
-    <string name="SubscribeFragment__currency">Sarafu</string>
-    <string name="SubscribeFragment__more_payment_options">Hiari Zaidi za Malipo</string>
     <string name="SubscribeFragment__cancel_subscription">Ghairi Usajili</string>
     <string name="SubscribeFragment__confirm_cancellation">Thibitisha ughairi?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Hutatozwa tena. Beji yako itaondolewa kwenye wasifu wako mwishoni mwa kipindi cha malipo.</string>
@@ -4459,7 +4291,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Utatozwa kiwango kamili (%1$s) cha bei ya usajili mpya leo. Usajili wako utahuishwa upya kila mwezi.</string>
 
     <string name="Subscription__s_per_month">%1$s/mwezi</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">Kuhuishwa %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Inakwisha muda %1$s</string>
@@ -4491,7 +4323,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Zaidi</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">Risiti</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Msaada Wangu</string>
     <string name="ManageDonationsFragment__manage_subscription">Ratibu usajili</string>
@@ -4499,7 +4330,6 @@
     <string name="ManageDonationsFragment__donation_receipts">Risiti za uchangiaji</string>
     <string name="ManageDonationsFragment__badges">Beji</string>
     <string name="ManageDonationsFragment__subscription_faq">Maswali ya mara kwa mara kuhusu usajili</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Hitilafu kupata usajili.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Namna nyingine za kutoa</string>
     <!-- Preference label to launch badge gifting -->
@@ -4507,8 +4337,9 @@
 
     <string name="Boost__enter_custom_amount">Weka Kiasi Maalum</string>
     <string name="Boost__one_time_contribution">Mchango wa mara moja</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Ongeza Boost ya Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/mwezi</string>
     <string name="MySupportPreference__renews_s">Kuhuishwa %1$s</string>
     <string name="MySupportPreference__processing_transaction">Inachakata muamala…</string>
@@ -4543,7 +4374,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Tunapata taabu kukusanya malipo yako ya Mfadhili wa Signal. Hakikisha umesasisha njia yako ya malipo. Kama haijasasishwa, isasishe kwenye Google Pay. Signal itajaribu kuchakata tena malipo ndani ya siku chache.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Usionyeshe hii tena</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">Tafadhali wasiliana na wahudumu wetu kwa taarifa zaidi.</string>
     <string name="Subscription__contact_support">Wasiliana na Msaada</string>
     <string name="Subscription__get_a_s_badge">Pata beji ya %1$s</string>
 
@@ -4552,7 +4382,6 @@
     <string name="DonationsErrors__error_processing_payment">Hitilafu kuchakata malipo</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Hitilafu kuchakata malipo. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Beji yako haijaweza kuongezwa kwenye akaunti yako, lakini huenda ukawa umetozwa. Tafadhali wasiliana na msaada.</string>
     <string name="DonationsErrors__your_payment">Malipo yako hayajachakatwa na haujatozwa. Tafadhali jaribu tena.</string>
     <string name="DonationsErrors__still_processing">Bado inachakata</string>
     <string name="DonationsErrors__couldnt_add_badge">Imeshindwa kuongeza beji</string>
@@ -4566,8 +4395,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">Imeshindwa kutuma beji ya zawadi. Tafadhali wasiliana na msaada.</string>
     <string name="DonationsErrors__your_badge_could_not">Beji yako haijaweza kuongezwa kwenye akaunti yako, lakini huenda ukawa umetozwa. Tafadhali wasiliana na msaada.</string>
     <string name="DonationsErrors__your_payment_is_still">Malipo yako yangali yanachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemea muunganisho wa mtandao wako.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay Haipatikani</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ni lazima uwe na Google Pay ili kuchangia ndani ya programu.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Imeshindwa kughairi usajili</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Kughairi usajili kunahitaji muunganisho wa mtandao.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Kifaa chako hakiegemezi Google Pay, kwa hivyo huwezi kujiandikisha ili kupata beji. Unaweza kuiunga mkono Signal kwa kutoa mchango kwenye tovuti yetu.</string>
@@ -4584,11 +4411,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Beji ya zawadi</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">Inadumu kwa mwezi %1$d</item>
-        <item quantity="other">Inadumu kwa miezi %1$d</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Komboa</string>
     <!-- Gift badge view action label -->
@@ -4598,7 +4420,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">Kombolewa</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Jaribu njia nyingine ya malipo au wasiliana na benki yako kwa habari zaidi.</string>
@@ -4802,9 +4623,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Zawadi</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">Maelezo</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Aina ya mchango</string>
     <!-- Donation receipts date paid heading -->
@@ -4944,7 +4763,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Kujibu %1$s kwa faragha</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">Jibu kwa faragha</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Nakili</string>
     <!-- Context menu item to delete a story response -->
@@ -4961,11 +4779,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Nani anaweza kutazama stori hii</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Ficha stori kutoka kwa</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Signal connections wote</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">Shirikisha na watu wote</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Wote isipokuwa….</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5015,19 +4831,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Ondoa</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">Una uhakika?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">Kitendo hiki hakitenguliwi.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Hariri jina la stori</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Jina la stori</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">Hifadhi</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Bonyeza kuongeza maandishi</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Ongeza maandishi</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5043,7 +4855,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Tafuta</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Hitilafu isiyotarajiwa imetokea</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Tafadhali ingiza kiungo halali.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5065,17 +4876,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Futa</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Stori zinapatikana kwa watumiaji wa Signal beta tu.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">Kama ukishiriki stori, itapatikana kwa watu walio kwenye Signal beta.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Ongeza kwenye stori?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Kuongeza maudhui kwenye stori yako kunawawezesha Signal Connections wako kuiangalia kwa saa 24. Unaweza kubadili nani anayeweza kuangalia stori yako kwenye Mipangilio.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Ongeza kwenye stori</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">Hariri watazamaji</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Stori haingeweza kutumwa. Tazama muunganisho wa mtandao wako na kisha ujaribu tena.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5083,9 +4888,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Zima na futa</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Shirikisha &amp; Tazama Stori</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Hutoweza tena kushirikisha wengine au kutazama stori wakati ambapo chaguo hili limezimwa.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Chagua watazamaji</string>
     <!-- New story viewer selection action button label -->
@@ -5147,13 +4950,9 @@
     <string name="StoryDialogs__view_profile_photo">Tazama picha ya wasifu</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Zima kukwepa udhibiti?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Sasa unaweza kujiunga na huduma ya Signal moja kwa moja ili kupata uzoefu mzuri zaidi.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">Hapana nashukuru</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">Zima</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Uli-react kwa story ya %1$s</string>
@@ -5357,13 +5156,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Ukubwa wa faili</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Imetumwa kwa</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Imetumwa kutoka kwa</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Imefeli</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">Maelezo</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5385,7 +5180,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Stori</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Mitazamo ya stori</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">View receipts</string>
     <!-- Story view receipts toggle message -->
@@ -5437,7 +5231,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Unahitaji takribani %1$s ili kuhamisha jumbe zako, hakikisha una nafasi ya kutosha kabla ya kuendelea.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Endelea hata hivyo</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal inahitaji ridhaa ya SMS kuweza kuhamisha jumbe zako za SMS.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5552,9 +5346,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Hakikisha una nafasi ya ziada %1$s kwenye simu yako kuweza kuhamisha jumbe zako</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Jaribu tena kuhamisha, hii itajaribu kutuma tena jumbe ambazo hazijahamishwa bado</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Kama tatizo litaendelea, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Wasiliana nasi</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Jaribu Upya</string>
@@ -5598,9 +5392,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Kughairi…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Wawasiliani wengi sana wamechakatwa</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">Jaribio jingine la kuchakata wawasiliani wako litafanywa ndani ya siku %1$d.</item>
         <item quantity="other">Jaribio jingine la kuchakata wawasiliani wako litafanyika ndani ya siku %1$d.</item>
@@ -5608,19 +5402,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">Ili kutatua tatizo hili kwa kasi zaidi, unaweza kuzingatia utoaji wa wawasiliani ama akaunti kwenye simu yako zinazosawazisha wawasiliani wengi.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Fungua wawasiliani</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Hakuna programu ya wawasiliani iliyopatikana</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Wawasiliani wako hawawezi kuchakatwa</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">Nambari ya wawasiliani kwenye simu yako inapitiliza kikomo ambacho Signal inaweza kuchakata. Ili kupata wawasiliani kwenye Signal, zingatia utoaji wa wawasiliani ama akaunti kwenye simu yako zinazosawazisha wawasiliani wengi.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Jifunze zaidi</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Fungua wawasiliani</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Hakuna programu ya wawasiliani iliyopatikana</string>
 
     <!-- PaymentMessageView -->
@@ -5649,5 +5441,9 @@
     <string name="GroupStoryEducationSheet__next">Inayofuata</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

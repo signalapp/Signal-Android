@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">Tá</string>
     <string name="no">Níl</string>
@@ -23,68 +22,40 @@
     <string name="save">Cuir i dtaisce é</string>
     <string name="note_to_self">Nóta Pearsanta</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Teachtaireacht nua</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Tá Signal ag nuashonrú…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">Faoi láthair: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Níl nath faire socraithe agat fós!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Díchumasaigh an nath faire?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Baineann sé seo glas de Signal agus de fógraí teachtaireachta go deo.</string>
     <string name="ApplicationPreferencesActivity_disable">Díchumasaigh</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Ag díchlárú</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Ag díchlárú ón teachtaireachtaí agus glaonna Signal …</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Díchumasiagh teachtaireachtaí agus glaonna Signal?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Díchumasaigh teachtaireachtaí agus glaonna Signal trí dhíclárú ón bhfreastalaí. Ba chóir duit do uimhir fóin a athchlárú chun iad a úsáid arís sa todhchaí.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Tharla botún ag déanamh teagmháil leis an bhfreastalaí!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS cumasaithe</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Tadhaill chun do aip SMS réamhshocrú a athrú</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMS díchumasaithe</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Tadhaill chun Signal a úsáid mar aip SMS réamhshocrú</string>
-    <string name="ApplicationPreferencesActivity_on">ar siúl</string>
-    <string name="ApplicationPreferencesActivity_On">Ar siúl</string>
-    <string name="ApplicationPreferencesActivity_off">as</string>
-    <string name="ApplicationPreferencesActivity_Off">As</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Glasáil scáileáin %1$s, Glasáil clárúcháin %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">Téama %1$s, Teanga %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Tá UAP de dhíth chun glas clárúcháin a úsáid. Caithfidh tú an glas clárúcháin a dhíchumasú sula mbeidh tú in ann an UAP a dhíchumasú.</string>
     <string name="ApplicationPreferencesActivity_pin_created">Cruthaíodh an UAP.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">Díchumasaíodh an UAP.</string>
-    <string name="ApplicationPreferencesActivity_hide">Folaigh</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">Cuir an meabhrúchán i bhfolach?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Record Payments Recovery Phrase</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Déan an nath a thaifeadadh</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Before you can disable your PIN, you must record your payments recovery phrase to ensure you can recover your payments account.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Cúlspás</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$dnóiméad amháin</item>
-        <item quantity="two">%1$d nóiméad </item>
-        <item quantity="few">%1$dnóiméad</item>
-        <item quantity="many">%1$dnóiméid</item>
-        <item quantity="other">%1$d nóiméad</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(íomhá)</string>
@@ -132,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">Cuir Bac ar an Úsáideoir Seo?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">Ní bheidh \"%1$s\" in ann glaoch ort ná teachtaireachtaí a sheoladh chugat.</string>
     <string name="BlockedUsersActivity__block">Bac Nua</string>
-    <string name="BlockedUsersActivity__unblock_user">Bain an bac den Úsáideoir?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">An mian leat an bac a bhaint de \"%1$s\"?</string>
-    <string name="BlockedUsersActivity__unblock">Bain an bac</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -142,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">Méid an tabhartais: %1$s/sa mhí</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Cuir isteach faisnéis do chárta thíos</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Cuir isteach sonraí do chárta. Ní dhéanann Signal d\'fhaisnéis phearsanta a bhailiú ná a stóráil.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -252,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">D\'fhéadfadh táillí iompróra a bheith i gceist. Níl an uimhir ar a bhfuil tú ag glaoch cláraithe le Signal. Cuirfear an glao seo trí d\'iompróir móibíleach, ní ar an idirlíon.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">D\'athraíodh do uimhir shábhála le %1$s. Ciallaíonn sé sin go bhfuil duine éigéan ag iarraigh do teagmháil a idircheapadh, nó go athshuiteáil %2$s Signal.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">B\'fhéidir go mhian leat do uimhir shábhála a dheimhniú leis an dteagmhálaí seo.</string>
-    <string name="ConfirmIdentityDialog_accept">Glac leis</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Comhráite le deanaí</string>
@@ -274,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">Ainm a Chur in Eagar</string>
     <string name="ContactNameEditActivity_given_name">Céad ainm</string>
     <string name="ContactNameEditActivity_family_name">Sloinne</string>
     <string name="ContactNameEditActivity_prefix">Réimír</string>
@@ -314,17 +277,17 @@
     <string name="ConversationItem_pending"> Ag feitheamh</string>
     <string name="ConversationItem_this_message_was_deleted">Scriosadh an teachtaireacht seo.</string>
     <string name="ConversationItem_you_deleted_this_message">Scrios tú an teachtaireacht seo.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Ní féidir an teachtaireacht a íoslódáil. Beidh ar %1$s í a sheoladh arís.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Ní féidir an íomhá a íoslódáil. Beidh ar %1$s í a sheoladh arís.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Ní féidir an físeán a íoslódáil. Beidh ar %1$s é a sheoladh arís.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Ní féidir an teachtaireacht a íoslódáil. Beidh ort í a sheoladh arís.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Ní féidir an íomhá a íoslódáil. Beidh ort í a sheoladh arís.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Ní féidir an físeán a íoslódáil. Beidh ort é a sheoladh arís.</string>
 
     <!-- ConversationActivity -->
@@ -346,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS neamhshlán (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">MMS easlán</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS neamhshlán (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">Téimís i muinín Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Roghnaigh teagmhálaí</string>
@@ -392,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">Scrios ⁊ Fág</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Chun glaoch ar %1$s, ní mór do Signal rochtain a fháil ar do mhicreafón</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">Tuilleadh roghanna feasta i \"Socruithe an ghrúpa\"</string>
 
     <string name="ConversationActivity_join">Téigh le</string>
     <string name="ConversationActivity_full">Lán</string>
@@ -413,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Ní thacaítear le cur teachtaireachtaí SMS in Signal a thuilleadh. Tabhair cuireadh do %1$s teacht isteach in Signal leis an gcomhrá a choinneáil anseo.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Tabhair cuireadh chuig Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Cuirfear i gcuimhne duit arís go luath.</string>
 
     <!-- ConversationAdapter -->
@@ -713,10 +674,6 @@
     <string name="CustomDefaultPreference_none">Dada</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Roghnaigh grianghraf</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Glac grianghraf</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Roghnaigh ó na híomhánna ar do ghuthán</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Bain grianghraf</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Chun grianghraf a ghlacadh, ní mór cead a bheith aige ón gceamara.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Éilítear cead stórais le féachaint ar do ghailearaí.</string>
 
@@ -775,8 +732,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Tharla earráid le linn GIF ar thaifeach lán-ardghléine a aisghabháil</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIFeanna</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">Greamáin</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Add Member?</string>
@@ -801,7 +756,7 @@
     <string name="GroupManagement_access_level_all_members">Na Baill Go Léir</string>
     <string name="GroupManagement_access_level_only_admins">Riarthóirí Amháin</string>
     <string name="GroupManagement_access_level_no_one">Duine ar bith</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -977,7 +932,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Déanta</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Ní féidir an duine seo a chur le grúpaí ar cuireadh grúpaí eile ina n-ionad.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Ní féidir an duine seo a chur le grúpaí fógraí.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Cuir \"%1$s\" le \"%2$s\"?</item>
         <item quantity="two">Cuir %3$d bhall le \"%2$s\"?</item>
@@ -1008,25 +962,8 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Roghnaigh tú teagmhálaí nach dtacaíonn le grúpaí Signal, grúpa MMS a bheith sa ghrúpa seo dá réir. Beidh ainmneacha agus grianghraif ag grúpa MMS saincheaptha infheicthe agatsa amháin. Bainfear tacaíocht do ghrúpaí SMS go luath chun díriú ar chur teachtaireachtaí criptithe.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">Iarratais agus cuirí ar bhallraíocht</string>
-    <string name="ManageGroupActivity_add_members">Cuir baill leis</string>
-    <string name="ManageGroupActivity_edit_group_info">Cuir Eolas an Ghrúpa in Eagar</string>
     <string name="ManageGroupActivity_who_can_add_new_members">Cé ar féidir leis baill nua a chur leis?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Cé atá in ann faisnéis faoin ngrúpa seo a chur in eagar?</string>
-    <string name="ManageGroupActivity_group_link">Group Link</string>
-    <string name="ManageGroupActivity_block_group">Cuir bac ar an ngrúpa seo</string>
-    <string name="ManageGroupActivity_unblock_group">Bain an bac den Ghrúpa</string>
-    <string name="ManageGroupActivity_leave_group">Fág an bhaicle</string>
-    <string name="ManageGroupActivity_mute_notifications">Balbhaigh fógraí</string>
-    <string name="ManageGroupActivity_custom_notifications">Fógraí saincheaptha</string>
-    <string name="ManageGroupActivity_mentions">Nuair a luaitear mé</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">Chat Color &amp; Wallpaper</string>
-    <string name="ManageGroupActivity_until_s">go dtí %1$s</string>
-    <string name="ManageGroupActivity_always">I gcónaí</string>
-    <string name="ManageGroupActivity_off">As</string>
-    <string name="ManageGroupActivity_on">Ar siúl</string>
-    <string name="ManageGroupActivity_view_all_members">Féach ar na baill go léir</string>
-    <string name="ManageGroupActivity_see_all">See All</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d bhall curtha leis.</item>
@@ -1035,10 +972,6 @@
         <item quantity="many">%1$d mball curtha leis.</item>
         <item quantity="other">%1$d ball curtha leis.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Ní féidir ach le riarthóirí an nasc grúpa in-chomhroinnte a chumasú nó a dhíchumasú.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Ní féidir ach le riarthóirí an rogha maidir le faomhadh ball nua a chumasú nó a dhíchumasú.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Ní féidir ach le riarthóirí an nasc grúpa in-chomhroinnte a athshocrú.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Níl na cearta agat chun sin a dhéanamh</string>
     <string name="ManageGroupActivity_not_capable">Duine a chuir tú leis, ní thacaíonn sé/sí le grúpaí nua agus ní mór dó/di Signal a nuashonrú</string>
@@ -1110,18 +1043,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Athraigh fuaim agus creathadh</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Glao-shocruithe</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Glaofhuaim</string>
-    <string name="CustomNotificationsDialogFragment__enabled">Cumasaithe</string>
-    <string name="CustomNotificationsDialogFragment__disabled">Díchumasaithe</string>
     <string name="CustomNotificationsDialogFragment__default">An réamhshocrú</string>
     <string name="CustomNotificationsDialogFragment__unknown">Anaithnid</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Nasc grúpa in-chomhroinnte</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Bainistigh agus comhroinn</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">Group Link</string>
     <string name="ShareableGroupLinkDialogFragment__share">Comhroinn</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Reset Link</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">Iarratais ar bhallraíocht</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Ceadaigh comhaltaí nua</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Require an admin to approve new members joining via the group link.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Are you sure you want to reset the group link? People will no longer be able to join the group using the current link.</string>
@@ -1173,7 +1101,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Nuashonraigh Signal chun naisc ghrúpa a úsáid</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Ní thacaíonn an leagan de Signal atá in úsáid agat leis an nasc grúpa seo. Nuashonraigh chuig an leagan is déanaí chun dul isteach sa ghrúpa seo trí nasc.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Nuashonraigh Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Tá leagan de Signal á rith ag ceann amháin nó níos mó de do ghléasanna nasctha nach dtacaíonn le naisc ghrúpa. Nuashonraigh Signal ar do ghléas(anna) nasctha chun dul isteach sa ghrúpa seo.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Níl an nasc grúpa bailí</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1265,7 +1192,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Ag scriosadh</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Ag scriosadh teachtaireachtaí…</string>
-    <string name="MediaOverviewActivity_Select_all">Roghnaigh uile</string>
     <string name="MediaOverviewActivity_collecting_attachments">Ag bailiú ceangaltáin…</string>
     <string name="MediaOverviewActivity_Sort_by">Sórtáil de réir</string>
     <string name="MediaOverviewActivity_Newest">Is nuaí</string>
@@ -1302,9 +1228,8 @@
     <string name="MediaOverviewActivity_audio">Fuaim</string>
     <string name="MediaOverviewActivity_video">Físeán</string>
     <string name="MediaOverviewActivity_image">Íomhá</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">Teachtaireacht bhéil</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Seolta ag %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Seolta agatsa</string>
@@ -1352,29 +1277,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Tharla botún ag íosluchtú teachtaireacht MMS, cnag chun ath-íosluchtú.</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Seol chuig %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">Oscail an grianghrafadán</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Cuir ceannteideal leis…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Baineadh mír toisc gur sháraigh sí an teorainn méide</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Baineadh mír toisc gur cineál anaithnid a bhí inti</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Baineadh mír toisc gur sháraigh sí an teorainn méide nó gur cineál anaithnid a bhí inti</string>
     <string name="MediaSendActivity_camera_unavailable">Níl an grianghrafadán ar fáil.</string>
-    <string name="MediaSendActivity_message_to_s">Teachtaireacht chuig %1$s</string>
-    <string name="MediaSendActivity_message">Teachtaireacht</string>
-    <string name="MediaSendActivity_select_recipients">Roghnaigh faighteoirí</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Tá gá ag Signal riochtain ar do theagmhálaithe chun iad a thaispeáint.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Tá Cead teagmhálaithe ag teastáil ó Signal chun do theagmhálaithe a thaispeáint, ach diúltaíodh go buan dó. Lean ar aghaidh chuig socruithe na haipe, roghnaigh \"Ceadanna\" agus cumasaigh \"Teagmhálaithe\".</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">Ní féidir leat níos mó ná %1$d mhír a chomhroinnt.</item>
-        <item quantity="two">Ní féidir leat níos mó ná %1$d mhír a chomhroinnt.</item>
-        <item quantity="few">Ní féidir leat níos mó ná %1$d mhír a chomhroinnt.</item>
-        <item quantity="many">Ní féidir leat níos mó ná %1$d mír a chomhroinnt.</item>
-        <item quantity="other">Ní féidir leat níos mó ná %1$d mír a chomhroinnt.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">Roghnaigh faighteoirí</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Tapáil anseo agus scriosfar an teachtaireacht seo tar éis don fhaighteoir breathnú uirthi.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Gach meán</string>
@@ -1608,7 +1514,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">An maith leat an ghné nua seo? Cuidigh le tacú le Signal le tabhartas aonuaire.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus uimhir an duine sin %2$s.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Cumascadh stair do theachtaireachtaí le %1$s agus comhrá eile ar leis an duine sin é.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Sheol tú iarratas chuig %1$s chun Íocaíochtaí a ghníomhachtú</string>
@@ -1677,7 +1583,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Téigh isteach sa ghrúpa seo agus comhroinn d\'ainm agus grianghraf lena bhaill? Ní fheicfidh tú na teachtaireachtaí go dtí go nglacfaidh tú.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">An bhfuil fonn ort páirt a ghlacadh sa ghrúpa seo? Ní bheidh a fhios acu go bhfaca tú a gcuid teachtaireachtaí go dtí go nglacfaidh tú leis.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">An bhfuil fonn ort d\'ainm agus do phictiúr a roinnt leis an ngrúpa seo agus an bac a bhaint de? Ní bhfaighidh tú aon teachtaireacht go dtí go mbainfidh tú an bac de.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Amharc</string>
     <string name="MessageRequestProfileView_member_of_one_group">Ball de %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Ball de %1$s agus %2$s</string>
@@ -1793,7 +1699,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Cruthaigh d\'UAP</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Níl aon deiseanna fágtha agat an UAP a thomhas, ach beidh tú fós in ann teacht ar do chuntas Signal trí UAP nua a chruthú. Mar gheall ar chúrsaí slándála agus príobháideachais, athshocrófar do chuntas gan aon fhaisnéis phearsanta ná socruithe.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Cruthaigh UAP Nua</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Rabhadh</string>
@@ -1831,7 +1737,6 @@
     <string name="RecipientPreferenceActivity_unblock">Bain an bac</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">Baicle gan ainm</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">Ag freagairt</string>
@@ -1846,9 +1751,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">Beannachtaí Lá Fhéile 💜 ort!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Léirigh do ghean mar chothaitheoir Signal.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Tapáil anseo chun fís a chur ar siúl</string>
@@ -1874,7 +1777,6 @@
     <string name="WebRtcCallView__join_call">Téigh isteach sa ghlao</string>
     <string name="WebRtcCallView__call_is_full">Call is Full</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Baineadh amach an t-uaslíon de %1$d rannpháirtí don ghlao seo. Triail arís níos déanaí.</string>
-    <string name="WebRtcCallView__view_participants_list">Breathnaigh ar na daoine atá ann</string>
     <string name="WebRtcCallView__your_video_is_off">Tá d\'fhíseán múchta</string>
     <string name="WebRtcCallView__reconnecting">Athnascadh…</string>
     <string name="WebRtcCallView__joining">Dul isteach…</string>
@@ -1925,7 +1827,6 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s is in this call</string>
     <string name="WebRtcCallView__s_are_in_this_call">Tá %1$ssa ghlao seo</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s and %2$s are in this call</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s is presenting</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">Tá %1$s, %2$s agus %3$d duine eile sa ghlao seo</item>
@@ -1935,12 +1836,19 @@
         <item quantity="other">Tá %1$s, %2$s agus %3$d duine eile sa ghlao seo</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Smeach é</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Callaire</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Ceamara</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Díbhalbhaigh</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Balbhú</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Glaoigh</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">Cuir deireadh leis an nglao</string>
 
     <!-- CallParticipantsListDialog -->
@@ -2042,12 +1950,12 @@
     <string name="SearchFragment_header_messages">Teachtaireachtaí</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Cuir leis na teagmhálacha</string>
@@ -2128,7 +2036,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Postálfar an loga seo go poiblí ar líne le go mbeidh rannpháirtithe in ann féachaint air. Is féidir leat é a scrúdú roimh uaslódáil.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Scagaire:</string>
     <string name="SupportEmailUtil_device_info">Faisnéis faoin ngléas:</string>
     <string name="SupportEmailUtil_android_version">Leagan Android:</string>
@@ -2209,11 +2117,9 @@
     <string name="UsernameEditFragment__choose_your_username">Roghnaigh d\'ainm úsáideora</string>
     <string name="UsernameEditFragment_username">Ainm úsáideora</string>
     <string name="UsernameEditFragment_delete">Scrios</string>
-    <string name="UsernameEditFragment_successfully_set_username">D\'éirigh leat ainm úsáideora a shocrú.</string>
     <string name="UsernameEditFragment_successfully_removed_username">D\'éirigh leat ainm úsáideora a bhaint.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Tharla earráid líonra</string>
     <string name="UsernameEditFragment_this_username_is_taken">Tá an t-ainm úsáideora sin gafa cheana.</string>
-    <string name="UsernameEditFragment_this_username_is_available">Tá an t-ainm úsáideora seo ar fáil.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Ní cheadaítear ach a-Z, 0-9, agus fostríoca in ainmneacha úsáideora.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Ní cheadaítear uimhir ag tús ainm úsáideora.</string>
     <string name="UsernameEditFragment_username_is_invalid">Níl an t-ainm úsáideora bailí.</string>
@@ -2253,10 +2159,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Ní mór duit teachtaireachtaí a mhalartú ar dtús chun féachaint ar uimhir sábháilteachta %1$s.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Teachtaireacht criptiú le haghaidh rith teachtaireachta neamheiseach</string>
@@ -2297,7 +2203,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ní féidir aip a aimsiú atá in ann an meán seo a chomhroinnt.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Dún</string>
     <string name="MediaPreviewFragment_edit_media_error">Earráid leis na Meáin</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
 
     <!-- MessageNotifier -->
@@ -2317,8 +2223,6 @@
     <string name="MessageNotifier_reply">Freagair</string>
     <string name="MessageNotifier_signal_message">Teachtaireacht Signal</string>
     <string name="MessageNotifier_unsecured_sms">SMS nach bhfuil slán</string>
-    <string name="MessageNotifier_you_may_have_new_messages">B\'fhéidir go bhfuil teachtaireachtaí nua agat</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Oscail Signal chun fógraí le déanaí a fheiceáil.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Teagmhálaí</string>
     <string name="MessageNotifier_reacted_s_to_s">Freagraíodh %1$s do: \"%2$s\".</string>
@@ -2403,7 +2307,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Nuashonraigh Signal chun leanúint le húsáid íocaíochtaí. Seans nach bhfuil d’iarmhéid cothrom le dáta.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Nuashonraigh anois</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Chun an glao a fhreagairt, tabhair rochtain do Signal ar do mhicreafón.</string>
@@ -2419,8 +2322,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Swipe up to change views</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Diúltaigh</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Freagair</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Freagair gan fís</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2438,7 +2344,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Scríobh arís an nath faire nua</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">Cuir isteach ainm nó uimhir</string>
     <string name="contact_selection_activity__invite_to_signal">Tabhair cuireadh chuig Signal</string>
     <string name="contact_selection_activity__new_group">Baicle nua</string>
 
@@ -2585,7 +2490,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Athrú ar Uimhir Shábháilteachta</string>
     <string name="safety_number_change_dialog__accept">Glac leis</string>
-    <string name="safety_number_change_dialog__send_anyway">Seol chuige/chuici mar sin féin</string>
     <string name="safety_number_change_dialog__call_anyway">Cuir glao air/uirthi mar sin féin</string>
     <string name="safety_number_change_dialog__join_call">Téigh isteach sa ghlao</string>
     <string name="safety_number_change_dialog__continue_call">Continue Call</string>
@@ -2754,8 +2658,6 @@
     <string name="CreateProfileActivity_first_name_required">First Name (Required)</string>
     <string name="CreateProfileActivity_last_name_optional">Last Name (Optional)</string>
     <string name="CreateProfileActivity_next">Ar Aghaidh</string>
-    <string name="CreateProfileActivity__username">Ainm úsáideora</string>
-    <string name="CreateProfileActivity__create_a_username">Cruthaigh ainm úsáideora</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Beidh ainmneacha agus grianghraif ag grúpaí MMS saincheaptha infheicthe agatsa amháin.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Group descriptions will be visible to members of this group and people who have been invited.</string>
 
@@ -2775,7 +2677,7 @@
     <string name="EditProfileFragment__edit_group">Cuir an Grúpa in Eagar</string>
     <string name="EditProfileFragment__group_name">Ainm an Ghrúpa</string>
     <string name="EditProfileFragment__group_description">Group Description</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Your Name</string>
@@ -2788,7 +2690,6 @@
     <string name="recipient_preference_activity__shared_media">Méain comhroinnte</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>Cuir isteach ainm nó uimhir</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[D\'fhonn slándáil do chriptithe ó cheann ceann le %1$s a fhíorú, cuir na huimhreacha thuas i gcomparáid le gléas an duine sin. Is féidir leat an cód a scanadh ar an guthán aige/aici freisin. <a href=\"https://signal.org/redirect/safety-numbers\">Tuilleadh faisnéise.</a>]]></string>
@@ -2835,7 +2736,6 @@
     <string name="AndroidManifest__select_contacts">Roghnaigh teagmhálaithe</string>
     <string name="AndroidManifest__change_passphrase">Athraigh an nath faire</string>
     <string name="AndroidManifest__verify_safety_number">Fíordheimhnigh an uimhir shábháilteachta</string>
-    <string name="AndroidManifest__log_submit">Seol an Logchomhad Dífhabhtaithe</string>
     <string name="AndroidManifest__media_preview">Réamhamharc ar an meán</string>
     <string name="AndroidManifest__message_details">Sonraí na teachtaireachta</string>
     <string name="AndroidManifest__linked_devices">Gléasanna nasctha</string>
@@ -2857,13 +2757,13 @@
     <string name="HelpFragment__whats_this">Cad é seo?</string>
     <string name="HelpFragment__how_do_you_feel">Cén chaoi a bhfuil tú? (Roghnach)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Inis dúinn cén fáth a bhfuil teagmháil a dhéanamh agat linn.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Faisnéis Thacaíochta</string>
     <string name="HelpFragment__signal_android_support_request">Iarratas ar Thacaíocht Android Signal</string>
     <string name="HelpFragment__debug_log">Loga Dífhabhtaithe:</string>
@@ -2939,12 +2839,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Béite</string>
     <string name="preferences__sms_mms">SMS agus MMS</string>
-    <string name="preferences__pref_all_sms_title">Glac le gach SMS</string>
-    <string name="preferences__pref_all_mms_title">Glac le gach MMS</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Bain feidhm as Signal i gcomhair gach teachtaireacht téacs isteach</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Bain feidhm as Signal i gcomhair gach teachtaireachtaí mhéain isteach</string>
-    <string name="preferences__pref_enter_sends_title">Enter = seol í</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Má bhrúitear Enter, seolfar teachtaireachtaí téacs</string>
     <string name="preferences__pref_use_address_book_photos">Úsáid grianghraif sa leabhar seoltaí</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Taispeáin grianghraif na dteagmhálacha ó do leabhar seoltaí má tá siad ar fáil</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2953,14 +2847,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Fanfaidh comhráite balbhaithe atá curtha i gcartlann sa chartlann fós nuair a thagann teachtaireacht nua isteach.</string>
     <string name="preferences__generate_link_previews">Generate Link Previews</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Retrieve link previews directly from websites for messages you send.</string>
-    <string name="preferences__choose_identity">Roghnaigh céannacht</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Roghnaigh do iontráil teagmhálaí ón liosta teagmhálaithe</string>
     <string name="preferences__change_passphrase">Athraigh an nath faire</string>
     <string name="preferences__change_your_passphrase">Athraigh do nath faire</string>
     <string name="preferences__enable_passphrase">Cumasaigh pasfhrása don ghlas scáileáin</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Cuir glas ar an scáileán agus ar fhógraí le nath</string>
     <string name="preferences__screen_security">Slándáil an scáileáin</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Cuir bac ar ghabhálacha scáileáin sa liosta le déanaí agus laistigh den aip</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Uathghlasáil Signal tar éis eatramh ama sonraithe neamhghníomhaíochta</string>
     <string name="preferences__inactivity_timeout_passphrase">Nath faire teorainn ama neamhghníomhaíochta</string>
     <string name="preferences__inactivity_timeout_interval">Am teorainn ama neamhghníomhaíochta</string>
@@ -2996,7 +2887,6 @@
     <string name="preferences__advanced">Ardroghanna</string>
     <string name="preferences__donate_to_signal">Tabhair airgead do Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Tabhartas Aonuaire</string>
     <string name="preferences__privacy">Príobháideachas</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Scéalta</string>
@@ -3023,7 +2913,6 @@
     <string name="preferences__dark_theme">Dorcha</string>
     <string name="preferences__appearance">Cuma</string>
     <string name="preferences__theme">Téama</string>
-    <string name="preferences__chat_wallpaper">Cúlbhrat an chomhrá</string>
     <string name="preferences__chat_color_and_wallpaper">Chat Color &amp; Wallpaper</string>
     <string name="preferences__disable_pin">Díchumasaigh an UAP</string>
     <string name="preferences__enable_pin">Cumasaigh UAP</string>
@@ -3045,8 +2934,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Má múchtar leideoirí clóscríobh, ní bheifear in ann leideoirí clóscríobh ó daoine eile a fheiscint.</string>
     <string name="preferences__request_keyboard_to_disable">Iarr ar mhéarchlár foghlaim phearsantaithe a dhíchumasú.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Ní ráthaíocht é an socrú seo, agus seans go ndéanfaidh do mhéarchlár neamhaird air.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">Úsáideoirí Bactha</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Nuair atá feidhm á baint as sonraí soghluaiste</string>
     <string name="preferences_chats__when_using_wifi">Nuair atá feidhm á baint as Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Nuair atá tú ag fánaíocht</string>
@@ -3074,32 +2962,22 @@
     <string name="preferences_storage__s_messages">%1$s teachtaireachtaí</string>
     <string name="preferences_storage__custom">Saincheaptha</string>
     <string name="preferences_advanced__use_system_emoji">Bain feidhm as emoji an chórais</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Díchumasaigh tacaíocht ionsuite Signal le haghaidh emoji</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Seol gach glao trí fhreastalaí Signal ionas nach nochtfar do sheoladh IP do do theagmhálaí. Laghdófar cáilíocht an ghlao má chumasaítear é sin.</string>
     <string name="preferences_advanced__always_relay_calls">Cuir glaonna ar aghaidh i gcónaí</string>
     <string name="preferences_app_protection__who_can">Cé ar féidir leo…</string>
-    <string name="preferences_app_protection__app_access">Riochtain aipe</string>
-    <string name="preferences_app_protection__communication">Cumarsáid</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Íocaíochtaí</string>
     <string name="preferences_chats__chats">Comhráite</string>
     <string name="preferences_data_and_storage__manage_storage">Bainistigh stóras</string>
-    <string name="preferences_data_and_storage__calls">Glaonna</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Bain feidhm as níos lú sonraí i gcomhair glaonna</string>
     <string name="preferences_data_and_storage__never">Choíche</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wifi agus sonraí móibíleacha</string>
     <string name="preferences_data_and_storage__mobile_data_only">Sonraí móibíleacha amháin</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Seans go bhfeabhsódh glaonna má úsáidtear níos lú sonraí ar dhrochlíonraí</string>
-    <string name="preferences_notifications__messages">Teachtaireachtaí</string>
-    <string name="preferences_notifications__events">Imeachtaí</string>
     <string name="preferences_notifications__in_chat_sounds">Fuaimeanna sna comhráite</string>
     <string name="preferences_notifications__show">Taispeáin</string>
-    <string name="preferences_notifications__calls">Glaonna</string>
     <string name="preferences_notifications__ringtone">Glaofhuaim</string>
-    <string name="preferences_chats__show_invitation_prompts">Taispeáin leideanna i gcomhair cuirí</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Taispeáin leideanna cuirí do theagmhálaithe nach bhfuil Signal acu</string>
     <string name="preferences_chats__message_text_size">Méid chlófhoirne na teachtaireachta</string>
-    <string name="preferences_events__contact_joined_signal">Chuaigh an teagmhálaí isteach in Signal</string>
     <string name="preferences_notifications__priority">Tosaíocht</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Sárú na Cinsireachta</string>
@@ -3115,8 +2993,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Ní féidir sárú na cinsireachta a chur i bhfeidhm nuair nach bhfuil tú ceangailte leis an Idirlíon.</string>
     <string name="preferences_communication__category_sealed_sender">Seoltóir Séalaithe</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">Taispeáin táscairí</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"Taispeáin deilbhín stádais nuair a roghnaíonn tú Sonraí na teachtaireachta ar theachtaireachtaí a seachadadh le seoltóir séalaithe."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Ceadaigh ó Dhuine ar bith</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Tabhair cead do dhaoine nach teagmhálaithe iad agus do dhaoine nár chomhroinn tú do phróifíl leo teachtaireachtaí le seoltóirí séalaithe a chur chugat.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Foghlaim tuilleadh</string>
@@ -3142,9 +3018,9 @@
     <string name="configurable_single_select__customize_option">Saincheap rogha</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -3159,7 +3035,6 @@
     <string name="PaymentsHomeFragment__activating_payments">Íocaíochtaí á ngníomhachtú…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Aischuir an cuntas íocaíochtaí</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Níl aon ghníomhaíocht le déanaí ann fós</string>
-    <string name="PaymentsHomeFragment__pending_requests">Iarratais ar feitheamh</string>
     <string name="PaymentsHomeFragment__recent_activity">Gníomhaíocht le déanaí</string>
     <string name="PaymentsHomeFragment__see_all">See All</string>
     <string name="PaymentsHomeFragment__add_funds">Add Funds</string>
@@ -3188,13 +3063,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Payments deactivated.</string>
     <string name="PaymentsHomeFragment__payment_failed">Payment Failed</string>
     <string name="PaymentsHomeFragment__details">Mionsonraí</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Is féidir leat Signal a úsáid chun MobileCoin a sheoladh agus a fháil. Tá gach íocaíocht faoi réir Téarmaí Úsáide maidir le MobileCoins agus MobileCoin Wallet. Is gné bhéite é seo agus, mar sin, seans go mbeidh roinnt fadhbanna agat agus nach mbeidh tú in ann íocaíochtaí nó iarmhéideanna, a d\'fhéadfá a chailleadh, a aisghabháil. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Is féidir leat Signal a úsáid chun MobileCoin a sheoladh agus a fháil. Tá gach íocaíocht faoi réir Téarmaí Úsáide maidir le MobileCoins agus MobileCoin Wallet. Is gné bhéite é seo agus, mar sin, seans go mbeidh roinnt fadhbanna agat agus nach mbeidh tú in ann íocaíochtaí nó iarmhéideanna, a d\'fhéadfá a chailleadh, a aisghabháil. </string> -->
     <string name="PaymentsHomeFragment__activate">Cuir i ngníomh é</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">View MobileCoin Terms</string>
     <string name="PaymentsHomeFragment__payments_not_available">Payments in Signal is no longer available. You can still transfer funds to an exchange but you can no longer send and receive payments or add funds.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">An bhfuil fonn ort Glas Íocaíochtaí a chasadh air le haghaidh íocaíochtaí amach anseo?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -3238,7 +3113,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Cóipeáil</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Macasamhlaithe chuig an ngearrthaisce</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">To add funds, send MobileCoin to your wallet address. Start a transaction from your account on an exchange that supports MobileCoin, then scan the QR code or copy your wallet address.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Mionsonraí</string>
@@ -3258,8 +3133,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin Cleanup Fee</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">A “coin cleanup fee” is charged when the coins in your possession can not be combined to complete a transaction. Cleanup will allow you to continue sending payments.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Níl sonraí breise ar fáil faoin idirbheart seo</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Sent Payment</string>
     <string name="PaymentsDetailsFragment__received_payment">Received Payment</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Íocaíocht críochnaithe %1$s</string>
@@ -3303,7 +3178,7 @@
     <string name="CreatePaymentFragment__backspace">Cúlspás</string>
     <string name="CreatePaymentFragment__add_note">Add Note</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Conversions are just estimates and may not be accurate.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Nóta</string>
@@ -3311,7 +3186,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirm Payment</string>
     <string name="ConfirmPayment__network_fee">Network Fee</string>
-    <string name="ConfirmPayment__error_getting_fee">Tharla earráid le táille a fháil</string>
     <string name="ConfirmPayment__estimated_s">Estimated %1$s</string>
     <string name="ConfirmPayment__to">Chuig</string>
     <string name="ConfirmPayment__total_amount">Méid iomlán</string>
@@ -3372,29 +3246,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">Cuir an ceangaltán i dtaisce</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Eolas</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Cóipeáil</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Scrios</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Cuir ar aghaidh</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Freagair</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Sábháil</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">ATHSHEOL</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Roghnaigh</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Sonraí na híocaíochta</string>
 
     <!-- conversation_expiring_on -->
@@ -3403,14 +3276,6 @@
     <string name="conversation_insecure__invite">Tabhair cuireadh</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">Scrios na cinn roghnaithe</string>
-    <string name="conversation_list_batch__menu_pin_selected">Pionnáil roghnaithe</string>
-    <string name="conversation_list_batch__menu_unpin_selected">Díphionnáil roghnaithe</string>
-    <string name="conversation_list_batch__menu_select_all">Roghnaigh uile</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">Roghnaíodh cartlann</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Bain as cartlann roghnaithe</string>
-    <string name="conversation_list_batch__menu_mark_as_read">Marcáil Léite</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">Sainigh mar neamhléite</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Aicearra na socruithe</string>
@@ -3431,7 +3296,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">Athshocraigh rith teachtaireachta slán</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Díbhalbhaigh</string>
@@ -3479,20 +3343,17 @@
     <string name="reminder_header_push_text">Feabhsaigh do chumarsáid.</string>
     <string name="reminder_header_service_outage_text">Tá Signal buailte le deacrachtaí teicniúla faoi láthair. Táimid ag déanamh ár ndíchill an fhadhb a réiteach chomh luath agus is féidir.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Ní féidir le haimsiú teagmhálaithe príobháideacha Signal teagmhálaithe ar do ghuthán a phróiseáil ar bhonn sealadach.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Tuilleadh faisnéise</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Ní féidir le haimsiú teagmhálaithe príobháideacha Signal teagmhálaithe ar do ghuthán a phróiseáil.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Tuilleadh faisnéise</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Cuir i dtaisce é</string>
-    <string name="media_preview__forward_title">Cuir ar aghaidh</string>
-    <string name="media_preview__share_title">Comhroinn</string>
-    <string name="media_preview__all_media_title">Gach meán</string>
     <string name="media_preview__edit_title">Eagar</string>
 
 
@@ -3534,7 +3395,7 @@
     <string name="BaseKbsPinFragment__next">Ar Aghaidh</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Cruthaigh UAP alfa-uimhriúil</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Cruthaigh UAP uimhriúil</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3570,7 +3431,7 @@
     <string name="KbsSplashFragment__introducing_pins">Seo dhuit UAPanna</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Coinnítear faisnéis a stóráiltear le Signal criptithe le UAP ionas nach mbeidh ach tusa in ann í a fheiceáil. Aischuirfear do phróifíl, socruithe agus teagmhálaithe tar éis athshuiteáil duit. Ní bheidh d\'UAP de dhíth ort chun an aip a oscailt.</string>
     <string name="KbsSplashFragment__learn_more">Tuilleadh Eolais</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Glas Clárúcháin == UAP</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Tugtar UAP ar Ghlas Clárúcháin anois, agus déanann sí níos mó. Nuashonraigh í anois.</string>
     <string name="KbsSplashFragment__update_pin">Nuashonraigh UAP</string>
@@ -3591,7 +3452,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Glasáladh do chuntas chun do phríobháideachas agus slándáil a chosaint. Tar éis %1$d lá neamhghníomhaíochta i do chuntas beidh tú in ann an uimhir ghutháin seo a athchlárú gan do UAP a bheith de dhíth ort. Scriosfar gach inneachar ann.</string>
     <string name="AccountLockedFragment__next">Ar Aghaidh</string>
     <string name="AccountLockedFragment__learn_more">Tuilleadh Eolais</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Cuir isteach d\'UAP</string>
@@ -3603,7 +3464,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">UAP mhícheart</string>
     <string name="RegistrationLockFragment__forgot_your_pin">An bhfuil d\'UAP dearmadta agat?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Ní mórán iarrachtaí fágtha!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Clárú le Signal — Cabhair de Dhíth leis an UAP do Android (UAP v1)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Clárú le Signal — Cabhair de Dhíth leis an UAP do Android (UAP v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3676,7 +3536,6 @@
     <string name="registration_activity__transfer_account">Cuntas a Aistriú</string>
     <string name="registration_activity__skip">Léim thar seo</string>
     <string name="preferences_chats__chat_backups">Cúltacaí na gcomhráite</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Cúltacaigh comhráite i stóras seachtrach</string>
     <string name="preferences_chats__transfer_account">Cuntas a Aistriú</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Aistrigh cuntas chuig gléas nua Android</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Cuir isteach frása faire an chúltaca</string>
@@ -3715,7 +3574,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tá comhad an-mhór i do chúltaca nach féidir a chúltacú. Scrios é agus cruthaigh cúltaca nua.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapáil chun cúltacaí a bhainistiú.</string>
-    <string name="ProgressPreference_d_messages_so_far">%1$d dteachtaireacht go nuige seo</string>
     <string name="RegistrationActivity_wrong_number">Uimhir mhícheart</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Cuir glao orm ina ionad sin \n (Ar fáil i gceann %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Déan teagmháil le foireann tacaíochta Signal</string>
@@ -3737,9 +3595,6 @@
     <string name="preferences_app_protection__create_a_pin">Cruthaigh UAP</string>
     <string name="preferences_app_protection__change_your_pin">Athraigh d\'UAP</string>
     <string name="preferences_app_protection__pin_reminders">Meabhrúcháin UAP</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">Úsáidtear UAPanna chun an fhaisnéis a stórálann tú le Signal a chriptiú, ionas nach mbeidh aon duine eile in ann í a fheiceáil.  Déanfar athchóiriú ar do phróifíl agus ar do chuid socruithe agus teagmhálaithe nuair a shuiteálfaidh tú Signal arís.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Cuir slándáil bhreise leis trí d\'UAP Signal a éileamh chun d\'uimhir ghutháin a chlárú le Signal arís.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Cabhraíonn meabhrúcháin leat cuimhneamh ar d\'UAP os rud é nach féidir í a aisghabháil. Ní iarrfar ort chomh minic le himeacht ama.</string>
     <string name="preferences_app_protection__turn_off">Múch</string>
     <string name="preferences_app_protection__confirm_pin">Deimhnaigh an UAP</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">UAP Signal a Dheimhniú</string>
@@ -3803,7 +3658,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Ní féidir Socruithe Wi-Fi a oscailt. Cas air Wi-Fi de láimh.</string>
     <string name="DeviceTransferSetup__grant_location_permission">Tabhair cead chun do shuíomh a aimsiú</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Cuir na seirbhísí suímh ar siúl</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">Ní féidir na socruithe suímh a oscailt.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Cuir Wi-Fi ar siúl</string>
     <string name="DeviceTransferSetup__error_connecting">Tharla Earráid le Nascadh</string>
     <string name="DeviceTransferSetup__retry">Bain triail eile as</string>
@@ -3812,7 +3666,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Fíoraigh go meaitseálainn an cód thíos ar an dá ghléas. Ansin tapáil Ar Aghaidh.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Ní hionann na huimhreacha</string>
     <string name="DeviceTransferSetup__continue">Ar Aghaidh</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">Níl an uimhir mar an gcéanna</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Mura meaitseálainn na huimhreacha ar do ghléasanna, tá seans ann gur nasc tú leis an ngléas contráilte. Leis sin a réiteach, stop an traschur agus triail arís, agus coinnigh an dá ghléas agat gar dá chéile.</string>
     <string name="DeviceTransferSetup__stop_transfer">Stop an tAistriú</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Ní féidir an seanghléas a aimsiú</string>
@@ -3842,7 +3695,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% de theachtaireachtaí go dtí seo…</string>
     <string name="DeviceTransfer__cancel">Cealaigh</string>
     <string name="DeviceTransfer__try_again">Féach arís é</string>
-    <string name="DeviceTransfer__stop_transfer_question">Stop an tAistriú?</string>
     <string name="DeviceTransfer__stop_transfer">Stop an tAistriú</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Caillfear dul chun cinn an aistrithe ar fad.</string>
     <string name="DeviceTransfer__transfer_failed">Theip ar an aistriú</string>
@@ -3850,7 +3702,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Cuntas a Aistriú</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Is féidir leat do chuntas Signal a thraschur agus Signal á shocrú ar ghléas nua Android. Roimh leanúint ar aghaidh:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Íosluchtaigh Signal ar do ghléas Android nua</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3860,7 +3711,6 @@
     <string name="OldDeviceTransferInstructions__continue">Ar Aghaidh</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">Críochnaíodh an t-aistriú</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Téigh chuig do ghléas nua</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Tá do shonraí Signal traschurtha chuig do ghléas nua. Leis an bpróiseas traschurtha a chur i gcrích, ní mór duit leanúint leis an gclárúchán ar do ghléas nua.</string>
     <string name="OldDeviceTransferComplete__close">Dún</string>
@@ -3887,10 +3737,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Cealaigh agus gníomhachtaigh an gléas seo</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Aistrigh iarmhéid MOB?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">You have a balance of %1$s. If you do not transfer your funds to another wallet address before deleting your account, you will lose it forever.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">Ná aistrigh é</string>
-    <string name="AdvancedPreferenceFragment__transfer">Aistrigh</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Bac Nua</string>
@@ -3904,10 +3750,6 @@
     <string name="RecipientBottomSheet_make_admin">Déan Riarthóir De/Di</string>
     <string name="RecipientBottomSheet_remove_as_admin">Bain mar Riarthóir</string>
     <string name="RecipientBottomSheet_remove_from_group">Bain den Ghrúpa</string>
-    <string name="RecipientBottomSheet_message_description">Teachtaireacht</string>
-    <string name="RecipientBottomSheet_voice_call_description">Guthghlao</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">Guthghlao neamhdhaingean</string>
-    <string name="RecipientBottomSheet_video_call_description">Físghlao</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">An bhfuil fonn ort %1$s a bhaint mar riarthóir?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"Beidh %1$s in ann an grúpa agus ballraíocht an ghrúpa a chur in eagar."</string>
@@ -4019,7 +3861,6 @@
     <string name="DeleteAccountFragment__the_phone_number">Ní mheaitseálann an uimhir ghutháin a chuir tú isteach le huimhir do chuntais.</string>
     <string name="DeleteAccountFragment__are_you_sure">An bhfuil tú cinnte gur mhaith leat do chuntas a scriosadh?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Scriosfar do chuntas Signal agus athshocrófar an aip leis sin. Dúnfar an aip nuair a bheidh an próiseas críochnaithe.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">Theip ar scriosadh an chuntais. An bhfuil nasc líonra agat?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Theip ar scriosadh sonraí logánta. Is féidir leat iad a ghlanadh de láimh i socruithe feidhmchlár an chórais.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Lainseáil Socruithe Aipe</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -4054,7 +3895,6 @@
     <string name="ShareActivity__share">Comhroinn</string>
     <string name="ShareActivity__send">Seol</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">Ní thacaítear le comhroinnt le líon comhráite ach amháin le teachtaireachtaí Signal</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Níorbh fhéidir sonraí comhroinnte a fháil ón gcuspóir.</string>
 
@@ -4063,7 +3903,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Ní féidir leat comhroinnt ach le suas leis an líon seo comhráite: %1$d</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">Cúlbhrat an chomhrá</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Dath an chomhrá</string>
@@ -4074,7 +3913,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Doiléiríonn modh dorcha an cúlbhrat</string>
     <string name="ChatWallpaperFragment__contact_name">Contact Name</string>
     <string name="ChatWallpaperFragment__reset">Athshocraigh</string>
-    <string name="ChatWallpaperFragment__clear">Glan</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Réamhamharc ar an gcúlbhrat</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Would you like to override all chat colors?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Would you like to override all wallpapers?</string>
@@ -4099,7 +3937,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Éilítear cead stórais le féachaint ar do ghailearaí.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Roghnaigh íomhá don chúlbhrat</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Pinch to zoom, drag to adjust.</string>
@@ -4126,9 +3963,9 @@
     <string name="payment_info_card_with_a_high_balance">With a high balance, you may want to update to an alphanumeric PIN to add more protection to your account.</string>
     <string name="payment_info_card_update_pin">Nuashonraigh UAP</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Díchumasaigh Sparán</string>
@@ -4140,7 +3977,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deactivate Without Transferring?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Your balance will remain in your wallet linked to Signal if you choose to reactivate payments.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Tharla earráid le díghníomhachtú an sparáin.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Recovery phrase</string>
@@ -4179,13 +4016,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Frása aisghabhála neamhbhailí</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Cinntigh go bhfuil an líon focal seo curtha isteach: %1$d agus triail arís.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Ar Aghaidh</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Eagar</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">Roimhe</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">D\'fhrása aisghabhála</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Scríobh síos líon na bhfocal seo a leanas in ord: %1$d. Stóráil do liosta in áit shlán.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Cinntigh gur chuir tú isteach an frása i gceart.</string>
@@ -4213,7 +4049,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Focal neamhbhailí</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Glanadh an ghearrthaisce.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">Amharc</string>
@@ -4232,7 +4067,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Níl aon teagmhálaithe nó daoine a mbíonn tú ag comhrá leo sa ghrúpa seo. Athbhreithnigh iarratais go cúramach sula nglacfaidh tú leo chun teachtaireachtaí nach dteastaíonn a sheachaint.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">About Message Requests</string>
     <string name="GroupsInCommonMessageRequest__okay">Tá go maith</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Seo réamhamharc ar dhath an chomhrá.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Tusa amháin atá in ann an dath a fheiceáil.</string>
 
@@ -4351,7 +4186,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Cruthaigh próifíl chun fógraí a fháil ó na daoine agus na grúpaí a roghnaíonn tú amháin.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Próifílí fógraí</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Cruthaigh próifíl</string>
@@ -4367,7 +4202,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Amadóir réamhshocraithe ar chomhráite nua</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Set a default disappearing message timer for all new chats started by you.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Bainistigh do chuid scéalta agus an lucht féachana</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Éiligh glas scáileáin Android nó méarlorg chun cistí a aistriú</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Ní féidir an glas íocaíochta a chumasú</string>
@@ -4376,12 +4210,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Theip ar nascleanúint chuig socruithe an chórais</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">Socruithe</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">Cealaigh</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Show Status Icon</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Taispeáin deilbhín i sonraí na teachtaireachta nuair a seachadadh iad le seoltóir séalaithe.</string>
 
@@ -4458,8 +4290,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">Roghnóir imeall ar bharr</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">Roghnóir imeall ar an mbun</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Tabhair airgead do Signal</string>
@@ -4517,20 +4347,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Ní féidir ach le riarthóirí an ghrúpa seo cur lena scéal</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Ní bhfuarthas aip teagmhálaithe</string>
-    <string name="ConversationSettingsFragment__send_message">Seol teachtaireacht</string>
     <string name="ConversationSettingsFragment__start_video_call">Tosaigh físghlao</string>
     <string name="ConversationSettingsFragment__start_audio_call">Tosaigh guthghlao</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Scéal</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Teachtaireacht</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Físeán</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Fuaim</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Glaoigh</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Balbhú</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Balbhaithe</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Cuardach</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Teachtaireachtaí a imíonn as amharc</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Fuaimeanna &amp; Fógraí</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Contact Details</string>
     <string name="ConversationSettingsFragment__view_safety_number">Taispeáin an Uimhir Shábháilteachta</string>
     <string name="ConversationSettingsFragment__block">Bac Nua</string>
@@ -4564,7 +4401,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Balbhaigh fógraí</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Gan balbhú</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Muted until %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Nuair a luaitear mé</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Cuir scéal chugam i gcónaí</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Ná cuir ar an eolas</string>
@@ -4606,7 +4442,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">Ní féidir %1$s a bhaint</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Tá an duine seo sábháilte i dTeagmhálaithe ar do ghléas. Scrios an duine sin ó do Theagmhálaithe agus triail arís.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Féach ar an teagmhálaí</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">Ní úsáideoir Signal é/í %1$s</string>
@@ -4631,9 +4467,7 @@
     <string name="AvatarPickerFragment__photo">Grianghraf</string>
     <string name="AvatarPickerFragment__text">Téacs</string>
     <string name="AvatarPickerFragment__save">Sábháil</string>
-    <string name="AvatarPickerFragment__select_an_avatar">Select an Avatar</string>
     <string name="AvatarPickerFragment__clear_avatar">Glan an tAbhatár</string>
-    <string name="AvatarPickerFragment__edit">Eagar</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">Theip ar shábháil an abhatár</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4718,7 +4552,6 @@
     <string name="ImageEditorHud__clear_all">Glan gach rud</string>
     <string name="ImageEditorHud__undo">CEALAIGH</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Scoránaigh idir marcóir agus aibhsitheoir</string>
-    <string name="ImageEditorHud__delete">Scrios</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Scoránaigh idir stíleanna téacs</string>
 
     <string name="MediaCountIndicatorButton__send">Seol</string>
@@ -4730,7 +4563,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Cuileáil Athruithe?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Caillfidh tú aon athruithe a rinne tú ar an ngrianghraf seo.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">Theip ar oscailt an cheamara</string>
 
     <string name="BadgesOverviewFragment__my_badges">Mo shuaitheantais</string>
     <string name="BadgesOverviewFragment__featured_badge">Suaitheantas faoi thrácht</string>
@@ -4738,27 +4570,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Theip ar nuashonrú na próifíle</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Roghnaigh suaitheantais</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">Réamhamharc</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Roghnaigh suaitheantas</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Ní mór duit suaitheantas a roghnú</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Theip ar nuashonrú na próifíle</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Become a Sustainer</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">Tacaíonn %1$s le Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">Tugann %1$s tabhartas do Signal gach mí chun tacú leis. Cuideachta neamhbhrabúis is ea Signal nach bhfuil aon fhógróirí ná infheisteoirí aici, lena dtacaíonn daoine mar a dhéanann tusa.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">Tacaíonn %1$s le Signal le tabhartas. Cuideachta neamhbhrabúis is ea Signal nach bhfuil aon fhógróirí ná infheisteoirí aici, lena dtacaíonn daoine mar a dhéanann tusa.</string>
 
     <string name="ImageView__badge">Suaitheantas</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Tacaigh le teicneolaíocht atá tógtha ar do shonsa — ní do shonraí — trí dhul isteach sa phobal a chothaíonn í.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Tacaigh le teicneolaíocht atá tógtha ar do shonsa — ní do shonraí — trí dhul isteach sa phobal a chothaíonn Signal.</string>
-    <string name="SubscribeFragment__currency">Airgeadra</string>
-    <string name="SubscribeFragment__more_payment_options">More Payment Options</string>
     <string name="SubscribeFragment__cancel_subscription">Cuir Síntiús ar Ceal</string>
     <string name="SubscribeFragment__confirm_cancellation">Deimhnigh Cur ar Ceal?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Ní ghearrfar táillí ort athuair. Bainfear an suaitheantas ó do phróifíl ag deireadh do thréimhse billeála.</string>
@@ -4771,7 +4597,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Gearrfar méid iomlán an tsíntiúis nua ort inniu, %1$s. Déanfar do shíntiús a athnuachan gach mí.</string>
 
     <string name="Subscription__s_per_month">%1$s/month</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">Athnuachan %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">As feidhm %1$s</string>
@@ -4803,7 +4629,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Tuilleadh</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">Receipts</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">My Support</string>
     <string name="ManageDonationsFragment__manage_subscription">Bainistigh síntiús</string>
@@ -4811,7 +4636,6 @@
     <string name="ManageDonationsFragment__donation_receipts">Admhálacha Tabhartas</string>
     <string name="ManageDonationsFragment__badges">Suaitheantais</string>
     <string name="ManageDonationsFragment__subscription_faq">CCanna maidir le Síntiúis</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Earráid le síntiús a fháil.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Other Ways to Give</string>
     <!-- Preference label to launch badge gifting -->
@@ -4819,8 +4643,9 @@
 
     <string name="Boost__enter_custom_amount">Cuir isteach Méid Saincheaptha</string>
     <string name="Boost__one_time_contribution">Íocaíocht aonuaire</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Cuir Spreagadh Signal leis</string>
     <string name="MySupportPreference__s_per_month">%1$s/month</string>
     <string name="MySupportPreference__renews_s">Athnuachan %1$s</string>
     <string name="MySupportPreference__processing_transaction">Idirbheart á phróiseáil…</string>
@@ -4855,7 +4680,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Tá deacracht againn maidir le d\'íocaíocht Chothaitheoir Signal a bhailiú. Cinntigh go bhfuil do mhodh íocaíochta suas chun dáta. Mura bhfuil, nuashonraigh in Google Pay é. Triailfidh Signal an íocaíocht a phróiseáil arís i gceann cúpla lá.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Ná taispeáin é seo arís</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">Téigh i dteagmháil leis an bhfoireann tacaíochta le tuilleadh faisnéise a fháil.</string>
     <string name="Subscription__contact_support">Déan Teagmháil le Foireann Tacaíochta Signal</string>
     <string name="Subscription__get_a_s_badge">Faigh suaitheantas %1$s</string>
 
@@ -4864,7 +4688,6 @@
     <string name="DonationsErrors__error_processing_payment">Error Processing Payment</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Error processing payment. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_payment">Níorbh fhéidir d\'íocaíocht a phróiseáil agus níor gearradh aon táille ort. Triail arís.</string>
     <string name="DonationsErrors__still_processing">Still Processing</string>
     <string name="DonationsErrors__couldnt_add_badge">Níor fhéidir suaitheantas a chur leis</string>
@@ -4878,8 +4701,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">Níorbh fhéidir suaitheantas bronntanais a sheoladh. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_badge_could_not">Níorbh fhéidir do shuaitheantas a chur le do chuntas, ach seans gur gearradh táille ort. Déan teagmháil leis an bhfoireann tacaíochta.</string>
     <string name="DonationsErrors__your_payment_is_still">Your payment is still being processed. This can take a few minutes depending on your connection.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Níl Google Pay ar fáil</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Beidh ort Google Pay a shocrú chun airgead a thabhairt ionaipe.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Theip ar chur an tsíntiúis ar ceal</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Teastaíonn nasc Idirlín chun an síntiús a chur ar ceal.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Ní thacaíonn do ghléas le Google Pay, mar sin ní féidir leat síntiús a ghlacadh chun suaitheantas a thuilleamh. Is féidir leat tacú le Signal fós trí airgead a thabhairt ar ár suíomh gréasáin.</string>
@@ -4896,14 +4717,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Suaitheantas bronntanais</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">I bhfeidhm go ceann %1$d míosa</item>
-        <item quantity="two">I bhfeidhm go ceann %1$d mhí</item>
-        <item quantity="few">I bhfeidhm go ceann %1$d mhí</item>
-        <item quantity="many">I bhfeidhm go ceann %1$d mí</item>
-        <item quantity="other">I bhfeidhm go ceann %1$d mí</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Redeem</string>
     <!-- Gift badge view action label -->
@@ -4913,7 +4726,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">Fuascailte</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Try another payment method or contact your bank for more information.</string>
@@ -5117,9 +4929,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Bronntanas</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Spreag</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">Mionsonraí</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Cineál tabhartais</string>
     <!-- Donation receipts date paid heading -->
@@ -5268,7 +5078,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Freagra príobháideach á sheoladh chuig %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">Freagra Príobháideach</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Cóipeáil</string>
     <!-- Context menu item to delete a story response -->
@@ -5288,11 +5097,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">An lucht féachana ar an scéal seo</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Folaigh scéal ó</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Gach Teagmhálaí Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">Comhroinn le gach teagmhálaí</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Gach duine seachas…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5336,7 +5143,7 @@
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Trína gcur le do theagmhálaithe córais</string>
     <!-- Note at the bottom of the Signal connections sheet -->
-    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
+    <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Is féidir le do theagmhálaithe d\'ainm agus do ghrianghraf, agus postálacha \"Mo Scéal\", a fheiceáil, mura gcuireann tú na rudaí sin i bhfolach orthu."</string>
     <!-- Clickable option to add a viewer to a custom story -->
     <string name="PrivateStorySettingsFragment__add_viewer">Cuir amharcóir leis</string>
     <!-- Clickable option to delete a custom story -->
@@ -5348,19 +5155,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Bain é</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">Cinnte?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">Ní féidir an gníomh seo a chealú.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Cuir ainm ar an scéal in eagar</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Ainm ar an scéal</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">Sábháil</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Tap to add text</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Cuir téacs leis</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5376,7 +5179,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Cuardach</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Tharla earráid gan choinne</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Cuir isteach nasc bailí.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5398,17 +5200,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Scrios</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Níl fáil ar scéalta ach ag úsáideoirí Signal béite .</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">Má chomhroinneann tú scéal, ní bheidh sé ar fáil ach ag daoine atá ar Signal béite.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Cuir leis an scéal?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Má chuirtear ábhar le do scéal, beidh do theagmhálaithe Signal in ann féachaint air ar feadh 24 uair an chloig. Is féidir leat an lucht féachana ar do scéal a athrú i Socruithe.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Cuir leis an scéal</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">Cuir amharcóirí in eagar</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Níorbh fhéidir an scéal a sheoladh. Seiceáil do nasc agus triail arís.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5416,9 +5212,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Cas as agus scrios</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Comhroinn agus Féach ar Scéalta</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Ní bheidh tú in ann féachaint ar Scéalta ná iad a chomhroinnt a thuilleadh nuair a bhíonn an rogha seo casta as.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Roghnaigh amharcóirí</string>
     <!-- New story viewer selection action button label -->
@@ -5483,13 +5277,9 @@
     <string name="StoryDialogs__view_profile_photo">Féach ar ghrianghraf próifíle</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Cas as sárú cinsireachta?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Is féidir leat nascadh go díreach leis an tseirbhís Signal anois le feidhmíocht níos fearr a fháil.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">Ní raibh maith agaibh</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">Múch</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Thug tú freagairt do scéal %1$s</string>
@@ -5723,13 +5513,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Méid an Chomhaid</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Seolta chuig</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Seolta ó</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Theip air</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">Eolas</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5751,7 +5537,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Scéalta</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Amhairc ar scéal</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Admhálacha léite</string>
     <!-- Story view receipts toggle message -->
@@ -5806,7 +5591,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Teastaíonn timpeall %1$s uait chun do chuid teachtaireachtaí a easpórtáil, cinntigh go bhfuil go leor spáis agat sula leanann tú ar aghaidh.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Lean ar aghaidh ar aon nós</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Tá cead SMS de dhíth ar Signal chun do theachtaireachtaí SMS a easpórtáil.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5924,9 +5709,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Cinntigh go bhfuil %1$s de spás breise saor ar do ghuthán chun do theachtaireachtaí a easpórtáil</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Atriail easpórtáil, rud a dhéanfaidh iarracht arís teachtaireachtaí nach bhfuil easpórtáilte fós a easpórtáil</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Má leanann ar aghaidh leis an bhfadhb, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Déan teagmháil linn</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Bain triail eile as</string>
@@ -5973,9 +5758,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Cur ar ceal…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Próiseáladh an iomarca teagmhálaithe</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">Déanfar iarracht eile chun do theagmhálaithe a phróiseáil laistigh de %1$d lá.</item>
         <item quantity="two">Déanfar iarracht eile chun do theagmhálaithe a phróiseáil laistigh de %1$d lá.</item>
@@ -5986,19 +5771,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">Chun an fhadhb seo a réiteach níos luaithe, is féidir leat smaoineamh ar theagmhálaithe nó cuntais a bhaint ar do ghuthán atá ag sioncronú go leor teagmhálaithe.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Oscail teagmhálaithe</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Níor aimsíodh aon aip teagmhálaithe</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Ní féidir do theagmhálaithe a phróiseáil</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">Sáraíonn líon na dteagmhálaithe ar do ghuthán an teorainn is féidir le Signal a phróiseáil. Chun teagmhálaithe a aimsiú ar Signal, smaoinigh ar theagmhálaithe nó cuntais a bhaint ar do ghuthán atá ag sioncronú go leor teagmhálaithe.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Tuilleadh faisnéise</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Oscail teagmhálaithe</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Níor aimsíodh aon aip teagmhálaithe</string>
 
     <!-- PaymentMessageView -->
@@ -6027,5 +5810,9 @@
     <string name="GroupStoryEducationSheet__next">Ar aghaidh</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

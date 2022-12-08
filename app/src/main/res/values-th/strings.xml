@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">ใช่</string>
     <string name="no">ไม่</string>
@@ -23,64 +22,40 @@
     <string name="save">บันทึก</string>
     <string name="note_to_self">บันทึกส่วนตัว</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">ข้อความใหม่</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal กำลังปรับรุ่น…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">ขณะนี้: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">คุณยังไม่ได้ตั้งวลีรหัสผ่าน</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">ปิดใช้งานวลีรหัสผ่านหรือไม่?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Signal และการแจ้งเตือนข้อความจะถูกปลดล็อกอย่างถาวร</string>
     <string name="ApplicationPreferencesActivity_disable">ปิดใช้งาน</string>
-    <string name="ApplicationPreferencesActivity_unregistering">ยกเลิกการลงทะเบียน</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">กำลังยกเลิกการลงทะเบียนการใช้งานข้อความ Signal และการโทร…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">ปิดใช้งานข้อความและการโทร Signal หรือไม่?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">ปิดใช้งานข้อความและการโทร Signal ด้วยการยกเลิกการลงทะเบียนจากเซิร์ฟเวอร์ คุณจะต้องลงทะเบียนหมายเลขโทรศัพท์ใหม่หากต้องการกลับมาใช้งานอีกในอนาคต</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">เกิดข้อผิดพลาดในการเชื่อมต่อกับเซิร์ฟเวอร์</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">เปิดใช้งาน SMS</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">แตะเพื่อเปลี่ยนแอป SMS หลักของคุณ</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">ปิดใช้งาน SMS</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">แตะเพื่อกำหนดให้ Signal เป็นแอป SMS หลักของคุณ</string>
-    <string name="ApplicationPreferencesActivity_on">เปิด</string>
-    <string name="ApplicationPreferencesActivity_On">เปิด</string>
-    <string name="ApplicationPreferencesActivity_off">ปิด</string>
-    <string name="ApplicationPreferencesActivity_Off">ปิด</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">ล็อกหน้าจอ%1$s กุญแจลงทะเบียน %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">ธีม %1$s ภาษา %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">รหัส PIN นั้นจำเป็นสำหรับการล็อกการลงทะเบียน เพื่อจะเลิกใช้ PIN ให้เลิกล็อกการลงทะเบียนก่อน</string>
     <string name="ApplicationPreferencesActivity_pin_created">สร้างรหัส PIN แล้ว</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">ปิดใช้ PIN อยู่</string>
-    <string name="ApplicationPreferencesActivity_hide">ซ่อน</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">ซ่อนการเตือนหรือไม่?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">บันทึกวลีกู้คืนสำหรับการชำระเงิน</string>
     <string name="ApplicationPreferencesActivity_record_phrase">วลีกู้คืน</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ก่อนที่คุณจะปิดใช้งานรหัส PIN ของคุณได้ คุณต้องจดบันทึกวลีกู้คืนการชำระเงิน เพื่อให้แน่ใจว่าคุณสามารถกู้คืนบัญชีการชำระเงินของคุณได้</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="other">%1$d นาที</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(รูปภาพ)</string>
@@ -128,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">ปิดกั้นผู้ใช้หรือไม่?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" จะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
     <string name="BlockedUsersActivity__block">ปิดกั้น</string>
-    <string name="BlockedUsersActivity__unblock_user">เลิกปิดกั้นผู้ใช้หรือไม่?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">คุณต้องการเลิกปิดกั้น \"%1$s\" หรือไม่?</string>
-    <string name="BlockedUsersActivity__unblock">เลิกปิดกั้น</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -138,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">จำนวนที่ต้องการบริจาค: %1$s/เดือน</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">กรอกข้อมูลบัตรของคุณที่ด้านล่าง</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">ป้อนรายละเอียดบัตรของคุณ Signal ไม่รวบรวมหรือจัดเก็บข้อมูลส่วนบุคคลของคุณ</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -248,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">อาจมีค่าบริการจากผู้ให้บริการโทรศัพท์ หมายเลขที่คุณกำลังโทรหาไม่ได้ลงทะเบียนกับ Signal การโทรนี้จะทำผ่านผู้ให้บริการโทรศัพท์ของคุณ ไม่ใช่ผ่านอินเทอร์เน็ต</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">หมายเลขความปลอดภัยของคุณกับ %1$s ได้เปลี่ยนไป นี่อาจหมายความว่า มีใครพยายามดักการสื่อสารของคุณ หรือไม่ก็แค่ %2$s ได้ติดตั้งแอป Signal ใหม่</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">คุณอาจต้องการตรวจยืนยันหมายเลขความปลอดภัยของคุณกับผู้ติดต่อรายนี้</string>
-    <string name="ConfirmIdentityDialog_accept">ยอมรับ</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">การพูดคุยล่าสุด</string>
@@ -270,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">แก้ไขชื่อ</string>
     <string name="ContactNameEditActivity_given_name">ชื่อ</string>
     <string name="ContactNameEditActivity_family_name">สกุล</string>
     <string name="ContactNameEditActivity_prefix">คำนำหน้า</string>
@@ -310,17 +277,17 @@
     <string name="ConversationItem_pending">  รอดำเนินการ</string>
     <string name="ConversationItem_this_message_was_deleted">ข้อความนี้ถูกลบ</string>
     <string name="ConversationItem_you_deleted_this_message">คุณได้ลบข้อความนี้</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดข้อความได้ %1$s จะต้องส่งใหม่อีกครั้ง</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดรูปภาพได้ %1$s จะต้องส่งใหม่อีกครั้ง</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดวิดีโอได้ %1$s จะต้องส่งใหม่อีกครั้ง</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดข้อความได้ คุณจะต้องส่งใหม่อีกครั้ง</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดรูปภาพได้ คุณจะต้องส่งใหม่อีกครั้ง</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ไม่สามารถดาวน์โหลดวิดีโอได้ คุณจะต้องส่งใหม่อีกครั้ง</string>
 
     <!-- ConversationActivity -->
@@ -342,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS ที่ไม่ปลอดภัย (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">MMS ที่ไม่ปลอดภัย</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">MMS ที่ไม่ปลอดภัย (%1$s)</string>
     <string name="ConversationActivity_transport_signal">ข้อความ Signal</string>
     <string name="ConversationActivity_lets_switch_to_signal">เปลี่ยนมาใช้ Signal กันเถอะ %1$s</string>
     <string name="ConversationActivity_specify_recipient">โปรดเลือกผู้ติดต่อ</string>
@@ -388,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">ลบและออก</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">เพื่อจะโทรหา %1$s Signal จำเป็นต้องเข้าถึงไมโครโฟนของคุณ</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">มีตัวเลือกอีกใน \"การตั้งค่ากลุ่ม\"</string>
 
     <string name="ConversationActivity_join">เข้าร่วม</string>
     <string name="ConversationActivity_full">เต็ม</string>
@@ -409,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ไม่รองรับการส่งข้อความ SMS อีกต่อไป ชวน %1$s มาใช้ Signal เพื่อการติดต่อสื่อสารที่ไม่ขาดตอน</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">เชิญมาใช้ Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">เราจะแจ้งให้คุณทราบอีกครั้งเร็วๆ นี้</string>
 
     <!-- ConversationAdapter -->
@@ -629,10 +594,6 @@
     <string name="CustomDefaultPreference_none">ไม่มี</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">เลือกรูป</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">ถ่ายรูป</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">เลือกจากห้องภาพ</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">ลบรูป</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">การถ่ายภาพจะต้องให้อนุญาตเข้าถึงกล้อง</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">การดูรูปภาพจะต้องให้อนุญาตการเข้าถึงพื้นที่เก็บข้อมูล</string>
 
@@ -687,8 +648,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">เกิดข้อผิดพลาดระหว่างการดึงภาพ GIF ความละเอียดสูง</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">สติกเกอร์</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">เพิ่มสมาชิกหรือไม่?</string>
@@ -713,7 +672,7 @@
     <string name="GroupManagement_access_level_all_members">สมาชิกทุกคน</string>
     <string name="GroupManagement_access_level_only_admins">เฉพาะผู้ดูแล</string>
     <string name="GroupManagement_access_level_no_one">ไม่มีใคร</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -829,7 +788,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">เสร็จสิ้น</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">ไม่สามารถเพิ่มบุคคลนี้เข้ากลุ่มแบบเก่า</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">ไม่สามารถเพิ่มบุคคลนี้ในกลุ่มประกาศ</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">เพิ่มสมาชิก %3$d คนเข้า \"%2$s\" หรือไม่?</item>
     </plurals>
@@ -856,33 +814,12 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">คุณได้เลือกผู้ติดต่อที่ไม่รองรับการคุยแบบกลุ่มใน Signal ดังนั้นกลุ่มนี้จะเป็น MMS จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS แบบกำหนดเอง เราจะยกเลิกการรองรับกลุ่มแบบ MMS ในอีกไม่ช้า เพื่อมุ่งเน้นการให้บริการการส่งข้อความแบบเข้ารหัส</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">คำขอและคำเชิญเป็นสมาชิก</string>
-    <string name="ManageGroupActivity_add_members">เพิ่มสมาชิก</string>
-    <string name="ManageGroupActivity_edit_group_info">แก้ไขข้อมูลกลุ่ม</string>
     <string name="ManageGroupActivity_who_can_add_new_members">ใครสามารถเพิ่มสมาชิกใหม่?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">ใครสามารถแก้ไขข้อมูลของกลุ่มนี้ได้?</string>
-    <string name="ManageGroupActivity_group_link">ลิงก์กลุ่ม</string>
-    <string name="ManageGroupActivity_block_group">ปิดกั้นกลุ่ม</string>
-    <string name="ManageGroupActivity_unblock_group">เลิกปิดกั้นกลุ่ม</string>
-    <string name="ManageGroupActivity_leave_group">ออกจากกลุ่ม</string>
-    <string name="ManageGroupActivity_mute_notifications">ปิดการแจ้งเตือน</string>
-    <string name="ManageGroupActivity_custom_notifications">การแจ้งเตือนที่กำหนดเอง</string>
-    <string name="ManageGroupActivity_mentions">การกล่าวถึง</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">สีและพื้นหลังแชต</string>
-    <string name="ManageGroupActivity_until_s">จนถึง %1$s</string>
-    <string name="ManageGroupActivity_always">ตลอดเวลา</string>
-    <string name="ManageGroupActivity_off">ปิด</string>
-    <string name="ManageGroupActivity_on">เปิด</string>
-    <string name="ManageGroupActivity_view_all_members">ดูสมาชิกทั้งหมด</string>
-    <string name="ManageGroupActivity_see_all">ดูทั้งหมด</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d สมาชิกถูกเพิ่ม</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">ผู้ดูแลกลุ่มเท่านั้นที่จะเปิดหรือปิดใช้งานลิงก์กลุ่มที่แบ่งปันได้</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">ผู้ดูแลกลุ่มเท่านั้นที่จะเปิดใช้งานหรือปิดใช้งานตัวเลือกเพื่อตอบรับสมาชิกใหม่ได้</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">ผู้ดูแลกลุ่มเท่านั้นที่จะล้างค่าตั้งใหม่ให้ลิงก์กลุ่มที่แบ่งปันได้</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">คุณไม่มีสิทธิ์ทำสิ่งนี้</string>
     <string name="ManageGroupActivity_not_capable">บุคคลที่คุณเพิ่มเข้ากลุ่ม ใช้กลุ่มแบบใหม่ไม่ได้ และจะต้องปรับรุ่น Signal</string>
@@ -946,18 +883,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">เปลี่ยนเสียงและการสั่น</string>
     <string name="CustomNotificationsDialogFragment__call_settings">ตั้งค่าการโทร</string>
     <string name="CustomNotificationsDialogFragment__ringtone">เสียงเรียกเข้า</string>
-    <string name="CustomNotificationsDialogFragment__enabled">เปิดใช้</string>
-    <string name="CustomNotificationsDialogFragment__disabled">หยุดใช้</string>
     <string name="CustomNotificationsDialogFragment__default">ค่าเริ่มต้น</string>
     <string name="CustomNotificationsDialogFragment__unknown">ไม่รู้จัก</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">ลิงก์กลุ่มที่แบ่งปันได้</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">จัดการ &amp; แชร์</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">ลิงก์กลุ่ม</string>
     <string name="ShareableGroupLinkDialogFragment__share">แบ่งปัน</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">ตั้งค่าลิงก์ใหม่</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">คำขอเป็นสมาชิก</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">อนุมัติสมาชิกใหม่</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ผู้ดูแลต้องอนุมัติสมาชิกใหม่ที่เข้าร่วมผ่านลิงก์กลุ่ม</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">คุณแน่ใจหรือไม่ว่าต้องการตั้งค่าลิงก์กลุ่มนี้ใหม่? คนจะไม่สามารถเข้าร่วมกลุ่มด้วยลิงก์ปัจจุบันได้อีกต่อไป</string>
@@ -1001,7 +933,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ปรับปรุง Signal เพื่อใช้ลิงก์กลุ่ม</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal รุ่นที่คุณใช้อยู่ไม่รองรับลิงก์กลุ่มนี้ กรุณาปรับรุ่นเป็นรุ่นล่าสุดเพื่อเข้าร่วมกลุ่มผ่านลิงก์นี้</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">ปรับปรุง Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">หนึ่งในอุปกรณ์ของคุณที่เชื่อมโยงอยู่กำลังใช้ Signal รุ่นที่ไม่รองรับลิงก์กลุ่มนี้ กรุณาปรับรุ่น Signal บนอุปกรณ์ที่คุณเชื่อมโยงอยู่เพื่อเข้าร่วมกลุ่มนี้</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ลิงก์กลุ่มไม่ถูกต้อง</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1081,7 +1012,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">กำลังลบ</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">กำลังลบข้อความ…</string>
-    <string name="MediaOverviewActivity_Select_all">เลือกทั้งหมด</string>
     <string name="MediaOverviewActivity_collecting_attachments">รวบรวมแฟ้มแนบ…</string>
     <string name="MediaOverviewActivity_Sort_by">จัดประเภทโดย</string>
     <string name="MediaOverviewActivity_Newest">ใหม่ที่สุด</string>
@@ -1106,9 +1036,8 @@
     <string name="MediaOverviewActivity_audio">เสียง</string>
     <string name="MediaOverviewActivity_video">วิดีโอ</string>
     <string name="MediaOverviewActivity_image">รูปภาพ</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">ข้อความเสียง</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">ส่งโดย %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">ส่งโดยคุณ</string>
@@ -1156,25 +1085,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">เกิดข้อผิดพลาดระหว่างดาวน์โหลด MMS แตะเพื่อลองใหม่</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">ส่งถึง %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">เปิดกล้อง</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">เพิ่มคำบรรยายภาพ…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">รายการนี้ถูกลบเพราะมีขนาดใหญ่เกินกำหนด</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">รายการถูกลบเพราะเป็นประเภทที่ไม่รู้จัก</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">รายการถูกลบเพราะมีขนาดเกินขีดจำกัดหรือเป็นประเภทที่ไม่รู้จัก</string>
     <string name="MediaSendActivity_camera_unavailable">ใช้กล้องไม่ได้</string>
-    <string name="MediaSendActivity_message_to_s">ข้อความถึง %1$s</string>
-    <string name="MediaSendActivity_message">ข้อความ</string>
-    <string name="MediaSendActivity_select_recipients">เลือกผู้รับ</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal ต้องการเข้าถึงผู้ติดต่อของคุณ เพื่อที่จะแสดงข้อมูลเหล่านั้นได้</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">เพื่อที่จะแสดงรายชื่อผู้ติดต่อ Signal ต้องได้รับอนุญาตให้เข้าถึงรายชื่อผู้ติดต่อ แต่คำขอนั้นถูกปฏิเสธอย่างถาวร กรุณาไปที่เมนูตั้งค่าแอป เลือก \"การอนุญาต\" และเปิดใช้งาน \"ผู้ติดต่อ\"</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="other">คุณไม่สามารถแบ่งปันได้มากกว่า %1$d รายการ</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">เลือกผู้รับ</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">แตะที่นี่เพื่อทำให้ข้อความหายไปหลังจากเห็นข้อความ</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">สื่อทั้งหมด</string>
@@ -1376,7 +1290,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ชอบฟีเจอร์ใหม่นี้ใช่ไหม ช่วยสนับสนุน Signal ด้วยการบริจาคแบบครั้งเดียว</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">ประวัติการส่งข้อความของคุณกับ %1$s รวมถึงหมายเลขโทรศัพท์ %2$s ถูกรวมเข้าด้วยกันเรียบร้อยแล้ว</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ประวัติการส่งข้อความของคุณกับ %1$s และอีกแชทของผู้ติดต่อถูกรวมเข้าด้วยกันเรียบร้อยแล้ว</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">คุณได้ส่งคำขอให้ %1$s เปิดใช้การชำระเงินแล้ว</string>
@@ -1437,7 +1351,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">เข้าร่วมกลุ่มนี้และแชร์ชื่อกับรูปภาพให้กับสมาชิกในกลุ่มหรือไม่ คุณจะไม่เห็นข้อความของพวกเขาจนกว่าคุณจะรับ</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">เข้าร่วมกลุ่มนี้หรือไม่? พวกเขาจะไม่รู้ว่าคุณเห็นข้อความของพวกเขาจนกว่าคุณจะตอบรับ</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">คุณต้องการเลิกปิดกั้นกลุ่มนี้และเปิดเผยชื่อและรูปภาพให้สมาชิกในกลุ่มเห็นหรือไม่? คุณจะไม่ได้รับข้อความใดจนกว่าคุณจะเลิกปิดกั้นพวกเขา</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">ดู</string>
     <string name="MessageRequestProfileView_member_of_one_group">สมาชิกของ %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">สมาชิกของ %1$s และ %2$s</string>
@@ -1529,7 +1443,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">สร้างรหัส PIN ของคุณ</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">คุณได้เดารหัส PIN จนครบจำนวนแล้ว แต่คุณยังสามารถเข้าถึงบัญชี Signal ของคุณได้ด้วยการสร้าง รหัส PIN ใหม่ เพื่อความเป็นส่วนตัวและความปลอดภัยของคุณ บัญชีของคุณจะถูกกู้คืนมาโดยปราศจากข้อมูลโปรไฟล์หรือการตั้งค่าที่คุณบันทึกไว้</string>
     <string name="PinRestoreLockedFragment_create_new_pin">สร้างรหัส PIN ใหม่</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">คำเตือน</string>
@@ -1567,7 +1481,6 @@
     <string name="RecipientPreferenceActivity_unblock">เลิกปิดกั้น</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">กลุ่มที่ไม่มีชื่อ</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">กำลังรับสาย…</string>
@@ -1582,9 +1495,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">วัน 💜 แห่งความสุข!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">แสดงความรักด้วยการเป็นผู้สนับสนุน Signal</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">แตะเพื่อเปิดวิดีโอของคุณ</string>
@@ -1610,7 +1521,6 @@
     <string name="WebRtcCallView__join_call">เข้าร่วมการโทร</string>
     <string name="WebRtcCallView__call_is_full">ห้องเต็ม</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">มีผู้เข้าร่วมสายนี้เต็มขีดจำกัดสูงสุด %1$d คนแล้ว โปรดลองใหม่ภายหลัง</string>
-    <string name="WebRtcCallView__view_participants_list">ดูผู้เข้าร่วม</string>
     <string name="WebRtcCallView__your_video_is_off">วิดีโอของคุณปิดอยู่</string>
     <string name="WebRtcCallView__reconnecting">กำลังเชื่อมต่อใหม่…</string>
     <string name="WebRtcCallView__joining">กำลังเข้าร่วม…</string>
@@ -1645,18 +1555,24 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s อยู่ในการโทรนี้</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s อยู่ในสายนี้</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s และ %2$s อยู่ในการโทรนี้</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s กำลังนำเสนออยู่</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="other">%1$s %2$s และ %3$d รวมถึงคนอื่นๆ อยู่ในการโทรนี้</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">พลิก</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">ลำโพง</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">กล้อง</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">เปิดเสียง</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">ปิดเสียง</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">ส่งเสียงเรียก</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">วางสาย</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1750,12 +1666,12 @@
     <string name="SearchFragment_header_messages">ข้อความ</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
@@ -1836,7 +1752,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">บันทึกนี้จะถูกโพสต์แบบสาธารณะทางออนไลน์เพื่อให้ผู้สนับสนุนสามารถดูได้ คุณอาจจะตรวจสอบก่อนที่จะอัปโหลด</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">ตัวกรอง:</string>
     <string name="SupportEmailUtil_device_info">ข้อมูลอุปกรณ์:</string>
     <string name="SupportEmailUtil_android_version">รุ่นแอนดรอยด์:</string>
@@ -1917,11 +1833,9 @@
     <string name="UsernameEditFragment__choose_your_username">เลือกชื่อผู้ใช้ของคุณ</string>
     <string name="UsernameEditFragment_username">ชื่อผู้ใช้</string>
     <string name="UsernameEditFragment_delete">ลบ</string>
-    <string name="UsernameEditFragment_successfully_set_username">ตั้งชื่อผู้ใช้สำเร็จ</string>
     <string name="UsernameEditFragment_successfully_removed_username">ลบชื่อผู้ใช้สำเร็จ</string>
     <string name="UsernameEditFragment_encountered_a_network_error">พบความผิดพลาดของเครือข่าย</string>
     <string name="UsernameEditFragment_this_username_is_taken">มีผู้ใช้ชื่อนี้แล้ว</string>
-    <string name="UsernameEditFragment_this_username_is_available">ใช้ชื่อผู้ใช้นี้ได้</string>
     <string name="UsernameEditFragment_usernames_can_only_include">ชื่อผู้ใช้จะมีได้เฉพาะ a-Z, 0-9 และ _</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">ชื่อผู้ใช้ไม่สามารถเริ่มต้นด้วยตัวเลข</string>
     <string name="UsernameEditFragment_username_is_invalid">ชื่อผู้ใช้ไม่ถูกต้อง</string>
@@ -1957,10 +1871,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">คุณจะต้องแลกเปลี่ยนข้อความกันก่อนเพื่อที่จะดูหมายเลขความปลอดภัยของ %1$s</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ข้อความถูกเข้ารหัสสำหรับเซสชันที่ไม่มีอยู่</string>
@@ -2001,7 +1915,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ไม่พบแอปที่แบ่งปันสื่อนี้ได้</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">ปิด</string>
     <string name="MediaPreviewFragment_edit_media_error">สื่อมีข้อผิดพลาด</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">เกิดข้อผิดพลาดในการลบข้อความ ข้อความอาจยังไม่ถูกลบ</string>
 
     <!-- MessageNotifier -->
@@ -2021,8 +1935,6 @@
     <string name="MessageNotifier_reply">ตอบกลับ</string>
     <string name="MessageNotifier_signal_message">ข้อความ Signal</string>
     <string name="MessageNotifier_unsecured_sms">SMS ที่ไม่ปลอดภัย</string>
-    <string name="MessageNotifier_you_may_have_new_messages">คุณอาจมีข้อความใหม่</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">เปิด Signal เพื่อตรวจสอบการแจ้งเตือนล่าสุด</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">ผู้ติดต่อ</string>
     <string name="MessageNotifier_reacted_s_to_s">ตอบสนอง %1$s ต่อ: \"%2$s\"</string>
@@ -2103,7 +2015,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">อัปเดต Signal เพื่อใช้งานการชำระเงินต่อ ยอดเงินของคุณอาจยังไม่ได้รับการอัปเดต</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">ปรับปรุงเดี๋ยวนี้</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">หากต้องการรับสาย ต้องให้สิทธิ์ Signal เข้าถึงไมโครโฟนของคุณ</string>
@@ -2119,8 +2030,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">ปัดขึ้นเพื่อเปลี่ยนมุมมอง</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">ปฏิเสธ</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">รับสาย</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">ตอบรับโดยไม่ใช้วิดีโอ</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2138,7 +2052,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">ใส่วลีรหัสผ่านใหม่อีกครั้ง</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">ใส่ชื่อหรือหมายเลข</string>
     <string name="contact_selection_activity__invite_to_signal">เชิญมาใช้ Signal</string>
     <string name="contact_selection_activity__new_group">กลุ่มใหม่</string>
 
@@ -2273,7 +2186,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">การเปลี่ยนแปลงหมายเลขความปลอดภัย</string>
     <string name="safety_number_change_dialog__accept">ตอบรับ</string>
-    <string name="safety_number_change_dialog__send_anyway">ยืนยันที่จะส่ง</string>
     <string name="safety_number_change_dialog__call_anyway">ยืนยันที่จะโทร</string>
     <string name="safety_number_change_dialog__join_call">เข้าร่วมสาย</string>
     <string name="safety_number_change_dialog__continue_call">ดำเนินการโทรต่อ</string>
@@ -2414,8 +2326,6 @@
     <string name="CreateProfileActivity_first_name_required">ชื่อ (ต้องมี)</string>
     <string name="CreateProfileActivity_last_name_optional">นามสกุล (ไม่จำเป็น)</string>
     <string name="CreateProfileActivity_next">ถัดไป</string>
-    <string name="CreateProfileActivity__username">ชื่อผู้ใช้</string>
-    <string name="CreateProfileActivity__create_a_username">สร้างชื่อผู้ใช้</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">จะมีแต่คุณที่มองเห็นรูปภาพและชื่อกลุ่ม MMS ตั้งเอง</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">คำอธิบายกลุ่มจะแสดงให้เห็นเฉพาะสมาชิกของกลุ่มนี้และผู้ที่ได้รับคำเชิญ</string>
 
@@ -2435,7 +2345,7 @@
     <string name="EditProfileFragment__edit_group">แก้ไขกลุ่ม</string>
     <string name="EditProfileFragment__group_name">ชื่อกลุ่ม</string>
     <string name="EditProfileFragment__group_description">คำอธิบายกลุ่ม</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">ชื่อของคุณ</string>
@@ -2448,7 +2358,6 @@
     <string name="recipient_preference_activity__shared_media">สื่อที่ถูกแบ่งปัน</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>ใส่ชื่อหรือหมายเลข</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[หากต้องการตรวจยืนยันความปลอดภัยของการเข้ารหัสจากต้นทางถึงปลายทางด้วย%1$s ให้เปรียบเทียบหมายเลขข้างบนกับอุปกรณ์ของพวกเขา นอกจากนี้คุณยังสามารถสแกนรหัสบนโทรศัพท์ของพวกเขาได้ด้วย <a href=\"https://signal.org/redirect/safety-numbers\">เรียนรู้เพิ่มเติม</a>]]></string>
@@ -2495,7 +2404,6 @@
     <string name="AndroidManifest__select_contacts">เลือกผู้ติดต่อ</string>
     <string name="AndroidManifest__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
     <string name="AndroidManifest__verify_safety_number">ตรวจยืนยันหมายเลขความปลอดภัย</string>
-    <string name="AndroidManifest__log_submit">ส่งปูมดีบัก</string>
     <string name="AndroidManifest__media_preview">ภาพตัวอย่างสื่อ</string>
     <string name="AndroidManifest__message_details">รายละเอียดข้อความ</string>
     <string name="AndroidManifest__linked_devices">อุปกรณ์ที่เชื่อมโยงอยู่</string>
@@ -2517,13 +2425,13 @@
     <string name="HelpFragment__whats_this">นี่คืออะไร?</string>
     <string name="HelpFragment__how_do_you_feel">คุณรู้สึกอย่างไร? (ไม่จำเป็น)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">บอกเหตุผลที่คุณติดต่อเรา</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">ข้อมูลความช่วยเหลือ</string>
     <string name="HelpFragment__signal_android_support_request">การขอความช่วยเหลือ Signal บนแอนดรอยด์</string>
     <string name="HelpFragment__debug_log">ปูมดีบัก:</string>
@@ -2595,12 +2503,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">รุ่นทดสอบ</string>
     <string name="preferences__sms_mms">SMS และ MMS</string>
-    <string name="preferences__pref_all_sms_title">รับ SMS ทั้งหมด</string>
-    <string name="preferences__pref_all_mms_title">รับ MMS ทั้งหมด</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">ใช้ Signal รับข้อความขาเข้าทั้งหมด</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">ใช้ Signal รับข้อความมัลติมีเดียขาเข้าทั้งหมด</string>
-    <string name="preferences__pref_enter_sends_title">ใส่คีย์เพื่อส่ง</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">เมื่อกดปุ่ม Enter จะส่งข้อความตัวอักษร</string>
     <string name="preferences__pref_use_address_book_photos">ใช้รูปภาพของรายชื่อผู้ติดต่อปัจจุบัน</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">แสดงรูปภาพผู้ติดต่อจากรายชื่อผู้ติดต่อปัจจุบันหากสามารถทำได้</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2609,14 +2511,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">แชตที่ปิดเสียงไว้ในที่เก็บถาวรจะยังคงเก็บถาวรอยู่เมื่อมีข้อความใหม่มาถึง</string>
     <string name="preferences__generate_link_previews">กำลังสร้างภาพตัวอย่างลิงก์</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">เรียกภาพตัวอย่างลิงก์โดยตรงจากเว็บไซต์สำหรับข้อความที่คุณส่ง</string>
-    <string name="preferences__choose_identity">เลือกตัวตน</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">เลือกชื่อคนที่คุณติดต่อด้วยจากรายชื่อผู้ติดต่อ</string>
     <string name="preferences__change_passphrase">เปลี่ยนวลีรหัสผ่าน</string>
     <string name="preferences__change_your_passphrase">เปลี่ยนวลีรหัสผ่านของคุณ</string>
     <string name="preferences__enable_passphrase">เปิดใช้งานการล็อกหน้าจอด้วยวลีรหัสผ่าน</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">ล็อกหน้าจอและการแจ้งเตือนด้วยวลีรหัสผ่าน</string>
     <string name="preferences__screen_security">ความปลอดภัยหน้าจอ</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">ไม่อนุญาตให้จับภาพหน้าจอในรายการล่าสุดและภายในแอป</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">ล็อก Signal โดยอัตโนมัติหากไม่มีการใช้งานเกินช่วงเวลาที่กำหนดไว้</string>
     <string name="preferences__inactivity_timeout_passphrase">วลีรหัสผ่านเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
     <string name="preferences__inactivity_timeout_interval">ช่วงระยะเวลาเมื่อไม่มีการใช้งานเกินเวลาที่กำหนด</string>
@@ -2652,7 +2551,6 @@
     <string name="preferences__advanced">ขั้นสูง</string>
     <string name="preferences__donate_to_signal">บริจาคให้ Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">การบริจาคครั้งเดียว</string>
     <string name="preferences__privacy">ความเป็นส่วนตัว</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">สตอรี่</string>
@@ -2679,7 +2577,6 @@
     <string name="preferences__dark_theme">มืด</string>
     <string name="preferences__appearance">ลักษณะ</string>
     <string name="preferences__theme">ธีม</string>
-    <string name="preferences__chat_wallpaper">ภาพพื้นหลังของแชต</string>
     <string name="preferences__chat_color_and_wallpaper">สีและพื้นหลังแชต</string>
     <string name="preferences__disable_pin">ปิดใช้งาน PIN</string>
     <string name="preferences__enable_pin">เปิดใช้งาน PIN</string>
@@ -2701,8 +2598,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">ถ้าสัญลักษณ์กำลังพิมพ์อยู่ถูกปิดใช้งาน คุณจะไม่เห็นสัญลักษณ์ว่ากำลังพิมพ์อยู่จากคนอื่น</string>
     <string name="preferences__request_keyboard_to_disable">ขอให้แป้นพิมพ์ปิดใช้งานการเรียนรู้การแนะนำคำ</string>
     <string name="preferences__this_setting_is_not_a_guarantee">การตั้งค่านี้ไม่ได้รับการรับประกัน และแป้นพิมพ์ของคุณอาจละเลยไป</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">ผู้ใช้ที่ปิดกั้นอยู่</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">เมื่อใช้ข้อมูลมือถือ</string>
     <string name="preferences_chats__when_using_wifi">เมื่อใช้ Wi-Fi</string>
     <string name="preferences_chats__when_roaming">เมื่อใช้บริการข้ามแดนอัตโนมัติ (โรมมิ่ง)</string>
@@ -2730,32 +2626,22 @@
     <string name="preferences_storage__s_messages">%1$s ข้อความ</string>
     <string name="preferences_storage__custom">ค่ากำหนดเอง</string>
     <string name="preferences_advanced__use_system_emoji">ใช้อีโมจิของระบบ</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">ปิดใช้งานการรองรับอีโมจิของ Signal</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">ส่งต่อสายทั้งหมดผ่านเซิร์ฟเวอร์ Signal เพื่อหลีกเลี่ยงการเปิดเผยที่อยู่ IP ของคนที่คุณติดต่อด้วย การเปิดใช้งานจะลดคุณภาพการโทรลง</string>
     <string name="preferences_advanced__always_relay_calls">ส่งต่อการโทรเสมอ</string>
     <string name="preferences_app_protection__who_can">ใครสามารถ…</string>
-    <string name="preferences_app_protection__app_access">การเข้าถึงแอป</string>
-    <string name="preferences_app_protection__communication">การสื่อสาร</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">การจ่ายเงิน</string>
     <string name="preferences_chats__chats">การพูดคุย</string>
     <string name="preferences_data_and_storage__manage_storage">จัดการพื้นที่จัดเก็บ</string>
-    <string name="preferences_data_and_storage__calls">การโทร</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">ใช้ข้อมูลน้อยลงสำหรับการโทร</string>
     <string name="preferences_data_and_storage__never">ไม่เลย</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi และข้อมูลมือถือ</string>
     <string name="preferences_data_and_storage__mobile_data_only">ข้อมูลมือถือเท่านั้น</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">การใช้ข้อมูลน้อยลงอาจช่วยปรับปรุงการโทรในเครือข่ายที่ไม่ดี</string>
-    <string name="preferences_notifications__messages">ข้อความ</string>
-    <string name="preferences_notifications__events">เหตุการณ์</string>
     <string name="preferences_notifications__in_chat_sounds">เสียงในการแช็ต</string>
     <string name="preferences_notifications__show">แสดง</string>
-    <string name="preferences_notifications__calls">การโทร</string>
     <string name="preferences_notifications__ringtone">เสียงเรียกเข้า</string>
-    <string name="preferences_chats__show_invitation_prompts">แสดงข้อความคำเชิญ</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">แสดงคำเชิญสำหรับผู้ติดต่อที่ไม่มี Signal</string>
     <string name="preferences_chats__message_text_size">ขนาดอักษรของข้อความ</string>
-    <string name="preferences_events__contact_joined_signal">มีผู้ติดต่อเริ่มใช้ Signal</string>
     <string name="preferences_notifications__priority">ความสำคัญ</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">การหลบเลี่ยงการปิดกั้น</string>
@@ -2771,8 +2657,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">การหลบเลี่ยงการปิดกั้นข้อมูลจะใช้ได้ก็ต่อเมื่อเชื่อมต่อกับอินเทอร์เน็ต</string>
     <string name="preferences_communication__category_sealed_sender">ผู้ส่งที่ปกปิดตัวตน</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">แสดงสถานะการส่ง</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"แสดงสถานะไอคอนเมื่อคุณเลือก \"รายละเอียดข้อความ\" ในข้อความที่มาจากผู้ส่งที่ปิดบังตัวตน"</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">อนุญาตจากทุกคน</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">เปิดใช้งานผู้ส่งที่ปิดบังตัวตนสำหรับข้อความขาเข้าจากคนที่ไม่ใช่ผู้ติดต่อและคนที่คุณไม่ได้แบ่งปันโปรไฟล์</string>
     <string name="preferences_communication__sealed_sender_learn_more">เรียนรู้เพิ่มเติม</string>
@@ -2798,9 +2682,9 @@
     <string name="configurable_single_select__customize_option">กำหนดการตั้งค่า</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2815,7 +2699,6 @@
     <string name="PaymentsHomeFragment__activating_payments">กำลังเปิดใช้การชำระเงิน…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">เรียกคืนบัญชีชำระเงิน</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">ยังไม่มีกิจกรรมเร็วๆ นี้</string>
-    <string name="PaymentsHomeFragment__pending_requests">คำขอที่ค้างอยู่</string>
     <string name="PaymentsHomeFragment__recent_activity">กิจกรรมล่าสุด</string>
     <string name="PaymentsHomeFragment__see_all">ดูทั้งหมด</string>
     <string name="PaymentsHomeFragment__add_funds">เพิ่มเงิน</string>
@@ -2844,13 +2727,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">การชำระเงินถูกปิดใช้งานแล้ว</string>
     <string name="PaymentsHomeFragment__payment_failed">การชำระเงินล้มเหลว</string>
     <string name="PaymentsHomeFragment__details">รายละเอียด</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">คุณสามารถใช้ Signal เพื่อส่งและรับ MobileCoin การชำระเงินทั้งหมดอยู่ภายใต้เงื่อนไขการใช้งานสำหรับ MobileCoins และ MobileCoin Wallet นี่คือคุณสมบัติเบตา ดังนั้นคุณอาจพบปัญหาบางประการ และการชำระเงินหรือยอดคงเหลืออาจสูญหายไปโดยกู้คืนมาไม่ได้ </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">คุณสามารถใช้ Signal เพื่อส่งและรับ MobileCoin การชำระเงินทั้งหมดอยู่ภายใต้เงื่อนไขการใช้งานสำหรับ MobileCoins และ MobileCoin Wallet นี่คือคุณสมบัติเบตา ดังนั้นคุณอาจพบปัญหาบางประการ และการชำระเงินหรือยอดคงเหลืออาจสูญหายไปโดยกู้คืนมาไม่ได้ </string> -->
     <string name="PaymentsHomeFragment__activate">เปิดใช้</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">ดูเงื่อนไข MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">ไม่สามารถชำระเงินใน Signal ได้อีกต่อไป คุณยังสามารถโอนเงินไปยังตลาดหลักทรัพย์ได้ แต่คุณจะไม่สามารถส่งและรับการชำระเงินหรือเพิ่มเงินได้อีก</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">เปิดใช้ฟีเจอร์ล็อกการชำระเงินสำหรับการชำระในครั้งต่อไปหรือไม่</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2894,7 +2777,7 @@
     <string name="PaymentsAddMoneyFragment__copy">คัดลอก</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">คัดลอกไปคลิปบอร์ดแล้ว</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">เพื่อเพิ่มเงิน ส่ง MobileCoin ไปยังที่อยู่กระเป๋าเงินของคุณ เริ่มต้นธุรกรรมจากบัญชีของคุณในตลาดแลกเปลี่ยนที่รองรับ MobileCoin จากนั้นสแกนรหัส QR หรือคัดลอกที่อยู่กระเป๋าเงินของคุณ</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">รายละเอียด</string>
@@ -2914,8 +2797,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">ค่าธรรมเนียมจัดระเบียบเหรียญ</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"ค่าธรรมเนียมจัดระเบียบเหรียญ\" มีการเรียกเก็บเมื่อเหรียญที่คุณครอบครองไม่สามารถนำไปรวมเพื่อให้ธุรกรรมเสร็จสมบูรณ์ได้ การจัดระเบียบช่วยให้คุณส่งเงินต่อไปได้</string>
     <string name="PaymentsDetailsFragment__no_details_available">ไม่มีรายละเอียดเพิ่มเติมอีกสำหรับธุรกรรมนี้</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">การชำระเงินที่ส่งแล้ว</string>
     <string name="PaymentsDetailsFragment__received_payment">การชำระเงินที่ได้รับ</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">การชำระเงินสมบูรณ์ %1$s</string>
@@ -2959,7 +2842,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">เพิ่มบันทึก</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">เป็นการแปลกค่าโดยประมาณและอาจไม่เที่ยงตรง</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">บันทึก</string>
@@ -2967,7 +2850,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">ยืนยันการจ่ายเงิน</string>
     <string name="ConfirmPayment__network_fee">ค่าธรรมเนียมเครือข่าย</string>
-    <string name="ConfirmPayment__error_getting_fee">เกิดข้อผิดพลาดในการรับค่าธรรมเนียม</string>
     <string name="ConfirmPayment__estimated_s">ประมาณ %1$s</string>
     <string name="ConfirmPayment__to">ถึง</string>
     <string name="ConfirmPayment__total_amount">จำนวนรวม</string>
@@ -3024,29 +2906,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">บันทึก</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">ข้อความที่ลบตัวเอง</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">ข้อมูล</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">คัดลอก</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">ลบ</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">ส่งต่อ</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">ตอบกลับ</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">บันทึก</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">ส่งใหม่</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">เลือก</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">รายละเอียดการชำระเงิน</string>
 
     <!-- conversation_expiring_on -->
@@ -3055,14 +2936,6 @@
     <string name="conversation_insecure__invite">เชิญ</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">ลบที่เลือก</string>
-    <string name="conversation_list_batch__menu_pin_selected">ปักหมุดแชตที่เลือกไว้</string>
-    <string name="conversation_list_batch__menu_unpin_selected">เลิกปักหมุดแชตที่เลือกไว้</string>
-    <string name="conversation_list_batch__menu_select_all">เลือกทั้งหมด</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">เก็บข้อมูลที่เลือกเข้าที่เก็บถาวร</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">นำข้อมูลที่เลือกออกจากที่เก็บถาวร</string>
-    <string name="conversation_list_batch__menu_mark_as_read">กาว่าอ่านแล้ว</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">กาว่ายังไม่ได้อ่าน</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">ตั้งค่าปุ่มลัด</string>
@@ -3083,7 +2956,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">รีเซ็ตเซสชันที่ปลอดภัย</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">เลิกปิดเสียง</string>
@@ -3131,20 +3003,17 @@
     <string name="reminder_header_push_text">ยกระดับประสบการณ์การสื่อสารของคุณ</string>
     <string name="reminder_header_service_outage_text">Signal กำลังพบกับอุปสรรคทางเทคนิค เรากำลังทำงานอย่างหนักเพื่อให้สามารถกลับมาให้บริการได้โดยเร็วที่สุดเท่าที่จะเป็นไปได้</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">บริการค้นหาผู้ติดต่อส่วนตัวของ Signal ไม่สามารถประมวลผลผู้ติดต่อในโทรศัพท์คุณได้ชั่วคราว</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">บริการค้นหาผู้ติดต่อส่วนตัวของ Signal ไม่สามารถประมวลผลผู้ติดต่อในโทรศัพท์คุณได้</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">เรียนรู้เพิ่มเติม</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">บันทึก</string>
-    <string name="media_preview__forward_title">ส่งต่อ</string>
-    <string name="media_preview__share_title">แบ่งปัน</string>
-    <string name="media_preview__all_media_title">สื่อทั้งหมด</string>
     <string name="media_preview__edit_title">แก้ไข</string>
 
 
@@ -3186,7 +3055,7 @@
     <string name="BaseKbsPinFragment__next">ต่อไป</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">สร้างรหัส PIN ด้วยตัวอักษรและตัวเลข</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">สร้างรหัส PIN ด้วยตัวเลข</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3214,7 +3083,7 @@
     <string name="KbsSplashFragment__introducing_pins">แนะนำรหัส PINs</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ได้เข้ารหัสไว้ ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้งแอปอีกครั้ง คุณไม่จำเป็นต้องมีรหัส PIN ของคุณเพื่อเปิดแอป</string>
     <string name="KbsSplashFragment__learn_more">เรียนรู้เพิ่มเติม</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">กุญแจลงทะเบียน = รหัส PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">จากนี้กุญแจลงทะเบียนของคุณจะถูกเรียกว่ารหัส PIN และมันยังทำอะไรได้มากกว่านั้น ปรับปรุงมันเดี๋ยวนี้</string>
     <string name="KbsSplashFragment__update_pin">เปลี่ยนรหัส PIN</string>
@@ -3235,7 +3104,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">บัญชีของคุณถูกล็อกเพื่อปกป้องความเป็นส่วนตัวและความปลอดภัยของคุณ. หลังจากบัญชีของคุณไม่มีการเคลื่อนไหว %1$d วัน คุณจะสามารถลงทะเบียนโทรศัพท์นี้ได้อีกครั้งโดยไม่จำเป็นต้องมีรหัส PIN. เนื้อหาทั้งหมดจะถูกลบ.</string>
     <string name="AccountLockedFragment__next">ต่อไป</string>
     <string name="AccountLockedFragment__learn_more">เรียนรู้เพิ่มเติม</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">ใส่รหัส PIN ของคุณ</string>
@@ -3247,7 +3116,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">รหัส PIN ไม่ถูกต้อง</string>
     <string name="RegistrationLockFragment__forgot_your_pin">ลืมรหัส PIN หรือ?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">ลองได้อีกไม่กี่ครั้งแล้ว!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v1 PIN)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">การลงทะเบียน Signal - ต้องการความช่วยเหลือเกี่ยวกับ PIN สำหรับ Android (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3300,7 +3168,6 @@
     <string name="registration_activity__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="registration_activity__skip">ข้าม</string>
     <string name="preferences_chats__chat_backups">ข้อมูลสำรองของการสนทนา</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">สำรองข้อมูลการพูดคุยไปยังที่เก็บข้อมูลภายนอก</string>
     <string name="preferences_chats__transfer_account">ถ่ายโอนบัญชี</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">ถ่ายโอนบัญชีไปยังอุปกรณ์ Android เครื่องใหม่</string>
     <string name="RegistrationActivity_enter_backup_passphrase">ใส่วลีรหัสผ่านสำหรับข้อมูลสำรอง</string>
@@ -3339,7 +3206,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ข้อมูลสำรองของคุณมีไฟล์ขนาดใหญ่ที่ไม่สามารถเก็บสำรองได้ กรุณาลบไฟล์ดังกล่าวและสร้างข้อมูลสำรองใหม่</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
-    <string name="ProgressPreference_d_messages_so_far">%1$d ข้อความจนถึงตอนนี้</string>
     <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้อง</string>
     <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
@@ -3361,9 +3227,6 @@
     <string name="preferences_app_protection__create_a_pin">สร้างรหัส PIN</string>
     <string name="preferences_app_protection__change_your_pin">เปลี่ยนรหัส PIN ของคุณ</string>
     <string name="preferences_app_protection__pin_reminders">เตือนความจำรหัส PIN</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">รหัส PIN รักษาข้อมูลที่เก็บไว้ใน Signal ที่เข้ารหัส ดังนั้นจึงมีแต่คุณที่เข้าถึงข้อมูลนี้ได้ โปรไฟล์ของคุณ การตั้งค่า และรายชื่อผู้ติดต่อจะถูกกู้คืนเมื่อคุณติดตั้ง Signal อีกครั้ง</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">เพิ่มความปลอดภัยอีกขั้นด้วยการกำหนดให้ PIN ของ Signal คุณ สมัครหมายเลขโทรศัพท์กับ Signal อีกครั้ง</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">การเตือนความจำจะช่วยให้คุณจำรหัส PIN ได้ เนื่องจากมันไม่สามารถถูกกู้คืนได้ คุณจะถูกเตือนน้อยลงเมื่อเวลาผ่านไป</string>
     <string name="preferences_app_protection__turn_off">ปิด</string>
     <string name="preferences_app_protection__confirm_pin">ยืนยันรหัส PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">ยืนยันรหัส PIN สำหรับ Signal ของคุณ</string>
@@ -3427,7 +3290,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">ไม่สามารถเปิดการตั้งค่า Wi-Fi ได้ กรุณาเปิดใช้งาน Wi-Fi ด้วยตนเอง</string>
     <string name="DeviceTransferSetup__grant_location_permission">อนุญาตให้เข้าถึงตำแหน่ง</string>
     <string name="DeviceTransferSetup__turn_on_location_services">เปิดการใช้งานการเข้าถึงตำแหน่ง</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">ไม่สามารถเปิดการตั้งค่าตำแหน่งได้</string>
     <string name="DeviceTransferSetup__turn_on_wifi">เปิดใช้งาน Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">เกิดข้อผิดพลาดในการเชื่อมต่อ</string>
     <string name="DeviceTransferSetup__retry">ลองใหม่</string>
@@ -3436,7 +3298,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">ยืนยันว่ารหัสข้างล่างตรงกับอุปกรณ์ทั้งสองเครื่องของคุณแล้วแตะที่ปุ่มดำเนินการต่อ</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">ตัวเลขไม่ตรงกัน</string>
     <string name="DeviceTransferSetup__continue">ทำต่อ</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">ตัวเลขไม่เหมือนกัน</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">หากหมายเลขบนอุปกรณ์ของคุณไม่ตรงกัน อาจเป็นไปได้ว่าคุณได้เชื่อมต่ออุปกรณ์ผิดเครื่อง ในการแก้ไขนั้น ให้หยุดการถ่ายโอนและลองใหม่อีกครั้ง และให้นำอุปกรณ์ทั้งสองเครื่องไว้ในระยะใกล้กัน</string>
     <string name="DeviceTransferSetup__stop_transfer">หยุดการถ่ายโอน</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">ไม่สามารถค้นหาอุปกรณ์เครื่องเก่าได้</string>
@@ -3466,7 +3327,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% ของข้อความในตอนนี้…</string>
     <string name="DeviceTransfer__cancel">ยกเลิก</string>
     <string name="DeviceTransfer__try_again">ลองอีกครั้ง</string>
-    <string name="DeviceTransfer__stop_transfer_question">หยุดการถ่ายโอนหรือไม่?</string>
     <string name="DeviceTransfer__stop_transfer">หยุดการถ่ายโอน</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">คุณจะสูญเสียความคืบหน้าของการถ่ายโอนทั้งหมด</string>
     <string name="DeviceTransfer__transfer_failed">การถ่ายโอนล้มเหลว</string>
@@ -3474,7 +3334,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">ถ่ายโอนบัญชี</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">คุณสามารถถ่ายโอนบัญชีผู้ใช้ Signal ของคุณเมื่อได้ติดตั้งแอป Signal บนอุปกรณ์ Android เครื่องใหม่ของคุณ ก่อนดำเนินการต่อ:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">ดาวน์โหลด Signal บนอุปกรณ์ Android เครื่องใหม่ของคุณ</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3484,7 +3343,6 @@
     <string name="OldDeviceTransferInstructions__continue">ทำต่อ</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">การถ่ายโอนสำเร็จ</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">ไปที่อุปกรณ์เครื่องใหม่ของคุณ</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">ข้อมูล Signal ของคุณได้รับการถ่ายโอนไปยังอุปกรณ์เครื่องใหม่แล้ว ในการดำเนินการถ่ายโอนให้เสร็จสมบูรณ์ คุณจะต้องดำเนินการลงทะเบียนบนอุปกรณ์เครื่องใหม่ของคุณต่อ</string>
     <string name="OldDeviceTransferComplete__close">ปิด</string>
@@ -3511,10 +3369,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">ยกเลิกและเปิดใช้งานอุปกรณ์เครื่องนี้</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">โอนยอดคงเหลือ MOB หรือไม่?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">คุณมียอดคงเหลือ %1$s หากคุณไม่โอนเงินของคุณไปยังที่อยู่กระเป๋าเงินอื่นก่อนลบบัญชี เงินจำนวนนี้จะหายไปตลอดกาล</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">ไม่โอน</string>
-    <string name="AdvancedPreferenceFragment__transfer">โอน</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">ปิดกั้น</string>
@@ -3528,10 +3382,6 @@
     <string name="RecipientBottomSheet_make_admin">แต่งตั้งเป็นผู้ดูแล</string>
     <string name="RecipientBottomSheet_remove_as_admin">ปลดจากการเป็นผู้ดูแล</string>
     <string name="RecipientBottomSheet_remove_from_group">ลบจากกลุ่ม</string>
-    <string name="RecipientBottomSheet_message_description">ข้อความ</string>
-    <string name="RecipientBottomSheet_voice_call_description">โทรเสียง</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">โทรเสียงแบบไม่ปลอดภัย</string>
-    <string name="RecipientBottomSheet_video_call_description">โทรวิดีโอ</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">ปลด %1$s จากการเป็นผู้ดูแลกลุ่มหรือไม่?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" จะสามารถแก้ไขกลุ่มและสมาชิกของกลุ่มได้"</string>
@@ -3635,7 +3485,6 @@
     <string name="DeleteAccountFragment__the_phone_number">หมายเลขโทรศัพท์ที่คุณป้อนไม่ตรงกับหมายเลขในบัญชีคุณ</string>
     <string name="DeleteAccountFragment__are_you_sure">คุณแน่ใจหรือไม่ว่าต้องการลบบัญชีของคุณ</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">การกระทำนี้จะเป็นการลบบัญชี Signal ของคุณและรีเซ็ตแอปพลิเคชั่น โดยแอปจะปิดลงหลังจากที่กระบวนการนี้เสร็จสิ้น</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">การลบบัญชีผู้ใช้ล้มเหลว คุณมีเครือข่ายให้เชื่อมต่อหรือไม่?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">ลบข้อมูลในเครื่องไม่สำเร็จ คุณสามารถล้างข้อมูลเองได้ในการตั้งค่าแอปของระบบ</string>
     <string name="DeleteAccountFragment__launch_app_settings">การตั้งค่าการเริ่มแอป</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3666,7 +3515,6 @@
     <string name="ShareActivity__share">แบ่งปัน</string>
     <string name="ShareActivity__send">ส่ง</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">การแบ่งปันแชตหลายแชตพร้อมกันนั้นรองรับเฉพาะแค่ข้อความของ Signal</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">ไม่สามารถดึงข้อมูลที่แชร์ได้จาก Intent</string>
 
@@ -3675,7 +3523,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">คุณสามารถแบ่งปันได้สูงสุดแค่ %1$d แชต เท่านั้น</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">ภาพพื้นหลังของหน้าแชต</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">สีแชต</string>
@@ -3686,7 +3533,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">ภาพพื้นหลังธีมมืดสลัว</string>
     <string name="ChatWallpaperFragment__contact_name">ชื่อผู้ติดต่อ</string>
     <string name="ChatWallpaperFragment__reset">รีเซ็ต</string>
-    <string name="ChatWallpaperFragment__clear">ล้าง</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">ภาพตัวอย่างพื้นหลัง</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">คุณต้องการยกเลิกสีแชตทั้งหมดใช่หรือไม่?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">คุณต้องการยกเลิกภาพพื้นหลังทั้งหมดใช่หรือไม่?</string>
@@ -3711,7 +3557,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">การดูรูปภาพจะต้องให้อนุญาตการเข้าถึงพื้นที่เก็บข้อมูล</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">เลือกรูปภาพพื้นหลัง</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">หยิกขยายเพื่อซูมและลากเพื่อปรับตำแแหน่ง</string>
@@ -3738,9 +3583,9 @@
     <string name="payment_info_card_with_a_high_balance">เมื่อมียอดคงเหลือสูง คุณอาจต้องการปรับปรุงรหัส PIN ตัวเลขตัวอักษรเพื่อเพิ่มการปกป้องให้กับบัญชีของคุณ</string>
     <string name="payment_info_card_update_pin">เปลี่ยนรหัส PIN</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">หยุดใช้กระเป๋าเงิน</string>
@@ -3752,7 +3597,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">หยุดใช้งานโดยไม่ถ่ายโอนหรือไม่?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">ยอดคงเหลือจะคงอยู่ในกระเป๋าเงินของคุณที่เชื่อมโยงกับ Signal หากคุณเลือกกลับมาเปิดใช้งานการชำระเงินอีกครั้ง</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">เกิดข้อผิดพาดในการปิดใช้งานกระเป๋าเงิน</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">วลีกู้คืน</string>
@@ -3787,13 +3632,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">วลีกู้คืนผิดรูปแบบ</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">ให้แน่ใจว่าคุณได้ใส่ %1$d คำ และลองอีกครั้ง</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">ถัดไป</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">แก้ไข</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">ก่อนหน้า</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">วลีกู้คืนของคุณ</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">จดคำ %1$d คำต่อไปนี้ตามลำดับ เก็บรักษารายการของคุณนี้ไว้ในที่ปลอดภัย</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">ให้แน่ใจว่าคุณได้ใส่วลีของคุณอย่างถูกต้อง</string>
@@ -3821,7 +3665,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">คำไม่ถูกรูปแบบ</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">ล้างคลิปบอร์ด</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">ดู</string>
@@ -3840,7 +3683,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">ไม่มีผู้ติดต่อหรือผู้ที่คุณแชตด้วยอยู่ในกลุ่มนี้เลย พิจารณาคำขออย่างถี่ถ้วนก่อนจะยอมรับ เพื่อเลี่ยงข้อความไม่พึงประสงค์</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">เกี่ยวกับคำขอส่งข้อความ</string>
     <string name="GroupsInCommonMessageRequest__okay">ตกลง</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">นี่คือตัวอย่างสีแชต</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">สีที่คุณเห็นคนเดียว</string>
 
@@ -3959,7 +3802,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">สร้างโปรไฟล์เพื่อรับการแจ้งเตือนจากคนหรือกลุ่มที่คุณเลือกเองเท่านั้น</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">โปรไฟล์การแจ้งเตือน</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">สร้างโปรไฟล์</string>
@@ -3975,7 +3818,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">ตัวจับเวลาค่าเริ่มต้นสำหรับแชตใหม่</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">ตั้งค่าเริ่มต้นของตัวจับเวลาข้อความหายไปสำหรับแชตใหม่ที่คุณเริ่มต้น</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">จัดการและกำหนดผู้ชมของสตอรี่คุณ</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">ต้องปลดล็อกหน้าจอหรือสแกนลายนิ้วมือในอุปกรณ์ Android เพื่อโอนเงิน</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">ไม่สามารถเปิดใช้การล็อกการชำระเงินได้</string>
@@ -3984,12 +3826,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">ไม่สามารถไปยังการตั้งค่าระบบได้</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">ไปที่การตั้งค่า</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">ยกเลิก</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">แสดงไอคอนสถานะ</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">แสดงไอคอนในรายละเอียดข้อความเมื่อเป็นข้อความที่ส่งโดยใช้ผู้ส่งที่ถูกปกปิด</string>
 
@@ -4058,8 +3898,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">ตัวเลือกขอบบน</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">ตัวเลือกขอบล่าง</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">บริจาคให้ Signal</string>
@@ -4117,20 +3955,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">เฉพาะผู้ดูแลของกลุ่มนี้เท่านั้นที่จะเพิ่มสตอรี่กลุ่มได้</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">ไม่พบแอปรายชื่อติดต่อ</string>
-    <string name="ConversationSettingsFragment__send_message">ส่งข้อความ</string>
     <string name="ConversationSettingsFragment__start_video_call">เริ่มโทรวิดีโอ</string>
     <string name="ConversationSettingsFragment__start_audio_call">เริ่มโทรเสียง</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">สตอรี่</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">ข้อความ</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">วิดีโอ</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">เสียง</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">โทร</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">ปิดเสียง</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">ปิดเสียงอยู่</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">ค้นหา</string>
     <string name="ConversationSettingsFragment__disappearing_messages">ข้อความที่ลบตัวเอง</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">เสียงและการแจ้งเตือน</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">รายละเอียดผู้ติดต่อ</string>
     <string name="ConversationSettingsFragment__view_safety_number">ดูหมายเลขความปลอดภัย</string>
     <string name="ConversationSettingsFragment__block">ปิดกั้น</string>
@@ -4164,7 +4009,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">ปิดการแจ้งเตือน</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">ไม่ปิดเสียง</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">ปิดเสียงจนถึง %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">การกล่าวถึง</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">แจ้งเตือนตลอด</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">ไม่ต้องแจ้งเตือน</string>
@@ -4206,7 +4050,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">ลบ %1$s ไม่ได้</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">ผู้ใช้รายนี้อยู่ในรายชื่อผู้ติดต่อที่บันทึกไว้ในอุปกรณ์ของคุณ ลบผู้ใช้ออกจากรายชื่อผู้ติดต่อแล้วลองอีกครั้ง</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">ดูผู้ติดต่อ</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s ไม่ได้เป็นผู้ใช้ Signal</string>
@@ -4231,9 +4075,7 @@
     <string name="AvatarPickerFragment__photo">รูปถ่าย</string>
     <string name="AvatarPickerFragment__text">ข้อความ</string>
     <string name="AvatarPickerFragment__save">บันทึก</string>
-    <string name="AvatarPickerFragment__select_an_avatar">เลือกอวตาร</string>
     <string name="AvatarPickerFragment__clear_avatar">ล้างอวตาร</string>
-    <string name="AvatarPickerFragment__edit">แก้ไข</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">การบันทึกอวตารล้มเหลว</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4302,7 +4144,6 @@
     <string name="ImageEditorHud__clear_all">ล้างทั้งหมด</string>
     <string name="ImageEditorHud__undo">เลิกทำ</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">สลับระหว่างตัวทำเครื่องหมายและตัวเน้นข้อความ</string>
-    <string name="ImageEditorHud__delete">ลบ</string>
     <string name="ImageEditorHud__toggle_between_text_styles">สลับระหว่างสไตล์ข้อความ</string>
 
     <string name="MediaCountIndicatorButton__send">ส่ง</string>
@@ -4314,7 +4155,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">ละทิ้งการเปลี่ยนแปลง</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">คุณจะสูญเสียการเปลี่ยนแปลงทั้งหมดที่ทำไว้กับรูปภาพนี้</string>
 
-    <string name="CameraFragment__failed_to_open_camera">การเปิดกล้องล้มเหลว</string>
 
     <string name="BadgesOverviewFragment__my_badges">โล่ของฉัน</string>
     <string name="BadgesOverviewFragment__featured_badge">โล่ติดโปรไฟล์</string>
@@ -4322,27 +4162,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">เลือกโล่</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">ภาพตัวอย่าง</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">เลือกโล่</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">คุณต้องเลือกโล่</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">การอัปเดตโปรไฟล์ล้มเหลว</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">เป็นผู้สนับสนุน</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s ให้การสนับสนุน Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s ให้การสนับสนุน Signal ด้วยการบริจาครายเดือน Signal เป็นแอปไม่แสวงหาผลกำไรที่ไม่มีโฆษณาหรือนักลงทุน สนับสนุนโดยผู้ใช้เช่นคุณเท่านั้น</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s ให้การสนับสนุน Signal ด้วยการบริจาค Signal เป็นแอปไม่แสวงหาผลกำไรที่ไม่มีโฆษณาหรือนักลงทุน สนับสนุนโดยผู้ใช้เช่นคุณเท่านั้น</string>
 
     <string name="ImageView__badge">โล่</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">สนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ไม่เพื่อข้อมูลของคุณ ด้วยการเข้าร่วมชุมชนของผู้คนที่สนับสนุนมัน</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">สนับสนุนเทคโนโลยีที่สร้างมาเพื่อคุณ ไม่เพื่อข้อมูลของคุณ ด้วยการเข้าร่วมชุมชนของผู้คนที่สนับสนุน Signal</string>
-    <string name="SubscribeFragment__currency">สกุลเงิน</string>
-    <string name="SubscribeFragment__more_payment_options">ตัวเลือกการชำระเงินเพิ่มเติม</string>
     <string name="SubscribeFragment__cancel_subscription">ยกเลิกการเป็นสมาชิก</string>
     <string name="SubscribeFragment__confirm_cancellation">ยืนยันการยกเลิกใช่ไหม</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">คุณจะไม่ถูกเรียกเก็บเงินอีก โล่ของคุณจะถูกลบออกจากโปรไฟล์เมื่อสิ้นสุดรอบการเรียกเก็บเงิน</string>
@@ -4355,7 +4189,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">คุณจะถูกเรียกเก็บเงินเป็นจำนวนเต็ม (%1$s) ของราคาสมาชิกใหม่ในปัจจุบัน โดยการเป็นสมาชิกของคุณจะต่ออายุแบบรายเดือน</string>
 
     <string name="Subscription__s_per_month">%1$s/ต่อเดือน</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">ต่ออายุ %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">หมดอายุ %1$s</string>
@@ -4387,7 +4221,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">ดูเพิ่ม</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">ใบเสร็จ</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">การสนับสนุนของฉัน</string>
     <string name="ManageDonationsFragment__manage_subscription">จัดการการเป็นสมาชิก</string>
@@ -4395,7 +4228,6 @@
     <string name="ManageDonationsFragment__donation_receipts">ใบเสร็จรับเงินบริจาค</string>
     <string name="ManageDonationsFragment__badges">โล่</string>
     <string name="ManageDonationsFragment__subscription_faq">คำถามที่พบบ่อยเกี่ยวกับการเป็นสมาชิก</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">ข้อผิดพลาดในการสมัครสมาชิก</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">วิธีอื่นๆ ในการมอบ</string>
     <!-- Preference label to launch badge gifting -->
@@ -4403,8 +4235,9 @@
 
     <string name="Boost__enter_custom_amount">กรอกจำนวนเอง</string>
     <string name="Boost__one_time_contribution">การบริจาคครั้งเดียว</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">เพิ่ม Signal Boost</string>
     <string name="MySupportPreference__s_per_month">%1$s/เดือน</string>
     <string name="MySupportPreference__renews_s">ต่ออายุ %1$s</string>
     <string name="MySupportPreference__processing_transaction">กำลังดำเนินการธุรกรรม…</string>
@@ -4439,7 +4272,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">เรามีปัญหาในการเก็บค่าผู้สนับสนุน Signal ตรวจสอบให้แน่ใจว่ามีการอัปเดตวิธีการชำระเงินแล้ว ถ้ายังไม่ได้อัปเดต ให้อัปเดตใน Google Pay แล้ว Signal จะลองดำเนินการการชำระเงินอีกครั้งในอีกสองถึงสามวัน</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">ไม่ต้องแสดงอีก</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">กรุณาติดต่อฝ่ายสนับสนุนเพื่อสอบถามข้อมูลเพิ่มเติม</string>
     <string name="Subscription__contact_support">ติดต่อการสนับสนุน</string>
     <string name="Subscription__get_a_s_badge">รับโล่ %1$s</string>
 
@@ -4448,7 +4280,6 @@
     <string name="DonationsErrors__error_processing_payment">การดำเนินการชำระเงินมีข้อผิดพลาด</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">การดำเนินการชำระเงินมีข้อผิดพลาด %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">ไม่สามารถเพิ่มโล่ไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงินแล้ว กรุณาติดต่อฝ่ายสนับสนุน</string>
     <string name="DonationsErrors__your_payment">ไม่สามารถดำเนินการชำระเงินของคุณได้ และคุณยังไม่ได้ถูกเรียกเก็บเงิน กรุณาลองใหม่อีกครั้ง</string>
     <string name="DonationsErrors__still_processing">ยังดำเนินการอยู่</string>
     <string name="DonationsErrors__couldnt_add_badge">เพิ่มโล่ไม่ได้</string>
@@ -4462,8 +4293,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">ไม่สามารถส่งโล่ของขวัญได้ กรุณาติดต่อฝ่ายสนับสนุน</string>
     <string name="DonationsErrors__your_badge_could_not">ไม่สามารถเพิ่มโล่ไปยังบัญชีของคุณได้ แต่คุณอาจจะถูกเรียกเก็บเงินแล้ว กรุณาติดต่อฝ่ายสนับสนุน</string>
     <string name="DonationsErrors__your_payment_is_still">การชำระเงินของคุณยังคงดำเนินการอยู่ อาจจะใช้เวลาสักครู่ ขึ้นอยู่กับการสัญญาณอินเทอร์เน็ตของคุณ</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay ไม่สามารถใช้งานได้</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">คุณต้องตั้งค่า Google Pay เพื่อบริจาคผ่านในตัวแอป</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ยกเลิกการเป็นสมาชิกไม่สำเร็จ</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">คุณต้องเชื่อมต่ออินเทอร์เน็ตจึงจะยกเลิกการเป็นสมาชิกได้</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">อุปกรณ์ของคุณไม่รองรับ Google Pay คุณจึงไม่สามารถสมัครเพื่อรับโล่ได้ แต่คุณสามารถสนับสนุน Signal ได้ด้วยการบริจาคบนเว็บไซต์ของเรา</string>
@@ -4480,10 +4309,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">โล่ของขวัญ</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="other">มีอายุ %1$d เดือน</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">แลกเปลี่ยน</string>
     <!-- Gift badge view action label -->
@@ -4493,7 +4318,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">แลกเปลี่ยนแล้ว</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">ลองวิธีการชำระอื่น หรือติดต่อธนาคารเพื่อขอข้อมูลเพิ่มเติม</string>
@@ -4697,9 +4521,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">ของขวัญ</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Boost</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">รายละเอียด</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">ประเภทการบริจาค</string>
     <!-- Donation receipts date paid heading -->
@@ -4836,7 +4658,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">ตอบกลับเป็นการส่วนตัวกับ %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">ตอบกลับเป็นการส่วนตัว</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">คัดลอก</string>
     <!-- Context menu item to delete a story response -->
@@ -4852,11 +4673,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">ใครเห็นสตอรี่นี้บ้าง</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">ซ่อนสตอรี่จาก</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">เครือข่าย Signal ทั้งหมด</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">แบ่งปันกับผู้ติดต่อทั้งหมด</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">ทุกคน ยกเว้น…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -4904,19 +4723,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">ลบ</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">แน่ใจหรือไม่</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">การกระทำนี้ไม่สามารถยกเลิกได้</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">แก้ไขชื่อสตอรี่</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">ชื่อสตอรี่</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">บันทึก</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">แตะเพื่อเพิ่มข้อความ</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">เพิ่มข้อความ</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -4932,7 +4747,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">ค้นหา</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">มีข้อผิดพลาดที่ไม่คาดคิดเกิดขึ้น</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">โปรดใส่ลิงก์ที่ถูกต้อง</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -4954,17 +4768,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">ลบ</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">เฉพาะผู้ใช้ Signal รุ่นเบต้าเท่านั้นที่สามารถใช้งานสตอรี่ได้</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">หากคุณแชร์สตอรี่ จะมีเฉพาะผู้ใช้ Signal รุ่นเบต้าเท่านั้นที่เห็น</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">เพิ่มไปยังสตอรี่หรือไม่</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">การเพิ่มเนื้อหาไปยังสตอรี่ของคุณจะช่วยให้เครือข่าย Signal ได้ดูเนื้อหานั้น 24 ชั่วโมง คุณสามารถเปลี่ยนผู้ที่สามารถดูสตอรี่ของคุณได้ในการตั้งค่า</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">เพิ่มไปยังสตอรี่</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">แก้ไขผู้ชม</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">ไม่สามารถส่งสตอรี่ได้ ตรวจสอบการเชื่อมต่อของคุณแล้วลองอีกครั้ง</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -4972,9 +4780,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">ปิดใช้งานและลบ</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">แชร์และดูสตอรี่</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">คุณจะไม่สามารถแชร์หรือดูสตอรี่ได้อีกต่อไป ถ้าตัวเลือกนี้ถูกปิด</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">เลือกผู้ชม</string>
     <!-- New story viewer selection action button label -->
@@ -5035,13 +4841,9 @@
     <string name="StoryDialogs__view_profile_photo">ดูรูปโปรไฟล์</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">ปิดการหลบเลี่ยงการปิดกั้น</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">คุณสามารถเชื่อมต่อกับบริการ Signal โดยตรงได้แล้ว เพื่อประสบการณ์ที่ดียิ่งขึ้น</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">ไม่ ขอบคุณ</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">ปิด</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">คุณแสดงความรู้สึกต่อสตอรี่ของ %1$s</string>
@@ -5235,13 +5037,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">ขนาดไฟล์</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">ส่งถึง</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">ส่งจาก</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">ไม่สำเร็จ</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">ข้อมูล</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5263,7 +5061,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">สตอรี่</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">การรับชมสตอรี่</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">ตัวแจ้งการรับชมสตอรี่</string>
     <!-- Story view receipts toggle message -->
@@ -5314,7 +5111,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">คุณต้องมีพื้นที่ประมาณ %1$s เพื่อส่งออกข้อความ ตรวจสอบให้แน่ใจว่าคุณมีพื้นที่จัดเก็บเพียงพอก่อนดำเนินการต่อ</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">ยืนยันที่จะดำเนินการต่อ</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal ต้องได้รับอนุญาตให้เข้าถึง SMS จึงจะส่งออกข้อความ SMS ของคุณได้</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5428,9 +5225,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">คุณต้องมีพื้นที่ในโทรศัพท์เหลืออีก %1$s จึงจะส่งออกข้อความได้</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">ลองส่งออกอีกครั้ง ระบบจะดำเนินการเฉพาะข้อความที่ส่งออกไม่สำเร็จเท่านั้น</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">หากยังพบปัญหาในการส่งออก </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">ติดต่อเรา</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">ลองใหม่</string>
@@ -5473,28 +5270,26 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">กำลังยกเลิก…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">รายชื่อผู้ติดต่อที่ต้องประมวลผลมีจำนวนมากเกินไป</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="other">ระบบจะพยายามประมวลผลผู้ติดต่อของคุณอีกครั้งภายใน %1$d วัน</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">หากต้องการแก้ไขปัญหานี้ให้สำเร็จเร็วขึ้น คุณสามารถลองลบผู้ติดต่อบางคน หรือลบบัญชีบางรายการบนมือถือที่เชื่อมโยงรายชื่อผู้ติดต่อจำนวนมากไว้ก็ได้</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">เปิดรายชื่อผู้ติดต่อ</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">ไม่พบแอปรายชื่อผู้ติดต่อ</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">ไม่สามารถประมวลผลรายชื่อผู้ติดต่อของคุณได้</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">รายชื่อผู้ติดต่อในโทรศัพท์ของคุณมีจำนวนมากเกินกว่าที่ Signal จะประมวลผลได้ หากต้องการค้นหาข้อมูลผู้ติดต่อด้วย Signal คุณสามารถลองลบผู้ติดต่อบางคน หรือลบบัญชีบางรายการบนมือถือที่เชื่อมโยงรายชื่อผู้ติดต่อจำนวนมากไว้ก็ได้</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">เรียนรู้เพิ่มเติม</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">เปิดรายชื่อผู้ติดต่อ</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">ไม่พบแอปรายชื่อผู้ติดต่อ</string>
 
     <!-- PaymentMessageView -->
@@ -5523,5 +5318,9 @@
     <string name="GroupStoryEducationSheet__next">ถัดไป</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

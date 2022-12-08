@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">Жөнөтүү</string>
     <string name="no">Жок</string>
@@ -23,64 +22,40 @@
     <string name="save">Сактоо</string>
     <string name="note_to_self">Өзүм үчүн белгилеп коюу</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Жаңы билдирүү</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal жаңырууда…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">Учурда: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Сыр сөз айкашын али кое элексиз!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Сыр сөз айкашын өчүрөсүзбү?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Ушуну менен, Signal колдонмосу такыр кулпуланбай, билдирмелери сырсөзсүз көрүнө берет.</string>
     <string name="ApplicationPreferencesActivity_disable">Өчүрүү</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Каттоо токтотулуп жатат</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Signal\'га катталуудан баш тартып жатасыз…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Signal колдонмосундагы билдирүүлөр менен чалууларды өчүрөсүзбү?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Серверге катталуудан баш тартуу менен, Signal колдонмосундагы билдирүүлөр менен чалууларды өчүрөсүз. Аларды кайра иштеткиңиз келсе, телефон номериңиз менен кайрадан катталууга туура келет.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Серверге туташууда ката кетти!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS\'тер иштетилген</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Демейки SMS колдонмосун өзгөртүү үчүн бул жерди басып коюңуз</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMS\'тер өчүрүлгөн</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Signal\'ды демейки SMS колдонмосу кылуу үчүн бул жерди басыңыз</string>
-    <string name="ApplicationPreferencesActivity_on">күйүк</string>
-    <string name="ApplicationPreferencesActivity_On">Күйүк</string>
-    <string name="ApplicationPreferencesActivity_off">өчүк</string>
-    <string name="ApplicationPreferencesActivity_Off">Өчүк</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Экранды кулпулоо %1$s, Каттоону кулпулоо %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">Тема %1$s, Тил %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN-коддор катталууну кулпулоо үчүн керек. Алгач катталууну кулпулоо функциясын өчүрүп, кийин PIN-коддорду өчүрүңүз.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN код түзүлдү.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN код өчүрүлдү.</string>
-    <string name="ApplicationPreferencesActivity_hide">Жашыруу</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">Эстеткичти жашырасызбы?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Калыбына келтирүүчү төлөм сөз айкашын жазыңыз</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Сөз айкашын жазуу</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">PIN кодду өчүрөрдөн мурун, калыбына келтирүүчү төлөм сөз айкашын жаздырып алышыңыз керек. Кийин кааласаңыз, төлөм аккаунтуңузду кабылына келтире аласыз.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="other">%1$d мүнөт</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(сүрөт)</string>
@@ -128,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">Колдонуучуну бөгөттөйсүзбү?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" сизге чала да албайт, билдирүү да жөнөтө албайт.</string>
     <string name="BlockedUsersActivity__block">Бөгөттөө</string>
-    <string name="BlockedUsersActivity__unblock_user">Колдонуучуну бөгөттөн чыгарасызбы?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">\"%1$s\" бөгөттөн чыгарасызбы?</string>
-    <string name="BlockedUsersActivity__unblock">Бөгөттөн чыгаруу</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -138,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">Салымдын суммасы: айына %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Картаңыздын маалыматын киргизиңиз</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Картаңыздын маалыматын киргизиңиз. Signal жеке маалыматыңызды чогултпайт же сактабайт.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -248,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Байланыш операторуңуз акы алышы мүмкүн. Сиз чалып жаткан номер Signal\'га катталбагандыктан, Интернет аркылуу эмес, мобилдик байланыш оператору аркылуу чаласыз.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">%1$s менен болгон коопсуздук кодуңуз өзгөрүлдү. Же жазышууларыңыз менен чалууларыңызды ортодон кимдир-бирөө кармап калгысы келип жатат, же %2$s жөн гана Signal колдонмосун кайра орнотту.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Ушул байланыш менен болгон коопсуздук кодуңузду ырасташыңыз керек окшойт.</string>
-    <string name="ConfirmIdentityDialog_accept">Кабыл алуу</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Соңку маектер</string>
@@ -270,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">Атты өзгөртүү</string>
     <string name="ContactNameEditActivity_given_name">Аты</string>
     <string name="ContactNameEditActivity_family_name">Фамилиясы</string>
     <string name="ContactNameEditActivity_prefix">Префикс</string>
@@ -310,17 +277,17 @@
     <string name="ConversationItem_pending">  Күтүлүүдө</string>
     <string name="ConversationItem_this_message_was_deleted">Бул билдирүү өчүрүлгөн.</string>
     <string name="ConversationItem_you_deleted_this_message">Бул билдирүүнү сиз өчүргөнсүз.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Билдирүү жүктөлүп алынган жок %1$s кайра жөнөтүшү керек.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Сүрөт жүктөлүп алынган жок. %1$s кайра жөнөтүшү керек.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Видео жүктөлүп алынган жок. %1$s кайра жөнөтүшү керек.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Билдирүү жүктөлүп алынган жок {0} кайра жөнөтүшү керек.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Сүрөт жүктөлүп алынган жок. {0} кайра жөнөтүшү керек.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Видео жүктөлүп алынган жок. {0} кайра жөнөтүшү керек.</string>
 
     <!-- ConversationActivity -->
@@ -342,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">Корголбогон SMS (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">Корголбогон MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">Корголбогон MMS (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Signal билдирүүсү</string>
     <string name="ConversationActivity_lets_switch_to_signal">Signal\'га өтүп алыңыз: %1$s</string>
     <string name="ConversationActivity_specify_recipient">Байланыш тандаңыз</string>
@@ -388,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">Өчүрүп, топтон чыгам</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">%1$s чалуу үчүн Signal колдонмосуна микрофонуңуз керек</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">Эми \"Топтун параметрлеринде\" опциялар көбөйдү</string>
 
     <string name="ConversationActivity_join">Кошулуу</string>
     <string name="ConversationActivity_full">Толуп калган</string>
@@ -409,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal кызматында мындан ары SMS менен жазыша албайсыз. %1$s менен бул жерден сүйлөшө берүү үчүн аны Signal\'га чакырыңыз.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Signal\'га чакыруу</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Жакында дагы бир жолу эстетип коебуз.</string>
 
     <!-- ConversationAdapter -->
@@ -612,7 +577,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Камдык көчүрмөңүздүн сыр сөз айкашын сынап көрүп, анын иштеп жатканын текшериңиз</string>
     <string name="BackupsPreferenceFragment__turn_on">Күйгүзүү</string>
     <string name="BackupsPreferenceFragment__turn_off">Өчүрүү</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Камдык көчүрмөдөн калыбына келтирүү үчүн Signal'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөнүн файлын тандаңыз. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Камдык көчүрмөдөн калыбына келтирүү үчүн Signal\'дын жаңы көчүрмөсүн орнотуңуз. Колдонмону ачып, \"Камдык көчүрмөнү калыбына келтирүү\" дегенди басып, камдык көчүрмөнүн файлын тандаңыз. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Кененирээк маалымат</string>
     <string name="BackupsPreferenceFragment__in_progress">Иштелип жатат…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -629,10 +594,6 @@
     <string name="CustomDefaultPreference_none">Эч бир</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Сүрөт тандаңыз</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Сүрөт тартуу</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Галереядан тандоо</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Сүрөттү өчүрүү</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Сүрөт тартуу үчүн камерага уруксат алуу керек.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Галереяга кирүү үчүн сактагычка уруксат алуу керек.</string>
 
@@ -687,8 +648,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Толук көлөмдүү GIF анимациясын алууда ката кетти</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIF анимациялары</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">Стикерлер</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Мүчө кошосузбу?</string>
@@ -713,7 +672,7 @@
     <string name="GroupManagement_access_level_all_members">Бардык мүчөлөр</string>
     <string name="GroupManagement_access_level_only_admins">Администраторлор гана</string>
     <string name="GroupManagement_access_level_no_one">Эч ким</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -829,7 +788,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Бүттү</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Бул адамды эски топторго кошо албайсыз.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Бул адамды жарыялар топторуна кошо албайсыз.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">кошуу%3$d мүчөнү \"%2$s\" кошосузбу?</item>
     </plurals>
@@ -856,33 +814,12 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Signal топторунда катталбаган байланышты тандадыңыз. Бул MMS тобу болот. MMS топторунун аталыштары менен сүрөттөрү өзүңүзгө гана көрүнөт. Шифрленген билдирүүлөргө басым жасоо үчүн MMS топтор жакында иштебей калат.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">Кошулуу өтүнүчтөрү жана чакыруулар</string>
-    <string name="ManageGroupActivity_add_members">Мүчөлөрдү кошуу</string>
-    <string name="ManageGroupActivity_edit_group_info">Топтун маалыматын өзгөртүү</string>
     <string name="ManageGroupActivity_who_can_add_new_members">Жаңы мүчөлөрдү ким кошо алат?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Бул топтун маалыматын ким өзгөртө алат?</string>
-    <string name="ManageGroupActivity_group_link">Топтун шилтемеси</string>
-    <string name="ManageGroupActivity_block_group">Топту бөгөттөө</string>
-    <string name="ManageGroupActivity_unblock_group">Топту бөгөттөн чыгаруу</string>
-    <string name="ManageGroupActivity_leave_group">Топтон чыгуу</string>
-    <string name="ManageGroupActivity_mute_notifications">Билдирмелердин үнүн басуу</string>
-    <string name="ManageGroupActivity_custom_notifications">Жеке билдирмелер</string>
-    <string name="ManageGroupActivity_mentions">Айтып өтүүлөр</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">Маектин түсү жана тушкагазы</string>
-    <string name="ManageGroupActivity_until_s">%1$s чейин</string>
-    <string name="ManageGroupActivity_always">Ар дайым</string>
-    <string name="ManageGroupActivity_off">Өчүк</string>
-    <string name="ManageGroupActivity_on">Күйүк</string>
-    <string name="ManageGroupActivity_view_all_members">Бардык мүчөлөрдү карап көрүү</string>
-    <string name="ManageGroupActivity_see_all">Баарын көрүү</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d мүчө кошулду.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Администраторлор гана топтун шилтемесин өчүрүп/күйгүзө алат.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Администраторлор гана жаңы мүчөлөрдү ырастоо функциясын өчүрүп/күйгүзө алат.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Администраторлор гана топтун шилтемесин баштапкы абалга келтире алат.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Бул нерсени жасай албайсыз.</string>
     <string name="ManageGroupActivity_not_capable">Сиз кошкон кимдир бирөө жаңы топторду колдоно албайт жана Signal\'ды жаңыртышы керек</string>
@@ -946,18 +883,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Үн менен дирилдөөнү өзгөртүү</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Чалуу параметрлери</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Шыңгыр</string>
-    <string name="CustomNotificationsDialogFragment__enabled">Күйгүзүлгөн</string>
-    <string name="CustomNotificationsDialogFragment__disabled">Өчүрүлгөн</string>
     <string name="CustomNotificationsDialogFragment__default">Демейки</string>
     <string name="CustomNotificationsDialogFragment__unknown">Белгисиз</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Топко шилтеме</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Тескөө жана бөлүшүү</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">Топко шилтеме</string>
     <string name="ShareableGroupLinkDialogFragment__share">Бөлүшүү</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Шилтемени кайра коюу</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">Кошулуу өтүнүчтөрү</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Жаңы мүчөлөрдү ырастоо</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Администратор топко шилтеме аркылуу кошулуп жаткан жаңы мүчөлөрдү ырасташы керек.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Топко шилтемени кайра коесузбу? Адамдар учурдагы шилтеме менен топко кошула албай калышат.</string>
@@ -1001,7 +933,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Ушул топтун шилтемесин колдонуу үчүн Signal колдонмоңузду жаңыртыңыз</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Signal колдонмоңуздун версиясында ушул топтун шилтемеси иштебейт. Топко шилтеме аркылуу кошулуу үчүн аны акыркы версиясына чейин жаңыртыңыз.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal\'ды жаңыртуу</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Бир же бир нече түзмөгүңүздөгү Signal\'да топко кошулуу шилтемелери иштебейт. Бул топко кошулуу үчүн Signal\'ды жаңыртыңыз.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Топтун шилтемеси иштебейт.</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1081,7 +1012,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Өчүрүлүүдө</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Билдирүүлөр өчүрүлүүдө…</string>
-    <string name="MediaOverviewActivity_Select_all">Баарын тандоо</string>
     <string name="MediaOverviewActivity_collecting_attachments">Тиркемелер топтолууда…</string>
     <string name="MediaOverviewActivity_Sort_by">Кантип иргелет:</string>
     <string name="MediaOverviewActivity_Newest">Жаңысынан баштап</string>
@@ -1106,9 +1036,8 @@
     <string name="MediaOverviewActivity_audio">Аудио</string>
     <string name="MediaOverviewActivity_video">Видео</string>
     <string name="MediaOverviewActivity_image">Сүрөт</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">Аудио билдирүү</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">%1$s жөнөттү</string>
     <string name="MediaOverviewActivity_sent_by_you">Сиз жөнөттүңүз</string>
@@ -1156,25 +1085,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS жүктөлүп алынбай калды, кайра басып көрүңүз</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Кимге: %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">Камераны ачуу</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Колтамга кошуу…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Өтө чоң нерсе болгондуктан өчүрүлдү</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Белгисиз түрдө болгондуктан өчүрүлдү</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Бул нерсе өтө чоң же белгисиз түрдө болгондуктан өчүрүлдү</string>
     <string name="MediaSendActivity_camera_unavailable">Камера жеткиликсиз</string>
-    <string name="MediaSendActivity_message_to_s">Кимге: %1$s</string>
-    <string name="MediaSendActivity_message">Билдирүү</string>
-    <string name="MediaSendActivity_select_recipients">Алуучуларды тандаңыз</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Байланыштарды көрсөтүү үчүн алар Signal\'га жеткиликтүү болушу керек.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal колдонмосуна байланыштарды көрсөтүү үчүн Байланыштарды колдонууга уруксат беришиңиз керек, бирок сиз андан баш тарткансыз. Колдонмонун параметрлерине кирүү үчүн \"Улантуу\" дегенди басып, \"Уруксаттар\" дегенди тандап, \"Байланыштар\" дегенди иштетиңиз.</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="other">%1$d чейин гана нерсе бөлүшө аласыз.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">Алуучуларды тандаңыз</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Билдирүү көрүлгөндөн кийин жоголуп кетсин десеңиз, бул жерди басыңыз.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Бардык медиафайлдар</string>
@@ -1376,7 +1290,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Бул жаңы функция жактыбы? Бир жолу салым кошуп, Signal кызматына колдоо көрсөтүңүз.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s менен болгон билдирүүлөр таржымалыңыз жана алардын номери %2$s бирикти.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s менен болгон билдирүүлөр таржымалыңыз жана аларга таандык маек бирикти.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Төлөмдөр кызматын иштетүү өтүнүчүн жөнөттүңүз: %1$s</string>
@@ -1437,7 +1351,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Бул топко кошулуп, атыңыз менен сүрөтүңүз топтогуларга көрүнө берсинби? Топко кошулмайынча, алардын билдирүүлөрүн көрбөйсүз.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Бул топко кошуласызбы? Топко кошулмайынча, алардын билдирүүлөрүн көрүп, көрбөгөнүңүздү билишпейт.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Бул топту бөгөттөн чыгарып, атыңыз менен сүрөтүңүз топтогуларга көрүнө берсинби? Аны бөгөттөн чыгармайынча, билдирүүлөрдү албайсыз.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Карап көрүү</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s тобунун мүчөсү</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s жана %2$s топторунун мүчөсү</string>
@@ -1529,7 +1443,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">PIN код түзүңүз</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Бардык мүмкүнчүлүктөрдү колдонуп салдыңыз. Бирок Signal аккаунтуңузга жаңы PIN код түзүп кирсеңиз болот. Купуялыгыңызды коргоо үчүн аккаунтуңуз профилиңиздеги маалыматтар менен параметрлер сакталбастан калыбына келтирилет.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Жаңы PIN код түзүү</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Эскертүү</string>
@@ -1567,7 +1481,6 @@
     <string name="RecipientPreferenceActivity_unblock">Бөгөттөн чыгаруу</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">Аталышы жок топ</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">Жооп берүүдө…</string>
@@ -1582,9 +1495,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">Күнүңүз ийгиликтүү 💜 өтсүн!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Signal кызматына колдоо көрсөтүп, ага болгон мамилеңизди билдириңиз.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Видеоңузду ойнотуу үчүн бул жерди басыңыз</string>
@@ -1610,7 +1521,6 @@
     <string name="WebRtcCallView__join_call">Чалууга кошулуу</string>
     <string name="WebRtcCallView__call_is_full">Орун жок</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Бул чалууга катышкандардын саны %1$d ашпашы керек. Бир аздан кийин кайталаңыз.</string>
-    <string name="WebRtcCallView__view_participants_list">Катышуучуларды карап көрүү</string>
     <string name="WebRtcCallView__your_video_is_off">Видеоңуз өчүрүлгөн</string>
     <string name="WebRtcCallView__reconnecting">Кайра байланышып жатасыз…</string>
     <string name="WebRtcCallView__joining">Кошулуп жатасыз…</string>
@@ -1645,18 +1555,24 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s ушул чалууда катышууда</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s ушул чалууда катышууда</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s менен %2$s ушул чалууда катышууда</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s көрсөтүүдө</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="other">%1$s, %2$sжана дагы %3$d адам ушул чалууда катышууда</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Которулуу</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Динамик</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Камера</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Үнүн чыгаруу</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Үнүн басуу</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Чалуу</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">Чалууну бүтүрүү</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1750,12 +1666,12 @@
     <string name="SearchFragment_header_messages">Билдирүүлөр</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Байланыштарга кошуу</string>
@@ -1836,7 +1752,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Бул журнал иштеп чыгуучулар көрө алышы үчүн Интернетке жайгаштырылат. Жөнөтүүдөн мурун баштан аяк көз жүгүртүп чыгыңыз.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Иргөө:</string>
     <string name="SupportEmailUtil_device_info">Түзмөк тууралуу маалымат:</string>
     <string name="SupportEmailUtil_android_version">Android версиясы:</string>
@@ -1917,11 +1833,9 @@
     <string name="UsernameEditFragment__choose_your_username">Колдонуучу атын тандаңыз</string>
     <string name="UsernameEditFragment_username">Колдонуучунун аты</string>
     <string name="UsernameEditFragment_delete">Өчүрүү</string>
-    <string name="UsernameEditFragment_successfully_set_username">Колдонуучунун аты коюлду.</string>
     <string name="UsernameEditFragment_successfully_removed_username">Колдонуучунун аты өчүрүлдү.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Тармакта ката кетти.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Мындай ат бар.</string>
-    <string name="UsernameEditFragment_this_username_is_available">Бул атты колдоно берсеңиз болот.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Колдонуучунун аты a-Z, 0-9 деген тамгалар менен сандардан жана ылдыйкы сызыктан турат.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Колдонуучунун аты сандан башталбайт.</string>
     <string name="UsernameEditFragment_username_is_invalid">Колдонуучунун аты туура эмес.</string>
@@ -1957,10 +1871,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s менен болгон коопсуздук кодун көрүү үчүн жазышып башташыңар керек.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Билдирүү башталбаган сессия үчүн шифрленген</string>
@@ -2001,7 +1915,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ушул медиафайлды бөлүшө турган колдонмо табылган жок.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Жабуу</string>
     <string name="MediaPreviewFragment_edit_media_error">Медиа катасы</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Билдирүү өчкөн жок, Билдирүү дагы деле көрүнүшү мүмкүн</string>
 
     <!-- MessageNotifier -->
@@ -2021,8 +1935,6 @@
     <string name="MessageNotifier_reply">Жооп берүү</string>
     <string name="MessageNotifier_signal_message">Signal билдирүүсү</string>
     <string name="MessageNotifier_unsecured_sms">Корголбогон SMS</string>
-    <string name="MessageNotifier_you_may_have_new_messages">Жаңы билдирүүлөр келди окшойт</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Соңку билдирмелерди текшерүү үчүн Signal\'ды ачыңыз</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Байланыш</string>
     <string name="MessageNotifier_reacted_s_to_s">Төмөнкүгө %1$s деп реакция кылды: \"%2$s\".</string>
@@ -2103,7 +2015,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Төлөмдөр кызматын пайдалана берүү үчүн Signal\'ды жаңыртыңыз. Балансыңызды толукташыңыз керек окшойт.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Жаңыртуу</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Чалууга жооп берүү үчүн Signal колдонмосуна микрофонуңуз керек.</string>
@@ -2119,8 +2030,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Көрүнүшүн өзгөртүү үчүн өйдө сүрүңүз</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Четке кагуу</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Жооп берүү</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Видеосуз жооп берүү</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2138,7 +2052,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Жаңы сыр сөз айкашын кайталаңыз</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">Атын же номерин киргизиңиз</string>
     <string name="contact_selection_activity__invite_to_signal">Signal\'га чакыруу</string>
     <string name="contact_selection_activity__new_group">Жаңы топ</string>
 
@@ -2273,7 +2186,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Коопсуздук коду өзгөрүлгөн</string>
     <string name="safety_number_change_dialog__accept">Кабыл алуу</string>
-    <string name="safety_number_change_dialog__send_anyway">Баары бир жөнөтөм</string>
     <string name="safety_number_change_dialog__call_anyway">Баары бир чалам</string>
     <string name="safety_number_change_dialog__join_call">Чалууга кошулуу</string>
     <string name="safety_number_change_dialog__continue_call">Чалууну улантуу</string>
@@ -2414,8 +2326,6 @@
     <string name="CreateProfileActivity_first_name_required">Атыңыз (талап кылынат)</string>
     <string name="CreateProfileActivity_last_name_optional">Фамилияңыз (көрсөтпөй деле койсоңуз болот)</string>
     <string name="CreateProfileActivity_next">Кийинки</string>
-    <string name="CreateProfileActivity__username">Колдонуучунун аты</string>
-    <string name="CreateProfileActivity__create_a_username">Колдонуучу атын түзүү</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">MMS топторунун аталыштары менен сүрөттөрү өзүңүзгө гана көрүнөт.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Топ тууралуу учкай маалымат топтун мүчөлөрүнө жана чакырылган адамдарга гана көрүнөт.</string>
 
@@ -2435,7 +2345,7 @@
     <string name="EditProfileFragment__edit_group">Топту оңдоо</string>
     <string name="EditProfileFragment__group_name">Топтун аталышы</string>
     <string name="EditProfileFragment__group_description">Топ тууралуу учкай маалымат</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Атыңыз</string>
@@ -2448,7 +2358,6 @@
     <string name="recipient_preference_activity__shared_media">Жалпы медиафайлдар</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>Атын же номерин киргизүү</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[%1$s менен болгон баштан аяк шифрлөөнүн коопсуздугун текшерүү үчүн жогорудагы сандарды маектешиңиздин түзмөгү менен салыштырыңыз. Кааласаңыз, анын телефонундагы кодду скандасаңыз болот. <a href=\"https://signal.org/redirect/safety-numbers\">Кененирээк маалымат</a>]]></string>
@@ -2495,7 +2404,6 @@
     <string name="AndroidManifest__select_contacts">Байланыштарды тандоо</string>
     <string name="AndroidManifest__change_passphrase">Сыр сөз айкашын өзгөртүү</string>
     <string name="AndroidManifest__verify_safety_number">Коопсуздук кодун ырастоо</string>
-    <string name="AndroidManifest__log_submit">Мүчүлүштүктөр журналын жөнөтүү</string>
     <string name="AndroidManifest__media_preview">Медиафайлды алдын ала карап көрүү</string>
     <string name="AndroidManifest__message_details">Билдирүүнүн чоо-жайы</string>
     <string name="AndroidManifest__linked_devices">Байланышкан түзмөктөр</string>
@@ -2517,13 +2425,13 @@
     <string name="HelpFragment__whats_this">Бул эмне?</string>
     <string name="HelpFragment__how_do_you_feel">Кандайсыз? (Жооп бербей деле койсоңуз болот)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Эмне болгонун айтып бериңиз.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Колдоо тууралуу маалымат</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android Кардарларын колдоо өтүнүчү</string>
     <string name="HelpFragment__debug_log">Мүчүлүштүктөр журналы:</string>
@@ -2595,12 +2503,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Бета</string>
     <string name="preferences__sms_mms">SMS жана MMS</string>
-    <string name="preferences__pref_all_sms_title">Бардык SMS алуу</string>
-    <string name="preferences__pref_all_mms_title">Бардык MMS алуу</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Бардык келүүчү тексттик билдирүүлөр үчүн Signal\'ды колдонуу</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Бардык келүүчү мультимедиа билдирүүлөрү үчүн Signal\'ды колдонуу</string>
-    <string name="preferences__pref_enter_sends_title">Enter баскычы жөнөтөт</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Тексттик билдирүүнү жөнөтүү үчүн Enter баскычы басылат</string>
     <string name="preferences__pref_use_address_book_photos">Даректер китепчесиндеги сүрөттөрдү колдонуу</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Даректер китепчеңиздеги сүрөттөр көрүнөт (эгер болсо)</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2609,14 +2511,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Үнү басылган архивделген маектер жаңы билдирүү келсе да, архивделген боюнча калат.</string>
     <string name="preferences__generate_link_previews">Алдын ала көрүлүүчү шилтемелерди түзүү</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Жөнөтүп жаткан билдирүүлөр үчүн түздөн түз сайттардан алдын ала көрүлүүчү шилтемелерди аласыз.</string>
-    <string name="preferences__choose_identity">Инсанды тандаңыз</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Байланыштар тизмесинен өзүңүздү тандаңыз.</string>
     <string name="preferences__change_passphrase">Сыр сөз айкашын өзгөртүү</string>
     <string name="preferences__change_your_passphrase">Сыр сөз айкашыңызды өзгөртүңүз</string>
     <string name="preferences__enable_passphrase">Экранды сыр сөз айкашы менен кулпулоону иштетүү</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Экранды жана билдирмелерди сыр сөз айкашы менен кулпулайсыз</string>
     <string name="preferences__screen_security">Экранды коргоо</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Акыркы колдонмолор тизмесинде жана колдонмолордун ичинде скриншотторду кулпулайсыз</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Белгилүү бир убакыт бою эч нерсе жасалбаса, Signal автоматтык түрдө кулпуланат</string>
     <string name="preferences__inactivity_timeout_passphrase">Эч нерсе жасалбагандагы сыр сөз айкашы</string>
     <string name="preferences__inactivity_timeout_interval">Аракетсиздик мезгили</string>
@@ -2652,7 +2551,6 @@
     <string name="preferences__advanced">Өркүндөтүлгөн</string>
     <string name="preferences__donate_to_signal">Signal\'га колдоо көрсөтүү</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Бир жолу колдоо көрсөтүү</string>
     <string name="preferences__privacy">Купуялык</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Окуялар</string>
@@ -2679,7 +2577,6 @@
     <string name="preferences__dark_theme">Күңүрт</string>
     <string name="preferences__appearance">Тышкы көрүнүшү</string>
     <string name="preferences__theme">Тема</string>
-    <string name="preferences__chat_wallpaper">Маектин тушкагазы</string>
     <string name="preferences__chat_color_and_wallpaper">Маектин түсү жана тушкагазы</string>
     <string name="preferences__disable_pin">PIN кодду өчүрүү</string>
     <string name="preferences__enable_pin">PIN кодду иштетүү</string>
@@ -2701,8 +2598,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Текст терүү көрсөткүчтөрү өчүрүлгөн болсо, башкалардын терүү көрсөткүчтөрүн көрө албай каласыз.</string>
     <string name="preferences__request_keyboard_to_disable">Баскычтоптун жекелештирилген үйрөнүүсүн өчүрүү өтүнүчү.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Бул жөндөө кепилдик бербейт жана баскычтопуңуз ага көңүл бурбай калышы мүмкүн.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">Бөгөттөлгөн колдонуучулар</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Мобилдик берилмелерди колдонууда</string>
     <string name="preferences_chats__when_using_wifi">Wi-Fi колдонууда</string>
     <string name="preferences_chats__when_roaming">Роуминг колдонууда</string>
@@ -2730,32 +2626,22 @@
     <string name="preferences_storage__s_messages">%1$s билдирүү</string>
     <string name="preferences_storage__custom">Ыңгайлаштырылган</string>
     <string name="preferences_advanced__use_system_emoji">Системалык быйтыкчаларды колдонуу</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Signal\'дын орнотулган быйтыкчалар колдоосун өчүрүү</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Байланышыңызга IP дарегиңизди көрсөтпөө үчүн бардык чалууларды Signal сервери аркылуу ретрансляциялаңыз. Бул функцияны иштетүү чалуунун сапатын төмөндөтөт.</string>
     <string name="preferences_advanced__always_relay_calls">Чалууларды ар дайым ретрансляциялоо</string>
     <string name="preferences_app_protection__who_can">Ким…</string>
-    <string name="preferences_app_protection__app_access">Колдонмого кирүү мүмкүндүгү</string>
-    <string name="preferences_app_protection__communication">Байланыш</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Төлөмдөр</string>
     <string name="preferences_chats__chats">Маектер</string>
     <string name="preferences_data_and_storage__manage_storage">Сактагычты башкаруу</string>
-    <string name="preferences_data_and_storage__calls">Чалуулар</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Чалууларга азыраак трафик колдонуу</string>
     <string name="preferences_data_and_storage__never">Эч качан</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi жана мобилдик берилмелер</string>
     <string name="preferences_data_and_storage__mobile_data_only">Мобилдик берилмелер гана</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Начар тармак шарттарында берилмелерди азыраак колдонуу - чалуунун сапатын жакшыртат</string>
-    <string name="preferences_notifications__messages">Билдирүүлөр</string>
-    <string name="preferences_notifications__events">Иш-чаралар</string>
     <string name="preferences_notifications__in_chat_sounds">Маектеги үндөр</string>
     <string name="preferences_notifications__show">Көрсөтүү</string>
-    <string name="preferences_notifications__calls">Чалуулар</string>
     <string name="preferences_notifications__ringtone">Шыңгыр</string>
-    <string name="preferences_chats__show_invitation_prompts">Чакыруу сунуштарын көрсөтүү</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Signal колдонбогон байланыштар үчүн чакыруу сунуштарын көрсөтүү</string>
     <string name="preferences_chats__message_text_size">Билдирүүнүн шрифтинин өлчөмү</string>
-    <string name="preferences_events__contact_joined_signal">Signal\'га байланыш кошулду</string>
     <string name="preferences_notifications__priority">Биринчилик</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Цензураны кыйгап өтүү</string>
@@ -2771,8 +2657,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Цензураны кыйгап өтүү интернетке туташканда гана иштетилет.</string>
     <string name="preferences_communication__category_sealed_sender">Жашыруун жөнөтүүчү</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">Көрсөткүчтөрдү көрсөтүү</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"Жашыруун жөнөтүүчү аркылуу жеткирилген билдирүүлөр үчүн \"Билдирүү чоо-жайында\" статус сүрөтчөсүн көрсөтүү."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Бардыгы үчүн уруксат берүү</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Сиздин байланыштарыңызда болбогон жана профилиңизди бөлүшпөгөн адамдардан жашыруун жөнөтүүчү билдирүүлөрдү алууну иштетиңиз.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Кененирээк маалымат</string>
@@ -2798,9 +2682,9 @@
     <string name="configurable_single_select__customize_option">Ыңгайлаштыруу опциясы</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2815,7 +2699,6 @@
     <string name="PaymentsHomeFragment__activating_payments">Төлөмдөрдү активдештирүү…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Төлөм аккаунтун калыбына келтирүү</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Акыркы аракет жок</string>
-    <string name="PaymentsHomeFragment__pending_requests">Күтүлүүчү өтүнүчтөр</string>
     <string name="PaymentsHomeFragment__recent_activity">Акыркы аракет</string>
     <string name="PaymentsHomeFragment__see_all">Баарын көрүү</string>
     <string name="PaymentsHomeFragment__add_funds">Каражат кошуу</string>
@@ -2844,13 +2727,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Төлөмдөр өчүрүлгөн.</string>
     <string name="PaymentsHomeFragment__payment_failed">Төлөм ишке ашкан жок</string>
     <string name="PaymentsHomeFragment__details">Чоо-жайы</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Сиз MobileCoin жөнөтүү жана алуу үчүн Signal колдоно аласыз. Бардык төлөмдөр MobileCoins жана MobileCoin Wallet капчыгын колдонуу шарттарына ылайык жүргүзүлөт. Бул бета функция, андыктан сиз кээ бир көйгөйлөргө учурашыңыз мүмкүн жана жоготкон төлөмдөрдү же балансты калыбына келтирүүгө болбойт. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Сиз MobileCoin жөнөтүү жана алуу үчүн Signal колдоно аласыз. Бардык төлөмдөр MobileCoins жана MobileCoin Wallet капчыгын колдонуу шарттарына ылайык жүргүзүлөт. Бул бета функция, андыктан сиз кээ бир көйгөйлөргө учурашыңыз мүмкүн жана жоготкон төлөмдөрдү же балансты калыбына келтирүүгө болбойт. </string> -->
     <string name="PaymentsHomeFragment__activate">Активдештирүү</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin шарттарын көрүү</string>
     <string name="PaymentsHomeFragment__payments_not_available">Сигналдагы төлөмдөр мындан ары жеткиликсиз. Сиз дагы эле биржага акча которо аласыз, бирок мындан ары төлөмдөрдү жөнүү жана алуу же каражат кошуу болбойт.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Келечекте жөнөтүлүүчү каражаттар үчүн төлөм кулпусун иштетесизби?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2894,7 +2777,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Көчүрүү</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Буферге көчүрүлдү</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Каражат кошуу үчүн MobileCoin\'ди капчык дарегиңизге жөнөтүңүз. MobileCoin\'ди колдогон биржада өз аккаунтуңуздан транзакцияны баштаңыз, андан кийин QR кодун сканерлеңиз же капчыгыңыздын дарегин көчүрүңүз.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Чоо-жайы</string>
@@ -2914,8 +2797,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Монеталарды тазалоо комиссиясы</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Монеталарды тазалоо акысы\" сиз кармап турган монеталарды бириктирүү мүмкүн болбогондо транзакцияны аягына чыгаруу үчүн алынат. Тазалангандан кийин, төлөмдөрдү жөнөтүүнү уланта аласыз.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Бул транзакция боюнча кошумча маалымат жок</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Төлөм жөнөтүлдү</string>
     <string name="PaymentsDetailsFragment__received_payment">Төлөм алынды</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Төлөм аяктады %1$s</string>
@@ -2959,7 +2842,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">Эскертме кошуу</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Конверсиялар болжолдуу жана так эмес болушу мүмкүн.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Эскертме</string>
@@ -2967,7 +2850,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Төлөмдү ырастоо</string>
     <string name="ConfirmPayment__network_fee">Тармак комиссиясы</string>
-    <string name="ConfirmPayment__error_getting_fee">Комиссияны алуу катасы</string>
     <string name="ConfirmPayment__estimated_s">Болжолдуу %1$s</string>
     <string name="ConfirmPayment__to">Алуучу</string>
     <string name="ConfirmPayment__total_amount">Жалпы суммасы</string>
@@ -3024,29 +2906,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">Сактоо</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">Жоголуп кетүүчү билдирүүлөр</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Маалымат</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Көчүрүү</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Өчүрүү</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Багыттоо</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Жооп берүү</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Сактоо</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Кайра жөнөтүү</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Тандоо</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Төлөмдүн чоо-жайы</string>
 
     <!-- conversation_expiring_on -->
@@ -3055,14 +2936,6 @@
     <string name="conversation_insecure__invite">Чакыруу</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">Тандалганды өчүрүү</string>
-    <string name="conversation_list_batch__menu_pin_selected">Тандалгандарды кадоо</string>
-    <string name="conversation_list_batch__menu_unpin_selected">Тандалганды кадоодон бошотуу</string>
-    <string name="conversation_list_batch__menu_select_all">Баарын тандоо</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">Тандалгандарды архивдөө</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Тандалгандарды архивден чыгаруу</string>
-    <string name="conversation_list_batch__menu_mark_as_read">Окулду деп белгилөө</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">Окула элек деп белгилөө</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Тууралоолор жарлыгы</string>
@@ -3083,7 +2956,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">Коопсуз сессияны баштапкы абалга келтирүү</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Үнүн чыгаруу</string>
@@ -3131,20 +3003,17 @@
     <string name="reminder_header_push_text">Байланыш тажрыйбаңызды өркүндөтүңүз.</string>
     <string name="reminder_header_service_outage_text">Signal техникалык кыйынчылыктарга дуушар болууда. Биз кызматты мүмкүн болушунча тез арада калыбына келтирүү үчүн көп аракет кылып жатабыз.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Signal\'дын жеке байланышты табуу функциясы телефонуңуздагы байланыштарды азырынча иштете албайт.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Кененирээк маалымат</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Signal\'дын жеке байланышты табуу функциясы телефонуңуздагы байланыштарды иштете албайт.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Кененирээк маалымат</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Сактоо</string>
-    <string name="media_preview__forward_title">Багыттоо</string>
-    <string name="media_preview__share_title">Бөлүшүү</string>
-    <string name="media_preview__all_media_title">Бардык медиафайлдар</string>
     <string name="media_preview__edit_title">Оңдоо</string>
 
 
@@ -3186,7 +3055,7 @@
     <string name="BaseKbsPinFragment__next">Кийинки</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Тамгалык-цифралык PIN код түзүү</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Цифралык PIN код түзүү</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3214,7 +3083,7 @@
     <string name="KbsSplashFragment__introducing_pins">PIN коддор менен таанышуу</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN код Signal\'да сакталган маалыматты шифрленген формада сактайт, андыктан ага сиз гана кире аласыз. Профилиңиз, тууралоолоруңуз жана байланыштарыңыз кайра орнотулгандан кийин калыбына келтирилет. Колдонмону ачуу үчүн сизге PIN коддун кереги жок.</string>
     <string name="KbsSplashFragment__learn_more">Кененирээк маалымат</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Катталууну Кулпулоо = PIN код</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Сиздин Каттоо Кулпуңуз эми PIN деп аталат жана уландысы бар. Аны азыр жаңыртыңыз.</string>
     <string name="KbsSplashFragment__update_pin">PIN кодду жаңыртуу</string>
@@ -3235,7 +3104,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Аккаунтуңуз купуялыгыңызды жана коопсуздугуңузду коргоо үчүн кулпуланган. Аккаунтуңузду %1$d күн аракетсиз болгондон кийин, бул телефон номерин PIN кодуңузду талап кылбастан кайра каттай аласыз. Бардык мазмун өчүрүлөт.</string>
     <string name="AccountLockedFragment__next">Кийинки</string>
     <string name="AccountLockedFragment__learn_more">Кененирээк маалымат</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">PIN-кодду киргизиңиз</string>
@@ -3247,7 +3116,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">Туура эмес PIN-код</string>
     <string name="RegistrationLockFragment__forgot_your_pin">PIN-кодду унуттуңузбу?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Аз эле аракет калды!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal\'га катталуу - Android PIN коду (v1 PIN) боюнча жардам керек</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal\'га катталуу - Android PIN коду (v2 PIN) боюнча жардам керек</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3300,7 +3168,6 @@
     <string name="registration_activity__transfer_account">Аккаунтту которуу</string>
     <string name="registration_activity__skip">Өткөрүп жиберүү</string>
     <string name="preferences_chats__chat_backups">Маектердин камдык көчүрмөсү</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Маектердин камдык көчүрмөсүн тышкы сактагычка көчүрүү</string>
     <string name="preferences_chats__transfer_account">Аккаунтту которуу</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Аккаунтту жаңы Android түзмөгүнө өткөрүү</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Кошумча сыр сөз айкашы киргизиңиз</string>
@@ -3339,7 +3206,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Камдык көчүрмөңүздө өтө көлөмдүү файл болгондуктан, ал түзүлгөн жок. Аны өчүрүп туруп, жаңысын түзүңүз.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Камдык көчүрмөлөрдү башкаруу үчүн басыңыз.</string>
-    <string name="ProgressPreference_d_messages_so_far">Азырынча %1$d билдирүү</string>
     <string name="RegistrationActivity_wrong_number">Туура эмес номер</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Анын ордуна мага чалыңыз \n (%1$02d:%2$02dүчүн колдонууга мүмкүн)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal\'дын кардарларды колдоо кызматы менен байланышыңыз</string>
@@ -3361,9 +3227,6 @@
     <string name="preferences_app_protection__create_a_pin">PIN код түзүү</string>
     <string name="preferences_app_protection__change_your_pin">PIN кодуңузду өзгөртүңүз</string>
     <string name="preferences_app_protection__pin_reminders">PIN код эстеткичтери</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN коддор Signal менен сакталган маалыматты шифрленген сактайт, андыктан ага сиз гана кире аласыз. Signal\'ды кайра орнотконуңузда профилиңиз, тууралоолоруңуз жана байланыштарыңыз калыбына келтирилет.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Телефон номериңизди Signal менен кайра каттаганда Signal PIN кодун киргизүүнү талап кылуу менен коопсуздукту жакшыртыңыз.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Эстеткичтер PIN кодуңузду эстеп калууга жардам берет, анткени аны калыбына келтирүү мүмкүн эмес. Убакыттын өтүшү менен сизден азыраак суралат.</string>
     <string name="preferences_app_protection__turn_off">Өчүрүү</string>
     <string name="preferences_app_protection__confirm_pin">PIN-кодду тастыктаңыз</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Signal\'дын PIN кодун ырастаңыз</string>
@@ -3427,7 +3290,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Wi-Fi тууралоолорун ачуу мүмкүн эмес. Сураныч, Wi-Fi\'ды кол менен күйгүзүңүз.</string>
     <string name="DeviceTransferSetup__grant_location_permission">Жүргөн жерди аныктоо уруксатын берүү</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Жүргөн жерди аныктоо кызматтарын күйгүзүү</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">Жүргөн жер тууралоосун ачуу мүмкүн эмес.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Wi-Fi күйгүзүү</string>
     <string name="DeviceTransferSetup__error_connecting">Туташуу катасы</string>
     <string name="DeviceTransferSetup__retry">Кайра аракет кылуу</string>
@@ -3436,7 +3298,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Төмөнкү код эки түзмөгүңүзгө дал келгенин текшериңиз. Андан кийин улантууну басыңыз.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Сандар дал келбейт</string>
     <string name="DeviceTransferSetup__continue">Улантуу</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">Сан бирдей эмес</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Эгер түзмөктөрүңүздөгү сандар дал келбесе, сиз туура эмес түзмөккө туташкан болушуңуз мүмкүн. Муну оңдоо үчүн которууну токтотуп, эки түзмөгүңүздү бири-бирине жакын кармап, кайра аракет кылыңыз.</string>
     <string name="DeviceTransferSetup__stop_transfer">Которууну токтотуу</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Эски түзмөк табылбай жатат</string>
@@ -3466,7 +3327,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">Азырынча %1$s%% билдирүү…</string>
     <string name="DeviceTransfer__cancel">Жокко чыгаруу</string>
     <string name="DeviceTransfer__try_again">Кайталап көрүңүз</string>
-    <string name="DeviceTransfer__stop_transfer_question">Которуу токтотулсунбу?</string>
     <string name="DeviceTransfer__stop_transfer">Которууну токтотуу</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Которулган бардык прогресс жоголот.</string>
     <string name="DeviceTransfer__transfer_failed">Которуу ишке ашкан жок</string>
@@ -3474,7 +3334,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Аккаунтту которуу</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Сиз Signal аккаунтуңузду жаңы Android түзмөгүнө орнотуп жатканда которо аласыз. Улантуу алдында:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Жаңы Android түзмөгүңүзгө Signal жүктөп алыңыз</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3484,7 +3343,6 @@
     <string name="OldDeviceTransferInstructions__continue">Улантуу</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">Которуу аяктады</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Жаңы түзмөгүңүзгө өтүңүз</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Signal маалыматыңыз жаңы түзмөгүңүзгө которулду. Которуу процессин аяктоо үчүн жаңы түзмөгүңүздө каттоону улантышыңыз керек.</string>
     <string name="OldDeviceTransferComplete__close">Жабуу</string>
@@ -3511,10 +3369,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Бул түзмөктү жокко чыгарып, иштетүү</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">MOB балансын которуу керекпи?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Сиздин балансыңызда %1$s. Эгер сиз өзүңүздүн аккаунтуңузду жок кылаардан мурун акчаңызды башка дарек капчыгына которбосоңуз, анда сиз аларды биротоло жоготосуз.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">Которбоо</string>
-    <string name="AdvancedPreferenceFragment__transfer">Которуу</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Бөгөттөө</string>
@@ -3528,10 +3382,6 @@
     <string name="RecipientBottomSheet_make_admin">Админ кылуу</string>
     <string name="RecipientBottomSheet_remove_as_admin">Админ катары алып салуу</string>
     <string name="RecipientBottomSheet_remove_from_group">Топтон алып салуу</string>
-    <string name="RecipientBottomSheet_message_description">Билдирүү</string>
-    <string name="RecipientBottomSheet_voice_call_description">Үн чалуу</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">Кооптуу үн чалуу</string>
-    <string name="RecipientBottomSheet_video_call_description">Видео чалуу</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">%1$s топтун администратору катары алынып салынсынбы?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" бул топту жана анын мүчөлөрүн түзөтө алат."</string>
@@ -3635,7 +3485,6 @@
     <string name="DeleteAccountFragment__the_phone_number">Сиз киргизген телефон номери аккаунтуңузга дал келбейт.</string>
     <string name="DeleteAccountFragment__are_you_sure">Аккаунтуңузду чын эле жок кылгыңыз келеби?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Бул аракет Signal аккаунтуңузду жок кылат жана колдонмону баштапкы абалга келтирет. Процесс аяктагандан кийин колдонмо жабылат.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">Аккаунт жок кылынбай калды. Тармак байланышыңыз барбы?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Жергиликтүү берилмелер жок кылынбай калды. Сиз аны кол менен системанын колдонмо тууралоосунан тазалай аласыз.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Колдонмо тууралоосун баштоо</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3666,7 +3515,6 @@
     <string name="ShareActivity__share">Бөлүшүү</string>
     <string name="ShareActivity__send">Жөнөтүү</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">Бир нече маектер менен бөлүшүү мүмкүнчүлүгү Signal билдирүүлөрү үчүн гана колдоого алынат</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Маалымат алынган жок.</string>
 
@@ -3675,7 +3523,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Сиз болгону %1$d маектер менен бөлүшө аласыз</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">Маектин тушкагазы</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Маектин түсү</string>
@@ -3686,7 +3533,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Караңгы режим тушкагазды күңүрт кылат</string>
     <string name="ChatWallpaperFragment__contact_name">Байланыш аты</string>
     <string name="ChatWallpaperFragment__reset">Баштапкы абалга келтирүү</string>
-    <string name="ChatWallpaperFragment__clear">Тазалоо</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Тушкагазды алдын ала көрүү</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Бардык чат түстөрүн жокко чыгаргыңыз келеби?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Бардык тушкагаздарды жокко чыгаргыңыз келеби?</string>
@@ -3711,7 +3557,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Галереяга кирүү үчүн сактагычка уруксат алуу керек.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Тушкагаз сүрөтүн тандоо</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Чоңойтуу үчүн чымчып, тууралоо үчүн сүйрөңүз.</string>
@@ -3738,9 +3583,9 @@
     <string name="payment_info_card_with_a_high_balance">Балансыңыз чоң болгондуктан, аккаунтуңузду жакшыраак коргоо үчүн тамгалык-цифралык PIN кодуна жаңыртсаңыз болот.</string>
     <string name="payment_info_card_update_pin">PIN кодду жаңыртуу</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Капчыкты өчүрүү</string>
@@ -3752,7 +3597,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Которуусуз өчүрүлсүнбү?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Төлөмдөрдү кайра жандандырууну тандасаңыз, балансыңыз Signal менен байланышкан капчыгыңызда кала берет.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Капчыкты өчүрүү катасы.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Калыбына келтирүүчү сөз айкашы</string>
@@ -3787,13 +3632,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Калыбына келтирүүчү сөз айкашы жараксыз</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">%1$d сөздү киргизгениңизди текшерип, кайра аракет кылыңыз.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Кийинки</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Оңдоо</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">Мурунку</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Калыбына келтирүүчү сөз айкашыңыз</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Төмөнкү %1$d сөздү ирети менен жазыңыз. Тизмеңизди коопсуз жерде сактаңыз.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Сөз айкашыңызды туура киргизгениңизди текшериңиз.</string>
@@ -3821,7 +3665,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Жараксыз сөз</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Буфер тазаланды.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">Карап көрүү</string>
@@ -3840,7 +3683,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Сиздин байланыштарыңыз же сүйлөшкөн адамдарыңыз бул топто жок. Каалабаган билдирүүлөрдү албоо үчүн кабыл алуудан мурун өтүнүчтөрдү кылдаттык менен карап чыгыңыз.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Жазышуу өтүнүчтөрү жөнүндө</string>
     <string name="GroupsInCommonMessageRequest__okay">Макул</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Бул жерде чат түсүн алдын ала көрүү.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Түсү сизге гана көрүнүп турат.</string>
 
@@ -3959,7 +3802,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Сиз тандаган адамдардан жана топтордон гана билдирмелерди алуу үчүн профиль түзүңүз.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Билдирме профилдери</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Профиль түзүү</string>
@@ -3975,7 +3818,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Жаңы маектер үчүн демейки таймер</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Сиз баштаган бардык жаңы маектер үчүн демейки жоголуп кетүүчү билдирүүлөр таймерин коюңуз.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Окуяларыңызды тескеп, аларды кимдер көрө ала турганын чечиңиз</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Акча жөнөтүү үчүн Android түзмөгүнүн экран кулпусун же манжа изин талап кылуу</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Төлөм кулпусу иштебей жатат</string>
@@ -3984,12 +3826,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Системанын тууралоосуна өткөн жоксуз</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">Тууралоо бөлүмүнө өтүү</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">Жокко чыгаруу</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Статус сүрөтчөсүн көрсөтүү</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Билдирүүлөр жашыруун жөнөтүүчү аркылуу жөнөтүлгөндө, билдирүүнүн чоо-жайында сүрөтчөсүн көрсөтүү.</string>
 
@@ -4058,8 +3898,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">Үстүңкү жээк тандагычы</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">Төмөнкү жээк тандагычы</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Signal\'га колдоо көрсөтүү</string>
@@ -4117,20 +3955,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Топтун администратору гана кошо алат.</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Байланыштар колдонмосу табылган жок</string>
-    <string name="ConversationSettingsFragment__send_message">Билдирүү жөнөтүү</string>
     <string name="ConversationSettingsFragment__start_video_call">Видео чалууну баштоо</string>
     <string name="ConversationSettingsFragment__start_audio_call">Аудио чалууну баштоо</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Окуя</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Билдирүү</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Видео</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Аудио</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Чалуу</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Үнүн басуу</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Үнсүз</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Издөө</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Жоголуп кетүүчү билдирүүлөр</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Үндөр жана билдирмелер</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Байланыш чоо-жайы</string>
     <string name="ConversationSettingsFragment__view_safety_number">Коопсуздук кодун көрүү</string>
     <string name="ConversationSettingsFragment__block">Бөгөттөө</string>
@@ -4164,7 +4009,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Билдирмелердин үнүн басуу</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Үнү өчүрүлгөн эмес</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">%1$s чейин үнү өчүрүлгөн</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Айтып өтүүлөр</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Дайыма билип тургум келет</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Билдирбегиле</string>
@@ -4206,7 +4050,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">%1$s өчүрүлгөн жок</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Бул адам түзмөгүңүздөгү Байланыштар тизмесине сакталган. Аны Байланыштарыңыздан өчүрүп, кайталап көрүңүз.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Байланышты карап көрүү</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s Signal колдонуучусу эмес</string>
@@ -4231,9 +4075,7 @@
     <string name="AvatarPickerFragment__photo">Сүрөт</string>
     <string name="AvatarPickerFragment__text">Текст</string>
     <string name="AvatarPickerFragment__save">Сактоо</string>
-    <string name="AvatarPickerFragment__select_an_avatar">Аватарды тандоо</string>
     <string name="AvatarPickerFragment__clear_avatar">Аватарды тазалоо</string>
-    <string name="AvatarPickerFragment__edit">Оңдоо</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">Аватар сакталбай калды</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4302,7 +4144,6 @@
     <string name="ImageEditorHud__clear_all">Баарын тазалоо</string>
     <string name="ImageEditorHud__undo">Токтотуу</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Маркер менен баса белгилегич ортосунда которуштуруу</string>
-    <string name="ImageEditorHud__delete">Өчүрүү</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Текст стилдеринин ортосунда которуштуруу</string>
 
     <string name="MediaCountIndicatorButton__send">Жөнөтүү</string>
@@ -4314,7 +4155,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Өзгөртүүлөр жокко чыгарылсынбы?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Бул сүрөткө киргизген өзгөртүүлөрүңүздү жоготосуз.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">Камера ачылбай койду</string>
 
     <string name="BadgesOverviewFragment__my_badges">Төшбелгилерим</string>
     <string name="BadgesOverviewFragment__featured_badge">Өзгөчөлөнгөн төшбелги</string>
@@ -4322,27 +4162,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Төшбелгилерди тандоо</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">Алдын ала көрүү</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Төшбелги тандоо</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Төшбелги тандашыңыз керек</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Профиль жаңыртылбай калды</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Колдоочу болуңуз</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal\'ды колдонот</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s ай сайын Signal кызматына колдоо көрсөтүп турат. Signal – сизге окшогон адамдардын колдоосу менен иштеген, эч кандай жарнамачылары же инвесторлору жок коммерциялык эмес уюм.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s Signal кызматына колдоо көрсөтүп турат. Signal – сизге окшогон адамдардын колдоосу менен иштеген, эч кандай жарнамачылары же инвесторлору жок коммерциялык эмес уюм.</string>
 
     <string name="ImageView__badge">Төшбелги</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Берилмелериңиз үчүн эмес, Сиз үчүн курулган технологияны колдоп, аны колдогон адамдардын коомчулугуна кошулуңуз.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Signal\'ды колдогон коомчулукка кошулуу менен, берилмелериңиз үчүн эмес, сиз үчүн түзүлгөн технологияга колдоо көрсөтүңүз.</string>
-    <string name="SubscribeFragment__currency">Акча бирдиги</string>
-    <string name="SubscribeFragment__more_payment_options">Башка төлөм опциялары</string>
     <string name="SubscribeFragment__cancel_subscription">Жазылууну токтотуу</string>
     <string name="SubscribeFragment__confirm_cancellation">Чын эле токтотосузбу?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Кайра акы төлөбөйсүз. Төлөнгөн мезгил аяктаганда, төшбелгиңиз профилиңизден өчүрүлөт.</string>
@@ -4355,7 +4189,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Бүгүн жаңы жазылуу мезгилинин акысын толук төлөйсүз (%1$s). Жазылууңуздун акысын ай сайын төлөп турушуңуз керек.</string>
 
     <string name="Subscription__s_per_month">%1$s/айына</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">%1$s жаңырат</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Качан бүтөт: %1$s</string>
@@ -4387,7 +4221,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Дагы</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">Дүмүрчөктөр</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Менин колдоом</string>
     <string name="ManageDonationsFragment__manage_subscription">Жазылууну башкаруу</string>
@@ -4395,7 +4228,6 @@
     <string name="ManageDonationsFragment__donation_receipts">Колдоо дүмүрчөктөрү</string>
     <string name="ManageDonationsFragment__badges">Төшбелгилер</string>
     <string name="ManageDonationsFragment__subscription_faq">Жазылуу боюнча көп берилүүчү суроолор</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Жазылууда ката кетти.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Берүүнүн башка жолдору</string>
     <!-- Preference label to launch badge gifting -->
@@ -4403,8 +4235,9 @@
 
     <string name="Boost__enter_custom_amount">Өзүңүздүн суммаңызды киргизиңиз</string>
     <string name="Boost__one_time_contribution">Бир жолку салым</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Signal Boost кошуу</string>
     <string name="MySupportPreference__s_per_month">%1$s/айына</string>
     <string name="MySupportPreference__renews_s">%1$s жаңырат</string>
     <string name="MySupportPreference__processing_transaction">Транзакция иштетилүүдө…</string>
@@ -4439,7 +4272,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Signal Колдоочу төлөмүңүздү чогултууда көйгөй болуп жатат. Төлөм ыкмаңыз жаңыртылганын текшериңиз. Болбосо, аны Google Pay\'де жаңыртыңыз. Signal төлөмдү бир нече күндөн кийин кайра иштетүүгө аракет кылат.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Башка көрсөтпө</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">Көбүрөөк маалымат алуу үчүн кардарларды колдоо кызматына кайрылыңыз.</string>
     <string name="Subscription__contact_support">Кардарларды колдоо кызматына кайрылуу</string>
     <string name="Subscription__get_a_s_badge">%1$s төшбелгисин алуу</string>
 
@@ -4448,7 +4280,6 @@
     <string name="DonationsErrors__error_processing_payment">Төлөмдү иштетүүдө ката кетти</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Төлөмдү иштетүүдө ката кетти. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Сизден төлөм алынганы менен, төшбелгиңиз аккаунтуңузга кошулбай калды окшойт. Кардарларды тейлеген кызматка кайрылыңыз.</string>
     <string name="DonationsErrors__your_payment">Төлөмүңүз иштелбегендиктен, сизден акы алынган жок. Кайталап көрүңүз.</string>
     <string name="DonationsErrors__still_processing">Дагы эле иштетилүүдө</string>
     <string name="DonationsErrors__couldnt_add_badge">Төшбелги кошулган жок.</string>
@@ -4462,8 +4293,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">Белек төшбелгиси жөнөтүлгөн жок. Кардарларды колдоо кызматына кайрылыңыз.</string>
     <string name="DonationsErrors__your_badge_could_not">Сизден төлөм алынганы менен, төшбелгиңиз аккаунтуңузга кошулбай калды окшойт. Кардарларды тейлеген кызматка кайрылыңыз.</string>
     <string name="DonationsErrors__your_payment_is_still">Төлөмүңүз дагы эле иштетилүүдө. Бул сиздин туташууңузга жараша бир нече мүнөткө созулушу мүмкүн.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay жеткиликсиз</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Колдонмого салым кылуу үчүн сизде Google Pay орнотулган болушу керек.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Жазылуу токтотулган жок</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Жазылууну токтотуу үчүн Интернет байланышы керек.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Google Pay түзмөгүңүздө иштебегендиктен, катталып, төшбелги ала албайсыз. Бирок Signal\'дын вебсайтынан салым кошсоңуз болот.</string>
@@ -4480,10 +4309,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Белек төшбелги</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="other">%1$d айга созулат</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Төлөө</string>
     <!-- Gift badge view action label -->
@@ -4493,7 +4318,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">Алынды</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Башка төлөм ыкмасын колдонуп көрүңүз же көбүрөөк маалымат алуу үчүн банкыңызга кайрылыңыз.</string>
@@ -4697,9 +4521,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Белек</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Өркүндөтүү</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">Чоо-жайы</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Колдоо түрү</string>
     <!-- Donation receipts date paid heading -->
@@ -4836,7 +4658,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">%1$s үчүн жеке жооп берүүдө</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">Жеке жооп</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Көчүрүү</string>
     <!-- Context menu item to delete a story response -->
@@ -4852,11 +4673,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Бул окуяны кимдер көрө алат</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Окуяны жашыруу</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Signal\'дагы бардык байланыштар</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">Бардык байланыштар менен бөлүшүү</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Ушул адамдан башкалардын баары…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -4904,19 +4723,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Өчүрүү</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">Ишенесизби?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">Бул аракетти артка кайтарууга болбойт.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Окуянын аталышын түзөтүү</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Окуянын аталышы</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">Сактоо</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Текст кошуу үчүн басыңыз</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Текст кошуу</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -4932,7 +4747,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Издөө</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Күтүлбөгөн ката кетти</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Жарактуу шилтемени киргизиңиз.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -4954,17 +4768,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Өчүрүү</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Окуяларды Signal\'дын бета версиясынын колдонуучулары гана көрө алышат.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">Окуя бөлүшсөңүз, Signal\'дын бета версиясындагы адамдарга гана көрүнөт.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Окуяга кошулсунбу?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Окуяңызга ар кандай нерселерди кошуп турсаңыз, ал Signal байланыштарыңызга 24 саат бою көрүнүп турат. Окуяңызды кимдер көрө аларын \"Тууралоо\" бөлүмүнөн өзгөртө аласыз.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Окуяга кошуу</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">Көрүүчүлөрдү түзөтүү</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Окуя жөнөтүлгөн жок. Байланышты текшерип, кайталап көрүңүз.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -4972,9 +4780,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Өчүрүү жана жок кылуу</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Окуяларды бөлүшүү жана көрүү</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Эгер бул параметр өчүк болсо, окуяларды бөлүшүп, көрө албай каласыз.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Көрүүчүлөрдү тандоо</string>
     <!-- New story viewer selection action button label -->
@@ -5035,13 +4841,9 @@
     <string name="StoryDialogs__view_profile_photo">Профиль сүрөтүн көрүү</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Цензурадан кыйгап өтүүнү өчүрөсүзбү?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Эми Signal кызматына дароо кошула аласыз.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">Жок, рахмат</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">Өчүрүү</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Сиз %1$s окуясына реакция кылдыңыз</string>
@@ -5235,13 +5037,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Файлдын көлөмү</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Кимге жөнөтүлдү:</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Ким жөнөттү:</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Болбой калды</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">Маалымат</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5263,7 +5061,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Окуялар</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Окуяны көргөндөр</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Окуялардын көрүлгөнүн кабарлоо</string>
     <!-- Story view receipts toggle message -->
@@ -5314,7 +5111,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Билдирүүлөрүңүздү өткөрүү үчүн болжол менен %1$s керек. Улантуудан мурун, дискте орун жетишүү экенин текшериңиз.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Баары бир уланта берем</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">SMS билдирүүлөрүн экспорттоо үчүн Signal кызматы SMS уруксат алышы керек.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5428,9 +5225,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Билдирүүлөрүңүздү өткөрүү үчүн телефонуңузда дагы %1$s бош орун болушу керек</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Кайра кайталап көрүңүз. Өтпөй калган билдирүүлөр кайра өткөрүлөт</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Көйгөй кайталана берсе, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Биз менен байланышыңыз</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Кайра аракет кылуу</string>
@@ -5473,28 +5270,26 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Токтотулууда…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Өтө көп байланыш иштетилди</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="other">Байланыштарыңызды %1$d күндөн кийин дагы бир жолу иштетип көрүңүз.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">Бул көйгөйдү тез арада чечкиңиз келсе, телефонуңуздан байланыштарыңызды же көп байланыштар байланган аккаунтуңузду өчүрүңүз.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Байланыштарды ачуу</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Бир дагы байланыштар колдонмосу табылган жок</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Байланыштарыңызды иштетүү мүмкүн эмес</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">Телефонуңуздагы байланыштардын саны Signal кызматы иштете ала турган сандан ашып кетти. Signal\'дан байланыштарды тапкыңыз келсе, телефонуңуздан байланыштарыңызды же көп байланыштар байланган аккаунтуңузду өчүрүңүз.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Кененирээк маалымат</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Байланыштарды ачуу</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Бир дагы байланыштар колдонмосу табылган жок</string>
 
     <!-- PaymentMessageView -->
@@ -5523,5 +5318,9 @@
     <string name="GroupStoryEducationSheet__next">Кийинки</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

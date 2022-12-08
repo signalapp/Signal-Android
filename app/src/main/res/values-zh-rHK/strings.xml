@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -23,64 +22,40 @@
     <string name="save">儲存</string>
     <string name="note_to_self">給自己的筆記</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">新訊息</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">目前：%1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">您尚未設定一個密碼！</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">要停用密碼嗎？</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">這將永久解鎖 Signal 及訊息通知。</string>
     <string name="ApplicationPreferencesActivity_disable">停用</string>
-    <string name="ApplicationPreferencesActivity_unregistering">正在取消註冊</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">正在取消註冊 Signal 訊息及通話…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">要停用 Signal 訊息及通話嗎？</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">停用 Signal 訊息及通話將從伺服器取消註冊。日後若要再次使用，您將需要重新註冊您的電話號碼。</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">連線到伺服器時發生錯誤！</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">短訊功能已啟用</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">輕按一下以變更您的預設短訊應用程式</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">短訊功能已停用</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">輕按一下設定 Signal 為您的預設短訊應用程式</string>
-    <string name="ApplicationPreferencesActivity_on">開啟</string>
-    <string name="ApplicationPreferencesActivity_On">開啟</string>
-    <string name="ApplicationPreferencesActivity_off">關閉</string>
-    <string name="ApplicationPreferencesActivity_Off">關閉</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">短訊功能%1$s，多媒體短訊功能%2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">螢幕鎖定%1$s，註冊鎖定%2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">佈景主題：%1$s，語言：%2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">註冊鎖定須要 PIN 碼。若要停用 PIN 碼，請先停用註冊鎖定。</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN 碼已建立。</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN 碼已停用。</string>
-    <string name="ApplicationPreferencesActivity_hide">隱藏</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">要隱藏提醒嗎？</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">記錄付款恢復片語</string>
     <string name="ApplicationPreferencesActivity_record_phrase">記錄片語</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在您可停用您的 PIN 碼之前，您必須先記錄您的付款恢復片語，以確保您可還原您的付款帳戶。</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">退格鍵</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="other">%1$d 分鐘</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">（影像）</string>
@@ -128,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">要封鎖使用者嗎？</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">「%1$s」將無法與您通話或傳送訊息給您。</string>
     <string name="BlockedUsersActivity__block">封鎖</string>
-    <string name="BlockedUsersActivity__unblock_user">要解除封鎖使用者嗎？</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">您要解除封鎖「%1$s」嗎？</string>
-    <string name="BlockedUsersActivity__unblock">解除封鎖</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -138,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">捐款金額：每月 %1$s</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">請於下方輸入你的付款卡資料</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">請輸入付款卡詳情。Signal 不會收集或保存你的個人資料。</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -248,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">流動網絡商或會收取相關費用。您正撥打的號碼未有在 Signal 上註冊，因此通話將透過您的流動電訊公司打出，而非經由互聯網連接。</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">您與 %1$s 之間的安全碼已變更。這可能代表有人正嘗試截取您的通訊，又或者不過是 %2$s 已重新安裝 Signal。</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">您不妨與此聯絡人驗證一下安全碼。</string>
-    <string name="ConfirmIdentityDialog_accept">接受</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">最近的聊天</string>
@@ -270,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">編輯名稱</string>
     <string name="ContactNameEditActivity_given_name">名字</string>
     <string name="ContactNameEditActivity_family_name">姓氏</string>
     <string name="ContactNameEditActivity_prefix">前綴</string>
@@ -310,17 +277,17 @@
     <string name="ConversationItem_pending">  待處理</string>
     <string name="ConversationItem_this_message_was_deleted">此訊息已被刪除。</string>
     <string name="ConversationItem_you_deleted_this_message">您已刪除此訊息。</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">無法下載訊息。%1$s 需要再次傳送。</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">無法下載圖像。%1$s 需要再次傳送。</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">無法下載影片。%1$s 需要再次傳送。</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">無法下載訊息。你需要再次傳送。</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">無法下載圖像。你需要再次傳送。</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">無法下載影片。你需要再次傳送。</string>
 
     <!-- ConversationActivity -->
@@ -342,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">不安全的短訊 (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">不安全的多媒體短訊</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">不安全的多媒體短訊 (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Signal 訊息</string>
     <string name="ConversationActivity_lets_switch_to_signal">我們不如改用 Signal 吧 %1$s</string>
     <string name="ConversationActivity_specify_recipient">請選擇一個聯絡人</string>
@@ -388,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">刪除並退出</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Signal 需要存取您的咪高峰，以便與 %1$s 通話。</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">更多選項現已歸納於「群組設定」</string>
 
     <string name="ConversationActivity_join">加入</string>
     <string name="ConversationActivity_full">已滿</string>
@@ -409,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal 不再支援短訊功能。邀請 %1$s 加入 Signal 以繼續對話。</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">邀請加入 Signal</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">我們稍後會再次提醒你。</string>
 
     <!-- ConversationAdapter -->
@@ -629,10 +594,6 @@
     <string name="CustomDefaultPreference_none">無</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">選取照片</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">拍照</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">從圖片庫選取</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">移除照片</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">拍照需要相機權限。</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">檢視您的圖片庫需要儲存裝置權限。</string>
 
@@ -687,8 +648,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">擷取完整解析度 GIF 時發生錯誤</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIF</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">貼圖</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">要新增成員嗎？</string>
@@ -713,7 +672,7 @@
     <string name="GroupManagement_access_level_all_members">所有成員</string>
     <string name="GroupManagement_access_level_only_admins">僅限管理員</string>
     <string name="GroupManagement_access_level_no_one">沒有人</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -829,7 +788,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">完成</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">此人無法新增至舊版群組。</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">此人無法新增至公告群組。</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="other">要新增 %3$d 個成員至「%2$s」嗎？</item>
     </plurals>
@@ -856,33 +814,12 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">你選取的聯絡人無法使用 Signal 群組，因此群組將使用多媒體訊息。只有你可以看到自訂的多媒體訊息群組名稱和相片。系統即將停止支援多媒體訊息群組，專注提供加密通訊服務。</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">成員請求與邀請</string>
-    <string name="ManageGroupActivity_add_members">新增成員</string>
-    <string name="ManageGroupActivity_edit_group_info">編輯群組資訊</string>
     <string name="ManageGroupActivity_who_can_add_new_members">誰可以加入新成員？</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">誰可以編輯此群組的資訊？</string>
-    <string name="ManageGroupActivity_group_link">群組連結</string>
-    <string name="ManageGroupActivity_block_group">封鎖群組</string>
-    <string name="ManageGroupActivity_unblock_group">解除封鎖群組</string>
-    <string name="ManageGroupActivity_leave_group">退出群組</string>
-    <string name="ManageGroupActivity_mute_notifications">將通知設為靜音</string>
-    <string name="ManageGroupActivity_custom_notifications">自訂通知</string>
-    <string name="ManageGroupActivity_mentions">提及</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">聊天色彩與背景</string>
-    <string name="ManageGroupActivity_until_s">直到%1$s</string>
-    <string name="ManageGroupActivity_always">總是</string>
-    <string name="ManageGroupActivity_off">關閉</string>
-    <string name="ManageGroupActivity_on">開啟</string>
-    <string name="ManageGroupActivity_view_all_members">檢視所有成員</string>
-    <string name="ManageGroupActivity_see_all">查看全部</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="other">%1$d 個成員已新增。</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">只有管理員可啟用或停用可分享的群組連結。</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">只有管理員可啟用或停用核准新成員的選項。</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">只有管理員可重設可分享的群組連結。</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">您沒有權限這樣做</string>
     <string name="ManageGroupActivity_not_capable">您所加入的某人不支援「新版群組」並需要更新 Signal</string>
@@ -946,18 +883,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">變更聲效與震動</string>
     <string name="CustomNotificationsDialogFragment__call_settings">通話設定</string>
     <string name="CustomNotificationsDialogFragment__ringtone">鈴聲</string>
-    <string name="CustomNotificationsDialogFragment__enabled">已啟用</string>
-    <string name="CustomNotificationsDialogFragment__disabled">已停用</string>
     <string name="CustomNotificationsDialogFragment__default">預設值</string>
     <string name="CustomNotificationsDialogFragment__unknown">未知</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">可分享的群組連結</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">管理與分享</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">群組連結</string>
     <string name="ShareableGroupLinkDialogFragment__share">分享</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">重設連結</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">成員請求</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">核准新成員</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">要求透過群組連結加入的新成員須經管理員核准。</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">您確定要重設群組連結嗎？別人將無法再以目前的連結加入群組。</string>
@@ -1001,7 +933,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">更新 Signal 以使用群組連結</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">您現正使用的 Signal 版本不支援此群組連結。請更新至最新版本以透過連結加入此群組。</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">更新 Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">您的一台或多台已連結的裝置現正執行不支援群組連結的 Signal 版本。請在您已連結的裝置上更新 Signal 以加入此群組。</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">群組連結無效</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1081,7 +1012,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息…</string>
-    <string name="MediaOverviewActivity_Select_all">全選</string>
     <string name="MediaOverviewActivity_collecting_attachments">正在蒐集附件…</string>
     <string name="MediaOverviewActivity_Sort_by">排序方式</string>
     <string name="MediaOverviewActivity_Newest">由新到舊</string>
@@ -1106,9 +1036,8 @@
     <string name="MediaOverviewActivity_audio">音訊</string>
     <string name="MediaOverviewActivity_video">影片</string>
     <string name="MediaOverviewActivity_image">影像</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">語音訊息</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">由 %1$s 傳送</string>
     <string name="MediaOverviewActivity_sent_by_you">由您傳送</string>
@@ -1156,25 +1085,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">下載多媒體短訊訊息時發生錯誤，輕觸以重試</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">傳送給 %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">開啟相機</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">新增附注…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">因超出大小上限，一個項目已移除</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">因其類型未知，一個項目已移除</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">因超出大小上限或其類型未知，一個項目已移除</string>
     <string name="MediaSendActivity_camera_unavailable">相機無法使用。</string>
-    <string name="MediaSendActivity_message_to_s">傳送訊息給 %1$s</string>
-    <string name="MediaSendActivity_message">訊息</string>
-    <string name="MediaSendActivity_select_recipients">選擇收件人</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal 需要存取您的聯絡人以便為您顯示。</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal 需要聯絡人權限才可顯示您的聯絡人，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「聯絡人」。</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="other">您不得分享超過 %1$d 個項目。</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">選擇收件人</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">輕觸此處以設定此訊息在看過後消失。</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">所有媒體</string>
@@ -1376,7 +1290,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">你喜歡這個全新功能嗎？透過單次捐款來支持 Signal。</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">你與 %1$s 的訊息紀錄及其號碼 %2$s 已經合併。</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">你與 %1$s 的訊息紀錄和屬於他們的另一個聊天已經合併。</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">你向 %1$s 傳送了啟動付款的請求</string>
@@ -1437,7 +1351,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，您不會看到他們的訊息。</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組嗎？在您接受之前，別人不會知道您已看過其訊息。</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">要解除封鎖此群組，並向其成員分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到他們任何訊息。</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">檢視</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成員</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成員</string>
@@ -1529,7 +1443,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">建立您的 PIN 碼</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">您已耗盡了 PIN 碼猜測，但您仍可建立一個新的 PIN 碼以存取您的 Signal 帳戶。為確保您的私隱和安全性，還原您的帳戶時將不包括任何已儲存的個人資料或設定。</string>
     <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
@@ -1567,7 +1481,6 @@
     <string name="RecipientPreferenceActivity_unblock">解除封鎖</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">未命名群組</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">正在接聽…</string>
@@ -1582,9 +1495,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">💜 人節快樂！</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">成為 Signal 延續人，盡訴延綿心意。</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">輕觸此處以開啟您的視像</string>
@@ -1610,7 +1521,6 @@
     <string name="WebRtcCallView__join_call">加入通話</string>
     <string name="WebRtcCallView__call_is_full">通話已滿座</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">此通話已到達 %1$d 個參與者的人數上限。請稍後再試。</string>
-    <string name="WebRtcCallView__view_participants_list">檢視參與者</string>
     <string name="WebRtcCallView__your_video_is_off">您的視像已關閉</string>
     <string name="WebRtcCallView__reconnecting">正在重新連線…</string>
     <string name="WebRtcCallView__joining">正在加入…</string>
@@ -1645,18 +1555,24 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s 現已在此通話中</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s現已在此通話中</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s 和 %2$s 現已在此通話中</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s 現正展示</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="other">%1$s、%2$s 和另 %3$d 人現已在此通話中</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">翻轉</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">揚聲器</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">相機</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">取消靜音</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">靜音</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">響鈴</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">結束通話</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1750,12 +1666,12 @@
     <string name="SearchFragment_header_messages">訊息</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">新增至通訊錄</string>
@@ -1836,7 +1752,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱，然後才上載。</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">篩選：</string>
     <string name="SupportEmailUtil_device_info">裝置資訊：</string>
     <string name="SupportEmailUtil_android_version">Android 版本：</string>
@@ -1917,11 +1833,9 @@
     <string name="UsernameEditFragment__choose_your_username">選擇你的用戶名稱</string>
     <string name="UsernameEditFragment_username">使用者名稱</string>
     <string name="UsernameEditFragment_delete">刪除</string>
-    <string name="UsernameEditFragment_successfully_set_username">已成功設定使用者名稱。</string>
     <string name="UsernameEditFragment_successfully_removed_username">已成功移除使用者名稱。</string>
     <string name="UsernameEditFragment_encountered_a_network_error">遇到網絡問題。</string>
     <string name="UsernameEditFragment_this_username_is_taken">此使用者名稱已有人使用。</string>
-    <string name="UsernameEditFragment_this_username_is_available">此使用者名稱可供使用。</string>
     <string name="UsernameEditFragment_usernames_can_only_include">使用者名稱僅可包含 a–Z、0–9 以及底線。</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">使用者名稱不得以數字開首。</string>
     <string name="UsernameEditFragment_username_is_invalid">使用者名稱無效。</string>
@@ -1957,10 +1871,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">您必須先交換訊息，以便檢視 %1$s 的安全碼。</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">訊息加密的工作階段並不存在</string>
@@ -2001,7 +1915,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">找不到能夠分享此媒體的應用程式。</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">關閉</string>
     <string name="MediaPreviewFragment_edit_media_error">多媒體錯誤</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">刪除訊息時發生錯誤，訊息可能仍然存在</string>
 
     <!-- MessageNotifier -->
@@ -2021,8 +1935,6 @@
     <string name="MessageNotifier_reply">回覆</string>
     <string name="MessageNotifier_signal_message">Signal 訊息</string>
     <string name="MessageNotifier_unsecured_sms">不安全的短訊</string>
-    <string name="MessageNotifier_you_may_have_new_messages">您可能有新訊息</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">開啟 Signal 以檢查最近的通知。</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">聯絡人</string>
     <string name="MessageNotifier_reacted_s_to_s">對「%2$s」表達了 %1$s 心情。</string>
@@ -2103,7 +2015,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">請更新 Signal 以繼續使用付款功能。你的餘額可能尚未更新。</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">立即更新</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">若要接聽通話，請授予 Signal 存取您的咪高峰。</string>
@@ -2119,8 +2030,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">向上滑動以轉換檢視</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">拒絕</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">接聽</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">接聽電話，但不開啟視像</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2138,7 +2052,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">重複輸入新的密碼</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">輸入名稱或號碼</string>
     <string name="contact_selection_activity__invite_to_signal">邀請加入 Signal</string>
     <string name="contact_selection_activity__new_group">建立新群組</string>
 
@@ -2273,7 +2186,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">安全碼變更</string>
     <string name="safety_number_change_dialog__accept">接受</string>
-    <string name="safety_number_change_dialog__send_anyway">仍要傳送</string>
     <string name="safety_number_change_dialog__call_anyway">仍要通話</string>
     <string name="safety_number_change_dialog__join_call">加入通話</string>
     <string name="safety_number_change_dialog__continue_call">繼續通話</string>
@@ -2414,8 +2326,6 @@
     <string name="CreateProfileActivity_first_name_required">名字 (必填)</string>
     <string name="CreateProfileActivity_last_name_optional">姓氏 (選用)</string>
     <string name="CreateProfileActivity_next">下一步</string>
-    <string name="CreateProfileActivity__username">使用者名稱</string>
-    <string name="CreateProfileActivity__create_a_username">建立一個使用者名稱</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">自訂的多媒體短訊群組名稱和照片僅限您看得到。</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">此群組中的成員，以及獲邀加入群組的人，將會見到群組描述。</string>
 
@@ -2435,7 +2345,7 @@
     <string name="EditProfileFragment__edit_group">編輯群組</string>
     <string name="EditProfileFragment__group_name">群組名稱</string>
     <string name="EditProfileFragment__group_description">群組描述</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">您的名稱</string>
@@ -2448,7 +2358,6 @@
     <string name="recipient_preference_activity__shared_media">已分享的媒體</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>輸入名稱或號碼</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[若要驗證您與 %1$s 之間端對端加密的安全性，請比對上方數字與對方裝置上的數字是否一樣。您亦可掃描對方裝置上的二維碼。<a href=\"https://signal.org/redirect/safety-numbers\">了解更多。</a>]]></string>
@@ -2495,7 +2404,6 @@
     <string name="AndroidManifest__select_contacts">選擇聯絡人</string>
     <string name="AndroidManifest__change_passphrase">更改密碼</string>
     <string name="AndroidManifest__verify_safety_number">驗證安全碼</string>
-    <string name="AndroidManifest__log_submit">提交除錯記錄檔</string>
     <string name="AndroidManifest__media_preview">媒體預覽</string>
     <string name="AndroidManifest__message_details">訊息詳情</string>
     <string name="AndroidManifest__linked_devices">已連結的裝置</string>
@@ -2517,13 +2425,13 @@
     <string name="HelpFragment__whats_this">這是甚麼？</string>
     <string name="HelpFragment__how_do_you_feel">您覺得怎麼看？ (選用)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">請說明來鴻所為何事。</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">支援資訊</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android 支援請求</string>
     <string name="HelpFragment__debug_log">除錯記錄檔：</string>
@@ -2595,12 +2503,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">測試版</string>
     <string name="preferences__sms_mms">短訊與多媒體短訊</string>
-    <string name="preferences__pref_all_sms_title">接收所有短訊</string>
-    <string name="preferences__pref_all_mms_title">接收所有多媒體短訊</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">使用 Signal 處理所有傳入的文字訊息</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">使用 Signal 處理所有傳入的多媒體訊息</string>
-    <string name="preferences__pref_enter_sends_title">輸入鍵作發送</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">按一下輸入鍵將會發送文字訊息</string>
     <string name="preferences__pref_use_address_book_photos">使用通訊錄照片</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">在可用時顯示來自您的通訊錄中的聯絡人照片</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2609,14 +2511,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">當收到新訊息時，已存檔的靜音聊天將會保持存檔狀態。</string>
     <string name="preferences__generate_link_previews">產生連結預覽</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">為您傳送的訊息直接從網站提取連結預覽。</string>
-    <string name="preferences__choose_identity">請選擇身份</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">從聯絡人清單中選擇您的聯絡人項目。</string>
     <string name="preferences__change_passphrase">更改密碼</string>
     <string name="preferences__change_your_passphrase">變更您的密碼</string>
     <string name="preferences__enable_passphrase">啟用密碼畫面鎖定</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">使用密碼鎖定畫面與通知</string>
     <string name="preferences__screen_security">畫面安全性</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">封鎖「最近使用應用程式」清單以及此應用程式中的畫面擷取</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">在閒置指定的時間間距後自動鎖定 Signal</string>
     <string name="preferences__inactivity_timeout_passphrase">閒置逾時密碼</string>
     <string name="preferences__inactivity_timeout_interval">閒置逾時間距</string>
@@ -2652,7 +2551,6 @@
     <string name="preferences__advanced">進階</string>
     <string name="preferences__donate_to_signal">捐款給 Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">單次捐款</string>
     <string name="preferences__privacy">私隱</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">限時動態</string>
@@ -2679,7 +2577,6 @@
     <string name="preferences__dark_theme">深色</string>
     <string name="preferences__appearance">介面</string>
     <string name="preferences__theme">佈景主題</string>
-    <string name="preferences__chat_wallpaper">聊天背景</string>
     <string name="preferences__chat_color_and_wallpaper">聊天色彩與背景</string>
     <string name="preferences__disable_pin">停用 PIN 碼</string>
     <string name="preferences__enable_pin">啟用 PIN 碼</string>
@@ -2701,8 +2598,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">若打字狀態已停用，您將不會看見別人的打字狀態。</string>
     <string name="preferences__request_keyboard_to_disable">要求鍵盤停用個人化學習。</string>
     <string name="preferences__this_setting_is_not_a_guarantee">此設定不具保證，或會被您的鍵盤忽略。</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">已封鎖的使用者</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">當使用流動數據時</string>
     <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
     <string name="preferences_chats__when_roaming">當漫遊時</string>
@@ -2730,32 +2626,22 @@
     <string name="preferences_storage__s_messages">%1$s 則訊息</string>
     <string name="preferences_storage__custom">自訂</string>
     <string name="preferences_advanced__use_system_emoji">使用系統表情符號</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">停用 Signal 內置的表情符號支援</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">經由 Signal 伺服器轉送所有通話以避免向您的聯絡人透露您的 IP 位址。啟用時將會降低通話質素。</string>
     <string name="preferences_advanced__always_relay_calls">一律轉送通話</string>
     <string name="preferences_app_protection__who_can">誰可以…</string>
-    <string name="preferences_app_protection__app_access">應用程式存取</string>
-    <string name="preferences_app_protection__communication">通訊</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">付款</string>
     <string name="preferences_chats__chats">聊天</string>
     <string name="preferences_data_and_storage__manage_storage">管理儲存空間</string>
-    <string name="preferences_data_and_storage__calls">通話</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">通話時使用較少數據</string>
     <string name="preferences_data_and_storage__never">永不</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi 及流動數據</string>
     <string name="preferences_data_and_storage__mobile_data_only">僅限流動數據</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">減少數據用量或有助提升不良網絡上的通話</string>
-    <string name="preferences_notifications__messages">訊息</string>
-    <string name="preferences_notifications__events">事件</string>
     <string name="preferences_notifications__in_chat_sounds">聊天內聲效</string>
     <string name="preferences_notifications__show">顯示</string>
-    <string name="preferences_notifications__calls">通話</string>
     <string name="preferences_notifications__ringtone">鈴聲</string>
-    <string name="preferences_chats__show_invitation_prompts">顯示邀請提示</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">就未使用 Signal 的聯絡人顯示邀請提示</string>
     <string name="preferences_chats__message_text_size">訊息字型大小</string>
-    <string name="preferences_events__contact_joined_signal">聯絡人已加入 Signal</string>
     <string name="preferences_notifications__priority">優先順序</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">審查規避</string>
@@ -2771,8 +2657,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">審查規避必須連接互聯網才可啟用。</string>
     <string name="preferences_communication__category_sealed_sender">密封寄件人</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">顯示標記</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"當訊息是以密封寄件人送達時，在「訊息詳情」中標示一個狀態圖示。"</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">允許發送自任何人</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">對非聯絡人及您未有分享個人資料的人所傳入的訊息啟用密封寄件人。</string>
     <string name="preferences_communication__sealed_sender_learn_more">了解更多</string>
@@ -2798,9 +2682,9 @@
     <string name="configurable_single_select__customize_option">自訂選項</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2815,7 +2699,6 @@
     <string name="PaymentsHomeFragment__activating_payments">正在啟用付款…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">還原付款帳戶</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">未有最近活動</string>
-    <string name="PaymentsHomeFragment__pending_requests">尚待處理的請求</string>
     <string name="PaymentsHomeFragment__recent_activity">最近活動</string>
     <string name="PaymentsHomeFragment__see_all">查看全部</string>
     <string name="PaymentsHomeFragment__add_funds">增加款項</string>
@@ -2844,13 +2727,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">付款已停用。</string>
     <string name="PaymentsHomeFragment__payment_failed">付款失敗</string>
     <string name="PaymentsHomeFragment__details">詳細資料</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">您可使用 Signal 發送和接收 MobileCoin。所有付款均受 MobileCoin 和 MobileCoin Wallet 的使用條款約束。這是一項測試版功能，因此您或會遇到一些問題，您或會遺失付款或餘額而無法還原。 </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">您可使用 Signal 發送和接收 MobileCoin。所有付款均受 MobileCoin 和 MobileCoin Wallet 的使用條款約束。這是一項測試版功能，因此您或會遇到一些問題，您或會遺失付款或餘額而無法還原。 </string> -->
     <string name="PaymentsHomeFragment__activate">啟用</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">檢視 MobileCoin 條款</string>
     <string name="PaymentsHomeFragment__payments_not_available">付款已不再在 Signal 上可用。您仍可轉移款項至交易平台，惟您不再能發送和接收付款或增加款項。</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">要為日後的付款開啟付款鎖定嗎？</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2894,7 +2777,7 @@
     <string name="PaymentsAddMoneyFragment__copy">複製</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已複製至剪貼簿</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">若要增加款項，請發送 MobileCoin 到您的錢包位址。請在支援 MobileCoin 的交易平台上以您所屬的帳戶開始一筆交易，然後掃描二維碼或複製您的錢包位址。</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">詳細資料</string>
@@ -2914,8 +2797,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">金幣清理費用</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">當您擁有的金幣無法合併以完成一筆交易時，將會徵收一項「金幣清理費用」。清理將會允許您繼續發送付款。</string>
     <string name="PaymentsDetailsFragment__no_details_available">此交易無進一步詳情提供</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">已發送付款</string>
     <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
@@ -2959,7 +2842,7 @@
     <string name="CreatePaymentFragment__backspace">退格鍵</string>
     <string name="CreatePaymentFragment__add_note">新增備註</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">換算僅為估算，並非準確。</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">備註</string>
@@ -2967,7 +2850,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">確認付款</string>
     <string name="ConfirmPayment__network_fee">網絡費用</string>
-    <string name="ConfirmPayment__error_getting_fee">取得費用時發生錯誤</string>
     <string name="ConfirmPayment__estimated_s">估算 %1$s</string>
     <string name="ConfirmPayment__to">收款人：</string>
     <string name="ConfirmPayment__total_amount">總金額</string>
@@ -3024,29 +2906,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">儲存</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">限時訊息</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">資訊</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">複製</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">刪除</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">轉發</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">回覆</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">儲存</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">重新傳送</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">選取</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">付款詳情</string>
 
     <!-- conversation_expiring_on -->
@@ -3055,14 +2936,6 @@
     <string name="conversation_insecure__invite">邀請</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">刪除已選</string>
-    <string name="conversation_list_batch__menu_pin_selected">釘選已選</string>
-    <string name="conversation_list_batch__menu_unpin_selected">取消釘選已選</string>
-    <string name="conversation_list_batch__menu_select_all">全選</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">封存已選</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">解除封存已選</string>
-    <string name="conversation_list_batch__menu_mark_as_read">標記為已讀</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">標記為未讀</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">設定捷徑</string>
@@ -3083,7 +2956,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">重設安全工作階段</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">取消靜音</string>
@@ -3131,20 +3003,17 @@
     <string name="reminder_header_push_text">讓您的通訊體驗更上一層樓。</string>
     <string name="reminder_header_service_outage_text">Signal 出現技術問題。我們正努力搶修，儘快回復服務。</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Signal 的個人聯絡人搜尋服務暫時無法處理你手機中的聯絡人。</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">了解更多</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Signal 的個人聯絡人搜尋服務無法處理你手機中的聯絡人。</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">了解更多</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">儲存</string>
-    <string name="media_preview__forward_title">轉發</string>
-    <string name="media_preview__share_title">分享</string>
-    <string name="media_preview__all_media_title">所有媒體</string>
     <string name="media_preview__edit_title">編輯</string>
 
 
@@ -3186,7 +3055,7 @@
     <string name="BaseKbsPinFragment__next">下一步</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字 PIN 碼</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3214,7 +3083,7 @@
     <string name="KbsSplashFragment__introducing_pins">PIN 碼登場</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 碼讓在 Signal 中的資訊得以加密保存並僅供您存取。當您重新安裝時，您的個人資料、設定和聯絡人將會還原。開啟應用程式不需輸入 PIN 碼。</string>
     <string name="KbsSplashFragment__learn_more">了解更多</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖定 ＝ PIN 碼</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖定現稱為 PIN 碼，並有更多功用。請立即更新。</string>
     <string name="KbsSplashFragment__update_pin">更新 PIN 碼</string>
@@ -3235,7 +3104,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您的帳戶已被鎖定，以保護您的私隱和安全性。在您的帳戶閒置 %1$d 天後，您將可毋須使用您的 PIN 碼而重新註冊此電話號碼。惟所有內容將會被刪除。</string>
     <string name="AccountLockedFragment__next">下一步</string>
     <string name="AccountLockedFragment__learn_more">了解更多</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">輸入你的 PIN 碼</string>
@@ -3247,7 +3116,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">PIN 碼不正確</string>
     <string name="RegistrationLockFragment__forgot_your_pin">忘記你的 PIN 碼？</string>
     <string name="RegistrationLockFragment__not_many_tries_left">可再試的機會不多了!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal 用戶註冊 — Android 用戶需要 (v1. PIN) PIN 碼的協助</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal 用戶註冊 — Android 用戶需要 (v2. PIN) PIN 碼的協助</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3300,7 +3168,6 @@
     <string name="registration_activity__transfer_account">轉移帳戶</string>
     <string name="registration_activity__skip">略過</string>
     <string name="preferences_chats__chat_backups">聊天備份</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">備份聊天到外部儲存空間</string>
     <string name="preferences_chats__transfer_account">轉移帳戶</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">轉移帳戶至新的 Android 裝置</string>
     <string name="RegistrationActivity_enter_backup_passphrase">輸入備份密碼</string>
@@ -3339,7 +3206,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大型的檔案，而且無法進行備份。請刪除該檔案，並建立新的備份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
-    <string name="ProgressPreference_d_messages_so_far">目前為止 %1$d 則訊息</string>
     <string name="RegistrationActivity_wrong_number">號碼錯誤</string>
     <string name="RegistrationActivity_call_me_instead_available_in">請致電給我 \n （將於%1$02d：%2$02d 內可行）</string>
     <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
@@ -3361,9 +3227,6 @@
     <string name="preferences_app_protection__create_a_pin">建立一個 PIN 碼</string>
     <string name="preferences_app_protection__change_your_pin">變更您的 PIN 碼</string>
     <string name="preferences_app_protection__pin_reminders">PIN 碼提醒</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN 碼讓在 Signal 中的資訊得以加密保存並僅供您存取。當您重新安裝 Signal 時，您的個人資料、設定和聯絡人將會還原。</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">要求輸入您的 Signal PIN 碼才可再次於 Signal 註冊您的電話號碼，藉以增加額外安全性。</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">提醒有助您記住您的 PIN 碼，因為 PIN 碼一旦忘記則無從恢復。隨著時間過去，詢問你的次數將會減少。</string>
     <string name="preferences_app_protection__turn_off">關閉</string>
     <string name="preferences_app_protection__confirm_pin">確認 PIN 碼</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">確認您的 Signal PIN 碼</string>
@@ -3427,7 +3290,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">無法開啟 Wi-Fi 設定。請手動開啟 Wi-Fi。</string>
     <string name="DeviceTransferSetup__grant_location_permission">授予位置權限</string>
     <string name="DeviceTransferSetup__turn_on_location_services">開啟定位服務</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">無法開啟位置設定</string>
     <string name="DeviceTransferSetup__turn_on_wifi">開啟 Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">連接錯誤</string>
     <string name="DeviceTransferSetup__retry">重試</string>
@@ -3436,7 +3298,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">驗證下方代碼在您的新、舊裝置上是否相符。然後輕觸繼續。</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">數字不相符</string>
     <string name="DeviceTransferSetup__continue">繼續</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">數字不相同</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">若您在兩台裝置上的數字不相符，您可能連接上錯誤的裝置。如要修正，請停止轉移，然後再試一次，並讓您的兩台裝置保持接近。</string>
     <string name="DeviceTransferSetup__stop_transfer">停止轉移</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">探索不到舊的裝置</string>
@@ -3466,7 +3327,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">訊息目前進度 %1$s%%…</string>
     <string name="DeviceTransfer__cancel">取消</string>
     <string name="DeviceTransfer__try_again">再試一次</string>
-    <string name="DeviceTransfer__stop_transfer_question">要停止轉移嗎？</string>
     <string name="DeviceTransfer__stop_transfer">停止轉移</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">所有轉移進度將會消失。</string>
     <string name="DeviceTransfer__transfer_failed">轉移失敗</string>
@@ -3474,7 +3334,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">轉移帳戶</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">當您在新的 Android 裝置上設置 Signal 時，您可轉移您的 Signal 帳戶。在繼續之前：</string>
     <string name="OldDeviceTransferInstructions__first_bullet">一、</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">在您新的 Android 裝置上下載 Signal</string>
     <string name="OldDeviceTransferInstructions__second_bullet">二、</string>
@@ -3484,7 +3343,6 @@
     <string name="OldDeviceTransferInstructions__continue">繼續</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">轉移完成</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">前往您新的裝置</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">您的 Signal 資料已轉移至您新的裝置。您必須在新的裝置上繼續註冊，以完成整個轉移過程。</string>
     <string name="OldDeviceTransferComplete__close">關閉</string>
@@ -3511,10 +3369,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">取消並啟用此裝置</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">要轉移 MOB 餘額嗎？</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">您尚有餘額 %1$s。若您在刪除您的帳戶之前，不作轉移到另一個錢包位址，您將會永久失去您的款項。</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">不要轉移</string>
-    <string name="AdvancedPreferenceFragment__transfer">轉移</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">封鎖</string>
@@ -3528,10 +3382,6 @@
     <string name="RecipientBottomSheet_make_admin">設為管理員</string>
     <string name="RecipientBottomSheet_remove_as_admin">撤銷管理員</string>
     <string name="RecipientBottomSheet_remove_from_group">從群組中移除</string>
-    <string name="RecipientBottomSheet_message_description">訊息</string>
-    <string name="RecipientBottomSheet_voice_call_description">語音通話</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">不安全的語音通話</string>
-    <string name="RecipientBottomSheet_video_call_description">視像通話</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">要撤銷 %1$s 的群組管理員身份嗎？</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"「%1$s」將可以編輯此群組及其成員。"</string>
@@ -3635,7 +3485,6 @@
     <string name="DeleteAccountFragment__the_phone_number">您所輸入的電話號碼與您的帳戶不符。</string>
     <string name="DeleteAccountFragment__are_you_sure">您確定要刪除您的帳戶嗎？</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">這將會刪除您的 Signal 帳戶並重設應用程式。過程完成後，應用程式將關閉。</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">刪除帳戶失敗。您現在已連線到互聯網嗎？</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">刪除本機資料失敗。您可在系統應用程式設定中手動進行清除。</string>
     <string name="DeleteAccountFragment__launch_app_settings">開啟應用程式設定</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3666,7 +3515,6 @@
     <string name="ShareActivity__share">分享</string>
     <string name="ShareActivity__send">傳送</string>
     <string name="ShareActivity__comma_s">、%1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">分享到多個聊天僅限於 Signal 訊息</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">無法取得共享意圖數據。</string>
 
@@ -3675,7 +3523,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">您只能分享到最多 %1$d 個聊天</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">聊天背景</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">聊天色彩</string>
@@ -3686,7 +3533,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">深色模式時讓背景變暗</string>
     <string name="ChatWallpaperFragment__contact_name">聯絡人名稱</string>
     <string name="ChatWallpaperFragment__reset">重設</string>
-    <string name="ChatWallpaperFragment__clear">清除</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">背景預覽</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">您要覆寫所有聊天色彩嗎？</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">您要覆寫所有背景嗎？</string>
@@ -3711,7 +3557,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">檢視您的圖片庫需要儲存裝置權限。</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">選取背景圖片</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">捏合以縮放，拖曳以調整。</string>
@@ -3738,9 +3583,9 @@
     <string name="payment_info_card_with_a_high_balance">若有高餘額，您或會希望更新至字母數字 PIN 碼，以便為您的帳戶增加更多保護。</string>
     <string name="payment_info_card_update_pin">更新 PIN 碼</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">停用錢包</string>
@@ -3752,7 +3597,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">要停用而不作轉移嗎？</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">若您選擇重新啟用付款，您的餘額將會保留在您已連結至 Signal 的錢包中。</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">停用錢包時發生錯誤。</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">恢復片語</string>
@@ -3787,13 +3632,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">恢復片語無效</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">請確定您已輸入 %1$d 個字詞，然後再試一次。</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">編輯</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">上一步</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">您的恢復片語</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">請依順序寫下以下 %1$d 個字詞，並將您的清單存放於安全的地方。</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">請確定您的片語輸入正確。</string>
@@ -3821,7 +3665,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">字詞無效</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">剪貼簿已清除。</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">檢視</string>
@@ -3840,7 +3683,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">您的聯絡人或曾與您聊天的人俱不在此群組中。請仔細檢閱方接受請求，以免無謂訊息滋擾。</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">關於訊息請求</string>
     <string name="GroupsInCommonMessageRequest__okay">好</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">這是聊天色彩的預覽。</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">色彩只有您看得見。</string>
 
@@ -3959,7 +3802,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">建立情景以接收僅限您選取的人和群組的通知。</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">通知情景</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">建立情景</string>
@@ -3975,7 +3818,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">新聊天的預設計時器</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">為您開展的所有新對話，預設一個限時訊息計時器。</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">管理你的限時動態和分享對象</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">必須使用 Android 螢幕鎖定或指紋辨識功能來進行滙款</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">無法啟用付款鎖定</string>
@@ -3984,12 +3826,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">無法瀏覽系統設定</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">前往設定</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">取消</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">當訊息是以密封寄件人送達時，在訊息詳情中標示此圖示。</string>
 
@@ -4058,8 +3898,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">頂端邊緣選擇工具</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">底端邊緣選擇工具</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">捐款給 Signal</string>
@@ -4117,20 +3955,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">只有此群組的管理員可以新增至其限時動態</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">找不到聯絡人應用程式</string>
-    <string name="ConversationSettingsFragment__send_message">傳送訊息</string>
     <string name="ConversationSettingsFragment__start_video_call">開始視像通話</string>
     <string name="ConversationSettingsFragment__start_audio_call">開始語音通話</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">限時動態</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">訊息</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">視像</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">語音</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">撥號</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">靜音</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">已靜音</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">搜尋</string>
     <string name="ConversationSettingsFragment__disappearing_messages">限時訊息</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">聲效與通知</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">聯絡人詳情</string>
     <string name="ConversationSettingsFragment__view_safety_number">檢視安全碼</string>
     <string name="ConversationSettingsFragment__block">封鎖</string>
@@ -4164,7 +4009,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">將通知設為靜音</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">非靜音</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">已靜音，直到 %1$s 為止</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">提及</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">總是通知</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">不要通知</string>
@@ -4206,7 +4050,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">無法移除 %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">已將此人儲存到你裝置的聯絡人中。從你的聯絡人中刪除他們，然後再試一次。</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">檢視聯絡人</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s 不是 Signal 用戶</string>
@@ -4231,9 +4075,7 @@
     <string name="AvatarPickerFragment__photo">照片</string>
     <string name="AvatarPickerFragment__text">文字</string>
     <string name="AvatarPickerFragment__save">儲存</string>
-    <string name="AvatarPickerFragment__select_an_avatar">選取一個頭像</string>
     <string name="AvatarPickerFragment__clear_avatar">清除頭像</string>
-    <string name="AvatarPickerFragment__edit">編輯</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">儲存頭像失敗</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4302,7 +4144,6 @@
     <string name="ImageEditorHud__clear_all">全部清除</string>
     <string name="ImageEditorHud__undo">復原</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">切換彩色筆與螢光筆</string>
-    <string name="ImageEditorHud__delete">刪除</string>
     <string name="ImageEditorHud__toggle_between_text_styles">切換文字樣式</string>
 
     <string name="MediaCountIndicatorButton__send">傳送</string>
@@ -4314,7 +4155,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">要捨棄變更嗎？</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">您對此照片所作的任何變更將會遺失。</string>
 
-    <string name="CameraFragment__failed_to_open_camera">無法開啟相機</string>
 
     <string name="BadgesOverviewFragment__my_badges">我的徽章</string>
     <string name="BadgesOverviewFragment__featured_badge">主題徽章</string>
@@ -4322,27 +4162,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">更新個人資料失敗</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">選擇徽章</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">預覽</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">選擇一個徽章</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">你必須選擇一個徽章</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">更新個人資料失敗</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成為延續人</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s 支持 Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s 透過每月捐款支持 Signal。Signal 是非營利機構，背後並無廣告商或投資者，全靠你的支持推動。</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s 透過捐款支持 Signal。Signal 是非營利機構，背後並無廣告商或投資者，全靠你的支持推動。</string>
 
     <string name="ImageView__badge">徽章</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">支持為您而設—而非為您的資料而造—的科技，擔起延續人，成為延續爐火的一分子。</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">支持為您而設、而非為您的資料而造的科技，擔起延續人，成為延續 Signal 爐火的一分子。</string>
-    <string name="SubscribeFragment__currency">貨幣</string>
-    <string name="SubscribeFragment__more_payment_options">更多付款選項</string>
     <string name="SubscribeFragment__cancel_subscription">取消定期贊助</string>
     <string name="SubscribeFragment__confirm_cancellation">確定要取消嗎？</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">我們不會再向你收取費用。你的徽章會在付款週期屆滿時從你的個人檔案中移除。</string>
@@ -4355,7 +4189,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">我們將於今天向你收取新定期贊助的全額價格 (%1$s)。你的定期贊助將會每月續期。</string>
 
     <string name="Subscription__s_per_month">%1$s/月</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">%1$s 續期</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">到期日為 %1$s</string>
@@ -4387,7 +4221,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">更多</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">收據</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">我的支持</string>
     <string name="ManageDonationsFragment__manage_subscription">管理定期贊助</string>
@@ -4395,7 +4228,6 @@
     <string name="ManageDonationsFragment__donation_receipts">捐款收據</string>
     <string name="ManageDonationsFragment__badges">徽章</string>
     <string name="ManageDonationsFragment__subscription_faq">有關定期贊助的常見問答</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">取得定期贊助時發生錯誤。</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他方式捐贈</string>
     <!-- Preference label to launch badge gifting -->
@@ -4403,8 +4235,9 @@
 
     <string name="Boost__enter_custom_amount">請輸入自訂金額</string>
     <string name="Boost__one_time_contribution">單次捐款</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">新增 Signal 集氣</string>
     <string name="MySupportPreference__s_per_month">%1$s/月</string>
     <string name="MySupportPreference__renews_s">%1$s 續期</string>
     <string name="MySupportPreference__processing_transaction">正在處理交易…</string>
@@ -4439,7 +4272,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">我們在收取您的 Signal 延續人付款時遇到問題。請確定您的付款方法仍然有效。若已失效，請到 Google Pay 更新過時的資訊。Signal 將於數天內再次嘗試處理付款。</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">不要再顯示此訊息</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">請聯絡支援團隊以取得更多資訊。</string>
     <string name="Subscription__contact_support">聯絡支援</string>
     <string name="Subscription__get_a_s_badge">獲取 %1$s 徽章</string>
 
@@ -4448,7 +4280,6 @@
     <string name="DonationsErrors__error_processing_payment">處理付款時發生錯誤</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">處理付款時發生錯誤。%1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_payment">系統無法處理你的付款，且並未向你收取費用。請再試一次。</string>
     <string name="DonationsErrors__still_processing">仍在處理中</string>
     <string name="DonationsErrors__couldnt_add_badge">無法新增徽章</string>
@@ -4462,8 +4293,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">無法傳送饋贈徽章。請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_badge_could_not">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_payment_is_still">您的付款仍在處理中。可能需時幾分鐘，視乎您的連線而定。</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay 無法使用</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">你必需設置 Google Pay 才可在應用程式內捐款。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">無法取消定期贊助</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">你必須有網路連線才可取消定期贊助。</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此未能進行定期贊助並贈予徽章。你仍可在我們的網站上捐款以支持 Signal。</string>
@@ -4480,10 +4309,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">饋贈徽章</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="other">為期 %1$d 個月</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">換領</string>
     <!-- Gift badge view action label -->
@@ -4493,7 +4318,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">已換領</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">試試換另一個付款方法，又或者聯絡您的銀行取得更多資訊。</string>
@@ -4697,9 +4521,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">禮品</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">集氣</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">詳細資料</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">捐款類型</string>
     <!-- Donation receipts date paid heading -->
@@ -4836,7 +4658,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">正在私下回覆 %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">私下回覆</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">複製</string>
     <!-- Context menu item to delete a story response -->
@@ -4852,11 +4673,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">誰可以瀏覽此限時動態</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">對這些人隱藏限時動態</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">所有 Signal 的人脈</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">與所有人脈分享</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">所有人，除了…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -4904,19 +4723,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">移除</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">您確定嗎？</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">此動作無法復原。</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">編輯限時動態名稱</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">限時動態名稱</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">儲存</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">輕觸以新增文字</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">字</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">新增文字</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -4932,7 +4747,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">搜尋</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">發生未預期錯誤</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">請輸入有效的連結。</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -4954,17 +4768,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">刪除</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">限時動態僅適用於 Signal 測試版用戶。</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">只有使用 Signal 測試版的用戶能看到你分享的限時動態。</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">要新增至限時動態嗎？</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">新增內容至你的限時動態，讓你的 Signal 人脈瀏覽 24 小時。你可以在「設定」中更改誰可以瀏覽你的限時動態。</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">新增至限時動態</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">編輯瀏覽者</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">無法發送限時動態。請檢查你的網路連線，然後再試一次。</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -4972,9 +4780,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">關閉並刪除</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">分享與瀏覽限時動態</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">關閉此選項時，你將無法再分享或瀏覽限時動態。</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">選擇瀏覽者</string>
     <!-- New story viewer selection action button label -->
@@ -5035,13 +4841,9 @@
     <string name="StoryDialogs__view_profile_photo">檢視個人資料照片</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">要關閉審查規避嗎？</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">您現可直接連線到 Signal 服務以享有更佳體驗。</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">不必了</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">關閉</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">你對 %1$s 的限時動態表達了心情</string>
@@ -5235,13 +5037,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">檔案大小</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">已傳送</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">已撰寫</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">失敗</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">資訊</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5263,7 +5061,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">限時動態</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">限時動態瀏覽次數</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">已瀏覽標記</string>
     <!-- Story view receipts toggle message -->
@@ -5314,7 +5111,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">你需要大約 %1$s 才能匯出短訊，請確保在繼續之前有足夠的空間。</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">仍要繼續</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal 需要獲取短訊權限才能匯出你的短訊。</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5428,9 +5225,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">確保您的手機上有額外的 %1$s 容量以匯出短訊</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">重試匯出，這只會重試尚未匯出的短訊</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">如果問題持續， </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">聯絡我們</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">重試</string>
@@ -5473,28 +5270,26 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">正在取消…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">系統已處理太多聯絡人</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="other">系統會在 %1$d 天內再次嘗試處理你的聯絡人。</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">要盡速解決此問題，你可以考慮從同步大量聯絡人的手機中刪除聯絡人或帳戶。</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">開啟聯絡人</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">找不到聯絡人應用程式</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">系統無法處理聯絡人</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">你手機的聯絡人超出 Signal 可以處理的數量。如要在 Signal 上尋找聯絡人，請考慮從同步大量聯絡人的手機中刪除聯絡人或帳戶。</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">了解更多</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">開啟聯絡人</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">找不到聯絡人應用程式</string>
 
     <!-- PaymentMessageView -->
@@ -5523,5 +5318,9 @@
     <string name="GroupStoryEducationSheet__next">下一步</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

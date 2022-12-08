@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">بله</string>
     <string name="no">خیر</string>
@@ -23,65 +22,40 @@
     <string name="save">ذخیره</string>
     <string name="note_to_self">یادداشت برای خود</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">پیام جدید</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">سیگنال در حال به‌روزرسانی است…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">در حال حاضر: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">شما هنوز گذرواژه‌ای تنظیم نکرده‌اید!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">غیرفعال کردن گذرواژه؟</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">این گزینه باعث باز شدن دائمی قفل سیگنال و اعلان‌ها‌ی پیام خواهد شد.</string>
     <string name="ApplicationPreferencesActivity_disable">غیرفعال کردن</string>
-    <string name="ApplicationPreferencesActivity_unregistering">لغو عضویت</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">لغو عضویت از پیام‌‌ها و تماس‌‌های سیگنال…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">غیرفعال کردن تماس‌ها و پیام‌های سیگنال؟</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">غیرفعال کردن پیام‌ها و تماس‌های سیگنال از طریق لغو عضو‌‌یت از سرور. در آینده برای استفاده از سیگنال باید دوباره از طریق شماره‌تلفن خود ثبت‌نام کنید.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">خطا در اتصال به سرور!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">پیامک فعال شد</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">برای تغییر برنامهٔ پیش‌فرض پیامک خود لمس کنید</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">پیامک غیرفعال شد</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">برای تبدیل سیگنال به برنامهٔ پیامک پیش‌فرض خود ضربه بزنید</string>
-    <string name="ApplicationPreferencesActivity_on">روشن</string>
-    <string name="ApplicationPreferencesActivity_On">روشن</string>
-    <string name="ApplicationPreferencesActivity_off">خاموش</string>
-    <string name="ApplicationPreferencesActivity_Off">خاموش</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">پیامک %1$s، فراپیام %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">قفل صفحه %1$s، قفل ثبت‌نام %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">طرح زمینه %1$s، زبان %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">پین‌ها برای قفل ثبت‌نام لازم هستند. برای غیرفعال کردن پین‌ها، لطفاً ابتدا قفل ثبت‌نام را غیرفعال کنید.</string>
     <string name="ApplicationPreferencesActivity_pin_created">پین ایجاد شد.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">پین غیرفعال شد.</string>
-    <string name="ApplicationPreferencesActivity_hide">پنهان کردن</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">پنهان کردن یادآور؟</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">عبارت بازیابی پرداخت‌ها را ثبت کنید</string>
     <string name="ApplicationPreferencesActivity_record_phrase">ثبت عبارت</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">قبل از اینکه قادر به غیرفعال کردن پین خود باشید، باید عبارت بازیابی پرداخت‌های خود را ثبت کنید تا مطمئن شوید که می‌توانید حساب کاربری پرداخت‌های خود را بازیابی کنید.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$d دقیقه</item>
-        <item quantity="other">%1$d دقیقه</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(تصویر)</string>
@@ -129,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">مسدود کردن کاربر؟</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">«%1$s» امکان برقراری تماس یا ارسال پیام به شما را نخواهد داشت.</string>
     <string name="BlockedUsersActivity__block">مسدود کردن</string>
-    <string name="BlockedUsersActivity__unblock_user">رفع مسدودیت کاربر؟</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">می‌خواهید «%1$s» را رفع مسدودیت کنید؟</string>
-    <string name="BlockedUsersActivity__unblock">رفع مسدودیت</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -139,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">مبلغ کمک مالی: %1$s در ماه</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">اطلاعات کارت خود را در زیر وارد کنید</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">مشخصات کارت خود را وارد کنید. سیگنال اطلاعات شخصی شما را جمع آوری یا ذخیره نمی‌کند.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -249,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">هزینه‌های اپراتور ممکن است اعمال شود. شماره‌ای که می‌خواهید با آن تماس بگیرید در سیگنال ثبت‌نام نشده است. این تماس از طریق اپراتور تلفن همراه شما گرفته خواهد شد، نه از طریق اینترنت.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">شمارهٔ ایمنی شما با %1$s تغییر یافته است. این می‌تواند به این معنا باشد که شخصی سعی دارد تا ارتباطات شما را شنود کند یا %2$s فقط سیگنال را دوباره نصب کرده است.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">ممکن است بخواهید که شمارهٔ ایمنی خود را با این مخاطب وارسی کنید.</string>
-    <string name="ConfirmIdentityDialog_accept">پذیرفتن</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">آخرین گفتگوها</string>
@@ -271,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">ویرایش نام</string>
     <string name="ContactNameEditActivity_given_name">نام</string>
     <string name="ContactNameEditActivity_family_name">نام خانوادگی</string>
     <string name="ContactNameEditActivity_prefix">پیشوند</string>
@@ -311,17 +277,17 @@
     <string name="ConversationItem_pending">  در حال انتظار</string>
     <string name="ConversationItem_this_message_was_deleted">این پیام حذف شد</string>
     <string name="ConversationItem_you_deleted_this_message">شما این پیام را حذف کردید.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">پیام بارگیری نمی‌شود. %1$s باید دوباره آن را ارسال کند.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">تصویر بارگیری نمی‌شود. %1$s باید دوباره آن را ارسال کند.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">ویدیو بارگیری نمی‌شود. %1$s باید دوباره آن را ارسال کند.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">پیام بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">تصویر بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">ویدیو بارگیری نمی‌شود. باید دوباره آن را ارسال کنید.</string>
 
     <!-- ConversationActivity -->
@@ -343,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">پیامک ناامن (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">فراپیام ناامن</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">فراپیام ناامن (%1$s)</string>
     <string name="ConversationActivity_transport_signal">پیام سیگنال</string>
     <string name="ConversationActivity_lets_switch_to_signal">بیایید از سیگنال استفاده کنیم: %1$s</string>
     <string name="ConversationActivity_specify_recipient">لطفاً یک مخاطب را انتخاب کنید</string>
@@ -389,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">حذف و ترک گروه</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">برای تماس با %1$s، سیگنال به دسترسی میکروفون شما نیاز دارد.</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">امکانات بیشتر هم‌اکنون در «تنظیمات گروه»</string>
 
     <string name="ConversationActivity_join">پیوستن</string>
     <string name="ConversationActivity_full">پر شده</string>
@@ -410,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">پیامک دیگر در سیگنال پشتیبانی نمی‌شود. برای ادامه مکالمه در اینجا، %1$s را به سیگنال دعوت کنید.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">دعوت به سیگنال</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">به‌زودی دوباره به شما یادآوری خواهد شد.</string>
 
     <!-- ConversationAdapter -->
@@ -650,10 +614,6 @@
     <string name="CustomDefaultPreference_none">هیچ‌کدام</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">انتخاب عکس</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">گرفتن عکس</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">انتخاب از گالری</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">حذف عکس</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">گرفتن عکس به مجوز دوربین نیاز دارد.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">مشاهدهٔ گالری شما نیاز به مجوز ذخیره‌سازی دارد.</string>
 
@@ -709,8 +669,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">خطا در هنگام بازیابی کامل گیف با کیفیت کامل</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">گیف‌ها</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">استیکرها</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">افزودن عضو؟</string>
@@ -735,7 +693,7 @@
     <string name="GroupManagement_access_level_all_members">همهٔ اعضا</string>
     <string name="GroupManagement_access_level_only_admins">فقط مدیران</string>
     <string name="GroupManagement_access_level_no_one">هیچ‌کس</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -866,7 +824,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">انجام شد</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">این فرد نمی‌تواند به گروه‌های قدیمی اضافه شود.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">این فرد نمی‌تواند به گروه‌های اطلاع‌رسانی اضافه شود.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">«%1$s» به «%2$s» افزوده شود؟</item>
         <item quantity="other">%3$d عضو به «%2$s» افزوده شوند؟</item>
@@ -894,34 +851,13 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">شما مخاطبی را انتخاب کردید که از گروه‌های سیگنال پشتیبانی نمی‌کند، این یک گروه فراپیامی (MMS) خواهد بود. اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل مشاهده خواهد بود. پشتیبانی از گروه‌های فراپیامی به‌زودی حذف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">درخواست‌های عضویت و دعوت‌ها</string>
-    <string name="ManageGroupActivity_add_members">افزودن اعضا</string>
-    <string name="ManageGroupActivity_edit_group_info">ویرایش اطلاعات گروه</string>
     <string name="ManageGroupActivity_who_can_add_new_members">چه کسی می‌تواند اعضای جدید اضافه کند؟</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">چه کسی می‌تواند اطلاعات این گروه را ویرایش کند؟</string>
-    <string name="ManageGroupActivity_group_link">پیوند گروه</string>
-    <string name="ManageGroupActivity_block_group">مسدود کردن گروه</string>
-    <string name="ManageGroupActivity_unblock_group">رفع مسدودیت گروه</string>
-    <string name="ManageGroupActivity_leave_group">ترک گروه</string>
-    <string name="ManageGroupActivity_mute_notifications">بستن اعلان‌ها</string>
-    <string name="ManageGroupActivity_custom_notifications">اعلان‌ها‌ی سفارشی</string>
-    <string name="ManageGroupActivity_mentions">اشاره‌ها</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">رنگ و کاغذدیواری گفتگو</string>
-    <string name="ManageGroupActivity_until_s">تا %1$s</string>
-    <string name="ManageGroupActivity_always">همیشه</string>
-    <string name="ManageGroupActivity_off">خاموش</string>
-    <string name="ManageGroupActivity_on">روشن</string>
-    <string name="ManageGroupActivity_view_all_members">مشاهدهٔ همهٔ اعضا</string>
-    <string name="ManageGroupActivity_see_all">مشاهدهٔ همه</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d اضافه شد.</item>
         <item quantity="other">%1$d عضو اضافه شدند.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را فعال یا غیرفعال کنند.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">فقط مدیران می‌توانند امکان تأیید کاربران جدید را فعال یا غیرفعال کنند.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">فقط مدیران می‌توانند پیوند قابل اشتراک گروه را بازنشانی کنند.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">شما اجازهٔ انجام این کار را ندارید</string>
     <string name="ManageGroupActivity_not_capable">یکی از کسانی که شما اضافه کردید از گروه‌های جدید پشتیبانی نمی‌کند و باید سیگنال را به‌روزرسانی کند</string>
@@ -987,18 +923,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">تغییر صدا و لرزش</string>
     <string name="CustomNotificationsDialogFragment__call_settings">تنظیمات تماس</string>
     <string name="CustomNotificationsDialogFragment__ringtone">صدای زنگ</string>
-    <string name="CustomNotificationsDialogFragment__enabled">فعال</string>
-    <string name="CustomNotificationsDialogFragment__disabled">غیرفعال</string>
     <string name="CustomNotificationsDialogFragment__default">پیش‌فرض</string>
     <string name="CustomNotificationsDialogFragment__unknown">ناشناخته</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">پیوند قابل اشتراک گروه</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">مدیریت و اشتراک‌گذاری</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">پیوند گروه</string>
     <string name="ShareableGroupLinkDialogFragment__share">اشتراک‌گذاری</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">بازنشانی پیوند</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">درخواست‌های عضویت</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">تأیید اعضای جدید</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">نیاز به یک مدیر برای تأیید اعضای جدیدی که از طریق پیوند گروه می‌پیوندند.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">آیا از بازنشانی پیوند گروه اطمینان دارید؟ افراد دیگر نمی‌توانند با استفاده از پیوند فعلی به گروه بپیوندند.</string>
@@ -1044,7 +975,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">برای استفاده از پیوند‌های گروه سیگنال را به‌روزرسانی کنید</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">این نسخه از سیگنال که از آن استفاده می‌کنید از این پیوند گروه استفاده نمی‌کند. برای پیوستن به این گروه از طریق پیوند به آخرین نسخه به‌روزرسانی کنید.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">به‌روزرسانی سیگنال</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">یک یا چند عدد از دستگاه‌های پیوند داده شدهٔ شما در حال اجرای نسخه‌ای از سیگنال هستند که از پیوند‌های گروه پشتیبانی نمی‌کند. سیگنال را بر روی دستگاه‌(ها)ی پیوند داده شدهٔ خود به‌روزرسانی کنید تا به این گروه بپیوندید.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">پیوند گروه معتبر نیست</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1127,7 +1057,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">در حال حذف</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">حذف پیام‌ها…</string>
-    <string name="MediaOverviewActivity_Select_all">انتخاب همه</string>
     <string name="MediaOverviewActivity_collecting_attachments">جمع‌آوری پیوست‌ها…</string>
     <string name="MediaOverviewActivity_Sort_by">مرتب‌سازی بر اساس</string>
     <string name="MediaOverviewActivity_Newest">جدیدترین</string>
@@ -1155,9 +1084,8 @@
     <string name="MediaOverviewActivity_audio">صوت</string>
     <string name="MediaOverviewActivity_video">ویدئو</string>
     <string name="MediaOverviewActivity_image">تصویر</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">پیام صوتی</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">ارسال شد از %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">ارسال شد از شما</string>
@@ -1205,26 +1133,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">خطا در بارگیری پیام چندرسانه‌ای، برای تلاش مجدد ضربه بزنید</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">ارسال به %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">باز کردن دوربین</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">افزودن یک زیرنویس…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">یک مورد به دلیل عدم رعایت محدودیت اندازه حذف شد</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">یک مورد به دلیل داشتن یک نوع ناشناخته حذف شد</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">یک مورد به دلیل عدم رعایت محدودیت اندازه یا داشتن نوع ناشناخته حذف شد</string>
     <string name="MediaSendActivity_camera_unavailable">دوربین در دسترس نیست.</string>
-    <string name="MediaSendActivity_message_to_s">پیام به %1$s</string>
-    <string name="MediaSendActivity_message">پیام</string>
-    <string name="MediaSendActivity_select_recipients">گیرندگان را انتخاب کنید</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">برای نمایش مخاطبین سیگنال به دسترسی به آن‌ها نیاز دارد.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">برای نشان دادن مخاطبین شما سیگنال نیاز به دسترسی مخاطبین دارد، اما این دسترسی داده نشده است. لطفاً به بخش مدیریت برنامه‌ها در تنظیمات تلفن همراه خود رفته، در بخش «مجوزها» گزینهٔ «مخاطبین» را فعال کنید.</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">شما نمی‌توانید بیش از %1$d مورد را به اشتراک بگذارید.</item>
-        <item quantity="other">شما نمی‌توانید بیش از %1$d مورد را به اشتراک بگذارید.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">گیرندگان را انتخاب کنید</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">اینجا ضربه بزنید تا این پیام پس از مشاهده شدن ناپدید شود.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">همهٔ رسانه‌ها</string>
@@ -1434,7 +1346,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">این قابلیت جدید را می‌پسندید؟ با کمک مالی یک‌باره از سیگنال پشتیبانی کنید.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">سابقه پیام شما با %1$s و شماره او %2$s ادغام شده است.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">سابقه پیام شما با %1$s و گفتگوی دیگری که متعلق به او بود ادغام شده است.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">شما به %1$s درخواستی برای فعال کردن پرداخت‌ها ارسال کردید</string>
@@ -1497,7 +1409,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">به این گروه می‌پیوندید و نام و عکس خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که نپذیرید پیام‌های آنها را نخواهید دید.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">به این گروه می‌پیوندید؟ تا زمانی که نپذیرید آن‌ها متوجه نخواهند شد که پیام‌شان را خوانده‌اید.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">این گروه را رفع مسدودیت می‌کنید و نام و عکس‌ خود را با اعضای آن به اشتراک می‌گذارید؟ تا زمانی که آن‌ها را رفع مسدودیت نکنید هیچ پیامی دریافت نخواهید کرد.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">مشاهده</string>
     <string name="MessageRequestProfileView_member_of_one_group">عضو %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">عضو %1$s و %2$s</string>
@@ -1595,7 +1507,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">پین خود را ایجاد کنید</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">فرصت‌های شما برای حدس زدن پین تمام شد، اما شما هنوز می‌توانید با ایجاد یک پین جدید به حساب کاربری سیگنال خود دسترسی داشته باشید. به منظور حفظ امنیت و حریم خصوصی شما، حساب کاربری‌تان بدون هیچ اطلاعات و تنظیمات از پیش ذخیره‌شده‌ای بازگردانی خواهد شد.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">ایجاد پین جدید</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">هشدار</string>
@@ -1633,7 +1545,6 @@
     <string name="RecipientPreferenceActivity_unblock">رفع مسدودیت</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">گروه بدون نام</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">پاسخ‌دهی…</string>
@@ -1648,9 +1559,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">روز 💜 مبارک!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">مهربانی خود را با تبدیل شدن به یک حامی سیگنال نشان دهید.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">برای فعال‌سازی ویدئو اینجا ضربه بزنید</string>
@@ -1676,7 +1585,6 @@
     <string name="WebRtcCallView__join_call">پیوستن به تماس</string>
     <string name="WebRtcCallView__call_is_full">ظرفیت تماس تکمیل است</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">به حداکثر تعداد %1$d شرکت‌کننده برای این تماس رسیده‌اید، بعد‌اً دوباره امتحان کنید.</string>
-    <string name="WebRtcCallView__view_participants_list">مشاهدهٔ شرکت‌کنندگان</string>
     <string name="WebRtcCallView__your_video_is_off">ویدئوی شما خاموش است</string>
     <string name="WebRtcCallView__reconnecting">در حال اتصال دوباره…</string>
     <string name="WebRtcCallView__joining">در حال پیوستن…</string>
@@ -1715,19 +1623,25 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s در این تماس حضور دارد</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s نفر در این تماس هستند</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s و %2$s در این تماس حضور دارند</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s در حال ارائه است</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
         <item quantity="other">%1$s، %2$s و %3$d نفر دیگر در این تماس حضور دارند</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">برگرداندن</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">بلندگو</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">دوربین</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">باصدا</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">بستن</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">زنگ زدن</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">پایان دادن به تماس</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1823,12 +1737,12 @@
     <string name="SearchFragment_header_messages">پیام‌ها</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">افزودن به مخاطبین</string>
@@ -1909,7 +1823,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">این گزارش به صورت عمومی و آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، شما می‌توانید قبل از بارگذاری آن را بازرسی کنید.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">فیلتر:</string>
     <string name="SupportEmailUtil_device_info">اطلاعات دستگاه:</string>
     <string name="SupportEmailUtil_android_version">نسخهٔ اندروید:</string>
@@ -1990,11 +1904,9 @@
     <string name="UsernameEditFragment__choose_your_username">نام کاربری خود را انتخاب کنید</string>
     <string name="UsernameEditFragment_username">نام کاربری</string>
     <string name="UsernameEditFragment_delete">حذف</string>
-    <string name="UsernameEditFragment_successfully_set_username">نام کاربری با موفقیت تنظیم شد.</string>
     <string name="UsernameEditFragment_successfully_removed_username">نام کاربری با موفقیت حذف شد.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">خطای شبکه رخ داد.</string>
     <string name="UsernameEditFragment_this_username_is_taken">این نام کاربری گرفته شده است.</string>
-    <string name="UsernameEditFragment_this_username_is_available">این نام کاربری در دسترس است.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">نام‌های کاربری فقط می‌توانند شامل a-Z ،0-9 و _ باشند.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">نام‌های کاربری نمی‌توانند با عدد آغاز شوند.</string>
     <string name="UsernameEditFragment_username_is_invalid">نام کاربری نامعتبر است.</string>
@@ -2031,10 +1943,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">شما باید ابتدا چند پیام مبادله کنید تا شمارهٔ ایمنی %1$s را مشاهده کنید.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام برای نشست ناموجود رمزگذاری شده است</string>
@@ -2075,7 +1987,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">برنامه‌ای برای اشتراک‌گذاری این رسانه پیدا نشد.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">بستن</string>
     <string name="MediaPreviewFragment_edit_media_error">خطای رسانه</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">خطا در حذف پیام، ممکن است پیام همچنان وجود داشته باشد</string>
 
     <!-- MessageNotifier -->
@@ -2095,8 +2007,6 @@
     <string name="MessageNotifier_reply">پاسخ</string>
     <string name="MessageNotifier_signal_message">پیام سیگنال</string>
     <string name="MessageNotifier_unsecured_sms">پیامک ناامن</string>
-    <string name="MessageNotifier_you_may_have_new_messages">پیام‌ جدید دارید</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">برای مشاهدهٔ آخرین اعلان‌ها سیگنال را باز کنید.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">مخاطب</string>
     <string name="MessageNotifier_reacted_s_to_s">%1$s به «%2$s» واکنش نشان داد.</string>
@@ -2178,7 +2088,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">برای ادامه استفاده از پرداخت‌ها، سیگنال را به‌روزرسانی کنید. موجودی شما ممکن است به‌روز نباشد.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">همین حالا به‌روزرسانی کن</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">برای پاسخ به تماس، به سیگنال دسترسی به میکروفون خود را بدهید.</string>
@@ -2194,8 +2103,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">برای تغییر دادن نماها به بالا بکشید.</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">رد کردن</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">پاسخ دهید</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">پاسخ دادن بدون تصویر</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2213,7 +2125,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">گذرواژهٔ قدیمی</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">نام یا شماره را وارد کنید</string>
     <string name="contact_selection_activity__invite_to_signal">دعوت به سیگنال</string>
     <string name="contact_selection_activity__new_group">گروه جدید</string>
 
@@ -2351,7 +2262,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">تغییرات شمارهٔ ایمنی</string>
     <string name="safety_number_change_dialog__accept">پذیرفتن</string>
-    <string name="safety_number_change_dialog__send_anyway">در هر صورت ارسال کن</string>
     <string name="safety_number_change_dialog__call_anyway">در هر صورت تماس بگیر</string>
     <string name="safety_number_change_dialog__join_call">پیوستن به تماس</string>
     <string name="safety_number_change_dialog__continue_call">ادامهٔ تماس</string>
@@ -2499,8 +2409,6 @@
     <string name="CreateProfileActivity_first_name_required">نام کوچک (الزامی)</string>
     <string name="CreateProfileActivity_last_name_optional">نام خانوادگی (اختیاری)</string>
     <string name="CreateProfileActivity_next">بعدی</string>
-    <string name="CreateProfileActivity__username">نام کاربری</string>
-    <string name="CreateProfileActivity__create_a_username">ایجاد نام کاربری</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">اسم‌ها و عکس‌های سفارشی گروه فراپیامی فقط برای شما قابل دیدن هستند.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">توضیحات گروه برای اعضای این گروه و کسانی که دعوت شده‌اند قابل رؤیت خواهد بود.</string>
 
@@ -2520,7 +2428,7 @@
     <string name="EditProfileFragment__edit_group">ویرایش گروه</string>
     <string name="EditProfileFragment__group_name">نام گروه</string>
     <string name="EditProfileFragment__group_description">توضیحات گروه</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">نام شما</string>
@@ -2533,7 +2441,6 @@
     <string name="recipient_preference_activity__shared_media">رسانه‌های اشتراک‌گذاری شده</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>یک نام یا شماره را وارد کنید</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[ برای وارسی امنیت رمزگذاری سرتاسر خود با %1$s، ارقام بالا را با ارقام روی دستگاه آن‌ها مقایسه کنید. همچنین می‌توانید کد روی تلفن آن‌ها را اسکن کنید. <a href=\"https://signal.org/redirect/safety-numbers\">بیشتر یاد بگیرید.</a>]]></string>
@@ -2580,7 +2487,6 @@
     <string name="AndroidManifest__select_contacts">انتخاب مخاطبین</string>
     <string name="AndroidManifest__change_passphrase">تغییر گذرواژه</string>
     <string name="AndroidManifest__verify_safety_number">وارسی شمارهٔ ایمنی</string>
-    <string name="AndroidManifest__log_submit">ارسال گزارش عیب‌یابی</string>
     <string name="AndroidManifest__media_preview">پیش‌نمایش رسانه‌</string>
     <string name="AndroidManifest__message_details">جزئیات پیام</string>
     <string name="AndroidManifest__linked_devices">دستگاه‌های پیوند داده شده</string>
@@ -2602,13 +2508,13 @@
     <string name="HelpFragment__whats_this">توضیحات</string>
     <string name="HelpFragment__how_do_you_feel">چه حسی دارید؟ (اختیاری)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">به ما دلیل تماس‌تان را بگویید</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">اطلاعات پشتیبانی</string>
     <string name="HelpFragment__signal_android_support_request">درخواست پشتیبانی برای سیگنال اندروید</string>
     <string name="HelpFragment__debug_log">گزارش عیب‌یابی:</string>
@@ -2681,12 +2587,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">بتا</string>
     <string name="preferences__sms_mms">پیامک (SMS) و فراپیام (MMS)</string>
-    <string name="preferences__pref_all_sms_title">دریافت همهٔ پیامک‌ها</string>
-    <string name="preferences__pref_all_mms_title">دریافت همهٔ فراپیام‌ها</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">استفاده از سیگنال برای همهٔ پیام‌های متنی ورودی</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">استفاده از سیگنال برای همهٔ پیام‌های چندرسانه‌ای ورودی</string>
-    <string name="preferences__pref_enter_sends_title">ارسال با کلید Enter</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">پیام‌ها با زدن کلید Enter ارسال خواهند شد</string>
     <string name="preferences__pref_use_address_book_photos">استفاده از عکس‌های دفترچهٔ تلفن</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">نمایش عکس‌های مخاطبین از دفترچهٔ تلفن در صورت وجود</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2695,14 +2595,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">چت‌های بی‌صدا که بایگانی می‌شوند، پس از دریافت پیام جدید نیز در بایگانی می‌مانند.</string>
     <string name="preferences__generate_link_previews">تولید پیش‌نمایش‌‌های پیوند</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">پیش‌نمایش‌های پیوند را به صورت مستقیم از وب‌سایت‌ها برای پیام‌هایی که ارسال می‌کنید، دریافت کنید.</string>
-    <string name="preferences__choose_identity">انتخاب هویت</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">مخاطب خود را از فهرست مخاطبین انتخاب کنید.</string>
     <string name="preferences__change_passphrase">تغییر گذرواژه</string>
     <string name="preferences__change_your_passphrase">گذرواژهٔ خود را تغییر دهید</string>
     <string name="preferences__enable_passphrase">فعال‌سازی گذرواژهٔ قفل صفحه</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">صفحه و اعلان‌ها را با یک گذرواژه قفل کنید</string>
     <string name="preferences__screen_security">امنیت صفحه</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">مسدود کردن عکس از صفحه در فهرست آخرین‌ها و درون برنامه</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">قفل کردن خودکار سیگنال بعد از یک بازهٔ زمانی تعیین شدهٔ عدم فعالیت</string>
     <string name="preferences__inactivity_timeout_passphrase">گذرواژهٔ پایان مهلت عدم فعالیت</string>
     <string name="preferences__inactivity_timeout_interval">بازهٔ زمان عدم فعالیت</string>
@@ -2738,7 +2635,6 @@
     <string name="preferences__advanced">پیشرفته</string>
     <string name="preferences__donate_to_signal">اهدای کمک مالی به سیگنال</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">کمک مالی یک‌باره</string>
     <string name="preferences__privacy">حریم خصوصی</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">استوری‌ها</string>
@@ -2765,7 +2661,6 @@
     <string name="preferences__dark_theme">تاریک</string>
     <string name="preferences__appearance">ظاهر برنامه</string>
     <string name="preferences__theme">طرح زمینه</string>
-    <string name="preferences__chat_wallpaper">کاغذدیواری گفتگو</string>
     <string name="preferences__chat_color_and_wallpaper">رنگ و کاغذدیواری گفتگو</string>
     <string name="preferences__disable_pin">غیرفعال کردن پین</string>
     <string name="preferences__enable_pin">فعال کردن پین</string>
@@ -2787,8 +2682,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر نشانگرهای نوشتن غیرفعال باشند، شما قادر به دیدن نشانگرهای نوشتن دیگران نخواهید بود.</string>
     <string name="preferences__request_keyboard_to_disable">درخواست از صفحه‌کلید برای غیرفعال کردن یادگیری شخصی‌سازی شده.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">اعمال این تنظیم ضمانت شده نیست و ممکن است صفحه‌کلید شما آن را نادیده بگیرد.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">کاربران مسدود شده</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">هنگام استفاده از داده‌های تلفن همراه</string>
     <string name="preferences_chats__when_using_wifi">هنگام استفاده از Wi-Fi</string>
     <string name="preferences_chats__when_roaming">هنگام رومینگ</string>
@@ -2816,32 +2710,22 @@
     <string name="preferences_storage__s_messages">%1$s پیام</string>
     <string name="preferences_storage__custom">سفارشی</string>
     <string name="preferences_advanced__use_system_emoji">استفاده از ایموجی‌های سیستم</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">غیرفعال کردن پشتیبانی از ایموجی‌های درون سیگنال</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">گذراندن تمامی تماس‌ها از سرور سیگنال به منظور جلوگیری از آشکار شدن نشانی اینترنتی شما برای مخاطبین‌تان. فعال‌سازی این گزینه باعث کاهش کیفیت تماس می‌گردد.</string>
     <string name="preferences_advanced__always_relay_calls">عبور همیشگی تماس‌ها</string>
     <string name="preferences_app_protection__who_can">چه کسی می‌تواند….</string>
-    <string name="preferences_app_protection__app_access">دسترسی برنامه</string>
-    <string name="preferences_app_protection__communication">ارتباطات</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">پرداخت‌ها</string>
     <string name="preferences_chats__chats">گفتگوها</string>
     <string name="preferences_data_and_storage__manage_storage">مدیریت حافظه</string>
-    <string name="preferences_data_and_storage__calls">تماس‌ها</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">استفادهٔ کمتر داده‌ها برای تماس‌ها</string>
     <string name="preferences_data_and_storage__never">هرگز</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi و داده‌های تلفن همراه</string>
     <string name="preferences_data_and_storage__mobile_data_only">و داده‌های تلفن همراه</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">استفادهٔ کمتر داده‌ها ممکن است کیفیت تماس‌ها را بر روی شبکه‌های ضعیف بهبود ببخشد</string>
-    <string name="preferences_notifications__messages">پیام‌ها</string>
-    <string name="preferences_notifications__events">رخدادها</string>
     <string name="preferences_notifications__in_chat_sounds">صداها در حین گفتگو</string>
     <string name="preferences_notifications__show">نمایش</string>
-    <string name="preferences_notifications__calls">تماس‌ها</string>
     <string name="preferences_notifications__ringtone">صدای زنگ</string>
-    <string name="preferences_chats__show_invitation_prompts">نمایش گزینه‌ٔ دعوت‌نامه</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">نمایش گزینهٔ ارسال دعوت‌نامه برای مخاطبینی که عضو سیگنال نیستند</string>
     <string name="preferences_chats__message_text_size">اندازهٔ قلم پیام</string>
-    <string name="preferences_events__contact_joined_signal">مخاطب به سیگنال پیوست</string>
     <string name="preferences_notifications__priority">اولویت</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">عبور از فیلترینگ</string>
@@ -2857,8 +2741,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">عبور از فیلترینگ تنها زمانی می‌تواند فعال شود که اینترنت متصل باشد.</string>
     <string name="preferences_communication__category_sealed_sender">فرستندهٔ ناشناس</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">نمایش نشانگرها</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"نمایش آیکون وضعیت هنگامی که شما «جزئیات پیام» را بر روی پیام‌‌هایی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند انتخاب می‌کنید."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">اجازه به همه</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">فعال‌سازی فرستندهٔ ناشناس برای پیام‌های ورودی از غیرمخاطبین و کسانی که پروفایل خود را با آن‌ها به اشتراک نگذاشته‌اید.</string>
     <string name="preferences_communication__sealed_sender_learn_more">بیشتر یاد بگیرید</string>
@@ -2884,9 +2766,9 @@
     <string name="configurable_single_select__customize_option">گزینهٔ سفارشی‌سازی</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -2901,7 +2783,6 @@
     <string name="PaymentsHomeFragment__activating_payments">فعال کردن پرداخت‌ها…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">بازگردانی حساب کاربری پرداخت‌ها</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">هنوز فعالیت تازه‌ای وجود ندارد</string>
-    <string name="PaymentsHomeFragment__pending_requests">درخواست‌های در حال انتظار</string>
     <string name="PaymentsHomeFragment__recent_activity">فعالیت اخیر</string>
     <string name="PaymentsHomeFragment__see_all">مشاهدهٔ همه</string>
     <string name="PaymentsHomeFragment__add_funds">افزودن اعتبار</string>
@@ -2930,13 +2811,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">پرداخت‌ها غیرفعال شدند</string>
     <string name="PaymentsHomeFragment__payment_failed">پرداخت ناموفق بود</string>
     <string name="PaymentsHomeFragment__details">جزئیات</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">شما می‌توانید از سیگنال برای ارسال و دریافت MobileCoin استفاده کنید. همهٔ پرداخت‌ها شامل شرایط استفادهٔ MobileCoin و کیف پول MobileCoin می‌شوند. این یک قابلیت بتا است، بنابراین ممکن است شما با اشکالاتی مواجه شوید و پرداخت‌ها و موجودی‌هایی را که ممکن است از دست بدهید قابل بازیابی نخواهند بود. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">شما می‌توانید از سیگنال برای ارسال و دریافت MobileCoin استفاده کنید. همهٔ پرداخت‌ها شامل شرایط استفادهٔ MobileCoin و کیف پول MobileCoin می‌شوند. این یک قابلیت بتا است، بنابراین ممکن است شما با اشکالاتی مواجه شوید و پرداخت‌ها و موجودی‌هایی را که ممکن است از دست بدهید قابل بازیابی نخواهند بود. </string> -->
     <string name="PaymentsHomeFragment__activate">فعال کردن</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">مشاهدهٔ شرایط MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">پرداخت‌ها در سیگنال دیگر در دسترس نیستند. شما هنوز می‌توانید به صرافی انتقال اعتبار دهید ولی دیگر نمی‌توانید پرداخت‌ها را دریافت یا اعتبار اضافه کنید.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">قفل پرداخت برای ارسال‌های آینده فعال شود؟</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2980,7 +2861,7 @@
     <string name="PaymentsAddMoneyFragment__copy">کپی</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">روی کلیپ‌بورد کپی شد</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">برای افزودن اعتبار، MobileCoin را به نشانی کیف پول خود ارسال کنید. تراکنشی از حساب کاربری خود در یک صرافی که از MobileCoin پشتیبانی می‌کند آغاز کنید، سپس کد QR را اسکن یا نشانی کیف پول خود را کپی کنید.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">جزئیات</string>
@@ -3000,8 +2881,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">هزینهٔ پاک‌سازی سکه</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">«هزینهٔ تمیزکاری سکه» زمانی کم می‌شود که سکه‌های در اختیار شما نمی‌توانند برای کامل کردن یک تراکنش ترکیب شوند. تمیزکاری به شما اجازه خواهد داد تا به ارسال پرداخت‌ها ادامه دهید.</string>
     <string name="PaymentsDetailsFragment__no_details_available">هیچ جزئیات بیشتری برای این تراکنش وجود ندارد</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">پرداخت ارسال شد</string>
     <string name="PaymentsDetailsFragment__received_payment">پرداخت دریافت شد</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">پرداخت کامل شد %1$s</string>
@@ -3045,7 +2926,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">افزودن یادداشت</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">تبدیل‌ها صرفاً تخمین هستند و ممکن است دقیق نباشند.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">یادداشت</string>
@@ -3053,7 +2934,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">پرداخت را تأیید کنید</string>
     <string name="ConfirmPayment__network_fee">هزینهٔ شبکه</string>
-    <string name="ConfirmPayment__error_getting_fee">خطا در دریافت هزینه</string>
     <string name="ConfirmPayment__estimated_s">زمان تخمین زده %1$s</string>
     <string name="ConfirmPayment__to">به</string>
     <string name="ConfirmPayment__total_amount">کل مبلغ</string>
@@ -3111,29 +2991,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">ذخیره</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">پیام‌های ناپدید شونده</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">اطلاعات</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">کپی</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">حذف</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">بازارسال</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">پاسخ</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">ذخیره</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">ارسال دوباره</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">انتخاب</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">جزئیات پرداخت</string>
 
     <!-- conversation_expiring_on -->
@@ -3142,14 +3021,6 @@
     <string name="conversation_insecure__invite">دعوت</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">حذف موارد انتخاب شده</string>
-    <string name="conversation_list_batch__menu_pin_selected">سنجاق انتخاب شد</string>
-    <string name="conversation_list_batch__menu_unpin_selected">برداشتن سنجاق انتخاب شد</string>
-    <string name="conversation_list_batch__menu_select_all">انتخاب همه</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">بایگانی موارد انتخاب شده</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">خروج موارد انتخاب شده از بایگانی</string>
-    <string name="conversation_list_batch__menu_mark_as_read">علامت گذاری به عنوان خوانده</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">علامت زدن به صورت نخوانده</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">میانبر تنظیمات</string>
@@ -3170,7 +3041,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">بازنشانی نشست امن</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">باز کردن</string>
@@ -3218,20 +3088,17 @@
     <string name="reminder_header_push_text">تجربهٔ ارتباطی خود را ارتقا دهید.</string>
     <string name="reminder_header_service_outage_text">سیگنال با مشکلات فنی روبروست. ما سخت در تلاش برای بازگردانی هرچه سریع‌تر سرویس هستیم.</string>
     <string name="reminder_header_progress">%%%1$d</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">کشف مخاطب خصوصی سیگنال به‌طور موقت نمی‌تواند مخاطبان تلفن شما را پردازش کند.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">بیشتر بدانید</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">کشف مخاطب خصوصی سیگنال نمی‌تواند مخاطبان تلفن شما را پردازش کند.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">بیشتر بدانید</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">ذخیره</string>
-    <string name="media_preview__forward_title">بازارسال</string>
-    <string name="media_preview__share_title">اشتراک‌گذاری</string>
-    <string name="media_preview__all_media_title">همهٔ رسانه‌ها</string>
     <string name="media_preview__edit_title">ویرایش</string>
 
 
@@ -3273,7 +3140,7 @@
     <string name="BaseKbsPinFragment__next">بعدی</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">ایجاد پین حرفی‌عددی</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">ایجاد پین عددی</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3303,7 +3170,7 @@
     <string name="KbsSplashFragment__introducing_pins">معرفی پین‌ها</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شدهٔ سمت سیگنال را رمزگذاری شده نگاه می‌دارند تا فقط شما بتوانید به آن‌ها دسترسی داشته باشید. پروفایل شما، تنظیمات و مخاطبین هنگام نصب مجدد بازگردانی خواهند شد. برای باز کردن برنامه به پین احتیاج نخواهید داشت.</string>
     <string name="KbsSplashFragment__learn_more">اطلاعات بیشتر</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">قفل ثبت‌نام = پین</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">قفل ثبت‌نام شما اکنون پین نام دارد، و کارهای بیشتری را انجام می‌دهد. هم‌اکنون آن را به‌روزرسانی کنید.</string>
     <string name="KbsSplashFragment__update_pin">به‌روزرسانی پین</string>
@@ -3324,7 +3191,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">حساب کاربری شما به منظور حفاظت از حریم خصوصی و امنیت شما قفل شده است. پس از %1$d روز عدم فعالیت در حساب کاربری‌تان، می‌توانید دوباره با این شماره‌تلفن و بدون نیاز به پین ثبت‌نام کنید. تمامی محتویات حذف خواهند شد.</string>
     <string name="AccountLockedFragment__next">بعدی</string>
     <string name="AccountLockedFragment__learn_more">اطلاعات بیشتر</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">پین خود را وارد کنید</string>
@@ -3336,7 +3203,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">پین نادرست</string>
     <string name="RegistrationLockFragment__forgot_your_pin">پین خود را فراموش کرده‌اید؟</string>
     <string name="RegistrationLockFragment__not_many_tries_left">تعداد تلاش زیادی باقی نمانده است</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۱)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">ثبت‌نام سیگنال - نیاز به راهنمایی در مورد پین برای اندروید (پین نسخهٔ ۲)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3394,7 +3260,6 @@
     <string name="registration_activity__transfer_account">انتقال حساب کاربری</string>
     <string name="registration_activity__skip">رد کردن</string>
     <string name="preferences_chats__chat_backups">پشتیبان‌های گفتگو</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">پشتیبان‌گیری از گفتگوها در حافظهٔ خارجی</string>
     <string name="preferences_chats__transfer_account">انتقال حساب کاربری</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">انتقال حساب کاربری به یک دستگاه اندروید‌ی جدید</string>
     <string name="RegistrationActivity_enter_backup_passphrase">وارد کردن گذرواژهٔ پشتیبان</string>
@@ -3433,7 +3298,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">نسخه پشتیبان شما دارای یک فایل بسیار حجیم است که نمی‌توان از آن نسخه پشتیبان تهیه کرد. لطفا آن را حذف کنید و یک نسخه پشتیبان جدید ایجاد کنید.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">برای مدیریت پشتیبان‌ها ضربه بزنید.</string>
-    <string name="ProgressPreference_d_messages_so_far">%1$d پیام تا به حال</string>
     <string name="RegistrationActivity_wrong_number">شمارهٔ اشتباه</string>
     <string name="RegistrationActivity_call_me_instead_available_in">در عوض با من تماس بگیر \n (موجود در %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">تماس با پشتیبانی سیگنال</string>
@@ -3455,9 +3319,6 @@
     <string name="preferences_app_protection__create_a_pin">یک پین جدید ایجاد کنید</string>
     <string name="preferences_app_protection__change_your_pin">پین خود را تغییر دهید</string>
     <string name="preferences_app_protection__pin_reminders">یاد‌آورهای پین</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">پین‌ها اطلاعات ذخیره شده در سیگنال را رمزگذاری شده نگه می‌دارند تا فقط شما قادر به دسترسی به آن‌ها باشید. پروفایل، تنظیمات و مخاطبین شما هنگام نصب دوبارهٔ سیگنال بازگردانی می‌شوند.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">افزودن لایهٔ امنیتی اضافه با پرسیدن پین سیگنال برای ثبت‌نام دوباره با شماره‌تلفن شما در سیگنال.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">یادآورها به شما در به خاطرسپاری پین شما کمک می‌کنند، چون پین‌ها قابل بازیابی نیستند. به مرور زمان کمتر از شما پرسیده خواهد شد.</string>
     <string name="preferences_app_protection__turn_off">خاموش</string>
     <string name="preferences_app_protection__confirm_pin">پین را تأیید کنید</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">پین سیگنال خود را تأیید کنید</string>
@@ -3521,7 +3382,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">باز کردن تنظیمات Wi-Fi ممکن نیست. لطفاً Wi-Fi را به صورت دستی روشن کنید.</string>
     <string name="DeviceTransferSetup__grant_location_permission">اعطای مجوز مکان</string>
     <string name="DeviceTransferSetup__turn_on_location_services">سرویس‌های مکان را روشن کنید</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">باز کردن تنظیمات مکان ممکن نیست.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">روشن کردن Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">خطا در اتصال</string>
     <string name="DeviceTransferSetup__retry">تلاش مجدد</string>
@@ -3530,7 +3390,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">وارسی کنید که کد زیر روی هر دو دستگاه شما همخوانی دارد. سپس روی ادامه ضربه بزنید.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">شماره‌ها همخوانی ندارند</string>
     <string name="DeviceTransferSetup__continue">ادامه</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">شماره یکسان نیست</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">اگر شماره‌ها در دستگاه‌های شما همخوانی ندارند، ممکن است به دستگاه اشتباهی وصل شده باشید. برای برطرف کردن، انتقال را متوقف و دوباره امتحان کنید، و هر دو دستگاه خود را نزدیک به هم نگه دارید.</string>
     <string name="DeviceTransferSetup__stop_transfer">توقف انتقال</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">کشف دستگاه قدیمی ممکن نبود</string>
@@ -3560,7 +3419,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">%1$s%% از پیام‌ها تا کنون…</string>
     <string name="DeviceTransfer__cancel">لغو</string>
     <string name="DeviceTransfer__try_again">دوباره امتحان کنید</string>
-    <string name="DeviceTransfer__stop_transfer_question">توقف انتقال؟</string>
     <string name="DeviceTransfer__stop_transfer">توقف انتقال</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">کل پیشرفت انتقال از دست خواهد رفت.</string>
     <string name="DeviceTransfer__transfer_failed">انتقال موفق نبود</string>
@@ -3568,7 +3426,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">انتقال حساب کاربری</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">شما می‌توانید هنگام برپایی سیگنال روی یک دستگاه اندروید جدید حساب کاربری سیگنال خود را انتقال دهید. قبل از ادامه دادن:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">۱.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">سیگنال را روی دستگاه اندروید جدید خود بارگیری کنید</string>
     <string name="OldDeviceTransferInstructions__second_bullet">۲.</string>
@@ -3578,7 +3435,6 @@
     <string name="OldDeviceTransferInstructions__continue">ادامه</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">انتقال کامل شد</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">به دستگاه جدیدتان بروید</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">داده‌های سیگنال شما به دستگاه جدید شما انتقال داده شده‌اند. برای تکمیل فرایند انتقال، شما باید ثبت‌نام را در دستگاه جدید خود ادامه دهید.</string>
     <string name="OldDeviceTransferComplete__close">بستن</string>
@@ -3605,10 +3461,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">لغو و فعال کردن این دستگاه</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">انتقال موجودی MOB؟</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">موجودی شما %1$s است. اگر قبل از حذف کردن حساب خود اعتبار خود را به نشانی کیف پول دیگری انتقال ندهید، اعتبار خود را برای همیشه از دست خواهید داد.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">انتقال ندادن</string>
-    <string name="AdvancedPreferenceFragment__transfer">انتقال</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">مسدود کردن</string>
@@ -3622,10 +3474,6 @@
     <string name="RecipientBottomSheet_make_admin">ارتقا به مدیر</string>
     <string name="RecipientBottomSheet_remove_as_admin">حذف بعنوان مدیر</string>
     <string name="RecipientBottomSheet_remove_from_group">حذف از گروه</string>
-    <string name="RecipientBottomSheet_message_description">پیام</string>
-    <string name="RecipientBottomSheet_voice_call_description">تماس صوتی</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">تماس صوتی ناامن</string>
-    <string name="RecipientBottomSheet_video_call_description">تماس تصویری</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">آیا می‌خواهید %1$s را بعنوان مدیر حذف کنید؟</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"«%1$s» قادر خواهد بود تا این گروه و اعضای آن را ویرایش کند."</string>
@@ -3731,7 +3579,6 @@
     <string name="DeleteAccountFragment__the_phone_number">شماره‌تلفنی که وارد کردید با حساب کاربری شما همخوانی ندارد.</string>
     <string name="DeleteAccountFragment__are_you_sure">آیا از حذف حساب کاربری خود اطمینان دارید؟</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">این گزینه حساب کاربری سیگنال شما را حذف کرده و برنامه را بازنشانی می‌کند. برنامه پس از تکمیل فرایند بسته می‌شود.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">حذف حساب کاربری ناموفق بود. آیا اتصال شبکه دارید؟</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">حذف داده‌های محلی موفق نبود. شما می‌توانید آن را به صورت دستی در بخش تنظیمات برنامهٔ سیستم پاک کنید.</string>
     <string name="DeleteAccountFragment__launch_app_settings">باز کردن تنظیمات برنامه</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3763,7 +3610,6 @@
     <string name="ShareActivity__share">اشتراک‌گذاری</string>
     <string name="ShareActivity__send">ارسال</string>
     <string name="ShareActivity__comma_s">، %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">اشتراک گذاری به چند گفتگو فقط برای پیام های سیگنال پشتیبانی میشود</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">داده‌های اشتراک‌گذاری از حامل دریافت نشد.</string>
 
@@ -3772,7 +3618,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">شما می‌توانید نهایتاً با %1$d گفتگو به اشتراک بگذارید</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">کاغذدیواری گفتگو</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">رنگ گفتگو</string>
@@ -3783,7 +3628,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">حالت تاریک کاغذدیواری را تار می‌کند</string>
     <string name="ChatWallpaperFragment__contact_name">نام مخاطب</string>
     <string name="ChatWallpaperFragment__reset">بازنشانی</string>
-    <string name="ChatWallpaperFragment__clear">پاک کردن</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">پیش‌نمایش کاغذدیواری</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">می‌خواهید همهٔ رنگ‌های گفتگو را نادیده بگیرید؟</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">می‌خواهید همهٔ کاغذدیواری‌ها را نادیده بگیرید؟</string>
@@ -3808,7 +3652,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">مشاهدهٔ گالری شما نیاز به مجوز ذخیره‌سازی دارد.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">انتخاب تصویر کاغذدیواری</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">دو انگشت برای بزرگ‌نمایی و کشیدن برای جابه‌جایی و تنظیم</string>
@@ -3835,9 +3678,9 @@
     <string name="payment_info_card_with_a_high_balance">در صورت داشتن موجودی بالا، بهتر است پین خود را به یک پین حرفی‌عددی به‌روزرسانی کنید تا محافظت بیشتری به حساب خود اضافه کنید.</string>
     <string name="payment_info_card_update_pin">به‌روزرسانی پین</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">غیرفعال کردن کیف پول</string>
@@ -3849,7 +3692,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">غیرفعال کردن بدون انتقال؟</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">موجودی شما، اگر تصمیم به فعال کردن دوبارهٔ پرداخت‌ها بگیرید، در کیف پول پیوند داده شده به سیگنال شما باقی خواهد ماند.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">خطا در غیرفعال کردن کیف پول.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">عبارت بازیابی</string>
@@ -3885,13 +3728,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">عبارت بازیابی نامعتبر</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">مطمئن شوید %1$d کلمه وارد کرده‌اید و دوباره امتحان کنید.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">بعدی</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">ویرایش</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">قبلی</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">عبارت بازیابی شما</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">%1$d کلمهٔ زیر را به ترتیب یادداشت کنید. فهرست خود را در یک جای امن نگهداری کنید.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">مطمئن شوید عبارت خود را به درستی وارد کرده‌اید.</string>
@@ -3919,7 +3761,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">کلمه نامعتبر</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">کلیپ‌بورد پاک شد.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">مشاهده</string>
@@ -3938,7 +3779,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">هیچ‌کدام از مخاطبین یا افرادی که با آنان گفتگو می‌کنید در این گروه حضور ندارند. قبل از پذیرفتن درخواست‌ها را به دقت بازبینی کنید تا از پیام‌های ناخواسته جلوگیری کنید.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">دربارهٔ درخواست‌های تبادل پیام</string>
     <string name="GroupsInCommonMessageRequest__okay">خوب</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">این یک پیش‌نمایش رنگ گفتگو است.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">این رنگ فقط برای شما قابل رؤیت است.</string>
 
@@ -4057,7 +3898,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">یک پروفایل برای دریافت اعلان‌ها فقط از افراد و گروه‌هایی که انتخاب می‌کنید بسازید.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">پروفایل‌های اعلان</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">ایجاد پروفایل</string>
@@ -4073,7 +3914,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">زمان‌سنج پیش‌فرض برای گفتگوهای جدید</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">یک زمان‌سنج پیام ناپدید شونده پیش‌فرض برای همهٔ گفتگوهایی که شما آغاز می‌کنید تنظیم کنید.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">استوری‌های خود و کسانی که می‌توانند آن‌ها را مشاهده کنند را مدیریت کنید</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">برای انتقال پول، قفل صفحه اندروید یا اثر انگشت را الزامی کنید</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">قفل پرداخت فعال نمی‌شود</string>
@@ -4082,12 +3922,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">پیمایش به تنظیمات سیستم انجام نشد</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">رفتن به تنظیمات</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">لغو</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">نمایش آیکون وضعیت</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">نمایش یک آیکون در جزئیات پیام وقتی که با استفاده از فرستندهٔ ناشناس تحویل داده شده‌اند.</string>
 
@@ -4158,8 +3996,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">لبهٔ گزینش‌گر بالایی</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">لبهٔ گزینش‌گر پایینی</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">اهدای کمک مالی به سیگنال</string>
@@ -4217,20 +4053,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">فقط مدیران این گروه می‌توانند به استوری آن اضافه کنند</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">برنامه مخاطبین پیدا نشد</string>
-    <string name="ConversationSettingsFragment__send_message">ارسال پیام</string>
     <string name="ConversationSettingsFragment__start_video_call">شروع تماس تصویری</string>
     <string name="ConversationSettingsFragment__start_audio_call">شروع تماس صوتی</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">استوری</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">پیام</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">تصویری</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">صوتی</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">تماس</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">بستن</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">بسته شد</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">جستجو</string>
     <string name="ConversationSettingsFragment__disappearing_messages">پیام‌های ناپدید شونده</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">صداها و اعلان‌ها</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">جزئیات مخاطب</string>
     <string name="ConversationSettingsFragment__view_safety_number">مشاهدهٔ شمارهٔ ایمنی</string>
     <string name="ConversationSettingsFragment__block">مسدود کردن</string>
@@ -4264,7 +4107,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">بستن اعلان‌ها</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">بسته شده نیست</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">بسته شد تا %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">اشاره‌ها</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">همیشه آگاه کن</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">آگاه نکن</string>
@@ -4306,7 +4148,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">حذف %1$s ممکن نیست</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">این شخص در مخاطبان دستگاه شما ذخیره شده است. او را از مخاطبان خود حذف و دوباره امتحان کنید.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">مشاهده مخاطب</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s کاربر سیگنال نیست</string>
@@ -4331,9 +4173,7 @@
     <string name="AvatarPickerFragment__photo">عکس</string>
     <string name="AvatarPickerFragment__text">متن</string>
     <string name="AvatarPickerFragment__save">ذخیره</string>
-    <string name="AvatarPickerFragment__select_an_avatar">یک آواتار انتخاب کنید</string>
     <string name="AvatarPickerFragment__clear_avatar">پاک کردن آواتار</string>
-    <string name="AvatarPickerFragment__edit">ویرایش</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">ذخیره کردن آواتار موفق نبود</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4406,7 +4246,6 @@
     <string name="ImageEditorHud__clear_all">پاک کردن همه</string>
     <string name="ImageEditorHud__undo">لغو</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">تعویض میان ماژیک معمولی و هایلایت</string>
-    <string name="ImageEditorHud__delete">حذف</string>
     <string name="ImageEditorHud__toggle_between_text_styles">تعویض میان سبک‌های متن</string>
 
     <string name="MediaCountIndicatorButton__send">ارسال</string>
@@ -4418,7 +4257,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">نادیده گرفتن تغییرات</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">شما هر تغییری که روی این عکس انجام داده‌اید را از دست خواهید داد.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">باز کردن دوربین ناموفق بود</string>
 
     <string name="BadgesOverviewFragment__my_badges">نشان‌های من</string>
     <string name="BadgesOverviewFragment__featured_badge">نشان ویژه</string>
@@ -4426,27 +4264,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">انتخاب نشان‌ها</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">پیش‌نمایش</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">انتخاب یک نشان</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">باید یک نشان انتخاب کنید</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">به‌روزرسانی پروفایل ناموفق بود</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">به یک حامی تبدیل شوید</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s از سیگنال پشتیبانی می‌کند</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s با اهدای کمک مالی ماهانه از سیگنال پشتیبانی می‌کند. سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s با اهدای کمک مالی از سیگنال پشتیبانی می‌کند. ‌سیگنال یک سازمان غیرانتفاعی بدون تبلیغ‌کننده و سرمایه‌گذار است که از سوی افرادی مانند شما حمایت می‌شود.</string>
 
     <string name="ImageView__badge">نشان</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">از تکنولوژی‌ای که برای شما—نه برای داده‌هایتان—ساخته شده است با پیوستن به جمعی از مردم که آن را تداوم می‌بخشند، پشتیبانی کنید.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">از تکنولوژی‌ای که برای شما، نه برای داده‌هایتان ساخته شده است با پیوستن به جمعی از مردم که سیگنال را تداوم می‌بخشند، پشتیبانی کنید.</string>
-    <string name="SubscribeFragment__currency">ارز</string>
-    <string name="SubscribeFragment__more_payment_options">گزینه‌ها‌ی پرداخت بیشتر</string>
     <string name="SubscribeFragment__cancel_subscription">لغو اشتراک</string>
     <string name="SubscribeFragment__confirm_cancellation">لغو اشتراک را تأیید می‌کنید؟</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">دیگر هزینه‌ای از شما کسر نخواهد شد. در انتهای دوره پرداخت شما، نشان شما از نمایه‌تان حذف خواهد شد.</string>
@@ -4459,7 +4291,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">امروز کل مبلغ (%1$s) هزینه اشتراک از شما کسر می‌شود. اشتراک شما به‌صورت ماهانه تمدید خواهد شد.</string>
 
     <string name="Subscription__s_per_month">%1$s/ماه</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">در %1$s تمدید می‌شود</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">در %1$s منقضی می‌شود</string>
@@ -4491,7 +4323,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">بیشتر</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">رسیدها</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">پشتیبانی من</string>
     <string name="ManageDonationsFragment__manage_subscription">مدیریت اشتراک</string>
@@ -4499,7 +4330,6 @@
     <string name="ManageDonationsFragment__donation_receipts">رسید کمک مالی</string>
     <string name="ManageDonationsFragment__badges">نشان‌ها</string>
     <string name="ManageDonationsFragment__subscription_faq">پرسش‌های متداول اشتراک</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">خطا در دریافت اشتراک.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">سایر روش‌های اهداء</string>
     <!-- Preference label to launch badge gifting -->
@@ -4507,8 +4337,9 @@
 
     <string name="Boost__enter_custom_amount">وارد کردن مبلغ دلخواه</string>
     <string name="Boost__one_time_contribution">کمک اهدایی یک‌-باره</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">افزودن نشان ارتقاء سیگنال</string>
     <string name="MySupportPreference__s_per_month">%1$s/ماه</string>
     <string name="MySupportPreference__renews_s">در %1$s تمدید می‌شود</string>
     <string name="MySupportPreference__processing_transaction">در حال پردازش تراکنش…</string>
@@ -4543,7 +4374,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">ما در جمع‌آوری پرداخت حمایت از سیگنال شما دچار مشکل هستیم. مطمئن شوید که روش پرداختی شما به‌روز است. در غیر این صورت، آن را در Google Play به‌روزرسانی کنید. سیگنال پردازش پرداخت را دوباره طی چند روز آینده امتحان خواهد کرد.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">این را دیگر نمایش نده</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">لطفاً با پشتیبانی برای اطلاعات بیشتر تماس بگیرید.</string>
     <string name="Subscription__contact_support">تماس با پشتیبانی</string>
     <string name="Subscription__get_a_s_badge">یک نشان %1$s بگیرید</string>
 
@@ -4552,7 +4382,6 @@
     <string name="DonationsErrors__error_processing_payment">خطا در پردازش پرداخت</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">خطا در پردازش پرداخت. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">نشان شما به حساب کاربری‌تان اضافه نشد، اما ممکن است هزینه‌ای از شما کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_payment">پرداخت شما پردازش نشد و هزینه‌ای از شما کسر نشد. لطفاً دوباره امتحان کنید.</string>
     <string name="DonationsErrors__still_processing">هنوز در حال پردازش</string>
     <string name="DonationsErrors__couldnt_add_badge">نشان افزوده نشد</string>
@@ -4566,8 +4395,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">نشان هدیه ارسال نشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_badge_could_not">نشان شما به حساب کاربری‌تان اضافه نشد، اما ممکن است هزینه‌ای از شما کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_payment_is_still">پرداخت شما هنوز در حال پردازش است. این فرآیند بسته به اتصال اینترنت شما ممکن است چند دقیقه به طول بیانجامد.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay در دسترس نیست</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">شما باید Google Pay را نصب کنید تا بتوانید به‌صورت درون‌-برنامه‌ای کمک مالی اهدا کنید.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">لغو اشتراک انجام نشد</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">لغو اشتراک به اتصال اینترنت نیاز دارد.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">دستگاه شما از Google Pay پشتیبانی نمی‌کند، پس نمی‌توانید برای کسب نشان اشتراک بگیرید. همچنان می‌توانید از طریق کمک‌های اهدایی در وب‌سایت ما از سیگنال پشتیبانی کنید.</string>
@@ -4584,11 +4411,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">نشان هدیه</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">%1$d ماه باقی می‌ماند</item>
-        <item quantity="other">%1$d ماه باقی می‌ماند</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">آزادسازی</string>
     <!-- Gift badge view action label -->
@@ -4598,7 +4420,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">آزادسازی‌شده</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">یک روش پرداختی دیگر را امتحان کنید یا با بانک خود برای اطلاعات بیشتر تماس بگیرید.</string>
@@ -4802,9 +4623,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">هدیه</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">ارتقاء</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">جزئیات</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">نوع کمک مالی</string>
     <!-- Donation receipts date paid heading -->
@@ -4944,7 +4763,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">پاسخ خصوصی به %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">پاسخ خصوصی</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">کپی</string>
     <!-- Context menu item to delete a story response -->
@@ -4961,11 +4779,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">کسانی که می‌توانند این استوری را مشاهده کنند</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">استوری پنهان شود از</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">تمام آشنایان در سیگنال</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">اشتراک‌گذاری با تمام آشنایان</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">همه به جز…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5015,19 +4831,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">حذف</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">آیا مطمئن هستید؟</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">این کار قابل بازگشت نیست.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">ویرایش نام استوری</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">نام استوری</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">ذخیره</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">برای افزودن متن ضربه بزنید</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">آا</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">افزودن متن</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5043,7 +4855,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">جستجو</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">یک خطای غیرمنتظره رخ داد</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">لطفا یک پیوند معتبر وارد کنید.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5065,17 +4876,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">حذف</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">استوری‌ها فقط برای کاربران سیگنال بتا قابل دسترسی است.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">اگر یک استوری به اشتراک بگذارید، فقط برای افرادی که در سیگنال بتا هستند در دسترس خواهد بود.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">افزودن به استوری؟</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">افزودن محتوا به استوری شما به آشنایان شما در سیگنال اجازه می‌دهد تا آن را به مدت 24 ساعت مشاهده کنند. می‌توانید افرادی را که می‌توانند استوری شما را مشاهده کنند، در تنظیمات تغییر دهید.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">افزودن به استوری</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">ویرایش بازدیدکنندگان</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">استوری فرستاده نمی‌شود. اتصال خود را بررسی نموده و دوباره سعی کنید.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5083,9 +4888,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">خاموش و حذف کردن</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">همرسانی و نمایش استوری‌ها</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">هنگامی که این گزینه خاموش باشد، شما دیگر نمی‌توانید استوری‌ها را همرسانی یا مشاهده کنید.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">انتخاب بازدیدکنندگان</string>
     <!-- New story viewer selection action button label -->
@@ -5147,13 +4950,9 @@
     <string name="StoryDialogs__view_profile_photo">نمایش عکس پروفایل</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">خاموش کردن عبور از فیلترینگ؟</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">شما حالا می‌توانید برای تجربهٔ بهتر به طور مستقیم به سرویس سیگنال متصل شوید.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">نه ممنون</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">خاموش کردن</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">شما به استوری %1$s واکنش نشان دادید</string>
@@ -5357,13 +5156,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">حجم فایل</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">ارسال شد به</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">ارسال شد از</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">ناموفق</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">اطلاعات</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5385,7 +5180,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">استوری‌ها</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">بازدیدها از استوری</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">مشاهده رسیدها</string>
     <!-- Story view receipts toggle message -->
@@ -5437,7 +5231,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">شما تقریباً به %1$s نیاز دارید تا پیام‌های خود را صادر کنید، قبل از ادامه مطمئن شوید که فضای کافی دارید.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">به هر حال ادامه بده</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">سیگنال برای اینکه بتواند پیامک‌های شما را صادر کند، به مجوز پیامک نیاز دارد.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5552,9 +5346,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">مطمئن شوید که %1$s فضای خالی اضافی در تلفن دارید تا پیام‌های خود را صادر کنید</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">دوباره صادر کنید، که فقط پیام‌هایی را امتحان می‌کند که هنوز صادر نشده‌اند</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">اگر مشکل ادامه داشت، </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">تماس با ما</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">تلاش مجدد</string>
@@ -5598,9 +5392,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">در حال لغو…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">تعداد زیادی مخاطب پردازش شده است</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">تلاش دیگری برای پردازش مخاطبان شما ظرف %1$d روز انجام خواهد شد.</item>
         <item quantity="other">تلاش دیگری برای پردازش مخاطبان شما ظرف %1$d روز انجام خواهد شد.</item>
@@ -5608,19 +5402,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">برای حل سریع‌تر این مشکل، می‌توانید حذف مخاطبان یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبان بسیاری هستند، در نظر بگیرید.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">مخاطبان را باز کنید</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">مخاطبان شما قابل پردازش نیستند</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">تعداد مخاطبان در تلفن شما از حد قابل پردازش برای سیگنال بیشتر است. برای یافتن مخاطبان در سیگنال، می‌توانید حذف مخاطبان یا حساب‌های موجود در تلفن خود را که در حال همگام‌سازی مخاطبان بسیاری هستند، در نظر بگیرید.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">بیشتر بدانید</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">مخاطبان را باز کنید</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">هیچ برنامه مخاطبی یافت نشد</string>
 
     <!-- PaymentMessageView -->
@@ -5649,5 +5441,9 @@
     <string name="GroupStoryEducationSheet__next">بعدی</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>

@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-    <string name="app_name" translatable="false">Signal</string>
+  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
 
-    <string name="install_url" translatable="false">https://signal.org/install</string>
-    <string name="donate_url" translatable="false">https://signal.org/donate</string>
-    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
-    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
-    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
-    <string name="sustainer_boost_and_badges" translatable="false">https://support.signal.org/hc/articles/4408365318426</string>
-    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
-    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
-    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
-    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
-    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
+  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
 
     <string name="yes">Áno</string>
     <string name="no">Nie</string>
@@ -23,67 +22,40 @@
     <string name="save">Uložiť</string>
     <string name="note_to_self">Poznámka pre seba</string>
 
-    <!-- AbstractNotificationBuilder -->
-    <string name="AbstractNotificationBuilder_new_message">Nová správa</string>
-
     <!-- AlbumThumbnailView -->
-    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal sa aktualizuje…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferencesActivity_currently_s">Aktuálne: %1$s</string>
     <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Ešte ste si nenastavili heslo!</string>
     <string name="ApplicationPreferencesActivity_disable_passphrase">Vypnúť heslo?</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Toto natrvalo odomkne Signal a upozornenia na správy.</string>
     <string name="ApplicationPreferencesActivity_disable">Vypnúť</string>
-    <string name="ApplicationPreferencesActivity_unregistering">Rušenie registrácie</string>
-    <string name="ApplicationPreferencesActivity_unregistering_from_signal_messages_and_calls">Rušenie registrácie Signal správ a hovorov…</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls">Vypnúť Signal správy a hovory?</string>
     <string name="ApplicationPreferencesActivity_disable_signal_messages_and_calls_by_unregistering">Zakážte Signal správy a hovory zrušením registrácie zo serveru. Pre ich opätovné použitie budete musieť svoje telefónne číslo znovu zaregistrovať.</string>
     <string name="ApplicationPreferencesActivity_error_connecting_to_server">Chyba pripojenia na server!</string>
-    <string name="ApplicationPreferencesActivity_sms_enabled">SMS povolené</string>
-    <string name="ApplicationPreferencesActivity_touch_to_change_your_default_sms_app">Dotykom nastavte predvolenú aplikáciu pre SMS.</string>
-    <string name="ApplicationPreferencesActivity_sms_disabled">SMS vypnuté</string>
-    <string name="ApplicationPreferencesActivity_touch_to_make_signal_your_default_sms_app">Dotykom nastavte Signal ako predvolenú aplikáciu pre SMS</string>
-    <string name="ApplicationPreferencesActivity_on">zap.</string>
-    <string name="ApplicationPreferencesActivity_On">Zapnuté</string>
-    <string name="ApplicationPreferencesActivity_off">vyp.</string>
-    <string name="ApplicationPreferencesActivity_Off">Vypnuté</string>
-    <string name="ApplicationPreferencesActivity_sms_mms_summary">SMS %1$s, MMS %2$s</string>
-    <string name="ApplicationPreferencesActivity_privacy_summary">Zámok obrazovky %1$s, Registračný zámok %2$s</string>
-    <string name="ApplicationPreferencesActivity_appearance_summary">%1$s motív, jazyk: %2$s</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN kódy sú vyžadované pre funkciu registračného zámku. Ak chcete vypnúť PIN kódy, najprv, prosím, vypnite funkciu registračného zámku.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN kód sa vytvoril.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN vypnutý.</string>
-    <string name="ApplicationPreferencesActivity_hide">Skryť</string>
-    <string name="ApplicationPreferencesActivity_hide_reminder">Schovať pripomienku?</string>
     <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">Zaznamenajte frázu obnovy platieb</string>
     <string name="ApplicationPreferencesActivity_record_phrase">Zaznamenajte frázu</string>
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Pred deaktiváciou kódu PIN musíte zaznamenať frázu na obnovenie platieb, aby ste sa ubezpečili, že môžete svoj platobný účet obnoviť.</string>
 
     <!-- NumericKeyboardView -->
-    <string name="NumericKeyboardView__1" translatable="false">1</string>
-    <string name="NumericKeyboardView__2" translatable="false">2</string>
-    <string name="NumericKeyboardView__3" translatable="false">3</string>
-    <string name="NumericKeyboardView__4" translatable="false">4</string>
-    <string name="NumericKeyboardView__5" translatable="false">5</string>
-    <string name="NumericKeyboardView__6" translatable="false">6</string>
-    <string name="NumericKeyboardView__7" translatable="false">7</string>
-    <string name="NumericKeyboardView__8" translatable="false">8</string>
-    <string name="NumericKeyboardView__9" translatable="false">9</string>
-    <string name="NumericKeyboardView__0" translatable="false">0</string>
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
-
-    <!-- AppProtectionPreferenceFragment -->
-    <plurals name="AppProtectionPreferenceFragment_minutes">
-        <item quantity="one">%1$d minúta</item>
-        <item quantity="few">%1$d minúty</item>
-        <item quantity="many">%1$d minút</item>
-        <item quantity="other">%1$d minút</item>
-    </plurals>
 
     <!-- DraftDatabase -->
     <string name="DraftDatabase_Draft_image_snippet">(obrázok)</string>
@@ -131,9 +103,6 @@
     <string name="BlockedUsersActivity__block_user">Zablokovať používateľa?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" vám nebude môcť zavolať alebo posielať správy.</string>
     <string name="BlockedUsersActivity__block">Blokovať</string>
-    <string name="BlockedUsersActivity__unblock_user">Odblokovať používateľa?</string>
-    <string name="BlockedUsersActivity__do_you_want_to_unblock_s">Chcete odblokovať \"%1$s\"?</string>
-    <string name="BlockedUsersActivity__unblock">Odblokovať</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment detailing the donation amount for one-time donation, displayed above the credit card text fields -->
@@ -141,7 +110,6 @@
     <!-- Title of fragment detailing the donation amount for monthly donation, displayed above the credit card text fields -->
     <string name="CreditCardFragment__donation_amount_s_per_month">Výška príspevku: %1$s/mesiac</string>
     <!-- Explanation of how to fill in the form, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_information_below">Nižšie zadajte údaje z platobnej karty</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Zadajte údaje z platobnej karty. Signal nezhromažďuje ani neukladá vaše osobné údaje.</string>
     <!-- Displayed as a hint in the card number text field -->
@@ -251,9 +219,6 @@
     <string name="CommunicationActions_carrier_charges_may_apply">Váš mobilný operátor vám môže účtovať poplatky. Číslo, na ktoré voláte, nie je registrované v Signale. Tento hovor sa uskutoční prostredníctvom vášho mobilného operátora, nie cez internet.</string>
 
     <!-- ConfirmIdentityDialog -->
-    <string name="ConfirmIdentityDialog_your_safety_number_with_s_has_changed">Vaše bezpečnostné číslo s %1$s sa zmenilo. Môže to znamenať, že sa niekto snaží preniknúť do vašej komunikácie alebo jednoducho, že %2$s si preinštaloval/a Signal.</string>
-    <string name="ConfirmIdentityDialog_you_may_wish_to_verify_your_safety_number_with_this_contact">Mali by ste overiť vaše bezpečnostné číslo s týmto kontaktom.</string>
-    <string name="ConfirmIdentityDialog_accept">Potvrdiť</string>
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">Nedávne chaty</string>
@@ -273,7 +238,6 @@
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
-    <string name="ContactNameEditActivity__edit_name">Upraviť meno</string>
     <string name="ContactNameEditActivity_given_name">Krstné meno</string>
     <string name="ContactNameEditActivity_family_name">Priezvisko</string>
     <string name="ContactNameEditActivity_prefix">Titul pred</string>
@@ -313,17 +277,17 @@
     <string name="ConversationItem_pending">  Čaká sa</string>
     <string name="ConversationItem_this_message_was_deleted">Táto správa bola zmazaná.</string>
     <string name="ConversationItem_you_deleted_this_message">Vymazali ste túto správu.</string>
-    <!-- Dialog error message shown when user can't download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Správu sa nepodarilo stiahnuť. %1$s ju musí odoslať znova.</string>
-    <!-- Dialog error message shown when user can't download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Fotku sa nepodarilo stiahnuť. %1$s ju musí odoslať znova.</string>
-    <!-- Dialog error message shown when user can't download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other's name -->
+    <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
     <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Video sa nepodarilo stiahnuť. %1$s ho musí odoslať znova.</string>
-    <!-- Dialog error message shown when user can't download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Správu sa nepodarilo stiahnuť. Musíte ju odoslať znova.</string>
-    <!-- Dialog error message shown when user can't download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Fotku sa nepodarilo stiahnuť. Musíte ju odoslať znova.</string>
-    <!-- Dialog error message shown when user can't download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
+    <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
     <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Video sa nepodarilo stiahnuť. Musíte ho odoslať znova.</string>
 
     <!-- ConversationActivity -->
@@ -345,7 +309,6 @@
     <string name="ConversationActivity_transport_insecure_sms_with_sim">Nezabezpečená SMS (%1$s)</string>
     <string name="ConversationActivity_transport_insecure_mms">Nezabezpečená MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_mms_with_sim">Nezabezpečená MMS (%1$s)</string>
     <string name="ConversationActivity_transport_signal">Signal správa</string>
     <string name="ConversationActivity_lets_switch_to_signal">Prejdime na Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Prosím vyberte kontakt</string>
@@ -391,7 +354,6 @@
     <string name="ConversationActivity_delete_and_leave">Odstrániť a opustiť</string>
     <string name="ConversationActivity__to_call_s_signal_needs_access_to_your_microphone">Pre volanie %1$s potrebuje Signal prístup k vášmu mikrofónu</string>
 
-    <string name="ConversationActivity__more_options_now_in_group_settings">Viac nových možností v sekcii \"Nastavenia skupiny\"</string>
 
     <string name="ConversationActivity_join">Pridať sa</string>
     <string name="ConversationActivity_full">Plný</string>
@@ -412,7 +374,7 @@
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal už nepodporuje odosielanie SMS správ. Ak chcete konverzáciu zachovať tu, pozvite používateľa %1$s, aby sa pripojil k Signalu.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Pozvať do Signalu</string>
-    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we'll do it again soon -->
+    <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Čoskoro vám to opäť pripomenieme.</string>
 
     <!-- ConversationAdapter -->
@@ -692,10 +654,6 @@
     <string name="CustomDefaultPreference_none">Žiadna</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_photo">Vybrať fotku</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__take_photo">Urobiť fotku</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__choose_from_gallery">Vybrať z galérie</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__remove_photo">Odstrániť fotku</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Fotenie vyžaduje prístup ku kamere.</string>
     <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Prezeranie galérie vyžaduje prístup k úložisku dát.</string>
 
@@ -753,8 +711,6 @@
     <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">Chyba pri prijímaní GIFu v plnom rozlíšení</string>
 
     <!-- GiphyFragmentPageAdapter -->
-    <string name="GiphyFragmentPagerAdapter_gifs">GIFy</string>
-    <string name="GiphyFragmentPagerAdapter_stickers">Nálepky</string>
 
     <!-- AddToGroupActivity -->
     <string name="AddToGroupActivity_add_member">Pridať člena?</string>
@@ -779,7 +735,7 @@
     <string name="GroupManagement_access_level_all_members">Všetci členovia</string>
     <string name="GroupManagement_access_level_only_admins">Iba správcovia</string>
     <string name="GroupManagement_access_level_no_one">Nikto</string>
-    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -940,7 +896,6 @@
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Hotovo</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Táto osoba nemôže byť pridaná do zastaraných skupín.</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_announcement_groups">Túto osobu nemožno pridať do skupín oznámení.</string>
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Pridať %1$s člena do „%2$s“?</item>
         <item quantity="few">Pridať %3$d členov do „%2$s“?</item>
@@ -970,25 +925,8 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Vybrali ste kontakt, ktorý nepodporuje Signal skupiny. Táto skupina bude preto zmenená na MMS skupinu. Vlastné názvy a fotky MMS skupín budú viditeľné len pre vás. Podpora MMS skupín bude čoskoro odstránená, aby sme sa mohli zamerať na šifrované správy.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_member_requests_and_invites">Žiadosti o členstvo a pozvánky</string>
-    <string name="ManageGroupActivity_add_members">Pridať členov</string>
-    <string name="ManageGroupActivity_edit_group_info">Upraviť informácie o skupine</string>
     <string name="ManageGroupActivity_who_can_add_new_members">Kto môže pridávať nových členov?</string>
     <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kto môže upraviť informácie o tejto skupine?</string>
-    <string name="ManageGroupActivity_group_link">Odkaz do skupiny</string>
-    <string name="ManageGroupActivity_block_group">Blokovať skupinu</string>
-    <string name="ManageGroupActivity_unblock_group">Odblokovať skupinu</string>
-    <string name="ManageGroupActivity_leave_group">Opustiť skupinu</string>
-    <string name="ManageGroupActivity_mute_notifications">Stlmiť upozornenia</string>
-    <string name="ManageGroupActivity_custom_notifications">Vlastné upozornenia</string>
-    <string name="ManageGroupActivity_mentions">Spomenutia</string>
-    <string name="ManageGroupActivity_chat_color_and_wallpaper">Farba konverzácie a pozadie</string>
-    <string name="ManageGroupActivity_until_s">Do %1$s</string>
-    <string name="ManageGroupActivity_always">Vždy</string>
-    <string name="ManageGroupActivity_off">Vypnuté</string>
-    <string name="ManageGroupActivity_on">Zapnuté</string>
-    <string name="ManageGroupActivity_view_all_members">Zobraziť všetkých členov</string>
-    <string name="ManageGroupActivity_see_all">Pozrieť všetky</string>
 
     <plurals name="ManageGroupActivity_added">
         <item quantity="one">%1$d člen pridaný.</item>
@@ -996,10 +934,6 @@
         <item quantity="many">%1$d členov pridaných.</item>
         <item quantity="other">%1$d členov pridaných.</item>
     </plurals>
-
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_sharable_group_link">Iba administrátori môžu povoliť alebo zakázať zdieľateľný odkaz do skupiny.</string>
-    <string name="ManageGroupActivity_only_admins_can_enable_or_disable_the_option_to_approve_new_members">Iba administrátori môžu povoliť alebo zakázať možnosť schvaľovania nových členov.</string>
-    <string name="ManageGroupActivity_only_admins_can_reset_the_sharable_group_link">Iba administrátori môžu zresetovať zdieľateľný odkaz do skupiny.</string>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nemáte oprávnenia na vykonanie tejto akcie</string>
     <string name="ManageGroupActivity_not_capable">Niekto, koho ste pridali, nepodporuje nové skupiny a potrebuje si aktualizovať Signal</string>
@@ -1069,18 +1003,13 @@
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Zmeniť zvuk a vibrovanie</string>
     <string name="CustomNotificationsDialogFragment__call_settings">Nastavenia hovoru</string>
     <string name="CustomNotificationsDialogFragment__ringtone">Zvonenie</string>
-    <string name="CustomNotificationsDialogFragment__enabled">Povolené</string>
-    <string name="CustomNotificationsDialogFragment__disabled">Zakázané</string>
     <string name="CustomNotificationsDialogFragment__default">Predvolená</string>
     <string name="CustomNotificationsDialogFragment__unknown">Neznámy</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__shareable_group_link">Zdieľateľný odkaz do skupiny</string>
-    <string name="ShareableGroupLinkDialogFragment__manage_and_share">Spravovať a zdieľať</string>
     <string name="ShareableGroupLinkDialogFragment__group_link">Odkaz do skupiny</string>
     <string name="ShareableGroupLinkDialogFragment__share">Zdieľať</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Zresetovať odkaz</string>
-    <string name="ShareableGroupLinkDialogFragment__member_requests">Žiadosti o členstvo</string>
     <string name="ShareableGroupLinkDialogFragment__approve_new_members">Schválenie nových členov</string>
     <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Vyžadovať schválenie adminom pri nových členoch, ktorí sa pridajú prostredníctvom odkazu do skupiny.</string>
     <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Ste si istý/á, že chcete zresetovať odkaz do skupiny? Ľudia sa už viac nebudú môcť do skupiny pridať prostredníctvom aktuálneho odkazu.</string>
@@ -1130,7 +1059,6 @@
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">Pre používanie odkazov do skupín aktualizujte Signal.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">Verzia aplikácie Signal, ktorú používate, nepodporuje pripojenie do skupín cez odkazy. Ak sa chcete pridať do tejto skupiny cez odkaz, aktualizujte na najnovšiu verziu.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Aktualizovať Signal</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_linked_device_message">Jedno alebo viac pripojených zariadení používa verziu Signalu, ktorá nepodporuje odkazy do skupín. Ak sa chcete pridať do tejto skupiny, aktualizujte Signal na svojom pripojenom zariadení/iach.</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">Odkaz do skupiny nie je platný</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
@@ -1219,7 +1147,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Mazanie</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mažú sa správy…</string>
-    <string name="MediaOverviewActivity_Select_all">Označiť všetko</string>
     <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy…</string>
     <string name="MediaOverviewActivity_Sort_by">Zoradiť podľa</string>
     <string name="MediaOverviewActivity_Newest">Najnovšie</string>
@@ -1253,9 +1180,8 @@
     <string name="MediaOverviewActivity_audio">Zvuk</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Obrázok</string>
-    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
-    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
-    <string name="MediaOverviewActivity_voice_message">Hlasová správa</string>
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
     <string name="MediaOverviewActivity_sent_by_s">Odoslal/a %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Vami odoslané</string>
@@ -1303,28 +1229,10 @@
     <string name="NotificationMmsMessageRecord_error_downloading_mms_message">Chyba pri preberaní MMS správy, ťuknite pre opakovanie</string>
 
     <!-- MediaPickerActivity -->
-    <string name="MediaPickerActivity_send_to">Poslať používateľovi %1$s</string>
     <string name="MediaPickerActivity__menu_open_camera">Otvoriť fotoaparát</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_add_a_caption">Pridať popis…</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit">Položka bola odstránená, lebo prekračovala limit na veľkosť</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_had_an_unknown_type">Položka bola odstránená, pretože bola neznámeho typu</string>
-    <string name="MediaSendActivity_an_item_was_removed_because_it_exceeded_the_size_limit_or_had_an_unknown_type">Položka bola odstránená, pretože prekročila limit veľkosti, alebo bola neznámeho typu</string>
     <string name="MediaSendActivity_camera_unavailable">Kamera je nedostupná.</string>
-    <string name="MediaSendActivity_message_to_s">Správa pre %1$s</string>
-    <string name="MediaSendActivity_message">Správa</string>
-    <string name="MediaSendActivity_select_recipients">Vybrať príjemcov</string>
-    <string name="MediaSendActivity_signal_needs_access_to_your_contacts">Signal potrebuje prístup k Vašim kontaktom, aby ich mohol zobraziť.</string>
-    <string name="MediaSendActivity_signal_needs_contacts_permission_in_order_to_show_your_contacts_but_it_has_been_permanently_denied">Signal potrebuje prístup k povoleniu Kontakty, aby mohol zobraziť vaše kontakty, ale prístup bol natrvalo zakázaný. Prejdite do nastavení aplikácie, zvoľte \"Povolenia\", a povoľte \"Kontakty\".</string>
-    <plurals name="MediaSendActivity_cant_share_more_than_n_items">
-        <item quantity="one">Nemôžete zdieľať viac ako %1$d položku.</item>
-        <item quantity="few">Nemôžete zdieľať viac ako %1$d položiky.</item>
-        <item quantity="many">Nemôžete zdieľať viac ako %1$d položiek.</item>
-        <item quantity="other">Nemôžete zdieľať viac ako %1$d položiek.</item>
-    </plurals>
-    <string name="MediaSendActivity_select_recipients_description">Vybrať príjemcov</string>
-    <string name="MediaSendActivity_tap_here_to_make_this_message_disappear_after_it_is_viewed">Ťuknite sem, aby táto správa po zobrazení zmizla.</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">Všetky médiá</string>
@@ -1550,7 +1458,7 @@
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Oslovila vás táto nová funkcia? Podporte Signal jednorazovým príspevkom.</string>
     <!-- Update item message shown when we merge two threads together -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Vaša história správ s používateľom %1$s a jeho číslom %2$s bola zlúčená.</string>
-    <!-- Update item message shown when we merge two threads together and we don't know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Vaša história správ s používateľom %1$s a ďalším četom, ktorého je súčasťou, bola zlúčená.</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Odoslali ste žiadosť o aktiváciu platieb používateľovi %1$s</string>
@@ -1617,7 +1525,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Pripojiť sa k tejto skupine a zdieľať svoje meno a fotografiu s jej členmi? Ich správy neuvidíte, kým ju neprijmete.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Pridať sa do tejto skupiny? Kým pozvanie neprijmete, jej členovia sa nedozvú, že ste ich správy videli.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Odblokovať túto skupinu a zdieľať vaše meno a foto s jej členmi? Kým ju neodblokujete, nepríjmete z nej žiadne správy.</string>
-    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Zobraziť</string>
     <string name="MessageRequestProfileView_member_of_one_group">Člen %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Člen %1$s a %2$s</string>
@@ -1727,7 +1635,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Vytvorte si PIN</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Vyčerpali ste všetky pokusy na zadanie PIN, ale stále sa môžete k svojmu Signal účtu dosať vytvorením nového PIN. Kvôli ochrane vašeho súkromia a vašej bezpečnosti bude váš účet obnovený bez uložených profilových informácií alebo nastavení.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Vytvoriť nový PIN</string>
-    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varovanie</string>
@@ -1765,7 +1673,6 @@
     <string name="RecipientPreferenceActivity_unblock">Odblokovať</string>
 
     <!-- RecipientProvider -->
-    <string name="RecipientProvider_unnamed_group">Nepomenovaná skupina</string>
 
     <!-- RedPhone -->
     <string name="RedPhone_answering">Prijíma sa hovor…</string>
@@ -1780,9 +1687,7 @@
 
     <!-- Valentine\'s Day Megaphone -->
     <!-- Title text for the Valentine\'s Day donation megaphone. The placeholder will always be a heart emoji. Needs to be a placeholder for Android reasons. -->
-    <string name="ValentinesDayMegaphone_happy_heart_day">Šťastný 💜 Deň!</string>
     <!-- Body text for the Valentine\'s Day donation megaphone. -->
-    <string name="ValentinesDayMegaphone_show_your_affection">Ukážte svoju náklonnosť tým, že sa stanete podporovateľom Signal.</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">Ťuknite sem pre spustenie videa</string>
@@ -1808,7 +1713,6 @@
     <string name="WebRtcCallView__join_call">Pripojiť sa k hovoru</string>
     <string name="WebRtcCallView__call_is_full">Hovor je plne obsadený</string>
     <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">Bol dosiahnutý maximálny počet %1$d účastníkov pre tento hovor. Skúste to znovu neskôr.</string>
-    <string name="WebRtcCallView__view_participants_list">Zobraziť účastníkov</string>
     <string name="WebRtcCallView__your_video_is_off">Vaše video je vypnuté</string>
     <string name="WebRtcCallView__reconnecting">Pripájanie…</string>
     <string name="WebRtcCallView__joining">Pripája sa…</string>
@@ -1855,7 +1759,6 @@
     <string name="WebRtcCallView__s_is_in_this_call">%1$s je v tomto hovore</string>
     <string name="WebRtcCallView__s_are_in_this_call">%1$s sú v tomto hovore</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s a %2$s sú v tomto hovore</string>
-    <string name="WebRtcCallView__s_is_presenting">%1$s prezentuje</string>
 
     <plurals name="WebRtcCallView__s_s_and_d_others_are_in_this_call">
         <item quantity="one">%1$s, %2$s a %3$d ďalší sú v tomto hovore</item>
@@ -1864,12 +1767,19 @@
         <item quantity="other">%1$s, %2$s a %3$d ďalších je v tomto hovore</item>
     </plurals>
 
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__flip">Preklopiť</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__speaker">Reproduktor</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__camera">Fotoaparát</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__unmute">Zapnúť zvuky</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__mute">Stlmiť</string>
+    <!-- Toggle label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__ring">Zvoniť</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallView__end_call">Ukončiť hovor</string>
 
     <!-- CallParticipantsListDialog -->
@@ -1969,12 +1879,12 @@
     <string name="SearchFragment_header_messages">Správy</string>
 
     <!-- ShakeToReport -->
-    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
-    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
-    <string name="ShakeToReport_submit" translatable="false">Submit</string>
-    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
-    <string name="ShakeToReport_success" translatable="false">Success!</string>
-    <string name="ShakeToReport_share" translatable="false">Share</string>
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Pridať medzi kontakty</string>
@@ -2055,7 +1965,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tento denník bude zverejnený online, aby si ho mohli prispievatelia vidieť. Pred nahraním to môžete skontrolovať.</string>
 
     <!-- SupportEmailUtil -->
-    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Info o zariadení:</string>
     <string name="SupportEmailUtil_android_version">Verzia Androidu:</string>
@@ -2136,11 +2046,9 @@
     <string name="UsernameEditFragment__choose_your_username">Vyberte si používateľské meno</string>
     <string name="UsernameEditFragment_username">Používateľské meno</string>
     <string name="UsernameEditFragment_delete">Vymazať</string>
-    <string name="UsernameEditFragment_successfully_set_username">Používateľské meno bolo úspešne nastavené.</string>
     <string name="UsernameEditFragment_successfully_removed_username">Používateľské meno bolo úspešne odstránené.</string>
     <string name="UsernameEditFragment_encountered_a_network_error">Vyskytla sa chyba siete.</string>
     <string name="UsernameEditFragment_this_username_is_taken">Toto používateľské meno je obsadené.</string>
-    <string name="UsernameEditFragment_this_username_is_available">Toto používateľské meno je k dispozícii.</string>
     <string name="UsernameEditFragment_usernames_can_only_include">Používateľské mená môžu obsahovať iba znaky a-Z, 0-9 a podčiarkovníky.</string>
     <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">Používateľské mená nemôžu začínať číslicou.</string>
     <string name="UsernameEditFragment_username_is_invalid">Používateľské meno je neplatné.</string>
@@ -2179,10 +2087,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Než uvidíte bezpečnostné číslo používateľa %1$s, musíte si najprv poslať správu.</string>
 
     <!-- ViewOnceMessageActivity -->
-    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
 
     <!-- AudioView -->
-    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
+  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Správa šifrovaná pre neexistujúcu reláciu</string>
@@ -2223,7 +2131,7 @@
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepodarilo sa nájsť aplikáciu schopnú zdieľať tento typ súboru.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Zatvoriť</string>
     <string name="MediaPreviewFragment_edit_media_error">Chyba média</string>
-    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people's devices -->
+    <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Chyba pri odstraňovaní správy, správa môže stále existovať</string>
 
     <!-- MessageNotifier -->
@@ -2243,8 +2151,6 @@
     <string name="MessageNotifier_reply">Odpovedať</string>
     <string name="MessageNotifier_signal_message">Signal správa</string>
     <string name="MessageNotifier_unsecured_sms">Nezabezpečená SMS</string>
-    <string name="MessageNotifier_you_may_have_new_messages">Pravdepodobne máte nové správy</string>
-    <string name="MessageNotifier_open_signal_to_check_for_recent_notifications">Otvorte Signal pre kontrolu nedávnych upozornení.</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
     <string name="MessageNotifier_reacted_s_to_s">reagoval/a na „%2$s“: %1$s.</string>
@@ -2328,7 +2234,6 @@
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Aktualizujte Signal, aby ste mohli naďalej používať platby. Je možné, že váš zostatok nie je aktuálny.</string>
     <!-- Banner button to update now -->
-    <string name="EnclaveFailureReminder_update_now">Aktualizovať teraz</string>
 
     <!-- WebRtcCallActivity -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">Ak chcete prijať hovor, poskytnite Signal prístup k mikrofónu.</string>
@@ -2344,8 +2249,11 @@
     <string name="WebRtcCallScreen_swipe_up_to_change_views">Posuňte smerom hore pre zmenu zobrazenia</string>
 
     <!-- WebRtcCallScreen V2 -->
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__decline">Odmietnuť</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer">Odpovedať</string>
+    <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">Prijať bez videa</string>
 
     <!-- WebRtcAudioOutputToggle -->
@@ -2363,7 +2271,6 @@
     <string name="change_passphrase_activity__repeat_new_passphrase">Zopakujte nové heslo</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__enter_name_or_number">Zadajte meno alebo číslo</string>
     <string name="contact_selection_activity__invite_to_signal">Pozvať do Signalu</string>
     <string name="contact_selection_activity__new_group">Nová skupina</string>
 
@@ -2507,7 +2414,6 @@
     <!-- safety_number_change_dialog -->
     <string name="safety_number_change_dialog__safety_number_changes">Zmeny bezpečnostného čísla</string>
     <string name="safety_number_change_dialog__accept">Potvrdiť</string>
-    <string name="safety_number_change_dialog__send_anyway">Napriek tomu poslať</string>
     <string name="safety_number_change_dialog__call_anyway">Aj tak zavolať</string>
     <string name="safety_number_change_dialog__join_call">Pripojiť sa k hovoru</string>
     <string name="safety_number_change_dialog__continue_call">Pokračovať v hovore</string>
@@ -2669,8 +2575,6 @@
     <string name="CreateProfileActivity_first_name_required">Meno (povinné)</string>
     <string name="CreateProfileActivity_last_name_optional">Priezvisko (povinné)</string>
     <string name="CreateProfileActivity_next">Ďalší</string>
-    <string name="CreateProfileActivity__username">Používateľské meno</string>
-    <string name="CreateProfileActivity__create_a_username">Vytvoriť používateľské meno</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vlastné názvy a fotky MMS skupín budú viditeľné len pre vás.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">Popisy skupín budú viditeľné pre členov tejto skupiny a ľudí, ktorí boli pozvaní.</string>
 
@@ -2690,7 +2594,7 @@
     <string name="EditProfileFragment__edit_group">Upraviť skupinu</string>
     <string name="EditProfileFragment__group_name">Názov skupiny</string>
     <string name="EditProfileFragment__group_description">Popis skupiny</string>
-    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Vaše meno</string>
@@ -2703,7 +2607,6 @@
     <string name="recipient_preference_activity__shared_media">Zdieľané médiá</string>
 
     <!-- recipients_panel -->
-    <string name="recipients_panel__to"><small>Zadajte meno alebo číslo</small></string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[Ak chcete overiť bezpečnosť šifrovania end-to-end pomocou %1$s, porovnajte vyššie uvedené čísla s ich zariadeniami. Kód môžete naskenovať aj do ich telefónu. <a href=\"https://signal.org/redirect/safety-numbers\">Viac informácií.</a>]]></string>
@@ -2750,7 +2653,6 @@
     <string name="AndroidManifest__select_contacts">Výber kontaktov</string>
     <string name="AndroidManifest__change_passphrase">Zmeniť heslo</string>
     <string name="AndroidManifest__verify_safety_number">Overiť bezpečnostné číslo</string>
-    <string name="AndroidManifest__log_submit">Odoslať ladiaci záznam</string>
     <string name="AndroidManifest__media_preview">Náhľad média</string>
     <string name="AndroidManifest__message_details">Detaily správy</string>
     <string name="AndroidManifest__linked_devices">Pripojené zariadenia</string>
@@ -2772,13 +2674,13 @@
     <string name="HelpFragment__whats_this">Čo je toto?</string>
     <string name="HelpFragment__how_do_you_feel">Ako sa cítite? (voliteľné)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Povedzte nám, prečo píšete.</string>
-    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
-    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
-    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
-    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
-    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
-    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
-    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
     <string name="HelpFragment__support_info">Podporné informácie</string>
     <string name="HelpFragment__signal_android_support_request">Žiadosť o podporu pre Signal Android</string>
     <string name="HelpFragment__debug_log">Denník ladenia:</string>
@@ -2853,12 +2755,6 @@
     <!-- preferences.xml -->
     <string name="preferences_beta">Beta</string>
     <string name="preferences__sms_mms">SMS a MMS</string>
-    <string name="preferences__pref_all_sms_title">Prijať všetky SMS</string>
-    <string name="preferences__pref_all_mms_title">Prijať všetky MMS</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_text_messages">Použiť Signal pre všetky prichádzajúce textové správy</string>
-    <string name="preferences__use_signal_for_viewing_and_storing_all_incoming_multimedia_messages">Použiť Signal pre všetky prichádzajúce multimediálne správy</string>
-    <string name="preferences__pref_enter_sends_title">Odoslať stlačením klávesy Enter</string>
-    <string name="preferences__pressing_the_enter_key_will_send_text_messages">Stlačením klávesy Enter sa správa odošle</string>
     <string name="preferences__pref_use_address_book_photos">Použiť fotky zo zoznamu kontaktov</string>
     <string name="preferences__display_contact_photos_from_your_address_book_if_available">Zobraziť fotky zo zoznamu kontaktov, ak sú dostupné</string>
     <!-- Preference menu item title for a toggle switch for preserving the archived state of muted chats. -->
@@ -2867,14 +2763,11 @@
     <string name="preferences__muted_chats_that_are_archived_will_remain_archived">Stlmené chaty, ktoré sú archivované, zostanú archivované, keď príde nová správa.</string>
     <string name="preferences__generate_link_previews">Generovať náhľady stránok</string>
     <string name="preferences__retrieve_link_previews_from_websites_for_messages">Získať ukážky stránok priamo z webových prepojení pre správy, ktoré odošlete.</string>
-    <string name="preferences__choose_identity">Vyberať identitu</string>
-    <string name="preferences__choose_your_contact_entry_from_the_contacts_list">Vyberte Váš kontakt zo zoznamu kontaktov.</string>
     <string name="preferences__change_passphrase">Zmeniť heslo</string>
     <string name="preferences__change_your_passphrase">Zmeniť heslo</string>
     <string name="preferences__enable_passphrase">Chrániť obrazovku heslom</string>
     <string name="preferences__lock_signal_and_message_notifications_with_a_passphrase">Uzamknúť obrazovku a upozornenia pomocou hesla</string>
     <string name="preferences__screen_security">Zabezpečenie obrazovky</string>
-    <string name="preferences__disable_screen_security_to_allow_screen_shots">Zakázať vytváranie snímkov obrazovky v tejto aplikácii a v zozname bežiacich aplikácií</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automaticky zamknúť Signal po určenej dobe bez aktivity</string>
     <string name="preferences__inactivity_timeout_passphrase">Heslo po neaktivite</string>
     <string name="preferences__inactivity_timeout_interval">Interval doby bez aktivity</string>
@@ -2910,7 +2803,6 @@
     <string name="preferences__advanced">Rozšírené</string>
     <string name="preferences__donate_to_signal">Prispieť na Signal</string>
     <!-- Preference label for making one-time donations to Signal -->
-    <string name="preferences__one_time_donation">Jednorazový príspevok</string>
     <string name="preferences__privacy">Súkromie</string>
     <!-- Preference label for stories -->
     <string name="preferences__stories">Príbehy</string>
@@ -2937,7 +2829,6 @@
     <string name="preferences__dark_theme">Tmavý</string>
     <string name="preferences__appearance">Vzhľad</string>
     <string name="preferences__theme">Motív</string>
-    <string name="preferences__chat_wallpaper">Pozadie chatu</string>
     <string name="preferences__chat_color_and_wallpaper">Farba konverzácie a tapetu pozadia</string>
     <string name="preferences__disable_pin">Vypnúť PIN</string>
     <string name="preferences__enable_pin">Zapnúť PIN</string>
@@ -2959,8 +2850,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Keď sú indikátory písania vypnuté, nezobrazia sa Vám ani indikátory iných.</string>
     <string name="preferences__request_keyboard_to_disable">Požiadať klávesnicu aby sa neprispôsobovala učením.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Toto nastavenie nie je zárukou a vaša klávesnica ho môže ignorovať.</string>
-    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
-    <string name="preferences_app_protection__blocked_users">Blokovaní používatelia</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
     <string name="preferences_chats__when_using_mobile_data">Pri použití mobilných dát</string>
     <string name="preferences_chats__when_using_wifi">Pri použití Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Pri roamingu</string>
@@ -2988,32 +2878,22 @@
     <string name="preferences_storage__s_messages">%1$s správ</string>
     <string name="preferences_storage__custom">Vlastné</string>
     <string name="preferences_advanced__use_system_emoji">Použiť systémové emoji</string>
-    <string name="preferences_advanced__disable_signal_built_in_emoji_support">Vypnúť emoji zabudované v Signale</string>
     <string name="preferences_advanced__relay_all_calls_through_the_signal_server_to_avoid_revealing_your_ip_address">Smerovať všetky hovory cez server Signal pre zabránenie odhaleniu vašej IP adresy kontaktu. Zapnutie zníži kvalitu hovoru.</string>
     <string name="preferences_advanced__always_relay_calls">Vždy presmerovať hovory</string>
     <string name="preferences_app_protection__who_can">Kto môže…</string>
-    <string name="preferences_app_protection__app_access">Prístup k aplikácii</string>
-    <string name="preferences_app_protection__communication">Komunikácia</string>
     <!-- Privacy settings payments section title -->
     <string name="preferences_app_protection__payments">Platby</string>
     <string name="preferences_chats__chats">Chat</string>
     <string name="preferences_data_and_storage__manage_storage">Spravovať úložisko</string>
-    <string name="preferences_data_and_storage__calls">Volania</string>
     <string name="preferences_data_and_storage__use_less_data_for_calls">Využívať menej dát na hovory</string>
     <string name="preferences_data_and_storage__never">Nikdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">WiFi a mobilné dáta</string>
     <string name="preferences_data_and_storage__mobile_data_only">Iba mobilné dáta</string>
     <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Using less data may improve calls on bad networks</string>
-    <string name="preferences_notifications__messages">Správy</string>
-    <string name="preferences_notifications__events">Udalosti</string>
     <string name="preferences_notifications__in_chat_sounds">Zvuky v chate</string>
     <string name="preferences_notifications__show">Zobraziť</string>
-    <string name="preferences_notifications__calls">Volania</string>
     <string name="preferences_notifications__ringtone">Zvonenie</string>
-    <string name="preferences_chats__show_invitation_prompts">Zobraziť pozvánky</string>
-    <string name="preferences_chats__display_invitation_prompts_for_contacts_without_signal">Zobraziť pozvánky pre kontakty bez Signalu</string>
     <string name="preferences_chats__message_text_size">Veľkosť písma správy</string>
-    <string name="preferences_events__contact_joined_signal">Váš kontakt začal používať Signal</string>
     <string name="preferences_notifications__priority">Priorita</string>
     <!-- Heading for the \'censorship circumvention\' section of privacy preferences -->
     <string name="preferences_communication__category_censorship_circumvention">Obchádzanie cenzúry</string>
@@ -3029,8 +2909,6 @@
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re not connected to the internet -->
     <string name="preferences_communication__censorship_circumvention_can_only_be_activated_when_connected_to_the_internet">Obchádzanie cenzúry je možné zapnúť len s prístupom na internet.</string>
     <string name="preferences_communication__category_sealed_sender">Zapečatený odosielateľ</string>
-    <string name="preferences_communication__sealed_sender_display_indicators">Zobraziť indikátory</string>
-    <string name="preferences_communication__sealed_sender_display_indicators_description">"Zobraziť stavovú ikonu v detailoch správ, ktoré boli doručené s použitím zapečateného odosielateľa."</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone">Povoliť od každého</string>
     <string name="preferences_communication__sealed_sender_allow_from_anyone_description">Zapnúť zapečateného odosielateľa pre prichádzajúce správy od ľudí, ktorých nemáte v kontaktoch a s ktorými ste nezdieľali svoj profil.</string>
     <string name="preferences_communication__sealed_sender_learn_more">Dozvedieť sa viac</string>
@@ -3056,9 +2934,9 @@
     <string name="configurable_single_select__customize_option">Prispôsobiť nastavenie</string>
 
     <!-- Internal only preferences -->
-    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
-    <string name="preferences__internal_details" translatable="false">Internal Details</string>
-    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
 
 
     <!-- Payments -->
@@ -3073,7 +2951,6 @@
     <string name="PaymentsHomeFragment__activating_payments">Aktivujú sa platby…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Obnovte platobný účet</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Zatiaľ žiadna nedávna aktivita</string>
-    <string name="PaymentsHomeFragment__pending_requests">Nevybavené žiadosti</string>
     <string name="PaymentsHomeFragment__recent_activity">Posledná aktivita</string>
     <string name="PaymentsHomeFragment__see_all">Pozrieť všetky</string>
     <string name="PaymentsHomeFragment__add_funds">Pridať prostriedky</string>
@@ -3102,13 +2979,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Platby sú deaktivované.</string>
     <string name="PaymentsHomeFragment__payment_failed">Platba zlyhala</string>
     <string name="PaymentsHomeFragment__details">Podrobnosti</string>
-    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Pomocou Signal môžete odosielať a prijímať MobileCoiny. Všetky platby podliehajú Podmienkam používania pre MobileCoins a MobileCoin Wallet. Toto je funkcia beta verzie, takže sa môžete stretnúť s určitými problémami a platby, alebo zostatky, ktoré môžete stratiť, nie je možné obnoviť. </string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Pomocou Signal môžete odosielať a prijímať MobileCoiny. Všetky platby podliehajú Podmienkam používania pre MobileCoins a MobileCoin Wallet. Toto je funkcia beta verzie, takže sa môžete stretnúť s určitými problémami a platby, alebo zostatky, ktoré môžete stratiť, nie je možné obnoviť. </string> -->
     <string name="PaymentsHomeFragment__activate">Aktivovať</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Zobraziť podmienky MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Platby v službe Signal už nie sú k dispozícii. Stále môžete prevádzať prostriedky na burzu, ale už nemôžete posielať a prijímať platby ani pridávať prostriedky.</string>
 
-    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Zapnúť platobný zámok pre budúce platby?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -3152,7 +3029,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Kopírovať</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Skopírované do schránky</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Ak chcete pridať prostriedky, pošlite MobileCoin na svoju adresu peňaženky. Začnite transakciu zo svojho účtu na burze, ktorá podporuje MobileCoin, potom naskenujte QR kód alebo skopírujte adresu svojej peňaženky.</string>
-    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
@@ -3172,8 +3049,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Poplatok za vyčistenie mincí</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"Poplatok za upratanie mincí\" sa účtuje, keď mince vo vašom vlastníctve nie je možné skombinovať na dokončenie transakcie. Upratanie vám umožní posielať platby naďalej.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Pre túto transakciu nie sú k dispozícii žiadne ďalšie podrobnosti</string>
-    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
-    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
     <string name="PaymentsDetailsFragment__sent_payment">Odoslaná platba</string>
     <string name="PaymentsDetailsFragment__received_payment">Prijatá platba</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Platba dokončená %1$s</string>
@@ -3217,7 +3094,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">Pridať poznámku</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Prepočty sú len odhadmi a nemusia byť presné.</string>
-    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
+  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Poznámka</string>
@@ -3225,7 +3102,6 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Potvrďte platbu</string>
     <string name="ConfirmPayment__network_fee">Sieťový poplatok</string>
-    <string name="ConfirmPayment__error_getting_fee">Chyba pri získavaní poplatku</string>
     <string name="ConfirmPayment__estimated_s">Odhadované %1$s</string>
     <string name="ConfirmPayment__to">Komu</string>
     <string name="ConfirmPayment__total_amount">Celková suma</string>
@@ -3285,29 +3161,28 @@
 
     <!-- conversation_context_image -->
     <!-- Button to save a message attachment (image, file etc.) -->
-    <string name="conversation_context_image__save_attachment">Uložiť</string>
 
     <!-- conversation_expiring_off -->
     <string name="conversation_expiring_off__disappearing_messages">Miznúce správy</string>
 
     <!-- conversation_selection -->
-    <!-- Button to view detailed information for a message -->
+    <!-- Button to view detailed information for a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_message_details">Info</string>
-    <!-- Button to copy a message\'s text to the clipboard -->
+    <!-- Button to copy a message\'s text to the clipboard; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_copy">Kopírovať</string>
-    <!-- Button to delete a message -->
+    <!-- Button to delete a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_delete">Odstrániť</string>
-    <!-- Button to forward a message to another person or group chat -->
+    <!-- Button to forward a message to another person or group chat; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_forward">Preposlať</string>
-    <!-- Button to reply to a message -->
+    <!-- Button to reply to a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="conversation_selection__menu_reply">Odpovedať</string>
-    <!-- Button to save a message attachment (image, file etc.) -->
+    <!-- Button to save a message attachment (image, file etc.); Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_save">Uložiť</string>
-    <!-- Button to retry sending a message -->
+    <!-- Button to retry sending a message; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_resend_message">Poslať znovu</string>
-    <!-- Button to select a message and enter selection mode -->
+    <!-- Button to select a message and enter selection mode; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_multi_select">Vybrať</string>
-    <!-- Button to view a in-chat payment message's full payment details -->
+    <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Platobné údaje</string>
 
     <!-- conversation_expiring_on -->
@@ -3316,14 +3191,6 @@
     <string name="conversation_insecure__invite">Pozvať</string>
 
     <!-- conversation_list_batch -->
-    <string name="conversation_list_batch__menu_delete_selected">Odstrániť označené</string>
-    <string name="conversation_list_batch__menu_pin_selected">Pripnúť označené</string>
-    <string name="conversation_list_batch__menu_unpin_selected">Odopnúť označené</string>
-    <string name="conversation_list_batch__menu_select_all">Označiť všetko</string>
-    <string name="conversation_list_batch_archive__menu_archive_selected">Vybratý archív</string>
-    <string name="conversation_list_batch_unarchive__menu_unarchive_selected">Obnoviť vybrané z archívu</string>
-    <string name="conversation_list_batch__menu_mark_as_read">Označ ako prečítané</string>
-    <string name="conversation_list_batch__menu_mark_as_unread">Označ ako neprečítané</string>
 
     <!-- conversation_list -->
     <string name="conversation_list_settings_shortcut">Skratka pre Nastavenia</string>
@@ -3344,7 +3211,6 @@
 
 
     <!-- conversation_secure_verified -->
-    <string name="conversation_secure_verified__menu_reset_secure_session">Resetovať zabezpečenú reláciu</string>
 
     <!-- conversation_muted -->
     <string name="conversation_muted__unmute">Nahlas</string>
@@ -3392,20 +3258,17 @@
     <string name="reminder_header_push_text">Zlepšite svoj zážitok z komunikácie.</string>
     <string name="reminder_header_service_outage_text">Signal má technické ťažkosti. Pracujeme na tom, aby sme čo najskôr obnovili našu službu.</string>
     <string name="reminder_header_progress">%1$d%%</string>
-    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user's contacts -->
+    <!-- Body text of a banner that will show at the top of the chat list when we temporarily cannot process the user\'s contacts -->
     <string name="reminder_cds_warning_body">Vyhľadávanie súkromných kontaktov v Signali dočasne nedokáže spracovať kontakty vo vašom telefóne.</string>
-    <!-- Label for a button in a banner to learn more about why we temporarily can't process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we temporarily can\'t process the user\'s contacts -->
     <string name="reminder_cds_warning_learn_more">Zistiť viac</string>
     <!-- Body text of a banner that will show at the top of the chat list when the user has so many contacts that we cannot ever process them -->
     <string name="reminder_cds_permanent_error_body">Vyhľadávanie súkromných kontaktov v Signali nedokáže spracovať kontakty vo vašom telefóne.</string>
-    <!-- Label for a button in a banner to learn more about why we cannot process the user's contacts -->
+    <!-- Label for a button in a banner to learn more about why we cannot process the user\'s contacts -->
     <string name="reminder_cds_permanent_error_learn_more">Zistiť viac</string>
 
     <!-- media_preview -->
     <string name="media_preview__save_title">Uložiť</string>
-    <string name="media_preview__forward_title">Preposlať</string>
-    <string name="media_preview__share_title">Zdieľať</string>
-    <string name="media_preview__all_media_title">Všetky médiá</string>
     <string name="media_preview__edit_title">Upraviť</string>
 
 
@@ -3447,7 +3310,7 @@
     <string name="BaseKbsPinFragment__next">Ďalší</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Vytvoriť alfanumerický PIN kód</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Vytvoriť numerický PIN kód</string>
-    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3481,7 +3344,7 @@
     <string name="KbsSplashFragment__introducing_pins">Predstavujeme PINy</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signale zašifrované, aby ste k nim mali prístup iba vy. Váš profil, nastavenia a kontakty vám po opätovnej inštalácii aplikácie ostanú. Na otvorenie aplikácie PIN potrebovať nebudete.</string>
     <string name="KbsSplashFragment__learn_more">Dozvedieť sa viac</string>
-    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
     <string name="KbsSplashFragment__registration_lock_equals_pin">Registračný zámok = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Váš Registračný zámok sa teraz volá PIN kód a dokáže viac. Aktualizujte ho teraz.</string>
     <string name="KbsSplashFragment__update_pin">Aktualizovať PIN kód</string>
@@ -3502,7 +3365,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Váš účet sa uzamkol z dôvodu ochrany vášho súkromia a zabezpečenia. Po %1$d dňoch nečinnosti vo vašom účte budete môcť opätovne zaregistrovať toto telefónne číslo bez potreby PIN kódu. Všetok obsah sa odstráni.</string>
     <string name="AccountLockedFragment__next">Ďalší</string>
     <string name="AccountLockedFragment__learn_more">Dozvedieť sa viac</string>
-    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
+  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Zadajte svoj PIN</string>
@@ -3514,7 +3377,6 @@
     <string name="RegistrationLockFragment__incorrect_pin">Nesprávny PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Zabudli ste svoj PIN?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Ostáva už len zopár pokusov!</string>
-    <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v1_pin">Signal registrácia - potrebujem pomôcť s PIN na Androide (v1 PIN)</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Signal registrácia - potrebujem pomôcť s PIN na Androide (v2 PIN)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -3582,7 +3444,6 @@
     <string name="registration_activity__transfer_account">Preniesť účet</string>
     <string name="registration_activity__skip">Preskočiť</string>
     <string name="preferences_chats__chat_backups">Zálohy chatu</string>
-    <string name="preferences_chats__backup_chats_to_external_storage">Zálohovať chaty na úložisko</string>
     <string name="preferences_chats__transfer_account">Preniesť účet</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Preniesť účet do nového Android zariadenia</string>
     <string name="RegistrationActivity_enter_backup_passphrase">Zadajte heslo pre zálohy</string>
@@ -3621,7 +3482,6 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša záloha obsahuje veľmi veľký súbor, ktorý nie je možné zálohovať. Odstráňte ho a vytvorte novú zálohu.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Ťukni pre správu záloh.</string>
-    <string name="ProgressPreference_d_messages_so_far">Zatiaľ %1$d správ</string>
     <string name="RegistrationActivity_wrong_number">Nesprávne číslo</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Radšej mi zavolať \n (Dostupný/á o %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktovať podporu Signal</string>
@@ -3643,9 +3503,6 @@
     <string name="preferences_app_protection__create_a_pin">Vytvoriť si PIN</string>
     <string name="preferences_app_protection__change_your_pin">Zmente si PIN</string>
     <string name="preferences_app_protection__pin_reminders">PIN pripomienky</string>
-    <string name="preferences_app_protection__pins_keep_information_stored_with_signal_encrypted">PIN kódy udržiavajú informácie uložené v Signal zašifrované, aby ste k nim mali prístup iba vy. Váš profil, vaše nastavenia a kontakty sa po opätovnej inštalácii Signalu obnovia.</string>
-    <string name="preferences_app_protection__add_extra_security_by_requiring_your_signal_pin_to_register">Zvýšte svoje zabezpečenie tým, že pri opakovanej registrácii svojho telefónneho čísla v Signal budete vyžadovať PIN.</string>
-    <string name="preferences_app_protection__reminders_help_you_remember_your_pin">Pripomienky vám pomôžu zapamätať si váš PIN, keďže ho nie je možné obnoviť. Postupom času vás oň budeme žiadať zriedkavejšie.</string>
     <string name="preferences_app_protection__turn_off">Vypnúť</string>
     <string name="preferences_app_protection__confirm_pin">Potvrďte PIN</string>
     <string name="preferences_app_protection__confirm_your_signal_pin">Overte váš PIN pre Signal</string>
@@ -3709,7 +3566,6 @@
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nie je možné otvoriť Wi-Fi nastavenia. Prosím, zapnite Wi-Fi.</string>
     <string name="DeviceTransferSetup__grant_location_permission">Povoliť prístup k polohe</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Zapnúť služby polohy</string>
-    <string name="DeviceTransferSetup__unable_to_open_location_settings">Nie je možné otvoriť nastavenia polohy.</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Zapnúť Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">Chyba pripojenia</string>
     <string name="DeviceTransferSetup__retry">Skúsiť znovu</string>
@@ -3718,7 +3574,6 @@
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Overte, že doleuvedený kód je rovnaký na oboch zariadeniach. Potom ťuknite pre pokračovanie.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Čísla sa nezhodujú</string>
     <string name="DeviceTransferSetup__continue">Pokračovať</string>
-    <string name="DeviceTransferSetup__number_is_not_the_same">Číslo sa nezhoduje</string>
     <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Ak sa čísla na vašich zariadeniach nezhodujú, je možné, že ste pripojený/á k zlému zariadeniu. Pre nápravu zastavte presun a skúste ho znova, pričom svoje zariadenia držte blízko pri sebe.</string>
     <string name="DeviceTransferSetup__stop_transfer">Zastaviť prenos</string>
     <string name="DeviceTransferSetup__unable_to_discover_old_device">Nie je možné nájsť staré zariadenie</string>
@@ -3748,7 +3603,6 @@
     <string name="DeviceTransfer__s_of_messages_so_far">Zatiaľ %1$s%% správ…</string>
     <string name="DeviceTransfer__cancel">Zrušiť</string>
     <string name="DeviceTransfer__try_again">Skúsiť znova</string>
-    <string name="DeviceTransfer__stop_transfer_question">Zastaviť prenos?</string>
     <string name="DeviceTransfer__stop_transfer">Zastaviť prenos</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Celý priebeh presunu bude stratený.</string>
     <string name="DeviceTransfer__transfer_failed">Presun zlyhal</string>
@@ -3756,7 +3610,6 @@
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Preniesť účet</string>
-    <string name="OldDeviceTransferInstructions__you_can_transfer_your_signal_account_when_setting_up_signal_on_a_new_android_device">Pri prvom nastavení Signalu na novom zariadení naň môžete presunúť svoj Signal účet. Predtým, než budete pokračovať:</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
     <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Stiahnite Signal na svojom novom Android zariadení</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
@@ -3766,7 +3619,6 @@
     <string name="OldDeviceTransferInstructions__continue">Pokračovať</string>
 
     <!-- OldDeviceTransferComplete -->
-    <string name="OldDeviceTransferComplete__transfer_complete">Presun hotový</string>
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Choďte ku svojmu novému zariadeniu</string>
     <string name="OldDeviceTransferComplete__your_signal_data_has_Been_transferred_to_your_new_device">Vaše Signal dáta boli presunuté do vášho nového zariadenia. Pre ukončenie procesu presunu sa musíte zaregistrovať na vašom novom zariadení.</string>
     <string name="OldDeviceTransferComplete__close">Zatvoriť</string>
@@ -3793,10 +3645,6 @@
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Zrušiť a aktivovať toto zariadenie</string>
 
     <!-- AdvancedPreferenceFragment -->
-    <string name="AdvancedPreferenceFragment__transfer_mob_balance">Preniesť zostatok MOB?</string>
-    <string name="AdvancedPreferenceFragment__you_have_a_balance_of_s">Zostatok je %1$s. Ak svoje prostriedky neprenesiete na inú adresu peňaženky pred odstránením účtu, navždy o ne prídete.</string>
-    <string name="AdvancedPreferenceFragment__dont_transfer">Nepreviesť</string>
-    <string name="AdvancedPreferenceFragment__transfer">Prenos</string>
 
     <!-- RecipientBottomSheet -->
     <string name="RecipientBottomSheet_block">Blokovať</string>
@@ -3810,10 +3658,6 @@
     <string name="RecipientBottomSheet_make_admin">Spraviť administrátorom</string>
     <string name="RecipientBottomSheet_remove_as_admin">Odstrániť ako admina</string>
     <string name="RecipientBottomSheet_remove_from_group">Odstrániť zo skupiny</string>
-    <string name="RecipientBottomSheet_message_description">Správa</string>
-    <string name="RecipientBottomSheet_voice_call_description">Hlasový hovor</string>
-    <string name="RecipientBottomSheet_insecure_voice_call_description">Nezabezpečený hlasový hovor</string>
-    <string name="RecipientBottomSheet_video_call_description">Video hovor</string>
 
     <string name="RecipientBottomSheet_remove_s_as_group_admin">Odstrániť %1$s spomedzi adminov skupiny?</string>
     <string name="RecipientBottomSheet_s_will_be_able_to_edit_group">"\"%1$s\" bude môcť upravovať túto skupinu a jej členov."</string>
@@ -3923,7 +3767,6 @@
     <string name="DeleteAccountFragment__the_phone_number">Zadané telefónne číslo sa nezhoduje s telefónnym číslom vášho účtu.</string>
     <string name="DeleteAccountFragment__are_you_sure">Naozaj chcete vymazať svoj účet?</string>
     <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Tým sa odstráni váš účet Signal a obnoví sa aplikácia. Aplikácia sa po dokončení procesu zavrie.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_account">Nepodarilo sa odstrániť účet. Máte v poriadku sieťové pripojenie?</string>
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Nepodarilo sa odstrániť lokálne údaje. Manuálne ich môžete vymazať v systémových nastaveniach aplikácie.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Spustiť nastavenía aplikácie</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
@@ -3957,7 +3800,6 @@
     <string name="ShareActivity__share">Zdieľať</string>
     <string name="ShareActivity__send">Poslať</string>
     <string name="ShareActivity__comma_s">, %1$s</string>
-    <string name="ShareActivity__sharing_to_multiple_chats_is">Zdieľanie do viacerých chatov je možné iba Signal správami.</string>
     <!-- Toast when the incoming intent is invalid -->
     <string name="ShareActivity__could_not_get_share_data_from_intent">Údaje nie je možné zdieľať.</string>
 
@@ -3966,7 +3808,6 @@
     <string name="MultiShareDialogs__you_can_only_share_with_up_to">Môžete zdieľať maximálne s %1$d chatmi</string>
 
     <!-- ChatWallpaperActivity -->
-    <string name="ChatWallpaperActivity__chat_wallpaper">Pozadie chatu</string>
 
     <!-- ChatWallpaperFragment -->
     <string name="ChatWallpaperFragment__chat_color">Farba chatu</string>
@@ -3977,7 +3818,6 @@
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">Tmavý režim stmaví tapetu pozadia</string>
     <string name="ChatWallpaperFragment__contact_name">Názov kontaktu</string>
     <string name="ChatWallpaperFragment__reset">Resetovať</string>
-    <string name="ChatWallpaperFragment__clear">Zmazať</string>
     <string name="ChatWallpaperFragment__wallpaper_preview_description">Náhľad pozadia</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_chat_colors">Chceli by ste zmeniť farby všetkých chatov?</string>
     <string name="ChatWallpaperFragment__would_you_like_to_override_all_wallpapers">Chceli by ste prestaviť všetky pozadia?</string>
@@ -4002,7 +3842,6 @@
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Prezeranie galérie vyžaduje prístup k úložisku dát.</string>
 
     <!-- WallpaperImageSelectionActivity -->
-    <string name="WallpaperImageSelectionActivity__choose_wallpaper_image">Vybrať obrázok ako pozadie</string>
 
     <!-- WallpaperCropActivity -->
     <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Štipnite pre priblíženie, potiahnite pre úpravu.</string>
@@ -4029,9 +3868,9 @@
     <string name="payment_info_card_with_a_high_balance">Pri vysokom zostatku by ste mohli zvážiť prechod na alfanumerický PIN. Zvýšili by ste tak ochranu vášho účtu.</string>
     <string name="payment_info_card_update_pin">Aktualizovať PIN kód</string>
 
-    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
-    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
-    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Deaktivovať peňaženku</string>
@@ -4043,7 +3882,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Deaktivovať bez prevodu?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">V prípade, že sa rozhodnete opätovne aktivovať platby, váš zostatok zostane vo vašej peňaženke prepojenej so službou Signal.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Chyba pri deaktivácii peňaženky.</string>
-    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
+  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Fráza na obnovenie</string>
@@ -4081,13 +3920,12 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Neplatná fráza na obnovenie</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Uistite sa, že ste zadali %1$d slov, a skúste to znova.</string>
 
-    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
-    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Ďalší</string>
     <string name="PaymentsRecoveryPhraseFragment__edit">Upraviť</string>
-    <string name="PaymentsRecoveryPhraseFragment__previous">Predchádzajúce</string>
     <string name="PaymentsRecoveryPhraseFragment__your_recovery_phrase">Vaša fráza na obnovenie</string>
     <string name="PaymentsRecoveryPhraseFragment__write_down_the_following_d_words">Zapíšte si nasledovných %1$d slov v poradí. Tento zoznam si uložte na bezpečnom mieste.</string>
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Uistite sa, že ste svoju frázu zadali správne.</string>
@@ -4115,7 +3953,6 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Neplatné slovo</string>
 
     <!-- ClearClipboardAlarmReceiver -->
-    <string name="ClearClipboardAlarmReceiver__clipboard_cleared">Schránka vymazaná.</string>
 
     <!-- PaymentNotificationsView -->
     <string name="PaymentNotificationsView__view">Zobraziť</string>
@@ -4134,7 +3971,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Žiadny z vašich kontaktov alebo ľudí, s ktorými chatujete, nie sú v tejto skupine. Pred prijatím žiadosti starostlivo skontrolujte, aby ste predišli nežiaducim správam.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">O žiadostiach na správy</string>
     <string name="GroupsInCommonMessageRequest__okay">OK</string>
-    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
+  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Tu je ukážka farby konverzácie.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Farbu vidíte iba vy.</string>
 
@@ -4253,7 +4090,7 @@
     <string name="NotificationsSettingsFragment__create_a_profile_to_receive_notifications_only_from_people_and_groups_you_choose">Vytvorte si profil, aby ste dostávali upozornenia iba od ľudí a skupín, ktoré si vyberiete.</string>
 
     <!-- NotificationProfilesFragment -->
-    <!-- Title for notification profiles screen that shows all existing profiles -->
+    <!-- Title for notification profiles screen that shows all existing profiles; Title with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="NotificationProfilesFragment__notification_profiles">Profily pre upozornenia</string>
     <!-- Button text to create a notification profile -->
     <string name="NotificationProfilesFragment__create_profile">Vytvoriť profil</string>
@@ -4269,7 +4106,6 @@
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Predvolený časovač pre nové konverzácie</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Nastavte predvolený časovač miznutia správ pre všetky nové správy ktoré ste poslali.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__manage_your_stories">Spravujte svoje príbehy a vyberte si, kto ich môže vidieť</string>
     <string name="PrivacySettingsFragment__payment_lock_require_lock">Na prevod prostriedkov vyžadovať zámok obrazovky Android alebo odtlačok prsta</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Nie je možné aktivovať platobný zámok</string>
@@ -4278,12 +4114,10 @@
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
     <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nepodarilo sa prejsť na systémové nastavenia</string>
     <!-- Alert dialog button to go to phone settings -->
-    <string name="PrivacySettingsFragment__go_to_settings">Prejsť na nastavenia</string>
     <!-- Alert dialog button to cancel the dialog -->
-    <string name="PrivacySettingsFragment__cancel">Zrušiť</string>
 
     <!-- AdvancedPrivacySettingsFragment -->
-    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
+  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Zobraziť stavovú ikonu</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Keď boli doručené pomocou zapečateného odosielateľa, zobrazí sa ikona v detailoch správy.</string>
 
@@ -4358,8 +4192,6 @@
     </plurals>
 
     <!-- ChatColorGradientTool -->
-    <string name="ChatColorGradientTool_top_edge_selector">Volič horného okraja</string>
-    <string name="ChatColorGradientTool_bottom_edge_selector">Volič spodného okraja</string>
 
     <!-- Title text for prompt to donate. Shown in a popup at the bottom of the chat list. -->
     <string name="Donate2022Q2Megaphone_donate_to_signal">Prispieť na Signal</string>
@@ -4417,20 +4249,27 @@
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Do príbehu môžu pridávať iba administrátori tejto skupiny</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Aplikácia Kontakty sa nenašla</string>
-    <string name="ConversationSettingsFragment__send_message">Poslať správu</string>
     <string name="ConversationSettingsFragment__start_video_call">Začať videohovor</string>
     <string name="ConversationSettingsFragment__start_audio_call">Začať audiohovor</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__story">Príbeh</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__message">Správa</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__video">Video</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__audio">Zvuk</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__call">Zavolať</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__mute">Stlmiť</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Stlmený/á</string>
+    <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__search">Hľadať</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Miznúce správy</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Zvuky &amp; upozornenia</string>
-    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
+  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Údaje o kontakte</string>
     <string name="ConversationSettingsFragment__view_safety_number">Zobraziť bezpečnostné číslo</string>
     <string name="ConversationSettingsFragment__block">Blokovať</string>
@@ -4464,7 +4303,6 @@
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Stlmiť upozornenia</string>
     <string name="SoundsAndNotificationsSettingsFragment__not_muted">Nestlmené</string>
-    <string name="SoundsAndNotificationsSettingsFragment__muted_until_s">Stlmený do %1$s</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Spomenutia</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Vždy upozorniť</string>
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Neinformovať</string>
@@ -4506,7 +4344,7 @@
     <string name="NewConversationActivity__unable_to_remove_s">Používateľa %1$s nie je možné odstrániť</string>
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Táto osoba je uložená v kontaktoch vášho zariadenia. Odstráňte ju zo svojich kontaktov a skúste to znova.</string>
-    <!-- Dialog action to view contact when they can't be removed otherwise -->
+    <!-- Dialog action to view contact when they can\'t be removed otherwise -->
     <string name="NewConversationActivity__view_contact">Zobraziť kontakt</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s nepoužíva Signal</string>
@@ -4531,9 +4369,7 @@
     <string name="AvatarPickerFragment__photo">Fotka</string>
     <string name="AvatarPickerFragment__text">Text</string>
     <string name="AvatarPickerFragment__save">Uložiť</string>
-    <string name="AvatarPickerFragment__select_an_avatar">Vyberte profilový obrázok</string>
     <string name="AvatarPickerFragment__clear_avatar">Vymazať avatara</string>
-    <string name="AvatarPickerFragment__edit">Upraviť</string>
     <string name="AvatarPickerRepository__failed_to_save_avatar">Avatar sa nepodarilo uložiť</string>
 
     <!-- TextAvatarCreationFragment -->
@@ -4614,7 +4450,6 @@
     <string name="ImageEditorHud__clear_all">Vymazať všetko</string>
     <string name="ImageEditorHud__undo">Späť</string>
     <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Prepínanie medzi značkovačom a zvýrazňovačom</string>
-    <string name="ImageEditorHud__delete">Vymazať</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Prepínanie medzi štýlmi textu</string>
 
     <string name="MediaCountIndicatorButton__send">Poslať</string>
@@ -4626,7 +4461,6 @@
     <string name="MediaReviewImagePageFragment__discard_changes">Zrušiť zmeny?</string>
     <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Prídete o všetky zmeny, ktoré ste urobili na tejto fotografii.</string>
 
-    <string name="CameraFragment__failed_to_open_camera">Nepodarilo sa otvoriť kameru</string>
 
     <string name="BadgesOverviewFragment__my_badges">Moje odznaky</string>
     <string name="BadgesOverviewFragment__featured_badge">Zobrazený odznak</string>
@@ -4634,27 +4468,21 @@
     <string name="BadgesOverviewFragment__failed_to_update_profile">Aktualizácia profilu zlyhala</string>
 
 
-    <string name="BadgeSelectionFragment__select_badges">Vyberte odznaky</string>
 
-    <string name="SelectFeaturedBadgeFragment__preview">Náhľad</string>
     <string name="SelectFeaturedBadgeFragment__select_a_badge">Vyberte odznak</string>
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">Musíte vybrať odznak</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Aktualizácia profilu zlyhala</string>
 
     <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">Staňte sa udržovateľom</string>
-    <!-- Title of a page in the bottom sheet. Placeholder is a user's short-name -->
+    <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s podporuje Signal</string>
-    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_monthly">%1$s podporuje Signal prostredníctvom mesačného príspevku. Signal je nezisková organizácia bez inzerentov a investorov, ktorú podporujú iba ľudia ako vy.</string>
-    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user's short-name -->
+    <!-- Description of a page in the bottom sheet of a one-time badge. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal_with_a_donation">%1$s podporuje Signal prostredníctvom príspevku. Signal je nezisková organizácia bez inzerentov a investorov, ktorú podporujú iba ľudia ako vy.</string>
 
     <string name="ImageView__badge">Odznak</string>
 
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you">Podporte technológiu, ktorá je vytvorená pre vás, nie pre vaše údaje, pripojením sa ku komunite ľudí, ktorí ju udržujú.</string>
-    <string name="SubscribeFragment__support_technology_that_is_built_for_you_not">Podporte technológiu, ktorá je vytvorená pre vás, nie pre vaše dáta, tým, že sa pripojíte ku komunite, ktorá podporuje Signal.</string>
-    <string name="SubscribeFragment__currency">Mena</string>
-    <string name="SubscribeFragment__more_payment_options">Viac platobných možností</string>
     <string name="SubscribeFragment__cancel_subscription">Zrušiť predplatné</string>
     <string name="SubscribeFragment__confirm_cancellation">Potvrdiť zrušenie?</string>
     <string name="SubscribeFragment__you_wont_be_charged_again">Už vám nebudeme účtovať žiadne poplatky. Na konci fakturačného obdobia bude váš odznak odstránený z vášho profilu.</string>
@@ -4667,7 +4495,7 @@
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dnes vám bude naúčtovaná celá suma (%1$s) nového predplatného. Vaše predplatné sa bude obnovovať mesačne.</string>
 
     <string name="Subscription__s_per_month">%1$s/mesiac</string>
-    <!-- Shown when a subscription is active and isn't going to expire at the end of the term -->
+    <!-- Shown when a subscription is active and isn\'t going to expire at the end of the term -->
     <string name="Subscription__renews_s">Obnoví sa %1$s</string>
     <!-- Shown when a subscription is active and is going to expire at the end of the term -->
     <string name="Subscription__expires_s">Platnosť vyprší %1$s</string>
@@ -4699,7 +4527,6 @@
     <!-- Heading for more area of manage subscriptions page -->
     <string name="ManageDonationsFragment__more">Viac</string>
     <!-- Heading for receipts area of manage subscriptions page -->
-    <string name="ManageDonationsFragment__receipts">Účtenky</string>
     <!-- Heading for my subscription area of manage subscriptions page -->
     <string name="ManageDonationsFragment__my_support">Moja podpora</string>
     <string name="ManageDonationsFragment__manage_subscription">Spravovať predplatné</string>
@@ -4707,7 +4534,6 @@
     <string name="ManageDonationsFragment__donation_receipts">Potvrdenia o prispení</string>
     <string name="ManageDonationsFragment__badges">Odznaky</string>
     <string name="ManageDonationsFragment__subscription_faq">Často kladené otázky o predplatnom</string>
-    <string name="ManageDonationsFragment__error_getting_subscription">Chyba pri získavaní predplatného.</string>
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Iné spôsoby, ako dať</string>
     <!-- Preference label to launch badge gifting -->
@@ -4715,8 +4541,9 @@
 
     <string name="Boost__enter_custom_amount">Zadajte vlastnú čiastku</string>
     <string name="Boost__one_time_contribution">Jednorazový príspevok</string>
+    <!-- Error label when the amount is smaller than what we can accept -->
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
 
-    <string name="MySupportPreference__add_a_signal_boost">Podporiť Signal</string>
     <string name="MySupportPreference__s_per_month">%1$s/mesiac</string>
     <string name="MySupportPreference__renews_s">Obnoví sa %1$s</string>
     <string name="MySupportPreference__processing_transaction">Prebieha spracovanie transakcie…</string>
@@ -4751,7 +4578,6 @@
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Máme problém s evidovaním vašej platby za Signal Podporovateľ. Uistite sa, že je váš spôsob platby aktuálny. Ak nie, aktualizujte ho v službe Google Pay. Signal sa pokúsi spracovať platbu znova o niekoľko dní.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Toto už nezobrazovať</string>
 
-    <string name="Subscription__please_contact_support_for_more_information">Pre viac informácií kontaktujte podporu.</string>
     <string name="Subscription__contact_support">Kontaktovať zákaznícku podporu</string>
     <string name="Subscription__get_a_s_badge">Získajte odznak %1$s</string>
 
@@ -4760,7 +4586,6 @@
     <string name="DonationsErrors__error_processing_payment">Chyba pri spracovaní platby</string>
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Chyba pri spracovaní platby. %1$s</string>
-    <string name="DonationsErrors__your_badge_could_not_be_added">Odznak nebolo možné pridať do vášho účtu, možno vám však boli účtované poplatky. Kontaktujte podporu.</string>
     <string name="DonationsErrors__your_payment">Vašu platbu sa nepodarilo spracovať a neboli vám účtované žiadne poplatky. Skúste to znova.</string>
     <string name="DonationsErrors__still_processing">Stále sa spracováva</string>
     <string name="DonationsErrors__couldnt_add_badge">Odznak sa nepodarilo pridať</string>
@@ -4774,8 +4599,6 @@
     <string name="DonationsErrors__could_not_send_gift_badge">Darčekový odznak sa nepodarilo odoslať. Kontaktujte podporu.</string>
     <string name="DonationsErrors__your_badge_could_not">Odznak nebolo možné pridať do vášho účtu, možno vám však boli účtované poplatky. Kontaktujte podporu.</string>
     <string name="DonationsErrors__your_payment_is_still">Vaša platba sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
-    <string name="DonationsErrors__google_pay_unavailable">Google Pay je nedostupný</string>
-    <string name="DonationsErrors__you_have_to_set_up_google_pay_to_donate_in_app">Ak chcete prispieť v aplikácii, musíte si nastaviť službu Google Pay.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie predplatného vyžaduje internetové pripojenie.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje službu Google Pay, nemôžete sa preto prihlásiť na prispievanie a získať odznak. Signal však môžete stále podporiť príspevkom na našej webovej stránke.</string>
@@ -4792,13 +4615,6 @@
 
     <!-- Gift message view title -->
     <string name="GiftMessageView__gift_badge">Darčekový odznak</string>
-    <!-- Gift message view expiry information -->
-    <plurals name="GiftMessageView__lasts_for_d_months">
-        <item quantity="one">Trvá %1$d mesiac</item>
-        <item quantity="few">Trvá %1$d mesiace</item>
-        <item quantity="many">Trvá %1$d mesiacov</item>
-        <item quantity="other">Trvá %1$d mesiacov</item>
-    </plurals>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Uplatniť</string>
     <!-- Gift badge view action label -->
@@ -4808,7 +4624,6 @@
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">Uplatnené</string>
 
-    <string name="Boost__thank_you_for_your_donation" translatable="false">Thank you for your donation. Your contribution helps fuel the mission of developing open source privacy technology that protects free expression and enables secure global communication for millions around the world. Signal Technology Foundation is a tax-exempt nonprofit organization in the United States under section 501c3 of the Internal Revenue Code. Our Federal Tax ID is 82-4506840. No goods or services were provided in exchange for this donation. Please retain this receipt for your tax records.</string>
 
     <!-- Stripe decline code generic_failure -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Skúste iný spôsob platby, alebo kontaktujte svoju banku a požiadajte o viac informácií.</string>
@@ -5012,9 +4827,7 @@
     <!-- Donation receipts gift tab label -->
     <string name="DonationReceiptListFragment__gift">Dar</string>
     <!-- Donation receipts boost row label -->
-    <string name="DonationReceiptListFragment__boost">Podpora</string>
     <!-- Donation receipts details title -->
-    <string name="DonationReceiptDetailsFragment__details">Podrobnosti</string>
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Typ príspevku</string>
     <!-- Donation receipts date paid heading -->
@@ -5160,7 +4973,6 @@
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Súkromne odpovedáte %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
-    <string name="StoryGroupReplyItem__private_reply">Súkromná odpoveď</string>
     <!-- Context menu item to copy a story response -->
     <string name="StoryGroupReplyItem__copy">Kopírovať</string>
     <!-- Context menu item to delete a story response -->
@@ -5179,11 +4991,9 @@
     <!-- Section heading for story visibility -->
     <string name="MyStorySettingsFragment__who_can_view_this_story">Kto môže vidieť tento príbeh</string>
     <!-- Clickable option for selecting people to hide your story from -->
-    <string name="MyStorySettingsFragment__hide_story_from">Skryť príbeh pred</string>
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Všetky Signal spojenia</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
-    <string name="MyStorySettingsFragment__share_with_all_connections">Zdieľať so všetkými spojeniami</string>
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Všetci okrem…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
@@ -5237,19 +5047,15 @@
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Odstrániť</string>
     <!-- Dialog title when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__are_you_sure">Si si istý?</string>
     <!-- Dialog message when deleting a custom story -->
-    <string name="PrivateStorySettingsFragment__this_action_cannot">Túto akciu nie je možné vrátiť späť.</string>
     <!-- Page title for editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__edit_story_name">Upraviť názov príbehu</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Názov príbehu</string>
     <!-- Save button label when editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__save">Uložiť</string>
     <!-- Displayed in text post creator before user enters text -->
     <string name="TextStoryPostCreationFragment__tap_to_add_text">Klepnutím pridáte text</string>
     <!-- Button label for changing font when creating a text post -->
-    <string name="TextStoryPostTextEntryFragment__aa">Aa</string>
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Pridať text</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
@@ -5265,7 +5071,6 @@
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Hľadať</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
-    <string name="TextStoryPostSendFragment__an_unexpected_error_occurred_try_again">Vyskytla sa neočakávaná chyba</string>
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Zadajte platný odkaz.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
@@ -5287,17 +5092,11 @@
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Vymazať</string>
     <!-- Dialog title for first time sending something to a beta story -->
-    <string name="StoryDialogs__stories_is_available_to">Príbehy sú k dispozícii iba pre používateľov beta verzie Signal.</string>
     <!-- Dialog message for first time sending something to a beta story -->
-    <string name="StoryDialogs__if_you_share_a_story">Ak zdieľate príbeh, zobrazí sa iba ľuďom, ktorí používajú beta verziu Signal.</string>
     <!-- Dialog title for first time adding something to a story -->
-    <string name="StoryDialogs__add_to_story_q">Pridať do príbehu?</string>
     <!-- Dialog message for first time adding something to a story -->
-    <string name="StoryDialogs__adding_content">Pridaním obsahu do vášho príbehu si ho budú môcť vaše Signal spojenia pozrieť po dobu 24 hodín. V Nastaveniach môžete zmeniť, kto si môže pozrieť váš príbeh.</string>
     <!-- First time share to story dialog: Positive action to go ahead and add to story -->
-    <string name="StoryDialogs__add_to_story">Pridať do príbehu</string>
     <!-- First time share to story dialog: Neutral action to edit who can view "My Story" -->
-    <string name="StoryDialogs__edit_viewers">Upraviť sledujúcich</string>
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Príbeh sa nepodarilo odoslať. Skontrolujte pripojenie a skúste to znova.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
@@ -5305,9 +5104,7 @@
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Vypnúť a odstrániť</string>
     <!-- Privacy Settings toggle title for stories -->
-    <string name="PrivacySettingsFragment__share_and_view_stories">Zdieľanie a prezeranie príbehov</string>
     <!-- Privacy Settings toggle summary for stories -->
-    <string name="PrivacySettingsFragment__you_will_no_longer_be_able">Vypnutím tejto možnosti už nebudete môcť zdieľať ani prezerať si príbehy.</string>
     <!-- New story viewer selection screen title -->
     <string name="CreateStoryViewerSelectionFragment__choose_viewers">Vyberte si publikum</string>
     <!-- New story viewer selection action button label -->
@@ -5371,13 +5168,9 @@
     <string name="StoryDialogs__view_profile_photo">Zobraziť profilovú fotku</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_turn_off_censorship_circumvention">Vypnúť obchádzanie cenzúry?</string>
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_you_can_now_connect_to_the_signal_service_directly">Teraz sa môžete priamo pripojiť k službe Signal pre lepší zážitok.</string>
     <!-- Label for a button to dismiss a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
-    <string name="TurnOffCircumventionMegaphone_no_thanks">Nie, ďakujem</string>
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
-    <string name="TurnOffCircumventionMegaphone_turn_off">Vypnúť</string>
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
     <string name="ConversationItem__you_reacted_to_s_story">Reagovali ste na príbeh používateľa %1$s</string>
@@ -5601,13 +5394,9 @@
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Veľkosť súboru</string>
     <!-- Story info "Sent to" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_to">Odoslané komu</string>
     <!-- Story info "Sent from" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__sent_from">Odoslané kým</string>
     <!-- Story info "Failed" header -->
-    <string name="StoryInfoBottomSheetDialogFragment__failed">Chyba</string>
     <!-- Story Info context menu label -->
-    <string name="StoryInfoBottomSheetDialogFragment__info">Info</string>
 
     <!-- StoriesPrivacySettingsFragment -->
     <!-- Explanation about how stories are deleted and managed -->
@@ -5629,7 +5418,6 @@
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Príbehy</string>
     <!-- Story views header -->
-    <string name="StoriesPrivacySettingsFragment__story_views">Pozretia príbehu</string>
     <!-- Story view receipts toggle title -->
     <string name="StoriesPrivacySettingsFragment__view_receipts">Potvrdenia o pozretí</string>
     <!-- Story view receipts toggle message -->
@@ -5683,7 +5471,7 @@
     <string name="ExportingSmsMessagesFragment__you_need_approximately_s_to_export_your_messages_ensure_you_have_enough_space_before_continuing">Na export správ potrebujete približne %1$s. Pred pokračovaním sa uistite, že je na disku dostatok voľného miesta.</string>
     <!-- Alert dialog button to continue with exporting sms after seeing the lack of storage warning -->
     <string name="ExportingSmsMessagesFragment__continue_anyway">Napriek tomu pokračovať</string>
-    <!-- Dialog text shown when Signal isn't granted the sms permission needed to export messages, different than being selected as the sms app -->
+    <!-- Dialog text shown when Signal isn\'t granted the sms permission needed to export messages, different than being selected as the sms app -->
     <string name="ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages">Signal potrebuje povolenie pre SMS, aby mohol exportovať vaše SMS správy.</string>
 
     <!-- ChooseANewDefaultSmsAppFragment -->
@@ -5800,9 +5588,9 @@
     <string name="ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages">Uistite sa, že máte v telefóne ešte %1$s na export správ</string>
     <!-- Debug step 2 on screen shown when some sms messages dit not export -->
     <string name="ExportSmsPartiallyComplete__retry_export_which_will_only_retry_messages_that_have_not_yet_been_exported">Opakujte export. Exportujú sa iba správy, ktoré neboli exportované.</string>
-    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with 'contact us' -->
+    <!-- Partial sentence for Debug step 3 on screen shown when some sms messages did not export, is combined with \'contact us\' -->
     <string name="ExportSmsPartiallyComplete__if_the_problem_persists">Ak problém pretrváva, </string>
-    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with 'If the problem persists', link text to open contact support view -->
+    <!-- Partial sentence for deubg step 3 on screen shown when some sms messages did not export, combined with \'If the problem persists\', link text to open contact support view -->
     <string name="ExportSmsPartiallyComplete__contact_us">Kontaktujte nás</string>
     <!-- Button text to retry sms export -->
     <string name="ExportSmsPartiallyComplete__retry">Skúsiť znovu</string>
@@ -5848,9 +5636,9 @@
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Prebieha zrušenie…</string>
 
-    <!-- The title of a bottom sheet dialog that tells the user we temporarily can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. -->
     <string name="CdsTemporaryErrorBottomSheet_title">Bolo spracovaných príliš veľa kontaktov</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can't process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
         <item quantity="one">Ďalší pokus o spracovanie vašich kontaktov sa uskutoční do %1$d dňa.</item>
         <item quantity="few">Ďalší pokus o spracovanie vašich kontaktov sa uskutoční do %1$d dní.</item>
@@ -5860,19 +5648,17 @@
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
     <string name="CdsTemporaryErrorBottomSheet_body2">Pre rýchlejšie vyriešenie problému zvážte odstránenie kontaktov alebo účtov v telefóne, ktoré synchronizujú veľa kontaktov.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
-    <string name="CdsTemporaryErrorBottomSheet_contacts_button">Otvoriť kontakty</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
-    <string name="CdsTemporaryErrorBottomSheet_no_contacts_toast">Nenašla sa žiadna aplikácia s kontaktmi</string>
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
-    <!-- The title of a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_title">Vaše kontakty nie je možné spracovať</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_body">Počet kontaktov v telefóne presahuje limit, ktorý môže Signal spracovať. Ak chcete vyhľadať kontakty v Signali, zvážte odstránenie kontaktov alebo účtov v telefóne, ktoré synchronizujú priveľa kontaktov.</string>
-    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can't process their contacts. -->
+    <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Zistiť viac</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <string name="CdsPermanentErrorBottomSheet_contacts_button">Otvoriť kontakty</string>
-    <!-- A toast that will be shown if we are unable to open the user's default contacts app. -->
+    <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
     <string name="CdsPermanentErrorBottomSheet_no_contacts_toast">Nenašla sa žiadna aplikácia s kontaktmi</string>
 
     <!-- PaymentMessageView -->
@@ -5901,5 +5687,9 @@
     <string name="GroupStoryEducationSheet__next">Ďalej</string>
 
     <!-- EOF -->
+
+    <!-- PaypalCompleteOrderBottomSheet -->
+    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
 </resources>
