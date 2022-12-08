@@ -2061,6 +2061,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       if (update(id, contentValuesOf(USERNAME to username))) {
         ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+        rotateStorageId(id)
         StorageSyncHelper.scheduleSyncForDataChange()
       }
     }
@@ -2068,6 +2069,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
   fun setHideStory(id: RecipientId, hideStory: Boolean) {
     updateExtras(id) { it.setHideStory(hideStory) }
+    rotateStorageId(id)
     StorageSyncHelper.scheduleSyncForDataChange()
   }
 
