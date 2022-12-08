@@ -1145,16 +1145,24 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void fadeOutButtonsAndMegaphone(int fadeDuration) {
-    ViewUtil.fadeOut(fab, fadeDuration);
-    ViewUtil.fadeOut(cameraFab, fadeDuration);
+    if (fab != null) {
+      ViewUtil.fadeOut(fab, fadeDuration);
+    }
+    if (cameraFab != null) {
+      ViewUtil.fadeOut(cameraFab, fadeDuration);
+    }
     if (megaphoneContainer.resolved()) {
       ViewUtil.fadeOut(megaphoneContainer.get(), fadeDuration);
     }
   }
 
   private void fadeInButtonsAndMegaphone(int fadeDuration) {
-    ViewUtil.fadeIn(fab, fadeDuration);
-    ViewUtil.fadeIn(cameraFab, fadeDuration);
+    if (fab != null) {
+      ViewUtil.fadeIn(fab, fadeDuration);
+    }
+    if (cameraFab != null) {
+      ViewUtil.fadeIn(cameraFab, fadeDuration);
+    }
     if (megaphoneContainer.resolved()) {
       ViewUtil.fadeIn(megaphoneContainer.get(), fadeDuration);
     }
