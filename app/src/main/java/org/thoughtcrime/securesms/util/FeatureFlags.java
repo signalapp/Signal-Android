@@ -105,7 +105,7 @@ public final class FeatureFlags {
   public  static final String PAYPAL_DISABLED_REGIONS           = "global.donations.paypalDisabledRegions";
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
   private static final String CHAT_FILTERS                      = "android.chat.filters";
-  private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations";
+  private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations";
 
   /**
