@@ -5689,7 +5689,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Wpłać darowiznę</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Płatność</string>
 
 </resources>

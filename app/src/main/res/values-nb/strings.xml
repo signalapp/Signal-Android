@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Angi tilpasset beløp</string>
     <string name="Boost__one_time_contribution">Engangsbeløp</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Minimumsbeløpet du kan gi, er %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s per måned</string>
     <string name="MySupportPreference__renews_s">Fornyes %1$s</string>
@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Gi penger</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Betaling</string>
 
 </resources>

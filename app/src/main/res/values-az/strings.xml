@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">İanə ver</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Ödəniş</string>
 
 </resources>

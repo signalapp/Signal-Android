@@ -5320,7 +5320,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">寄付する</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">支払い</string>
 
 </resources>

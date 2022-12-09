@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">நன்கொடையளிக்கவும்</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">பேமெண்ட்</string>
 
 </resources>

@@ -2132,7 +2132,7 @@
     <string name="MediaPreviewActivity_dismiss_due_to_error">Закрыть</string>
     <string name="MediaPreviewFragment_edit_media_error">Ошибка медиафайла</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
-    <string name="MediaPreviewFragment_media_delete_error">Ошибка при удалении сообщения, сообщение может все еще существовать</string>
+    <string name="MediaPreviewFragment_media_delete_error">Ошибка при удалении сообщения, сообщение может всё ещё существовать</string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d новых сообщений в %2$d разговорах</string>
@@ -4244,9 +4244,9 @@
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">Не получилось добавить в историю в группе</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">Не удалось добавить к истории в группе</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Только администраторы этой группы могут добавлять в неё историю</string>
+    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Только администраторы этой группы могут добавлять к её истории</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Приложение для контактов не найдено</string>
     <string name="ConversationSettingsFragment__start_video_call">Начать видеозвонок</string>
@@ -4430,9 +4430,9 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">Добавить в историю группы «%1$s»</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">Добавить к истории группы «%1$s»</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Добавить в историю</string>
+    <string name="MediaReviewFragment__add_to_story">Добавить к истории</string>
     <string name="MediaReviewFragment__add_a_message">Добавьте сообщение</string>
     <string name="MediaReviewFragment__add_a_reply">Добавьте ответ</string>
     <string name="MediaReviewFragment__send_to">Отправить</string>
@@ -5689,7 +5689,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Пожертвовать</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Платёж</string>
 
 </resources>

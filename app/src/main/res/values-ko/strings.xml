@@ -5320,7 +5320,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">기부</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">결제</string>
 
 </resources>

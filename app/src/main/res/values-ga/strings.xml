@@ -5812,7 +5812,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Tabhair airgead</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Íocaíocht</string>
 
 </resources>

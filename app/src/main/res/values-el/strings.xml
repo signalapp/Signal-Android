@@ -2778,7 +2778,7 @@
     <string name="PaymentsAllActivityFragment__received">Ελήφθη</string>
 
     <string name="PaymentsHomeFragment__introducing_payments">Παρουσίαση πληρωμών (Beta)</string>
-    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποίησε το Signal για να στείλεις και να λάβεις MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στο απόρρητο. Ενεργοποίησέ το για να ξεκινήσεις.</string>
+    <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Χρησιμοποίησε το Signal για να στείλεις και να λάβεις MobileCoin, ένα νέο ψηφιακό νόμισμα που επικεντρώνεται στην ιδιωτικότητα. Ενεργοποίησέ το για να ξεκινήσεις.</string>
     <string name="PaymentsHomeFragment__activate_payments">Ενεργοποίηση πληρωμών</string>
     <string name="PaymentsHomeFragment__activating_payments">Ενεργοποίηση πληρωμών…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Επαναφορά λογαριασμού πληρωμών</string>
@@ -4652,7 +4652,7 @@
     <!-- String for counts above 99 in conversation list tabs -->
     <string name="ConversationListTabs__99p">99+</string>
     <!-- Menu item on stories landing page -->
-    <string name="StoriesLandingFragment__story_privacy">Απόρρητο ιστορίας</string>
+    <string name="StoriesLandingFragment__story_privacy">Ιδιωτικότητα ιστορίας</string>
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Οι ιστορίες μου</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
@@ -5176,7 +5176,7 @@
     <!-- Dialog message to turn off stories -->
     <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Δεν θα μπορείς πλέον να μοιράζεσαι ή να βλέπεις ιστορίες. Οι ενημερώσεις ιστορίας που κοινοποίησες πρόσφατα θα διαγραφούν επίσης.</string>
     <!-- Page title when launched from stories landing screen -->
-    <string name="StoriesPrivacySettingsFragment__story_privacy">Απόρρητο ιστορίας</string>
+    <string name="StoriesPrivacySettingsFragment__story_privacy">Ιδιωτικότητα ιστορίας</string>
     <!-- Header for section that lists out stories -->
     <string name="StoriesPrivacySettingsFragment__stories">Ιστορίες</string>
     <!-- Story views header -->
@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Δωρεά</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Πληρωμή</string>
 
 </resources>
