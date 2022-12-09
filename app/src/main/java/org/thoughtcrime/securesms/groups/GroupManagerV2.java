@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.jobs.PushGroupSilentUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -1264,7 +1264,7 @@ final class GroupManagerV2 {
       GroupId.V2              groupId                 = GroupId.v2(masterKey);
       Recipient               groupRecipient          = Recipient.externalGroupExact(groupId);
       DecryptedGroupV2Context decryptedGroupV2Context = GroupProtoUtil.createDecryptedGroupV2Context(masterKey, groupMutation, signedGroupChange);
-      OutgoingGroupUpdateMessage outgoingMessage      = new OutgoingGroupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
+      OutgoingMediaMessage    outgoingMessage         = OutgoingMediaMessage.groupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
 
 
       DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();

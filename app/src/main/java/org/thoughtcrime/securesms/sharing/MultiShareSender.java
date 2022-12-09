@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.conversation.MessageSendType;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost;
@@ -35,7 +34,6 @@ import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mediasend.v2.text.TextStoryBackgroundColors;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -168,7 +166,7 @@ public final class MultiShareSender {
     if (!storiesBatch.isEmpty()) {
       MessageSender.sendStories(context,
                                 storiesBatch.stream()
-                                            .map(OutgoingSecureMediaMessage::new)
+                                            .map(OutgoingMediaMessage::makeSecure)
                                             .collect(Collectors.toList()),
                                 null,
                                 null);
@@ -249,15 +247,10 @@ public final class MultiShareSender {
                                                                              subscriptionId,
                                                                              0L,
                                                                              false,
-                                                                             ThreadTable.DistributionTypes.DEFAULT,
                                                                              storyType.toTextStoryType(),
-                                                                             null,
-                                                                             false,
-                                                                             null,
-                                                                             Collections.emptyList(),
                                                                              buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
                                                                              Collections.emptyList(),
-                                                                             null);
+                                                                             false);
 
         outgoingMessages.add(outgoingMediaMessage);
       } else if (canSendAsTextStory) {
@@ -288,15 +281,10 @@ public final class MultiShareSender {
                                                                                subscriptionId,
                                                                                0L,
                                                                                false,
-                                                                               ThreadTable.DistributionTypes.DEFAULT,
                                                                                storyType,
-                                                                               null,
-                                                                               false,
-                                                                               null,
-                                                                               Collections.emptyList(),
                                                                                Collections.emptyList(),
                                                                                validatedMentions,
-                                                                               null);
+                                                                               false);
 
           outgoingMessages.add(outgoingMediaMessage);
         }
@@ -309,15 +297,10 @@ public final class MultiShareSender {
                                                                            subscriptionId,
                                                                            expiresIn,
                                                                            isViewOnce,
-                                                                           ThreadTable.DistributionTypes.DEFAULT,
                                                                            StoryType.NONE,
-                                                                           null,
-                                                                           false,
-                                                                           null,
-                                                                           Collections.emptyList(),
                                                                            buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
                                                                            validatedMentions,
-                                                                           null);
+                                                                           false);
 
       outgoingMessages.add(outgoingMediaMessage);
     }
@@ -326,7 +309,7 @@ public final class MultiShareSender {
       storiesToBatchSend.addAll(outgoingMessages);
     } else if (shouldSendAsPush(recipient, forceSms)) {
       for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
-        MessageSender.send(context, new OutgoingSecureMediaMessage(outgoingMessage), threadId, false, null, null);
+        MessageSender.send(context, outgoingMessage.makeSecure(), threadId, false, null, null);
       }
     } else {
       for (final OutgoingMediaMessage outgoingMessage : outgoingMessages) {
@@ -421,7 +404,7 @@ public final class MultiShareSender {
                                                                  @NonNull StoryType storyType,
                                                                  @NonNull ChatColors background)
   {
-    return new OutgoingMediaMessage(
+    return OutgoingMediaMessage.textStoryMessage(
         recipient,
         Base64.encodeBytes(StoryTextPost.newBuilder()
                                         .setBody(getBodyForTextStory(multiShareArgs.getDraftText(), multiShareArgs.getLinkPreview()))
@@ -431,22 +414,9 @@ public final class MultiShareSender {
                                         .setTextForegroundColor(Color.WHITE)
                                         .build()
                                         .toByteArray()),
-        Collections.emptyList(),
         sentTimestamp,
-        -1,
-        0,
-        false,
-        ThreadTable.DistributionTypes.DEFAULT,
         storyType.toTextStoryType(),
-        null,
-        false,
-        null,
-        Collections.emptyList(),
-        buildLinkPreviews(context, multiShareArgs.getLinkPreview()),
-        Collections.emptyList(),
-        Collections.emptySet(),
-        Collections.emptySet(),
-        null);
+        buildLinkPreviews(context, multiShareArgs.getLinkPreview()));
   }
 
   private static @NonNull String getBodyForTextStory(@Nullable String draftText, @Nullable LinkPreview linkPreview) {

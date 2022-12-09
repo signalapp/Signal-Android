@@ -9,11 +9,8 @@ import org.junit.runner.RunWith
 import org.signal.core.util.ThreadUtil
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadTable
-import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.releasechannel.ReleaseChannel
@@ -113,28 +110,15 @@ class ConversationItemPreviewer {
     }
 
     val message = OutgoingMediaMessage(
-      other,
-      body,
-      PointerAttachment.forPointers(Optional.of(attachments)),
-      System.currentTimeMillis(),
-      -1,
-      0,
-      false,
-      ThreadTable.DistributionTypes.DEFAULT,
-      StoryType.NONE,
-      null,
-      false,
-      null,
-      emptyList(),
-      emptyList(),
-      emptyList(),
-      emptySet(),
-      emptySet(),
-      null
+      recipient = other,
+      body = body,
+      attachments = PointerAttachment.forPointers(Optional.of(attachments)),
+      timestamp = System.currentTimeMillis(),
+      isSecure = true
     )
 
     val insert = SignalDatabase.mms.insertMessageOutbox(
-      OutgoingSecureMediaMessage(message),
+      message,
       SignalDatabase.threads.getOrCreateThreadIdFor(other),
       false,
       null

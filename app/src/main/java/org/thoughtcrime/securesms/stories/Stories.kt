@@ -25,7 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
 import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.mms.VideoSlide
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -81,7 +81,7 @@ object Stories {
     }
   }
 
-  fun sendTextStories(messages: List<OutgoingSecureMediaMessage>): Completable {
+  fun sendTextStories(messages: List<OutgoingMediaMessage>): Completable {
     return Completable.create { emitter ->
       MessageSender.sendStories(ApplicationDependencies.getApplication(), messages, null, null)
       emitter.onComplete()
