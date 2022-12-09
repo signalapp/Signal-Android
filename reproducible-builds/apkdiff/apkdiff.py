@@ -3,73 +3,70 @@
 import sys
 from zipfile import ZipFile
 
+
 class ApkDiff:
-    # resources.arsc is ignored due to https://issuetracker.google.com/issues/110237303
-    # May be fixed in Android Gradle Plugin 3.4
-    IGNORE_FILES = ["META-INF/MANIFEST.MF", "META-INF/SIGNAL_S.RSA", "META-INF/SIGNAL_S.SF", "resources.arsc"]
+    IGNORE_FILES = [
+        # Related to app signing. Not expected to be present in unsigned builds. Doesn't affect app code.
+        "META-INF/MANIFEST.MF",
+        "META-INF/CERTIFIC.SF",
+        "META-INF/CERTIFIC.RSA",
+    ]
 
-    def compare(self, sourceApk, destinationApk):
-        sourceZip      = ZipFile(sourceApk, 'r')
-        destinationZip = ZipFile(destinationApk, 'r')
+    def compare(self, firstApk, secondApk):
+        firstZip = ZipFile(firstApk, 'r')
+        secondZip = ZipFile(secondApk, 'r')
 
-        if self.compareManifests(sourceZip, destinationZip) and self.compareEntries(sourceZip, destinationZip) == True:
+        if self.compareEntryNames(firstZip, secondZip) and self.compareEntryContents(firstZip, secondZip) == True:
             print("APKs match!")
         else:
             print("APKs don't match!")
 
-    def compareManifests(self, sourceZip, destinationZip):
-        sourceEntrySortedList      = sorted(sourceZip.namelist())
-        destinationEntrySortedList = sorted(destinationZip.namelist())
+    def compareEntryNames(self, firstZip, secondZip):
+        firstNameListSorted = sorted(firstZip.namelist())
+        secondNameListSorted = sorted(secondZip.namelist())
 
         for ignoreFile in self.IGNORE_FILES:
-            while ignoreFile in sourceEntrySortedList: sourceEntrySortedList.remove(ignoreFile)
-            while ignoreFile in destinationEntrySortedList: destinationEntrySortedList.remove(ignoreFile)
+            while ignoreFile in firstNameListSorted:
+                firstNameListSorted.remove(ignoreFile)
+            while ignoreFile in secondNameListSorted:
+                secondNameListSorted.remove(ignoreFile)
 
-        if len(sourceEntrySortedList) != len(destinationEntrySortedList):
+        if len(firstNameListSorted) != len(secondNameListSorted):
             print("Manifest lengths differ!")
 
-        for (sourceEntryName, destinationEntryName) in zip(sourceEntrySortedList, destinationEntrySortedList):
-            if sourceEntryName != destinationEntryName:
-                print("Sorted manifests don't match, %s vs %s" % (sourceEntryName, destinationEntryName))
+        for (firstEntryName, secondEntryName) in zip(firstNameListSorted, secondNameListSorted):
+            if firstEntryName != secondEntryName:
+                print("Sorted manifests don't match, %s vs %s" % (firstEntryName, secondEntryName))
                 return False
 
         return True
 
-    def compareEntries(self, sourceZip, destinationZip):
-        sourceInfoList      = list(filter(lambda sourceInfo: sourceInfo.filename not in self.IGNORE_FILES, sourceZip.infolist()))
-        destinationInfoList = list(filter(lambda destinationInfo: destinationInfo.filename not in self.IGNORE_FILES, destinationZip.infolist()))
+    def compareEntryContents(self, firstZip, secondZip):
+        firstInfoList = list(filter(lambda info: info.filename not in self.IGNORE_FILES, firstZip.infolist()))
+        secondInfoList = list(filter(lambda info: info.filename not in self.IGNORE_FILES, secondZip.infolist()))
 
-        if len(sourceInfoList) != len(destinationInfoList):
+        if len(firstInfoList) != len(secondInfoList):
             print("APK info lists of different length!")
             return False
 
-        for sourceEntryInfo in sourceInfoList:
-            for destinationEntryInfo in list(destinationInfoList):
-                if sourceEntryInfo.filename == destinationEntryInfo.filename:
-                    sourceEntry      = sourceZip.open(sourceEntryInfo, 'r')
-                    destinationEntry = destinationZip.open(destinationEntryInfo, 'r')
+        success = True
+        for firstEntryInfo in firstInfoList:
+            for secondEntryInfo in list(secondInfoList):
+                if firstEntryInfo.filename == secondEntryInfo.filename:
+                    firstEntryBytes = firstZip.read(firstEntryInfo.filename)
+                    secondEntryBytes = secondZip.read(secondEntryInfo.filename)
 
-                    if self.compareFiles(sourceEntry, destinationEntry) != True:
-                        print("APK entry %s does not match %s!" % (sourceEntryInfo.filename, destinationEntryInfo.filename))
-                        return False
+                    if firstEntryBytes != secondEntryBytes:
+                        firstZip.extract(firstEntryInfo, "mismatches/first")
+                        secondZip.extract(secondEntryInfo, "mismatches/second")
+                        print("APKs differ on file %s! Files extracted to the mismatches/ directory." % (firstEntryInfo.filename))
+                        success = False
 
-                    destinationInfoList.remove(destinationEntryInfo)
+                    secondInfoList.remove(secondEntryInfo)
                     break
 
-        return True
+        return success
 
-    def compareFiles(self, sourceFile, destinationFile):
-        sourceChunk      = sourceFile.read(1024)
-        destinationChunk = destinationFile.read(1024)
-
-        while sourceChunk != b"" or destinationChunk != b"":
-            if sourceChunk != destinationChunk:
-                return False
-
-            sourceChunk      = sourceFile.read(1024)
-            destinationChunk = destinationFile.read(1024)
-
-        return True
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:

@@ -594,20 +594,20 @@ def getLastCommitTimestamp() {
 
 def getGitHash() {
     if (!(new File('.git').exists())) {
-        return "abcd1234"
+        throw new IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
     }
 
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        commandLine 'git', 'rev-parse', 'HEAD'
         standardOutput = stdout
     }
-    return stdout.toString().trim()
+    return stdout.toString().trim().substring(0, 12)
 }
 
 def getCurrentGitTag() {
     if (!(new File('.git').exists())) {
-        return ''
+        throw new IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
     }
 
     def stdout = new ByteArrayOutputStream()
