@@ -352,7 +352,7 @@ public class GroupTable extends DatabaseTable implements RecipientIdDatabaseRefe
   public Reader queryGroupsByRecency(@NonNull GroupQuery groupQuery) {
     SqlUtil.Query query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms);
     String sql = "SELECT * FROM " + TABLE_NAME +
-                 " LEFT JOIN " + ThreadTable.TABLE_NAME + " ON " + RECIPIENT_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID +
+                 " LEFT JOIN " + ThreadTable.TABLE_NAME + " ON " + GroupTable.TABLE_NAME + "." + RECIPIENT_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID +
                  " WHERE " + query.getWhere() +
                  " ORDER BY " + ThreadTable.TABLE_NAME + "." + ThreadTable.DATE + " DESC";
 
