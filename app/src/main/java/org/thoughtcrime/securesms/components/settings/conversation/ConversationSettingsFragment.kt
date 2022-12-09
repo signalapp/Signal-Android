@@ -82,6 +82,7 @@ import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ExpirationUtil
+import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -141,6 +142,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   private lateinit var addToGroupStoryDelegate: AddToGroupStoryDelegate
 
   private val navController get() = Navigation.findNavController(requireView())
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onAttach(context: Context) {
     super.onAttach(context)
@@ -256,7 +258,8 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       }
     }
 
-    viewModel.events.observe(viewLifecycleOwner) { event ->
+    lifecycleDisposable.bindTo(viewLifecycleOwner)
+    lifecycleDisposable += viewModel.events.subscribe { event ->
       @Exhaustive
       when (event) {
         is ConversationSettingsEvent.AddToAGroup -> handleAddToAGroup(event)

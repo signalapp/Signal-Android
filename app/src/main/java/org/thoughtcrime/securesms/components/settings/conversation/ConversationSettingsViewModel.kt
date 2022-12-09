@@ -6,8 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
+import io.reactivex.rxjava3.subjects.PublishSubject
+import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.SignalExecutors
@@ -24,7 +28,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.util.FeatureFlags
-import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
 import org.thoughtcrime.securesms.util.livedata.Store
 import java.util.Optional
@@ -44,12 +47,12 @@ sealed class ConversationSettingsViewModel(
       specificSettingsState = specificSettingsState
     )
   )
-  protected val internalEvents = SingleLiveEvent<ConversationSettingsEvent>()
+  protected val internalEvents: Subject<ConversationSettingsEvent> = PublishSubject.create()
 
   private val sharedMediaUpdateTrigger = MutableLiveData(Unit)
 
   val state: LiveData<ConversationSettingsState> = store.stateLiveData
-  val events: LiveData<ConversationSettingsEvent> = internalEvents
+  val events: Observable<ConversationSettingsEvent> = internalEvents.observeOn(AndroidSchedulers.mainThread())
 
   protected val disposable = CompositeDisposable()
 
@@ -210,7 +213,7 @@ sealed class ConversationSettingsViewModel(
 
     override fun onAddToGroup() {
       repository.getGroupMembership(recipientId) {
-        internalEvents.postValue(ConversationSettingsEvent.AddToAGroup(recipientId, it))
+        internalEvents.onNext(ConversationSettingsEvent.AddToAGroup(recipientId, it))
       }
     }
 
@@ -404,7 +407,7 @@ sealed class ConversationSettingsViewModel(
       repository.getGroupCapacity(groupId) { capacityResult ->
         if (capacityResult.getRemainingCapacity() > 0) {
 
-          internalEvents.postValue(
+          internalEvents.onNext(
             ConversationSettingsEvent.AddMembersToGroup(
               groupId,
               capacityResult.getSelectionWarning(),
@@ -414,7 +417,7 @@ sealed class ConversationSettingsViewModel(
             )
           )
         } else {
-          internalEvents.postValue(ConversationSettingsEvent.ShowGroupHardLimitDialog)
+          internalEvents.onNext(ConversationSettingsEvent.ShowGroupHardLimitDialog)
         }
       }
     }
@@ -426,14 +429,14 @@ sealed class ConversationSettingsViewModel(
         when (it) {
           is GroupAddMembersResult.Success -> {
             if (it.newMembersInvited.isNotEmpty()) {
-              internalEvents.postValue(ConversationSettingsEvent.ShowGroupInvitesSentDialog(it.newMembersInvited))
+              internalEvents.onNext(ConversationSettingsEvent.ShowGroupInvitesSentDialog(it.newMembersInvited))
             }
 
             if (it.numberOfMembersAdded > 0) {
-              internalEvents.postValue(ConversationSettingsEvent.ShowMembersAdded(it.numberOfMembersAdded))
+              internalEvents.onNext(ConversationSettingsEvent.ShowMembersAdded(it.numberOfMembersAdded))
             }
           }
-          is GroupAddMembersResult.Failure -> internalEvents.postValue(ConversationSettingsEvent.ShowAddMembersToGroupError(it.reason))
+          is GroupAddMembersResult.Failure -> internalEvents.onNext(ConversationSettingsEvent.ShowAddMembersToGroupError(it.reason))
         }
       }
     }
@@ -468,7 +471,7 @@ sealed class ConversationSettingsViewModel(
 
     override fun initiateGroupUpgrade() {
       repository.getExternalPossiblyMigratedGroupRecipientId(groupId) {
-        internalEvents.postValue(ConversationSettingsEvent.InitiateGroupMigration(it))
+        internalEvents.onNext(ConversationSettingsEvent.InitiateGroupMigration(it))
       }
     }
   }
