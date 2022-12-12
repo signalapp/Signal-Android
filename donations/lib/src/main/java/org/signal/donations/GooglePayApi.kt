@@ -75,13 +75,13 @@ class GooglePayApi(
       Activity.RESULT_OK -> {
         data?.let { intent ->
           PaymentData.getFromIntent(intent)?.let { paymentRequestCallback.onSuccess(it) }
-        } ?: paymentRequestCallback.onError(GooglePayException(-1, "No data returned from Google Pay"))
+        } ?: paymentRequestCallback.onError(GooglePayException("No data returned from Google Pay"))
       }
       Activity.RESULT_CANCELED -> paymentRequestCallback.onCancelled()
       AutoResolveHelper.RESULT_ERROR -> {
         AutoResolveHelper.getStatusFromIntent(data)?.let {
           Log.w(TAG, "loadPaymentData failed with error code ${it.statusCode}: ${it.statusMessage}")
-          paymentRequestCallback.onError(GooglePayException(it.statusCode, it.statusMessage))
+          paymentRequestCallback.onError(GooglePayException(it.statusMessage))
         }
       }
     }
@@ -217,5 +217,5 @@ class GooglePayApi(
     fun onCancelled()
   }
 
-  class GooglePayException(code: Int, message: String?) : Exception(message)
+  class GooglePayException(message: String?) : Exception(message)
 }
