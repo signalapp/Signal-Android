@@ -181,23 +181,23 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
 
   private fun fixDanglingSmsMessages(db: SQLiteDatabase) {
     db.delete("sms")
-      .where("address NOT IN (SELECT _id FROM recipient)")
+      .where("address IS NULL OR address NOT IN (SELECT _id FROM recipient)")
       .run()
 
     // Can't even attempt to "fix" these because without the threadId we don't know if it's a 1:1 or group message
     db.delete("sms")
-      .where("thread_id NOT IN (SELECT _id FROM thread)")
+      .where("thread_id IS NULL OR thread_id NOT IN (SELECT _id FROM thread)")
       .run()
   }
 
   private fun fixDanglingMmsMessages(db: SQLiteDatabase) {
     db.delete("mms")
-      .where("address NOT IN (SELECT _id FROM recipient)")
+      .where("address IS NULL OR address NOT IN (SELECT _id FROM recipient)")
       .run()
 
     // Can't even attempt to "fix" these because without the threadId we don't know if it's a 1:1 or group message
     db.delete("mms")
-      .where("thread_id NOT IN (SELECT _id FROM thread)")
+      .where("thread_id IS NULL OR thread_id NOT IN (SELECT _id FROM thread)")
       .run()
   }
 
