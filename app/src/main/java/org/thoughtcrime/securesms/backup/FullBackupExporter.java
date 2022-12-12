@@ -473,7 +473,7 @@ public class FullBackupExporter extends FullBackupBase {
       try (InputStream inputStream = openAttachmentStream(attachmentSecret, random, data)) {
         outputStream.write(new AttachmentId(rowId, uniqueId), inputStream, size);
       } catch (FileNotFoundException e) {
-        Log.w(TAG, "Missing attachment: " + e.getMessage());
+        Log.w(TAG, "Missing attachment", e);
       }
     }
 
@@ -498,7 +498,7 @@ public class FullBackupExporter extends FullBackupBase {
       try (InputStream inputStream = ModernDecryptingPartInputStream.createFor(attachmentSecret, random, new File(data), 0)) {
         outputStream.writeSticker(rowId, inputStream, size);
       } catch (FileNotFoundException e) {
-        Log.w(TAG, "Missing sticker: " + e.getMessage());
+        Log.w(TAG, "Missing sticker", e);
       }
     }
 
@@ -516,7 +516,7 @@ public class FullBackupExporter extends FullBackupBase {
         result += read;
       }
     } catch (FileNotFoundException e) {
-      Log.w(TAG, "Missing attachment: " + e.getMessage());
+      Log.w(TAG, "Missing attachment for size calculation", e);
       return 0;
     } catch (IOException e) {
       Log.w(TAG, "Failed to determine stream length", e);

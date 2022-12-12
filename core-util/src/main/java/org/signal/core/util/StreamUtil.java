@@ -52,7 +52,7 @@ public final class StreamUtil {
 
     for (;;) {
       int read = in.read(buffer, offset, len - offset);
-      if (read == -1) throw new EOFException("Stream ended early");
+      if (read == -1) throw new EOFException("Stream ended early, offset: " + offset + " len: " + len);
 
       if (read + offset < len) offset += read;
       else                		 return;
