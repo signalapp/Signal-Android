@@ -6,6 +6,7 @@ import androidx.annotation.VisibleForTesting
 import net.zetetic.database.sqlcipher.SQLiteOpenHelper
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.DatabaseSecret
 import org.thoughtcrime.securesms.crypto.MasterSecret
@@ -275,17 +276,19 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @JvmStatic
     fun upgradeRestored(database: net.zetetic.database.sqlcipher.SQLiteDatabase) {
       synchronized(SignalDatabase::class.java) {
-        instance!!.onUpgrade(database, database.getVersion(), -1)
-        instance!!.markCurrent(database)
-        instance!!.sms.deleteAbandonedMessages()
-        instance!!.mms.deleteAbandonedMessages()
-        instance!!.mms.trimEntriesForExpiredMessages()
-        instance!!.reactionTable.deleteAbandonedReactions()
-        instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
-        instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
-        instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
-        instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS constraint_spec")
-        instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS dependency_spec")
+        database.withinTransaction { db ->
+          instance!!.onUpgrade(db, db.getVersion(), -1)
+          instance!!.markCurrent(db)
+          instance!!.sms.deleteAbandonedMessages()
+          instance!!.mms.deleteAbandonedMessages()
+          instance!!.mms.trimEntriesForExpiredMessages()
+          instance!!.reactionTable.deleteAbandonedReactions()
+          instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
+          instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
+          instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS job_spec")
+          instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS constraint_spec")
+          instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS dependency_spec")
+        }
 
         instance!!.rawWritableDatabase.close()
         triggerDatabaseAccess()
