@@ -135,6 +135,8 @@ class StripeApi(
           objectMapper.readValue(it.body()!!.string())
         } catch (e: InvalidDefinitionException) {
           throw StripeError.FailedToParseSetupIntentResponseError(e)
+        } catch (e: StripeError.PostError) {
+          throw e
         } catch (e: Exception) {
           throw StripeError.FailedToParseSetupIntentResponseError(null)
         }
@@ -153,6 +155,8 @@ class StripeApi(
           objectMapper.readValue(it.body()!!.string())
         } catch (e: InvalidDefinitionException) {
           throw StripeError.FailedToParsePaymentIntentResponseError(e)
+        } catch (e: StripeError.PostError) {
+          throw e
         } catch (e: Exception) {
           throw StripeError.FailedToParsePaymentIntentResponseError(null)
         }
