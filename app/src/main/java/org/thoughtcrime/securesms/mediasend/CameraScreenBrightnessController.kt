@@ -8,7 +8,10 @@ import androidx.lifecycle.LifecycleOwner
  * Modifies screen brightness to increase to a max of 66% if lower than that for optimal picture
  * taking conditions. This brightness is only applied when the front-facing camera is selected.
  */
-class CameraScreenBrightnessController(private val window: Window, private val cameraDirectionProvider: CameraDirectionProvider) : DefaultLifecycleObserver {
+class CameraScreenBrightnessController(
+  private val window: Window,
+  private val cameraStateProvider: CameraStateProvider
+) : DefaultLifecycleObserver {
 
   companion object {
     private const val FRONT_CAMERA_BRIGHTNESS = 0.66f
@@ -17,7 +20,8 @@ class CameraScreenBrightnessController(private val window: Window, private val c
   private val originalBrightness: Float by lazy { window.attributes.screenBrightness }
 
   override fun onResume(owner: LifecycleOwner) {
-    onCameraDirectionChanged(cameraDirectionProvider.isFrontFacingCameraSelected())
+    onCameraDirectionChanged(cameraStateProvider.isFrontFacingCameraSelected())
+    onCameraFlashChanged(cameraStateProvider.isFlashEnabled())
   }
 
   override fun onPause(owner: LifecycleOwner) {
@@ -29,7 +33,15 @@ class CameraScreenBrightnessController(private val window: Window, private val c
    * the `CameraDirectionProvider` at this point.
    */
   fun onCameraDirectionChanged(isFrontFacing: Boolean) {
-    if (isFrontFacing) {
+    if (isFrontFacing && cameraStateProvider.isFlashEnabled()) {
+      enableBrightness()
+    } else {
+      disableBrightness()
+    }
+  }
+
+  fun onCameraFlashChanged(isFlashEnabled: Boolean) {
+    if (isFlashEnabled && cameraStateProvider.isFrontFacingCameraSelected()) {
       enableBrightness()
     } else {
       disableBrightness()
@@ -52,7 +64,8 @@ class CameraScreenBrightnessController(private val window: Window, private val c
     }
   }
 
-  interface CameraDirectionProvider {
+  interface CameraStateProvider {
     fun isFrontFacingCameraSelected(): Boolean
+    fun isFlashEnabled(): Boolean
   }
 }

@@ -121,7 +121,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
-    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow(), () -> camera.isCameraFacingFront());
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow(), new CameraStateProvider(camera));
     getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
 
     rotationListener  = new RotationListener(requireContext());
@@ -476,5 +476,24 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   private enum Stage {
     SURFACE_AVAILABLE, CAMERA_PROPERTIES_AVAILABLE
+  }
+
+  private static class CameraStateProvider implements CameraScreenBrightnessController.CameraStateProvider {
+
+    private final Camera1Controller camera1Controller;
+
+    private CameraStateProvider(Camera1Controller camera1Controller) {
+      this.camera1Controller = camera1Controller;
+    }
+
+    @Override
+    public boolean isFrontFacingCameraSelected() {
+      return camera1Controller.isCameraFacingFront();
+    }
+
+    @Override
+    public boolean isFlashEnabled() {
+      return false;
+    }
   }
 }

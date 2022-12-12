@@ -134,11 +134,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   @SuppressLint("MissingPermission")
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-    cameraScreenBrightnessController = new CameraScreenBrightnessController(
-        requireActivity().getWindow(),
-        () -> cameraController.getCameraSelector() == CameraSelector.DEFAULT_FRONT_CAMERA
-    );
-
     ViewGroup cameraParent = view.findViewById(R.id.camerax_camera_parent);
 
     this.previewView       = view.findViewById(R.id.camerax_camera);
@@ -155,6 +150,11 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     cameraController.setTapToFocusEnabled(true);
     cameraController.setImageCaptureMode(CameraXUtil.getOptimalCaptureMode());
     cameraXModePolicy.initialize(cameraController);
+
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(
+        requireActivity().getWindow(),
+        new CameraStateProvider(cameraController)
+    );
 
     previewView.setScaleType(PREVIEW_SCALE_TYPE);
     previewView.setController(cameraController);
@@ -344,7 +344,10 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
     flashButton.setFlash(cameraController.getImageCaptureFlashMode());
-    flashButton.setOnFlashModeChangedListener(cameraController::setImageCaptureFlashMode);
+    flashButton.setOnFlashModeChangedListener(mode -> {
+      cameraController.setImageCaptureFlashMode(mode);
+      cameraScreenBrightnessController.onCameraFlashChanged(mode == ImageCapture.FLASH_MODE_ON);
+    });
 
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
@@ -554,6 +557,25 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
     } else {
       flipButton.setVisibility(View.GONE);
+    }
+  }
+
+  private static class CameraStateProvider implements CameraScreenBrightnessController.CameraStateProvider {
+
+    private final CameraController cameraController;
+
+    private CameraStateProvider(CameraController cameraController) {
+      this.cameraController = cameraController;
+    }
+
+    @Override
+    public boolean isFrontFacingCameraSelected() {
+      return cameraController.getCameraSelector() == CameraSelector.DEFAULT_FRONT_CAMERA;
+    }
+
+    @Override
+    public boolean isFlashEnabled() {
+      return cameraController.getImageCaptureFlashMode() == ImageCapture.FLASH_MODE_ON;
     }
   }
 }
