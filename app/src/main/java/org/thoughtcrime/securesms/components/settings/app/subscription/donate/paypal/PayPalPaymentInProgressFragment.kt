@@ -112,15 +112,11 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   }
 
   private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
-    return routeToOneTimeConfirmation(createPaymentIntentResponse).flatMap {
-      displayCompleteOrderSheet(it)
-    }
+    return routeToOneTimeConfirmation(createPaymentIntentResponse)
   }
 
   private fun monthlyConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentMethodResponse): Single<PayPalPaymentMethodId> {
-    return routeToMonthlyConfirmation(createPaymentIntentResponse).flatMap {
-      displayCompleteOrderSheet(it)
-    }
+    return routeToMonthlyConfirmation(createPaymentIntentResponse)
   }
 
   private fun routeToOneTimeConfirmation(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
