@@ -158,7 +158,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
         if (posts.isEmpty()) {
           Observable.just(emptyList())
         } else {
-          Observable.combineLatest(posts) { it.toList() as List<StoryPost> }
+          Observable.combineLatest(posts) { it.filterIsInstance<StoryPost>() }
         }
       }.observeOn(Schedulers.io())
   }

@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.exporter.flow
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import org.signal.smsexporter.BecomeSmsAppFailure
@@ -12,17 +12,20 @@ import org.thoughtcrime.securesms.databinding.SetSignalAsDefaultSmsAppFragmentBi
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class SetSignalAsDefaultSmsAppFragment : Fragment(R.layout.set_signal_as_default_sms_app_fragment) {
-  companion object {
-    private const val REQUEST_CODE = 1
-  }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val binding = SetSignalAsDefaultSmsAppFragmentBinding.bind(view)
 
+    val smsDefaultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+      if (DefaultSmsHelper.isDefaultSms(requireContext())) {
+        navigateToExporter()
+      }
+    }
+
     binding.continueButton.setOnClickListener {
       DefaultSmsHelper.becomeDefaultSms(requireContext()).either(
         onSuccess = {
-          startActivityForResult(it, REQUEST_CODE)
+          smsDefaultLauncher.launch(it)
         },
         onFailure = {
           when (it) {
@@ -31,12 +34,6 @@ class SetSignalAsDefaultSmsAppFragment : Fragment(R.layout.set_signal_as_default
           }
         }
       )
-    }
-  }
-
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-    if (requestCode == REQUEST_CODE && DefaultSmsHelper.isDefaultSms(requireContext())) {
-      navigateToExporter()
     }
   }
 

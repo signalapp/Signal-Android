@@ -84,7 +84,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
     binding.cardNumber.addTextChangedListener(CreditCardTextWatcher())
 
-    binding.cardNumber.setOnFocusChangeListener { v, hasFocus ->
+    binding.cardNumber.setOnFocusChangeListener { _, hasFocus ->
       viewModel.onNumberFocusChanged(hasFocus)
     }
 
@@ -92,7 +92,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
       viewModel.onCodeChanged(it?.toString() ?: "")
     })
 
-    binding.cardCvv.setOnFocusChangeListener { v, hasFocus ->
+    binding.cardCvv.setOnFocusChangeListener { _, hasFocus ->
       viewModel.onCodeFocusChanged(hasFocus)
     }
 
@@ -111,7 +111,7 @@ class CreditCardFragment : Fragment(R.layout.credit_card_fragment) {
 
     binding.cardExpiry.addTextChangedListener(CreditCardExpirationTextWatcher())
 
-    binding.cardExpiry.setOnFocusChangeListener { v, hasFocus ->
+    binding.cardExpiry.setOnFocusChangeListener { _, hasFocus ->
       viewModel.onExpirationFocusChanged(hasFocus)
     }
 

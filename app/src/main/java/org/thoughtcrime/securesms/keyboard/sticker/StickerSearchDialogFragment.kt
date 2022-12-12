@@ -54,7 +54,7 @@ class StickerSearchDialogFragment : DialogFragment(), KeyboardStickerListAdapter
     list.adapter = adapter
     list.addItemDecoration(InsetItemDecoration(StickerInsetSetter()))
 
-    val viewModel: StickerSearchViewModel = ViewModelProvider(this, StickerSearchViewModel.Factory(requireContext())).get(StickerSearchViewModel::class.java)
+    val viewModel: StickerSearchViewModel = ViewModelProvider(this, StickerSearchViewModel.Factory()).get(StickerSearchViewModel::class.java)
 
     viewModel.searchResults.observe(viewLifecycleOwner) { stickers ->
       adapter.submitList(stickers)

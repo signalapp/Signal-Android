@@ -58,7 +58,7 @@ class SpinnerApplicationContext : ApplicationContext() {
         "E164" to (SignalStore.account().e164 ?: "none"),
         "ACI" to (SignalStore.account().aci?.toString() ?: "none"),
         "PNI" to (SignalStore.account().pni?.toString() ?: "none"),
-        Spinner.KEY_ENVIRONMENT to BuildConfig.FLAVOR_environment.toUpperCase(Locale.US)
+        Spinner.KEY_ENVIRONMENT to BuildConfig.FLAVOR_environment.uppercase(Locale.US)
       ),
       linkedMapOf(
         "signal" to DatabaseConfig(

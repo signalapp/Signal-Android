@@ -105,7 +105,7 @@ class StoriesLandingRepository(context: Context) {
         Observable.just(emptyList())
       } else {
         Observable.combineLatest(observables) {
-          it.toList() as List<StoriesLandingItemData>
+          it.filterIsInstance<StoriesLandingItemData>()
         }
       }
     }.subscribeOn(Schedulers.io())

@@ -181,7 +181,7 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     when (currentState.loadState) {
       MediaPreviewV2State.LoadState.DATA_LOADED -> bindDataLoadedState(currentState)
       MediaPreviewV2State.LoadState.MEDIA_READY -> bindMediaReadyState(currentState)
-      else -> null
+      else -> Unit
     }
   }
 

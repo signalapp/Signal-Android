@@ -122,6 +122,7 @@ class AppSettingsActivity : DSLSettingsActivity(), DonationPaymentComponent {
     }
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))
