@@ -118,7 +118,7 @@ public class DonationsService {
             return new Pair<>(donationsConfiguration, 200);
           });
         } else {
-          return wrapInServiceResponse(() -> new Pair<>(cacheEntryOutsideLock.donationsConfiguration, 200));
+          return wrapInServiceResponse(() -> new Pair<>(cacheEntryInLock.donationsConfiguration, 200));
         }
       }
     } else {
