@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Реттелмелі сома енгізіңіз</string>
     <string name="Boost__one_time_contribution">Бір реттік демеушілік</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Демеушілік жасағанда, беруге болатын минималды сома – %1$s</string>
 
     <string name="MySupportPreference__s_per_month">айына %1$s</string>
     <string name="MySupportPreference__renews_s">%1$s жаңарады</string>
@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Ерікті жарна енгізу</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Демеушілік жасау</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Төлем</string>
 
 </resources>

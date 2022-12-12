@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Egyedi összeg megadása</string>
     <string name="Boost__one_time_contribution">Egyszeri hozzájárulás</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">A minimális adomány összege: %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/hó</string>
     <string name="MySupportPreference__renews_s">Megújul ekkor: %1$s</string>
@@ -5443,7 +5443,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Támogatás</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Fizetés</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Adományozás</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Kifizetés</string>
 
 </resources>

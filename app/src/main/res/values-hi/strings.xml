@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">कस्टम राशि दर्ज करें</string>
     <string name="Boost__one_time_contribution">एक बार का योगदान</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">न्यूनतम %1$s का दान किया जा सकता है</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/महीने</string>
     <string name="MySupportPreference__renews_s">%1$s को नवीकृत होता है</string>

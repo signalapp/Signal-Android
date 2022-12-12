@@ -64,9 +64,9 @@ internal class SpinnerServer(
         session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db)
         session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db)
         session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, dbConfig, session)
-        session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam, dbConfig.db)
+        session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam)
         session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, dbConfig, session)
-        session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam, dbConfig.db)
+        session.method == Method.GET && session.uri == "/recent" -> getRecent(dbParam)
         else -> {
           val plugin = plugins[session.uri]
           if (plugin != null && session.method == Method.GET) {
@@ -166,7 +166,7 @@ internal class SpinnerServer(
     )
   }
 
-  private fun getQuery(dbName: String, db: SupportSQLiteDatabase): Response {
+  private fun getQuery(dbName: String): Response {
     return renderTemplate(
       "query",
       QueryPageModel(
@@ -180,7 +180,7 @@ internal class SpinnerServer(
     )
   }
 
-  private fun getRecent(dbName: String, db: SupportSQLiteDatabase): Response {
+  private fun getRecent(dbName: String): Response {
     val queries: List<RecentQuery>? = recentSql[dbName]
       ?.map { it ->
         RecentQuery(

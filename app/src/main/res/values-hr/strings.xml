@@ -4542,7 +4542,7 @@
     <string name="Boost__enter_custom_amount">Unesi drugi iznos</string>
     <string name="Boost__one_time_contribution">Jednokratna donacija</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Najmanji iznos koji možete donirati je %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/mjesečno</string>
     <string name="MySupportPreference__renews_s">Obnavlja se %1$s</string>

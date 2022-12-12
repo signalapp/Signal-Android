@@ -4236,7 +4236,7 @@
     <string name="Boost__enter_custom_amount">စိတ်ကြိုက်ပမာဏကို ရိုက်ထည့်ပါ</string>
     <string name="Boost__one_time_contribution">တစ်ကြိမ် ကူညီထောက်ပံ့မှု</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">သင်လှူဒါန်းနိုင်သည့် အနည်းဆုံးပမာဏမှာ %1$s ဖြစ်ပါသည်</string>
 
     <string name="MySupportPreference__s_per_month">တစ်လလျှင် %1$s</string>
     <string name="MySupportPreference__renews_s">%1$s တွင် သက်တမ်းတိုးသည်</string>

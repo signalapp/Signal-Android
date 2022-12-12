@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Voer Eie Bedrag in</string>
     <string name="Boost__one_time_contribution">Eenmalige bydrae</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Die minimum bedrag wat jy kan skenk is %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Hernu %1$s</string>

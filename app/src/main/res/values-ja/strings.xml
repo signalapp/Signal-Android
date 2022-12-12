@@ -4236,7 +4236,7 @@
     <string name="Boost__enter_custom_amount">金額を入力してください</string>
     <string name="Boost__one_time_contribution">1回限りの寄付</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">最小の寄付金額は%1$sです</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/月</string>
     <string name="MySupportPreference__renews_s">更新 %1$s</string>
@@ -5321,6 +5321,6 @@
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">寄付する</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">支払い</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">決済</string>
 
 </resources>

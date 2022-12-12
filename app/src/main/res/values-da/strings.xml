@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Angiv tilpasset beløb</string>
     <string name="Boost__one_time_contribution">Engangsbidrag</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Det mindste beløb, du kan donere, er %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/måned</string>
     <string name="MySupportPreference__renews_s">Fornyes %1$s</string>

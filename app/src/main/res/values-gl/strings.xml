@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Inserir cantidade personalizada</string>
     <string name="Boost__one_time_contribution">Doazón puntual</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">A cantidade mínima que podes doar é %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/mes</string>
     <string name="MySupportPreference__renews_s">Renóvase o %1$s</string>

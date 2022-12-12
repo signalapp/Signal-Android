@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">అనుకూల మొత్తాన్ని ఎంటర్ చేయండి</string>
     <string name="Boost__one_time_contribution">ఒక్కసారి కంట్రిబ్యూషన్</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">మీరు విరాళం ఇవ్వగల కనీస మొత్తం %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/నెల</string>
     <string name="MySupportPreference__renews_s">%1$s ను పునరుద్ధరిస్తుంది</string>

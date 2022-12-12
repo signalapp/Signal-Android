@@ -4236,7 +4236,7 @@
     <string name="Boost__enter_custom_amount">បញ្ចូលចំនួនទឹកប្រាក់កំណត់ផ្ទាល់ខ្លួន</string>
     <string name="Boost__one_time_contribution">ចូលរួមចំនែកតែមួយលើក</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">ចំនួនទឹកប្រាក់អប្បបរមាដែលអ្នកអាចបរិច្ចាគបានគឺ %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/ខែ</string>
     <string name="MySupportPreference__renews_s">បន្ត %1$s</string>

@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">ಕಸ್ಟಮ್‌ ಮೊತ್ತವನ್ನು ನಮೂದಿಸಿ</string>
     <string name="Boost__one_time_contribution">ಒಂದು ಬಾರಿಯ ಕೊಡುಗೆ</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">ನೀವು ದೇಣಿಗೆ ನೀಡಬಹುದಾದ ಕನಿಷ್ಠ ಮೊತ್ತ %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/ತಿಂಗಳು</string>
     <string name="MySupportPreference__renews_s">ನವೀಕರಿಸುತ್ತದೆ %1$s</string>

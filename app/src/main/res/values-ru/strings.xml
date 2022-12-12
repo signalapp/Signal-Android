@@ -4542,7 +4542,7 @@
     <string name="Boost__enter_custom_amount">Ввести сумму</string>
     <string name="Boost__one_time_contribution">Одноразовая поддержка</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Минимальная сумма пожертвования составляет %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/месяц</string>
     <string name="MySupportPreference__renews_s">Продлится %1$s</string>
@@ -5689,7 +5689,7 @@
     <!-- EOF -->
 
     <!-- PaypalCompleteOrderBottomSheet -->
-    <string name="PaypalCompleteOrderBottomSheet__donate">Пожертвовать</string>
+    <string name="PaypalCompleteOrderBottomSheet__donate">Поддержать</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Платёж</string>
 
 </resources>

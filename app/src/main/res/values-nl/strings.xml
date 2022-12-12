@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">Een zelfgekozen bedrag invullen</string>
     <string name="Boost__one_time_contribution">Eenmalige bijdrage</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">Het minimumbedrag dat je kunt doneren is %1$s</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/maand</string>
     <string name="MySupportPreference__renews_s">Wordt %1$s vernieuwd</string>
@@ -5444,6 +5444,6 @@
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Doneren</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">Overschrijving</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">Betaling</string>
 
 </resources>
