@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
-import android.content.DialogInterface
 import android.view.KeyEvent
 import android.widget.FrameLayout
 import android.widget.ImageView
@@ -26,8 +25,6 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
@@ -72,7 +69,6 @@ class GiftFlowConfirmationFragment :
   private lateinit var emojiKeyboard: MediaKeyboard
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private var errorDialog: DialogInterface? = null
   private var donationCheckoutDelegate: DonationCheckoutDelegate? = null
   private lateinit var processingDonationPaymentDialog: AlertDialog
   private lateinit var verifyingRecipientDonationPaymentDialog: AlertDialog
@@ -192,12 +188,6 @@ class GiftFlowConfirmationFragment :
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-    lifecycleDisposable += DonationError
-      .getErrorsForSource(DonationErrorSource.GIFT)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { donationError ->
-        onPaymentError(donationError)
-      }
   }
 
   override fun onDestroyView() {
@@ -234,24 +224,6 @@ class GiftFlowConfirmationFragment :
         summary = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__your_gift_will_be_sent_in)
       )
     }
-  }
-
-  private fun onPaymentError(throwable: Throwable?) {
-    Log.w(TAG, "onPaymentError", throwable, true)
-
-    if (errorDialog != null) {
-      Log.i(TAG, "Already displaying an error dialog. Skipping.")
-      return
-    }
-
-    errorDialog = DonationErrorDialogs.show(
-      requireContext(), throwable,
-      object : DonationErrorDialogs.DialogCallback() {
-        override fun onDialogDismissed() {
-          requireActivity().finish()
-        }
-      }
-    )
   }
 
   override fun onToolbarNavigationClicked() {
@@ -301,4 +273,7 @@ class GiftFlowConfirmationFragment :
   }
 
   override fun onProcessorActionProcessed() = Unit
+  override fun onUserCancelledPaymentFlow() {
+    findNavController().popBackStack(R.id.giftFlowConfirmationFragment, false)
+  }
 }

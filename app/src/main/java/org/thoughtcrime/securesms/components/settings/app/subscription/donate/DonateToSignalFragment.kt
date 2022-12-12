@@ -424,4 +424,8 @@ class DonateToSignalFragment :
   override fun onProcessorActionProcessed() {
     viewModel.refreshActiveSubscription()
   }
+
+  override fun onUserCancelledPaymentFlow() {
+    findNavController().popBackStack(R.id.donateToSignalFragment, false)
+  }
 }

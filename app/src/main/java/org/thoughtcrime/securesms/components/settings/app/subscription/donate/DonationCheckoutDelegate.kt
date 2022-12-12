@@ -64,7 +64,7 @@ class DonationCheckoutDelegate(
 
   init {
     fragment.viewLifecycleOwner.lifecycle.addObserver(this)
-    ErrorHandler().attach(fragment, errorSource, *additionalSources)
+    ErrorHandler().attach(fragment, callback, errorSource, *additionalSources)
   }
 
   override fun onCreate(owner: LifecycleOwner) {
@@ -203,9 +203,12 @@ class DonationCheckoutDelegate(
 
     private var fragment: Fragment? = null
     private var errorDialog: DialogInterface? = null
+    private var userCancelledFlowCallback: UserCancelledFlowCallback? = null
 
-    fun attach(fragment: Fragment, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
+    fun attach(fragment: Fragment, userCancelledFlowCallback: UserCancelledFlowCallback?, errorSource: DonationErrorSource, vararg additionalSources: DonationErrorSource) {
       this.fragment = fragment
+      this.userCancelledFlowCallback = userCancelledFlowCallback
+
       val disposables = LifecycleDisposable()
       fragment.viewLifecycleOwner.lifecycle.addObserver(this)
 
@@ -219,6 +222,7 @@ class DonationCheckoutDelegate(
     override fun onDestroy(owner: LifecycleOwner) {
       errorDialog?.dismiss()
       fragment = null
+      userCancelledFlowCallback = null
     }
 
     private fun registerErrorSource(errorSource: DonationErrorSource): Disposable {
@@ -237,7 +241,7 @@ class DonationCheckoutDelegate(
 
       if (throwable is DonationError.UserCancelledPaymentError) {
         Log.d(TAG, "User cancelled out of payment flow.", true)
-        fragment?.findNavController()?.popBackStack(R.id.donateToSignalFragment, false)
+
         return
       }
 
@@ -247,7 +251,7 @@ class DonationCheckoutDelegate(
         object : DonationErrorDialogs.DialogCallback() {
           var tryCCAgain = false
 
-          override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit>? {
+          override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<Unit> {
             return DonationErrorParams.ErrorAction(
               label = R.string.DeclineCode__try,
               action = {
@@ -267,7 +271,11 @@ class DonationCheckoutDelegate(
     }
   }
 
-  interface Callback {
+  interface UserCancelledFlowCallback {
+    fun onUserCancelledPaymentFlow()
+  }
+
+  interface Callback : UserCancelledFlowCallback {
     fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest)
     fun navigateToCreditCardForm(gatewayRequest: GatewayRequest)
