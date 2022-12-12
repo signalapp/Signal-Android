@@ -15,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.thoughtcrime.securesms.BlockUnblockDialog;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 
 public class BlockedUsersFragment extends Fragment {
 
   private BlockedUsersViewModel viewModel;
   private Listener              listener;
+
+  private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
   @Override
   public void onAttach(@NonNull Context context) {
@@ -59,16 +62,19 @@ public class BlockedUsersFragment extends Fragment {
       }
     });
 
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
     viewModel = new ViewModelProvider(requireActivity()).get(BlockedUsersViewModel.class);
-    viewModel.getRecipients().observe(getViewLifecycleOwner(), list -> {
-      if (list.isEmpty()) {
-        empty.setVisibility(View.VISIBLE);
-      } else {
-        empty.setVisibility(View.GONE);
-      }
+    lifecycleDisposable.add(
+        viewModel.getRecipients().subscribe(list -> {
+          if (list.isEmpty()) {
+            empty.setVisibility(View.VISIBLE);
+          } else {
+            empty.setVisibility(View.GONE);
+          }
 
-      adapter.submitList(list);
-    });
+          adapter.submitList(list);
+        })
+    );
   }
 
   private void handleRecipientClicked(@NonNull Recipient recipient) {
