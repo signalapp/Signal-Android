@@ -33,6 +33,17 @@ object SqlUtil {
     return tables
   }
 
+  @JvmStatic
+  fun getAllTriggers(db: SupportSQLiteDatabase): List<String> {
+    val tables: MutableList<String> = LinkedList()
+    db.query("SELECT name FROM sqlite_master WHERE type=?", arrayOf("trigger")).use { cursor ->
+      while (cursor.moveToNext()) {
+        tables.add(cursor.getString(0))
+      }
+    }
+    return tables
+  }
+
   /**
    * Given a table, this will return a set of tables that it has a foreign key dependency on.
    */
