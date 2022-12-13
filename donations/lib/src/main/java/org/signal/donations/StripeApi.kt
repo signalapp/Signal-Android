@@ -134,10 +134,11 @@ class StripeApi(
         try {
           objectMapper.readValue(it.body()!!.string())
         } catch (e: InvalidDefinitionException) {
+          Log.w(TAG, "Failed to parse JSON for StripeSetupIntent.")
+          ResponseFieldLogger.logFields(objectMapper, it.body()?.string())
           throw StripeError.FailedToParseSetupIntentResponseError(e)
-        } catch (e: StripeError.PostError) {
-          throw e
         } catch (e: Exception) {
+          Log.w(TAG, "Failed to read value from JSON.", e, true)
           throw StripeError.FailedToParseSetupIntentResponseError(null)
         }
       }
@@ -154,10 +155,11 @@ class StripeApi(
         try {
           objectMapper.readValue(it.body()!!.string())
         } catch (e: InvalidDefinitionException) {
+          Log.w(TAG, "Failed to parse JSON for StripePaymentIntent.")
+          ResponseFieldLogger.logFields(objectMapper, it.body()?.string())
           throw StripeError.FailedToParsePaymentIntentResponseError(e)
-        } catch (e: StripeError.PostError) {
-          throw e
         } catch (e: Exception) {
+          Log.w(TAG, "Failed to read value from JSON.", e, true)
           throw StripeError.FailedToParsePaymentIntentResponseError(null)
         }
       }

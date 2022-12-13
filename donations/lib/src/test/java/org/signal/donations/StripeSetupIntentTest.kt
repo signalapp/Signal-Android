@@ -1,4 +1,4 @@
-package donations
+package org.signal.donations
 
 import android.app.Application
 import com.fasterxml.jackson.module.kotlin.jsonMapper
