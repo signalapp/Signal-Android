@@ -3551,13 +3551,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       table.remapRecipient(secondaryId, primaryId)
     }
 
-    // Thread remaps
+    // Thread Merge Event (remaps happen inside ThreadTable#merge)
     if (threadMerge.neededMerge) {
-      for (table in threadIdDatabaseTables) {
-        table.remapThread(threadMerge.previousThreadId, threadMerge.threadId)
-      }
-
-      // Thread Merge Event
       val mergeEvent: ThreadMergeEvent.Builder = ThreadMergeEvent.newBuilder()
 
       if (secondaryRecord.e164 != null) {

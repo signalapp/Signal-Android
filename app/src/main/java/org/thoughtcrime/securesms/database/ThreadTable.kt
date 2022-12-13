@@ -1455,6 +1455,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       check(primary != null)
       check(secondary != null)
 
+      for (table in threadIdDatabaseTables) {
+        table.remapThread(secondary.threadId, primary.threadId)
+      }
+
       writableDatabase
         .delete(TABLE_NAME)
         .where("$ID = ?", secondary.threadId)

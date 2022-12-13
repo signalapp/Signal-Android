@@ -8,7 +8,6 @@ import org.junit.Assert
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Before
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.CursorUtil
@@ -388,7 +387,6 @@ class RecipientTableTest_getAndPossiblyMerge {
    * Somewhat exhaustive test of verifying all the data that gets merged.
    */
   @Test
-  @Ignore("Currently failing when verifying something with sms2")
   fun getAndPossiblyMerge_merge_general() {
     // Setup
     val recipientIdAci: RecipientId = SignalDatabase.recipients.getOrInsertFromServiceId(ACI_A)

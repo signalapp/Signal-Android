@@ -561,7 +561,7 @@ public abstract class MessageTable extends DatabaseTable implements MmsSmsColumn
   public void remapRecipient(@NonNull RecipientId fromId, @NonNull RecipientId toId) {
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, toId.serialize());
-    getWritableDatabase().update(getTableName(), values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(toId));
+    getWritableDatabase().update(getTableName(), values, RECIPIENT_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
   @Override
