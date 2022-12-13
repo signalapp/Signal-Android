@@ -4338,7 +4338,7 @@
     <string name="Boost__enter_custom_amount">விருப்பத் தொகையை உள்ளிடவும்</string>
     <string name="Boost__one_time_contribution">ஒரு முறைக்கான பங்களிப்பு</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">நீங்கள் குறைந்தபட்ச நன்கொடையாக %1$s வழங்கலாம்</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/மாதம்</string>
     <string name="MySupportPreference__renews_s">%1$s அன்று புதுப்பிக்கப்படும்</string>
@@ -5444,6 +5444,6 @@
 
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">நன்கொடையளிக்கவும்</string>
-    <string name="PaypalCompleteOrderBottomSheet__payment">பேமெண்ட்</string>
+    <string name="PaypalCompleteOrderBottomSheet__payment">கட்டணம்</string>
 
 </resources>

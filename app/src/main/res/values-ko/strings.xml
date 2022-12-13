@@ -4236,7 +4236,7 @@
     <string name="Boost__enter_custom_amount">사용자 정의 금액 입력</string>
     <string name="Boost__one_time_contribution">1회성 기부</string>
     <!-- Error label when the amount is smaller than what we can accept -->
-    <string name="Boost__the_minimum_amount_you_can_donate_is_s">The minimum amount you can donate is %1$s</string>
+    <string name="Boost__the_minimum_amount_you_can_donate_is_s">기부할 수 있는 최소 금액은 %1$s입니다.</string>
 
     <string name="MySupportPreference__s_per_month">%1$s/월</string>
     <string name="MySupportPreference__renews_s">%1$s 갱신</string>
