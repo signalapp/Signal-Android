@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.util.task;
 
-import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.AsyncTask;
 import android.view.View;
 
@@ -12,6 +10,7 @@ import androidx.lifecycle.Lifecycle;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.components.SignalProgressDialog;
 
 public abstract class SnackbarAsyncTask<Params>
     extends AsyncTask<Params, Void, Void>
@@ -27,8 +26,8 @@ public abstract class SnackbarAsyncTask<Params>
   private final int       snackbarDuration;
   private final boolean   showProgress;
 
-  private @Nullable Params         reversibleParameter;
-  private @Nullable ProgressDialog progressDialog;
+  private @Nullable Params               reversibleParameter;
+  private @Nullable SignalProgressDialog progressDialog;
 
   public SnackbarAsyncTask(@NonNull Lifecycle lifecycle,
                            @NonNull View view,
@@ -49,7 +48,7 @@ public abstract class SnackbarAsyncTask<Params>
 
   @Override
   protected void onPreExecute() {
-    if (this.showProgress) this.progressDialog = ProgressDialog.show(view.getContext(), "", "", true);
+    if (this.showProgress) this.progressDialog = SignalProgressDialog.show(view.getContext(), "", "", true);
     else                   this.progressDialog = null;
   }
 
@@ -83,7 +82,7 @@ public abstract class SnackbarAsyncTask<Params>
     new AsyncTask<Void, Void, Void>() {
       @Override
       protected void onPreExecute() {
-        if (showProgress) progressDialog = ProgressDialog.show(view.getContext(), "", "", true);
+        if (showProgress) progressDialog = SignalProgressDialog.show(view.getContext(), "", "", true);
         else              progressDialog = null;
       }
 
