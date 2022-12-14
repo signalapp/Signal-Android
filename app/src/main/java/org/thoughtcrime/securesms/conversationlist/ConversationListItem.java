@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -509,51 +508,51 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     if (!thread.isMessageRequestAccepted()) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
-    } else if (SmsTable.Types.isGroupUpdate(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
         return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody(), null), defaultTint);
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_group_updated), R.drawable.ic_update_group_16, defaultTint);
       }
-    } else if (SmsTable.Types.isGroupQuit(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isGroupQuit(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_left_the_group), R.drawable.ic_update_group_leave_16, defaultTint);
-    } else if (SmsTable.Types.isKeyExchangeType(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isKeyExchangeType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ConversationListItem_key_exchange_message), defaultTint);
-    } else if (SmsTable.Types.isChatSessionRefresh(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isChatSessionRefresh(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_chat_session_refreshed), R.drawable.ic_refresh_16, defaultTint);
-    } else if (SmsTable.Types.isNoRemoteSessionType(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isNoRemoteSessionType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session), defaultTint);
-    } else if (SmsTable.Types.isEndSessionType(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isEndSessionType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_secure_session_reset), defaultTint);
     } else if (MmsSmsColumns.Types.isLegacyType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported), defaultTint);
     } else if (MmsSmsColumns.Types.isDraftMessageType(thread.getType())) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(context, draftText + " " + thread.getBody(), defaultTint);
-    } else if (SmsTable.Types.isOutgoingAudioCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isOutgoingAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called), R.drawable.ic_update_audio_call_outgoing_16, defaultTint);
-    } else if (SmsTable.Types.isOutgoingVideoCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isOutgoingVideoCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called), R.drawable.ic_update_video_call_outgoing_16, defaultTint);
-    } else if (SmsTable.Types.isIncomingAudioCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isIncomingAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called_you), R.drawable.ic_update_audio_call_incoming_16, defaultTint);
-    } else if (SmsTable.Types.isIncomingVideoCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isIncomingVideoCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_called_you), R.drawable.ic_update_video_call_incoming_16, defaultTint);
-    } else if (SmsTable.Types.isMissedAudioCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isMissedAudioCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_missed_audio_call), R.drawable.ic_update_audio_call_missed_16, defaultTint);
-    } else if (SmsTable.Types.isMissedVideoCall(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isMissedVideoCall(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_missed_video_call), R.drawable.ic_update_video_call_missed_16, defaultTint);
     } else if (MmsSmsColumns.Types.isGroupCall(thread.getType())) {
       return emphasisAdded(context, MessageRecord.getGroupCallUpdateDescription(context, thread.getBody(), false), defaultTint);
-    } else if (SmsTable.Types.isJoinedType(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isJoinedType(thread.getType())) {
       return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> new SpannableString(context.getString(R.string.ThreadRecord_s_is_on_signal, r.getDisplayName(context)))));
-    } else if (SmsTable.Types.isExpirationTimerUpdate(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isExpirationTimerUpdate(thread.getType())) {
       int seconds = (int) (thread.getExpiresIn() / 1000);
       if (seconds <= 0) {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_messages_disabled), R.drawable.ic_update_timer_disabled_16, defaultTint);
       }
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time), R.drawable.ic_update_timer_16, defaultTint);
-    } else if (SmsTable.Types.isIdentityUpdate(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isIdentityUpdate(thread.getType())) {
       return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> {
         if (r.isGroup()) {
           return new SpannableString(context.getString(R.string.ThreadRecord_safety_number_changed));
@@ -561,15 +560,15 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
           return new SpannableString(context.getString(R.string.ThreadRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)));
         }
       }));
-    } else if (SmsTable.Types.isIdentityVerified(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isIdentityVerified(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_you_marked_verified), defaultTint);
-    } else if (SmsTable.Types.isIdentityDefault(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isIdentityDefault(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_you_marked_unverified), defaultTint);
-    } else if (SmsTable.Types.isUnsupportedMessageType(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isUnsupportedMessageType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_could_not_be_processed), defaultTint);
-    } else if (SmsTable.Types.isProfileChange(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isProfileChange(thread.getType())) {
       return emphasisAdded(context, "", defaultTint);
-    } else if (SmsTable.Types.isChangeNumber(thread.getType()) || SmsTable.Types.isBoostRequest(thread.getType())) {
+    } else if (MmsSmsColumns.Types.isChangeNumber(thread.getType()) || MmsSmsColumns.Types.isBoostRequest(thread.getType())) {
       return emphasisAdded(context, "", defaultTint);
     } else if (MmsSmsColumns.Types.isBadDecryptType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_delivery_issue), defaultTint);

@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.database;
 
+import androidx.annotation.VisibleForTesting;
+
 @SuppressWarnings("UnnecessaryInterfaceModifier")
 public interface MmsSmsColumns {
 
@@ -31,6 +33,13 @@ public interface MmsSmsColumns {
   public static final String RECEIPT_TIMESTAMP        = "receipt_timestamp";
   public static final String EXPORT_STATE             = "export_state";
   public static final String EXPORTED                 = "exported";
+
+  public static class Status {
+    public static final int STATUS_NONE      = -1;
+    public static final int STATUS_COMPLETE  = 0;
+    public static final int STATUS_PENDING   = 0x20;
+    public static final int STATUS_FAILED    = 0x40;
+  }
 
   /**
    * For storage efficiency, all types are stored within a single 64-bit integer column in the
@@ -146,6 +155,8 @@ public interface MmsSmsColumns {
     protected static final long SPECIAL_TYPE_PAYMENTS_NOTIFICATION     = 0x300000000L;
     protected static final long SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST = 0x400000000L;
     protected static final long SPECIAL_TYPE_PAYMENTS_ACTIVATED        = 0x800000000L;
+
+    static final long IGNORABLE_TYPESMASK_WHEN_COUNTING = Types.END_SESSION_BIT | Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT | Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
 
     public static boolean isStoryReaction(long type) {
       return (type & SPECIAL_TYPES_MASK) == SPECIAL_TYPE_STORY_REACTION;
@@ -416,7 +427,6 @@ public interface MmsSmsColumns {
 
       return 1;
     }
-
 
 //
 //

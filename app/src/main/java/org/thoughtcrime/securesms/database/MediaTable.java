@@ -48,26 +48,26 @@ public class MediaTable extends DatabaseTable {
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.CAPTION + ", "
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.NAME + ", "
                                                    + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UPLOAD_TIMESTAMP + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.TYPE + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SENT + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.DATE_SERVER + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.THREAD_ID + ", "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.RECIPIENT_ID + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.TYPE + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.DATE_SENT + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.DATE_RECEIVED + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.DATE_SERVER + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.THREAD_ID + ", "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.RECIPIENT_ID + ", "
                                                    + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " as " + THREAD_RECIPIENT_ID + " "
-                                                   + "FROM " + AttachmentTable.TABLE_NAME + " LEFT JOIN " + MmsTable.TABLE_NAME
-                                                   + " ON " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + " = " + MmsTable.TABLE_NAME + "." + MmsTable.ID + " "
+                                                   + "FROM " + AttachmentTable.TABLE_NAME + " LEFT JOIN " + MessageTable.TABLE_NAME
+                                                   + " ON " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + " = " + MessageTable.TABLE_NAME + "." + MessageTable.ID + " "
                                                    + "LEFT JOIN " + ThreadTable.TABLE_NAME
-                                                   + " ON " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + " = " + MmsTable.TABLE_NAME + "." + MmsTable.THREAD_ID + " "
+                                                   + " ON " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + " = " + MessageTable.TABLE_NAME + "." + MessageTable.THREAD_ID + " "
                                                    + "WHERE " + AttachmentTable.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
-                                                   + " FROM " + MmsTable.TABLE_NAME
-                                                   + " WHERE " + MmsTable.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
-                                                   + MmsTable.VIEW_ONCE + " = 0 AND "
-                                                   + MmsTable.STORY_TYPE + " = 0 AND "
+                                                   + " FROM " + MessageTable.TABLE_NAME
+                                                   + " WHERE " + MessageTable.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
+                                                   + MessageTable.VIEW_ONCE + " = 0 AND "
+                                                   + MessageTable.STORY_TYPE + " = 0 AND "
                                                    + AttachmentTable.DATA + " IS NOT NULL AND "
                                                    + "(" + AttachmentTable.QUOTE + " = 0 OR (" + AttachmentTable.QUOTE + " = 1 AND " + AttachmentTable.DATA_HASH + " IS NULL)) AND "
                                                    + AttachmentTable.STICKER_PACK_ID + " IS NULL AND "
-                                                   + MmsTable.TABLE_NAME + "." + MmsTable.RECIPIENT_ID + " > 0 AND "
+                                                   + MessageTable.TABLE_NAME + "." + MessageTable.RECIPIENT_ID + " > 0 AND "
                                                    + THREAD_RECIPIENT_ID + " > 0";
 
    private static final String UNIQUE_MEDIA_QUERY = "SELECT "
@@ -192,16 +192,16 @@ public class MediaTable extends DatabaseTable {
     public static MediaRecord from(@NonNull Cursor cursor) {
       AttachmentTable          attachmentDatabase = SignalDatabase.attachments();
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
-      RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.RECIPIENT_ID)));
-      long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.THREAD_ID));
-      boolean                  outgoing           = MessageTable.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE)));
+      RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.RECIPIENT_ID)));
+      long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.THREAD_ID));
+      boolean                  outgoing           = MessageTable.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)));
 
       long date;
 
-      if (MmsTable.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.TYPE)))) {
-        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_SENT));
+      if (MessageTable.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)))) {
+        date = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.DATE_SENT));
       } else {
-        date = cursor.getLong(cursor.getColumnIndexOrThrow(MmsTable.DATE_RECEIVED));
+        date = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.DATE_RECEIVED));
       }
 
       RecipientId threadRecipient = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(THREAD_RECIPIENT_ID)));

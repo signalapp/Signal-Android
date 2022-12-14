@@ -476,7 +476,7 @@ public class AttachmentTable extends DatabaseTable {
 
   public void trimAllAbandonedAttachments() {
     SQLiteDatabase db              = databaseHelper.getSignalWritableDatabase();
-    String         selectAllMmsIds = "SELECT " + MmsTable.ID + " FROM " + MmsTable.TABLE_NAME;
+    String         selectAllMmsIds = "SELECT " + MessageTable.ID + " FROM " + MessageTable.TABLE_NAME;
     String         where           = MMS_ID + " != " + PREUPLOAD_MESSAGE_ID + " AND " + MMS_ID + " NOT IN (" + selectAllMmsIds + ")";
 
     int deletes = db.delete(TABLE_NAME, where, null);

@@ -50,7 +50,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 import java.io.Closeable;
 import java.security.SecureRandom;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -1511,9 +1510,9 @@ public class GroupTable extends DatabaseTable implements RecipientIdDatabaseRefe
 
   public @NonNull List<GroupId> getGroupsToDisplayAsStories() throws BadGroupIdException {
     String query = "SELECT " + GROUP_ID + ", (" +
-                   "SELECT " + MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + " FROM " + MmsTable.TABLE_NAME +
-                   " WHERE " + MmsTable.TABLE_NAME + "." + MmsTable.RECIPIENT_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID +
-                   " AND " + MmsTable.STORY_TYPE + " > 1 ORDER BY " + MmsTable.TABLE_NAME + "." + MmsTable.DATE_RECEIVED + " DESC LIMIT 1" +
+                   "SELECT " + MessageTable.TABLE_NAME + "." + MessageTable.DATE_RECEIVED + " FROM " + MessageTable.TABLE_NAME +
+                   " WHERE " + MessageTable.TABLE_NAME + "." + MessageTable.RECIPIENT_ID + " = " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID +
+                   " AND " + MessageTable.STORY_TYPE + " > 1 ORDER BY " + MessageTable.TABLE_NAME + "." + MessageTable.DATE_RECEIVED + " DESC LIMIT 1" +
                    ") as active_timestamp" +
                    " FROM " + TABLE_NAME +
                    " INNER JOIN " + ThreadTable.TABLE_NAME + " ON " + ThreadTable.TABLE_NAME + "." + ThreadTable.RECIPIENT_ID + " = " + TABLE_NAME + "." + RECIPIENT_ID +

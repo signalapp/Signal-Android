@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.Base64
 
 object GV2UpdateTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == MmsSmsColumns.BODY && (tableName == null || (tableName == SmsTable.TABLE_NAME || tableName == MmsTable.TABLE_NAME))
+    return columnName == MmsSmsColumns.BODY && (tableName == null || tableName == MessageTable.TABLE_NAME)
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {

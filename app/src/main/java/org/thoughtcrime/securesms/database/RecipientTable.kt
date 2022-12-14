@@ -3305,8 +3305,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         INNER JOIN ${ThreadTable.TABLE_NAME} AS t ON t.${ThreadTable.RECIPIENT_ID} = r.$ID
         WHERE
           r.$PROFILE_SHARING = 0 AND (
-            EXISTS(SELECT 1 FROM ${SmsTable.TABLE_NAME} WHERE ${SmsTable.THREAD_ID} = t.${ThreadTable.ID} AND ${SmsTable.DATE_RECEIVED} < ?) OR
-            EXISTS(SELECT 1 FROM ${MmsTable.TABLE_NAME} WHERE ${MmsTable.THREAD_ID} = t.${ThreadTable.ID} AND ${MmsTable.DATE_RECEIVED} < ?)
+            EXISTS(SELECT 1 FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.THREAD_ID} = t.${ThreadTable.ID} AND ${MessageTable.DATE_RECEIVED} < ?)
           )
       """.trimIndent()
 

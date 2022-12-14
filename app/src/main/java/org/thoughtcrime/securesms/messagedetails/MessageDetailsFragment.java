@@ -35,7 +35,6 @@ import java.util.List;
 public final class MessageDetailsFragment extends FullScreenDialogFragment {
 
   private static final String MESSAGE_ID_EXTRA = "message_id";
-  private static final String TYPE_EXTRA       = "type";
   private static final String RECIPIENT_EXTRA  = "recipient_id";
 
   private GlideRequests           glideRequests;
@@ -49,7 +48,6 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
     Bundle         args           = new Bundle();
 
     args.putLong(MESSAGE_ID_EXTRA, message.getId());
-    args.putString(TYPE_EXTRA, message.isMms() ? MmsSmsTable.MMS_TRANSPORT : MmsSmsTable.SMS_TRANSPORT);
     args.putParcelable(RECIPIENT_EXTRA, recipientId);
 
     dialogFragment.setArguments(args);
@@ -102,9 +100,8 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
 
   private void initializeViewModel() {
     final RecipientId recipientId = requireArguments().getParcelable(RECIPIENT_EXTRA);
-    final String      type        = requireArguments().getString(TYPE_EXTRA);
     final Long        messageId   = requireArguments().getLong(MESSAGE_ID_EXTRA, -1);
-    final Factory     factory     = new Factory(recipientId, type, messageId);
+    final Factory     factory     = new Factory(recipientId, messageId);
 
     viewModel = new ViewModelProvider(this, factory).get(MessageDetailsViewModel.class);
     viewModel.getMessageDetails().observe(this, details -> {

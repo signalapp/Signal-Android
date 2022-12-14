@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.ThreadTable.Extra;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -146,11 +145,11 @@ public final class ThreadRecord {
   }
 
   public boolean isOutgoingAudioCall() {
-    return SmsTable.Types.isOutgoingAudioCall(type);
+    return MmsSmsColumns.Types.isOutgoingAudioCall(type);
   }
 
   public boolean isOutgoingVideoCall() {
-    return SmsTable.Types.isOutgoingVideoCall(type);
+    return MmsSmsColumns.Types.isOutgoingVideoCall(type);
   }
 
   public boolean isVerificationStatusChange() {
@@ -170,7 +169,7 @@ public final class ThreadRecord {
   }
 
   public boolean isPendingInsecureSmsFallback() {
-    return SmsTable.Types.isPendingInsecureSmsFallbackType(type);
+    return MmsSmsColumns.Types.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isDelivered() {

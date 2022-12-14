@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -382,7 +381,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                          @NonNull Set<IdentityKeyMismatch> existingIdentityMismatches)
       throws RetryLaterException, ProofRequiredException
   {
-    MmsTable            database   = SignalDatabase.mms();
+    MessageTable        database   = SignalDatabase.mms();
     RecipientAccessList accessList = new RecipientAccessList(target);
 
     List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();

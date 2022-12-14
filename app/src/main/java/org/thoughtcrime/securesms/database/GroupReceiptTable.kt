@@ -123,7 +123,7 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
   fun deleteAbandonedRows() {
     writableDatabase
       .delete(TABLE_NAME)
-      .where("$MMS_ID NOT IN (SELECT ${MmsTable.ID} FROM ${MmsTable.TABLE_NAME})")
+      .where("$MMS_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
       .run()
   }
 

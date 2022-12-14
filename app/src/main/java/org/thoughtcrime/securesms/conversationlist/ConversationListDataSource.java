@@ -14,8 +14,8 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -77,9 +77,9 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         recipients.add(record.getRecipient());
         needsResolve.add(record.getGroupMessageSender());
 
-        if (!SmsTable.Types.isGroupV2(record.getType())) {
+        if (!MmsSmsColumns.Types.isGroupV2(record.getType())) {
           needsResolve.add(record.getRecipient().getId());
-        } else if (SmsTable.Types.isGroupUpdate(record.getType())) {
+        } else if (MmsSmsColumns.Types.isGroupUpdate(record.getType())) {
           UpdateDescription description = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), record.getBody(), null);
           needsResolve.addAll(description.getMentioned().stream().map(RecipientId::from).collect(Collectors.toList()));
         }

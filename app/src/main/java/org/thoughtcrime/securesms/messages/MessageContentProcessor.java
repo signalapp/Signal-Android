@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PaymentTable;
@@ -2164,8 +2163,8 @@ public final class MessageContentProcessor {
                                                                  null,
                                                                  true);
 
-    MmsTable database = SignalDatabase.mms();
-    long     threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+    MessageTable database = SignalDatabase.mms();
+    long         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
     long                     messageId;
     List<DatabaseAttachment> attachments;

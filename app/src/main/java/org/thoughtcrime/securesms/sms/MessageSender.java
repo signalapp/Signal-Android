@@ -40,7 +40,6 @@ import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -113,7 +112,7 @@ public class MessageSender {
                           final long threadId,
                           final boolean forceSms,
                           @Nullable final String metricId,
-                          final SmsTable.InsertListener insertListener)
+                          final MessageTable.InsertListener insertListener)
   {
     Log.i(TAG, "Sending text message to " + message.getRecipient().getId() + ", thread: " + threadId);
     MessageTable database  = SignalDatabase.sms();
@@ -139,7 +138,7 @@ public class MessageSender {
   public static void sendStories(@NonNull final Context context,
                                  @NonNull final List<OutgoingMediaMessage> messages,
                                  @Nullable final String metricId,
-                                 @Nullable final SmsTable.InsertListener insertListener)
+                                 @Nullable final MessageTable.InsertListener insertListener)
   {
     Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
     ThreadTable  threadTable = SignalDatabase.threads();
@@ -253,7 +252,7 @@ public class MessageSender {
                           final long threadId,
                           final boolean forceSms,
                           @Nullable final String metricId,
-                          @Nullable final SmsTable.InsertListener insertListener)
+                          @Nullable final MessageTable.InsertListener insertListener)
   {
     Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
     try {
@@ -285,7 +284,7 @@ public class MessageSender {
                                                   final OutgoingMediaMessage message,
                                                   final Collection<PreUploadResult> preUploadResults,
                                                   final long threadId,
-                                                  final SmsTable.InsertListener insertListener)
+                                                  final MessageTable.InsertListener insertListener)
   {
     Log.i(TAG, "Sending media message with pre-uploads to " + message.getRecipient().getId() + ", thread: " + threadId + ", pre-uploads: " +  preUploadResults);
     Preconditions.checkArgument(message.getAttachments().isEmpty(), "If the media is pre-uploaded, there should be no attachments on the message.");

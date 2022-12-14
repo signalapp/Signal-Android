@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit
 @RunWith(AndroidJUnit4::class)
 class MmsTableTest_stories {
 
-  private lateinit var mms: MmsTable
+  private lateinit var mms: MessageTable
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())

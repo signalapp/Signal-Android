@@ -5,6 +5,7 @@ import android.content.Context
 import android.database.Cursor
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.delete
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -43,15 +44,9 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
     @JvmField
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER reactions_sms_delete AFTER DELETE ON ${SmsTable.TABLE_NAME} 
+        CREATE TRIGGER reactions_mms_delete AFTER DELETE ON ${MessageTable.TABLE_NAME} 
         BEGIN 
-        	DELETE FROM $TABLE_NAME WHERE $MESSAGE_ID = old.${SmsTable.ID} AND $IS_MMS = 0;
-        END
-      """,
-      """
-        CREATE TRIGGER reactions_mms_delete AFTER DELETE ON ${MmsTable.TABLE_NAME} 
-        BEGIN 
-        	DELETE FROM $TABLE_NAME WHERE $MESSAGE_ID = old.${MmsTable.ID} AND $IS_MMS = 1;
+        	DELETE FROM $TABLE_NAME WHERE $MESSAGE_ID = old.${MessageTable.ID} AND $IS_MMS = 1;
         END
       """
     )
@@ -67,8 +62,8 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun getReactions(messageId: MessageId): List<ReactionRecord> {
-    val query = "$MESSAGE_ID = ? AND $IS_MMS = ?"
-    val args = SqlUtil.buildArgs(messageId.id, if (messageId.mms) 1 else 0)
+    val query = "$MESSAGE_ID = ?"
+    val args = SqlUtil.buildArgs(messageId.id)
 
     val reactions: MutableList<ReactionRecord> = mutableListOf()
 
@@ -88,9 +83,9 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
 
     val messageIdToReactions: MutableMap<MessageId, MutableList<ReactionRecord>> = mutableMapOf()
 
-    val args: List<Array<String>> = messageIds.map { SqlUtil.buildArgs(it.id, if (it.mms) 1 else 0) }
+    val args: List<Array<String>> = messageIds.map { SqlUtil.buildArgs(it.id) }
 
-    for (query: SqlUtil.Query in SqlUtil.buildCustomCollectionQuery("$MESSAGE_ID = ? AND $IS_MMS = ?", args)) {
+    for (query: SqlUtil.Query in SqlUtil.buildCustomCollectionQuery("$MESSAGE_ID = ?", args)) {
       readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).use { cursor ->
         while (cursor.moveToNext()) {
           val reaction: ReactionRecord = readReaction(cursor)
@@ -115,7 +110,6 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun addReaction(messageId: MessageId, reaction: ReactionRecord) {
-
     writableDatabase.beginTransaction()
     try {
       val values = ContentValues().apply {
@@ -144,7 +138,6 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun deleteReaction(messageId: MessageId, recipientId: RecipientId) {
-
     writableDatabase.beginTransaction()
     try {
       val query = "$MESSAGE_ID = ? AND $IS_MMS = ? AND $AUTHOR_ID = ?"
@@ -171,8 +164,8 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun hasReaction(messageId: MessageId, reaction: ReactionRecord): Boolean {
-    val query = "$MESSAGE_ID = ? AND $IS_MMS = ? AND $AUTHOR_ID = ? AND $EMOJI = ?"
-    val args = SqlUtil.buildArgs(messageId.id, if (messageId.mms) 1 else 0, reaction.author, reaction.emoji)
+    val query = "$MESSAGE_ID = ? AND $AUTHOR_ID = ? AND $EMOJI = ?"
+    val args = SqlUtil.buildArgs(messageId.id, reaction.author, reaction.emoji)
 
     readableDatabase.query(TABLE_NAME, arrayOf(MESSAGE_ID), query, args, null, null, null).use { cursor ->
       return cursor.moveToFirst()
@@ -180,8 +173,8 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   private fun hasReactions(messageId: MessageId): Boolean {
-    val query = "$MESSAGE_ID = ? AND $IS_MMS = ?"
-    val args = SqlUtil.buildArgs(messageId.id, if (messageId.mms) 1 else 0)
+    val query = "$MESSAGE_ID = ?"
+    val args = SqlUtil.buildArgs(messageId.id)
 
     readableDatabase.query(TABLE_NAME, arrayOf(MESSAGE_ID), query, args, null, null, null).use { cursor ->
       return cursor.moveToFirst()
@@ -199,12 +192,9 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun deleteAbandonedReactions() {
-    val query = """
-      ($IS_MMS = 0 AND $MESSAGE_ID NOT IN (SELECT ${SmsTable.ID} FROM ${SmsTable.TABLE_NAME}))
-      OR
-      ($IS_MMS = 1 AND $MESSAGE_ID NOT IN (SELECT ${MmsTable.ID} FROM ${MmsTable.TABLE_NAME}))
-    """.trimIndent()
-
-    writableDatabase.delete(TABLE_NAME, query, null)
+    writableDatabase
+      .delete(TABLE_NAME)
+      .where("$MESSAGE_ID NOT IN (SELECT ${MessageTable.ID} FROM ${MessageTable.TABLE_NAME})")
+      .run()
   }
 }

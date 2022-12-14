@@ -34,10 +34,10 @@ import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.IdentityTable;
-import org.thoughtcrime.securesms.database.MmsTable;
+import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -128,8 +128,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-    db.execSQL(SmsTable.CREATE_TABLE);
-    db.execSQL(MmsTable.CREATE_TABLE);
+    db.execSQL(MessageTable.CREATE_TABLE);
     db.execSQL(AttachmentTable.CREATE_TABLE);
     db.execSQL(ThreadTable.CREATE_TABLE);
     db.execSQL(IdentityTable.CREATE_TABLE);
@@ -139,8 +138,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
     db.execSQL(RecipientTable.CREATE_TABLE);
     db.execSQL(GroupReceiptTable.CREATE_TABLE);
 
-    executeStatements(db, SmsTable.CREATE_INDEXS);
-    executeStatements(db, MmsTable.CREATE_INDEXS);
+    executeStatements(db, MessageTable.CREATE_INDEXS);
     executeStatements(db, AttachmentTable.CREATE_INDEXS);
     executeStatements(db, ThreadTable.CREATE_INDEXS);
     executeStatements(db, DraftTable.CREATE_INDEXS);
@@ -404,10 +402,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
         Cursor       cursor       = null;
 
         try {
-          cursor = db.query(SmsTable.TABLE_NAME,
-                            new String[] { SmsTable.ID, SmsTable.BODY, SmsTable.TYPE},
-                            SmsTable.TYPE + " & ? == 0",
-                            new String[] {String.valueOf(SmsTable.Types.ENCRYPTION_MASK)},
+          cursor = db.query("sms",
+                            new String[] { "_id", "body", "type"},
+                            "type & ? == 0",
+                            new String[] {String.valueOf(MmsSmsColumns.Types.ENCRYPTION_MASK)},
                             null, null, null);
 
           while (cursor.moveToNext()) {
@@ -418,10 +416,10 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
             String encryptedBody = masterCipher.encryptBody(body);
 
             ContentValues update = new ContentValues();
-            update.put(SmsTable.BODY, encryptedBody);
-            update.put(SmsTable.TYPE, type | 0x80000000); // Inline now deprecated symmetric encryption type
+            update.put("body", encryptedBody);
+            update.put("type", type | 0x80000000); // Inline now deprecated symmetric encryption type
 
-            db.update(SmsTable.TABLE_NAME, update, SmsTable.ID + " = ?",
+            db.update("sms", update, "_id = ?",
                       new String[] {String.valueOf(id)});
           }
         } finally {

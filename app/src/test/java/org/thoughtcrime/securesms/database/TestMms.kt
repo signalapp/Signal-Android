@@ -76,39 +76,39 @@ object TestMms {
     receivedTimestampMillis: Long = System.currentTimeMillis(),
   ): Long {
     val contentValues = ContentValues().apply {
-      put(MmsTable.DATE_SENT, message.sentTimeMillis)
-      put(MmsTable.MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
+      put(MessageTable.DATE_SENT, message.sentTimeMillis)
+      put(MessageTable.MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
-      put(MmsTable.TYPE, type)
+      put(MessageTable.TYPE, type)
       put(MmsSmsColumns.THREAD_ID, threadId)
       put(MmsSmsColumns.READ, if (unread) 0 else 1)
-      put(MmsTable.DATE_RECEIVED, receivedTimestampMillis)
+      put(MessageTable.DATE_RECEIVED, receivedTimestampMillis)
       put(MmsSmsColumns.SMS_SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
-      put(MmsTable.VIEW_ONCE, message.isViewOnce)
+      put(MessageTable.VIEW_ONCE, message.isViewOnce)
       put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
       put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
       put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
       put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
-      put(MmsTable.STORY_TYPE, message.storyType.code)
+      put(MessageTable.STORY_TYPE, message.storyType.code)
 
       put(MmsSmsColumns.BODY, body)
-      put(MmsTable.MENTIONS_SELF, 0)
+      put(MessageTable.MENTIONS_SELF, 0)
     }
 
-    return db.insert(MmsTable.TABLE_NAME, null, contentValues)
+    return db.insert(MessageTable.TABLE_NAME, null, contentValues)
   }
 
   fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {
     val values = ContentValues()
     values.put(MmsSmsColumns.REMOTE_DELETED, 1)
     values.putNull(MmsSmsColumns.BODY)
-    values.putNull(MmsTable.QUOTE_BODY)
-    values.putNull(MmsTable.QUOTE_AUTHOR)
-    values.put(MmsTable.QUOTE_TYPE, -1)
-    values.putNull(MmsTable.QUOTE_ID)
-    values.putNull(MmsTable.LINK_PREVIEWS)
-    values.putNull(MmsTable.SHARED_CONTACTS)
-    db.update(MmsTable.TABLE_NAME, values, DatabaseTable.ID_WHERE, arrayOf(messageId.toString()))
+    values.putNull(MessageTable.QUOTE_BODY)
+    values.putNull(MessageTable.QUOTE_AUTHOR)
+    values.put(MessageTable.QUOTE_TYPE, -1)
+    values.putNull(MessageTable.QUOTE_ID)
+    values.putNull(MessageTable.LINK_PREVIEWS)
+    values.putNull(MessageTable.SHARED_CONTACTS)
+    db.update(MessageTable.TABLE_NAME, values, DatabaseTable.ID_WHERE, arrayOf(messageId.toString()))
   }
 }

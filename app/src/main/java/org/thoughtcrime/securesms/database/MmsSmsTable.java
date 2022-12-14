@@ -35,6 +35,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageTable.MessageUpdate;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
+import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.MessageExportStatus;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -50,6 +51,7 @@ import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
@@ -65,64 +67,53 @@ public class MmsSmsTable extends DatabaseTable {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(MmsSmsTable.class);
 
-  public static final String TRANSPORT     = "transport_type";
-  public static final String MMS_TRANSPORT = "mms";
-  public static final String SMS_TRANSPORT = "sms";
-
-  private static final String[] PROJECTION = { MmsSmsColumns.ID,
-                                               MmsSmsColumns.UNIQUE_ROW_ID,
+  private static final String[] PROJECTION = { MessageTable.TABLE_NAME + "." + MessageTable.ID + " AS " + MmsSmsColumns.ID,
                                                MmsSmsColumns.BODY,
                                                MmsSmsColumns.TYPE,
                                                MmsSmsColumns.THREAD_ID,
-                                               SmsTable.RECIPIENT_ID,
-                                               SmsTable.RECIPIENT_DEVICE_ID,
+                                               MmsSmsColumns.RECIPIENT_ID,
+                                               MmsSmsColumns.RECIPIENT_DEVICE_ID,
                                                MmsSmsColumns.DATE_SENT,
                                                MmsSmsColumns.DATE_RECEIVED,
                                                MmsSmsColumns.DATE_SERVER,
-                                               MmsTable.MMS_MESSAGE_TYPE,
-                                               SmsTable.SMS_STATUS,
+                                               MessageTable.MMS_MESSAGE_TYPE,
                                                MmsSmsColumns.UNIDENTIFIED,
-                                               MmsTable.MMS_CONTENT_LOCATION,
-                                               MmsTable.MMS_TRANSACTION_ID,
-                                               MmsTable.MMS_MESSAGE_SIZE,
-                                               MmsTable.MMS_EXPIRY,
-                                               MmsTable.MMS_STATUS,
+                                               MessageTable.MMS_CONTENT_LOCATION,
+                                               MessageTable.MMS_TRANSACTION_ID,
+                                               MessageTable.MMS_MESSAGE_SIZE,
+                                               MessageTable.MMS_EXPIRY,
+                                               MessageTable.MMS_STATUS,
                                                MmsSmsColumns.DELIVERY_RECEIPT_COUNT,
                                                MmsSmsColumns.READ_RECEIPT_COUNT,
                                                MmsSmsColumns.MISMATCHED_IDENTITIES,
-                                               MmsTable.NETWORK_FAILURES,
+                                               MessageTable.NETWORK_FAILURES,
                                                MmsSmsColumns.SMS_SUBSCRIPTION_ID,
                                                MmsSmsColumns.EXPIRES_IN,
                                                MmsSmsColumns.EXPIRE_STARTED,
                                                MmsSmsColumns.NOTIFIED,
-                                               TRANSPORT,
-                                               AttachmentTable.ATTACHMENT_JSON_ALIAS,
-                                               MmsTable.QUOTE_ID,
-                                               MmsTable.QUOTE_AUTHOR,
-                                               MmsTable.QUOTE_BODY,
-                                               MmsTable.QUOTE_MISSING,
-                                               MmsTable.QUOTE_TYPE,
-                                               MmsTable.QUOTE_MENTIONS,
-                                               MmsTable.SHARED_CONTACTS,
-                                               MmsTable.LINK_PREVIEWS,
-                                               MmsTable.VIEW_ONCE,
+                                               MessageTable.QUOTE_ID,
+                                               MessageTable.QUOTE_AUTHOR,
+                                               MessageTable.QUOTE_BODY,
+                                               MessageTable.QUOTE_MISSING,
+                                               MessageTable.QUOTE_TYPE,
+                                               MessageTable.QUOTE_MENTIONS,
+                                               MessageTable.SHARED_CONTACTS,
+                                               MessageTable.LINK_PREVIEWS,
+                                               MessageTable.VIEW_ONCE,
                                                MmsSmsColumns.READ,
                                                MmsSmsColumns.REACTIONS_UNREAD,
                                                MmsSmsColumns.REACTIONS_LAST_SEEN,
                                                MmsSmsColumns.REMOTE_DELETED,
-                                               MmsTable.MENTIONS_SELF,
+                                               MessageTable.MENTIONS_SELF,
                                                MmsSmsColumns.NOTIFIED_TIMESTAMP,
                                                MmsSmsColumns.VIEWED_RECEIPT_COUNT,
                                                MmsSmsColumns.RECEIPT_TIMESTAMP,
-                                               MmsTable.MESSAGE_RANGES,
-                                               MmsTable.STORY_TYPE,
-                                               MmsTable.PARENT_STORY_ID};
+                                               MessageTable.MESSAGE_RANGES,
+                                               MessageTable.STORY_TYPE,
+                                               MessageTable.PARENT_STORY_ID};
 
-  private static final String SNIPPET_QUERY = "SELECT " + MmsSmsColumns.ID + ", 0 AS " + TRANSPORT + ", " + MmsSmsColumns.TYPE + ", " + MmsSmsColumns.DATE_RECEIVED + " FROM " + SmsTable.TABLE_NAME + " " +
-                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsSmsColumns.TYPE + " NOT IN (" + SmsTable.Types.PROFILE_CHANGE_TYPE + ", " + SmsTable.Types.GV1_MIGRATION_TYPE + ", " + SmsTable.Types.CHANGE_NUMBER_TYPE + ", " + SmsTable.Types.BOOST_REQUEST_TYPE + ", " + SmsTable.Types.SMS_EXPORT_TYPE + ") AND " + SmsTable.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " " +
-                                              "UNION ALL " +
-                                              "SELECT " + MmsSmsColumns.ID + ", 1 AS " + TRANSPORT + ", " + MmsSmsColumns.TYPE + ", " + MmsTable.DATE_RECEIVED + " FROM " + MmsTable.TABLE_NAME + " " +
-                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MmsTable.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MmsTable.STORY_TYPE + " = 0 AND " + MmsTable.PARENT_STORY_ID + " <= 0 " +
+  private static final String SNIPPET_QUERY = "SELECT " + MmsSmsColumns.ID + ", " + MmsSmsColumns.TYPE + ", " + MessageTable.DATE_RECEIVED + " FROM " + MessageTable.TABLE_NAME + " " +
+                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MessageTable.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0 " +
                                               "ORDER BY " + MmsSmsColumns.DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
@@ -163,7 +154,7 @@ public class MmsSmsTable extends DatabaseTable {
     String[] projection = new String[] { "COUNT(*)" };
     String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
                           MmsSmsColumns.DATE_RECEIVED + " >= " + timestamp + " AND " +
-                          MmsTable.STORY_TYPE + " = 0 AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+                          MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(projection, selection, null, null, false)) {
       if (cursor != null && cursor.moveToNext()) {
@@ -199,7 +190,7 @@ public class MmsSmsTable extends DatabaseTable {
     List<MessageRecord> sms    = SignalDatabase.sms().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
 
     mms.addAll(sms);
-    Collections.sort(mms, (a, b) -> Long.compare(a.getDateReceived(), b.getDateReceived()));
+    Collections.sort(mms, Comparator.comparingLong(DisplayRecord::getDateReceived));
 
     return Stream.of(mms).limit(limit).toList();
   }
@@ -208,7 +199,7 @@ public class MmsSmsTable extends DatabaseTable {
   public Cursor getConversation(long threadId, long offset, long limit) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
     String         order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsTable.STORY_TYPE + " = 0 AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
     String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
@@ -222,14 +213,8 @@ public class MmsSmsTable extends DatabaseTable {
   public @NonNull MessageRecord getConversationSnippet(long threadId) throws NoSuchMessageException {
     try (Cursor cursor = getConversationSnippetCursor(threadId)) {
       if (cursor.moveToFirst()) {
-        boolean isMms = CursorUtil.requireBoolean(cursor, TRANSPORT);
-        long    id    = CursorUtil.requireLong(cursor, MmsSmsColumns.ID);
-
-        if (isMms) {
-          return SignalDatabase.mms().getMessageRecord(id);
-        } else {
-          return SignalDatabase.sms().getMessageRecord(id);
-        }
+        long id = CursorUtil.requireLong(cursor, MmsSmsColumns.ID);
+        return SignalDatabase.mms().getMessageRecord(id);
       } else {
         throw new NoSuchMessageException("no message");
       }
@@ -239,12 +224,12 @@ public class MmsSmsTable extends DatabaseTable {
   @VisibleForTesting
   @NonNull Cursor getConversationSnippetCursor(long threadId) {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
-    return db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId, threadId));
+    return db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId));
   }
 
   public long getConversationSnippetType(long threadId) throws NoSuchMessageException {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
-    try (Cursor cursor = db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId, threadId))) {
+    try (Cursor cursor = db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId))) {
       if (cursor.moveToFirst()) {
         return CursorUtil.requireLong(cursor, MmsSmsColumns.TYPE);
       } else {
@@ -271,7 +256,7 @@ public class MmsSmsTable extends DatabaseTable {
     }
 
     String order     = MmsSmsColumns.DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MmsTable.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
+    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
   }
@@ -283,10 +268,10 @@ public class MmsSmsTable extends DatabaseTable {
     RecipientId author    = messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId();
     long        timestamp = messageRecord.getDateSent();
 
-    String   where      = MmsTable.QUOTE_ID + " = ?  AND " + MmsTable.QUOTE_AUTHOR + " = ?";
+    String   where      = MessageTable.QUOTE_ID + " = ?  AND " + MessageTable.QUOTE_AUTHOR + " = ?";
     String[] whereArgs  = SqlUtil.buildArgs(timestamp, author);
 
-    try (Cursor cursor = getReadableDatabase().query(MmsTable.TABLE_NAME, new String[]{ "1" }, where, whereArgs, null, null, null, "1")) {
+    try (Cursor cursor = getReadableDatabase().query(MessageTable.TABLE_NAME, new String[]{ "1" }, where, whereArgs, null, null, null, "1")) {
       return cursor.moveToFirst();
     }
   }
@@ -309,9 +294,9 @@ public class MmsSmsTable extends DatabaseTable {
 
     String query;
     if (targetMessage.getQuote().getAuthor().equals(Recipient.self().getId())) {
-      query = MmsTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND (" + MmsSmsColumns.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + ") = " + MmsSmsColumns.Types.BASE_SENT_TYPE;
+      query = MessageTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND (" + MmsSmsColumns.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + ") = " + MmsSmsColumns.Types.BASE_SENT_TYPE;
     } else {
-      query = MmsTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND " + MmsTable.RECIPIENT_ID + " = '" + targetMessage.getQuote().getAuthor().serialize() + "'";
+      query = MessageTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND " + MessageTable.RECIPIENT_ID + " = '" + targetMessage.getQuote().getAuthor().serialize() + "'";
     }
 
     try (Reader reader = new Reader(queryTables(PROJECTION, query, null, "1", false))) {
@@ -333,7 +318,7 @@ public class MmsSmsTable extends DatabaseTable {
     }
 
     RecipientId author = targetMessage.isOutgoing() ? Recipient.self().getId() : targetMessage.getRecipient().getId();
-    String      query  = MmsTable.QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + MmsTable.QUOTE_AUTHOR + " = " + author.serialize();
+    String      query  = MessageTable.QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + MessageTable.QUOTE_AUTHOR + " = " + author.serialize();
     String      order  = MmsSmsColumns.DATE_RECEIVED + " DESC";
 
     List<MessageRecord> records = new ArrayList<>();
@@ -361,14 +346,14 @@ public class MmsSmsTable extends DatabaseTable {
 
   private @NonNull String getStickyWherePartForParentStoryId(@Nullable Long parentStoryId) {
     if (parentStoryId == null) {
-      return " AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+      return " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
     }
 
-    return " AND " + MmsTable.PARENT_STORY_ID + " = " + parentStoryId;
+    return " AND " + MessageTable.PARENT_STORY_ID + " = " + parentStoryId;
   }
 
   public int getUnreadCount(long threadId) {
-    String selection = MmsSmsColumns.READ + " = 0 AND " + MmsTable.STORY_TYPE + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+    String selection = MmsSmsColumns.READ + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(PROJECTION, selection, null, null, false)) {
       return cursor != null ? cursor.getCount() : 0;
@@ -389,10 +374,7 @@ public class MmsSmsTable extends DatabaseTable {
       return 0;
     }
 
-    int count = SignalDatabase.sms().getSecureMessageCount(threadId);
-    count    += SignalDatabase.mms().getSecureMessageCount(threadId);
-
-    return count;
+    return SignalDatabase.mms().getSecureMessageCount(threadId);
   }
 
   public int getOutgoingSecureConversationCount(long threadId) {
@@ -400,36 +382,23 @@ public class MmsSmsTable extends DatabaseTable {
       return 0;
     }
 
-    int count = SignalDatabase.sms().getOutgoingSecureMessageCount(threadId);
-    count    += SignalDatabase.mms().getOutgoingSecureMessageCount(threadId);
-
-    return count;
+    return SignalDatabase.mms().getOutgoingSecureMessageCount(threadId);
   }
 
   public int getConversationCount(long threadId) {
-    int count = SignalDatabase.sms().getMessageCountForThread(threadId);
-    count    += SignalDatabase.mms().getMessageCountForThread(threadId);
-
-    return count;
+    return SignalDatabase.mms().getMessageCountForThread(threadId);
   }
 
   public int getConversationCount(long threadId, long beforeTime) {
-    return SignalDatabase.sms().getMessageCountForThread(threadId, beforeTime) +
-           SignalDatabase.mms().getMessageCountForThread(threadId, beforeTime);
+    return SignalDatabase.mms().getMessageCountForThread(threadId, beforeTime);
   }
 
   public int getInsecureSentCount(long threadId) {
-    int count  = SignalDatabase.sms().getInsecureMessagesSentForThread(threadId);
-    count     += SignalDatabase.mms().getInsecureMessagesSentForThread(threadId);
-
-    return count;
+    return SignalDatabase.mms().getInsecureMessagesSentForThread(threadId);
   }
 
   public int getInsecureMessageCountForInsights() {
-    int count = SignalDatabase.sms().getInsecureMessageCountForInsights();
-    count    += SignalDatabase.mms().getInsecureMessageCountForInsights();
-
-    return count;
+    return SignalDatabase.mms().getInsecureMessageCountForInsights();
   }
 
   public int getUnexportedInsecureMessagesCount() {
@@ -437,17 +406,11 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getUnexportedInsecureMessagesCount(long threadId) {
-    int count = SignalDatabase.sms().getUnexportedInsecureMessagesCount(threadId);
-    count    += SignalDatabase.mms().getUnexportedInsecureMessagesCount(threadId);
-
-    return count;
+    return SignalDatabase.mms().getUnexportedInsecureMessagesCount(threadId);
   }
 
   public int getIncomingMeaningfulMessageCountSince(long threadId, long afterTime) {
-    int count = SignalDatabase.sms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
-    count    += SignalDatabase.mms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
-
-    return count;
+    return SignalDatabase.mms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
   }
 
   public int getMessageCountBeforeDate(long date) {
@@ -665,7 +628,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   private @NonNull MessageExportState getMessageExportState(@NonNull MessageId messageId) throws NoSuchMessageException {
-    String   table      = messageId.isMms() ? MmsTable.TABLE_NAME : SmsTable.TABLE_NAME;
+    String   table      = MessageTable.TABLE_NAME;
     String[] projection = SqlUtil.buildArgs(MmsSmsColumns.EXPORT_STATE);
     String[] args       = SqlUtil.buildArgs(messageId.getId());
 
@@ -704,7 +667,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public void markMessageExported(@NonNull MessageId messageId) {
-    String        table         = messageId.isMms() ? MmsTable.TABLE_NAME : SmsTable.TABLE_NAME;
+    String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
     contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.EXPORTED.getCode());
@@ -713,7 +676,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public void markMessageExportFailed(@NonNull MessageId messageId) {
-    String        table         = messageId.isMms() ? MmsTable.TABLE_NAME : SmsTable.TABLE_NAME;
+    String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
     contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.ERROR.getCode());
@@ -722,7 +685,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   private void setMessageExportState(@NonNull MessageId messageId, @NonNull MessageExportState messageExportState) {
-    String        table         = messageId.isMms() ? MmsTable.TABLE_NAME : SmsTable.TABLE_NAME;
+    String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
     contentValues.put(MmsSmsColumns.EXPORT_STATE, messageExportState.toByteArray());
@@ -792,7 +755,7 @@ public class MmsSmsTable extends DatabaseTable {
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsTable.STORY_TYPE + " = 0" + " AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.DATE_SENT, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
@@ -815,7 +778,7 @@ public class MmsSmsTable extends DatabaseTable {
 
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
     String order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MmsTable.STORY_TYPE + " = 0" + " AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
@@ -864,12 +827,12 @@ public class MmsSmsTable extends DatabaseTable {
       order     = MmsSmsColumns.DATE_RECEIVED + " ASC";
       selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
                   MmsSmsColumns.DATE_RECEIVED + " < " + receivedTimestamp + " AND " +
-                  MmsTable.STORY_TYPE + " = 0 AND " + MmsTable.PARENT_STORY_ID + " = " + groupStoryId;
+                  MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " = " + groupStoryId;
     } else {
       order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
       selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
                   MmsSmsColumns.DATE_RECEIVED + " > " + receivedTimestamp + " AND " +
-                  MmsTable.STORY_TYPE + " = 0 AND " + MmsTable.PARENT_STORY_ID + " <= 0";
+                  MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
     }
 
     try (Cursor cursor = queryTables(new String[]{ "COUNT(*)" }, selection, order, null, false)) {
@@ -956,204 +919,24 @@ public class MmsSmsTable extends DatabaseTable {
       attachmentJsonJoin = "NULL";
     }
 
-    String[] mmsProjection = { MmsSmsColumns.DATE_SENT,
-                               MmsSmsColumns.DATE_RECEIVED,
-                               MmsTable.TABLE_NAME + "." + MmsTable.ID + " AS " + MmsSmsColumns.ID,
-                               "'MMS::' || " + MmsTable.TABLE_NAME + "." + MmsTable.ID + " || '::' || " + MmsTable.DATE_SENT + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
-                               attachmentJsonJoin + " AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS,
-                               SmsTable.BODY,
-                               MmsSmsColumns.READ,
-                               MmsSmsColumns.THREAD_ID,
-                               MmsSmsColumns.TYPE,
-                               MmsSmsColumns.RECIPIENT_ID,
-                               MmsSmsColumns.RECIPIENT_DEVICE_ID,
-                               MmsTable.MMS_MESSAGE_TYPE,
-                               SmsTable.SMS_STATUS,
-                               MmsTable.MMS_CONTENT_LOCATION,
-                               MmsTable.MMS_TRANSACTION_ID,
-                               MmsTable.MMS_MESSAGE_SIZE,
-                               MmsTable.MMS_EXPIRY,
-                               MmsTable.MMS_STATUS,
-                               MmsTable.UNIDENTIFIED,
-                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT,
-                               MmsSmsColumns.READ_RECEIPT_COUNT,
-                               MmsSmsColumns.MISMATCHED_IDENTITIES,
-                               MmsSmsColumns.SMS_SUBSCRIPTION_ID,
-                               MmsSmsColumns.EXPIRES_IN,
-                               MmsSmsColumns.EXPIRE_STARTED,
-                               MmsSmsColumns.NOTIFIED,
-                               MmsTable.NETWORK_FAILURES, TRANSPORT,
-                               MmsTable.QUOTE_ID,
-                               MmsTable.QUOTE_AUTHOR,
-                               MmsTable.QUOTE_BODY,
-                               MmsTable.QUOTE_MISSING,
-                               MmsTable.QUOTE_TYPE,
-                               MmsTable.QUOTE_MENTIONS,
-                               MmsTable.SHARED_CONTACTS,
-                               MmsTable.LINK_PREVIEWS,
-                               MmsTable.VIEW_ONCE,
-                               MmsSmsColumns.REACTIONS_UNREAD,
-                               MmsSmsColumns.REACTIONS_LAST_SEEN,
-                               MmsSmsColumns.DATE_SERVER,
-                               MmsSmsColumns.REMOTE_DELETED,
-                               MmsTable.MENTIONS_SELF,
-                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
-                               MmsSmsColumns.RECEIPT_TIMESTAMP,
-                               MmsTable.MESSAGE_RANGES,
-                               MmsTable.STORY_TYPE,
-                               MmsTable.PARENT_STORY_ID};
-
-    String[] smsProjection = { MmsSmsColumns.DATE_SENT,
-                               MmsSmsColumns.DATE_RECEIVED,
-                               MmsSmsColumns.ID, "'SMS::' || " + MmsSmsColumns.ID + " || '::' || " + SmsTable.DATE_SENT + " AS " + MmsSmsColumns.UNIQUE_ROW_ID,
-                               "NULL AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS,
-                               SmsTable.BODY,
-                               MmsSmsColumns.READ,
-                               MmsSmsColumns.THREAD_ID,
-                               MmsSmsColumns.TYPE,
-                               SmsTable.RECIPIENT_ID,
-                               SmsTable.RECIPIENT_DEVICE_ID,
-                               MmsTable.MMS_MESSAGE_TYPE,
-                               SmsTable.SMS_STATUS,
-                               MmsTable.MMS_CONTENT_LOCATION,
-                               MmsTable.MMS_TRANSACTION_ID,
-                               MmsTable.MMS_MESSAGE_SIZE,
-                               MmsTable.MMS_EXPIRY,
-                               MmsTable.MMS_STATUS,
-                               MmsTable.UNIDENTIFIED,
-                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT,
-                               MmsSmsColumns.READ_RECEIPT_COUNT,
-                               MmsSmsColumns.MISMATCHED_IDENTITIES,
-                               MmsSmsColumns.SMS_SUBSCRIPTION_ID,
-                               MmsSmsColumns.EXPIRES_IN,
-                               MmsSmsColumns.EXPIRE_STARTED,
-                               MmsSmsColumns.NOTIFIED,
-                               MmsTable.NETWORK_FAILURES, TRANSPORT,
-                               MmsTable.QUOTE_ID,
-                               MmsTable.QUOTE_AUTHOR,
-                               MmsTable.QUOTE_BODY,
-                               MmsTable.QUOTE_MISSING,
-                               MmsTable.QUOTE_TYPE,
-                               MmsTable.QUOTE_MENTIONS,
-                               MmsTable.SHARED_CONTACTS,
-                               MmsTable.LINK_PREVIEWS,
-                               MmsTable.VIEW_ONCE,
-                               MmsSmsColumns.REACTIONS_UNREAD,
-                               MmsSmsColumns.REACTIONS_LAST_SEEN,
-                               MmsSmsColumns.DATE_SERVER,
-                               MmsSmsColumns.REMOTE_DELETED,
-                               MmsTable.MENTIONS_SELF,
-                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
-                               MmsSmsColumns.RECEIPT_TIMESTAMP,
-                               MmsTable.MESSAGE_RANGES,
-                               "0 AS " + MmsTable.STORY_TYPE,
-                               "0 AS " + MmsTable.PARENT_STORY_ID};
+    projection = SqlUtil.appendArg(projection, attachmentJsonJoin + " AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS);
 
     SQLiteQueryBuilder mmsQueryBuilder = new SQLiteQueryBuilder();
-    SQLiteQueryBuilder smsQueryBuilder = new SQLiteQueryBuilder();
 
     if (includeAttachments) {
       mmsQueryBuilder.setDistinct(true);
-      smsQueryBuilder.setDistinct(true);
     }
-
-    smsQueryBuilder.setTables(SmsTable.TABLE_NAME);
 
     if (includeAttachments) {
-      mmsQueryBuilder.setTables(MmsTable.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentTable.TABLE_NAME +
-                                " ON " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + " = " + MmsTable.TABLE_NAME + "." + MmsTable.ID);
+      mmsQueryBuilder.setTables(MessageTable.TABLE_NAME + " LEFT OUTER JOIN " + AttachmentTable.TABLE_NAME +
+                                " ON " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + " = " + MessageTable.TABLE_NAME + "." + MessageTable.ID);
     } else {
-      mmsQueryBuilder.setTables(MmsTable.TABLE_NAME);
+      mmsQueryBuilder.setTables(MessageTable.TABLE_NAME);
     }
 
-    Set<String> mmsColumnsPresent = new HashSet<>();
-    mmsColumnsPresent.add(MmsSmsColumns.ID);
-    mmsColumnsPresent.add(MmsSmsColumns.READ);
-    mmsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
-    mmsColumnsPresent.add(MmsSmsColumns.BODY);
-    mmsColumnsPresent.add(MmsSmsColumns.RECIPIENT_ID);
-    mmsColumnsPresent.add(MmsSmsColumns.RECIPIENT_DEVICE_ID);
-    mmsColumnsPresent.add(MmsSmsColumns.DELIVERY_RECEIPT_COUNT);
-    mmsColumnsPresent.add(MmsSmsColumns.READ_RECEIPT_COUNT);
-    mmsColumnsPresent.add(MmsSmsColumns.MISMATCHED_IDENTITIES);
-    mmsColumnsPresent.add(MmsSmsColumns.SMS_SUBSCRIPTION_ID);
-    mmsColumnsPresent.add(MmsSmsColumns.EXPIRES_IN);
-    mmsColumnsPresent.add(MmsSmsColumns.EXPIRE_STARTED);
-    mmsColumnsPresent.add(MmsTable.MMS_MESSAGE_TYPE);
-    mmsColumnsPresent.add(MmsTable.TYPE);
-    mmsColumnsPresent.add(MmsTable.DATE_SENT);
-    mmsColumnsPresent.add(MmsTable.DATE_RECEIVED);
-    mmsColumnsPresent.add(MmsTable.DATE_SERVER);
-    mmsColumnsPresent.add(MmsTable.MMS_CONTENT_LOCATION);
-    mmsColumnsPresent.add(MmsTable.MMS_TRANSACTION_ID);
-    mmsColumnsPresent.add(MmsTable.MMS_MESSAGE_SIZE);
-    mmsColumnsPresent.add(MmsTable.MMS_EXPIRY);
-    mmsColumnsPresent.add(MmsTable.NOTIFIED);
-    mmsColumnsPresent.add(MmsTable.MMS_STATUS);
-    mmsColumnsPresent.add(MmsTable.UNIDENTIFIED);
-    mmsColumnsPresent.add(MmsTable.NETWORK_FAILURES);
-    mmsColumnsPresent.add(MmsTable.QUOTE_ID);
-    mmsColumnsPresent.add(MmsTable.QUOTE_AUTHOR);
-    mmsColumnsPresent.add(MmsTable.QUOTE_BODY);
-    mmsColumnsPresent.add(MmsTable.QUOTE_MISSING);
-    mmsColumnsPresent.add(MmsTable.QUOTE_TYPE);
-    mmsColumnsPresent.add(MmsTable.QUOTE_MENTIONS);
-    mmsColumnsPresent.add(MmsTable.SHARED_CONTACTS);
-    mmsColumnsPresent.add(MmsTable.LINK_PREVIEWS);
-    mmsColumnsPresent.add(MmsTable.VIEW_ONCE);
-    mmsColumnsPresent.add(MmsTable.REACTIONS_UNREAD);
-    mmsColumnsPresent.add(MmsTable.REACTIONS_LAST_SEEN);
-    mmsColumnsPresent.add(MmsTable.REMOTE_DELETED);
-    mmsColumnsPresent.add(MmsTable.MENTIONS_SELF);
-    mmsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
-    mmsColumnsPresent.add(MmsSmsColumns.VIEWED_RECEIPT_COUNT);
-    mmsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
-    mmsColumnsPresent.add(MmsTable.MESSAGE_RANGES);
-    mmsColumnsPresent.add(MmsTable.STORY_TYPE);
-    mmsColumnsPresent.add(MmsTable.PARENT_STORY_ID);
+    String mmsGroupBy = includeAttachments ? MessageTable.TABLE_NAME + "." + MessageTable.ID : null;
 
-    Set<String> smsColumnsPresent = new HashSet<>();
-    smsColumnsPresent.add(MmsSmsColumns.ID);
-    smsColumnsPresent.add(MmsSmsColumns.BODY);
-    smsColumnsPresent.add(MmsSmsColumns.RECIPIENT_ID);
-    smsColumnsPresent.add(MmsSmsColumns.RECIPIENT_DEVICE_ID);
-    smsColumnsPresent.add(MmsSmsColumns.READ);
-    smsColumnsPresent.add(MmsSmsColumns.THREAD_ID);
-    smsColumnsPresent.add(MmsSmsColumns.DELIVERY_RECEIPT_COUNT);
-    smsColumnsPresent.add(MmsSmsColumns.READ_RECEIPT_COUNT);
-    smsColumnsPresent.add(MmsSmsColumns.MISMATCHED_IDENTITIES);
-    smsColumnsPresent.add(MmsSmsColumns.SMS_SUBSCRIPTION_ID);
-    smsColumnsPresent.add(MmsSmsColumns.EXPIRES_IN);
-    smsColumnsPresent.add(MmsSmsColumns.EXPIRE_STARTED);
-    smsColumnsPresent.add(MmsSmsColumns.NOTIFIED);
-    smsColumnsPresent.add(SmsTable.TYPE);
-    smsColumnsPresent.add(SmsTable.DATE_SENT);
-    smsColumnsPresent.add(SmsTable.DATE_RECEIVED);
-    smsColumnsPresent.add(SmsTable.DATE_SERVER);
-    smsColumnsPresent.add(SmsTable.SMS_STATUS);
-    smsColumnsPresent.add(SmsTable.UNIDENTIFIED);
-    smsColumnsPresent.add(SmsTable.REACTIONS_UNREAD);
-    smsColumnsPresent.add(SmsTable.REACTIONS_LAST_SEEN);
-    smsColumnsPresent.add(MmsSmsColumns.REMOTE_DELETED);
-    smsColumnsPresent.add(MmsSmsColumns.NOTIFIED_TIMESTAMP);
-    smsColumnsPresent.add(MmsSmsColumns.RECEIPT_TIMESTAMP);
-    smsColumnsPresent.add("0 AS " + MmsTable.STORY_TYPE);
-    smsColumnsPresent.add("0 AS " + MmsTable.PARENT_STORY_ID);
-
-    String mmsGroupBy = includeAttachments ? MmsTable.TABLE_NAME + "." + MmsTable.ID : null;
-
-    String mmsSubQuery = mmsQueryBuilder.buildUnionSubQuery(TRANSPORT, mmsProjection, mmsColumnsPresent, 4, MMS_TRANSPORT, selection, null, mmsGroupBy, null);
-    String smsSubQuery = smsQueryBuilder.buildUnionSubQuery(TRANSPORT, smsProjection, smsColumnsPresent, 4, SMS_TRANSPORT, selection, null, null, null);
-
-    SQLiteQueryBuilder unionQueryBuilder = new SQLiteQueryBuilder();
-    String             unionQuery        = unionQueryBuilder.buildUnionQuery(new String[] { smsSubQuery, mmsSubQuery }, order, limit);
-
-    SQLiteQueryBuilder outerQueryBuilder = new SQLiteQueryBuilder();
-    outerQueryBuilder.setTables("(" + unionQuery + ")");
-
-    return outerQueryBuilder.buildQuery(projection, null, null, null, null, null, null);
+    return mmsQueryBuilder.buildQuery(projection, selection, null, mmsGroupBy, null, order, limit);
   }
 
   private Cursor queryTables(String[] projection, String selection, String order, String limit, boolean includeAttachments) {
@@ -1168,25 +951,16 @@ public class MmsSmsTable extends DatabaseTable {
 
   public static class Reader implements Closeable {
 
-    private final Cursor          cursor;
-    private       SmsTable.Reader smsReader;
-    private       MmsTable.Reader mmsReader;
+    private final Cursor                 cursor;
+    private       MessageTable.MmsReader mmsReader;
 
     public Reader(Cursor cursor) {
       this.cursor = cursor;
     }
 
-    private SmsTable.Reader getSmsReader() {
-      if (smsReader == null) {
-        smsReader = SmsTable.readerFor(cursor);
-      }
-
-      return smsReader;
-    }
-
-    private MmsTable.Reader getMmsReader() {
+    private MessageTable.MmsReader getMmsReader() {
       if (mmsReader == null) {
-        mmsReader = MmsTable.readerFor(cursor);
+        mmsReader = MessageTable.mmsReaderFor(cursor);
       }
 
       return mmsReader;
@@ -1200,11 +974,7 @@ public class MmsSmsTable extends DatabaseTable {
     }
 
     public MessageRecord getCurrent() {
-      String type = cursor.getString(cursor.getColumnIndexOrThrow(TRANSPORT));
-
-      if      (MmsSmsTable.MMS_TRANSPORT.equals(type)) return getMmsReader().getCurrent();
-      else if (MmsSmsTable.SMS_TRANSPORT.equals(type)) return getSmsReader().getCurrent();
-      else                                                throw new AssertionError("Bad type: " + type);
+      return getMmsReader().getCurrent();
     }
 
     @Override

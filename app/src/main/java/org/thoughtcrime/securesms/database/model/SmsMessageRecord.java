@@ -25,7 +25,6 @@ import androidx.annotation.WorkerThread;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -68,7 +67,7 @@ public class SmsMessageRecord extends MessageRecord {
   @Override
   @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (SmsTable.Types.isChatSessionRefresh(type)) {
+    if (MmsSmsColumns.Types.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MessageRecord_chat_session_refreshed));
     } else if (isCorruptedKeyExchange()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_received_corrupted_key_exchange_message));
@@ -82,17 +81,17 @@ public class SmsMessageRecord extends MessageRecord {
       return new SpannableString("");
     } else if (isKeyExchange() && !isOutgoing()) {
       return emphasisAdded(context.getString(R.string.ConversationItem_received_key_exchange_message_tap_to_process));
-    } else if (SmsTable.Types.isDuplicateMessageType(type)) {
+    } else if (MmsSmsColumns.Types.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (SmsTable.Types.isNoRemoteSessionType(type)) {
+    } else if (MmsSmsColumns.Types.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session));
     } else if (isEndSession() && isOutgoing()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset));
     } else if (isEndSession()) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_secure_session_reset_s, getIndividualRecipient().getDisplayName(context)));
-    } else if (SmsTable.Types.isUnsupportedMessageType(type)) {
+    } else if (MmsSmsColumns.Types.isUnsupportedMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_this_message_could_not_be_processed_because_it_was_sent_from_a_newer_version));
-    } else if (SmsTable.Types.isInvalidMessageType(type)) {
+    } else if (MmsSmsColumns.Types.isInvalidMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_error_handling_incoming_message));
     } else {
       return super.getDisplayBody(context);

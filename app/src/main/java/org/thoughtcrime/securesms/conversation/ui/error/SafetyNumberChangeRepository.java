@@ -113,14 +113,7 @@ public final class SafetyNumberChangeRepository {
   @WorkerThread
   private @Nullable MessageRecord getMessageRecord(Long messageId, String messageType) {
     try {
-      switch (messageType) {
-        case MmsSmsTable.SMS_TRANSPORT:
-          return SignalDatabase.sms().getMessageRecord(messageId);
-        case MmsSmsTable.MMS_TRANSPORT:
-          return SignalDatabase.mms().getMessageRecord(messageId);
-        default:
-          throw new AssertionError("no valid message type specified");
-      }
+      return SignalDatabase.mms().getMessageRecord(messageId);
     } catch (NoSuchMessageException e) {
       Log.i(TAG, e);
     }

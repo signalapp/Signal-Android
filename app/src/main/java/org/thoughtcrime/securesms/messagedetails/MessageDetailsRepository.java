@@ -37,8 +37,8 @@ public final class MessageDetailsRepository {
 
   private final Context context = ApplicationDependencies.getApplication();
 
-  @NonNull LiveData<MessageRecord> getMessageRecord(String type, Long messageId) {
-    return new MessageRecordLiveData(new MessageId(messageId, type.equals(MmsSmsTable.MMS_TRANSPORT)));
+  @NonNull LiveData<MessageRecord> getMessageRecord(Long messageId) {
+    return new MessageRecordLiveData(new MessageId(messageId, true));
   }
 
   @NonNull LiveData<MessageDetails> getMessageDetails(@Nullable MessageRecord messageRecord) {

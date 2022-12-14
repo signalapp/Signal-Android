@@ -16,6 +16,21 @@ data class MessageId(
     return "$id|$mms"
   }
 
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as MessageId
+
+    if (id != other.id) return false
+
+    return true
+  }
+
+  override fun hashCode(): Int {
+    return id.hashCode()
+  }
+
   companion object {
     /**
      * Returns null for invalid IDs. Useful when pulling a possibly-unset ID from a database, or something like that.

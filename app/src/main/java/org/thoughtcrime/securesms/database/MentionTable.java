@@ -131,7 +131,7 @@ public class MentionTable extends DatabaseTable implements RecipientIdDatabaseRe
 
   void deleteAbandonedMentions() {
     SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
-    String         where = MESSAGE_ID + " NOT IN (SELECT " + MmsTable.ID + " FROM " + MmsTable.TABLE_NAME + ") OR " + THREAD_ID + " NOT IN (SELECT " + ThreadTable.ID + " FROM " + ThreadTable.TABLE_NAME + ")";
+    String         where = MESSAGE_ID + " NOT IN (SELECT " + MessageTable.ID + " FROM " + MessageTable.TABLE_NAME + ") OR " + THREAD_ID + " NOT IN (SELECT " + ThreadTable.ID + " FROM " + ThreadTable.TABLE_NAME + ")";
 
     db.delete(TABLE_NAME, where, null);
   }

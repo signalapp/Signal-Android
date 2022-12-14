@@ -61,19 +61,19 @@ object TestSms {
     val values = ContentValues().apply {
       put(MmsSmsColumns.RECIPIENT_ID, message.sender.serialize())
       put(MmsSmsColumns.RECIPIENT_DEVICE_ID, message.senderDeviceId)
-      put(SmsTable.DATE_RECEIVED, message.receivedTimestampMillis)
-      put(SmsTable.DATE_SENT, message.sentTimestampMillis)
+      put(MmsSmsColumns.DATE_RECEIVED, message.receivedTimestampMillis)
+      put(MmsSmsColumns.DATE_SENT, message.sentTimestampMillis)
       put(MmsSmsColumns.DATE_SERVER, message.serverTimestampMillis)
       put(MmsSmsColumns.READ, if (unread) 0 else 1)
       put(MmsSmsColumns.SMS_SUBSCRIPTION_ID, message.subscriptionId)
       put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
       put(MmsSmsColumns.UNIDENTIFIED, message.isUnidentified)
       put(MmsSmsColumns.BODY, message.messageBody)
-      put(SmsTable.TYPE, type)
+      put(MmsSmsColumns.TYPE, type)
       put(MmsSmsColumns.THREAD_ID, threadId)
       put(MmsSmsColumns.SERVER_GUID, message.serverGuid)
     }
 
-    return db.insert(SmsTable.TABLE_NAME, null, values)
+    return db.insert(MessageTable.TABLE_NAME, null, values)
   }
 }

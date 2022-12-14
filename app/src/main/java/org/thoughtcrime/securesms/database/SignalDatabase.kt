@@ -38,8 +38,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   ),
   SignalDatabaseOpenHelper {
 
-  val sms: SmsTable = SmsTable(context, this)
-  val mms: MmsTable = MmsTable(context, this)
+  val mms: MessageTable = MessageTable(context, this)
   val attachments: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
   val media: MediaTable = MediaTable(context, this)
   val thread: ThreadTable = ThreadTable(context, this)
@@ -81,8 +80,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   }
 
   override fun onCreate(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
-    db.execSQL(SmsTable.CREATE_TABLE)
-    db.execSQL(MmsTable.CREATE_TABLE)
+    db.execSQL(MessageTable.CREATE_TABLE)
     db.execSQL(AttachmentTable.CREATE_TABLE)
     db.execSQL(ThreadTable.CREATE_TABLE)
     db.execSQL(IdentityTable.CREATE_TABLE)
@@ -118,8 +116,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, DistributionListTables.CREATE_TABLE)
 
     executeStatements(db, RecipientTable.CREATE_INDEXS)
-    executeStatements(db, SmsTable.CREATE_INDEXS)
-    executeStatements(db, MmsTable.CREATE_INDEXS)
+    executeStatements(db, MessageTable.CREATE_INDEXS)
     executeStatements(db, AttachmentTable.CREATE_INDEXS)
     executeStatements(db, ThreadTable.CREATE_INDEXS)
     executeStatements(db, DraftTable.CREATE_INDEXS)
@@ -280,7 +277,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         database.withinTransaction { db ->
           instance!!.onUpgrade(db, db.getVersion(), -1)
           instance!!.markCurrent(db)
-          instance!!.sms.deleteAbandonedMessages()
           instance!!.mms.deleteAbandonedMessages()
           instance!!.mms.trimEntriesForExpiredMessages()
           instance!!.reactionTable.deleteAbandonedReactions()
@@ -429,7 +425,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("mms")
-    val mms: MmsTable
+    val mms: MessageTable
       get() = instance!!.mms
 
     @get:JvmStatic
@@ -475,8 +471,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     @get:JvmStatic
     @get:JvmName("sms")
-    val sms: SmsTable
-      get() = instance!!.sms
+    val sms: MessageTable
+      get() = instance!!.mms
 
     @get:JvmStatic
     @get:JvmName("threads")

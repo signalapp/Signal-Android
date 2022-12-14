@@ -44,6 +44,17 @@ object SqlUtil {
     return tables
   }
 
+  fun getNextAutoIncrementId(db: SupportSQLiteDatabase, table: String): Long {
+    db.query("SELECT * FROM sqlite_sequence WHERE name = ?", arrayOf(table)).use { cursor ->
+      if (cursor.moveToFirst()) {
+        val current = cursor.requireLong("seq")
+        return current + 1
+      } else {
+        throw IllegalArgumentException("Table must have an auto-incrementing primary key!")
+      }
+    }
+  }
+
   /**
    * Given a table, this will return a set of tables that it has a foreign key dependency on.
    */

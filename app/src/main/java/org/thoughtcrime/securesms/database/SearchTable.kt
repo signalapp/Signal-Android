@@ -13,7 +13,6 @@ import org.signal.core.util.SqlUtil
 @SuppressLint("RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage") // Handles updates via triggers
 class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
   companion object {
-    const val SMS_FTS_TABLE_NAME = "sms_fts"
     const val MMS_FTS_TABLE_NAME = "mms_fts"
     const val ID = "rowid"
     const val BODY = MmsSmsColumns.BODY
@@ -27,42 +26,25 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     @Language("sql")
     val CREATE_TABLE = arrayOf(
-      "CREATE VIRTUAL TABLE $SMS_FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${SmsTable.TABLE_NAME}, content_rowid=${SmsTable.ID})",
-      "CREATE VIRTUAL TABLE $MMS_FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MmsTable.TABLE_NAME}, content_rowid=${MmsTable.ID})",
+      "CREATE VIRTUAL TABLE $MMS_FTS_TABLE_NAME USING fts5($BODY, $THREAD_ID UNINDEXED, content=${MessageTable.TABLE_NAME}, content_rowid=${MessageTable.ID})",
     )
 
     @Language("sql")
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER sms_ai AFTER INSERT ON ${SmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $SMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${SmsTable.ID}, new.${SmsTable.BODY}, new.${SmsTable.THREAD_ID});
+        CREATE TRIGGER mms_ai AFTER INSERT ON ${MessageTable.TABLE_NAME} BEGIN
+          INSERT INTO $MMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER sms_ad AFTER DELETE ON ${SmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $SMS_FTS_TABLE_NAME($SMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${SmsTable.ID}, old.${SmsTable.BODY}, old.${SmsTable.THREAD_ID});
+        CREATE TRIGGER mms_ad AFTER DELETE ON ${MessageTable.TABLE_NAME} BEGIN
+          INSERT INTO $MMS_FTS_TABLE_NAME($MMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
         END;
       """,
       """
-        CREATE TRIGGER sms_au AFTER UPDATE ON ${SmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $SMS_FTS_TABLE_NAME($SMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${SmsTable.ID}, old.${SmsTable.BODY}, old.${SmsTable.THREAD_ID});
-          INSERT INTO $SMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES(new.${SmsTable.ID}, new.${SmsTable.BODY}, new.${SmsTable.THREAD_ID});
-          END;
-      """,
-      """
-        CREATE TRIGGER mms_ai AFTER INSERT ON ${MmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $MMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MmsTable.ID}, new.${MmsTable.BODY}, new.${MmsTable.THREAD_ID});
-        END;
-      """,
-      """
-        CREATE TRIGGER mms_ad AFTER DELETE ON ${MmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $MMS_FTS_TABLE_NAME($MMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MmsTable.ID}, old.${MmsTable.BODY}, old.${MmsTable.THREAD_ID});
-        END;
-      """,
-      """
-        CREATE TRIGGER mms_au AFTER UPDATE ON ${MmsTable.TABLE_NAME} BEGIN
-          INSERT INTO $MMS_FTS_TABLE_NAME($MMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MmsTable.ID}, old.${MmsTable.BODY}, old.${MmsTable.THREAD_ID});
-          INSERT INTO $MMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MmsTable.ID}, new.${MmsTable.BODY}, new.${MmsTable.THREAD_ID});
+        CREATE TRIGGER mms_au AFTER UPDATE ON ${MessageTable.TABLE_NAME} BEGIN
+          INSERT INTO $MMS_FTS_TABLE_NAME($MMS_FTS_TABLE_NAME, $ID, $BODY, $THREAD_ID) VALUES('delete', old.${MessageTable.ID}, old.${MessageTable.BODY}, old.${MessageTable.THREAD_ID});
+          INSERT INTO $MMS_FTS_TABLE_NAME($ID, $BODY, $THREAD_ID) VALUES (new.${MessageTable.ID}, new.${MessageTable.BODY}, new.${MessageTable.THREAD_ID});
           END;
       """
     )
@@ -70,40 +52,21 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${SmsTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
-        snippet($SMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
-        ${SmsTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
-        $SMS_FTS_TABLE_NAME.$THREAD_ID, 
-        $SMS_FTS_TABLE_NAME.$BODY, 
-        $SMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
-        0 AS $IS_MMS 
-      FROM 
-        ${SmsTable.TABLE_NAME} 
-          INNER JOIN $SMS_FTS_TABLE_NAME ON $SMS_FTS_TABLE_NAME.$ID = ${SmsTable.TABLE_NAME}.${SmsTable.ID} 
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $SMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
-      WHERE 
-        $SMS_FTS_TABLE_NAME MATCH ? AND 
-        ${SmsTable.TABLE_NAME}.${SmsTable.TYPE} & ${MmsSmsColumns.Types.GROUP_V2_BIT} = 0 AND 
-        ${SmsTable.TABLE_NAME}.${SmsTable.TYPE} & ${MmsSmsColumns.Types.BASE_TYPE_MASK} != ${MmsSmsColumns.Types.PROFILE_CHANGE_TYPE} AND 
-        ${SmsTable.TABLE_NAME}.${SmsTable.TYPE} & ${MmsSmsColumns.Types.BASE_TYPE_MASK} != ${MmsSmsColumns.Types.GROUP_CALL_TYPE} 
-      UNION ALL 
-      SELECT 
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MmsTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
+        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
         snippet($MMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
-        ${MmsTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
+        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
         $MMS_FTS_TABLE_NAME.$THREAD_ID, 
         $MMS_FTS_TABLE_NAME.$BODY, 
         $MMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
         1 AS $IS_MMS 
       FROM 
-        ${MmsTable.TABLE_NAME} 
-          INNER JOIN $MMS_FTS_TABLE_NAME ON $MMS_FTS_TABLE_NAME.$ID = ${MmsTable.TABLE_NAME}.${MmsTable.ID} 
+        ${MessageTable.TABLE_NAME} 
+          INNER JOIN $MMS_FTS_TABLE_NAME ON $MMS_FTS_TABLE_NAME.$ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $MMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $MMS_FTS_TABLE_NAME MATCH ? AND 
-        ${MmsTable.TABLE_NAME}.${MmsTable.TYPE} & ${MmsSmsColumns.Types.GROUP_V2_BIT} = 0 AND 
-        ${MmsTable.TABLE_NAME}.${MmsTable.TYPE} & ${MmsSmsColumns.Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MmsSmsColumns.Types.GROUP_V2_BIT} = 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MmsSmsColumns.Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
       ORDER BY ${MmsSmsColumns.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -111,37 +74,20 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private const val MESSAGES_FOR_THREAD_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${SmsTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
-        snippet($SMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
-        ${SmsTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
-        $SMS_FTS_TABLE_NAME.$THREAD_ID, 
-        $SMS_FTS_TABLE_NAME.$BODY,
-        $SMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
-        0 AS $IS_MMS 
-      FROM 
-        ${SmsTable.TABLE_NAME} 
-          INNER JOIN $SMS_FTS_TABLE_NAME ON $SMS_FTS_TABLE_NAME.$ID = ${SmsTable.TABLE_NAME}.${SmsTable.ID} 
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $SMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
-      WHERE 
-        $SMS_FTS_TABLE_NAME MATCH ? AND 
-        ${SmsTable.TABLE_NAME}.${MmsSmsColumns.THREAD_ID} = ? 
-      UNION ALL 
-      SELECT 
-        ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MmsTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
         snippet($MMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
-        ${MmsTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
+        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
         $MMS_FTS_TABLE_NAME.$THREAD_ID, 
         $MMS_FTS_TABLE_NAME.$BODY, 
         $MMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID,
         1 AS $IS_MMS 
       FROM 
-        ${MmsTable.TABLE_NAME} 
-          INNER JOIN $MMS_FTS_TABLE_NAME ON $MMS_FTS_TABLE_NAME.$ID = ${MmsTable.TABLE_NAME}.${MmsTable.ID} 
+        ${MessageTable.TABLE_NAME} 
+          INNER JOIN $MMS_FTS_TABLE_NAME ON $MMS_FTS_TABLE_NAME.$ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID} 
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $MMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $MMS_FTS_TABLE_NAME MATCH ? AND 
-        ${MmsTable.TABLE_NAME}.${MmsSmsColumns.THREAD_ID} = ? 
+        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.THREAD_ID} = ? 
       ORDER BY ${MmsSmsColumns.DATE_RECEIVED} DESC 
       LIMIT 500
     """
@@ -152,7 +98,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return if (fullTextSearchQuery.isEmpty()) {
       null
     } else {
-      readableDatabase.rawQuery(MESSAGES_QUERY, SqlUtil.buildArgs(fullTextSearchQuery, fullTextSearchQuery))
+      readableDatabase.rawQuery(MESSAGES_QUERY, SqlUtil.buildArgs(fullTextSearchQuery))
     }
   }
 
@@ -161,7 +107,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return if (TextUtils.isEmpty(fullTextSearchQuery)) {
       null
     } else {
-      readableDatabase.rawQuery(MESSAGES_FOR_THREAD_QUERY, SqlUtil.buildArgs(fullTextSearchQuery, threadId, fullTextSearchQuery, threadId))
+      readableDatabase.rawQuery(MESSAGES_FOR_THREAD_QUERY, SqlUtil.buildArgs(fullTextSearchQuery, threadId))
     }
   }
 

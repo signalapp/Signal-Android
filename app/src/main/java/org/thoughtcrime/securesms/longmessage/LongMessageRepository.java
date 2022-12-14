@@ -12,9 +12,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -78,14 +76,14 @@ class LongMessageRepository {
   @WorkerThread
   private Optional<MmsMessageRecord> getMmsMessage(@NonNull MessageTable mmsDatabase, long messageId) {
     try (Cursor cursor = mmsDatabase.getMessageCursor(messageId)) {
-      return Optional.ofNullable((MmsMessageRecord) MmsTable.readerFor(cursor).getNext());
+      return Optional.ofNullable((MmsMessageRecord) MessageTable.mmsReaderFor(cursor).getNext());
     }
   }
 
   @WorkerThread
   private Optional<MessageRecord> getSmsMessage(@NonNull MessageTable smsDatabase, long messageId) {
     try (Cursor cursor = smsDatabase.getMessageCursor(messageId)) {
-      return Optional.ofNullable(SmsTable.readerFor(cursor).getNext());
+      return Optional.ofNullable(MessageTable.smsReaderFor(cursor).getNext());
     }
   }
 

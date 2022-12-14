@@ -6,7 +6,7 @@ import android.net.Uri;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.database.AttachmentTable;
-import org.thoughtcrime.securesms.database.MmsTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 
 public class MmsNotificationAttachment extends Attachment {
 
@@ -26,11 +26,11 @@ public class MmsNotificationAttachment extends Attachment {
   }
 
   private static int getTransferStateFromStatus(int status) {
-    if (status == MmsTable.Status.DOWNLOAD_INITIALIZED ||
-        status == MmsTable.Status.DOWNLOAD_NO_CONNECTIVITY)
+    if (status == MessageTable.MmsStatus.DOWNLOAD_INITIALIZED ||
+        status == MessageTable.MmsStatus.DOWNLOAD_NO_CONNECTIVITY)
     {
       return AttachmentTable.TRANSFER_PROGRESS_PENDING;
-    } else if (status == MmsTable.Status.DOWNLOAD_CONNECTING) {
+    } else if (status == MessageTable.MmsStatus.DOWNLOAD_CONNECTING) {
       return AttachmentTable.TRANSFER_PROGRESS_STARTED;
     } else {
       return AttachmentTable.TRANSFER_PROGRESS_FAILED;

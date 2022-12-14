@@ -4,9 +4,7 @@ import android.content.Context;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 import java.util.Comparator;
@@ -55,8 +53,8 @@ public class ExpiringMessageManager {
 
   private class LoadTask implements Runnable {
     public void run() {
-      SmsTable.Reader smsReader = SmsTable.readerFor(smsDatabase.getExpirationStartedMessages());
-      MmsTable.Reader mmsReader = MmsTable.readerFor(mmsDatabase.getExpirationStartedMessages());
+      MessageTable.SmsReader smsReader = MessageTable.smsReaderFor(smsDatabase.getExpirationStartedMessages());
+      MessageTable.MmsReader mmsReader = MessageTable.mmsReaderFor(mmsDatabase.getExpirationStartedMessages());
 
       MessageRecord messageRecord;
 

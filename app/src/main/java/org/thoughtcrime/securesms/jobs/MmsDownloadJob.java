@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.contactshare.VCardUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
-import org.thoughtcrime.securesms.database.MmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -110,8 +109,8 @@ public class MmsDownloadJob extends BaseJob {
       throw new NotReadyException();
     }
 
-    MessageTable                           database     = SignalDatabase.mms();
-    Optional<MmsTable.MmsNotificationInfo> notification = database.getNotification(messageId);
+    MessageTable                               database     = SignalDatabase.mms();
+    Optional<MessageTable.MmsNotificationInfo> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
       Log.w(TAG, "No notification for ID: " + messageId);
@@ -127,7 +126,7 @@ public class MmsDownloadJob extends BaseJob {
         throw new MmsException("Not registered");
       }
 
-      database.markDownloadState(messageId, MmsTable.Status.DOWNLOAD_CONNECTING);
+      database.markDownloadState(messageId, MessageTable.MmsStatus.DOWNLOAD_CONNECTING);
 
       String contentLocation = notification.get().getContentLocation();
       byte[] transactionId   = new byte[0];
@@ -153,17 +152,17 @@ public class MmsDownloadJob extends BaseJob {
       storeRetrievedMms(contentLocation, messageId, threadId, retrieveConf, notification.get().getSubscriptionId(), notification.get().getFrom());
     } catch (ApnUnavailableException e) {
       Log.w(TAG, e);
-      handleDownloadError(messageId, threadId, MmsTable.Status.DOWNLOAD_APN_UNAVAILABLE,
+      handleDownloadError(messageId, threadId, MessageTable.MmsStatus.DOWNLOAD_APN_UNAVAILABLE,
                           automatic);
     } catch (MmsException e) {
       Log.w(TAG, e);
       handleDownloadError(messageId, threadId,
-                          MmsTable.Status.DOWNLOAD_HARD_FAILURE,
+                          MessageTable.MmsStatus.DOWNLOAD_HARD_FAILURE,
                           automatic);
     } catch (MmsRadioException | IOException e) {
       Log.w(TAG, e);
       handleDownloadError(messageId, threadId,
-                          MmsTable.Status.DOWNLOAD_SOFT_FAILURE,
+                          MessageTable.MmsStatus.DOWNLOAD_SOFT_FAILURE,
                           automatic);
     }
   }
@@ -171,7 +170,7 @@ public class MmsDownloadJob extends BaseJob {
   @Override
   public void onFailure() {
     MessageTable database = SignalDatabase.mms();
-    database.markDownloadState(messageId, MmsTable.Status.DOWNLOAD_SOFT_FAILURE);
+    database.markDownloadState(messageId, MessageTable.MmsStatus.DOWNLOAD_SOFT_FAILURE);
 
     if (automatic) {
       database.markIncomingNotificationReceived(threadId);

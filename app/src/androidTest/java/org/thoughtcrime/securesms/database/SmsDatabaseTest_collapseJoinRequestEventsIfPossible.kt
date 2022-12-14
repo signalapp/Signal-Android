@@ -32,7 +32,7 @@ import java.util.UUID
 class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
 
   private lateinit var recipients: RecipientTable
-  private lateinit var sms: SmsTable
+  private lateinit var sms: MessageTable
 
   private val localAci = ACI.from(UUID.randomUUID())
   private val localPni = PNI.from(UUID.randomUUID())

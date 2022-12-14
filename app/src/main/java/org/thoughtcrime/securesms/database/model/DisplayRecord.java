@@ -23,7 +23,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
 import org.thoughtcrime.securesms.database.MmsSmsColumns;
-import org.thoughtcrime.securesms.database.SmsTable;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
 /**
@@ -72,7 +71,7 @@ public abstract class DisplayRecord {
     return
         MmsSmsColumns.Types.isFailedMessageType(type)            ||
         MmsSmsColumns.Types.isPendingSecureSmsFallbackType(type) ||
-        deliveryStatus >= SmsTable.Status.STATUS_FAILED;
+        deliveryStatus >= MmsSmsColumns.Status.STATUS_FAILED;
   }
 
   public boolean isPending() {
@@ -113,23 +112,23 @@ public abstract class DisplayRecord {
   }
 
   public boolean isKeyExchange() {
-    return SmsTable.Types.isKeyExchangeType(type);
+    return MmsSmsColumns.Types.isKeyExchangeType(type);
   }
 
   public boolean isEndSession() {
-    return SmsTable.Types.isEndSessionType(type);
+    return MmsSmsColumns.Types.isEndSessionType(type);
   }
 
   public boolean isGroupUpdate() {
-    return SmsTable.Types.isGroupUpdate(type);
+    return MmsSmsColumns.Types.isGroupUpdate(type);
   }
 
   public boolean isGroupV2() {
-    return SmsTable.Types.isGroupV2(type);
+    return MmsSmsColumns.Types.isGroupV2(type);
   }
 
   public boolean isGroupQuit() {
-    return SmsTable.Types.isGroupQuit(type);
+    return MmsSmsColumns.Types.isGroupQuit(type);
   }
 
   public boolean isGroupAction() {
@@ -137,55 +136,55 @@ public abstract class DisplayRecord {
   }
 
   public boolean isExpirationTimerUpdate() {
-    return SmsTable.Types.isExpirationTimerUpdate(type);
+    return MmsSmsColumns.Types.isExpirationTimerUpdate(type);
   }
 
   public boolean isCallLog() {
-    return SmsTable.Types.isCallLog(type);
+    return MmsSmsColumns.Types.isCallLog(type);
   }
 
   public boolean isJoined() {
-    return SmsTable.Types.isJoinedType(type);
+    return MmsSmsColumns.Types.isJoinedType(type);
   }
 
   public boolean isIncomingAudioCall() {
-    return SmsTable.Types.isIncomingAudioCall(type);
+    return MmsSmsColumns.Types.isIncomingAudioCall(type);
   }
 
   public boolean isIncomingVideoCall() {
-    return SmsTable.Types.isIncomingVideoCall(type);
+    return MmsSmsColumns.Types.isIncomingVideoCall(type);
   }
 
   public boolean isOutgoingAudioCall() {
-    return SmsTable.Types.isOutgoingAudioCall(type);
+    return MmsSmsColumns.Types.isOutgoingAudioCall(type);
   }
 
   public boolean isOutgoingVideoCall() {
-    return SmsTable.Types.isOutgoingVideoCall(type);
+    return MmsSmsColumns.Types.isOutgoingVideoCall(type);
   }
 
   public final boolean isMissedAudioCall() {
-    return SmsTable.Types.isMissedAudioCall(type);
+    return MmsSmsColumns.Types.isMissedAudioCall(type);
   }
 
   public final boolean isMissedVideoCall() {
-    return SmsTable.Types.isMissedVideoCall(type);
+    return MmsSmsColumns.Types.isMissedVideoCall(type);
   }
 
   public final boolean isGroupCall() {
-    return SmsTable.Types.isGroupCall(type);
+    return MmsSmsColumns.Types.isGroupCall(type);
   }
 
   public boolean isVerificationStatusChange() {
-    return SmsTable.Types.isIdentityDefault(type) || SmsTable.Types.isIdentityVerified(type);
+    return MmsSmsColumns.Types.isIdentityDefault(type) || MmsSmsColumns.Types.isIdentityVerified(type);
   }
 
   public boolean isProfileChange() {
-    return SmsTable.Types.isProfileChange(type);
+    return MmsSmsColumns.Types.isProfileChange(type);
   }
 
   public boolean isChangeNumber() {
-    return SmsTable.Types.isChangeNumber(type);
+    return MmsSmsColumns.Types.isChangeNumber(type);
   }
 
   public boolean isBoostRequest() {
@@ -216,8 +215,8 @@ public abstract class DisplayRecord {
   }
 
   public boolean isDelivered() {
-    return (deliveryStatus >= SmsTable.Status.STATUS_COMPLETE &&
-            deliveryStatus < SmsTable.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
+    return (deliveryStatus >= MmsSmsColumns.Status.STATUS_COMPLETE &&
+            deliveryStatus < MmsSmsColumns.Status.STATUS_PENDING) || deliveryReceiptCount > 0;
   }
 
   public boolean isRemoteViewed() {
@@ -229,7 +228,7 @@ public abstract class DisplayRecord {
   }
 
   public boolean isPendingInsecureSmsFallback() {
-    return SmsTable.Types.isPendingInsecureSmsFallbackType(type);
+    return MmsSmsColumns.Types.isPendingInsecureSmsFallbackType(type);
   }
 
   public boolean isPaymentNotification() {
