@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
@@ -19,6 +20,13 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
   private val TAG = Log.tag(V166_ThreadAndMessageForeignKeys::class.java)
 
   override fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    // Some crashes we were seeing indicated that we may have been running this migration twice on some unlucky devices, likely due
+    // to some gaps that were left between some transactions during the upgrade path.
+    if (!SqlUtil.columnExists(db, "thread", "thread_recipient_id")) {
+      Log.w(TAG, "Migration must have already run! Skipping.")
+      return
+    }
+
     val stopwatch = Stopwatch("migration")
 
     removeDuplicateThreadEntries(db)

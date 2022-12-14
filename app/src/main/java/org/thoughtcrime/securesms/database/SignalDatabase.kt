@@ -168,6 +168,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.beginTransaction()
     try {
       migrate(context, db, oldVersion, newVersion)
+      db.version = newVersion
       db.setTransactionSuccessful()
     } finally {
       db.endTransaction()
