@@ -229,6 +229,7 @@ public class PushMediaSendJob extends PushSendJob {
                                                                                                .withPreviews(previews)
                                                                                                .withGiftBadge(giftBadge)
                                                                                                .asExpirationUpdate(message.isExpirationUpdate())
+                                                                                               .asEndSessionMessage(message.isEndSession())
                                                                                                .withPayment(payment);
 
       if (message.getParentStoryId() != null) {

@@ -120,9 +120,6 @@ import org.thoughtcrime.securesms.service.webrtc.WebRtcData;
 import org.thoughtcrime.securesms.sms.IncomingEncryptedMessage;
 import org.thoughtcrime.securesms.sms.IncomingEndSessionMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingEndSessionMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.stories.Stories;
@@ -772,14 +769,13 @@ public final class MessageContentProcessor {
   }
 
   private long handleSynchronizeSentEndSessionMessage(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
-      throws BadGroupIdException
+      throws MmsException
   {
     log(envelopeTimestamp, "Synchronize end session message.");
 
-    MessageTable database  = SignalDatabase.sms();
-    Recipient    recipient = getSyncMessageDestination(message);
-    OutgoingTextMessage outgoingTextMessage       = new OutgoingTextMessage(recipient, "", -1);
-    OutgoingEndSessionMessage outgoingEndSessionMessage = new OutgoingEndSessionMessage(outgoingTextMessage);
+    MessageTable         database                  = SignalDatabase.sms();
+    Recipient            recipient                 = getSyncMessageDestination(message);
+    OutgoingMediaMessage outgoingEndSessionMessage = OutgoingMediaMessage.endSessionMessage(recipient, message.getTimestamp());
 
     long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
@@ -788,10 +784,9 @@ public final class MessageContentProcessor {
 
       SecurityEvent.broadcastSecurityUpdateEvent(context);
 
-      long messageId = database.insertMessageOutbox(threadId,
-                                                    outgoingEndSessionMessage,
+      long messageId = database.insertMessageOutbox(outgoingEndSessionMessage,
+                                                    threadId,
                                                     false,
-                                                    message.getTimestamp(),
                                                     null);
       database.markAsSent(messageId, true);
       SignalDatabase.threads().update(threadId, true);
@@ -2448,9 +2443,9 @@ public final class MessageContentProcessor {
 
       updateGroupReceiptStatus(message, messageId, recipient.requireGroupId());
     } else {
-      OutgoingTextMessage outgoingTextMessage = new OutgoingEncryptedMessage(recipient, body, expiresInMillis);
+      OutgoingMediaMessage outgoingTextMessage = OutgoingMediaMessage.text(recipient, body, expiresInMillis, message.getTimestamp());
 
-      messageId = SignalDatabase.sms().insertMessageOutbox(threadId, outgoingTextMessage, false, message.getTimestamp(), null);
+      messageId = SignalDatabase.sms().insertMessageOutbox(outgoingTextMessage, threadId, false, null);
       database  = SignalDatabase.sms();
       database.markUnidentified(messageId, isUnidentified(message, recipient));
     }

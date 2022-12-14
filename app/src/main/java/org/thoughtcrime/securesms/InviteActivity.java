@@ -28,10 +28,10 @@ import org.thoughtcrime.securesms.contacts.SelectedContact;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarInviteTheme;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.Util;
@@ -254,7 +254,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
         Recipient   recipient      = Recipient.resolved(recipientId);
         int         subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
 
-        MessageSender.send(context, new OutgoingTextMessage(recipient, message, subscriptionId), -1L, true, null, null);
+        MessageSender.send(context, OutgoingMediaMessage.sms(recipient, message, subscriptionId), -1L, true, null, null);
 
         if (recipient.getContactUri() != null) {
           SignalDatabase.recipients().setHasSentInvite(recipient.getId());

@@ -43,8 +43,6 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -386,15 +384,16 @@ public final class MultiShareSender {
                                       long expiresIn,
                                       int subscriptionId)
   {
+    String body = multiShareArgs.getDraftText() == null ? "" : multiShareArgs.getDraftText();
 
-    final OutgoingTextMessage outgoingTextMessage;
+    OutgoingMediaMessage outgoingMessage;
     if (shouldSendAsPush(recipient, forceSms)) {
-      outgoingTextMessage = new OutgoingEncryptedMessage(recipient, multiShareArgs.getDraftText(), expiresIn);
+      outgoingMessage = OutgoingMediaMessage.text(recipient, body, expiresIn, System.currentTimeMillis());
     } else {
-      outgoingTextMessage = new OutgoingTextMessage(recipient, multiShareArgs.getDraftText(), expiresIn, subscriptionId);
+      outgoingMessage = OutgoingMediaMessage.sms(recipient, body, subscriptionId);
     }
 
-    MessageSender.send(context, outgoingTextMessage, threadId, forceSms, null, null);
+    MessageSender.send(context, outgoingMessage, threadId, forceSms, null, null);
   }
 
   private static @NonNull OutgoingMediaMessage generateTextStory(@NonNull Context context,

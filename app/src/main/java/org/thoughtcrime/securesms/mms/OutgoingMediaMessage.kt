@@ -45,6 +45,9 @@ data class OutgoingMediaMessage(
   val isUrgent: Boolean = true,
   val networkFailures: Set<NetworkFailure> = emptySet(),
   val identityKeyMismatches: Set<IdentityKeyMismatch> = emptySet(),
+  val isEndSession: Boolean = false,
+  val isIdentityVerified: Boolean = false,
+  val isIdentityDefault: Boolean = false,
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -145,6 +148,36 @@ data class OutgoingMediaMessage(
   }
 
   companion object {
+
+    /**
+     * A literal, insecure SMS message.
+     */
+    @JvmStatic
+    fun sms(recipient: Recipient, body: String, subscriptionId: Int): OutgoingMediaMessage {
+      return OutgoingMediaMessage(
+        recipient = recipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        body = body,
+        subscriptionId = subscriptionId,
+        isSecure = false
+      )
+    }
+
+    /**
+     * A secure message that only contains text.
+     */
+    @JvmStatic
+    fun text(recipient: Recipient, body: String, expiresIn: Long, sentTimeMillis: Long = System.currentTimeMillis()): OutgoingMediaMessage {
+      return OutgoingMediaMessage(
+        recipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        body = body,
+        expiresIn = expiresIn,
+        isUrgent = true,
+        isSecure = true
+      )
+    }
+
     /**
      * Helper for creating a group update message when a state change occurs and needs to be sent to others.
      */
@@ -276,6 +309,49 @@ data class OutgoingMediaMessage(
         isExpirationUpdate = true,
         isUrgent = false,
         isSecure = true
+      )
+    }
+
+    /**
+     * Message for when you have verified the identity of a contact.
+     */
+    @JvmStatic
+    fun identityVerifiedMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
+      return OutgoingMediaMessage(
+        recipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        isIdentityVerified = true,
+        isUrgent = false,
+        isSecure = true,
+      )
+    }
+
+    /**
+     * Message for when the verification status of an identity is getting set to the default.
+     */
+    @JvmStatic
+    fun identityDefaultMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
+      return OutgoingMediaMessage(
+        recipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        isIdentityDefault = true,
+        isUrgent = false,
+        isSecure = true,
+      )
+    }
+
+    /**
+     * A legacy message that represented that the user manually reset the session. We don't send these anymore, and could probably get rid of them,
+     * but it doesn't hurt to support receiving them in sync messages.
+     */
+    @JvmStatic
+    fun endSessionMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
+      return OutgoingMediaMessage(
+        recipient = recipient,
+        sentTimeMillis = sentTimeMillis,
+        isEndSession = true,
+        isUrgent = false,
+        isSecure = true,
       )
     }
 

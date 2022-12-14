@@ -23,6 +23,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.mms.MmsException;
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -30,9 +32,6 @@ import org.thoughtcrime.securesms.sms.IncomingIdentityDefaultMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingIdentityVerifiedMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingIdentityDefaultMessage;
-import org.thoughtcrime.securesms.sms.OutgoingIdentityVerifiedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.util.concurrent.ListenableFuture;
 import org.thoughtcrime.securesms.util.concurrent.SettableFuture;
 import org.signal.core.util.concurrent.SimpleTask;
@@ -81,15 +80,22 @@ public final class IdentityUtil {
 
             smsDatabase.insertMessageInbox(incoming);
           } else {
-            RecipientId         recipientId    = SignalDatabase.recipients().getOrInsertFromGroupId(groupRecord.getId());
-            Recipient           groupRecipient = Recipient.resolved(recipientId);
-            long                threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
-            OutgoingTextMessage outgoing ;
+            RecipientId recipientId    = SignalDatabase.recipients().getOrInsertFromGroupId(groupRecord.getId());
+            Recipient   groupRecipient = Recipient.resolved(recipientId);
+            long        threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
-            if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
-            else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
+            OutgoingMediaMessage outgoing;
+            if (verified) {
+              outgoing = OutgoingMediaMessage.identityVerifiedMessage(recipient, time);
+            } else {
+              outgoing = OutgoingMediaMessage.identityDefaultMessage(recipient, time);
+            }
 
-            SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
+            try {
+              SignalDatabase.sms().insertMessageOutbox(outgoing, threadId, false, null);
+            } catch (MmsException e) {
+              throw new AssertionError(e);
+            }
             SignalDatabase.threads().update(threadId, true);
           }
         }
@@ -104,15 +110,21 @@ public final class IdentityUtil {
 
       smsDatabase.insertMessageInbox(incoming);
     } else {
-      OutgoingTextMessage outgoing;
-
-      if (verified) outgoing = new OutgoingIdentityVerifiedMessage(recipient);
-      else          outgoing = new OutgoingIdentityDefaultMessage(recipient);
+      OutgoingMediaMessage outgoing;
+      if (verified) {
+        outgoing = OutgoingMediaMessage.identityVerifiedMessage(recipient, time);
+      } else {
+        outgoing = OutgoingMediaMessage.identityDefaultMessage(recipient, time);
+      }
 
       long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       Log.i(TAG, "Inserting verified outbox...");
-      SignalDatabase.sms().insertMessageOutbox(threadId, outgoing, false, time, null);
+      try {
+        SignalDatabase.sms().insertMessageOutbox(outgoing, threadId, false, null);
+      } catch (MmsException e) {
+        throw new AssertionError();
+      }
       boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
       SignalDatabase.threads().update(threadId, !keepThreadArchived);
     }

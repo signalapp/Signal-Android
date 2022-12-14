@@ -37,8 +37,6 @@ import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 
 import java.util.Collections;
 import java.util.LinkedList;
@@ -107,12 +105,12 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
             break;
           }
           case SecureMessage: {
-            OutgoingEncryptedMessage reply = new OutgoingEncryptedMessage(recipient, responseText.toString(), expiresIn);
+            OutgoingMediaMessage reply = OutgoingMediaMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis());
             threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
-            OutgoingTextMessage reply = new OutgoingTextMessage(recipient, responseText.toString(), expiresIn, subscriptionId);
+            OutgoingMediaMessage reply = OutgoingMediaMessage.sms(recipient, responseText.toString(), subscriptionId);
             threadId = MessageSender.send(context, reply, -1, true, null, null);
             break;
           }

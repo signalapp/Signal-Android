@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushDistributionListSendJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
@@ -105,34 +104,6 @@ public class MessageSender {
     if (job != null) {
       ApplicationDependencies.getJobManager().add(job);
     }
-  }
-
-  public static long send(final Context context,
-                          final OutgoingTextMessage message,
-                          final long threadId,
-                          final boolean forceSms,
-                          @Nullable final String metricId,
-                          final MessageTable.InsertListener insertListener)
-  {
-    Log.i(TAG, "Sending text message to " + message.getRecipient().getId() + ", thread: " + threadId);
-    MessageTable database  = SignalDatabase.sms();
-    Recipient    recipient = message.getRecipient();
-    boolean         keyExchange = message.isKeyExchange();
-
-    long allocatedThreadId = SignalDatabase.threads().getOrCreateValidThreadId(recipient, threadId);
-    long messageId         = database.insertMessageOutbox(allocatedThreadId,
-                                                          applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
-                                                          forceSms,
-                                                          System.currentTimeMillis(),
-                                                          insertListener);
-
-    SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
-
-    sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
-    onMessageSent();
-    SignalDatabase.threads().update(threadId, true);
-
-    return allocatedThreadId;
   }
 
   public static void sendStories(@NonNull final Context context,
@@ -525,27 +496,15 @@ public class MessageSender {
   public static void resend(Context context, MessageRecord messageRecord) {
     long       messageId   = messageRecord.getId();
     boolean    forceSms    = messageRecord.isForcedSms();
-    boolean    keyExchange = messageRecord.isKeyExchange();
     Recipient  recipient   = messageRecord.getRecipient();
 
-    if (messageRecord.isMms()) {
-      sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
-    } else {
-      sendTextMessage(context, recipient, forceSms, keyExchange, messageId);
-    }
+    sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
 
     onMessageSent();
   }
 
   public static void onMessageSent() {
     EventBus.getDefault().postSticky(MessageSentEvent.INSTANCE);
-  }
-
-  private static @NonNull OutgoingTextMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingTextMessage outgoingTextMessage, long threadId) {
-    if (outgoingTextMessage.getExpiresIn() == 0 && RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, recipient, threadId)) {
-      return outgoingTextMessage.withExpiry(TimeUnit.SECONDS.toMillis(SignalStore.settings().getUniversalExpireTimer()));
-    }
-    return outgoingTextMessage;
   }
 
   private static @NonNull OutgoingMediaMessage applyUniversalExpireTimerIfNecessary(@NonNull Context context, @NonNull Recipient recipient, @NonNull OutgoingMediaMessage outgoingMediaMessage, long threadId) {
@@ -568,23 +527,6 @@ public class MessageSender {
     } else {
       sendMms(context, messageId);
     }
-  }
-
-  private static void sendTextMessage(Context context, Recipient recipient,
-                                      boolean forceSms, boolean keyExchange,
-                                      long messageId)
-  {
-    if (isLocalSelfSend(context, recipient, forceSms)) {
-      sendLocalTextSelf(context, messageId);
-    } else if (!forceSms && isPushTextSend(context, recipient, keyExchange)) {
-      sendTextPush(recipient, messageId);
-    } else {
-      sendSms(recipient, messageId);
-    }
-  }
-
-  private static void sendTextPush(Recipient recipient, long messageId) {
-    ApplicationDependencies.getJobManager().add(new PushTextSendJob(messageId, recipient));
   }
 
   private static void sendMediaPush(Context context, Recipient recipient, long messageId, @NonNull Collection<String> uploadJobIds) {

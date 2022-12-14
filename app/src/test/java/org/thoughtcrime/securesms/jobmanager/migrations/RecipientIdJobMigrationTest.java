@@ -20,7 +20,6 @@ import org.thoughtcrime.securesms.jobs.MultiDeviceVerifiedUpdateJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewOnceOpenJob;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
 import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
-import org.thoughtcrime.securesms.jobs.PushTextSendJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob;
 import org.thoughtcrime.securesms.jobs.SmsSendJob;
@@ -245,21 +244,6 @@ public class RecipientIdJobMigrationTest {
     assertEquals(JsonUtils.toJson(new NewSerializableSyncMessageId("2", 2)), updated[1]);
 
     new MultiDeviceReadUpdateJob.Factory().create(mock(Job.Parameters.class), converted.getData());
-  }
-
-  @Test
-  public void migrate_pushTextSendJob() throws Exception {
-    JobData testData = new JobData("PushTextSendJob", "+16101234567", new Data.Builder().putLong("message_id", 1).build());
-    mockRecipientResolve("+16101234567", 1);
-
-    RecipientIdJobMigration subject   = new RecipientIdJobMigration(mock(Application.class));
-    JobData                 converted = subject.migrate(testData);
-
-    assertEquals("PushTextSendJob", converted.getFactoryKey());
-    assertEquals(RecipientId.from(1).toQueueKey(), converted.getQueueKey());
-    assertEquals(1, converted.getData().getLong("message_id"));
-
-    new PushTextSendJob.Factory().create(mock(Job.Parameters.class), converted.getData());
   }
 
   @Test

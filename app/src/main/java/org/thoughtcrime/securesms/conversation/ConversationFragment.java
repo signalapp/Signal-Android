@@ -163,7 +163,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceMessageActivity;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewActivity;
 import org.thoughtcrime.securesms.stories.Stories;
@@ -1197,17 +1196,6 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   public long stageOutgoingMessage(OutgoingMediaMessage message) {
     MessageRecord messageRecord = MessageTable.readerFor(message, threadId).getCurrent();
-
-    if (getListAdapter() != null) {
-      setLastSeen(0);
-      list.post(() -> list.scrollToPosition(0));
-    }
-
-    return messageRecord.getId();
-  }
-
-  public long stageOutgoingMessage(OutgoingTextMessage message, long messageId) {
-    MessageRecord messageRecord = MessageTable.readerFor(message, threadId, messageId).getCurrent();
 
     if (getListAdapter() != null) {
       setLastSeen(0);

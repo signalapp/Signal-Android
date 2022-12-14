@@ -89,7 +89,6 @@ import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo;
 import org.thoughtcrime.securesms.revealable.ViewOnceUtil;
 import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.JsonUtils;
@@ -931,57 +930,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
     return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
-  }
-
-  public long insertMessageOutbox(long threadId, OutgoingTextMessage message, boolean forceSms, long date, InsertListener insertListener) {
-    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
-
-    long type = Types.BASE_SENDING_TYPE;
-
-    if      (message.isKeyExchange())   type |= Types.KEY_EXCHANGE_BIT;
-    else if (message.isSecureMessage()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
-    if      (forceSms)                  type |= Types.MESSAGE_FORCE_SMS_BIT;
-
-    if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
-
-    RecipientId                                 recipientId           = message.getRecipient().getId();
-    Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(date);
-
-    ContentValues contentValues = new ContentValues(6);
-    contentValues.put(RECIPIENT_ID, recipientId.serialize());
-    contentValues.put(THREAD_ID, threadId);
-    contentValues.put(BODY, message.getMessageBody());
-    contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
-    contentValues.put(DATE_SENT, date);
-    contentValues.put(READ, 1);
-    contentValues.put(TYPE, type);
-    contentValues.put(SMS_SUBSCRIPTION_ID, message.getSubscriptionId());
-    contentValues.put(EXPIRES_IN, message.getExpiresIn());
-    contentValues.put(DELIVERY_RECEIPT_COUNT, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getCount).sum());
-    contentValues.put(RECEIPT_TIMESTAMP, Stream.of(earlyDeliveryReceipts.values()).mapToLong(EarlyReceiptCache.Receipt::getTimestamp).max().orElse(-1));
-
-    long messageId = db.insert(TABLE_NAME, null, contentValues);
-
-    if (insertListener != null) {
-      insertListener.onComplete();
-    }
-
-    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      SignalDatabase.threads().setLastScrolled(threadId, 0);
-      SignalDatabase.threads().setLastSeenSilently(threadId);
-    }
-
-    SignalDatabase.threads().setHasSentSilently(threadId, true);
-
-    ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, false));
-
-    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
-      TrimThreadJob.enqueueAsync(threadId);
-    }
-
-    return messageId;
   }
 
   public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
@@ -2776,6 +2724,12 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
+    if      (message.isSecure())        type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
+    else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
+
+    if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
+
     if (message.isGroup()) {
       if (message.isV2Group()) {
         type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
@@ -2919,7 +2873,9 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
     notifyConversationListListeners();
 
-    TrimThreadJob.enqueueAsync(threadId);
+    if (!message.isIdentityVerified() && !message.isIdentityDefault()) {
+      TrimThreadJob.enqueueAsync(threadId);
+    }
 
     return messageId;
   }
@@ -4293,48 +4249,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
         return record;
       }
-    }
-  }
-
-  public static OutgoingSmsReader readerFor(OutgoingTextMessage message, long threadId, long messageId) {
-    return new OutgoingSmsReader(message, threadId, messageId);
-  }
-
-  public static class OutgoingSmsReader {
-
-    private final OutgoingTextMessage message;
-    private final long                id;
-    private final long                threadId;
-
-    public OutgoingSmsReader(OutgoingTextMessage message, long threadId, long messageId) {
-      this.message  = message;
-      this.threadId = threadId;
-      this.id       = messageId;
-    }
-
-    public MessageRecord getCurrent() {
-      return new SmsMessageRecord(id,
-                                  message.getMessageBody(),
-                                  message.getRecipient(),
-                                  message.getRecipient(),
-                                  1,
-                                  System.currentTimeMillis(),
-                                  System.currentTimeMillis(),
-                                  -1,
-                                  0,
-                                  message.isSecureMessage() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
-                                  threadId,
-                                  0,
-                                  new HashSet<>(),
-                                  message.getSubscriptionId(),
-                                  message.getExpiresIn(),
-                                  System.currentTimeMillis(),
-                                  0,
-                                  false,
-                                  Collections.emptyList(),
-                                  false,
-                                  0,
-                                  -1);
     }
   }
 

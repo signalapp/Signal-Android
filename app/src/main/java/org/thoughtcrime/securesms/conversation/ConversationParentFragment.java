@@ -266,8 +266,6 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage;
-import org.thoughtcrime.securesms.sms.OutgoingTextMessage;
 import org.thoughtcrime.securesms.stickers.StickerEventListener;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
@@ -3139,13 +3137,13 @@ public class ConversationParentFragment extends Fragment
     final String  messageBody = getMessage();
     final boolean sendPush    = sendType.usesSignalTransport();
 
-    OutgoingTextMessage message;
+    OutgoingMediaMessage message;
 
     if (sendPush) {
-      message = new OutgoingEncryptedMessage(recipient.get(), messageBody, expiresIn);
+      message = OutgoingMediaMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis());
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      message = new OutgoingTextMessage(recipient.get(), messageBody, 0, sendType.getSimSubscriptionIdOr(-1));
+      message = OutgoingMediaMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
     }
 
     Permissions.with(this)
@@ -3153,13 +3151,12 @@ public class ConversationParentFragment extends Fragment
                .ifNecessary(!sendPush)
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
                .onAllGranted(() -> {
-                 final long id = new SecureRandom().nextLong();
                  SimpleTask.run(() -> {
                    return MessageSender.send(context, message, thread, sendType.usesSmsTransport(), metricId, null);
                  }, this::sendComplete);
 
                  silentlySetComposeText("");
-                 fragment.stageOutgoingMessage(message, id);
+                 fragment.stageOutgoingMessage(message);
                })
                .execute();
   }
