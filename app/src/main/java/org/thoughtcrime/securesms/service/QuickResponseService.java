@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.Rfc5724Uri;
@@ -50,7 +50,7 @@ public class QuickResponseService extends IntentService {
       int       subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
 
       if (!TextUtils.isEmpty(content)) {
-        MessageSender.send(this, OutgoingMediaMessage.sms(recipient, content, subscriptionId), -1, false, null, null);
+        MessageSender.send(this, OutgoingMessage.sms(recipient, content, subscriptionId), -1, false, null, null);
       }
     } catch (URISyntaxException e) {
       Toast.makeText(this, R.string.QuickResponseService_problem_sending_message, Toast.LENGTH_LONG).show();

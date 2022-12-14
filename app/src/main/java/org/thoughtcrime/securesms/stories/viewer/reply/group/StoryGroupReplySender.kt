@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.mediasend.v2.UntrustedRecords
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.sms.MessageSender
 
 /**
@@ -41,7 +41,7 @@ object StoryGroupReplySender {
           Completable.create {
             MessageSender.send(
               context,
-              OutgoingMediaMessage(
+              OutgoingMessage(
                 recipient = recipient,
                 body = body.toString(),
                 timestamp = System.currentTimeMillis(),

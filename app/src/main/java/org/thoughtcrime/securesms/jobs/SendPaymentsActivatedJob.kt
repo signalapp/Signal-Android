@@ -5,7 +5,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -45,7 +45,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
       if (recipient != null) {
         MessageSender.send(
           context,
-          OutgoingMediaMessage.paymentsActivatedMessage(recipient, System.currentTimeMillis(), 0),
+          OutgoingMessage.paymentsActivatedMessage(recipient, System.currentTimeMillis(), 0),
           threadId,
           false,
           null,

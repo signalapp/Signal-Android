@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.groups.GroupManager.GroupActionResult;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -174,16 +174,16 @@ final class GroupManagerV1 {
       avatarAttachment = new UriAttachment(avatarUri, MediaUtil.IMAGE_PNG, AttachmentTable.TRANSFER_PROGRESS_DONE, avatar.length, null, false, false, false, false, null, null, null, null, null);
     }
 
-    OutgoingMediaMessage outgoingMessage = OutgoingMediaMessage.groupUpdateMessage(groupRecipient,
-                                                                                   new MessageGroupContext(groupContext),
-                                                                                   Collections.singletonList(avatarAttachment),
-                                                                                   System.currentTimeMillis(),
-                                                                                   0,
-                                                                                   false,
-                                                                                   null,
-                                                                                   Collections.emptyList(),
-                                                                                   Collections.emptyList(),
-                                                                                   Collections.emptyList());
+    OutgoingMessage outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient,
+                                                                         new MessageGroupContext(groupContext),
+                                                                         Collections.singletonList(avatarAttachment),
+                                                                         System.currentTimeMillis(),
+                                                                         0,
+                                                                         false,
+                                                                         null,
+                                                                         Collections.emptyList(),
+                                                                         Collections.emptyList(),
+                                                                         Collections.emptyList());
 
     long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null, null);
 
@@ -208,14 +208,14 @@ final class GroupManagerV1 {
     long           threadId       = threadTable.getOrCreateThreadIdFor(recipient);
 
     recipientTable.setExpireMessages(recipient.getId(), expirationTime);
-    OutgoingMediaMessage outgoingMessage = OutgoingMediaMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
+    OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
     MessageSender.send(context, outgoingMessage, threadId, false, null, null);
   }
 
   @WorkerThread
-  private static Optional<OutgoingMediaMessage> createGroupLeaveMessage(@NonNull Context context,
-                                                                        @NonNull GroupId.V1 groupId,
-                                                                        @NonNull Recipient groupRecipient)
+  private static Optional<OutgoingMessage> createGroupLeaveMessage(@NonNull Context context,
+                                                                   @NonNull GroupId.V1 groupId,
+                                                                   @NonNull Recipient groupRecipient)
   {
     GroupTable groupDatabase = SignalDatabase.groups();
 

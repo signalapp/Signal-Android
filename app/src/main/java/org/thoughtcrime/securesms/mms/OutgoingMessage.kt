@@ -15,9 +15,9 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 
 /**
- * Outgoing media message for all outgoing media messages (push/mms, group updates, expiration updates, payments, etc.)
+ * Represents all the data needed for an outgoing message.
  */
-data class OutgoingMediaMessage(
+data class OutgoingMessage(
   val recipient: Recipient,
   val sentTimeMillis: Long,
   val body: String = "",
@@ -127,15 +127,15 @@ data class OutgoingMediaMessage(
     isSecure = isSecure
   )
 
-  fun withExpiry(expiresIn: Long): OutgoingMediaMessage {
+  fun withExpiry(expiresIn: Long): OutgoingMessage {
     return copy(expiresIn = expiresIn)
   }
 
-  fun stripAttachments(): OutgoingMediaMessage {
+  fun stripAttachments(): OutgoingMessage {
     return copy(attachments = emptyList())
   }
 
-  fun makeSecure(): OutgoingMediaMessage {
+  fun makeSecure(): OutgoingMessage {
     return copy(isSecure = true)
   }
 
@@ -153,8 +153,8 @@ data class OutgoingMediaMessage(
      * A literal, insecure SMS message.
      */
     @JvmStatic
-    fun sms(recipient: Recipient, body: String, subscriptionId: Int): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun sms(recipient: Recipient, body: String, subscriptionId: Int): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = System.currentTimeMillis(),
         body = body,
@@ -167,8 +167,8 @@ data class OutgoingMediaMessage(
      * A secure message that only contains text.
      */
     @JvmStatic
-    fun text(recipient: Recipient, body: String, expiresIn: Long, sentTimeMillis: Long = System.currentTimeMillis()): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun text(recipient: Recipient, body: String, expiresIn: Long, sentTimeMillis: Long = System.currentTimeMillis()): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         body = body,
@@ -182,10 +182,10 @@ data class OutgoingMediaMessage(
      * Helper for creating a group update message when a state change occurs and needs to be sent to others.
      */
     @JvmStatic
-    fun groupUpdateMessage(recipient: Recipient, group: DecryptedGroupV2Context, sentTimeMillis: Long): OutgoingMediaMessage {
+    fun groupUpdateMessage(recipient: Recipient, group: DecryptedGroupV2Context, sentTimeMillis: Long): OutgoingMessage {
       val groupContext = MessageGroupContext(group)
 
-      return OutgoingMediaMessage(
+      return OutgoingMessage(
         recipient = recipient,
         body = groupContext.encodedGroupContext,
         sentTimeMillis = sentTimeMillis,
@@ -211,8 +211,8 @@ data class OutgoingMediaMessage(
       contacts: List<Contact> = emptyList(),
       previews: List<LinkPreview> = emptyList(),
       mentions: List<Mention> = emptyList()
-    ): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    ): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         body = groupContext.encodedGroupContext,
         isGroup = true,
@@ -240,8 +240,8 @@ data class OutgoingMediaMessage(
       sentTimeMillis: Long,
       storyType: StoryType,
       linkPreviews: List<LinkPreview>
-    ): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    ): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         body = body,
         sentTimeMillis = sentTimeMillis,
@@ -255,8 +255,8 @@ data class OutgoingMediaMessage(
      * Specialized message sent to request someone activate payments.
      */
     @JvmStatic
-    fun requestToActivatePaymentsMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun requestToActivatePaymentsMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
@@ -271,8 +271,8 @@ data class OutgoingMediaMessage(
      * be sent to those that sent requests prior to activation.
      */
     @JvmStatic
-    fun paymentsActivatedMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun paymentsActivatedMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
@@ -286,8 +286,8 @@ data class OutgoingMediaMessage(
      * Type of message sent when sending a payment to another Signal contact.
      */
     @JvmStatic
-    fun paymentNotificationMessage(recipient: Recipient, paymentUuid: String, sentTimeMillis: Long, expiresIn: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun paymentNotificationMessage(recipient: Recipient, paymentUuid: String, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         body = paymentUuid,
         sentTimeMillis = sentTimeMillis,
@@ -301,8 +301,8 @@ data class OutgoingMediaMessage(
      * Helper for creating expiration update messages.
      */
     @JvmStatic
-    fun expirationUpdateMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun expirationUpdateMessage(recipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         expiresIn = expiresIn,
@@ -316,8 +316,8 @@ data class OutgoingMediaMessage(
      * Message for when you have verified the identity of a contact.
      */
     @JvmStatic
-    fun identityVerifiedMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun identityVerifiedMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         isIdentityVerified = true,
@@ -330,8 +330,8 @@ data class OutgoingMediaMessage(
      * Message for when the verification status of an identity is getting set to the default.
      */
     @JvmStatic
-    fun identityDefaultMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun identityDefaultMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         isIdentityDefault = true,
@@ -345,8 +345,8 @@ data class OutgoingMediaMessage(
      * but it doesn't hurt to support receiving them in sync messages.
      */
     @JvmStatic
-    fun endSessionMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMediaMessage {
-      return OutgoingMediaMessage(
+    fun endSessionMessage(recipient: Recipient, sentTimeMillis: Long): OutgoingMessage {
+      return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         isEndSession = true,

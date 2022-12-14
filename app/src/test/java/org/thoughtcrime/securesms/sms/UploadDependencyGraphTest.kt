@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder
@@ -166,8 +166,8 @@ class UploadDependencyGraphTest {
     // GIVEN
     val attachment1 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
     val attachment2 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
-    val message1 = OutgoingMediaMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
-    val message2 = OutgoingMediaMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
+    val message1 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
+    val message2 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
     val testSubject = UploadDependencyGraph.create(listOf(message1, message2), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -190,7 +190,7 @@ class UploadDependencyGraphTest {
       )
     }
 
-    val message = OutgoingMediaMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
+    val message = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
     val testSubject = UploadDependencyGraph.create(listOf(message), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
     val result = testSubject.consumeDeferredQueue()
 
@@ -258,9 +258,9 @@ class UploadDependencyGraphTest {
     )
   }
 
-  private fun Iterable<Int>.createMessages(uriAttachments: List<Attachment>): List<OutgoingMediaMessage> {
+  private fun Iterable<Int>.createMessages(uriAttachments: List<Attachment>): List<OutgoingMessage> {
     return mapIndexed { index, _ ->
-      OutgoingMediaMessage(
+      OutgoingMessage(
         recipient = Recipient.UNKNOWN,
         sentTimeMillis = System.currentTimeMillis() + index,
         attachments = uriAttachments,

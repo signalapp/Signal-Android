@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -83,9 +83,9 @@ public class PushMediaSendJob extends PushSendJob {
         throw new AssertionError("No ServiceId!");
       }
 
-      MessageTable         database = SignalDatabase.mms();
-      OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
-      Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+      MessageTable    database            = SignalDatabase.mms();
+      OutgoingMessage message             = database.getOutgoingMessage(messageId);
+      Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       jobManager.add(new PushMediaSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
 
@@ -116,9 +116,9 @@ public class PushMediaSendJob extends PushSendJob {
       throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException
   {
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-    MessageTable           database          = SignalDatabase.mms();
-    OutgoingMediaMessage   message           = database.getOutgoingMessage(messageId);
-    long                   threadId          = database.getMessageRecord(messageId).getThreadId();
+    MessageTable    database = SignalDatabase.mms();
+    OutgoingMessage message  = database.getOutgoingMessage(messageId);
+    long            threadId = database.getMessageRecord(messageId).getThreadId();
 
     if (database.isSent(messageId)) {
       warn(TAG, String.valueOf(message.getSentTimeMillis()), "Message " + messageId + " was already sent. Ignoring.");
@@ -191,7 +191,7 @@ public class PushMediaSendJob extends PushSendJob {
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
-  private boolean deliver(OutgoingMediaMessage message)
+  private boolean deliver(OutgoingMessage message)
       throws IOException, InsecureFallbackApprovalException, UntrustedIdentityException, UndeliverableMessageException
   {
     if (message.getRecipient() == null) {
@@ -285,7 +285,7 @@ public class PushMediaSendJob extends PushSendJob {
     }
   }
 
-  private SignalServiceDataMessage.Payment getPayment(OutgoingMediaMessage message) {
+  private SignalServiceDataMessage.Payment getPayment(OutgoingMessage message) {
     if (message.isPaymentsNotification()) {
       UUID                            paymentUuid = UuidUtil.parseOrThrow(message.getBody());
       PaymentTable.PaymentTransaction payment     = SignalDatabase.payments().getPayment(paymentUuid);

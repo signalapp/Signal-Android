@@ -237,7 +237,7 @@ import org.thoughtcrime.securesms.mms.GlideApp;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -309,7 +309,6 @@ import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil;
 import org.whispersystems.signalservice.api.SignalSessionLock;
 
 import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -2971,29 +2970,29 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
-    long                 thread    = this.threadId;
-    long                 expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    QuoteModel           quote     = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
-    List<Mention>        mentions  = new ArrayList<>(result.getMentions());
-    OutgoingMediaMessage message   = new OutgoingMediaMessage(recipient.get(),
-                                                              result.getBody(),
-                                                              Collections.emptyList(),
-                                                              System.currentTimeMillis(),
-                                                              -1,
-                                                              expiresIn,
-                                                              result.isViewOnce(),
-                                                              distributionType,
-                                                              result.getStoryType(),
-                                                              null,
-                                                              false,
-                                                              quote,
-                                                              Collections.emptyList(),
-                                                              Collections.emptyList(),
-                                                              mentions,
-                                                              Collections.emptySet(),
-                                                              Collections.emptySet(),
-                                                              null,
-                                                              true);
+    long            thread    = this.threadId;
+    long            expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
+    QuoteModel      quote     = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
+    List<Mention>   mentions  = new ArrayList<>(result.getMentions());
+    OutgoingMessage message   = new OutgoingMessage(recipient.get(),
+                                                    result.getBody(),
+                                                    Collections.emptyList(),
+                                                    System.currentTimeMillis(),
+                                                    -1,
+                                                    expiresIn,
+                                                    result.isViewOnce(),
+                                                    distributionType,
+                                                    result.getStoryType(),
+                                                    null,
+                                                    false,
+                                                    quote,
+                                                    Collections.emptyList(),
+                                                    Collections.emptyList(),
+                                                    mentions,
+                                                    Collections.emptySet(),
+                                                    Collections.emptySet(),
+                                                    null,
+                                                    true);
 
     final Context context = requireContext().getApplicationContext();
 
@@ -3066,30 +3065,30 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId),
-                                                                             OutgoingMediaMessage.buildMessage(slideDeck, body),
-                                                                             slideDeck.asAttachments(),
-                                                                             System.currentTimeMillis(),
-                                                                             sendType.getSimSubscriptionIdOr(-1),
-                                                                             expiresIn,
-                                                                             viewOnce,
-                                                                             distributionType,
-                                                                             StoryType.NONE,
-                                                                             null,
-                                                                             false,
-                                                                             quote,
-                                                                             contacts,
-                                                                             previews,
-                                                                             mentions,
-                                                                             Collections.emptySet(),
-                                                                             Collections.emptySet(),
-                                                                             null,
-                                                                             false);
+    OutgoingMessage outgoingMessageCandidate = new OutgoingMessage(Recipient.resolved(recipientId),
+                                                                   OutgoingMessage.buildMessage(slideDeck, body),
+                                                                   slideDeck.asAttachments(),
+                                                                   System.currentTimeMillis(),
+                                                                   sendType.getSimSubscriptionIdOr(-1),
+                                                                   expiresIn,
+                                                                   viewOnce,
+                                                                   distributionType,
+                                                                   StoryType.NONE,
+                                                                   null,
+                                                                   false,
+                                                                   quote,
+                                                                   contacts,
+                                                                   previews,
+                                                                   mentions,
+                                                                   Collections.emptySet(),
+                                                                   Collections.emptySet(),
+                                                                   null,
+                                                                   false);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();
 
-    final OutgoingMediaMessage outgoingMessage;
+    final OutgoingMessage outgoingMessage;
 
     if (sendPush) {
       outgoingMessage = outgoingMessageCandidate.makeSecure();
@@ -3137,13 +3136,13 @@ public class ConversationParentFragment extends Fragment
     final String  messageBody = getMessage();
     final boolean sendPush    = sendType.usesSignalTransport();
 
-    OutgoingMediaMessage message;
+    OutgoingMessage message;
 
     if (sendPush) {
-      message = OutgoingMediaMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis());
+      message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis());
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
-      message = OutgoingMediaMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
+      message = OutgoingMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
     }
 
     Permissions.with(this)

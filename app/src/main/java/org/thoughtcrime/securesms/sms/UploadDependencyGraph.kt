@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 
 /**
  * Helper alias for working with JobIds.
@@ -27,7 +27,7 @@ private typealias JobId = String
  * @param deferredJobQueue A list of job chains that can be executed on the job manager when ready (outside of a database transaction).
  */
 class UploadDependencyGraph private constructor(
-  val dependencyMap: Map<OutgoingMediaMessage, List<Node>>,
+  val dependencyMap: Map<OutgoingMessage, List<Node>>,
   private val deferredJobQueue: List<JobManager.Chain>
 ) {
 
@@ -100,7 +100,7 @@ class UploadDependencyGraph private constructor(
     @JvmStatic
     @WorkerThread
     fun create(
-      messages: List<OutgoingMediaMessage>,
+      messages: List<OutgoingMessage>,
       jobManager: JobManager,
       insertAttachmentForPreUpload: (Attachment) -> DatabaseAttachment
     ): UploadDependencyGraph {
@@ -111,8 +111,8 @@ class UploadDependencyGraph private constructor(
      * Produce a mapping of AttachmentKey{DatabaseAttachment,TransformProperties} -> Set<OutgoingMediaMessage>
      * This map represents which messages require a specific attachment.
      */
-    private fun buildAttachmentMap(messages: List<OutgoingMediaMessage>, insertAttachmentForPreUpload: (Attachment) -> DatabaseAttachment): Map<AttachmentKey<DatabaseAttachment>, Set<OutgoingMediaMessage>> {
-      val attachmentMap = mutableMapOf<AttachmentKey<DatabaseAttachment>, Set<OutgoingMediaMessage>>()
+    private fun buildAttachmentMap(messages: List<OutgoingMessage>, insertAttachmentForPreUpload: (Attachment) -> DatabaseAttachment): Map<AttachmentKey<DatabaseAttachment>, Set<OutgoingMessage>> {
+      val attachmentMap = mutableMapOf<AttachmentKey<DatabaseAttachment>, Set<OutgoingMessage>>()
       val preUploadCache = mutableMapOf<AttachmentKey<UriAttachment>, DatabaseAttachment>()
 
       for (message in messages) {
@@ -125,12 +125,12 @@ class UploadDependencyGraph private constructor(
         for (attachmentKey in uniqueAttachments) {
           when (val attachment = attachmentKey.attachment) {
             is DatabaseAttachment -> {
-              val messageIdList: Set<OutgoingMediaMessage> = attachmentMap.getOrDefault(attachment.asDatabaseAttachmentKey(), emptySet())
+              val messageIdList: Set<OutgoingMessage> = attachmentMap.getOrDefault(attachment.asDatabaseAttachmentKey(), emptySet())
               attachmentMap[attachment.asDatabaseAttachmentKey()] = messageIdList + message
             }
             is UriAttachment -> {
               val dbAttachmentKey: AttachmentKey<DatabaseAttachment> = preUploadCache.getOrPut(attachment.asUriAttachmentKey()) { insertAttachmentForPreUpload(attachment) }.asDatabaseAttachmentKey()
-              val messageIdList: Set<OutgoingMediaMessage> = attachmentMap.getOrDefault(dbAttachmentKey, emptySet())
+              val messageIdList: Set<OutgoingMessage> = attachmentMap.getOrDefault(dbAttachmentKey, emptySet())
               attachmentMap[dbAttachmentKey] = messageIdList + message
             }
             else -> {
@@ -148,7 +148,7 @@ class UploadDependencyGraph private constructor(
      * Each attachment will be uploaded exactly once and copied N times, where N is the number of messages in its set, minus 1 (the upload)
      * The resulting object contains a list of jobs that a subsequent send job can depend on, as well as a list of Chains which can be
      * enqueued to perform uploading. Since a send job can depend on multiple chains, it's cleaner to give back a mapping of
-     * [OutgoingMediaMessage] -> [List<Node>] instead of forcing the caller to try to weave new jobs into the original chains.
+     * [OutgoingMessage] -> [List<Node>] instead of forcing the caller to try to weave new jobs into the original chains.
      *
      * Each chain consists of:
      *  1. Compression job
@@ -157,23 +157,23 @@ class UploadDependencyGraph private constructor(
      *  1. O to 1 copy jobs
      */
     private fun buildDependencyGraph(
-      attachmentIdToOutgoingMessagesMap: Map<AttachmentKey<DatabaseAttachment>, Set<OutgoingMediaMessage>>,
+      attachmentIdToOutgoingMessagesMap: Map<AttachmentKey<DatabaseAttachment>, Set<OutgoingMessage>>,
       jobManager: JobManager,
       insertAttachmentForPreUpload: (Attachment) -> DatabaseAttachment
     ): UploadDependencyGraph {
-      val resultMap = mutableMapOf<OutgoingMediaMessage, List<Node>>()
+      val resultMap = mutableMapOf<OutgoingMessage, List<Node>>()
       val jobQueue = mutableListOf<JobManager.Chain>()
 
       for ((attachmentKey, messages) in attachmentIdToOutgoingMessagesMap) {
         val (uploadJobId, uploadChain) = createAttachmentUploadChain(jobManager, attachmentKey.attachment)
-        val uploadMessage: OutgoingMediaMessage = messages.first()
-        val copyMessages: List<OutgoingMediaMessage> = messages.drop(1)
+        val uploadMessage: OutgoingMessage = messages.first()
+        val copyMessages: List<OutgoingMessage> = messages.drop(1)
 
         val uploadMessageDependencies: List<Node> = resultMap.getOrDefault(uploadMessage, emptyList())
         resultMap[uploadMessage] = uploadMessageDependencies + Node(uploadJobId, attachmentKey.attachment.attachmentId)
 
         if (copyMessages.isNotEmpty()) {
-          val copyAttachments: Map<OutgoingMediaMessage, AttachmentId> = copyMessages.associateWith { insertAttachmentForPreUpload(attachmentKey.attachment).attachmentId }
+          val copyAttachments: Map<OutgoingMessage, AttachmentId> = copyMessages.associateWith { insertAttachmentForPreUpload(attachmentKey.attachment).attachmentId }
           val copyJob = AttachmentCopyJob(attachmentKey.attachment.attachmentId, copyAttachments.values.toList())
 
           copyAttachments.forEach { (message, attachmentId) ->

@@ -24,7 +24,7 @@ import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -84,11 +84,11 @@ public final class IdentityUtil {
             Recipient   groupRecipient = Recipient.resolved(recipientId);
             long        threadId       = SignalDatabase.threads().getOrCreateThreadIdFor(groupRecipient);
 
-            OutgoingMediaMessage outgoing;
+            OutgoingMessage outgoing;
             if (verified) {
-              outgoing = OutgoingMediaMessage.identityVerifiedMessage(recipient, time);
+              outgoing = OutgoingMessage.identityVerifiedMessage(recipient, time);
             } else {
-              outgoing = OutgoingMediaMessage.identityDefaultMessage(recipient, time);
+              outgoing = OutgoingMessage.identityDefaultMessage(recipient, time);
             }
 
             try {
@@ -110,11 +110,11 @@ public final class IdentityUtil {
 
       smsDatabase.insertMessageInbox(incoming);
     } else {
-      OutgoingMediaMessage outgoing;
+      OutgoingMessage outgoing;
       if (verified) {
-        outgoing = OutgoingMediaMessage.identityVerifiedMessage(recipient, time);
+        outgoing = OutgoingMessage.identityVerifiedMessage(recipient, time);
       } else {
-        outgoing = OutgoingMediaMessage.identityDefaultMessage(recipient, time);
+        outgoing = OutgoingMessage.identityDefaultMessage(recipient, time);
       }
 
       long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);

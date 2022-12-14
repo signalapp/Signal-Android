@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -243,7 +243,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               val splitThreadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(splitRecipient)
 
               val messageId: Long = SignalDatabase.sms.insertMessageOutbox(
-                OutgoingMediaMessage.text(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
+                OutgoingMessage.text(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
                 splitThreadId,
                 false,
                 null

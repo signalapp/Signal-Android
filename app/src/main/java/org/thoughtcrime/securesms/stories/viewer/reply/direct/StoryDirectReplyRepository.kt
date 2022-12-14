@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -43,7 +43,7 @@ class StoryDirectReplyRepository(context: Context) {
 
       MessageSender.send(
         context,
-        OutgoingMediaMessage(
+        OutgoingMessage(
           recipient,
           charSequence.toString(),
           emptyList(),

@@ -103,7 +103,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewUtil;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.StickerSlide;
@@ -774,8 +774,8 @@ public final class MessageContentProcessor {
     log(envelopeTimestamp, "Synchronize end session message.");
 
     MessageTable         database                  = SignalDatabase.sms();
-    Recipient            recipient                 = getSyncMessageDestination(message);
-    OutgoingMediaMessage outgoingEndSessionMessage = OutgoingMediaMessage.endSessionMessage(recipient, message.getTimestamp());
+    Recipient       recipient                 = getSyncMessageDestination(message);
+    OutgoingMessage outgoingEndSessionMessage = OutgoingMessage.endSessionMessage(recipient, message.getTimestamp());
 
     long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
@@ -1959,9 +1959,9 @@ public final class MessageContentProcessor {
     MessageTable database  = SignalDatabase.mms();
     Recipient    recipient = getSyncMessageDestination(message);
 
-    OutgoingMediaMessage expirationUpdateMessage = OutgoingMediaMessage.expirationUpdateMessage(recipient,
-                                                                                                message.getTimestamp(),
-                                                                                                TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds()));
+    OutgoingMessage expirationUpdateMessage = OutgoingMessage.expirationUpdateMessage(recipient,
+                                                                                      message.getTimestamp(),
+                                                                                      TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds()));
 
     long threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
     long messageId = database.insertMessageOutbox(expirationUpdateMessage, threadId, false, null);
@@ -2019,25 +2019,25 @@ public final class MessageContentProcessor {
         return -1L;
       }
 
-      OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
-                                                                   body,
-                                                                   Collections.emptyList(),
-                                                                   message.getTimestamp(),
-                                                                   -1,
-                                                                   expiresInMillis,
-                                                                   false,
-                                                                   ThreadTable.DistributionTypes.DEFAULT,
-                                                                   StoryType.NONE,
-                                                                   parentStoryId,
-                                                                   message.getDataMessage().get().getReaction().isPresent(),
-                                                                   quoteModel,
-                                                                   Collections.emptyList(),
-                                                                   Collections.emptyList(),
-                                                                   getMentions(message.getDataMessage().get().getMentions()).orElse(Collections.emptyList()),
-                                                                   Collections.emptySet(),
-                                                                   Collections.emptySet(),
-                                                                   null,
-                                                                   true);
+      OutgoingMessage mediaMessage = new OutgoingMessage(recipient,
+                                                         body,
+                                                         Collections.emptyList(),
+                                                         message.getTimestamp(),
+                                                         -1,
+                                                         expiresInMillis,
+                                                         false,
+                                                         ThreadTable.DistributionTypes.DEFAULT,
+                                                         StoryType.NONE,
+                                                         parentStoryId,
+                                                         message.getDataMessage().get().getReaction().isPresent(),
+                                                         quoteModel,
+                                                         Collections.emptyList(),
+                                                         Collections.emptyList(),
+                                                         getMentions(message.getDataMessage().get().getMentions()).orElse(Collections.emptyList()),
+                                                         Collections.emptySet(),
+                                                         Collections.emptySet(),
+                                                         null,
+                                                         true);
 
       if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
         handleSynchronizeSentExpirationUpdate(message);
@@ -2138,25 +2138,25 @@ public final class MessageContentProcessor {
       return;
     }
 
-    OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipient,
-                                                                 textStoryBody,
-                                                                 pendingAttachments,
-                                                                 sentAtTimestamp,
-                                                                 -1,
-                                                                 0,
-                                                                 false,
-                                                                 ThreadTable.DistributionTypes.DEFAULT,
-                                                                 storyType,
-                                                                 null,
-                                                                 false,
-                                                                 null,
-                                                                 Collections.emptyList(),
-                                                                 linkPreviews,
-                                                                 Collections.emptyList(),
-                                                                 Collections.emptySet(),
-                                                                 Collections.emptySet(),
-                                                                 null,
-                                                                 true);
+    OutgoingMessage mediaMessage = new OutgoingMessage(recipient,
+                                                       textStoryBody,
+                                                       pendingAttachments,
+                                                       sentAtTimestamp,
+                                                       -1,
+                                                       0,
+                                                       false,
+                                                       ThreadTable.DistributionTypes.DEFAULT,
+                                                       storyType,
+                                                       null,
+                                                       false,
+                                                       null,
+                                                       Collections.emptyList(),
+                                                       linkPreviews,
+                                                       Collections.emptyList(),
+                                                       Collections.emptySet(),
+                                                       Collections.emptySet(),
+                                                       null,
+                                                       true);
 
     MessageTable database = SignalDatabase.mms();
     long         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
@@ -2233,25 +2233,25 @@ public final class MessageContentProcessor {
       syncAttachments.add(sticker.get());
     }
 
-    OutgoingMediaMessage mediaMessage = new OutgoingMediaMessage(recipients,
-                                                                 message.getDataMessage().get().getBody().orElse(null),
-                                                                 syncAttachments,
-                                                                 message.getTimestamp(),
-                                                                 -1,
-                                                                 TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds()),
-                                                                 viewOnce,
-                                                                 ThreadTable.DistributionTypes.DEFAULT,
-                                                                 StoryType.NONE,
-                                                                 null,
-                                                                 false,
-                                                                 quote.orElse(null),
-                                                                 sharedContacts.orElse(Collections.emptyList()),
-                                                                 previews.orElse(Collections.emptyList()),
-                                                                 mentions.orElse(Collections.emptyList()),
-                                                                 Collections.emptySet(),
-                                                                 Collections.emptySet(),
-                                                                 giftBadge.orElse(null),
-                                                                 true);
+    OutgoingMessage mediaMessage = new OutgoingMessage(recipients,
+                                                       message.getDataMessage().get().getBody().orElse(null),
+                                                       syncAttachments,
+                                                       message.getTimestamp(),
+                                                       -1,
+                                                       TimeUnit.SECONDS.toMillis(message.getDataMessage().get().getExpiresInSeconds()),
+                                                       viewOnce,
+                                                       ThreadTable.DistributionTypes.DEFAULT,
+                                                       StoryType.NONE,
+                                                       null,
+                                                       false,
+                                                       quote.orElse(null),
+                                                       sharedContacts.orElse(Collections.emptyList()),
+                                                       previews.orElse(Collections.emptyList()),
+                                                       mentions.orElse(Collections.emptyList()),
+                                                       Collections.emptySet(),
+                                                       Collections.emptySet(),
+                                                       giftBadge.orElse(null),
+                                                       true);
 
     if (recipients.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);
@@ -2426,24 +2426,24 @@ public final class MessageContentProcessor {
     long         messageId;
 
     if (isGroup) {
-      OutgoingMediaMessage outgoingMediaMessage = new OutgoingMediaMessage(recipient,
-                                                                           new SlideDeck(),
-                                                                           body,
-                                                                           message.getTimestamp(),
-                                                                           -1,
-                                                                           expiresInMillis,
-                                                                           false,
-                                                                           StoryType.NONE,
-                                                                           Collections.emptyList(),
-                                                                           Collections.emptyList(),
-                                                                           true);
+      OutgoingMessage outgoingMessage = new OutgoingMessage(recipient,
+                                                            new SlideDeck(),
+                                                            body,
+                                                            message.getTimestamp(),
+                                                            -1,
+                                                            expiresInMillis,
+                                                            false,
+                                                            StoryType.NONE,
+                                                            Collections.emptyList(),
+                                                            Collections.emptyList(),
+                                                            true);
 
-      messageId = SignalDatabase.mms().insertMessageOutbox(outgoingMediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null);
+      messageId = SignalDatabase.mms().insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null);
       database  = SignalDatabase.mms();
 
       updateGroupReceiptStatus(message, messageId, recipient.requireGroupId());
     } else {
-      OutgoingMediaMessage outgoingTextMessage = OutgoingMediaMessage.text(recipient, body, expiresInMillis, message.getTimestamp());
+      OutgoingMessage outgoingTextMessage = OutgoingMessage.text(recipient, body, expiresInMillis, message.getTimestamp());
 
       messageId = SignalDatabase.sms().insertMessageOutbox(outgoingTextMessage, threadId, false, null);
       database  = SignalDatabase.sms();

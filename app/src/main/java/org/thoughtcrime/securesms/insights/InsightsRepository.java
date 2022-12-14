@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
@@ -78,7 +78,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
       int       subscriptionId = resolved.getDefaultSubscriptionId().orElse(-1);
       String    message        = context.getString(R.string.InviteActivity_lets_switch_to_signal, context.getString(R.string.install_url));
 
-      MessageSender.send(context, OutgoingMediaMessage.sms(resolved, message, subscriptionId), -1L, true, null, null);
+      MessageSender.send(context, OutgoingMessage.sms(resolved, message, subscriptionId), -1L, true, null, null);
 
       RecipientTable database = SignalDatabase.recipients();
       database.setHasSentInvite(recipient.getId());

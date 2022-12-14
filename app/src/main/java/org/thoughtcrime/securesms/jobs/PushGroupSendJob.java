@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -112,9 +112,9 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new AssertionError("Not a group!");
       }
 
-      MessageTable         database = SignalDatabase.mms();
-      OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
-      Set<String>          attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+      MessageTable    database            = SignalDatabase.mms();
+      OutgoingMessage message             = database.getOutgoingMessage(messageId);
+      Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       if (message.getGiftBadge() != null) {
         throw new MmsException("Cannot send a gift badge to a group!");
@@ -140,7 +140,7 @@ public final class PushGroupSendJob extends PushSendJob {
                              .build();
   }
 
-  private static boolean isGv2UpdateMessage(@NonNull OutgoingMediaMessage message) {
+  private static boolean isGv2UpdateMessage(@NonNull OutgoingMessage message) {
     return message.isGroupUpdate() && message.isV2Group();
   }
 
@@ -160,9 +160,9 @@ public final class PushGroupSendJob extends PushSendJob {
   {
     SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
 
-    MessageTable             database                   = SignalDatabase.mms();
-    OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
-    long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
+    MessageTable    database = SignalDatabase.mms();
+    OutgoingMessage message  = database.getOutgoingMessage(messageId);
+    long            threadId = database.getMessageRecord(messageId).getThreadId();
     Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
     Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
 
@@ -234,7 +234,7 @@ public final class PushGroupSendJob extends PushSendJob {
     SignalDatabase.mms().markAsSentFailed(messageId);
   }
 
-  private List<SendMessageResult> deliver(OutgoingMediaMessage message, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
+  private List<SendMessageResult> deliver(OutgoingMessage message, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
     try {
@@ -373,7 +373,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                          long messageId,
                                          long threadId,
                                          @Nullable Recipient groupRecipient,
-                                         @NonNull OutgoingMediaMessage message,
+                                         @NonNull OutgoingMessage message,
                                          @NonNull List<SendMessageResult> results,
                                          @NonNull List<Recipient> target,
                                          @NonNull List<RecipientId> skipped,

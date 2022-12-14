@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
 import org.thoughtcrime.securesms.mms.MediaConstraints
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -229,9 +229,9 @@ class MediaSelectionRepository(context: Context) {
     isViewOnce: Boolean,
     storyClips: List<Media>
   ) {
-    val nonStoryMessages: MutableList<OutgoingMediaMessage> = ArrayList(contacts.size)
-    val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingMediaMessage>> = mutableMapOf()
-    val storyClipMessages: MutableList<OutgoingMediaMessage> = ArrayList()
+    val nonStoryMessages: MutableList<OutgoingMessage> = ArrayList(contacts.size)
+    val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingMessage>> = mutableMapOf()
+    val storyClipMessages: MutableList<OutgoingMessage> = ArrayList()
     val distributionListPreUploadSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
     val distributionListStoryClipsSentTimestamps: MutableMap<MediaKey, Long> = mutableMapOf()
 
@@ -249,7 +249,7 @@ class MediaSelectionRepository(context: Context) {
         else -> StoryType.NONE
       }
 
-      val message = OutgoingMediaMessage(
+      val message = OutgoingMessage(
         recipient = recipient,
         body = body,
         sentTimeMillis = if (recipient.isDistributionList) distributionListPreUploadSentTimestamps.getOrPut(preUploadResults.first()) { System.currentTimeMillis() } else System.currentTimeMillis(),
@@ -279,7 +279,7 @@ class MediaSelectionRepository(context: Context) {
 
         storyClips.forEach {
           storyClipMessages.add(
-            OutgoingMediaMessage(
+            OutgoingMessage(
               recipient = recipient,
               body = body,
               attachments = listOf(MediaUploadRepository.asAttachment(context, it)),

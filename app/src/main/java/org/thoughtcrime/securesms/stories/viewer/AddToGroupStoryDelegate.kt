@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -102,7 +102,7 @@ class AddToGroupStoryDelegate(
       Log.d(TAG, "Sending preupload media.")
 
       val recipient = Recipient.resolved(result.recipientId)
-      val secureMessage = OutgoingMediaMessage(
+      val secureMessage = OutgoingMessage(
         recipient = recipient,
         timestamp = System.currentTimeMillis(),
         storyType = result.storyType,

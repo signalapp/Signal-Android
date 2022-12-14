@@ -4,7 +4,7 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Optional
 
@@ -28,7 +28,7 @@ object MmsHelper {
     giftBadge: GiftBadge? = null,
     secure: Boolean = true
   ): Long {
-    val message = OutgoingMediaMessage(
+    val message = OutgoingMessage(
       recipient = recipient,
       body = body,
       timestamp = sentTimeMillis,
@@ -50,7 +50,7 @@ object MmsHelper {
   }
 
   fun insert(
-    message: OutgoingMediaMessage,
+    message: OutgoingMessage,
     threadId: Long
   ): Long {
     return SignalDatabase.mms.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)

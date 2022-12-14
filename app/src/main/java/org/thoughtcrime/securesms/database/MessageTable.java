@@ -80,7 +80,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -2194,7 +2194,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     }
   }
 
-  public OutgoingMediaMessage getOutgoingMessage(long messageId)
+  public OutgoingMessage getOutgoingMessage(long messageId)
       throws MmsException, NoSuchMessageException
   {
     AttachmentTable attachmentDatabase = SignalDatabase.attachments();
@@ -2265,15 +2265,15 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return OutgoingMediaMessage.groupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
+          return OutgoingMessage.groupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
-          return OutgoingMediaMessage.expirationUpdateMessage(recipient, timestamp, expiresIn);
+          return OutgoingMessage.expirationUpdateMessage(recipient, timestamp, expiresIn);
         } else if (Types.isPaymentsNotification(outboxType)) {
-          return OutgoingMediaMessage.paymentNotificationMessage(recipient, Objects.requireNonNull(body), timestamp, expiresIn);
+          return OutgoingMessage.paymentNotificationMessage(recipient, Objects.requireNonNull(body), timestamp, expiresIn);
         } else if (Types.isPaymentsRequestToActivate(outboxType)) {
-          return OutgoingMediaMessage.requestToActivatePaymentsMessage(recipient, timestamp, expiresIn);
+          return OutgoingMessage.requestToActivatePaymentsMessage(recipient, timestamp, expiresIn);
         } else if (Types.isPaymentsActivated(outboxType)) {
-          return OutgoingMediaMessage.paymentsActivatedMessage(recipient, timestamp, expiresIn);
+          return OutgoingMessage.paymentsActivatedMessage(recipient, timestamp, expiresIn);
         }
 
         GiftBadge giftBadge = null;
@@ -2281,25 +2281,25 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
           giftBadge = GiftBadge.parseFrom(Base64.decode(body));
         }
 
-        OutgoingMediaMessage message = new OutgoingMediaMessage(recipient,
-                                                                body,
-                                                                attachments,
-                                                                timestamp,
-                                                                subscriptionId,
-                                                                expiresIn,
-                                                                viewOnce,
-                                                                distributionType,
-                                                                storyType,
-                                                                parentStoryId,
-                                                                Types.isStoryReaction(outboxType),
-                                                                quote,
-                                                                contacts,
-                                                                previews,
-                                                                mentions,
-                                                                networkFailures,
-                                                                mismatches,
-                                                                giftBadge,
-                                                                Types.isSecureType(outboxType));
+        OutgoingMessage message = new OutgoingMessage(recipient,
+                                                      body,
+                                                      attachments,
+                                                      timestamp,
+                                                      subscriptionId,
+                                                      expiresIn,
+                                                      viewOnce,
+                                                      distributionType,
+                                                      storyType,
+                                                      parentStoryId,
+                                                      Types.isStoryReaction(outboxType),
+                                                      quote,
+                                                      contacts,
+                                                      previews,
+                                                      mentions,
+                                                      networkFailures,
+                                                      mismatches,
+                                                      giftBadge,
+                                                      Types.isSecureType(outboxType));
 
         return message;
       }
@@ -2703,7 +2703,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     }
   }
 
-  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
+  public long insertMessageOutbox(@NonNull OutgoingMessage message,
                                   long threadId,
                                   boolean forceSms,
                                   @Nullable InsertListener insertListener)
@@ -2712,7 +2712,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     return insertMessageOutbox(message, threadId, forceSms, GroupReceiptTable.STATUS_UNDELIVERED, insertListener);
   }
 
-  public long insertMessageOutbox(@NonNull OutgoingMediaMessage message,
+  public long insertMessageOutbox(@NonNull OutgoingMessage message,
                                   long threadId, boolean forceSms, int defaultReceiptStatus,
                                   @Nullable InsertListener insertListener)
       throws MmsException
@@ -3335,7 +3335,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     return new SmsReader(cursor);
   }
 
-  public static OutgoingMmsReader readerFor(OutgoingMediaMessage message, long threadId) {
+  public static OutgoingMmsReader readerFor(OutgoingMessage message, long threadId) {
     return new OutgoingMmsReader(message, threadId);
   }
 
@@ -4263,12 +4263,12 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public static class OutgoingMmsReader {
 
-    private final Context              context;
-    private final OutgoingMediaMessage message;
-    private final long                 id;
+    private final Context         context;
+    private final OutgoingMessage message;
+    private final long            id;
     private final long                 threadId;
 
-    public OutgoingMmsReader(OutgoingMediaMessage message, long threadId) {
+    public OutgoingMmsReader(OutgoingMessage message, long threadId) {
       this.context  = ApplicationDependencies.getApplication();
       this.message  = message;
       this.id       = new SecureRandom().nextLong();

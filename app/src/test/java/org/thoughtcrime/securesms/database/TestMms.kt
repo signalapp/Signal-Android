@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.google.android.mms.pdu_alt.PduHeaders
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -30,7 +30,7 @@ object TestMms {
     threadId: Long = 1,
     storyType: StoryType = StoryType.NONE
   ): Long {
-    val message = OutgoingMediaMessage(
+    val message = OutgoingMessage(
       recipient,
       body,
       emptyList(),
@@ -66,7 +66,7 @@ object TestMms {
 
   fun insert(
     db: SQLiteDatabase,
-    message: OutgoingMediaMessage,
+    message: OutgoingMessage,
     recipientId: RecipientId = message.recipient.id,
     body: String = message.body,
     type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,

@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -82,35 +82,35 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
 
         switch (replyMethod) {
           case GroupMessage: {
-            OutgoingMediaMessage reply = new OutgoingMediaMessage(recipient,
-                                                                  responseText.toString(),
-                                                                  new LinkedList<>(),
-                                                                  System.currentTimeMillis(),
-                                                                  subscriptionId,
-                                                                  expiresIn,
-                                                                  false,
-                                                                  0,
-                                                                  StoryType.NONE,
-                                                                  parentStoryId,
-                                                                  false,
-                                                                  null,
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptyList(),
-                                                                  Collections.emptySet(),
-                                                                  Collections.emptySet(),
-                                                                  null,
-                                                                  recipient.isPushGroup());
+            OutgoingMessage reply = new OutgoingMessage(recipient,
+                                                        responseText.toString(),
+                                                        new LinkedList<>(),
+                                                        System.currentTimeMillis(),
+                                                        subscriptionId,
+                                                        expiresIn,
+                                                        false,
+                                                        0,
+                                                        StoryType.NONE,
+                                                        parentStoryId,
+                                                        false,
+                                                        null,
+                                                        Collections.emptyList(),
+                                                        Collections.emptyList(),
+                                                        Collections.emptyList(),
+                                                        Collections.emptySet(),
+                                                        Collections.emptySet(),
+                                                        null,
+                                                        recipient.isPushGroup());
             threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case SecureMessage: {
-            OutgoingMediaMessage reply = OutgoingMediaMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis());
+            OutgoingMessage reply = OutgoingMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis());
             threadId = MessageSender.send(context, reply, -1, false, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
-            OutgoingMediaMessage reply = OutgoingMediaMessage.sms(recipient, responseText.toString(), subscriptionId);
+            OutgoingMessage reply = OutgoingMessage.sms(recipient, responseText.toString(), subscriptionId);
             threadId = MessageSender.send(context, reply, -1, true, null, null);
             break;
           }

@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.net.NotPushRegisteredException;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -68,7 +68,7 @@ public final class PushGroupSilentUpdateSendJob extends BaseJob {
   public static @NonNull Job create(@NonNull Context context,
                                     @NonNull GroupId.V2 groupId,
                                     @NonNull DecryptedGroup decryptedGroup,
-                                    @NonNull OutgoingMediaMessage groupMessage)
+                                    @NonNull OutgoingMessage groupMessage)
   {
     List<UUID> memberUuids  = DecryptedGroupUtil.toUuidList(decryptedGroup.getMembersList());
     List<UUID> pendingUuids = DecryptedGroupUtil.pendingToUuidList(decryptedGroup.getPendingMembersList());
