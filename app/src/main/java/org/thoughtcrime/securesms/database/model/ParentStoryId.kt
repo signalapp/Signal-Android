@@ -12,7 +12,7 @@ import kotlin.math.abs
 sealed class ParentStoryId(protected val id: Long) {
   abstract fun serialize(): Long
 
-  fun asMessageId(): MessageId = MessageId(abs(id), true)
+  fun asMessageId(): MessageId = MessageId(abs(id))
   fun isGroupReply() = serialize() > 0
   fun isDirectReply() = !isGroupReply()
 

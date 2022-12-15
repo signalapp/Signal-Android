@@ -184,7 +184,7 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
       null
     ).use { cursor ->
       while (cursor.moveToNext()) {
-        messageIds += MessageId(cursor.requireLong(MESSAGE_ID), true)
+        messageIds += MessageId(cursor.requireLong(MESSAGE_ID))
       }
     }
 

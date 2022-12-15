@@ -34,13 +34,8 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @WorkerThread
   private synchronized void retrieveMessageRecordActual() {
-    retrieve(messageId.isMms() ? SignalDatabase.messages() : SignalDatabase.messages());
-  }
-
-  @WorkerThread
-  private synchronized void retrieve(MessageTable messageDatabase) {
     try {
-      MessageRecord record = messageDatabase.getMessageRecord(messageId.getId());
+      MessageRecord record = SignalDatabase.messages().getMessageRecord(messageId.getId());
 
       if (record.isPaymentNotification()) {
         record = SignalDatabase.payments().updateMessageWithPayment(record);

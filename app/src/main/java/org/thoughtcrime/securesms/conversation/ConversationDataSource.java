@@ -167,8 +167,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   @Override
   public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
     Stopwatch     stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
-    MessageTable  database  = messageId.isMms() ? SignalDatabase.messages() : SignalDatabase.messages();
-    MessageRecord record    = database.getMessageRecordOrNull(messageId.getId());
+    MessageRecord record    = SignalDatabase.messages().getMessageRecordOrNull(messageId.getId());
 
     if (record instanceof MediaMmsMessageRecord &&
         ((MediaMmsMessageRecord) record).getParentStoryId() != null &&
@@ -180,12 +179,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     try {
       if (record != null) {
-        List<Mention> mentions;
-        if (messageId.isMms()) {
-          mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
-        } else {
-          mentions = Collections.emptyList();
-        }
+        List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
 
         stopwatch.split("mentions");
 
@@ -194,11 +188,9 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
         stopwatch.split("reactions");
 
-        if (messageId.isMms()) {
-          List<DatabaseAttachment> attachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId.getId());
-          if (attachments.size() > 0) {
-            record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
-          }
+        List<DatabaseAttachment> attachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId.getId());
+        if (attachments.size() > 0) {
+          record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
         }
 
         stopwatch.split("attachments");
@@ -220,7 +212,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
   @Override
   public @NonNull MessageId getKey(@NonNull ConversationMessage conversationMessage) {
-    return new MessageId(conversationMessage.getMessageRecord().getId(), conversationMessage.getMessageRecord().isMms());
+    return new MessageId(conversationMessage.getMessageRecord().getId());
   }
 
   private static class MentionHelper {
@@ -281,7 +273,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     private Map<MessageId, List<ReactionRecord>> messageIdToReactions = new HashMap<>();
 
     public void add(MessageRecord record) {
-      messageIds.add(new MessageId(record.getId(), record.isMms()));
+      messageIds.add(new MessageId(record.getId()));
     }
 
     public void addAll(List<MessageRecord> records) {
@@ -297,7 +289,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
       return records.stream()
                     .map(record -> {
-                      MessageId            messageId = new MessageId(record.getId(), record.isMms());
+                      MessageId            messageId = new MessageId(record.getId());
                       List<ReactionRecord> reactions = messageIdToReactions.get(messageId);
 
                       return recordWithReactions(record, reactions);

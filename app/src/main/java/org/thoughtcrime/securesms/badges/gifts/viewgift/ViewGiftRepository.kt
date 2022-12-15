@@ -40,7 +40,7 @@ class ViewGiftRepository {
       }
 
       val messageObserver = DatabaseObserver.MessageObserver {
-        if (it.mms && messageId == it.id) {
+        if (messageId == it.id) {
           refresh()
         }
       }

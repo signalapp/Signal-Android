@@ -471,7 +471,7 @@ public final class MessageContentProcessor {
       Optional<InsertResult> insertResult = SignalDatabase.messages().insertSecureDecryptedMessageInbox(mediaMessage, -1);
       smsMessageId.ifPresent(smsId -> SignalDatabase.messages().deleteMessage(smsId));
       if (insertResult.isPresent()) {
-        messageId = new MessageId(insertResult.get().getMessageId(), true);
+        messageId = new MessageId(insertResult.get().getMessageId());
         ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       }
     } catch (PaymentTable.PublicKeyConflictException e) {
@@ -762,7 +762,7 @@ public final class MessageContentProcessor {
       SecurityEvent.broadcastSecurityUpdateEvent(context);
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
 
-      return new MessageId(insertResult.get().getMessageId(), true);
+      return new MessageId(insertResult.get().getMessageId());
     } else {
       return null;
     }
@@ -875,7 +875,7 @@ public final class MessageContentProcessor {
       }
 
       if (insertResult.isPresent()) {
-        return new MessageId(insertResult.get().getMessageId(), true);
+        return new MessageId(insertResult.get().getMessageId());
       }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
@@ -948,7 +948,7 @@ public final class MessageContentProcessor {
       }
 
       if (insertResult.isPresent()) {
-        return new MessageId(insertResult.get().getMessageId(), true);
+        return new MessageId(insertResult.get().getMessageId());
       }
     } catch (MmsException e) {
       throw new StorageFailedException(e, content.getSender().getIdentifier(), content.getSenderDevice());
@@ -1003,7 +1003,7 @@ public final class MessageContentProcessor {
       return null;
     }
 
-    MessageId targetMessageId = new MessageId(targetMessage.getId(), targetMessage.isMms());
+    MessageId targetMessageId = new MessageId(targetMessage.getId());
 
     if (reaction.isRemove()) {
       SignalDatabase.reactions().deleteReaction(targetMessageId, senderRecipient.getId());
@@ -1014,7 +1014,7 @@ public final class MessageContentProcessor {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false);
     }
 
-    return new MessageId(targetMessage.getId(), targetMessage.isMms());
+    return new MessageId(targetMessage.getId());
   }
 
   private @Nullable MessageId handleRemoteDelete(@NonNull SignalServiceContent content, @NonNull SignalServiceDataMessage message, @NonNull Recipient senderRecipient) {
@@ -1031,7 +1031,7 @@ public final class MessageContentProcessor {
         db.deleteRemotelyDeletedStory(targetMessage.getId());
       }
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.fromMessageRecord(targetMessage), false);
-      return new MessageId(targetMessage.getId(), targetMessage.isMms());
+      return new MessageId(targetMessage.getId());
     } else if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleRemoteDelete] Could not find matching message! timestamp: " + delete.getTargetSentTimestamp() + "  author: " + senderRecipient.getId());
       if (!processingEarlyContent) {
@@ -1684,7 +1684,7 @@ public final class MessageContentProcessor {
         }
 
         if (parentStoryId.isDirectReply()) {
-          return MessageId.fromNullable(insertResult.get().getMessageId(), true);
+          return MessageId.fromNullable(insertResult.get().getMessageId());
         } else {
           return null;
         }
@@ -1784,7 +1784,7 @@ public final class MessageContentProcessor {
         }
 
         if (parentStoryId.isDirectReply()) {
-          return MessageId.fromNullable(insertResult.get().getMessageId(), true);
+          return MessageId.fromNullable(insertResult.get().getMessageId());
         } else {
           return null;
         }
@@ -1855,7 +1855,7 @@ public final class MessageContentProcessor {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
       TrimThreadJob.enqueueAsync(insertResult.get().getThreadId());
 
-      return new MessageId(insertResult.get().getMessageId(), true);
+      return new MessageId(insertResult.get().getMessageId());
     } else {
       return null;
     }
@@ -1945,7 +1945,7 @@ public final class MessageContentProcessor {
         ApplicationDependencies.getViewOnceMessageManager().scheduleIfNecessary();
       }
 
-      return new MessageId(insertResult.get().getMessageId(), true);
+      return new MessageId(insertResult.get().getMessageId());
     } else {
       return null;
     }
@@ -2400,7 +2400,7 @@ public final class MessageContentProcessor {
 
     if (insertResult.isPresent()) {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(insertResult.get().getThreadId()));
-      return new MessageId(insertResult.get().getMessageId(), false);
+      return new MessageId(insertResult.get().getMessageId());
     } else {
       return null;
     }
@@ -2867,12 +2867,7 @@ public final class MessageContentProcessor {
   private @Nullable MessageRecord findRetryReceiptRelatedMessage(@NonNull Context context, @Nullable MessageLogEntry messageLogEntry, long sentTimestamp) {
     if (messageLogEntry != null && messageLogEntry.hasRelatedMessage()) {
       MessageId relatedMessage = messageLogEntry.getRelatedMessages().get(0);
-
-      if (relatedMessage.isMms()) {
-        return SignalDatabase.messages().getMessageRecordOrNull(relatedMessage.getId());
-      } else {
-        return SignalDatabase.messages().getMessageRecordOrNull(relatedMessage.getId());
-      }
+      return SignalDatabase.messages().getMessageRecordOrNull(relatedMessage.getId());
     } else {
       return SignalDatabase.mmsSms().getMessageFor(sentTimestamp, Recipient.self().getId());
     }

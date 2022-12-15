@@ -259,7 +259,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
         messageValues += ContentValues().apply {
           put(MessageTable.PAYLOAD_ID, payloadId)
           put(MessageTable.MESSAGE_ID, messageId.id)
-          put(MessageTable.IS_MMS, if (messageId.mms) 1 else 0)
+          put(MessageTable.IS_MMS, 0)
         }
       }
       SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, arrayOf(MessageTable.PAYLOAD_ID, MessageTable.MESSAGE_ID, MessageTable.IS_MMS), messageValues)
@@ -292,8 +292,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
           while (messageCursor.moveToNext()) {
             messageIds.add(
               MessageId(
-                id = CursorUtil.requireLong(messageCursor, MessageTable.MESSAGE_ID),
-                mms = CursorUtil.requireBoolean(messageCursor, MessageTable.IS_MMS)
+                id = CursorUtil.requireLong(messageCursor, MessageTable.MESSAGE_ID)
               )
             )
           }

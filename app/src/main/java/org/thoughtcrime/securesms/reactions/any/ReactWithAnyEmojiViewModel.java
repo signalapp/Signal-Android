@@ -54,7 +54,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
     this.searchResults         = BehaviorSubject.createDefault(new EmojiSearchResult());
     this.selectedKey           = BehaviorSubject.createDefault(getStartingKey());
 
-    Observable<List<ReactWithAnyEmojiPage>> emojiPages = new ReactionsRepository().getReactions(new MessageId(messageId, isMms))
+    Observable<List<ReactWithAnyEmojiPage>> emojiPages = new ReactionsRepository().getReactions(new MessageId(messageId))
                                                                                   .map(repository::getEmojiPageModels);
 
     Observable<MappingModelList> emojiList = emojiPages.map(pages -> {
@@ -111,7 +111,7 @@ public final class ReactWithAnyEmojiViewModel extends ViewModel {
   void onEmojiSelected(@NonNull String emoji) {
     if (messageId > 0) {
       SignalStore.emojiValues().setPreferredVariation(emoji);
-      repository.addEmojiToMessage(emoji, new MessageId(messageId, isMms));
+      repository.addEmojiToMessage(emoji, new MessageId(messageId));
     }
   }
 

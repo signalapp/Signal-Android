@@ -83,7 +83,7 @@ object SafetyNumberBottomSheet {
     val args = SafetyNumberBottomSheetArgs(
       untrustedRecipients = messageRecord.identityKeyMismatches.map { it.getRecipientId(context) },
       destinations = getDestinationFromRecord(messageRecord),
-      messageId = MessageId(messageRecord.id, messageRecord.isMms)
+      messageId = MessageId(messageRecord.id)
     )
 
     return SheetFactory(args)

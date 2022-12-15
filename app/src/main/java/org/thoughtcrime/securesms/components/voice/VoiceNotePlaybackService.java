@@ -264,7 +264,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
           ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(markedMessageInfo.getThreadId(),
                                                                                recipientId,
                                                                                markedMessageInfo.getSyncMessageId().getTimetamp(),
-                                                                               new MessageId(messageId, true)));
+                                                                               new MessageId(messageId)));
           MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
         }
       });

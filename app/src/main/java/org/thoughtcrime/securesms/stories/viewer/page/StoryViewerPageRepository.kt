@@ -99,7 +99,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       val recipient = Recipient.resolved(recipientId)
 
       val messageUpdateObserver = DatabaseObserver.MessageObserver {
-        if (it.mms && it.id == recordId) {
+        if (it.id == recordId) {
           try {
             val messageRecord = SignalDatabase.messages.getMessageRecord(recordId)
             if (messageRecord.isRemoteDelete) {
@@ -185,7 +185,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
                 markedMessageInfo.threadId,
                 storyPost.sender.id,
                 markedMessageInfo.syncMessageId.timetamp,
-                MessageId(storyPost.id, true)
+                MessageId(storyPost.id)
               )
             )
             MultiDeviceViewedUpdateJob.enqueue(listOf(markedMessageInfo.syncMessageId))

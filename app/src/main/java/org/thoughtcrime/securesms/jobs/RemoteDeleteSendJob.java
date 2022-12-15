@@ -229,7 +229,7 @@ public class RemoteDeleteSendJob extends BaseJob {
                                                                                    destinations,
                                                                                    false,
                                                                                    ContentHint.RESENDABLE,
-                                                                                   new MessageId(messageId, isMms),
+                                                                                   new MessageId(messageId),
                                                                                    dataMessage,
                                                                                    true,
                                                                                    isForStory);

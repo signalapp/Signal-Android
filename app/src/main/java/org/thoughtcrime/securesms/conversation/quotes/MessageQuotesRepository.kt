@@ -48,11 +48,7 @@ class MessageQuotesRepository {
   private fun getMessagesInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
     val rootMessageId: MessageId = SignalDatabase.mmsSms.getRootOfQuoteChain(messageId)
 
-    var originalRecord: MessageRecord? = if (rootMessageId.mms) {
-      SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
-    } else {
-      SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
-    }
+    var originalRecord: MessageRecord? = SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
 
     if (originalRecord == null) {
       return emptyList()

@@ -2502,9 +2502,9 @@ public class ConversationParentFragment extends Fragment
                                        .orElse(null);
 
       if (oldRecord != null && oldRecord.getEmoji().equals(emoji)) {
-        MessageSender.sendReactionRemoval(context, new MessageId(messageRecord.getId(), messageRecord.isMms()), oldRecord);
+        MessageSender.sendReactionRemoval(context, new MessageId(messageRecord.getId()), oldRecord);
       } else {
-        MessageSender.sendNewReaction(context, new MessageId(messageRecord.getId(), messageRecord.isMms()), emoji);
+        MessageSender.sendNewReaction(context, new MessageId(messageRecord.getId()), emoji);
       }
     });
   }
@@ -2522,7 +2522,7 @@ public class ConversationParentFragment extends Fragment
       reactionDelegate.hide();
 
       SignalExecutors.BOUNDED.execute(() -> MessageSender.sendReactionRemoval(context,
-                                                                              new MessageId(messageRecord.getId(), messageRecord.isMms()),
+                                                                              new MessageId(messageRecord.getId()),
                                                                               oldRecord));
     } else {
       reactionDelegate.hideForReactWithAny();

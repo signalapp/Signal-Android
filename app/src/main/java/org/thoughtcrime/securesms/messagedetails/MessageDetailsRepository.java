@@ -37,7 +37,7 @@ public final class MessageDetailsRepository {
   private final Context context = ApplicationDependencies.getApplication();
 
   @NonNull LiveData<MessageRecord> getMessageRecord(Long messageId) {
-    return new MessageRecordLiveData(new MessageId(messageId, true));
+    return new MessageRecordLiveData(new MessageId(messageId));
   }
 
   @NonNull LiveData<MessageDetails> getMessageDetails(@Nullable MessageRecord messageRecord) {
@@ -56,9 +56,7 @@ public final class MessageDetailsRepository {
     return Observable.<MessageDetails>create(emitter -> {
       DatabaseObserver.MessageObserver messageObserver = mId -> {
         try {
-          MessageRecord messageRecord = messageId.isMms() ? SignalDatabase.messages().getMessageRecord(messageId.getId())
-                                                          : SignalDatabase.messages().getMessageRecord(messageId.getId());
-
+          MessageRecord  messageRecord  = SignalDatabase.messages().getMessageRecord(messageId.getId());
           MessageDetails messageDetails = getRecipientDeliveryStatusesInternal(messageRecord);
 
           emitter.onNext(messageDetails);

@@ -454,7 +454,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       db.endTransaction();
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id, false));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(id));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
@@ -498,7 +498,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         SyncMessageId  syncMessageId = new SyncMessageId(recipientId, dateSent);
         StoryType      storyType     = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
-        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
       }
 
       return results;
@@ -536,7 +536,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
           long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
           SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
 
-          results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
+          results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
 
           ContentValues contentValues = new ContentValues();
           contentValues.put(VIEWED_RECEIPT_COUNT, 1);
@@ -575,7 +575,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
         StoryType     storyType    = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
-        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), null));
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(VIEWED_RECEIPT_COUNT, 1);
@@ -1327,7 +1327,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         RecipientId rowRecipientId = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(RECIPIENT_ID)));
 
         if (Recipient.self().getId().equals(authorId) || rowRecipientId.equals(authorId)) {
-          return new MessageId(CursorUtil.requireLong(cursor, ID), true);
+          return new MessageId(CursorUtil.requireLong(cursor, ID));
         }
       }
     }
@@ -1700,7 +1700,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
             SignalDatabase.groupReceipts().update(ourRecipientId, id, status, timestamp);
 
-            messageUpdates.add(new MessageUpdate(threadId, new MessageId(id, true)));
+            messageUpdates.add(new MessageUpdate(threadId, new MessageId(id)));
           }
         }
       }
@@ -1855,13 +1855,13 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public void markAsForcedSms(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT, Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void markAsRateLimited(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, 0, Types.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void clearRateLimitStatus(@NonNull Collection<Long> ids) {
@@ -1883,27 +1883,27 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public void markAsPendingInsecureSmsFallback(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK, Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void markAsSending(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   public void markAsSentFailed(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE, Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   public void markAsSent(long messageId, boolean secure) {
     long threadId = getThreadIdForMessage(messageId);
     updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
@@ -1930,7 +1930,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       deletedAttachments = SignalDatabase.attachments().deleteAttachmentsForMessage(messageId);
       SignalDatabase.mentions().deleteMentionsForMessage(messageId);
       SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
-      SignalDatabase.reactions().deleteReactions(new MessageId(messageId, true));
+      SignalDatabase.reactions().deleteReactions(new MessageId(messageId));
       deleteGroupStoryReplies(messageId);
       disassociateStoryQuotes(messageId);
 
@@ -1942,7 +1942,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       db.endTransaction();
     }
 
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
 
     if (deletedAttachments) {
@@ -1956,7 +1956,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     contentValues.put(MMS_STATUS, state);
 
     database.update(TABLE_NAME, contentValues, ID_WHERE, new String[] {messageId + ""});
-    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void markAsInsecure(long messageId) {
@@ -2035,7 +2035,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public @NonNull List<StoryType> getStoryTypes(@NonNull List<MessageId> messageIds) {
     List<Long> mmsMessages = messageIds.stream()
-                                       .filter(MessageId::isMms)
                                        .map(MessageId::getId)
                                        .collect(java.util.stream.Collectors.toList());
 
@@ -2056,7 +2055,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     }
 
     return messageIds.stream().map(id -> {
-      if (id.isMms() && storyTypes.containsKey(id.getId())) {
+      if (storyTypes.containsKey(id.getId())) {
         return storyTypes.get(id.getId());
       } else {
         return StoryType.NONE;
@@ -2096,7 +2095,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
           StoryType      storyType      = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
           if (!recipientId.equals(releaseChannelId)) {
-            result.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId, true), expirationInfo));
+            result.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), expirationInfo));
           }
         }
       }
@@ -2698,7 +2697,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     }
 
     if (updated) {
-      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId, true));
+      ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
       notifyConversationListeners(threadId);
     }
   }
@@ -2863,7 +2862,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
     if (!message.getStoryType().isStory()) {
       if (message.getOutgoingQuote() == null) {
-        ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId, true));
+        ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId));
       } else {
         ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId);
       }
@@ -3702,7 +3701,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
     long id = CursorExtensionsKt.readToSingleLong(cursor, -1);
     if (id != -1) {
-      return new MessageId(id, TABLE_NAME.equals(MessageTable.TABLE_NAME));
+      return new MessageId(id);
     } else {
       return null;
     }

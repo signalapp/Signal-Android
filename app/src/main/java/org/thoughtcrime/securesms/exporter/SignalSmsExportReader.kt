@@ -167,7 +167,7 @@ class SignalSmsExportReader(
       val sender: String = if (record.isOutgoing) Recipient.self().smsExportAddress() else record.individualRecipient.smsExportAddress()
 
       return ExportableMessage.Mms(
-        id = MessageId(record.id, record.isMms),
+        id = MessageId(record.id),
         exportState = mapExportState(exportState),
         addresses = addresses,
         dateReceived = record.dateReceived.milliseconds,
@@ -186,7 +186,7 @@ class SignalSmsExportReader(
         readExportableMmsMessageFromRecord(record, exportState)
       } else {
         ExportableMessage.Sms(
-          id = MessageId(record.id, record.isMms),
+          id = MessageId(record.id),
           exportState = mapExportState(exportState),
           address = record.recipient.smsExportAddress(),
           dateReceived = record.dateReceived.milliseconds,

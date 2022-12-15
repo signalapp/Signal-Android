@@ -96,7 +96,7 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       messageAdapter.submitList(messages) {
         if (firstRender) {
           val targetMessageId = MessageId.deserialize(arguments?.getString(KEY_MESSAGE_ID, null) ?: throw IllegalArgumentException())
-          val targetMessagePosition = messages.indexOfFirst { it.messageRecord.id == targetMessageId.id && it.messageRecord.isMms == targetMessageId.mms }
+          val targetMessagePosition = messages.indexOfFirst { it.messageRecord.id == targetMessageId.id }
 
           (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(targetMessagePosition, 100)
 

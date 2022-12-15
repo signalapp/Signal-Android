@@ -107,7 +107,7 @@ public class MarkReadReceiverTest {
   private MessageTable.MarkedMessageInfo createMarkedMessageInfo(long threadId, @NonNull RecipientId recipientId) {
     return new MessageTable.MarkedMessageInfo(threadId,
                                               new MessageTable.SyncMessageId(recipientId, 0),
-                                              new MessageId(1, true),
+                                              new MessageId(1),
                                               new MessageTable.ExpirationInfo(0, 0, 0, false));
   }
 }

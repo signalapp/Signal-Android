@@ -1758,7 +1758,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       if (getContext() != null && getActivity() != null) {
         MessageQuotesBottomSheet.show(
             getChildFragmentManager(),
-            new MessageId(messageRecord.getId(), messageRecord.isMms()),
+            new MessageId(messageRecord.getId()),
             recipient.getId()
         );
       }

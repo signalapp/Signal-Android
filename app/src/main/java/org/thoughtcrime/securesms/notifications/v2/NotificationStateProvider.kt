@@ -53,7 +53,7 @@ object NotificationStateProvider {
 
             messages += NotificationMessage(
               messageRecord = record,
-              reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id, record.isMms)) else emptyList(),
+              reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id)) else emptyList(),
               threadRecipient = threadRecipient,
               thread = conversationId,
               stickyThread = stickyThreads.containsKey(conversationId),

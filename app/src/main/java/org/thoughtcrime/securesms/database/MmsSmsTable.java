@@ -277,10 +277,6 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public MessageId getRootOfQuoteChain(@NonNull MessageId id) {
-    if (!id.isMms()) {
-      return id;
-    }
-
     MmsMessageRecord targetMessage;
     try {
       targetMessage = (MmsMessageRecord) SignalDatabase.messages().getMessageRecord(id.getId());
@@ -302,7 +298,7 @@ public class MmsSmsTable extends DatabaseTable {
     try (Reader reader = new Reader(queryTables(PROJECTION, query, null, "1", false))) {
       MessageRecord record;
       if ((record = reader.getNext()) != null) {
-        return getRootOfQuoteChain(new MessageId(record.getId(), record.isMms()));
+        return getRootOfQuoteChain(new MessageId(record.getId()));
       }
     }
 
@@ -312,7 +308,7 @@ public class MmsSmsTable extends DatabaseTable {
   public List<MessageRecord> getAllMessagesThatQuote(@NonNull MessageId id) {
     MessageRecord targetMessage;
     try {
-      targetMessage = id.isMms() ? SignalDatabase.messages().getMessageRecord(id.getId()) : SignalDatabase.messages().getMessageRecord(id.getId());
+      targetMessage = SignalDatabase.messages().getMessageRecord(id.getId());
     } catch (NoSuchMessageException e) {
       throw new IllegalArgumentException("Invalid message ID!");
     }
@@ -327,7 +323,7 @@ public class MmsSmsTable extends DatabaseTable {
       MessageRecord record;
       while ((record = reader.getNext()) != null) {
         records.add(record);
-        records.addAll(getAllMessagesThatQuote(new MessageId(record.getId(), record.isMms())));
+        records.addAll(getAllMessagesThatQuote(new MessageId(record.getId())));
       }
     }
 
@@ -442,11 +438,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public long getThreadId(MessageId messageId) {
-    if (messageId.isMms()) {
-      return SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
-    } else {
-      return SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
-    }
+    return SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
   }
 
   /**

@@ -274,7 +274,7 @@ public final class PushGroupSendJob extends PushSendJob {
             throw new UndeliverableMessageException("No attachment on non-text story.");
           }
 
-          return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId, true), message.getSentTimeMillis(), storyMessage);
+          return GroupSendUtil.sendGroupStoryMessage(context, groupId.requireV2(), destinations, isRecipientUpdate, new MessageId(messageId), message.getSentTimeMillis(), storyMessage);
         } else {
           throw new UndeliverableMessageException("No group found! " + groupId);
         }
@@ -296,7 +296,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                               .withExpiration(groupRecipient.getExpiresInSeconds())
                                                                               .asGroupMessage(group)
                                                                               .build();
-          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId, true), groupDataMessage, message.isUrgent(), false);
+          return GroupSendUtil.sendResendableDataMessage(context, groupRecipient.requireGroupId().requireV2(), null, destinations, isRecipientUpdate, ContentHint.IMPLICIT, new MessageId(messageId), groupDataMessage, message.isUrgent(), false);
         } else {
           throw new UndeliverableMessageException("Messages can no longer be sent to V1 groups!");
         }
@@ -355,7 +355,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                        destinations,
                                                        isRecipientUpdate,
                                                        ContentHint.RESENDABLE,
-                                                       new MessageId(messageId, true),
+                                                       new MessageId(messageId),
                                                        groupMessageBuilder.build(),
                                                        message.isUrgent(),
                                                        message.getStoryType().isStory() || message.getParentStoryId() != null);
