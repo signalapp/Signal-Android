@@ -242,13 +242,13 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               val splitRecipient: Recipient = Recipient.resolved(splitRecipientId)
               val splitThreadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(splitRecipient)
 
-              val messageId: Long = SignalDatabase.sms.insertMessageOutbox(
+              val messageId: Long = SignalDatabase.messages.insertMessageOutbox(
                 OutgoingMessage.text(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
                 splitThreadId,
                 false,
                 null
               )
-              SignalDatabase.sms.markAsSent(messageId, true)
+              SignalDatabase.messages.markAsSent(messageId, true)
 
               SignalDatabase.threads.update(splitThreadId, true)
 

@@ -124,9 +124,9 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       writableDatabase.insert(TABLE_NAME, null, values)
 
       if (messageId.mms) {
-        SignalDatabase.mms.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
+        SignalDatabase.messages.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
       } else {
-        SignalDatabase.sms.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
+        SignalDatabase.messages.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), false)
       }
 
       writableDatabase.setTransactionSuccessful()
@@ -146,9 +146,9 @@ class ReactionTable(context: Context, databaseHelper: SignalDatabase) : Database
       writableDatabase.delete(TABLE_NAME, query, args)
 
       if (messageId.mms) {
-        SignalDatabase.mms.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
+        SignalDatabase.messages.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
       } else {
-        SignalDatabase.sms.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
+        SignalDatabase.messages.updateReactionsUnread(writableDatabase, messageId.id, hasReactions(messageId), true)
       }
 
       writableDatabase.setTransactionSuccessful()

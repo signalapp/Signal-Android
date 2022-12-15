@@ -515,7 +515,7 @@ public class GroupsV2StateProcessor {
       OutgoingMessage         leaveMessage            = OutgoingMessage.groupUpdateMessage(groupRecipient, decryptedGroupV2Context, System.currentTimeMillis());
 
       try {
-        MessageTable mmsDatabase = SignalDatabase.mms();
+        MessageTable mmsDatabase = SignalDatabase.messages();
         ThreadTable  threadTable = SignalDatabase.threads();
         long         threadId    = threadTable.getOrCreateThreadIdFor(groupRecipient);
         long         id          = mmsDatabase.insertMessageOutbox(leaveMessage, threadId, false, null);
@@ -738,7 +738,7 @@ public class GroupsV2StateProcessor {
 
       if (outgoing) {
         try {
-          MessageTable    mmsDatabase     = SignalDatabase.mms();
+          MessageTable    mmsDatabase     = SignalDatabase.messages();
           ThreadTable     threadTable     = SignalDatabase.threads();
           RecipientId     recipientId     = recipientTable.getOrInsertFromGroupId(groupId);
           Recipient       recipient       = Recipient.resolved(recipientId);
@@ -752,7 +752,7 @@ public class GroupsV2StateProcessor {
           Log.w(TAG, e);
         }
       } else {
-        MessageTable                        smsDatabase  = SignalDatabase.sms();
+        MessageTable                        smsDatabase  = SignalDatabase.messages();
         RecipientId                         sender       = RecipientId.from(editor.get());
         IncomingTextMessage                    incoming     = new IncomingTextMessage(sender, -1, timestamp, timestamp, timestamp, "", Optional.of(groupId), 0, false, null);
         IncomingGroupUpdateMessage          groupMessage = new IncomingGroupUpdateMessage(incoming, decryptedGroupV2Context);

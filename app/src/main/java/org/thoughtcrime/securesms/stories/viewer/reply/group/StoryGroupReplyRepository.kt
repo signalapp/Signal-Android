@@ -24,7 +24,7 @@ class StoryGroupReplyRepository {
 
   fun getThreadId(storyId: Long): Single<Long> {
     return Single.fromCallable {
-      SignalDatabase.mms.getThreadIdForMessage(storyId)
+      SignalDatabase.messages.getThreadIdForMessage(storyId)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -56,7 +56,7 @@ class StoryGroupReplyRepository {
   }
 
   fun getNameColorsMap(storyId: Long, sessionMemberCache: MutableMap<GroupId, Set<Recipient>>): Observable<Map<RecipientId, NameColor>> {
-    return Single.fromCallable { SignalDatabase.mms.getMessageRecord(storyId).individualRecipient.id }
+    return Single.fromCallable { SignalDatabase.messages.getMessageRecord(storyId).individualRecipient.id }
       .subscribeOn(Schedulers.io())
       .flatMapObservable { recipientId ->
         Observable.create<Map<RecipientId, NameColor>?> { emitter ->

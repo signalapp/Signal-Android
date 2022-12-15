@@ -184,7 +184,7 @@ class StorySendTableTest {
   @Test
   fun getRemoteDeleteRecipients_overlapWithPreviousDeletes() {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
-    SignalDatabase.mms.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsRemoteDelete(messageId1)
 
     storySends.insert(messageId2, recipients6to15, 200, true, distributionId2)
 
@@ -281,7 +281,7 @@ class StorySendTableTest {
   fun givenTwoStoriesAndOneIsRemoteDeleted_whenIGetFullSentStorySyncManifestForStory2_thenIExpectNonNullResult() {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
     storySends.insert(messageId2, recipients1to10, 200, true, distributionId2)
-    SignalDatabase.mms.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsRemoteDelete(messageId1)
 
     val manifest = storySends.getFullSentStorySyncManifest(messageId2, 200)!!
 
@@ -294,7 +294,7 @@ class StorySendTableTest {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
     storySends.insert(messageId1, recipients11to20, 200, false, distributionId1)
     storySends.insert(messageId2, recipients1to10, 200, true, distributionId2)
-    SignalDatabase.mms.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsRemoteDelete(messageId1)
 
     val recipientIds = storySends.getRecipientIdsForManifestUpdate(200, messageId1)
 
@@ -306,7 +306,7 @@ class StorySendTableTest {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
     storySends.insert(messageId2, recipients1to10, 200, true, distributionId2)
     storySends.insert(messageId2, recipients11to20, 200, true, distributionId2)
-    SignalDatabase.mms.markAsRemoteDelete(messageId1)
+    SignalDatabase.messages.markAsRemoteDelete(messageId1)
     val recipientIds = storySends.getRecipientIdsForManifestUpdate(200, messageId1)
 
     val results = storySends.getSentStorySyncManifestForUpdate(200, recipientIds)
@@ -319,7 +319,7 @@ class StorySendTableTest {
   fun givenTwoStoriesAndTheOneThatAllowedRepliesIsRemoteDeleted_whenIGetPartialSentStorySyncManifest_thenIExpectAllowRepliesToBeTrue() {
     storySends.insert(messageId1, recipients1to10, 200, false, distributionId1)
     storySends.insert(messageId2, recipients1to10, 200, true, distributionId2)
-    SignalDatabase.mms.markAsRemoteDelete(messageId2)
+    SignalDatabase.messages.markAsRemoteDelete(messageId2)
     val recipientIds = storySends.getRecipientIdsForManifestUpdate(200, messageId1)
 
     val results = storySends.getSentStorySyncManifestForUpdate(200, recipientIds)
@@ -377,7 +377,7 @@ class StorySendTableTest {
 
     storySends.applySentStoryManifest(remote, 200)
 
-    SignalDatabase.mms.getMessageRecord(messageId5)
+    SignalDatabase.messages.getMessageRecord(messageId5)
     fail("Expected messageId5 to no longer exist.")
   }
 
@@ -402,7 +402,7 @@ class StorySendTableTest {
 
     storySends.applySentStoryManifest(remote, 200)
 
-    assertFalse(SignalDatabase.mms.getMessageRecord(messageId4).isRemoteDelete)
+    assertFalse(SignalDatabase.messages.getMessageRecord(messageId4).isRemoteDelete)
   }
 
   @Test

@@ -115,7 +115,7 @@ class ConversationRepository {
 
   void markGiftBadgeRevealed(long messageId) {
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      List<MessageTable.MarkedMessageInfo> markedMessageInfo = SignalDatabase.mms().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
+      List<MessageTable.MarkedMessageInfo> markedMessageInfo = SignalDatabase.messages().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
       if (!markedMessageInfo.isEmpty()) {
         Log.d(TAG, "Marked gift badge revealed. Sending view sync message.");
         MultiDeviceViewedUpdateJob.enqueue(
@@ -208,7 +208,7 @@ class ConversationRepository {
       }
 
       if (RecipientUtil.isSmsOnly(threadId, recipient) && (!recipient.isMmsGroup() || Util.isDefaultSmsProvider(context))) {
-        SignalDatabase.sms().insertSmsExportMessage(recipient.getId(), threadId);
+        SignalDatabase.messages().insertSmsExportMessage(recipient.getId(), threadId);
       }
     });
   }

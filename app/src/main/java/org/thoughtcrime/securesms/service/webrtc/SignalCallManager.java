@@ -345,7 +345,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
           Long threadId = SignalDatabase.threads().getThreadIdFor(group.getId());
 
           if (threadId != null) {
-            SignalDatabase.sms()
+            SignalDatabase.messages()
                           .updatePreviousGroupCall(threadId,
                                                    peekInfo.getEraId(),
                                                    peekInfo.getJoinedMembers(),
@@ -826,14 +826,14 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   public void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
+    Pair<Long, Long> messageAndThreadId = SignalDatabase.messages().insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
                            .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
   }
 
   public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = SignalDatabase.sms().insertReceivedCall(remotePeer.getId(), isVideoOffer);
+    Pair<Long, Long> messageAndThreadId = SignalDatabase.messages().insertReceivedCall(remotePeer.getId(), isVideoOffer);
 
     ApplicationDependencies.getMessageNotifier()
                            .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
@@ -879,7 +879,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   }
 
   public void updateGroupCallUpdateMessage(@NonNull RecipientId groupId, @Nullable String groupCallEraId, @NonNull Collection<UUID> joinedMembers, boolean isCallFull) {
-    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.sms().insertOrUpdateGroupCall(groupId,
+    SignalExecutors.BOUNDED.execute(() -> SignalDatabase.messages().insertOrUpdateGroupCall(groupId,
                                                                                        Recipient.self().getId(),
                                                                                        System.currentTimeMillis(),
                                                                                        groupCallEraId,

@@ -76,7 +76,7 @@ public class MmsReceiveJob extends BaseJob {
     } else if (isNotification(pdu) && isSelf(pdu)) {
       Log.w(TAG, "Received an MMS from ourselves! Ignoring.");
     } else if (isNotification(pdu)) {
-      MessageTable     database           = SignalDatabase.mms();
+      MessageTable     database           = SignalDatabase.messages();
       Pair<Long, Long> messageAndThreadId = database.insertMessageInbox((NotificationInd)pdu, subscriptionId);
 
       Log.i(TAG, "Inserted received MMS notification...");

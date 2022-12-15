@@ -2440,7 +2440,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         }
         is PnpOperation.ChangeNumberInsert -> {
           if (changeSet.id is PnpIdResolver.PnpNoopId) {
-            SignalDatabase.sms.insertNumberChangeMessages(changeSet.id.recipientId)
+            SignalDatabase.messages.insertNumberChangeMessages(changeSet.id.recipientId)
           } else {
             throw IllegalStateException("There's a change number event on a newly-inserted recipient?")
           }
@@ -3558,7 +3558,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         mergeEvent.previousE164 = secondaryRecord.e164
       }
 
-      SignalDatabase.sms.insertThreadMergeEvent(primaryRecord.id, threadMerge.threadId, mergeEvent.build())
+      SignalDatabase.messages.insertThreadMergeEvent(primaryRecord.id, threadMerge.threadId, mergeEvent.build())
     }
 
     // Recipient

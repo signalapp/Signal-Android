@@ -53,13 +53,13 @@ object MmsHelper {
     message: OutgoingMessage,
     threadId: Long
   ): Long {
-    return SignalDatabase.mms.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
+    return SignalDatabase.messages.insertMessageOutbox(message, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null)
   }
 
   fun insert(
     message: IncomingMediaMessage,
     threadId: Long
   ): Optional<MessageTable.InsertResult> {
-    return SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, threadId)
+    return SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, threadId)
   }
 }

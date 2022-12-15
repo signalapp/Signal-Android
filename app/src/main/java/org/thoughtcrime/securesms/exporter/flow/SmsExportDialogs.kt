@@ -19,8 +19,8 @@ object SmsExportDialogs {
       }
       .setNegativeButton(R.string.RemoveSmsMessagesDialogFragment__remove_messages) { _, _ ->
         SignalExecutors.BOUNDED.execute {
-          SignalDatabase.sms.deleteExportedMessages()
-          SignalDatabase.mms.deleteExportedMessages()
+          SignalDatabase.messages.deleteExportedMessages()
+          SignalDatabase.messages.deleteExportedMessages()
         }
         Snackbar.make(view, R.string.SmsSettingsFragment__removing_sms_messages_from_signal, Snackbar.LENGTH_SHORT).show()
       }

@@ -245,7 +245,7 @@ public class LegacyMigrationJob extends MigrationJob {
 
   private void schedulePendingIncomingParts(Context context) {
     final AttachmentTable          attachmentDb       = SignalDatabase.attachments();
-    final MessageTable             mmsDb              = SignalDatabase.mms();
+    final MessageTable             mmsDb              = SignalDatabase.messages();
     final List<DatabaseAttachment> pendingAttachments = SignalDatabase.attachments().getPendingAttachments();
 
     Log.i(TAG, pendingAttachments.size() + " pending parts.");

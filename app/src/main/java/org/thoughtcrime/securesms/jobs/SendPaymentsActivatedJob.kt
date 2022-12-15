@@ -38,7 +38,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
       return
     }
 
-    val threadIds: List<Long> = SignalDatabase.mms.getIncomingPaymentRequestThreads()
+    val threadIds: List<Long> = SignalDatabase.messages.getIncomingPaymentRequestThreads()
 
     for (threadId in threadIds) {
       val recipient = SignalDatabase.threads.getRecipientForThreadId(threadId)

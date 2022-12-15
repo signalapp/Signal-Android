@@ -30,12 +30,12 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
 
   @Before
   fun setUp() {
-    SignalDatabase.mms.deleteAllThreads()
+    SignalDatabase.messages.deleteAllThreads()
   }
 
   @After
   fun tearDown() {
-    SignalDatabase.mms.deleteAllThreads()
+    SignalDatabase.messages.deleteAllThreads()
   }
 
   @Test
@@ -77,11 +77,11 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
       it.requireLong(MessageTable.ID)
     }
 
-    val replyRecord = SignalDatabase.mms.getMessageRecord(replyId) as MediaMmsMessageRecord
+    val replyRecord = SignalDatabase.messages.getMessageRecord(replyId) as MediaMmsMessageRecord
     assertEquals(ParentStoryId.DirectReply(storyMessageId).serialize(), replyRecord.parentStoryId!!.serialize())
     assertEquals(expectedBody, replyRecord.body)
 
-    SignalDatabase.mms.deleteAllThreads()
+    SignalDatabase.messages.deleteAllThreads()
   }
 
   @Test
@@ -137,19 +137,19 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
 
     runTestWithContent(storyContent)
 
-    val replyId = SignalDatabase.mms.getStoryReplies(insertResult.get().messageId).use { cursor ->
+    val replyId = SignalDatabase.messages.getStoryReplies(insertResult.get().messageId).use { cursor ->
       assertEquals(1, cursor.count)
       cursor.moveToFirst()
       cursor.requireLong(MessageTable.ID)
     }
 
-    val replyRecord = SignalDatabase.mms.getMessageRecord(replyId) as MediaMmsMessageRecord
+    val replyRecord = SignalDatabase.messages.getMessageRecord(replyId) as MediaMmsMessageRecord
     assertEquals(ParentStoryId.GroupReply(insertResult.get().messageId).serialize(), replyRecord.parentStoryId?.serialize())
     assertEquals(threadForGroup, replyRecord.threadId)
     assertEquals(expectedBody, replyRecord.body)
 
-    SignalDatabase.mms.deleteGroupStoryReplies(insertResult.get().messageId)
-    SignalDatabase.mms.deleteAllThreads()
+    SignalDatabase.messages.deleteGroupStoryReplies(insertResult.get().messageId)
+    SignalDatabase.messages.deleteAllThreads()
   }
 
   /**

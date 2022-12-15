@@ -33,7 +33,7 @@ public final class PendingRetryReceiptManager extends TimedEventManager<PendingR
     super(application, "PendingRetryReceiptManager");
 
     this.pendingCache    = ApplicationDependencies.getPendingRetryReceiptCache();
-    this.messageDatabase = SignalDatabase.sms();
+    this.messageDatabase = SignalDatabase.messages();
 
     scheduleIfNecessary();
   }

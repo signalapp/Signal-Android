@@ -41,14 +41,14 @@ object NotificationStateProvider {
 
             val parentRecord = conversationId.groupStoryId?.let {
               try {
-                SignalDatabase.mms.getMessageRecord(it)
+                SignalDatabase.messages.getMessageRecord(it)
               } catch (e: NoSuchMessageException) {
                 null
               }
             }
 
             val hasSelfRepliedToGroupStory = conversationId.groupStoryId?.let {
-              SignalDatabase.mms.hasGroupReplyOrReactionInStory(it)
+              SignalDatabase.messages.hasGroupReplyOrReactionInStory(it)
             }
 
             messages += NotificationMessage(

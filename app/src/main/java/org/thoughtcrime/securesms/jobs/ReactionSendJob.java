@@ -67,8 +67,8 @@ public class ReactionSendJob extends BaseJob {
                                                 boolean remove)
       throws NoSuchMessageException
   {
-    MessageRecord message = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
-                                              : SignalDatabase.sms().getSmsMessage(messageId.getId());
+    MessageRecord message = messageId.isMms() ? SignalDatabase.messages().getMessageRecord(messageId.getId())
+                                              : SignalDatabase.messages().getSmsMessage(messageId.getId());
 
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
@@ -143,9 +143,9 @@ public class ReactionSendJob extends BaseJob {
     MessageRecord  message;
 
     if (messageId.isMms()) {
-      message = SignalDatabase.mms().getMessageRecord(messageId.getId());
+      message = SignalDatabase.messages().getMessageRecord(messageId.getId());
     } else {
-      message = SignalDatabase.sms().getSmsMessage(messageId.getId());
+      message = SignalDatabase.messages().getSmsMessage(messageId.getId());
     }
 
     Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();

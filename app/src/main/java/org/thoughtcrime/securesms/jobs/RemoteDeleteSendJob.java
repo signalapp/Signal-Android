@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.util.GroupUtil;
-import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
@@ -60,8 +59,8 @@ public class RemoteDeleteSendJob extends BaseJob {
   public static @NonNull JobManager.Chain create(long messageId, boolean isMms)
       throws NoSuchMessageException
   {
-    MessageRecord message = isMms ? SignalDatabase.mms().getMessageRecord(messageId)
-                                  : SignalDatabase.sms().getSmsMessage(messageId);
+    MessageRecord message = isMms ? SignalDatabase.messages().getMessageRecord(messageId)
+                                  : SignalDatabase.messages().getSmsMessage(messageId);
 
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
@@ -139,11 +138,11 @@ public class RemoteDeleteSendJob extends BaseJob {
     MessageRecord message;
 
     if (isMms) {
-      db      = SignalDatabase.mms();
-      message = SignalDatabase.mms().getMessageRecord(messageId);
+      db      = SignalDatabase.messages();
+      message = SignalDatabase.messages().getMessageRecord(messageId);
     } else {
-      db      = SignalDatabase.sms();
-      message = SignalDatabase.sms().getSmsMessage(messageId);
+      db      = SignalDatabase.messages();
+      message = SignalDatabase.messages().getSmsMessage(messageId);
     }
 
     long       targetSentTimestamp  = message.getDateSent();

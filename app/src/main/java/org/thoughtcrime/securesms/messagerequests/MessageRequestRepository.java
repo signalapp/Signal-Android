@@ -150,7 +150,7 @@ final class MessageRequestRepository {
         ApplicationDependencies.getMessageNotifier().updateNotification(context);
         MarkReadReceiver.process(context, messageIds);
 
-        List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.mms().getViewedIncomingMessages(threadId);
+        List<MessageTable.MarkedMessageInfo> viewedInfos = SignalDatabase.messages().getViewedIncomingMessages(threadId);
 
         SendViewedReceiptJob.enqueue(threadId, liveRecipient.getId(), viewedInfos);
 

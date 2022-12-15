@@ -167,7 +167,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   @Override
   public @Nullable ConversationMessage load(@NonNull MessageId messageId) {
     Stopwatch     stopwatch = new Stopwatch("load(" + messageId + "), thread " + threadId);
-    MessageTable  database  = messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms();
+    MessageTable  database  = messageId.isMms() ? SignalDatabase.messages() : SignalDatabase.messages();
     MessageRecord record    = database.getMessageRecordOrNull(messageId.getId());
 
     if (record instanceof MediaMmsMessageRecord &&

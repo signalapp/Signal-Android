@@ -113,7 +113,7 @@ public class MessageSender {
   {
     Log.i(TAG, "Sending story messages to " + messages.size() + " targets.");
     ThreadTable  threadTable = SignalDatabase.threads();
-    MessageTable database    = SignalDatabase.mms();
+    MessageTable database    = SignalDatabase.messages();
     List<Long>   messageIds  = new ArrayList<>(messages.size());
     List<Long>   threads     = new ArrayList<>(messages.size());
     UploadDependencyGraph dependencyGraph;
@@ -228,7 +228,7 @@ public class MessageSender {
     Log.i(TAG, "Sending media message to " + message.getRecipient().getId() + ", thread: " + threadId);
     try {
       ThreadTable  threadTable = SignalDatabase.threads();
-      MessageTable database    = SignalDatabase.mms();
+      MessageTable database    = SignalDatabase.messages();
 
       long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), threadId, message.getDistributionType());
       Recipient recipient         = message.getRecipient();
@@ -262,7 +262,7 @@ public class MessageSender {
 
     try {
       ThreadTable  threadTable = SignalDatabase.threads();
-      MessageTable mmsDatabase = SignalDatabase.mms();
+      MessageTable mmsDatabase = SignalDatabase.messages();
       AttachmentTable attachmentDatabase = SignalDatabase.attachments();
 
       long allocatedThreadId;
@@ -306,7 +306,7 @@ public class MessageSender {
 
     JobManager         jobManager             = ApplicationDependencies.getJobManager();
     AttachmentTable    attachmentDatabase     = SignalDatabase.attachments();
-    MessageTable       mmsDatabase            = SignalDatabase.mms();
+    MessageTable       mmsDatabase            = SignalDatabase.messages();
     ThreadTable        threadTable            = SignalDatabase.threads();
     List<AttachmentId> preUploadAttachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
     List<String>       preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
@@ -467,7 +467,7 @@ public class MessageSender {
   }
 
   public static void sendRemoteDelete(long messageId, boolean isMms) {
-    MessageTable db = isMms ? SignalDatabase.mms() : SignalDatabase.sms();
+    MessageTable db = isMms ? SignalDatabase.messages() : SignalDatabase.messages();
     db.markAsRemoteDelete(messageId);
     db.markAsSending(messageId);
 
@@ -623,7 +623,7 @@ public class MessageSender {
   private static void sendLocalMediaSelf(Context context, long messageId) {
     try {
       ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-      MessageTable         mmsDatabase    = SignalDatabase.mms();
+      MessageTable         mmsDatabase    = SignalDatabase.messages();
       MmsSmsTable     mmsSmsDatabase = SignalDatabase.mmsSms();
       OutgoingMessage message        = mmsDatabase.getOutgoingMessage(messageId);
       SyncMessageId   syncId         = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
@@ -674,7 +674,7 @@ public class MessageSender {
   private static void sendLocalTextSelf(Context context, long messageId) {
     try {
       ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-      MessageTable     smsDatabase    = SignalDatabase.sms();
+      MessageTable     smsDatabase    = SignalDatabase.messages();
       MmsSmsTable      mmsSmsDatabase = SignalDatabase.mmsSms();
       SmsMessageRecord message        = smsDatabase.getSmsMessage(messageId);
       SyncMessageId          syncId            = new SyncMessageId(Recipient.self().getId(), message.getDateSent());

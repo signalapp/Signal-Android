@@ -290,9 +290,9 @@ public abstract class PushSendJob extends SendJob {
   }
 
   protected static void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
-    long                     threadId           = SignalDatabase.mms().getThreadIdForMessage(messageId);
+    long                     threadId           = SignalDatabase.messages().getThreadIdForMessage(messageId);
     Recipient                recipient          = SignalDatabase.threads().getRecipientForThreadId(threadId);
-    ParentStoryId.GroupReply groupReplyStoryId  = SignalDatabase.mms().getParentStoryIdForGroupReply(messageId);
+    ParentStoryId.GroupReply groupReplyStoryId  = SignalDatabase.messages().getParentStoryIdForGroupReply(messageId);
 
     if (threadId != -1 && recipient != null) {
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, ConversationId.fromThreadAndReply(threadId, groupReplyStoryId));
@@ -504,9 +504,9 @@ public abstract class PushSendJob extends SendJob {
 
     Log.w(TAG, "[Proof Required] Marking message as rate-limited. (id: " + messageId + ", mms: " + isMms + ", thread: " + threadId + ")");
     if (isMms) {
-      SignalDatabase.mms().markAsRateLimited(messageId);
+      SignalDatabase.messages().markAsRateLimited(messageId);
     } else {
-      SignalDatabase.sms().markAsRateLimited(messageId);
+      SignalDatabase.messages().markAsRateLimited(messageId);
     }
 
     if (proofRequired.getOptions().contains(ProofRequiredException.Option.RECAPTCHA)) {
@@ -514,7 +514,7 @@ public abstract class PushSendJob extends SendJob {
       SignalStore.rateLimit().markNeedsRecaptcha(proofRequired.getToken());
 
       if (recipient != null) {
-        ParentStoryId.GroupReply groupReply = SignalDatabase.mms().getParentStoryIdForGroupReply(messageId);
+        ParentStoryId.GroupReply groupReply = SignalDatabase.messages().getParentStoryIdForGroupReply(messageId);
         ApplicationDependencies.getMessageNotifier().notifyProofRequired(context, recipient, ConversationId.fromThreadAndReply(threadId, groupReply));
       } else {
         Log.w(TAG, "[Proof Required] No recipient! Couldn't notify.");

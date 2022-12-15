@@ -193,7 +193,7 @@ object ContactDiscovery {
     Recipient.resolvedList(newUserIds)
       .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) }
       .map { IncomingJoinedMessage(it.id) }
-      .map { SignalDatabase.sms.insertMessageInbox(it) }
+      .map { SignalDatabase.messages.insertMessageInbox(it) }
       .filter { it.isPresent }
       .map { it.get() }
       .forEach { result ->

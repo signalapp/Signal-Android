@@ -227,7 +227,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     if (addedNewNotes) {
       ThreadUtil.sleep(5)
-      SignalDatabase.sms.insertBoostRequestMessage(values.releaseChannelRecipientId!!, threadId)
+      SignalDatabase.messages.insertBoostRequestMessage(values.releaseChannelRecipientId!!, threadId)
     }
 
     values.highestVersionNoteReceived = highestVersion

@@ -92,12 +92,12 @@ public class SmsSentJob extends BaseJob {
   }
 
   private void handleDeliveredResult(long messageId, int result) {
-    SignalDatabase.sms().markSmsStatus(messageId, result);
+    SignalDatabase.messages().markSmsStatus(messageId, result);
   }
 
   private void handleSentResult(long messageId, int result) {
     try {
-      MessageTable     database = SignalDatabase.sms();
+      MessageTable     database = SignalDatabase.messages();
       SmsMessageRecord record   = database.getSmsMessage(messageId);
 
       switch (result) {

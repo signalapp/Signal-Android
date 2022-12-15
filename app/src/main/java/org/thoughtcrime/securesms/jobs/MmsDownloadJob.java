@@ -98,7 +98,7 @@ public class MmsDownloadJob extends BaseJob {
   @Override
   public void onAdded() {
     if (automatic && KeyCachingService.isLocked(context)) {
-      SignalDatabase.mms().markIncomingNotificationReceived(threadId);
+      SignalDatabase.messages().markIncomingNotificationReceived(threadId);
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
     }
   }
@@ -109,7 +109,7 @@ public class MmsDownloadJob extends BaseJob {
       throw new NotReadyException();
     }
 
-    MessageTable                               database     = SignalDatabase.mms();
+    MessageTable                               database     = SignalDatabase.messages();
     Optional<MessageTable.MmsNotificationInfo> notification = database.getNotification(messageId);
 
     if (!notification.isPresent()) {
@@ -169,7 +169,7 @@ public class MmsDownloadJob extends BaseJob {
 
   @Override
   public void onFailure() {
-    MessageTable database = SignalDatabase.mms();
+    MessageTable database = SignalDatabase.messages();
     database.markDownloadState(messageId, MessageTable.MmsStatus.DOWNLOAD_SOFT_FAILURE);
 
     if (automatic) {
@@ -188,7 +188,7 @@ public class MmsDownloadJob extends BaseJob {
                                  int subscriptionId, @Nullable RecipientId notificationFrom)
       throws MmsException
   {
-    MessageTable      database = SignalDatabase.mms();
+    MessageTable      database = SignalDatabase.messages();
     Optional<GroupId> group    = Optional.empty();
     Set<RecipientId>  members     = new HashSet<>();
     String            body        = null;
@@ -259,7 +259,7 @@ public class MmsDownloadJob extends BaseJob {
 
   private void handleDownloadError(long messageId, long threadId, int downloadStatus, boolean automatic)
   {
-    MessageTable db = SignalDatabase.mms();
+    MessageTable db = SignalDatabase.messages();
 
     db.markDownloadState(messageId, downloadStatus);
 

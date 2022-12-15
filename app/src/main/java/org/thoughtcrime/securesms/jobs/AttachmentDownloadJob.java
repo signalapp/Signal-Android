@@ -121,7 +121,7 @@ public final class AttachmentDownloadJob extends BaseJob {
   public void onRun() throws Exception {
     doWork();
 
-    if (!SignalDatabase.mms().isStory(messageId)) {
+    if (!SignalDatabase.messages().isStory(messageId)) {
       ApplicationDependencies.getMessageNotifier().updateNotification(context, ConversationId.forConversation(0));
     }
   }

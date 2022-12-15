@@ -785,7 +785,7 @@ public class GroupTable extends DatabaseTable implements RecipientIdDatabaseRefe
 
       update(groupMasterKey, decryptedGroup);
 
-      SignalDatabase.sms().insertGroupV1MigrationEvents(record.getRecipientId(),
+      SignalDatabase.messages().insertGroupV1MigrationEvents(record.getRecipientId(),
                                                         threadId,
                                                         new GroupMigrationMembershipChange(pendingMembers, droppedMembers));
 
@@ -805,8 +805,8 @@ public class GroupTable extends DatabaseTable implements RecipientIdDatabaseRefe
     RecipientTable        recipientTable   = SignalDatabase.recipients();
     RecipientId           groupRecipientId = recipientTable.getOrInsertFromGroupId(groupId);
     Optional<GroupRecord> existingGroup    = getGroup(groupId);
-    String                title               = decryptedGroup.getTitle();
-    ContentValues         contentValues       = new ContentValues();
+    String                title            = decryptedGroup.getTitle();
+    ContentValues         contentValues    = new ContentValues();
 
     if (existingGroup.isPresent() && existingGroup.get().getUnmigratedV1Members().size() > 0 && existingGroup.get().isV2Group()) {
       Set<RecipientId> unmigratedV1Members = new HashSet<>(existingGroup.get().getUnmigratedV1Members());

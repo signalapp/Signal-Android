@@ -23,7 +23,7 @@ class MessageContentProcessor__handleTextMessageTest : MessageContentProcessorTe
     testSubject.doProcess(content = content!!)
 
     // THEN
-    val record = SignalDatabase.sms.getMessageRecord(1)
+    val record = SignalDatabase.messages.getMessageRecord(1)
     val threadSize = SignalDatabase.mmsSms.getConversationCount(record.threadId)
     assertEquals(1, threadSize)
 

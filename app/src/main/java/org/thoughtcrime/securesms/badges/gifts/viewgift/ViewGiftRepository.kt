@@ -33,7 +33,7 @@ class ViewGiftRepository {
   fun getGiftBadge(messageId: Long): Observable<GiftBadge> {
     return Observable.create { emitter ->
       fun refresh() {
-        val record = SignalDatabase.mms.getMessageRecord(messageId)
+        val record = SignalDatabase.messages.getMessageRecord(messageId)
         val giftBadge: GiftBadge = (record as MmsMessageRecord).giftBadge!!
 
         emitter.onNext(giftBadge)

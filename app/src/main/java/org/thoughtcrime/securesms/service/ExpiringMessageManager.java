@@ -25,8 +25,8 @@ public class ExpiringMessageManager {
 
   public ExpiringMessageManager(Context context) {
     this.context     = context.getApplicationContext();
-    this.smsDatabase = SignalDatabase.sms();
-    this.mmsDatabase = SignalDatabase.mms();
+    this.smsDatabase = SignalDatabase.messages();
+    this.mmsDatabase = SignalDatabase.messages();
 
     executor.execute(new LoadTask());
     executor.execute(new ProcessTask());

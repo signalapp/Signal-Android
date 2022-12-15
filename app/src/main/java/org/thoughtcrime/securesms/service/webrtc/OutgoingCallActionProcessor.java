@@ -83,7 +83,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     RecipientUtil.setAndSendUniversalExpireTimerIfNecessary(context, Recipient.resolved(remotePeer.getId()), SignalDatabase.threads().getThreadIdIfExistsFor(remotePeer.getId()));
-    SignalDatabase.sms().insertOutgoingCall(remotePeer.getId(), isVideoCall);
+    SignalDatabase.messages().insertOutgoingCall(remotePeer.getId(), isVideoCall);
 
     EglBaseWrapper.replaceHolder(EglBaseWrapper.OUTGOING_PLACEHOLDER, remotePeer.getCallId().longValue());
 

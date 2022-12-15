@@ -38,10 +38,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   ),
   SignalDatabaseOpenHelper {
 
-  val mms: MessageTable = MessageTable(context, this)
-  val attachments: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
-  val media: MediaTable = MediaTable(context, this)
-  val thread: ThreadTable = ThreadTable(context, this)
+  val messageTable: MessageTable = MessageTable(context, this)
+  val attachmentTable: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
+  val mediaTable: MediaTable = MediaTable(context, this)
+  val threadTable: ThreadTable = ThreadTable(context, this)
   val mmsSmsTable: MmsSmsTable = MmsSmsTable(context, this)
   val identityTable: IdentityTable = IdentityTable(context, this)
   val draftTable: DraftTable = DraftTable(context, this)
@@ -277,8 +277,8 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
         database.withinTransaction { db ->
           instance!!.onUpgrade(db, db.getVersion(), -1)
           instance!!.markCurrent(db)
-          instance!!.mms.deleteAbandonedMessages()
-          instance!!.mms.trimEntriesForExpiredMessages()
+          instance!!.messageTable.deleteAbandonedMessages()
+          instance!!.messageTable.trimEntriesForExpiredMessages()
           instance!!.reactionTable.deleteAbandonedReactions()
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS key_value")
           instance!!.rawWritableDatabase.execSQL("DROP TABLE IF EXISTS megaphone")
@@ -346,7 +346,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmStatic
     @get:JvmName("attachments")
     val attachments: AttachmentTable
-      get() = instance!!.attachments
+      get() = instance!!.attachmentTable
 
     @get:JvmStatic
     @get:JvmName("avatarPicker")
@@ -406,7 +406,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmStatic
     @get:JvmName("media")
     val media: MediaTable
-      get() = instance!!.media
+      get() = instance!!.mediaTable
 
     @get:JvmStatic
     @get:JvmName("mentions")
@@ -414,9 +414,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.mentionTable
 
     @get:JvmStatic
-    @get:JvmName("messageSearch")
-    val messageSearch: SearchTable
-      get() = instance!!.searchTable
+    @get:JvmName("messages")
+    val messages: MessageTable
+      get() = instance!!.messageTable
 
     @get:JvmStatic
     @get:JvmName("messageLog")
@@ -424,9 +424,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.messageSendLogTables
 
     @get:JvmStatic
-    @get:JvmName("mms")
-    val mms: MessageTable
-      get() = instance!!.mms
+    @get:JvmName("messageSearch")
+    val messageSearch: SearchTable
+      get() = instance!!.searchTable
 
     @get:JvmStatic
     @get:JvmName("mmsSms")
@@ -453,6 +453,11 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     val oneTimePreKeys: OneTimePreKeyTable
       get() = instance!!.preKeyDatabase
 
+    @get:JvmStatic
+    @get:JvmName("pendingPniSignatureMessages")
+    val pendingPniSignatureMessages: PendingPniSignatureMessageTable
+      get() = instance!!.pendingPniSignatureMessageTable
+
     @get:Deprecated("This only exists to migrate from legacy storage. There shouldn't be any new usages.")
     @get:JvmStatic
     @get:JvmName("push")
@@ -470,14 +475,9 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
       get() = instance!!.signedPreKeyTable
 
     @get:JvmStatic
-    @get:JvmName("sms")
-    val sms: MessageTable
-      get() = instance!!.mms
-
-    @get:JvmStatic
     @get:JvmName("threads")
     val threads: ThreadTable
-      get() = instance!!.thread
+      get() = instance!!.threadTable
 
     @get:JvmStatic
     @get:JvmName("reactions")
@@ -523,10 +523,5 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("remoteMegaphones")
     val remoteMegaphones: RemoteMegaphoneTable
       get() = instance!!.remoteMegaphoneTable
-
-    @get:JvmStatic
-    @get:JvmName("pendingPniSignatureMessages")
-    val pendingPniSignatureMessages: PendingPniSignatureMessageTable
-      get() = instance!!.pendingPniSignatureMessageTable
   }
 }

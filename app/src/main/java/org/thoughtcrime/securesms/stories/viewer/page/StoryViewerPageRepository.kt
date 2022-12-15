@@ -46,11 +46,11 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
       fun refresh() {
         val stories = if (recipient.isMyStory) {
-          SignalDatabase.mms.getAllOutgoingStories(false, 100)
+          SignalDatabase.messages.getAllOutgoingStories(false, 100)
         } else if (isOutgoingOnly) {
-          SignalDatabase.mms.getOutgoingStoriesTo(recipientId)
+          SignalDatabase.messages.getOutgoingStoriesTo(recipientId)
         } else {
-          SignalDatabase.mms.getAllStoriesFor(recipientId, 100)
+          SignalDatabase.messages.getAllStoriesFor(recipientId, 100)
         }
 
         val results = stories.filterNot {
@@ -83,7 +83,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
           group = if (recipient.isGroup) recipient else null,
           distributionList = if (record.recipient.isDistributionList) record.recipient else null,
           viewCount = record.viewedReceiptCount,
-          replyCount = SignalDatabase.mms.getNumberOfStoryReplies(record.id),
+          replyCount = SignalDatabase.messages.getNumberOfStoryReplies(record.id),
           dateInMilliseconds = record.dateSent,
           content = getContent(record as MmsMessageRecord),
           conversationMessage = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, record),
@@ -101,7 +101,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       val messageUpdateObserver = DatabaseObserver.MessageObserver {
         if (it.mms && it.id == recordId) {
           try {
-            val messageRecord = SignalDatabase.mms.getMessageRecord(recordId)
+            val messageRecord = SignalDatabase.messages.getMessageRecord(recordId)
             if (messageRecord.isRemoteDelete) {
               emitter.onComplete()
             } else {
@@ -115,7 +115,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
 
       val conversationObserver = DatabaseObserver.Observer {
         try {
-          refresh(SignalDatabase.mms.getMessageRecord(recordId))
+          refresh(SignalDatabase.messages.getMessageRecord(recordId))
         } catch (e: NoSuchMessageException) {
           Log.w(TAG, "Message deleted during content refresh.", e)
         }
@@ -125,7 +125,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
       ApplicationDependencies.getDatabaseObserver().registerMessageUpdateObserver(messageUpdateObserver)
 
       val messageInsertObserver = DatabaseObserver.MessageObserver {
-        refresh(SignalDatabase.mms.getMessageRecord(recordId))
+        refresh(SignalDatabase.messages.getMessageRecord(recordId))
       }
 
       if (recipient.isGroup) {
@@ -172,7 +172,7 @@ open class StoryViewerPageRepository(context: Context, private val storyViewStat
   fun markViewed(storyPost: StoryPost) {
     if (!storyPost.conversationMessage.messageRecord.isOutgoing) {
       SignalExecutors.BOUNDED.execute {
-        val markedMessageInfo = SignalDatabase.mms.setIncomingMessageViewed(storyPost.id)
+        val markedMessageInfo = SignalDatabase.messages.setIncomingMessageViewed(storyPost.id)
         if (markedMessageInfo != null) {
           ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners()
 

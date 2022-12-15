@@ -91,7 +91,7 @@ class MediaPreviewRepository {
   fun getMessagePositionIntent(context: Context, messageId: Long): Single<Intent> {
     return Single.fromCallable {
       val stopwatch = Stopwatch("Message Position Intent")
-      val messageRecord: MessageRecord = SignalDatabase.mms.getMessageRecord(messageId)
+      val messageRecord: MessageRecord = SignalDatabase.messages.getMessageRecord(messageId)
       stopwatch.split("get message record")
 
       val threadId: Long = messageRecord.threadId

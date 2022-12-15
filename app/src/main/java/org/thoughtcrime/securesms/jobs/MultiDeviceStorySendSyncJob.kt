@@ -65,7 +65,7 @@ class MultiDeviceStorySendSyncJob private constructor(parameters: Parameters, pr
       throw RetryableException()
     }
 
-    SignalDatabase.mms.deleteRemotelyDeletedStory(deletedMessageId)
+    SignalDatabase.messages.deleteRemotelyDeletedStory(deletedMessageId)
   }
 
   override fun onShouldRetry(e: Exception): Boolean {

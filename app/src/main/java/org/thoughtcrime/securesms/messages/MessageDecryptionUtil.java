@@ -185,7 +185,7 @@ public final class MessageDecryptionUtil {
     switch (contentHint) {
       case DEFAULT:
         Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting an error right away because it's " + contentHint, true);
-        SignalDatabase.sms().insertBadDecryptMessage(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
+        SignalDatabase.messages().insertBadDecryptMessage(sender.getId(), senderDevice, envelope.getTimestamp(), receivedTimestamp, threadId);
         break;
       case RESENDABLE:
         Log.w(TAG, "[" + envelope.getTimestamp() + "] Inserting into pending retries store because it's " + contentHint, true);

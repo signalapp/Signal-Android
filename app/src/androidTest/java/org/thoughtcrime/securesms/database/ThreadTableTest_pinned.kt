@@ -34,7 +34,7 @@ class ThreadTableTest_pinned {
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN
-    SignalDatabase.mms.deleteMessage(messageId)
+    SignalDatabase.messages.deleteMessage(messageId)
 
     // THEN
     val pinned = SignalDatabase.threads.getPinnedThreadIds()
@@ -49,7 +49,7 @@ class ThreadTableTest_pinned {
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN
-    SignalDatabase.mms.deleteMessage(messageId)
+    SignalDatabase.messages.deleteMessage(messageId)
 
     // THEN
     val unarchivedCount = SignalDatabase.threads.getUnarchivedConversationListCount(ConversationFilter.OFF)
@@ -64,7 +64,7 @@ class ThreadTableTest_pinned {
     SignalDatabase.threads.pinConversations(listOf(threadId))
 
     // WHEN
-    SignalDatabase.mms.deleteMessage(messageId)
+    SignalDatabase.messages.deleteMessage(messageId)
 
     // THEN
     SignalDatabase.threads.getUnarchivedConversationList(ConversationFilter.OFF, true, 0, 1).use {

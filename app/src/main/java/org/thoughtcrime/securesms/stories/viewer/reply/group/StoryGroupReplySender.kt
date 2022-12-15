@@ -29,7 +29,7 @@ object StoryGroupReplySender {
 
   private fun sendInternal(context: Context, storyId: Long, body: CharSequence, mentions: List<Mention>, isReaction: Boolean): Completable {
     val messageAndRecipient = Single.fromCallable {
-      val message = SignalDatabase.mms.getMessageRecord(storyId)
+      val message = SignalDatabase.messages.getMessageRecord(storyId)
       val recipient = SignalDatabase.threads.getRecipientForThreadId(message.threadId)!!
 
       message to recipient

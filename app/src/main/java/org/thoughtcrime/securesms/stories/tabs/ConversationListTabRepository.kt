@@ -34,7 +34,7 @@ class ConversationListTabRepository {
   fun getNumberOfUnseenStories(): Observable<Long> {
     return Observable.create<Long> { emitter ->
       fun refresh() {
-        emitter.onNext(SignalDatabase.mms.unreadStoryThreadRecipientIds.map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
+        emitter.onNext(SignalDatabase.messages.unreadStoryThreadRecipientIds.map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
       }
 
       val listener = DatabaseObserver.Observer {

@@ -45,7 +45,7 @@ class SmsDatabaseTest_collapseJoinRequestEventsIfPossible {
   @Before
   fun setUp() {
     recipients = SignalDatabase.recipients
-    sms = SignalDatabase.sms
+    sms = SignalDatabase.messages
 
     SignalStore.account().setAci(localAci)
     SignalStore.account().setPni(localPni)

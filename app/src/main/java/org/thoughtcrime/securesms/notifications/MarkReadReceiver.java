@@ -113,11 +113,11 @@ public class MarkReadReceiver extends BroadcastReceiver {
                                        @NonNull List<ExpirationInfo> mmsExpirationInfo)
   {
     if (smsExpirationInfo.size() > 0) {
-      SignalDatabase.sms().markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+      SignalDatabase.messages().markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
     }
 
     if (mmsExpirationInfo.size() > 0) {
-      SignalDatabase.mms().markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
+      SignalDatabase.messages().markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
     }
 
     if (smsExpirationInfo.size() + mmsExpirationInfo.size() > 0) {

@@ -25,7 +25,7 @@ public final class RateLimitUtil {
    */
   @WorkerThread
   public static void retryAllRateLimitedMessages(@NonNull Context context) {
-    Set<Long> messageIds = SignalDatabase.mms().getAllRateLimitedMessageIds();
+    Set<Long> messageIds = SignalDatabase.messages().getAllRateLimitedMessageIds();
 
     if (messageIds.isEmpty()) {
       return;
@@ -33,7 +33,7 @@ public final class RateLimitUtil {
 
     Log.i(TAG, "Retrying " + messageIds.size() + " message records.");
 
-    SignalDatabase.mms().clearRateLimitStatus(messageIds);
+    SignalDatabase.messages().clearRateLimitStatus(messageIds);
 
     ApplicationDependencies.getJobManager().update((job, serializer) -> {
       Data data = serializer.deserialize(job.getSerializedData());

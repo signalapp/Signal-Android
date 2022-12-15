@@ -68,7 +68,7 @@ public class AttachmentUtil {
                                                  .size();
 
     if (attachmentCount <= 1) {
-      SignalDatabase.mms().deleteMessage(mmsId);
+      SignalDatabase.messages().deleteMessage(mmsId);
     } else {
       SignalDatabase.attachments().deleteAttachment(attachmentId);
     }
@@ -91,7 +91,7 @@ public class AttachmentUtil {
   @WorkerThread
   private static boolean isFromTrustedConversation(@NonNull Context context, @NonNull DatabaseAttachment attachment) {
     try {
-      MessageRecord message = SignalDatabase.mms().getMessageRecord(attachment.getMmsId());
+      MessageRecord message = SignalDatabase.messages().getMessageRecord(attachment.getMmsId());
 
       Recipient individualRecipient = message.getRecipient();
       Recipient threadRecipient     = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());

@@ -256,7 +256,7 @@ public class VoiceNotePlaybackService extends MediaBrowserServiceCompat {
         }
         long            messageId       = extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
         RecipientId  recipientId     = RecipientId.from(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID));
-        MessageTable messageDatabase = SignalDatabase.mms();
+        MessageTable messageDatabase = SignalDatabase.messages();
 
         MessageTable.MarkedMessageInfo markedMessageInfo = messageDatabase.setIncomingMessageViewed(messageId);
 

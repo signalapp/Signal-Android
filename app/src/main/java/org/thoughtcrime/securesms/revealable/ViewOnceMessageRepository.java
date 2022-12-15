@@ -24,7 +24,7 @@ class ViewOnceMessageRepository {
   private final MessageTable mmsDatabase;
 
   ViewOnceMessageRepository(@NonNull Context context) {
-    this.mmsDatabase = SignalDatabase.mms();
+    this.mmsDatabase = SignalDatabase.messages();
   }
 
   void getMessage(long messageId, @NonNull Callback<Optional<MmsMessageRecord>> callback) {

@@ -22,13 +22,13 @@ class StoryDirectReplyRepository(context: Context) {
 
   fun getStoryPost(storyId: Long): Single<MessageRecord> {
     return Single.fromCallable {
-      SignalDatabase.mms.getMessageRecord(storyId)
+      SignalDatabase.messages.getMessageRecord(storyId)
     }.subscribeOn(Schedulers.io())
   }
 
   fun send(storyId: Long, groupDirectReplyRecipientId: RecipientId?, charSequence: CharSequence, isReaction: Boolean): Completable {
     return Completable.create { emitter ->
-      val message = SignalDatabase.mms.getMessageRecord(storyId) as MediaMmsMessageRecord
+      val message = SignalDatabase.messages.getMessageRecord(storyId) as MediaMmsMessageRecord
       val (recipient, threadId) = if (groupDirectReplyRecipientId == null) {
         message.recipient to message.threadId
       } else {

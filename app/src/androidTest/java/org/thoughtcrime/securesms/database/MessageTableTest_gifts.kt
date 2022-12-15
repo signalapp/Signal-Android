@@ -27,7 +27,7 @@ class MessageTableTest_gifts {
 
   @Before
   fun setUp() {
-    mms = SignalDatabase.mms
+    mms = SignalDatabase.messages
 
     mms.deleteAllThreads()
 

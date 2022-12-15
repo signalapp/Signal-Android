@@ -1060,13 +1060,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
         @Override
         protected Void doInBackground(Void... voids) {
           for (MessageRecord messageRecord : messageRecords) {
-            boolean threadDeleted;
-
-            if (messageRecord.isMms()) {
-              threadDeleted = SignalDatabase.mms().deleteMessage(messageRecord.getId());
-            } else {
-              threadDeleted = SignalDatabase.sms().deleteMessage(messageRecord.getId());
-            }
+            boolean threadDeleted = SignalDatabase.messages().deleteMessage(messageRecord.getId());
 
             if (threadDeleted) {
               threadId = -1;
@@ -1372,7 +1366,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
 
   private void scrollToNextMention() {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      return SignalDatabase.mms().getOldestUnreadMentionDetails(threadId);
+      return SignalDatabase.messages().getOldestUnreadMentionDetails(threadId);
     }, (pair) -> {
       if (pair != null) {
         jumpToMessage(pair.first(), pair.second(), () -> {});

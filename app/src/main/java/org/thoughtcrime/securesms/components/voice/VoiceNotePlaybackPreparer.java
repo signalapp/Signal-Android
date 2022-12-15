@@ -239,7 +239,7 @@ final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.Playbac
 
   private @NonNull List<MediaItem> loadMediaItemsForSinglePlayback(long messageId) {
     try {
-      MessageRecord messageRecord = SignalDatabase.mms()
+      MessageRecord messageRecord = SignalDatabase.messages()
                                                   .getMessageRecord(messageId);
 
       if (!MessageRecordUtil.hasAudio(messageRecord)) {

@@ -34,7 +34,7 @@ final class MessageRecordLiveData extends LiveData<MessageRecord> {
 
   @WorkerThread
   private synchronized void retrieveMessageRecordActual() {
-    retrieve(messageId.isMms() ? SignalDatabase.mms() : SignalDatabase.sms());
+    retrieve(messageId.isMms() ? SignalDatabase.messages() : SignalDatabase.messages());
   }
 
   @WorkerThread

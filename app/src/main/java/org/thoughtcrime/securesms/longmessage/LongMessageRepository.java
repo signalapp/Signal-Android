@@ -30,8 +30,8 @@ class LongMessageRepository {
   private final MessageTable smsDatabase;
 
   LongMessageRepository() {
-    this.mmsDatabase = SignalDatabase.mms();
-    this.smsDatabase = SignalDatabase.sms();
+    this.mmsDatabase = SignalDatabase.messages();
+    this.smsDatabase = SignalDatabase.messages();
   }
 
   void getMessage(@NonNull Context context, long messageId, boolean isMms, @NonNull Callback<Optional<LongMessage>> callback) {

@@ -96,7 +96,7 @@ public final class ReviewUtil {
     if (threadId == null) {
       return Collections.emptyList();
     } else {
-      return SignalDatabase.sms().getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
+      return SignalDatabase.messages().getProfileChangeDetailsRecords(threadId, System.currentTimeMillis() - TIMEOUT);
     }
   }
 

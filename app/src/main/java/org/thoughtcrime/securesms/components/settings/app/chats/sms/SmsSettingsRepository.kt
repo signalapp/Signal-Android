@@ -8,8 +8,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.util.FeatureFlags
 
 class SmsSettingsRepository(
-  private val smsDatabase: MessageTable = SignalDatabase.sms,
-  private val mmsDatabase: MessageTable = SignalDatabase.mms
+  private val smsDatabase: MessageTable = SignalDatabase.messages,
+  private val mmsDatabase: MessageTable = SignalDatabase.messages
 ) {
   fun getSmsExportState(): Single<SmsExportState> {
     if (!FeatureFlags.smsExporter()) {

@@ -93,9 +93,9 @@ object DeleteDialog {
     override fun doInBackground(vararg params: Void?): Boolean {
       return messageRecords.map { record ->
         if (record.isMms) {
-          SignalDatabase.mms.deleteMessage(record.id)
+          SignalDatabase.messages.deleteMessage(record.id)
         } else {
-          SignalDatabase.sms.deleteMessage(record.id)
+          SignalDatabase.messages.deleteMessage(record.id)
         }
       }.any { it }
     }

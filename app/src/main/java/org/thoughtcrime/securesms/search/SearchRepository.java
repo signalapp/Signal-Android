@@ -74,7 +74,7 @@ public class SearchRepository {
     this.threadTable    = SignalDatabase.threads();
     this.recipientTable = SignalDatabase.recipients();
     this.mentionDatabase = SignalDatabase.mentions();
-    this.mmsDatabase       = SignalDatabase.mms();
+    this.mmsDatabase       = SignalDatabase.messages();
     this.contactRepository = new ContactRepository(context, noteToSelfTitle);
     this.searchExecutor    = new LatestPrioritizedSerialExecutor(SignalExecutors.BOUNDED);
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);

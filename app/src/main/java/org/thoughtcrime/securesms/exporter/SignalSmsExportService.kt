@@ -83,13 +83,13 @@ class SignalSmsExportService : SmsExportService() {
   }
 
   override fun clearPreviousExportState() {
-    SignalDatabase.sms.clearExportState()
-    SignalDatabase.mms.clearExportState()
+    SignalDatabase.messages.clearExportState()
+    SignalDatabase.messages.clearExportState()
   }
 
   override fun prepareForExport() {
-    SignalDatabase.sms.clearInsecureMessageExportedErrorStatus()
-    SignalDatabase.mms.clearInsecureMessageExportedErrorStatus()
+    SignalDatabase.messages.clearInsecureMessageExportedErrorStatus()
+    SignalDatabase.messages.clearInsecureMessageExportedErrorStatus()
   }
 
   override fun getUnexportedMessageCount(): Int {

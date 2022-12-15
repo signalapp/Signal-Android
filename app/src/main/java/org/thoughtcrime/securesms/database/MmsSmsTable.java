@@ -142,8 +142,8 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
-    MessageTable mmsDatabase = SignalDatabase.mms();
-    MessageTable smsDatabase = SignalDatabase.sms();
+    MessageTable mmsDatabase = SignalDatabase.messages();
+    MessageTable smsDatabase = SignalDatabase.messages();
     long         latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
     RecipientId     id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
 
@@ -185,9 +185,9 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public @NonNull List<MessageRecord> getMessagesAfterVoiceNoteInclusive(long messageId, long limit) throws NoSuchMessageException {
-    MessageRecord       origin = SignalDatabase.mms().getMessageRecord(messageId);
-    List<MessageRecord> mms    = SignalDatabase.mms().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
-    List<MessageRecord> sms    = SignalDatabase.sms().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
+    MessageRecord       origin = SignalDatabase.messages().getMessageRecord(messageId);
+    List<MessageRecord> mms    = SignalDatabase.messages().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
+    List<MessageRecord> sms    = SignalDatabase.messages().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
 
     mms.addAll(sms);
     Collections.sort(mms, Comparator.comparingLong(DisplayRecord::getDateReceived));
@@ -214,7 +214,7 @@ public class MmsSmsTable extends DatabaseTable {
     try (Cursor cursor = getConversationSnippetCursor(threadId)) {
       if (cursor.moveToFirst()) {
         long id = CursorUtil.requireLong(cursor, MmsSmsColumns.ID);
-        return SignalDatabase.mms().getMessageRecord(id);
+        return SignalDatabase.messages().getMessageRecord(id);
       } else {
         throw new NoSuchMessageException("no message");
       }
@@ -283,7 +283,7 @@ public class MmsSmsTable extends DatabaseTable {
 
     MmsMessageRecord targetMessage;
     try {
-      targetMessage = (MmsMessageRecord) SignalDatabase.mms().getMessageRecord(id.getId());
+      targetMessage = (MmsMessageRecord) SignalDatabase.messages().getMessageRecord(id.getId());
     } catch (NoSuchMessageException e) {
       throw new IllegalArgumentException("Invalid message ID!");
     }
@@ -312,7 +312,7 @@ public class MmsSmsTable extends DatabaseTable {
   public List<MessageRecord> getAllMessagesThatQuote(@NonNull MessageId id) {
     MessageRecord targetMessage;
     try {
-      targetMessage = id.isMms() ? SignalDatabase.mms().getMessageRecord(id.getId()) : SignalDatabase.sms().getMessageRecord(id.getId());
+      targetMessage = id.isMms() ? SignalDatabase.messages().getMessageRecord(id.getId()) : SignalDatabase.messages().getMessageRecord(id.getId());
     } catch (NoSuchMessageException e) {
       throw new IllegalArgumentException("Invalid message ID!");
     }
@@ -361,8 +361,8 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public boolean checkMessageExists(@NonNull MessageRecord messageRecord) {
-    MessageTable db = messageRecord.isMms() ? SignalDatabase.mms()
-                                            : SignalDatabase.sms();
+    MessageTable db = messageRecord.isMms() ? SignalDatabase.messages()
+                                            : SignalDatabase.messages();
 
     try (Cursor cursor = db.getMessageCursor(messageRecord.getId())) {
       return cursor != null && cursor.getCount() > 0;
@@ -374,7 +374,7 @@ public class MmsSmsTable extends DatabaseTable {
       return 0;
     }
 
-    return SignalDatabase.mms().getSecureMessageCount(threadId);
+    return SignalDatabase.messages().getSecureMessageCount(threadId);
   }
 
   public int getOutgoingSecureConversationCount(long threadId) {
@@ -382,23 +382,23 @@ public class MmsSmsTable extends DatabaseTable {
       return 0;
     }
 
-    return SignalDatabase.mms().getOutgoingSecureMessageCount(threadId);
+    return SignalDatabase.messages().getOutgoingSecureMessageCount(threadId);
   }
 
   public int getConversationCount(long threadId) {
-    return SignalDatabase.mms().getMessageCountForThread(threadId);
+    return SignalDatabase.messages().getMessageCountForThread(threadId);
   }
 
   public int getConversationCount(long threadId, long beforeTime) {
-    return SignalDatabase.mms().getMessageCountForThread(threadId, beforeTime);
+    return SignalDatabase.messages().getMessageCountForThread(threadId, beforeTime);
   }
 
   public int getInsecureSentCount(long threadId) {
-    return SignalDatabase.mms().getInsecureMessagesSentForThread(threadId);
+    return SignalDatabase.messages().getInsecureMessagesSentForThread(threadId);
   }
 
   public int getInsecureMessageCountForInsights() {
-    return SignalDatabase.mms().getInsecureMessageCountForInsights();
+    return SignalDatabase.messages().getInsecureMessageCountForInsights();
   }
 
   public int getUnexportedInsecureMessagesCount() {
@@ -406,11 +406,11 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getUnexportedInsecureMessagesCount(long threadId) {
-    return SignalDatabase.mms().getUnexportedInsecureMessagesCount(threadId);
+    return SignalDatabase.messages().getUnexportedInsecureMessagesCount(threadId);
   }
 
   public int getIncomingMeaningfulMessageCountSince(long threadId, long afterTime) {
-    return SignalDatabase.mms().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
+    return SignalDatabase.messages().getIncomingMeaningfulMessageCountSince(threadId, afterTime);
   }
 
   public int getMessageCountBeforeDate(long date) {
@@ -426,8 +426,8 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getSecureMessageCountForInsights() {
-    int count = SignalDatabase.sms().getSecureMessageCountForInsights();
-    count    += SignalDatabase.mms().getSecureMessageCountForInsights();
+    int count = SignalDatabase.messages().getSecureMessageCountForInsights();
+    count    += SignalDatabase.messages().getSecureMessageCountForInsights();
 
     return count;
   }
@@ -437,15 +437,15 @@ public class MmsSmsTable extends DatabaseTable {
       return false;
     }
 
-    return SignalDatabase.sms().hasMeaningfulMessage(threadId) ||
-           SignalDatabase.mms().hasMeaningfulMessage(threadId);
+    return SignalDatabase.messages().hasMeaningfulMessage(threadId) ||
+           SignalDatabase.messages().hasMeaningfulMessage(threadId);
   }
 
   public long getThreadId(MessageId messageId) {
     if (messageId.isMms()) {
-      return SignalDatabase.mms().getThreadIdForMessage(messageId.getId());
+      return SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
     } else {
-      return SignalDatabase.sms().getThreadIdForMessage(messageId.getId());
+      return SignalDatabase.messages().getThreadIdForMessage(messageId.getId());
     }
   }
 
@@ -454,9 +454,9 @@ public class MmsSmsTable extends DatabaseTable {
    */
   @Deprecated
   public long getThreadForMessageId(long messageId) {
-    long id = SignalDatabase.sms().getThreadIdForMessage(messageId);
+    long id = SignalDatabase.messages().getThreadIdForMessage(messageId);
 
-    if (id == -1) return SignalDatabase.mms().getThreadIdForMessage(messageId);
+    if (id == -1) return SignalDatabase.messages().getThreadIdForMessage(messageId);
     else          return id;
   }
 
@@ -617,14 +617,14 @@ public class MmsSmsTable extends DatabaseTable {
   private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageTable.ReceiptType receiptType, @NonNull MessageTable.MessageQualifier messageQualifier) {
     Set<MessageUpdate> messageUpdates = new HashSet<>();
 
-    messageUpdates.addAll(SignalDatabase.sms().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
-    messageUpdates.addAll(SignalDatabase.mms().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
+    messageUpdates.addAll(SignalDatabase.messages().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
+    messageUpdates.addAll(SignalDatabase.messages().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
 
     return messageUpdates;
   }
 
   public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
-    SignalDatabase.mms().updateViewedStories(syncMessageIds);
+    SignalDatabase.messages().updateViewedStories(syncMessageIds);
   }
 
   private @NonNull MessageExportState getMessageExportState(@NonNull MessageId messageId) throws NoSuchMessageException {
@@ -708,12 +708,12 @@ public class MmsSmsTable extends DatabaseTable {
     try {
       for (ReadMessage readMessage : readMessages) {
         RecipientId         authorId    = Recipient.externalPush(readMessage.getSender()).getId();
-        TimestampReadResult textResult  = SignalDatabase.sms().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
+        TimestampReadResult textResult  = SignalDatabase.messages().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
                                                                                                proposedExpireStarted,
                                                                                                threadToLatestRead);
-        TimestampReadResult mediaResult = SignalDatabase.mms().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
-                                                                                               proposedExpireStarted,
-                                                                                               threadToLatestRead);
+        TimestampReadResult mediaResult = SignalDatabase.messages().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
+                                                                                                    proposedExpireStarted,
+                                                                                                    threadToLatestRead);
 
         expiringText.addAll(textResult.expiring);
         expiringMedia.addAll(mediaResult.expiring);
@@ -801,7 +801,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
-    return SignalDatabase.sms().hasReceivedAnyCallsSince(threadId, timestamp);
+    return SignalDatabase.messages().hasReceivedAnyCallsSince(threadId, timestamp);
   }
 
 
@@ -857,27 +857,27 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public void setNotifiedTimestamp(long timestamp, @NonNull List<Long> smsIds, @NonNull List<Long> mmsIds) {
-    SignalDatabase.sms().setNotifiedTimestamp(timestamp, smsIds);
-    SignalDatabase.mms().setNotifiedTimestamp(timestamp, mmsIds);
+    SignalDatabase.messages().setNotifiedTimestamp(timestamp, smsIds);
+    SignalDatabase.messages().setNotifiedTimestamp(timestamp, mmsIds);
   }
 
   public int deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
     Log.d(TAG, "deleteMessagesInThreadBeforeData(" + threadId + ", " + trimBeforeDate + ")");
-    int deletes = SignalDatabase.sms().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
-    deletes += SignalDatabase.mms().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    int deletes = SignalDatabase.messages().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
+    deletes += SignalDatabase.messages().deleteMessagesInThreadBeforeDate(threadId, trimBeforeDate);
     return deletes;
   }
 
   public void deleteAbandonedMessages() {
     Log.d(TAG, "deleteAbandonedMessages()");
-    SignalDatabase.sms().deleteAbandonedMessages();
-    SignalDatabase.mms().deleteAbandonedMessages();
+    SignalDatabase.messages().deleteAbandonedMessages();
+    SignalDatabase.messages().deleteAbandonedMessages();
   }
 
   public @NonNull List<MessageTable.ReportSpamData> getReportSpamMessageServerData(long threadId, long timestamp, int limit) {
     List<MessageTable.ReportSpamData> data = new ArrayList<>();
-    data.addAll(SignalDatabase.sms().getReportSpamMessageServerGuids(threadId, timestamp));
-    data.addAll(SignalDatabase.mms().getReportSpamMessageServerGuids(threadId, timestamp));
+    data.addAll(SignalDatabase.messages().getReportSpamMessageServerGuids(threadId, timestamp));
+    data.addAll(SignalDatabase.messages().getReportSpamMessageServerGuids(threadId, timestamp));
     return data.stream()
                .sorted((l, r) -> -Long.compare(l.getDateReceived(), r.getDateReceived()))
                .limit(limit)

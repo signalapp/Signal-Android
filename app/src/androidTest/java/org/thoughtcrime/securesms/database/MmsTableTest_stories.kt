@@ -37,7 +37,7 @@ class MmsTableTest_stories {
 
   @Before
   fun setUp() {
-    mms = SignalDatabase.mms
+    mms = SignalDatabase.messages
 
     mms.deleteAllThreads()
 
@@ -106,14 +106,14 @@ class MmsTableTest_stories {
       -1L
     ).get().messageId
 
-    val messageBeforeMark = SignalDatabase.mms.getMessageRecord(messageId)
+    val messageBeforeMark = SignalDatabase.messages.getMessageRecord(messageId)
     assertFalse(messageBeforeMark.incomingStoryViewedAtTimestamp > 0)
 
     // WHEN
-    SignalDatabase.mms.setIncomingMessageViewed(messageId)
+    SignalDatabase.messages.setIncomingMessageViewed(messageId)
 
     // THEN
-    val messageAfterMark = SignalDatabase.mms.getMessageRecord(messageId)
+    val messageAfterMark = SignalDatabase.messages.getMessageRecord(messageId)
     assertTrue(messageAfterMark.incomingStoryViewedAtTimestamp > 0)
   }
 
@@ -136,12 +136,12 @@ class MmsTableTest_stories {
 
     val randomizedOrderedIds = messageIds.shuffled()
     randomizedOrderedIds.forEach {
-      SignalDatabase.mms.setIncomingMessageViewed(it)
+      SignalDatabase.messages.setIncomingMessageViewed(it)
       Thread.sleep(5)
     }
 
     // WHEN
-    val result = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
+    val result = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     // THEN
@@ -183,7 +183,7 @@ class MmsTableTest_stories {
     val interspersedIds: List<Long> = (0 until 10).map {
       Thread.sleep(5)
       if (it % 2 == 0) {
-        SignalDatabase.mms.setIncomingMessageViewed(viewedIds[it / 2])
+        SignalDatabase.messages.setIncomingMessageViewed(viewedIds[it / 2])
         viewedIds[it / 2]
       } else {
         MmsHelper.insert(
@@ -195,7 +195,7 @@ class MmsTableTest_stories {
       }
     }
 
-    val result = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
+    val result = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(false)
     val resultOrderedIds = result.map { it.messageId }
 
     assertEquals(unviewedIds.reversed() + interspersedIds.reversed(), resultOrderedIds)
@@ -353,7 +353,7 @@ class MmsTableTest_stories {
     )
 
     // WHEN
-    val oldestTimestamp = SignalDatabase.mms.getOldestStorySendTimestamp(false)
+    val oldestTimestamp = SignalDatabase.messages.getOldestStorySendTimestamp(false)
 
     // THEN
     assertNull(oldestTimestamp)
@@ -372,7 +372,7 @@ class MmsTableTest_stories {
     )
 
     // WHEN
-    val oldestTimestamp = SignalDatabase.mms.getOldestStorySendTimestamp(true)
+    val oldestTimestamp = SignalDatabase.messages.getOldestStorySendTimestamp(true)
 
     // THEN
     assertEquals(expected, oldestTimestamp)

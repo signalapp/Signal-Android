@@ -1111,7 +1111,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.putNull(BODY);
 
     boolean updated = SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), db -> {
-      if (SignalDatabase.sms().hasSmsExportMessage(threadId)) {
+      if (SignalDatabase.messages().hasSmsExportMessage(threadId)) {
         return false;
       } else {
         db.insert(TABLE_NAME, null, values);

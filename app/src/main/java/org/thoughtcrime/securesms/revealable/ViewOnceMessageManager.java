@@ -30,7 +30,7 @@ public class ViewOnceMessageManager extends TimedEventManager<ViewOnceExpiration
   public ViewOnceMessageManager(@NonNull Application application) {
     super(application, "RevealableMessageManager");
 
-    this.mmsDatabase        = SignalDatabase.mms();
+    this.mmsDatabase        = SignalDatabase.messages();
     this.attachmentDatabase = SignalDatabase.attachments();
     
     scheduleIfNecessary();

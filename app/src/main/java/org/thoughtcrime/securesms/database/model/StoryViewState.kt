@@ -45,7 +45,7 @@ enum class StoryViewState {
     private fun getState(recipientId: RecipientId): Observable<StoryViewState> {
       return Observable.create<StoryViewState> { emitter ->
         fun refresh() {
-          emitter.onNext(SignalDatabase.mms.getStoryViewState(recipientId))
+          emitter.onNext(SignalDatabase.messages.getStoryViewState(recipientId))
         }
 
         val storyObserver = DatabaseObserver.Observer {

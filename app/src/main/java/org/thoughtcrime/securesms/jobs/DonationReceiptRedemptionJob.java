@@ -138,14 +138,14 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       SignalStore.donationsValues().markSubscriptionRedemptionFailed();
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
     } else if (giftMessageId != NO_ID) {
-      SignalDatabase.mms().markGiftRedemptionFailed(giftMessageId);
+      SignalDatabase.messages().markGiftRedemptionFailed(giftMessageId);
     }
   }
 
   @Override
   public void onAdded() {
     if (giftMessageId != NO_ID) {
-      SignalDatabase.mms().markGiftRedemptionStarted(giftMessageId);
+      SignalDatabase.messages().markGiftRedemptionStarted(giftMessageId);
     }
   }
 
@@ -205,8 +205,8 @@ public class DonationReceiptRedemptionJob extends BaseJob {
       SignalStore.donationsValues().clearSubscriptionReceiptCredential();
     } else if (giftMessageId != NO_ID) {
       Log.d(TAG, "Marking gift redemption completed for " + giftMessageId);
-      SignalDatabase.mms().markGiftRedemptionCompleted(giftMessageId);
-      MessageTable.MarkedMessageInfo markedMessageInfo = SignalDatabase.mms().setIncomingMessageViewed(giftMessageId);
+      SignalDatabase.messages().markGiftRedemptionCompleted(giftMessageId);
+      MessageTable.MarkedMessageInfo markedMessageInfo = SignalDatabase.messages().setIncomingMessageViewed(giftMessageId);
       if (markedMessageInfo != null) {
         Log.d(TAG, "Marked gift message viewed for " + giftMessageId);
         MultiDeviceViewedUpdateJob.enqueue(Collections.singletonList(markedMessageInfo.getSyncMessageId()));
@@ -250,7 +250,7 @@ public class DonationReceiptRedemptionJob extends BaseJob {
   }
 
   private @Nullable ReceiptCredentialPresentation getPresentationFromGiftMessage() throws InvalidInputException, NoSuchMessageException {
-    MessageRecord messageRecord = SignalDatabase.mms().getMessageRecord(giftMessageId);
+    MessageRecord messageRecord = SignalDatabase.messages().getMessageRecord(giftMessageId);
 
     if (MessageRecordUtil.hasGiftBadge(messageRecord)) {
       GiftBadge giftBadge = MessageRecordUtil.requireGiftBadge(messageRecord);

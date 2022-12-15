@@ -83,7 +83,7 @@ public class PushMediaSendJob extends PushSendJob {
         throw new AssertionError("No ServiceId!");
       }
 
-      MessageTable    database            = SignalDatabase.mms();
+      MessageTable    database            = SignalDatabase.messages();
       OutgoingMessage message             = database.getOutgoingMessage(messageId);
       Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
@@ -91,7 +91,7 @@ public class PushMediaSendJob extends PushSendJob {
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
-      SignalDatabase.mms().markAsSentFailed(messageId);
+      SignalDatabase.messages().markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
   }
@@ -108,7 +108,7 @@ public class PushMediaSendJob extends PushSendJob {
 
   @Override
   public void onAdded() {
-    SignalDatabase.mms().markAsSending(messageId);
+    SignalDatabase.messages().markAsSending(messageId);
   }
 
   @Override
@@ -116,7 +116,7 @@ public class PushMediaSendJob extends PushSendJob {
       throws IOException, MmsException, NoSuchMessageException, UndeliverableMessageException, RetryLaterException
   {
     ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-    MessageTable    database = SignalDatabase.mms();
+    MessageTable    database = SignalDatabase.messages();
     OutgoingMessage message  = database.getOutgoingMessage(messageId);
     long            threadId = database.getMessageRecord(messageId).getThreadId();
 
@@ -187,7 +187,7 @@ public class PushMediaSendJob extends PushSendJob {
 
   @Override
   public void onFailure() {
-    SignalDatabase.mms().markAsSentFailed(messageId);
+    SignalDatabase.messages().markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
@@ -234,7 +234,7 @@ public class PushMediaSendJob extends PushSendJob {
 
       if (message.getParentStoryId() != null) {
         try {
-          MessageRecord storyRecord    = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
+          MessageRecord storyRecord    = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
           Recipient     storyRecipient = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getRecipient();
 
           SignalServiceDataMessage.StoryContext storyContext = new SignalServiceDataMessage.StoryContext(storyRecipient.requireServiceId(), storyRecord.getDateSent());

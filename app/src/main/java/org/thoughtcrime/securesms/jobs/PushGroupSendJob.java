@@ -112,7 +112,7 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new AssertionError("Not a group!");
       }
 
-      MessageTable    database            = SignalDatabase.mms();
+      MessageTable    database            = SignalDatabase.messages();
       OutgoingMessage message             = database.getOutgoingMessage(messageId);
       Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
@@ -128,7 +128,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
-      SignalDatabase.mms().markAsSentFailed(messageId);
+      SignalDatabase.messages().markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
   }
@@ -151,7 +151,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
   @Override
   public void onAdded() {
-    SignalDatabase.mms().markAsSending(messageId);
+    SignalDatabase.messages().markAsSending(messageId);
   }
 
   @Override
@@ -160,7 +160,7 @@ public final class PushGroupSendJob extends PushSendJob {
   {
     SignalLocalMetrics.GroupMessageSend.onJobStarted(messageId);
 
-    MessageTable    database = SignalDatabase.mms();
+    MessageTable    database = SignalDatabase.messages();
     OutgoingMessage message  = database.getOutgoingMessage(messageId);
     long            threadId = database.getMessageRecord(messageId).getThreadId();
     Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
@@ -231,7 +231,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
   @Override
   public void onFailure() {
-    SignalDatabase.mms().markAsSentFailed(messageId);
+    SignalDatabase.messages().markAsSentFailed(messageId);
   }
 
   private List<SendMessageResult> deliver(OutgoingMessage message, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
@@ -325,7 +325,7 @@ public final class PushGroupSendJob extends PushSendJob {
 
         if (message.getParentStoryId() != null) {
           try {
-            MessageRecord storyRecord = SignalDatabase.mms().getMessageRecord(message.getParentStoryId().asMessageId().getId());
+            MessageRecord storyRecord = SignalDatabase.messages().getMessageRecord(message.getParentStoryId().asMessageId().getId());
             Recipient     recipient   = storyRecord.isOutgoing() ? Recipient.self() : storyRecord.getIndividualRecipient();
 
             destinations = destinations.stream()
@@ -381,7 +381,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                          @NonNull Set<IdentityKeyMismatch> existingIdentityMismatches)
       throws RetryLaterException, ProofRequiredException
   {
-    MessageTable        database   = SignalDatabase.mms();
+    MessageTable        database   = SignalDatabase.messages();
     RecipientAccessList accessList = new RecipientAccessList(target);
 
     List<NetworkFailure>             networkFailures           = Stream.of(results).filter(SendMessageResult::isNetworkFailure).map(result -> new NetworkFailure(accessList.requireIdByAddress(result.getAddress()))).toList();

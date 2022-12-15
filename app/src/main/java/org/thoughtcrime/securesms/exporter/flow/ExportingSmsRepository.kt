@@ -30,7 +30,7 @@ class ExportingSmsRepository(private val context: Application = ApplicationDepen
         storageManagerFreeSpace ?: internalStorageFile.usableSpace
       }
 
-      SmsExportSizeEstimations(internalFreeSpace, SignalDatabase.sms.getUnexportedInsecureMessagesEstimatedSize() + SignalDatabase.mms.getUnexportedInsecureMessagesEstimatedSize())
+      SmsExportSizeEstimations(internalFreeSpace, SignalDatabase.messages.getUnexportedInsecureMessagesEstimatedSize() + SignalDatabase.messages.getUnexportedInsecureMessagesEstimatedSize())
     }.subscribeOn(Schedulers.io())
   }
 

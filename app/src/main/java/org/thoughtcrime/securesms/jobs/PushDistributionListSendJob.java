@@ -96,7 +96,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
         throw new AssertionError("Not a distribution list! MessageId: " + messageId);
       }
 
-      OutgoingMessage message = SignalDatabase.mms().getOutgoingMessage(messageId);
+      OutgoingMessage message = SignalDatabase.messages().getOutgoingMessage(messageId);
 
       if (!message.getStoryType().isStory()) {
         throw new AssertionError("Only story messages are currently supported! MessageId: " + messageId);
@@ -112,7 +112,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
       jobManager.add(new PushDistributionListSendJob(messageId, destination, !attachmentUploadIds.isEmpty(), filterRecipientIds), attachmentUploadIds, attachmentUploadIds.isEmpty() ? null : destination.toQueueKey());
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
-      SignalDatabase.mms().markAsSentFailed(messageId);
+      SignalDatabase.messages().markAsSentFailed(messageId);
       notifyMediaMessageDeliveryFailed(context, messageId);
     }
   }
@@ -131,14 +131,14 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   @Override
   public void onAdded() {
-    SignalDatabase.mms().markAsSending(messageId);
+    SignalDatabase.messages().markAsSending(messageId);
   }
 
   @Override
   public void onPushSend()
       throws IOException, MmsException, NoSuchMessageException, RetryLaterException
   {
-    MessageTable             database                   = SignalDatabase.mms();
+    MessageTable             database                   = SignalDatabase.messages();
     OutgoingMessage          message                    = database.getOutgoingMessage(messageId);
     Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
     Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
@@ -187,7 +187,7 @@ public final class PushDistributionListSendJob extends PushSendJob {
 
   @Override
   public void onFailure() {
-    SignalDatabase.mms().markAsSentFailed(messageId);
+    SignalDatabase.messages().markAsSentFailed(messageId);
   }
 
   private List<SendMessageResult> deliver(@NonNull OutgoingMessage message, @NonNull List<Recipient> destinations)

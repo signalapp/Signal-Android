@@ -72,7 +72,7 @@ class ConversationItemPreviewer {
       attachments = PointerAttachment.forPointers(Optional.of(attachments)),
     )
 
-    SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()
+    SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()
 
     ThreadUtil.sleep(1)
   }
@@ -91,7 +91,7 @@ class ConversationItemPreviewer {
       attachments = PointerAttachment.forPointers(Optional.of(attachments)),
     )
 
-    val insert = SignalDatabase.mms.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()
+    val insert = SignalDatabase.messages.insertSecureDecryptedMessageInbox(message, SignalDatabase.threads.getOrCreateThreadIdFor(other)).get()
 
     SignalDatabase.attachments.getAttachmentsForMessage(insert.messageId).forEachIndexed { index, attachment ->
 //      if (index != 1) {
@@ -117,7 +117,7 @@ class ConversationItemPreviewer {
       isSecure = true
     )
 
-    val insert = SignalDatabase.mms.insertMessageOutbox(
+    val insert = SignalDatabase.messages.insertMessageOutbox(
       message,
       SignalDatabase.threads.getOrCreateThreadIdFor(other),
       false,

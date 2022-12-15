@@ -70,7 +70,7 @@ public class SmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-    SignalDatabase.sms().markAsSending(messageId);
+    SignalDatabase.messages().markAsSending(messageId);
   }
 
   @Override
@@ -80,7 +80,7 @@ public class SmsSendJob extends SendJob {
       throw new TooManyRetriesException();
     }
 
-    MessageTable     database = SignalDatabase.sms();
+    MessageTable     database = SignalDatabase.messages();
     SmsMessageRecord record   = database.getSmsMessage(messageId);
 
     if (!record.isPending() && !record.isFailed()) {
@@ -98,7 +98,7 @@ public class SmsSendJob extends SendJob {
       log(TAG, String.valueOf(record.getDateSent()), "Sent message: " + messageId);
     } catch (UndeliverableMessageException ude) {
       warn(TAG, ude);
-      SignalDatabase.sms().markAsSentFailed(record.getId());
+      SignalDatabase.messages().markAsSentFailed(record.getId());
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, record.getRecipient(), ConversationId.fromMessageRecord(record));
     }
   }
@@ -111,10 +111,10 @@ public class SmsSendJob extends SendJob {
   @Override
   public void onFailure() {
     warn(TAG, "onFailure() messageId: " + messageId);
-    long      threadId  = SignalDatabase.sms().getThreadIdForMessage(messageId);
+    long      threadId  = SignalDatabase.messages().getThreadIdForMessage(messageId);
     Recipient recipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
-    SignalDatabase.sms().markAsSentFailed(messageId);
+    SignalDatabase.messages().markAsSentFailed(messageId);
 
     if (threadId != -1 && recipient != null) {
       ApplicationDependencies.getMessageNotifier().notifyMessageDeliveryFailed(context, recipient, ConversationId.forConversation(threadId));

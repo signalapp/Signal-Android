@@ -1283,8 +1283,8 @@ final class GroupManagerV2 {
         } else {
           long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getRecipient(), -1, outgoingMessage.getDistributionType());
           try {
-            long messageId = SignalDatabase.mms().insertMessageOutbox(outgoingMessage, threadId, false, null);
-            SignalDatabase.mms().markAsSent(messageId, true);
+            long messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, null);
+            SignalDatabase.messages().markAsSent(messageId, true);
             SignalDatabase.threads().update(threadId, true);
           } catch (MmsException e) {
             throw new AssertionError(e);

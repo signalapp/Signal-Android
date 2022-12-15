@@ -25,7 +25,7 @@ class StoryViewsRepository {
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {
-      val record = SignalDatabase.mms.getMessageRecord(storyId)
+      val record = SignalDatabase.messages.getMessageRecord(storyId)
 
       record.recipient
     }.subscribeOn(Schedulers.io())
@@ -33,7 +33,7 @@ class StoryViewsRepository {
 
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
-      val record: MessageRecord = SignalDatabase.mms.getMessageRecord(storyId)
+      val record: MessageRecord = SignalDatabase.messages.getMessageRecord(storyId)
       val filterIds: Set<RecipientId> = if (record.recipient.isDistributionList) {
         val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
         SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)

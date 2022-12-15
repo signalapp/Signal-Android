@@ -21,8 +21,8 @@ import kotlin.time.Duration.Companion.milliseconds
  * we "page" through the unexported messages to reduce chances of exceeding that limit.
  */
 class SignalSmsExportReader(
-  private val smsDatabase: MessageTable = SignalDatabase.sms,
-  private val mmsDatabase: MessageTable = SignalDatabase.mms
+  private val smsDatabase: MessageTable = SignalDatabase.messages,
+  private val mmsDatabase: MessageTable = SignalDatabase.messages
 ) : Iterable<ExportableMessage>, Closeable {
 
   companion object {

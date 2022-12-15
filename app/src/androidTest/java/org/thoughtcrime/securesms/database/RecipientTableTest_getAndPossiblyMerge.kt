@@ -393,13 +393,13 @@ class RecipientTableTest_getAndPossiblyMerge {
     val recipientIdE164: RecipientId = SignalDatabase.recipients.getOrInsertFromE164(E164_A)
     val recipientIdAciB: RecipientId = SignalDatabase.recipients.getOrInsertFromServiceId(ACI_B)
 
-    val smsId1: Long = SignalDatabase.sms.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 0, body = "0")).get().messageId
-    val smsId2: Long = SignalDatabase.sms.insertMessageInbox(smsMessage(sender = recipientIdE164, time = 1, body = "1")).get().messageId
-    val smsId3: Long = SignalDatabase.sms.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 2, body = "2")).get().messageId
+    val smsId1: Long = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 0, body = "0")).get().messageId
+    val smsId2: Long = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = recipientIdE164, time = 1, body = "1")).get().messageId
+    val smsId3: Long = SignalDatabase.messages.insertMessageInbox(smsMessage(sender = recipientIdAci, time = 2, body = "2")).get().messageId
 
-    val mmsId1: Long = SignalDatabase.mms.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 3, body = "3"), -1).get().messageId
-    val mmsId2: Long = SignalDatabase.mms.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdE164, time = 4, body = "4"), -1).get().messageId
-    val mmsId3: Long = SignalDatabase.mms.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 5, body = "5"), -1).get().messageId
+    val mmsId1: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 3, body = "3"), -1).get().messageId
+    val mmsId2: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdE164, time = 4, body = "4"), -1).get().messageId
+    val mmsId3: Long = SignalDatabase.messages.insertSecureDecryptedMessageInbox(mmsMessage(sender = recipientIdAci, time = 5, body = "5"), -1).get().messageId
 
     val threadIdAci: Long = SignalDatabase.threads.getThreadIdFor(recipientIdAci)!!
     val threadIdE164: Long = SignalDatabase.threads.getThreadIdFor(recipientIdE164)!!
@@ -450,9 +450,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     Assert.assertNull(SignalDatabase.threads.getThreadRecord(threadIdE164))
 
     // SMS validation
-    val sms1: MessageRecord = SignalDatabase.sms.getMessageRecord(smsId1)!!
-    val sms2: MessageRecord = SignalDatabase.sms.getMessageRecord(smsId2)!!
-    val sms3: MessageRecord = SignalDatabase.sms.getMessageRecord(smsId3)!!
+    val sms1: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId1)!!
+    val sms2: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId2)!!
+    val sms3: MessageRecord = SignalDatabase.messages.getMessageRecord(smsId3)!!
 
     assertEquals(retrievedId, sms1.recipient.id)
     assertEquals(retrievedId, sms2.recipient.id)
@@ -463,9 +463,9 @@ class RecipientTableTest_getAndPossiblyMerge {
     assertEquals(retrievedThreadId, sms3.threadId)
 
     // MMS validation
-    val mms1: MessageRecord = SignalDatabase.mms.getMessageRecord(mmsId1)!!
-    val mms2: MessageRecord = SignalDatabase.mms.getMessageRecord(mmsId2)!!
-    val mms3: MessageRecord = SignalDatabase.mms.getMessageRecord(mmsId3)!!
+    val mms1: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId1)!!
+    val mms2: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId2)!!
+    val mms3: MessageRecord = SignalDatabase.messages.getMessageRecord(mmsId3)!!
 
     assertEquals(retrievedId, mms1.recipient.id)
     assertEquals(retrievedId, mms2.recipient.id)
@@ -624,7 +624,7 @@ class RecipientTableTest_getAndPossiblyMerge {
       if (createThread) {
         // Create a thread and throw a dummy message in it so it doesn't get automatically deleted
         SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(id))
-        SignalDatabase.sms.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, 0, 0, 0, "", Optional.empty(), 0, false, ""), ""))
+        SignalDatabase.messages.insertMessageInbox(IncomingEncryptedMessage(IncomingTextMessage(id, 1, 0, 0, 0, "", Optional.empty(), 0, false, ""), ""))
       }
     }
 
@@ -667,12 +667,12 @@ class RecipientTableTest_getAndPossiblyMerge {
     }
 
     fun expectChangeNumberEvent() {
-      assertEquals(1, SignalDatabase.sms.getChangeNumberMessageCount(outputRecipientId))
+      assertEquals(1, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
       changeNumberExpected = true
     }
 
     fun expectNoChangeNumberEvent() {
-      assertEquals(0, SignalDatabase.sms.getChangeNumberMessageCount(outputRecipientId))
+      assertEquals(0, SignalDatabase.messages.getChangeNumberMessageCount(outputRecipientId))
       changeNumberExpected = false
     }
 

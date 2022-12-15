@@ -49,9 +49,9 @@ class MessageQuotesRepository {
     val rootMessageId: MessageId = SignalDatabase.mmsSms.getRootOfQuoteChain(messageId)
 
     var originalRecord: MessageRecord? = if (rootMessageId.mms) {
-      SignalDatabase.mms.getMessageRecordOrNull(rootMessageId.id)
+      SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
     } else {
-      SignalDatabase.sms.getMessageRecordOrNull(rootMessageId.id)
+      SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
     }
 
     if (originalRecord == null) {

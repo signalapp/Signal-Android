@@ -39,7 +39,7 @@ class StoriesLandingRepository(context: Context) {
         val myStoriesId = SignalDatabase.recipients.getOrInsertFromDistributionListId(DistributionListId.MY_STORY)
         val myStories = Recipient.resolved(myStoriesId)
 
-        val stories = SignalDatabase.mms.getOrderedStoryRecipientsAndIds(false)
+        val stories = SignalDatabase.messages.getOrderedStoryRecipientsAndIds(false)
         val mapping: MutableMap<Recipient, List<StoryResult>> = mutableMapOf()
 
         stories.forEach {
@@ -77,14 +77,14 @@ class StoriesLandingRepository(context: Context) {
           .reversed()
           .take(if (recipient.isMyStory) 2 else 1)
           .map {
-            SignalDatabase.mms.getMessageRecord(it.messageId)
+            SignalDatabase.messages.getMessageRecord(it.messageId)
           }
 
         var sendingCount: Long = 0
         var failureCount: Long = 0
 
         if (recipient.isMyStory) {
-          SignalDatabase.mms.getMessages(results.map { it.messageId }).use { reader ->
+          SignalDatabase.messages.getMessages(results.map { it.messageId }).use { reader ->
             var messageRecord: MessageRecord? = reader.getNext()
             while (messageRecord != null) {
               if (messageRecord.isOutgoing && (messageRecord.isPending || messageRecord.isMediaPending)) {
@@ -118,8 +118,8 @@ class StoriesLandingRepository(context: Context) {
         val itemData = StoriesLandingItemData(
           storyRecipient = sender,
           storyViewState = StoryViewState.NONE,
-          hasReplies = messageRecords.any { SignalDatabase.mms.getNumberOfStoryReplies(it.id) > 0 },
-          hasRepliesFromSelf = messageRecords.any { SignalDatabase.mms.hasSelfReplyInStory(it.id) },
+          hasReplies = messageRecords.any { SignalDatabase.messages.getNumberOfStoryReplies(it.id) > 0 },
+          hasRepliesFromSelf = messageRecords.any { SignalDatabase.messages.hasSelfReplyInStory(it.id) },
           isHidden = sender.shouldHideStory(),
           primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords[primaryIndex]),
           secondaryStory = if (sender.isMyStory) messageRecords.drop(1).firstOrNull()?.let {
@@ -170,7 +170,7 @@ class StoriesLandingRepository(context: Context) {
    */
   fun markStoriesRead() {
     SignalExecutors.BOUNDED_IO.execute {
-      val messageInfos: List<MessageTable.MarkedMessageInfo> = SignalDatabase.mms.markAllIncomingStoriesRead()
+      val messageInfos: List<MessageTable.MarkedMessageInfo> = SignalDatabase.messages.markAllIncomingStoriesRead()
       val releaseThread: Long? = SignalStore.releaseChannelValues().releaseChannelRecipientId?.let { SignalDatabase.threads.getThreadIdIfExistsFor(it) }
 
       MultiDeviceReadUpdateJob.enqueue(messageInfos.filter { it.threadId == releaseThread }.map { it.syncMessageId })

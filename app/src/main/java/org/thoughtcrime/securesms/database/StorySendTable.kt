@@ -311,8 +311,8 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
 
       val messagesWithoutAnyReceivers = localRows.map { it.messageId }.distinct() - remoteRows.map { it.messageId }.distinct()
       messagesWithoutAnyReceivers.forEach {
-        SignalDatabase.mms.markAsRemoteDelete(it)
-        SignalDatabase.mms.deleteRemotelyDeletedStory(it)
+        SignalDatabase.messages.markAsRemoteDelete(it)
+        SignalDatabase.messages.deleteRemotelyDeletedStory(it)
       }
 
       writableDatabase.setTransactionSuccessful()

@@ -62,7 +62,7 @@ public final class IdentityUtil {
   public static void markIdentityVerified(Context context, Recipient recipient, boolean verified, boolean remote)
   {
     long         time          = System.currentTimeMillis();
-    MessageTable smsDatabase   = SignalDatabase.sms();
+    MessageTable smsDatabase   = SignalDatabase.messages();
     GroupTable   groupDatabase = SignalDatabase.groups();
 
     try (GroupTable.Reader reader = groupDatabase.getGroups()) {
@@ -92,7 +92,7 @@ public final class IdentityUtil {
             }
 
             try {
-              SignalDatabase.sms().insertMessageOutbox(outgoing, threadId, false, null);
+              SignalDatabase.messages().insertMessageOutbox(outgoing, threadId, false, null);
             } catch (MmsException e) {
               throw new AssertionError(e);
             }
@@ -121,7 +121,7 @@ public final class IdentityUtil {
 
       Log.i(TAG, "Inserting verified outbox...");
       try {
-        SignalDatabase.sms().insertMessageOutbox(outgoing, threadId, false, null);
+        SignalDatabase.messages().insertMessageOutbox(outgoing, threadId, false, null);
       } catch (MmsException e) {
         throw new AssertionError();
       }
@@ -134,7 +134,7 @@ public final class IdentityUtil {
     Log.w(TAG, "Inserting safety number change event(s) for " + recipientId, new Throwable());
 
     long         time          = System.currentTimeMillis();
-    MessageTable smsDatabase   = SignalDatabase.sms();
+    MessageTable smsDatabase   = SignalDatabase.messages();
     GroupTable   groupDatabase = SignalDatabase.groups();
 
     try (GroupTable.Reader reader = groupDatabase.getGroups()) {
