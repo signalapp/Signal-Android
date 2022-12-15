@@ -108,6 +108,7 @@ public final class JobManagerFactories {
       put(GroupCallPeekJob.KEY,                      new GroupCallPeekJob.Factory());
       put(GroupCallPeekWorkerJob.KEY,                new GroupCallPeekWorkerJob.Factory());
       put(GroupV2UpdateSelfProfileKeyJob.KEY,        new GroupV2UpdateSelfProfileKeyJob.Factory());
+      put(IndividualSendJob.KEY,                     new IndividualSendJob.Factory());
       put(KbsEnclaveMigrationWorkerJob.KEY,          new KbsEnclaveMigrationWorkerJob.Factory());
       put(LeaveGroupV2Job.KEY,                       new LeaveGroupV2Job.Factory());
       put(LeaveGroupV2WorkerJob.KEY,                 new LeaveGroupV2WorkerJob.Factory());
@@ -151,7 +152,6 @@ public final class JobManagerFactories {
       put(PushDistributionListSendJob.KEY,           new PushDistributionListSendJob.Factory());
       put(PushGroupSendJob.KEY,                      new PushGroupSendJob.Factory());
       put(PushGroupSilentUpdateSendJob.KEY,          new PushGroupSilentUpdateSendJob.Factory());
-      put(PushMediaSendJob.KEY,                      new PushMediaSendJob.Factory());
       put(PushNotificationReceiveJob.KEY,            new PushNotificationReceiveJob.Factory());
       put(PushProcessEarlyMessagesJob.KEY,           new PushProcessEarlyMessagesJob.Factory());
       put(PushProcessMessageJob.KEY,                 new PushProcessMessageJob.Factory());
@@ -253,7 +253,7 @@ public final class JobManagerFactories {
       put("CreateSignedPreKeyJob",                   new PreKeysSyncJob.Factory());
       put("RefreshPreKeysJob",                       new PreKeysSyncJob.Factory());
       put("RecipientChangedNumberJob",               new FailingJob.Factory());
-      put("PushTextSendJob",                         new PushMediaSendJob.Factory());
+      put("PushTextSendJob",                         new IndividualSendJob.Factory());
     }};
   }
 

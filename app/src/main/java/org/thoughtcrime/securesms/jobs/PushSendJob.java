@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -88,15 +87,6 @@ public abstract class PushSendJob extends SendJob {
 
   protected PushSendJob(Job.Parameters parameters) {
     super(parameters);
-  }
-
-  protected static Job.Parameters constructParameters(@NonNull Recipient recipient, boolean hasMedia) {
-    return new Parameters.Builder()
-                         .setQueue(recipient.getId().toQueueKey(hasMedia))
-                         .addConstraint(NetworkConstraint.KEY)
-                         .setLifespan(TimeUnit.DAYS.toMillis(1))
-                         .setMaxAttempts(Parameters.UNLIMITED)
-                         .build();
   }
 
   @Override

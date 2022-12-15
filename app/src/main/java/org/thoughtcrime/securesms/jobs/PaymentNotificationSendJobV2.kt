@@ -15,7 +15,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Crafts a [OutgoingPaymentsNotificationMessage] and uses the regular media sending framework to send it
  * instead of attempting to send directly. The logic for actually creating over-the-wire representation is
- * now in [PushMediaSendJob] which gets enqueued by [MessageSender.send].
+ * now in [IndividualSendJob] which gets enqueued by [MessageSender.send].
  */
 class PaymentNotificationSendJobV2 private constructor(
   parameters: Parameters,

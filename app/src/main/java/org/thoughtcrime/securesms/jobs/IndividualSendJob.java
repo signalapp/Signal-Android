@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
@@ -56,22 +57,29 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
-public class PushMediaSendJob extends PushSendJob {
+public class IndividualSendJob extends PushSendJob {
 
   public static final String KEY = "PushMediaSendJob";
 
-  private static final String TAG = Log.tag(PushMediaSendJob.class);
+  private static final String TAG = Log.tag(IndividualSendJob.class);
 
   private static final String KEY_MESSAGE_ID = "message_id";
 
-  private long messageId;
+  private final long messageId;
 
-  public PushMediaSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
-    this(constructParameters(recipient, hasMedia), messageId);
+  public IndividualSendJob(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
+    this(new Parameters.Builder()
+                       .setQueue(recipient.getId().toQueueKey(hasMedia))
+                       .addConstraint(NetworkConstraint.KEY)
+                       .setLifespan(TimeUnit.DAYS.toMillis(1))
+                       .setMaxAttempts(Parameters.UNLIMITED)
+                       .build(),
+         messageId);
   }
 
-  private PushMediaSendJob(Job.Parameters parameters, long messageId) {
+  private IndividualSendJob(Job.Parameters parameters, long messageId) {
     super(parameters);
     this.messageId = messageId;
   }
@@ -83,11 +91,10 @@ public class PushMediaSendJob extends PushSendJob {
         throw new AssertionError("No ServiceId!");
       }
 
-      MessageTable    database            = SignalDatabase.messages();
-      OutgoingMessage message             = database.getOutgoingMessage(messageId);
+      OutgoingMessage message             = SignalDatabase.messages().getOutgoingMessage(messageId);
       Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(new PushMediaSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
+      jobManager.add(new IndividualSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
 
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
@@ -322,10 +329,10 @@ public class PushMediaSendJob extends PushSendJob {
     return data.getLong(KEY_MESSAGE_ID);
   }
 
-  public static final class Factory implements Job.Factory<PushMediaSendJob> {
+  public static final class Factory implements Job.Factory<IndividualSendJob> {
     @Override
-    public @NonNull PushMediaSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
-      return new PushMediaSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
+    public @NonNull IndividualSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
+      return new IndividualSendJob(parameters, data.getLong(KEY_MESSAGE_ID));
     }
   }
 }

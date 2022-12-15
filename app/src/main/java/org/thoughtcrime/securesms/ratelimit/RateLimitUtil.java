@@ -10,7 +10,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob;
-import org.thoughtcrime.securesms.jobs.PushMediaSendJob;
+import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 
 import java.util.Set;
 
@@ -38,7 +38,7 @@ public final class RateLimitUtil {
     ApplicationDependencies.getJobManager().update((job, serializer) -> {
       Data data = serializer.deserialize(job.getSerializedData());
 
-      if (job.getFactoryKey().equals(PushMediaSendJob.KEY) && messageIds.contains(PushMediaSendJob.getMessageId(data))) {
+      if (job.getFactoryKey().equals(IndividualSendJob.KEY) && messageIds.contains(IndividualSendJob.getMessageId(data))) {
         return job.withNextRunAttemptTime(System.currentTimeMillis());
       } else if (job.getFactoryKey().equals(PushGroupSendJob.KEY) && messageIds.contains(PushGroupSendJob.getMessageId(data))) {
         return job.withNextRunAttemptTime(System.currentTimeMillis());
