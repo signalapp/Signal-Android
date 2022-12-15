@@ -3721,6 +3721,15 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
+  /**
+   * Returns the next ID that would be generated if an insert was done on this table.
+   * You should *not* use this for actually generating an ID to use. That will happen automatically!
+   * This was added for a very narrow usecase, and you probably don't need to use it.
+   */
+  public long getNextId() {
+    return SqlUtil.getNextAutoIncrementId(getWritableDatabase(), TABLE_NAME);
+  }
+
   void updateReactionsUnread(SQLiteDatabase db, long messageId, boolean hasReactions, boolean isRemoval) {
     try {
       boolean       isOutgoing = getMessageRecord(messageId).isOutgoing();

@@ -112,9 +112,11 @@ public class ApplicationMigrations {
     static final int STORY_VIEWED_STATE            = 68;
     static final int STORY_READ_STATE              = 69;
     static final int THREAD_MESSAGE_SCHEMA_CHANGE  = 70;
+    static final int SMS_MMS_MERGE                 = 71;
+    static final int REBUILD_MESSAGE_FTS_INDEX     = 72;
   }
 
-  public static final int CURRENT_VERSION = 70;
+  public static final int CURRENT_VERSION = 72;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -494,6 +496,14 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.THREAD_MESSAGE_SCHEMA_CHANGE) {
       jobs.put(Version.THREAD_MESSAGE_SCHEMA_CHANGE, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SMS_MMS_MERGE) {
+      jobs.put(Version.SMS_MMS_MERGE, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX) {
+      jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX, new RebuildMessageSearchIndexMigrationJob());
     }
 
     return jobs;

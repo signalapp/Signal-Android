@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.text.TextUtils
 import org.intellij.lang.annotations.Language
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.logging.Log
 
 /**
  * Contains all databases necessary for full-text search (FTS).
@@ -13,6 +14,8 @@ import org.signal.core.util.SqlUtil
 @SuppressLint("RecipientIdDatabaseReferenceUsage", "ThreadIdDatabaseReferenceUsage") // Handles updates via triggers
 class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
   companion object {
+    private val TAG = Log.tag(SearchTable::class.java)
+
     const val MMS_FTS_TABLE_NAME = "mms_fts"
     const val ID = "rowid"
     const val BODY = MmsSmsColumns.BODY
@@ -108,6 +111,38 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       null
     } else {
       readableDatabase.rawQuery(MESSAGES_FOR_THREAD_QUERY, SqlUtil.buildArgs(fullTextSearchQuery, threadId))
+    }
+  }
+
+  /**
+   * Re-adds every message to the index. It's fine to insert the same message twice; the table will naturally de-dupe.
+   *
+   * In order to prevent the database from locking up with super large inserts, this will perform the re-index in batches of the size you specify.
+   * It is not guaranteed that every batch will be the same size, but rather that the batches will be _no larger_ than the specified size.
+   *
+   * Warning: This is a potentially extremely-costly operation! It can take 10+ seconds on large installs and/or slow devices.
+   * Be smart about where you call this.
+   */
+  fun rebuildIndex(batchSize: Long = 10_000L) {
+    val maxId: Long = SignalDatabase.messages.nextId
+
+    Log.i(TAG, "Re-indexing. Operating on ID's 1-$maxId in steps of $batchSize.")
+
+    for (i in 1..maxId step batchSize) {
+      Log.i(TAG, "Reindexing ID's [$i, ${i + batchSize})")
+      writableDatabase.execSQL(
+        """
+        INSERT INTO $MMS_FTS_TABLE_NAME ($ID, $BODY) 
+            SELECT 
+              ${MessageTable.ID}, 
+              ${MessageTable.BODY}
+            FROM 
+              ${MessageTable.TABLE_NAME} 
+            WHERE 
+              ${MessageTable.ID} >= $i AND
+              ${MessageTable.ID} < ${i + batchSize}
+        """.trimIndent()
+      )
     }
   }
 

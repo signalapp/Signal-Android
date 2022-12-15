@@ -44,6 +44,7 @@ object SqlUtil {
     return tables
   }
 
+  @JvmStatic
   fun getNextAutoIncrementId(db: SupportSQLiteDatabase, table: String): Long {
     db.query("SELECT * FROM sqlite_sequence WHERE name = ?", arrayOf(table)).use { cursor ->
       if (cursor.moveToFirst()) {
