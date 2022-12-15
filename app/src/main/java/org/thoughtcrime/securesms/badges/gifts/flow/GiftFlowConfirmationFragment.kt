@@ -157,7 +157,7 @@ class GiftFlowConfirmationFragment :
           viewModel.setAdditionalMessage(it)
         },
         onEmojiToggleClicked = {
-          if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
+          if ((inputAwareLayout.isKeyboardOpen && !emojiKeyboard.isEmojiSearchMode) || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
             inputAwareLayout.show(it, emojiKeyboard)
             emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
           } else {

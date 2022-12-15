@@ -1171,8 +1171,12 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onKeyboardShown() {
     inputPanel.onKeyboardShown();
-    if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing() && !emojiDrawerStub.get().isEmojiSearchMode()) {
-      emojiDrawerStub.get().hide(true);
+    if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing()) {
+      if (emojiDrawerStub.get().isEmojiSearchMode()) {
+        inputPanel.setToIme();
+      } else {
+        emojiDrawerStub.get().hide(true);
+      }
     }
     if (attachmentKeyboardStub.resolved() && attachmentKeyboardStub.get().isShowing()) {
       navigationBarBackground.setVisibility(View.GONE);

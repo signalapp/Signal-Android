@@ -489,6 +489,10 @@ public class InputPanel extends LinearLayout
     mediaKeyboard.setToMedia();
   }
 
+  public void setToIme() {
+    mediaKeyboard.setToIme();
+  }
+
   @Override
   public void onKeyEvent(KeyEvent keyEvent) {
     composeText.dispatchKeyEvent(keyEvent);
