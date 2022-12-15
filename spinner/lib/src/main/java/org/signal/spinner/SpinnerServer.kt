@@ -206,7 +206,7 @@ internal class SpinnerServer(
     val action: String = session.parameters["action"]?.get(0).toString()
     val rawQuery: String = session.parameters["query"]?.get(0).toString()
     val query = if (action == "analyze") "EXPLAIN QUERY PLAN $rawQuery" else rawQuery
-    val startTime = System.currentTimeMillis()
+    val startTimeNanos = System.nanoTime()
 
     return renderTemplate(
       "query",
@@ -217,7 +217,7 @@ internal class SpinnerServer(
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
         query = rawQuery,
-        queryResult = dbConfig.db.query(query).use { it.toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers) }
+        queryResult = dbConfig.db.query(query).use { it.toQueryResult(queryStartTimeNanos = startTimeNanos, columnTransformers = dbConfig.columnTransformers) }
       )
     )
   }
@@ -261,7 +261,7 @@ internal class SpinnerServer(
     )
   }
 
-  private fun Cursor.toQueryResult(queryStartTime: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
+  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
     val numColumns = this.columnCount
     val columns = mutableListOf<String>()
     val transformers = mutableListOf<ColumnTransformer>()
@@ -279,11 +279,11 @@ internal class SpinnerServer(
       transformers += customTransformer ?: DefaultColumnTransformer
     }
 
-    var timeOfFirstRow = 0L
+    var timeOfFirstRowNanos = 0L
     val rows = mutableListOf<List<String>>()
     while (moveToNext()) {
-      if (timeOfFirstRow == 0L) {
-        timeOfFirstRow = System.currentTimeMillis()
+      if (timeOfFirstRowNanos == 0L) {
+        timeOfFirstRowNanos = System.nanoTime()
       }
 
       val row = mutableListOf<String>()
@@ -299,16 +299,20 @@ internal class SpinnerServer(
       rows += row
     }
 
-    if (timeOfFirstRow == 0L) {
-      timeOfFirstRow = System.currentTimeMillis()
+    if (timeOfFirstRowNanos == 0L) {
+      timeOfFirstRowNanos = System.nanoTime()
     }
 
     return QueryResult(
       columns = columns,
       rows = rows,
-      timeToFirstRow = max(timeOfFirstRow - queryStartTime, 0),
-      timeToReadRows = max(System.currentTimeMillis() - timeOfFirstRow, 0)
+      timeToFirstRow = (max(timeOfFirstRowNanos - queryStartTimeNanos, 0) / 1_000_000.0f).roundForDisplay(3),
+      timeToReadRows = (max(System.nanoTime() - timeOfFirstRowNanos, 0) / 1_000_000.0f).roundForDisplay(3)
     )
+  }
+
+  fun Float.roundForDisplay(decimals: Int = 2): String {
+    return "%.${decimals}f".format(this)
   }
 
   private fun Cursor.toTableInfo(): List<TableInfo> {
@@ -450,8 +454,8 @@ internal class SpinnerServer(
     val columns: List<String>,
     val rows: List<List<String>>,
     val rowCount: Int = rows.size,
-    val timeToFirstRow: Long,
-    val timeToReadRows: Long,
+    val timeToFirstRow: String,
+    val timeToReadRows: String,
   )
 
   data class TableInfo(
