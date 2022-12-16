@@ -417,7 +417,7 @@
     <string name="ConversationFragment_delete_for_me">Voor mij wissen</string>
     <string name="ConversationFragment_delete_for_everyone">Wissen voor iedereen</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
-    <string name="ConversationFragment_delete_on_this_device">Wissen van dit apparaat.</string>
+    <string name="ConversationFragment_delete_on_this_device">Wissen van dit apparaat</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Overal wissen</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Dit bericht zal voor iedere deelnemer aan dit gesprek die een recente versie van Signal gebruikt gewist worden. Ze zullen wel een berichtbubbel zien waarin staat dat je een bericht hebt gewist.</string>
