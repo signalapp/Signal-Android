@@ -3,15 +3,15 @@ package org.thoughtcrime.securesms.mediapreview
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.commit
+import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 
-class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_v2), VoiceNoteMediaControllerOwner {
+class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner {
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
@@ -20,10 +20,10 @@ class MediaPreviewV2Activity : AppCompatActivity(R.layout.activity_mediapreview_
     super.attachBaseContext(newBase)
   }
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    super.onCreate(savedInstanceState, ready)
     setTheme(R.style.TextSecure_MediaPreview)
-
+    setContentView(R.layout.activity_mediapreview_v2)
     voiceNoteMediaController = VoiceNoteMediaController(this)
 
     if (Build.VERSION.SDK_INT >= 21) {
