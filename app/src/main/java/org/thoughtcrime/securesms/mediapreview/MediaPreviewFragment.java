@@ -96,6 +96,7 @@ public abstract class MediaPreviewFragment extends Fragment {
   public interface Events {
     boolean singleTapOnMedia();
     void onMediaNotAvailable();
+    void unableToPlayMedia();
     void onMediaReady();
     void onPlaying();
     void onStopped();

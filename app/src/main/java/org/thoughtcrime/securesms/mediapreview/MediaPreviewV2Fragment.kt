@@ -436,6 +436,11 @@ class MediaPreviewV2Fragment : Fragment(R.layout.fragment_media_preview_v2), Med
     debouncer.clear()
   }
 
+  override fun unableToPlayMedia() {
+    Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_play_media, Toast.LENGTH_LONG).show()
+    requireActivity().finish()
+  }
+
   private fun forward(mediaItem: MediaTable.MediaRecord) {
     val attachment = mediaItem.attachment
     val uri = attachment?.uri
