@@ -1093,7 +1093,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     Runnable deleteForEveryone = () -> {
       SignalExecutors.BOUNDED.execute(() -> {
         for (MessageRecord message : messageRecords) {
-          MessageSender.sendRemoteDelete(message.getId(), message.isMms());
+          MessageSender.sendRemoteDelete(message.getId());
         }
       });
     };

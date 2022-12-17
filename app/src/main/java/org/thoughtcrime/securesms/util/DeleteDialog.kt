@@ -74,7 +74,7 @@ object DeleteDialog {
   private fun deleteForEveryone(messageRecords: Set<MessageRecord>, emitter: SingleEmitter<Boolean>) {
     SignalExecutors.BOUNDED.execute {
       messageRecords.forEach { message ->
-        MessageSender.sendRemoteDelete(message.id, message.isMms)
+        MessageSender.sendRemoteDelete(message.id)
       }
 
       emitter.onSuccess(false)

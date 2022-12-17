@@ -84,7 +84,7 @@ class MediaPreviewRepository {
 
   fun remoteDelete(attachment: DatabaseAttachment): Completable {
     return Completable.fromRunnable {
-      MessageSender.sendRemoteDelete(attachment.mmsId, true)
+      MessageSender.sendRemoteDelete(attachment.mmsId)
     }.subscribeOn(Schedulers.io())
   }
 

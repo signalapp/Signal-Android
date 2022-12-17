@@ -5,6 +5,7 @@ import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 object V168_SingleMessageTableMigration : SignalDatabaseMigration {
   private val TAG = Log.tag(V168_SingleMessageTableMigration::class.java)
@@ -140,6 +141,6 @@ object V168_SingleMessageTableMigration : SignalDatabaseMigration {
 
     stopwatch.stop(TAG)
 
-    // TODO jobs?
+    SignalStore.plaintext().smsMigrationIdOffset = nextMmsId
   }
 }

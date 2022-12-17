@@ -466,13 +466,13 @@ public class MessageSender {
     }
   }
 
-  public static void sendRemoteDelete(long messageId, boolean isMms) {
-    MessageTable db = isMms ? SignalDatabase.messages() : SignalDatabase.messages();
+  public static void sendRemoteDelete(long messageId) {
+    MessageTable db = SignalDatabase.messages();
     db.markAsRemoteDelete(messageId);
     db.markAsSending(messageId);
 
     try {
-      RemoteDeleteSendJob.create(messageId, isMms).enqueue();
+      RemoteDeleteSendJob.create(messageId).enqueue();
       onMessageSent();
     } catch (NoSuchMessageException e) {
       Log.w(TAG, "[sendRemoteDelete] Could not find message! Ignoring.");

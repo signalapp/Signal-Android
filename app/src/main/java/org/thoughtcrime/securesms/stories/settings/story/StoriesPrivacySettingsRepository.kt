@@ -32,7 +32,7 @@ class StoriesPrivacySettingsRepository {
       SignalDatabase.messages.getAllOutgoingStories(false, -1).use { reader ->
         reader.map { record -> record.id }
       }.forEach { messageId ->
-        MessageSender.sendRemoteDelete(messageId, true)
+        MessageSender.sendRemoteDelete(messageId)
       }
     }.subscribeOn(Schedulers.io())
   }
