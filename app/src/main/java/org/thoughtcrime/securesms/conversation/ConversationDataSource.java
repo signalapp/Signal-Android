@@ -93,10 +93,11 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
   @Override
   public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
-    Stopwatch           stopwatch = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
-    MmsSmsTable         db        = SignalDatabase.mmsSms();
-    List<MessageRecord> records   = new ArrayList<>(length);
+    Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
+    MmsSmsTable         db               = SignalDatabase.mmsSms();
+    List<MessageRecord> records          = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
+    QuotedHelper        quotedHelper     = new QuotedHelper();
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
     ReactionHelper      reactionHelper   = new ReactionHelper();
     PaymentHelper       paymentHelper    = new PaymentHelper();
@@ -107,6 +108,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         records.add(record);
         mentionHelper.add(record);
+        quotedHelper.add(record);
         reactionHelper.add(record);
         attachmentHelper.add(record);
         paymentHelper.add(record);
@@ -130,6 +132,9 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     mentionHelper.fetchMentions(context);
     stopwatch.split("mentions");
+
+    quotedHelper.fetchQuotedState();
+    stopwatch.split("is-quoted");
 
     reactionHelper.fetchReactions();
     stopwatch.split("reactions");
@@ -155,7 +160,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     stopwatch.split("recipient-resolves");
 
     List<ConversationMessage> messages = Stream.of(records)
-                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, mentionHelper.getMentions(m.getId())))
+                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId())))
                                                .toList();
 
     stopwatch.split("conversion");
@@ -180,28 +185,27 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     try {
       if (record != null) {
         List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
-
         stopwatch.split("mentions");
+
+        boolean isQuoted = SignalDatabase.mmsSms().isQuoted(record);
+        stopwatch.split("is-quoted");
 
         List<ReactionRecord> reactions = SignalDatabase.reactions().getReactions(messageId);
         record = ReactionHelper.recordWithReactions(record, reactions);
-
         stopwatch.split("reactions");
 
         List<DatabaseAttachment> attachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId.getId());
         if (attachments.size() > 0) {
           record = ((MediaMmsMessageRecord) record).withAttachments(context, attachments);
         }
-
         stopwatch.split("attachments");
 
         if (record.isPaymentNotification()) {
           record = SignalDatabase.payments().updateMessageWithPayment(record);
         }
-
         stopwatch.split("payments");
 
-        return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions);
+        return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions, isQuoted);
       } else {
         return null;
       }
@@ -232,6 +236,24 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     @Nullable List<Mention> getMentions(long id) {
       return messageIdToMentions.get(id);
+    }
+  }
+
+  private static class QuotedHelper {
+
+    private Collection<MessageRecord> records          = new LinkedList<>();
+    private Set<Long>                 hasBeenQuotedIds = new HashSet<>();
+
+    void add(MessageRecord record) {
+      records.add(record);
+    }
+
+    void fetchQuotedState() {
+      hasBeenQuotedIds = SignalDatabase.mmsSms().isQuoted(records);
+    }
+
+    boolean isQuoted(long id) {
+      return hasBeenQuotedIds.contains(id);
     }
   }
 

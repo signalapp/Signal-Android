@@ -35,10 +35,6 @@ public class ConversationMessage {
   @NonNull  private final MessageStyler.Result   styleResult;
             private final boolean                hasBeenQuoted;
 
-  private ConversationMessage(@NonNull MessageRecord messageRecord) {
-    this(messageRecord, null, null, false);
-  }
-
   private ConversationMessage(@NonNull MessageRecord messageRecord, boolean hasBeenQuoted) {
     this(messageRecord, null, null, hasBeenQuoted);
   }
@@ -165,9 +161,7 @@ public class ConversationMessage {
      * @param mentions List of placeholder mentions to be used to update the body in the provided MessageRecord.
      */
     @WorkerThread
-    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @Nullable List<Mention> mentions) {
-      boolean hasBeenQuoted = SignalDatabase.mmsSms().isQuoted(messageRecord);
-
+    public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @Nullable List<Mention> mentions, boolean hasBeenQuoted) {
       if (messageRecord.isMms() && mentions != null && !mentions.isEmpty()) {
         MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, messageRecord, mentions);
         return new ConversationMessage(messageRecord, updated.getBody(), updated.getMentions(), hasBeenQuoted);

@@ -52,10 +52,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -259,6 +261,42 @@ public class MmsSmsTable extends DatabaseTable {
     String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
+  }
+
+  public Set<Long> isQuoted(@NonNull Collection<MessageRecord> records) {
+    if (records.isEmpty()) {
+      return Collections.emptySet();
+    }
+
+    Map<QuoteDescriptor, MessageRecord> byQuoteDescriptor = new HashMap<>(records.size());
+    List<String[]>                      args              = new ArrayList<>(records.size());
+
+    for (MessageRecord record : records) {
+      long        timestamp = record.getDateSent();
+      RecipientId author    = record.isOutgoing() ? Recipient.self().getId() : record.getRecipient().getId();
+
+      byQuoteDescriptor.put(new QuoteDescriptor(timestamp, author), record);
+      args.add(SqlUtil.buildArgs(timestamp, author));
+    }
+
+
+    String[]            projection = new String[] { MessageTable.QUOTE_ID, MessageTable.QUOTE_AUTHOR };
+    List<SqlUtil.Query> queries    = SqlUtil.buildCustomCollectionQuery(MessageTable.QUOTE_ID + " = ?  AND " + MessageTable.QUOTE_AUTHOR + " = ?", args);
+    Set<Long>           quotedIds  = new HashSet<>();
+
+    for (SqlUtil.Query query : queries) {
+      try (Cursor cursor = getReadableDatabase().query(MessageTable.TABLE_NAME, projection, query.getWhere(), query.getWhereArgs(), null, null, null)) {
+        while (cursor.moveToNext()) {
+          long         timestamp       = CursorUtil.requireLong(cursor, MessageTable.QUOTE_ID);
+          RecipientId     author       = RecipientId.from(CursorUtil.requireString(cursor, MessageTable.QUOTE_AUTHOR));
+          QuoteDescriptor quoteLocator = new QuoteDescriptor(timestamp, author);
+
+          quotedIds.add(byQuoteDescriptor.get(quoteLocator).getId());
+        }
+      }
+    }
+
+    return quotedIds;
   }
 
   /**
@@ -982,6 +1020,29 @@ public class MmsSmsTable extends DatabaseTable {
     TimestampReadResult(@NonNull List<Pair<Long, Long>> expiring, @NonNull List<Long> threads) {
       this.expiring = expiring;
       this.threads  = threads;
+    }
+  }
+
+  private static class QuoteDescriptor {
+    private final long        timestamp;
+    private final RecipientId author;
+
+    private QuoteDescriptor(long timestamp, RecipientId author) {
+      this.author    = author;
+      this.timestamp = timestamp;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final QuoteDescriptor that = (QuoteDescriptor) o;
+      return timestamp == that.timestamp && author.equals(that.author);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(author, timestamp);
     }
   }
 }
