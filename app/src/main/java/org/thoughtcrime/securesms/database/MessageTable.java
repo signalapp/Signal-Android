@@ -61,7 +61,6 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.NotificationMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.Quote;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryResult;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.database.model.StoryViewState;
@@ -347,18 +346,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public Cursor getExpirationStartedMessages() {
     String where = EXPIRE_STARTED + " > 0";
     return rawQuery(where, null);
-  }
-
-  public SmsMessageRecord getSmsMessage(long messageId) throws NoSuchMessageException {
-    SQLiteDatabase   db     = databaseHelper.getSignalReadableDatabase();
-    Cursor           cursor = db.query(TABLE_NAME, SMS_PROJECTION, ID_WHERE, new String[]{messageId + ""}, null, null, null);
-    SmsReader        reader = new SmsReader(cursor);
-    SmsMessageRecord record = reader.getNext();
-
-    reader.close();
-
-    if (record == null) throw new NoSuchMessageException("No message for ID: " + messageId);
-    else                return record;
   }
 
   public Cursor getMessageCursor(long messageId) {
@@ -713,7 +700,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
       boolean  sameEraId = false;
 
-      try (SmsReader reader = new SmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+      try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
         MessageRecord record = reader.getNext();
         if (record != null) {
           GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
@@ -776,7 +763,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     String[]       args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
     boolean        sameEraId = false;
 
-    try (SmsReader reader = new SmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+    try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
       MessageRecord record = reader.getNext();
       if (record == null) {
         return false;
@@ -3090,7 +3077,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     String   where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " >= ? AND " + TYPE + " = ?";
     String[] args  = SqlUtil.buildArgs(threadId, afterTimestamp, Types.PROFILE_CHANGE_TYPE);
 
-    try (SmsReader reader = smsReaderFor(queryMessages(where, args, true, -1))) {
+    try (MmsReader reader = mmsReaderFor(queryMessages(where, args, true, -1))) {
       List<MessageRecord> results = new ArrayList<>(reader.getCount());
       while (reader.getNext() != null) {
         results.add(reader.getCurrent());
@@ -3328,10 +3315,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public static MmsReader mmsReaderFor(Cursor cursor) {
     return new MmsReader(cursor);
-  }
-
-  public static SmsReader smsReaderFor(Cursor cursor) {
-    return new SmsReader(cursor);
   }
 
   public static OutgoingMmsReader readerFor(OutgoingMessage message, long threadId) {
@@ -4143,121 +4126,6 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
      * Both normal and story message
      */
     ALL
-  }
-
-  public static class SmsReader implements MessageTable.Reader {
-
-    private final Cursor  cursor;
-    private final Context context;
-
-    public SmsReader(Cursor cursor) {
-      this.cursor  = cursor;
-      this.context = ApplicationDependencies.getApplication();
-    }
-
-    public SmsMessageRecord getNext() {
-      if (cursor == null || !cursor.moveToNext())
-        return null;
-
-      return getCurrent();
-    }
-
-    public int getCount() {
-      if (cursor == null) return 0;
-      else                return cursor.getCount();
-    }
-
-    @Override
-    public @NonNull MessageExportState getMessageExportStateForCurrentRecord() {
-      byte[] messageExportState = CursorUtil.requireBlob(cursor, MmsSmsColumns.EXPORT_STATE);
-      if (messageExportState == null) {
-        return MessageExportState.getDefaultInstance();
-      }
-
-      try {
-        return MessageExportState.parseFrom(messageExportState);
-      } catch (InvalidProtocolBufferException e) {
-        return MessageExportState.getDefaultInstance();
-      }
-    }
-
-    public SmsMessageRecord getCurrent() {
-      long                 messageId            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.ID));
-      long                 recipientId          = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.RECIPIENT_ID));
-      int                  addressDeviceId      = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.RECIPIENT_DEVICE_ID));
-      long                 type                 = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.TYPE));
-      long                 dateReceived         = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.DATE_RECEIVED));
-      long                 dateSent             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.DATE_SENT));
-      long                 dateServer           = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.DATE_SERVER));
-      long                 threadId             = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.THREAD_ID));
-      int                  status               = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.MMS_STATUS));
-      int                  deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.DELIVERY_RECEIPT_COUNT));
-      int                  readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.READ_RECEIPT_COUNT));
-      String               mismatchDocument     = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.MISMATCHED_IDENTITIES));
-      int                  subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.SMS_SUBSCRIPTION_ID));
-      long                 expiresIn            = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN));
-      long                 expireStarted        = cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRE_STARTED));
-      String               body                 = cursor.getString(cursor.getColumnIndexOrThrow(MmsSmsColumns.BODY));
-      boolean              unidentified         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.UNIDENTIFIED)) == 1;
-      boolean              remoteDelete         = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.REMOTE_DELETED)) == 1;
-      long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
-      long                 receiptTimestamp     = CursorUtil.requireLong(cursor, RECEIPT_TIMESTAMP);
-
-      if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
-        readReceiptCount = 0;
-      }
-
-      Set<IdentityKeyMismatch> mismatches = getMismatches(mismatchDocument);
-      Recipient                recipient  = Recipient.live(RecipientId.from(recipientId)).get();
-
-      return new SmsMessageRecord(messageId, body, recipient,
-                                  recipient,
-                                  addressDeviceId,
-                                  dateSent, dateReceived, dateServer, deliveryReceiptCount, type,
-                                  threadId, status, mismatches, subscriptionId,
-                                  expiresIn, expireStarted,
-                                  readReceiptCount, unidentified, Collections.emptyList(), remoteDelete,
-                                  notifiedTimestamp, receiptTimestamp);
-    }
-
-    private Set<IdentityKeyMismatch> getMismatches(String document) {
-      try {
-        if (!TextUtils.isEmpty(document)) {
-          return JsonUtils.fromJson(document, IdentityKeyMismatchSet.class).getItems();
-        }
-      } catch (IOException e) {
-        Log.w(TAG, e);
-      }
-
-      return Collections.emptySet();
-    }
-
-    @Override
-    public void close() {
-      cursor.close();
-    }
-
-    @Override
-    public @NonNull Iterator<MessageRecord> iterator() {
-      return new ReaderIterator();
-    }
-
-    private class ReaderIterator implements Iterator<MessageRecord> {
-      @Override
-      public boolean hasNext() {
-        return cursor != null && cursor.getCount() != 0 && !cursor.isLast();
-      }
-
-      @Override
-      public MessageRecord next() {
-        MessageRecord record = getNext();
-        if (record == null) {
-          throw new NoSuchElementException();
-        }
-
-        return record;
-      }
-    }
   }
 
   public static class MmsStatus {

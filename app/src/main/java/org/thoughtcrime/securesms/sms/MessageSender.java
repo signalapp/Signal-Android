@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -667,29 +666,6 @@ public class MessageSender {
         expirationManager.scheduleDeletion(messageId, true, message.getExpiresIn());
       }
     } catch (NoSuchMessageException | MmsException e) {
-      Log.w(TAG, "Failed to update self-sent message.", e);
-    }
-  }
-
-  private static void sendLocalTextSelf(Context context, long messageId) {
-    try {
-      ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-      MessageTable     smsDatabase    = SignalDatabase.messages();
-      MmsSmsTable      mmsSmsDatabase = SignalDatabase.mmsSms();
-      SmsMessageRecord message        = smsDatabase.getSmsMessage(messageId);
-      SyncMessageId          syncId            = new SyncMessageId(Recipient.self().getId(), message.getDateSent());
-
-      smsDatabase.markAsSent(messageId, true);
-      smsDatabase.markUnidentified(messageId, true);
-
-      mmsSmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
-      mmsSmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
-
-      if (message.getExpiresIn() > 0) {
-        smsDatabase.markExpireStarted(messageId);
-        expirationManager.scheduleDeletion(message.getId(), message.isMms(), message.getExpiresIn());
-      }
-    } catch (NoSuchMessageException e) {
       Log.w(TAG, "Failed to update self-sent message.", e);
     }
   }

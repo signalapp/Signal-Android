@@ -30,8 +30,6 @@ class SignalSmsExportReader(
     private const val CURSOR_LIMIT = 1000
   }
 
-  private var smsReader: MessageTable.SmsReader? = null
-  private var smsDone: Boolean = false
   private var mmsReader: MessageTable.MmsReader? = null
   private var mmsDone: Boolean = false
 
@@ -44,25 +42,10 @@ class SignalSmsExportReader(
   }
 
   override fun close() {
-    smsReader?.close()
     mmsReader?.close()
   }
 
   private fun refreshReaders() {
-    if (!smsDone) {
-      smsReader?.close()
-      smsReader = null
-
-      val refreshedSmsReader = MessageTable.smsReaderFor(smsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
-      if (refreshedSmsReader.count > 0) {
-        smsReader = refreshedSmsReader
-        return
-      } else {
-        refreshedSmsReader.close()
-        smsDone = true
-      }
-    }
-
     if (!mmsDone) {
       mmsReader?.close()
       mmsReader = null
@@ -85,20 +68,10 @@ class SignalSmsExportReader(
 
     private fun refreshIterators() {
       refreshReaders()
-      smsIterator = smsReader?.iterator()
       mmsIterator = mmsReader?.iterator()
     }
 
     override fun hasNext(): Boolean {
-      if (smsIterator?.hasNext() == true) {
-        return true
-      } else if (!smsDone) {
-        refreshIterators()
-        if (smsIterator?.hasNext() == true) {
-          return true
-        }
-      }
-
       if (mmsIterator?.hasNext() == true) {
         return true
       } else if (!mmsDone) {
@@ -114,10 +87,7 @@ class SignalSmsExportReader(
     override fun next(): ExportableMessage {
       var record: MessageRecord? = null
       try {
-        return if (smsIterator?.hasNext() == true) {
-          record = smsIterator!!.next()
-          readExportableSmsMessageFromRecord(record, smsReader!!.messageExportStateForCurrentRecord)
-        } else if (mmsIterator?.hasNext() == true) {
+        return if (mmsIterator?.hasNext() == true) {
           record = mmsIterator!!.next()
           readExportableMmsMessageFromRecord(record, mmsReader!!.messageExportStateForCurrentRecord)
         } else {

@@ -13,7 +13,6 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
-import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.payments.Payment;
@@ -34,7 +32,6 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -323,8 +320,6 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
       if (Util.hasItems(reactions)) {
         if (record instanceof MediaMmsMessageRecord) {
           return ((MediaMmsMessageRecord) record).withReactions(reactions);
-        } else if (record instanceof SmsMessageRecord) {
-          return ((SmsMessageRecord) record).withReactions(reactions);
         } else {
           throw new IllegalStateException("We have reactions for an unsupported record type: " + record.getClass().getName());
         }

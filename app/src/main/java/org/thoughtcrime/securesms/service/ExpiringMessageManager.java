@@ -53,16 +53,9 @@ public class ExpiringMessageManager {
 
   private class LoadTask implements Runnable {
     public void run() {
-      MessageTable.SmsReader smsReader = MessageTable.smsReaderFor(smsDatabase.getExpirationStartedMessages());
       MessageTable.MmsReader mmsReader = MessageTable.mmsReaderFor(mmsDatabase.getExpirationStartedMessages());
 
       MessageRecord messageRecord;
-
-      while ((messageRecord = smsReader.getNext()) != null) {
-        expiringMessageReferences.add(new ExpiringMessageReference(messageRecord.getId(),
-                                                                   messageRecord.isMms(),
-                                                                   messageRecord.getExpireStarted() + messageRecord.getExpiresIn()));
-      }
 
       while ((messageRecord = mmsReader.getNext()) != null) {
         expiringMessageReferences.add(new ExpiringMessageReference(messageRecord.getId(),
@@ -70,7 +63,6 @@ public class ExpiringMessageManager {
                                                                    messageRecord.getExpireStarted() + messageRecord.getExpiresIn()));
       }
 
-      smsReader.close();
       mmsReader.close();
     }
   }

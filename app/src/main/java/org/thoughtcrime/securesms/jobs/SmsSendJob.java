@@ -15,7 +15,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.model.SmsMessageRecord;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -80,8 +80,8 @@ public class SmsSendJob extends SendJob {
       throw new TooManyRetriesException();
     }
 
-    MessageTable     database = SignalDatabase.messages();
-    SmsMessageRecord record   = database.getSmsMessage(messageId);
+    MessageTable  database = SignalDatabase.messages();
+    MessageRecord record   = database.getMessageRecord(messageId);
 
     if (!record.isPending() && !record.isFailed()) {
       warn(TAG, "Message " + messageId + " was already sent. Ignoring.");
@@ -123,7 +123,7 @@ public class SmsSendJob extends SendJob {
     }
   }
 
-  private void deliver(SmsMessageRecord message)
+  private void deliver(MessageRecord message)
       throws UndeliverableMessageException
   {
     if (message.isSecure() || message.isKeyExchange() || message.isEndSession()) {

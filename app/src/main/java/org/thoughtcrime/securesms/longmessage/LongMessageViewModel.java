@@ -21,9 +21,9 @@ class LongMessageViewModel extends ViewModel {
 
   private LongMessageViewModel(@NonNull Application application, @NonNull LongMessageRepository repository, long messageId, boolean isMms) {
     this.message        = new MutableLiveData<>();
-    this.threadObserver = () -> repository.getMessage(application, messageId, isMms, message::postValue);
+    this.threadObserver = () -> repository.getMessage(application, messageId, message::postValue);
 
-    repository.getMessage(application, messageId, isMms, longMessage -> {
+    repository.getMessage(application, messageId, longMessage -> {
       if (longMessage.isPresent()) {
         ApplicationDependencies.getDatabaseObserver().registerConversationObserver(longMessage.get().getMessageRecord().getThreadId(), threadObserver);
       }
