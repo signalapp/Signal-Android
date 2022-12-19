@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.video.VideoUtil
+import org.witness.proofmode.ProofMode
 import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.IOException
@@ -53,6 +54,9 @@ class MediaCaptureRepository(context: Context) {
       )
 
       if (media != null) {
+        //generate proof from nearly stored media
+        var proofHash = ProofMode.generateProof(context, media.uri);
+
         onMediaRendered(media)
       } else {
         onFailedToRender()
@@ -72,6 +76,9 @@ class MediaCaptureRepository(context: Context) {
       )
 
       if (media != null) {
+        //generate proof from nearly stored media
+        var proofHash = ProofMode.generateProof(context, media.uri);
+
         onMediaRendered(media)
       } else {
         onFailedToRender()
