@@ -320,6 +320,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     View                   galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View                   countButton   = requireView().findViewById(R.id.camera_review_button);
     CameraXFlashToggleView flashButton   = requireView().findViewById(R.id.camera_flash_button);
+    CameraXFlashToggleView proofButton   = requireView().findViewById(R.id.camera_proof_button);
 
     initializeViewFinderAndControlsPositioning();
 
@@ -334,19 +335,32 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       captureButton.setEnabled(false);
       flipButton.setEnabled(false);
       flashButton.setEnabled(false);
+      proofButton.setEnabled(false);
       onCaptureClicked();
     });
 
     previewView.setScaleType(PREVIEW_SCALE_TYPE);
 
     cameraController.getInitializationFuture()
-                    .addListener(() -> initializeFlipButton(flipButton, flashButton), Executors.mainThreadExecutor());
+                    .addListener(() -> initializeFlipButton(flipButton, flashButton, proofButton), Executors.mainThreadExecutor());
 
     flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
     flashButton.setFlash(cameraController.getImageCaptureFlashMode());
     flashButton.setOnFlashModeChangedListener(mode -> {
       cameraController.setImageCaptureFlashMode(mode);
       cameraScreenBrightnessController.onCameraFlashChanged(mode == ImageCapture.FLASH_MODE_ON);
+    });
+
+    proofButton.setOnFlashModeChangedListener(mode -> {
+      if (mode == ImageCapture.FLASH_MODE_ON) {
+        /**
+         * CREATE LIBPROOF BUNDLE
+         */
+      } else {
+        /**
+         * DELETE LIBPROOF BUNDLE
+         */
+      }
     });
 
     galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
@@ -378,18 +392,18 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
             new CameraXVideoCaptureHelper.Callback() {
               @Override
               public void onVideoRecordStarted() {
-                hideAndDisableControlsForVideoRecording(captureButton, flashButton, flipButton, outAnimation);
+                hideAndDisableControlsForVideoRecording(captureButton, flashButton, proofButton, flipButton, outAnimation);
               }
 
               @Override
               public void onVideoSaved(@NonNull FileDescriptor fd) {
-                showAndEnableControlsAfterVideoRecording(captureButton, flashButton, flipButton, inAnimation);
+                showAndEnableControlsAfterVideoRecording(captureButton, flashButton, proofButton, flipButton, inAnimation);
                 controller.onVideoCaptured(fd);
               }
 
               @Override
               public void onVideoError(@Nullable Throwable cause) {
-                showAndEnableControlsAfterVideoRecording(captureButton, flashButton, flipButton, inAnimation);
+                showAndEnableControlsAfterVideoRecording(captureButton, flashButton, proofButton, flipButton, inAnimation);
                 controller.onVideoCaptureError();
               }
             }
@@ -433,18 +447,22 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
   private void hideAndDisableControlsForVideoRecording(@NonNull View captureButton,
                                                        @NonNull View flashButton,
+                                                       @NonNull View proofButton,
                                                        @NonNull View flipButton,
                                                        @NonNull Animation outAnimation)
   {
     captureButton.setEnabled(false);
     flashButton.startAnimation(outAnimation);
     flashButton.setVisibility(View.INVISIBLE);
+    proofButton.startAnimation(outAnimation);
+    proofButton.setVisibility(View.INVISIBLE);
     flipButton.startAnimation(outAnimation);
     flipButton.setVisibility(View.INVISIBLE);
   }
 
   private void showAndEnableControlsAfterVideoRecording(@NonNull View captureButton,
                                                         @NonNull View flashButton,
+                                                        @NonNull View proofButton,
                                                         @NonNull View flipButton,
                                                         @NonNull Animation inAnimation)
   {
@@ -452,6 +470,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       captureButton.setEnabled(true);
       flashButton.startAnimation(inAnimation);
       flashButton.setVisibility(View.VISIBLE);
+      proofButton.startAnimation(inAnimation);
+      proofButton.setVisibility(View.VISIBLE);
       flipButton.startAnimation(inAnimation);
       flipButton.setVisibility(View.VISIBLE);
     });
@@ -518,7 +538,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   }
 
   @SuppressLint({ "MissingPermission" })
-  private void initializeFlipButton(@NonNull View flipButton, @NonNull CameraXFlashToggleView flashButton) {
+  private void initializeFlipButton(@NonNull View flipButton, @NonNull CameraXFlashToggleView flashButton, @NonNull CameraXFlashToggleView proofButton) {
     if (getContext() == null) {
       Log.w(TAG, "initializeFlipButton called either before or after fragment was attached.");
       return;
@@ -540,6 +560,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         flipButton.startAnimation(animation);
         flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
         flashButton.setFlash(cameraController.getImageCaptureFlashMode());
+        proofButton.setFlash(ImageCapture.FLASH_MODE_ON);
+        proofButton.setAutoFlashEnabled(true);
         cameraScreenBrightnessController.onCameraDirectionChanged(cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA);
       });
 

@@ -217,8 +217,6 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(PnpInitializeDevicesJob::enqueueIfNecessary)
                             .execute();
 
-    ProofMode.init(this);
-
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     SignalLocalMetrics.ColdStart.onApplicationCreateFinished();
     Tracer.getInstance().end("Application#onCreate()");
