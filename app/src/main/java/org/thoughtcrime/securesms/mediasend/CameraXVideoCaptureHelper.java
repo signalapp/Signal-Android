@@ -28,6 +28,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.permissions.Permissions;
+import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.MemoryFileDescriptor;
 import org.thoughtcrime.securesms.video.VideoUtil;
@@ -92,12 +93,19 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
     this.previewView            = previewView;
     this.memoryFileDescriptor   = memoryFileDescriptor;
     this.callback               = callback;
-    this.updateProgressAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(TimeUnit.SECONDS.toMillis(maxVideoDurationSec));
+
+    float animationScale = ContextUtil.getAnimationScale(fragment.requireContext());
+    long  baseDuration   = TimeUnit.SECONDS.toMillis(maxVideoDurationSec);
+    long  scaledDuration = Math.round(animationScale > 0f ? (baseDuration * (1f / animationScale)) : baseDuration);
+
+    this.updateProgressAnimator = ValueAnimator.ofFloat(0f, 1f).setDuration(scaledDuration);
     this.debouncer              = new Debouncer(TimeUnit.SECONDS.toMillis(maxVideoDurationSec));
     this.cameraXModePolicy      = cameraXModePolicy;
 
     updateProgressAnimator.setInterpolator(new LinearInterpolator());
-    updateProgressAnimator.addUpdateListener(anim -> captureButton.setProgress(anim.getAnimatedFraction()));
+    updateProgressAnimator.addUpdateListener(anim -> {
+      captureButton.setProgress(anim.getAnimatedFraction());
+    });
   }
 
   @Override
