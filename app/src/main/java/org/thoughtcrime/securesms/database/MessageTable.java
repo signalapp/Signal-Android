@@ -209,7 +209,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
   };
 
-  private static final String[] MMS_PROJECTION = new String[] {
+  private static final String[] MMS_PROJECTION_BASE = new String[] {
       MessageTable.TABLE_NAME + "." + ID + " AS " + ID,
       THREAD_ID,
       DATE_SENT,
@@ -254,8 +254,12 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       MESSAGE_RANGES,
       STORY_TYPE,
       PARENT_STORY_ID,
-      "json_group_array(json_object(" +
-      "'" + AttachmentTable.ROW_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.ROW_ID + ", " +
+  };
+
+  private static final String[] MMS_PROJECTION = SqlUtil.appendArg(MMS_PROJECTION_BASE, "NULL AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS);
+
+  private static final String[] MMS_PROJECTION_WITH_ATTACHMENTS = SqlUtil.appendArg(MMS_PROJECTION_BASE, "json_group_array(json_object(" +
+          "'" + AttachmentTable.ROW_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.ROW_ID + ", " +
       "'" + AttachmentTable.UNIQUE_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UNIQUE_ID + ", " +
       "'" + AttachmentTable.MMS_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + ", " +
       "'" + AttachmentTable.SIZE + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.SIZE + ", " +
@@ -283,36 +287,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       "'" + AttachmentTable.TRANSFORM_PROPERTIES + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.TRANSFORM_PROPERTIES + ", " +
       "'" + AttachmentTable.DISPLAY_ORDER + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.DISPLAY_ORDER + ", " +
       "'" + AttachmentTable.UPLOAD_TIMESTAMP + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UPLOAD_TIMESTAMP +
-      ")) AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS,
-  };
-
-
-  private static final String[] SMS_PROJECTION = new String[] {
-      ID,
-      THREAD_ID,
-      RECIPIENT_ID,
-      RECIPIENT_DEVICE_ID,
-      DATE_RECEIVED,
-      DATE_SENT,
-      DATE_SERVER,
-      READ,
-      MMS_STATUS,
-      TYPE,
-      BODY,
-      DELIVERY_RECEIPT_COUNT,
-      MISMATCHED_IDENTITIES,
-      SMS_SUBSCRIPTION_ID,
-      EXPIRES_IN,
-      EXPIRE_STARTED,
-      NOTIFIED,
-      READ_RECEIPT_COUNT,
-      UNIDENTIFIED,
-      REACTIONS_UNREAD,
-      REACTIONS_LAST_SEEN,
-      REMOTE_DELETED,
-      NOTIFIED_TIMESTAMP,
-      RECEIPT_TIMESTAMP
-  };
+      ")) AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS);
 
   private static final String   THREAD_ID_WHERE      = THREAD_ID + " = ?";
   private static final String[] THREAD_ID_PROJECTION = new String[] { THREAD_ID };
@@ -700,7 +675,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
       boolean  sameEraId = false;
 
-      try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+      try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, MMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
         MessageRecord record = reader.getNext();
         if (record != null) {
           GroupCallUpdateDetails groupCallUpdateDetails = GroupCallUpdateDetailsUtil.parse(record.getBody());
@@ -763,7 +738,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     String[]       args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
     boolean        sameEraId = false;
 
-    try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, SMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
+    try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, MMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
       MessageRecord record = reader.getNext();
       if (record == null) {
         return false;
@@ -1768,7 +1743,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   private Cursor rawQuery(@NonNull String where, @Nullable String[] arguments, boolean reverse, long limit) {
-    return rawQuery(MMS_PROJECTION, where, arguments, reverse, limit);
+    return rawQuery(MMS_PROJECTION_WITH_ATTACHMENTS, where, arguments, reverse, limit);
   }
 
   private Cursor rawQuery(@NonNull String[] projection, @NonNull String where, @Nullable String[] arguments, boolean reverse, long limit) {
@@ -3088,7 +3063,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   private Cursor queryMessages(@NonNull String where, @Nullable String[] args, boolean reverse, long limit) {
-    return queryMessages(SMS_PROJECTION, where, args, reverse, limit);
+    return queryMessages(MMS_PROJECTION, where, args, reverse, limit);
   }
 
   private Cursor queryMessages(@NonNull String[] projection, @NonNull String where, @Nullable String[] args, boolean reverse, long limit) {
@@ -3121,7 +3096,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public Cursor getUnexportedInsecureMessages(int limit) {
     return rawQuery(
-        SqlUtil.appendArg(MMS_PROJECTION, EXPORT_STATE),
+        SqlUtil.appendArg(MMS_PROJECTION_WITH_ATTACHMENTS, EXPORT_STATE),
         getInsecureMessageClause() + " AND NOT " + EXPORTED,
         null,
         false,
