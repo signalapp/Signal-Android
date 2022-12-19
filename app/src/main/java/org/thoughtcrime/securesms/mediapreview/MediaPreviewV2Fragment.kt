@@ -75,15 +75,15 @@ import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v2), MediaPreviewFragment.Events {
-  private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
 
   private val lifecycleDisposable = LifecycleDisposable()
   private val binding by ViewBinderDelegate(FragmentMediaPreviewV2Binding::bind)
   private val viewModel: MediaPreviewV2ViewModel by viewModels()
   private val debouncer = Debouncer(2, TimeUnit.SECONDS)
 
-  private lateinit var fullscreenHelper: FullscreenHelper
+  private lateinit var pagerAdapter: MediaPreviewV2Adapter
   private lateinit var albumRailAdapter: MediaRailAdapter
+  private lateinit var fullscreenHelper: FullscreenHelper
 
   private var individualItemWidth: Int = 0
 
@@ -108,9 +108,14 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     initializeAlbumRail()
     initializeFullScreenUi()
     anchorMarginsToBottomInsets(binding.mediaPreviewDetailsContainer)
-    lifecycleDisposable += viewModel.state.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread()).subscribe {
-      bindCurrentState(it)
-    }
+    lifecycleDisposable +=
+      viewModel
+        .state
+        .distinctUntilChanged()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe {
+          bindCurrentState(it)
+        }
   }
 
   private fun initializeViewModel(args: MediaIntentFactory.MediaPreviewArgs) {
@@ -141,8 +146,8 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   private fun initializeViewPager() {
     binding.mediaPager.offscreenPageLimit = OFFSCREEN_PAGE_LIMIT_DEFAULT
     binding.mediaPager.setPageTransformer(MarginPageTransformer(ViewUtil.dpToPx(24)))
-    val adapter = MediaPreviewV2Adapter(this)
-    binding.mediaPager.adapter = adapter
+    pagerAdapter = MediaPreviewV2Adapter(this)
+    binding.mediaPager.adapter = pagerAdapter
     binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
         super.onPageSelected(position)
@@ -187,14 +192,13 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   private fun bindDataLoadedState(currentState: MediaPreviewV2State) {
     val currentPosition = currentState.position
-    val fragmentAdapter = binding.mediaPager.adapter as MediaPreviewV2Adapter
 
     val backingItems = currentState.mediaRecords.mapNotNull { it.attachment }
     if (backingItems.isEmpty()) {
       onMediaNotAvailable()
       return
     }
-    fragmentAdapter.updateBackingItems(backingItems)
+    pagerAdapter.updateBackingItems(backingItems)
 
     if (binding.mediaPager.currentItem != currentPosition) {
       binding.mediaPager.setCurrentItem(currentPosition, false)
@@ -212,12 +216,12 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
       return
     }
 
-    val currentPosition = currentState.position
+    val currentPosition: Int = currentState.position
     val currentItem: MediaTable.MediaRecord = currentState.mediaRecords[currentPosition]
+    val currentItemTag: String? = pagerAdapter.getFragmentTag(currentPosition)
 
-    // pause all other fragments
-    childFragmentManager.fragments.map { fragment ->
-      if (fragment.tag != "f$currentPosition") {
+    childFragmentManager.fragments.forEach { fragment ->
+      if (fragment.tag != currentItemTag) {
         (fragment as? MediaPreviewFragment)?.pause()
       }
     }
@@ -232,6 +236,8 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
       currentState.albums[currentItem.attachment?.mmsId] ?: emptyList()
     }
     bindAlbumRail(albumThumbnailMedia, currentItem)
+
+    fullscreenHelper.showSystemUI()
     crossfadeViewIn(binding.mediaPreviewDetailsContainer)
   }
 
@@ -349,11 +355,12 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
   }
 
-  private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int) = childFragmentManager.findFragmentByTag("f$currentPosition") as? MediaPreviewFragment
+  private fun getMediaPreviewFragmentFromChildFragmentManager(currentPosition: Int): MediaPreviewFragment? {
+    return childFragmentManager.findFragmentByTag(pagerAdapter.getFragmentTag(currentPosition)) as? MediaPreviewFragment
+  }
 
   private fun jumpViewPagerToMedia(media: Media) {
-    val viewPagerAdapter = binding.mediaPager.adapter as MediaPreviewV2Adapter
-    val position = viewPagerAdapter.findItemPosition(media)
+    val position = pagerAdapter.findItemPosition(media)
     binding.mediaPager.setCurrentItem(position, true)
   }
 
@@ -432,8 +439,15 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     debouncer.publish { fullscreenHelper.hideSystemUI() }
   }
 
-  override fun onStopped() {
-    debouncer.clear()
+  override fun onStopped(tag: String?) {
+    if (tag == null) {
+      return
+    }
+
+    if (pagerAdapter.getFragmentTag(viewModel.currentPosition) == tag) {
+      debouncer.clear()
+      fullscreenHelper.showSystemUI()
+    }
   }
 
   override fun unableToPlayMedia() {
@@ -493,6 +507,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
   }
 
+  @Suppress("DEPRECATION")
   fun performSaveToDisk(mediaItem: MediaTable.MediaRecord) {
     val saveTask = SaveAttachmentTask(requireContext())
     val saveDate = if (mediaItem.date > 0) mediaItem.date else System.currentTimeMillis()
@@ -587,6 +602,8 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   companion object {
+    private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
+
     const val ARGS_KEY: String = "args"
 
     @JvmStatic

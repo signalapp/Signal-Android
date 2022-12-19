@@ -10,7 +10,6 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.database.MediaTable
@@ -19,12 +18,14 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Optional
 
 class MediaPreviewV2ViewModel : ViewModel() {
-  private val TAG = Log.tag(MediaPreviewV2ViewModel::class.java)
+
   private val store = RxStore(MediaPreviewV2State())
   private val disposables = CompositeDisposable()
   private val repository: MediaPreviewRepository = MediaPreviewRepository()
 
   val state: Flowable<MediaPreviewV2State> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
+  val currentPosition: Int
+    get() = store.state.position
 
   fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {

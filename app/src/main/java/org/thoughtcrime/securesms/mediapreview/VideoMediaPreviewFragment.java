@@ -79,7 +79,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
       @Override
       public void onStopped() {
-        events.onStopped();
+        events.onStopped(getTag());
       }
 
       @Override

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.mediapreview;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -99,7 +98,7 @@ public abstract class MediaPreviewFragment extends Fragment {
     void unableToPlayMedia();
     void onMediaReady();
     void onPlaying();
-    void onStopped();
+    void onStopped(@Nullable String tag);
     default @Nullable VideoControlsDelegate getVideoControlsDelegate() {
       return null;
     }

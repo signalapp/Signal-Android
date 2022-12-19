@@ -6,12 +6,18 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
 
-class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragment) {
+class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
   private var items: List<Attachment> = listOf()
+  private val stableIdGenerator = StableIdGenerator<Attachment>()
 
   override fun getItemCount(): Int {
     return items.count()
+  }
+
+  override fun getItemId(position: Int): Long {
+    return stableIdGenerator.getId(items[position])
   }
 
   override fun createFragment(position: Int): Fragment {
@@ -36,6 +42,14 @@ class MediaPreviewV2Adapter(val fragment: Fragment) : FragmentStateAdapter(fragm
     fragment.arguments = args
 
     return fragment
+  }
+
+  fun getFragmentTag(position: Int): String? {
+    if (position < 0 || position > itemCount) {
+      return null
+    }
+
+    return "f${getItemId(position)}"
   }
 
   fun findItemPosition(media: Media): Int {
