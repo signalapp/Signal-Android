@@ -41,60 +41,7 @@ object V168_SingleMessageTableMigration : SignalDatabaseMigration {
     db.execSQL("DROP TRIGGER mms_ai") // Note: For perf reasons, we won't actually rebuild the index here -- we'll rebuild it asynchronously in a job
     stopwatch.split("drop-mms-indexes")
 
-    db.execSQL(
-      """
-      INSERT INTO mms
-        SELECT
-          _id + $nextMmsId,
-          date_sent,
-          date_received,
-          date_server,
-          thread_id,
-          recipient_id,
-          recipient_device_id,
-          type,
-          body,
-          read,
-          null,
-          0,
-          0,
-          0,
-          status,
-          null,
-          subscription_id,
-          receipt_timestamp,
-          delivery_receipt_count,
-          read_receipt_count,
-          0,
-          mismatched_identities,
-          null,
-          expires_in,
-          expire_started,
-          notified,
-          0,
-          0,
-          null,
-          0,
-          null,
-          0,
-          null,
-          unidentified,
-          null,
-          0,
-          reactions_unread,
-          reactions_last_seen,
-          remote_deleted,
-          0,
-          notified_timestamp,
-          server_guid,
-          null,
-          0,
-          0,
-          export_state,
-          exported
-        FROM sms
-    """
-    )
+    copySmsToMms(db, nextMmsId)
     stopwatch.split("copy-sms")
 
     db.execSQL("DROP TABLE sms")
@@ -142,5 +89,72 @@ object V168_SingleMessageTableMigration : SignalDatabaseMigration {
     stopwatch.stop(TAG)
 
     SignalStore.plaintext().smsMigrationIdOffset = nextMmsId
+  }
+
+  private fun copySmsToMms(db: SQLiteDatabase, idOffset: Long) {
+    val batchSize = 50_000L
+
+    val maxId = SqlUtil.getNextAutoIncrementId(db, "sms")
+
+    for (i in 1..maxId step batchSize) {
+      db.execSQL(
+        """
+        INSERT INTO mms
+          SELECT
+            _id + $idOffset,
+            date_sent,
+            date_received,
+            date_server,
+            thread_id,
+            recipient_id,
+            recipient_device_id,
+            type,
+            body,
+            read,
+            null,
+            0,
+            0,
+            0,
+            status,
+            null,
+            subscription_id,
+            receipt_timestamp,
+            delivery_receipt_count,
+            read_receipt_count,
+            0,
+            mismatched_identities,
+            null,
+            expires_in,
+            expire_started,
+            notified,
+            0,
+            0,
+            null,
+            0,
+            null,
+            0,
+            null,
+            unidentified,
+            null,
+            0,
+            reactions_unread,
+            reactions_last_seen,
+            remote_deleted,
+            0,
+            notified_timestamp,
+            server_guid,
+            null,
+            0,
+            0,
+            export_state,
+            exported
+          FROM 
+            sms
+          WHERE
+            _id >= $i AND
+            _id < ${i + batchSize}
+      """
+      )
+    }
   }
 }
