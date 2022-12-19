@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s(e)k zuri</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Medioa jada ez dago eskuragarri.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Errore bat gertatu da mezua bilatzean.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ez da topatu multimedia eduki hau partekatzeko gai den aplikaziorik.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Itxi</string>

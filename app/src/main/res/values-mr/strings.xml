@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s कडून आपणाला</string>
     <string name="MediaPreviewActivity_media_no_longer_available">मिडिया आता उपलब्ध नाही.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">संदेश शोधण्यात त्रुटी.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">हे मिडिया शेअर करण्यासाठी सक्षम असे अॅप सापडू शकले नाही.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">बंद करा</string>

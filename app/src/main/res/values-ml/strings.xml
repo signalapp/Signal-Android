@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s എന്നയാൾ നിങ്ങൾക്ക് അയച്ചത്</string>
     <string name="MediaPreviewActivity_media_no_longer_available">മീഡിയ ഇനി ലഭ്യമല്ല.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">സന്ദേശം കണ്ടെത്തുന്നതിൽ പിശക്.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ഈ മീഡിയ പങ്കിടാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">അടയ്ക്കുക</string>

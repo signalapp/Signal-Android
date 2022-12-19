@@ -1911,6 +1911,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s сизге</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Мындай медиафайл жок.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Билдирүү табылган жок.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Ушул медиафайлды бөлүшө турган колдонмо табылган жок.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Жабуу</string>

@@ -1911,6 +1911,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">보낸 사람: %1$s 님, 받는 사람: 나</string>
     <string name="MediaPreviewActivity_media_no_longer_available">미디어를 더 이상 이용할 수 없습니다.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">메시지 검색 중 오류가 발생했습니다.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">미디어를 공유할 수 있는 앱을 찾을 수 없습니다.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">닫기</string>

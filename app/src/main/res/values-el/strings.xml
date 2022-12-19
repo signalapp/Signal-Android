@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s προς εσένα</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Το πολυμέσο δεν είναι πια διαθέσιμο.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Σφάλμα κατά την εύρεση του μηνύματος.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Δεν βρέθηκε εφαρμογή που να μπορεί να διαμοιραστεί αυτό το πολυμέσο.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Κλείσιμο</string>
