@@ -15,6 +15,9 @@ buildscript {
                 includeGroupByRegex "org\\.jlleitschuh\\.gradle.*"
             }
         }
+        //add the Guardian Project Maven repo hosted on Github
+        maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
+
     }
     dependencies {
         classpath 'com.android.tools:r8:3.3.75'

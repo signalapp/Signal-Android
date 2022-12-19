@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.witness.proofmode.ProofMode;
 
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
@@ -215,6 +216,8 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addPostRender(StoryOnboardingDownloadJob.Companion::enqueueIfNeeded)
                             .addPostRender(PnpInitializeDevicesJob::enqueueIfNecessary)
                             .execute();
+
+    ProofMode.init(this);
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     SignalLocalMetrics.ColdStart.onApplicationCreateFinished();

@@ -15,6 +15,7 @@ repositories {
         content {
             includeGroupByRegex "org\\.signal.*"
         }
+        maven { url "https://raw.githubusercontent.com/guardianproject/gpmaven/master" }
     }
 
     google()
@@ -449,6 +450,16 @@ dependencies {
     implementation libs.androidx.autofill
     implementation libs.androidx.biometric
     implementation libs.androidx.sharetarget
+
+    //add the libProofMode library
+    implementation ('org.witness:android-libproofmode:1.0.18') {
+        exclude group: 'com.eternitywall'
+    }
+    implementation 'com.google.android.gms:play-services-safetynet:18.0.1'
+    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
+    implementation 'org.bouncycastle:bcpkix-jdk15to18:1.72'
+    implementation 'org.bouncycastle:bcprov-jdk15to18:1.72'
+    implementation 'org.bouncycastle:bcpg-jdk15to18:1.71'
 
     implementation (libs.firebase.messaging) {
         exclude group: 'com.google.firebase', module: 'firebase-core'
