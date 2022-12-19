@@ -30,6 +30,18 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <org.thoughtcrime.securesms.mediasend.camerax.CameraXFlashToggleView
+        android:id="@+id/camera_proof_button"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="14dp"
+        android:padding="6dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/camerax_proof_toggle"
+        app:layout_constraintEnd_toStartOf="@+id/camera_flash_button"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.appcompat.widget.AppCompatImageButton
         android:id="@+id/camera_flip_button"
         android:layout_width="52dp"
