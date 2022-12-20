@@ -4,6 +4,7 @@ import android.animation.Animator
 import android.animation.AnimatorSet
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.graphics.Color.blue
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -12,6 +13,7 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.ViewSwitcher
 import androidx.activity.OnBackPressedCallback
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -54,6 +56,10 @@ import org.thoughtcrime.securesms.util.visible
 
 /**
  * Allows the user to view and edit selected media.
+ */
+
+/**
+ * IF WE WANT TO ADD ABILITY TO CROP/ROTATE/DRAW ON PHOTO - SHOULD UNCOMMENT AND DELETE COLOR FILTERS
  */
 class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
@@ -130,11 +136,15 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     pager.adapter = pagerAdapter
 
     drawToolButton.setOnClickListener {
-      sharedViewModel.sendCommand(HudCommand.StartDraw)
+//      sharedViewModel.sendCommand(HudCommand.StartDraw)
     }
 
+    (drawToolButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
+    (cropAndRotateButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
+
+
     cropAndRotateButton.setOnClickListener {
-      sharedViewModel.sendCommand(HudCommand.StartCropAndRotate)
+//      sharedViewModel.sendCommand(HudCommand.StartCropAndRotate)
     }
 
     qualityButton.setOnClickListener {
