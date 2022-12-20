@@ -346,6 +346,7 @@ object Stories {
       return Media(
         media.uri,
         media.mimeType,
+        "",
         media.date,
         media.width,
         media.height,
@@ -385,6 +386,7 @@ object Stories {
       return Media(
         videoSlide.uri!!,
         videoSlide.contentType,
+        "",
         System.currentTimeMillis(),
         0,
         0,

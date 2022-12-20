@@ -110,6 +110,7 @@ fun MediaTable.MediaRecord.toMedia(): Media? {
   return Media(
     uri,
     this.contentType,
+    "",
     this.date,
     attachment.width,
     attachment.height,

@@ -92,6 +92,7 @@ public class AvatarSelectionActivity extends AppCompatActivity implements Camera
 
     onMediaSelected(new Media(blobUri,
                               MediaUtil.IMAGE_JPEG,
+                              "",
                               System.currentTimeMillis(),
                               width,
                               height,

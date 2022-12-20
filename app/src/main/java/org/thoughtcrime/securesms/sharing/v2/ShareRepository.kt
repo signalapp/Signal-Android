@@ -105,6 +105,7 @@ class ShareRepository(context: Context) {
         Media(
           blobUri,
           mimeType,
+          "",
           System.currentTimeMillis(),
           dimens.first,
           dimens.second,

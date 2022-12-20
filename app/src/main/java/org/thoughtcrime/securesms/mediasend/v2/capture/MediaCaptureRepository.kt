@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.video.VideoUtil
 import org.witness.proofmode.ProofMode
+import java.io.File
 import java.io.FileDescriptor
 import java.io.FileInputStream
 import java.io.IOException
@@ -54,9 +55,6 @@ class MediaCaptureRepository(context: Context) {
       )
 
       if (media != null) {
-        //generate proof from nearly stored media
-        var proofHash = ProofMode.generateProof(context, media.uri);
-
         onMediaRendered(media)
       } else {
         onFailedToRender()
@@ -101,9 +99,14 @@ class MediaCaptureRepository(context: Context) {
         .withMimeType(mimeType)
         .createForSingleSessionOnDisk(context)
 
+      //generate proof from nearly stored media
+      var proofHash = ProofMode.generateProof(context, uri)
+      Log.e("PROOF render:", proofHash)
+
       Media(
         uri,
         mimeType,
+        proofHash,
         System.currentTimeMillis(),
         width,
         height,
@@ -152,12 +155,15 @@ class MediaCaptureRepository(context: Context) {
           val height = CursorUtil.requireInt(cursor, getHeightColumn(orientation))
           val size = CursorUtil.requireLong(cursor, MediaStore.Images.Media.SIZE)
           val duration = if (!isImage) CursorUtil.requireInt(cursor, MediaStore.Video.Media.DURATION).toLong() else 0.toLong()
+          //generate proof from nearly stored media
+          var proofHash = ProofMode.generateProof(context, uri)
           media.add(
             MediaRepository.fixMimeType(
               context,
               Media(
                 uri,
                 mimetype,
+                proofHash,
                 date,
                 width,
                 height,
