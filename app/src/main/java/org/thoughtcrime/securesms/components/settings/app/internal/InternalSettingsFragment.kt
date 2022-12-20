@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
+import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -542,6 +543,37 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         title = DSLSettingsText.from("Stories dialog launcher"),
         onClick = {
           findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToStoryDialogsLauncherFragment())
+        }
+      )
+
+      dividerPref()
+
+      sectionHeaderPref(DSLSettingsText.from("PNP"))
+
+      clickPref(
+        title = DSLSettingsText.from("Trigger No-Op Change Number"),
+        summary = DSLSettingsText.from("Mimics the 'Hello world' event"),
+        isEnabled = true,
+        onClick = {
+          SimpleTask.run(viewLifecycleOwner.lifecycle, {
+            ApplicationDependencies.getJobManager().runSynchronously(PnpInitializeDevicesJob(), 10.seconds.inWholeMilliseconds)
+          }, { state ->
+            if (state.isPresent) {
+              Toast.makeText(context, "Job finished with result: ${state.get()}!", Toast.LENGTH_SHORT).show()
+              viewModel.refresh()
+            } else {
+              Toast.makeText(context, "Job timed out after 10 seconds!", Toast.LENGTH_SHORT).show()
+            }
+          })
+        }
+      )
+
+      clickPref(
+        title = DSLSettingsText.from("Reset 'PNP initialized' state"),
+        summary = DSLSettingsText.from("Current initialized state: ${state.pnpInitialized}"),
+        isEnabled = state.pnpInitialized,
+        onClick = {
+          viewModel.resetPnpInitializedState()
         }
       )
     }
