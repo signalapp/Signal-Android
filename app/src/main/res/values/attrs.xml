@@ -365,4 +365,8 @@
     <declare-styleable name="CircularProgressMaterialButton">
         <attr name="circularProgressMaterialButton__label" format="string" />
     </declare-styleable>
+    <declare-styleable name="AnimatedInOutImageButton">
+        <attr name="rotationWhenVisible" format="float" />
+        <attr name="rotationWhenHidden" format="float" />
+    </declare-styleable>
 </resources>

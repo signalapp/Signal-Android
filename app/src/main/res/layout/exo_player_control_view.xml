@@ -14,11 +14,11 @@
         android:id="@+id/exo_duration_viewgroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:layout_marginStart="@dimen/media_preview_video_timestamp_inset"
         android:layout_marginEnd="@dimen/media_preview_video_timestamp_inset"
         android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <TextView
             android:id="@id/exo_position"
@@ -121,19 +121,26 @@
                 android:layout_marginStart="@dimen/media_preview_button_horizontal_margin"
                 android:layout_marginEnd="@dimen/media_preview_button_horizontal_margin" />
 
-            <ImageButton
-                android:id="@id/exo_play"
-                style="@style/MediaPreviewButton"
-                android:background="@drawable/circle_touch_highlight_background_material3"
-                android:backgroundTint="@color/signal_colorOnSurface"
-                android:src="@drawable/exo_controls_play" />
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
 
-            <ImageButton
-                android:id="@id/exo_pause"
-                style="@style/MediaPreviewButton"
-                android:background="@drawable/circle_touch_highlight_background_material3"
-                android:backgroundTint="@color/signal_colorOnSurface"
-                android:src="@drawable/exo_controls_pause" />
+                <org.thoughtcrime.securesms.mediapreview.AnimatedInOutImageButton
+                    android:id="@id/exo_play"
+                    style="@style/MediaPreviewButton"
+                    android:background="@drawable/circle_touch_highlight_background_material3"
+                    android:backgroundTint="@color/signal_colorOnSurface"
+                    app:srcCompat="@drawable/play_button_solid_24"
+                    app:rotationWhenHidden="90" />
+
+                <org.thoughtcrime.securesms.mediapreview.AnimatedInOutImageButton
+                    android:id="@id/exo_pause"
+                    style="@style/MediaPreviewButton"
+                    android:background="@drawable/circle_touch_highlight_background_material3"
+                    android:backgroundTint="@color/signal_colorOnSurface"
+                    app:srcCompat="@drawable/pause_solid_24"
+                    app:rotationWhenHidden="-90" />
+            </FrameLayout>
 
             <org.thoughtcrime.securesms.mediapreview.LottieAnimatedButton
                 android:id="@id/exo_ffwd"
