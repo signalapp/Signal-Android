@@ -26,17 +26,15 @@ public class AudioRecorder {
 
   private static final ExecutorService executor = SignalExecutors.newCachedSingleThreadExecutor("signal-AudioRecorder");
 
-  private final Context                    context;
-  private final AudioRecorderFocusManager  audioFocusManager;
-  private final BluetoothScoSessionManager bluetoothScoSessionManager;
+  private final Context                   context;
+  private final AudioRecorderFocusManager audioFocusManager;
 
   private Recorder recorder;
   private Uri      captureUri;
 
   public AudioRecorder(@NonNull Context context) {
     this.context = context;
-    audioFocusManager          = AudioRecorderFocusManager.create(context, focusChange -> stopRecording());
-    bluetoothScoSessionManager = new BluetoothScoSessionManager(context);
+    audioFocusManager = AudioRecorderFocusManager.create(context, focusChange -> stopRecording());
   }
 
   public void startRecording() {
@@ -55,18 +53,13 @@ public class AudioRecorder {
                                  .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
                                  .withMimeType(MediaUtil.AUDIO_AAC)
                                  .createForDraftAttachmentAsync(context, () -> Log.i(TAG, "Write successful."), e -> Log.w(TAG, "Error during recording", e));
+
         recorder = Build.VERSION.SDK_INT >= 26 ? new MediaRecorderWrapper() : new AudioCodec();
         int focusResult = audioFocusManager.requestAudioFocus();
         if (focusResult != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
           Log.w(TAG, "Could not gain audio focus. Received result code " + focusResult);
         }
-        if (bluetoothScoSessionManager.isBluetoothScoCapable()) {
-          Log.i(TAG, "Starting voice memo recording with Bluetooth mic.");
-          bluetoothScoSessionManager.startBluetooth(recorder, fds[1]);
-        } else {
-          Log.i(TAG, "Starting voice memo recording with built-in mic.");
-          recorder.start(fds[1]);
-        }
+        recorder.start(fds[1]);
       } catch (IOException e) {
         Log.w(TAG, e);
       }
@@ -86,7 +79,6 @@ public class AudioRecorder {
 
       audioFocusManager.abandonAudioFocus();
       recorder.stop();
-      bluetoothScoSessionManager.stopBluetooth();
 
       try {
         long size = MediaUtil.getMediaSize(context, captureUri);
