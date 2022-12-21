@@ -3,12 +3,13 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.text.TextUtils
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.readToSingleInt
+import org.signal.core.util.requireInt
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.model.EmojiSearchData
 import kotlin.math.max
-import kotlin.math.roundToInt
 
 /**
  * Contains all info necessary for full-text search of emoji tags.
@@ -17,9 +18,24 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
 
   companion object {
     const val TABLE_NAME = "emoji_search"
+    const val ID = "_id"
     const val LABEL = "label"
     const val EMOJI = "emoji"
-    const val CREATE_TABLE = "CREATE VIRTUAL TABLE $TABLE_NAME USING fts5($LABEL, $EMOJI UNINDEXED)"
+    const val RANK = "rank"
+
+    //language=sql
+    const val CREATE_TABLE = """
+      CREATE TABLE $TABLE_NAME (
+        $ID INTEGER PRIMARY KEY,
+        $LABEL TEXT NOT NULL,
+        $EMOJI TEXT NOT NULL,
+        $RANK INTEGER DEFAULT ${Int.MAX_VALUE} 
+      )
+      """
+
+    val CREATE_INDEXES = arrayOf(
+      "CREATE INDEX emoji_search_rank_covering ON $TABLE_NAME ($RANK, $LABEL, $EMOJI)"
+    )
   }
 
   /**
@@ -33,27 +49,41 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
       return emptyList()
     }
 
-    val limit: Int = max(originalLimit, 100)
+    val limit: Int = max(originalLimit, 200)
     val entries = mutableListOf<Entry>()
 
+    val maxRank = readableDatabase
+      .select("MAX($RANK) AS max")
+      .from(TABLE_NAME)
+      .where("$RANK != ${Int.MAX_VALUE}")
+      .run()
+      .readToSingleInt()
+
     readableDatabase
-      .select(LABEL, EMOJI)
+      .select(LABEL, EMOJI, RANK)
       .from(TABLE_NAME)
       .where("$LABEL LIKE ?", "%$query%")
+      .orderBy("$RANK ASC")
       .limit(limit)
       .run()
       .use { cursor ->
         while (cursor.moveToNext()) {
           entries += Entry(
             label = cursor.requireNonNullString(LABEL),
-            emoji = cursor.requireNonNullString(EMOJI)
+            emoji = cursor.requireNonNullString(EMOJI),
+            rank = cursor.requireInt(RANK)
           )
         }
       }
 
     return entries
       .sortedWith { lhs, rhs ->
-        similarityScore(query, lhs.label) - similarityScore(query, rhs.label)
+        val result = similarityScore(query, lhs, maxRank) - similarityScore(query, rhs, maxRank)
+        when {
+          result < 0 -> -1
+          result > 0 -> 1
+          else -> 0
+        }
       }
       .distinctBy { it.emoji }
       .take(originalLimit)
@@ -73,7 +103,8 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
         for (label in searchData.tags) {
           val values = contentValuesOf(
             LABEL to label,
-            EMOJI to searchData.emoji
+            EMOJI to searchData.emoji,
+            RANK to if (searchData.rank == 0) Int.MAX_VALUE else searchData.rank
           )
           db.insert(TABLE_NAME, null, values)
         }
@@ -89,9 +120,11 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
    * We determine similarity by how many letters appear before or after the `searchTerm` in the `match`.
    * We give letters that come before the term a bigger weight than those that come after as a way to prefer matches that are prefixed by the `searchTerm`.
    */
-  private fun similarityScore(searchTerm: String, match: String): Int {
+  private fun similarityScore(searchTerm: String, entry: Entry, maxRank: Int): Float {
+    val match: String = entry.label
+
     if (searchTerm == match) {
-      return 0
+      return entry.scaledRank(maxRank)
     }
 
     val startIndex = match.indexOf(searchTerm)
@@ -99,11 +132,25 @@ class EmojiSearchTable(context: Context, databaseHelper: SignalDatabase) : Datab
     val prefixCount = startIndex
     val suffixCount = match.length - (startIndex + searchTerm.length)
 
-    val prefixRankWeight = 1.5f
-    val suffixRankWeight = 1f
+    val prefixRankWeight = 1.75f
+    val suffixRankWeight = 0.75f
+    val notExactMatchPenalty = 2f
 
-    return ((prefixCount * prefixRankWeight) + (suffixCount * suffixRankWeight)).roundToInt()
+    return notExactMatchPenalty +
+      (prefixCount * prefixRankWeight) +
+      (suffixCount * suffixRankWeight) +
+      entry.scaledRank(maxRank)
   }
 
-  private data class Entry(val label: String, val emoji: String)
+  private data class Entry(val label: String, val emoji: String, val rank: Int) {
+    fun scaledRank(maxRank: Int): Float {
+      val unranked = 2f
+      val scaleFactor: Float = unranked / maxRank
+      return if (rank == Int.MAX_VALUE) {
+        unranked
+      } else {
+        rank * scaleFactor
+      }
+    }
+  }
 }

@@ -16,7 +16,7 @@ import java.util.function.Consumer
 
 private const val MINIMUM_QUERY_THRESHOLD = 1
 private const val MINIMUM_INLINE_QUERY_THRESHOLD = 2
-private const val EMOJI_SEARCH_LIMIT = 20
+private const val EMOJI_SEARCH_LIMIT = 50
 
 private val NOT_PUNCTUATION = "[^\\p{Punct}]".toRegex()
 
