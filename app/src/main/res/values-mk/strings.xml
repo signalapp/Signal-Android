@@ -426,7 +426,7 @@
     <string name="ConversationFragment_failed_to_open_message">Не успеа да се отвори пораката</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Можете да повлечете на десно на било која порака за брз одговор</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Можете да повлечете на лево на било која порака за брз одговор</string>
-    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратени еднократно видливи медиумска датотека датотеки автоматски се отстрануваат откога ќе се испратат</string>
+    <string name="ConversationFragment_outgoing_view_once_media_files_are_automatically_removed">Испратените еднократно видливи медиумски датотеки автоматски се отстрануваат откога ќе се испратат</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Веќе сте ја виделе оваа порака</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Можете да додадате белешки во овој разговор.\nАко Вашата сметка има поврзани уреди, новите белешки ќе бидат синхронизирани.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d членови на групата го имаат истото име.</string>
@@ -569,7 +569,7 @@
 
     <!-- ChooseBackupFragment -->
     <string name="ChooseBackupFragment__restore_from_backup">Да се ​​врати од резервна копија?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Вратете ги Вашите пораки и медиумска датотека од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">Вратете ги вашите пораки и медиумски датотеки од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
     <string name="ChooseBackupFragment__icon_content_description">Икона за враќање на резервна копија</string>
     <string name="ChooseBackupFragment__choose_backup">Изберете резервна копија</string>
     <string name="ChooseBackupFragment__learn_more">Дознајте повеќе</string>
@@ -729,7 +729,7 @@
     <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Наградба кон нови групи</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Надградете ја оваа група</string>
     <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Нови групи доаѓаат со опции како @спомнувања и администратори на групи. Исто така ќе поддржуваат повеќе опции во иднина.</string>
-    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Цела историја на пораки и медиумска датотека од пред надградбата ќе бидат зачувани.</string>
+    <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Цела историја на пораки и медиумска датотеки од пред надградбата ќе бидат зачувани.</string>
     <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Се случи мрежна грешка. Обидете се повторно подоцна.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Неуспешна надградба.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
@@ -1043,7 +1043,7 @@
     <string name="MmsDownloader_error_reading_mms_settings">Грешка при читање на поставувањата на безжичниот MMS оператор</string>
 
     <!-- MediaOverviewActivity -->
-    <string name="MediaOverviewActivity_Media">Медија</string>
+    <string name="MediaOverviewActivity_Media">Медиумски датотеки</string>
     <string name="MediaOverviewActivity_Files">Датотеки</string>
     <string name="MediaOverviewActivity_Audio">Аудио</string>
     <string name="MediaOverviewActivity_All">Сите</string>
@@ -1139,7 +1139,7 @@
     <string name="MediaSendActivity_camera_unavailable">Камерата е недостапна.</string>
 
     <!-- MediaRepository -->
-    <string name="MediaRepository_all_media">Цела медиумска датотека</string>
+    <string name="MediaRepository_all_media">Сите медиумски датотеки</string>
     <string name="MediaRepository__camera">Камера</string>
 
     <!-- MessageDecryptionUtil -->
@@ -1336,9 +1336,9 @@
     <!-- End of GV2 specific update messages -->
 
     <string name="MessageRecord_your_safety_number_with_s_has_changed">Вашиот  безбедносен број со %1$s е променет.</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Го обележавте сигурносниот број со %1$s како проверен</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Го обележавте сигурносниот број со %1$s како проверен од друг уред</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте сигурносниот број со %1$s како непроверен</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">Го обележавте безбедносниот број со %1$s како проверен</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">Го обележавте безбедносниот број со %1$s како проверен од друг уред</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">Го обележавте безбедносниот број со %1$s како непроверен</string>
     <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">Го обележавте  безбедносен број со %1$s како непроверен од друг уред</string>
     <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">Пораката од %1$s не може да биде доставена</string>
     <string name="MessageRecord_s_changed_their_phone_number">%1$s го промени телефонскиот број.</string>
@@ -1656,7 +1656,7 @@
     <string name="CallParticipantView__you_wont_receive_their_audio_or_video">Нема да примате аудио и видео и тие нема да го примаат Вашето аудио и видео.</string>
     <string name="CallParticipantView__cant_receive_audio_video_from_s">Не можам да примам аудио и видео од %1$s</string>
     <string name="CallParticipantView__cant_receive_audio_and_video_from_s">Не можам да примам аудио и видео од %1$s</string>
-    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случи бидејќи тие го немаат проверено Вашиот сигурносен број по промената, има некаков проблем со нивниот уред или Ве имаат блокирано.</string>
+    <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">Ова може да се случи бидејќи тие го немаат проверено вашиот безбедносен број по промената, има некаков проблем со нивниот уред или Ве имаат блокирано.</string>
 
     <!-- CallToastPopupWindow -->
     <string name="CallToastPopupWindow__swipe_to_view_screen_share">Повелчете за да го видите споделениот екран</string>
@@ -1728,7 +1728,7 @@
     <string name="RevealableMessageView_view_photo">Види слика</string>
     <string name="RevealableMessageView_view_video">Види видео</string>
     <string name="RevealableMessageView_viewed">Прегледано</string>
-    <string name="RevealableMessageView_media">Медија</string>
+    <string name="RevealableMessageView_media">Медиумски датотеки</string>
 
     <!-- Search -->
     <string name="SearchFragment_no_results">Не се пронајдени резултати за ”%1$s”</string>
@@ -1778,7 +1778,7 @@
     <string name="SmsMessageRecord_received_key_exchange_message_for_invalid_protocol_version">
         Примена е порака за размена на клучеви за неважечка верзија на протокол.
     </string>
-    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примена е порака со нов сигурносен број. Допрете за обработка и приказ.</string>
+    <string name="SmsMessageRecord_received_message_with_new_safety_number_tap_to_process">Примена е порака со нов безбедносен број. Допрете за обработка и приказ.</string>
     <string name="SmsMessageRecord_secure_session_reset">Ја ресетиравте безбедната сесија.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s ја ресетираше безбедната сесија.</string>
     <string name="SmsMessageRecord_duplicate_message">Дупликат порака.</string>
@@ -1841,7 +1841,7 @@
     <string name="ThreadRecord_called_you">Ве повика</string>
     <string name="ThreadRecord_missed_audio_call">Испуштен аудио повик</string>
     <string name="ThreadRecord_missed_video_call">Испуштен видео повик</string>
-    <string name="ThreadRecord_media_message">Медија порака</string>
+    <string name="ThreadRecord_media_message">Порака со медиумски датотеки</string>
     <string name="ThreadRecord_sticker">Стикер</string>
     <string name="ThreadRecord_view_once_photo">Еднократно видлива фотографија</string>
     <string name="ThreadRecord_view_once_video">Еднократно видливо видео</string>
@@ -1859,7 +1859,7 @@
     <string name="ThreadRecord_s_is_on_signal">%1$s е на Signal!</string>
     <string name="ThreadRecord_disappearing_messages_disabled">Исчезнувачките пораки се исклучени</string>
     <string name="ThreadRecord_disappearing_message_time_updated_to_s">Времето за исчезнувачки пораки е поставено на %1$s</string>
-    <string name="ThreadRecord_safety_number_changed">Сигурносниот број е променет</string>
+    <string name="ThreadRecord_safety_number_changed">Безбедносниот број е променет</string>
     <string name="ThreadRecord_your_safety_number_with_s_has_changed">Вашиот  безбедносен број со %1$s е променет.</string>
     <string name="ThreadRecord_you_marked_verified">Обележавте проверено</string>
     <string name="ThreadRecord_you_marked_unverified">Обележавте непроверено</string>
@@ -1931,16 +1931,16 @@
     <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">Копирај или сподели линк за корисничко име</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашиот контакт има стара верзија на Signal. Замолете го да ја ажурира апликацијата пред проверка на Вашиот сигурносен број.</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_an_old_version_of_signal">Вашиот контакт има стара верзија на Signal. Замолете го да ја ажурира апликацијата пред проверка на вашиот безбедносен број.</string>
     <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">Вашиот контакт има понова верзија на Signal со некомпатибилен формат на QR код. Ве молиме ажурирајте ја апликацијата за да споредите.</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенираниот QR код не е правилно форматиран код за проверка на сигурносниот број. Ве молиме скенирајте го повторно.</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">Скенираниот QR код не е правилно форматиран код за проверка на безбедносниот број. Ве молиме скенирајте го повторно.</string>
     <string name="VerifyIdentityActivity_share_safety_number_via">Сподели  безбедносен број преку…</string>
     <string name="VerifyIdentityActivity_our_signal_safety_number">Нашиот Signal  безбедносен број:</string>
     <string name="VerifyIdentityActivity_no_app_to_share_to">Изгледа дека немате апликации преку кои може да споделите.</string>
     <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">На таблата со исечоци не е пронајден  безбедносен број за споредба</string>
     <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal има потреба од дозвола до камерата за да може да го скенира QR кодот. Оваа дозвола е трајно одбиена. Ве молиме продолжете во поставувања, изберете „Дозволи“ и вклучете „Камера“.</string>
     <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">Не може да се скенира QR кодот без дозвола до камерата</string>
-    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Мора да размените пораки за да можете да го видите сигурносниот број на %1$s.</string>
+    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Мора да размените пораки за да можете да го видите безбедносниот број на %1$s.</string>
 
     <!-- ViewOnceMessageActivity -->
   <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
@@ -2193,7 +2193,7 @@
     <string name="conversation_input_panel__cancel">Откажи</string>
 
     <!-- conversation_item -->
-    <string name="conversation_item__mms_image_description">Медија порака</string>
+    <string name="conversation_item__mms_image_description">Порака со медиумски датотеки</string>
     <string name="conversation_item__secure_message_description">Безбедна порака</string>
 
     <!-- conversation_item_sent -->
@@ -2262,13 +2262,13 @@
     <string name="BubbleOptOutTooltip__turn_off">Исклучи</string>
 
     <!-- safety_number_change_dialog -->
-    <string name="safety_number_change_dialog__safety_number_changes">Промени на сигурносниот број</string>
+    <string name="safety_number_change_dialog__safety_number_changes">Промени на безбедносниот број</string>
     <string name="safety_number_change_dialog__accept">Прифати</string>
     <string name="safety_number_change_dialog__call_anyway">Сепак повикај</string>
     <string name="safety_number_change_dialog__join_call">Приклучи се на повикот</string>
     <string name="safety_number_change_dialog__continue_call">Продолжи повик</string>
     <string name="safety_number_change_dialog__leave_call">Напушти повик</string>
-    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следниве луѓе можеби го реинсталирале Signal или ги промениле уредите. Проверете го Вашиот сигурносен број со нив за да ја осигурате приватноста.</string>
+    <string name="safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices">Следниве луѓе можеби го реинсталирале Signal или ги промениле уредите. Проверете го вашиот безбедносен број со нив за да ја осигурате приватноста.</string>
     <string name="safety_number_change_dialog__view">Преглед</string>
     <string name="safety_number_change_dialog__previous_verified">Претходно проверено</string>
 
@@ -2344,9 +2344,9 @@
     <string name="IdentityUtil_unverified_banner_two">Вашите сигурносни броеви со %1$s и %2$s повеќе не се проверени</string>
     <string name="IdentityUtil_unverified_banner_many">Вашите сигурносни броеви со %1$s, %2$s и %3$s повеќе не се проверени</string>
 
-    <string name="IdentityUtil_unverified_dialog_one">Вашиот сигурносен број со %1$s е променет и повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека %1$s го има реинсталирано Signal.</string>
-    <string name="IdentityUtil_unverified_dialog_two">Вашиот сигурносен број со %1$s и %2$s повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека тие го имаат реинсталирано Signal.</string>
-    <string name="IdentityUtil_unverified_dialog_many">Вашиот сигурносен број со %1$s, %2$s и %3$s повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека тие го имаат реинсталирано Signal.</string>
+    <string name="IdentityUtil_unverified_dialog_one">Вашиот безбедносен број со %1$s е променет и повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека %1$s го има реинсталирано Signal.</string>
+    <string name="IdentityUtil_unverified_dialog_two">Вашиот безбедносен број со %1$s и %2$s повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека тие го имаат реинсталирано Signal.</string>
+    <string name="IdentityUtil_unverified_dialog_many">Вашиот безбедносен број со %1$s, %2$s и %3$s повеќе не е проверен. Ова може да значи дека некој се обидува да ја пресретне Вашата комуникација или дека тие го имаат реинсталирано Signal.</string>
 
     <string name="IdentityUtil_untrusted_dialog_one">Вашиот  безбедносен број со %1$s само што се промени.</string>
     <string name="IdentityUtil_untrusted_dialog_two">Вашиот  безбедносен број со %1$s и %2$s само што се промени.</string>
@@ -2399,8 +2399,8 @@
     <string name="prompt_passphrase_activity__unlock">Отклучи</string>
 
     <!-- prompt_mms_activity -->
-    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal има потреба од MMS поставувања за да испорачува медиумска датотека и групни пораки преку Вашиот мобилен оператор. Вашиот уред не ги прави достапни овие информации, понекогаш ова се случува поради тоа што уредите се заклучени или поради рестриктивна конфигурација.</string>
-    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медиумска датотека и групни пораки допрете „Во ред“ и довршете ги бараните поставувањата. MMS поставувањата за Вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
+    <string name="prompt_mms_activity__signal_requires_mms_settings_to_deliver_media_and_group_messages">Signal има потреба од MMS поставувања за да испорачува медиумски датотеки и групни пораки преку Вашиот мобилен оператор. Вашиот уред не ги прави достапни овие информации, понекогаш ова се случува поради тоа што уредите се заклучени или поради рестриктивна конфигурација.</string>
+    <string name="prompt_mms_activity__to_send_media_and_group_messages_tap_ok">За да испратите медиумски датотеки и групни пораки допрете „Во ред“ и довршете ги бараните поставувањата. MMS поставувањата за вашиот оператор можат да бидат пронајдени преку пребарување на „Вашиот APN за операторот“. Ова ќе треба да го направите само еднаш.</string>
 
     <!-- BadDecryptLearnMoreDialog -->
     <string name="BadDecryptLearnMoreDialog_delivery_issue">Проблем со испорака</string>
@@ -2448,7 +2448,7 @@
     <string name="verify_display_fragment__to_verify_the_security_of_your_end_to_end_encryption_with_s"><![CDATA[За да ја потврдите безбедноста на Вашето шифрирање од-крај-до-крај со %1$s, споредете ги горенаведените броеви прикажани на уредот на соговорникот. Можете исто така да го скенирате кодот прикажан на телефонот на соговорникот. <a href=\"https://signal.org/redirect/safety-numbers\">Дознајте повеќе.</a>]]></string>
     <string name="verify_display_fragment__tap_to_scan">Допри да скенираш</string>
     <string name="verify_display_fragment__successful_match">Успешно совпаѓање</string>
-    <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на сигурносниот број</string>
+    <string name="verify_display_fragment__failed_to_verify_safety_number">Неуспешна проверка на безбедносниот број</string>
     <string name="verify_display_fragment__loading">Се вчитува…</string>
     <string name="verify_display_fragment__mark_as_verified">Обележи како проверено</string>
     <string name="verify_display_fragment__clear_verification">Отстрани проверка</string>
@@ -2489,7 +2489,7 @@
     <string name="AndroidManifest__select_contacts">Избери контакти</string>
     <string name="AndroidManifest__change_passphrase">Промена на лозинка</string>
     <string name="AndroidManifest__verify_safety_number">Проверка на  безбедносен број</string>
-    <string name="AndroidManifest__media_preview">Преглед на медија</string>
+    <string name="AndroidManifest__media_preview">Преглед на медиумска датотека</string>
     <string name="AndroidManifest__message_details">Детали за пораката</string>
     <string name="AndroidManifest__linked_devices">Поврзани уреди</string>
     <string name="AndroidManifest__invite_friends">Покани пријатели</string>
@@ -2688,7 +2688,7 @@
     <string name="preferences_chats__when_using_mobile_data">Кога користам мобилен интернет</string>
     <string name="preferences_chats__when_using_wifi">Кога користам Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Кога сум во роаминг</string>
-    <string name="preferences_chats__media_auto_download">Автоматско преземање на медија</string>
+    <string name="preferences_chats__media_auto_download">Автоматско преземање на медиумски датотеки</string>
     <string name="preferences_chats__message_history">Историја на пораки</string>
     <string name="preferences_storage__storage_usage">Искористеност на склад</string>
     <string name="preferences_storage__photos">Слики</string>
@@ -2698,9 +2698,9 @@
     <string name="preferences_storage__review_storage">Прегледај склад</string>
     <string name="preferences_storage__delete_older_messages">Да ги отстранам старите пораки?</string>
     <string name="preferences_storage__clear_message_history">Сакате да ја исчистите историјата на пораки?</string>
-    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ова трајно ќе ја избрише цела историја на пораки и медиумска датотека од вашиот уред постари од %1$s.</string>
+    <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">Ова трајно ќе ја избрише цела историја на пораки и медиумски датотеки од вашиот уред постари од %1$s.</string>
     <string name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">Ова трајно ќе ги скрати сите разговори до %1$s најскорешни пораки.</string>
-    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ова трајно ќе ја избрише цела историја на пораки и медиумска датотека од вашиот уред.</string>
+    <string name="preferences_storage__this_will_delete_all_message_history_and_media_from_your_device">Ова трајно ќе ја избрише цела историја на пораки и медиумски датотеки од вашиот уред.</string>
     <string name="preferences_storage__are_you_sure_you_want_to_delete_all_message_history">Дали сте сигурни дека сакате да ја избришете цела историја на пораки?</string>
     <string name="preferences_storage__all_message_history_will_be_permanently_removed_this_action_cannot_be_undone">Целата историја на пораки ќе биде трајно отстранета. Ова дејство е неповратно.</string>
     <string name="preferences_storage__delete_all_now">Избриши сѐ веднаш</string>
@@ -3053,7 +3053,7 @@
     <!-- conversation -->
     <string name="conversation__menu_group_settings">Поставувања за група</string>
     <string name="conversation__menu_leave_group">Напушти група</string>
-    <string name="conversation__menu_view_all_media">Цела медиумска датотека</string>
+    <string name="conversation__menu_view_all_media">Сите медиумски датотеки</string>
     <string name="conversation__menu_conversation_settings">Разговорни поставувања</string>
     <string name="conversation__menu_add_shortcut">Додај на почетниот екран</string>
     <string name="conversation__menu_create_bubble">Создај балонче</string>
@@ -3105,7 +3105,7 @@
 
 
     <!-- media_preview_activity -->
-    <string name="media_preview_activity__media_content_description">Преглед на медија</string>
+    <string name="media_preview_activity__media_content_description">Преглед на медиумска датотека</string>
 
     <!-- new_conversation_activity -->
     <string name="new_conversation_activity__refresh">Освежи</string>
@@ -3271,7 +3271,7 @@
     <string name="RegistrationActivity_checking">Проверувам…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d пораки до сега…</string>
     <string name="RegistrationActivity_restore_from_backup">Врати од резервна копија?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Вратете ги Вашите пораки и медиумска датотека од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Вратете ги вашите пораки и медиумски датотеки од локалната резервна копија. Ако не ги вратите сега, нема да можете да го сторите тоа подоцна.</string>
     <string name="RegistrationActivity_backup_size_s">Големина на резервна копија: %1$s</string>
     <string name="RegistrationActivity_backup_timestamp_s">Време на резервна копија: %1$s</string>
     <string name="BackupDialog_enable_local_backups">Да вклучам локална резервна копија?</string>
@@ -3962,7 +3962,7 @@
     <string name="HelpFragment__licenced_under_the_gplv3">Лиценцирано под GPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
-    <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медија</string>
+    <string name="DataAndStorageSettingsFragment__media_quality">Квалитет на медиумски датотеки</string>
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Квалитет на испратена медиумска датотека</string>
     <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Испраќањето на висококвалитетна медиумска датотека ќе користи повеќе податоци.</string>
     <string name="DataAndStorageSettingsFragment__high">Висок</string>
@@ -5105,11 +5105,11 @@
     <!-- Title of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Промени на  безбедносен број</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">Лицата подолу можно е да реинсталирале Signal или да ги смениле уредите. Допрете на Примач за да го потврдите новиот сигурносен број. Ова дејство е незадолжително.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">Лицата подолу можно е да реинсталирале Signal или да ги смениле уредите. Допрете на Примач за да го потврдите новиот безбедносен број. Ова дејство е незадолжително.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Проверка на сигурносен број</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Проверка на безбедносен број</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Проверката на сигурносен број е завршена</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Проверката на безбедносен број е завршена</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Сите врски се прегледани, допрете на испрати за да продолжите.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
@@ -5130,8 +5130,8 @@
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Промени на  безбедносен број</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="one">%1$dпримач можно е да има реинсталирано Signal или да сменил уред. Допрете на примачот за да го потврдите новиот сигурносен број. Ова дејство е незадолжително.</item>
-        <item quantity="other">%1$dпримачи можно е да имаат реинсталирано Signal или да смениле уред. Допрете на примачот за да го потврдите новиот сигурносен број. Ова дејство е незадолжително.</item>
+        <item quantity="one">%1$dпримач можно е да има реинсталирано Signal или да сменил уред. Допрете на примачот за да го потврдите новиот безбедносен број. Ова дејство е незадолжително.</item>
+        <item quantity="other">%1$dпримачи можно е да имаат реинсталирано Signal или да смениле уред. Допрете на примачот за да го потврдите новиот безбедносен број. Ова дејство е незадолжително.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Контакти</string>
