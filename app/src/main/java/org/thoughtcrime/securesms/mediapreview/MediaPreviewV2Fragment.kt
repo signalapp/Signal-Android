@@ -297,6 +297,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
       forward(currentItem)
     }
     currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
+    currentFragment?.autoPlayIfNeeded()
   }
 
   private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {
