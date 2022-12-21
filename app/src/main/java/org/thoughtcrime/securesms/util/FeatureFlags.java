@@ -582,7 +582,7 @@ public final class FeatureFlags {
    * Whether or not we should allow PayPal payments for recurring donations
    */
   public static boolean paypalRecurringDonations() {
-    return getBoolean(PAYPAL_RECURRING_DONATIONS, false);
+    return getBoolean(PAYPAL_RECURRING_DONATIONS, Environment.IS_STAGING);
   }
 
   /** Only for rendering debug info. */

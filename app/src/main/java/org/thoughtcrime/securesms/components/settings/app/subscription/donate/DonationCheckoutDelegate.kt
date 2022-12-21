@@ -132,7 +132,7 @@ class DonationCheckoutDelegate(
         }
         .show()
     } else {
-      Log.w(TAG, "Stripe action failed: ${result.action}")
+      Log.w(TAG, "Processor action failed: ${result.action}")
     }
   }
 
