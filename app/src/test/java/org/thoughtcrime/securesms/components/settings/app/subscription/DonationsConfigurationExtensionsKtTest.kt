@@ -24,11 +24,11 @@ class DonationsConfigurationExtensionsKtTest {
   private val testSubject = JsonUtil.fromJson(testData, DonationsConfiguration::class.java)
 
   @Test
-  fun `Given all methods are available, when I getSubscriptionAmounts, then I expect BIF`() {
+  fun `Given all methods are available, when I getSubscriptionAmounts, then I expect all currencies`() {
     val subscriptionPrices = testSubject.getSubscriptionAmounts(DonationsConfiguration.SUBSCRIPTION_LEVELS.first(), AllPaymentMethodsAvailability)
 
-    assertEquals(1, subscriptionPrices.size)
-    assertEquals("BIF", subscriptionPrices.first().currency.currencyCode)
+    assertEquals(3, subscriptionPrices.size)
+    assertTrue(subscriptionPrices.map { it.currency.currencyCode }.containsAll(setOf("JPY", "BIF", "USD")))
   }
 
   @Test
@@ -84,11 +84,13 @@ class DonationsConfigurationExtensionsKtTest {
   }
 
   @Test
-  fun `Given all methods are available, when I getGiftAmounts, then I expect BIF`() {
+  fun `Given all methods are available, when I getGiftAmounts, then I expect BIF and JPY and USD`() {
     val giftAmounts = testSubject.getGiftBadgeAmounts(AllPaymentMethodsAvailability)
 
-    assertEquals(1, giftAmounts.size)
+    assertEquals(3, giftAmounts.size)
     assertNotNull(giftAmounts[Currency.getInstance("BIF")])
+    assertNotNull(giftAmounts[Currency.getInstance("JPY")])
+    assertNotNull(giftAmounts[Currency.getInstance("USD")])
   }
 
   @Test
@@ -108,11 +110,13 @@ class DonationsConfigurationExtensionsKtTest {
   }
 
   @Test
-  fun `Given all methods are available, when I getBoostAmounts, then I expect BIF`() {
+  fun `Given all methods are available, when I getBoostAmounts, then I expect BIF and JPY and USD`() {
     val boostAmounts = testSubject.getBoostAmounts(AllPaymentMethodsAvailability)
 
-    assertEquals(1, boostAmounts.size)
+    assertEquals(3, boostAmounts.size)
     assertNotNull(boostAmounts[Currency.getInstance("BIF")])
+    assertNotNull(boostAmounts[Currency.getInstance("JPY")])
+    assertNotNull(boostAmounts[Currency.getInstance("USD")])
   }
 
   @Test
@@ -132,11 +136,13 @@ class DonationsConfigurationExtensionsKtTest {
   }
 
   @Test
-  fun `Given all methods are available, when I getMinimumDonationAmounts, then I expect BIF`() {
+  fun `Given all methods are available, when I getMinimumDonationAmounts, then I expect BIF and JPY and USD`() {
     val minimumDonationAmounts = testSubject.getMinimumDonationAmounts(AllPaymentMethodsAvailability)
 
-    assertEquals(1, minimumDonationAmounts.size)
+    assertEquals(3, minimumDonationAmounts.size)
     assertNotNull(minimumDonationAmounts[Currency.getInstance("BIF")])
+    assertNotNull(minimumDonationAmounts[Currency.getInstance("JPY")])
+    assertNotNull(minimumDonationAmounts[Currency.getInstance("USD")])
   }
 
   @Test
@@ -183,6 +189,24 @@ class DonationsConfigurationExtensionsKtTest {
 
       assertTrue(badge.isSubscription())
     }
+  }
+
+  @Test
+  fun `Given I want to pay in USD, when I getAvailablePaymentMethods, then I expect CARD`() {
+    val availablePaymentMethods = testSubject.getAvailablePaymentMethods("UsD")
+
+    assertEquals(1, availablePaymentMethods.size)
+    assertTrue("CARD" in availablePaymentMethods)
+  }
+
+  @Test
+  fun `Given I want to pay in BIF, when I getAvailablePaymentMethods, then I expect CARD and PAYPAL`() {
+    val availablePaymentMethods = testSubject.getAvailablePaymentMethods("bIF")
+
+    println(testSubject.currencies)
+    assertEquals(2, availablePaymentMethods.size)
+    assertTrue("CARD" in availablePaymentMethods)
+    assertTrue("PAYPAL" in availablePaymentMethods)
   }
 
   private object AllPaymentMethodsAvailability : PaymentMethodAvailability {

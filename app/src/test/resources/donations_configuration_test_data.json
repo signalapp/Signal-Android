@@ -1,6 +1,6 @@
 {
   "currencies": {
-    "JPY": {
+    "jpy": {
       "minimum": 300,
       "oneTime": {
         "1": [
@@ -24,7 +24,7 @@
         "PAYPAL"
       ]
     },
-    "USD": {
+    "usd": {
       "minimum": 2.5,
       "oneTime": {
         "1": [
@@ -48,7 +48,7 @@
         "CARD"
       ]
     },
-    "BIF": {
+    "bif": {
       "minimum": 3000,
       "oneTime": {
         "1": [

@@ -2,18 +2,21 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.g
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.donations.PaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class GatewaySelectorViewModel(
   args: GatewaySelectorBottomSheetArgs,
-  private val repository: StripeRepository
+  repository: StripeRepository,
+  gatewaySelectorRepository: GatewaySelectorRepository
 ) : ViewModel() {
 
   private val store = RxStore(
@@ -29,7 +32,19 @@ class GatewaySelectorViewModel(
   val state = store.stateFlowable
 
   init {
-    checkIfGooglePayIsAvailable()
+    val isGooglePayAvailable = repository.isGooglePayAvailable().toSingleDefault(true).onErrorReturnItem(false)
+    val availabilitySet = gatewaySelectorRepository.getAvailableGateways(currencyCode = args.request.currencyCode)
+    disposables += Single.zip(isGooglePayAvailable, availabilitySet, ::Pair).subscribeBy { (googlePayAvailable, gatewaysAvailable) ->
+      SignalStore.donationsValues().isGooglePayReady = googlePayAvailable
+      store.update {
+        it.copy(
+          loading = false,
+          isCreditCardAvailable = it.isCreditCardAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.CREDIT_CARD),
+          isGooglePayAvailable = it.isGooglePayAvailable && googlePayAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.GOOGLE_PAY),
+          isPayPalAvailable = it.isPayPalAvailable && gatewaysAvailable.contains(GatewayResponse.Gateway.PAYPAL)
+        )
+      }
+    }
   }
 
   override fun onCleared() {
@@ -37,25 +52,13 @@ class GatewaySelectorViewModel(
     disposables.clear()
   }
 
-  private fun checkIfGooglePayIsAvailable() {
-    disposables += repository.isGooglePayAvailable().subscribeBy(
-      onComplete = {
-        SignalStore.donationsValues().isGooglePayReady = true
-        store.update { it.copy(isGooglePayAvailable = true) }
-      },
-      onError = {
-        SignalStore.donationsValues().isGooglePayReady = false
-        store.update { it.copy(isGooglePayAvailable = false) }
-      }
-    )
-  }
-
   class Factory(
     private val args: GatewaySelectorBottomSheetArgs,
-    private val repository: StripeRepository
+    private val repository: StripeRepository,
+    private val gatewaySelectorRepository: GatewaySelectorRepository = GatewaySelectorRepository(ApplicationDependencies.getDonationsService())
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(GatewaySelectorViewModel(args, repository)) as T
+      return modelClass.cast(GatewaySelectorViewModel(args, repository, gatewaySelectorRepository)) as T
     }
   }
 }

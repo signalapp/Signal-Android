@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -42,6 +43,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     BadgeDisplay112.register(adapter)
     GooglePayButton.register(adapter)
     PayPalButton.register(adapter)
+    IndeterminateLoadingCircle.register(adapter)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
@@ -64,6 +66,12 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       presentTitleAndSubtitle(requireContext(), args.request)
 
       space(66.dp)
+
+      if (state.loading) {
+        customPref(IndeterminateLoadingCircle)
+        space(16.dp)
+        return@configure
+      }
 
       if (state.isGooglePayAvailable) {
         customPref(

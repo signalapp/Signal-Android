@@ -95,11 +95,15 @@ fun DonationsConfiguration.getMinimumDonationAmounts(paymentMethodAvailability: 
     .mapValues { FiatMoney(it.value.minimum, it.key) }
 }
 
+fun DonationsConfiguration.getAvailablePaymentMethods(currencyCode: String): Set<String> {
+  return currencies[currencyCode.lowercase()]?.supportedPaymentMethods ?: emptySet()
+}
+
 private fun DonationsConfiguration.getFilteredCurrencies(paymentMethodAvailability: PaymentMethodAvailability): Map<String, DonationsConfiguration.CurrencyConfiguration> {
   val userPaymentMethods = paymentMethodAvailability.toSet()
   val availableCurrencyCodes = PlatformCurrencyUtil.getAvailableCurrencyCodes()
   return currencies.filter { (code, config) ->
-    val areAllMethodsAvailable = config.supportedPaymentMethods.containsAll(userPaymentMethods)
+    val areAllMethodsAvailable = config.supportedPaymentMethods.any { it in userPaymentMethods }
     availableCurrencyCodes.contains(code.uppercase()) && areAllMethodsAvailable
   }
 }
