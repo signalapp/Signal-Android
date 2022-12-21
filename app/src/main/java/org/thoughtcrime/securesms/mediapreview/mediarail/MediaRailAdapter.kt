@@ -1,12 +1,8 @@
 package org.thoughtcrime.securesms.mediapreview.mediarail
 
 import android.graphics.drawable.Drawable
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -16,45 +12,59 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mms.GlideRequests
-import org.thoughtcrime.securesms.util.adapter.StableIdGenerator
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 import org.thoughtcrime.securesms.util.visible
 import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * This is the RecyclerView.Adapter for the row of thumbnails present in the media viewer screen.
  */
-class MediaRailAdapter(private val glideRequests: GlideRequests, listener: RailItemListener, imageLoadingListener: ImageLoadingListener) : ListAdapter<Media, MediaRailAdapter.MediaRailViewHolder>(MediaDiffer()) {
-  val imageLoadingListener: ImageLoadingListener
-
-  var currentItemPosition: Int = -1
-
-  private val listener: RailItemListener
-  private val stableIdGenerator: StableIdGenerator<Media>
+class MediaRailAdapter(
+  private val glideRequests: GlideRequests,
+  private val onRailItemSelected: (Media) -> Unit,
+  private val imageLoadingListener: ImageLoadingListener
+) : MappingAdapter() {
 
   init {
-    this.listener = listener
-    stableIdGenerator = StableIdGenerator()
-    this.imageLoadingListener = imageLoadingListener
-    setHasStableIds(true)
+    registerFactory(MediaRailItem::class.java, ::MediaRailViewHolder, R.layout.mediarail_media_item)
   }
 
-  override fun onCreateViewHolder(viewGroup: ViewGroup, type: Int): MediaRailViewHolder {
-    return MediaRailViewHolder(LayoutInflater.from(viewGroup.context).inflate(R.layout.mediarail_media_item, viewGroup, false))
+  override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
+    super.onAttachedToRecyclerView(recyclerView)
+    recyclerView.itemAnimator = null
   }
 
-  override fun onBindViewHolder(viewHolder: MediaRailViewHolder, i: Int) {
-    viewHolder.bind(getItem(i), i == currentItemPosition, glideRequests, listener, imageLoadingListener)
+  override fun submitList(list: List<MappingModel<*>>?) {
+    super.submitList(list)
+    if (list?.isEmpty() == true) {
+      imageLoadingListener.reset()
+    }
   }
 
-  override fun onViewRecycled(holder: MediaRailViewHolder) {
-    holder.recycle()
+  override fun submitList(list: List<MappingModel<*>>?, commitCallback: Runnable?) {
+    super.submitList(list, commitCallback)
+    if (list?.isEmpty() == true) {
+      imageLoadingListener.reset()
+    }
   }
 
-  override fun getItemId(position: Int): Long {
-    return stableIdGenerator.getId(getItem(position))
+  fun findSelectedItemPosition(): Int {
+    return indexOfFirst(MediaRailItem::class.java) { it.isSelected }.coerceAtLeast(0)
   }
 
-  class MediaRailViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+  data class MediaRailItem(val media: Media, val isSelected: Boolean) : MappingModel<MediaRailItem> {
+    override fun areItemsTheSame(newItem: MediaRailItem): Boolean {
+      return media.uri == newItem.media.uri
+    }
+
+    override fun areContentsTheSame(newItem: MediaRailItem): Boolean {
+      return this == newItem
+    }
+  }
+
+  private inner class MediaRailViewHolder(itemView: View) : MappingViewHolder<MediaRailItem>(itemView) {
     private val image: ThumbnailView
     private val outline: View
     private val captionIndicator: View
@@ -67,34 +77,15 @@ class MediaRailAdapter(private val glideRequests: GlideRequests, listener: RailI
       overlay = itemView.findViewById(R.id.rail_item_overlay)
     }
 
-    fun bind(
-      media: Media,
-      isCurrentlySelected: Boolean,
-      glideRequests: GlideRequests,
-      railItemListener: RailItemListener,
-      listener: ImageLoadingListener
-    ) {
-      listener.onRequest()
-      image.setImageResource(glideRequests, media.uri, 0, 0, false, listener)
-      image.setOnClickListener { railItemListener.onRailItemClicked(media) }
-      captionIndicator.visibility = if (media.caption.isPresent) View.VISIBLE else View.GONE
-      setSelectedItem(isCurrentlySelected)
+    override fun bind(model: MediaRailItem) {
+      imageLoadingListener.onRequest()
+      image.setImageResource(glideRequests, model.media.uri, 0, 0, false, imageLoadingListener)
+      image.setOnClickListener { onRailItemSelected(model.media) }
+      captionIndicator.visibility = if (model.media.caption.isPresent) View.VISIBLE else View.GONE
+
+      outline.visible = model.isSelected
+      overlay.setImageResource(if (model.isSelected) R.drawable.mediapreview_rail_item_overlay_selected else R.drawable.mediapreview_rail_item_overlay_unselected)
     }
-
-    fun recycle() {
-      image.setOnClickListener(null)
-    }
-
-    fun setSelectedItem(isActive: Boolean) {
-      outline.visible = isActive
-
-      val resId = if (isActive) R.drawable.mediapreview_rail_item_overlay_selected else R.drawable.mediapreview_rail_item_overlay_unselected
-      overlay.setImageResource(resId)
-    }
-  }
-
-  fun interface RailItemListener {
-    fun onRailItemClicked(media: Media)
   }
 
   abstract class ImageLoadingListener : RequestListener<Drawable?> {
@@ -124,15 +115,5 @@ class MediaRailAdapter(private val glideRequests: GlideRequests, listener: RailI
     }
 
     abstract fun onAllRequestsFinished()
-  }
-
-  class MediaDiffer : DiffUtil.ItemCallback<Media>() {
-    override fun areItemsTheSame(oldItem: Media, newItem: Media): Boolean {
-      return oldItem.uri == newItem.uri
-    }
-
-    override fun areContentsTheSame(oldItem: Media, newItem: Media): Boolean {
-      return oldItem == newItem
-    }
   }
 }
