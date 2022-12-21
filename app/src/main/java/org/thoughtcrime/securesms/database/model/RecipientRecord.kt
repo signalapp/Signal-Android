@@ -125,11 +125,13 @@ data class RecipientRecord(
     val storiesCapability: Recipient.Capability,
     val giftBadgesCapability: Recipient.Capability,
     val pnpCapability: Recipient.Capability,
+    val paymentActivation: Recipient.Capability
   ) {
     companion object {
       @JvmField
       val UNKNOWN = Capabilities(
         0,
+        Recipient.Capability.UNKNOWN,
         Recipient.Capability.UNKNOWN,
         Recipient.Capability.UNKNOWN,
         Recipient.Capability.UNKNOWN,

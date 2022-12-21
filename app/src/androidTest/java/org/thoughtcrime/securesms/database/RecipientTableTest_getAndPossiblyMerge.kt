@@ -418,8 +418,8 @@ class RecipientTableTest_getAndPossiblyMerge {
 
     SignalDatabase.sessions.store(ACI_SELF, SignalProtocolAddress(ACI_A.toString(), 1), SessionRecord())
 
-    SignalDatabase.reactions.addReaction(MessageId(smsId1, false), ReactionRecord("a", recipientIdAci, 1, 1))
-    SignalDatabase.reactions.addReaction(MessageId(mmsId1, true), ReactionRecord("b", recipientIdE164, 1, 1))
+    SignalDatabase.reactions.addReaction(MessageId(smsId1), ReactionRecord("a", recipientIdAci, 1, 1))
+    SignalDatabase.reactions.addReaction(MessageId(mmsId1), ReactionRecord("b", recipientIdE164, 1, 1))
 
     val profile1: NotificationProfile = notificationProfile(name = "Test")
     val profile2: NotificationProfile = notificationProfile(name = "Test2")
@@ -497,8 +497,8 @@ class RecipientTableTest_getAndPossiblyMerge {
     Assert.assertNotNull(SignalDatabase.sessions.load(ACI_SELF, SignalProtocolAddress(ACI_A.toString(), 1)))
 
     // Reaction validation
-    val reactionsSms: List<ReactionRecord> = SignalDatabase.reactions.getReactions(MessageId(smsId1, false))
-    val reactionsMms: List<ReactionRecord> = SignalDatabase.reactions.getReactions(MessageId(mmsId1, true))
+    val reactionsSms: List<ReactionRecord> = SignalDatabase.reactions.getReactions(MessageId(smsId1))
+    val reactionsMms: List<ReactionRecord> = SignalDatabase.reactions.getReactions(MessageId(mmsId1))
 
     assertEquals(1, reactionsSms.size)
     assertEquals(ReactionRecord("a", recipientIdAci, 1, 1), reactionsSms[0])

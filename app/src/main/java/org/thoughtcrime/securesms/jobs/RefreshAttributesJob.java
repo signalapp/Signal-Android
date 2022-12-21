@@ -108,17 +108,7 @@ public class RefreshAttributesJob extends BaseJob {
     Log.i(TAG, "Calling setAccountAttributes() reglockV1? " + !TextUtils.isEmpty(registrationLockV1) + ", reglockV2? " + !TextUtils.isEmpty(registrationLockV2) + ", pin? " + kbsValues.hasPin() +
                "\n    Phone number discoverable : " + phoneNumberDiscoverable +
                "\n    Device Name : " + (encryptedDeviceName != null) +
-               "\n  Capabilities:" +
-               "\n    Storage? " + capabilities.isStorage() +
-               "\n    GV2? " + capabilities.isGv2() +
-               "\n    GV1 Migration? " + capabilities.isGv1Migration() +
-               "\n    Sender Key? " + capabilities.isSenderKey() +
-               "\n    Announcement Groups? " + capabilities.isAnnouncementGroup() +
-               "\n    Change Number? " + capabilities.isChangeNumber() +
-               "\n    Stories? " + capabilities.isStories() +
-               "\n    Gift Badges? " + capabilities.isGiftBadges() +
-               "\n    PNP? " + capabilities.isPnp() +
-               "\n    UUID? " + capabilities.isUuid());
+               "\n  Capabilities: " + capabilities);
 
     SignalServiceAccountManager signalAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     signalAccountManager.setAccountAttributes(null,

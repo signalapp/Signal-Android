@@ -1552,6 +1552,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     value = Bitmask.update(value, Capabilities.STORIES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isStories).serialize().toLong())
     value = Bitmask.update(value, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isGiftBadges).serialize().toLong())
     value = Bitmask.update(value, Capabilities.PNP, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPnp).serialize().toLong())
+    value = Bitmask.update(value, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH, Recipient.Capability.fromBoolean(capabilities.isPaymentActivation).serialize().toLong())
 
     val values = ContentValues(1).apply {
       put(CAPABILITIES, value)
@@ -3919,6 +3920,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORIES, Capabilities.BIT_LENGTH).toInt()),
       giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH).toInt()),
       pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PNP, Capabilities.BIT_LENGTH).toInt()),
+      paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH).toInt()),
     )
   }
 
@@ -4240,6 +4242,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     const val STORIES = 5
     const val GIFT_BADGES = 6
     const val PNP = 7
+    const val PAYMENT_ACTIVATION = 8
   }
 
   enum class VibrateState(val id: Int) {

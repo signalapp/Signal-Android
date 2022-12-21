@@ -136,6 +136,7 @@ object RecipientDatabaseTestUtils {
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.STORIES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.GIFT_BADGES, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
           Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PNP, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
+          Recipient.Capability.deserialize(Bitmask.read(capabilities, RecipientTable.Capabilities.PAYMENT_ACTIVATION, RecipientTable.Capabilities.BIT_LENGTH).toInt()),
         ),
         insightBannerTier,
         storageId,
