@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -57,11 +58,13 @@ class MediaRailAdapter(private val glideRequests: GlideRequests, listener: RailI
     private val image: ThumbnailView
     private val outline: View
     private val captionIndicator: View
+    private val overlay: ImageView
 
     init {
       image = itemView.findViewById(R.id.rail_item_image)
       outline = itemView.findViewById(R.id.rail_item_outline)
       captionIndicator = itemView.findViewById(R.id.rail_item_caption)
+      overlay = itemView.findViewById(R.id.rail_item_overlay)
     }
 
     fun bind(
@@ -84,6 +87,9 @@ class MediaRailAdapter(private val glideRequests: GlideRequests, listener: RailI
 
     fun setSelectedItem(isActive: Boolean) {
       outline.visible = isActive
+
+      val resId = if (isActive) R.drawable.mediapreview_rail_item_overlay_selected else R.drawable.mediapreview_rail_item_overlay_unselected
+      overlay.setImageResource(resId)
     }
   }
 

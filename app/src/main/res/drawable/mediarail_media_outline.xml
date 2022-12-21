@@ -4,5 +4,5 @@
 
     <stroke
         android:width="3dp"
-        android:color="@color/core_ultramarine"/>
+        android:color="@color/signal_light_colorNeutral"/>
 </shape>

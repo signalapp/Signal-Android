@@ -26,10 +26,11 @@
         tools:visibility="visible"/>
 
     <ImageView
+        android:id="@+id/rail_item_overlay"
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_gravity="center"
-        android:src="@drawable/mediapicker_item_border_dark"/>
+        android:src="@drawable/mediapreview_rail_item_overlay_unselected"/>
 
     <ImageView
         android:id="@+id/rail_item_caption"
