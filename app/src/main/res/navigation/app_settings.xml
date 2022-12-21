@@ -114,6 +114,9 @@
                 app:argType="integer"
                 app:nullable="false" />
         </action>
+        <action
+            android:id="@+id/action_appSettingsFragment_to_proofModeFragment"
+            app:destination="@id/proofModeFragment" />
     </fragment>
 
     <activity
@@ -760,5 +763,9 @@
     </fragment>
 
     <include app:graph="@navigation/story_privacy_settings" />
+    <fragment
+        android:id="@+id/proofModeFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.proofmode.ProofModeFragment"
+        android:label="ProofModeFragment" />
 
 </navigation>

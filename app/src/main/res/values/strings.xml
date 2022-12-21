@@ -2655,6 +2655,7 @@
     <string name="preferences__data_and_storage">Data and storage</string>
     <string name="preferences__storage">Storage</string>
     <string name="preferences__payments">Payments</string>
+    <string name="preferences__proof_mode">Proof Mode</string>
     <!-- Privacy settings payments section description -->
     <string name="preferences__payment_lock">Payment lock</string>
     <string name="preferences__payments_beta">Payments (Beta)</string>
@@ -5450,5 +5451,9 @@
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
+    <string name="introducing_signal_proof_mode_title">Introducing Signal Proof Mode (Beta)</string>
+    <string name="buttons_description">Use cryptography to establish the authenticity and preserve images</string>
+    <string name="activate_proofmode_button_title">Activate Proofmode</string>
+    <string name="disable_button_title">Disable</string>
 
 </resources>
