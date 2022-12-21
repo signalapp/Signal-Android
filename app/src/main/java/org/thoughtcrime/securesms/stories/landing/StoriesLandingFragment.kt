@@ -279,6 +279,12 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       },
       onAvatarClick = {
         cameraFab.performClick()
+      },
+      onLockList = {
+        recyclerView?.suppressLayout(true)
+      },
+      onUnlockList = {
+        recyclerView?.suppressLayout(false)
       }
     )
   }
