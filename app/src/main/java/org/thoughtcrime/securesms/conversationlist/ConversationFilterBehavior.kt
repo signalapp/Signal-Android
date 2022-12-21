@@ -11,8 +11,10 @@ import org.thoughtcrime.securesms.util.FeatureFlags
 
 class ConversationFilterBehavior(context: Context, attributeSet: AttributeSet) : AppBarLayout.Behavior(context, attributeSet) {
 
+  var callback: Callback? = null
+
   override fun onStartNestedScroll(parent: CoordinatorLayout, child: AppBarLayout, directTargetChild: View, target: View, nestedScrollAxes: Int, type: Int): Boolean {
-    if (type == ViewCompat.TYPE_NON_TOUCH || !FeatureFlags.chatFilters()) {
+    if (type == ViewCompat.TYPE_NON_TOUCH || !FeatureFlags.chatFilters() || callback?.canStartNestedScroll() == false) {
       return false
     } else {
       return super.onStartNestedScroll(parent, child, directTargetChild, target, nestedScrollAxes, type)
@@ -22,5 +24,11 @@ class ConversationFilterBehavior(context: Context, attributeSet: AttributeSet) :
   override fun onStopNestedScroll(coordinatorLayout: CoordinatorLayout, child: AppBarLayout, target: View, type: Int) {
     super.onStopNestedScroll(coordinatorLayout, child, target, type)
     child.setExpanded(false, true)
+    callback?.onStopNestedScroll()
+  }
+
+  interface Callback {
+    fun onStopNestedScroll()
+    fun canStartNestedScroll(): Boolean
   }
 }

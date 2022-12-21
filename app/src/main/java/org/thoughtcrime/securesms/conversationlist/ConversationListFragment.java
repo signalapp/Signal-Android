@@ -55,6 +55,7 @@ import androidx.appcompat.content.res.AppCompatResources;
 import androidx.appcompat.view.ActionMode;
 import androidx.appcompat.widget.Toolbar;
 import androidx.appcompat.widget.TooltipCompat;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.DialogFragment;
@@ -68,6 +69,7 @@ import com.airbnb.lottie.SimpleColorFilter;
 import com.annimon.stream.Stream;
 import com.google.android.material.animation.ArgbEvaluatorCompat;
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -112,6 +114,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.sync.CdsPermanentErrorBottomSheet;
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
@@ -209,6 +212,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private Stub<UnreadPaymentsView>       paymentNotificationView;
   private PulsingFloatingActionButton    fab;
   private PulsingFloatingActionButton    cameraFab;
+  private ConversationListFilterPullView pullView;
+  private AppBarLayout                   pullViewAppBarLayout;
   private ConversationListViewModel      viewModel;
   private RecyclerView.Adapter           activeAdapter;
   private ConversationListAdapter        defaultAdapter;
@@ -268,21 +273,50 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     voiceNotePlayerViewStub = new Stub<>(view.findViewById(R.id.voice_note_player));
     fab                     = view.findViewById(R.id.fab);
     cameraFab               = view.findViewById(R.id.camera_fab);
+    pullView                = view.findViewById(R.id.pull_view);
+    pullViewAppBarLayout    = view.findViewById(R.id.recycler_coordinator_app_bar);
 
     fab.setVisibility(View.VISIBLE);
     cameraFab.setVisibility(View.VISIBLE);
 
-    ConversationListFilterPullView pullView = view.findViewById(R.id.pull_view);
+    CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
+    int                     minHeight               = (int) DimensionUnit.DP.toPixels(52);
 
-    AppBarLayout appBarLayout = view.findViewById(R.id.recycler_coordinator_app_bar);
-    appBarLayout.addOnOffsetChangedListener((layout, verticalOffset) -> {
-      if (verticalOffset == 0) {
-        viewModel.setConversationFilterLatch(ConversationFilterLatch.SET);
-        pullView.setToRelease();
-      } else if (verticalOffset == -layout.getHeight()) {
-        viewModel.setConversationFilterLatch(ConversationFilterLatch.RESET);
-        pullView.setToPull();
+    pullView.setOnFilterStateChanged(state -> {
+      switch (state) {
+        case CLOSING:
+          viewModel.setFiltered(false);
+          break;
+        case OPENING:
+          viewModel.setFiltered(true);
+          break;
+        case OPEN_APEX:
+          ViewUtil.setMinimumHeight(collapsingToolbarLayout, minHeight);
+          break;
+        case CLOSE_APEX:
+          ViewUtil.setMinimumHeight(collapsingToolbarLayout, 0);
+          break;
       }
+    });
+
+    pullView.setOnCloseClicked(this::onClearFilterClick);
+
+    ConversationFilterBehavior conversationFilterBehavior = Objects.requireNonNull((ConversationFilterBehavior) ((CoordinatorLayout.LayoutParams) pullViewAppBarLayout.getLayoutParams()).getBehavior());
+    conversationFilterBehavior.setCallback(new ConversationFilterBehavior.Callback() {
+      @Override
+      public void onStopNestedScroll() {
+        pullView.onUserDragFinished();
+      }
+
+      @Override
+      public boolean canStartNestedScroll() {
+        return !isSearchOpen() || pullView.isCloseable();
+      }
+    });
+
+    pullViewAppBarLayout.addOnOffsetChangedListener((layout, verticalOffset) -> {
+      float progress = 1 - ((float) verticalOffset) / (-layout.getHeight());
+      pullView.onUserDrag(progress);
     });
 
     fab.show();
@@ -982,7 +1016,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void handleFilterUnreadChats() {
-    viewModel.toggleUnreadChatsFilter();
+    pullView.toggle();
+    pullViewAppBarLayout.setExpanded(false, true);
   }
 
   @SuppressLint("StaticFieldLeak")
@@ -1479,7 +1514,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onClearFilterClick() {
-    viewModel.toggleUnreadChatsFilter();
+    pullView.toggle();
+    pullViewAppBarLayout.setExpanded(false, true);
   }
 
   private class PaymentNotificationListener implements UnreadPaymentsView.Listener {

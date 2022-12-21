@@ -50,16 +50,24 @@
             android:id="@+id/recycler_coordinator_app_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:elevation="0dp"
             app:expanded="false"
             app:layout_behavior="org.thoughtcrime.securesms.conversationlist.ConversationFilterBehavior">
 
-            <org.thoughtcrime.securesms.conversationlist.ConversationListFilterPullView
-                android:id="@+id/pull_view"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed|exitUntilCollapsed"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:background="@color/signal_colorSurface1"
-                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
-                app:layout_scrollInterpolator="@android:anim/decelerate_interpolator" />
+                android:layout_height="wrap_content">
+
+                <org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView
+                    android:id="@+id/pull_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/signal_colorBackground"
+                    app:layout_scrollInterpolator="@android:anim/linear_interpolator" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
 

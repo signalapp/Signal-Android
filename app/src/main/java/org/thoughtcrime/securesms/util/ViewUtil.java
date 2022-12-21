@@ -38,6 +38,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.Px;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.core.view.ViewCompat;
@@ -52,6 +53,12 @@ import org.thoughtcrime.securesms.util.views.Stub;
 public final class ViewUtil {
 
   private ViewUtil() {
+  }
+
+  public static void setMinimumHeight(@NonNull View view, @Px int minimumHeight) {
+    if (view.getMinimumHeight() != minimumHeight) {
+      view.setMinimumHeight(minimumHeight);
+    }
   }
 
   public static void focusAndMoveCursorToEndAndOpenKeyboard(@NonNull EditText input) {

@@ -4,24 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:parentTag="android.widget.FrameLayout">
 
-    <TextView
-        android:id="@+id/text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginBottom="11dp"
-        android:text="@string/ConversationListFilterPullView__pull_down_to_filter"
-        android:textAppearance="@style/Signal.Text.LabelLarge" />
+    <org.thoughtcrime.securesms.conversationlist.chatfilter.FilterCircleView
+        android:id="@+id/filter_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    <ImageView
-        android:id="@+id/arrow"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/filter_text"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|center_horizontal"
-        android:layout_marginBottom="8dp"
-        android:importantForAccessibility="no"
-        app:srcCompat="@drawable/ic_arrow_down"
-        app:tint="@color/signal_colorOnSurface" />
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="10dp"
+        android:enabled="false"
+        android:text="@string/ChatFilter__filtered_by_unread"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        app:chipBackgroundColor="@color/signal_colorSecondaryContainer"
+        app:chipCornerRadius="8dp"
+        app:chipMinHeight="32dp"
+        app:closeIcon="@drawable/ic_x_20"
+        app:closeIconEnabled="true"
+        app:closeIconSize="18dp"
+        app:ensureMinTouchTargetSize="false"
+        app:icon="@drawable/ic_x_20"
+        app:iconTint="@color/signal_colorOnSurface" />
 
 </merge>

@@ -83,7 +83,6 @@ class ConversationListViewModel extends ViewModel {
   private String                  activeQuery;
   private SearchResult            activeSearchResult;
   private int                     pinnedCount;
-  private ConversationFilterLatch conversationFilterLatch;
 
   private ConversationListViewModel(@NonNull SearchRepository searchRepository, boolean isArchived) {
     this.megaphone                      = new MutableLiveData<>();
@@ -101,8 +100,8 @@ class ConversationListViewModel extends ViewModel {
     this.invalidator                    = new Invalidator();
     this.disposables                    = new CompositeDisposable();
     this.conversationFilter             = new MutableLiveData<>(ConversationFilter.OFF);
-    this.conversationFilterLatch        = ConversationFilterLatch.RESET;
-    this.conversationListDataSource     = Transformations.map(conversationFilter, filter -> ConversationListDataSource.create(filter, isArchived));
+    this.conversationListDataSource     = Transformations.map(Transformations.distinctUntilChanged(conversationFilter),
+                                                              filter -> ConversationListDataSource.create(filter, isArchived));
     this.pagedData                      = Transformations.map(conversationListDataSource, source -> PagedData.createForLiveData(source,
                                                                                                                                 new PagingConfig.Builder()
                                                                                                                                     .setPageSize(15)
@@ -212,22 +211,17 @@ class ConversationListViewModel extends ViewModel {
     setSelection(newSelection);
   }
 
-  void setConversationFilterLatch(@NonNull ConversationFilterLatch latch) {
-    ConversationFilterLatch previous = conversationFilterLatch;
-    conversationFilterLatch = latch;
-    if (previous != latch && latch == ConversationFilterLatch.RESET) {
-      toggleUnreadChatsFilter();
-    }
-  }
-
-  public void toggleUnreadChatsFilter() {
-    ConversationFilter filter = Objects.requireNonNull(conversationFilter.getValue());
-    if (filter == ConversationFilter.UNREAD) {
-      Log.d(TAG, "Setting filter to OFF");
-      conversationFilter.setValue(ConversationFilter.OFF);
-    } else {
-      Log.d(TAG, "Setting filter to UNREAD");
+  void setFiltered(boolean isFiltered) {
+    if (isFiltered) {
       conversationFilter.setValue(ConversationFilter.UNREAD);
+      if (activeQuery != null) {
+        onSearchQueryUpdated(activeQuery);
+      }
+    } else {
+      conversationFilter.setValue(ConversationFilter.OFF);
+      if (activeQuery != null) {
+        onSearchQueryUpdated(activeQuery);
+      }
     }
   }
 
@@ -272,19 +266,14 @@ class ConversationListViewModel extends ViewModel {
   void onSearchQueryUpdated(String query) {
     activeQuery = query;
 
+    ConversationFilter filter = conversationFilter.getValue();
+    if (filter != ConversationFilter.OFF) {
+      contactSearchDebouncer.publish(() -> submitConversationSearch(query));
+      return;
+    }
+
     contactSearchDebouncer.publish(() -> {
-      searchRepository.queryThreads(query, result -> {
-        if (!result.getQuery().equals(activeQuery)) {
-          return;
-        }
-
-        if (!activeSearchResult.getQuery().equals(activeQuery)) {
-          activeSearchResult = SearchResult.EMPTY;
-        }
-
-        activeSearchResult = activeSearchResult.merge(result);
-        searchResult.postValue(activeSearchResult);
-      });
+      submitConversationSearch(query);
 
       searchRepository.queryContacts(query, result -> {
         if (!result.getQuery().equals(activeQuery)) {
@@ -313,6 +302,21 @@ class ConversationListViewModel extends ViewModel {
         activeSearchResult = activeSearchResult.merge(result);
         searchResult.postValue(activeSearchResult);
       });
+    });
+  }
+
+  private void submitConversationSearch(@NonNull String query) {
+    searchRepository.queryThreads(query, result -> {
+      if (!result.getQuery().equals(activeQuery)) {
+        return;
+      }
+
+      if (!activeSearchResult.getQuery().equals(activeQuery)) {
+        activeSearchResult = SearchResult.EMPTY;
+      }
+
+      activeSearchResult = activeSearchResult.merge(result);
+      searchResult.postValue(activeSearchResult);
     });
   }
 

@@ -5453,4 +5453,8 @@
     <string name="PaypalCompleteOrderBottomSheet__donate">Donate</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">Payment</string>
 
+    <!-- ChatFilter -->
+    <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
+    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+
 </resources>
