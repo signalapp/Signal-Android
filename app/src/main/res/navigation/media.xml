@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_mediaReviewFragment_to_mediaGalleryFragment"
             app:destination="@id/mediaGalleryFragment" />
+        <action
+            android:id="@+id/action_mediaReviewFragment_to_proofPreviewFragment"
+            app:destination="@id/proofPreviewFragment" />
     </fragment>
 
     <fragment
@@ -64,5 +67,9 @@
     <action
         android:id="@+id/action_directly_to_textPostCreationFragment"
         app:destination="@id/textStoryPostCreationFragment" />
+    <fragment
+        android:id="@+id/proofPreviewFragment"
+        android:name="org.thoughtcrime.securesms.mediasend.v2.capture.ProofPreviewFragment"
+        android:label="ProofPreviewFragment" />
 
 </navigation>

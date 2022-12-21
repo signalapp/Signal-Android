@@ -67,6 +67,8 @@ import java.io.IOException;
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
+import static org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED;
+
 /**
  * Camera captured implemented using the CameraX SDK, which uses Camera2 under the hood. Should be
  * preferred whenever possible.
@@ -320,7 +322,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
     View                   galleryButton = requireView().findViewById(R.id.camera_gallery_button);
     View                   countButton   = requireView().findViewById(R.id.camera_review_button);
     CameraXFlashToggleView flashButton   = requireView().findViewById(R.id.camera_flash_button);
-    CameraXFlashToggleView proofButton   = requireView().findViewById(R.id.camera_proof_button);
+    ImageView              proofButton   = requireView().findViewById(R.id.camera_proof_button);
 
     initializeViewFinderAndControlsPositioning();
 
@@ -351,15 +353,16 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       cameraScreenBrightnessController.onCameraFlashChanged(mode == ImageCapture.FLASH_MODE_ON);
     });
 
-    proofButton.setOnFlashModeChangedListener(mode -> {
-      if (mode == ImageCapture.FLASH_MODE_ON) {
-        /**
-         * CREATE LIBPROOF BUNDLE
-         */
+
+    requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
+    proofButton.setOnClickListener(view -> {
+      boolean isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, true);
+      if (isProofEnabled) {
+        proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock_open_24));
+        requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, false).apply();
       } else {
-        /**
-         * DELETE LIBPROOF BUNDLE
-         */
+        proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock));
+        requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
       }
     });
 
@@ -538,7 +541,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
   }
 
   @SuppressLint({ "MissingPermission" })
-  private void initializeFlipButton(@NonNull View flipButton, @NonNull CameraXFlashToggleView flashButton, @NonNull CameraXFlashToggleView proofButton) {
+  private void initializeFlipButton(@NonNull View flipButton, @NonNull CameraXFlashToggleView flashButton, @NonNull ImageView proofButton) {
     if (getContext() == null) {
       Log.w(TAG, "initializeFlipButton called either before or after fragment was attached.");
       return;
@@ -560,8 +563,12 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         flipButton.startAnimation(animation);
         flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
         flashButton.setFlash(cameraController.getImageCaptureFlashMode());
-        proofButton.setFlash(ImageCapture.FLASH_MODE_ON);
-        proofButton.setAutoFlashEnabled(true);
+        proofButton.setVisibility(View.VISIBLE);
+        if (requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)) {
+          proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock));
+        } else {
+          proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock_open_24));
+        }
         cameraScreenBrightnessController.onCameraDirectionChanged(cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA);
       });
 
