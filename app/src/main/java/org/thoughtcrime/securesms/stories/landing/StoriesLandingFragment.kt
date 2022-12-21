@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -92,6 +93,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     viewModel.isTransitioningToAnotherScreen = false
     initializeSearchAction()
     viewModel.markStoriesRead()
+
+    ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary()
   }
 
   override fun onPause() {
