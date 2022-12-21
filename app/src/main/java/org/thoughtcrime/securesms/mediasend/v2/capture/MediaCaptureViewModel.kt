@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.core.Flowable
+import org.signal.glide.Log
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -43,6 +44,7 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   }
 
   private fun onMediaRendered(media: Media) {
+    Log.e("MEDIAA:", "${media.proofHash}")
     internalEvents.postValue(MediaCaptureEvent.MediaCaptureRendered(media))
   }
 

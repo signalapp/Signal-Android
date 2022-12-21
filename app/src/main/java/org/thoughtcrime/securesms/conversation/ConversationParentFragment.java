@@ -2673,7 +2673,7 @@ public class ConversationParentFragment extends Fragment
         mimeType = mediaType.toFallbackMimeType();
       }
 
-      Media media = new Media(uri, mimeType, 0, width, height, 0, 0, borderless, videoGif, Optional.empty(), Optional.empty(), Optional.empty());
+      Media media = new Media(uri, mimeType, "", 0, width, height, 0, 0, borderless, videoGif, Optional.empty(), Optional.empty(), Optional.empty());
       startActivityForResult(MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedSendType(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed()), MEDIA_SENDER);
       return new SettableFuture<>(false);
     } else {
@@ -3369,7 +3369,7 @@ public class ConversationParentFragment extends Fragment
 
   private void sendSticker(@NonNull StickerLocator stickerLocator, @NonNull String contentType, @NonNull Uri uri, long size, boolean clearCompose) {
     if (sendButton.getSelectedSendType().usesSmsTransport()) {
-      Media  media  = new Media(uri, contentType, System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty());
+      Media  media  = new Media(uri, contentType, "", System.currentTimeMillis(), StickerSlide.WIDTH, StickerSlide.HEIGHT, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty());
       Intent intent = MediaSelectionActivity.editor(requireContext(), sendButton.getSelectedSendType(), Collections.singletonList(media), recipient.getId(), composeText.getTextTrimmed());
       startActivityForResult(intent, MEDIA_SENDER);
       return;

@@ -1531,7 +1531,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   fun setBadges(id: RecipientId, badges: List<Badge>) {
     val badgeListBuilder = BadgeList.newBuilder()
     for (badge in badges) {
-      badgeListBuilder.addBadges(toDatabaseBadge(badge))
+//      badgeListBuilder.addBadges(toDatabaseBadge(badge))
     }
 
     val values = ContentValues(1).apply {

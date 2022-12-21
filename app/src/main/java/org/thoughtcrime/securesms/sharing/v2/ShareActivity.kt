@@ -236,6 +236,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
         Media(
           multiShareArgs.dataUri,
           multiShareArgs.dataType,
+          "",
           0,
           0,
           0,

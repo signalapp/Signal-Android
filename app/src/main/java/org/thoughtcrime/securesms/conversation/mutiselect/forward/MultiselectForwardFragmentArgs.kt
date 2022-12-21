@@ -186,6 +186,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
       return Media(
         uri,
         contentType,
+        "",
         System.currentTimeMillis(),
         width,
         height,

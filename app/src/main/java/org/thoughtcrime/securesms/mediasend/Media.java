@@ -23,6 +23,7 @@ public class Media implements Parcelable {
 
   private final Uri     uri;
   private final String  mimeType;
+  private final String  proofHash;
   private final long    date;
   private final int     width;
   private final int     height;
@@ -37,6 +38,7 @@ public class Media implements Parcelable {
 
   public Media(@NonNull Uri uri,
                @NonNull String mimeType,
+               String proofHash,
                long date,
                int width,
                int height,
@@ -50,6 +52,7 @@ public class Media implements Parcelable {
   {
     this.uri                 = uri;
     this.mimeType            = mimeType;
+    this.proofHash           = proofHash;
     this.date                = date;
     this.width               = width;
     this.height              = height;
@@ -65,6 +68,7 @@ public class Media implements Parcelable {
   protected Media(Parcel in) {
     uri        = in.readParcelable(Uri.class.getClassLoader());
     mimeType   = in.readString();
+    proofHash  = in.readString();
     date       = in.readLong();
     width      = in.readInt();
     height     = in.readInt();
@@ -88,6 +92,10 @@ public class Media implements Parcelable {
 
   public String getMimeType() {
     return mimeType;
+  }
+
+  public String getProofHash() {
+    return proofHash;
   }
 
   public long getDate() {
@@ -143,6 +151,7 @@ public class Media implements Parcelable {
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeParcelable(uri, flags);
     dest.writeString(mimeType);
+    dest.writeString(proofHash);
     dest.writeLong(date);
     dest.writeInt(width);
     dest.writeInt(height);
@@ -185,6 +194,7 @@ public class Media implements Parcelable {
   public static @NonNull Media withMimeType(@NonNull Media media, @NonNull String newMimeType) {
     return new Media(media.getUri(),
                      newMimeType,
+                     media.getProofHash(),
                      media.getDate(),
                      media.getWidth(),
                      media.getHeight(),
@@ -202,6 +212,7 @@ public class Media implements Parcelable {
 
     return new Media(media.getUri(),
                      media.getMimeType(),
+                     media.getProofHash(),
                      media.getDate(),
                      media.getWidth(),
                      media.getHeight(),
