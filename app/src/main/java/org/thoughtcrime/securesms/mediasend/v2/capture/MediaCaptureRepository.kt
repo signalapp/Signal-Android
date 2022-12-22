@@ -51,7 +51,8 @@ class MediaCaptureRepository(context: Context) {
         createBlobBuilder = { blobProvider, bytes, _ -> blobProvider.forData(bytes) },
         mimeType = MediaUtil.IMAGE_JPEG,
         width = width,
-        height = height
+        height = height,
+        byteArray = data
       )
 
       if (media != null) {
@@ -70,7 +71,8 @@ class MediaCaptureRepository(context: Context) {
         createBlobBuilder = BlobProvider::forData,
         mimeType = VideoUtil.RECORDED_VIDEO_CONTENT_TYPE,
         width = 0,
-        height = 0
+        height = 0,
+        byteArrayOf()
       )
 
       if (media != null) {
@@ -90,7 +92,8 @@ class MediaCaptureRepository(context: Context) {
     createBlobBuilder: (BlobProvider, T, Long) -> BlobProvider.BlobBuilder,
     mimeType: String,
     width: Int,
-    height: Int
+    height: Int,
+    byteArray: ByteArray
   ): Media? {
     return try {
       val data: T = dataSupplier()
@@ -100,8 +103,13 @@ class MediaCaptureRepository(context: Context) {
         .createForSingleSessionOnDisk(context)
 
       //generate proof from nearly stored media
-      var proofHash = ProofMode.generateProof(context, uri)
+      val proofHash = ProofMode.generateProof(context, uri, byteArray, mimeType)
       Log.e("PROOF render:", proofHash)
+
+      var proofDir = ProofMode.getProofDir(context, proofHash)
+
+      Log.e("PROOFDIR","proof local dir: $proofDir")
+
 
       Media(
         uri,

@@ -37,6 +37,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -92,14 +93,16 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
+import static org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED;
+
 
 public class AttachmentManager {
 
   private final static String TAG = Log.tag(AttachmentManager.class);
 
-  private final @NonNull Context                    context;
-  private final @NonNull Stub<View>                 attachmentViewStub;
-  private final @NonNull AttachmentListener         attachmentListener;
+  private final @NonNull Context            context;
+  private final @NonNull Stub<View>         attachmentViewStub;
+  private final @NonNull AttachmentListener attachmentListener;
 
   private RemovableEditableMediaView removableMediaView;
   private ThumbnailView              thumbnail;
@@ -219,11 +222,11 @@ public class AttachmentManager {
     future.addListener(new AssertedSuccessListener<Bitmap>() {
       @Override
       public void onSuccess(@NonNull Bitmap result) {
-        byte[]        blob          = BitmapUtil.toByteArray(result);
-        Uri           uri           = BlobProvider.getInstance()
-                                                  .forData(blob)
-                                                  .withMimeType(MediaUtil.IMAGE_JPEG)
-                                                  .createForSingleSessionInMemory();
+        byte[] blob = BitmapUtil.toByteArray(result);
+        Uri uri = BlobProvider.getInstance()
+                              .forData(blob)
+                              .withMimeType(MediaUtil.IMAGE_JPEG)
+                              .createForSingleSessionInMemory();
         LocationSlide locationSlide = new LocationSlide(context, uri, blob.length, place);
 
         ThreadUtil.runOnMain(() -> {
@@ -242,19 +245,23 @@ public class AttachmentManager {
                                             @NonNull final Uri uri,
                                             @NonNull final SlideFactory.MediaType mediaType,
                                             @NonNull final MediaConstraints constraints,
-                                                     final int width,
-                                                     final int height)
+                                            final int width,
+                                            final int height)
   {
-    inflateStub();
+    if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+      inflateStub();
+    }
 
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        thumbnail.clear(glideRequests);
-        thumbnail.showProgressSpinner();
+        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+          thumbnail.clear(glideRequests);
+          thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
+        }
       }
 
       @Override
@@ -266,7 +273,7 @@ public class AttachmentManager {
             Slide result = getContentResolverSlideInfo(uri, width, height);
 
             if (result == null) return getManuallyCalculatedSlideInfo(uri, width, height);
-            else                return result;
+            else return result;
           }
         } catch (IOException e) {
           Log.w(TAG, e);
@@ -339,10 +346,10 @@ public class AttachmentManager {
       }
 
       private @NonNull Slide getManuallyCalculatedSlideInfo(Uri uri, int width, int height) throws IOException {
-        long                                   start               = System.currentTimeMillis();
-        Long                                   mediaSize           = null;
-        String                                 fileName            = null;
-        String                                 mimeType            = null;
+        long                                start               = System.currentTimeMillis();
+        Long                                mediaSize           = null;
+        String                              fileName            = null;
+        String                              mimeType            = null;
         boolean                             gif                 = false;
         AttachmentTable.TransformProperties transformProperties = null;
 
@@ -504,13 +511,13 @@ public class AttachmentManager {
     }
   }
 
-  private boolean areConstraintsSatisfied(final @NonNull  Context context,
+  private boolean areConstraintsSatisfied(final @NonNull Context context,
                                           final @Nullable Slide slide,
-                                          final @NonNull  MediaConstraints constraints)
+                                          final @NonNull MediaConstraints constraints)
   {
-   return slide == null                                          ||
-          constraints.isSatisfied(context, slide.asAttachment()) ||
-          constraints.canResize(slide.asAttachment());
+    return slide == null ||
+           constraints.isSatisfied(context, slide.asAttachment()) ||
+           constraints.canResize(slide.asAttachment());
   }
 
   private void previewImageDraft(final @NonNull Slide slide) {
@@ -555,6 +562,7 @@ public class AttachmentManager {
 
   public interface AttachmentListener {
     void onAttachmentChanged();
+
     void onLocationRemoved();
   }
 

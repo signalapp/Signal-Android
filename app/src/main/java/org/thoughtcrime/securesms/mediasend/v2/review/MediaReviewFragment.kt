@@ -5,6 +5,7 @@ import android.animation.AnimatorSet
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -24,11 +25,15 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import app.cash.exhaustive.Exhaustive
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import org.signal.core.util.concurrent.SimpleTask
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
@@ -39,9 +44,15 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
+import org.thoughtcrime.securesms.mms.AttachmentManager
+import org.thoughtcrime.securesms.mms.AttachmentManager.AttachmentListener
+import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
+import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -49,7 +60,12 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
+import org.witness.proofmode.ProofMode
+import java.io.BufferedOutputStream
 import java.io.File
+import java.io.FileOutputStream
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 /**
  * Allows the user to view and edit selected media.
@@ -58,7 +74,7 @@ import java.io.File
 /**
  * IF WE WANT TO ADD ABILITY TO CROP/ROTATE/DRAW ON PHOTO - SHOULD UNCOMMENT AND DELETE COLOR FILTERS
  */
-class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
+class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), AttachmentListener {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -84,6 +100,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
   private lateinit var controlsShade: View
   private lateinit var progress: ProgressBar
   private lateinit var progressWrapper: TouchInterceptingFrameLayout
+  private lateinit var attachmentManager: AttachmentManager
 
   private val navigator = MediaSelectionNavigator(
     toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment,
@@ -174,6 +191,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       }
     }
 
+    attachmentManager = AttachmentManager(requireContext(), view, this)
+
     val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
       if (keys.isNotEmpty()) {
         performSend(keys)
@@ -181,20 +200,19 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
     sendButton.setOnClickListener {
 
-      /*sharedViewModel.state.value?.selectedMedia?.take(2)?.map { media ->
-        //generate proof for a URI
-        Log.e("HASHHH:", "${media.proofHash}")
 
-        *//*var proofHash = ProofMode.generateProof(requireContext(),media.uri)
-        Log.e("HASHHH:", "$proofHash")
-
-        //get the folder that proof is stored
-        var proofDir = ProofMode.getProofDir(requireContext(), proofHash)
-        var fileZip = makeProofZip (proofDir.absoluteFile)*//*
-      }*/
+      /**
+       * HOW TO CREATE ZIP
+       */
+      sharedViewModel.state.value?.focusedMedia?.let {
+        val file = createZipProof(it.proofHash)
 
 
-/*      val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
+//        attachmentManager.setMedia(GlideApp.with(this), Uri.fromFile(file), SlideFactory.MediaType.DOCUMENT, MediaConstraints.getPushMediaConstraints(), 0, 0)
+      }
+
+
+      val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
 
       if (sharedViewModel.isContactSelectionRequired) {
         val args = MultiselectForwardFragmentArgs(
@@ -242,15 +260,19 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
           .show()
       } else {
         performSend()
-      }*/
+      }
     }
 
     addMediaButton.setOnClickListener {
-      launchGallery()
+      if (!isProofEnabled) {
+        launchGallery()
+      }
     }
 
     viewOnceButton.setOnClickListener {
-      sharedViewModel.incrementViewOnceState()
+      if (!isProofEnabled) {
+        sharedViewModel.incrementViewOnceState()
+      }
     }
 
     addMessageButton.setOnClickListener {
@@ -317,12 +339,22 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     )
   }
 
-  fun makeProofZip(proofDirPath: File): File {
+  private fun createZipProof(proofHash: String): File {
+    var proofDir = ProofMode.getProofDir(requireContext(), proofHash)
+    var fileZip = makeProofZip(proofDir.absoluteFile)
+
+    Log.e("ZIP PATH", "zip path: $fileZip");
+
+    return fileZip
+
+  }
+
+  private fun makeProofZip(proofDirPath: File): File {
     val outputZipFile = File(proofDirPath.path, proofDirPath.name + ".zip")
-    /*ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
+    ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
       proofDirPath.walkTopDown().forEach { file ->
         val zipFileName = file.absolutePath.removePrefix(proofDirPath.absolutePath).removePrefix("/")
-        val entry = ZipEntry( "$zipFileName${(if (file.isDirectory) "/" else "" )}")
+        val entry = ZipEntry("$zipFileName${(if (file.isDirectory) "/" else "")}")
         zos.putNextEntry(entry)
         if (file.isFile) {
           file.inputStream().copyTo(zos)
@@ -331,11 +363,33 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
       val keyEntry = ZipEntry("pubkey.asc");
       zos.putNextEntry(keyEntry);
-      var publicKey = ProofMode.getPublicKey(this)
-      zos.write(publicKey.toByteArray())*/
+      var publicKey = ProofMode.getPublicKey(requireContext())
+      zos.write(publicKey.toByteArray())
 
-    return outputZipFile
+      return outputZipFile
+    }
   }
+
+  /*private fun sendMediaMessage(result: MediaSendActivityResult) {
+    val thread: Long = this.threadId
+    val expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds().toLong())
+    val quote: QuoteModel? = if (result.isViewOnce) null else inputPanel.getQuote().orElse(null)
+    val mentions: List<Mention> = ArrayList(result.mentions)
+    val message = OutgoingMediaMessage(recipient.get(), SlideDeck(), result.body, System.currentTimeMillis(), -1, expiresIn, result.isViewOnce, distributionType, result.storyType, null, false, quote, emptyList(), emptyList(), mentions, null)
+    val secureMessage: OutgoingMediaMessage = OutgoingSecureMediaMessage(message)
+    val context = requireContext().applicationContext
+    ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread)
+    inputPanel.clearQuote()
+    attachmentManager.clear(glideRequests, false)
+    silentlySetComposeText("")
+    val id: Long = fragment.stageOutgoingMessage(secureMessage)
+    SimpleTask.run({
+      val resultId = MessageSender.sendPushWithPreUploadedMedia(context, secureMessage, result.preUploadResults, thread, null)
+      val deleted = attachments.deleteAbandonedPreuploadedAttachments()
+      Log.i(ConversationParentFragment.TAG, "Deleted $deleted abandoned attachments.")
+      resultId
+    }) { threadId: Long? -> this.sendComplete(threadId) }
+  }*/
 
 
   override fun onResume() {
@@ -626,5 +680,13 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     fun onSendError(error: Throwable)
     fun onNoMediaSelected()
     fun onPopFromReview()
+  }
+
+  override fun onAttachmentChanged() {
+    TODO("Not yet implemented")
+  }
+
+  override fun onLocationRemoved() {
+    TODO("Not yet implemented")
   }
 }
