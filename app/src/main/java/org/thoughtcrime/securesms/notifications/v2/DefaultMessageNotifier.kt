@@ -211,16 +211,8 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     ServiceUtil.getNotificationManager(context).cancelOrphanedNotifications(context, state, stickyThreads.map { it.value.notificationId }.toSet())
     updateBadge(context, state.messageCount)
 
-    val smsIds: MutableList<Long> = mutableListOf()
-    val mmsIds: MutableList<Long> = mutableListOf()
-    for (item: NotificationItem in state.notificationItems) {
-      if (item.isMms) {
-        mmsIds.add(item.id)
-      } else {
-        smsIds.add(item.id)
-      }
-    }
-    SignalDatabase.mmsSms.setNotifiedTimestamp(System.currentTimeMillis(), smsIds, mmsIds)
+    val messageIds: List<Long> = state.notificationItems.map { it.id }
+    SignalDatabase.mmsSms.setNotifiedTimestamp(System.currentTimeMillis(), messageIds)
 
     Log.i(TAG, "threads: ${state.threadCount} messages: ${state.messageCount}")
 

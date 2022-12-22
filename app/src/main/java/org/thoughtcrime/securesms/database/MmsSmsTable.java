@@ -144,10 +144,8 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   private @NonNull Pair<RecipientId, Long> getGroupAddedBy(long threadId, long lastQuitChecked) {
-    MessageTable mmsDatabase = SignalDatabase.messages();
-    MessageTable smsDatabase = SignalDatabase.messages();
-    long         latestQuit  = mmsDatabase.getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
-    RecipientId     id          = smsDatabase.getOldestGroupUpdateSender(threadId, latestQuit);
+    long         latestQuit  = SignalDatabase.messages().getLatestGroupQuitTimestamp(threadId, lastQuitChecked);
+    RecipientId  id          = SignalDatabase.messages().getOldestGroupUpdateSender(threadId, latestQuit);
 
     return new Pair<>(id, latestQuit);
   }
@@ -189,9 +187,7 @@ public class MmsSmsTable extends DatabaseTable {
   public @NonNull List<MessageRecord> getMessagesAfterVoiceNoteInclusive(long messageId, long limit) throws NoSuchMessageException {
     MessageRecord       origin = SignalDatabase.messages().getMessageRecord(messageId);
     List<MessageRecord> mms    = SignalDatabase.messages().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
-    List<MessageRecord> sms    = SignalDatabase.messages().getMessagesInThreadAfterInclusive(origin.getThreadId(), origin.getDateReceived(), limit);
 
-    mms.addAll(sms);
     Collections.sort(mms, Comparator.comparingLong(DisplayRecord::getDateReceived));
 
     return Stream.of(mms).limit(limit).toList();
@@ -395,10 +391,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public boolean checkMessageExists(@NonNull MessageRecord messageRecord) {
-    MessageTable db = messageRecord.isMms() ? SignalDatabase.messages()
-                                            : SignalDatabase.messages();
-
-    try (Cursor cursor = db.getMessageCursor(messageRecord.getId())) {
+    try (Cursor cursor = SignalDatabase.messages().getMessageCursor(messageRecord.getId())) {
       return cursor != null && cursor.getCount() > 0;
     }
   }
@@ -460,10 +453,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getSecureMessageCountForInsights() {
-    int count = SignalDatabase.messages().getSecureMessageCountForInsights();
-    count    += SignalDatabase.messages().getSecureMessageCountForInsights();
-
-    return count;
+    return SignalDatabase.messages().getSecureMessageCountForInsights();
   }
 
   public boolean hasMeaningfulMessage(long threadId) {
@@ -471,8 +461,7 @@ public class MmsSmsTable extends DatabaseTable {
       return false;
     }
 
-    return SignalDatabase.messages().hasMeaningfulMessage(threadId) ||
-           SignalDatabase.messages().hasMeaningfulMessage(threadId);
+    return SignalDatabase.messages().hasMeaningfulMessage(threadId);
   }
 
   public long getThreadId(MessageId messageId) {
@@ -645,12 +634,7 @@ public class MmsSmsTable extends DatabaseTable {
    * Doesn't do any transactions or updates, so we can re-use the method safely.
    */
   private @NonNull Set<MessageUpdate> incrementReceiptCountInternal(SyncMessageId syncMessageId, long timestamp, MessageTable.ReceiptType receiptType, @NonNull MessageTable.MessageQualifier messageQualifier) {
-    Set<MessageUpdate> messageUpdates = new HashSet<>();
-
-    messageUpdates.addAll(SignalDatabase.messages().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
-    messageUpdates.addAll(SignalDatabase.messages().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier));
-
-    return messageUpdates;
+    return SignalDatabase.messages().incrementReceiptCount(syncMessageId, timestamp, receiptType, messageQualifier);
   }
 
   public void updateViewedStories(@NonNull Set<SyncMessageId> syncMessageIds) {
@@ -729,29 +713,22 @@ public class MmsSmsTable extends DatabaseTable {
   public Collection<SyncMessageId> setTimestampReadFromSyncMessage(@NonNull List<ReadMessage> readMessages, long proposedExpireStarted, @NonNull Map<Long, Long> threadToLatestRead) {
     SQLiteDatabase db = getWritableDatabase();
 
-    List<Pair<Long, Long>>    expiringText   = new LinkedList<>();
-    List<Pair<Long, Long>>    expiringMedia  = new LinkedList<>();
-    Set<Long>                 updatedThreads = new HashSet<>();
-    Collection<SyncMessageId> unhandled      = new LinkedList<>();
+    List<Pair<Long, Long>>    expiringMessages = new LinkedList<>();
+    Set<Long>                 updatedThreads   = new HashSet<>();
+    Collection<SyncMessageId> unhandled        = new LinkedList<>();
 
     db.beginTransaction();
     try {
       for (ReadMessage readMessage : readMessages) {
-        RecipientId         authorId    = Recipient.externalPush(readMessage.getSender()).getId();
-        TimestampReadResult textResult  = SignalDatabase.messages().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
-                                                                                               proposedExpireStarted,
-                                                                                               threadToLatestRead);
-        TimestampReadResult mediaResult = SignalDatabase.messages().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
-                                                                                                    proposedExpireStarted,
-                                                                                                    threadToLatestRead);
+        RecipientId         authorId = Recipient.externalPush(readMessage.getSender()).getId();
+        TimestampReadResult result   = SignalDatabase.messages().setTimestampReadFromSyncMessage(new SyncMessageId(authorId, readMessage.getTimestamp()),
+                                                                                                 proposedExpireStarted,
+                                                                                                 threadToLatestRead);
 
-        expiringText.addAll(textResult.expiring);
-        expiringMedia.addAll(mediaResult.expiring);
+        expiringMessages.addAll(result.expiring);
+        updatedThreads.addAll(result.threads);
 
-        updatedThreads.addAll(textResult.threads);
-        updatedThreads.addAll(mediaResult.threads);
-
-        if (textResult.threads.isEmpty() && mediaResult.threads.isEmpty()) {
+        if (result.threads.isEmpty()) {
           unhandled.add(new SyncMessageId(authorId, readMessage.getTimestamp()));
         }
       }
@@ -766,12 +743,7 @@ public class MmsSmsTable extends DatabaseTable {
       db.endTransaction();
     }
 
-    for (Pair<Long, Long> expiringMessage : expiringText) {
-      ApplicationDependencies.getExpiringMessageManager()
-                             .scheduleDeletion(expiringMessage.first(), false, proposedExpireStarted, expiringMessage.second());
-    }
-
-    for (Pair<Long, Long> expiringMessage : expiringMedia) {
+    for (Pair<Long, Long> expiringMessage : expiringMessages) {
       ApplicationDependencies.getExpiringMessageManager()
                              .scheduleDeletion(expiringMessage.first(), true, proposedExpireStarted, expiringMessage.second());
     }
@@ -816,7 +788,6 @@ public class MmsSmsTable extends DatabaseTable {
       while (cursor != null && cursor.moveToNext()) {
         boolean timestampMatches   = cursor.getLong(0) == receivedTimestamp;
         boolean recipientIdMatches = recipientId.equals(RecipientId.from(cursor.getLong(1)));
-
 
         if (timestampMatches && (recipientIdMatches || isOwnNumber)) {
           if (CursorUtil.requireBoolean(cursor, MmsSmsColumns.REMOTE_DELETED)) {
@@ -886,9 +857,8 @@ public class MmsSmsTable extends DatabaseTable {
     return 0;
   }
 
-  public void setNotifiedTimestamp(long timestamp, @NonNull List<Long> smsIds, @NonNull List<Long> mmsIds) {
-    SignalDatabase.messages().setNotifiedTimestamp(timestamp, smsIds);
-    SignalDatabase.messages().setNotifiedTimestamp(timestamp, mmsIds);
+  public void setNotifiedTimestamp(long timestamp, @NonNull List<Long> messageIds) {
+    SignalDatabase.messages().setNotifiedTimestamp(timestamp, messageIds);
   }
 
   public int deleteMessagesInThreadBeforeDate(long threadId, long trimBeforeDate) {
