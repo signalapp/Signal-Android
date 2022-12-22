@@ -452,7 +452,7 @@ dependencies {
     implementation libs.androidx.sharetarget
 
     //add the libProofMode library
-    implementation ('org.witness:android-libproofmode:1.0.18') {
+    implementation ('org.witness:android-libproofmode:1.0.21') {
         exclude group: 'com.eternitywall'
     }
     implementation 'com.google.android.gms:play-services-safetynet:18.0.1'

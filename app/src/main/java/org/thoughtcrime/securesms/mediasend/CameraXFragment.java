@@ -353,7 +353,6 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       cameraScreenBrightnessController.onCameraFlashChanged(mode == ImageCapture.FLASH_MODE_ON);
     });
 
-
     requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
     proofButton.setOnClickListener(view -> {
       boolean isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, true);
@@ -366,7 +365,13 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       }
     });
 
-    galleryButton.setOnClickListener(v -> controller.onGalleryClicked());
+    galleryButton.setOnClickListener(
+        v ->  {
+          if (!requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, true)) {
+            controller.onGalleryClicked();
+          }
+        }
+    );
     countButton.setOnClickListener(v -> controller.onCameraCountButtonClicked());
 
     if (Build.VERSION.SDK_INT >= 26 && cameraXModePolicy.isVideoSupported()) {
