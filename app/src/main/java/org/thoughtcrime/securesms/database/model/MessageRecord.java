@@ -337,29 +337,29 @@ public abstract class MessageRecord extends DisplayRecord {
     return null;
   }
 
-  private @NonNull String getCallDateString(@NonNull Context context) {
+  protected @NonNull String getCallDateString(@NonNull Context context) {
     return DateUtils.getSimpleRelativeTimeSpanString(context, Locale.getDefault(), getDateSent());
   }
 
-  private static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,
-                                                          @NonNull Function<Recipient, String> stringGenerator,
-                                                          @DrawableRes int iconResource)
+  protected static @NonNull UpdateDescription fromRecipient(@NonNull Recipient recipient,
+                                                            @NonNull Function<Recipient, String> stringGenerator,
+                                                            @DrawableRes int iconResource)
   {
     return UpdateDescription.mentioning(Collections.singletonList(recipient.getServiceId().orElse(ServiceId.UNKNOWN)),
                                         () -> new SpannableString(stringGenerator.apply(recipient.resolve())),
                                         iconResource);
   }
 
-  private static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
-                                                                    @DrawableRes int iconResource)
+  protected static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
+                                                                      @DrawableRes int iconResource)
   {
     return UpdateDescription.staticDescription(string, iconResource);
   }
 
-  private static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
-                                                                    @DrawableRes int iconResource,
-                                                                    @ColorInt int lightTint,
-                                                                    @ColorInt int darkTint)
+  protected static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
+                                                                      @DrawableRes int iconResource,
+                                                                      @ColorInt int lightTint,
+                                                                      @ColorInt int darkTint)
   {
     return UpdateDescription.staticDescription(string, iconResource, lightTint, darkTint);
   }

@@ -137,7 +137,8 @@ object FakeMessageRecords {
     storyType: StoryType = StoryType.NONE,
     parentStoryId: ParentStoryId? = null,
     giftBadge: GiftBadge? = null,
-    payment: Payment? = null
+    payment: Payment? = null,
+    call: CallTable.Call? = null
   ): MediaMmsMessageRecord {
     return MediaMmsMessageRecord(
       id,
@@ -173,7 +174,8 @@ object FakeMessageRecords {
       storyType,
       parentStoryId,
       giftBadge,
-      payment
+      payment,
+      call
     )
   }
 }

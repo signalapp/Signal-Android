@@ -67,6 +67,10 @@ fun <T> Cursor.requireObject(column: String, serializer: StringSerializer<T>): T
   return serializer.deserialize(CursorUtil.requireString(this, column))
 }
 
+fun <T> Cursor.requireObject(column: String, serializer: IntSerializer<T>): T {
+  return serializer.deserialize(CursorUtil.requireInt(this, column))
+}
+
 @JvmOverloads
 fun Cursor.readToSingleLong(defaultValue: Long = 0): Long {
   return use {
@@ -74,6 +78,16 @@ fun Cursor.readToSingleLong(defaultValue: Long = 0): Long {
       it.getLong(0)
     } else {
       defaultValue
+    }
+  }
+}
+
+fun <T> Cursor.readToSingleObject(serializer: Serializer<T, Cursor>): T? {
+  return use {
+    if (it.moveToFirst()) {
+      serializer.deserialize(it)
+    } else {
+      null
     }
   }
 }

@@ -559,23 +559,12 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     return results;
   }
 
-  public @NonNull Pair<Long, Long> insertReceivedCall(@NonNull RecipientId address, boolean isVideoOffer) {
-    return insertCallLog(address, isVideoOffer ? Types.INCOMING_VIDEO_CALL_TYPE : Types.INCOMING_AUDIO_CALL_TYPE, false, System.currentTimeMillis());
-  }
-
-  public @NonNull Pair<Long, Long> insertOutgoingCall(@NonNull RecipientId address, boolean isVideoOffer) {
-    return insertCallLog(address, isVideoOffer ? Types.OUTGOING_VIDEO_CALL_TYPE : Types.OUTGOING_AUDIO_CALL_TYPE, false, System.currentTimeMillis());
-  }
-
-  public @NonNull Pair<Long, Long> insertMissedCall(@NonNull RecipientId address, long timestamp, boolean isVideoOffer) {
-    return insertCallLog(address, isVideoOffer ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE, true, timestamp);
-  }
-
-  private @NonNull Pair<Long, Long> insertCallLog(@NonNull RecipientId recipientId, long type, boolean unread, long timestamp) {
+  public @NonNull InsertResult insertCallLog(@NonNull RecipientId recipientId, long type, long timestamp) {
+    boolean   unread    = Types.isMissedAudioCall(type) || Types.isMissedVideoCall(type);
     Recipient recipient = Recipient.resolved(recipientId);
     long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
-    ContentValues values = new ContentValues(6);
+    ContentValues values = new ContentValues(7);
     values.put(RECIPIENT_ID, recipientId.serialize());
     values.put(RECIPIENT_DEVICE_ID, 1);
     values.put(DATE_RECEIVED, System.currentTimeMillis());
@@ -584,19 +573,40 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(TYPE, type);
     values.put(THREAD_ID, threadId);
 
-    SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
-    long           messageId = db.insert(TABLE_NAME, null, values);
+    long    messageId          = getWritableDatabase().insert(TABLE_NAME, null, values);
+    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(recipientId).isMuted();
 
     if (unread) {
       SignalDatabase.threads().incrementUnread(threadId, 1, 0);
     }
-    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(recipientId).isMuted();
+
     SignalDatabase.threads().update(threadId, !keepThreadArchived);
 
     notifyConversationListeners(threadId);
     TrimThreadJob.enqueueAsync(threadId);
 
-    return new Pair<>(messageId, threadId);
+    return new InsertResult(messageId, threadId);
+  }
+
+  public void updateCallLog(long messageId, long type) {
+    boolean       unread = Types.isMissedAudioCall(type) || Types.isMissedVideoCall(type);
+    ContentValues values = new ContentValues(2);
+    values.put(TYPE, type);
+    values.put(READ, unread ? 0 : 1);
+    getWritableDatabase().update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(messageId));
+
+    long      threadId           = getThreadIdForMessage(messageId);
+    Recipient recipient          = SignalDatabase.threads().getRecipientForThreadId(threadId);
+    boolean   keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient != null && recipient.isMuted();
+
+    if (unread) {
+      SignalDatabase.threads().incrementUnread(threadId, 1, 0);
+    }
+
+    SignalDatabase.threads().update(threadId, !keepThreadArchived);
+
+    notifyConversationListeners(threadId);
+    ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void insertOrUpdateGroupCall(@NonNull RecipientId groupRecipientId,
@@ -4179,6 +4189,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                        message.getStoryType(),
                                        message.getParentStoryId(),
                                        message.getGiftBadge(),
+                                       null,
                                        null);
     }
   }
@@ -4367,7 +4378,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                        networkFailures, subscriptionId, expiresIn, expireStarted,
                                        isViewOnce, readReceiptCount, quote, contacts, previews, unidentified, Collections.emptyList(),
                                        remoteDelete, mentionsSelf, notifiedTimestamp, viewedReceiptCount, receiptTimestamp, messageRanges,
-                                       storyType, parentStoryId, giftBadge, null);
+                                       storyType, parentStoryId, giftBadge, null, null);
     }
 
     private Set<IdentityKeyMismatch> getMismatchedIdentities(String document) {

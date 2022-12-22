@@ -88,6 +88,10 @@ class SelectBuilderPart2(
     return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
+  fun where(where: String, whereArgs: Array<String>): SelectBuilderPart3 {
+    return SelectBuilderPart3(db, columns, tableName, where, whereArgs)
+  }
+
   fun run(): Cursor {
     return db.query(
       SupportSQLiteQueryBuilder

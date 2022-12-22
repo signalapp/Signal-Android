@@ -998,6 +998,10 @@ import javax.annotation.Nullable;
       return SignalServiceSyncMessage.forContacts(new ContactsMessage(createAttachmentPointer(content.getContacts().getBlob()), content.getContacts().getComplete()));
     }
 
+    if (content.hasCallEvent()) {
+      return SignalServiceSyncMessage.forCallEvent(content.getCallEvent());
+    }
+
     return SignalServiceSyncMessage.empty();
   }
 

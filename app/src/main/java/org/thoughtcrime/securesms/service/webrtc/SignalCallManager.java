@@ -31,6 +31,7 @@ import org.signal.storageservice.protos.groups.GroupExternalCredential;
 import org.thoughtcrime.securesms.WebRtcCallActivity;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
@@ -66,8 +67,10 @@ import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
 import org.whispersystems.signalservice.api.messages.calls.SignalServiceCallMessage;
 import org.whispersystems.signalservice.api.messages.calls.TurnServerInfo;
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -521,7 +524,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
           Log.i(TAG, "Ignoring event: " + event);
           break;
         default:
-          throw new AssertionError("Unexpected event: " + event.toString());
+          throw new AssertionError("Unexpected event: " + event);
       }
 
       return s;
@@ -825,18 +828,28 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
     });
   }
 
-  public void insertMissedCall(@NonNull RemotePeer remotePeer, boolean signal, long timestamp, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = SignalDatabase.messages().insertMissedCall(remotePeer.getId(), timestamp, isVideoOffer);
+  public void insertMissedCall(@NonNull RemotePeer remotePeer, long timestamp, boolean isVideoOffer) {
+    CallTable.Call call = SignalDatabase.calls()
+                                        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.MISSED);
 
-    ApplicationDependencies.getMessageNotifier()
-                           .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
+    if (call == null) {
+      CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
+
+      SignalDatabase.calls()
+                    .insertCall(remotePeer.getCallId().longValue(), timestamp, remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.MISSED);
+    }
   }
 
-  public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean signal, boolean isVideoOffer) {
-    Pair<Long, Long> messageAndThreadId = SignalDatabase.messages().insertReceivedCall(remotePeer.getId(), isVideoOffer);
+  public void insertReceivedCall(@NonNull RemotePeer remotePeer, boolean isVideoOffer) {
+    CallTable.Call call = SignalDatabase.calls()
+                                        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
-    ApplicationDependencies.getMessageNotifier()
-                           .updateNotification(context, ConversationId.forConversation(messageAndThreadId.second()), signal);
+    if (call == null) {
+      CallTable.Type type = isVideoOffer ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL;
+
+      SignalDatabase.calls()
+                    .insertCall(remotePeer.getCallId().longValue(), System.currentTimeMillis(), remotePeer.getId(), type, CallTable.Direction.INCOMING, CallTable.Event.ACCEPTED);
+    }
   }
 
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
@@ -917,6 +930,40 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
                                                                                         Optional.empty()));
       }
     });
+  }
+
+  public void sendAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
+    SignalDatabase
+        .calls()
+        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
+
+    if (TextSecurePreferences.isMultiDevice(context)) {
+      networkExecutor.execute(() -> {
+        try {
+          SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
+          ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent), Optional.empty());
+        } catch (IOException | UntrustedIdentityException e) {
+          Log.w(TAG, "Unable to send call event sync message for " + remotePeer.getCallId().longValue(), e);
+        }
+      });
+    }
+  }
+
+  public void sendNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing, boolean isVideoCall) {
+    SignalDatabase
+        .calls()
+        .updateCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
+
+    if (TextSecurePreferences.isMultiDevice(context)) {
+      networkExecutor.execute(() -> {
+        try {
+          SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
+          ApplicationDependencies.getSignalServiceMessageSender().sendSyncMessage(SignalServiceSyncMessage.forCallEvent(callEvent), Optional.empty());
+        } catch (IOException | UntrustedIdentityException e) {
+          Log.w(TAG, "Unable to send call event sync message for " + remotePeer.getCallId().longValue(), e);
+        }
+      });
+    }
   }
 
   private void processSendMessageFailureWithChangeDetection(@NonNull RemotePeer remotePeer,

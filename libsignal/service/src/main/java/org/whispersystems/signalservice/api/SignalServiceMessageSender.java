@@ -600,6 +600,8 @@ public class SignalServiceMessageSender {
       urgent  = message.getRequest().get().isUrgent();
     } else if (message.getPniIdentity().isPresent()) {
       content = createPniIdentityContent(message.getPniIdentity().get());
+    } else if (message.getCallEvent().isPresent()) {
+      content = createCallEventContent(message.getCallEvent().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -1513,14 +1515,21 @@ public class SignalServiceMessageSender {
     }
 
     Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = SyncMessage.newBuilder().setRequest(request);
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setRequest(request);
 
     return container.setSyncMessage(builder).build();
   }
 
   private Content createPniIdentityContent(SyncMessage.PniIdentity proto) {
     Content.Builder     container = Content.newBuilder();
-    SyncMessage.Builder builder   = SyncMessage.newBuilder().setPniIdentity(proto);
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setPniIdentity(proto);
+
+    return container.setSyncMessage(builder).build();
+  }
+
+  private Content createCallEventContent(SyncMessage.CallEvent proto) {
+    Content.Builder     container = Content.newBuilder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().setCallEvent(proto);
 
     return container.setSyncMessage(builder).build();
   }

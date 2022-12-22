@@ -1153,8 +1153,16 @@
     <string name="MessageRecord_you_updated_group">You updated the group.</string>
     <string name="MessageRecord_the_group_was_updated">The group was updated.</string>
     <string name="MessageRecord_you_called_date">You called · %1$s</string>
+    <!-- Shown where messages are shown to indicate an unanswered audio call -->
+    <string name="MessageRecord_unanswered_audio_call_date">Unanswered audio call · %1$s</string>
+    <!-- Shown where messages are shown to indicate an unanswered video call -->
+    <string name="MessageRecord_unanswered_video_call_date">Unanswered video call · %1$s</string>
     <string name="MessageRecord_missed_audio_call_date">Missed audio call · %1$s</string>
     <string name="MessageRecord_missed_video_call_date">Missed video call · %1$s</string>
+    <!-- Shown where messages are shown to indicate an declined audio call -->
+    <string name="MessageRecord_declined_audio_call_date">Declined audio call · %1$s</string>
+    <!-- Shown where messages are shown to indicate an decline video call -->
+    <string name="MessageRecord_declined_video_call_date">Declined video call · %1$s</string>
     <string name="MessageRecord_s_updated_group">%s updated the group.</string>
     <string name="MessageRecord_s_called_you_date">%1$s called you · %2$s</string>
     <string name="MessageRecord_s_joined_signal">%s is on Signal!</string>

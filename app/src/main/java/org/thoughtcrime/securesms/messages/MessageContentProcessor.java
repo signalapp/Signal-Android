@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.contactshare.ContactModelMapper;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
@@ -169,6 +170,7 @@ import org.whispersystems.signalservice.api.payments.Money;
 import org.whispersystems.signalservice.api.push.DistributionId;
 import org.whispersystems.signalservice.api.push.ServiceId;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.SyncMessage;
 
 import java.io.IOException;
 import java.security.SecureRandom;
@@ -350,6 +352,7 @@ public final class MessageContentProcessor {
         else if (syncMessage.getOutgoingPaymentMessage().isPresent()) handleSynchronizeOutgoingPayment(content, syncMessage.getOutgoingPaymentMessage().get());
         else if (syncMessage.getKeys().isPresent())                   handleSynchronizeKeys(syncMessage.getKeys().get(), content.getTimestamp());
         else if (syncMessage.getContacts().isPresent())               handleSynchronizeContacts(syncMessage.getContacts().get(), content.getTimestamp());
+        else if (syncMessage.getCallEvent().isPresent())              handleSynchronizeCallEvent(syncMessage.getCallEvent().get(), content.getTimestamp());
         else                                                          warn(String.valueOf(content.getTimestamp()), "Contains no known sync types...");
       } else if (content.getCallMessage().isPresent()) {
         log(String.valueOf(content.getTimestamp()), "Got call message...");
@@ -627,7 +630,7 @@ public final class MessageContentProcessor {
                                        @NonNull AnswerMessage message,
                                        @NonNull Recipient senderRecipient)
   {
-    log(String.valueOf(content), "handleCallAnswerMessage...");
+    log(content.getTimestamp(), "handleCallAnswerMessage...");
     RemotePeer remotePeer        = new RemotePeer(senderRecipient.getId(), new CallId(message.getId()));
     byte[]     remoteIdentityKey = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecord(senderRecipient.getId()).map(record -> record.getIdentityKey().serialize()).get();
 
@@ -641,7 +644,7 @@ public final class MessageContentProcessor {
                                           @NonNull List<IceUpdateMessage> messages,
                                           @NonNull Recipient senderRecipient)
   {
-    log(String.valueOf(content), "handleCallIceUpdateMessage... " + messages.size());
+    log(content.getTimestamp(), "handleCallIceUpdateMessage... " + messages.size());
 
     List<byte[]> iceCandidates = new ArrayList<>(messages.size());
     long         callId        = -1;
@@ -663,7 +666,7 @@ public final class MessageContentProcessor {
                                        @NonNull Optional<Long> smsMessageId,
                                        @NonNull Recipient senderRecipient)
   {
-    log(String.valueOf(content), "handleCallHangupMessage");
+    log(content.getTimestamp(), "handleCallHangupMessage");
     if (smsMessageId.isPresent()) {
       SignalDatabase.messages().markAsMissedCall(smsMessageId.get(), false);
     } else {
@@ -1226,6 +1229,45 @@ public final class MessageContentProcessor {
     SignalServiceAttachmentPointer contactsAttachment = (SignalServiceAttachmentPointer) contactsMessage.getContactsStream();
 
     ApplicationDependencies.getJobManager().add(new MultiDeviceContactSyncJob(contactsAttachment));
+  }
+
+  private void handleSynchronizeCallEvent(@NonNull SyncMessage.CallEvent callEvent, long envelopeTimestamp) {
+    if (!callEvent.hasId()) {
+      log(envelopeTimestamp, "Synchronize call event missing call id, ignoring.");
+      return;
+    }
+
+    long                callId    = callEvent.getId();
+    long                timestamp = callEvent.getTimestamp();
+    CallTable.Type      type      = CallTable.Type.from(callEvent.getType());
+    CallTable.Direction direction = CallTable.Direction.from(callEvent.getDirection());
+    CallTable.Event     event     = CallTable.Event.from(callEvent.getEvent());
+
+    if (timestamp == 0 || type == null || direction == null || event == null || !callEvent.hasPeerUuid()) {
+      warn(envelopeTimestamp, "Call event sync message is not valid, ignoring. timestamp: " + timestamp + " type: " + type + " direction: " + direction + " event: " + event + " hasPeer: " + callEvent.hasPeerUuid());
+      return;
+    }
+
+    ServiceId   serviceId   = ServiceId.fromByteString(callEvent.getPeerUuid());
+    RecipientId recipientId = RecipientId.from(serviceId);
+
+    log(envelopeTimestamp, "Synchronize call event call: " + callId);
+
+    CallTable.Call call = SignalDatabase.calls().getCallById(callId);
+    if (call != null) {
+      boolean typeMismatch      = call.getType() != type;
+      boolean directionMismatch = call.getDirection() != direction;
+      boolean eventDowngrade    = call.getEvent() == CallTable.Event.ACCEPTED && event != CallTable.Event.ACCEPTED;
+      boolean peerMismatch      = !call.getPeer().equals(recipientId);
+
+      if (typeMismatch || directionMismatch || eventDowngrade || peerMismatch) {
+        warn(envelopeTimestamp, "Call event sync message is not valid for existing call record, ignoring. type: " + type + " direction: " + direction + "  event: " + event + " peerMismatch: " + peerMismatch);
+      } else {
+        SignalDatabase.calls().updateCall(callId, event);
+      }
+    } else {
+      SignalDatabase.calls().insertCall(callId, timestamp, recipientId, type, direction, event);
+    }
   }
 
   private void handleSynchronizeSentMessage(@NonNull SignalServiceContent content,

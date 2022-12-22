@@ -590,6 +590,33 @@ message SyncMessage {
     optional uint32 registrationId  = 3;
   }
 
+  message CallEvent {
+    enum Type {
+      UNKNOWN_TYPE = 0;
+      AUDIO_CALL   = 1;
+      VIDEO_CALL   = 2;
+    }
+
+    enum Direction {
+      UNKNOWN_DIRECTION = 0;
+      INCOMING          = 1;
+      OUTGOING          = 2;
+    }
+
+    enum Event {
+      UNKNOWN_ACTION = 0;
+      ACCEPTED       = 1;
+      NOT_ACCEPTED   = 2;
+    }
+
+    optional bytes     peerUuid  = 1;
+    optional uint64    id        = 2;
+    optional uint64    timestamp = 3;
+    optional Type      type      = 4;
+    optional Direction direction = 5;
+    optional Event     event     = 6;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   optional Groups                 groups                 = 3;
@@ -608,6 +635,7 @@ message SyncMessage {
   repeated Viewed                 viewed                 = 16;
   optional PniIdentity            pniIdentity            = 17;
   optional PniChangeNumber        pniChangeNumber        = 18;
+  optional CallEvent              callEvent              = 19;
 }
 
 message AttachmentPointer {

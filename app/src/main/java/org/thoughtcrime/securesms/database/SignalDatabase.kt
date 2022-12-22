@@ -74,6 +74,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val cdsTable: CdsTable = CdsTable(context, this)
   val remoteMegaphoneTable: RemoteMegaphoneTable = RemoteMegaphoneTable(context, this)
   val pendingPniSignatureMessageTable: PendingPniSignatureMessageTable = PendingPniSignatureMessageTable(context, this)
+  val callTable: CallTable = CallTable(context, this)
 
   override fun onOpen(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
     db.setForeignKeyConstraintsEnabled(true)
@@ -109,6 +110,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(CdsTable.CREATE_TABLE)
     db.execSQL(RemoteMegaphoneTable.CREATE_TABLE)
     db.execSQL(PendingPniSignatureMessageTable.CREATE_TABLE)
+    db.execSQL(CallTable.CREATE_TABLE)
     executeStatements(db, SearchTable.CREATE_TABLE)
     executeStatements(db, RemappedRecordTables.CREATE_TABLE)
     executeStatements(db, MessageSendLogTables.CREATE_TABLE)
@@ -133,6 +135,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, StorySendTable.CREATE_INDEXS)
     executeStatements(db, DistributionListTables.CREATE_INDEXES)
     executeStatements(db, PendingPniSignatureMessageTable.CREATE_INDEXES)
+    executeStatements(db, CallTable.CREATE_INDEXES)
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
@@ -523,5 +526,10 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("remoteMegaphones")
     val remoteMegaphones: RemoteMegaphoneTable
       get() = instance!!.remoteMegaphoneTable
+
+    @get:JvmStatic
+    @get:JvmName("calls")
+    val calls: CallTable
+      get() = instance!!.callTable
   }
 }

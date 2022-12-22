@@ -13,6 +13,7 @@ import org.signal.paging.PagedDataSource;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -32,6 +33,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -98,6 +100,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     AttachmentHelper    attachmentHelper = new AttachmentHelper();
     ReactionHelper      reactionHelper   = new ReactionHelper();
     PaymentHelper       paymentHelper    = new PaymentHelper();
+    CallHelper          callHelper       = new CallHelper();
     Set<ServiceId>      referencedIds    = new HashSet<>();
 
     try (MmsSmsTable.Reader reader = MmsSmsTable.readerFor(db.getConversation(threadId, start, length))) {
@@ -109,6 +112,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
         reactionHelper.add(record);
         attachmentHelper.add(record);
         paymentHelper.add(record);
+        callHelper.add(record);
 
         UpdateDescription description = record.getUpdateDisplayBody(context, null);
         if (description != null) {
@@ -150,6 +154,12 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
     records = paymentHelper.buildUpdatedModels(records);
     stopwatch.split("payment-models");
+
+    callHelper.fetchCalls();
+    stopwatch.split("calls");
+
+    records = callHelper.buildUpdatedModels(records);
+    stopwatch.split("call-models");
 
     for (ServiceId serviceId : referencedIds) {
       Recipient.resolved(RecipientId.from(serviceId));
@@ -201,6 +211,15 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
           record = SignalDatabase.payments().updateMessageWithPayment(record);
         }
         stopwatch.split("payments");
+
+        if (record.isCallLog() && !record.isGroupCall()) {
+          CallTable.Call call = SignalDatabase.calls().getCallByMessageId(record.getId());
+          if (call != null && record instanceof MediaMmsMessageRecord) {
+            record = ((MediaMmsMessageRecord) record).withCall(call);
+          }
+        }
+
+        stopwatch.split("calls");
 
         return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions, isQuoted);
       } else {
@@ -358,6 +377,37 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
                         Payment payment = messageIdToPayment.get(record.getId());
                         if (payment != null) {
                           return ((MediaMmsMessageRecord) record).withPayment(payment);
+                        }
+                      }
+                      return record;
+                    })
+                    .collect(Collectors.toList());
+    }
+  }
+
+  private static class CallHelper {
+    private final Collection<Long>          messageIds      = new LinkedList<>();
+    private       Map<Long, CallTable.Call> messageIdToCall = Collections.emptyMap();
+
+    public void add(MessageRecord messageRecord) {
+      if (messageRecord.isCallLog() && !messageRecord.isGroupCall()) {
+        messageIds.add(messageRecord.getId());
+      }
+    }
+
+    public void fetchCalls() {
+      if (!messageIds.isEmpty()) {
+        messageIdToCall = SignalDatabase.calls().getCalls(messageIds);
+      }
+    }
+
+    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull List<MessageRecord> records) {
+      return records.stream()
+                    .map(record -> {
+                      if (record.isCallLog() && record instanceof MediaMmsMessageRecord) {
+                        CallTable.Call call = messageIdToCall.get(record.getId());
+                        if (call != null) {
+                          return ((MediaMmsMessageRecord) record).withCall(call);
                         }
                       }
                       return record;
