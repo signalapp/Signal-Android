@@ -10,7 +10,8 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 class MediaSelectionNavigator(
   private val toCamera: Int = -1,
-  private val toGallery: Int = -1
+  private val toGallery: Int = -1,
+  private val toProofPreview: Int = -1,
 ) {
   fun goToReview(navController: NavController) {
     navController.popBackStack(R.id.mediaReviewFragment, false)
@@ -26,6 +27,12 @@ class MediaSelectionNavigator(
     if (toGallery == -1) return
 
     navController.safeNavigate(toGallery)
+  }
+
+  fun goToProofPreview(navController: NavController) {
+    if (toProofPreview == -1) return
+
+    navController.safeNavigate(toProofPreview)
   }
 
   companion object {

@@ -2,9 +2,9 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.animation.Animator
 import android.animation.AnimatorSet
+import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.graphics.Color.blue
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -13,7 +13,6 @@ import android.widget.TextView
 import android.widget.Toast
 import android.widget.ViewSwitcher
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
@@ -25,18 +24,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import app.cash.exhaustive.Exhaustive
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import org.bouncycastle.jce.provider.BouncyCastleProvider.getPublicKey
-import org.bouncycastle.pqc.jcajce.provider.BouncyCastlePQCProvider.getPublicKey
-import org.signal.core.util.concurrent.SimpleTask
-import org.signal.glide.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
-import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
+import org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED
 import org.thoughtcrime.securesms.mediasend.v2.HudCommand
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
@@ -48,7 +42,6 @@ import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForward
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -56,12 +49,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
-import org.witness.proofmode.ProofMode
-import java.io.BufferedOutputStream
 import java.io.File
-import java.io.FileOutputStream
-import java.util.zip.ZipEntry
-import java.util.zip.ZipOutputStream
 
 /**
  * Allows the user to view and edit selected media.
@@ -80,6 +68,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private lateinit var drawToolButton: View
   private lateinit var cropAndRotateButton: View
+  private lateinit var lockButton: View
   private lateinit var qualityButton: ImageView
   private lateinit var saveButton: View
   private lateinit var sendButton: ImageView
@@ -98,6 +87,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private val navigator = MediaSelectionNavigator(
     toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment,
+    toProofPreview = R.id.action_mediaReviewFragment_to_proofPreviewFragment
   )
 
   private var animatorSet: AnimatorSet? = null
@@ -114,6 +104,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
     drawToolButton = view.findViewById(R.id.draw_tool)
     cropAndRotateButton = view.findViewById(R.id.crop_and_rotate_tool)
+    lockButton = view.findViewById(R.id.lock_button)
     qualityButton = view.findViewById(R.id.quality_selector)
     saveButton = view.findViewById(R.id.save_to_media)
     sendButton = view.findViewById(R.id.send)
@@ -143,17 +134,27 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
 
     pager.adapter = pagerAdapter
-
+    val isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)
     drawToolButton.setOnClickListener {
-//      sharedViewModel.sendCommand(HudCommand.StartDraw)
+      if (!isProofEnabled) {
+        sharedViewModel.sendCommand(HudCommand.StartDraw)
+      }
+    }
+    if (isProofEnabled) {
+      (drawToolButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
+      (cropAndRotateButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
+    } else {
+      lockButton.visibility = View.GONE
     }
 
-    (drawToolButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
-    (cropAndRotateButton as ImageView).setColorFilter(ContextCompat.getColor(requireContext(), R.color.black), android.graphics.PorterDuff.Mode.MULTIPLY);
-
+    lockButton.setOnClickListener {
+      navigator.goToProofPreview(findNavController())
+    }
 
     cropAndRotateButton.setOnClickListener {
-//      sharedViewModel.sendCommand(HudCommand.StartCropAndRotate)
+      if (!isProofEnabled) {
+        sharedViewModel.sendCommand(HudCommand.StartCropAndRotate)
+      }
     }
 
     qualityButton.setOnClickListener {
@@ -180,19 +181,17 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
     sendButton.setOnClickListener {
 
-      sharedViewModel.state.value?.selectedMedia?.take(2)?.map { media ->
+      /*sharedViewModel.state.value?.selectedMedia?.take(2)?.map { media ->
         //generate proof for a URI
         Log.e("HASHHH:", "${media.proofHash}")
 
-        /*var proofHash = ProofMode.generateProof(requireContext(),media.uri)
+        *//*var proofHash = ProofMode.generateProof(requireContext(),media.uri)
         Log.e("HASHHH:", "$proofHash")
 
         //get the folder that proof is stored
         var proofDir = ProofMode.getProofDir(requireContext(), proofHash)
-        var fileZip = makeProofZip (proofDir.absoluteFile)*/
-      }
-
-
+        var fileZip = makeProofZip (proofDir.absoluteFile)*//*
+      }*/
 
 
 /*      val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
@@ -451,6 +450,9 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
+    if (requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)) {
+      animators.addAll(computeLockButtonAnimators(state))
+    }
     animators.addAll(computeDrawToolButtonAnimators(state))
     animators.addAll(computeRecipientDisplayAnimators(state))
     animators.addAll(computeControlsShadeAnimators(state))
@@ -586,6 +588,16 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       listOf(MediaReviewAnimatorController.getFadeInAnimator(cropAndRotateButton))
     } else {
       listOf(MediaReviewAnimatorController.getFadeOutAnimator(cropAndRotateButton))
+    }
+  }
+
+  private fun computeLockButtonAnimators(state: MediaSelectionState): List<Animator> {
+    val slide = listOf(MediaReviewAnimatorController.getSlideInAnimator(lockButton))
+
+    return slide + if (state.isTouchEnabled && MediaUtil.isImageAndNotGif(state.focusedMedia?.mimeType ?: "")) {
+      listOf(MediaReviewAnimatorController.getFadeInAnimator(lockButton))
+    } else {
+      listOf(MediaReviewAnimatorController.getFadeOutAnimator(lockButton))
     }
   }
 
