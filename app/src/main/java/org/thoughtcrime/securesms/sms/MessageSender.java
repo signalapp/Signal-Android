@@ -260,23 +260,16 @@ public class MessageSender {
     Preconditions.checkArgument(message.getAttachments().isEmpty(), "If the media is pre-uploaded, there should be no attachments on the message.");
 
     try {
-      ThreadTable  threadTable = SignalDatabase.threads();
-      MessageTable mmsDatabase = SignalDatabase.messages();
+      ThreadTable     threadTable        = SignalDatabase.threads();
+      MessageTable    mmsDatabase        = SignalDatabase.messages();
       AttachmentTable attachmentDatabase = SignalDatabase.attachments();
 
-      long allocatedThreadId;
-
-      if (threadId == -1) {
-        allocatedThreadId = threadTable.getOrCreateThreadIdFor(message.getRecipient(), message.getDistributionType());
-      } else {
-        allocatedThreadId = threadId;
-      }
-
-      Recipient recipient = message.getRecipient();
-      long      messageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
-                                                            allocatedThreadId,
-                                                            false,
-                                                            insertListener);
+      Recipient recipient         = message.getRecipient();
+      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), threadId);
+      long      messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
+                                                                    allocatedThreadId,
+                                                                    false,
+                                                                    insertListener);
 
       List<AttachmentId> attachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
       List<String>       jobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
@@ -406,7 +399,7 @@ public class MessageSender {
       } else if (recipient.isDistributionList()) {
         jobManager.add(new PushDistributionListSendJob(messageId, recipient.getId(), true, Collections.emptySet()), messageDependsOnIds, recipient.getId().toQueueKey());
       } else {
-        jobManager.add(new IndividualSendJob(messageId, recipient, true), messageDependsOnIds, recipient.getId().toQueueKey());
+        jobManager.add(IndividualSendJob.create(messageId, recipient, true), messageDependsOnIds, recipient.getId().toQueueKey());
       }
     }
   }
@@ -532,7 +525,7 @@ public class MessageSender {
     JobManager jobManager = ApplicationDependencies.getJobManager();
 
     if (uploadJobIds.size() > 0) {
-      Job mediaSend = new IndividualSendJob(messageId, recipient, true);
+      Job mediaSend = IndividualSendJob.create(messageId, recipient, true);
       jobManager.add(mediaSend, uploadJobIds);
     } else {
       IndividualSendJob.enqueue(context, jobManager, messageId, recipient);
@@ -561,26 +554,9 @@ public class MessageSender {
     }
   }
 
-  private static void sendSms(Recipient recipient, long messageId) {
-    JobManager jobManager = ApplicationDependencies.getJobManager();
-    jobManager.add(new SmsSendJob(messageId, recipient));
-  }
-
   private static void sendMms(Context context, long messageId) {
     JobManager jobManager = ApplicationDependencies.getJobManager();
     MmsSendJob.enqueue(context, jobManager, messageId);
-  }
-
-  private static boolean isPushTextSend(Context context, Recipient recipient, boolean keyExchange) {
-    if (!SignalStore.account().isRegistered()) {
-      return false;
-    }
-
-    if (keyExchange) {
-      return false;
-    }
-
-    return isPushDestination(context, recipient);
   }
 
   private static boolean isPushMediaSend(Context context, Recipient recipient) {

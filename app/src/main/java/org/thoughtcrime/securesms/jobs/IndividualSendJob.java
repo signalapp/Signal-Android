@@ -84,18 +84,25 @@ public class IndividualSendJob extends PushSendJob {
     this.messageId = messageId;
   }
 
+  public static Job create(long messageId, @NonNull Recipient recipient, boolean hasMedia) {
+    if (!recipient.hasServiceId()) {
+      throw new AssertionError("No ServiceId!");
+    }
+
+    if (recipient.isGroup()) {
+      throw new AssertionError("This job does not send group messages!");
+    }
+
+    return new IndividualSendJob(messageId, recipient, hasMedia);
+  }
+
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Recipient recipient) {
     try {
-      if (!recipient.hasServiceId()) {
-        throw new AssertionError("No ServiceId!");
-      }
-
       OutgoingMessage message             = SignalDatabase.messages().getOutgoingMessage(messageId);
       Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
-      jobManager.add(new IndividualSendJob(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
-
+      jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
     } catch (NoSuchMessageException | MmsException e) {
       Log.w(TAG, "Failed to enqueue message.", e);
       SignalDatabase.messages().markAsSentFailed(messageId);

@@ -12,6 +12,7 @@ import org.jsoup.helper.StringUtil
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.exists
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
@@ -1078,7 +1079,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         Log.i(TAG, "Using remapped threadId: " + candidateId + " -> " + remapped.get())
         remapped.get()
       } else {
-        candidateId
+        if (areThreadIdAndRecipientAssociated(candidateId, recipient)) {
+          candidateId
+        } else {
+          throw IllegalArgumentException()
+        }
       }
     } else {
       getOrCreateThreadIdFor(recipient, distributionType)
@@ -1092,6 +1097,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   fun getOrCreateThreadIdFor(recipient: Recipient, distributionType: Int): Long {
     val threadId = getThreadIdFor(recipient.id)
     return threadId ?: createThreadForRecipient(recipient.id, recipient.isGroup, distributionType)
+  }
+
+  fun areThreadIdAndRecipientAssociated(threadId: Long, recipient: Recipient): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND $RECIPIENT_ID = ?", threadId, recipient.id)
+      .run()
   }
 
   fun getThreadIdFor(recipientId: RecipientId): Long? {
