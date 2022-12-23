@@ -45,7 +45,7 @@ class MediaPreviewV2Adapter(fragment: Fragment) : FragmentStateAdapter(fragment)
   }
 
   fun getFragmentTag(position: Int): String? {
-    if (position < 0 || position > itemCount) {
+    if (items.isEmpty() || position < 0 || position > itemCount) {
       return null
     }
 
