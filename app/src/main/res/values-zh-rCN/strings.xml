@@ -1911,6 +1911,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s发送给您</string>
     <string name="MediaPreviewActivity_media_no_longer_available">媒体已失效。</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">查找消息时出错。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">未找到可分享此媒体的应用。</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">关闭</string>

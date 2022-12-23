@@ -236,7 +236,7 @@ public final class MessageDecryptionUtil {
     if (!FeatureFlags.internalUser()) return;
 
     NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR,
-                                                   new NotificationCompat.Builder(context, NotificationChannels.FAILURES)
+                                                   new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
                                                                          .setSmallIcon(R.drawable.ic_notification)
                                                                          .setContentTitle(context.getString(R.string.MessageDecryptionUtil_failed_to_decrypt_message))
                                                                          .setContentText(context.getString(R.string.MessageDecryptionUtil_tap_to_send_a_debug_log))

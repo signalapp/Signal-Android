@@ -1538,7 +1538,7 @@
     <!-- Recipient -->
     <string name="Recipient_you">Vous</string>
     <!-- Name of recipient representing user\'s \'My Story\' -->
-    <string name="Recipient_my_story">Ma story</string>
+    <string name="Recipient_my_story">Ma Story</string>
 
     <!-- RecipientPreferencesActivity -->
     <string name="RecipientPreferenceActivity_block">Bloquer</string>
@@ -1881,7 +1881,7 @@
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">A réagi à votre story par %1$s</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">%1$sutilisateurs ont réagi à votre story</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">A réagi par %1$s à leur Story</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Paiement</string>
 
@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s à vous</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Le média n’est plus disponible.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Le message n’a pas été trouvé.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Impossible de trouver une appli qui peut partager ce média.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Fermer</string>
@@ -2384,7 +2386,7 @@
     <!-- Displayed in a toast when user long presses an item in MyStories -->
     <string name="MyStoriesFragment__copied_sent_timestamp_to_clipboard">L’estampille temporelle d’envoi a été copiée dans le presse-papiers.</string>
     <!-- Displayed when there are no outgoing stories -->
-    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Les mises à jour de votre story apparaîtront ici.</string>
+    <string name="MyStoriesFragment__updates_to_your_story_will_show_up_here">Les mises à jour de votre Story apparaîtront ici.</string>
 
     <!-- GroupUtil -->
     <plurals name="GroupUtil_joined_the_group">
@@ -4048,9 +4050,9 @@
 
     <!-- ConversationSettingsFragment -->
     <!-- Dialog title displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__cant_add_to_group_story">Vous ne pouvez pas ajouter du contenu à une story de groupe</string>
+    <string name="ConversationSettingsFragment__cant_add_to_group_story">Vous ne pouvez pas ajouter du contenu à une Story de groupe</string>
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
-    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Les administrateurs de ce groupe sont les seuls à pouvoir ajouter du contenu à la story de groupe</string>
+    <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Les administrateurs de ce groupe sont les seuls à pouvoir ajouter du contenu à la Story de groupe</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
     <string name="ConversationSettingsFragment__contacts_app_not_found">Application Contacts non trouvée</string>
     <string name="ConversationSettingsFragment__start_video_call">Lancer un appel vidéo</string>
@@ -4226,9 +4228,9 @@
 
     <!-- Media V2 -->
     <!-- Dialog message when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_the_group_story">Ajouter « %1$s » à la story de groupe</string>
+    <string name="MediaReviewFragment__add_to_the_group_story">Ajouter « %1$s » à la Story de groupe</string>
     <!-- Positive dialog action when sending a story via an add to group story button -->
-    <string name="MediaReviewFragment__add_to_story">Ajouter à la story</string>
+    <string name="MediaReviewFragment__add_to_story">Ajouter à la Story</string>
     <string name="MediaReviewFragment__add_a_message">Ajouter un message</string>
     <string name="MediaReviewFragment__add_a_reply">Ajouter une réponse</string>
     <string name="MediaReviewFragment__send_to">Envoyer à</string>
@@ -4660,9 +4662,9 @@
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Aucune mise à jour récente à afficher pour l’instant.</string>
     <!-- Context menu option to hide a story -->
-    <string name="StoriesLandingItem__hide_story">Cacher la story</string>
+    <string name="StoriesLandingItem__hide_story">Cacher la Story</string>
     <!-- Context menu option to unhide a story -->
-    <string name="StoriesLandingItem__unhide_story">Afficher la story</string>
+    <string name="StoriesLandingItem__unhide_story">Afficher la Story</string>
     <!-- Context menu option to forward a story -->
     <string name="StoriesLandingItem__forward">Transférer</string>
     <!-- Context menu option to share a story -->
@@ -4684,7 +4686,7 @@
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Cacher la story ?</string>
     <!-- Message of dialog confirming decision to hide a story -->
-    <string name="StoriesLandingFragment__new_story_updates">Les nouvelles stories de %1$s n’apparaîtront plus en haut de la liste des histoires.</string>
+    <string name="StoriesLandingFragment__new_story_updates">Les nouvelles Stories de %1$s n’apparaîtront plus en haut de la liste des Stories.</string>
     <!-- Positive action of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide">Cacher</string>
     <!-- Displayed in Snackbar after story is hidden -->
@@ -4703,7 +4705,7 @@
     <!-- Title of dialog to confirm deletion of story -->
     <string name="MyStories__delete_story">Supprimer la story ?</string>
     <!-- Message of dialog to confirm deletion of story -->
-    <string name="MyStories__this_story_will_be_deleted">Cette story sera supprimée pour vous et quiconque l’a reçue.</string>
+    <string name="MyStories__this_story_will_be_deleted">Cette Story sera supprimée pour vous et quiconque l’a reçue.</string>
     <!-- Toast shown when story media cannot be saved -->
     <string name="MyStories__unable_to_save">Échec de la sauvegarde</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
@@ -4751,15 +4753,15 @@
     <!-- Displayed when a story has no replies yet -->
     <string name="StoryGroupReplyFragment__no_replies_yet">Aucune réponse pour le moment</string>
     <!-- Displayed when no longer a group member -->
-    <string name="StoryGroupReplyFragment__you_cant_reply">Vous ne pouvez pas interagir sur cette story, car vous n\'êtes plus membre de ce groupe.</string>
+    <string name="StoryGroupReplyFragment__you_cant_reply">Vous ne pouvez pas interagir sur cette Story, car vous n\'êtes plus membre de ce groupe.</string>
     <!-- Displayed for each user that reacted to a story when viewing replies -->
-    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">A réagi à la story</string>
+    <string name="StoryGroupReactionReplyItem__reacted_to_the_story">A réagi à la Story</string>
     <!-- Label for story views tab -->
     <string name="StoryViewsAndRepliesDialogFragment__views">Vues</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Réponses</string>
     <!-- Description of action for reaction button -->
-    <string name="StoryReplyComposer__react_to_this_story">Réagir à cette story</string>
+    <string name="StoryReplyComposer__react_to_this_story">Réagir à cette Story</string>
     <!-- Displayed when the user is replying privately to someone who replied to one of their stories -->
     <string name="StoryReplyComposer__replying_privately_to_s">Répondre en privé à %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
@@ -4768,7 +4770,7 @@
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Supprimer</string>
     <!-- Page title for My Story options -->
-    <string name="MyStorySettingsFragment__my_story">Ma story</string>
+    <string name="MyStorySettingsFragment__my_story">Ma Story</string>
     <!-- Number of total signal connections displayed in "All connections" row item -->
     <plurals name="MyStorySettingsFragment__viewers">
         <item quantity="one">%1$d spectateur</item>
@@ -4777,7 +4779,7 @@
     <!-- Button on all signal connections row to view all signal connections. Please keep as short as possible. -->
     <string name="MyStorySettingsFragment__view">Afficher</string>
     <!-- Section heading for story visibility -->
-    <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
+    <string name="MyStorySettingsFragment__who_can_view_this_story">Qui peut voir cette Story ?</string>
     <!-- Clickable option for selecting people to hide your story from -->
     <!-- Privacy setting title for sending stories to all your signal connections -->
     <string name="MyStorySettingsFragment__all_signal_connections">Toutes les connexions Signal</string>
@@ -4785,7 +4787,7 @@
     <!-- Privacy setting title for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__all_except">Tout sauf…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Cacher votre story de certains contacts</string>
+    <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Cacher votre Story de certains contacts</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
         <item quantity="one">%1$d personne exclue</item>
@@ -4801,13 +4803,13 @@
         <item quantity="other">%1$d personnes</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choisissez qui peut voir votre story. Les modifications n\'affecteront pas les histoires déjà postées.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">Choisissez qui peut voir votre Story. Les modifications n\'affecteront pas les Stories déjà postées.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">Réponses et réactions</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
     <string name="MyStorySettingsFragment__allow_replies_amp_reactions">Autoriser les réponses et réactions</string>
     <!-- Summary for switchable option allowing replies and reactions on your story -->
-    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laisser les personnes qui peuvent voir votre story réagir et y répondre</string>
+    <string name="MyStorySettingsFragment__let_people_who_can_view_your_story_react_and_reply">Laisser les personnes qui peuvent voir votre Story réagir et y répondre</string>
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Connexions Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
@@ -4827,13 +4829,13 @@
     <!-- Dialog title when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove_s">Supprimer %1$s ?</string>
     <!-- Dialog message when attempting to remove someone from a custom story -->
-    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Cette personne ne verra plus votre story.</string>
+    <string name="PrivateStorySettingsFragment__this_person_will_no_longer">Cette personne ne verra plus votre Story.</string>
     <!-- Positive action label when attempting to remove someone from a custom story -->
     <string name="PrivateStorySettingsFragment__remove">Supprimer</string>
     <!-- Dialog title when deleting a custom story -->
     <!-- Dialog message when deleting a custom story -->
     <!-- Page title for editing a custom story name -->
-    <string name="EditPrivateStoryNameFragment__edit_story_name">Modifier le nom de la story</string>
+    <string name="EditPrivateStoryNameFragment__edit_story_name">Modifier le nom de la Story</string>
     <!-- Input field hint when editing a custom story name -->
     <string name="EditPrivateStoryNameFragment__story_name">Nom de la story</string>
     <!-- Save button label when editing a custom story name -->
@@ -4851,7 +4853,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Tapez ou collez une URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Partager un lien avec les personnes qui voient votre story</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Partager un lien avec les personnes qui voient votre Story</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Chercher</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -4864,7 +4866,7 @@
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Terminé</string>
     <!-- Dialog title for removing a group story -->
-    <string name="StoryDialogs__remove_group_story">Supprimer la story de groupe ?</string>
+    <string name="StoryDialogs__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
     <string name="StoryDialogs__s_will_be_removed">« %1$s » sera supprimé de la story.</string>
     <!-- Dialog positive action for removing a group story -->
@@ -4872,7 +4874,7 @@
     <!-- Dialog title for deleting a custom story -->
     <string name="StoryDialogs__delete_custom_story">Effacer la Story personnalisée ?</string>
     <!-- Dialog message for deleting a custom story -->
-    <string name="StoryDialogs__s_and_updates_shared">« %1$s » et les nouveaux contenus partagés dans cette story seront supprimés.</string>
+    <string name="StoryDialogs__s_and_updates_shared">« %1$s » et les nouveaux contenus partagés dans cette Story seront supprimés.</string>
     <!-- Dialog positive action for deleting a custom story -->
     <string name="StoryDialogs__delete">Supprimer</string>
     <!-- Dialog title for first time sending something to a beta story -->
@@ -4899,7 +4901,7 @@
         <item quantity="other">%1$d spectateurs</item>
     </plurals>
     <!-- Name story screen title -->
-    <string name="CreateStoryWithViewersFragment__name_story">Nommer la story</string>
+    <string name="CreateStoryWithViewersFragment__name_story">Nommer la Story</string>
     <!-- Name story screen note under text field -->
     <string name="CreateStoryWithViewersFragment__only_you_can">Vous seul.e pouvez voir le nom de cette Story.</string>
     <!-- Name story screen label hint -->
@@ -4911,11 +4913,11 @@
     <!-- Name story screen error when save attempted with no label -->
     <string name="CreateStoryWithViewersFragment__this_field_is_required">Ce champ est requis.</string>
     <!-- Name story screen error when save attempted but label is duplicate -->
-    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Une story qui porte ce nom existe déjà.</string>
+    <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Une Story qui porte ce nom existe déjà.</string>
     <!-- Text for select all action when editing recipients for a story -->
     <string name="BaseStoryRecipientSelectionFragment__select_all">Tout sélectionner</string>
     <!-- Choose story type bottom sheet title -->
-    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choisir votre type de story</string>
+    <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Choisir votre type de Story</string>
     <!-- Choose story type bottom sheet new story row title -->
     <string name="ChooseStoryTypeBottomSheet__new_custom_story">Nouvelle Story personnalisée</string>
     <!-- Choose story type bottom sheet new story row summary -->
@@ -4933,7 +4935,7 @@
     <!-- Displayed in toast after sending a direct reply -->
     <string name="StoryDirectReplyDialogFragment__sending_reply">Envoi de la réponse…</string>
     <!-- Displayed in the viewer when a story is no longer available -->
-    <string name="StorySlateView__this_story_is_no_longer_available">Cette story n’est plus disponible.</string>
+    <string name="StorySlateView__this_story_is_no_longer_available">Cette Story n’est plus disponible.</string>
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
     <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">Impossible de télécharger la Story. %1$s doit l’envoyer à nouveau.</string>
     <!-- Displayed in the viewer when the network is not available -->
@@ -4943,9 +4945,9 @@
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Story envoyée</string>
     <!-- Toasted when the user external share to a text story fails -->
-    <string name="TextStoryPostCreationFragment__failed_to_send_story">Échec de l\'envoi de la story</string>
+    <string name="TextStoryPostCreationFragment__failed_to_send_story">Échec de l\'envoi de la Story</string>
     <!-- Displayed in a dialog to let the user select a given users story -->
-    <string name="StoryDialogs__view_story">Afficher la story</string>
+    <string name="StoryDialogs__view_story">Afficher la Story</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
     <string name="StoryDialogs__view_profile_photo">Afficher la photo de profil</string>
 
@@ -4955,11 +4957,11 @@
     <!-- Label for a button in a notification at the bottom of the chat list to turn off censorship circumvention -->
 
     <!-- Conversation Item label for when you react to someone else\'s story -->
-    <string name="ConversationItem__you_reacted_to_s_story">Vous avez réagi à la story de %1$s</string>
+    <string name="ConversationItem__you_reacted_to_s_story">Vous avez réagi à la Story de %1$s</string>
     <!-- Conversation Item label for reactions to your story -->
-    <string name="ConversationItem__reacted_to_your_story">A réagi à votre story</string>
+    <string name="ConversationItem__reacted_to_your_story">A réagi à votre Story</string>
     <!-- Conversation Item label for reactions to an unavailable story -->
-    <string name="ConversationItem__reacted_to_a_story">A réagi à une story</string>
+    <string name="ConversationItem__reacted_to_a_story">A réagi à une Story</string>
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
@@ -5053,13 +5055,13 @@
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Paramètres des stories</string>
     <!-- Label for context menu item to remove a group story from contact results -->
-    <string name="ContactSearchItems__remove_story">Supprimer la story</string>
+    <string name="ContactSearchItems__remove_story">Supprimer la Story</string>
     <!-- Label for context menu item to delete a custom story -->
-    <string name="ContactSearchItems__delete_story">Effacer la story</string>
+    <string name="ContactSearchItems__delete_story">Effacer la Story</string>
     <!-- Dialog title for removing a group story -->
-    <string name="ContactSearchMediator__remove_group_story">Supprimer la story de groupe ?</string>
+    <string name="ContactSearchMediator__remove_group_story">Supprimer la Story de groupe ?</string>
     <!-- Dialog message for removing a group story -->
-    <string name="ContactSearchMediator__this_will_remove">Cette action supprimera la story de cette liste. Vous pourrez toujours consulter les stories de ce groupe.</string>
+    <string name="ContactSearchMediator__this_will_remove">Cette action supprimera la Story de cette liste. Vous pourrez toujours consulter les Stories de ce groupe.</string>
     <!-- Dialog action item for removing a group story -->
     <string name="ContactSearchMediator__remove">Supprimer</string>
     <!-- Dialog title for deleting a custom story -->
@@ -5111,11 +5113,11 @@
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
     <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Toutes les connexions ont été revues, appuyez sur envoyer pour continuer.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareil. Avant de partager votre story avec ces personnes, vérifiez leurs numéros de sécurité ou excluez-les de votre partage.</string>
+    <string name="SafetyNumberBottomSheetFragment__you_have_d_connections">%1$d de vos contacts ont sûrement réinstallé Signal ou changé d\'appareil. Avant de partager votre Story avec ces personnes, vérifiez leurs numéros de sécurité ou excluez-les de votre partage.</string>
     <!-- Menu action to launch safety number verification screen -->
     <string name="SafetyNumberBottomSheetFragment__verify_safety_number">Confirmer le numéro de sécurité</string>
     <!-- Menu action to remove user from story -->
-    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Supprimer de la story</string>
+    <string name="SafetyNumberBottomSheetFragment__remove_from_story">Supprimer de la Story</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
     <string name="SafetyNumberBottomSheetFragment__send_anyway">Envoyer quand même</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
@@ -5164,17 +5166,17 @@
     <!-- Explanation about how stories are deleted and managed -->
     <string name="StoriesPrivacySettingsFragment__story_updates_automatically_disappear">Les nouveaux contenus ajoutés aux Stories sont automatiquement supprimés après 24 heures. Identifiez les spectateurs autorisés à voir votre Story ou créez de nouvelles Stories en identifiant des spectateurs ou des groupes spécifiques.</string>
     <!-- Preference title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Quitter la fonction stories</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories">Quitter la fonction Stories</string>
     <!-- Preference summary to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Si vous décidez de quitter la fonction stories, vous ne pourrez plus en partager ni en consulter.</string>
+    <string name="StoriesPrivacySettingsFragment__if_you_opt_out">Si vous décidez de quitter la fonction Stories, vous ne pourrez plus en partager ni en consulter.</string>
     <!-- Preference title to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activer la fonction stories</string>
+    <string name="StoriesPrivacySettingsFragment__turn_on_stories">Activer la fonction Stories</string>
     <!-- Preference summary to turn on stories -->
-    <string name="StoriesPrivacySettingsFragment__share_and_view">Partagez et consultez les stories de vos contacts. Elles sont automatiquement supprimées après 24 heures.</string>
+    <string name="StoriesPrivacySettingsFragment__share_and_view">Partagez et consultez les Stories de vos contacts. Elles sont automatiquement supprimées après 24 heures.</string>
     <!-- Dialog title to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Désactiver les stories ?</string>
+    <string name="StoriesPrivacySettingsFragment__turn_off_stories_question">Désactiver les Stories ?</string>
     <!-- Dialog message to turn off stories -->
-    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Vous ne pourrez plus partager ou voir de stories. Les nouveaux contenus récemment ajoutés à vos stories seront également supprimés.</string>
+    <string name="StoriesPrivacySettingsFragment__you_will_no_longer_be_able_to_share">Vous ne pourrez plus partager ou voir de Stories. Les nouveaux contenus récemment ajoutés à vos stories seront également supprimés.</string>
     <!-- Page title when launched from stories landing screen -->
     <string name="StoriesPrivacySettingsFragment__story_privacy">Confidentialité de la story</string>
     <!-- Header for section that lists out stories -->
@@ -5190,11 +5192,11 @@
 
     <!-- GroupStorySettingsFragment -->
     <!-- Section header for who can view a group story -->
-    <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette story ?</string>
+    <string name="GroupStorySettingsFragment__who_can_view_this_story">Qui peut voir cette Story ?</string>
     <!-- Explanation of who can view a group story -->
-    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Les membres de ce groupe \" %1$s \" peuvent consulter et commenter votre story. Vous pouvez modifier les participants du groupe en question."</string>
+    <string name="GroupStorySettingsFragment__members_of_the_group_s">"Les membres de ce groupe \" %1$s \" peuvent consulter et commenter votre Story. Vous pouvez modifier les participants du groupe en question."</string>
     <!-- Preference label for removing this group story -->
-    <string name="GroupStorySettingsFragment__remove_group_story">Supprimer la story du groupe</string>
+    <string name="GroupStorySettingsFragment__remove_group_story">Supprimer la Story du groupe</string>
 
     <!-- Generic title for overflow menus -->
     <string name="OverflowMenu__overflow_menu">Menu de débordement</string>
@@ -5316,7 +5318,7 @@
     <!-- Phase 2 message describing that sms is going away soon -->
     <string name="SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages">Signal supprimera bientôt la prise en charge de l’envoi de SMS, car les messages Signal fournissent un chiffrement de bout en bout et une confidentialité élevée que les messages SMS n’utilisent pas. Cela nous permettra également d’améliorer la messagerie Signal.</string>
     <!-- Phase 3 message describing that sms has gone away -->
-    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal a supprimé la prise en charge de l’envoi de messages SMS, car les messages Signal sont cryptés de bout en bout et assurent un niveau de confidentialité que les messages SMS ne garantissent pas. Cela nous permettra également d’améliorer la messagerie Signal.</string>
+    <string name="SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages">Signal a supprimé la prise en charge de l’envoi de messages SMS, car les messages Signal sont chiffrés de bout en bout et assurent un niveau de confidentialité que les messages SMS ne garantissent pas. Cela nous permettra également d’améliorer la messagerie Signal.</string>
     <!-- The text on a button in a popup that, when clicked, will take the user to a screen to export their SMS messages -->
     <string name="SmsExportMegaphoneActivity__export_sms">Exportation de SMS</string>
     <!-- The text on a button in a popup that, when clicked, will dismiss the popup and schedule the prompt to occur at a later time. -->
@@ -5432,11 +5434,11 @@
     <!-- Displayed as the title of the education bottom sheet -->
     <string name="GroupStoryEducationSheet__introducing_group_stories">Voici les stories de groupe</string>
     <!-- Line item on the sheet explaining group stories -->
-    <string name="GroupStoryEducationSheet__share_story_updates_to">Partagez des stories à des conversations de groupe auxquelles vous participez.</string>
+    <string name="GroupStoryEducationSheet__share_story_updates_to">Partagez des Stories à des conversations de groupe auxquelles vous participez.</string>
     <!-- Line item on the sheet explaining that anyone in the group can share to group stories -->
-    <string name="GroupStoryEducationSheet__anyone_in_the_group">Tous les membres de la conversation de groupe peuvent contribuer à la story.</string>
+    <string name="GroupStoryEducationSheet__anyone_in_the_group">Tous les membres de la conversation de groupe peuvent contribuer à la Story.</string>
     <!-- Line item on the sheet explaining that anyone in the group can view replies -->
-    <string name="GroupStoryEducationSheet__all_group_chat_members">Tous les membres de la conversation peuvent voir les réponses à la story de groupe.</string>
+    <string name="GroupStoryEducationSheet__all_group_chat_members">Tous les membres de la conversation peuvent voir les réponses à la Story de groupe.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Suivant</string>
 

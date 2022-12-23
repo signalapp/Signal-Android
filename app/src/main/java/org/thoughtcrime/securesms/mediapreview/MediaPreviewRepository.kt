@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -89,10 +90,18 @@ class MediaPreviewRepository {
 
   fun getMessagePositionIntent(context: Context, messageId: Long): Single<Intent> {
     return Single.fromCallable {
+      val stopwatch = Stopwatch("Message Position Intent")
       val messageRecord: MessageRecord = SignalDatabase.mms.getMessageRecord(messageId)
+      stopwatch.split("get message record")
+
       val threadId: Long = messageRecord.threadId
       val messagePosition: Int = SignalDatabase.mmsSms.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
+      stopwatch.split("get message position")
+
       val recipientId: RecipientId = SignalDatabase.threads.getRecipientForThreadId(threadId)?.id ?: throw IllegalStateException("Could not find recipient for thread ID $threadId")
+      stopwatch.split("get recipient ID")
+
+      stopwatch.stop(TAG)
       ConversationIntents.createBuilder(context, recipientId, threadId)
         .withStartingPosition(messagePosition)
         .build()

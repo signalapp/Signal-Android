@@ -66,17 +66,17 @@ public class NotificationChannels {
   private static final String CONTACT_PREFIX    = "contact_";
   private static final String MESSAGES_PREFIX   = "messages_";
 
-  public static final String CALLS         = "calls_v3";
-  public static final String FAILURES      = "failures";
-  public static final String APP_UPDATES   = "app_updates";
-  public static final String BACKUPS       = "backups_v2";
-  public static final String LOCKED_STATUS = "locked_status_v2";
-  public static final String OTHER         = "other_v3";
-  public static final String VOICE_NOTES   = "voice_notes";
-  public static final String JOIN_EVENTS   = "join_events";
-  public static final String BACKGROUND    = "background_connection";
-  public static final String CALL_STATUS   = "call_status";
-  public static final String APP_ALERTS    = "app_alerts";
+  public final String CALLS         = "calls_v3";
+  public final String FAILURES      = "failures";
+  public final String APP_UPDATES   = "app_updates";
+  public final String BACKUPS       = "backups_v2";
+  public final String LOCKED_STATUS = "locked_status_v2";
+  public final String OTHER         = "other_v3";
+  public final String VOICE_NOTES   = "voice_notes";
+  public final String JOIN_EVENTS   = "join_events";
+  public final String BACKGROUND    = "background_connection";
+  public final String CALL_STATUS   = "call_status";
+  public final String APP_ALERTS    = "app_alerts";
 
   private static volatile NotificationChannels instance;
 
@@ -658,7 +658,7 @@ public class NotificationChannels {
   }
 
   @TargetApi(26)
-  private static int getDefaultBackgroundChannelImportance(NotificationManager notificationManager) {
+  private int getDefaultBackgroundChannelImportance(NotificationManager notificationManager) {
     NotificationChannel existingOther = notificationManager.getNotificationChannel(OTHER);
 
     if (existingOther != null && existingOther.getImportance() != NotificationManager.IMPORTANCE_LOW) {

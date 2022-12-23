@@ -140,8 +140,8 @@ public final class PushDistributionListSendJob extends PushSendJob {
   {
     MessageTable             database                   = SignalDatabase.mms();
     OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
-    Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
-    Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
+    Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
+    Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
 
     if (!message.getStoryType().isStory()) {
       throw new MmsException("Only story sends are currently supported!");

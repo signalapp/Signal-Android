@@ -344,7 +344,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
           if (!ServiceUtil.getKeyguardManager(requireContext()).isKeyguardSecure) {
             showGoToPhoneSettings()
           } else if (state.paymentLock) {
-            biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher?.launch(getString(R.string.BiometricDeviceAuthentication__signal)) }
+            biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.BiometricDeviceAuthentication__signal)) }
           } else {
             viewModel.togglePaymentLock(true)
           }

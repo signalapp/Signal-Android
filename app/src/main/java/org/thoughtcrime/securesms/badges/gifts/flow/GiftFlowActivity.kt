@@ -31,6 +31,7 @@ class GiftFlowActivity : FragmentWrapperActivity(), DonationPaymentComponent {
     return NavHostFragment.create(R.navigation.gift_flow)
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))

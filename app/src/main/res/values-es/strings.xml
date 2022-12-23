@@ -1983,6 +1983,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">De %1$s para ti</string>
     <string name="MediaPreviewActivity_media_no_longer_available">El adjunto original ya no está disponible.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Error al encontrar el mensaje.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Fallo al encontrar la aplicación para mostrar este adjunto.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Cerrar</string>

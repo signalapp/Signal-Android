@@ -51,6 +51,7 @@ private class AudioRecorderFocusManager26(context: Context, changeListener: OnAu
   }
 }
 
+@Suppress("DEPRECATION")
 private class AudioRecorderFocusManagerLegacy(context: Context, val changeListener: OnAudioFocusChangeListener) : AudioRecorderFocusManager(context) {
   override fun requestAudioFocus(): Int {
     return audioManager.requestAudioFocus(changeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE)

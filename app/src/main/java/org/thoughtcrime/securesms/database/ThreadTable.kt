@@ -15,6 +15,7 @@ import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.or
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleLong
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
@@ -1072,13 +1073,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       .from(TABLE_NAME)
       .where("$RECIPIENT_ID = ?", recipientId)
       .run()
-      .use { cursor ->
-        return if (cursor.moveToFirst()) {
-          cursor.requireLong(ID)
-        } else {
-          -1
-        }
-      }
+      .readToSingleLong(-1)
   }
 
   fun getOrCreateValidThreadId(recipient: Recipient, candidateId: Long): Long {

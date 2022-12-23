@@ -176,6 +176,6 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
   private fun runTestWithContent(contentProto: SignalServiceContentProto) {
     val content = SignalServiceContent.createFromProto(contentProto)
     val testSubject = createNormalContentTestSubject()
-    testSubject.doProcess(content = content)
+    testSubject.doProcess(content = content!!)
   }
 }

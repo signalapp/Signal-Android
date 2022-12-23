@@ -70,7 +70,6 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -138,7 +137,7 @@ public class MessageSender {
   }
 
   public static void sendStories(@NonNull final Context context,
-                                 @NonNull final List<OutgoingSecureMediaMessage> messages,
+                                 @NonNull final List<OutgoingMediaMessage> messages,
                                  @Nullable final String metricId,
                                  @Nullable final SmsTable.InsertListener insertListener)
   {
@@ -152,7 +151,7 @@ public class MessageSender {
     try {
       database.beginTransaction();
 
-      for (OutgoingSecureMediaMessage message : messages) {
+      for (OutgoingMediaMessage message : messages) {
         long allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), -1L, message.getDistributionType());
         long messageId         = database.insertMessageOutbox(message.stripAttachments(), allocatedThreadId, false, insertListener);
 
@@ -167,9 +166,9 @@ public class MessageSender {
       }
 
       for (int i = 0; i < messageIds.size(); i++) {
-        long                       messageId = messageIds.get(i);
-        OutgoingSecureMediaMessage message   = messages.get(i);
-        Recipient                  recipient = message.getRecipient();
+        long                 messageId = messageIds.get(i);
+        OutgoingMediaMessage message   = messages.get(i);
+        Recipient            recipient = message.getRecipient();
 
         if (recipient.isDistributionList()) {
           DistributionId    distributionId = Objects.requireNonNull(SignalDatabase.distributionLists().getDistributionId(recipient.requireDistributionListId()));
@@ -193,7 +192,7 @@ public class MessageSender {
 
       for (int i = 0; i < messageIds.size(); i++) {
         long                             messageId = messageIds.get(i);
-        OutgoingSecureMediaMessage       message   = messages.get(i);
+        OutgoingMediaMessage             message   = messages.get(i);
         List<UploadDependencyGraph.Node> nodes     = dependencyGraph.getDependencyMap().get(message);
 
         if (nodes == null || nodes.isEmpty()) {
@@ -228,7 +227,7 @@ public class MessageSender {
 
     for (int i = 0; i < messageIds.size(); i++) {
       long                             messageId    = messageIds.get(i);
-      OutgoingSecureMediaMessage       message      = messages.get(i);
+      OutgoingMediaMessage             message      = messages.get(i);
       Recipient                        recipient    = message.getRecipient();
       List<UploadDependencyGraph.Node> dependencies = dependencyGraph.getDependencyMap().get(message);
 
@@ -327,7 +326,7 @@ public class MessageSender {
   }
 
   public static void sendMediaBroadcast(@NonNull Context context,
-                                        @NonNull List<OutgoingSecureMediaMessage> messages,
+                                        @NonNull List<OutgoingMediaMessage> messages,
                                         @NonNull Collection<PreUploadResult> preUploadResults,
                                         boolean overwritePreUploadMessageIds)
   {
@@ -335,15 +334,15 @@ public class MessageSender {
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
 //    Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
-    JobManager      jobManager         = ApplicationDependencies.getJobManager();
-    AttachmentTable attachmentDatabase = SignalDatabase.attachments();
-    MessageTable       mmsDatabase            = SignalDatabase.mms();
-    ThreadTable        threadTable            = SignalDatabase.threads();
-    List<AttachmentId> preUploadAttachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
-    List<String>               preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
-    List<Long>                 messageIds             = new ArrayList<>(messages.size());
-    List<String>               messageDependsOnIds    = new ArrayList<>(preUploadJobIds);
-    OutgoingSecureMediaMessage primaryMessage         = messages.get(0);
+    JobManager           jobManager             = ApplicationDependencies.getJobManager();
+    AttachmentTable      attachmentDatabase     = SignalDatabase.attachments();
+    MessageTable         mmsDatabase            = SignalDatabase.mms();
+    ThreadTable          threadTable            = SignalDatabase.threads();
+    List<AttachmentId>   preUploadAttachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
+    List<String>         preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
+    List<Long>           messageIds             = new ArrayList<>(messages.size());
+    List<String>         messageDependsOnIds    = new ArrayList<>(preUploadJobIds);
+    OutgoingMediaMessage primaryMessage         = messages.get(0);
 
     mmsDatabase.beginTransaction();
     try {
@@ -368,14 +367,14 @@ public class MessageSender {
                                                             .toList();
 
       if (messages.size() > 0) {
-        List<OutgoingSecureMediaMessage> secondaryMessages = overwritePreUploadMessageIds ? messages.subList(1, messages.size()) : messages;
-        List<List<AttachmentId>>         attachmentCopies  = new ArrayList<>();
+        List<OutgoingMediaMessage> secondaryMessages = overwritePreUploadMessageIds ? messages.subList(1, messages.size()) : messages;
+        List<List<AttachmentId>>   attachmentCopies  = new ArrayList<>();
 
         for (int i = 0; i < preUploadAttachmentIds.size(); i++) {
           attachmentCopies.add(new ArrayList<>(messages.size()));
         }
 
-        for (OutgoingSecureMediaMessage secondaryMessage : secondaryMessages) {
+        for (OutgoingMediaMessage secondaryMessage : secondaryMessages) {
           long               allocatedThreadId = threadTable.getOrCreateThreadIdFor(secondaryMessage.getRecipient(), secondaryMessage.getDistributionType());
           long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getRecipient(), secondaryMessage, allocatedThreadId),
                                                                                  allocatedThreadId,
@@ -407,9 +406,9 @@ public class MessageSender {
       }
 
       for (int i = 0; i < messageIds.size(); i++) {
-        long                       messageId = messageIds.get(i);
-        OutgoingSecureMediaMessage message   = messages.get(i);
-        Recipient                  recipient = message.getRecipient();
+        long                 messageId = messageIds.get(i);
+        OutgoingMediaMessage message   = messages.get(i);
+        Recipient            recipient = message.getRecipient();
 
         if (recipient.isDistributionList()) {
           List<RecipientId> members        = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());

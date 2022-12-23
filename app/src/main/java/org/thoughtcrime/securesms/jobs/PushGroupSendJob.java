@@ -37,7 +37,6 @@ import org.thoughtcrime.securesms.messages.GroupSendUtil;
 import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -143,7 +142,7 @@ public final class PushGroupSendJob extends PushSendJob {
   }
 
   private static boolean isGv2UpdateMessage(@NonNull OutgoingMediaMessage message) {
-    return (message instanceof OutgoingGroupUpdateMessage && ((OutgoingGroupUpdateMessage) message).isV2Group());
+    return message.isGroupUpdate() && message.isV2Group();
   }
 
   @Override
@@ -165,8 +164,8 @@ public final class PushGroupSendJob extends PushSendJob {
     MessageTable             database                   = SignalDatabase.mms();
     OutgoingMediaMessage     message                    = database.getOutgoingMessage(messageId);
     long                     threadId                   = database.getMessageRecord(messageId).getThreadId();
-    Set<NetworkFailure>      existingNetworkFailures    = message.getNetworkFailures();
-    Set<IdentityKeyMismatch> existingIdentityMismatches = message.getIdentityKeyMismatches();
+    Set<NetworkFailure>      existingNetworkFailures    = new HashSet<>(message.getNetworkFailures());
+    Set<IdentityKeyMismatch> existingIdentityMismatches = new HashSet<>(message.getIdentityKeyMismatches());
 
     ApplicationDependencies.getJobManager().cancelAllInQueue(TypingSendJob.getQueue(threadId));
 
@@ -280,14 +279,12 @@ public final class PushGroupSendJob extends PushSendJob {
         } else {
           throw new UndeliverableMessageException("No group found! " + groupId);
         }
-      } else if (message.isGroup()) {
-        OutgoingGroupUpdateMessage groupMessage = (OutgoingGroupUpdateMessage) message;
-
-        if (groupMessage.isV2Group()) {
-          MessageGroupContext.GroupV2Properties properties   = groupMessage.requireGroupV2Properties();
+      } else if (message.isGroup() && message.isGroupUpdate()) {
+        if (message.isV2Group()) {
+          MessageGroupContext.GroupV2Properties properties   = message.requireGroupV2Properties();
           GroupContextV2                        groupContext = properties.getGroupContext();
-          SignalServiceGroupV2.Builder builder = SignalServiceGroupV2.newBuilder(properties.getGroupMasterKey())
-                                                                     .withRevision(groupContext.getRevision());
+          SignalServiceGroupV2.Builder          builder      = SignalServiceGroupV2.newBuilder(properties.getGroupMasterKey())
+                                                                                   .withRevision(groupContext.getRevision());
 
           ByteString groupChange = groupContext.getGroupChange();
           if (groupChange != null) {

@@ -23,6 +23,7 @@ class DonateToSignalActivity : FragmentWrapperActivity(), DonationPaymentCompone
     return NavHostFragment.create(R.navigation.donate_to_signal, DonateToSignalFragmentArgs.Builder(DonateToSignalType.ONE_TIME).build().toBundle())
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))

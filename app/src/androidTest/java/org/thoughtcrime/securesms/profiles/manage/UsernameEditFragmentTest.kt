@@ -73,6 +73,7 @@ class UsernameEditFragmentTest {
     onView(withContentDescription(R.string.load_more_header__loading)).check(matches(withEffectiveVisibility(ViewMatchers.Visibility.GONE)))
   }
 
+  @Ignore("Flakey espresso test.")
   @Test
   fun testUsernameCreationOutsideOfRegistration() {
     val scenario = createScenario()

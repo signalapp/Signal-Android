@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -36,7 +35,6 @@ import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
 import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.mms.Slide
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -287,10 +285,10 @@ class MediaSelectionRepository(context: Context) {
     storyClips: List<Media>,
     file: File
   ) {
-    val nonStoryMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList(contacts.size)
-    val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
+    val nonStoryMessages: MutableList<OutgoingMediaMessage> = ArrayList(contacts.size)
+    val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingMediaMessage>> = mutableMapOf()
+    val storyClipMessages: MutableList<OutgoingMediaMessage> = ArrayList()
     val zipPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
-    val storyClipMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList()
     val distributionListPreUploadSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
     val distributionListStoryClipsSentTimestamps: MutableMap<MediaKey, Long> = mutableMapOf()
 
@@ -309,6 +307,7 @@ class MediaSelectionRepository(context: Context) {
       }
       val docSlide = DocumentSlide(context, Uri.fromFile(file), "application/octet-stream", java.lang.String.valueOf(file.length() / 1024).toLong(), file.name)
       val message = OutgoingMediaMessage(
+     /* <<<<<<< 4-attach-photo-and-zip-of-proofs-when-a-photo-is-captured
         recipient,
         body,
 //        emptyList(),
@@ -328,20 +327,27 @@ class MediaSelectionRepository(context: Context) {
         mutableSetOf(),
         mutableSetOf(),
         null
+=======*/
+        recipient = recipient,
+        body = body,
+        sentTimeMillis = if (recipient.isDistributionList) distributionListPreUploadSentTimestamps.getOrPut(preUploadResults.first()) { System.currentTimeMillis() } else System.currentTimeMillis(),
+        expiresIn = if (isStory) 0 else TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
+        isViewOnce = isViewOnce,
+        storyType = storyType,
+        mentions = mentions,
+        isSecure = true
       )
 
       if (isStory) {
         preUploadResults.filterNot { result -> storyClips.any { it.uri == result.media.uri } }.forEach {
           val list = storyPreUploadMessages[it] ?: mutableListOf()
-          list.add(
-            OutgoingSecureMediaMessage(message).withSentTimestamp(
-              if (recipient.isDistributionList) {
-                distributionListPreUploadSentTimestamps.getOrPut(it) { System.currentTimeMillis() }
-              } else {
-                System.currentTimeMillis()
-              }
-            )
-          )
+          val timestamp = if (recipient.isDistributionList) {
+            distributionListPreUploadSentTimestamps.getOrPut(it) { System.currentTimeMillis() }
+          } else {
+            System.currentTimeMillis()
+          }
+
+          list.add(message.copy(sentTimeMillis = timestamp))
           storyPreUploadMessages[it] = list
 
           // XXX We must do this to avoid sending out messages to the same recipient with the same
@@ -351,27 +357,15 @@ class MediaSelectionRepository(context: Context) {
 
         storyClips.forEach {
           storyClipMessages.add(
-            OutgoingSecureMediaMessage(
-              OutgoingMediaMessage(
-                recipient,
-                body,
-                listOf(MediaUploadRepository.asAttachment(context, it)),
-                if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it.asKey()) { System.currentTimeMillis() } else System.currentTimeMillis(),
-                -1,
-                0,
-                isViewOnce,
-                ThreadTable.DistributionTypes.DEFAULT,
-                storyType,
-                null,
-                false,
-                null,
-                emptyList(),
-                emptyList(),
-                mentions,
-                mutableSetOf(),
-                mutableSetOf(),
-                null
-              )
+            OutgoingMediaMessage(
+              recipient = recipient,
+              body = body,
+              attachments = listOf(MediaUploadRepository.asAttachment(context, it)),
+              sentTimeMillis = if (recipient.isDistributionList) distributionListStoryClipsSentTimestamps.getOrPut(it.asKey()) { System.currentTimeMillis() } else System.currentTimeMillis(),
+              isViewOnce = isViewOnce,
+              storyType = storyType,
+              mentions = mentions,
+              isSecure = true
             )
           )
 
@@ -380,7 +374,7 @@ class MediaSelectionRepository(context: Context) {
           ThreadUtil.sleep(5)
         }
       } else {
-        nonStoryMessages.add(OutgoingSecureMediaMessage(message))
+        nonStoryMessages.add(message)
 
         // XXX We must do this to avoid sending out messages to the same recipient with the same
         //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.

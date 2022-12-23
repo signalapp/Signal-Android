@@ -5,7 +5,6 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import java.util.Optional
 
@@ -30,27 +29,19 @@ object MmsHelper {
     secure: Boolean = true
   ): Long {
     val message = OutgoingMediaMessage(
-      recipient,
-      body,
-      emptyList(),
-      sentTimeMillis,
-      subscriptionId,
-      expiresIn,
-      viewOnce,
-      distributionType,
-      storyType,
-      parentStoryId,
-      isStoryReaction,
-      null,
-      emptyList(),
-      emptyList(),
-      emptyList(),
-      emptySet(),
-      emptySet(),
-      giftBadge
-    ).let {
-      if (secure) OutgoingSecureMediaMessage(it) else it
-    }
+      recipient = recipient,
+      body = body,
+      timestamp = sentTimeMillis,
+      subscriptionId = subscriptionId,
+      expiresIn = expiresIn,
+      viewOnce = viewOnce,
+      distributionType = distributionType,
+      storyType = storyType,
+      parentStoryId = parentStoryId,
+      isStoryReaction = isStoryReaction,
+      giftBadge = giftBadge,
+      isSecure = secure
+    )
 
     return insert(
       message = message,

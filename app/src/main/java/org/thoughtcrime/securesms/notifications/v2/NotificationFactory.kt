@@ -188,7 +188,7 @@ object NotificationFactory {
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
       setGroupAlertBehavior(NotificationCompat.GROUP_ALERT_CHILDREN)
-      setChannelId(conversation.getChannelId(context))
+      setChannelId(conversation.getChannelId())
       setContentTitle(conversation.getContentTitle(context))
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
       addPerson(conversation.recipient)
@@ -221,7 +221,7 @@ object NotificationFactory {
 
     val notificationId: Int = if (Build.VERSION.SDK_INT < 24) NotificationIds.MESSAGE_SUMMARY else conversation.notificationId
 
-    NotificationManagerCompat.from(context).safelyNotify(context, conversation.recipient, notificationId, builder.build())
+    NotificationManagerCompat.from(context).safelyNotify(conversation.recipient, notificationId, builder.build())
   }
 
   private fun notifySummary(context: Context, state: NotificationState) {
@@ -257,7 +257,7 @@ object NotificationFactory {
     }
 
     Log.d(TAG, "showing summary notification")
-    NotificationManagerCompat.from(context).safelyNotify(context, null, NotificationIds.MESSAGE_SUMMARY, builder.build())
+    NotificationManagerCompat.from(context).safelyNotify(null, NotificationIds.MESSAGE_SUMMARY, builder.build())
   }
 
   private fun notifyInThread(context: Context, recipient: Recipient, lastAudibleNotification: Long) {
@@ -323,10 +323,10 @@ object NotificationFactory {
       setContentIntent(NotificationPendingIntentHelper.getActivity(context, 0, intent, PendingIntentFlags.mutable()))
       setAutoCancel(true)
       setAlarms(recipient)
-      setChannelId(NotificationChannels.FAILURES)
+      setChannelId(NotificationChannels.getInstance().FAILURES)
     }
 
-    NotificationManagerCompat.from(context).safelyNotify(context, recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
+    NotificationManagerCompat.from(context).safelyNotify(recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
   }
 
   fun notifyProofRequired(context: Context, recipient: Recipient, thread: ConversationId, visibleThread: ConversationId?) {
@@ -353,10 +353,10 @@ object NotificationFactory {
       setOnlyAlertOnce(true)
       setAutoCancel(true)
       setAlarms(recipient)
-      setChannelId(NotificationChannels.FAILURES)
+      setChannelId(NotificationChannels.getInstance().FAILURES)
     }
 
-    NotificationManagerCompat.from(context).safelyNotify(context, recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
+    NotificationManagerCompat.from(context).safelyNotify(recipient, NotificationIds.getNotificationIdForMessageDeliveryFailed(thread), builder.build())
   }
 
   @JvmStatic
@@ -379,7 +379,7 @@ object NotificationFactory {
       setColor(ContextCompat.getColor(context, R.color.core_ultramarine))
       setCategory(NotificationCompat.CATEGORY_MESSAGE)
       setGroup(DefaultMessageNotifier.NOTIFICATION_GROUP)
-      setChannelId(conversation.getChannelId(context))
+      setChannelId(conversation.getChannelId())
       setContentTitle(conversation.getContentTitle(context))
       setLargeIcon(conversation.getContactLargeIcon(context).toLargeBitmap(context))
       addPerson(conversation.recipient)
@@ -390,10 +390,10 @@ object NotificationFactory {
     }
 
     Log.d(TAG, "Posting Notification for requested bubble")
-    NotificationManagerCompat.from(context).safelyNotify(context, recipient, conversation.notificationId, builder.build())
+    NotificationManagerCompat.from(context).safelyNotify(recipient, conversation.notificationId, builder.build())
   }
 
-  private fun NotificationManagerCompat.safelyNotify(context: Context, threadRecipient: Recipient?, notificationId: Int, notification: Notification) {
+  private fun NotificationManagerCompat.safelyNotify(threadRecipient: Recipient?, notificationId: Int, notification: Notification) {
     try {
       notify(notificationId, notification)
       Log.internal().i(TAG, "Posted notification: $notification")

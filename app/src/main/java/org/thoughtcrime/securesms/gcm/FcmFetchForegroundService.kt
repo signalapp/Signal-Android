@@ -38,7 +38,7 @@ class FcmFetchForegroundService : Service() {
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     startForeground(
       NotificationIds.FCM_FETCH,
-      NotificationCompat.Builder(this, NotificationChannels.OTHER)
+      NotificationCompat.Builder(this, NotificationChannels.getInstance().OTHER)
         .setSmallIcon(R.drawable.ic_notification)
         .setContentTitle(getString(R.string.BackgroundMessageRetriever_checking_for_messages))
         .setCategory(NotificationCompat.CATEGORY_SERVICE)

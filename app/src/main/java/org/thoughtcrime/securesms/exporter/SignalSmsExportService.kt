@@ -50,7 +50,7 @@ class SignalSmsExportService : SmsExportService() {
 
     return ExportNotification(
       NotificationIds.SMS_EXPORT_SERVICE,
-      NotificationCompat.Builder(this, NotificationChannels.BACKUPS)
+      NotificationCompat.Builder(this, NotificationChannels.getInstance().BACKUPS)
         .setSmallIcon(R.drawable.ic_signal_backup)
         .setContentTitle(getString(R.string.SignalSmsExportService__exporting_messages))
         .setContentIntent(pendingIntent)
@@ -73,7 +73,7 @@ class SignalSmsExportService : SmsExportService() {
 
     return ExportNotification(
       NotificationIds.SMS_EXPORT_COMPLETE,
-      NotificationCompat.Builder(this, NotificationChannels.APP_ALERTS)
+      NotificationCompat.Builder(this, NotificationChannels.getInstance().APP_ALERTS)
         .setSmallIcon(R.drawable.ic_notification)
         .setContentTitle(getString(R.string.SignalSmsExportService__signal_sms_export_complete))
         .setContentText(getString(R.string.SignalSmsExportService__tap_to_return_to_signal))

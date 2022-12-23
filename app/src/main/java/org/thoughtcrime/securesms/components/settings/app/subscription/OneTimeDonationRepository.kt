@@ -29,7 +29,7 @@ class OneTimeDonationRepository(private val donationsService: DonationsService) 
   companion object {
     private val TAG = Log.tag(OneTimeDonationRepository::class.java)
 
-    fun <T> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
+    fun <T : Any> handleCreatePaymentIntentError(throwable: Throwable, badgeRecipient: RecipientId, paymentSourceType: PaymentSourceType): Single<T> {
       return if (throwable is DonationError) {
         Single.error(throwable)
       } else {

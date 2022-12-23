@@ -281,7 +281,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       }
     })
 
-    val selectionAdapter = MappingAdapter()
+    val selectionAdapter = MappingAdapter(false)
     MediaReviewAddItem.register(selectionAdapter) {
       launchGallery()
     }

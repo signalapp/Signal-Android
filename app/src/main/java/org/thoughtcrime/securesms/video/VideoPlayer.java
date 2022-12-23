@@ -252,7 +252,10 @@ public class VideoPlayer extends FrameLayout {
 
     if (this.exoPlayer != null) {
       exoView.setPlayer(null);
-      exoControls.setPlayer(null);
+
+      if (exoPlayer.equals(exoControls.getPlayer())) {
+        exoControls.setPlayer(null);
+      }
 
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);

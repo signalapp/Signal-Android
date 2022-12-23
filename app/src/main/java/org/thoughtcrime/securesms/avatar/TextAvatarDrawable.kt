@@ -30,6 +30,7 @@ class TextAvatarDrawable(
     setBounds(0, 0, size, size)
   }
 
+  @Suppress("DEPRECATION")
   override fun draw(canvas: Canvas) {
     val width = bounds.width()
     val textSize = Avatars.getTextSizeForLength(context, avatar.text, width * 0.8f, width * 0.45f)

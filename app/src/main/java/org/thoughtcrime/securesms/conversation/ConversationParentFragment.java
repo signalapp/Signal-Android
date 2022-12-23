@@ -238,7 +238,6 @@ import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteId;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -1172,8 +1171,12 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void onKeyboardShown() {
     inputPanel.onKeyboardShown();
-    if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing() && !emojiDrawerStub.get().isEmojiSearchMode()) {
-      emojiDrawerStub.get().hide(true);
+    if (emojiDrawerStub.resolved() && emojiDrawerStub.get().isShowing()) {
+      if (emojiDrawerStub.get().isEmojiSearchMode()) {
+        inputPanel.setToIme();
+      } else {
+        emojiDrawerStub.get().hide(true);
+      }
     }
     if (attachmentKeyboardStub.resolved() && attachmentKeyboardStub.get().isShowing()) {
       navigationBarBackground.setVisibility(View.GONE);
@@ -2970,12 +2973,29 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
-    long                 thread        = this.threadId;
-    long                 expiresIn     = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-    QuoteModel           quote         = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
-    List<Mention>        mentions      = new ArrayList<>(result.getMentions());
-    OutgoingMediaMessage message       = new OutgoingMediaMessage(recipient.get(), new SlideDeck(), result.getBody(), System.currentTimeMillis(), -1, expiresIn, result.isViewOnce(), distributionType, result.getStoryType(), null, false, quote, Collections.emptyList(), Collections.emptyList(), mentions, null);
-    OutgoingMediaMessage secureMessage = new OutgoingSecureMediaMessage(message);
+    long                 thread    = this.threadId;
+    long                 expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
+    QuoteModel           quote     = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
+    List<Mention>        mentions  = new ArrayList<>(result.getMentions());
+    OutgoingMediaMessage message   = new OutgoingMediaMessage(recipient.get(),
+                                                              result.getBody(),
+                                                              Collections.emptyList(),
+                                                              System.currentTimeMillis(),
+                                                              -1,
+                                                              expiresIn,
+                                                              result.isViewOnce(),
+                                                              distributionType,
+                                                              result.getStoryType(),
+                                                              null,
+                                                              false,
+                                                              quote,
+                                                              Collections.emptyList(),
+                                                              Collections.emptyList(),
+                                                              mentions,
+                                                              Collections.emptySet(),
+                                                              Collections.emptySet(),
+                                                              null,
+                                                              true);
 
     final Context context = requireContext().getApplicationContext();
 
@@ -2985,10 +3005,10 @@ public class ConversationParentFragment extends Fragment
     attachmentManager.clear(glideRequests, false);
     silentlySetComposeText("");
 
-    long id = fragment.stageOutgoingMessage(secureMessage);
+    long id = fragment.stageOutgoingMessage(message);
 
     SimpleTask.run(() -> {
-      long resultId = MessageSender.sendPushWithPreUploadedMedia(context, secureMessage, result.getPreUploadResults(), thread, null);
+      long resultId = MessageSender.sendPushWithPreUploadedMedia(context, message, result.getPreUploadResults(), thread, null);
 
       int deleted = SignalDatabase.attachments().deleteAbandonedPreuploadedAttachments();
       Log.i(TAG, "Deleted " + deleted + " abandoned attachments.");
@@ -3048,7 +3068,25 @@ public class ConversationParentFragment extends Fragment
       }
     }
 
-    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId), slideDeck, body, System.currentTimeMillis(), sendType.getSimSubscriptionIdOr(-1), expiresIn, viewOnce, distributionType, StoryType.NONE, null, false, quote, contacts, previews, mentions, null);
+    OutgoingMediaMessage outgoingMessageCandidate = new OutgoingMediaMessage(Recipient.resolved(recipientId),
+                                                                             OutgoingMediaMessage.buildMessage(slideDeck, body),
+                                                                             slideDeck.asAttachments(),
+                                                                             System.currentTimeMillis(),
+                                                                             sendType.getSimSubscriptionIdOr(-1),
+                                                                             expiresIn,
+                                                                             viewOnce,
+                                                                             distributionType,
+                                                                             StoryType.NONE,
+                                                                             null,
+                                                                             false,
+                                                                             quote,
+                                                                             contacts,
+                                                                             previews,
+                                                                             mentions,
+                                                                             Collections.emptySet(),
+                                                                             Collections.emptySet(),
+                                                                             null,
+                                                                             false);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();
@@ -3056,7 +3094,7 @@ public class ConversationParentFragment extends Fragment
     final OutgoingMediaMessage outgoingMessage;
 
     if (sendPush) {
-      outgoingMessage = new OutgoingSecureMediaMessage(outgoingMessageCandidate);
+      outgoingMessage = outgoingMessageCandidate.makeSecure();
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
       outgoingMessage = outgoingMessageCandidate.withExpiry(0);

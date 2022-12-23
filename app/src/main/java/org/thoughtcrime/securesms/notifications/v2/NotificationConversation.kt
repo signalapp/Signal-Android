@@ -99,9 +99,9 @@ data class NotificationConversation(
     return notificationItems.any { it.isNewNotification }
   }
 
-  fun getChannelId(context: Context): String {
+  fun getChannelId(): String {
     return if (isOnlyContactJoinedEvent) {
-      NotificationChannels.JOIN_EVENTS
+      NotificationChannels.getInstance().JOIN_EVENTS
     } else {
       recipient.notificationChannel ?: NotificationChannels.getInstance().messagesChannel
     }

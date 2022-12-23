@@ -44,16 +44,19 @@ import kotlin.jvm.functions.Function1;
  */
 public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHolder<?>> {
 
-  final Map<Integer, Factory<?>> factories;
-  final Map<Class<?>, Integer>   itemTypes;
-        int                      typeCount;
+  final Map<Integer, Factory<?>> factories  = new HashMap<>();
+  final Map<Class<?>, Integer>   itemTypes  = new HashMap<>();
+        int                      typeCount  = 0;
+  final boolean                  useNoCrossfadeAnimator;
 
   public MappingAdapter() {
+    this(true);
+  }
+
+  public MappingAdapter(boolean useNoCrossfadeAnimator) {
     super(new MappingDiffCallback());
 
-    factories = new HashMap<>();
-    itemTypes = new HashMap<>();
-    typeCount = 0;
+    this.useNoCrossfadeAnimator = useNoCrossfadeAnimator;
   }
 
   @Override
@@ -71,7 +74,7 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
   @Override
   public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
     super.onAttachedToRecyclerView(recyclerView);
-    if (recyclerView.getItemAnimator() != null && recyclerView.getItemAnimator().getClass() == DefaultItemAnimator.class) {
+    if (useNoCrossfadeAnimator && recyclerView.getItemAnimator() != null && recyclerView.getItemAnimator().getClass() == DefaultItemAnimator.class) {
       recyclerView.setItemAnimator(new NoCrossfadeChangeDefaultAnimator());
     }
   }

@@ -28,7 +28,7 @@ import kotlin.math.min
  */
 internal class SpinnerServer(
   private val application: Application,
-  deviceInfo: Map<String, String>,
+  deviceInfo: Map<String, () -> String>,
   private val databases: Map<String, DatabaseConfig>,
   private val plugins: Map<String, Plugin>
 ) : NanoHTTPD(5000) {
@@ -37,8 +37,8 @@ internal class SpinnerServer(
     private val TAG = Log.tag(SpinnerServer::class.java)
   }
 
-  private val deviceInfo: Map<String, String> = deviceInfo.filterKeys { !it.startsWith(Spinner.KEY_PREFIX) }
-  private val environment: String = deviceInfo[Spinner.KEY_ENVIRONMENT] ?: "UNKNOWN"
+  private val deviceInfo: Map<String, () -> String> = deviceInfo.filterKeys { !it.startsWith(Spinner.KEY_PREFIX) }
+  private val environment: String = deviceInfo[Spinner.KEY_ENVIRONMENT]?.let { it() } ?: "UNKNOWN"
 
   private val handlebars: Handlebars = Handlebars(AssetTemplateLoader(application)).apply {
     registerHelper("eq", ConditionalHelpers.eq)
@@ -61,8 +61,8 @@ internal class SpinnerServer(
       return when {
         session.method == Method.GET && session.uri == "/css/main.css" -> newFileResponse("css/main.css", "text/css")
         session.method == Method.GET && session.uri == "/js/main.js" -> newFileResponse("js/main.js", "text/javascript")
-        session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db)
-        session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db)
+        session.method == Method.GET && session.uri == "/" -> getIndex(dbParam, dbConfig.db())
+        session.method == Method.GET && session.uri == "/browse" -> getBrowse(dbParam, dbConfig.db())
         session.method == Method.POST && session.uri == "/browse" -> postBrowse(dbParam, dbConfig, session)
         session.method == Method.GET && session.uri == "/query" -> getQuery(dbParam)
         session.method == Method.POST && session.uri == "/query" -> postQuery(dbParam, dbConfig, session)
@@ -98,7 +98,7 @@ internal class SpinnerServer(
       "overview",
       OverviewPageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
@@ -115,7 +115,7 @@ internal class SpinnerServer(
       "browse",
       BrowsePageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
@@ -130,7 +130,7 @@ internal class SpinnerServer(
     var pageIndex: Int = session.parameters["pageIndex"]?.get(0)?.toInt() ?: 0
     val action: String? = session.parameters["action"]?.get(0)
 
-    val rowCount = dbConfig.db.getTableRowCount(table)
+    val rowCount = dbConfig.db().getTableRowCount(table)
     val pageCount = ceil(rowCount.toFloat() / pageSize.toFloat()).toInt()
 
     when (action) {
@@ -141,17 +141,17 @@ internal class SpinnerServer(
     }
 
     val query = "select * from $table limit $pageSize offset ${pageSize * pageIndex}"
-    val queryResult = dbConfig.db.query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers) }
+    val queryResult = dbConfig.db().query(query).use { it.toQueryResult(columnTransformers = dbConfig.columnTransformers) }
 
     return renderTemplate(
       "browse",
       BrowsePageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
-        tableNames = dbConfig.db.getTableNames(),
+        tableNames = dbConfig.db().getTableNames(),
         table = table,
         queryResult = queryResult,
         pagingData = PagingData(
@@ -171,7 +171,7 @@ internal class SpinnerServer(
       "query",
       QueryPageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
@@ -193,7 +193,7 @@ internal class SpinnerServer(
       "recent",
       RecentPageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
@@ -206,18 +206,18 @@ internal class SpinnerServer(
     val action: String = session.parameters["action"]?.get(0).toString()
     val rawQuery: String = session.parameters["query"]?.get(0).toString()
     val query = if (action == "analyze") "EXPLAIN QUERY PLAN $rawQuery" else rawQuery
-    val startTime = System.currentTimeMillis()
+    val startTimeNanos = System.nanoTime()
 
     return renderTemplate(
       "query",
       QueryPageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
         query = rawQuery,
-        queryResult = dbConfig.db.query(query).use { it.toQueryResult(queryStartTime = startTime, columnTransformers = dbConfig.columnTransformers) }
+        queryResult = dbConfig.db().query(query).use { it.toQueryResult(queryStartTimeNanos = startTimeNanos, columnTransformers = dbConfig.columnTransformers) }
       )
     )
   }
@@ -227,7 +227,7 @@ internal class SpinnerServer(
       "plugin",
       PluginPageModel(
         environment = environment,
-        deviceInfo = deviceInfo,
+        deviceInfo = deviceInfo.resolve(),
         database = dbName,
         databases = databases.keys.toList(),
         plugins = plugins.values.toList(),
@@ -261,7 +261,7 @@ internal class SpinnerServer(
     )
   }
 
-  private fun Cursor.toQueryResult(queryStartTime: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
+  private fun Cursor.toQueryResult(queryStartTimeNanos: Long = 0, columnTransformers: List<ColumnTransformer> = emptyList()): QueryResult {
     val numColumns = this.columnCount
     val columns = mutableListOf<String>()
     val transformers = mutableListOf<ColumnTransformer>()
@@ -279,11 +279,11 @@ internal class SpinnerServer(
       transformers += customTransformer ?: DefaultColumnTransformer
     }
 
-    var timeOfFirstRow = 0L
+    var timeOfFirstRowNanos = 0L
     val rows = mutableListOf<List<String>>()
     while (moveToNext()) {
-      if (timeOfFirstRow == 0L) {
-        timeOfFirstRow = System.currentTimeMillis()
+      if (timeOfFirstRowNanos == 0L) {
+        timeOfFirstRowNanos = System.nanoTime()
       }
 
       val row = mutableListOf<String>()
@@ -299,16 +299,20 @@ internal class SpinnerServer(
       rows += row
     }
 
-    if (timeOfFirstRow == 0L) {
-      timeOfFirstRow = System.currentTimeMillis()
+    if (timeOfFirstRowNanos == 0L) {
+      timeOfFirstRowNanos = System.nanoTime()
     }
 
     return QueryResult(
       columns = columns,
       rows = rows,
-      timeToFirstRow = max(timeOfFirstRow - queryStartTime, 0),
-      timeToReadRows = max(System.currentTimeMillis() - timeOfFirstRow, 0)
+      timeToFirstRow = (max(timeOfFirstRowNanos - queryStartTimeNanos, 0) / 1_000_000.0f).roundForDisplay(3),
+      timeToReadRows = (max(System.nanoTime() - timeOfFirstRowNanos, 0) / 1_000_000.0f).roundForDisplay(3)
     )
+  }
+
+  fun Float.roundForDisplay(decimals: Int = 2): String {
+    return "%.${decimals}f".format(this)
   }
 
   private fun Cursor.toTableInfo(): List<TableInfo> {
@@ -385,6 +389,10 @@ internal class SpinnerServer(
     return params[name]
   }
 
+  private fun Map<String, () -> String>.resolve(): Map<String, String> {
+    return this.mapValues { entry -> entry.value() }.toMap()
+  }
+
   interface PrefixPageData {
     val environment: String
     val deviceInfo: Map<String, String>
@@ -450,8 +458,8 @@ internal class SpinnerServer(
     val columns: List<String>,
     val rows: List<List<String>>,
     val rowCount: Int = rows.size,
-    val timeToFirstRow: Long,
-    val timeToReadRows: Long,
+    val timeToFirstRow: String,
+    val timeToReadRows: String,
   )
 
   data class TableInfo(

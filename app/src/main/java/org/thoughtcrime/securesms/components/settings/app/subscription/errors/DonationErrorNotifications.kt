@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 object DonationErrorNotifications {
   fun displayErrorNotification(context: Context, donationError: DonationError) {
     val parameters = DonationErrorParams.create(context, donationError, NotificationCallback)
-    val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
+    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle(context.getString(parameters.title))
       .setContentText(context.getString(parameters.message)).apply {

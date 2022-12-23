@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.conversationlist;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -90,6 +89,7 @@ import org.thoughtcrime.securesms.badges.self.expired.CantProcessSubscriptionPay
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.Material3SearchToolbar;
 import org.thoughtcrime.securesms.components.RatingManager;
+import org.thoughtcrime.securesms.components.SignalProgressDialog;
 import org.thoughtcrime.securesms.components.UnreadPaymentsView;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
@@ -1035,14 +1035,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
       if (!selectedConversations.isEmpty()) {
         new AsyncTask<Void, Void, Void>() {
-          private ProgressDialog dialog;
+          private SignalProgressDialog dialog;
 
           @Override
           protected void onPreExecute() {
-            dialog = ProgressDialog.show(requireActivity(),
-                                         context.getString(R.string.ConversationListFragment_deleting),
-                                         context.getString(R.string.ConversationListFragment_deleting_selected_conversations),
-                                         true, false);
+            dialog = SignalProgressDialog.show(requireActivity(),
+                                               context.getString(R.string.ConversationListFragment_deleting),
+                                               context.getString(R.string.ConversationListFragment_deleting_selected_conversations),
+                                               true,
+                                               false);
           }
 
           @Override

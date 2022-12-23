@@ -2127,6 +2127,8 @@
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_s_to_you">%1$s vám</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Médiá už nie sú dostupné.</string>
+    <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
+    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
     <string name="MediaPreviewActivity_error_finding_message">Chyba pri vyhľadávaní správy.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Nepodarilo sa nájsť aplikáciu schopnú zdieľať tento typ súboru.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Zatvoriť</string>

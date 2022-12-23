@@ -2186,7 +2186,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun bulkUpdatedRegisteredStatus(registered: Map<RecipientId, ServiceId?>, unregistered: Collection<RecipientId>) {
-    writableDatabase.withinTransaction { db ->
+    writableDatabase.withinTransaction {
       val registeredWithServiceId: Set<RecipientId> = getRegisteredWithServiceIds()
       val needsMarkRegistered: Map<RecipientId, ServiceId?> = registered - registeredWithServiceId
 
@@ -2855,7 +2855,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         operations += PnpOperation.ChangeNumberInsert(
           recipientId = data.byAciSid,
           oldE164 = data.aciSidRecord.e164,
-          newE164 = e164!!
+          newE164 = e164
         )
       }
     } else {

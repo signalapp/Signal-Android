@@ -58,7 +58,7 @@ class MediaCaptureFragment : Fragment(R.layout.fragment_container), CameraFragme
       .replace(R.id.fragment_container, captureChildFragment as Fragment)
       .commitNowAllowingStateLoss()
 
-    viewModel.events.observe(viewLifecycleOwner) { event ->
+    lifecycleDisposable += viewModel.events.subscribe { event ->
       @Exhaustive
       when (event) {
         MediaCaptureEvent.MediaCaptureRenderFailed -> {

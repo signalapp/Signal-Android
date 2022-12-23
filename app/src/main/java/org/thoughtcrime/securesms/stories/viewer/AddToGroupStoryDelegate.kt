@@ -16,13 +16,10 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
-import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
@@ -105,25 +102,12 @@ class AddToGroupStoryDelegate(
       Log.d(TAG, "Sending preupload media.")
 
       val recipient = Recipient.resolved(result.recipientId)
-      val secureMessage = OutgoingSecureMediaMessage(
-        OutgoingMediaMessage(
-          Recipient.resolved(result.recipientId),
-          SlideDeck(),
-          "",
-          System.currentTimeMillis(),
-          -1,
-          0,
-          false,
-          ThreadTable.DistributionTypes.DEFAULT,
-          result.storyType,
-          null,
-          false,
-          null,
-          emptyList(),
-          emptyList(),
-          result.mentions.toList(),
-          null
-        )
+      val secureMessage = OutgoingMediaMessage(
+        recipient = recipient,
+        timestamp = System.currentTimeMillis(),
+        storyType = result.storyType,
+        mentions = result.mentions.toList(),
+        isSecure = true
       )
 
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)

@@ -151,7 +151,10 @@ public final class InternalValues extends SignalStoreValues {
    */
   public synchronized CallManager.BandwidthMode callingBandwidthMode() {
     if (FeatureFlags.internalUser()) {
-      return CallManager.BandwidthMode.values()[getInteger(CALLING_BANDWIDTH_MODE, CallManager.BandwidthMode.NORMAL.ordinal())];
+      int                         index = getInteger(CALLING_BANDWIDTH_MODE, CallManager.BandwidthMode.NORMAL.ordinal());
+      CallManager.BandwidthMode[] modes = CallManager.BandwidthMode.values();
+
+      return index < modes.length ? modes[index] : CallManager.BandwidthMode.NORMAL;
     } else {
       return CallManager.BandwidthMode.NORMAL;
     }

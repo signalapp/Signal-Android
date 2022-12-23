@@ -82,6 +82,7 @@ task qa {
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
             ':libsignal-service:test',
+            ':libsignal-service:ktlintCheck',
             ':Signal-Android:assemblePlayProdRelease'
 }
 

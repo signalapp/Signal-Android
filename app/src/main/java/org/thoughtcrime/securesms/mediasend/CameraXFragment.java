@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.mediasend;
 
 import android.animation.Animator;
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -474,15 +475,19 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
                                                         @NonNull View flipButton,
                                                         @NonNull Animation inAnimation)
   {
-    requireActivity().runOnUiThread(() -> {
-      captureButton.setEnabled(true);
-      flashButton.startAnimation(inAnimation);
-      flashButton.setVisibility(View.VISIBLE);
-      proofButton.startAnimation(inAnimation);
-      proofButton.setVisibility(View.VISIBLE);
-      flipButton.startAnimation(inAnimation);
-      flipButton.setVisibility(View.VISIBLE);
-    });
+    Activity activity = getActivity();
+
+    if (activity != null) {
+      activity.runOnUiThread(() -> {
+        captureButton.setEnabled(true);
+        flashButton.startAnimation(inAnimation);
+        flashButton.setVisibility(View.VISIBLE);
+        flipButton.startAnimation(inAnimation);
+        flipButton.setVisibility(View.VISIBLE);
+        proofButton.startAnimation(inAnimation);
+        proofButton.setVisibility(View.VISIBLE);
+      });
+    }
   }
 
   private void onCaptureClicked() {

@@ -4,7 +4,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.mms.OutgoingPaymentsNotificationMessage
+import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -63,7 +63,7 @@ class PaymentNotificationSendJobV2 private constructor(
 
     MessageSender.send(
       context,
-      OutgoingPaymentsNotificationMessage(
+      OutgoingMediaMessage.paymentNotificationMessage(
         recipient,
         uuid.toString(),
         System.currentTimeMillis(),

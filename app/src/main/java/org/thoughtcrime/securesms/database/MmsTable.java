@@ -73,13 +73,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.IncomingMediaMessage;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage;
-import org.thoughtcrime.securesms.mms.OutgoingGroupUpdateMessage;
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
-import org.thoughtcrime.securesms.mms.OutgoingPaymentsActivatedMessages;
-import org.thoughtcrime.securesms.mms.OutgoingPaymentsNotificationMessage;
-import org.thoughtcrime.securesms.mms.OutgoingRequestToActivatePaymentMessages;
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -1808,15 +1802,15 @@ public class MmsTable extends MessageTable {
         }
 
         if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return new OutgoingGroupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
+          return OutgoingMediaMessage.groupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
         } else if (Types.isExpirationTimerUpdate(outboxType)) {
-          return new OutgoingExpirationUpdateMessage(recipient, timestamp, expiresIn);
+          return OutgoingMediaMessage.expirationUpdateMessage(recipient, timestamp, expiresIn);
         } else if (Types.isPaymentsNotification(outboxType)) {
-          return new OutgoingPaymentsNotificationMessage(recipient, Objects.requireNonNull(body), timestamp, expiresIn);
+          return OutgoingMediaMessage.paymentNotificationMessage(recipient, Objects.requireNonNull(body), timestamp, expiresIn);
         } else if (Types.isPaymentsRequestToActivate(outboxType)) {
-          return new OutgoingRequestToActivatePaymentMessages(recipient, timestamp, expiresIn);
+          return OutgoingMediaMessage.requestToActivatePaymentsMessage(recipient, timestamp, expiresIn);
         } else if (Types.isPaymentsActivated(outboxType)) {
-          return new OutgoingPaymentsActivatedMessages(recipient, timestamp, expiresIn);
+          return OutgoingMediaMessage.paymentsActivatedMessage(recipient, timestamp, expiresIn);
         }
 
         GiftBadge giftBadge = null;
@@ -1841,11 +1835,8 @@ public class MmsTable extends MessageTable {
                                                                 mentions,
                                                                 networkFailures,
                                                                 mismatches,
-                                                                giftBadge);
-
-        if (Types.isSecureType(outboxType)) {
-          return new OutgoingSecureMediaMessage(message);
-        }
+                                                                giftBadge,
+                                                                Types.isSecureType(outboxType));
 
         return message;
       }
@@ -2237,14 +2228,13 @@ public class MmsTable extends MessageTable {
     if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
 
     if (message.isGroup()) {
-      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (OutgoingGroupUpdateMessage) message;
-      if (outgoingGroupUpdateMessage.isV2Group()) {
+      if (message.isV2Group()) {
         type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
-        if (outgoingGroupUpdateMessage.isJustAGroupLeave()) {
+        if (message.isJustAGroupLeave()) {
           type |= Types.GROUP_LEAVE_BIT;
         }
       } else {
-        MessageGroupContext.GroupV1Properties properties = outgoingGroupUpdateMessage.requireGroupV1Properties();
+        MessageGroupContext.GroupV1Properties properties = message.requireGroupV1Properties();
         if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
         else if (properties.isQuit())   type |= Types.GROUP_LEAVE_BIT;
       }
@@ -2336,13 +2326,11 @@ public class MmsTable extends MessageTable {
     long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), null, contentValues, insertListener, false, false);
 
     if (message.getRecipient().isGroup()) {
-      OutgoingGroupUpdateMessage outgoingGroupUpdateMessage = (message instanceof OutgoingGroupUpdateMessage) ? (OutgoingGroupUpdateMessage) message : null;
-
       GroupReceiptTable receiptDatabase = SignalDatabase.groupReceipts();
       Set<RecipientId>  members         = new HashSet<>();
 
-      if (outgoingGroupUpdateMessage != null && outgoingGroupUpdateMessage.isV2Group()) {
-        MessageGroupContext.GroupV2Properties groupV2Properties = outgoingGroupUpdateMessage.requireGroupV2Properties();
+      if (message.isGroupUpdate() && message.isV2Group()) {
+        MessageGroupContext.GroupV2Properties groupV2Properties = message.requireGroupV2Properties();
         members.addAll(Stream.of(groupV2Properties.getAllActivePendingAndRemovedMembers())
                              .distinct()
                              .map(uuid -> RecipientId.from(ServiceId.from(uuid)))
