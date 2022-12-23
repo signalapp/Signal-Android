@@ -290,6 +290,10 @@ public class MediaUtil {
     return (null != contentType) && contentType.startsWith("text/");
   }
 
+  public static boolean isDocType(String contentType) {
+    return (null != contentType) && contentType.startsWith("application/octet-stream");
+  }
+
   public static boolean isNonGifVideo(Media media) {
     return isVideo(media.getMimeType()) && !media.isVideoGif();
   }
