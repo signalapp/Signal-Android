@@ -18,6 +18,9 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
+import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobs.PushMediaSendJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
@@ -30,7 +33,7 @@ import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
 import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
-import org.thoughtcrime.securesms.mms.AttachmentManager
+import org.thoughtcrime.securesms.mms.DocumentSlide
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
@@ -43,9 +46,15 @@ import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.MessageUtil
+import org.witness.proofmode.ProofMode
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Collections
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 private val TAG = Log.tag(MediaSelectionRepository::class.java)
 
@@ -64,6 +73,37 @@ class MediaSelectionRepository(context: Context) {
 
       MediaValidator.filterMedia(context, populatedMedia, mediaConstraints, maxSelection, isStory)
     }.subscribeOn(Schedulers.io())
+  }
+
+  private fun createZipProof(proofHash: String): File {
+    var proofDir = ProofMode.getProofDir(context, proofHash)
+    var fileZip = makeProofZip(proofDir.absoluteFile)
+
+    Log.e("ZIP PATH", "zip path: $fileZip");
+
+    return fileZip
+
+  }
+
+  private fun makeProofZip(proofDirPath: File): File {
+    val outputZipFile = File(proofDirPath.path, proofDirPath.name + ".zip")
+    ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
+      proofDirPath.walkTopDown().forEach { file ->
+        val zipFileName = file.absolutePath.removePrefix(proofDirPath.absolutePath).removePrefix("/")
+        val entry = ZipEntry("$zipFileName${(if (file.isDirectory) "/" else "")}")
+        zos.putNextEntry(entry)
+        if (file.isFile) {
+          file.inputStream().copyTo(zos)
+        }
+      }
+
+      val keyEntry = ZipEntry("pubkey.asc");
+      zos.putNextEntry(keyEntry);
+      var publicKey = ProofMode.getPublicKey(context)
+      zos.write(publicKey.toByteArray())
+
+      return outputZipFile
+    }
   }
 
   /**
@@ -88,6 +128,8 @@ class MediaSelectionRepository(context: Context) {
     if (selectedMedia.isEmpty()) {
       throw IllegalStateException("No selected media!")
     }
+
+    val file = createZipProof(selectedMedia.first().proofHash)
 
     val isSendingToStories = singleContact?.isStory == true || contacts.any { it.isStory }
     val sentMediaQuality = if (isSendingToStories) SentMediaQuality.STANDARD else quality
@@ -134,6 +176,18 @@ class MediaSelectionRepository(context: Context) {
           )
         }
 
+        uploadRepository.startUpload(
+          MediaBuilder.buildMedia(
+            uri = requireNotNull(Uri.fromFile(file)),
+            mimeType = "application/octet-stream",
+            date = System.currentTimeMillis(),
+            size = java.lang.String.valueOf(file.length() / 1024).toLong(),
+            borderless = false,
+            videoGif = false
+          ),
+          singleRecipient
+        )
+
         val clippedVideosForStories: List<Media> = if (isSendingToStories) {
           updatedMedia.filter {
             Stories.MediaTransform.getSendRequirements(it) == Stories.MediaTransform.SendRequirements.REQUIRES_CLIP
@@ -147,7 +201,7 @@ class MediaSelectionRepository(context: Context) {
         uploadRepository.updateDisplayOrder(updatedMedia)
         uploadRepository.getPreUploadResults { uploadResults ->
           if (contacts.isNotEmpty()) {
-            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, isViewOnce, clippedVideosForStories)
+            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, isViewOnce, clippedVideosForStories, file)
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
           } else if (uploadResults.isNotEmpty()) {
@@ -230,10 +284,12 @@ class MediaSelectionRepository(context: Context) {
     preUploadResults: Collection<PreUploadResult>,
     mentions: List<Mention>,
     isViewOnce: Boolean,
-    storyClips: List<Media>
+    storyClips: List<Media>,
+    file: File
   ) {
     val nonStoryMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList(contacts.size)
     val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
+    val zipPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
     val storyClipMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList()
     val distributionListPreUploadSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
     val distributionListStoryClipsSentTimestamps: MutableMap<MediaKey, Long> = mutableMapOf()
@@ -251,11 +307,12 @@ class MediaSelectionRepository(context: Context) {
         isStory -> StoryType.STORY_WITH_REPLIES
         else -> StoryType.NONE
       }
-
+      val docSlide = DocumentSlide(context, Uri.fromFile(file), "application/octet-stream", java.lang.String.valueOf(file.length() / 1024).toLong(), file.name)
       val message = OutgoingMediaMessage(
         recipient,
         body,
-        emptyList(),
+//        emptyList(),
+        listOf(docSlide.asAttachment()),
         if (recipient.isDistributionList) distributionListPreUploadSentTimestamps.getOrPut(preUploadResults.first()) { System.currentTimeMillis() } else System.currentTimeMillis(),
         -1,
         if (isStory) 0 else TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
@@ -332,6 +389,9 @@ class MediaSelectionRepository(context: Context) {
     }
 
     if (nonStoryMessages.isNotEmpty()) {
+      storyPreUploadMessages.forEach { (preUploadResult, messages) ->
+        MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult), nonStoryMessages.isEmpty())
+      }
       Log.d(TAG, "Sending ${nonStoryMessages.size} preupload messages to chats")
       MessageSender.sendMediaBroadcast(
         context,

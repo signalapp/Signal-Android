@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
@@ -212,6 +213,8 @@ public class MediaUploadRepository {
       return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null), null, media.getTransformProperties().orElse(null)).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
+    } else if (MediaUtil.isDocType(media.getMimeType())) {
+      return new DocumentSlide(context,media.getUri(),"application/octet-stream", media.getSize(), media.getUri().toString()).asAttachment();
     } else {
       throw new AssertionError("Unexpected mimeType: " + media.getMimeType());
     }

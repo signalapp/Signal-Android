@@ -248,9 +248,9 @@ public class AttachmentManager {
                                             final int width,
                                             final int height)
   {
-    if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+//    if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
       inflateStub();
-    }
+//    }
 
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
