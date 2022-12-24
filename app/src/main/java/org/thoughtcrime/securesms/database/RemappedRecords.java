@@ -20,7 +20,7 @@ import java.util.Set;
  *
  * There should be very few of these, so we keep them in a fast, lazily-loaded memory cache.
  *
- * One important thing to note is that this class will often be accesses inside of database
+ * One important thing to note is that this class will often be accessed inside of database
  * transactions. As a result, it cannot attempt to acquire a database lock while holding a
  * separate lock. Instead, we use the database lock itself as a locking mechanism.
  */

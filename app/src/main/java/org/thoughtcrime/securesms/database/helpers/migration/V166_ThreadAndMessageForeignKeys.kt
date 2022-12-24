@@ -23,7 +23,7 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
     // Some crashes we were seeing indicated that we may have been running this migration twice on some unlucky devices, likely due
     // to some gaps that were left between some transactions during the upgrade path.
     if (!SqlUtil.columnExists(db, "thread", "thread_recipient_id")) {
-      Log.w(TAG, "Migration must have already run! Skipping.")
+      Log.w(TAG, "Migration must have already run! Skipping.", true)
       return
     }
 
@@ -63,7 +63,7 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
       while (cursor.moveToNext()) {
         val recipientId = cursor.requireLong("thread_recipient_id")
         val count = cursor.requireLong("thread_count")
-        Log.w(TAG, "There were $count threads for RecipientId::$recipientId. Merging.")
+        Log.w(TAG, "There were $count threads for RecipientId::$recipientId. Merging.", true)
 
         val threads: List<ThreadInfo> = getThreadsByRecipientId(db, cursor.requireLong("thread_recipient_id"))
         mergeThreads(db, threads)
@@ -111,6 +111,14 @@ object V166_ThreadAndMessageForeignKeys : SignalDatabaseMigration {
       .values("thread_id" to primaryId)
       .where("thread_id = ?", secondaryId)
       .run()
+
+    // We're dealing with threads that exist, so we don't need to remap old_ids
+
+    val count = db.update("remapped_threads")
+      .values("new_id" to primaryId)
+      .where("new_id = ?", secondaryId)
+      .run()
+    Log.w(TAG, "Remapped $count remapped_threads new_ids from $secondaryId to $primaryId", true)
 
     db.delete("thread")
       .where("_id = ?", secondaryId)

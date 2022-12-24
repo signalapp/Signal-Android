@@ -3,6 +3,8 @@ package org.thoughtcrime.securesms.database
 import android.content.Context
 import android.database.Cursor
 import androidx.core.content.contentValuesOf
+import org.signal.core.util.delete
+import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
 import org.signal.core.util.select
@@ -19,6 +21,8 @@ import java.util.HashMap
 class RemappedRecordTables internal constructor(context: Context?, databaseHelper: SignalDatabase?) : DatabaseTable(context, databaseHelper) {
 
   companion object {
+    val TAG = Log.tag(RemappedRecordTables::class.java)
+
     val CREATE_TABLE = arrayOf(Recipients.CREATE_TABLE, Threads.CREATE_TABLE)
   }
 
@@ -51,6 +55,8 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   }
 
   fun getAllRecipientMappings(): Map<RecipientId, RecipientId> {
+    clearInvalidRecipientMappings()
+
     val recipientMap: MutableMap<RecipientId, RecipientId> = HashMap()
 
     readableDatabase.withinTransaction { db ->
@@ -66,6 +72,8 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   }
 
   fun getAllThreadMappings(): Map<Long, Long> {
+    clearInvalidThreadMappings()
+
     val threadMap: MutableMap<Long, Long> = HashMap()
 
     readableDatabase.withinTransaction { db ->
@@ -87,6 +95,7 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   }
 
   fun getAllRecipients(): Cursor {
+    clearInvalidRecipientMappings()
     return readableDatabase
       .select()
       .from(Recipients.TABLE_NAME)
@@ -94,6 +103,7 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
   }
 
   fun getAllThreads(): Cursor {
+    clearInvalidThreadMappings()
     return readableDatabase
       .select()
       .from(Threads.TABLE_NAME)
@@ -118,6 +128,34 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
       NEW_ID to mapping.newId
     )
     databaseHelper.signalWritableDatabase.insert(table, null, values)
+  }
+
+  /**
+   * The old_id should never exist -- this class is intended to remap from IDs that were deleted.
+   */
+  private fun clearInvalidRecipientMappings() {
+    val count = writableDatabase
+      .delete(Recipients.TABLE_NAME)
+      .where("$OLD_ID IN (SELECT ${RecipientTable.ID} FROM ${RecipientTable.TABLE_NAME})")
+      .run()
+
+    if (count > 0) {
+      Log.w(TAG, "Deleted $count invalid recipient mappings!", true)
+    }
+  }
+
+  /**
+   * The old_id should never exist -- this class is intended to remap from IDs that were deleted.
+   */
+  private fun clearInvalidThreadMappings() {
+    val count = writableDatabase
+      .delete(Threads.TABLE_NAME)
+      .where("$OLD_ID IN (SELECT ${ThreadTable.ID} FROM ${ThreadTable.TABLE_NAME})")
+      .run()
+
+    if (count > 0) {
+      Log.w(TAG, "Deleted $count invalid recipient mappings!", true)
+    }
   }
 
   private class Mapping(val oldId: Long, val newId: Long)
