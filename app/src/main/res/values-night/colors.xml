@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<resources>
+    <color name="text_primary_color">@color/core_white</color>
+    <color name="rounded_background">#2e2e2e</color>
+</resources>

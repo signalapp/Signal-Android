@@ -32,6 +32,7 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
   override fun bindAdapter(adapter: MappingAdapter) {
     adapter.registerFactory(BioPreference::class.java, LayoutFactory(::BioPreferenceViewHolder, R.layout.bio_preference_item))
     adapter.registerFactory(PaymentsPreference::class.java, LayoutFactory(::PaymentsPreferenceViewHolder, R.layout.dsl_payments_preference))
+    adapter.registerFactory(ProofModePreference::class.java, LayoutFactory(::ProofModePreferenceViewHolder, R.layout.dsl_proof_mode_preference))
     adapter.registerFactory(SubscriptionPreference::class.java, LayoutFactory(::SubscriptionPreferenceViewHolder, R.layout.dsl_preference_item))
 
     viewModel.state.observe(viewLifecycleOwner) { state ->
@@ -151,6 +152,16 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
         dividerPref()
       }
 
+      customPref(
+        ProofModePreference(
+          unreadCount = state.unreadPaymentsCount
+        ) {
+          findNavController().safeNavigate(R.id.action_appSettingsFragment_to_proofModeFragment)
+        }
+      )
+
+      dividerPref()
+
       clickPref(
         title = DSLSettingsText.from(R.string.preferences__help),
         icon = DSLSettingsIcon.from(R.drawable.ic_help_24),
@@ -266,11 +277,35 @@ class AppSettingsFragment : DSLSettingsFragment(R.string.text_secure_normal__men
     }
   }
 
+  private class ProofModePreference(val unreadCount: Int, val onClick: () -> Unit) : PreferenceModel<ProofModePreference>() {
+    override fun areContentsTheSame(newItem: ProofModePreference): Boolean {
+      return super.areContentsTheSame(newItem) && unreadCount == newItem.unreadCount
+    }
+
+    override fun areItemsTheSame(newItem: ProofModePreference): Boolean {
+      return true
+    }
+  }
+
   private class PaymentsPreferenceViewHolder(itemView: View) : MappingViewHolder<PaymentsPreference>(itemView) {
 
     private val unreadCountView: TextView = itemView.findViewById(R.id.unread_indicator)
 
     override fun bind(model: PaymentsPreference) {
+      unreadCountView.text = model.unreadCount.toString()
+      unreadCountView.visibility = if (model.unreadCount > 0) View.VISIBLE else View.GONE
+
+      itemView.setOnClickListener {
+        model.onClick()
+      }
+    }
+  }
+
+  private class ProofModePreferenceViewHolder(itemView: View) : MappingViewHolder<ProofModePreference>(itemView) {
+
+    private val unreadCountView: TextView = itemView.findViewById(R.id.unread_indicator)
+
+    override fun bind(model: ProofModePreference) {
       unreadCountView.text = model.unreadCount.toString()
       unreadCountView.visibility = if (model.unreadCount > 0) View.VISIBLE else View.GONE
 

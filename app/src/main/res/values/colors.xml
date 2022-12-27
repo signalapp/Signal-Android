@@ -55,4 +55,7 @@
     <color name="storage_color_files">#ffA23474</color>
     <color name="conversation_list_archive_background_start">@color/signal_colorPrimary</color>
     <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
+
+    <color name="text_primary_color">@color/core_black</color>
+    <color name="rounded_background">@color/core_grey_50</color>
 </resources>
