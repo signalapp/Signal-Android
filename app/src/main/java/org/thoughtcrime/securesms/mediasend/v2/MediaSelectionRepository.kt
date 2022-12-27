@@ -75,6 +75,13 @@ class MediaSelectionRepository(context: Context) {
   }
 
   private fun createZipProof(proofHash: String): File {
+    var proofDeviceIds = true; //requires additional permission
+    var proofLocation = true; //requires additional permission
+    var proofNetwork = true; //requires additional permission
+    var proofNotary = true; //contacts third-party services - opentimestamps, google safetynet
+
+    ProofMode.setProofPoints(context, proofDeviceIds, proofLocation, proofNetwork, proofNotary);
+
     var proofDir = ProofMode.getProofDir(context, proofHash)
     var fileZip = makeProofZip(proofDir.absoluteFile)
 
