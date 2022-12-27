@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.mediasend.v2
 import android.content.Context
 import android.net.Uri
 import androidx.annotation.WorkerThread
+import androidx.preference.PreferenceManager
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
@@ -27,10 +28,10 @@ import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.MediaTransform
 import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
+import org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED
 import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
-import org.thoughtcrime.securesms.mms.AttachmentManager
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
 import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
@@ -42,10 +43,17 @@ import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
+import org.witness.proofmode.ProofMode
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 import java.util.Collections
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import java.util.zip.ZipEntry
+import java.util.zip.ZipOutputStream
 
 private val TAG = Log.tag(MediaSelectionRepository::class.java)
 
@@ -64,6 +72,44 @@ class MediaSelectionRepository(context: Context) {
 
       MediaValidator.filterMedia(context, populatedMedia, mediaConstraints, maxSelection, isStory)
     }.subscribeOn(Schedulers.io())
+  }
+
+  private fun createZipProof(proofHash: String): File {
+    var proofDeviceIds = true; //requires additional permission
+    var proofLocation = true; //requires additional permission
+    var proofNetwork = true; //requires additional permission
+    var proofNotary = true; //contacts third-party services - opentimestamps, google safetynet
+
+    ProofMode.setProofPoints(context, proofDeviceIds, proofLocation, proofNetwork, proofNotary);
+
+    var proofDir = ProofMode.getProofDir(context, proofHash)
+    var fileZip = makeProofZip(proofDir.absoluteFile)
+
+    Log.e("ZIP PATH", "zip path: $fileZip");
+
+    return fileZip
+
+  }
+
+  private fun makeProofZip(proofDirPath: File): File {
+    val outputZipFile = File(proofDirPath.path, proofDirPath.name + ".zip")
+    ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
+      proofDirPath.walkTopDown().forEach { file ->
+        val zipFileName = file.absolutePath.removePrefix(proofDirPath.absolutePath).removePrefix("/")
+        val entry = ZipEntry("$zipFileName${(if (file.isDirectory) "/" else "")}")
+        zos.putNextEntry(entry)
+        if (file.isFile) {
+          file.inputStream().copyTo(zos)
+        }
+      }
+
+      val keyEntry = ZipEntry("pubkey.asc");
+      zos.putNextEntry(keyEntry);
+      var publicKey = ProofMode.getPublicKey(context)
+      zos.write(publicKey.toByteArray())
+
+      return outputZipFile
+    }
   }
 
   /**
@@ -89,14 +135,37 @@ class MediaSelectionRepository(context: Context) {
       throw IllegalStateException("No selected media!")
     }
 
+    val newMediaList = arrayListOf<Media>()
+    newMediaList.addAll(selectedMedia)
+    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+      val file = createZipProof(selectedMedia.first().proofHash)
+      newMediaList.add(
+        Media(
+          requireNotNull(Uri.fromFile(file)),
+          MediaUtil.OCTET,
+          "",
+          System.currentTimeMillis(),
+          0,
+          0,
+          java.lang.String.valueOf(file.length() / 1024).toLong(),
+          0,
+          false,
+          false,
+          Optional.of(Media.ALL_MEDIA_BUCKET_ID),
+          Optional.empty(),
+          Optional.empty()
+        )
+      )
+    }
+
     val isSendingToStories = singleContact?.isStory == true || contacts.any { it.isStory }
     val sentMediaQuality = if (isSendingToStories) SentMediaQuality.STANDARD else quality
 
     return Maybe.create<MediaSendActivityResult> { emitter ->
       val trimmedBody: String = if (isViewOnce) "" else getTruncatedBody(message?.toString()?.trim()) ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
-      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, sentMediaQuality)
-      val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, selectedMedia, modelsToTransform)
+      val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(newMediaList, stateMap, sentMediaQuality)
+      val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, newMediaList, modelsToTransform)
       val updatedMedia = oldToNewMediaMap.values.toList()
 
       for (media in updatedMedia) {
@@ -230,10 +299,11 @@ class MediaSelectionRepository(context: Context) {
     preUploadResults: Collection<PreUploadResult>,
     mentions: List<Mention>,
     isViewOnce: Boolean,
-    storyClips: List<Media>
+    storyClips: List<Media>,
   ) {
     val nonStoryMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList(contacts.size)
     val storyPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
+    val zipPreUploadMessages: MutableMap<PreUploadResult, MutableList<OutgoingSecureMediaMessage>> = mutableMapOf()
     val storyClipMessages: MutableList<OutgoingSecureMediaMessage> = ArrayList()
     val distributionListPreUploadSentTimestamps: MutableMap<PreUploadResult, Long> = mutableMapOf()
     val distributionListStoryClipsSentTimestamps: MutableMap<MediaKey, Long> = mutableMapOf()
@@ -251,7 +321,6 @@ class MediaSelectionRepository(context: Context) {
         isStory -> StoryType.STORY_WITH_REPLIES
         else -> StoryType.NONE
       }
-
       val message = OutgoingMediaMessage(
         recipient,
         body,
@@ -262,6 +331,27 @@ class MediaSelectionRepository(context: Context) {
         isViewOnce,
         ThreadTable.DistributionTypes.DEFAULT,
         storyType,
+        null,
+        false,
+        null,
+        emptyList(),
+        emptyList(),
+        mentions,
+        mutableSetOf(),
+        mutableSetOf(),
+        null
+      )
+
+      val emptyTextMessage = OutgoingMediaMessage(
+        message.recipient,
+        "",
+        emptyList(),
+        message.sentTimeMillis,
+        -1,
+        message.expiresIn,
+        message.isViewOnce,
+        message.distributionType,
+        message.storyType,
         null,
         false,
         null,
@@ -323,6 +413,27 @@ class MediaSelectionRepository(context: Context) {
           ThreadUtil.sleep(5)
         }
       } else {
+        var isChanged = false
+        if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+          preUploadResults.filterNot { result -> storyClips.any { it.uri == result.media.uri } }.forEach {
+            val list = zipPreUploadMessages[it] ?: mutableListOf()
+            list.add(
+              OutgoingSecureMediaMessage(if (isChanged) message else emptyTextMessage).withSentTimestamp(
+                if (recipient.isDistributionList) {
+                  distributionListPreUploadSentTimestamps.getOrPut(it) { System.currentTimeMillis() }
+                } else {
+                  System.currentTimeMillis()
+                }
+              )
+            )
+            isChanged = true
+            zipPreUploadMessages[it] = list
+
+            // XXX We must do this to avoid sending out messages to the same recipient with the same
+            //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
+            ThreadUtil.sleep(5)
+          }
+        }
         nonStoryMessages.add(OutgoingSecureMediaMessage(message))
 
         // XXX We must do this to avoid sending out messages to the same recipient with the same
@@ -332,13 +443,19 @@ class MediaSelectionRepository(context: Context) {
     }
 
     if (nonStoryMessages.isNotEmpty()) {
-      Log.d(TAG, "Sending ${nonStoryMessages.size} preupload messages to chats")
-      MessageSender.sendMediaBroadcast(
-        context,
-        nonStoryMessages,
-        preUploadResults,
-        true
-      )
+      if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
+        zipPreUploadMessages.forEach { (preUploadResult, messages) ->
+          MessageSender.sendMediaBroadcast(context, messages, Collections.singleton(preUploadResult), true)
+        }
+      } else {
+        Log.d(TAG, "Sending ${nonStoryMessages.size} preupload messages to chats")
+        MessageSender.sendMediaBroadcast(
+          context,
+          nonStoryMessages,
+          preUploadResults,
+          true
+        )
+      }
     }
 
     if (storyPreUploadMessages.isNotEmpty()) {

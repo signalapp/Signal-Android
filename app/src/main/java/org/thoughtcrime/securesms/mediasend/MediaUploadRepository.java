@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
+import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.TextSlide;
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.sms.MessageSender.PreUploadResult;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
+import java.text.DateFormat;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -37,11 +39,11 @@ import java.util.concurrent.Executor;
 /**
  * Manages the proactive upload of media during the selection process. Upload/cancel operations
  * need to be serialized, because they're asynchronous operations that depend on ordered completion.
- *
+ * <p>
  * For example, if we begin upload of a {@link Media) but then immediately cancel it (before it was
  * enqueued on the {@link JobManager}), we need to wait until we have the jobId to cancel. This
  * class manages everything by using a single thread executor.
- *
+ * <p>
  * This also means that unlike most repositories, the class itself is stateful. Keep that in mind
  * when using it.
  */
@@ -173,7 +175,7 @@ public class MediaUploadRepository {
       if (result != null) {
         db.updateAttachmentCaption(result.getAttachmentId(), updated.getCaption().orElse(null));
       } else {
-        Log.w(TAG,"When updating captions, no pre-upload result could be found for media with URI: " + updated.getUri());
+        Log.w(TAG, "When updating captions, no pre-upload result could be found for media with URI: " + updated.getUri());
       }
     }
   }
@@ -212,6 +214,9 @@ public class MediaUploadRepository {
       return new ImageSlide(context, media.getUri(), media.getMimeType(), media.getSize(), media.getWidth(), media.getHeight(), media.isBorderless(), media.getCaption().orElse(null), null, media.getTransformProperties().orElse(null)).asAttachment();
     } else if (MediaUtil.isTextType(media.getMimeType())) {
       return new TextSlide(context, media.getUri(), null, media.getSize()).asAttachment();
+    } else if (MediaUtil.isDocType(media.getMimeType())) {
+      String name = DateFormat.getInstance().format(media.getDate());
+      return new DocumentSlide(context, media.getUri(), "application/octet-stream", media.getSize(), name).asAttachment();
     } else {
       throw new AssertionError("Unexpected mimeType: " + media.getMimeType());
     }

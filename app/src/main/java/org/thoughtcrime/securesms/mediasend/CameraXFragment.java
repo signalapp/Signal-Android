@@ -38,6 +38,7 @@ import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.preference.PreferenceManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.util.Executors;
@@ -353,21 +354,21 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       cameraScreenBrightnessController.onCameraFlashChanged(mode == ImageCapture.FLASH_MODE_ON);
     });
 
-    requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
+    PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
     proofButton.setOnClickListener(view -> {
-      boolean isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, true);
+      boolean isProofEnabled = PreferenceManager.getDefaultSharedPreferences(requireActivity()).getBoolean(IS_PROOF_ENABLED, true);
       if (isProofEnabled) {
         proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock_open_24));
-        requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, false).apply();
+        PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit().putBoolean(IS_PROOF_ENABLED, false).apply();
       } else {
         proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock));
-        requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
+        PreferenceManager.getDefaultSharedPreferences(requireActivity()).edit().putBoolean(IS_PROOF_ENABLED, true).apply();
       }
     });
 
     galleryButton.setOnClickListener(
         v ->  {
-          if (!requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, true)) {
+          if (!PreferenceManager.getDefaultSharedPreferences(requireActivity()).getBoolean(IS_PROOF_ENABLED, true)) {
             controller.onGalleryClicked();
           }
         }
@@ -569,7 +570,7 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
         flashButton.setAutoFlashEnabled(cameraController.getImageCaptureFlashMode() >= ImageCapture.FLASH_MODE_AUTO);
         flashButton.setFlash(cameraController.getImageCaptureFlashMode());
         proofButton.setVisibility(View.VISIBLE);
-        if (requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)) {
+        if (PreferenceManager.getDefaultSharedPreferences(requireActivity()).getBoolean(IS_PROOF_ENABLED, true)) {
           proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock));
         } else {
           proofButton.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_lock_open_24));

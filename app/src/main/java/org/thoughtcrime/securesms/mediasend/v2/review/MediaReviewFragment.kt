@@ -5,7 +5,6 @@ import android.animation.AnimatorSet
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
-import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
@@ -21,6 +20,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -44,12 +44,7 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
-import org.thoughtcrime.securesms.mms.AttachmentManager
-import org.thoughtcrime.securesms.mms.AttachmentManager.AttachmentListener
-import org.thoughtcrime.securesms.mms.GlideApp
-import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.mms.SlideFactory
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
@@ -74,7 +69,7 @@ import java.util.zip.ZipOutputStream
 /**
  * IF WE WANT TO ADD ABILITY TO CROP/ROTATE/DRAW ON PHOTO - SHOULD UNCOMMENT AND DELETE COLOR FILTERS
  */
-class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), AttachmentListener {
+class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -100,7 +95,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
   private lateinit var controlsShade: View
   private lateinit var progress: ProgressBar
   private lateinit var progressWrapper: TouchInterceptingFrameLayout
-  private lateinit var attachmentManager: AttachmentManager
 
   private val navigator = MediaSelectionNavigator(
     toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment,
@@ -151,7 +145,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
     }
 
     pager.adapter = pagerAdapter
-    val isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)
+    val isProofEnabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)
     drawToolButton.setOnClickListener {
       if (!isProofEnabled) {
         sharedViewModel.sendCommand(HudCommand.StartDraw)
@@ -191,27 +185,12 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
       }
     }
 
-    attachmentManager = AttachmentManager(requireContext(), view, this)
-
     val storiesLauncher = registerForActivityResult(storiesContract) { keys ->
       if (keys.isNotEmpty()) {
         performSend(keys)
       }
     }
     sendButton.setOnClickListener {
-
-
-      /**
-       * HOW TO CREATE ZIP
-       */
-      sharedViewModel.state.value?.focusedMedia?.let {
-        val file = createZipProof(it.proofHash)
-
-
-//        attachmentManager.setMedia(GlideApp.with(this), Uri.fromFile(file), SlideFactory.MediaType.DOCUMENT, MediaConstraints.getPushMediaConstraints(), 0, 0)
-      }
-
-
       val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
 
       if (sharedViewModel.isContactSelectionRequired) {
@@ -343,7 +322,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
     var proofDir = ProofMode.getProofDir(requireContext(), proofHash)
     var fileZip = makeProofZip(proofDir.absoluteFile)
 
-    Log.e("ZIP PATH", "zip path: $fileZip");
+    Log.e("ZIP PATH", "zip path: $fileZip")
+
 
     return fileZip
 
@@ -369,28 +349,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
       return outputZipFile
     }
   }
-
-  /*private fun sendMediaMessage(result: MediaSendActivityResult) {
-    val thread: Long = this.threadId
-    val expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds().toLong())
-    val quote: QuoteModel? = if (result.isViewOnce) null else inputPanel.getQuote().orElse(null)
-    val mentions: List<Mention> = ArrayList(result.mentions)
-    val message = OutgoingMediaMessage(recipient.get(), SlideDeck(), result.body, System.currentTimeMillis(), -1, expiresIn, result.isViewOnce, distributionType, result.storyType, null, false, quote, emptyList(), emptyList(), mentions, null)
-    val secureMessage: OutgoingMediaMessage = OutgoingSecureMediaMessage(message)
-    val context = requireContext().applicationContext
-    ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread)
-    inputPanel.clearQuote()
-    attachmentManager.clear(glideRequests, false)
-    silentlySetComposeText("")
-    val id: Long = fragment.stageOutgoingMessage(secureMessage)
-    SimpleTask.run({
-      val resultId = MessageSender.sendPushWithPreUploadedMedia(context, secureMessage, result.preUploadResults, thread, null)
-      val deleted = attachments.deleteAbandonedPreuploadedAttachments()
-      Log.i(ConversationParentFragment.TAG, "Deleted $deleted abandoned attachments.")
-      resultId
-    }) { threadId: Long? -> this.sendComplete(threadId) }
-  }*/
-
 
   override fun onResume() {
     super.onResume()
@@ -504,7 +462,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
     animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
-    if (requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)) {
+    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
       animators.addAll(computeLockButtonAnimators(state))
     }
     animators.addAll(computeDrawToolButtonAnimators(state))
@@ -680,13 +638,5 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Attachm
     fun onSendError(error: Throwable)
     fun onNoMediaSelected()
     fun onPopFromReview()
-  }
-
-  override fun onAttachmentChanged() {
-    TODO("Not yet implemented")
-  }
-
-  override fun onLocationRemoved() {
-    TODO("Not yet implemented")
   }
 }
