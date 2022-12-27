@@ -44,7 +44,6 @@ class MediaCaptureViewModel(private val repository: MediaCaptureRepository) : Vi
   }
 
   private fun onMediaRendered(media: Media) {
-    Log.e("MEDIAA:", "${media.proofHash}")
     internalEvents.postValue(MediaCaptureEvent.MediaCaptureRendered(media))
   }
 

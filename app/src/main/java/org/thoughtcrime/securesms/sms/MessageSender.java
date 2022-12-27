@@ -333,7 +333,7 @@ public class MessageSender {
   {
     Log.i(TAG, "Sending media broadcast (overwrite: " + overwritePreUploadMessageIds + ") to " + Stream.of(messages).map(m -> m.getRecipient().getId()).toList());
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
-//    Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
+    Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
     JobManager      jobManager         = ApplicationDependencies.getJobManager();
     AttachmentTable attachmentDatabase = SignalDatabase.attachments();

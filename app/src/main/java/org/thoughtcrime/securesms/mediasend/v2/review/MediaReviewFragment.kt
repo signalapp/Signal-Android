@@ -20,6 +20,7 @@ import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -144,7 +145,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     }
 
     pager.adapter = pagerAdapter
-    val isProofEnabled = requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)
+    val isProofEnabled = PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)
     drawToolButton.setOnClickListener {
       if (!isProofEnabled) {
         sharedViewModel.sendCommand(HudCommand.StartDraw)
@@ -190,16 +191,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       }
     }
     sendButton.setOnClickListener {
-
-
-      /**
-       * HOW TO CREATE ZIP
-       */
-      sharedViewModel.state.value?.focusedMedia?.let {
-        val file = createZipProof(it.proofHash)
-      }
-
-
       val viewOnce: Boolean = sharedViewModel.state.value?.viewOnceToggleState == MediaSelectionState.ViewOnceToggleState.ONCE
 
       if (sharedViewModel.isContactSelectionRequired) {
@@ -471,7 +462,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     animators.addAll(computeSaveButtonAnimators(state))
     animators.addAll(computeQualityButtonAnimators(state))
     animators.addAll(computeCropAndRotateButtonAnimators(state))
-    if (requireActivity().getPreferences(Context.MODE_PRIVATE).getBoolean(IS_PROOF_ENABLED, false)) {
+    if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
       animators.addAll(computeLockButtonAnimators(state))
     }
     animators.addAll(computeDrawToolButtonAnimators(state))

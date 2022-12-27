@@ -248,20 +248,15 @@ public class AttachmentManager {
                                             final int width,
                                             final int height)
   {
-//    if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
-      inflateStub();
-//    }
-
+    inflateStub();
     final SettableFuture<Boolean> result = new SettableFuture<>();
 
     new AsyncTask<Void, Void, Slide>() {
       @Override
       protected void onPreExecute() {
-        if (!PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
-          thumbnail.clear(glideRequests);
-          thumbnail.showProgressSpinner();
+        thumbnail.clear(glideRequests);
+        thumbnail.showProgressSpinner();
         attachmentViewStub.get().setVisibility(View.VISIBLE);
-        }
       }
 
       @Override
