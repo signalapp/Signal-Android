@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.MediaTransform
 import org.thoughtcrime.securesms.mediasend.MediaUploadRepository
 import org.thoughtcrime.securesms.mediasend.ProofConstants.IS_PROOF_ENABLED
+import org.thoughtcrime.securesms.mediasend.ProofModeUtil
 import org.thoughtcrime.securesms.mediasend.SentMediaQualityTransform
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
 import org.thoughtcrime.securesms.mediasend.VideoTrimTransform
@@ -74,44 +75,6 @@ class MediaSelectionRepository(context: Context) {
     }.subscribeOn(Schedulers.io())
   }
 
-  private fun createZipProof(proofHash: String): File {
-    var proofDeviceIds = true; //requires additional permission
-    var proofLocation = true; //requires additional permission
-    var proofNetwork = true; //requires additional permission
-    var proofNotary = true; //contacts third-party services - opentimestamps, google safetynet
-
-    ProofMode.setProofPoints(context, proofDeviceIds, proofLocation, proofNetwork, proofNotary);
-
-    var proofDir = ProofMode.getProofDir(context, proofHash)
-    var fileZip = makeProofZip(proofDir.absoluteFile)
-
-    Log.e("ZIP PATH", "zip path: $fileZip");
-
-    return fileZip
-
-  }
-
-  private fun makeProofZip(proofDirPath: File): File {
-    val outputZipFile = File(proofDirPath.path, proofDirPath.name + ".zip")
-    ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
-      proofDirPath.walkTopDown().forEach { file ->
-        val zipFileName = file.absolutePath.removePrefix(proofDirPath.absolutePath).removePrefix("/")
-        val entry = ZipEntry("$zipFileName${(if (file.isDirectory) "/" else "")}")
-        zos.putNextEntry(entry)
-        if (file.isFile) {
-          file.inputStream().copyTo(zos)
-        }
-      }
-
-      val keyEntry = ZipEntry("pubkey.asc");
-      zos.putNextEntry(keyEntry);
-      var publicKey = ProofMode.getPublicKey(context)
-      zos.write(publicKey.toByteArray())
-
-      return outputZipFile
-    }
-  }
-
   /**
    * Tries to send the selected media, performing proper transformations for edited images and videos.
    */
@@ -138,7 +101,7 @@ class MediaSelectionRepository(context: Context) {
     val newMediaList = arrayListOf<Media>()
     newMediaList.addAll(selectedMedia)
     if (PreferenceManager.getDefaultSharedPreferences(context).getBoolean(IS_PROOF_ENABLED, true)) {
-      val file = createZipProof(selectedMedia.first().proofHash)
+      val file = ProofModeUtil.createZipProof(selectedMedia.first().proofHash, context)
       newMediaList.add(
         Media(
           requireNotNull(Uri.fromFile(file)),

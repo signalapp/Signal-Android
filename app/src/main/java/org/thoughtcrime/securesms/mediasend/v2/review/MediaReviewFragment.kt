@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.animation.Animator
 import android.animation.AnimatorSet
-import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
@@ -28,7 +27,6 @@ import app.cash.exhaustive.Exhaustive
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.concurrent.SimpleTask
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
@@ -55,12 +53,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.views.TouchInterceptingFrameLayout
 import org.thoughtcrime.securesms.util.visible
-import org.witness.proofmode.ProofMode
-import java.io.BufferedOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.util.zip.ZipEntry
-import java.util.zip.ZipOutputStream
 
 /**
  * Allows the user to view and edit selected media.
@@ -316,38 +308,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
         }
       }
     )
-  }
-
-  private fun createZipProof(proofHash: String): File {
-    var proofDir = ProofMode.getProofDir(requireContext(), proofHash)
-    var fileZip = makeProofZip(proofDir.absoluteFile)
-
-    Log.e("ZIP PATH", "zip path: $fileZip")
-
-
-    return fileZip
-
-  }
-
-  private fun makeProofZip(proofDirPath: File): File {
-    val outputZipFile = File(proofDirPath.path, proofDirPath.name + ".zip")
-    ZipOutputStream(BufferedOutputStream(FileOutputStream(outputZipFile))).use { zos ->
-      proofDirPath.walkTopDown().forEach { file ->
-        val zipFileName = file.absolutePath.removePrefix(proofDirPath.absolutePath).removePrefix("/")
-        val entry = ZipEntry("$zipFileName${(if (file.isDirectory) "/" else "")}")
-        zos.putNextEntry(entry)
-        if (file.isFile) {
-          file.inputStream().copyTo(zos)
-        }
-      }
-
-      val keyEntry = ZipEntry("pubkey.asc");
-      zos.putNextEntry(keyEntry);
-      var publicKey = ProofMode.getPublicKey(requireContext())
-      zos.write(publicKey.toByteArray())
-
-      return outputZipFile
-    }
   }
 
   override fun onResume() {
