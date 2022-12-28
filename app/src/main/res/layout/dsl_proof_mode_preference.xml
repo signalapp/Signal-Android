@@ -17,7 +17,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/core_black"
+        app:tint="@color/signal_icon_tint_primary"
         app:srcCompat="@drawable/ic_menu_lock_dark" />
 
     <TextView

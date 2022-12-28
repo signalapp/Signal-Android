@@ -57,5 +57,5 @@
     <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
 
     <color name="text_primary_color">@color/core_black</color>
-    <color name="rounded_background">@color/core_grey_50</color>
+    <color name="rounded_background">@color/grey_300</color>
 </resources>

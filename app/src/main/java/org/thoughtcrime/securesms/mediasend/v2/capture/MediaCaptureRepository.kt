@@ -12,6 +12,7 @@ import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
+import org.thoughtcrime.securesms.mediasend.ProofModeUtil
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.StorageUtil
@@ -76,9 +77,6 @@ class MediaCaptureRepository(context: Context) {
       )
 
       if (media != null) {
-        //generate proof from nearly stored media
-        var proofHash = ProofMode.generateProof(context, media.uri);
-
         onMediaRendered(media)
       } else {
         onFailedToRender()
@@ -102,19 +100,10 @@ class MediaCaptureRepository(context: Context) {
         .withMimeType(mimeType)
         .createForSingleSessionOnDisk(context)
 
-      //generate proof from nearly stored media
-      val proofHash = ProofMode.generateProof(context, uri, byteArray, mimeType)
-      Log.e("PROOF render:", proofHash)
-
-      var proofDir = ProofMode.getProofDir(context, proofHash)
-
-      Log.e("PROOFDIR","proof local dir: $proofDir")
-
-
       Media(
         uri,
         mimeType,
-        proofHash,
+        ProofModeUtil.getProofHash(context, uri, byteArray, mimeType),
         System.currentTimeMillis(),
         width,
         height,
@@ -163,15 +152,13 @@ class MediaCaptureRepository(context: Context) {
           val height = CursorUtil.requireInt(cursor, getHeightColumn(orientation))
           val size = CursorUtil.requireLong(cursor, MediaStore.Images.Media.SIZE)
           val duration = if (!isImage) CursorUtil.requireInt(cursor, MediaStore.Video.Media.DURATION).toLong() else 0.toLong()
-          //generate proof from nearly stored media
-          var proofHash = ProofMode.generateProof(context, uri)
           media.add(
             MediaRepository.fixMimeType(
               context,
               Media(
                 uri,
                 mimetype,
-                proofHash,
+                "",
                 date,
                 width,
                 height,
