@@ -396,6 +396,7 @@ class MediaSelectionRepository(context: Context) {
             //     sentTimestamp. If we do this, they'll be considered dupes by the receiver.
             ThreadUtil.sleep(5)
           }
+          ProofModeUtil.clearLocalSettings(context)
         }
         nonStoryMessages.add(OutgoingSecureMediaMessage(message))
 

@@ -43,6 +43,27 @@ object ProofModeUtil {
     }
   }
 
+  fun setProofSettingsLocal(
+    context: Context,
+    proofDeviceIds: Boolean? = null,
+    proofLocation: Boolean? = null,
+    proofNetwork: Boolean? = null,
+    proofNotary: Boolean? = null
+  ) {
+    proofDeviceIds?.let {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_PHONE_ENABLED_LOCAL, it).apply()
+    }
+    proofLocation?.let {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_LOCATION_ENABLED_LOCAL, it).apply()
+    }
+    proofNetwork?.let {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_NETWORK_ENABLED_LOCAL, it).apply()
+    }
+    proofNotary?.let {
+      PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_NOTARY_ENABLED_LOCAL, it).apply()
+    }
+  }
+
   fun clearLocalSettings(context: Context) {
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_NOTARY_ENABLED_LOCAL, false).apply()
     PreferenceManager.getDefaultSharedPreferences(context).edit().putBoolean(IS_PROOF_LOCATION_ENABLED_LOCAL, false).apply()
@@ -96,6 +117,8 @@ object ProofModeUtil {
   }
 
   fun createZipProof(proofHash: String, context: Context): File {
+    settingsSetter(context)
+
     var proofDir = ProofMode.getProofDir(context, proofHash)
     var fileZip = makeProofZip(proofDir.absoluteFile, context)
 
