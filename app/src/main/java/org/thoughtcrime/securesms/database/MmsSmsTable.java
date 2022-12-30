@@ -62,37 +62,35 @@ import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static org.thoughtcrime.securesms.database.MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS;
-
 public class MmsSmsTable extends DatabaseTable {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(MmsSmsTable.class);
 
-  private static final String[] PROJECTION = { MessageTable.TABLE_NAME + "." + MessageTable.ID + " AS " + MmsSmsColumns.ID,
-                                               MmsSmsColumns.BODY,
-                                               MmsSmsColumns.TYPE,
-                                               MmsSmsColumns.THREAD_ID,
-                                               MmsSmsColumns.RECIPIENT_ID,
-                                               MmsSmsColumns.RECIPIENT_DEVICE_ID,
-                                               MmsSmsColumns.DATE_SENT,
-                                               MmsSmsColumns.DATE_RECEIVED,
-                                               MmsSmsColumns.DATE_SERVER,
+  private static final String[] PROJECTION = { MessageTable.TABLE_NAME + "." + MessageTable.ID + " AS " + MessageTable.ID,
+                                               MessageTable.BODY,
+                                               MessageTable.TYPE,
+                                               MessageTable.THREAD_ID,
+                                               MessageTable.RECIPIENT_ID,
+                                               MessageTable.RECIPIENT_DEVICE_ID,
+                                               MessageTable.DATE_SENT,
+                                               MessageTable.DATE_RECEIVED,
+                                               MessageTable.DATE_SERVER,
                                                MessageTable.MMS_MESSAGE_TYPE,
-                                               MmsSmsColumns.UNIDENTIFIED,
+                                               MessageTable.UNIDENTIFIED,
                                                MessageTable.MMS_CONTENT_LOCATION,
                                                MessageTable.MMS_TRANSACTION_ID,
                                                MessageTable.MMS_MESSAGE_SIZE,
                                                MessageTable.MMS_EXPIRY,
                                                MessageTable.MMS_STATUS,
-                                               MmsSmsColumns.DELIVERY_RECEIPT_COUNT,
-                                               MmsSmsColumns.READ_RECEIPT_COUNT,
-                                               MmsSmsColumns.MISMATCHED_IDENTITIES,
+                                               MessageTable.DELIVERY_RECEIPT_COUNT,
+                                               MessageTable.READ_RECEIPT_COUNT,
+                                               MessageTable.MISMATCHED_IDENTITIES,
                                                MessageTable.NETWORK_FAILURES,
-                                               MmsSmsColumns.SMS_SUBSCRIPTION_ID,
-                                               MmsSmsColumns.EXPIRES_IN,
-                                               MmsSmsColumns.EXPIRE_STARTED,
-                                               MmsSmsColumns.NOTIFIED,
+                                               MessageTable.SMS_SUBSCRIPTION_ID,
+                                               MessageTable.EXPIRES_IN,
+                                               MessageTable.EXPIRE_STARTED,
+                                               MessageTable.NOTIFIED,
                                                MessageTable.QUOTE_ID,
                                                MessageTable.QUOTE_AUTHOR,
                                                MessageTable.QUOTE_BODY,
@@ -102,21 +100,21 @@ public class MmsSmsTable extends DatabaseTable {
                                                MessageTable.SHARED_CONTACTS,
                                                MessageTable.LINK_PREVIEWS,
                                                MessageTable.VIEW_ONCE,
-                                               MmsSmsColumns.READ,
-                                               MmsSmsColumns.REACTIONS_UNREAD,
-                                               MmsSmsColumns.REACTIONS_LAST_SEEN,
-                                               MmsSmsColumns.REMOTE_DELETED,
+                                               MessageTable.READ,
+                                               MessageTable.REACTIONS_UNREAD,
+                                               MessageTable.REACTIONS_LAST_SEEN,
+                                               MessageTable.REMOTE_DELETED,
                                                MessageTable.MENTIONS_SELF,
-                                               MmsSmsColumns.NOTIFIED_TIMESTAMP,
-                                               MmsSmsColumns.VIEWED_RECEIPT_COUNT,
-                                               MmsSmsColumns.RECEIPT_TIMESTAMP,
+                                               MessageTable.NOTIFIED_TIMESTAMP,
+                                               MessageTable.VIEWED_RECEIPT_COUNT,
+                                               MessageTable.RECEIPT_TIMESTAMP,
                                                MessageTable.MESSAGE_RANGES,
                                                MessageTable.STORY_TYPE,
                                                MessageTable.PARENT_STORY_ID};
 
-  private static final String SNIPPET_QUERY = "SELECT " + MmsSmsColumns.ID + ", " + MmsSmsColumns.TYPE + ", " + MessageTable.DATE_RECEIVED + " FROM " + MessageTable.TABLE_NAME + " " +
-                                              "WHERE " + MmsSmsColumns.THREAD_ID + " = ? AND " + MessageTable.TYPE + " & " + GROUP_V2_LEAVE_BITS + " != " + GROUP_V2_LEAVE_BITS + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0 " +
-                                              "ORDER BY " + MmsSmsColumns.DATE_RECEIVED + " DESC " +
+  private static final String SNIPPET_QUERY = "SELECT " + MessageTable.ID + ", " + MessageTable.TYPE + ", " + MessageTable.DATE_RECEIVED + " FROM " + MessageTable.TABLE_NAME + " " +
+                                              "WHERE " + MessageTable.THREAD_ID + " = ? AND " + MessageTable.TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0 " +
+                                              "ORDER BY " + MessageTable.DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
   public MmsSmsTable(Context context, SignalDatabase databaseHelper) {
@@ -152,8 +150,8 @@ public class MmsSmsTable extends DatabaseTable {
 
   public int getMessagePositionOnOrAfterTimestamp(long threadId, long timestamp) {
     String[] projection = new String[] { "COUNT(*)" };
-    String   selection  = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
-                          MmsSmsColumns.DATE_RECEIVED + " >= " + timestamp + " AND " +
+    String   selection  = MessageTable.THREAD_ID + " = " + threadId + " AND " +
+                          MessageTable.DATE_RECEIVED + " >= " + timestamp + " AND " +
                           MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(projection, selection, null, null, false)) {
@@ -167,7 +165,7 @@ public class MmsSmsTable extends DatabaseTable {
   public @Nullable MessageRecord getMessageFor(long timestamp, RecipientId authorId) {
     Recipient author = Recipient.resolved(authorId);
 
-    try (Cursor cursor = queryTables(PROJECTION, MmsSmsColumns.DATE_SENT + " = " + timestamp, null, null, true)) {
+    try (Cursor cursor = queryTables(PROJECTION, MessageTable.DATE_SENT + " = " + timestamp, null, null, true)) {
       MmsSmsTable.Reader reader = readerFor(cursor);
 
       MessageRecord messageRecord;
@@ -196,8 +194,8 @@ public class MmsSmsTable extends DatabaseTable {
 
   public Cursor getConversation(long threadId, long offset, long limit) {
     SQLiteDatabase db        = databaseHelper.getSignalReadableDatabase();
-    String         order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String         selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
+    String         order     = MessageTable.DATE_RECEIVED + " DESC";
+    String         selection = MessageTable.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
     String         limitStr  = limit > 0 || offset > 0 ? offset + ", " + limit : null;
     String         query     = buildQuery(PROJECTION, selection, order, limitStr, false);
 
@@ -211,7 +209,7 @@ public class MmsSmsTable extends DatabaseTable {
   public @NonNull MessageRecord getConversationSnippet(long threadId) throws NoSuchMessageException {
     try (Cursor cursor = getConversationSnippetCursor(threadId)) {
       if (cursor.moveToFirst()) {
-        long id = CursorUtil.requireLong(cursor, MmsSmsColumns.ID);
+        long id = CursorUtil.requireLong(cursor, MessageTable.ID);
         return SignalDatabase.messages().getMessageRecord(id);
       } else {
         throw new NoSuchMessageException("no message");
@@ -229,7 +227,7 @@ public class MmsSmsTable extends DatabaseTable {
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
     try (Cursor cursor = db.rawQuery(SNIPPET_QUERY, SqlUtil.buildArgs(threadId))) {
       if (cursor.moveToFirst()) {
-        return CursorUtil.requireLong(cursor, MmsSmsColumns.TYPE);
+        return CursorUtil.requireLong(cursor, MessageTable.TYPE);
       } else {
         throw new NoSuchMessageException("no message");
       }
@@ -243,18 +241,18 @@ public class MmsSmsTable extends DatabaseTable {
         stickyQuery.append(" OR ");
       }
       stickyQuery.append("(")
-                 .append(MmsSmsColumns.THREAD_ID + " = ")
+                 .append(MessageTable.THREAD_ID + " = ")
                  .append(stickyThread.getConversationId().getThreadId())
                  .append(" AND ")
-                 .append(MmsSmsColumns.DATE_RECEIVED)
+                 .append(MessageTable.DATE_RECEIVED)
                  .append(" >= ")
                  .append(stickyThread.getEarliestTimestamp())
                  .append(getStickyWherePartForParentStoryId(stickyThread.getConversationId().getGroupStoryId()))
                  .append(")");
     }
 
-    String order     = MmsSmsColumns.DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.NOTIFIED + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND (" + MmsSmsColumns.READ + " = 0 OR " + MmsSmsColumns.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
+    String order     = MessageTable.DATE_RECEIVED + " ASC";
+    String selection = MessageTable.NOTIFIED + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND (" + MessageTable.READ + " = 0 OR " + MessageTable.REACTIONS_UNREAD + " = 1" + (stickyQuery.length() > 0 ? " OR (" + stickyQuery + ")" : "") + ")";
 
     return queryTables(PROJECTION, selection, order, null, true);
   }
@@ -324,7 +322,7 @@ public class MmsSmsTable extends DatabaseTable {
 
     String query;
     if (targetMessage.getQuote().getAuthor().equals(Recipient.self().getId())) {
-      query = MessageTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND (" + MmsSmsColumns.TYPE + " & " + MmsSmsColumns.Types.BASE_TYPE_MASK + ") = " + MmsSmsColumns.Types.BASE_SENT_TYPE;
+      query = MessageTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND (" + MessageTable.TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_SENT_TYPE;
     } else {
       query = MessageTable.DATE_SENT + " = " + targetMessage.getQuote().getId() + " AND " + MessageTable.RECIPIENT_ID + " = '" + targetMessage.getQuote().getAuthor().serialize() + "'";
     }
@@ -349,7 +347,7 @@ public class MmsSmsTable extends DatabaseTable {
 
     RecipientId author = targetMessage.isOutgoing() ? Recipient.self().getId() : targetMessage.getRecipient().getId();
     String      query  = MessageTable.QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + MessageTable.QUOTE_AUTHOR + " = " + author.serialize();
-    String      order  = MmsSmsColumns.DATE_RECEIVED + " DESC";
+    String      order  = MessageTable.DATE_RECEIVED + " DESC";
 
     List<MessageRecord> records = new ArrayList<>();
 
@@ -383,7 +381,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getUnreadCount(long threadId) {
-    String selection = MmsSmsColumns.READ + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND " + MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
+    String selection = MessageTable.READ + " = 0 AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.THREAD_ID + " = " + threadId + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
     try (Cursor cursor = queryTables(PROJECTION, selection, null, null, false)) {
       return cursor != null ? cursor.getCount() : 0;
@@ -441,7 +439,7 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getMessageCountBeforeDate(long date) {
-    String selection = MmsSmsColumns.DATE_RECEIVED + " < " + date;
+    String selection = MessageTable.DATE_RECEIVED + " < " + date;
 
     try (Cursor cursor = queryTables(new String[] { "COUNT(*)" }, selection, null, null, false)) {
       if (cursor != null && cursor.moveToFirst()) {
@@ -643,12 +641,12 @@ public class MmsSmsTable extends DatabaseTable {
 
   private @NonNull MessageExportState getMessageExportState(@NonNull MessageId messageId) throws NoSuchMessageException {
     String   table      = MessageTable.TABLE_NAME;
-    String[] projection = SqlUtil.buildArgs(MmsSmsColumns.EXPORT_STATE);
+    String[] projection = SqlUtil.buildArgs(MessageTable.EXPORT_STATE);
     String[] args       = SqlUtil.buildArgs(messageId.getId());
 
     try (Cursor cursor = getReadableDatabase().query(table, projection, ID_WHERE, args, null, null, null, null)) {
       if (cursor.moveToFirst()) {
-        byte[] bytes = CursorUtil.requireBlob(cursor,  MmsSmsColumns.EXPORT_STATE);
+        byte[] bytes = CursorUtil.requireBlob(cursor,  MessageTable.EXPORT_STATE);
         if (bytes == null) {
           return MessageExportState.getDefaultInstance();
         } else {
@@ -684,7 +682,7 @@ public class MmsSmsTable extends DatabaseTable {
     String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
-    contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.EXPORTED.getCode());
+    contentValues.put(MessageTable.EXPORTED, MessageExportStatus.EXPORTED.getCode());
 
     getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
   }
@@ -693,7 +691,7 @@ public class MmsSmsTable extends DatabaseTable {
     String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
-    contentValues.put(MmsSmsColumns.EXPORTED, MessageExportStatus.ERROR.getCode());
+    contentValues.put(MessageTable.EXPORTED, MessageExportStatus.ERROR.getCode());
 
     getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
   }
@@ -702,7 +700,7 @@ public class MmsSmsTable extends DatabaseTable {
     String        table         = MessageTable.TABLE_NAME;
     ContentValues contentValues = new ContentValues(1);
 
-    contentValues.put(MmsSmsColumns.EXPORT_STATE, messageExportState.toByteArray());
+    contentValues.put(MessageTable.EXPORT_STATE, messageExportState.toByteArray());
 
     getWritableDatabase().update(table, contentValues, ID_WHERE, SqlUtil.buildArgs(messageId.getId()));
   }
@@ -756,18 +754,18 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
-    String order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
+    String order     = MessageTable.DATE_RECEIVED + " DESC";
+    String selection = MessageTable.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.DATE_SENT, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
+    try (Cursor cursor = queryTables(new String[]{ MessageTable.DATE_SENT, MessageTable.RECIPIENT_ID, MessageTable.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
         boolean quoteIdMatches     = cursor.getLong(0) == quoteId;
-        boolean recipientIdMatches = recipientId.equals(RecipientId.from(CursorUtil.requireLong(cursor, MmsSmsColumns.RECIPIENT_ID)));
+        boolean recipientIdMatches = recipientId.equals(RecipientId.from(CursorUtil.requireLong(cursor, MessageTable.RECIPIENT_ID)));
 
         if (quoteIdMatches && (recipientIdMatches || isOwnNumber)) {
-          if (CursorUtil.requireBoolean(cursor, MmsSmsColumns.REMOTE_DELETED)) {
+          if (CursorUtil.requireBoolean(cursor, MessageTable.REMOTE_DELETED)) {
             return -1;
           } else {
             return cursor.getPosition();
@@ -779,10 +777,10 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
-    String order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-    String selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
+    String order     = MessageTable.DATE_RECEIVED + " DESC";
+    String selection = MessageTable.THREAD_ID + " = " + threadId + " AND " + MessageTable.STORY_TYPE + " = 0" + " AND " + MessageTable.PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = queryTables(new String[]{ MmsSmsColumns.DATE_RECEIVED, MmsSmsColumns.RECIPIENT_ID, MmsSmsColumns.REMOTE_DELETED}, selection, order, null, false)) {
+    try (Cursor cursor = queryTables(new String[]{ MessageTable.DATE_RECEIVED, MessageTable.RECIPIENT_ID, MessageTable.REMOTE_DELETED}, selection, order, null, false)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
 
       while (cursor != null && cursor.moveToNext()) {
@@ -790,7 +788,7 @@ public class MmsSmsTable extends DatabaseTable {
         boolean recipientIdMatches = recipientId.equals(RecipientId.from(cursor.getLong(1)));
 
         if (timestampMatches && (recipientIdMatches || isOwnNumber)) {
-          if (CursorUtil.requireBoolean(cursor, MmsSmsColumns.REMOTE_DELETED)) {
+          if (CursorUtil.requireBoolean(cursor, MessageTable.REMOTE_DELETED)) {
             return -1;
           } else {
             return cursor.getPosition();
@@ -825,14 +823,14 @@ public class MmsSmsTable extends DatabaseTable {
     final String selection;
 
     if (groupStoryId > 0) {
-      order     = MmsSmsColumns.DATE_RECEIVED + " ASC";
-      selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
-                  MmsSmsColumns.DATE_RECEIVED + " < " + receivedTimestamp + " AND " +
+      order     = MessageTable.DATE_RECEIVED + " ASC";
+      selection = MessageTable.THREAD_ID + " = " + threadId + " AND " +
+                  MessageTable.DATE_RECEIVED + " < " + receivedTimestamp + " AND " +
                   MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " = " + groupStoryId;
     } else {
-      order     = MmsSmsColumns.DATE_RECEIVED + " DESC";
-      selection = MmsSmsColumns.THREAD_ID + " = " + threadId + " AND " +
-                  MmsSmsColumns.DATE_RECEIVED + " > " + receivedTimestamp + " AND " +
+      order     = MessageTable.DATE_RECEIVED + " DESC";
+      selection = MessageTable.THREAD_ID + " = " + threadId + " AND " +
+                  MessageTable.DATE_RECEIVED + " > " + receivedTimestamp + " AND " +
                   MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0";
     }
 
@@ -845,10 +843,10 @@ public class MmsSmsTable extends DatabaseTable {
   }
 
   public long getTimestampForFirstMessageAfterDate(long date) {
-    String order     = MmsSmsColumns.DATE_RECEIVED + " ASC";
-    String selection = MmsSmsColumns.DATE_RECEIVED + " > " + date;
+    String order     = MessageTable.DATE_RECEIVED + " ASC";
+    String selection = MessageTable.DATE_RECEIVED + " > " + date;
 
-    try (Cursor cursor = queryTables(new String[] { MmsSmsColumns.DATE_RECEIVED }, selection, order, "1", false)) {
+    try (Cursor cursor = queryTables(new String[] { MessageTable.DATE_RECEIVED }, selection, order, "1", false)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(0);
       }

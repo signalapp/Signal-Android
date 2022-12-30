@@ -32,7 +32,8 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsColumns.Status;
+import org.thoughtcrime.securesms.database.MessageTable.Status;
+import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -129,11 +130,11 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
   @Override
   @WorkerThread
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (MessageTable.Types.isChatSessionRefresh(type)) {
+    if (MessageTypes.isChatSessionRefresh(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_bad_encrypted_mms_message));
-    } else if (MessageTable.Types.isDuplicateMessageType(type)) {
+    } else if (MessageTypes.isDuplicateMessageType(type)) {
       return emphasisAdded(context.getString(R.string.SmsMessageRecord_duplicate_message));
-    } else if (MessageTable.Types.isNoRemoteSessionType(type)) {
+    } else if (MessageTypes.isNoRemoteSessionType(type)) {
       return emphasisAdded(context.getString(R.string.MmsMessageRecord_mms_message_encrypted_for_non_existing_session));
     } else if (isLegacyMessage()) {
       return emphasisAdded(context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported));

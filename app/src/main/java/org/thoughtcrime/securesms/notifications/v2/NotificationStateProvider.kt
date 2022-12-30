@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.notifications.v2
 import androidx.annotation.WorkerThread
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MmsSmsTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -36,7 +36,7 @@ object NotificationStateProvider {
         while (record != null) {
           val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
-            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1
+            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MessageTable.REACTIONS_UNREAD) == 1
             val conversationId = ConversationId.fromMessageRecord(record)
 
             val parentRecord = conversationId.groupStoryId?.let {
@@ -57,9 +57,9 @@ object NotificationStateProvider {
               threadRecipient = threadRecipient,
               thread = conversationId,
               stickyThread = stickyThreads.containsKey(conversationId),
-              isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
+              isUnreadMessage = CursorUtil.requireInt(unreadMessages, MessageTable.READ) == 0,
               hasUnreadReactions = hasUnreadReactions,
-              lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN),
+              lastReactionRead = CursorUtil.requireLong(unreadMessages, MessageTable.REACTIONS_LAST_SEEN),
               isParentStorySentBySelf = parentRecord?.isOutgoing ?: false,
               hasSelfRepliedToStory = hasSelfRepliedToGroupStory ?: false
             )

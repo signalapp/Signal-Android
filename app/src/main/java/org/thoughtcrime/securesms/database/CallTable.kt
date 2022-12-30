@@ -157,11 +157,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     companion object Deserializer : Serializer<Call, Cursor> {
       fun getMessageType(type: Type, direction: Direction, event: Event): Long {
         return if (direction == Direction.INCOMING && event == Event.MISSED) {
-          if (type == Type.VIDEO_CALL) MmsSmsColumns.Types.MISSED_VIDEO_CALL_TYPE else MmsSmsColumns.Types.MISSED_AUDIO_CALL_TYPE
+          if (type == Type.VIDEO_CALL) MessageTypes.MISSED_VIDEO_CALL_TYPE else MessageTypes.MISSED_AUDIO_CALL_TYPE
         } else if (direction == Direction.INCOMING) {
-          if (type == Type.VIDEO_CALL) MmsSmsColumns.Types.INCOMING_VIDEO_CALL_TYPE else MmsSmsColumns.Types.INCOMING_AUDIO_CALL_TYPE
+          if (type == Type.VIDEO_CALL) MessageTypes.INCOMING_VIDEO_CALL_TYPE else MessageTypes.INCOMING_AUDIO_CALL_TYPE
         } else {
-          if (type == Type.VIDEO_CALL) MmsSmsColumns.Types.OUTGOING_VIDEO_CALL_TYPE else MmsSmsColumns.Types.OUTGOING_AUDIO_CALL_TYPE
+          if (type == Type.VIDEO_CALL) MessageTypes.OUTGOING_VIDEO_CALL_TYPE else MessageTypes.OUTGOING_AUDIO_CALL_TYPE
         }
       }
 

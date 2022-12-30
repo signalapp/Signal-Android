@@ -117,34 +117,65 @@ import java.util.UUID;
 
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
-public class MessageTable extends DatabaseTable implements MmsSmsColumns, RecipientIdDatabaseReference, ThreadIdDatabaseReference  {
+public class MessageTable extends DatabaseTable implements MessageTypes, RecipientIdDatabaseReference, ThreadIdDatabaseReference  {
 
   private static final String TAG = Log.tag(MessageTable.class);
 
-  public  static final String TABLE_NAME           = "mms";
-          static final String MMS_CONTENT_LOCATION = "ct_l";
-          static final String MMS_EXPIRY           = "exp";
-  public  static final String MMS_MESSAGE_TYPE     = "m_type";
-          static final String MMS_MESSAGE_SIZE     = "m_size";
-          static final String MMS_STATUS           = "st";
-          static final String MMS_TRANSACTION_ID   = "tr_id";
-          static final String NETWORK_FAILURES     = "network_failures";
+  public static final String TABLE_NAME             = "mms";
+  public static final String ID                     = "_id";
+  public static final String DATE_SENT              = "date_sent";
+  public static final String DATE_RECEIVED          = "date_received";
+  public static final String TYPE                   = "type";
+  public static final String DATE_SERVER            = "date_server";
+  public static final String THREAD_ID              = "thread_id";
+  public static final String READ                   = "read";
+  public static final String BODY                   = "body";
+  public static final String RECIPIENT_ID           = "recipient_id";
+  public static final String RECIPIENT_DEVICE_ID    = "recipient_device_id";
+  public static final String DELIVERY_RECEIPT_COUNT = "delivery_receipt_count";
+  public static final String READ_RECEIPT_COUNT     = "read_receipt_count";
+  public static final String VIEWED_RECEIPT_COUNT   = "viewed_receipt_count";
+  public static final String MISMATCHED_IDENTITIES  = "mismatched_identities";
+  public static final String SMS_SUBSCRIPTION_ID    = "subscription_id";
+  public static final String EXPIRES_IN             = "expires_in";
+  public static final String EXPIRE_STARTED         = "expire_started";
+  public static final String NOTIFIED               = "notified";
+  public static final String NOTIFIED_TIMESTAMP     = "notified_timestamp";
+  public static final String UNIDENTIFIED           = "unidentified";
+  public static final String REACTIONS_UNREAD       = "reactions_unread";
+  public static final String REACTIONS_LAST_SEEN    = "reactions_last_seen";
+  public static final String REMOTE_DELETED         = "remote_deleted";
+  public static final String SERVER_GUID            = "server_guid";
+  public static final String RECEIPT_TIMESTAMP      = "receipt_timestamp";
+  public static final String EXPORT_STATE           = "export_state";
+  public static final String EXPORTED               = "exported";
+  public static final String MMS_CONTENT_LOCATION   = "ct_l";
+  public static final String MMS_EXPIRY             = "exp";
+  public static final String MMS_MESSAGE_TYPE       = "m_type";
+  public static final String MMS_MESSAGE_SIZE       = "m_size";
+  public static final String MMS_STATUS             = "st";
+  public static final String MMS_TRANSACTION_ID     = "tr_id";
+  public static final String NETWORK_FAILURES       = "network_failures";
+  public static final String QUOTE_ID               = "quote_id";
+  public static final String QUOTE_AUTHOR           = "quote_author";
+  public static final String QUOTE_BODY             = "quote_body";
+  public static final String QUOTE_MISSING          = "quote_missing";
+  public static final String QUOTE_MENTIONS         = "quote_mentions";
+  public static final String QUOTE_TYPE             = "quote_type";
+  public static final String SHARED_CONTACTS        = "shared_contacts";
+  public static final String LINK_PREVIEWS          = "link_previews";
+  public static final String MENTIONS_SELF          = "mentions_self";
+  public static final String MESSAGE_RANGES         = "message_ranges";
+  public static final String VIEW_ONCE              = "view_once";
+  public static final String STORY_TYPE             = "story_type";
+  public static final String PARENT_STORY_ID        = "parent_story_id";
 
-          static final String QUOTE_ID         = "quote_id";
-          static final String QUOTE_AUTHOR     = "quote_author";
-          static final String QUOTE_BODY       = "quote_body";
-          static final String QUOTE_MISSING    = "quote_missing";
-          static final String QUOTE_MENTIONS   = "quote_mentions";
-          static final String QUOTE_TYPE       = "quote_type";
-
-          static final String SHARED_CONTACTS = "shared_contacts";
-          static final String LINK_PREVIEWS   = "link_previews";
-          static final String MENTIONS_SELF   = "mentions_self";
-          static final String MESSAGE_RANGES  = "message_ranges";
-
-  public  static final String VIEW_ONCE       = "view_once";
-  public  static final String STORY_TYPE      = "story_type";
-          static final String PARENT_STORY_ID = "parent_story_id";
+  public static class Status {
+    public static final int STATUS_NONE      = -1;
+    public static final int STATUS_COMPLETE  = 0;
+    public static final int STATUS_PENDING   = 0x20;
+    public static final int STATUS_FAILED    = 0x40;
+  }
 
   public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + ID                     + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                                                                                   DATE_SENT              + " INTEGER NOT NULL, " +
@@ -206,7 +237,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
     "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");",
-    "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
+    "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
   };
 
   private static final String[] MMS_PROJECTION_BASE = new String[] {
@@ -259,7 +290,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   private static final String[] MMS_PROJECTION = SqlUtil.appendArg(MMS_PROJECTION_BASE, "NULL AS " + AttachmentTable.ATTACHMENT_JSON_ALIAS);
 
   private static final String[] MMS_PROJECTION_WITH_ATTACHMENTS = SqlUtil.appendArg(MMS_PROJECTION_BASE, "json_group_array(json_object(" +
-          "'" + AttachmentTable.ROW_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.ROW_ID + ", " +
+      "'" + AttachmentTable.ROW_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.ROW_ID + ", " +
       "'" + AttachmentTable.UNIQUE_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.UNIQUE_ID + ", " +
       "'" + AttachmentTable.MMS_ID + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + ", " +
       "'" + AttachmentTable.SIZE + "', " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.SIZE + ", " +
@@ -305,7 +336,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
     String[] columns = new String[]{RECIPIENT_ID};
     String   query   = THREAD_ID + " = ? AND " + TYPE + " & ? AND " + DATE_RECEIVED + " >= ?";
-    long     type    = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT | Types.GROUP_UPDATE_BIT | Types.BASE_INBOX_TYPE;
+    long     type    = MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT | MessageTypes.GROUP_UPDATE_BIT | MessageTypes.BASE_INBOX_TYPE;
     String[] args    = new String[]{String.valueOf(threadId), String.valueOf(type), String.valueOf(minimumDateReceived)};
     String   limit   = "1";
 
@@ -329,14 +360,14 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public boolean hasReceivedAnyCallsSince(long threadId, long timestamp) {
     SQLiteDatabase db            = databaseHelper.getSignalReadableDatabase();
-    String[]       projection    = SqlUtil.buildArgs(MmsSmsColumns.TYPE);
+    String[]       projection    = SqlUtil.buildArgs(TYPE);
     String         selection     = THREAD_ID + " = ? AND " + DATE_RECEIVED  + " > ? AND (" + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " = ? OR " + TYPE + " =?)";
     String[]       selectionArgs = SqlUtil.buildArgs(threadId,
                                                      timestamp,
-                                                     Types.INCOMING_AUDIO_CALL_TYPE,
-                                                     Types.INCOMING_VIDEO_CALL_TYPE,
-                                                     Types.MISSED_AUDIO_CALL_TYPE,
-                                                     Types.MISSED_VIDEO_CALL_TYPE);
+                                                     MessageTypes.INCOMING_AUDIO_CALL_TYPE,
+                                                     MessageTypes.INCOMING_VIDEO_CALL_TYPE,
+                                                     MessageTypes.MISSED_AUDIO_CALL_TYPE,
+                                                     MessageTypes.MISSED_VIDEO_CALL_TYPE);
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, selection, selectionArgs, null, null, null)) {
       return cursor != null && cursor.moveToFirst();
@@ -344,43 +375,43 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public void markAsEndSession(long id) {
-    updateTypeBitmask(id, Types.KEY_EXCHANGE_MASK, Types.END_SESSION_BIT);
+    updateTypeBitmask(id, MessageTypes.KEY_EXCHANGE_MASK, MessageTypes.END_SESSION_BIT);
   }
 
   public void markAsInvalidVersionKeyExchange(long id) {
-    updateTypeBitmask(id, 0, Types.KEY_EXCHANGE_INVALID_VERSION_BIT);
+    updateTypeBitmask(id, 0, MessageTypes.KEY_EXCHANGE_INVALID_VERSION_BIT);
   }
 
   public void markAsSecure(long id) {
-    updateTypeBitmask(id, 0, Types.SECURE_MESSAGE_BIT);
+    updateTypeBitmask(id, 0, MessageTypes.SECURE_MESSAGE_BIT);
   }
 
   public void markAsPush(long id) {
-    updateTypeBitmask(id, 0, Types.PUSH_MESSAGE_BIT);
+    updateTypeBitmask(id, 0, MessageTypes.PUSH_MESSAGE_BIT);
   }
 
   public void markAsDecryptFailed(long id) {
-    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_FAILED_BIT);
+    updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT);
   }
 
   public void markAsNoSession(long id) {
-    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_NO_SESSION_BIT);
+    updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_NO_SESSION_BIT);
   }
 
   public void markAsUnsupportedProtocolVersion(long id) {
-    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.UNSUPPORTED_MESSAGE_TYPE);
+    updateTypeBitmask(id, MessageTypes.BASE_TYPE_MASK, MessageTypes.UNSUPPORTED_MESSAGE_TYPE);
   }
 
   public void markAsInvalidMessage(long id) {
-    updateTypeBitmask(id, Types.BASE_TYPE_MASK, Types.INVALID_MESSAGE_TYPE);
+    updateTypeBitmask(id, MessageTypes.BASE_TYPE_MASK, MessageTypes.INVALID_MESSAGE_TYPE);
   }
 
   public void markAsLegacyVersion(long id) {
-    updateTypeBitmask(id, Types.ENCRYPTION_MASK, Types.ENCRYPTION_REMOTE_LEGACY_BIT);
+    updateTypeBitmask(id, MessageTypes.ENCRYPTION_MASK, MessageTypes.ENCRYPTION_REMOTE_LEGACY_BIT);
   }
 
   public void markAsMissedCall(long id, boolean isVideoOffer) {
-    updateTypeBitmask(id, Types.TOTAL_MASK, isVideoOffer ? Types.MISSED_VIDEO_CALL_TYPE : Types.MISSED_AUDIO_CALL_TYPE);
+    updateTypeBitmask(id, MessageTypes.TOTAL_MASK, isVideoOffer ? MessageTypes.MISSED_VIDEO_CALL_TYPE : MessageTypes.MISSED_AUDIO_CALL_TYPE);
   }
 
   public void markSmsStatus(long id, int status) {
@@ -404,7 +435,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     db.beginTransaction();
     try {
       db.execSQL("UPDATE " + TABLE_NAME +
-                 " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                 " SET " + TYPE + " = (" + TYPE + " & " + (MessageTypes.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
                  " WHERE " + ID + " = ?", SqlUtil.buildArgs(id));
 
       threadId = getThreadIdForMessage(id);
@@ -423,7 +454,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   private InsertResult updateMessageBodyAndType(long messageId, String body, long maskOff, long maskOn) {
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.execSQL("UPDATE " + TABLE_NAME + " SET " + BODY + " = ?, " +
-               TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
+               TYPE + " = (" + TYPE + " & " + (MessageTypes.TOTAL_MASK - maskOff) + " | " + maskOn + ") " +
                "WHERE " + ID + " = ?",
                new String[] {body, messageId + ""});
 
@@ -436,14 +467,14 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public InsertResult updateBundleMessageBody(long messageId, String body) {
-    long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
-    return updateMessageBodyAndType(messageId, body, Types.TOTAL_MASK, type);
+    long type = MessageTypes.BASE_INBOX_TYPE | MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT;
+    return updateMessageBodyAndType(messageId, body, MessageTypes.TOTAL_MASK, type);
   }
 
   public @NonNull List<MarkedMessageInfo> getViewedIncomingMessages(long threadId) {
     SQLiteDatabase db      = databaseHelper.getSignalReadableDatabase();
     String[]       columns = new String[]{ ID, RECIPIENT_ID, DATE_SENT, TYPE, THREAD_ID, STORY_TYPE};
-    String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + TYPE + " & " + Types.BASE_INBOX_TYPE + " = " + Types.BASE_INBOX_TYPE;
+    String         where   = THREAD_ID + " = ? AND " + VIEWED_RECEIPT_COUNT + " > 0 AND " + TYPE + " & " + MessageTypes.BASE_INBOX_TYPE + " = " + MessageTypes.BASE_INBOX_TYPE;
     String[]       args    = SqlUtil.buildArgs(threadId);
 
 
@@ -491,7 +522,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     try (Cursor cursor = database.query(TABLE_NAME, columns, where, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
         long type = CursorUtil.requireLong(cursor, TYPE);
-        if (Types.isSecureType(type) && Types.isInboxType(type)) {
+        if (MessageTypes.isSecureType(type) && MessageTypes.isInboxType(type)) {
           long          messageId     = CursorUtil.requireLong(cursor, ID);
           long          threadId      = CursorUtil.requireLong(cursor, THREAD_ID);
           RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
@@ -524,7 +555,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public @NonNull List<MarkedMessageInfo> setOutgoingGiftsRevealed(@NonNull List<Long> messageIds) {
     String[]                projection = SqlUtil.buildArgs(ID, RECIPIENT_ID, DATE_SENT, THREAD_ID, STORY_TYPE);
-    String                  where      = ID + " IN (" + Util.join(messageIds, ",") + ") AND (" + getOutgoingTypeClause() + ") AND (" + TYPE + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
+    String                  where      = ID + " IN (" + Util.join(messageIds, ",") + ") AND (" + getOutgoingTypeClause() + ") AND (" + TYPE + " & " + MessageTypes.SPECIAL_TYPES_MASK + " = " + MessageTypes.SPECIAL_TYPE_GIFT_BADGE + ") AND " + VIEWED_RECEIPT_COUNT + " = 0";
     List<MarkedMessageInfo> results    = new LinkedList<>();
 
     getWritableDatabase().beginTransaction();
@@ -560,7 +591,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public @NonNull InsertResult insertCallLog(@NonNull RecipientId recipientId, long type, long timestamp) {
-    boolean   unread    = Types.isMissedAudioCall(type) || Types.isMissedVideoCall(type);
+    boolean   unread    = MessageTypes.isMissedAudioCall(type) || MessageTypes.isMissedVideoCall(type);
     Recipient recipient = Recipient.resolved(recipientId);
     long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
@@ -589,7 +620,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public void updateCallLog(long messageId, long type) {
-    boolean       unread = Types.isMissedAudioCall(type) || Types.isMissedVideoCall(type);
+    boolean       unread = MessageTypes.isMissedAudioCall(type) || MessageTypes.isMissedVideoCall(type);
     ContentValues values = new ContentValues(2);
     values.put(TYPE, type);
     values.put(READ, unread ? 0 : 1);
@@ -646,7 +677,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         values.put(DATE_SENT, timestamp);
         values.put(READ, markRead ? 1 : 0);
         values.put(BODY, body);
-        values.put(TYPE, Types.GROUP_CALL_TYPE);
+        values.put(TYPE, MessageTypes.GROUP_CALL_TYPE);
         values.put(THREAD_ID, threadId);
 
         db.insert(TABLE_NAME, null, values);
@@ -682,7 +713,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
       String   where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
-      String[] args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+      String[] args      = SqlUtil.buildArgs(MessageTypes.GROUP_CALL_TYPE, threadId);
       boolean  sameEraId = false;
 
       try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, MMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
@@ -722,7 +753,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         values.put(DATE_SENT, timestamp);
         values.put(READ, 0);
         values.put(BODY, body);
-        values.put(TYPE, Types.GROUP_CALL_TYPE);
+        values.put(TYPE, MessageTypes.GROUP_CALL_TYPE);
         values.put(THREAD_ID, threadId);
 
         db.insert(TABLE_NAME, null, values);
@@ -745,7 +776,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public boolean updatePreviousGroupCall(long threadId, @Nullable String peekGroupCallEraId, @NonNull Collection<UUID> peekJoinedUuids, boolean isCallFull) {
     SQLiteDatabase db        = databaseHelper.getSignalWritableDatabase();
     String         where     = TYPE + " = ? AND " + THREAD_ID + " = ?";
-    String[]       args      = SqlUtil.buildArgs(Types.GROUP_CALL_TYPE, threadId);
+    String[]       args      = SqlUtil.buildArgs(MessageTypes.GROUP_CALL_TYPE, threadId);
     boolean        sameEraId = false;
 
     try (MmsReader reader = new MmsReader(db.query(TABLE_NAME, MMS_PROJECTION, where, args, null, null, DATE_RECEIVED + " DESC", "1"))) {
@@ -786,40 +817,40 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     boolean tryToCollapseJoinRequestEvents = false;
 
     if (message.isJoined()) {
-      type = (type & (Types.TOTAL_MASK - Types.BASE_TYPE_MASK)) | Types.JOINED_TYPE;
+      type = (type & (MessageTypes.TOTAL_MASK - MessageTypes.BASE_TYPE_MASK)) | MessageTypes.JOINED_TYPE;
     } else if (message.isPreKeyBundle()) {
-      type |= Types.KEY_EXCHANGE_BIT | Types.KEY_EXCHANGE_BUNDLE_BIT;
+      type |= MessageTypes.KEY_EXCHANGE_BIT | MessageTypes.KEY_EXCHANGE_BUNDLE_BIT;
     } else if (message.isSecureMessage()) {
-      type |= Types.SECURE_MESSAGE_BIT;
+      type |= MessageTypes.SECURE_MESSAGE_BIT;
     } else if (message.isGroup()) {
       IncomingGroupUpdateMessage incomingGroupUpdateMessage = (IncomingGroupUpdateMessage) message;
 
-      type |= Types.SECURE_MESSAGE_BIT;
+      type |= MessageTypes.SECURE_MESSAGE_BIT;
 
       if (incomingGroupUpdateMessage.isGroupV2()) {
-        type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
+        type |= MessageTypes.GROUP_V2_BIT | MessageTypes.GROUP_UPDATE_BIT;
         if (incomingGroupUpdateMessage.isJustAGroupLeave()) {
-          type |= Types.GROUP_LEAVE_BIT;
+          type |= MessageTypes.GROUP_LEAVE_BIT;
         } else if (incomingGroupUpdateMessage.isCancelJoinRequest()) {
           tryToCollapseJoinRequestEvents = true;
         }
       } else if (incomingGroupUpdateMessage.isUpdate()) {
-        type |= Types.GROUP_UPDATE_BIT;
+        type |= MessageTypes.GROUP_UPDATE_BIT;
       } else if (incomingGroupUpdateMessage.isQuit()) {
-        type |= Types.GROUP_LEAVE_BIT;
+        type |= MessageTypes.GROUP_LEAVE_BIT;
       }
 
     } else if (message.isEndSession()) {
-      type |= Types.SECURE_MESSAGE_BIT;
-      type |= Types.END_SESSION_BIT;
+      type |= MessageTypes.SECURE_MESSAGE_BIT;
+      type |= MessageTypes.END_SESSION_BIT;
     }
 
-    if (message.isPush())                type |= Types.PUSH_MESSAGE_BIT;
-    if (message.isIdentityUpdate())      type |= Types.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
-    if (message.isContentPreKeyBundle()) type |= Types.KEY_EXCHANGE_CONTENT_FORMAT;
+    if (message.isPush())                type |= MessageTypes.PUSH_MESSAGE_BIT;
+    if (message.isIdentityUpdate())      type |= MessageTypes.KEY_EXCHANGE_IDENTITY_UPDATE_BIT;
+    if (message.isContentPreKeyBundle()) type |= MessageTypes.KEY_EXCHANGE_CONTENT_FORMAT;
 
-    if      (message.isIdentityVerified())    type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    else if (message.isIdentityDefault())     type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
+    if      (message.isIdentityVerified())    type |= MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    else if (message.isIdentityDefault())     type |= MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
     Recipient recipient = Recipient.resolved(message.getSender());
 
@@ -836,7 +867,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                      message.isIdentityVerified() ||
                      message.isIdentityDefault()  ||
                      message.isJustAGroupLeave()  ||
-                     (type & Types.GROUP_UPDATE_BIT) > 0;
+                     (type & MessageTypes.GROUP_UPDATE_BIT) > 0;
 
     boolean unread = !silent && (Util.isDefaultSmsProvider(context) ||
                                  message.isSecureMessage()          ||
@@ -901,7 +932,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public Optional<InsertResult> insertMessageInbox(IncomingTextMessage message) {
-    return insertMessageInbox(message, Types.BASE_INBOX_TYPE);
+    return insertMessageInbox(message, MessageTypes.BASE_INBOX_TYPE);
   }
 
   public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
@@ -938,7 +969,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
               values.put(DATE_RECEIVED, System.currentTimeMillis());
               values.put(DATE_SENT, System.currentTimeMillis());
               values.put(READ, 1);
-              values.put(TYPE, Types.PROFILE_CHANGE_TYPE);
+              values.put(TYPE, MessageTypes.PROFILE_CHANGE_TYPE);
               values.put(THREAD_ID, threadId);
               values.put(BODY, body);
 
@@ -985,7 +1016,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
-    values.put(TYPE, Types.GV1_MIGRATION_TYPE);
+    values.put(TYPE, MessageTypes.GV1_MIGRATION_TYPE);
     values.put(THREAD_ID, threadId);
 
     if (!membershipChange.isEmpty()) {
@@ -1020,7 +1051,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                          values.put(DATE_RECEIVED, System.currentTimeMillis());
                          values.put(DATE_SENT, System.currentTimeMillis());
                          values.put(READ, 1);
-                         values.put(TYPE, Types.CHANGE_NUMBER_TYPE);
+                         values.put(TYPE, MessageTypes.CHANGE_NUMBER_TYPE);
                          values.put(THREAD_ID, threadId);
                          values.putNull(BODY);
 
@@ -1048,7 +1079,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
-    values.put(TYPE, Types.BOOST_REQUEST_TYPE);
+    values.put(TYPE, MessageTypes.BOOST_REQUEST_TYPE);
     values.put(THREAD_ID, threadId);
     values.putNull(BODY);
 
@@ -1062,7 +1093,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
-    values.put(TYPE, Types.THREAD_MERGE_TYPE);
+    values.put(TYPE, MessageTypes.THREAD_MERGE_TYPE);
     values.put(THREAD_ID, threadId);
     values.put(BODY, Base64.encodeBytes(event.toByteArray()));
 
@@ -1078,7 +1109,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(DATE_RECEIVED, System.currentTimeMillis());
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
-    values.put(TYPE, Types.SMS_EXPORT_TYPE);
+    values.put(TYPE, MessageTypes.SMS_EXPORT_TYPE);
     values.put(THREAD_ID, threadId);
     values.putNull(BODY);
 
@@ -1518,8 +1549,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     String[] columns = new String[]{ID};
-    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
-    String   query   = ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + Types.GROUP_V2_BIT + " = 0";
+    long     type    = MessageTypes.getOutgoingEncryptedMessageType() | MessageTypes.GROUP_LEAVE_BIT;
+    String   query   = ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + MessageTypes.GROUP_V2_BIT + " = 0";
     String[] args    = SqlUtil.buildArgs(messageId);
 
     try (Cursor cursor = db.query(TABLE_NAME, columns, query, args, null, null, null, null)) {
@@ -1535,8 +1566,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     SQLiteDatabase db = databaseHelper.getSignalReadableDatabase();
 
     String[] columns = new String[]{DATE_SENT};
-    long     type    = Types.getOutgoingEncryptedMessageType() | Types.GROUP_LEAVE_BIT;
-    String   query   = THREAD_ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + Types.GROUP_V2_BIT + " = 0 AND " + DATE_SENT + " < ?";
+    long     type    = MessageTypes.getOutgoingEncryptedMessageType() | MessageTypes.GROUP_LEAVE_BIT;
+    String   query   = THREAD_ID + " = ? AND " + TYPE + " & " + type + " = " + type + " AND " + TYPE + " & " + MessageTypes.GROUP_V2_BIT + " = 0 AND " + DATE_SENT + " < ?";
     String[] args    = new String[]{String.valueOf(threadId), String.valueOf(quitTimeBarrier)};
     String   orderBy = DATE_SENT + " DESC";
     String   limit   = "1";
@@ -1606,8 +1637,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   private @NonNull SqlUtil.Query buildMeaningfulMessagesQuery(long threadId) {
-    String query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND (NOT " + TYPE + " & ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " & " + MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS + " != " + MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS + ")";
-    return SqlUtil.buildQuery(query, threadId, 0, 0, MmsSmsColumns.Types.IGNORABLE_TYPESMASK_WHEN_COUNTING, Types.PROFILE_CHANGE_TYPE, Types.CHANGE_NUMBER_TYPE, Types.SMS_EXPORT_TYPE, Types.BOOST_REQUEST_TYPE);
+    String query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND (NOT " + TYPE + " & ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + ")";
+    return SqlUtil.buildQuery(query, threadId, 0, 0, MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING, MessageTypes.PROFILE_CHANGE_TYPE, MessageTypes.CHANGE_NUMBER_TYPE, MessageTypes.SMS_EXPORT_TYPE, MessageTypes.BOOST_REQUEST_TYPE);
   }
 
   public void addFailures(long messageId, List<NetworkFailure> failure) {
@@ -1651,7 +1682,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                                    .run())
     {
       while (cursor.moveToNext()) {
-        if (Types.isOutgoingMessageType(CursorUtil.requireLong(cursor, TYPE))) {
+        if (MessageTypes.isOutgoingMessageType(CursorUtil.requireLong(cursor, TYPE))) {
           RecipientId theirRecipientId = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           RecipientId ourRecipientId   = messageId.getRecipientId();
           String      columnName       = receiptType.getColumnName();
@@ -1807,7 +1838,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     db.beginTransaction();
     try {
       db.execSQL("UPDATE " + TABLE_NAME +
-                 " SET " + TYPE + " = (" + TYPE + " & " + (Types.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
+                 " SET " + TYPE + " = (" + TYPE + " & " + (MessageTypes.TOTAL_MASK - maskOff) + " | " + maskOn + " )" +
                  " WHERE " + ID + " = ?", new String[] { id + "" });
 
       if (threadId.isPresent()) {
@@ -1821,18 +1852,18 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public void markAsOutbox(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_OUTBOX_TYPE, Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_OUTBOX_TYPE, Optional.of(threadId));
   }
 
   public void markAsForcedSms(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.PUSH_MESSAGE_BIT, Types.MESSAGE_FORCE_SMS_BIT, Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.PUSH_MESSAGE_BIT, MessageTypes.MESSAGE_FORCE_SMS_BIT, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void markAsRateLimited(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, 0, Types.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId));
+    updateMailboxBitmask(messageId, 0, MessageTypes.MESSAGE_RATE_LIMITED_BIT, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
@@ -1843,7 +1874,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     try {
       for (long id : ids) {
         long threadId = getThreadIdForMessage(id);
-        updateMailboxBitmask(id, Types.MESSAGE_RATE_LIMITED_BIT, 0, Optional.of(threadId));
+        updateMailboxBitmask(id, MessageTypes.MESSAGE_RATE_LIMITED_BIT, 0, Optional.of(threadId));
       }
 
       db.setTransactionSuccessful();
@@ -1854,27 +1885,27 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public void markAsPendingInsecureSmsFallback(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_PENDING_INSECURE_SMS_FALLBACK, Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_PENDING_INSECURE_SMS_FALLBACK, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
   public void markAsSending(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENDING_TYPE, Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENDING_TYPE, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   public void markAsSentFailed(long messageId) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_FAILED_TYPE, Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENT_FAILED_TYPE, Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
 
   public void markAsSent(long messageId, boolean secure) {
     long threadId = getThreadIdForMessage(messageId);
-    updateMailboxBitmask(messageId, Types.BASE_TYPE_MASK, Types.BASE_SENT_TYPE | (secure ? Types.PUSH_MESSAGE_BIT | Types.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
+    updateMailboxBitmask(messageId, MessageTypes.BASE_TYPE_MASK, MessageTypes.BASE_SENT_TYPE | (secure ? MessageTypes.PUSH_MESSAGE_BIT | MessageTypes.SECURE_MESSAGE_BIT : 0), Optional.of(threadId));
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
     ApplicationDependencies.getDatabaseObserver().notifyConversationListListeners();
   }
@@ -1932,7 +1963,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public void markAsInsecure(long messageId) {
-    updateMailboxBitmask(messageId, Types.SECURE_MESSAGE_BIT, 0, Optional.empty());
+    updateMailboxBitmask(messageId, MessageTypes.SECURE_MESSAGE_BIT, 0, Optional.empty());
   }
 
   public void markUnidentified(long messageId, boolean unidentified) {
@@ -2055,7 +2086,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       cursor = database.query(TABLE_NAME, new String[] { ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
-        if (Types.isSecureType(CursorUtil.requireLong(cursor, TYPE))) {
+        if (MessageTypes.isSecureType(CursorUtil.requireLong(cursor, TYPE))) {
           long           threadId       = CursorUtil.requireLong(cursor, THREAD_ID);
           RecipientId    recipientId    = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           long           dateSent       = CursorUtil.requireLong(cursor, DATE_SENT);
@@ -2235,20 +2266,20 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
           }
         }
 
-        if (body != null && (Types.isGroupQuit(outboxType) || Types.isGroupUpdate(outboxType))) {
-          return OutgoingMessage.groupUpdateMessage(recipient, new MessageGroupContext(body, Types.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
-        } else if (Types.isExpirationTimerUpdate(outboxType)) {
+        if (body != null && (MessageTypes.isGroupQuit(outboxType) || MessageTypes.isGroupUpdate(outboxType))) {
+          return OutgoingMessage.groupUpdateMessage(recipient, new MessageGroupContext(body, MessageTypes.isGroupV2(outboxType)), attachments, timestamp, 0, false, quote, contacts, previews, mentions);
+        } else if (MessageTypes.isExpirationTimerUpdate(outboxType)) {
           return OutgoingMessage.expirationUpdateMessage(recipient, timestamp, expiresIn);
-        } else if (Types.isPaymentsNotification(outboxType)) {
+        } else if (MessageTypes.isPaymentsNotification(outboxType)) {
           return OutgoingMessage.paymentNotificationMessage(recipient, Objects.requireNonNull(body), timestamp, expiresIn);
-        } else if (Types.isPaymentsRequestToActivate(outboxType)) {
+        } else if (MessageTypes.isPaymentsRequestToActivate(outboxType)) {
           return OutgoingMessage.requestToActivatePaymentsMessage(recipient, timestamp, expiresIn);
-        } else if (Types.isPaymentsActivated(outboxType)) {
+        } else if (MessageTypes.isPaymentsActivated(outboxType)) {
           return OutgoingMessage.paymentsActivatedMessage(recipient, timestamp, expiresIn);
         }
 
         GiftBadge giftBadge = null;
-        if (body != null && Types.isGiftBadge(outboxType)) {
+        if (body != null && MessageTypes.isGiftBadge(outboxType)) {
           giftBadge = GiftBadge.parseFrom(Base64.decode(body));
         }
 
@@ -2262,7 +2293,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                                       distributionType,
                                                       storyType,
                                                       parentStoryId,
-                                                      Types.isStoryReaction(outboxType),
+                                                      MessageTypes.isStoryReaction(outboxType),
                                                       quote,
                                                       contacts,
                                                       previews,
@@ -2270,7 +2301,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                                       networkFailures,
                                                       mismatches,
                                                       giftBadge,
-                                                      Types.isSecureType(outboxType));
+                                                      MessageTypes.isSecureType(outboxType));
 
         return message;
       }
@@ -2373,7 +2404,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
     ContentValues contentValues = new ContentValues();
 
-    boolean silentUpdate = (mailbox & Types.GROUP_UPDATE_BIT) > 0;
+    boolean silentUpdate = (mailbox & MessageTypes.GROUP_UPDATE_BIT) > 0;
 
     contentValues.put(DATE_SENT, retrieved.getSentTimeMillis());
     contentValues.put(DATE_SERVER, retrieved.getServerTimeMillis());
@@ -2436,7 +2467,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                                     !keepThreadArchived);
 
     boolean isNotStoryGroupReply = retrieved.getParentStoryId() == null || !retrieved.getParentStoryId().isGroupReply();
-    if (!Types.isPaymentsActivated(mailbox) && !Types.isPaymentsRequestToActivate(mailbox) && !Types.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
+    if (!MessageTypes.isPaymentsActivated(mailbox) && !MessageTypes.isPaymentsRequestToActivate(mailbox) && !MessageTypes.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
       boolean incrementUnreadMentions = !retrieved.getMentions().isEmpty() && retrieved.getMentions().stream().anyMatch(m -> m.getRecipientId().equals(Recipient.self().getId()));
       SignalDatabase.threads().incrementUnread(threadId, 1, incrementUnreadMentions ? 1 : 0);
       SignalDatabase.threads().update(threadId, !keepThreadArchived);
@@ -2451,26 +2482,26 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                                    String contentLocation, long threadId)
       throws MmsException
   {
-    long type = Types.BASE_INBOX_TYPE;
+    long type = MessageTypes.BASE_INBOX_TYPE;
 
     if (retrieved.isPushMessage()) {
-      type |= Types.PUSH_MESSAGE_BIT;
+      type |= MessageTypes.PUSH_MESSAGE_BIT;
     }
 
     if (retrieved.isExpirationUpdate()) {
-      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+      type |= MessageTypes.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
     if (retrieved.isPaymentsNotification()) {
-      type |= Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
     }
 
     if (retrieved.isActivatePaymentsRequest()) {
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
     }
 
     if (retrieved.isPaymentsActivated()) {
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
     }
 
     return insertMessageInbox(retrieved, contentLocation, threadId, type);
@@ -2479,20 +2510,20 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public Optional<InsertResult> insertSecureDecryptedMessageInbox(IncomingMediaMessage retrieved, long threadId)
       throws MmsException
   {
-    long type = Types.BASE_INBOX_TYPE | Types.SECURE_MESSAGE_BIT;
+    long type = MessageTypes.BASE_INBOX_TYPE | MessageTypes.SECURE_MESSAGE_BIT;
 
     if (retrieved.isPushMessage()) {
-      type |= Types.PUSH_MESSAGE_BIT;
+      type |= MessageTypes.PUSH_MESSAGE_BIT;
     }
 
     if (retrieved.isExpirationUpdate()) {
-      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+      type |= MessageTypes.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
     boolean hasSpecialType = false;
     if (retrieved.isStoryReaction()) {
       hasSpecialType = true;
-      type |= Types.SPECIAL_TYPE_STORY_REACTION;
+      type |= MessageTypes.SPECIAL_TYPE_STORY_REACTION;
     }
 
     if (retrieved.getGiftBadge() != null) {
@@ -2500,28 +2531,28 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         throw new MmsException("Cannot insert message with multiple special types.");
       }
 
-      type |= Types.SPECIAL_TYPE_GIFT_BADGE;
+      type |= MessageTypes.SPECIAL_TYPE_GIFT_BADGE;
     }
 
     if (retrieved.isPaymentsNotification()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
     }
 
     if (retrieved.isActivatePaymentsRequest()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
     }
 
     if (retrieved.isPaymentsActivated()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
     }
 
     return insertMessageInbox(retrieved, "", threadId, type);
@@ -2549,7 +2580,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       contentValues.put(RECIPIENT_ID, RecipientId.UNKNOWN.serialize());
     }
 
-    contentValues.put(TYPE, Types.BASE_INBOX_TYPE);
+    contentValues.put(TYPE, MessageTypes.BASE_INBOX_TYPE);
     contentValues.put(THREAD_ID, threadId);
     contentValues.put(MMS_STATUS, MmsStatus.DOWNLOAD_INITIALIZED);
     contentValues.put(DATE_RECEIVED, generatePduCompatTimestamp(System.currentTimeMillis()));
@@ -2567,9 +2598,9 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public @NonNull InsertResult insertChatSessionRefreshedMessage(@NonNull RecipientId recipientId, long senderDeviceId, long sentTimestamp) {
     SQLiteDatabase db       = databaseHelper.getSignalWritableDatabase();
     long           threadId = SignalDatabase.threads().getOrCreateThreadIdFor(Recipient.resolved(recipientId));
-    long           type     = Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT;
+    long           type     = MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT;
 
-    type = type & (Types.TOTAL_MASK - Types.ENCRYPTION_MASK) | Types.ENCRYPTION_REMOTE_FAILED_BIT;
+    type = type & (MessageTypes.TOTAL_MASK - MessageTypes.ENCRYPTION_MASK) | MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT;
 
     ContentValues values = new ContentValues();
     values.put(RECIPIENT_ID, recipientId.serialize());
@@ -2602,7 +2633,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     values.put(DATE_RECEIVED, receivedTimestamp);
     values.put(DATE_SERVER, -1);
     values.put(READ, 0);
-    values.put(TYPE, Types.BAD_DECRYPT_TYPE);
+    values.put(TYPE, MessageTypes.BAD_DECRYPT_TYPE);
     values.put(THREAD_ID, threadId);
 
     databaseHelper.getSignalWritableDatabase().insert(TABLE_NAME, null, values);
@@ -2642,7 +2673,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   private void markGiftRedemptionState(long messageId, @NonNull GiftBadge.RedemptionState redemptionState) {
     String[] projection = SqlUtil.buildArgs(BODY, THREAD_ID);
-    String   where      = "(" + TYPE + " & " + Types.SPECIAL_TYPES_MASK + " = " + Types.SPECIAL_TYPE_GIFT_BADGE + ") AND " +
+    String   where      = "(" + TYPE + " & " + MessageTypes.SPECIAL_TYPES_MASK + " = " + MessageTypes.SPECIAL_TYPE_GIFT_BADGE + ") AND " +
                           ID + " = ?";
     String[] args       = SqlUtil.buildArgs(messageId);
     boolean  updated    = false;
@@ -2688,40 +2719,38 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                   @Nullable InsertListener insertListener)
       throws MmsException
   {
-    SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
+    long type = MessageTypes.BASE_SENDING_TYPE;
 
-    long type = Types.BASE_SENDING_TYPE;
+    if (message.isSecure()) type |= (MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT);
+    if (forceSms)           type |= MessageTypes.MESSAGE_FORCE_SMS_BIT;
 
-    if (message.isSecure()) type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    if (forceSms)           type |= Types.MESSAGE_FORCE_SMS_BIT;
+    if      (message.isSecure())        type |= (MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT);
+    else if (message.isEndSession())    type |= MessageTypes.END_SESSION_BIT;
 
-    if      (message.isSecure())        type |= (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT);
-    else if (message.isEndSession())    type |= Types.END_SESSION_BIT;
-
-    if      (message.isIdentityVerified()) type |= Types.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
-    else if (message.isIdentityDefault())  type |= Types.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
+    if      (message.isIdentityVerified()) type |= MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT;
+    else if (message.isIdentityDefault())  type |= MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT;
 
     if (message.isGroup()) {
       if (message.isV2Group()) {
-        type |= Types.GROUP_V2_BIT | Types.GROUP_UPDATE_BIT;
+        type |= MessageTypes.GROUP_V2_BIT | MessageTypes.GROUP_UPDATE_BIT;
         if (message.isJustAGroupLeave()) {
-          type |= Types.GROUP_LEAVE_BIT;
+          type |= MessageTypes.GROUP_LEAVE_BIT;
         }
       } else {
         MessageGroupContext.GroupV1Properties properties = message.requireGroupV1Properties();
-        if      (properties.isUpdate()) type |= Types.GROUP_UPDATE_BIT;
-        else if (properties.isQuit())   type |= Types.GROUP_LEAVE_BIT;
+        if      (properties.isUpdate()) type |= MessageTypes.GROUP_UPDATE_BIT;
+        else if (properties.isQuit())   type |= MessageTypes.GROUP_LEAVE_BIT;
       }
     }
 
     if (message.isExpirationUpdate()) {
-      type |= Types.EXPIRATION_TIMER_UPDATE_BIT;
+      type |= MessageTypes.EXPIRATION_TIMER_UPDATE_BIT;
     }
 
     boolean hasSpecialType = false;
     if (message.isStoryReaction()) {
       hasSpecialType = true;
-      type |= Types.SPECIAL_TYPE_STORY_REACTION;
+      type |= MessageTypes.SPECIAL_TYPE_STORY_REACTION;
     }
 
     if (message.getGiftBadge() != null) {
@@ -2729,28 +2758,28 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
         throw new MmsException("Cannot insert message with multiple special types.");
       }
 
-      type |= Types.SPECIAL_TYPE_GIFT_BADGE;
+      type |= MessageTypes.SPECIAL_TYPE_GIFT_BADGE;
     }
 
     if (message.isPaymentsNotification()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION;
     }
 
     if (message.isRequestToActivatePayments()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST;
     }
 
     if (message.isPaymentsActivated()) {
       if (hasSpecialType) {
         throw new MmsException("Cannot insert message with multiple special types.");
       }
-      type |= Types.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
+      type |= MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED;
     }
 
     Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
@@ -3052,7 +3081,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     try (Cursor cursor = database.query(TABLE_NAME, new String[] { TYPE }, ID + " = ?", new String[] { String.valueOf(messageId)}, null, null, null)) {
       if (cursor != null && cursor.moveToNext()) {
         long type = cursor.getLong(cursor.getColumnIndexOrThrow(TYPE));
-        return Types.isSentType(type);
+        return MessageTypes.isSentType(type);
       }
     }
     return false;
@@ -3060,7 +3089,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public List<MessageRecord> getProfileChangeDetailsRecords(long threadId, long afterTimestamp) {
     String   where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " >= ? AND " + TYPE + " = ?";
-    String[] args  = SqlUtil.buildArgs(threadId, afterTimestamp, Types.PROFILE_CHANGE_TYPE);
+    String[] args  = SqlUtil.buildArgs(threadId, afterTimestamp, MessageTypes.PROFILE_CHANGE_TYPE);
 
     try (MmsReader reader = mmsReaderFor(queryMessages(where, args, true, -1))) {
       List<MessageRecord> results = new ArrayList<>(reader.getCount());
@@ -3091,7 +3120,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public Set<Long> getAllRateLimitedMessageIds() {
     SQLiteDatabase db    = databaseHelper.getSignalReadableDatabase();
-    String         where = "(" + TYPE + " & " + Types.TOTAL_MASK + " & " + Types.MESSAGE_RATE_LIMITED_BIT + ") > 0";
+    String         where = "(" + TYPE + " & " + MessageTypes.TOTAL_MASK + " & " + MessageTypes.MESSAGE_RATE_LIMITED_BIT + ") > 0";
 
     Set<Long> ids = new HashSet<>();
 
@@ -3202,7 +3231,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   public List<MessageRecord> getMessagesInThreadAfterInclusive(long threadId, long timestamp, long limit) {
-    String   where = TABLE_NAME + "." + MmsSmsColumns.THREAD_ID + " = ? AND " +
+    String   where = TABLE_NAME + "." + THREAD_ID + " = ? AND " +
                      TABLE_NAME + "." + DATE_RECEIVED + " >= ?";
     String[] args  = SqlUtil.buildArgs(threadId, timestamp);
 
@@ -3268,7 +3297,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     try (Cursor cursor = SQLiteDatabaseExtensionsKt
         .select(getReadableDatabase(), "COUNT(*)")
         .from(TABLE_NAME)
-        .where(RECIPIENT_ID + " = ? AND " + TYPE + " = ?", recipientId, MmsSmsColumns.Types.CHANGE_NUMBER_TYPE)
+        .where(RECIPIENT_ID + " = ? AND " + TYPE + " = ?", recipientId, MessageTypes.CHANGE_NUMBER_TYPE)
         .run())
     {
       if (cursor.moveToFirst()) {
@@ -3348,9 +3377,9 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   final @NonNull String getOutgoingTypeClause() {
-    List<String> segments = new ArrayList<>(Types.OUTGOING_MESSAGE_TYPES.length);
-    for (long outgoingMessageType : Types.OUTGOING_MESSAGE_TYPES) {
-      segments.add("(" + TABLE_NAME + "." + TYPE + " & " + Types.BASE_TYPE_MASK + " = " + outgoingMessageType + ")");
+    List<String> segments = new ArrayList<>(MessageTypes.OUTGOING_MESSAGE_TYPES.length);
+    for (long outgoingMessageType : MessageTypes.OUTGOING_MESSAGE_TYPES) {
+      segments.add("(" + TABLE_NAME + "." + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + " = " + outgoingMessageType + ")");
     }
 
     return Util.join(segments, " OR ");
@@ -3387,7 +3416,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
 
   public boolean hasSmsExportMessage(long threadId) {
     return SQLiteDatabaseExtensionsKt.exists(getReadableDatabase(), TABLE_NAME)
-                                     .where(THREAD_ID_WHERE + " AND " + TYPE + " = ?", threadId, Types.SMS_EXPORT_TYPE)
+                                     .where(THREAD_ID_WHERE + " AND " + TYPE + " = ?", threadId, MessageTypes.SMS_EXPORT_TYPE)
                                      .run();
   }
 
@@ -3398,7 +3427,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   final int getSecureMessageCount(long threadId) {
     SQLiteDatabase db           = databaseHelper.getSignalReadableDatabase();
     String[]       projection   = new String[] {"COUNT(*)"};
-    String         query        = getSecureMessageClause() + "AND " + MmsSmsColumns.THREAD_ID + " = ?";
+    String         query        = getSecureMessageClause() + "AND " + THREAD_ID + " = ?";
     String[]       args         = new String[]{String.valueOf(threadId)};
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, query, args, null, null, null, null)) {
@@ -3414,8 +3443,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
     SQLiteDatabase db           = databaseHelper.getSignalReadableDatabase();
     String[]       projection   = new String[] {"COUNT(*)"};
     String         query        = getOutgoingSecureMessageClause() +
-                                  "AND " + MmsSmsColumns.THREAD_ID + " = ? " +
-                                  "AND (" + TYPE + " & " + Types.GROUP_LEAVE_BIT + " = 0 OR " + TYPE + " & " + Types.GROUP_V2_BIT + " = " + Types.GROUP_V2_BIT + ")";
+                                  "AND " + THREAD_ID + " = ? " +
+                                  "AND (" + TYPE + " & " + MessageTypes.GROUP_LEAVE_BIT + " = 0 OR " + TYPE + " & " + MessageTypes.GROUP_V2_BIT + " = " + MessageTypes.GROUP_V2_BIT + ")";
     String[]       args         = new String[]{String.valueOf(threadId)};
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, query, args, null, null, null, null)) {
@@ -3488,17 +3517,17 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   private String getOutgoingInsecureMessageClause() {
-    return "(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND NOT (" + TYPE + " & " + Types.SECURE_MESSAGE_BIT + ")";
+    return "(" + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_SENT_TYPE + " AND NOT (" + TYPE + " & " + MessageTypes.SECURE_MESSAGE_BIT + ")";
   }
 
   private String getOutgoingSecureMessageClause() {
-    return "(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE + " AND (" + TYPE + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+    return "(" + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_SENT_TYPE + " AND (" + TYPE + " & " + (MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT) + ")";
   }
 
   private String getSecureMessageClause() {
-    String isSent     = "(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
-    String isReceived = "(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
-    String isSecure   = "(" + TYPE + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
+    String isSent     = "(" + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_SENT_TYPE;
+    String isReceived = "(" + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_INBOX_TYPE;
+    String isSecure   = "(" + TYPE + " & " + (MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT) + ")";
 
     return String.format(Locale.ENGLISH, "(%s OR %s) AND %s", isSent, isReceived, isSecure);
   }
@@ -3508,10 +3537,10 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   }
 
   protected String getInsecureMessageClause(long threadId) {
-    String isSent      = "(" + TABLE_NAME + "." + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_SENT_TYPE;
-    String isReceived  = "(" + TABLE_NAME + "." + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE;
-    String isSecure    = "(" + TABLE_NAME + "." + TYPE + " & " + (Types.SECURE_MESSAGE_BIT | Types.PUSH_MESSAGE_BIT) + ")";
-    String isNotSecure = "(" + TABLE_NAME + "." + TYPE + " <= " + (Types.BASE_TYPE_MASK | Types.MESSAGE_ATTRIBUTE_MASK) + ")";
+    String isSent      = "(" + TABLE_NAME + "." + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_SENT_TYPE;
+    String isReceived  = "(" + TABLE_NAME + "." + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_INBOX_TYPE;
+    String isSecure    = "(" + TABLE_NAME + "." + TYPE + " & " + (MessageTypes.SECURE_MESSAGE_BIT | MessageTypes.PUSH_MESSAGE_BIT) + ")";
+    String isNotSecure = "(" + TABLE_NAME + "." + TYPE + " <= " + (MessageTypes.BASE_TYPE_MASK | MessageTypes.MESSAGE_ATTRIBUTE_MASK) + ")";
 
     String whereClause = String.format(Locale.ENGLISH, "(%s OR %s) AND NOT %s AND %s", isSent, isReceived, isSecure, isNotSecure);
 
@@ -3655,7 +3684,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public List<Long> getIncomingPaymentRequestThreads() {
     Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), "DISTINCT " + THREAD_ID)
                                               .from(TABLE_NAME)
-                                              .where("(" + TYPE + " & " + Types.BASE_TYPE_MASK + ") = " + Types.BASE_INBOX_TYPE + " AND (" + TYPE + " & ?) != 0", Types.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST)
+                                              .where("(" + TYPE + " & " + MessageTypes.BASE_TYPE_MASK + ") = " + MessageTypes.BASE_INBOX_TYPE + " AND (" + TYPE + " & ?) != 0", MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST)
                                               .run();
 
     return CursorExtensionsKt.readToList(cursor, c -> CursorUtil.requireLong(c, THREAD_ID));
@@ -3664,7 +3693,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   public @Nullable MessageId getPaymentMessage(@NonNull UUID paymentUuid) {
     Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), ID)
                                               .from(TABLE_NAME)
-                                              .where(TYPE + " & ? != 0 AND body = ?", Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION, paymentUuid)
+                                              .where(TYPE + " & ? != 0 AND body = ?", MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION, paymentUuid)
                                               .run();
 
     long id = CursorExtensionsKt.readToSingleLong(cursor, -1);
@@ -3685,7 +3714,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
   @Override
   public void remapThread(long fromId, long toId) {
     ContentValues values = new ContentValues();
-    values.put(MmsSmsColumns.THREAD_ID, toId);
+    values.put(THREAD_ID, toId);
     getWritableDatabase().update(TABLE_NAME, values, THREAD_ID + " = ?", SqlUtil.buildArgs(fromId));
   }
 
@@ -4159,7 +4188,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
                                        0,
                                        threadId, message.getBody(),
                                        slideDeck,
-                                       message.isSecure() ? MmsSmsColumns.Types.getOutgoingEncryptedMessageType() : MmsSmsColumns.Types.getOutgoingSmsMessageType(),
+                                       message.isSecure() ? MessageTypes.getOutgoingEncryptedMessageType() : MessageTypes.getOutgoingSmsMessageType(),
                                        Collections.emptySet(),
                                        Collections.emptySet(),
                                        message.getSubscriptionId(),
@@ -4269,8 +4298,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       int           deliveryReceiptCount = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.DELIVERY_RECEIPT_COUNT));
       int           readReceiptCount     = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.READ_RECEIPT_COUNT));
       int           subscriptionId       = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.SMS_SUBSCRIPTION_ID));
-      int           viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
-      long          receiptTimestamp     = CursorUtil.requireLong(cursor, MmsSmsColumns.RECEIPT_TIMESTAMP);
+      int           viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.VIEWED_RECEIPT_COUNT));
+      long          receiptTimestamp     = CursorUtil.requireLong(cursor, MessageTable.RECEIPT_TIMESTAMP);
       StoryType     storyType            = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
       ParentStoryId parentStoryId        = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
       String        body                 = cursor.getString(cursor.getColumnIndexOrThrow(MessageTable.BODY));
@@ -4291,7 +4320,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       SlideDeck slideDeck = new SlideDeck(context, new MmsNotificationAttachment(status, messageSize));
 
       GiftBadge giftBadge = null;
-      if (body != null && Types.isGiftBadge(mailbox)) {
+      if (body != null && MessageTypes.isGiftBadge(mailbox)) {
         try {
           giftBadge = GiftBadge.parseFrom(Base64.decode(body));
         } catch (IOException e) {
@@ -4329,8 +4358,8 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       boolean              remoteDelete         = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.REMOTE_DELETED)) == 1;
       boolean              mentionsSelf         = CursorUtil.requireBoolean(cursor, MENTIONS_SELF);
       long                 notifiedTimestamp    = CursorUtil.requireLong(cursor, NOTIFIED_TIMESTAMP);
-      int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(MmsSmsColumns.VIEWED_RECEIPT_COUNT));
-      long                 receiptTimestamp     = CursorUtil.requireLong(cursor, MmsSmsColumns.RECEIPT_TIMESTAMP);
+      int                  viewedReceiptCount   = cursor.getInt(cursor.getColumnIndexOrThrow(VIEWED_RECEIPT_COUNT));
+      long                 receiptTimestamp     = CursorUtil.requireLong(cursor, RECEIPT_TIMESTAMP);
       byte[]               messageRangesData    = CursorUtil.requireBlob(cursor, MESSAGE_RANGES);
       StoryType            storyType            = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
       ParentStoryId        parentStoryId        = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
@@ -4338,7 +4367,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       if (!TextSecurePreferences.isReadReceiptsEnabled(context)) {
         readReceiptCount = 0;
 
-        if (MmsSmsColumns.Types.isOutgoingMessageType(box) && !storyType.isStory()) {
+        if (MessageTypes.isOutgoingMessageType(box) && !storyType.isStory()) {
           viewedReceiptCount = 0;
         }
       }
@@ -4364,7 +4393,7 @@ public class MessageTable extends DatabaseTable implements MmsSmsColumns, Recipi
       }
 
       GiftBadge giftBadge = null;
-      if (body != null && Types.isGiftBadge(box)) {
+      if (body != null && MessageTypes.isGiftBadge(box)) {
         try {
           giftBadge = GiftBadge.parseFrom(Base64.decode(body));
         } catch (IOException e) {

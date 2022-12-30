@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer.reply.group
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.conversation.ConversationMessage
 import org.thoughtcrime.securesms.database.MessageTable
-import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -38,7 +38,7 @@ class StoryGroupReplyDataSource(private val parentStoryId: Long) : PagedDataSour
   private fun readRowFromRecord(record: MmsMessageRecord): ReplyBody {
     return when {
       record.isRemoteDelete -> ReplyBody.RemoteDelete(record)
-      MmsSmsColumns.Types.isStoryReaction(record.type) -> ReplyBody.Reaction(record)
+      MessageTypes.isStoryReaction(record.type) -> ReplyBody.Reaction(record)
       else -> ReplyBody.Text(
         ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record)
       )

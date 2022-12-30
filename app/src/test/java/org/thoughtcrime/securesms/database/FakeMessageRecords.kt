@@ -115,7 +115,7 @@ object FakeMessageRecords {
     body: String = "body",
     slideDeck: SlideDeck = SlideDeck(),
     partCount: Int = slideDeck.slides.count(),
-    mailbox: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
+    mailbox: Long = MessageTypes.BASE_INBOX_TYPE,
     mismatches: Set<IdentityKeyMismatch> = emptySet(),
     failures: Set<NetworkFailure> = emptySet(),
     subscriptionId: Int = -1,

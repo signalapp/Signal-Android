@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MentionTable;
 import org.thoughtcrime.securesms.database.MentionUtil;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -451,8 +450,8 @@ public class SearchRepository {
       Recipient   messageRecipient        = Recipient.live(messageRecipientId).get();
       String      body                    = CursorUtil.requireString(cursor, SearchTable.BODY);
       String      bodySnippet             = CursorUtil.requireString(cursor, SearchTable.SNIPPET);
-      long        receivedMs              = CursorUtil.requireLong(cursor, MmsSmsColumns.DATE_RECEIVED);
-      long        threadId                = CursorUtil.requireLong(cursor, MmsSmsColumns.THREAD_ID);
+      long        receivedMs              = CursorUtil.requireLong(cursor, MessageTable.DATE_RECEIVED);
+      long        threadId                = CursorUtil.requireLong(cursor, MessageTable.THREAD_ID);
       int         messageId               = CursorUtil.requireInt(cursor, SearchTable.MESSAGE_ID);
       boolean     isMms                   = CursorUtil.requireInt(cursor, SearchTable.IS_MMS) == 1;
 

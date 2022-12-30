@@ -11,7 +11,7 @@ import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.DraftTable.Drafts
 import org.thoughtcrime.securesms.database.MentionUtil
-import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -46,7 +46,7 @@ class DraftRepository(
         }
 
         draftTable.replaceDrafts(actualThreadId, drafts)
-        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MmsSmsColumns.Types.BASE_DRAFT_TYPE, true)
+        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
       } else if (threadId > 0) {
         draftTable.clearDrafts(threadId)
         threadTable.update(threadId, unarchive = false, allowDeletion = false)

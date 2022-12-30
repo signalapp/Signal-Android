@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.MentionTable;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptTable;
 import org.thoughtcrime.securesms.database.ReactionTable;
@@ -578,12 +577,12 @@ public class FullBackupExporter extends FullBackupBase {
   }
 
   private static boolean isNonExpiringMmsMessage(@NonNull Cursor cursor) {
-    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0 &&
+    return cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.EXPIRES_IN)) <= 0 &&
            cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.VIEW_ONCE)) <= 0;
   }
 
   private static boolean isNonExpiringSmsMessage(@NonNull Cursor cursor) {
-    return cursor.getLong(cursor.getColumnIndexOrThrow(MmsSmsColumns.EXPIRES_IN)) <= 0;
+    return cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.EXPIRES_IN)) <= 0;
   }
 
   private static boolean isForNonExpiringMessage(@NonNull SQLiteDatabase db, @NonNull MessageId messageId) {

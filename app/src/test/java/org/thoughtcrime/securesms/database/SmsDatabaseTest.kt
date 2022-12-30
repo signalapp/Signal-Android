@@ -61,7 +61,7 @@ class SmsDatabaseTest {
 
   @Test
   fun `hasMeaningfulMessage when GV2 create message only, return true`() {
-    TestSms.insert(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_BIT or MmsSmsColumns.Types.GROUP_UPDATE_BIT)
+    TestSms.insert(db, type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT)
     assertTrue(messageTable.hasMeaningfulMessage(1))
   }
 
@@ -69,22 +69,22 @@ class SmsDatabaseTest {
   fun `hasMeaningfulMessage when empty and then with ignored types, always return false`() {
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.IGNORABLE_TYPESMASK_WHEN_COUNTING)
+    TestSms.insert(db, type = MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING)
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.PROFILE_CHANGE_TYPE)
+    TestSms.insert(db, type = MessageTypes.PROFILE_CHANGE_TYPE)
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.CHANGE_NUMBER_TYPE)
+    TestSms.insert(db, type = MessageTypes.CHANGE_NUMBER_TYPE)
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.BOOST_REQUEST_TYPE)
+    TestSms.insert(db, type = MessageTypes.BOOST_REQUEST_TYPE)
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.SMS_EXPORT_TYPE)
+    TestSms.insert(db, type = MessageTypes.SMS_EXPORT_TYPE)
     assertFalse(messageTable.hasMeaningfulMessage(1))
 
-    TestSms.insert(db, type = MmsSmsColumns.Types.BASE_INBOX_TYPE or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
+    TestSms.insert(db, type = MessageTypes.BASE_INBOX_TYPE or MessageTypes.GROUP_V2_LEAVE_BITS)
     assertFalse(messageTable.hasMeaningfulMessage(1))
   }
 }

@@ -342,7 +342,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       mmsSms.getConversation(threadId).use { cursor ->
         if (cursor.count > length) {
           cursor.moveToPosition(length - 1)
-          max(trimBeforeDate, cursor.requireLong(MmsSmsColumns.DATE_RECEIVED))
+          max(trimBeforeDate, cursor.requireLong(MessageTable.DATE_RECEIVED))
         } else {
           trimBeforeDate
         }
@@ -1364,7 +1364,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     if (drafts.isNotEmpty()) {
       val threadRecord: ThreadRecord? = getThreadRecord(threadId)
       if (threadRecord != null &&
-        threadRecord.type == MmsSmsColumns.Types.BASE_DRAFT_TYPE &&
+        threadRecord.type == MessageTypes.BASE_DRAFT_TYPE &&
         threadRecord.date > record.timestamp
       ) {
         return false
@@ -1626,12 +1626,12 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun isSilentType(type: Long): Boolean {
-    return MmsSmsColumns.Types.isProfileChange(type) ||
-      MmsSmsColumns.Types.isGroupV1MigrationEvent(type) ||
-      MmsSmsColumns.Types.isChangeNumber(type) ||
-      MmsSmsColumns.Types.isBoostRequest(type) ||
-      MmsSmsColumns.Types.isGroupV2LeaveOnly(type) ||
-      MmsSmsColumns.Types.isThreadMergeType(type)
+    return MessageTypes.isProfileChange(type) ||
+      MessageTypes.isGroupV1MigrationEvent(type) ||
+      MessageTypes.isChangeNumber(type) ||
+      MessageTypes.isBoostRequest(type) ||
+      MessageTypes.isGroupV2LeaveOnly(type) ||
+      MessageTypes.isThreadMergeType(type)
   }
 
   fun readerFor(cursor: Cursor): Reader {

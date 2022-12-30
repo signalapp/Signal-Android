@@ -4,7 +4,7 @@ package org.thoughtcrime.securesms.util
 
 import android.content.Context
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -42,7 +42,7 @@ fun MessageRecord.hasThumbnail(): Boolean =
   isMms && (this as MmsMessageRecord).slideDeck.thumbnailSlide != null
 
 fun MessageRecord.isStoryReaction(): Boolean =
-  isMms && MmsSmsColumns.Types.isStoryReaction(type)
+  isMms && MessageTypes.isStoryReaction(type)
 
 fun MessageRecord.isStory(): Boolean =
   isMms && (this as MmsMessageRecord).storyType.isStory

@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.IdentityTable;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.PushTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -405,7 +405,7 @@ public class ClassicOpenHelper extends SQLiteOpenHelper {
           cursor = db.query("sms",
                             new String[] { "_id", "body", "type"},
                             "type & ? == 0",
-                            new String[] {String.valueOf(MmsSmsColumns.Types.ENCRYPTION_MASK)},
+                            new String[] {String.valueOf(MessageTypes.ENCRYPTION_MASK)},
                             null, null, null);
 
           while (cursor.moveToNext()) {

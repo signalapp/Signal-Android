@@ -12,7 +12,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
-import org.thoughtcrime.securesms.database.MmsSmsColumns.Types
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.testing.TestDatabaseUtil
@@ -40,37 +39,37 @@ class MmsDatabaseTest {
 
   @Test
   fun `isGroupQuitMessage when normal message, return false`() {
-    val id = TestMms.insert(db, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT)
+    val id = TestMms.insert(db, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT)
     assertFalse(messageTable.isGroupQuitMessage(id))
   }
 
   @Test
   fun `isGroupQuitMessage when legacy quit message, return true`() {
-    val id = TestMms.insert(db, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT or Types.GROUP_LEAVE_BIT)
+    val id = TestMms.insert(db, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_LEAVE_BIT)
     assertTrue(messageTable.isGroupQuitMessage(id))
   }
 
   @Test
   fun `isGroupQuitMessage when GV2 leave update, return false`() {
-    val id = TestMms.insert(db, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT or Types.GROUP_LEAVE_BIT or Types.GROUP_V2_BIT or Types.GROUP_UPDATE_BIT)
+    val id = TestMms.insert(db, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_LEAVE_BIT or MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT)
     assertFalse(messageTable.isGroupQuitMessage(id))
   }
 
   @Test
   fun `getLatestGroupQuitTimestamp when only normal message, return -1`() {
-    TestMms.insert(db, threadId = 1, sentTimeMillis = 1, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT)
+    TestMms.insert(db, threadId = 1, sentTimeMillis = 1, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT)
     assertEquals(-1, messageTable.getLatestGroupQuitTimestamp(1, 4))
   }
 
   @Test
   fun `getLatestGroupQuitTimestamp when legacy quit, return message timestamp`() {
-    TestMms.insert(db, threadId = 1, sentTimeMillis = 2, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT or Types.GROUP_LEAVE_BIT)
+    TestMms.insert(db, threadId = 1, sentTimeMillis = 2, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_LEAVE_BIT)
     assertEquals(2, messageTable.getLatestGroupQuitTimestamp(1, 4))
   }
 
   @Test
   fun `getLatestGroupQuitTimestamp when GV2 leave update message, return -1`() {
-    TestMms.insert(db, threadId = 1, sentTimeMillis = 3, type = Types.BASE_SENDING_TYPE or Types.SECURE_MESSAGE_BIT or Types.PUSH_MESSAGE_BIT or Types.GROUP_LEAVE_BIT or Types.GROUP_V2_BIT or Types.GROUP_UPDATE_BIT)
+    TestMms.insert(db, threadId = 1, sentTimeMillis = 3, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_LEAVE_BIT or MessageTypes.GROUP_V2_BIT or MessageTypes.GROUP_UPDATE_BIT)
     assertEquals(-1, messageTable.getLatestGroupQuitTimestamp(1, 4))
   }
 
@@ -109,7 +108,7 @@ class MmsDatabaseTest {
 
   @Test
   fun `Given only outgoing story in database, when I getStoryViewState, then I expect VIEWED`() {
-    TestMms.insert(db, threadId = 1, storyType = StoryType.STORY_WITH_REPLIES, type = Types.BASE_OUTBOX_TYPE)
+    TestMms.insert(db, threadId = 1, storyType = StoryType.STORY_WITH_REPLIES, type = MessageTypes.BASE_OUTBOX_TYPE)
     assertEquals(StoryViewState.VIEWED, messageTable.getStoryViewState(1))
   }
 }

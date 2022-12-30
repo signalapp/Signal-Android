@@ -40,7 +40,7 @@ class MmsSmsDatabaseTest {
     TestSms.insert(db)
     mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 
@@ -49,7 +49,7 @@ class MmsSmsDatabaseTest {
     TestMms.insert(db)
     mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 
@@ -60,13 +60,13 @@ class MmsSmsDatabaseTest {
     TestMms.insert(db, receivedTimestampMillis = timestamp + 2)
     mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
 
-    TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MmsSmsColumns.Types.BASE_SENDING_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.PUSH_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
+    TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_V2_LEAVE_BITS)
     mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 }

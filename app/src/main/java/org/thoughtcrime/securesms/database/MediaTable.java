@@ -59,7 +59,7 @@ public class MediaTable extends DatabaseTable {
                                                    + " ON " + AttachmentTable.TABLE_NAME + "." + AttachmentTable.MMS_ID + " = " + MessageTable.TABLE_NAME + "." + MessageTable.ID + " "
                                                    + "LEFT JOIN " + ThreadTable.TABLE_NAME
                                                    + " ON " + ThreadTable.TABLE_NAME + "." + ThreadTable.ID + " = " + MessageTable.TABLE_NAME + "." + MessageTable.THREAD_ID + " "
-                                                   + "WHERE " + AttachmentTable.MMS_ID + " IN (SELECT " + MmsSmsColumns.ID
+                                                   + "WHERE " + AttachmentTable.MMS_ID + " IN (SELECT " + MessageTable.ID
                                                    + " FROM " + MessageTable.TABLE_NAME
                                                    + " WHERE " + MessageTable.THREAD_ID + " __EQUALITY__ ?) AND (%s) AND "
                                                    + MessageTable.VIEW_ONCE + " = 0 AND "
@@ -194,11 +194,11 @@ public class MediaTable extends DatabaseTable {
       List<DatabaseAttachment> attachments        = attachmentDatabase.getAttachments(cursor);
       RecipientId              recipientId        = RecipientId.from(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.RECIPIENT_ID)));
       long                     threadId           = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.THREAD_ID));
-      boolean                  outgoing           = MessageTable.Types.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)));
+      boolean                  outgoing           = MessageTypes.isOutgoingMessageType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)));
 
       long date;
 
-      if (MessageTable.Types.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)))) {
+      if (MessageTypes.isPushType(cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.TYPE)))) {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.DATE_SENT));
       } else {
         date = cursor.getLong(cursor.getColumnIndexOrThrow(MessageTable.DATE_RECEIVED));

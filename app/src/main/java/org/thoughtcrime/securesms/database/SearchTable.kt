@@ -18,8 +18,8 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     const val MMS_FTS_TABLE_NAME = "mms_fts"
     const val ID = "rowid"
-    const val BODY = MmsSmsColumns.BODY
-    const val THREAD_ID = MmsSmsColumns.THREAD_ID
+    const val BODY = MessageTable.BODY
+    const val THREAD_ID = MessageTable.THREAD_ID
     const val SNIPPET = "snippet"
     const val CONVERSATION_RECIPIENT = "conversation_recipient"
     const val MESSAGE_RECIPIENT = "message_recipient"
@@ -52,12 +52,13 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       """
     )
 
+    @Language("sql")
     private const val MESSAGES_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT, 
         snippet($MMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET, 
-        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $MMS_FTS_TABLE_NAME.$THREAD_ID, 
         $MMS_FTS_TABLE_NAME.$BODY, 
         $MMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID, 
@@ -68,18 +69,19 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $MMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $MMS_FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MmsSmsColumns.Types.GROUP_V2_BIT} = 0 AND 
-        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MmsSmsColumns.Types.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
-      ORDER BY ${MmsSmsColumns.DATE_RECEIVED} DESC 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.GROUP_V2_BIT} = 0 AND 
+        ${MessageTable.TABLE_NAME}.${MessageTable.TYPE} & ${MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION} = 0 
+      ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
 
+    @Language("sql")
     private const val MESSAGES_FOR_THREAD_QUERY = """
       SELECT 
         ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} AS $CONVERSATION_RECIPIENT, 
-        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
+        ${MessageTable.TABLE_NAME}.${MessageTable.RECIPIENT_ID} AS $MESSAGE_RECIPIENT,
         snippet($MMS_FTS_TABLE_NAME, -1, '', '', '$SNIPPET_WRAP', 7) AS $SNIPPET,
-        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.DATE_RECEIVED}, 
+        ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED}, 
         $MMS_FTS_TABLE_NAME.$THREAD_ID, 
         $MMS_FTS_TABLE_NAME.$BODY, 
         $MMS_FTS_TABLE_NAME.$ID AS $MESSAGE_ID,
@@ -90,8 +92,8 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           INNER JOIN ${ThreadTable.TABLE_NAME} ON $MMS_FTS_TABLE_NAME.$THREAD_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.ID} 
       WHERE 
         $MMS_FTS_TABLE_NAME MATCH ? AND 
-        ${MessageTable.TABLE_NAME}.${MmsSmsColumns.THREAD_ID} = ? 
-      ORDER BY ${MmsSmsColumns.DATE_RECEIVED} DESC 
+        ${MessageTable.TABLE_NAME}.${MessageTable.THREAD_ID} = ? 
+      ORDER BY ${MessageTable.DATE_RECEIVED} DESC 
       LIMIT 500
     """
   }

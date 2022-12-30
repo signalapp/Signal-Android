@@ -24,7 +24,7 @@ object TestMms {
     expiresIn: Long = 0,
     viewOnce: Boolean = false,
     distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
-    type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
+    type: Long = MessageTypes.BASE_INBOX_TYPE,
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
@@ -69,7 +69,7 @@ object TestMms {
     message: OutgoingMessage,
     recipientId: RecipientId = message.recipient.id,
     body: String = message.body,
-    type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
+    type: Long = MessageTypes.BASE_INBOX_TYPE,
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
@@ -80,19 +80,19 @@ object TestMms {
       put(MessageTable.MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
       put(MessageTable.TYPE, type)
-      put(MmsSmsColumns.THREAD_ID, threadId)
-      put(MmsSmsColumns.READ, if (unread) 0 else 1)
+      put(MessageTable.THREAD_ID, threadId)
+      put(MessageTable.READ, if (unread) 0 else 1)
       put(MessageTable.DATE_RECEIVED, receivedTimestampMillis)
-      put(MmsSmsColumns.SMS_SUBSCRIPTION_ID, message.subscriptionId)
-      put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
+      put(MessageTable.SMS_SUBSCRIPTION_ID, message.subscriptionId)
+      put(MessageTable.EXPIRES_IN, message.expiresIn)
       put(MessageTable.VIEW_ONCE, message.isViewOnce)
-      put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
-      put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
-      put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
-      put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
+      put(MessageTable.RECIPIENT_ID, recipientId.serialize())
+      put(MessageTable.DELIVERY_RECEIPT_COUNT, 0)
+      put(MessageTable.RECEIPT_TIMESTAMP, 0)
+      put(MessageTable.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
       put(MessageTable.STORY_TYPE, message.storyType.code)
 
-      put(MmsSmsColumns.BODY, body)
+      put(MessageTable.BODY, body)
       put(MessageTable.MENTIONS_SELF, 0)
     }
 
@@ -101,8 +101,8 @@ object TestMms {
 
   fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {
     val values = ContentValues()
-    values.put(MmsSmsColumns.REMOTE_DELETED, 1)
-    values.putNull(MmsSmsColumns.BODY)
+    values.put(MessageTable.REMOTE_DELETED, 1)
+    values.putNull(MessageTable.BODY)
     values.putNull(MessageTable.QUOTE_BODY)
     values.putNull(MessageTable.QUOTE_AUTHOR)
     values.put(MessageTable.QUOTE_TYPE, -1)

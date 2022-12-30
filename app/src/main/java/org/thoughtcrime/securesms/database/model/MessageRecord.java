@@ -41,7 +41,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
-import org.thoughtcrime.securesms.database.MmsSmsColumns;
+import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -139,11 +139,11 @@ public abstract class MessageRecord extends DisplayRecord {
   public abstract boolean isMmsNotification();
 
   public boolean isSecure() {
-    return MmsSmsColumns.Types.isSecureType(type);
+    return MessageTypes.isSecureType(type);
   }
 
   public boolean isLegacyMessage() {
-    return MmsSmsColumns.Types.isLegacyType(type);
+    return MessageTypes.isLegacyType(type);
   }
 
 
@@ -493,7 +493,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isPush() {
-    return MmsSmsColumns.Types.isPushType(type) && !MmsSmsColumns.Types.isForcedSms(type);
+    return MessageTypes.isPushType(type) && !MessageTypes.isForcedSms(type);
   }
 
   public long getTimestamp() {
@@ -508,15 +508,15 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isForcedSms() {
-    return MmsSmsColumns.Types.isForcedSms(type);
+    return MessageTypes.isForcedSms(type);
   }
 
   public boolean isIdentityVerified() {
-    return MmsSmsColumns.Types.isIdentityVerified(type);
+    return MessageTypes.isIdentityVerified(type);
   }
 
   public boolean isIdentityDefault() {
-    return MmsSmsColumns.Types.isIdentityDefault(type);
+    return MessageTypes.isIdentityDefault(type);
   }
 
   public boolean isIdentityMismatchFailure() {
@@ -524,43 +524,43 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isBundleKeyExchange() {
-    return MmsSmsColumns.Types.isBundleKeyExchange(type);
+    return MessageTypes.isBundleKeyExchange(type);
   }
 
   public boolean isContentBundleKeyExchange() {
-    return MmsSmsColumns.Types.isContentBundleKeyExchange(type);
+    return MessageTypes.isContentBundleKeyExchange(type);
   }
 
   public boolean isRateLimited() {
-    return MmsSmsColumns.Types.isRateLimited(type);
+    return MessageTypes.isRateLimited(type);
   }
 
   public boolean isIdentityUpdate() {
-    return MmsSmsColumns.Types.isIdentityUpdate(type);
+    return MessageTypes.isIdentityUpdate(type);
   }
 
   public boolean isCorruptedKeyExchange() {
-    return MmsSmsColumns.Types.isCorruptedKeyExchange(type);
+    return MessageTypes.isCorruptedKeyExchange(type);
   }
 
   public boolean isBadDecryptType() {
-    return MmsSmsColumns.Types.isBadDecryptType(type);
+    return MessageTypes.isBadDecryptType(type);
   }
 
   public boolean isThreadMergeEventType() {
-    return MmsSmsColumns.Types.isThreadMergeType(type);
+    return MessageTypes.isThreadMergeType(type);
   }
 
   public boolean isSmsExportType() {
-    return MmsSmsColumns.Types.isSmsExport(type);
+    return MessageTypes.isSmsExport(type);
   }
 
   public boolean isInvalidVersionKeyExchange() {
-    return MmsSmsColumns.Types.isInvalidVersionKeyExchange(type);
+    return MessageTypes.isInvalidVersionKeyExchange(type);
   }
 
   public boolean isGroupV1MigrationEvent() {
-    return MmsSmsColumns.Types.isGroupV1MigrationEvent(type);
+    return MessageTypes.isGroupV1MigrationEvent(type);
   }
 
   public @NonNull GroupMigrationMembershipChange getGroupV1MigrationMembershipChanges() {
@@ -612,7 +612,7 @@ public abstract class MessageRecord extends DisplayRecord {
   }
 
   public boolean isChatSessionRefresh() {
-    return MmsSmsColumns.Types.isChatSessionRefresh(type);
+    return MessageTypes.isChatSessionRefresh(type);
   }
 
   public boolean isInMemoryMessageRecord() {
