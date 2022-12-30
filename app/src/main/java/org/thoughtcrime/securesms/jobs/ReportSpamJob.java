@@ -69,7 +69,7 @@ public class ReportSpamJob extends BaseJob {
     }
 
     int                         count                       = 0;
-    List<ReportSpamData>        reportSpamData              = SignalDatabase.mmsSms().getReportSpamMessageServerData(threadId, timestamp, MAX_MESSAGE_COUNT);
+    List<ReportSpamData>        reportSpamData              = SignalDatabase.messages().getReportSpamMessageServerData(threadId, timestamp, MAX_MESSAGE_COUNT);
     SignalServiceAccountManager signalServiceAccountManager = ApplicationDependencies.getSignalServiceAccountManager();
     for (ReportSpamData data : reportSpamData) {
       Optional<ServiceId> serviceId = Recipient.resolved(data.getRecipientId()).getServiceId();

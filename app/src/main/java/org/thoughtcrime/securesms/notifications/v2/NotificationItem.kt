@@ -215,7 +215,7 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
 
   override fun getStartingPosition(context: Context): Int {
     return if (thread.groupStoryId != null) {
-      SignalDatabase.mmsSms.getMessagePositionInConversation(thread.threadId, thread.groupStoryId, record.dateReceived)
+      SignalDatabase.messages.getMessagePositionInConversation(thread.threadId, thread.groupStoryId, record.dateReceived)
     } else {
       -1
     }
@@ -328,7 +328,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   override fun getStartingPosition(context: Context): Int {
-    return SignalDatabase.mmsSms.getMessagePositionInConversation(thread.threadId, thread.groupStoryId ?: 0L, record.dateReceived)
+    return SignalDatabase.messages.getMessagePositionInConversation(thread.threadId, thread.groupStoryId ?: 0L, record.dateReceived)
   }
 
   override fun getLargeIconUri(): Uri? = null

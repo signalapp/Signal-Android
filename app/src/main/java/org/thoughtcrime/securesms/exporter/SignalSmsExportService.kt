@@ -103,66 +103,66 @@ class SignalSmsExportService : SmsExportService() {
   }
 
   override fun onMessageExportStarted(exportableMessage: ExportableMessage) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().setProgress(MessageExportState.Progress.STARTED).build()
     }
   }
 
   override fun onMessageExportSucceeded(exportableMessage: ExportableMessage) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().setProgress(MessageExportState.Progress.COMPLETED).build()
     }
 
-    SignalDatabase.mmsSms.markMessageExported(exportableMessage.getMessageId())
+    SignalDatabase.messages.markMessageExported(exportableMessage.getMessageId())
   }
 
   override fun onMessageExportFailed(exportableMessage: ExportableMessage) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().setProgress(MessageExportState.Progress.INIT).build()
     }
 
-    SignalDatabase.mmsSms.markMessageExportFailed(exportableMessage.getMessageId())
+    SignalDatabase.messages.markMessageExportFailed(exportableMessage.getMessageId())
   }
 
   override fun onMessageIdCreated(exportableMessage: ExportableMessage, messageId: Long) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().setMessageId(messageId).build()
     }
   }
 
   override fun onAttachmentPartExportStarted(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().addStartedAttachments(part.contentId).build()
     }
   }
 
   override fun onAttachmentPartExportSucceeded(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().addCompletedAttachments(part.contentId).build()
     }
   }
 
   override fun onAttachmentPartExportFailed(exportableMessage: ExportableMessage, part: ExportableMessage.Mms.Part) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       val startedAttachments = it.startedAttachmentsList - part.contentId
       it.toBuilder().clearStartedAttachments().addAllStartedAttachments(startedAttachments).build()
     }
   }
 
   override fun onRecipientExportStarted(exportableMessage: ExportableMessage, recipient: String) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().addStartedRecipients(recipient).build()
     }
   }
 
   override fun onRecipientExportSucceeded(exportableMessage: ExportableMessage, recipient: String) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       it.toBuilder().addCompletedRecipients(recipient).build()
     }
   }
 
   override fun onRecipientExportFailed(exportableMessage: ExportableMessage, recipient: String) {
-    SignalDatabase.mmsSms.updateMessageExportState(exportableMessage.getMessageId()) {
+    SignalDatabase.messages.updateMessageExportState(exportableMessage.getMessageId()) {
       val startedAttachments = it.startedRecipientsList - recipient
       it.toBuilder().clearStartedRecipients().addAllStartedRecipients(startedAttachments).build()
     }

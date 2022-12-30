@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -20,14 +20,14 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
 
   private static final String TAG = Log.tag(TrimThreadsByDateManager.class);
 
-  private final ThreadTable threadTable;
-  private final MmsSmsTable mmsSmsDatabase;
+  private final ThreadTable  threadTable;
+  private final MessageTable messageTable;
 
   public TrimThreadsByDateManager(@NonNull Application application) {
     super(application, "TrimThreadsByDateManager");
 
-    threadTable    = SignalDatabase.threads();
-    mmsSmsDatabase = SignalDatabase.mmsSms();
+    threadTable  = SignalDatabase.threads();
+    messageTable = SignalDatabase.messages();
 
     scheduleIfNecessary();
   }
@@ -41,12 +41,12 @@ public class TrimThreadsByDateManager extends TimedEventManager<TrimThreadsByDat
 
     long trimBeforeDate = System.currentTimeMillis() - keepMessagesDuration.getDuration();
 
-    if (mmsSmsDatabase.getMessageCountBeforeDate(trimBeforeDate) > 0) {
+    if (messageTable.getMessageCountBeforeDate(trimBeforeDate) > 0) {
       Log.i(TAG, "Messages exist before date, trim immediately");
       return new TrimEvent(0);
     }
 
-    long timestamp = mmsSmsDatabase.getTimestampForFirstMessageAfterDate(trimBeforeDate);
+    long timestamp = messageTable.getTimestampForFirstMessageAfterDate(trimBeforeDate);
 
     if (timestamp == 0) {
       return null;

@@ -598,10 +598,9 @@ public class MessageSender {
   private static void sendLocalMediaSelf(Context context, long messageId) {
     try {
       ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
-      MessageTable         mmsDatabase    = SignalDatabase.messages();
-      MmsSmsTable     mmsSmsDatabase = SignalDatabase.mmsSms();
-      OutgoingMessage message        = mmsDatabase.getOutgoingMessage(messageId);
-      SyncMessageId   syncId         = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
+      MessageTable           mmsDatabase    = SignalDatabase.messages();
+      OutgoingMessage        message        = mmsDatabase.getOutgoingMessage(messageId);
+      SyncMessageId          syncId         = new SyncMessageId(Recipient.self().getId(), message.getSentTimeMillis());
       List<Attachment>       attachments        = new LinkedList<>();
 
 
@@ -633,9 +632,9 @@ public class MessageSender {
       mmsDatabase.markAsSent(messageId, true);
       mmsDatabase.markUnidentified(messageId, true);
 
-      mmsSmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
-      mmsSmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
-      mmsSmsDatabase.incrementViewedReceiptCount(syncId, System.currentTimeMillis());
+      mmsDatabase.incrementDeliveryReceiptCount(syncId, System.currentTimeMillis());
+      mmsDatabase.incrementReadReceiptCount(syncId, System.currentTimeMillis());
+      mmsDatabase.incrementViewedReceiptCount(syncId, System.currentTimeMillis());
 
       if (message.getExpiresIn() > 0 && !message.isExpirationUpdate()) {
         mmsDatabase.markExpireStarted(messageId);

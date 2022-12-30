@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.testing.TestDatabaseUtil
 class MmsSmsDatabaseTest {
 
   private lateinit var mmsSmsTable: MmsSmsTable
+  private lateinit var messageTable: MessageTable
   private lateinit var db: SQLiteDatabase
 
   @Before
@@ -28,6 +29,7 @@ class MmsSmsDatabaseTest {
 
     db = sqlCipher.writableDatabase
     mmsSmsTable = MmsSmsTable(ApplicationProvider.getApplicationContext(), sqlCipher)
+    messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 
   @After
@@ -38,7 +40,7 @@ class MmsSmsDatabaseTest {
   @Test
   fun `getConversationSnippet when single normal SMS, return SMS message id and transport as false`() {
     TestSms.insert(db)
-    mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
@@ -47,7 +49,7 @@ class MmsSmsDatabaseTest {
   @Test
   fun `getConversationSnippet when single normal MMS, return MMS message id and transport as true`() {
     TestMms.insert(db)
-    mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
@@ -58,13 +60,13 @@ class MmsSmsDatabaseTest {
     val timestamp = System.currentTimeMillis()
 
     TestMms.insert(db, receivedTimestampMillis = timestamp + 2)
-    mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
 
     TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_V2_LEAVE_BITS)
-    mmsSmsTable.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
       assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }

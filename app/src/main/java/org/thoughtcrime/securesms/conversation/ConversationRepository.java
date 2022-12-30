@@ -59,7 +59,7 @@ class ConversationRepository {
   @WorkerThread
   public @NonNull ConversationData getConversationData(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
     ThreadTable.ConversationMetadata metadata   = SignalDatabase.threads().getConversationMetadata(threadId);
-    int                              threadSize = SignalDatabase.mmsSms().getConversationCount(threadId);
+    int                              threadSize = SignalDatabase.messages().getMessageCountForThread(threadId);
     long                                lastSeen                       = metadata.getLastSeen();
     int                                 lastSeenPosition               = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
@@ -69,7 +69,7 @@ class ConversationRepository {
     boolean                             showUniversalExpireTimerUpdate = false;
 
     if (lastSeen > 0) {
-      lastSeenPosition = SignalDatabase.mmsSms().getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
+      lastSeenPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
     }
 
     if (lastSeenPosition <= 0) {
@@ -77,7 +77,7 @@ class ConversationRepository {
     }
 
     if (lastSeen == 0 && lastScrolled > 0) {
-      lastScrolledPosition = SignalDatabase.mmsSms().getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
+      lastScrolledPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
     }
 
     if (!isMessageRequestAccepted) {
@@ -105,7 +105,7 @@ class ConversationRepository {
         conversationRecipient.getExpiresInSeconds() == 0 &&
         !conversationRecipient.isGroup() &&
         conversationRecipient.isRegistered() &&
-        (threadId == -1 || !SignalDatabase.mmsSms().hasMeaningfulMessage(threadId)))
+        (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)))
     {
       showUniversalExpireTimerUpdate = true;
     }
@@ -172,7 +172,7 @@ class ConversationRepository {
 
       long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
 
-      boolean hasUnexportedInsecureMessages = threadId != -1 && SignalDatabase.mmsSms().getUnexportedInsecureMessagesCount(threadId) > 0;
+      boolean hasUnexportedInsecureMessages = threadId != -1 && SignalDatabase.messages().getUnexportedInsecureMessagesCount(threadId) > 0;
 
       Log.i(TAG, "Returning registered state...");
       return new ConversationSecurityInfo(recipient.getId(),
@@ -190,7 +190,7 @@ class ConversationRepository {
 
     return Observable.<Integer> create(emitter -> {
 
-      DatabaseObserver.Observer listener = () -> emitter.onNext(SignalDatabase.mmsSms().getIncomingMeaningfulMessageCountSince(threadId, afterTime));
+      DatabaseObserver.Observer listener = () -> emitter.onNext(SignalDatabase.messages().getIncomingMeaningfulMessageCountSince(threadId, afterTime));
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, listener);
       emitter.setCancellable(() -> ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener));

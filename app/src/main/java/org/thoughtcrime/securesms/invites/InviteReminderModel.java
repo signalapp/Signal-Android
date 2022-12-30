@@ -52,7 +52,7 @@ public final class InviteReminderModel {
     Long        threadId    = threadTable.getThreadIdFor(recipient.getId());
 
     if (threadId != null) {
-      int conversationCount = SignalDatabase.mmsSms().getInsecureSentCount(threadId);
+      int conversationCount = SignalDatabase.messages().getInsecureMessageSentCount(threadId);
 
       if (conversationCount >= SECOND_INVITE_REMINDER_MESSAGE_THRESHOLD && !resolved.hasSeenSecondInviteReminder()) {
         return new SecondInviteReminderInfo(context, resolved, repository, repository.getPercentOfInsecureMessages(conversationCount));

@@ -10,6 +10,7 @@ import com.annimon.stream.Stream;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -34,9 +35,9 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
   @Override
   public void getInsightsData(@NonNull Consumer<InsightsData> insightsDataConsumer) {
     SimpleTask.run(() -> {
-      MmsSmsTable mmsSmsDatabase = SignalDatabase.mmsSms();
-      int         insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
-      int         secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
+      MessageTable messageTable = SignalDatabase.messages();
+      int          insecure     = messageTable.getInsecureMessageCountForInsights();
+      int          secure       = messageTable.getSecureMessageCountForInsights();
 
       if (insecure + secure == 0) {
         return new InsightsData(false, 0);

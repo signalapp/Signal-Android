@@ -3889,7 +3889,7 @@ public class ConversationParentFragment extends Fragment
 
     SimpleTask.run(() -> {
           //noinspection CodeBlock2Expr
-          return SignalDatabase.mmsSms().checkMessageExists(reactionDelegate.getMessageRecord());
+          return SignalDatabase.messages().checkMessageExists(reactionDelegate.getMessageRecord());
         }, messageExists -> {
           if (!messageExists) {
             reactionDelegate.hide();

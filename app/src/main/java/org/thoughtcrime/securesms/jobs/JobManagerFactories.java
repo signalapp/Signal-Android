@@ -287,7 +287,7 @@ public final class JobManagerFactories {
     return Arrays.asList(new RecipientIdJobMigration(application),
                          new RecipientIdFollowUpJobMigration(),
                          new RecipientIdFollowUpJobMigration2(),
-                         new SendReadReceiptsJobMigration(SignalDatabase.mmsSms()),
+                         new SendReadReceiptsJobMigration(SignalDatabase.messages()),
                          new PushProcessMessageQueueJobMigration(application),
                          new RetrieveProfileJobMigration(),
                          new PushDecryptMessageJobEnvelopeMigration(application),

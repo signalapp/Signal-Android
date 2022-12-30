@@ -80,9 +80,9 @@ class VoiceNoteMediaItemFactory {
   @Nullable static MediaItem buildMediaItem(@NonNull Context context,
                                             @NonNull MessageRecord messageRecord)
   {
-    int startingPosition = SignalDatabase.mmsSms()
-                                          .getMessagePositionInConversation(messageRecord.getThreadId(),
-                                                                            messageRecord.getDateReceived());
+    int startingPosition = SignalDatabase.messages()
+                                         .getMessagePositionInConversation(messageRecord.getThreadId(),
+                                                                           messageRecord.getDateReceived());
 
     Recipient threadRecipient = Objects.requireNonNull(SignalDatabase.threads()
                                                                       .getRecipientForThreadId(messageRecord.getThreadId()));

@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.invites;
 
 import android.content.Context;
 
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -29,9 +30,9 @@ public final class InviteReminderRepository implements InviteReminderModel.Repos
 
   @Override
   public int getPercentOfInsecureMessages(int insecureCount) {
-    MmsSmsTable mmsSmsDatabase = SignalDatabase.mmsSms();
-    int         insecure       = mmsSmsDatabase.getInsecureMessageCountForInsights();
-    int            secure         = mmsSmsDatabase.getSecureMessageCountForInsights();
+    MessageTable messageTable = SignalDatabase.messages();
+    int          insecure     = messageTable.getInsecureMessageCountForInsights();
+    int          secure       = messageTable.getSecureMessageCountForInsights();
 
     if (insecure + secure == 0) return 0;
     return Math.round(100f * (insecureCount / (float) (insecure + secure)));

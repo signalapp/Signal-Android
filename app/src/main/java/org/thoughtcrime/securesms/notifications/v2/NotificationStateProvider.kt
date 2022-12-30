@@ -4,7 +4,6 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.MessageTable
-import org.thoughtcrime.securesms.database.MmsSmsTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -31,7 +30,7 @@ object NotificationStateProvider {
         return NotificationState.EMPTY
       }
 
-      MmsSmsTable.readerFor(unreadMessages).use { reader ->
+      MessageTable.mmsReaderFor(unreadMessages).use { reader ->
         var record: MessageRecord? = reader.next
         while (record != null) {
           val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)

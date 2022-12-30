@@ -1309,7 +1309,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   @SuppressWarnings("CodeBlock2Expr")
   public void jumpToMessage(@NonNull RecipientId author, long timestamp, @Nullable Runnable onMessageNotFound) {
     SimpleTask.run(getLifecycle(), () -> {
-      return SignalDatabase.mmsSms().getMessagePositionInConversation(threadId, timestamp, author);
+      return SignalDatabase.messages().getMessagePositionInConversation(threadId, timestamp, author);
     }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), onMessageNotFound));
   }
 
@@ -1453,7 +1453,7 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
   @Override
   public void jumpToMessage(@NonNull MessageRecord messageRecord) {
     SimpleTask.run(getLifecycle(), () -> {
-      return SignalDatabase.mmsSms().getMessagePositionInConversation(threadId,
+      return SignalDatabase.messages().getMessagePositionInConversation(threadId,
                                                                       messageRecord.getDateReceived(),
                                                                       messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId());
     }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
@@ -1738,9 +1738,9 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
       }
 
       SimpleTask.run(getLifecycle(), () -> {
-        return SignalDatabase.mmsSms().getQuotedMessagePosition(threadId,
-                                                                messageRecord.getQuote().getId(),
-                                                                messageRecord.getQuote().getAuthor());
+        return SignalDatabase.messages().getQuotedMessagePosition(threadId,
+                                                                  messageRecord.getQuote().getId(),
+                                                                  messageRecord.getQuote().getAuthor());
       }, p -> moveToPosition(p + (isTypingIndicatorShowing() ? 1 : 0), () -> {
         Toast.makeText(getContext(), R.string.ConversationFragment_quoted_message_no_longer_available, Toast.LENGTH_SHORT).show();
       }));

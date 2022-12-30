@@ -27,7 +27,7 @@ class MessageQuotesRepository {
    */
   fun getMessagesInQuoteChain(application: Application, messageId: MessageId): Observable<List<ConversationMessage>> {
     return Observable.create { emitter ->
-      val threadId: Long = SignalDatabase.mmsSms.getThreadId(messageId)
+      val threadId: Long = SignalDatabase.messages.getThreadIdForMessage(messageId.id)
       if (threadId < 0) {
         Log.w(TAG, "Could not find a threadId for $messageId!")
         emitter.onNext(emptyList())
@@ -46,7 +46,7 @@ class MessageQuotesRepository {
 
   @WorkerThread
   private fun getMessagesInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
-    val rootMessageId: MessageId = SignalDatabase.mmsSms.getRootOfQuoteChain(messageId)
+    val rootMessageId: MessageId = SignalDatabase.messages.getRootOfQuoteChain(messageId)
 
     var originalRecord: MessageRecord? = SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
 

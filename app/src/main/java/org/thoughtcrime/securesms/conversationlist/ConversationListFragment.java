@@ -616,7 +616,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onMessageClicked(@NonNull MessageResult message) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-      int startingPosition = SignalDatabase.mmsSms().getMessagePositionInConversation(message.getThreadId(), message.getReceivedTimestampMs());
+      int startingPosition = SignalDatabase.messages().getMessagePositionInConversation(message.getThreadId(), message.getReceivedTimestampMs());
       return Math.max(0, startingPosition);
     }, startingPosition -> {
       hideKeyboard();

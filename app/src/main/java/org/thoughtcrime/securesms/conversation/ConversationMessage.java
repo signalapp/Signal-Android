@@ -186,7 +186,7 @@ public class ConversationMessage {
      */
     @WorkerThread
     public static @NonNull ConversationMessage createWithUnresolvedData(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
-      boolean hasBeenQuoted = SignalDatabase.mmsSms().isQuoted(messageRecord);
+      boolean hasBeenQuoted = SignalDatabase.messages().isQuoted(messageRecord);
 
       if (messageRecord.isMms()) {
         List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());

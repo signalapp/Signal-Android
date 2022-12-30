@@ -212,7 +212,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
     updateBadge(context, state.messageCount)
 
     val messageIds: List<Long> = state.notificationItems.map { it.id }
-    SignalDatabase.mmsSms.setNotifiedTimestamp(System.currentTimeMillis(), messageIds)
+    SignalDatabase.messages.setNotifiedTimestamp(System.currentTimeMillis(), messageIds)
 
     Log.i(TAG, "threads: ${state.threadCount} messages: ${state.messageCount}")
 

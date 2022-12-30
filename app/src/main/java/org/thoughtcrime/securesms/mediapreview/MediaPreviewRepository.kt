@@ -95,7 +95,7 @@ class MediaPreviewRepository {
       stopwatch.split("get message record")
 
       val threadId: Long = messageRecord.threadId
-      val messagePosition: Int = SignalDatabase.mmsSms.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
+      val messagePosition: Int = SignalDatabase.messages.getMessagePositionInConversation(threadId, messageRecord.dateReceived)
       stopwatch.split("get message position")
 
       val recipientId: RecipientId = SignalDatabase.threads.getRecipientForThreadId(threadId)?.id ?: throw IllegalStateException("Could not find recipient for thread ID $threadId")

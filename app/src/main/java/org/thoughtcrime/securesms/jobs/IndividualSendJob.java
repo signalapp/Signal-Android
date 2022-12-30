@@ -156,9 +156,9 @@ public class IndividualSendJob extends PushSendJob {
 
       if (recipient.isSelf()) {
         SyncMessageId id = new SyncMessageId(recipient.getId(), message.getSentTimeMillis());
-        SignalDatabase.mmsSms().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.mmsSms().incrementReadReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.mmsSms().incrementViewedReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementViewedReceiptCount(id, System.currentTimeMillis());
       }
 
       if (unidentified && accessMode == UnidentifiedAccessMode.UNKNOWN && profileKey == null) {

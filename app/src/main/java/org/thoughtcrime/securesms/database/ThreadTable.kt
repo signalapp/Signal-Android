@@ -296,7 +296,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
 
     val deletes = writableDatabase.withinTransaction {
-      mmsSms.deleteAbandonedMessages()
+      messages.deleteAbandonedMessages()
       attachments.trimAllAbandonedAttachments()
       groupReceipts.deleteAbandonedRows()
       mentions.deleteAbandonedMentions()
@@ -318,7 +318,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     val deletes = writableDatabase.withinTransaction {
       trimThreadInternal(threadId, length, trimBeforeDate)
-      mmsSms.deleteAbandonedMessages()
+      messages.deleteAbandonedMessages()
       attachments.trimAllAbandonedAttachments()
       groupReceipts.deleteAbandonedRows()
       mentions.deleteAbandonedMentions()
@@ -354,7 +354,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     if (finalTrimBeforeDate != NO_TRIM_BEFORE_DATE_SET) {
       Log.i(TAG, "Trimming thread: $threadId before: $finalTrimBeforeDate")
 
-      val deletes = mmsSms.deleteMessagesInThreadBeforeDate(threadId, finalTrimBeforeDate)
+      val deletes = messages.deleteMessagesInThreadBeforeDate(threadId, finalTrimBeforeDate)
       if (deletes > 0) {
         Log.i(TAG, "Trimming deleted $deletes messages thread: $threadId")
         setLastScrolled(threadId, 0)
@@ -389,7 +389,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun hasReceivedAnyCallsSince(threadId: Long, timestamp: Long): Boolean {
-    return mmsSms.hasReceivedAnyCallsSince(threadId, timestamp)
+    return messages.hasReceivedAnyCallsSince(threadId, timestamp)
   }
 
   fun setEntireThreadRead(threadId: Long): List<MarkedMessageInfo> {
@@ -441,7 +441,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
         messages.setReactionsSeen(threadId, sinceTimestamp)
 
-        val unreadCount = mmsSms.getUnreadCount(threadId)
+        val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
 
         val contentValues = contentValuesOf(
@@ -1180,7 +1180,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   fun updateReadState(threadId: Long) {
     val previous = getThreadRecord(threadId)
-    val unreadCount = mmsSms.getUnreadCount(threadId)
+    val unreadCount = messages.getUnreadCount(threadId)
     val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
 
     writableDatabase
@@ -1268,7 +1268,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     if (forcedUnread) {
       values.put(READ, ReadStatus.FORCED_UNREAD.serialize())
     } else if (threadId != null) {
-      val unreadCount = mmsSms.getUnreadCount(threadId)
+      val unreadCount = messages.getUnreadCount(threadId)
       val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
 
       values.put(READ, if (unreadCount == 0) ReadStatus.READ.serialize() else ReadStatus.UNREAD.serialize())
@@ -1315,7 +1315,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   private fun update(threadId: Long, unarchive: Boolean, allowDeletion: Boolean, notifyListeners: Boolean): Boolean {
-    val meaningfulMessages = mmsSms.hasMeaningfulMessage(threadId)
+    val meaningfulMessages = messages.hasMeaningfulMessage(threadId)
 
     val isPinned = getPinnedThreadIds().contains(threadId)
     val shouldDelete = allowDeletion && !isPinned && !messages.containsStories(threadId)
@@ -1331,7 +1331,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     val record: MessageRecord = try {
-      mmsSms.getConversationSnippet(threadId)
+      messages.getConversationSnippet(threadId)
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Failed to get a conversation snippet for thread $threadId")
 
@@ -1400,7 +1400,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     val type: Long = try {
-      mmsSms.getConversationSnippetType(threadId)
+      messages.getConversationSnippetType(threadId)
     } catch (e: NoSuchMessageException) {
       Log.w(TAG, "Unable to find snippet message for thread $threadId")
       return
@@ -1552,7 +1552,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
           Log.w(TAG, "Falling back to unknown message request state for GV2 message")
           return Extra.forMessageRequest(individualRecipientId)
         } else {
-          val recipientId = mmsSms.getGroupAddedBy(record.threadId)
+          val recipientId = messages.getGroupAddedBy(record.threadId)
           if (recipientId != null) {
             return Extra.forGroupMessageRequest(recipientId, individualRecipientId)
           }

@@ -1410,7 +1410,7 @@ public final class MessageContentProcessor {
 
     Map<Long, Long> threadToLatestRead = new HashMap<>();
 
-    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().setTimestampReadFromSyncMessage(readMessages, envelopeTimestamp, threadToLatestRead);
+    Collection<SyncMessageId> unhandled = SignalDatabase.messages().setTimestampReadFromSyncMessage(readMessages, envelopeTimestamp, threadToLatestRead);
 
     List<MessageTable.MarkedMessageInfo> markedMessages = SignalDatabase.threads().setReadSince(threadToLatestRead, false);
 
@@ -2111,8 +2111,8 @@ public final class MessageContentProcessor {
 
         if (recipient.isSelf()) {
           SyncMessageId id = new SyncMessageId(recipient.getId(), message.getTimestamp());
-          SignalDatabase.mmsSms().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-          SignalDatabase.mmsSms().incrementReadReceiptCount(id, System.currentTimeMillis());
+          SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+          SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
         }
 
         database.setTransactionSuccessful();
@@ -2224,8 +2224,8 @@ public final class MessageContentProcessor {
 
       if (recipient.isSelf()) {
         SyncMessageId id = new SyncMessageId(recipient.getId(), message.getTimestamp());
-        SignalDatabase.mmsSms().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.mmsSms().incrementReadReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
       }
 
       database.setTransactionSuccessful();
@@ -2333,8 +2333,8 @@ public final class MessageContentProcessor {
 
       if (recipients.isSelf()) {
         SyncMessageId id = new SyncMessageId(recipients.getId(), message.getTimestamp());
-        SignalDatabase.mmsSms().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-        SignalDatabase.mmsSms().incrementReadReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+        SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
       }
 
       database.setTransactionSuccessful();
@@ -2502,8 +2502,8 @@ public final class MessageContentProcessor {
 
     if (recipient.isSelf()) {
       SyncMessageId id = new SyncMessageId(recipient.getId(), message.getTimestamp());
-      SignalDatabase.mmsSms().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
-      SignalDatabase.mmsSms().incrementReadReceiptCount(id, System.currentTimeMillis());
+      SignalDatabase.messages().incrementDeliveryReceiptCount(id, System.currentTimeMillis());
+      SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
     }
 
     return threadId;
@@ -2659,17 +2659,17 @@ public final class MessageContentProcessor {
 
     final Collection<SyncMessageId> unhandled;
     if (readReceipts && storyViewedReceipts) {
-      unhandled = SignalDatabase.mmsSms().incrementViewedReceiptCounts(ids, content.getTimestamp());
+      unhandled = SignalDatabase.messages().incrementViewedReceiptCounts(ids, content.getTimestamp());
     } else if (readReceipts) {
-      unhandled = SignalDatabase.mmsSms().incrementViewedNonStoryReceiptCounts(ids, content.getTimestamp());
+      unhandled = SignalDatabase.messages().incrementViewedNonStoryReceiptCounts(ids, content.getTimestamp());
     } else {
-      unhandled = SignalDatabase.mmsSms().incrementViewedStoryReceiptCounts(ids, content.getTimestamp());
+      unhandled = SignalDatabase.messages().incrementViewedStoryReceiptCounts(ids, content.getTimestamp());
     }
 
     Set<SyncMessageId> handled = new HashSet<>(ids);
     handled.removeAll(unhandled);
 
-    SignalDatabase.mmsSms().updateViewedStories(handled);
+    SignalDatabase.messages().updateViewedStories(handled);
 
     if (unhandled.size() > 0) {
       RecipientId selfId = Recipient.self().getId();
@@ -2698,7 +2698,7 @@ public final class MessageContentProcessor {
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
                                     .toList();
 
-    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
+    Collection<SyncMessageId> unhandled = SignalDatabase.messages().incrementDeliveryReceiptCounts(ids, System.currentTimeMillis());
 
     for (SyncMessageId id : unhandled) {
       warn(String.valueOf(content.getTimestamp()), "[handleDeliveryReceipt] Could not find matching message! timestamp: " + id.getTimetamp() + "  author: " + id.getRecipientId());
@@ -2729,7 +2729,7 @@ public final class MessageContentProcessor {
                                     .map(t -> new SyncMessageId(senderRecipient.getId(), t))
                                     .toList();
 
-    Collection<SyncMessageId> unhandled = SignalDatabase.mmsSms().incrementReadReceiptCounts(ids, content.getTimestamp());
+    Collection<SyncMessageId> unhandled = SignalDatabase.messages().incrementReadReceiptCounts(ids, content.getTimestamp());
 
     if (unhandled.size() > 0) {
       RecipientId selfId = Recipient.self().getId();

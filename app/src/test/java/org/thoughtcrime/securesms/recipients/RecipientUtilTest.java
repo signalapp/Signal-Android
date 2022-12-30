@@ -10,11 +10,10 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -29,22 +28,19 @@ public class RecipientUtilTest {
   @Rule
   public MockitoRule rule = MockitoJUnit.rule();
 
-  private Context           context               = mock(Context.class);
+  private Context        context            = mock(Context.class);
   private Recipient      recipient          = mock(Recipient.class);
   private ThreadTable    mockThreadTable    = mock(ThreadTable.class);
-  private MmsSmsTable    mockMmsSmsDatabase = mock(MmsSmsTable.class);
+  private MessageTable   mockMessageTable   = mock(MessageTable.class);
   private RecipientTable mockRecipientTable = mock(RecipientTable.class);
 
   @Mock
   private MockedStatic<SignalDatabase> signalDatabaseMockedStatic;
 
-  @Mock
-  private MockedStatic<FeatureFlags> featureFlagsMockedStatic;
-
   @Before
   public void setUp() {
     signalDatabaseMockedStatic.when(SignalDatabase::threads).thenReturn(mockThreadTable);
-    signalDatabaseMockedStatic.when(SignalDatabase::mmsSms).thenReturn(mockMmsSmsDatabase);
+    signalDatabaseMockedStatic.when(SignalDatabase::messages).thenReturn(mockMessageTable);
     signalDatabaseMockedStatic.when(SignalDatabase::recipients).thenReturn(mockRecipientTable);
 
     when(recipient.getId()).thenReturn(RecipientId.from(5));
@@ -73,7 +69,7 @@ public class RecipientUtilTest {
   public void givenIHaveSentASecureMessageInThisThread_whenIsThreadMessageRequestAccepted_thenIExpectTrue() {
     // GIVEN
     when(mockThreadTable.getRecipientForThreadId(anyLong())).thenReturn(recipient);
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(1L)).thenReturn(5);
+    when(mockMessageTable.getOutgoingSecureMessageCount(1L)).thenReturn(5);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, 1L);
@@ -87,7 +83,7 @@ public class RecipientUtilTest {
     // GIVEN
     when(recipient.isProfileSharing()).thenReturn(true);
     when(mockThreadTable.getRecipientForThreadId(anyLong())).thenReturn(recipient);
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(1L)).thenReturn(0);
+    when(mockMessageTable.getOutgoingSecureMessageCount(1L)).thenReturn(0);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, 1L);
@@ -101,7 +97,7 @@ public class RecipientUtilTest {
     // GIVEN
     when(recipient.isSystemContact()).thenReturn(true);
     when(mockThreadTable.getRecipientForThreadId(anyLong())).thenReturn(recipient);
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(1L)).thenReturn(0);
+    when(mockMessageTable.getOutgoingSecureMessageCount(1L)).thenReturn(0);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, 1L);
@@ -115,8 +111,8 @@ public class RecipientUtilTest {
   public void givenIHaveReceivedASecureMessageIHaveNotSentASecureMessageAndRecipientIsNotSystemContactAndNotProfileSharing_whenIsThreadMessageRequestAccepted_thenIExpectFalse() {
     // GIVEN
     when(mockThreadTable.getRecipientForThreadId(anyLong())).thenReturn(recipient);
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(1L)).thenReturn(0);
-    when(mockMmsSmsDatabase.getSecureConversationCount(1L)).thenReturn(5);
+    when(mockMessageTable.getOutgoingSecureMessageCount(1L)).thenReturn(0);
+    when(mockMessageTable.getSecureMessageCount(1L)).thenReturn(5);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, 1L);
@@ -129,8 +125,8 @@ public class RecipientUtilTest {
   public void givenIHaveNotReceivedASecureMessageIHaveNotSentASecureMessageAndRecipientIsNotSystemContactAndNotProfileSharing_whenIsThreadMessageRequestAccepted_thenIExpectTrue() {
     // GIVEN
     when(mockThreadTable.getRecipientForThreadId(anyLong())).thenReturn(recipient);
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(1L)).thenReturn(0);
-    when(mockMmsSmsDatabase.getSecureConversationCount(1L)).thenReturn(0);
+    when(mockMessageTable.getOutgoingSecureMessageCount(1L)).thenReturn(0);
+    when(mockMessageTable.getSecureMessageCount(1L)).thenReturn(0);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, 1L);
@@ -151,7 +147,7 @@ public class RecipientUtilTest {
   @Test
   public void givenNonZeroOutgoingSecureMessageCount_whenIsRecipientMessageRequestAccepted_thenIExpectTrue() {
     // GIVEN
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(anyLong())).thenReturn(1);
+    when(mockMessageTable.getOutgoingSecureMessageCount(anyLong())).thenReturn(1);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, recipient);
@@ -189,7 +185,7 @@ public class RecipientUtilTest {
   public void givenNoSecureMessagesSentSomeSecureMessagesReceivedNotSharingAndNotSystemContact_whenIsRecipientMessageRequestAccepted_thenIExpectFalse() {
     // GIVEN
     when(recipient.isRegistered()).thenReturn(true);
-    when(mockMmsSmsDatabase.getSecureConversationCount(anyLong())).thenReturn(5);
+    when(mockMessageTable.getSecureMessageCount(anyLong())).thenReturn(5);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, recipient);
@@ -201,7 +197,7 @@ public class RecipientUtilTest {
   @Test
   public void givenNoSecureMessagesSentNoSecureMessagesReceivedNotSharingAndNotSystemContact_whenIsRecipientMessageRequestAccepted_thenIExpectTrue() {
     // GIVEN
-    when(mockMmsSmsDatabase.getSecureConversationCount(anyLong())).thenReturn(0);
+    when(mockMessageTable.getSecureMessageCount(anyLong())).thenReturn(0);
 
     // WHEN
     boolean result = RecipientUtil.isMessageRequestAccepted(context, recipient);
@@ -214,7 +210,7 @@ public class RecipientUtilTest {
   @Test
   public void givenNoSecureMessagesSent_whenIShareProfileIfFirstSecureMessage_thenIShareProfile() {
     // GIVEN
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(anyLong())).thenReturn(0);
+    when(mockMessageTable.getOutgoingSecureMessageCount(anyLong())).thenReturn(0);
 
     // WHEN
     RecipientUtil.shareProfileIfFirstSecureMessage(recipient);
@@ -227,7 +223,7 @@ public class RecipientUtilTest {
   @Test
   public void givenSecureMessagesSent_whenIShareProfileIfFirstSecureMessage_thenIShareProfile() {
     // GIVEN
-    when(mockMmsSmsDatabase.getOutgoingSecureConversationCount(anyLong())).thenReturn(5);
+    when(mockMessageTable.getOutgoingSecureMessageCount(anyLong())).thenReturn(5);
 
     // WHEN
     RecipientUtil.shareProfileIfFirstSecureMessage(recipient);

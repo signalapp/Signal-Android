@@ -257,7 +257,7 @@ public class RecipientUtil {
   @WorkerThread
   public static boolean isPreMessageRequestThread(@Nullable Long threadId) {
     long beforeTime = SignalStore.misc().getMessageRequestEnableTime();
-    return threadId != null && SignalDatabase.mmsSms().getConversationCount(threadId, beforeTime) > 0;
+    return threadId != null && SignalDatabase.messages().getMessageCountForThread(threadId, beforeTime) > 0;
   }
 
   @WorkerThread
@@ -272,7 +272,7 @@ public class RecipientUtil {
       return;
     }
 
-    boolean firstMessage = SignalDatabase.mmsSms().getOutgoingSecureConversationCount(threadId) == 0;
+    boolean firstMessage = SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) == 0;
 
     if (firstMessage) {
       SignalDatabase.recipients().setProfileSharing(recipient.getId(), true);
@@ -317,7 +317,7 @@ public class RecipientUtil {
       return false;
     }
 
-    if (threadId == -1 || !SignalDatabase.mmsSms().hasMeaningfulMessage(threadId)) {
+    if (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)) {
       SignalDatabase.recipients().setExpireMessages(recipient.getId(), defaultTimer);
       OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), defaultTimer * 1000L);
       MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), false, null, null);
@@ -349,7 +349,7 @@ public class RecipientUtil {
 
   @WorkerThread
   public static boolean hasSentMessageInThread(@Nullable Long threadId) {
-    return threadId != null && SignalDatabase.mmsSms().getOutgoingSecureConversationCount(threadId) != 0;
+    return threadId != null && SignalDatabase.messages().getOutgoingSecureMessageCount(threadId) != 0;
   }
 
   public static boolean isSmsOnly(long threadId, @NonNull Recipient threadRecipient) {
@@ -363,7 +363,7 @@ public class RecipientUtil {
       return true;
     }
 
-    return SignalDatabase.mmsSms().getSecureConversationCount(threadId) == 0 &&
+    return SignalDatabase.messages().getSecureMessageCount(threadId) == 0 &&
            !SignalDatabase.threads().hasReceivedAnyCallsSince(threadId, 0);
   }
 

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestData;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.CallTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
@@ -87,7 +88,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
       }
     }
 
-    return SignalDatabase.mmsSms().getConversationCount(threadId);
+    return SignalDatabase.messages().getMessageCountForThread(threadId);
   }
 
   @Override
@@ -103,7 +104,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     CallHelper          callHelper       = new CallHelper();
     Set<ServiceId>      referencedIds    = new HashSet<>();
 
-    try (MmsSmsTable.Reader reader = MmsSmsTable.readerFor(db.getConversation(threadId, start, length))) {
+    try (MessageTable.Reader reader = MessageTable.mmsReaderFor(db.getConversation(threadId, start, length))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         records.add(record);
@@ -194,7 +195,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
         List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageId.getId());
         stopwatch.split("mentions");
 
-        boolean isQuoted = SignalDatabase.mmsSms().isQuoted(record);
+        boolean isQuoted = SignalDatabase.messages().isQuoted(record);
         stopwatch.split("is-quoted");
 
         List<ReactionRecord> reactions = SignalDatabase.reactions().getReactions(messageId);
@@ -265,7 +266,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     }
 
     void fetchQuotedState() {
-      hasBeenQuotedIds = SignalDatabase.mmsSms().isQuoted(records);
+      hasBeenQuotedIds = SignalDatabase.messages().isQuoted(records);
     }
 
     boolean isQuoted(long id) {
