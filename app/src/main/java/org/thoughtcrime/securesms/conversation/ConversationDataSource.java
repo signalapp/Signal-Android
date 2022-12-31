@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.conversation.ConversationData.MessageRequestDa
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
@@ -94,7 +93,6 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
   @Override
   public @NonNull List<ConversationMessage> load(int start, int length, @NonNull CancellationSignal cancellationSignal) {
     Stopwatch           stopwatch        = new Stopwatch("load(" + start + ", " + length + "), thread " + threadId);
-    MmsSmsTable         db               = SignalDatabase.mmsSms();
     List<MessageRecord> records          = new ArrayList<>(length);
     MentionHelper       mentionHelper    = new MentionHelper();
     QuotedHelper        quotedHelper     = new QuotedHelper();
@@ -104,7 +102,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     CallHelper          callHelper       = new CallHelper();
     Set<ServiceId>      referencedIds    = new HashSet<>();
 
-    try (MessageTable.Reader reader = MessageTable.mmsReaderFor(db.getConversation(threadId, start, length))) {
+    try (MessageTable.Reader reader = MessageTable.mmsReaderFor(SignalDatabase.messages().getConversation(threadId, start, length))) {
       MessageRecord record;
       while ((record = reader.getNext()) != null && !cancellationSignal.isCanceled()) {
         records.add(record);
@@ -144,7 +142,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     records = reactionHelper.buildUpdatedModels(records);
     stopwatch.split("reaction-models");
 
-    attachmentHelper.fetchAttachments(context);
+    attachmentHelper.fetchAttachments();
     stopwatch.split("attachments");
 
     records = attachmentHelper.buildUpdatedModels(context, records);
@@ -274,22 +272,28 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     }
   }
 
-  private static class AttachmentHelper {
+  public static class AttachmentHelper {
 
     private Collection<Long>                    messageIds             = new LinkedList<>();
     private Map<Long, List<DatabaseAttachment>> messageIdToAttachments = new HashMap<>();
 
-    void add(MessageRecord record) {
+    public void add(MessageRecord record) {
       if (record.isMms()) {
         messageIds.add(record.getId());
       }
     }
 
-    void fetchAttachments(Context context) {
+    public void addAll(List<MessageRecord> records) {
+      for (MessageRecord record : records) {
+        add(record);
+      }
+    }
+
+    public void fetchAttachments() {
       messageIdToAttachments = SignalDatabase.attachments().getAttachmentsForMessages(messageIds);
     }
 
-    @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
+    public @NonNull List<MessageRecord> buildUpdatedModels(@NonNull Context context, @NonNull List<MessageRecord> records) {
       return records.stream()
                     .map(record -> {
                       if (record instanceof MediaMmsMessageRecord) {

@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.avatars.GeneratedContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;

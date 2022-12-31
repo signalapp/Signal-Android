@@ -179,6 +179,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -4185,9 +4186,13 @@ public class ConversationParentFragment extends Fragment
 
       Context context = ApplicationDependencies.getApplication();
 
-      MessageRecord messageRecord = SignalDatabase.mmsSms().getMessageFor(quoteId.getId(), quoteId.getAuthor());
+      MessageRecord messageRecord = SignalDatabase.messages().getMessageFor(quoteId.getId(), quoteId.getAuthor());
       if (messageRecord == null) {
         return null;
+      }
+
+      if (messageRecord instanceof MediaMmsMessageRecord) {
+        messageRecord = ((MediaMmsMessageRecord) messageRecord).withAttachments(context, SignalDatabase.attachments().getAttachmentsForMessage(messageRecord.getId()));
       }
 
       return ConversationMessageFactory.createWithUnresolvedData(context, messageRecord);

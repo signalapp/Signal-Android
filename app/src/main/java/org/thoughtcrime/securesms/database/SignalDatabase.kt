@@ -42,7 +42,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
   val attachmentTable: AttachmentTable = AttachmentTable(context, this, attachmentSecret)
   val mediaTable: MediaTable = MediaTable(context, this)
   val threadTable: ThreadTable = ThreadTable(context, this)
-  val mmsSmsTable: MmsSmsTable = MmsSmsTable(context, this)
   val identityTable: IdentityTable = IdentityTable(context, this)
   val draftTable: DraftTable = DraftTable(context, this)
   val pushTable: PushTable = PushTable(context, this)
@@ -430,11 +429,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     @get:JvmName("messageSearch")
     val messageSearch: SearchTable
       get() = instance!!.searchTable
-
-    @get:JvmStatic
-    @get:JvmName("mmsSms")
-    val mmsSms: MmsSmsTable
-      get() = instance!!.mmsSmsTable
 
     @get:JvmStatic
     @get:JvmName("notificationProfiles")

@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;

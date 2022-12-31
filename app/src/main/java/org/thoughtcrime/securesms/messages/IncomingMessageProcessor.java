@@ -10,7 +10,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;

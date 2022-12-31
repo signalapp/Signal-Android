@@ -54,14 +54,21 @@ class MessageQuotesRepository {
       return emptyList()
     }
 
-    val replyRecords: List<MessageRecord> = SignalDatabase.mmsSms.getAllMessagesThatQuote(rootMessageId)
+    var replyRecords: List<MessageRecord> = SignalDatabase.messages.getAllMessagesThatQuote(rootMessageId)
 
-    val replies: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
-      .apply {
-        addAll(replyRecords)
-        fetchReactions()
-      }
-      .buildUpdatedModels(replyRecords)
+    val reactionHelper = ConversationDataSource.ReactionHelper()
+    val attachmentHelper = ConversationDataSource.AttachmentHelper()
+
+    reactionHelper.addAll(replyRecords)
+    attachmentHelper.addAll(replyRecords)
+
+    reactionHelper.fetchReactions()
+    attachmentHelper.fetchAttachments()
+
+    replyRecords = reactionHelper.buildUpdatedModels(replyRecords)
+    replyRecords = attachmentHelper.buildUpdatedModels(ApplicationDependencies.getApplication(), replyRecords)
+
+    val replies: List<ConversationMessage> = replyRecords
       .map { replyRecord ->
         val replyQuote: Quote? = replyRecord.getQuote()
         if (replyQuote != null && replyQuote.id == originalRecord!!.dateSent) {
@@ -76,13 +83,23 @@ class MessageQuotesRepository {
       originalRecord = SignalDatabase.payments.updateMessageWithPayment(originalRecord)
     }
 
-    val originalMessage: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
+    originalRecord = ConversationDataSource.ReactionHelper()
       .apply {
         add(originalRecord)
         fetchReactions()
       }
       .buildUpdatedModels(listOf(originalRecord))
-      .map { ConversationMessageFactory.createWithUnresolvedData(application, it, it.getDisplayBody(application), false) }
+      .get(0)
+
+    originalRecord = ConversationDataSource.AttachmentHelper()
+      .apply {
+        add(originalRecord)
+        fetchAttachments()
+      }
+      .buildUpdatedModels(ApplicationDependencies.getApplication(), listOf(originalRecord))
+      .get(0)
+
+    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, originalRecord.getDisplayBody(application), false)
 
     return replies + originalMessage
   }

@@ -35,7 +35,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipt
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mmsSms
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -339,7 +338,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     val finalTrimBeforeDate = if (length != NO_TRIM_MESSAGE_COUNT_SET && length > 0) {
-      mmsSms.getConversation(threadId).use { cursor ->
+      messages.getConversation(threadId).use { cursor ->
         if (cursor.count > length) {
           cursor.moveToPosition(length - 1)
           max(trimBeforeDate, cursor.requireLong(MessageTable.DATE_RECEIVED))

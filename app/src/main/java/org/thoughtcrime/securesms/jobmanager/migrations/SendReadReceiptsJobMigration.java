@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.invites;
 import android.content.Context;
 
 import org.thoughtcrime.securesms.database.MessageTable;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;

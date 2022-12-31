@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsSmsTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.PaymentMetaDataUtil;
@@ -971,7 +970,7 @@ public final class MessageContentProcessor {
     }
 
     Recipient     targetAuthor   = Recipient.externalPush(reaction.getTargetAuthor());
-    MessageRecord targetMessage  = SignalDatabase.mmsSms().getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
+    MessageRecord targetMessage  = SignalDatabase.messages().getMessageFor(reaction.getTargetSentTimestamp(), targetAuthor.getId());
 
     if (targetMessage == null) {
       warn(String.valueOf(content.getTimestamp()), "[handleReaction] Could not find matching message! Putting it in the early message cache. timestamp: " + reaction.getTargetSentTimestamp() + "  author: " + targetAuthor.getId());
@@ -1025,7 +1024,7 @@ public final class MessageContentProcessor {
 
     SignalServiceDataMessage.RemoteDelete delete = message.getRemoteDelete().get();
 
-    MessageRecord targetMessage = SignalDatabase.mmsSms().getMessageFor(delete.getTargetSentTimestamp(), senderRecipient.getId());
+    MessageRecord targetMessage = SignalDatabase.messages().getMessageFor(delete.getTargetSentTimestamp(), senderRecipient.getId());
 
     if (targetMessage != null && RemoteDeleteUtil.isValidReceive(targetMessage, senderRecipient, content.getServerReceivedTimestamp())) {
       MessageTable db = targetMessage.isMms() ? SignalDatabase.messages() : SignalDatabase.messages();
@@ -1442,7 +1441,7 @@ public final class MessageContentProcessor {
     List<MessageRecord> records = Stream.of(viewedMessages)
                                         .map(message -> {
                                           RecipientId author = Recipient.externalPush(message.getSender()).getId();
-                                          return SignalDatabase.mmsSms().getMessageFor(message.getTimestamp(), author);
+                                          return SignalDatabase.messages().getMessageFor(message.getTimestamp(), author);
                                         })
                                         .filter(message -> message != null && message.isMms())
                                         .toList();
@@ -1475,7 +1474,7 @@ public final class MessageContentProcessor {
 
     RecipientId   author    = Recipient.externalPush(openMessage.getSender()).getId();
     long          timestamp = openMessage.getTimestamp();
-    MessageRecord record    = SignalDatabase.mmsSms().getMessageFor(timestamp, author);
+    MessageRecord record    = SignalDatabase.messages().getMessageFor(timestamp, author);
 
     if (record != null && record.isMms()) {
       SignalDatabase.attachments().deleteAttachmentFilesForViewOnceMessage(record.getId());
@@ -2351,9 +2350,7 @@ public final class MessageContentProcessor {
     return threadId;
   }
 
-  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message, long envelopeTimestamp)
-      throws BadGroupIdException
-  {
+  private void handleGroupRecipientUpdate(@NonNull SentTranscriptMessage message, long envelopeTimestamp) {
     log(envelopeTimestamp, "Group recipient update.");
 
     Recipient recipient = getSyncMessageDestination(message);
@@ -2363,8 +2360,7 @@ public final class MessageContentProcessor {
       return;
     }
 
-    MmsSmsTable   database = SignalDatabase.mmsSms();
-    MessageRecord record   = database.getMessageFor(message.getTimestamp(), Recipient.self().getId());
+    MessageRecord record = SignalDatabase.messages().getMessageFor(message.getTimestamp(), Recipient.self().getId());
 
     if (record == null) {
       warn("Got recipient update for non-existing message! Skipping.");
@@ -2911,7 +2907,7 @@ public final class MessageContentProcessor {
       MessageId relatedMessage = messageLogEntry.getRelatedMessages().get(0);
       return SignalDatabase.messages().getMessageRecordOrNull(relatedMessage.getId());
     } else {
-      return SignalDatabase.mmsSms().getMessageFor(sentTimestamp, Recipient.self().getId());
+      return SignalDatabase.messages().getMessageFor(sentTimestamp, Recipient.self().getId());
     }
   }
 
@@ -2951,7 +2947,7 @@ public final class MessageContentProcessor {
     }
 
     RecipientId   author  = Recipient.externalPush(quote.get().getAuthor()).getId();
-    MessageRecord message = SignalDatabase.mmsSms().getMessageFor(quote.get().getId(), author);
+    MessageRecord message = SignalDatabase.messages().getMessageFor(quote.get().getId(), author);
 
     if (message != null && !message.isRemoteDelete()) {
       log("Found matching message record...");
@@ -2961,6 +2957,10 @@ public final class MessageContentProcessor {
 
       if (message.isMms()) {
         MmsMessageRecord mmsMessage = (MmsMessageRecord) message;
+
+        if (mmsMessage instanceof MediaMmsMessageRecord) {
+          mmsMessage = ((MediaMmsMessageRecord) mmsMessage).withAttachments(context, SignalDatabase.attachments().getAttachmentsForMessage(mmsMessage.getId()));
+        }
 
         mentions.addAll(SignalDatabase.mentions().getMentionsForMessage(mmsMessage.getId()));
 

@@ -7,9 +7,11 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.isStoryReaction
@@ -25,7 +27,7 @@ object NotificationStateProvider {
   fun constructNotificationState(stickyThreads: Map<ConversationId, DefaultMessageNotifier.StickyThread>, notificationProfile: NotificationProfile?): NotificationState {
     val messages: MutableList<NotificationMessage> = mutableListOf()
 
-    SignalDatabase.mmsSms.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
+    SignalDatabase.messages.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
       if (unreadMessages.count == 0) {
         return NotificationState.EMPTY
       }
@@ -48,6 +50,13 @@ object NotificationStateProvider {
 
             val hasSelfRepliedToGroupStory = conversationId.groupStoryId?.let {
               SignalDatabase.messages.hasGroupReplyOrReactionInStory(it)
+            }
+
+            if (record is MediaMmsMessageRecord) {
+              val attachments = SignalDatabase.attachments.getAttachmentsForMessage(record.id)
+              if (attachments.isNotEmpty()) {
+                record = record.withAttachments(ApplicationDependencies.getApplication(), attachments)
+              }
             }
 
             messages += NotificationMessage(

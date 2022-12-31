@@ -72,7 +72,7 @@ class MessageContentProcessor__handleStoryMessageTest : MessageContentProcessorT
 
     runTestWithContent(contentProto = storyContent)
 
-    val replyId = SignalDatabase.mmsSms.getConversation(senderThreadId, 0, 1).use {
+    val replyId = SignalDatabase.messages.getConversation(senderThreadId, 0, 1).use {
       it.moveToFirst()
       it.requireLong(MessageTable.ID)
     }

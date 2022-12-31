@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.testing.TestDatabaseUtil
 @Config(manifest = Config.NONE, application = Application::class)
 class MmsSmsDatabaseTest {
 
-  private lateinit var mmsSmsTable: MmsSmsTable
   private lateinit var messageTable: MessageTable
   private lateinit var db: SQLiteDatabase
 
@@ -28,7 +27,6 @@ class MmsSmsDatabaseTest {
     }
 
     db = sqlCipher.writableDatabase
-    mmsSmsTable = MmsSmsTable(ApplicationProvider.getApplicationContext(), sqlCipher)
     messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 
