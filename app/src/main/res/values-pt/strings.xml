@@ -1706,7 +1706,7 @@
     <string name="RegistrationActivity_we_need_to_verify_that_youre_human">Necessitamos de verificar que é humano.</string>
     <string name="RegistrationActivity_next">Seguinte</string>
     <string name="RegistrationActivity_continue">Continuar</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo.\\Seja você mesmo em todas as mensagens.</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade consigo. Seja você mesmo em todas as mensagens.</string>
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Para começar introduza o seu número de telefone</string>
     <string name="RegistrationActivity_enter_your_phone_number">Introduza o sue número de telefone</string>
     <string name="RegistrationActivity_you_will_receive_a_verification_code">Irá receber um código de verificação. Poderão existir custos por parte da sua operadora.</string>
