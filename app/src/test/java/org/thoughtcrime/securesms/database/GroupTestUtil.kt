@@ -13,6 +13,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember
 import org.signal.storageservice.protos.groups.local.DecryptedString
 import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.protos.groups.local.EnabledState
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupHistoryEntry
@@ -99,7 +100,7 @@ class GroupChangeData(private val revision: Int, private val groupOperations: Gr
 class GroupStateTestData(private val masterKey: GroupMasterKey, private val groupOperations: GroupsV2Operations.GroupOperations? = null) {
 
   var localState: DecryptedGroup? = null
-  var groupRecord: Optional<GroupTable.GroupRecord> = Optional.empty()
+  var groupRecord: Optional<GroupRecord> = Optional.empty()
   var serverState: DecryptedGroup? = null
   var changeSet: ChangeSet? = null
   var groupChange: GroupChange? = null
@@ -172,9 +173,9 @@ fun groupRecord(
   avatarDigest: ByteArray = ByteArray(0),
   mms: Boolean = false,
   distributionId: DistributionId? = null
-): Optional<GroupTable.GroupRecord> {
+): Optional<GroupRecord> {
   return Optional.of(
-    GroupTable.GroupRecord(
+    GroupRecord(
       id,
       recipientId,
       decryptedGroup.title,

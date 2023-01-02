@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -748,9 +749,9 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
   @Override
   public void onGroupCallRingUpdate(@NonNull byte[] groupIdBytes, long ringId, @NonNull UUID sender, @NonNull CallManager.RingUpdate ringUpdate) {
     try {
-      GroupId.V2             groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
-      GroupTable.GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
-      Recipient              senderRecipient = Recipient.externalPush(ServiceId.from(sender));
+      GroupId.V2  groupId         = GroupId.v2(new GroupIdentifier(groupIdBytes));
+      GroupRecord group           = SignalDatabase.groups().getGroup(groupId).orElse(null);
+      Recipient   senderRecipient = Recipient.externalPush(ServiceId.from(sender));
 
       if (group != null &&
           group.isActive() &&

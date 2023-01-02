@@ -8,7 +8,7 @@ import android.provider.ContactsContract;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
@@ -74,7 +74,7 @@ public final class ContactsCursorRows {
   /**
    * Create a row for a contacts cursor based off the given group record.
    */
-  public static @NonNull Object[] forGroup(@NonNull GroupTable.GroupRecord groupRecord) {
+  public static @NonNull Object[] forGroup(@NonNull GroupRecord groupRecord) {
     return new Object[]{groupRecord.getRecipientId().serialize(),
                         groupRecord.getTitle(),
                         groupRecord.getId(),

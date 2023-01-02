@@ -10,8 +10,8 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -92,7 +92,7 @@ class EditGroupProfileRepository implements EditProfileRepository {
 
       return SignalDatabase.groups()
                            .getGroup(recipientId)
-                           .map(GroupTable.GroupRecord::getDescription)
+                           .map(GroupRecord::getDescription)
                            .orElse("");
     }, descriptionConsumer::accept);
   }

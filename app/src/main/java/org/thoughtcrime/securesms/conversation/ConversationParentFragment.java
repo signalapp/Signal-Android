@@ -328,7 +328,8 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
-import static org.thoughtcrime.securesms.database.GroupTable.GroupRecord;
+
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 
 /**
  * Fragment for displaying a message thread, as well as

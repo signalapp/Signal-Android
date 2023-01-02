@@ -1670,7 +1670,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       val recipientSettings = recipients.getRecord(context, cursor, RECIPIENT_ID)
 
       val recipient: Recipient = if (recipientSettings.groupId != null) {
-        GroupTable.Reader(cursor).current?.let { group ->
+        GroupTable.Reader(cursor).getCurrent()?.let { group ->
           val details = RecipientDetails(
             group.title,
             null,

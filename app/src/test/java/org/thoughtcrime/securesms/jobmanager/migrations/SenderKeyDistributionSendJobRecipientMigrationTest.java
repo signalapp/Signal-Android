@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Test;
 import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
@@ -34,7 +35,7 @@ public class SenderKeyDistributionSendJobRecipientMigrationTest {
                                                                     .putBlobAsString("group_id", GROUP_ID.getDecodedId())
                                                                     .build());
 
-    GroupTable.GroupRecord mockGroup = mock(GroupTable.GroupRecord.class);
+    GroupRecord mockGroup = mock(GroupRecord.class);
     when(mockGroup.getRecipientId()).thenReturn(RecipientId.from(2));
     when(mockDatabase.getGroup(GROUP_ID)).thenReturn(Optional.of(mockGroup));
 

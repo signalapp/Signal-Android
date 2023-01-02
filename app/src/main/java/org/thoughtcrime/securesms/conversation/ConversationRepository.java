@@ -10,11 +10,11 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -84,7 +84,7 @@ class ConversationRepository {
       boolean isGroup                             = false;
       boolean recipientIsKnownOrHasGroupsInCommon = false;
       if (conversationRecipient.isGroup()) {
-        Optional<GroupTable.GroupRecord> group = SignalDatabase.groups().getGroup(conversationRecipient.getId());
+        Optional<GroupRecord> group = SignalDatabase.groups().getGroup(conversationRecipient.getId());
         if (group.isPresent()) {
           List<Recipient> recipients = Recipient.resolvedList(group.get().getMembers());
           for (Recipient recipient : recipients) {

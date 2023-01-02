@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.documents.NetworkFailureSet;
 import org.thoughtcrime.securesms.database.model.DisplayRecord;
 import org.thoughtcrime.securesms.database.model.GroupCallUpdateDetailsUtil;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageExportStatus;
@@ -941,9 +942,9 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   }
 
   public void insertProfileNameChangeMessages(@NonNull Recipient recipient, @NonNull String newProfileName, @NonNull String previousProfileName) {
-    ThreadTable                  threadTable  = SignalDatabase.threads();
-    List<GroupTable.GroupRecord> groupRecords = SignalDatabase.groups().getGroupsContainingMember(recipient.getId(), false);
-    List<Long>                   threadIdsToUpdate = new LinkedList<>();
+    ThreadTable       threadTable       = SignalDatabase.threads();
+    List<GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipient.getId(), false);
+    List<Long>        threadIdsToUpdate = new LinkedList<>();
 
     byte[] profileChangeDetails = ProfileChangeDetails.newBuilder()
                                                       .setProfileNameChange(ProfileChangeDetails.StringChange.newBuilder()
@@ -959,7 +960,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     try {
       threadIdsToUpdate.add(threadTable.getThreadIdFor(recipient.getId()));
-      for (GroupTable.GroupRecord groupRecord : groupRecords) {
+      for (GroupRecord groupRecord : groupRecords) {
         if (groupRecord.isActive()) {
           threadIdsToUpdate.add(threadTable.getThreadIdFor(groupRecord.getRecipientId()));
         }
@@ -1032,16 +1033,16 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   }
 
   public void insertNumberChangeMessages(@NonNull RecipientId recipientId) {
-    ThreadTable                  threadTable  = SignalDatabase.threads();
-    List<GroupTable.GroupRecord> groupRecords = SignalDatabase.groups().getGroupsContainingMember(recipientId, false);
-    List<Long>                   threadIdsToUpdate = new LinkedList<>();
+    ThreadTable       threadTable       = SignalDatabase.threads();
+    List<GroupRecord> groupRecords      = SignalDatabase.groups().getGroupsContainingMember(recipientId, false);
+    List<Long>        threadIdsToUpdate = new LinkedList<>();
 
     SQLiteDatabase db = databaseHelper.getSignalWritableDatabase();
     db.beginTransaction();
 
     try {
       threadIdsToUpdate.add(threadTable.getThreadIdFor(recipientId));
-      for (GroupTable.GroupRecord groupRecord : groupRecords) {
+      for (GroupRecord groupRecord : groupRecords) {
         if (groupRecord.isActive()) {
           threadIdsToUpdate.add(threadTable.getThreadIdFor(groupRecord.getRecipientId()));
         }

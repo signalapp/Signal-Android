@@ -8,10 +8,10 @@ import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.GroupTable
-import org.thoughtcrime.securesms.database.GroupTable.GroupRecord
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -104,7 +104,7 @@ open class ContactSearchPagedDataSourceRepository(
   }
 
   open fun getGroupStories(): Set<ContactSearchData.Story> {
-    return SignalDatabase.groups.groupsToDisplayAsStories.map {
+    return SignalDatabase.groups.getGroupsToDisplayAsStories().map {
       val recipient = Recipient.resolved(SignalDatabase.recipients.getOrInsertFromGroupId(it))
       ContactSearchData.Story(recipient, recipient.participantIds.size, DistributionListPrivacyMode.ALL)
     }.toSet()

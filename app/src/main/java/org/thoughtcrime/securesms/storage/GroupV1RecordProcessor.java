@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -46,8 +47,8 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   @Override
   boolean isInvalid(@NonNull SignalGroupV1Record remote) {
     try {
-      GroupId.V1                       id       = GroupId.v1(remote.getGroupId());
-      Optional<GroupTable.GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
+      GroupId.V1            id       = GroupId.v1(remote.getGroupId());
+      Optional<GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
 
       if (v2Record.isPresent()) {
         Log.w(TAG, "We already have an upgraded V2 group for this V1 group -- marking as invalid.");

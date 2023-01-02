@@ -9,6 +9,7 @@ import com.annimon.stream.Stream;
 
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -105,7 +106,7 @@ public final class ReviewUtil {
     return Stream.of(SignalDatabase.groups()
                  .getPushGroupsContainingMember(recipientId))
                  .filter(g -> g.getMembers().contains(Recipient.self().getId()))
-                 .map(GroupTable.GroupRecord::getRecipientId)
+                 .map(GroupRecord::getRecipientId)
                  .toList()
                  .size();
   }

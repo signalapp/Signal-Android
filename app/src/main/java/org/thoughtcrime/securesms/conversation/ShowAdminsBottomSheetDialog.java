@@ -15,8 +15,8 @@ import androidx.fragment.app.FragmentManager;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
@@ -94,7 +94,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
   private static @NonNull List<Recipient> getAdmins(@NonNull Context context, @NonNull GroupId groupId) {
     return SignalDatabase.groups()
                          .getGroup(groupId)
-                         .map(GroupTable.GroupRecord::getAdmins)
+                         .map(GroupRecord::getAdmins)
                          .orElse(Collections.emptyList());
   }
 }

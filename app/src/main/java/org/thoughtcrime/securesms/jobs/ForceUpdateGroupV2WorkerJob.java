@@ -3,8 +3,8 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -61,7 +61,7 @@ final class ForceUpdateGroupV2WorkerJob extends BaseJob {
 
   @Override
   public void onRun() throws IOException, GroupNotAMemberException, GroupChangeBusyException {
-    Optional<GroupTable.GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
+    Optional<GroupRecord> group = SignalDatabase.groups().getGroup(groupId);
 
     if (!group.isPresent()) {
       Log.w(TAG, "Group not found");

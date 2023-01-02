@@ -23,8 +23,8 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.UriAttachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -282,14 +282,14 @@ public class LinkPreviewRepository {
         }
 
         GroupMasterKey                      groupMasterKey = groupInviteLinkUrl.getGroupMasterKey();
-        GroupId.V2                       groupId = GroupId.v2(groupMasterKey);
-        Optional<GroupTable.GroupRecord> group   = SignalDatabase.groups().getGroup(groupId);
+        GroupId.V2            groupId = GroupId.v2(groupMasterKey);
+        Optional<GroupRecord> group   = SignalDatabase.groups().getGroup(groupId);
 
         if (group.isPresent()) {
           Log.i(TAG, "Creating preview for locally available group");
 
-          GroupTable.GroupRecord groupRecord = group.get();
-          String                 title       = groupRecord.getTitle();
+          GroupRecord groupRecord = group.get();
+          String      title       = groupRecord.getTitle();
           int                       memberCount = groupRecord.getMembers().size();
           String                    description = getMemberCountDescription(context, memberCount);
           Optional<Attachment>      thumbnail   = Optional.empty();

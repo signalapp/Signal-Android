@@ -10,6 +10,7 @@ import androidx.annotation.Nullable;
 import org.signal.core.util.Conversions;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 
@@ -30,8 +31,8 @@ public final class GroupRecordContactPhoto implements ContactPhoto {
 
   @Override
   public InputStream openInputStream(Context context) throws IOException {
-    GroupTable                       groupDatabase = SignalDatabase.groups();
-    Optional<GroupTable.GroupRecord> groupRecord   = groupDatabase.getGroup(groupId);
+    GroupTable            groupDatabase = SignalDatabase.groups();
+    Optional<GroupRecord> groupRecord   = groupDatabase.getGroup(groupId);
 
     if (!groupRecord.isPresent() || !AvatarHelper.hasAvatar(context, groupRecord.get().getRecipientId())) {
       throw new IOException("No avatar for group: " + groupId);

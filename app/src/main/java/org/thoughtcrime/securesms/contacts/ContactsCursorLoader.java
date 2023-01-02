@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -221,11 +222,11 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
   }
 
   private Cursor getGroupsCursor() {
-    MatrixCursor                             groupContacts = ContactsCursorRows.createMatrixCursor();
-    Map<RecipientId, GroupTable.GroupRecord> groups        = new LinkedHashMap<>();
+    MatrixCursor                  groupContacts = ContactsCursorRows.createMatrixCursor();
+    Map<RecipientId, GroupRecord> groups        = new LinkedHashMap<>();
 
     try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByTitle(getFilter(), flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
-      GroupTable.GroupRecord groupRecord;
+      GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
         groups.put(groupRecord.getRecipientId(), groupRecord);
       }
@@ -240,14 +241,14 @@ public class ContactsCursorLoader extends AbstractContactsCursorLoader {
       }
 
       try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, flagSet(mode, DisplayMode.FLAG_INACTIVE_GROUPS), hideGroupsV1(mode), !smsEnabled(mode))) {
-        GroupTable.GroupRecord groupRecord;
+        GroupRecord groupRecord;
         while ((groupRecord = reader.getNext()) != null) {
           groups.put(groupRecord.getRecipientId(), groupRecord);
         }
       }
     }
 
-    for (GroupTable.GroupRecord groupRecord : groups.values()) {
+    for (GroupRecord groupRecord : groups.values()) {
       groupContacts.addRow(ContactsCursorRows.forGroup(groupRecord));
     }
 

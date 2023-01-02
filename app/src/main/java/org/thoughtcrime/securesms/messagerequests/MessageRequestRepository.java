@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -58,8 +59,8 @@ final class MessageRequestRepository {
 
   void getGroupInfo(@NonNull RecipientId recipientId, @NonNull Consumer<GroupInfo> onGroupInfoLoaded) {
     executor.execute(() -> {
-      GroupTable                       groupDatabase = SignalDatabase.groups();
-      Optional<GroupTable.GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
+      GroupTable            groupDatabase = SignalDatabase.groups();
+      Optional<GroupRecord> groupRecord   = groupDatabase.getGroup(recipientId);
       onGroupInfoLoaded.accept(groupRecord.map(record -> {
         if (record.isV2Group()) {
           DecryptedGroup decryptedGroup = record.requireV2GroupProperties().getDecryptedGroup();

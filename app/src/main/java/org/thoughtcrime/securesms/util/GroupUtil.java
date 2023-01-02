@@ -14,6 +14,7 @@ import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -94,7 +95,7 @@ public final class GroupUtil {
   {
     if (groupId.isV2()) {
       GroupTable                   groupDatabase     = SignalDatabase.groups();
-      GroupTable.GroupRecord       groupRecord       = groupDatabase.requireGroup(groupId);
+      GroupRecord                  groupRecord       = groupDatabase.requireGroup(groupId);
       GroupTable.V2GroupProperties v2GroupProperties = groupRecord.requireV2GroupProperties();
       SignalServiceGroupV2            group             = SignalServiceGroupV2.newBuilder(v2GroupProperties.getGroupMasterKey())
                                                                               .withRevision(v2GroupProperties.getGroupRevision())

@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -67,7 +68,7 @@ public final class IdentityUtil {
 
     try (GroupTable.Reader reader = groupDatabase.getGroups()) {
 
-      GroupTable.GroupRecord groupRecord;
+      GroupRecord groupRecord;
 
       while ((groupRecord = reader.getNext()) != null) {
         if (groupRecord.getMembers().contains(recipient.getId()) && groupRecord.isActive() && !groupRecord.isMms()) {
@@ -138,7 +139,7 @@ public final class IdentityUtil {
     GroupTable   groupDatabase = SignalDatabase.groups();
 
     try (GroupTable.Reader reader = groupDatabase.getGroups()) {
-      GroupTable.GroupRecord groupRecord;
+      GroupRecord groupRecord;
 
       while ((groupRecord = reader.getNext()) != null) {
         if (groupRecord.getMembers().contains(recipientId) && groupRecord.isActive()) {

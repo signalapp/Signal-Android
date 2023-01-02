@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
@@ -174,7 +175,7 @@ public class SearchRepository {
 
     Set<RecipientId> groupsByTitleIds = new LinkedHashSet<>();
 
-    GroupTable.GroupRecord record;
+    GroupRecord record;
     try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByTitle(query, true, false, false)) {
       while ((record = reader.getNext()) != null) {
         groupsByTitleIds.add(record.getRecipientId());

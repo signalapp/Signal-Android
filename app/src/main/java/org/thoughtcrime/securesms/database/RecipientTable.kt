@@ -1186,7 +1186,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
     }
 
-    for (id in groups.allGroupV2Ids) {
+    for (id in groups.getAllGroupV2Ids()) {
       val recipient = Recipient.externalGroupExact(id!!)
       val recipientId = recipient.id
       val existing: RecipientRecord = getRecordForSync(recipientId) ?: throw AssertionError()

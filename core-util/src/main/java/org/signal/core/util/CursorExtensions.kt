@@ -92,6 +92,16 @@ fun <T> Cursor.readToSingleObject(serializer: Serializer<T, Cursor>): T? {
   }
 }
 
+fun <T> Cursor.readToSingleObject(mapper: (Cursor) -> T): T? {
+  return use {
+    if (it.moveToFirst()) {
+      mapper(it)
+    } else {
+      null
+    }
+  }
+}
+
 @JvmOverloads
 fun Cursor.readToSingleInt(defaultValue: Int = 0): Int {
   return use {
