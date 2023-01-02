@@ -20,14 +20,20 @@
         android:textAppearance="@style/Signal.Text.LabelLarge"
         android:textColor="@color/signal_colorOnSurface"
         android:visibility="invisible"
+        tools:visibility="visible"
         app:chipBackgroundColor="@color/signal_colorSecondaryContainer"
         app:chipCornerRadius="8dp"
         app:chipMinHeight="32dp"
+        app:chipStartPadding="8dp"
+        app:chipEndPadding="8dp"
+        app:closeIconStartPadding="6dp"
+        app:closeIconEndPadding="0dp"
+        app:textStartPadding="0dp"
+        app:textEndPadding="0dp"
         app:closeIcon="@drawable/ic_x_20"
+        app:closeIconTint="@color/signal_colorOnSurface"
         app:closeIconEnabled="true"
         app:closeIconSize="18dp"
-        app:ensureMinTouchTargetSize="false"
-        app:icon="@drawable/ic_x_20"
-        app:iconTint="@color/signal_colorOnSurface" />
+        app:ensureMinTouchTargetSize="false" />
 
 </merge>
