@@ -175,8 +175,8 @@ class FilterCircleView @JvmOverloads constructor(
 
   private fun evaluateBottomOffset(progress: Float, state: FilterPullState): Float {
     return when (state) {
-      FilterPullState.OPEN_APEX, FilterPullState.OPENING, FilterPullState.OPEN, FilterPullState.CLOSE_APEX -> CIRCLE_Y_EVALUATOR.evaluate(progress, (-46).dp, 55.dp)
-      FilterPullState.CLOSED, FilterPullState.CLOSING -> CIRCLE_Y_EVALUATOR.evaluate(progress, 0.dp, 55.dp)
+      FilterPullState.OPEN_APEX, FilterPullState.OPENING, FilterPullState.OPEN, FilterPullState.CLOSE_APEX -> FilterLerp.getOpenCircleBottomPadLerp(progress)
+      FilterPullState.CLOSED, FilterPullState.CLOSING -> FilterLerp.getClosedCircleBottomPadLerp(progress)
     }
   }
 

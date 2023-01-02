@@ -63,7 +63,7 @@
                 <org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView
                     android:id="@+id/pull_view"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="130dp"
                     android:background="@color/signal_colorBackground"
                     app:layout_scrollInterpolator="@android:anim/linear_interpolator" />
 

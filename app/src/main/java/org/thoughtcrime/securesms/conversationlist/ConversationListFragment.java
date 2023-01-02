@@ -115,6 +115,7 @@ import org.thoughtcrime.securesms.contacts.sync.CdsPermanentErrorBottomSheet;
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
@@ -280,7 +281,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     cameraFab.setVisibility(View.VISIBLE);
 
     CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
-    int                     minHeight               = (int) DimensionUnit.DP.toPixels(52);
+    int                     openHeight              = (int) DimensionUnit.DP.toPixels(FilterLerp.FILTER_OPEN_HEIGHT);
 
     pullView.setOnFilterStateChanged(state -> {
       switch (state) {
@@ -291,7 +292,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           viewModel.setFiltered(true);
           break;
         case OPEN_APEX:
-          ViewUtil.setMinimumHeight(collapsingToolbarLayout, minHeight);
+          ViewUtil.setMinimumHeight(collapsingToolbarLayout, openHeight);
           break;
         case CLOSE_APEX:
           ViewUtil.setMinimumHeight(collapsingToolbarLayout, 0);

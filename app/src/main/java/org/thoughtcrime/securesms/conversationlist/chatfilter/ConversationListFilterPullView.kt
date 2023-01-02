@@ -7,9 +7,9 @@ import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
-import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.databinding.ConversationListFilterPullViewBinding
+import org.thoughtcrime.securesms.util.VibrateUtil
 
 /**
  * Encapsulates the push / pull latch for enabling and disabling
@@ -51,13 +51,14 @@ class ConversationListFilterPullView @JvmOverloads constructor(
       setState(FilterPullState.CLOSED)
     } else if (state == FilterPullState.CLOSED && progress >= 1f) {
       setState(FilterPullState.OPEN_APEX)
+      vibrate()
     } else if (state == FilterPullState.OPEN && progress >= 1f) {
       setState(FilterPullState.CLOSE_APEX)
+      vibrate()
     }
 
-    // If we are pulling toward the open apex
-    if (state == FilterPullState.OPEN || state == FilterPullState.CLOSE_APEX || state == FilterPullState.CLOSING) {
-      binding.filterText.translationY = EVAL.evaluate(progress, 26.dp, -24.dp.toFloat())
+    if (state == FilterPullState.OPEN || state == FilterPullState.OPEN_APEX || state == FilterPullState.CLOSE_APEX || state == FilterPullState.CLOSING) {
+      binding.filterText.translationY = FilterLerp.getPillLerp(progress)
     } else {
       binding.filterText.translationY = 0f
     }
@@ -128,6 +129,12 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     this.state = state
     binding.filterCircle.state = state
     onFilterStateChanged?.newState(state)
+  }
+
+  private fun vibrate() {
+    if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+      VibrateUtil.vibrateTick(context)
+    }
   }
 
   interface OnFilterStateChanged {
