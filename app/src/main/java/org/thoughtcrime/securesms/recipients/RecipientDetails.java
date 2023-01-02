@@ -209,7 +209,7 @@ public class RecipientDetails {
     RegisteredState registeredState = settings.getRegistered();
 
     if (isSelf) {
-      if (SignalStore.account().isRegistered() && !TextSecurePreferences.isUnauthorizedRecieved(context)) {
+      if (SignalStore.account().isRegistered() && !TextSecurePreferences.isUnauthorizedReceived(context)) {
         registeredState = RegisteredState.REGISTERED;
       } else {
         registeredState = RegisteredState.NOT_REGISTERED;

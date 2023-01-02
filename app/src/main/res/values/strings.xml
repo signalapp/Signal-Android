@@ -2099,6 +2099,9 @@
     <string name="UnauthorizedReminder_device_no_longer_registered">Device no longer registered</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">This is likely because you registered your phone number with Signal on a different device. Tap to re-register.</string>
 
+    <!-- Push notification when the app is forcibly logged out by the server. -->
+    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
     <string name="EnclaveFailureReminder_update_signal">Update Signal to continue using payments. Your balance may not be up-to-date.</string>

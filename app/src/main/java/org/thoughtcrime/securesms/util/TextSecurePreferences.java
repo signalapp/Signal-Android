@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.util;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.hardware.Camera.CameraInfo;
@@ -11,9 +12,11 @@ import androidx.annotation.ArrayRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.EventBus;
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.R;
@@ -21,13 +24,16 @@ import org.thoughtcrime.securesms.backup.BackupProtos;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
 import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.RegistrationLockReminders;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.registration.RegistrationNavigationActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -443,7 +449,7 @@ public class TextSecurePreferences {
   }
 
   public static void setUnauthorizedReceived(Context context, boolean value) {
-    boolean previous = isUnauthorizedRecieved(context);
+    boolean previous = isUnauthorizedReceived(context);
     setBooleanPreference(context, UNAUTHORIZED_RECEIVED, value);
 
     if (previous != value) {
@@ -453,9 +459,14 @@ public class TextSecurePreferences {
     if (value) {
       clearLocalCredentials(context);
     }
+
+    if (value && !previous) {
+      showUnregisteredNotification(context);
+      EventBus.getDefault().post(new ReminderUpdateEvent());
+    }
   }
 
-  public static boolean isUnauthorizedRecieved(Context context) {
+  public static boolean isUnauthorizedReceived(Context context) {
     return getBooleanPreference(context, UNAUTHORIZED_RECEIVED, false);
   }
 
@@ -1155,6 +1166,20 @@ public class TextSecurePreferences {
       preferences = PreferenceManager.getDefaultSharedPreferences(context);
     }
     return preferences;
+  }
+
+  private static void showUnregisteredNotification(Context context) {
+    PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
+                                                                   0,
+                                                                   RegistrationNavigationActivity.newIntentForReRegistration(context),
+                                                                   PendingIntent.FLAG_UPDATE_CURRENT | PendingIntentFlags.immutable());
+    final NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+        .setSmallIcon(R.drawable.ic_signal_logo_large)
+        .setContentText(context.getString(R.string.LoggedOutNotification_you_have_been_logged_out))
+        .setContentIntent(reRegistrationIntent)
+        .setOnlyAlertOnce(true)
+        .setAutoCancel(true);
+    NotificationManagerCompat.from(context).notify(NotificationIds.UNREGISTERED_NOTIFICATION_ID, builder.build());
   }
 
   // NEVER rename these -- they're persisted by name
