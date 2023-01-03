@@ -2,10 +2,14 @@ package org.thoughtcrime.securesms.conversationlist.chatfilter
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.content.Context
+import android.content.res.ColorStateList
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
+import androidx.core.content.ContextCompat
+import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.databinding.ConversationListFilterPullViewBinding
@@ -30,6 +34,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     private const val ANIMATE_HELP_TEXT_VELOCITY_THRESHOLD = 1f
     private const val ANIMATE_HELP_TEXT_THRESHOLD = 30
     private const val ANIMATE_HELP_TEXT_START_FRACTION = 0.35f
+    private val COLOR_EVALUATOR = ArgbEvaluatorCompat.getInstance()
   }
 
   private val binding: ConversationListFilterPullViewBinding
@@ -47,9 +52,13 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   private var pillAnimator: Animator? = null
+  private var pillColorAnimator: Animator? = null
   private val velocityTracker = ProgressVelocityTracker(5)
   private var animateHelpText = 0
   private var helpTextStartFraction = 0.35f
+
+  private val pillDefaultBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSecondaryContainer)
+  private val pillWillCloseBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSurface1)
 
   fun onUserDrag(progress: Float) {
     binding.filterCircle.textFieldMetrics = Pair(binding.filterText.width, binding.filterText.height)
@@ -61,9 +70,11 @@ class ConversationListFilterPullView @JvmOverloads constructor(
       setState(FilterPullState.OPEN_APEX)
       vibrate()
       resetHelpText()
+      resetPillColor()
     } else if (state == FilterPullState.OPEN && progress >= 1f) {
       setState(FilterPullState.CLOSE_APEX)
       vibrate()
+      animatePillColor()
     }
 
     if (state == FilterPullState.CLOSED && animateHelpText < ANIMATE_HELP_TEXT_THRESHOLD) {
@@ -164,6 +175,23 @@ class ConversationListFilterPullView @JvmOverloads constructor(
       }
       start()
     }
+  }
+
+  private fun animatePillColor() {
+    pillColorAnimator?.cancel()
+    pillColorAnimator = ValueAnimator.ofInt(pillDefaultBackgroundTint, pillWillCloseBackgroundTint).apply {
+      addUpdateListener {
+        binding.filterText.chipBackgroundColor = ColorStateList.valueOf(it.animatedValue as Int)
+      }
+      setEvaluator(COLOR_EVALUATOR)
+      duration = 200
+      start()
+    }
+  }
+
+  private fun resetPillColor() {
+    pillColorAnimator?.cancel()
+    binding.filterText.chipBackgroundColor = ColorStateList.valueOf(pillDefaultBackgroundTint)
   }
 
   private fun setState(state: FilterPullState) {
