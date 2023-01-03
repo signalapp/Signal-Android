@@ -36,4 +36,14 @@
         app:closeIconSize="18dp"
         app:ensureMinTouchTargetSize="false" />
 
+    <TextView
+        android:id="@+id/help_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:alpha="0"
+        android:text="@string/ChatFilter__pull_to_filter"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorSecondary" />
+
 </merge>

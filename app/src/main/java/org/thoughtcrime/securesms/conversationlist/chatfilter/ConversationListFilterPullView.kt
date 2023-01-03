@@ -1,15 +1,18 @@
 package org.thoughtcrime.securesms.conversationlist.chatfilter
 
 import android.animation.Animator
-import android.animation.FloatEvaluator
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.databinding.ConversationListFilterPullViewBinding
 import org.thoughtcrime.securesms.util.VibrateUtil
+import kotlin.math.max
+import kotlin.math.min
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Encapsulates the push / pull latch for enabling and disabling
@@ -24,7 +27,9 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
 
   companion object {
-    private val EVAL = FloatEvaluator()
+    private const val ANIMATE_HELP_TEXT_VELOCITY_THRESHOLD = 1f
+    private const val ANIMATE_HELP_TEXT_THRESHOLD = 30
+    private const val ANIMATE_HELP_TEXT_START_FRACTION = 0.35f
   }
 
   private val binding: ConversationListFilterPullViewBinding
@@ -42,6 +47,9 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   private var pillAnimator: Animator? = null
+  private val velocityTracker = ProgressVelocityTracker(5)
+  private var animateHelpText = 0
+  private var helpTextStartFraction = 0.35f
 
   fun onUserDrag(progress: Float) {
     binding.filterCircle.textFieldMetrics = Pair(binding.filterText.width, binding.filterText.height)
@@ -52,10 +60,32 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     } else if (state == FilterPullState.CLOSED && progress >= 1f) {
       setState(FilterPullState.OPEN_APEX)
       vibrate()
+      resetHelpText()
     } else if (state == FilterPullState.OPEN && progress >= 1f) {
       setState(FilterPullState.CLOSE_APEX)
       vibrate()
     }
+
+    if (state == FilterPullState.CLOSED && animateHelpText < ANIMATE_HELP_TEXT_THRESHOLD) {
+      velocityTracker.submitProgress(progress, System.currentTimeMillis().milliseconds)
+      val velocity = velocityTracker.calculateVelocity()
+      animateHelpText = if (velocity > 0f && velocity < ANIMATE_HELP_TEXT_VELOCITY_THRESHOLD) {
+        min(Int.MAX_VALUE, animateHelpText + 1)
+      } else {
+        max(0, animateHelpText - 1)
+      }
+
+      if (animateHelpText >= ANIMATE_HELP_TEXT_THRESHOLD) {
+        helpTextStartFraction = max(progress, ANIMATE_HELP_TEXT_START_FRACTION)
+      }
+    }
+
+    if (animateHelpText >= ANIMATE_HELP_TEXT_THRESHOLD) {
+      binding.helpText.visibility = VISIBLE
+    }
+
+    binding.helpText.alpha = max(0f, FilterLerp.getHelpTextAlphaLerp(progress, helpTextStartFraction))
+    binding.helpText.translationY = FilterLerp.getPillLerp(progress)
 
     if (state == FilterPullState.OPEN || state == FilterPullState.OPEN_APEX || state == FilterPullState.CLOSE_APEX || state == FilterPullState.CLOSING) {
       binding.filterText.translationY = FilterLerp.getPillLerp(progress)
@@ -94,6 +124,17 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   private fun close() {
     setState(FilterPullState.CLOSING)
     animatePillOut()
+  }
+
+  private fun resetHelpText() {
+    velocityTracker.clear()
+    animateHelpText = 0
+    helpTextStartFraction = ANIMATE_HELP_TEXT_START_FRACTION
+    binding.helpText.animate().alpha(0f).setListener(object : AnimationCompleteListener() {
+      override fun onAnimationEnd(animation: Animator?) {
+        binding.helpText.visibility = INVISIBLE
+      }
+    })
   }
 
   private fun animatePillIn() {

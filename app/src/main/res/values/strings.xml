@@ -5467,5 +5467,7 @@
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
     <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
+    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
 
 </resources>

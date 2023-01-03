@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.conversationlist.chatfilter
 
 import android.animation.FloatEvaluator
+import androidx.annotation.FloatRange
 import org.signal.core.util.dp
 
 /**
@@ -35,6 +36,15 @@ object FilterLerp {
     Point(0f, 0f),
     Point(1f, FILTER_APEX * 0.55f)
   )
+
+  private fun helpTextAlphaLerp(@FloatRange(from = 0.0, to = 1.0) startFraction: Float) = getFn(
+    Point(startFraction, 0f),
+    Point(1f, 1f)
+  )
+
+  fun getHelpTextAlphaLerp(fraction: Float, startFraction: Float): Float {
+    return getLerp(fraction, helpTextAlphaLerp(startFraction))
+  }
 
   /**
    * Get the LERP for the "Filter enabled" pill.
