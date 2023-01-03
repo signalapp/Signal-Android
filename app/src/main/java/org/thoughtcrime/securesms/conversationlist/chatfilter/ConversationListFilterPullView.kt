@@ -171,11 +171,11 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   private fun animatePillOut() {
     pillAnimator?.cancel()
     pillAnimator = ObjectAnimator.ofFloat(binding.filterText, ALPHA, 0f).apply {
-      duration = 300
+      duration = 150
       doOnEnd {
         binding.filterText.visibility = GONE
         binding.filterText.isEnabled = false
-        setState(FilterPullState.CLOSED)
+        postDelayed({ setState(FilterPullState.CLOSED) }, 150)
       }
       start()
     }
