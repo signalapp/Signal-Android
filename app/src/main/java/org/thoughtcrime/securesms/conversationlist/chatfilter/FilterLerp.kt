@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversationlist.chatfilter
 import android.animation.FloatEvaluator
 import androidx.annotation.FloatRange
 import org.signal.core.util.dp
+import org.thoughtcrime.securesms.util.Util
 
 /**
  * Centralized location for filter view linear interpolations.
@@ -37,6 +38,11 @@ object FilterLerp {
     Point(1f, FILTER_APEX * 0.55f)
   )
 
+  private val PILL_CLOSE_APEX_ALPHA_LERP = getFn(
+    Point(0.35f * FILTER_APEX / 100, 0f),
+    Point(0.7f * FILTER_APEX / 100, 1f)
+  )
+
   private fun helpTextAlphaLerp(@FloatRange(from = 0.0, to = 1.0) startFraction: Float) = getFn(
     Point(startFraction, 0f),
     Point(1f, 1f)
@@ -44,6 +50,10 @@ object FilterLerp {
 
   fun getHelpTextAlphaLerp(fraction: Float, startFraction: Float): Float {
     return getLerp(fraction, helpTextAlphaLerp(startFraction))
+  }
+
+  fun getPillCloseApexAlphaLerp(fraction: Float): Float {
+    return Util.clamp(getLerp(fraction, PILL_CLOSE_APEX_ALPHA_LERP), 0f, 1f)
   }
 
   /**

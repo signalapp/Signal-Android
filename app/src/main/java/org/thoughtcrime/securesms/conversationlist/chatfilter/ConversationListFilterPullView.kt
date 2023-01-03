@@ -103,6 +103,10 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     } else {
       binding.filterText.translationY = 0f
     }
+
+    if (state == FilterPullState.CLOSE_APEX) {
+      binding.filterText.alpha = FilterLerp.getPillCloseApexAlphaLerp(progress)
+    }
   }
 
   fun onUserDragFinished() {
