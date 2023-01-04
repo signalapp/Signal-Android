@@ -5,15 +5,20 @@ import android.animation.ObjectAnimator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.res.ColorStateList
+import android.os.Bundle
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
+import androidx.core.view.doOnNextLayout
 import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.databinding.ConversationListFilterPullViewBinding
 import org.thoughtcrime.securesms.util.VibrateUtil
+import org.thoughtcrime.securesms.util.doOnEachLayout
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.time.Duration.Companion.milliseconds
@@ -31,6 +36,10 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 ) : FrameLayout(context, attrs) {
 
   companion object {
+    private const val INSTANCE_STATE_ROOT = "instance_state_root"
+    private const val INSTANCE_STATE_STATE = "instance_state_state"
+    private const val INSTANCE_STATE_SOURCE = "instance_state_source"
+
     private const val ANIMATE_HELP_TEXT_VELOCITY_THRESHOLD = 1f
     private const val ANIMATE_HELP_TEXT_THRESHOLD = 30
     private const val ANIMATE_HELP_TEXT_START_FRACTION = 0.35f
@@ -39,6 +48,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
   private val binding: ConversationListFilterPullViewBinding
   private var state: FilterPullState = FilterPullState.CLOSED
+  private var source: ConversationFilterSource = ConversationFilterSource.DRAG
 
   var onFilterStateChanged: OnFilterStateChanged? = null
   var onCloseClicked: OnCloseClicked? = null
@@ -48,6 +58,10 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     binding = ConversationListFilterPullViewBinding.bind(this)
     binding.filterText.setOnClickListener {
       onCloseClicked?.onCloseClicked()
+    }
+
+    doOnEachLayout {
+      binding.filterCircle.textFieldMetrics = Pair(binding.filterText.width, binding.filterText.height)
     }
   }
 
@@ -60,8 +74,34 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   private val pillDefaultBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSecondaryContainer)
   private val pillWillCloseBackgroundTint = ContextCompat.getColor(context, R.color.signal_colorSurface1)
 
+  override fun onSaveInstanceState(): Parcelable {
+    val root = super.onSaveInstanceState()
+
+    return bundleOf(
+      INSTANCE_STATE_ROOT to root,
+      INSTANCE_STATE_STATE to state.name,
+      INSTANCE_STATE_SOURCE to source.name
+    )
+  }
+
+  override fun onRestoreInstanceState(state: Parcelable?) {
+    val bundle = state as Bundle
+    val root: Parcelable? = bundle.getParcelable(INSTANCE_STATE_ROOT)
+    super.onRestoreInstanceState(root)
+
+    val restoredState: FilterPullState = FilterPullState.valueOf(bundle.getString(INSTANCE_STATE_STATE)!!)
+    val restoredSource: ConversationFilterSource = ConversationFilterSource.valueOf(bundle.getString(INSTANCE_STATE_SOURCE)!!)
+
+    doOnNextLayout {
+      when (restoredState.toLatestSettledState()) {
+        FilterPullState.OPEN -> toggle(restoredSource)
+        FilterPullState.CLOSED -> Unit
+        else -> throw IllegalStateException("Unexpected settled state.")
+      }
+    }
+  }
+
   fun onUserDrag(progress: Float) {
-    binding.filterCircle.textFieldMetrics = Pair(binding.filterText.width, binding.filterText.height)
     binding.filterCircle.progress = progress
 
     if (state == FilterPullState.CLOSED && progress <= 0) {
@@ -93,10 +133,9 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
     if (animateHelpText >= ANIMATE_HELP_TEXT_THRESHOLD) {
       binding.helpText.visibility = VISIBLE
+      binding.helpText.alpha = max(0f, FilterLerp.getHelpTextAlphaLerp(progress, helpTextStartFraction))
+      binding.helpText.translationY = FilterLerp.getPillLerp(progress)
     }
-
-    binding.helpText.alpha = max(0f, FilterLerp.getHelpTextAlphaLerp(progress, helpTextStartFraction))
-    binding.helpText.translationY = FilterLerp.getPillLerp(progress)
 
     if (state == FilterPullState.OPEN || state == FilterPullState.OPEN_APEX || state == FilterPullState.CLOSE_APEX || state == FilterPullState.CLOSING) {
       binding.filterText.translationY = FilterLerp.getPillLerp(progress)
@@ -118,11 +157,16 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   fun toggle() {
+    toggle(ConversationFilterSource.OVERFLOW)
+  }
+
+  private fun toggle(source: ConversationFilterSource) {
     if (state == FilterPullState.OPEN) {
-      setState(FilterPullState.CLOSE_APEX, ConversationFilterSource.OVERFLOW)
+      resetHelpText()
+      setState(FilterPullState.CLOSE_APEX, source)
       close(ConversationFilterSource.OVERFLOW)
     } else if (state == FilterPullState.CLOSED) {
-      setState(FilterPullState.OPEN_APEX, ConversationFilterSource.OVERFLOW)
+      setState(FilterPullState.OPEN_APEX, source)
       open(ConversationFilterSource.OVERFLOW)
     }
   }
@@ -200,6 +244,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
   private fun setState(state: FilterPullState, source: ConversationFilterSource) {
     this.state = state
+    this.source = source
     binding.filterCircle.state = state
     onFilterStateChanged?.newState(state, source)
   }
@@ -207,6 +252,13 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   private fun vibrate() {
     if (VibrateUtil.isHapticFeedbackEnabled(context)) {
       VibrateUtil.vibrateTick(context)
+    }
+  }
+
+  private fun FilterPullState.toLatestSettledState(): FilterPullState {
+    return when (this) {
+      FilterPullState.CLOSED, FilterPullState.OPEN_APEX, FilterPullState.OPENING -> FilterPullState.CLOSED
+      FilterPullState.OPEN, FilterPullState.CLOSE_APEX, FilterPullState.CLOSING -> FilterPullState.OPEN
     }
   }
 
