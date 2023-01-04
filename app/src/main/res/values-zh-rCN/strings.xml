@@ -1104,11 +1104,29 @@
     <string name="MessageRecord_left_group">您已离开该群组。</string>
     <string name="MessageRecord_you_updated_group">您已更新该群组</string>
     <string name="MessageRecord_the_group_was_updated">群组已更新。</string>
-    <string name="MessageRecord_you_called_date">你曾致电 · %1$s</string>
-    <string name="MessageRecord_missed_audio_call_date">未接语音来电 · %1$s</string>
-    <string name="MessageRecord_missed_video_call_date">未接视频来电 · %1$s</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
+    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
+    <string name="MessageRecord_outgoing_video_call">Outgoing video call</string>
+    <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
+    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
+    <string name="MessageRecord_unanswered_video_call">Unanswered video call</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
+    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
+    <string name="MessageRecord_incoming_video_call">Incoming video call</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_missed_video_call">Missed video call</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
+    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
+    <string name="MessageRecord_you_declined_a_video_call">You declined a video call</string>
+    <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
+    <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s 已更新该群组。</string>
-    <string name="MessageRecord_s_called_you_date">%1$s 曾呼叫你· %2$s</string>
     <string name="MessageRecord_s_joined_signal">%1$s 加入 Signal！</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">您已禁用阅后即焚。</string>
     <string name="MessageRecord_s_disabled_disappearing_messages">%1$s 已禁用阅后即焚。</string>
@@ -1766,10 +1784,6 @@
     <string name="ThreadRecord_left_the_group">已离开该群组</string>
     <string name="ThreadRecord_secure_session_reset">安全会话已重置。</string>
     <string name="ThreadRecord_draft">草稿：</string>
-    <string name="ThreadRecord_called">您呼叫</string>
-    <string name="ThreadRecord_called_you">呼叫您</string>
-    <string name="ThreadRecord_missed_audio_call">未接音频来电</string>
-    <string name="ThreadRecord_missed_video_call">未接视频来电</string>
     <string name="ThreadRecord_media_message">媒体消息</string>
     <string name="ThreadRecord_sticker">表情</string>
     <string name="ThreadRecord_view_once_photo">一次性图片</string>
@@ -1983,6 +1997,8 @@
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">搜索</string>
+    <!-- Hint when searching filtered chat content -->
+    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜索对话、联系人和消息</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2012,6 +2028,9 @@
     <!-- UnauthorizedReminder -->
     <string name="UnauthorizedReminder_device_no_longer_registered">设备已注销</string>
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">这很可能是您在其他设备上使用号码注册了 Signal。点击重新注册。</string>
+
+    <!-- Push notification when the app is forcibly logged out by the server. -->
+    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4169,7 +4188,8 @@
     <string name="SelectFeaturedBadgeFragment__you_must_select_a_badge">您必须选择一个徽章</string>
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">无法更新个人资料</string>
 
-    <string name="ViewBadgeBottomSheetDialogFragment__become_a_sustainer">成为定期捐款人</string>
+    <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s正在支持 Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5324,5 +5344,13 @@
     <!-- PaypalCompleteOrderBottomSheet -->
     <string name="PaypalCompleteOrderBottomSheet__donate">捐款</string>
     <string name="PaypalCompleteOrderBottomSheet__payment">付款</string>
+
+    <!-- ChatFilter -->
+    <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
+    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
+    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
+    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
 
 </resources>
