@@ -58,6 +58,8 @@ public final class ThreadBodyUtil {
       return String.format("%s %s", EmojiStrings.CARD, getPaymentActivationRequestSummary(context, record));
     } else if (record.isPaymentsActivated()) {
       return String.format("%s %s", EmojiStrings.CARD, getPaymentActivatedSummary(context, record));
+    } else if (record.isCallLog() && !record.isGroupCall()) {
+      return getCallLogSummary(context, record);
     }
 
     boolean hasImage = false;
@@ -114,6 +116,33 @@ public final class ThreadBodyUtil {
       return context.getString(R.string.ThreadRecord_you_activated_payments);
     } else {
       return context.getString(R.string.ThreadRecord_can_accept_payments, messageRecord.getRecipient().getShortDisplayName(context));
+    }
+  }
+
+  private static @NonNull String getCallLogSummary(@NonNull Context context, @NonNull MessageRecord record) {
+    CallTable.Call call = SignalDatabase.calls().getCallByMessageId(record.getId());
+    if (call != null) {
+      boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
+      if (call.getDirection() == CallTable.Direction.OUTGOING) {
+        if (call.getType() == CallTable.Type.AUDIO_CALL) {
+          return context.getString(accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call);
+        } else {
+          return context.getString(accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call);
+        }
+      } else {
+        boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
+        boolean isMissed    = call.getEvent() == CallTable.Event.MISSED;
+
+        if (accepted) {
+          return context.getString(isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call);
+        } else if (isMissed) {
+          return isVideoCall ? context.getString(R.string.MessageRecord_missed_video_call) : context.getString(R.string.MessageRecord_missed_voice_call);
+        } else {
+          return isVideoCall ? context.getString(R.string.MessageRecord_you_declined_a_video_call) : context.getString(R.string.MessageRecord_you_declined_a_voice_call);
+        }
+      }
+    } else {
+      return "";
     }
   }
   

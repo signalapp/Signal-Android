@@ -153,31 +153,31 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
 
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
-          int updateString = accepted ? R.string.MessageRecord_you_called_date : R.string.MessageRecord_unanswered_audio_call_date;
-          return staticUpdateDescription(context.getString(updateString, callDateString), R.drawable.ic_update_audio_call_outgoing_16);
+          int updateString = accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call;
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_audio_call_outgoing_16);
         } else {
-          int updateString = accepted ? R.string.MessageRecord_you_called_date : R.string.MessageRecord_unanswered_video_call_date;
-          return staticUpdateDescription(context.getString(updateString, callDateString), R.drawable.ic_update_video_call_outgoing_16);
+          int updateString = accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call;
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_video_call_outgoing_16);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
         boolean isMissed    = call.getEvent() == CallTable.Event.MISSED;
 
         if (accepted) {
-          int icon = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
-          return fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_s_called_you_date, r.getDisplayName(context), callDateString), icon);
+          int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
+          int icon         = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
         } else if (isMissed) {
-          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_missed_video_call_date, callDateString), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red))
-                             : staticUpdateDescription(context.getString(R.string.MessageRecord_missed_audio_call_date, callDateString), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
+          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_video_call), callDateString), R.drawable.ic_update_video_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red))
+                             : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_missed_voice_call), callDateString), R.drawable.ic_update_audio_call_missed_16, ContextCompat.getColor(context, R.color.core_red_shade), ContextCompat.getColor(context, R.color.core_red));
         } else {
-          return isVideoCall ? fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_declined_video_call_date, callDateString), R.drawable.ic_update_video_call_incoming_16)
-                             : fromRecipient(getIndividualRecipient(), r -> context.getString(R.string.MessageRecord_declined_audio_call_date, callDateString), R.drawable.ic_update_audio_call_incoming_16);
+          return isVideoCall ? staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_video_call), callDateString), R.drawable.ic_update_video_call_incoming_16)
+                             : staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(R.string.MessageRecord_you_declined_a_voice_call), callDateString), R.drawable.ic_update_audio_call_incoming_16);
         }
       }
     }
     return super.getUpdateDisplayBody(context, recipientClickHandler);
   }
-
 
   public @Nullable BodyRangeList getMessageRanges() {
     return messageRanges;

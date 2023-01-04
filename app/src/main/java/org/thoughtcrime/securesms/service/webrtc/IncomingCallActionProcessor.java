@@ -157,7 +157,7 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
                                                          false,
-                                                         currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled());
+                                                         currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
 
     try {
       webRtcInteractor.rejectIncomingCall(activePeer.getId());
