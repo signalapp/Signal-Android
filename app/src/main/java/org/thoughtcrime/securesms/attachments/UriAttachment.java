@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
+import java.util.Objects;
+
 public class UriAttachment extends Attachment {
 
   private final @NonNull  Uri dataUri;
@@ -51,7 +53,7 @@ public class UriAttachment extends Attachment {
                        @Nullable TransformProperties transformProperties)
   {
     super(contentType, transferState, size, fileName, 0, null, null, null, null, fastPreflightId, voiceNote, borderless, videoGif, width, height, quote, 0, caption, stickerLocator, blurHash, audioHash, transformProperties);
-    this.dataUri = dataUri;
+    this.dataUri = Objects.requireNonNull(dataUri);
   }
 
   @Override
