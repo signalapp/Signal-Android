@@ -11,19 +11,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layoutDirection="ltr" />
 
     <LinearLayout
         android:id="@+id/media_preview_details_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:visibility="invisible"
         android:alpha="0"
         android:animateLayoutChanges="false"
         android:background="@color/signal_dark_colorSurface_87"
         android:gravity="bottom"
         android:orientation="vertical"
+        android:visibility="invisible"
         tools:visibility="visible">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
