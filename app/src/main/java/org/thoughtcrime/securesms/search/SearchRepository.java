@@ -80,10 +80,10 @@ public class SearchRepository {
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
-  public void queryThreads(@NonNull String query, @NonNull Consumer<ThreadSearchResult> callback) {
+  public void queryThreads(@NonNull String query, boolean unreadOnly, @NonNull Consumer<ThreadSearchResult> callback) {
     searchExecutor.execute(2, () -> {
       long               start  = System.currentTimeMillis();
-      List<ThreadRecord> result = queryConversations(query);
+      List<ThreadRecord> result = queryConversations(query, unreadOnly);
 
       Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
 
@@ -155,7 +155,7 @@ public class SearchRepository {
     }
   }
 
-  private @NonNull List<ThreadRecord> queryConversations(@NonNull String query) {
+  private @NonNull List<ThreadRecord> queryConversations(@NonNull String query, boolean unreadOnly) {
     if (Util.isEmpty(query)) {
       return Collections.emptyList();
     }
@@ -192,15 +192,15 @@ public class SearchRepository {
 
     List<ThreadRecord> output = new ArrayList<>(contactIds.size() + groupsByTitleIds.size() + groupsByMemberIds.size());
 
-    output.addAll(getMatchingThreads(contactIds));
-    output.addAll(getMatchingThreads(groupsByTitleIds));
-    output.addAll(getMatchingThreads(groupsByMemberIds));
+    output.addAll(getMatchingThreads(contactIds, unreadOnly));
+    output.addAll(getMatchingThreads(groupsByTitleIds, unreadOnly));
+    output.addAll(getMatchingThreads(groupsByMemberIds, unreadOnly));
 
     return output;
   }
 
-  private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds) {
-    try (Cursor cursor = threadTable.getFilteredConversationList(new ArrayList<>(recipientIds))) {
+  private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds, boolean unreadOnly) {
+    try (Cursor cursor = threadTable.getFilteredConversationList(new ArrayList<>(recipientIds), unreadOnly)) {
       return readToList(cursor, new ThreadModelBuilder(threadTable));
     }
   }

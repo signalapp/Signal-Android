@@ -114,6 +114,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.sync.CdsPermanentErrorBottomSheet;
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
@@ -195,7 +196,7 @@ import static android.app.Activity.RESULT_OK;
 public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
                                                                       ConversationListAdapter.OnConversationClickListener,
                                                                       ConversationListSearchAdapter.EventListener,
-                                                                      MegaphoneActionController, ConversationListAdapter.OnClearFilterClickListener
+                                                                      MegaphoneActionController, ClearFilterViewHolder.OnClearFilterClickListener
 {
   public static final short MESSAGE_REQUESTS_REQUEST_CODE_CREATE_NAME = 32562;
   public static final short SMS_ROLE_REQUEST_CODE                     = 32563;
@@ -283,16 +284,19 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
     int                     openHeight              = (int) DimensionUnit.DP.toPixels(FilterLerp.FILTER_OPEN_HEIGHT);
 
-    pullView.setOnFilterStateChanged(state -> {
+    pullView.setOnFilterStateChanged((state, source) -> {
       switch (state) {
         case CLOSING:
-          viewModel.setFiltered(false);
+          viewModel.setFiltered(false, source);
           break;
         case OPENING:
-          viewModel.setFiltered(true);
+          viewModel.setFiltered(true, source);
           break;
         case OPEN_APEX:
           ViewUtil.setMinimumHeight(collapsingToolbarLayout, openHeight);
+          if (source == ConversationFilterSource.DRAG) {
+            SignalStore.uiHints().incrementNeverDisplayPullToFilterTip();
+          }
           break;
         case CLOSE_APEX:
           ViewUtil.setMinimumHeight(collapsingToolbarLayout, 0);
@@ -747,7 +751,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   private void initializeListAdapters() {
     defaultAdapter          = new ConversationListAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, this);
-    searchAdapter           = new ConversationListSearchAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, Locale.getDefault());
+    searchAdapter           = new ConversationListSearchAdapter(getViewLifecycleOwner(), GlideApp.with(this), this, Locale.getDefault(), this);
     searchAdapterDecoration = new StickyHeaderDecoration(searchAdapter, false, false, 0);
 
     setAdapter(defaultAdapter);

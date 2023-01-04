@@ -114,8 +114,7 @@ public final class FeatureFlags {
   @VisibleForTesting
   static final Set<String> REMOTE_CAPABLE = SetUtil.newHashSet(
       PAYMENTS_KILL_SWITCH,
-      GROUPS_V2_RECOMMENDED_LIMIT,
-      GROUPS_V2_HARD_LIMIT,
+      GROUPS_V2_RECOMMENDED_LIMIT, GROUPS_V2_HARD_LIMIT,
       INTERNAL_USER,
       VERIFY_V2,
       CLIENT_EXPIRATION,

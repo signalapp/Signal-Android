@@ -17,6 +17,7 @@ import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.BindableConversationListItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationReader;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.util.CachedInflater;
@@ -45,9 +46,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
 
   private final LifecycleOwner              lifecycleOwner;
   private final GlideRequests               glideRequests;
-  private final OnConversationClickListener onConversationClickListener;
-  private final OnClearFilterClickListener  onClearFilterClicked;
-  private       ConversationSet             selectedConversations = new ConversationSet();
+  private final OnConversationClickListener                      onConversationClickListener;
+  private final ClearFilterViewHolder.OnClearFilterClickListener onClearFilterClicked;
+  private       ConversationSet                                  selectedConversations = new ConversationSet();
   private final Set<Long>                   typingSet             = new HashSet<>();
 
   private PagingController pagingController;
@@ -55,7 +56,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   protected ConversationListAdapter(@NonNull LifecycleOwner lifecycleOwner,
                                     @NonNull GlideRequests glideRequests,
                                     @NonNull OnConversationClickListener onConversationClickListener,
-                                    @NonNull OnClearFilterClickListener onClearFilterClicked)
+                                    @NonNull ClearFilterViewHolder.OnClearFilterClickListener onClearFilterClicked)
   {
     super(new ConversationDiffCallback());
 
@@ -165,6 +166,11 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         default:
           throw new IllegalArgumentException();
       }
+    } else if (holder.getItemViewType() == TYPE_CLEAR_FILTER_FOOTER || holder.getItemViewType() == TYPE_CLEAR_FILTER_EMPTY) {
+      ClearFilterViewHolder casted       = (ClearFilterViewHolder) holder;
+      Conversation          conversation = Objects.requireNonNull(getItem(position));
+
+      casted.bind(conversation);
     }
   }
 
@@ -268,22 +274,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     }
   }
 
-  static class ClearFilterViewHolder extends RecyclerView.ViewHolder {
-    ClearFilterViewHolder(@NonNull View itemView, OnClearFilterClickListener listener) {
-      super(itemView);
-      itemView.findViewById(R.id.clear_filter).setOnClickListener(v -> {
-        listener.onClearFilterClick();
-      });
-    }
-  }
-
   interface OnConversationClickListener {
     void onConversationClick(@NonNull Conversation conversation);
     boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view);
     void onShowArchiveClick();
-  }
-
-  interface OnClearFilterClickListener {
-    void onClearFilterClick();
   }
 }

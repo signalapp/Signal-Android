@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.search
 
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 
@@ -11,7 +12,8 @@ data class SearchResult(
   val query: String,
   val contacts: List<Recipient>,
   val conversations: List<ThreadRecord>,
-  val messages: List<MessageResult>
+  val messages: List<MessageResult>,
+  val conversationFilter: ConversationFilter
 ) {
   fun size(): Int {
     return contacts.size + conversations.size + messages.size
@@ -32,8 +34,12 @@ data class SearchResult(
     return this.copy(messages = result.results, query = result.query)
   }
 
+  fun merge(conversationFilter: ConversationFilter): SearchResult {
+    return this.copy(conversationFilter = conversationFilter)
+  }
+
   companion object {
     @JvmField
-    val EMPTY = SearchResult("", emptyList(), emptyList(), emptyList())
+    val EMPTY = SearchResult("", emptyList(), emptyList(), emptyList(), ConversationFilter.OFF)
   }
 }

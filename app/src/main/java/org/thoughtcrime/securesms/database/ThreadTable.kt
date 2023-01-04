@@ -615,7 +615,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
   }
 
-  fun getFilteredConversationList(filter: List<RecipientId>): Cursor? {
+  fun getFilteredConversationList(filter: List<RecipientId>, unreadOnly: Boolean): Cursor? {
     if (filter.isEmpty()) {
       return null
     }
@@ -625,7 +625,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val cursors: MutableList<Cursor> = LinkedList()
 
     for (recipientIds in splitRecipientIds) {
-      var selection = "$TABLE_NAME.$RECIPIENT_ID = ?"
+      var selection = "($TABLE_NAME.$RECIPIENT_ID = ?"
       val selectionArgs = arrayOfNulls<String>(recipientIds.size)
 
       for (i in 0 until recipientIds.size - 1) {
@@ -636,6 +636,12 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       for (recipientId in recipientIds) {
         selectionArgs[i] = recipientId.serialize()
         i++
+      }
+
+      selection += if (unreadOnly) {
+        ") AND $TABLE_NAME.$READ != ${ReadStatus.READ.serialize()}"
+      } else {
+        ")"
       }
 
       val query = createQuery(selection, "$DATE DESC", 0, 0)

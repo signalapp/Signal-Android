@@ -5469,5 +5469,7 @@
     <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
     <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
+    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
 
 </resources>

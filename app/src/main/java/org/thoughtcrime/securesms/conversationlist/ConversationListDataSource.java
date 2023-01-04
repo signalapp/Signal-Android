@@ -38,15 +38,17 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
   protected final ThreadTable        threadTable;
   protected final ConversationFilter conversationFilter;
+  protected final boolean            showConversationFooterTip;
 
-  protected ConversationListDataSource(@NonNull ConversationFilter conversationFilter) {
-    this.threadTable        = SignalDatabase.threads();
-    this.conversationFilter = conversationFilter;
+  protected ConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+    this.threadTable               = SignalDatabase.threads();
+    this.conversationFilter        = conversationFilter;
+    this.showConversationFooterTip = showConversationFooterTip;
   }
 
-  public static ConversationListDataSource create(@NonNull ConversationFilter conversationFilter, boolean isArchived) {
-    if (!isArchived) return new UnarchivedConversationListDataSource(conversationFilter);
-    else             return new ArchivedConversationListDataSource(conversationFilter);
+  public static ConversationListDataSource create(@NonNull ConversationFilter conversationFilter, boolean isArchived, boolean showConversationFooterTip) {
+    if (!isArchived) return new UnarchivedConversationListDataSource(conversationFilter, showConversationFooterTip);
+    else             return new ArchivedConversationListDataSource(conversationFilter, showConversationFooterTip);
   }
 
   @Override
@@ -98,9 +100,11 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     if (conversations.isEmpty() && start == 0 && length == 1) {
       if (conversationFilter == ConversationFilter.OFF) {
-        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0)));
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.EMPTY, 0, false)));
       } else {
-        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CONVERSATION_FILTER_EMPTY, 0)));
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CONVERSATION_FILTER_EMPTY,
+                                                                                                      0,
+                                                                                                      showConversationFooterTip)));
       }
     } else {
       return conversations;
@@ -124,8 +128,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
     private int totalCount;
 
-    ArchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter) {
-      super(conversationFilter);
+    ArchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+      super(conversationFilter, showConversationFooterTip);
     }
 
     @Override
@@ -141,8 +145,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
 
       cursors.add(cursor);
       if (offset + limit >= totalCount && totalCount > 0 && conversationFilter != ConversationFilter.OFF) {
-        MatrixCursor conversationFilterFooter = new MatrixCursor(ConversationReader.HEADER_COLUMN);
-        conversationFilterFooter.addRow(ConversationReader.CONVERSATION_FILTER_FOOTER);
+        MatrixCursor conversationFilterFooter = new MatrixCursor(ConversationReader.FILTER_FOOTER_COLUMNS);
+        conversationFilterFooter.addRow(ConversationReader.createConversationFilterFooterRow(showConversationFooterTip));
         cursors.add(conversationFilterFooter);
       }
 
@@ -158,8 +162,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     private int archivedCount;
     private int unpinnedCount;
 
-    UnarchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter) {
-      super(conversationFilter);
+    UnarchivedConversationListDataSource(@NonNull ConversationFilter conversationFilter, boolean showConversationFooterTip) {
+      super(conversationFilter, showConversationFooterTip);
     }
 
     @Override
@@ -222,8 +226,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
       }
 
       if (shouldInsertConversationFilterFooter) {
-        MatrixCursor conversationFilterFooter = new MatrixCursor(ConversationReader.HEADER_COLUMN);
-        conversationFilterFooter.addRow(ConversationReader.CONVERSATION_FILTER_FOOTER);
+        MatrixCursor conversationFilterFooter = new MatrixCursor(ConversationReader.FILTER_FOOTER_COLUMNS);
+        conversationFilterFooter.addRow(ConversationReader.createConversationFilterFooterRow(showConversationFooterTip));
         cursors.add(conversationFilterFooter);
       }
 
@@ -251,7 +255,7 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
     }
 
     boolean hasConversationFilterFooter() {
-      return totalCount > 1 && conversationFilter != ConversationFilter.OFF;
+      return totalCount >= 1 && conversationFilter != ConversationFilter.OFF;
     }
   }
 }

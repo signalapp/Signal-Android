@@ -54,7 +54,7 @@ public class UnarchivedConversationListDataSourceTest {
     when(SignalDatabase.threads()).thenReturn(threadTable);
     when(ApplicationDependencies.getDatabaseObserver()).thenReturn(mock(DatabaseObserver.class));
 
-    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.OFF);
+    testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.OFF, false);
   }
 
   @Test
@@ -266,7 +266,7 @@ public class UnarchivedConversationListDataSourceTest {
   @Test
   public void givenHasNoArchivedAndIsFiltered_whenIGetCursor_thenIExpectConversationFilterFooter() {
     // GIVEN
-    ConversationListDataSource.UnarchivedConversationListDataSource testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.UNREAD);
+    ConversationListDataSource.UnarchivedConversationListDataSource testSubject = new ConversationListDataSource.UnarchivedConversationListDataSource(ConversationFilter.UNREAD, false);
     setupThreadDatabaseCursors(0, 3);
     when(threadTable.getPinnedConversationListCount(ConversationFilter.UNREAD)).thenReturn(0);
     when(threadTable.getUnarchivedConversationListCount(ConversationFilter.UNREAD)).thenReturn(3);

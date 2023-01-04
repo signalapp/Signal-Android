@@ -65,14 +65,14 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     binding.filterCircle.progress = progress
 
     if (state == FilterPullState.CLOSED && progress <= 0) {
-      setState(FilterPullState.CLOSED)
+      setState(FilterPullState.CLOSED, ConversationFilterSource.DRAG)
     } else if (state == FilterPullState.CLOSED && progress >= 1f) {
-      setState(FilterPullState.OPEN_APEX)
+      setState(FilterPullState.OPEN_APEX, ConversationFilterSource.DRAG)
       vibrate()
       resetHelpText()
       resetPillColor()
     } else if (state == FilterPullState.OPEN && progress >= 1f) {
-      setState(FilterPullState.CLOSE_APEX)
+      setState(FilterPullState.CLOSE_APEX, ConversationFilterSource.DRAG)
       vibrate()
       animatePillColor()
     }
@@ -111,19 +111,19 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
   fun onUserDragFinished() {
     if (state == FilterPullState.OPEN_APEX) {
-      open()
+      open(ConversationFilterSource.DRAG)
     } else if (state == FilterPullState.CLOSE_APEX) {
-      close()
+      close(ConversationFilterSource.DRAG)
     }
   }
 
   fun toggle() {
     if (state == FilterPullState.OPEN) {
-      setState(FilterPullState.CLOSE_APEX)
-      close()
+      setState(FilterPullState.CLOSE_APEX, ConversationFilterSource.OVERFLOW)
+      close(ConversationFilterSource.OVERFLOW)
     } else if (state == FilterPullState.CLOSED) {
-      setState(FilterPullState.OPEN_APEX)
-      open()
+      setState(FilterPullState.OPEN_APEX, ConversationFilterSource.OVERFLOW)
+      open(ConversationFilterSource.OVERFLOW)
     }
   }
 
@@ -131,14 +131,14 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     return state == FilterPullState.OPEN
   }
 
-  private fun open() {
-    setState(FilterPullState.OPENING)
-    animatePillIn()
+  private fun open(source: ConversationFilterSource) {
+    setState(FilterPullState.OPENING, source)
+    animatePillIn(source)
   }
 
-  private fun close() {
-    setState(FilterPullState.CLOSING)
-    animatePillOut()
+  private fun close(source: ConversationFilterSource) {
+    setState(FilterPullState.CLOSING, source)
+    animatePillOut(source)
   }
 
   private fun resetHelpText() {
@@ -152,7 +152,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     })
   }
 
-  private fun animatePillIn() {
+  private fun animatePillIn(source: ConversationFilterSource) {
     binding.filterText.visibility = VISIBLE
     binding.filterText.alpha = 0f
     binding.filterText.isEnabled = true
@@ -162,20 +162,20 @@ class ConversationListFilterPullView @JvmOverloads constructor(
       startDelay = 300
       duration = 300
       doOnEnd {
-        setState(FilterPullState.OPEN)
+        setState(FilterPullState.OPEN, source)
       }
       start()
     }
   }
 
-  private fun animatePillOut() {
+  private fun animatePillOut(source: ConversationFilterSource) {
     pillAnimator?.cancel()
     pillAnimator = ObjectAnimator.ofFloat(binding.filterText, ALPHA, 0f).apply {
       duration = 150
       doOnEnd {
         binding.filterText.visibility = GONE
         binding.filterText.isEnabled = false
-        postDelayed({ setState(FilterPullState.CLOSED) }, 150)
+        postDelayed({ setState(FilterPullState.CLOSED, source) }, 150)
       }
       start()
     }
@@ -198,10 +198,10 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     binding.filterText.chipBackgroundColor = ColorStateList.valueOf(pillDefaultBackgroundTint)
   }
 
-  private fun setState(state: FilterPullState) {
+  private fun setState(state: FilterPullState, source: ConversationFilterSource) {
     this.state = state
     binding.filterCircle.state = state
-    onFilterStateChanged?.newState(state)
+    onFilterStateChanged?.newState(state, source)
   }
 
   private fun vibrate() {
@@ -211,7 +211,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   interface OnFilterStateChanged {
-    fun newState(state: FilterPullState)
+    fun newState(state: FilterPullState, source: ConversationFilterSource)
   }
 
   interface OnCloseClicked {
