@@ -36,6 +36,10 @@ class StoryTextView @JvmOverloads constructor(
   }
 
   override fun onDraw(canvas: Canvas) {
+    if (layout == null) {
+      invalidate()
+    }
+
     if (wrappedBackgroundPaint.color != Color.TRANSPARENT && layout != null) {
       canvas.getClipBounds(canvasBounds)
       textBounds.set(canvasBounds)
