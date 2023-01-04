@@ -208,9 +208,10 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
           body = body,
           threadId = threadId,
           messageRanges = bodyRangeList.build(),
-          image = note.translation.image,
-          imageWidth = note.translation.imageWidth?.toIntOrNull() ?: 0,
-          imageHeight = note.translation.imageHeight?.toIntOrNull() ?: 0
+          media = note.translation.media,
+          mediaWidth = note.translation.mediaWidth?.toIntOrNull() ?: 0,
+          mediaHeight = note.translation.mediaHeight?.toIntOrNull() ?: 0,
+          mediaType = note.translation.mediaContentType ?: "image/webp"
         )
 
         if (insertResult != null) {
@@ -397,9 +398,10 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
   data class TranslatedReleaseNote(
     @JsonProperty val uuid: String,
-    @JsonProperty val image: String?,
-    @JsonProperty val imageWidth: String?,
-    @JsonProperty val imageHeight: String?,
+    @JsonProperty val media: String?,
+    @JsonProperty val mediaWidth: String?,
+    @JsonProperty val mediaHeight: String?,
+    @JsonProperty val mediaContentType: String?,
     @JsonProperty val linkText: String?,
     @JsonProperty val title: String,
     @JsonProperty val body: String,
