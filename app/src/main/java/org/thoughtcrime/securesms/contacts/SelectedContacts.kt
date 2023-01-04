@@ -30,7 +30,7 @@ object SelectedContacts {
     private val chip: ContactChip = itemView.findViewById(R.id.contact_chip)
 
     override fun bind(model: Model) {
-      chip.text = model.recipient.getShortDisplayName(context)
+      chip.text = model.recipient.getShortDisplayNameIncludingUsername(context)
       chip.setContact(model.selectedContact)
       chip.isCloseIconVisible = true
       chip.setOnCloseIconClickListener {

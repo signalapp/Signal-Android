@@ -650,8 +650,9 @@ public class Recipient {
     String name = Util.getFirstNonEmpty(getGroupName(context),
                                         getSystemProfileName().getGivenName(),
                                         getProfileName().getGivenName(),
-                                        getDisplayName(context),
-                                        getUsername().orElse(null));
+                                        getE164().orElse(null),
+                                        getUsername().orElse(null),
+                                        getDisplayName(context));
 
     return StringUtil.isolateBidi(name);
   }
