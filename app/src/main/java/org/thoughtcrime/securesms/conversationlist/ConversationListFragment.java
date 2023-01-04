@@ -993,17 +993,26 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void handleMarkAsRead(@NonNull Collection<Long> ids) {
-    Context context = requireContext();
+    Context   context   = requireContext();
+    Stopwatch stopwatch = new Stopwatch("mark-read");
 
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
+      stopwatch.split("task-start");
+
       List<MarkedMessageInfo> messageIds = SignalDatabase.threads().setRead(ids, false);
+      stopwatch.split("db");
 
       ApplicationDependencies.getMessageNotifier().updateNotification(context);
+      stopwatch.split("notification");
+
       MarkReadReceiver.process(context, messageIds);
+      stopwatch.split("process");
 
       return null;
     }, none -> {
       endActionModeIfActive();
+      stopwatch.stop(TAG);
+
     });
   }
 

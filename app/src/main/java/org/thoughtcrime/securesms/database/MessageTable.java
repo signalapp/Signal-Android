@@ -232,12 +232,14 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                                                                                   EXPORT_STATE           + " BLOB DEFAULT NULL, " +
                                                                                   EXPORTED               + " INTEGER DEFAULT 0);";
 
+  private static final String INDEX_THREAD_DATE = "mms_thread_date_index";
+
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_type_index ON " + TABLE_NAME + " (" + TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_sent_index ON " + TABLE_NAME + " (" + DATE_SENT + ", " + RECIPIENT_ID + ", " + THREAD_ID + ");",
     "CREATE INDEX IF NOT EXISTS mms_date_server_index ON " + TABLE_NAME + " (" + DATE_SERVER + ");",
-    "CREATE INDEX IF NOT EXISTS mms_thread_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");",
+    "CREATE INDEX IF NOT EXISTS " + INDEX_THREAD_DATE + " ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + ");",
     "CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON " + TABLE_NAME + " (" + REACTIONS_UNREAD + ");",
     "CREATE INDEX IF NOT EXISTS mms_story_type_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
@@ -2020,7 +2022,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     database.beginTransaction();
 
     try {
-      cursor = database.query(TABLE_NAME, new String[] { ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
+      cursor = database.query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_DATE, new String[] { ID, RECIPIENT_ID, DATE_SENT, TYPE, EXPIRES_IN, EXPIRE_STARTED, THREAD_ID, STORY_TYPE }, where, arguments, null, null, null);
 
       while(cursor != null && cursor.moveToNext()) {
         if (MessageTypes.isSecureType(CursorUtil.requireLong(cursor, TYPE))) {
@@ -2045,7 +2047,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       contentValues.put(REACTIONS_UNREAD, 0);
       contentValues.put(REACTIONS_LAST_SEEN, System.currentTimeMillis());
 
-      database.update(TABLE_NAME, contentValues, where, arguments);
+      database.update(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_DATE, contentValues, where, arguments);
       database.setTransactionSuccessful();
     } finally {
       if (cursor != null) cursor.close();
@@ -3913,7 +3915,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   public int getUnreadCount(long threadId) {
     String selection = READ + " = 0 AND " + STORY_TYPE + " = 0 AND " + THREAD_ID + " = " + threadId + " AND " + PARENT_STORY_ID + " <= 0";
 
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, COUNT, selection, null, null, null, null)) {
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_DATE, COUNT, selection, null, null, null, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0);
       } else {
