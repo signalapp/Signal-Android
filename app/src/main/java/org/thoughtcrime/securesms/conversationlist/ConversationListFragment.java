@@ -114,10 +114,12 @@ import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.sync.CdsPermanentErrorBottomSheet;
 import org.thoughtcrime.securesms.contacts.sync.CdsTemporaryErrorBottomSheet;
 import org.thoughtcrime.securesms.conversation.ConversationFragment;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
@@ -688,6 +690,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeSearchListener() {
+    viewModel.getConversationFilterRequest().observe(getViewLifecycleOwner(), this::updateSearchToolbarHint);
+
     requireCallback().getSearchAction().setOnClickListener(v -> {
       fadeOutButtonsAndMegaphone(250);
       requireCallback().onSearchOpened();
@@ -725,7 +729,14 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           fadeInButtonsAndMegaphone(250);
         }
       });
+      updateSearchToolbarHint(Objects.requireNonNull(viewModel.getConversationFilterRequest().getValue()));
     });
+  }
+
+  private void updateSearchToolbarHint(@NonNull ConversationFilterRequest conversationFilterRequest) {
+    requireCallback().getSearchToolbar().get().setSearchInputHint(
+        conversationFilterRequest.getFilter() == ConversationFilter.OFF ? R.string.SearchToolbar_search : R.string.SearchToolbar_search_unread_chats
+    );
   }
 
   private void initializeVoiceNotePlayer() {

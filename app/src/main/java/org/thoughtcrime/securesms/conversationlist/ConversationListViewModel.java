@@ -175,6 +175,10 @@ class ConversationListViewModel extends ViewModel {
     return unreadPaymentsLiveData;
   }
 
+  @NonNull LiveData<ConversationFilterRequest> getConversationFilterRequest() {
+    return conversationFilterRequest;
+  }
+
   public int getPinnedCount() {
     return pinnedCount;
   }

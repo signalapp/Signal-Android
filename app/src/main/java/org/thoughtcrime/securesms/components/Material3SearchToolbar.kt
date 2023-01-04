@@ -7,6 +7,7 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.widget.EditText
+import androidx.annotation.StringRes
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.animation.addListener
 import androidx.core.widget.addTextChangedListener
@@ -47,6 +48,10 @@ class Material3SearchToolbar @JvmOverloads constructor(
       clear.visible = !it.isNullOrBlank()
       listener?.onSearchTextChange(it?.toString() ?: "")
     })
+  }
+
+  fun setSearchInputHint(@StringRes hintStringRes: Int) {
+    input.setHint(hintStringRes)
   }
 
   fun display(x: Float, y: Float) {

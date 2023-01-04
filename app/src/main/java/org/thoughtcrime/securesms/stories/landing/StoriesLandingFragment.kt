@@ -106,6 +106,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     val searchBinder = requireListener<SearchBinder>()
     searchBinder.getSearchAction().setOnClickListener {
       searchBinder.onSearchOpened()
+      searchBinder.getSearchToolbar().get().setSearchInputHint(R.string.SearchToolbar_search)
 
       searchBinder.getSearchToolbar().get().listener = object : Material3SearchToolbar.Listener {
         override fun onSearchTextChange(text: String) {
