@@ -102,26 +102,23 @@ class AddToGroupStoryDelegate(
       Log.d(TAG, "Sending preupload media.")
 
       val recipient = Recipient.resolved(result.recipientId)
-      val secureMessage = OutgoingMessage(
-        recipient = recipient,
-        timestamp = System.currentTimeMillis(),
-        storyType = result.storyType,
-        mentions = result.mentions.toList(),
-        isSecure = true
-      )
-
-      val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-      if (result.body.isNotEmpty()) {
-        result.preUploadResults.forEach {
-          SignalDatabase.attachments.updateAttachmentCaption(it.attachmentId, result.body)
+      val secureMessages = result.preUploadResults
+        .mapNotNull { SignalDatabase.attachments.getAttachment(it.attachmentId) }
+        .map {
+          Thread.sleep(5)
+          OutgoingMessage(
+            recipient = recipient,
+            timestamp = System.currentTimeMillis(),
+            storyType = result.storyType,
+            isSecure = true,
+            attachments = listOf(it)
+          )
         }
-      }
 
-      MessageSender.sendPushWithPreUploadedMedia(
+      MessageSender.sendStories(
         ApplicationDependencies.getApplication(),
-        secureMessage,
-        result.preUploadResults,
-        threadId
+        secureMessages,
+        null,
       ) {
         Log.d(TAG, "Sent.")
       }
