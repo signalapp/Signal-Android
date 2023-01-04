@@ -454,15 +454,15 @@ public class TextSecurePreferences {
 
     if (previous != value) {
       Recipient.self().live().refresh();
+      if (value) {
+        notifyUnregisteredReceived(context);
+      }
     }
 
     if (value) {
       clearLocalCredentials(context);
-    }
-
-    if (value && !previous) {
-      showUnregisteredNotification(context);
-      EventBus.getDefault().post(new ReminderUpdateEvent());
+    } else {
+      NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
     }
   }
 
@@ -1168,7 +1168,7 @@ public class TextSecurePreferences {
     return preferences;
   }
 
-  private static void showUnregisteredNotification(Context context) {
+  private static void notifyUnregisteredReceived(Context context) {
     PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
                                                                    0,
                                                                    RegistrationNavigationActivity.newIntentForReRegistration(context),

@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
-import org.thoughtcrime.securesms.net.UnregisteredInterceptor
 import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.push.TrustStore
@@ -143,7 +142,6 @@ open class SignalServiceNetworkAccess(context: Context) {
     RemoteDeprecationDetectorInterceptor(),
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance(),
-    UnregisteredInterceptor(context),
   )
 
   private val zkGroupServerPublicParams: ByteArray = try {
