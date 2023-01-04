@@ -137,10 +137,6 @@ public final class StorageSyncValidations {
         throw new InsertNotPresentInFullIdSetError();
       }
 
-      if (insert.isUnknown()) {
-        throw new UnknownInsertError();
-      }
-
       if (insert.getContact().isPresent()) {
         SignalContactRecord contact = insert.getContact().get();
 
@@ -171,9 +167,6 @@ public final class StorageSyncValidations {
   }
 
   private static final class DeletePresentInFullIdSetError extends Error {
-  }
-
-  private static final class UnknownInsertError extends Error {
   }
 
   private static final class MultipleAccountError extends Error {
