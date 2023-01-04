@@ -46,6 +46,10 @@ public final class SelectedContact {
     }
   }
 
+  public boolean hasUsername() {
+    return username != null;
+  }
+
   /**
    * Returns true when non-null recipient ids match, and false if not.
    * <p>
