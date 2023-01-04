@@ -410,7 +410,9 @@ class MultiselectForwardFragment :
         val expandedConfig: ContactSearchConfiguration.ExpandConfig? = if (isSelectedMediaValidForNonStories()) {
           ContactSearchConfiguration.ExpandConfig(
             isExpanded = contactSearchState.expandedSections.contains(ContactSearchConfiguration.SectionKey.STORIES),
-            maxCountWhenNotExpanded = { it + 1 }
+            maxCountWhenNotExpanded = {
+              if (args.isWrappedInBottomSheet) 1 else it + 1
+            }
           )
         } else {
           null
@@ -514,7 +516,7 @@ class MultiselectForwardFragment :
     fun showBottomSheet(supportFragmentManager: FragmentManager, multiselectForwardFragmentArgs: MultiselectForwardFragmentArgs) {
       val fragment = MultiselectForwardBottomSheet()
 
-      showDialogFragment(supportFragmentManager, fragment, multiselectForwardFragmentArgs)
+      showDialogFragment(supportFragmentManager, fragment, multiselectForwardFragmentArgs.copy(isWrappedInBottomSheet = true))
     }
 
     @JvmStatic
