@@ -497,8 +497,9 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
         RecipientId    recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
         long           dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId  syncMessageId = new SyncMessageId(recipientId, dateSent);
+        StoryType      storyType     = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
-        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null, storyType));
       }
 
       return results;
@@ -535,8 +536,9 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
           RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
           long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
           SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+          StoryType     storyType     = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
-          results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
+          results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null, storyType));
 
           ContentValues contentValues = new ContentValues();
           contentValues.put(VIEWED_RECEIPT_COUNT, 1);
@@ -554,8 +556,16 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                                      .map(MarkedMessageInfo::getThreadId)
                                      .collect(Collectors.toSet());
 
+    Set<RecipientId> storyRecipientsUpdated = results.stream()
+                                                     .filter(it -> it.storyType.isStory())
+                                                     .map(it -> SignalDatabase.threads().getRecipientIdForThreadId(it.getThreadId()))
+                                                     .filter(it -> it != null)
+                                                     .collect(java.util.stream.Collectors.toSet());
+
     notifyConversationListeners(threadsUpdated);
     notifyConversationListListeners();
+
+    ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(storyRecipientsUpdated);
 
     return results;
   }
@@ -573,8 +583,9 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
         RecipientId   recipientId   = RecipientId.from(CursorUtil.requireLong(cursor, RECIPIENT_ID));
         long          dateSent      = CursorUtil.requireLong(cursor, DATE_SENT);
         SyncMessageId syncMessageId = new SyncMessageId(recipientId, dateSent);
+        StoryType      storyType     = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
-        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null));
+        results.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), null, storyType));
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(VIEWED_RECEIPT_COUNT, 1);
@@ -2021,9 +2032,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
           long           expireStarted  = CursorUtil.requireLong(cursor, EXPIRE_STARTED);
           SyncMessageId  syncMessageId  = new SyncMessageId(recipientId, dateSent);
           ExpirationInfo expirationInfo = new ExpirationInfo(messageId, expiresIn, expireStarted, true);
+          StoryType      storyType      = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
 
           if (!recipientId.equals(releaseChannelId)) {
-            result.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), expirationInfo));
+            result.add(new MarkedMessageInfo(threadId, syncMessageId, new MessageId(messageId), expirationInfo, storyType));
           }
         }
       }
@@ -2399,6 +2411,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
 
     notifyConversationListeners(threadId);
+
+    if (retrieved.getStoryType().isStory()) {
+      ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(Objects.requireNonNull(SignalDatabase.threads().getRecipientIdForThreadId(threadId)));
+    }
 
     return Optional.of(new InsertResult(messageId, threadId));
   }
@@ -4126,6 +4142,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       for (MessageUpdate update : messageUpdates) {
         ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(update.getMessageId());
         ApplicationDependencies.getDatabaseObserver().notifyVerboseConversationListeners(Collections.singleton(update.getThreadId()));
+
+        if (messageQualifier == MessageQualifier.STORY) {
+          ApplicationDependencies.getDatabaseObserver().notifyStoryObservers(Objects.requireNonNull(threadTable.getRecipientIdForThreadId(update.getThreadId())));
+        }
       }
 
       if (messageUpdates.size() > 0) {
@@ -4613,12 +4633,14 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     private final SyncMessageId  syncMessageId;
     private final MessageId      messageId;
     private final ExpirationInfo expirationInfo;
+    private final StoryType      storyType;
 
-    public MarkedMessageInfo(long threadId, @NonNull SyncMessageId syncMessageId, @NonNull MessageId messageId, @Nullable ExpirationInfo expirationInfo) {
+    public MarkedMessageInfo(long threadId, @NonNull SyncMessageId syncMessageId, @NonNull MessageId messageId, @Nullable ExpirationInfo expirationInfo, @NonNull StoryType storyType) {
       this.threadId       = threadId;
       this.syncMessageId  = syncMessageId;
       this.messageId      = messageId;
       this.expirationInfo = expirationInfo;
+      this.storyType      = storyType;
     }
 
     public long getThreadId() {
@@ -4635,6 +4657,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     public @Nullable ExpirationInfo getExpirationInfo() {
       return expirationInfo;
+    }
+
+    public @NonNull StoryType getStoryType() {
+      return storyType;
     }
   }
 

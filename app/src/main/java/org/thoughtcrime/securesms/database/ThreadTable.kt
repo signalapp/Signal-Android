@@ -1126,7 +1126,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
   }
 
-  private fun getRecipientIdForThreadId(threadId: Long): RecipientId? {
+  fun getRecipientIdForThreadId(threadId: Long): RecipientId? {
     return readableDatabase
       .select(RECIPIENT_ID)
       .from(TABLE_NAME)

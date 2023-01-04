@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.concurrent.SerialExecutor;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -279,6 +280,14 @@ public class DatabaseObserver {
     runPostSuccessfulTransaction(KEY_STORY_OBSERVER, () -> {
       notifyMapped(storyObservers, recipientId);
     });
+  }
+
+  public void notifyStoryObservers(@NonNull Collection<RecipientId> recipientIds) {
+    for (RecipientId recipientId : recipientIds) {
+      runPostSuccessfulTransaction(KEY_STORY_OBSERVER, () -> {
+        notifyMapped(storyObservers, recipientId);
+      });
+    }
   }
 
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {

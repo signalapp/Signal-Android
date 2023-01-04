@@ -17,6 +17,7 @@ import org.mockito.stubbing.Answer;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.model.MessageId;
+import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -108,6 +109,7 @@ public class MarkReadReceiverTest {
     return new MessageTable.MarkedMessageInfo(threadId,
                                               new MessageTable.SyncMessageId(recipientId, 0),
                                               new MessageId(1),
-                                              new MessageTable.ExpirationInfo(0, 0, 0, false));
+                                              new MessageTable.ExpirationInfo(0, 0, 0, false),
+                                              StoryType.NONE);
   }
 }
