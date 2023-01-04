@@ -1794,7 +1794,7 @@ public class SignalServiceMessageSender {
         if (content.getContent().isPresent() && content.getContent().get().getSyncMessage() != null && content.getContent().get().getSyncMessage().hasSent()) {
           Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a sent sync message to devices: " + messages.getDevices());
         } else if (content.getContent().isPresent() && content.getContent().get().hasSenderKeyDistributionMessage()) {
-          Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a SKDM to " + messages.getDestination() + " for devices: " + messages.getDevices() + (content.getContent().get().getDataMessage() != null ? " (it's piggy-backing on a DataMessage)" : ""));
+          Log.d(TAG, "[sendMessage][" + timestamp + "] Sending a SKDM to " + messages.getDestination() + " for devices: " + messages.getDevices() + (content.getContent().get().hasDataMessage() ? " (it's piggy-backing on a DataMessage)" : ""));
         }
 
         if (cancelationSignal != null && cancelationSignal.isCanceled()) {
