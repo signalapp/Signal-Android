@@ -4,11 +4,14 @@ import android.content.ContentValues
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
+import org.signal.core.util.logging.Log
 import java.util.LinkedList
 import java.util.Locale
 import java.util.stream.Collectors
 
 object SqlUtil {
+  private val TAG = Log.tag(SqlUtil::class.java)
+
   /** The maximum number of arguments (i.e. question marks) allowed in a SQL statement.  */
   private const val MAX_QUERY_ARGS = 999
 
@@ -50,7 +53,15 @@ object SqlUtil {
       if (cursor.moveToFirst()) {
         val current = cursor.requireLong("seq")
         return current + 1
+      } else if (db.query("SELECT COUNT(*) FROM $table").readToSingleLong(defaultValue = 0) == 0L) {
+        Log.w(TAG, "No entries exist in $table. Returning 1.")
+        return 1
+      } else if (columnExists(db, table, "_id")) {
+        Log.w(TAG, "There are entries in $table, but we couldn't get the auto-incrementing id? Using the max _id in the table.")
+        val current = db.query("SELECT MAX(_id) FROM $table").readToSingleLong(defaultValue = 0)
+        return current + 1
       } else {
+        Log.w(TAG, "No autoincrement _id, non-empty table, no _id column!")
         throw IllegalArgumentException("Table must have an auto-incrementing primary key!")
       }
     }
