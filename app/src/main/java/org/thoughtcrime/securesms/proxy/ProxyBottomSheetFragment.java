@@ -102,6 +102,11 @@ public final class ProxyBottomSheetFragment extends BottomSheetDialogFragment {
   }
 
   private void presentEvents(@NonNull EditProxyViewModel.Event event) {
+    if (isStateSaved()) {
+      Log.w(TAG, "Got an event after state had been saved. Dropping. " + event.name());
+      return;
+    }
+
     switch (event) {
       case PROXY_SUCCESS:
         Toast.makeText(requireContext(), R.string.ProxyBottomSheetFragment_successfully_connected_to_proxy, Toast.LENGTH_LONG).show();
