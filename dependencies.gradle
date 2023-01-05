@@ -120,7 +120,7 @@ dependencyResolutionManagement {
             alias('android-tooltips').to('com.tomergoldst.android:tooltips:1.0.6')
             alias('android-smsmms').to('com.klinkerapps:android-smsmms:4.0.1')
             alias('stream').to('com.annimon:stream:1.1.8')
-            alias('lottie').to('com.airbnb.android:lottie:3.6.0')
+            alias('lottie').to('com.airbnb.android:lottie:5.2.0')
             alias('dnsjava').to('dnsjava:dnsjava:2.1.9')
             alias('nanohttpd-webserver').to('org.nanohttpd:nanohttpd-webserver:2.3.1')
 
