@@ -3840,7 +3840,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String   order      = MessageTable.DATE_RECEIVED + " ASC";
     String   selection  = MessageTable.DATE_RECEIVED + " > " + date;
 
-    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, selection, null, null, order, "1")) {
+    try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, selection, null, null, null, order, "1")) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getLong(0);
       }
