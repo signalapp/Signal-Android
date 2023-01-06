@@ -1155,23 +1155,23 @@
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_video_call">Outgoing video call</string>
+    <string name="MessageRecord_outgoing_video_call">A efetuar videochamada</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">Unanswered video call</string>
+    <string name="MessageRecord_unanswered_video_call">Videochamada não atendida</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
     <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
-    <string name="MessageRecord_incoming_video_call">Incoming video call</string>
+    <string name="MessageRecord_incoming_video_call">A receber videochamada</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
     <string name="MessageRecord_missed_voice_call">Missed voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">Missed video call</string>
+    <string name="MessageRecord_missed_video_call">Chamada de vídeo perdida</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">You declined a video call</string>
+    <string name="MessageRecord_you_declined_a_video_call">Rejeitou uma videochamada</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s atualizou o grupo.</string>
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Falha ao atualizar o perfil</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Doar agora</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s apoia o Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
