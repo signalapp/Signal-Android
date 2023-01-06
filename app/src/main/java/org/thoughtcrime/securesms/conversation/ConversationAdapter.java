@@ -120,6 +120,7 @@ public class ConversationAdapter
   private Colorizer           colorizer;
   private boolean             isTypingViewEnabled;
   private boolean             condensedMode;
+  private PulseRequest        pulseRequest;
 
   public ConversationAdapter(@NonNull Context context,
                       @NonNull LifecycleOwner lifecycleOwner,
@@ -487,8 +488,16 @@ public class ConversationAdapter
       int correctedPosition = isHeaderPosition(position) ? position + 1 : position;
 
       recordToPulse = getItem(correctedPosition);
+      pulseRequest = new PulseRequest(position, recordToPulse.getMessageRecord().isOutgoing());
       notifyItemChanged(correctedPosition);
     }
+  }
+
+  @Nullable
+  public PulseRequest consumePulseRequest() {
+    PulseRequest request = pulseRequest;
+    pulseRequest = null;
+    return request;
   }
 
   /**
@@ -767,6 +776,37 @@ public class ConversationAdapter
   private static class PlaceholderViewHolder extends RecyclerView.ViewHolder {
     PlaceholderViewHolder(@NonNull View itemView) {
       super(itemView);
+    }
+  }
+
+  public static class PulseRequest {
+    private final int     position;
+    private final boolean isOutgoing;
+
+    PulseRequest(int position, boolean isOutgoing) {
+      this.position   = position;
+      this.isOutgoing = isOutgoing;
+    }
+
+    public int getPosition() {
+      return position;
+    }
+
+    public boolean isOutgoing() {
+      return isOutgoing;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+      if (this == o) return true;
+      if (o == null || getClass() != o.getClass()) return false;
+      final PulseRequest that = (PulseRequest) o;
+      return position == that.position;
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(position);
     }
   }
 

@@ -16,7 +16,6 @@
  */
 package org.thoughtcrime.securesms.conversation;
 
-import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -189,7 +188,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private boolean                     groupThread;
   private LiveRecipient               recipient;
   private GlideRequests               glideRequests;
-  private ValueAnimator               pulseOutlinerAlphaAnimator;
   private Optional<MessageRecord>     previousMessage;
   private ConversationItemDisplayMode displayMode;
 
@@ -667,8 +665,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
     bodyBubble.setVideoPlayerProjection(null);
     bodyBubble.setQuoteViewProjection(null);
-
-    cancelPulseOutlinerAnimation();
   }
 
   @Override
@@ -764,6 +760,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return conversationMessage;
   }
 
+  public boolean isOutgoing() {
+    return conversationMessage.getMessageRecord().isOutgoing();
+  }
+
   /// MessageRecord Attribute Parsers
 
   private void setBubbleState(MessageRecord messageRecord, @NonNull Recipient recipient, boolean hasWallpaper, @NonNull Colorizer colorizer) {
@@ -848,7 +848,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       setSelected(true);
     } else if (pulseMention) {
       setSelected(false);
-      startPulseOutlinerAnimation();
     } else {
       setSelected(false);
     }
@@ -869,29 +868,6 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       documentViewStub.get().setFocusable(!shouldInterceptClicks(conversationMessage.getMessageRecord()) && batchSelected.isEmpty());
       documentViewStub.get().setClickable(batchSelected.isEmpty());
     }
-  }
-
-  private void startPulseOutlinerAnimation() {
-    pulseOutlinerAlphaAnimator = ValueAnimator.ofInt(0, 0x66, 0).setDuration(600);
-    pulseOutlinerAlphaAnimator.setRepeatCount(1);
-    pulseOutlinerAlphaAnimator.addUpdateListener(animator -> {
-      pulseOutliner.setAlpha((Integer) animator.getAnimatedValue());
-      bodyBubble.invalidate();
-
-      if (mediaThumbnailStub.resolved()) {
-        mediaThumbnailStub.require().invalidate();
-      }
-    });
-    pulseOutlinerAlphaAnimator.start();
-  }
-
-  private void cancelPulseOutlinerAnimation() {
-    if (pulseOutlinerAlphaAnimator != null) {
-      pulseOutlinerAlphaAnimator.cancel();
-      pulseOutlinerAlphaAnimator = null;
-    }
-
-    pulseOutliner.setAlpha(0);
   }
 
   private boolean shouldDrawBodyBubbleOutline(MessageRecord messageRecord, boolean hasWallpaper) {
@@ -2065,13 +2041,17 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
 
   @Override
   public @NonNull ProjectionList getColorizerProjections(@NonNull ViewGroup coordinateRoot) {
-    return getSnapshotProjections(coordinateRoot, true);
+    return getSnapshotProjections(coordinateRoot, true, true);
   }
 
   public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia) {
+    return getSnapshotProjections(coordinateRoot, clipOutMedia, true);
+  }
+
+  public @NonNull ProjectionList getSnapshotProjections(@NonNull ViewGroup coordinateRoot, boolean clipOutMedia, boolean outgoingOnly) {
     colorizerProjections.clear();
 
-    if (messageRecord.isOutgoing()      &&
+    if ((messageRecord.isOutgoing() || !outgoingOnly) &&
         !hasNoBubble(messageRecord)     &&
         !messageRecord.isRemoteDelete() &&
         bodyBubbleCorners != null       &&
@@ -2133,7 +2113,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       }
     }
 
-    if (messageRecord.isOutgoing() &&
+    if ((messageRecord.isOutgoing() || !outgoingOnly)  &&
         hasNoBubble(messageRecord) &&
         hasWallpaper               &&
         bodyBubble.getVisibility() == VISIBLE)

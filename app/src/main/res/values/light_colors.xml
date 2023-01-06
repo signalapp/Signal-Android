@@ -8,6 +8,9 @@
 
     <color name="signal_inverse_primary">@color/core_black</color>
 
+    <color name="pulse_incoming_message">@color/transparent_black_10</color>
+    <color name="pulse_outgoing_message">@color/transparent_black_25</color>
+
     <color name="signal_background_primary">@color/signal_colorBackground</color>
     <color name="signal_background_secondary">@color/signal_colorSurface1</color>
     <color name="signal_background_tertiary">@color/core_grey_02</color>
