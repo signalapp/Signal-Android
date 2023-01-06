@@ -101,7 +101,7 @@ public final class MultiShareSender {
       return new MultiShareSendResultCollection(results);
     }
 
-    long distributionListSentTimestamp = System.currentTimeMillis();
+    DistributionListMultiShareTimestampProvider distributionListSentTimestamps = DistributionListMultiShareTimestampProvider.create();
     for (ContactSearchKey.RecipientSearchKey recipientSearchKey : multiShareArgs.getRecipientSearchKeys()) {
       Recipient recipient = Recipient.resolved(recipientSearchKey.getRecipientId());
 
@@ -123,8 +123,9 @@ public final class MultiShareSender {
                              multiShareArgs.getLinkPreview() != null ||
                              !mentions.isEmpty() ||
                              needsSplit;
-      long    sentTimestamp      = recipient.isDistributionList() ? distributionListSentTimestamp : System.currentTimeMillis();
-      boolean canSendAsTextStory = recipientSearchKey.isStory() && multiShareArgs.isValidForTextStoryGeneration();
+
+      MultiShareTimestampProvider sentTimestamp      = recipient.isDistributionList() ? distributionListSentTimestamps : MultiShareTimestampProvider.create();
+      boolean                     canSendAsTextStory = recipientSearchKey.isStory() && multiShareArgs.isValidForTextStoryGeneration();
 
       if ((recipient.isMmsGroup() || recipient.getEmail().isPresent()) && !isMmsEnabled) {
         results.add(new MultiShareSendResult(recipientSearchKey, MultiShareSendResult.Type.MMS_NOT_ENABLED));
@@ -209,7 +210,7 @@ public final class MultiShareSender {
                                                             int subscriptionId,
                                                             @NonNull List<Mention> validatedMentions,
                                                             boolean isStory,
-                                                            long sentTimestamp,
+                                                            @NonNull MultiShareTimestampProvider sentTimestamps,
                                                             boolean canSendAsTextStory,
                                                             @NonNull List<OutgoingMessage> storiesToBatchSend,
                                                             @NonNull ChatColors generatedTextStoryBackgroundColor)
@@ -242,7 +243,7 @@ public final class MultiShareSender {
         OutgoingMessage outgoingMessage = new OutgoingMessage(recipient,
                                                               new SlideDeck(),
                                                               body,
-                                                              sentTimestamp,
+                                                              sentTimestamps.getMillis(0),
                                                               subscriptionId,
                                                               0L,
                                                               false,
@@ -253,7 +254,7 @@ public final class MultiShareSender {
 
         outgoingMessages.add(outgoingMessage);
       } else if (canSendAsTextStory) {
-        outgoingMessages.add(generateTextStory(context, recipient, multiShareArgs, sentTimestamp, storyType, generatedTextStoryBackgroundColor));
+        outgoingMessages.add(generateTextStory(context, recipient, multiShareArgs, sentTimestamps.getMillis(0), storyType, generatedTextStoryBackgroundColor));
       } else {
         List<Slide> storySupportedSlides = slideDeck.getSlides()
                                                     .stream()
@@ -269,14 +270,16 @@ public final class MultiShareSender {
                                                     .filter(it -> MediaUtil.isStorySupportedType(it.getContentType()))
                                                     .collect(Collectors.toList());
 
-        for (final Slide slide : storySupportedSlides) {
+        for (int i = 0; i < storySupportedSlides.size(); i++) {
+          Slide     slide         = storySupportedSlides.get(i);
           SlideDeck singletonDeck = new SlideDeck();
+
           singletonDeck.addSlide(slide);
 
           OutgoingMessage outgoingMessage = new OutgoingMessage(recipient,
                                                                 singletonDeck,
                                                                 body,
-                                                                sentTimestamp,
+                                                                sentTimestamps.getMillis(i),
                                                                 subscriptionId,
                                                                 0L,
                                                                 false,
@@ -292,7 +295,7 @@ public final class MultiShareSender {
       OutgoingMessage outgoingMessage = new OutgoingMessage(recipient,
                                                             slideDeck,
                                                             body,
-                                                            sentTimestamp,
+                                                            sentTimestamps.getMillis(0),
                                                             subscriptionId,
                                                             expiresIn,
                                                             isViewOnce,
