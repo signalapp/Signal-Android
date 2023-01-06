@@ -1279,7 +1279,7 @@ final class GroupManagerV2 {
       } else {
         //noinspection IfStatementWithIdenticalBranches
         if (sendToMembers) {
-          long threadId = MessageSender.send(context, outgoingMessage, -1, false, null, null);
+          long threadId = MessageSender.send(context, outgoingMessage, -1, MessageSender.SendType.SIGNAL, null, null);
           return new RecipientAndThread(groupRecipient, threadId);
         } else {
           long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getRecipient(), -1, outgoingMessage.getDistributionType());

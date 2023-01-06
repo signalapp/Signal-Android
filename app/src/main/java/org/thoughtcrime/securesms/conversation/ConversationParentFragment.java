@@ -267,6 +267,7 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.MessageSender.SendType;
 import org.thoughtcrime.securesms.stickers.StickerEventListener;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 import org.thoughtcrime.securesms.stickers.StickerManagementActivity;
@@ -3113,7 +3114,7 @@ public class ConversationParentFragment extends Fragment
                  final long id = fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, outgoingMessage, thread, sendType.usesSmsTransport(), metricId, null);
+                   return MessageSender.send(context, outgoingMessage, thread, sendType.usesSmsTransport() ? SendType.MMS : SendType.SIGNAL, metricId, null);
                  }, result -> {
                    sendComplete(result);
                    future.set(null);
@@ -3153,7 +3154,7 @@ public class ConversationParentFragment extends Fragment
                .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_sms_permission_in_order_to_send_an_sms))
                .onAllGranted(() -> {
                  SimpleTask.run(() -> {
-                   return MessageSender.send(context, message, thread, sendType.usesSmsTransport(), metricId, null);
+                   return MessageSender.send(context, message, thread, sendType.usesSmsTransport() ? SendType.SMS : SendType.SIGNAL, metricId, null);
                  }, this::sendComplete);
 
                  silentlySetComposeText("");

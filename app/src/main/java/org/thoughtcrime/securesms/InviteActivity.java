@@ -254,7 +254,7 @@ public class InviteActivity extends PassphraseRequiredActivity implements Contac
         Recipient   recipient      = Recipient.resolved(recipientId);
         int         subscriptionId = recipient.getDefaultSubscriptionId().orElse(-1);
 
-        MessageSender.send(context, OutgoingMessage.sms(recipient, message, subscriptionId), -1L, true, null, null);
+        MessageSender.send(context, OutgoingMessage.sms(recipient, message, subscriptionId), -1L, MessageSender.SendType.SMS, null, null);
 
         if (recipient.getContactUri() != null) {
           SignalDatabase.recipients().setHasSentInvite(recipient.getId());

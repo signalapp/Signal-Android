@@ -101,17 +101,17 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                         Collections.emptySet(),
                                                         null,
                                                         recipient.isPushGroup());
-            threadId = MessageSender.send(context, reply, -1, false, null, null);
+            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }
           case SecureMessage: {
             OutgoingMessage reply = OutgoingMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis());
-            threadId = MessageSender.send(context, reply, -1, false, null, null);
+            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }
           case UnsecuredSmsMessage: {
             OutgoingMessage reply = OutgoingMessage.sms(recipient, responseText.toString(), subscriptionId);
-            threadId = MessageSender.send(context, reply, -1, true, null, null);
+            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SMS, null, null);
             break;
           }
           default:

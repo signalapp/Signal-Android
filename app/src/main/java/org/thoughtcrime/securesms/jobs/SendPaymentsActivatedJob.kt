@@ -47,7 +47,7 @@ class SendPaymentsActivatedJob(parameters: Parameters) : BaseJob(parameters) {
           context,
           OutgoingMessage.paymentsActivatedMessage(recipient, System.currentTimeMillis(), 0),
           threadId,
-          false,
+          MessageSender.SendType.SIGNAL,
           null,
           null
         )

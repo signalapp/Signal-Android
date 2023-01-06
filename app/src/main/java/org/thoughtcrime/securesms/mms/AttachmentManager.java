@@ -464,7 +464,7 @@ public class AttachmentManager {
         .setMessage(context.getString(R.string.AttachmentManager__request_to_activate_payments))
         .setPositiveButton(context.getString(R.string.AttachmentManager__send_request), (dialog, which) -> {
           OutgoingMessage outgoingMessage = OutgoingMessage.requestToActivatePaymentsMessage(recipient, System.currentTimeMillis(), 0);
-          MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), false, null, null);
+          MessageSender.send(context, outgoingMessage, SignalDatabase.threads().getOrCreateThreadIdFor(recipient), MessageSender.SendType.SIGNAL, null, null);
         })
         .setNegativeButton(context.getString(R.string.AttachmentManager__cancel), null)
         .show();

@@ -78,7 +78,7 @@ public class InsightsRepository implements InsightsDashboardViewModel.Repository
       int       subscriptionId = resolved.getDefaultSubscriptionId().orElse(-1);
       String    message        = context.getString(R.string.InviteActivity_lets_switch_to_signal, context.getString(R.string.install_url));
 
-      MessageSender.send(context, OutgoingMessage.sms(resolved, message, subscriptionId), -1L, true, null, null);
+      MessageSender.send(context, OutgoingMessage.sms(resolved, message, subscriptionId), -1L, MessageSender.SendType.SMS, null, null);
 
       RecipientTable database = SignalDatabase.recipients();
       database.setHasSentInvite(recipient.getId());

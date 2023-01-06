@@ -70,7 +70,7 @@ class PaymentNotificationSendJobV2 private constructor(
         recipient.expiresInSeconds.seconds.inWholeMilliseconds
       ),
       SignalDatabase.threads.getOrCreateThreadIdFor(recipient),
-      false,
+      MessageSender.SendType.SIGNAL,
       null,
       null
     )

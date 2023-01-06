@@ -109,7 +109,7 @@ class MediaSelectionRepository(context: Context) {
         StoryType.NONE
       }
 
-      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, isSms)) {
+      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, MessageSender.SendType.SIGNAL)) {
         Log.i(TAG, "SMS or local self-send. Skipping pre-upload.")
         emitter.onSuccess(MediaSendActivityResult.forTraditionalSend(singleRecipient!!.id, updatedMedia, trimmedBody, sendType, isViewOnce, trimmedMentions, StoryType.NONE))
       } else {
@@ -182,7 +182,7 @@ class MediaSelectionRepository(context: Context) {
   }
 
   fun isLocalSelfSend(recipient: Recipient?, isSms: Boolean): Boolean {
-    return MessageSender.isLocalSelfSend(context, recipient, isSms)
+    return MessageSender.isLocalSelfSend(context, recipient, if (isSms) MessageSender.SendType.SMS else MessageSender.SendType.SIGNAL)
   }
 
   @WorkerThread

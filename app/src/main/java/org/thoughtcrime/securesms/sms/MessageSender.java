@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ReactionSendJob;
 import org.thoughtcrime.securesms.jobs.RemoteDeleteSendJob;
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob;
+import org.thoughtcrime.securesms.jobs.SmsSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
@@ -201,11 +202,11 @@ public class MessageSender {
       List<String> jobDependencyIds = (dependencies != null) ? dependencies.stream().map(UploadDependencyGraph.Node::getJobId).collect(Collectors.toList())
                                                              : Collections.emptyList();
 
-      sendMediaMessage(context,
-                       recipient,
-                       false,
-                       messageId,
-                       jobDependencyIds);
+      sendMessageInternal(context,
+                          recipient,
+                          SendType.SIGNAL,
+                          messageId,
+                          jobDependencyIds);
     }
 
     onMessageSent();
@@ -218,7 +219,7 @@ public class MessageSender {
   public static long send(final Context context,
                           final OutgoingMessage message,
                           final long threadId,
-                          final boolean forceSms,
+                          @NonNull SendType sendType,
                           @Nullable final String metricId,
                           @Nullable final MessageTable.InsertListener insertListener)
   {
@@ -229,7 +230,7 @@ public class MessageSender {
 
       long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getRecipient(), threadId, message.getDistributionType());
       Recipient recipient         = message.getRecipient();
-      long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, forceSms, insertListener);
+      long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
 
       if (message.getRecipient().isGroup() && message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
         SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
@@ -237,7 +238,7 @@ public class MessageSender {
         SignalLocalMetrics.GroupMessageSend.cancel(metricId);
       }
 
-      sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
+      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
       onMessageSent();
       threadTable.update(allocatedThreadId, true);
 
@@ -274,7 +275,7 @@ public class MessageSender {
 
       attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
-      sendMediaMessage(context, recipient, false, messageId, jobIds);
+      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds);
       onMessageSent();
       threadTable.update(allocatedThreadId, true);
 
@@ -390,7 +391,7 @@ public class MessageSender {
       long      messageId = messageIds.get(i);
       Recipient recipient = messages.get(i).getRecipient();
 
-      if (isLocalSelfSend(context, recipient, false)) {
+      if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
         sendLocalMediaSelf(context, messageId);
       } else if (recipient.isPushGroup()) {
         jobManager.add(new PushGroupSendJob(messageId, recipient.getId(), Collections.emptySet(), true), messageDependsOnIds, recipient.getId().toQueueKey());
@@ -407,7 +408,7 @@ public class MessageSender {
    *         be enqueued (like in the case of a local self-send).
    */
   public static @Nullable PreUploadResult preUploadPushAttachment(@NonNull Context context, @NonNull Attachment attachment, @Nullable Recipient recipient, @NonNull Media media) {
-    if (isLocalSelfSend(context, recipient, false)) {
+    if (isLocalSelfSend(context, recipient, SendType.SIGNAL)) {
       return null;
     }
     Log.i(TAG, "Pre-uploading attachment for " + (recipient != null ? recipient.getId() : "null"));
@@ -488,7 +489,21 @@ public class MessageSender {
     boolean    forceSms    = messageRecord.isForcedSms();
     Recipient  recipient   = messageRecord.getRecipient();
 
-    sendMediaMessage(context, recipient, forceSms, messageId, Collections.emptyList());
+    SendType sendType;
+
+    if (forceSms) {
+      Recipient threadRecipient = SignalDatabase.threads().getRecipientForThreadId(messageRecord.getThreadId());
+
+      if ((threadRecipient != null && threadRecipient.isGroup()) || SignalDatabase.attachments().getAttachmentsForMessage(messageId).size() > 0) {
+        sendType = SendType.MMS;
+      } else {
+        sendType = SendType.SMS;
+      }
+    } else {
+      sendType = SendType.SIGNAL;
+    }
+
+    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
 
     onMessageSent();
   }
@@ -504,18 +519,20 @@ public class MessageSender {
     return outgoingMessage;
   }
 
-  private static void sendMediaMessage(Context context, Recipient recipient, boolean forceSms, long messageId, @NonNull Collection<String> uploadJobIds)
+  private static void sendMessageInternal(Context context, Recipient recipient, SendType sendType, long messageId, @NonNull Collection<String> uploadJobIds)
   {
-    if (isLocalSelfSend(context, recipient, forceSms)) {
+    if (isLocalSelfSend(context, recipient, sendType)) {
       sendLocalMediaSelf(context, messageId);
     } else if (recipient.isPushGroup()) {
       sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
     } else if (recipient.isDistributionList()) {
       sendDistributionList(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
-    } else if (!forceSms && isPushMediaSend(context, recipient)) {
+    } else if (sendType == SendType.SIGNAL && isPushMediaSend(context, recipient)) {
       sendMediaPush(context, recipient, messageId, uploadJobIds);
-    } else {
+    } else if (sendType == SendType.MMS) {
       sendMms(context, messageId);
+    } else {
+      sendSms(recipient, messageId);
     }
   }
 
@@ -557,6 +574,11 @@ public class MessageSender {
     MmsSendJob.enqueue(context, jobManager, messageId);
   }
 
+  private static void sendSms(Recipient recipient, long messageId) {
+    JobManager jobManager = ApplicationDependencies.getJobManager();
+    jobManager.add(new SmsSendJob(messageId, recipient));
+  }
+
   private static boolean isPushMediaSend(Context context, Recipient recipient) {
     if (!SignalStore.account().isRegistered()) {
       return false;
@@ -585,10 +607,10 @@ public class MessageSender {
     }
   }
 
-  public static boolean isLocalSelfSend(@NonNull Context context, @Nullable Recipient recipient, boolean forceSms) {
+  public static boolean isLocalSelfSend(@NonNull Context context, @Nullable Recipient recipient, SendType sendType) {
     return recipient != null                    &&
            recipient.isSelf()                   &&
-           !forceSms                            &&
+           sendType == SendType.SIGNAL          &&
            SignalStore.account().isRegistered() &&
            !TextSecurePreferences.isMultiDevice(context);
   }
@@ -704,5 +726,9 @@ public class MessageSender {
 
   public enum MessageSentEvent {
     INSTANCE
+  }
+
+  public enum SendType {
+    SIGNAL, SMS, MMS
   }
 }

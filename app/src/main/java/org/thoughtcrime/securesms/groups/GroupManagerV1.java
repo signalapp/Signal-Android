@@ -185,7 +185,7 @@ final class GroupManagerV1 {
                                                                          Collections.emptyList(),
                                                                          Collections.emptyList());
 
-    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, false, null, null);
+    long                      threadId        = MessageSender.send(context, outgoingMessage, -1, MessageSender.SendType.SIGNAL, null, null);
 
     return new GroupActionResult(groupRecipient, threadId, newMemberCount, Collections.emptyList());
   }
@@ -209,7 +209,7 @@ final class GroupManagerV1 {
 
     recipientTable.setExpireMessages(recipient.getId(), expirationTime);
     OutgoingMessage outgoingMessage = OutgoingMessage.expirationUpdateMessage(recipient, System.currentTimeMillis(), expirationTime * 1000L);
-    MessageSender.send(context, outgoingMessage, threadId, false, null, null);
+    MessageSender.send(context, outgoingMessage, threadId, MessageSender.SendType.SIGNAL, null, null);
   }
 
   @WorkerThread

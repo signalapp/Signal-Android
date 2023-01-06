@@ -53,7 +53,7 @@ object StoryGroupReplySender {
                 isSecure = true
               ),
               message.threadId,
-              false,
+              MessageSender.SendType.SIGNAL,
               null
             ) {
               it.onComplete()

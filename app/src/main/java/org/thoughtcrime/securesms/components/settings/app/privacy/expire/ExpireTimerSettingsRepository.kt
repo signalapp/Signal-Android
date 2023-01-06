@@ -40,7 +40,7 @@ class ExpireTimerSettingsRepository(val context: Context) {
       } else {
         SignalDatabase.recipients.setExpireMessages(recipientId, newExpirationTime)
         val outgoingMessage = OutgoingMessage.expirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
-        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null, null)
+        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), MessageSender.SendType.SIGNAL, null, null)
         consumer.invoke(Result.success(newExpirationTime))
       }
     }

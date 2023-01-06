@@ -64,7 +64,7 @@ class StoryDirectReplyRepository(context: Context) {
           null
         ),
         threadId,
-        false,
+        MessageSender.SendType.SIGNAL,
         null
       ) {
         emitter.onComplete()

@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.sms.MessageSender.SendType;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -307,11 +308,11 @@ public final class MultiShareSender {
       storiesToBatchSend.addAll(outgoingMessages);
     } else if (shouldSendAsPush(recipient, forceSms)) {
       for (final OutgoingMessage outgoingMessage : outgoingMessages) {
-        MessageSender.send(context, outgoingMessage.makeSecure(), threadId, false, null, null);
+        MessageSender.send(context, outgoingMessage.makeSecure(), threadId, SendType.SIGNAL, null, null);
       }
     } else {
       for (final OutgoingMessage outgoingMessage : outgoingMessages) {
-        MessageSender.send(context, outgoingMessage, threadId, forceSms, null, null);
+        MessageSender.send(context, outgoingMessage, threadId, SendType.MMS, null, null);
       }
     }
   }
@@ -393,7 +394,7 @@ public final class MultiShareSender {
       outgoingMessage = OutgoingMessage.sms(recipient, body, subscriptionId);
     }
 
-    MessageSender.send(context, outgoingMessage, threadId, forceSms, null, null);
+    MessageSender.send(context, outgoingMessage, threadId, forceSms ? SendType.SMS : SendType.SIGNAL, null, null);
   }
 
   private static @NonNull OutgoingMessage generateTextStory(@NonNull Context context,
