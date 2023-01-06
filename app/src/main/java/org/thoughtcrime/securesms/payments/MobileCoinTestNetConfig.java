@@ -14,6 +14,8 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 final class MobileCoinTestNetConfig extends MobileCoinConfig {
@@ -25,8 +27,11 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
   }
 
   @Override
-  @NonNull Uri getConsensusUri() {
-    return Uri.parse("mc://node1.test.mobilecoin.com");
+  @NonNull List<Uri> getConsensusUris() {
+    return Arrays.asList(
+     Uri.parse("mc://node1.consensus.mob.staging.namda.net"),
+     Uri.parse("mc://node2.consensus.mob.staging.namda.net")
+    );
   }
 
   @Override

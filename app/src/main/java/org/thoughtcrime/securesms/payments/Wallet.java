@@ -73,7 +73,7 @@ public final class Wallet {
 
       this.mobileCoinClient = new MobileCoinClient(account,
                                                    mobileCoinConfig.getFogUri(),
-                                                   mobileCoinConfig.getConsensusUri(),
+                                                   mobileCoinConfig.getConsensusUris(),
                                                    mobileCoinConfig.getConfig(),
                                                    TransportProtocol.forGRPC());
     } catch (InvalidUriException | BadEntropyException e) {
