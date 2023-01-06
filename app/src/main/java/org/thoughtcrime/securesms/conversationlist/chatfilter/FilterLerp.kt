@@ -43,6 +43,11 @@ object FilterLerp {
     Point(0.7f * FILTER_APEX / 100, 1f)
   )
 
+  private val CIRCLE_CANCEL_ALPHA_LERP = getFn(
+    Point(0.61f, 1f),
+    Point(0.43f, 0f)
+  )
+
   private fun helpTextAlphaLerp(@FloatRange(from = 0.0, to = 1.0) startFraction: Float) = getFn(
     Point(startFraction, 0f),
     Point(1f, 1f)
@@ -54,6 +59,10 @@ object FilterLerp {
 
   fun getPillCloseApexAlphaLerp(fraction: Float): Float {
     return Util.clamp(getLerp(fraction, PILL_CLOSE_APEX_ALPHA_LERP), 0f, 1f)
+  }
+
+  fun getCircleCancelAlphaLerp(fraction: Float): Float {
+    return Util.clamp(getLerp(fraction, CIRCLE_CANCEL_ALPHA_LERP), 0f, 1f)
   }
 
   /**

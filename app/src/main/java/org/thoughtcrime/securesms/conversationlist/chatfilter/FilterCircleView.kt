@@ -175,13 +175,13 @@ class FilterCircleView @JvmOverloads constructor(
 
   private fun evaluateBottomOffset(progress: Float, state: FilterPullState): Float {
     return when (state) {
-      FilterPullState.OPEN_APEX, FilterPullState.OPENING, FilterPullState.OPEN, FilterPullState.CLOSE_APEX -> FilterLerp.getOpenCircleBottomPadLerp(progress)
+      FilterPullState.OPENING, FilterPullState.OPEN, FilterPullState.CLOSE_APEX, FilterPullState.CANCELING, FilterPullState.OPEN_APEX -> FilterLerp.getOpenCircleBottomPadLerp(progress)
       FilterPullState.CLOSED, FilterPullState.CLOSING -> FilterLerp.getClosedCircleBottomPadLerp(progress)
     }
   }
 
   private fun checkColorAnimators(state: FilterPullState) {
-    if (state != FilterPullState.CLOSED) {
+    if (state != FilterPullState.CLOSED && state != FilterPullState.CANCELING) {
       if (circleColorAnimator == null) {
         circleColorAnimator = ValueAnimator
           .ofInt(circleBackgroundColor, circleActiveBackgroundColor).apply {
@@ -248,6 +248,7 @@ class FilterCircleView @JvmOverloads constructor(
     val circleAlpha = when (state) {
       FilterPullState.CLOSED -> 255
       FilterPullState.OPEN_APEX -> 255
+      FilterPullState.CANCELING -> 255
       FilterPullState.OPENING -> 255
       FilterPullState.OPEN -> 0
       FilterPullState.CLOSE_APEX -> 0

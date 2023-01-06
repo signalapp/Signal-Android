@@ -17,6 +17,12 @@ enum class FilterPullState {
   OPEN_APEX,
 
   /**
+   * The filter has been dragged all the way to the apex, but the user started to drag back instead of
+   * releasing the filter.
+   */
+  CANCELING,
+
+  /**
    * The filter is being activated and the animation is running.
    */
   OPENING,

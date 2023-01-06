@@ -43,6 +43,9 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     private const val ANIMATE_HELP_TEXT_VELOCITY_THRESHOLD = 1f
     private const val ANIMATE_HELP_TEXT_THRESHOLD = 30
     private const val ANIMATE_HELP_TEXT_START_FRACTION = 0.35f
+
+    private const val CANCEL_THRESHOLD = 0.92f
+
     private val COLOR_EVALUATOR = ArgbEvaluatorCompat.getInstance()
   }
 
@@ -106,7 +109,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
     if (state == FilterPullState.CLOSED && progress <= 0) {
       setState(FilterPullState.CLOSED, ConversationFilterSource.DRAG)
-    } else if (state == FilterPullState.CLOSED && progress >= 1f) {
+    } else if ((state == FilterPullState.CLOSED || state == FilterPullState.CANCELING) && progress >= 1f) {
       setState(FilterPullState.OPEN_APEX, ConversationFilterSource.DRAG)
       vibrate()
       resetHelpText()
@@ -115,6 +118,15 @@ class ConversationListFilterPullView @JvmOverloads constructor(
       setState(FilterPullState.CLOSE_APEX, ConversationFilterSource.DRAG)
       vibrate()
       animatePillColor()
+    } else if (state == FilterPullState.OPEN_APEX && progress <= CANCEL_THRESHOLD) {
+      setState(FilterPullState.CANCELING, ConversationFilterSource.DRAG)
+      vibrate()
+    }
+
+    if (state == FilterPullState.CANCELING) {
+      binding.filterCircle.alpha = FilterLerp.getCircleCancelAlphaLerp(progress)
+    } else {
+      binding.filterCircle.alpha = 1f
     }
 
     if (state == FilterPullState.CLOSED && animateHelpText < ANIMATE_HELP_TEXT_THRESHOLD) {
@@ -151,7 +163,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   fun onUserDragFinished() {
     if (state == FilterPullState.OPEN_APEX) {
       open(ConversationFilterSource.DRAG)
-    } else if (state == FilterPullState.CLOSE_APEX) {
+    } else if (state == FilterPullState.CLOSE_APEX || state == FilterPullState.CANCELING) {
       close(ConversationFilterSource.DRAG)
     }
   }
@@ -257,7 +269,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
   private fun FilterPullState.toLatestSettledState(): FilterPullState {
     return when (this) {
-      FilterPullState.CLOSED, FilterPullState.OPEN_APEX, FilterPullState.OPENING -> FilterPullState.CLOSED
+      FilterPullState.CLOSED, FilterPullState.OPEN_APEX, FilterPullState.OPENING, FilterPullState.CANCELING -> FilterPullState.CLOSED
       FilterPullState.OPEN, FilterPullState.CLOSE_APEX, FilterPullState.CLOSING -> FilterPullState.OPEN
     }
   }
