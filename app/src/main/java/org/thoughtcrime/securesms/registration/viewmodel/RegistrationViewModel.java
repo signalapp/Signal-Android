@@ -15,12 +15,12 @@ import org.thoughtcrime.securesms.registration.RegistrationData;
 import org.thoughtcrime.securesms.registration.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.RequestVerificationCodeResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs;
-import org.thoughtcrime.securesms.registration.VerifyCodeWithRegistrationLockResponseProcessor;
+import org.thoughtcrime.securesms.registration.VerifyResponse;
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import io.reactivex.rxjava3.core.Single;
 
@@ -103,24 +103,24 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
   }
 
   @Override
-  protected Single<ServiceResponse<VerifyAccountResponse>> verifyAccountWithoutRegistrationLock() {
+  protected Single<ServiceResponse<VerifyResponse>> verifyAccountWithoutRegistrationLock() {
     return verifyAccountRepository.verifyAccount(getRegistrationData());
   }
 
   @Override
-  protected Single<ServiceResponse<VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData) {
+  protected Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData) {
     return verifyAccountRepository.verifyAccountWithPin(getRegistrationData(), pin, kbsTokenData);
   }
 
   @Override
-  protected Single<VerifyAccountResponseProcessor> onVerifySuccess(@NonNull VerifyAccountResponseProcessor processor) {
-    return registrationRepository.registerAccountWithoutRegistrationLock(getRegistrationData(), processor.getResult())
-                                 .map(VerifyAccountResponseWithoutKbs::new);
+  protected Single<VerifyResponseProcessor> onVerifySuccess(@NonNull VerifyResponseProcessor processor) {
+    return registrationRepository.registerAccount(getRegistrationData(), processor.getResult())
+                                 .map(VerifyResponseWithoutKbs::new);
   }
 
   @Override
-  protected Single<VerifyCodeWithRegistrationLockResponseProcessor> onVerifySuccessWithRegistrationLock(@NonNull VerifyCodeWithRegistrationLockResponseProcessor processor, String pin) {
-    return registrationRepository.registerAccountWithRegistrationLock(getRegistrationData(), processor.getResult(), pin)
+  protected Single<VerifyResponseWithRegistrationLockProcessor> onVerifySuccessWithRegistrationLock(@NonNull VerifyResponseWithRegistrationLockProcessor processor, String pin) {
+    return registrationRepository.registerAccount(getRegistrationData(), processor.getResult())
                                  .map(processor::updatedIfRegistrationFailed);
   }
 

@@ -51,7 +51,7 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccount(registrationData: RegistrationData): Single<ServiceResponse<VerifyAccountResponse>> {
+  fun verifyAccount(registrationData: RegistrationData): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -63,7 +63,7 @@ class VerifyAccountRepository(private val context: Application) {
     )
 
     return Single.fromCallable {
-      accountManager.verifyAccount(
+      val response = accountManager.verifyAccount(
         registrationData.code,
         registrationData.registrationId,
         registrationData.isNotFcm,
@@ -73,10 +73,11 @@ class VerifyAccountRepository(private val context: Application) {
         SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
         registrationData.pniRegistrationId
       )
+      VerifyResponse.from(response, null, null)
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, tokenData: TokenData): Single<ServiceResponse<VerifyAccountWithRegistrationLockResponse>> {
+  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, tokenData: TokenData): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -103,7 +104,7 @@ class VerifyAccountRepository(private val context: Application) {
           SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
           registrationData.pniRegistrationId
         )
-        VerifyAccountWithRegistrationLockResponse.from(response, kbsData)
+        VerifyResponse.from(response, kbsData, pin)
       } catch (e: KeyBackupSystemWrongPinException) {
         ServiceResponse.forExecutionError(e)
       } catch (e: KeyBackupSystemNoDataException) {
@@ -125,15 +126,4 @@ class VerifyAccountRepository(private val context: Application) {
     private val PUSH_REQUEST_TIMEOUT = TimeUnit.SECONDS.toMillis(5)
   }
 
-  data class VerifyAccountWithRegistrationLockResponse(val verifyAccountResponse: VerifyAccountResponse, val kbsData: KbsPinData) {
-    companion object {
-      fun from(response: ServiceResponse<VerifyAccountResponse>, kbsData: KbsPinData): ServiceResponse<VerifyAccountWithRegistrationLockResponse> {
-        return if (response.result.isPresent) {
-          ServiceResponse.forResult(VerifyAccountWithRegistrationLockResponse(response.result.get(), kbsData), 200, null)
-        } else {
-          ServiceResponse.coerceError(response)
-        }
-      }
-    }
-  }
 }

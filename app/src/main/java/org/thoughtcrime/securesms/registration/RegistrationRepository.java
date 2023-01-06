@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.registration.VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -93,27 +92,12 @@ public final class RegistrationRepository {
     return profileKey;
   }
 
-  public Single<ServiceResponse<VerifyAccountResponse>> registerAccountWithoutRegistrationLock(@NonNull RegistrationData registrationData,
-                                                                                               @NonNull VerifyAccountResponse response)
+  public Single<ServiceResponse<VerifyResponse>> registerAccount(@NonNull RegistrationData registrationData,
+                                                                 @NonNull VerifyResponse response)
   {
-    return registerAccount(registrationData, response, null, null);
-  }
-
-  public Single<ServiceResponse<VerifyAccountResponse>> registerAccountWithRegistrationLock(@NonNull RegistrationData registrationData,
-                                                                                            @NonNull VerifyAccountWithRegistrationLockResponse response,
-                                                                                            @NonNull String pin)
-  {
-    return registerAccount(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData());
-  }
-
-  private Single<ServiceResponse<VerifyAccountResponse>> registerAccount(@NonNull RegistrationData registrationData,
-                                                                         @NonNull VerifyAccountResponse response,
-                                                                         @Nullable String pin,
-                                                                         @Nullable KbsPinData kbsData)
-  {
-    return Single.<ServiceResponse<VerifyAccountResponse>>fromCallable(() -> {
+    return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
-        registerAccountInternal(registrationData, response, pin, kbsData);
+        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), response.getPin(), response.getKbsData());
 
         JobManager jobManager = ApplicationDependencies.getJobManager();
         jobManager.add(new DirectoryRefreshJob(false));

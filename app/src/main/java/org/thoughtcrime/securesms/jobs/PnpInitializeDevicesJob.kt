@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs
+import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
 import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
@@ -89,7 +89,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         Log.i(TAG, "Calling change number with our current number to distribute PNI messages")
         changeNumberRepository
           .changeNumber(code = PLACEHOLDER_CODE, newE164 = e164, pniUpdateMode = true)
-          .map(::VerifyAccountResponseWithoutKbs)
+          .map(::VerifyResponseWithoutKbs)
           .safeBlockingGet()
           .resultOrThrow
       } catch (e: InterruptedException) {

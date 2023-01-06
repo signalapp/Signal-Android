@@ -18,16 +18,15 @@ import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.registration.SmsRetrieverReceiver
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs
-import org.thoughtcrime.securesms.registration.VerifyCodeWithRegistrationLockResponseProcessor
-import org.thoughtcrime.securesms.registration.VerifyProcessor
+import org.thoughtcrime.securesms.registration.VerifyResponse
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor
+import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor
+import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
 import org.thoughtcrime.securesms.registration.viewmodel.BaseRegistrationViewModel
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
 import org.whispersystems.signalservice.api.push.PNI
 import org.whispersystems.signalservice.internal.ServiceResponse
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.Objects
 
 private val TAG: String = Log.tag(ChangeNumberViewModel::class.java)
@@ -121,19 +120,19 @@ class ChangeNumberViewModel(
     return changeNumberRepository.ensureDecryptionsDrained()
   }
 
-  override fun verifyCodeWithoutRegistrationLock(code: String): Single<VerifyAccountResponseProcessor> {
+  override fun verifyCodeWithoutRegistrationLock(code: String): Single<VerifyResponseProcessor> {
     return super.verifyCodeWithoutRegistrationLock(code)
       .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
       .flatMap(this::attemptToUnlockChangeNumber)
   }
 
-  override fun verifyCodeAndRegisterAccountWithRegistrationLock(pin: String): Single<VerifyCodeWithRegistrationLockResponseProcessor> {
+  override fun verifyCodeAndRegisterAccountWithRegistrationLock(pin: String): Single<VerifyResponseWithRegistrationLockProcessor> {
     return super.verifyCodeAndRegisterAccountWithRegistrationLock(pin)
       .compose(ChangeNumberRepository::acquireReleaseChangeNumberLock)
       .flatMap(this::attemptToUnlockChangeNumber)
   }
 
-  private fun <T : VerifyProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
+  private fun <T : VerifyResponseProcessor> attemptToUnlockChangeNumber(processor: T): Single<T> {
     return if (processor.hasResult() || processor.isServerSentError()) {
       SignalStore.misc().unlockChangeNumber()
       SignalStore.misc().clearPendingChangeNumberMetadata()
@@ -152,30 +151,30 @@ class ChangeNumberViewModel(
     }
   }
 
-  override fun verifyAccountWithoutRegistrationLock(): Single<ServiceResponse<VerifyAccountResponse>> {
+  override fun verifyAccountWithoutRegistrationLock(): Single<ServiceResponse<VerifyResponse>> {
     return changeNumberRepository.changeNumber(textCodeEntered, number.e164Number)
   }
 
-  override fun verifyAccountWithRegistrationLock(pin: String, kbsTokenData: TokenData): Single<ServiceResponse<VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse>> {
+  override fun verifyAccountWithRegistrationLock(pin: String, kbsTokenData: TokenData): Single<ServiceResponse<VerifyResponse>> {
     return changeNumberRepository.changeNumber(textCodeEntered, number.e164Number, pin, kbsTokenData)
   }
 
   @WorkerThread
-  override fun onVerifySuccess(processor: VerifyAccountResponseProcessor): Single<VerifyAccountResponseProcessor> {
-    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseOrThrow(processor.result.pni))
-      .map { processor }
-      .onErrorReturn { t ->
-        Log.w(TAG, "Error attempting to change local number", t)
-        VerifyAccountResponseWithoutKbs(ServiceResponse.forUnknownError(t))
-      }
-  }
-
-  override fun onVerifySuccessWithRegistrationLock(processor: VerifyCodeWithRegistrationLockResponseProcessor, pin: String): Single<VerifyCodeWithRegistrationLockResponseProcessor> {
+  override fun onVerifySuccess(processor: VerifyResponseProcessor): Single<VerifyResponseProcessor> {
     return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseOrThrow(processor.result.verifyAccountResponse.pni))
       .map { processor }
       .onErrorReturn { t ->
         Log.w(TAG, "Error attempting to change local number", t)
-        VerifyCodeWithRegistrationLockResponseProcessor(ServiceResponse.forUnknownError(t), processor.token)
+        VerifyResponseWithoutKbs(ServiceResponse.forUnknownError(t))
+      }
+  }
+
+  override fun onVerifySuccessWithRegistrationLock(processor: VerifyResponseWithRegistrationLockProcessor, pin: String): Single<VerifyResponseWithRegistrationLockProcessor> {
+    return changeNumberRepository.changeLocalNumber(number.e164Number, PNI.parseOrThrow(processor.result.verifyAccountResponse.pni))
+      .map { processor }
+      .onErrorReturn { t ->
+        Log.w(TAG, "Error attempting to change local number", t)
+        VerifyResponseWithRegistrationLockProcessor(ServiceResponse.forUnknownError(t), processor.tokenData)
       }
   }
 
