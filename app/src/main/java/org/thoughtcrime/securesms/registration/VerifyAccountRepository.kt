@@ -7,9 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
-import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.KbsPinData
@@ -77,7 +75,11 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, tokenData: TokenData): Single<ServiceResponse<VerifyResponse>> {
+  fun verifyAccountWithReregistrationData(registrationData: RegistrationData, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
+    return verifyAccountWithPin(registrationData, "", kbsPinDataProducer)
+  }
+
+  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -90,7 +92,7 @@ class VerifyAccountRepository(private val context: Application) {
 
     return Single.fromCallable {
       try {
-        val kbsData: KbsPinData = KbsRepository.restoreMasterKey(pin, tokenData.enclave, tokenData.basicAuth, tokenData.tokenResponse)!!
+        val kbsData = kbsPinDataProducer.produceKbsPinData()
         val registrationLockV2: String = kbsData.masterKey.deriveRegistrationLock()
 
         val response: ServiceResponse<VerifyAccountResponse> = accountManager.verifyAccountWithRegistrationLockPin(
@@ -115,6 +117,11 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
+  interface KbsPinDataProducer {
+    @Throws(IOException::class, KeyBackupSystemWrongPinException::class, KeyBackupSystemNoDataException::class)
+    fun produceKbsPinData(): KbsPinData
+  }
+
   enum class Mode(val isSmsRetrieverSupported: Boolean) {
     SMS_WITH_LISTENER(true),
     SMS_WITHOUT_LISTENER(false),
@@ -125,5 +132,4 @@ class VerifyAccountRepository(private val context: Application) {
     private val TAG = Log.tag(VerifyAccountRepository::class.java)
     private val PUSH_REQUEST_TIMEOUT = TimeUnit.SECONDS.toMillis(5)
   }
-
 }

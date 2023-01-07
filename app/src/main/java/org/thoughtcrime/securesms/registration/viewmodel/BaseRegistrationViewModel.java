@@ -205,8 +205,12 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
     onVerificationCodeEntered(code);
 
     return verifyAccountWithoutRegistrationLock()
-        .map(VerifyResponseWithoutKbs::new)
-        .flatMap(processor -> {
+        .flatMap(response -> {
+          if (response.getResult().isPresent() && response.getResult().get().getKbsData() != null) {
+            return onVerifySuccessWithRegistrationLock(new VerifyResponseWithRegistrationLockProcessor(response, null), response.getResult().get().getPin());
+          }
+
+          VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(response);
           if (processor.hasResult()) {
             return onVerifySuccess(processor);
           } else if (processor.registrationLock() && !processor.isKbsLocked()) {
