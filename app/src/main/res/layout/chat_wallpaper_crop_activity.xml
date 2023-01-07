@@ -179,4 +179,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/navigation_bar_guideline" />
 
+    <org.thoughtcrime.securesms.components.ProgressCard
+        android:id="@+id/wallpaper_crop_progress_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
 </org.thoughtcrime.securesms.components.InsetAwareConstraintLayout>
