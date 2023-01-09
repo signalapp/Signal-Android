@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
+import org.thoughtcrime.securesms.jobs.SubscriptionKeepAliveJob
 import org.thoughtcrime.securesms.jobs.SubscriptionReceiptRequestResponseJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -43,6 +44,11 @@ class MonthlyDonationRepository(private val donationsService: DonationsService) 
       Single.fromCallable { donationsService.getSubscription(localSubscription.subscriberId) }
         .subscribeOn(Schedulers.io())
         .flatMap(ServiceResponse<ActiveSubscription>::flattenResult)
+        .doOnSuccess { activeSubscription ->
+          if (activeSubscription.isActive && activeSubscription.activeSubscription.endOfCurrentPeriod > SignalStore.donationsValues().getLastEndOfPeriod()) {
+            SubscriptionKeepAliveJob.enqueueAndTrackTime(System.currentTimeMillis())
+          }
+        }
     } else {
       Single.just(ActiveSubscription.EMPTY)
     }
