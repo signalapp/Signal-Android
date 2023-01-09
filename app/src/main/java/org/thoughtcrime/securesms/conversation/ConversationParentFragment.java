@@ -1838,6 +1838,7 @@ public class ConversationParentFragment extends Fragment
                   quoteResult.addListener(listener);
                   break;
                 case Draft.VOICE_NOTE:
+                case Draft.MENTION:
                   listener.onSuccess(true);
                   break;
               }
