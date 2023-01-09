@@ -25,6 +25,7 @@ import java.util.Objects;
 public class ConversationIntents {
 
   private static final String BUBBLE_AUTHORITY                       = "bubble";
+  private static final String NOTIFICATION_CUSTOM_SCHEME             = "custom";
   private static final String EXTRA_RECIPIENT                        = "recipient_id";
   private static final String EXTRA_THREAD_ID                        = "thread_id";
   private static final String EXTRA_TEXT                             = "draft_text";
@@ -87,6 +88,10 @@ public class ConversationIntents {
 
   static boolean isBubbleIntentUri(@Nullable Uri uri) {
     return uri != null && Objects.equals(uri.getAuthority(), BUBBLE_AUTHORITY);
+  }
+
+  static boolean isNotificationIntentUri(@Nullable Uri uri) {
+    return uri != null && Objects.equals(uri.getScheme(), NOTIFICATION_CUSTOM_SCHEME);
   }
 
   final static class Args {
