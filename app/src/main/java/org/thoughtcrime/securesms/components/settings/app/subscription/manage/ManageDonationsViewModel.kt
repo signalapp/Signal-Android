@@ -90,7 +90,7 @@ class ManageDonationsViewModel(
       }
     }
 
-    disposables += levelUpdateOperationEdges.flatMapSingle { isProcessing ->
+    disposables += levelUpdateOperationEdges.switchMapSingle { isProcessing ->
       if (isProcessing) {
         Single.just(ManageDonationsState.TransactionState.InTransaction)
       } else {
