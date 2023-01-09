@@ -1153,23 +1153,23 @@
     <string name="MessageRecord_you_updated_group">Обновихте групата.</string>
     <string name="MessageRecord_the_group_was_updated">Групата беше актуализирана.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">Изходящо гласово повикване</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">Изходящо видео повикване</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">Гласово повикване без отговор</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">Неотговорено видео повикване</string>
+    <string name="MessageRecord_unanswered_video_call">Видео повикване без отговор</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">Входящо гласово повикване</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">Входящо видео повикване</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">Пропуснато гласово повикване</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">Пропуснато видео обаждане</string>
+    <string name="MessageRecord_missed_video_call">Пропуснато видео повикване</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">Отказахте гласово повикване</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">Отказахте видео повикване</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">От %1$s към вас</string>
     <string name="MediaPreviewActivity_media_no_longer_available">Тази мултимедия вече не е налична.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">Неуспешно възпроизвеждане на мултимедия.</string>
     <string name="MediaPreviewActivity_error_finding_message">Грешка при намиране на съобщение.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">Не може да бъде намерено приложение, което да може да споделя тази мултимедия.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Затвори</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Търсене</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">Търсене в непрочетени чатове</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">Търсене на разговори, контакти и съобщения</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">Това е вероятно, защото сте регистрирали номерът си със Signal на друго устройство. Натиснете, за да го дерегистрирате.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">Вие сте излезли от Signal на това устройство.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">Неуспешно актуализиране на профила</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Дарете сега</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s подкрепя Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">Филтриране на непрочетени</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">Плъзнете за филтриране</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">Съвет: Плъзнете надолу чат списъка, за да филтрирате</string>
 
 </resources>

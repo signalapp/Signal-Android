@@ -1249,23 +1249,23 @@
     <string name="MessageRecord_you_updated_group">עדכנת את הקבוצה.</string>
     <string name="MessageRecord_the_group_was_updated">הקבוצה עודכנה.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">שיחה קולית יוצאת</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">שיחת וידאו יוצאת</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">שיחה קולית שלא נענתה</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">שיחת וידאו שלא נענתה</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">שיחה קולית נכנסת</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">שיחת וידאו נכנסת</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">שיחה קולית שלא נענתה</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">שיחת וידאו שלא נענתה</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">דחית שיחה קולית</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">דחית שיחת וידאו</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -2142,7 +2142,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s אליך</string>
     <string name="MediaPreviewActivity_media_no_longer_available">מדיה אינה זמינה יותר.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">לא ניתן לנגן מדיה.</string>
     <string name="MediaPreviewActivity_error_finding_message">שגיאה במציאת הודעה.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">לא ניתן למצוא יישום שמסוגל לשתף מדיה זו.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">סגור</string>
@@ -2249,7 +2249,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">זה קרוב לוודאי מאחר שרשמת את מספר הטלפון שלך עם Signal על מכשיר שונה. הקש כדי להירשם מחדש.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">יצאת מ–Signal במכשיר זה.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -5716,10 +5716,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">מסונן לפי צ׳אטים שלא נקראו</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">אפשר לגרור כדי לסנן</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">טיפ: אפשר לגרור למטה את רשימת הצ׳אטים כדי לסנן</string>
 
 </resources>

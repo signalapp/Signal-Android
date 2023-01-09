@@ -1153,25 +1153,25 @@
     <string name="MessageRecord_you_updated_group">మీరు ఈ సమూహాన్ని నవీకరించారు.</string>
     <string name="MessageRecord_the_group_was_updated">సమూహం నవీకరించబడింది.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">అవుట్‌గోయింగ్ వాయిస్ కాల్</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_video_call">అవుట్గోయింగ్ వీడియో కాల్</string>
+    <string name="MessageRecord_outgoing_video_call">అవుట్‌గోయింగ్ వీడియో కాల్</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">సమాధానం ఇవ్వని వాయిస్ కాల్</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">సమాధానం లేని వీడియో కాల్</string>
+    <string name="MessageRecord_unanswered_video_call">సమాధానం ఇవ్వని వీడియో కాల్</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">ఇన్‌కమింగ్ వాయిస్ కాల్</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
-    <string name="MessageRecord_incoming_video_call">కొత్తగా వచ్చిన వీడియో కాల్</string>
+    <string name="MessageRecord_incoming_video_call">ఇన్‌కమింగ్ వీడియో కాల్</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">మిస్డ్ వాయిస్ కాల్</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">తప్పిన వీడియో కాల్</string>
+    <string name="MessageRecord_missed_video_call">మిస్డ్ వీడియో కాల్</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">మీరు ఒక వాయిస్ కాల్‌ను నిరాకరించారు</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">మీరు వీడియో కాల్‌ను తిరస్కరించారు</string>
+    <string name="MessageRecord_you_declined_a_video_call">మీరు ఒక వీడియో కాల్‌ను నిరాకరించారు</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s సమూహాన్ని నవీకరించారు.</string>
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s నుంచి మీకు</string>
     <string name="MediaPreviewActivity_media_no_longer_available">మీడియా ఇకపై అందుబాటులో లేదు.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">మీడియాను ప్లే చేయలేకపోయింది.</string>
     <string name="MediaPreviewActivity_error_finding_message">సందేశాన్ని కనుగొనడంలో లోపం.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ఈ మీడియాను భాగస్వామ్యం చేయగల అనువర్తనాన్ని కనుగొనలేకపోయాము.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">మూసివెయ్యి</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">వెతకండి</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">చదవని చాట్‌లను శోధించండి</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">సంభాషణలు, పరిచయాలు మరియు సందేశాల కోసం శోధించండి</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">మీరు వేరొక పరికరంలో Signal మీ ఫోన్ నంబర్ను నమోదు చేసి ఉండవచ్చు. తిరిగి నమోదు చేయడానికి నొక్కండి.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">మీరు ఈ పరికరంపై Signal నుండి లాగ్ అవుట్ అయ్యారు.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ప్రొఫైల్‌ని అప్‌డేట్ చేయడం విఫలమైంది</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">ఇప్పుడు విరాళం ఇవ్వండి</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">Signal కు %1$s మద్దతు ఇస్తారు</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">చదవనివాటి ద్వారా ఫిల్టర్ చేయబడింది</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">ఫిల్టర్ చేయడానికి లాగండి</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">చిట్కా: ఫిల్టర్ చేయడానికి చాట్ జాబితాపై కిందకు లాగండి</string>
 
 </resources>

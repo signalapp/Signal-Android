@@ -1153,23 +1153,23 @@
     <string name="MessageRecord_you_updated_group">ਤੁਸੀਂ ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ।</string>
     <string name="MessageRecord_the_group_was_updated">ਗਰੁੱਪ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ ਗਿਆ ਸੀ।</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">ਆਊਟਗੋਇੰਗ ਵੌਇਸ ਕਾਲ</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_video_call">ਜਾਰੀ ਵੀਡੀਓ ਕਾਲ</string>
+    <string name="MessageRecord_outgoing_video_call">ਆਊਟਗੋਇੰਗ ਵੀਡੀਓ ਕਾਲ</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">ਵੌਇਸ ਕਾਲ ਨਹੀਂ ਚੁੱਕੀ ਗਈ</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">ਜਵਾਬ ਨਾ ਦਿੱਤੀ ਵੀਡੀਓ ਕਾਲ</string>
+    <string name="MessageRecord_unanswered_video_call">ਵੀਡੀਓ ਕਾਲ ਨਹੀਂ ਚੁੱਕੀ ਗਈ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">ਇਨਕਮਿੰਗ ਵੌਇਸ ਕਾਲ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
-    <string name="MessageRecord_incoming_video_call">ਆ ਰਹੀ ਵੀਡੀਓ ਕਾਲ</string>
+    <string name="MessageRecord_incoming_video_call">ਇਨਕਮਿੰਗ ਵੀਡੀਓ ਕਾਲ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">ਵੌਇਸ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">ਖੁੰਝੀ ਵੀਡੀਓ ਕਾਲ</string>
+    <string name="MessageRecord_missed_video_call">ਵੀਡੀਓ ਕਾਲ ਮਿਸ ਹੋਈ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">ਤੁਸੀਂ ਵੌਇਸ ਕਾਲ ਨੂੰ ਅਸਵੀਕਾਰ ਕੀਤਾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">ਤੁਸੀਂ ਵੀਡੀਓ ਕਾਲ ਨੂੰ ਅਸਵੀਕਾਰ ਕੀਤਾ</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s ਨੇ ਤੁਹਾਨੂੰ</string>
     <string name="MediaPreviewActivity_media_no_longer_available">ਮੀਡੀਆ ਹੁਣ ਉਪਲਬਧ ਨਹੀਂ ਹੈ।</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">ਮੀਡੀਆ ਚਲਾਉਣ ਵਿੱਚ ਅਸਮਰੱਥ ਰਹੇ।</string>
     <string name="MediaPreviewActivity_error_finding_message">ਸੁਨੇਹਾ ਲੱਭਣ ਵੇਲੇ ਕੋਈ ਵੇਲੇ ਕੋਈ ਗੜਬੜੀ ਪੇਸ਼ ਆਈ।</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ਇਸ ਮੀਡੀਆ ਨੂੰ ਸਾਂਝਾ ਕਰਨ ਦੇ ਯੋਗ ਕੋਈ ਐਪ ਨਹੀਂ ਹੈ।</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">ਬੰਦ ਕਰੋ</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ਖੋਜੋ</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">ਨਹੀਂ-ਪੜ੍ਹੀਆਂ ਚੈਟਾਂ ਵਿੱਚ ਖੋਜੋ</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ਗੱਲਬਾਤਾਂ, ਸੰਪਰਕਾਂ ਅਤੇ ਸੁਨੇਹਿਆਂ ਲਈ ਖੋਜ ਕਰੋ</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ਇਹ ਸੰਭਾਵਿਤ ਹੈ ਕਿਉਂਕਿ ਤੁਸੀਂ ਇੱਕ ਵੱਖਰੇ ਡਿਵਾਈਸ ’ਤੇ Signal ਨਾਲ ਆਪਣਾ ਫੋਨ ਨੰਬਰ ਰਜਿਸਟਰ ਕੀਤਾ ਸੀ। ਦੁਬਾਰਾ ਰਜਿਸਟਰ ਕਰਨ ਲਈ ਟੈਪ ਕਰੋ।</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">ਤੁਹਾਨੂੰ ਇਸ ਡਿਵਾਈਸ ਉੱਤੇ Signal ਵਿੱਚੋਂ ਲਾਗ ਆਉਟ ਕਰ ਦਿੱਤਾ ਗਿਆ ਹੈ।</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">ਪ੍ਰੋਫ਼ਾਈਲ ਨੂੰ ਅੱਪਡੇਟ ਕਰਨਾ ਅਸਫਲ ਰਿਹਾ</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">ਹੁਣੇ ਦਾਨ ਦਿਓ</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal ਨੂੰ ਆਪਣਾ ਸਹਿਯੋਗ ਦਿੰਦੇ ਹਨ</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">ਨਹੀਂ-ਪੜ੍ਹੀਆਂ ਚੈਟਾਂ ਅਨੁਸਾਰ ਫਿਲਟਰ ਕੀਤਾ ਗਿਆ</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">ਫਿਲਟਰ ਕਰਨ ਲਈ ਖਿੱਚੋ</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">ਸੁਝਾਅ: ਫਿਲਟਰ ਕਰਨ ਲਈ ਚੈਟ ਸੂਚੀ ਨੂੰ ਹੇਠਾਂ ਵੱਲ ਖਿੱਚੋ</string>
 
 </resources>

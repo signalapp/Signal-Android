@@ -1105,25 +1105,25 @@
     <string name="MessageRecord_you_updated_group">អ្នកបានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
     <string name="MessageRecord_the_group_was_updated">ក្រុមនេះ ត្រូវបានធ្វើបច្ចុប្បន្នភាព។</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">ការហៅចេញជាសំឡេង</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">ការហៅចេញជាវីដេអូ</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">ការហៅជាសំឡេងដែលមិនបានឆ្លើយតប</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">ការហៅជាវីដេអូដែលមិនបានឆ្លើយតប</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">ការហៅចូលជាសំឡេង</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">ការហៅចូលជាវីដេអូ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">ការហៅជាសំឡេងខកមិនបានទទួល</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">ខកខានការហៅជាវីដេអូ</string>
+    <string name="MessageRecord_missed_video_call">ការហៅជាវីដេអូខកមិនបានទទួល</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">អ្នកមិនព្រមទទួលការហៅជាសំឡេង</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">អ្នកបានបដិសេធការហៅជាវីដេអូ</string>
+    <string name="MessageRecord_you_declined_a_video_call">អ្នកមិនព្រមទទួលការហៅជាវីដេអូ</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s បានធ្វើបច្ចុប្បន្នភាពក្រុម។</string>
@@ -1926,7 +1926,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s ទៅអ្នក</string>
     <string name="MediaPreviewActivity_media_no_longer_available">ឯកសារមេឌៀលែងមានទៀតហើយ។</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">មិនអាចចាក់មេឌៀបានទេ។</string>
     <string name="MediaPreviewActivity_error_finding_message">មានបញ្ហាក្នុងការស្វែងរកសារ។</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">មិនអាចស្វែងរកកម្មវិធីដែលអាចចែករំលែកឯកសារមេឌៀនេះ។</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">បិទ</string>
@@ -1998,7 +1998,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ស្វែងរក</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">ស្វែងរកការជជែកដែលមិនទាន់អាន</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">ការស្វែងរកសម្រាប់ការសន្ទនា បញ្ជីទំនាក់ទំនង និងសារ</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2030,7 +2030,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">នេះហាក់ដូចជាដោយសារអ្នកបានចុះឈ្មោះលេខទូរស័ព្ទជាមួយSignalនៅលើឧបករណ៍ផ្សេងទៀត។ ចុច ដើម្បីចុះឈ្មោះម្តងទៀត។</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">អ្នកបានចេញពី Signal នៅលើឧបករណ៍នេះ។</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4189,7 +4189,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">បរាជ័យធ្វើបច្ចុប្បន្នភាពគណនី</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">បរិច្ចាគឥឡូវនេះ</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s គាំទ្រ Signal</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5347,10 +5347,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">ត្រងរកសារដែលមិនទាន់អាន</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">ទាញចុះដើម្បីត្រង</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">គន្លឹះ៖ ទាញចុះក្រោមនៅលើបញ្ជីជជែកដើម្បីត្រង</string>
 
 </resources>

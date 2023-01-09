@@ -1153,25 +1153,25 @@
     <string name="MessageRecord_you_updated_group">आपण गट अद्ययावत केले.</string>
     <string name="MessageRecord_the_group_was_updated">गट अद्यतनित केला गेला.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">बाहेर जाणारा व्हाईस कॉल</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_video_call">जाणारा व्हिडिओ कॉल</string>
+    <string name="MessageRecord_outgoing_video_call">बाहेर जाणारा व्हिडिओ कॉल</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">अनुत्तरित व्हॉईस कॉल</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">अनुत्तरित व्हिडिओ कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">येणारा व्हाईस कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">येणारा व्हिडिओ कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">चूकवलेला व्हाईस कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">सुटलेला व्हिडिओ कॉल</string>
+    <string name="MessageRecord_missed_video_call">चूकवलेला व्हिडिओ कॉल</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">आपण व्हाईस कॉलला नकार दिला</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">आपण एक व्हिडिओ कॉलला नकार दिला</string>
+    <string name="MessageRecord_you_declined_a_video_call">आपण व्हिडिओ कॉलला नकार दिला</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s ने गट अद्ययावत केले.</string>
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s कडून आपणाला</string>
     <string name="MediaPreviewActivity_media_no_longer_available">मिडिया आता उपलब्ध नाही.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">मिडीया प्ले करण्यास असमर्थ.</string>
     <string name="MediaPreviewActivity_error_finding_message">संदेश शोधण्यात त्रुटी.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">हे मिडिया शेअर करण्यासाठी सक्षम असे अॅप सापडू शकले नाही.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">बंद करा</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">शोध</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">न वाचलेले चॅटस् शोधा</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">संभाषण, संपर्क, आणि संदेशांसाठी शोधा</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">हे असे असू शकते कारण आपण आपला Signal सोबतचा फोन नंबर वेगळ्या डिव्हाईस वरून नोंदवला आहे. पुन्हा नोंदणी करण्यासाठी टॅप करा.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">आपण या डिव्हाइसवर Signal मधून लॉग आऊट झालेला आहात.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">न वाचलेल्यानुसार फिल्टर केले</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">फिल्टर मध्ये ओढा</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">टिप: फिल्टर करण्यासाठी चॅटस् यादी खाली ओढा</string>
 
 </resources>

@@ -1105,23 +1105,23 @@
     <string name="MessageRecord_you_updated_group">你已更新群組。</string>
     <string name="MessageRecord_the_group_was_updated">該群組已更新。</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">撥打語音通話</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">撥出視訊電話</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">未接的語音通話</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">未接的視訊電話</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">語音通話來電</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">視訊電話來電</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">未接的語音通話</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">錯過視訊電話</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">你拒絕了一個語音通話</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">你已拒絕一通視訊電話</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -1926,7 +1926,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s 給你</string>
     <string name="MediaPreviewActivity_media_no_longer_available">媒體已不存在。</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">無法播放多媒體。</string>
     <string name="MediaPreviewActivity_error_finding_message">查找訊息時發生錯誤。</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">找不到能夠分享此媒體檔案的應用程式。</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">關閉</string>
@@ -1998,7 +1998,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">搜尋</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">搜尋未讀聊天訊息</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">搜尋對話、聯絡人與訊息</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2030,7 +2030,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">這似乎是你將 Signal 的電話號碼註冊在其他的裝置上。觸碰這裡來重新註冊。</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">你已登出此裝置的 Signal 應用程式。</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -5347,10 +5347,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">依據未讀訊息篩選</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">下拉進行篩選</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">提示：下拉聊天清單以進行篩選</string>
 
 </resources>
