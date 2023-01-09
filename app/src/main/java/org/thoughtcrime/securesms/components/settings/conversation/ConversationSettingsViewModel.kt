@@ -164,7 +164,8 @@ sealed class ConversationSettingsViewModel(
             contactLinkState = when {
               recipient.isSelf || recipient.isReleaseNotes || recipient.isBlocked -> ContactLinkState.NONE
               recipient.isSystemContact -> ContactLinkState.OPEN
-              else -> ContactLinkState.ADD
+              recipient.hasE164() -> ContactLinkState.ADD
+              else -> ContactLinkState.NONE
             }
           )
         )

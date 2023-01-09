@@ -272,7 +272,7 @@ public final class RecipientBottomSheetDialogFragment extends BottomSheetDialogF
         buttonStrip.setVisibility(View.GONE);
       }
 
-      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf() || recipient.isBlocked() || recipient.isReleaseNotes()) {
+      if (recipient.isSystemContact() || recipient.isGroup() || recipient.isSelf() || recipient.isBlocked() || recipient.isReleaseNotes() || !recipient.hasE164()) {
         addContactButton.setVisibility(View.GONE);
       } else {
         addContactButton.setVisibility(View.VISIBLE);
