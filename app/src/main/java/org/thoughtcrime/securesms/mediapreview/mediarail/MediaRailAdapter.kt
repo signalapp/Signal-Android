@@ -6,7 +6,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ThumbnailView
@@ -78,7 +77,6 @@ class MediaRailAdapter(
     }
 
     override fun bind(model: MediaRailItem) {
-      imageLoadingListener.onRequest()
       image.setImageResource(glideRequests, model.media.uri, 0, 0, false, imageLoadingListener)
       image.setOnClickListener { onRailItemSelected(model.media) }
       captionIndicator.visibility = if (model.media.caption.isPresent) View.VISIBLE else View.GONE
@@ -88,10 +86,14 @@ class MediaRailAdapter(
     }
   }
 
-  abstract class ImageLoadingListener : RequestListener<Drawable?> {
+  abstract class ImageLoadingListener : ThumbnailView.ThumbnailRequestListener {
     private val activeJobs = AtomicInteger()
-    fun onRequest() {
+    final override fun onLoadScheduled() {
       activeJobs.incrementAndGet()
+    }
+
+    final override fun onLoadCanceled() {
+      activeJobs.decrementAndGet()
     }
 
     final override fun onLoadFailed(e: GlideException?, model: Any, target: Target<Drawable?>, isFirstResource: Boolean): Boolean {

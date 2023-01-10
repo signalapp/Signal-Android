@@ -26,6 +26,7 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
@@ -422,7 +423,7 @@ public class ThumbnailView extends FrameLayout {
     return setImageResource(glideRequests, uri, width, height, true, null);
   }
 
-  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable RequestListener<Drawable> listener) {
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable ThumbnailRequestListener listener) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
@@ -445,7 +446,17 @@ public class ThumbnailView extends FrameLayout {
       request = request.transforms(new CenterCrop());
     }
 
-    request.into(new GlideDrawableListeningTarget(image, future));
+    GlideDrawableListeningTarget target = new GlideDrawableListeningTarget(image, future);
+    Request previousRequest = target.getRequest();
+    boolean previousRequestRunning = previousRequest != null && previousRequest.isRunning();
+    request.into(target);
+    if (listener != null) {
+      listener.onLoadScheduled();
+      if (previousRequestRunning) {
+        listener.onLoadCanceled();
+      }
+    }
+
     blurhash.setImageDrawable(null);
 
     return future;
@@ -570,6 +581,11 @@ public class ThumbnailView extends FrameLayout {
       return Math.max(params.height, 0);
     }
     return 0;
+  }
+
+  public interface ThumbnailRequestListener extends RequestListener<Drawable> {
+    void onLoadCanceled();
+    void onLoadScheduled();
   }
 
   private class ThumbnailClickDispatcher implements View.OnClickListener {
