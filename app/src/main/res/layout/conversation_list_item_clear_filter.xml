@@ -20,6 +20,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
         android:text="@string/ChatFilter__tip_pull_down"
         android:textAppearance="@style/Signal.Text.BodySmall"
         android:textColor="@color/signal_colorOnSurfaceVariant"
