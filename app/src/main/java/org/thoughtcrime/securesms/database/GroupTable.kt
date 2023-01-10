@@ -384,7 +384,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   private fun queryGroupsByRecency(groupQuery: GroupQuery): Reader {
     val query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms)
     val sql = """
-      SELECT * 
+      SELECT $TABLE_NAME.*
       FROM $TABLE_NAME LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} 
       WHERE ${query.where} 
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
