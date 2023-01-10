@@ -154,7 +154,7 @@ class RemappedRecordTables internal constructor(context: Context?, databaseHelpe
       .run()
 
     if (count > 0) {
-      Log.w(TAG, "Deleted $count invalid recipient mappings!", true)
+      Log.w(TAG, "Deleted $count invalid thread mappings!", true)
     }
   }
 

@@ -2727,6 +2727,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     Map<RecipientId, EarlyReceiptCache.Receipt> earlyDeliveryReceipts = earlyDeliveryReceiptCache.remove(message.getSentTimeMillis());
 
+    if (earlyDeliveryReceipts.size() > 0) {
+      Log.w(TAG, "Found early delivery receipts for " + message.getSentTimeMillis() + ". Applying them.");
+    }
+
     ContentValues contentValues = new ContentValues();
     contentValues.put(DATE_SENT, message.getSentTimeMillis());
     contentValues.put(MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ);
