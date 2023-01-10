@@ -1105,27 +1105,27 @@
     <string name="MessageRecord_you_updated_group">그룹을 업데이트했습니다.</string>
     <string name="MessageRecord_the_group_was_updated">그룹이 업데이트 되었습니다.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">발신 음성 통화</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">발신 영상 통화</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">미응답 음성 통화</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_video_call">응답하지 않은 영상 통화</string>
+    <string name="MessageRecord_unanswered_video_call">미응답 영상 통화</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">수신 음성 통화</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">수신 영상 통화</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">부재중 음성 통화</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">부재중 영상 통화</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">음성 통화를 거부했습니다.</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">영상 통화를 거부했습니다.</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
-    <string name="MessageRecord_call_message_with_date">%1$s, %2$s</string>
+    <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s 님이 그룹을 업데이트했습니다.</string>
     <string name="MessageRecord_s_joined_signal">%1$s 님이 온라인입니다!</string>
     <string name="MessageRecord_you_disabled_disappearing_messages">사라지는 메시지 기능을 비활성화했습니다.</string>
@@ -1926,7 +1926,7 @@
     <string name="MediaPreviewActivity_s_to_you">보낸 사람: %1$s 님, 받는 사람: 나</string>
     <string name="MediaPreviewActivity_media_no_longer_available">미디어를 더 이상 이용할 수 없습니다.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">미디어를 재생할 수 없습니다.</string>
     <string name="MediaPreviewActivity_error_finding_message">메시지 검색 중 오류가 발생했습니다.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">미디어를 공유할 수 있는 앱을 찾을 수 없습니다.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">닫기</string>
@@ -1998,7 +1998,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">검색</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">읽지 않은 채팅을 검색합니다.</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">대화, 연락처와 메시지 검색</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2030,7 +2030,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">다른 기기에서 내 휴대 전화 번호로 Signal에 등록한 것으로 보입니다. 탭하여 다시 등록하세요.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">이 기기의 Signal에서 로그아웃했습니다.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -5347,10 +5347,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">읽지 않은 메시지로 필터링함</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">당겨서 필터링</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">팁: 아래로 당겨서 채팅 목록을 필터링하세요.</string>
 
 </resources>

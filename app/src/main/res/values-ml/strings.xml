@@ -1153,23 +1153,23 @@
     <string name="MessageRecord_you_updated_group">നിങ്ങൾ ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
     <string name="MessageRecord_the_group_was_updated">ഗ്രൂപ്പ് അപ്‌ഡേറ്റുചെയ്‌തു.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">ഔട്ട്ഗോയിംഗ് വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">ഔട്ട്ഗോയിംഗ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">ഉത്തരം ലഭിക്കാത്ത വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">ഉത്തരം ലഭിക്കാത്ത വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">ഇൻകമിംഗ് വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">ഇൻകമിംഗ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">മിസ്‌ഡ് വോയ്‌സ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_missed_video_call">നഷ്‌ടമായ വീഡിയോ കോൾ</string>
+    <string name="MessageRecord_missed_video_call">മിസ്‌ഡ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">നിങ്ങൾ ഒരു വോയ്‌സ് കോൾ നിരസിച്ചു</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
     <string name="MessageRecord_you_declined_a_video_call">നിങ്ങൾ ഒരു വീഡിയോ കോൾ നിരസിച്ചു</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s എന്നയാൾ നിങ്ങൾക്ക് അയച്ചത്</string>
     <string name="MediaPreviewActivity_media_no_longer_available">മീഡിയ ഇനി ലഭ്യമല്ല.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">മീഡിയ പ്ലേ ചെയ്യാൻ കഴിയുന്നില്ല.</string>
     <string name="MediaPreviewActivity_error_finding_message">സന്ദേശം കണ്ടെത്തുന്നതിൽ പിശക്.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ഈ മീഡിയ പങ്കിടാൻ കഴിയുന്ന ഒരു അപ്ലിക്കേഷൻ കണ്ടെത്താനായില്ല.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">അടയ്ക്കുക</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">തിരയുക</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">വായിക്കാത്ത ചാറ്റുകൾ തിരയുക</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">സംഭാഷണങ്ങൾ, കോൺ‌ടാക്റ്റുകൾ, സന്ദേശങ്ങൾ എന്നിവയ്ക്കായി തിരയുക</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">നിങ്ങളുടെ ഫോൺ നമ്പർ മറ്റൊരു ഉപകരണത്തിൽ Signal-ൽ രജിസ്റ്റർ ചെയ്തതിനാലാകാം ഇത്. വീണ്ടും രജിസ്റ്റർ ചെയ്യാൻ ടാപ്പുചെയ്യുക.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">ഈ ഉപകരണത്തിലെ Signal-ൽ നിന്ന് നിങ്ങൾ ലോഗൗട്ട് ചെയ്‌തു.</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">പ്രൊഫൈൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നതിൽ പരാജയപ്പെട്ടു</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">ഇപ്പോൾ സംഭാവന ചെയ്യുക</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s Signal-നെ പിന്തുണയ്‌ക്കുന്നു</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">വായിക്കാത്തവ അനുസരിച്ച് ഫിൽട്ടർ ചെയ്‌തു</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">ഫിൽട്ടർ ചെയ്യുന്നതിന് വലിക്കുക</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">ടിപ്പ്: ഫിൽട്ടർ ചെയ്യുന്നതിന് ചാറ്റ് ലിസ്റ്റ് താഴേക്ക് വലിക്കുക</string>
 
 </resources>

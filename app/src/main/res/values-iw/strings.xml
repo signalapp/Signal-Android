@@ -2214,7 +2214,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">חפש</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">חיפוש בצ\'אטים שלא נקראו</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">חפש שיחות, אנשי קשר והודעות</string>
 
     <!-- Material3 Search Toolbar -->
