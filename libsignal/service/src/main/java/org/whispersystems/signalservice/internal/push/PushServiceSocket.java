@@ -320,8 +320,9 @@ public class PushServiceSocket {
     this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
-  public void requestSmsVerificationCode(boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    String path = String.format(CREATE_ACCOUNT_SMS_PATH, credentialsProvider.getE164(), androidSmsRetriever ? "android-2021-03" : "android");
+  public void requestSmsVerificationCode(Locale locale, boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
+    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
+    String              path    = String.format(CREATE_ACCOUNT_SMS_PATH, credentialsProvider.getE164(), androidSmsRetriever ? "android-2021-03" : "android");
 
     if (captchaToken.isPresent()) {
       path += "&captcha=" + captchaToken.get();
@@ -329,7 +330,7 @@ public class PushServiceSocket {
       path += "&challenge=" + challenge.get();
     }
 
-    makeServiceRequest(path, "GET", null, NO_HEADERS, new VerificationCodeResponseHandler(), Optional.empty());
+    makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler(), Optional.empty());
   }
 
   public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {

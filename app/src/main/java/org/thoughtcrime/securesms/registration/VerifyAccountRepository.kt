@@ -44,7 +44,7 @@ class VerifyAccountRepository(private val context: Application) {
       if (mode == Mode.PHONE_CALL) {
         accountManager.requestVoiceVerificationCode(Locale.getDefault(), Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       } else {
-        accountManager.requestSmsVerificationCode(mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
+        accountManager.requestSmsVerificationCode(Locale.getDefault(), mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       }
     }.subscribeOn(Schedulers.io())
   }

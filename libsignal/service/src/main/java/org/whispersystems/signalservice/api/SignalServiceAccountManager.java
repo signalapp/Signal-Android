@@ -239,9 +239,9 @@ public class SignalServiceAccountManager {
    * @param captchaToken                 If the user has done a CAPTCHA, include this.
    * @param challenge                    If present, it can bypass the CAPTCHA.
    */
-  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(Locale locale, boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
     try {
-      this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+      this.pushServiceSocket.requestSmsVerificationCode(locale, androidSmsRetrieverSupported, captchaToken, challenge);
       return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
