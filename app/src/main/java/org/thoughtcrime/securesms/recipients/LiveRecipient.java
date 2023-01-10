@@ -50,11 +50,11 @@ public final class LiveRecipient {
   LiveRecipient(@NonNull Context context, @NonNull Recipient defaultRecipient) {
     this.context                  = context.getApplicationContext();
     this.liveData                 = new MutableLiveData<>(defaultRecipient);
-    this.recipient      = new AtomicReference<>(defaultRecipient);
-    this.recipientTable = SignalDatabase.recipients();
-    this.groupDatabase  = SignalDatabase.groups();
-    this.distributionListTables = SignalDatabase.distributionLists();
-    this.observers              = new CopyOnWriteArraySet<>();
+    this.recipient                = new AtomicReference<>(defaultRecipient);
+    this.recipientTable           = SignalDatabase.recipients();
+    this.groupDatabase            = SignalDatabase.groups();
+    this.distributionListTables   = SignalDatabase.distributionLists();
+    this.observers                = new CopyOnWriteArraySet<>();
     this.foreverObserver          = recipient -> {
       ThreadUtil.postToMain(() -> {
         for (RecipientForeverObserver o : observers) {
