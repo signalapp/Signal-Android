@@ -97,7 +97,12 @@ public final class RegistrationRepository {
   {
     return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
-        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), response.getPin(), response.getKbsData());
+        String pin = response.getPin();
+        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData());
+
+        if (pin != null && !pin.isEmpty()) {
+          PinState.onPinChangedOrCreated(context, pin, SignalStore.pinValues().getKeyboardType());
+        }
 
         JobManager jobManager = ApplicationDependencies.getJobManager();
         jobManager.add(new DirectoryRefreshJob(false));

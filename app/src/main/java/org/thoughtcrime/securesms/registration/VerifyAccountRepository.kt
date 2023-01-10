@@ -75,10 +75,6 @@ class VerifyAccountRepository(private val context: Application) {
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccountWithReregistrationData(registrationData: RegistrationData, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
-    return verifyAccountWithPin(registrationData, "", kbsPinDataProducer)
-  }
-
   fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)

@@ -111,11 +111,12 @@ public final class RegistrationViewModel extends BaseRegistrationViewModel {
     return verifyAccountRepository.verifyAccount(getRegistrationData())
         .flatMap(verifyAccountWithoutKbsResponse -> {
           VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(verifyAccountWithoutKbsResponse);
+          String                  pin       = SignalStore.kbsValues().getPin();
 
-          if (processor.registrationLock() && SignalStore.kbsValues().getRegistrationLockToken() != null) {
+          if (processor.registrationLock() && SignalStore.kbsValues().getRegistrationLockToken() != null && pin != null) {
             KbsPinData pinData = new KbsPinData(SignalStore.kbsValues().getOrCreateMasterKey(), SignalStore.kbsValues().getRegistrationLockTokenResponse());
 
-            return verifyAccountRepository.verifyAccountWithReregistrationData(getRegistrationData(), () -> pinData)
+            return verifyAccountRepository.verifyAccountWithPin(getRegistrationData(), pin, () -> pinData)
                 .map(verifyAccountWithPinResponse -> {
                   if (verifyAccountWithPinResponse.getResult().isPresent() && verifyAccountWithPinResponse.getResult().get().getKbsData() != null) {
                     return verifyAccountWithPinResponse;
