@@ -1287,7 +1287,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       paymentViewStub.setVisibility(View.GONE);
 
       MmsMessageRecord mmsMessageRecord = (MmsMessageRecord) messageRecord;
-      giftViewStub.get().setGiftBadge(glideRequests, Objects.requireNonNull(mmsMessageRecord.getGiftBadge()), messageRecord.isOutgoing(), giftMessageViewCallback);
+      giftViewStub.get().setGiftBadge(glideRequests, Objects.requireNonNull(mmsMessageRecord.getGiftBadge()), messageRecord.isOutgoing(), giftMessageViewCallback, messageRecord.getRecipient());
       giftViewStub.get().setVisibility(VISIBLE);
 
       footer.setVisibility(VISIBLE);

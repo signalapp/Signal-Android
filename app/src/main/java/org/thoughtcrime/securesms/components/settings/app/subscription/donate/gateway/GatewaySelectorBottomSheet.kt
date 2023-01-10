@@ -179,7 +179,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
       space(6.dp)
       noPadTextPref(
         title = DSLSettingsText.from(
-          R.string.GatewaySelectorBottomSheet__send_a_gift_badge,
+          R.string.GatewaySelectorBottomSheet__donate_for_a_friend,
           DSLSettingsText.CenterModifier,
           DSLSettingsText.BodyLargeModifier,
           DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))

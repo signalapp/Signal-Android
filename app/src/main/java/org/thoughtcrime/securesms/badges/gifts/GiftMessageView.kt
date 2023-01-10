@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.badges.gifts.Gifts.formatExpiry
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.GlideRequests
+import org.thoughtcrime.securesms.recipients.Recipient
 
 /**
  * Displays a gift badge sent to or received from a user, and allows the user to
@@ -49,8 +50,7 @@ class GiftMessageView @JvmOverloads constructor(
     }
   }
 
-  fun setGiftBadge(glideRequests: GlideRequests, giftBadge: GiftBadge, isOutgoing: Boolean, callback: Callback) {
-    titleView.setText(R.string.GiftMessageView__gift_badge)
+  fun setGiftBadge(glideRequests: GlideRequests, giftBadge: GiftBadge, isOutgoing: Boolean, callback: Callback, recipient: Recipient) {
     descriptionView.text = giftBadge.formatExpiry(context)
     actionView.icon = null
     actionView.setOnClickListener { callback.onViewGiftBadgeClicked() }
@@ -58,7 +58,9 @@ class GiftMessageView @JvmOverloads constructor(
 
     if (isOutgoing) {
       actionView.setText(R.string.GiftMessageView__view)
+      titleView.text = context.getString(R.string.GiftMessageView__donation_to_s, recipient.getDisplayName(context))
     } else {
+      titleView.text = context.getString(R.string.GiftMessageView__s_donated_to_signal_on, recipient.getShortDisplayName(context))
       when (giftBadge.redemptionState) {
         GiftBadge.RedemptionState.REDEEMED -> {
           stopAnimationIfNeeded()

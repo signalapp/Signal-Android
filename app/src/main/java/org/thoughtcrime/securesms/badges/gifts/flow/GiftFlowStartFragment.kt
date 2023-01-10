@@ -70,7 +70,7 @@ class GiftFlowStartFragment : DSLSettingsFragment(
 
       noPadTextPref(
         title = DSLSettingsText.from(
-          R.string.GiftFlowStartFragment__gift_a_badge,
+          R.string.GiftFlowStartFragment__donate_for_a_friend,
           DSLSettingsText.CenterModifier,
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_Headline)
         )
@@ -79,7 +79,7 @@ class GiftFlowStartFragment : DSLSettingsFragment(
       space(DimensionUnit.DP.toPixels(16f).toInt())
 
       noPadTextPref(
-        title = DSLSettingsText.from(R.string.GiftFlowStartFragment__gift_someone_a_badge, DSLSettingsText.CenterModifier)
+        title = DSLSettingsText.from(resources.getQuantityString(R.plurals.GiftFlowStartFragment__support_signal_by, 30, 30), DSLSettingsText.CenterModifier)
       )
 
       space(DimensionUnit.DP.toPixels(16f).toInt())

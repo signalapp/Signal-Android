@@ -34,7 +34,7 @@ object GiftRowItem {
     override fun bind(model: Model) {
       binding.check.visible = false
       binding.badge.setBadge(model.giftBadge)
-      binding.tagline.setText(R.string.GiftRowItem__send_a_gift_badge)
+      binding.tagline.visible = false
 
       val price = FiatMoneyUtil.format(
         context.resources,

@@ -247,7 +247,7 @@ class ManageDonationsFragment :
 
     if (FeatureFlags.giftBadgeSendSupport() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
-        title = DSLSettingsText.from(R.string.ManageDonationsFragment__gift_a_badge),
+        title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
         icon = DSLSettingsIcon.from(R.drawable.ic_gift_24),
         onClick = {
           startActivity(Intent(requireContext(), GiftFlowActivity::class.java))

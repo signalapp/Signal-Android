@@ -75,7 +75,7 @@ class ViewSentGiftBottomSheet : DSLSettingsBottomSheetFragment() {
       if (state.recipient != null) {
         noPadTextPref(
           title = DSLSettingsText.from(
-            charSequence = getString(R.string.ViewSentGiftBottomSheet__youve_gifted_a_badge, state.recipient.getDisplayName(requireContext())),
+            charSequence = getString(R.string.ViewSentGiftBottomSheet__youve_made_a_donation_to_signal, state.recipient.getDisplayName(requireContext())),
             DSLSettingsText.CenterModifier
           )
         )

@@ -57,8 +57,8 @@ class DonationErrorParams<V> private constructor(
     private fun <V> getGenericRedemptionError(context: Context, genericError: DonationError.BadgeRedemptionError.GenericError, callback: Callback<V>): DonationErrorParams<V> {
       return when (genericError.source) {
         DonationErrorSource.GIFT -> DonationErrorParams(
-          title = R.string.DonationsErrors__failed_to_send_gift_badge,
-          message = R.string.DonationsErrors__could_not_send_gift_badge,
+          title = R.string.DonationsErrors__donation_failed,
+          message = R.string.DonationsErrors__your_payment_was_processed_but,
           positiveAction = callback.onContactSupport(context),
           negativeAction = null
         )
@@ -74,14 +74,14 @@ class DonationErrorParams<V> private constructor(
     private fun <V> getVerificationErrorParams(context: Context, verificationError: DonationError.GiftRecipientVerificationError, callback: Callback<V>): DonationErrorParams<V> {
       return when (verificationError) {
         is DonationError.GiftRecipientVerificationError.FailedToFetchProfile -> DonationErrorParams(
-          title = R.string.DonationsErrors__couldnt_send_gift,
-          message = R.string.DonationsErrors__please_check_your_network_connection,
+          title = R.string.DonationsErrors__cannot_send_donation,
+          message = R.string.DonationsErrors__your_donation_could_not_be_sent,
           positiveAction = callback.onOk(context),
           negativeAction = null
         )
         else -> DonationErrorParams(
-          title = R.string.DonationsErrors__cant_send_gift,
-          message = R.string.DonationsErrors__target_does_not_support_gifting,
+          title = R.string.DonationsErrors__cannot_send_donation,
+          message = R.string.DonationsErrors__this_user_cant_receive_donations_until,
           positiveAction = callback.onOk(context),
           negativeAction = null
         )

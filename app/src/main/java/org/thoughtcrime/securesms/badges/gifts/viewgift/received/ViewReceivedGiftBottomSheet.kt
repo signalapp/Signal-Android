@@ -157,7 +157,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
         if (state.recipient != null && !isGiftBadgeRedeemed(state.giftBadge)) {
           noPadTextPref(
             title = DSLSettingsText.from(
-              charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__s_sent_you_a_gift, state.recipient.getShortDisplayName(requireContext())),
+              charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__s_made_a_donation_for_you, state.recipient.getShortDisplayName(requireContext())),
               DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
             )
           )
@@ -179,7 +179,7 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
   private fun DSLConfiguration.presentSubheading(recipient: Recipient) {
     noPadTextPref(
       title = DSLSettingsText.from(
-        charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__youve_received_a_gift_badge, recipient.getDisplayName(requireContext())),
+        charSequence = requireContext().getString(R.string.ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal, recipient.getShortDisplayName(requireContext())),
         DSLSettingsText.CenterModifier
       )
     )
@@ -206,7 +206,8 @@ class ViewReceivedGiftBottomSheet : DSLSettingsBottomSheetFragment() {
       else -> {
         customPref(
           BadgeDisplay112.Model(
-            badge = badge
+            badge = badge,
+            withDisplayText = false
           )
         )
 

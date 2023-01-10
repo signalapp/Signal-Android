@@ -224,7 +224,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private @Nullable CharSequence resolveBody(@Nullable CharSequence body, @NonNull QuoteModel.Type quoteType) {
-    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__gift) : body;
+    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__donation_for_a_friend) : body;
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
