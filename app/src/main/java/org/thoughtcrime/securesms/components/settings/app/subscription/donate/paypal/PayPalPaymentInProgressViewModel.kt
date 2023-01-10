@@ -127,12 +127,20 @@ class PayPalPaymentInProgressViewModel(
   ) {
     Log.d(TAG, "Proceeding with one-time payment pipeline...", true)
     store.update { DonationProcessorStage.PAYMENT_PIPELINE }
+    val verifyUser = if (request.donateToSignalType == DonateToSignalType.GIFT) {
+      OneTimeDonationRepository.verifyRecipientIsAllowedToReceiveAGift(request.recipientId)
+    } else {
+      Completable.complete()
+    }
 
-    disposables += payPalRepository
-      .createOneTimePaymentIntent(
-        amount = request.fiat,
-        badgeRecipient = request.recipientId,
-        badgeLevel = request.level
+    disposables += verifyUser
+      .andThen(
+        payPalRepository
+          .createOneTimePaymentIntent(
+            amount = request.fiat,
+            badgeRecipient = request.recipientId,
+            badgeLevel = request.level
+          )
       )
       .flatMap(routeToPaypalConfirmation)
       .flatMap { result ->

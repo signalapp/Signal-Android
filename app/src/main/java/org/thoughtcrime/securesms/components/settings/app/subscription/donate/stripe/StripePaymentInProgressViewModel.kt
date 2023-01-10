@@ -178,8 +178,13 @@ class StripePaymentInProgressViewModel(
     Log.w(TAG, "Beginning one-time payment pipeline...", true)
 
     val amount = request.fiat
+    val verifyUser = if (request.donateToSignalType == DonateToSignalType.GIFT) {
+      OneTimeDonationRepository.verifyRecipientIsAllowedToReceiveAGift(request.recipientId)
+    } else {
+      Completable.complete()
+    }
 
-    val continuePayment: Single<StripeIntentAccessor> = stripeRepository.continuePayment(amount, request.recipientId, request.level, paymentSourceProvider.paymentSourceType)
+    val continuePayment: Single<StripeIntentAccessor> = verifyUser.andThen(stripeRepository.continuePayment(amount, request.recipientId, request.level, paymentSourceProvider.paymentSourceType))
     val intentAndSource: Single<Pair<StripeIntentAccessor, StripeApi.PaymentSource>> = Single.zip(continuePayment, paymentSourceProvider.paymentSource, ::Pair)
 
     disposables += intentAndSource.flatMapCompletable { (paymentIntent, paymentSource) ->
