@@ -1887,11 +1887,11 @@
     <string name="ThreadRecord_video">ویدئو</string>
     <string name="ThreadRecord_chat_session_refreshed">نشست گفتگو تازه‌سازی شد</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__you_received_a_gift">یک هدیه دریافت کردید</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_sent_a_gift">شما یک هدیه فرستادید</string>
+    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">شما یک نشان هدیه آزادسازی کردید</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">با %1$s به استوری شما واکنش نشان داد</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2267,7 +2267,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">دیگر در دسترس نیست</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__gift">هدیه</string>
+    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">رفتن به پایین</string>
@@ -4355,7 +4355,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">سایر روش‌های اهداء</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">هدیه دادن یک نشان</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
 
     <string name="Boost__enter_custom_amount">وارد کردن مبلغ دلخواه</string>
     <string name="Boost__one_time_contribution">کمک اهدایی یک‌-باره</string>
@@ -4411,10 +4411,10 @@
     <string name="DonationsErrors__failed_to_validate_badge">اعتبار نشان تایید نشد</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">اعتبار پاسخ سرور تایید نشد. لطفاً با پشتیبانی تماس بگیرید.</string>
-    <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">نشان هدیه ارسال نشد</string>
-    <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">نشان هدیه ارسال نشد. لطفاً با پشتیبانی تماس بگیرید.</string>
+    <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
+    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
+    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">نشان شما به حساب کاربری‌تان اضافه نشد، اما ممکن است هزینه‌ای از شما کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_payment_is_still">پرداخت شما هنوز در حال پردازش است. این فرآیند بسته به اتصال اینترنت شما ممکن است چند دقیقه به طول بیانجامد.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">لغو اشتراک انجام نشد</string>
@@ -4423,16 +4423,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">خطای شبکه. اتصال خود را بررسی و دوباره امتحان کنید.</string>
     <string name="NetworkFailure__retry">تلاش مجدد</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cant_send_gift">ارسال هدیه ممکن نیست</string>
+    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">این گیرنده از نسخه‌ای از سیگنال استفاده می‌کند که نمی‌تواند نشان‌های هدیه را دریافت کند. وقتی به آخرین نسخه به‌روزرسانی کند، می‌تواند هدیه دریافت کند.</string>
-    <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__couldnt_send_gift">ارسال هدیه انجام نشد</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__please_check_your_network_connection">هدیه شما به‌دلیل خطای شبکه ارسال نشد. اتصال خود را بررسی و دوباره تلاش کنید.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">نشان هدیه</string>
+    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <!-- Gift message view title for incoming donations -->
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">آزادسازی</string>
     <!-- Gift badge view action label -->
@@ -4643,7 +4643,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">یک‌باره</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__gift">هدیه</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4993,22 +4993,23 @@
         <item quantity="one">%1$s · به مدت %2$d روز</item>
         <item quantity="other">%1$s · به مدت %2$d روز</item>
     </plurals>
-    <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">ارسال نشان هدیه</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">یک نشان هدیه دهید</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">با اهدای کمک مالی به سیگنال به نام شخص دیگر، به او یک نشان هدیه دهید. او یک نشان برای نمایش در عکس نمایه خود دریافت خواهد کرد.</string>
+    <plurals name="GiftFlowStartFragment__support_signal_by">
+        <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
+        <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
+    </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">بعدی</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">انتخاب گیرنده</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_gift">تایید هدیه</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">ارسال به</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">هدیه شما در یک پیام 1 به 1 به گیرنده ارسال خواهد شد. پیام خود را در پایین اضافه کنید.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">کمک مالی یک‌باره</string>
     <!-- Hint for add message input -->
@@ -5016,27 +5017,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">در حال تایید گیرندگان…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s یک هدیه برای شما فرستاد</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">از پشتیبانی شما سپاسگزاریم!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">شما از %1$s یک نشان هدیه دریافت کرده‌اید! با نمایش این نشان در نمایه‌تان، به سیگنال در ایجاد آگاهی کمک کنید.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">شما به %1$s یک نشان هدیه داده‌اید. وقتی آن را قبول کند، به او حق انتخاب داده می‌شود که نشان خود را در معرض دید قرار دهد یا آن را پنهان کند.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">آزادسازی</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">حالا نه</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_gift">آزادسازی هدیه…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">می‌توانید بعدا نشان خود را آزادسازی کنید.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">شما به %1$s یک نشان هدیه داده‌اید. وقتی آن را قبول کند، به او حق انتخاب داده می‌شود که نشان خود را در معرض دید قرار دهد یا آن را پنهان کند.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">نشان هدیه شما منقضی شده است</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Your badge has expired</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">نشان هدیه شما منقضی شده است، و دیگر در نمایه‌تان برای دیگران قابل مشاهده نیست.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">برای ادامهٔ حمایت از تکنولوژی‌ای که برای شما ساخته شده است. لطفاً تبدیل شدن به یک حامی ماهانه را در نظر بگیرید.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5090,12 +5091,12 @@
     <string name="ContactSearchMediator__delete_the_custom">استوری سفارشی «%1$s» حذف شود؟</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">حذف</string>
-    <!-- Gift expiry days remaining -->
+    <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="one">%1$d روز باقی مانده</item>
         <item quantity="other">%1$d روز باقی مانده</item>
     </plurals>
-    <!-- Gift expiry hours remaining -->
+    <!-- Donation for a friend expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
         <item quantity="one">%1$d ساعت باقی مانده</item>
         <item quantity="other">%1$d ساعت باقی مانده</item>
@@ -5105,7 +5106,7 @@
         <item quantity="one">%1$d دقیقه باقی مانده</item>
         <item quantity="other">%1$d دقیقه باقی مانده</item>
     </plurals>
-    <!-- Gift expiry expired -->
+    <!-- Donation for a friend expiry expired -->
     <string name="Gifts__expired">منقضی شده</string>
 
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
@@ -5408,8 +5409,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">کارت اعتباری یا دبیت کارت</string>
-    <!-- Sheet summary when giving a gift -->
-    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">ارسال نشان هدیه</string>
+    <!-- Sheet summary when giving donating for a friend -->
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">در حال لغو…</string>

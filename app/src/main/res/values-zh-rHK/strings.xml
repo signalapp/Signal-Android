@@ -1816,11 +1816,11 @@
     <string name="ThreadRecord_video">影片</string>
     <string name="ThreadRecord_chat_session_refreshed">聊天工作階段已重新整理</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__you_received_a_gift">您收到一份禮品</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_sent_a_gift">您送出一份禮品</string>
+    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_gift_badge">你已兌換一枚饋贈徽章</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">對你的限時動態表達了 %1$s 心情</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2191,7 +2191,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">不再可用</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__gift">禮品</string>
+    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">捲動到最底</string>
@@ -4253,7 +4253,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">其他方式捐贈</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__gift_a_badge">饋贈徽章</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
 
     <string name="Boost__enter_custom_amount">請輸入自訂金額</string>
     <string name="Boost__one_time_contribution">單次捐款</string>
@@ -4309,10 +4309,10 @@
     <string name="DonationsErrors__failed_to_validate_badge">驗證徽章失敗</string>
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">無法驗證伺服器回應。請聯絡支援。</string>
-    <!-- Displayed as title when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__failed_to_send_gift_badge">無法傳送饋贈徽章</string>
-    <!-- Displayed as message when some generic error happens during gift badge sending -->
-    <string name="DonationsErrors__could_not_send_gift_badge">無法傳送饋贈徽章。請聯絡支援團隊。</string>
+    <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
+    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
+    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
     <string name="DonationsErrors__your_badge_could_not">系統無法將徽章新增至你的帳戶，但可能已向你收取相關款項。請聯絡支援團隊。</string>
     <string name="DonationsErrors__your_payment_is_still">您的付款仍在處理中。可能需時幾分鐘，視乎您的連線而定。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">無法取消定期贊助</string>
@@ -4321,16 +4321,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
     <string name="NetworkFailure__retry">重試</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cant_send_gift">無法傳送禮品</string>
+    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__target_does_not_support_gifting">此收件人使用的 Signal 版本無法接收饋贈徽章。當他們更新到最新版本時，便可以接收禮品。</string>
-    <!-- Displayed as a dialog title when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__couldnt_send_gift">無法傳送禮品</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__please_check_your_network_connection">由於發生網路錯誤，系統無法傳送你的禮品。請檢查你的網路連線，然後再試一次。</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__gift_badge">饋贈徽章</string>
+    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <!-- Gift message view title for incoming donations -->
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">換領</string>
     <!-- Gift badge view action label -->
@@ -4541,7 +4541,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">單次</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__gift">禮品</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4883,22 +4883,22 @@
     <plurals name="GiftRowItem_s_dot_d_day_duration">
         <item quantity="other">%1$s · 為期 %2$d 天</item>
     </plurals>
-    <!-- Tagline for gift row items -->
-    <string name="GiftRowItem__send_a_gift_badge">贈送一枚禮品徽章</string>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_a_badge">饋贈徽章</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
     <!-- Description text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__gift_someone_a_badge">饋贈一枚徽章給特別的人，就能以對方的名義捐款給 Signal。對方將獲得一枚徽章，可於其個人資料中展示。</string>
+    <plurals name="GiftFlowStartFragment__support_signal_by">
+        <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
+    </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">下一步</string>
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">選擇收取人</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_gift">確認禮品</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">傳送給</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__your_gift_will_be_sent_in">您的禮品將以一對一訊息傳送給收取人。請於下方新增您自己的訊息。</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">單次捐款</string>
     <!-- Hint for add message input -->
@@ -4906,27 +4906,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">正在驗證收取人…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_sent_you_a_gift">%1$s 送您一份禮品</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">感謝您力撐支持！</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__youve_received_a_gift_badge">您已收到 %1$s 贈送的禮品徽章！不妨在您的個人資料中展示此徽章，讓人一呼百應，以捐款支持 Signal。</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_gifted_a_badge">您已饋贈一枚徽章給 %1$s。當對方接受時，將可自行選擇顯示或隱藏自己的徽章。</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">換領</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">現在不要</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_gift">正在換領禮品…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">您可稍後換領您的徽章。</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_gifted_a_badge_to_s">您已饋贈一枚徽章給 %1$s。當對方接受時，將可自行選擇顯示或隱藏自己的徽章。</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired">您的禮品徽章已過期</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Your badge has expired</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is">您的禮品徽章已過期，不會再在您的個人資料中顯示。</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">如欲繼續支持為您而設的科技，請考慮成為月供延續人。</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -4975,11 +4975,11 @@
     <string name="ContactSearchMediator__delete_the_custom">要刪除自訂限時動態「%1$s」嗎？</string>
     <!-- Dialog action item for deleting a custom story -->
     <string name="ContactSearchMediator__delete">刪除</string>
-    <!-- Gift expiry days remaining -->
+    <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
         <item quantity="other">尚餘 %1$d 天</item>
     </plurals>
-    <!-- Gift expiry hours remaining -->
+    <!-- Donation for a friend expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
         <item quantity="other">尚餘 %1$d 小時</item>
     </plurals>
@@ -4987,7 +4987,7 @@
     <plurals name="Gifts__d_minutes_remaining">
         <item quantity="other">尚餘 %1$d 分鐘</item>
     </plurals>
-    <!-- Gift expiry expired -->
+    <!-- Donation for a friend expiry expired -->
     <string name="Gifts__expired">已過期</string>
 
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
@@ -5286,8 +5286,8 @@
     </plurals>
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">信用卡或簽帳金融卡</string>
-    <!-- Sheet summary when giving a gift -->
-    <string name="GatewaySelectorBottomSheet__send_a_gift_badge">贈送一枚禮品徽章</string>
+    <!-- Sheet summary when giving donating for a friend -->
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">正在取消…</string>
