@@ -82,11 +82,11 @@ public abstract class Reminder {
       this.actionId = actionId;
     }
 
-    CharSequence getTitle() {
+    public CharSequence getTitle() {
       return title;
     }
 
-    int getActionId() {
+    public int getActionId() {
       return actionId;
     }
   }

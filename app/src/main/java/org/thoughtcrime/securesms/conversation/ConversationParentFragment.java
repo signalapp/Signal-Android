@@ -1936,6 +1936,8 @@ public class ConversationParentFragment extends Fragment
       InsightsLauncher.showInsightsDashboard(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+    } else if (reminderActionId == R.id.reminder_action_api_19_learn_more) {
+      CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/5109141421850");
     } else {
       throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
@@ -2974,6 +2976,11 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMediaMessage(@NonNull MediaSendActivityResult result) {
+    if (ExpiredBuildReminder.isEligible()) {
+      showExpiredDialog();
+      return;
+    }
+
     long            thread    = this.threadId;
     long            expiresIn = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     QuoteModel      quote     = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
@@ -3052,6 +3059,11 @@ public class ConversationParentFragment extends Fragment
                                                   final boolean clearComposeBox,
                                                   final @Nullable String metricId)
   {
+    if (ExpiredBuildReminder.isEligible()) {
+      showExpiredDialog();
+      return new SettableFuture<>(null);
+    }
+
     if (!viewModel.isDefaultSmsApplication() && sendType.usesSmsTransport() && recipient.get().hasSmsAddress()) {
       showDefaultSmsPrompt();
       return new SettableFuture<>(null);
@@ -3130,6 +3142,11 @@ public class ConversationParentFragment extends Fragment
   private void sendTextMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean initiating, final @Nullable String metricId)
       throws InvalidMessageException
   {
+    if (ExpiredBuildReminder.isEligible()) {
+      showExpiredDialog();
+      return;
+    }
+
     if (!viewModel.isDefaultSmsApplication() && sendType.usesSmsTransport() && recipient.get().hasSmsAddress()) {
       showDefaultSmsPrompt();
       return;
@@ -3170,6 +3187,29 @@ public class ConversationParentFragment extends Fragment
                    .setNegativeButton(R.string.ConversationActivity_no, (dialog, which) -> dialog.dismiss())
                    .setPositiveButton(R.string.ConversationActivity_yes, (dialog, which) -> handleMakeDefaultSms())
                    .show();
+  }
+
+  private void showExpiredDialog() {
+    Reminder reminder = new ExpiredBuildReminder(requireContext());
+
+    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(requireContext())
+        .setMessage(reminder.getText())
+        .setPositiveButton(android.R.string.ok, (d, w) -> d.dismiss());
+
+    List<Reminder.Action> actions = reminder.getActions();
+    if (actions.size() == 1) {
+      Reminder.Action action = actions.get(0);
+
+      builder.setNeutralButton(action.getTitle(), (d, i) -> {
+        if (action.getActionId() == R.id.reminder_action_update_now) {
+          PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
+        } else if (action.getActionId() == R.id.reminder_action_api_19_learn_more) {
+          CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/5109141421850");
+        }
+      });
+    }
+
+    builder.show();
   }
 
   private void updateToggleButtonState() {
