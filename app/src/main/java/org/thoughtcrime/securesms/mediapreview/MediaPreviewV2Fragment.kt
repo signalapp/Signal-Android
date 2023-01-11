@@ -310,26 +310,32 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
     if (albumThumbnailMedia.size > 1) {
-      if (albumRail.visibility == GONE) {
+      val firstRailDisplay = albumRail.visibility == GONE
+      if (firstRailDisplay) {
         albumRail.visibility = View.INVISIBLE
+        albumRail.alpha = 0f
       }
       val railItems = albumThumbnailMedia.map { MediaRailAdapter.MediaRailItem(it, it.uri == currentItem.attachment?.uri) }
-      albumRailAdapter.submitList(railItems) { albumRail.post { scrollAlbumRailToCurrentAdapterPosition() } }
+      albumRailAdapter.submitList(railItems) { albumRail.post { scrollAlbumRailToCurrentAdapterPosition(!firstRailDisplay) } }
     } else {
       albumRail.visibility = View.GONE
       albumRailAdapter.submitList(emptyList())
     }
   }
 
-  private fun scrollAlbumRailToCurrentAdapterPosition() {
+  private fun scrollAlbumRailToCurrentAdapterPosition(smooth: Boolean = true) {
     val currentItemPosition = albumRailAdapter.findSelectedItemPosition()
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
-    albumRail.scrollToPosition(currentItemPosition)
     val offsetFromStart = (albumRail.width - individualItemWidth) / 2
     val smoothScroller = OffsetSmoothScroller(requireContext(), offsetFromStart)
     smoothScroller.targetPosition = currentItemPosition
     val layoutManager = albumRail.layoutManager as LinearLayoutManager
-    layoutManager.startSmoothScroll(smoothScroller)
+    if (smooth) {
+      layoutManager.scrollToPosition(currentItemPosition)
+      layoutManager.startSmoothScroll(smoothScroller)
+    } else {
+      layoutManager.scrollToPositionWithOffset(currentItemPosition, offsetFromStart)
+    }
   }
 
   private fun crossfadeViewIn(view: View, duration: Long = 200): Boolean {

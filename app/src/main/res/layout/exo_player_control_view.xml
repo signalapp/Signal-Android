@@ -49,17 +49,25 @@
 
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/media_preview_album_rail"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:animateLayoutChanges="false"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:layout_marginBottom="11dp"
-        android:orientation="horizontal"
-        android:visibility="gone"
-        tools:layout_height="64dp" />
+        android:layout_gravity="center">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/media_preview_album_rail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone"
+            tools:layout_height="64dp" />
+
+    </FrameLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
