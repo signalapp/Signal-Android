@@ -151,6 +151,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     binding.mediaPager.registerOnPageChangeCallback(object : OnPageChangeCallback() {
       override fun onPageSelected(position: Int) {
         super.onPageSelected(position)
+        if (position != viewModel.currentPosition) {
+          debouncer.clear()
+          fullscreenHelper.showSystemUI()
+        }
         viewModel.setCurrentPage(position)
       }
     })
