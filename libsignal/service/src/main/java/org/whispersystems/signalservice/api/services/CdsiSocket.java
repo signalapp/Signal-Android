@@ -14,6 +14,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
+import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.CdsiResourceExhaustedResponse;
@@ -29,7 +30,6 @@ import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Consumer;
 
@@ -54,17 +54,17 @@ final class CdsiSocket {
 
   private static final String TAG = CdsiSocket.class.getSimpleName();
 
-  private final OkHttpClient okhttp;
-  private final String       baseUrl;
-  private final String       mrEnclave;
+  private final SignalCdsiUrl cdsiUrl;
+  private final OkHttpClient  okhttp;
+  private final String        mrEnclave;
 
   private Cds2Client client;
 
   CdsiSocket(SignalServiceConfiguration configuration, String mrEnclave) {
-    this.baseUrl   = configuration.getSignalCdsiUrls()[0].getUrl();
+    this.cdsiUrl   = chooseUrl(configuration.getSignalCdsiUrls());
     this.mrEnclave = mrEnclave;
 
-    Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(configuration.getSignalCdsiUrls()[0].getTrustStore());
+    Pair<SSLSocketFactory, X509TrustManager> socketFactory = createTlsSocketFactory(cdsiUrl.getTrustStore());
 
     OkHttpClient.Builder builder = new OkHttpClient.Builder()
                                                    .sslSocketFactory(new Tls12SocketFactory(socketFactory.first()), socketFactory.second())
@@ -89,13 +89,17 @@ final class CdsiSocket {
     return Observable.create(emitter -> {
       AtomicReference<Stage> stage = new AtomicReference<>(Stage.WAITING_TO_INITIALIZE);
 
-      String  url     = String.format("%s/v1/%s/discovery", baseUrl, mrEnclave);
-      Request request = new Request.Builder()
+      String          url     = String.format("%s/v1/%s/discovery", cdsiUrl.getUrl(), mrEnclave);
+      Request.Builder request = new Request.Builder()
                                    .url(url)
-                                   .addHeader("Authorization", basicAuth(username, password))
-                                   .build();
+                                   .addHeader("Authorization", basicAuth(username, password));
 
-      WebSocket webSocket = okhttp.newWebSocket(request, new WebSocketListener() {
+      if (cdsiUrl.getHostHeader().isPresent()) {
+        request.addHeader("Host", cdsiUrl.getHostHeader().get());
+        Log.w(TAG, "Using alternate host: " + cdsiUrl.getHostHeader().get());
+      }
+
+      WebSocket webSocket = okhttp.newWebSocket(request.build(), new WebSocketListener() {
         @Override
         public void onOpen(WebSocket webSocket, Response response) {
           Log.d(TAG, "[onOpen]");
@@ -223,6 +227,10 @@ final class CdsiSocket {
     } catch (NoSuchAlgorithmException | KeyManagementException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private static SignalCdsiUrl chooseUrl(SignalCdsiUrl[] urls) {
+    return urls[(int) (Math.random() * urls.length)];
   }
 
   private enum Stage {
