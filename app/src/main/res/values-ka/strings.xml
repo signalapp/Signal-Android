@@ -1153,25 +1153,25 @@
     <string name="MessageRecord_you_updated_group">შენ განაახლე ჯგუფი.</string>
     <string name="MessageRecord_the_group_was_updated">ჯგუფი განახლებულია.</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s answered by the other party -->
-    <string name="MessageRecord_outgoing_voice_call">Outgoing voice call</string>
+    <string name="MessageRecord_outgoing_voice_call">გამავალი ხმოვანი ზარი</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s answered by the other party -->
     <string name="MessageRecord_outgoing_video_call">გამავალი ვიდეო ზარი</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call and it\'s not answered by the other party -->
-    <string name="MessageRecord_unanswered_voice_call">Unanswered voice call</string>
+    <string name="MessageRecord_unanswered_voice_call">უპასუხო ხმოვანი ზარი</string>
     <!-- Update message shown when placing an outgoing 1:1 video call and it\'s not answered by the other party -->
     <string name="MessageRecord_unanswered_video_call">უპასუხო ვიდეო ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and it\'s answered -->
-    <string name="MessageRecord_incoming_voice_call">Incoming voice call</string>
+    <string name="MessageRecord_incoming_voice_call">შემომავალი ხმოვანი ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and answered -->
     <string name="MessageRecord_incoming_video_call">შემომავალი ვიდეო ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_missed_voice_call">Missed voice call</string>
+    <string name="MessageRecord_missed_voice_call">გამოტოვებული ხმოვანი ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">გამოტოვებული ვიდეო ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_voice_call">You declined a voice call</string>
+    <string name="MessageRecord_you_declined_a_voice_call">შენ უარყავი ხმოვანი ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and explicitly declined -->
-    <string name="MessageRecord_you_declined_a_video_call">ვიდეო ზარი უარყავი</string>
+    <string name="MessageRecord_you_declined_a_video_call">შენ უარყავი ვიდეო ზარი</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
     <string name="MessageRecord_s_updated_group">%1$s-მა განაახლა ჯგუფი.</string>
@@ -1998,7 +1998,7 @@
     <string name="MediaPreviewActivity_s_to_you">%1$s შენ</string>
     <string name="MediaPreviewActivity_media_no_longer_available">მედია-ფაილი აღარაა ხელმისაწვდომი.</string>
     <!-- Notifying the user that the device has encountered a technical issue and is unable to render a video. -->
-    <string name="MediaPreviewActivity_unable_to_play_media">Unable to play media.</string>
+    <string name="MediaPreviewActivity_unable_to_play_media">მედია ფაილის ჩართვა ვერ მოხერხდა</string>
     <string name="MediaPreviewActivity_error_finding_message">წერილის მოძებნა ვერ მოხერხდა.</string>
     <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">ვერ მოიძებნა აპი, რომელსაც შეუძლია ამ მედია-ფაილის გაზიარება.</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">Close</string>
@@ -2070,7 +2070,7 @@
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ძიება</string>
     <!-- Hint when searching filtered chat content -->
-    <string name="SearchToolbar_search_unread_chats">Search unread chats</string>
+    <string name="SearchToolbar_search_unread_chats">წაუკითხავი ჩატების მოძებნა</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">მოძებნე მიმოწერები, კონტაქტები და შეტყობინებები</string>
 
     <!-- Material3 Search Toolbar -->
@@ -2103,7 +2103,7 @@
     <string name="UnauthorizedReminder_this_is_likely_because_you_registered_your_phone_number_with_Signal_on_a_different_device">ეს სავარაუდოდ იმიტომ ხდება, რომ შენი ტელეფონის ნომრით Signal-ი სხვა მოწყობილობაზე დაარეგისტრირე. დააჭირე ხელახლა რეგისტრაციისთვის.</string>
 
     <!-- Push notification when the app is forcibly logged out by the server. -->
-    <string name="LoggedOutNotification_you_have_been_logged_out">You have been logged out of Signal on this device.</string>
+    <string name="LoggedOutNotification_you_have_been_logged_out">ამ მოწყობილობაზე Signal-იდან გამოსული ხარ</string>
 
     <!-- EnclaveFailureReminder -->
     <!-- Banner message to update app to use payments -->
@@ -4291,7 +4291,7 @@
     <string name="SelectFeaturedBadgeFragment__failed_to_update_profile">პროფილის განახლება ვერ მოხერხდა</string>
 
     <!-- Displayed on primary button in the bottom sheet as a call-to-action to launch into the donation flow -->
-    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">Donate now</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__donate_now">გააკეთე დონაცია ახლა</string>
     <!-- Title of a page in the bottom sheet. Placeholder is a user\'s short-name -->
     <string name="ViewBadgeBottomSheetDialogFragment__s_supports_signal">%1$s მხარს უჭერს Signal-ს</string>
     <!-- Description of a page in the bottom sheet of a monthly badge. Placeholder is a user\'s short-name -->
@@ -5470,10 +5470,10 @@
 
     <!-- ChatFilter -->
     <!-- Displayed in a pill at the top of the chat list when it is filtered by unread messages -->
-    <string name="ChatFilter__filtered_by_unread">Filtered by unread</string>
+    <string name="ChatFilter__filtered_by_unread">გაფილტრულია წაუკითხავის მიხედვით</string>
     <!-- Displayed underneath the filter circle at the top of the chat list when the user pulls at a very low velocity -->
-    <string name="ChatFilter__pull_to_filter">Pull to filter</string>
+    <string name="ChatFilter__pull_to_filter">გასაფილტრად ჩამოქაჩე</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
-    <string name="ChatFilter__tip_pull_down">Tip: Pull down on the chat list to filter</string>
+    <string name="ChatFilter__tip_pull_down">რჩევა: გასაფილტრად ჩატების სია დაბლა ჩამოქაჩე</string>
 
 </resources>
