@@ -132,7 +132,8 @@ public class BackgroundMessageRetriever {
    *         care of it.
    */
   public static boolean shouldIgnoreFetch() {
-    return ApplicationDependencies.getAppForegroundObserver().isForegrounded();
+    return ApplicationDependencies.getAppForegroundObserver().isForegrounded() &&
+           ApplicationDependencies.getSignalServiceNetworkAccess().supportsWebsockets();
   }
 
   private static String logSuffix(long startTime) {

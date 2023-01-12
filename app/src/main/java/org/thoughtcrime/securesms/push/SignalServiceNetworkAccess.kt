@@ -173,7 +173,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     interceptors,
     Optional.of(DNS),
     Optional.empty(),
-    zkGroupServerPublicParams
+    zkGroupServerPublicParams,
+    false
   )
 
   private val censorshipConfiguration: Map<Int, SignalServiceConfiguration> = mapOf(
@@ -224,7 +225,8 @@ open class SignalServiceNetworkAccess(context: Context) {
     interceptors,
     Optional.of(DNS),
     if (SignalStore.proxy().isProxyEnabled) Optional.ofNullable(SignalStore.proxy().proxy) else Optional.empty(),
-    zkGroupServerPublicParams
+    zkGroupServerPublicParams,
+    true
   )
 
   open fun getConfiguration(): SignalServiceConfiguration {
@@ -267,6 +269,10 @@ open class SignalServiceNetworkAccess(context: Context) {
     return defaultCensoredCountryCodes.contains(countryCode)
   }
 
+  fun supportsWebsockets(): Boolean {
+    return !isCensored() || getConfiguration().supportsWebSockets()
+  }
+
   private fun buildGConfiguration(
     hostConfigs: List<HostConfig>
   ): SignalServiceConfiguration {
@@ -291,7 +297,8 @@ open class SignalServiceNetworkAccess(context: Context) {
       interceptors,
       Optional.of(DNS),
       Optional.empty(),
-      zkGroupServerPublicParams
+      zkGroupServerPublicParams,
+      true
     )
   }
 
