@@ -191,6 +191,24 @@ class StorySendTable(context: Context, databaseHelper: SignalDatabase) : Databas
     return messageIds
   }
 
+  fun getStoryMessageFor(recipientId: RecipientId, timestamp: Long): MessageId? {
+    readableDatabase.query(
+      TABLE_NAME,
+      arrayOf(MESSAGE_ID),
+      "$RECIPIENT_ID = ? AND $SENT_TIMESTAMP = ?",
+      SqlUtil.buildArgs(recipientId, timestamp),
+      null,
+      null,
+      null,
+      "1"
+    ).use { cursor ->
+      if (cursor.moveToFirst()) {
+        return MessageId(cursor.requireLong(MESSAGE_ID))
+      }
+    }
+    return null
+  }
+
   override fun remapRecipient(oldId: RecipientId, newId: RecipientId) {
     val query = "$RECIPIENT_ID = ?"
     val args = SqlUtil.buildArgs(oldId)
