@@ -82,11 +82,6 @@ object V171_ThreadForeignKeyFix : SignalDatabaseMigration {
       .where("thread_id = ?", secondaryId)
       .run()
 
-    db.update("sms")
-      .values("thread_id" to primaryId)
-      .where("thread_id = ?", secondaryId)
-      .run()
-
     db.update("pending_retry_receipts")
       .values("thread_id" to primaryId)
       .where("thread_id = ?", secondaryId)
