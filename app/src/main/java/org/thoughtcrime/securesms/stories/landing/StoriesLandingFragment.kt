@@ -142,11 +142,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     setEnterSharedElementCallback(object : SharedElementCallback() {
       override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
         if (sharedElementNames?.contains("camera_fab") == true) {
-          cameraFab.setImageResource(R.drawable.ic_compose_outline_24)
+          cameraFab.setImageResource(R.drawable.symbol_edit_24)
           lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy {
-              cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
+              cameraFab.setImageResource(R.drawable.symbol_camera_24)
               sharedElementTarget.alpha = 0f
             }
         }
@@ -157,7 +157,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       Permissions.with(this)
         .request(Manifest.permission.CAMERA)
         .ifNecessary()
-        .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
+        .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
         .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
         .onAllGranted {
           startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true))

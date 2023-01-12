@@ -112,7 +112,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/manage_profile_name_subtitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/manage_profile_name"
-                app:srcCompat="@drawable/ic_profile_name_24"
+                app:srcCompat="@drawable/symbol_person_24"
                 app:tint="@color/signal_text_primary" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -157,7 +157,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/manage_profile_username_subtitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/manage_profile_username"
-                app:srcCompat="@drawable/ic_at_24"
+                app:srcCompat="@drawable/symbol_at_24"
                 app:tint="@color/signal_text_primary" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -197,7 +197,7 @@
                 android:scaleType="centerInside"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_share_24"
+                app:srcCompat="@drawable/symbol_share_android_24"
                 app:tint="@color/signal_colorOnSurface" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -221,7 +221,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/manage_profile_about_subtitle"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/manage_profile_about"
-                app:srcCompat="@drawable/ic_compose_24"
+                app:srcCompat="@drawable/symbol_edit_24"
                 app:tint="@color/signal_text_primary" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView
@@ -269,7 +269,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/manage_profile_badges"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/manage_profile_badges"
-                app:srcCompat="@drawable/ic_badge_24"
+                app:srcCompat="@drawable/symbol_badge_multi_24"
                 app:tint="@color/signal_text_primary" />
 
             <org.thoughtcrime.securesms.components.emoji.EmojiTextView

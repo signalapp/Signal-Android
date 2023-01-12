@@ -61,7 +61,7 @@
             android:layout_marginEnd="2dp"
             android:visibility="gone"
             app:tint="@color/signal_colorPrimaryContainer"
-            tools:src="@drawable/ic_person_white_24dp"
+            tools:src="@drawable/symbol_person_24"
             tools:visibility="visible" />
 
         <TextView

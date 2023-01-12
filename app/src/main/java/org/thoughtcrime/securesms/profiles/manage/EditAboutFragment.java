@@ -143,7 +143,7 @@ public class EditAboutFragment extends Fragment implements ManageProfileActivity
       this.emojiView.setImageDrawable(drawable);
       this.selectedEmoji = emoji;
     } else {
-      this.emojiView.setImageResource(R.drawable.ic_add_emoji);
+      this.emojiView.setImageResource(R.drawable.symbol_emoji_plus_24);
       this.selectedEmoji = "";
     }
   }

@@ -17,7 +17,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_payments_24" />
+        app:tint="@color/signal_icon_tint_primary"
+        app:srcCompat="@drawable/symbol_payment_24" />
 
     <TextView
         android:id="@id/title"

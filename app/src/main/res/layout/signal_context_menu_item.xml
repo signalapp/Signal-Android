@@ -18,7 +18,7 @@
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:importantForAccessibility="no"
-        tools:src="@drawable/ic_archive_24dp" />
+        tools:src="@drawable/symbol_archive_android_24" />
 
     <TextView
         android:id="@+id/signal_context_menu_item_title"

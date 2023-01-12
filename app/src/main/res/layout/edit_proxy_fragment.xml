@@ -66,15 +66,15 @@
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_host"
       tools:text="@string/preferences_connected_to_proxy"/>
 
-  <TextView
+  <androidx.appcompat.widget.AppCompatTextView
       android:id="@+id/edit_proxy_share"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="19dp"
       style="@style/Signal.Text.Body"
       android:text="@string/preferences_share"
-      android:drawableStart="@drawable/ic_share_24"
-      android:drawableTint="@color/signal_text_primary"
+      app:drawableStartCompat="@drawable/symbol_share_android_24"
+      app:drawableTint="@color/signal_text_primary"
       android:drawablePadding="10dp"
       android:paddingStart="13dp"
       android:paddingEnd="13dp"

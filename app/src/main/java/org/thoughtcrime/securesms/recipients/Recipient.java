@@ -1362,7 +1362,7 @@ public class Recipient {
     }
 
     public @NonNull FallbackContactPhoto getPhotoForDistributionList() {
-      return new ResourceContactPhoto(R.drawable.ic_stories_24, R.drawable.ic_stories_24, R.drawable.ic_stories_24);
+      return new ResourceContactPhoto(R.drawable.symbol_stories_24, R.drawable.symbol_stories_24, R.drawable.symbol_stories_24);
     }
   }
 

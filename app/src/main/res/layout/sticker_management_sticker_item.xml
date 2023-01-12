@@ -26,7 +26,7 @@
         app:layout_constraintBottom_toTopOf="@id/sticker_management_divider"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/ic_person_white_24dp"
+        tools:src="@drawable/symbol_person_24"
         tools:tint="@color/core_ultramarine" />
 
     <LinearLayout

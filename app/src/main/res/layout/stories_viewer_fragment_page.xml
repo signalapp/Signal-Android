@@ -306,7 +306,7 @@
         android:maxLines="1"
         android:textAppearance="@style/Signal.Text.MaterialCaption"
         android:visibility="gone"
-        app:drawableStartCompat="@drawable/ic_stories_16"
+        app:drawableStartCompat="@drawable/symbol_stories_fill_compact_12"
         app:drawableTint="@color/transparent_white_80"
         app:layout_constraintBottom_toTopOf="@id/progress"
         app:layout_constraintEnd_toStartOf="@id/more"

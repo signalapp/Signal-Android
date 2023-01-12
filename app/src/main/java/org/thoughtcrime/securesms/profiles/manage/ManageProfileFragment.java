@@ -238,14 +238,14 @@ public class ManageProfileFragment extends LoggingFragment {
 
   private void presentAboutEmoji(@NonNull String aboutEmoji) {
     if (aboutEmoji == null || aboutEmoji.isEmpty()) {
-      binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_compose_24, null));
+      binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.symbol_edit_24, null));
     } else {
       Drawable emoji = EmojiUtil.convertToDrawable(requireContext(), aboutEmoji);
 
       if (emoji != null) {
         binding.manageProfileAboutIcon.setImageDrawable(emoji);
       } else {
-        binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.ic_compose_24, null));
+        binding.manageProfileAboutIcon.setImageDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.symbol_edit_24, null));
       }
     }
   }

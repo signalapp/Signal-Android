@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.components.settings
 
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
 import android.text.Spanned
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
@@ -230,7 +232,9 @@ class ExternalLinkPreferenceViewHolder(itemView: View) : PreferenceViewHolder<Ex
   override fun bind(model: ExternalLinkPreference) {
     super.bind(model)
 
-    val externalLinkIcon = requireNotNull(ContextCompat.getDrawable(context, R.drawable.ic_open_20))
+    val externalLinkIcon = requireNotNull(ContextCompat.getDrawable(context, R.drawable.symbol_open_20)).apply {
+      colorFilter = PorterDuffColorFilter(ContextCompat.getColor(context, R.color.signal_icon_tint_primary), PorterDuff.Mode.SRC_IN)
+    }
     externalLinkIcon.setBounds(0, 0, ViewUtil.dpToPx(20), ViewUtil.dpToPx(20))
 
     if (ViewUtil.isLtr(itemView)) {
