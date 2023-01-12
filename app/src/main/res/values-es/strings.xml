@@ -653,6 +653,9 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Esta versión de Signal ha caducado. Actualízala ahora para seguir enviando y recibiendo mensajes.</string>
     <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
 
+    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
+    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$d solicitud pendiente.</item>
@@ -5476,5 +5479,11 @@
     <string name="ChatFilter__pull_to_filter">Desplazarse para filtrar</string>
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Truco: desplázate hacia abajo en la lista de chats para filtrar</string>
+
+    <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
+    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+
+    <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
+    <string name="API19Reminder_learn_more">Learn more</string>
 
 </resources>
