@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationRepository
 import org.thoughtcrime.securesms.registration.RegistrationUtil
+import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
@@ -74,7 +75,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     val registrationRepository = RegistrationRepository(application)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(Put("/v2/keys") { MockResponse().success() })
-    val response: ServiceResponse<VerifyAccountResponse> = registrationRepository.registerAccountWithoutRegistrationLock(
+    val response: ServiceResponse<VerifyResponse> = registrationRepository.registerAccount(
       RegistrationData(
         code = "123123",
         e164 = "+15555550101",
@@ -84,7 +85,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
         fcmToken = null,
         pniRegistrationId = registrationRepository.pniRegistrationId
       ),
-      VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false)
+      VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null)
     ).blockingGet()
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow

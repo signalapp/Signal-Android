@@ -19,7 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor
 import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.MockProvider
 import org.thoughtcrime.securesms.testing.Put
@@ -117,7 +117,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs true
@@ -148,7 +148,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs false
@@ -195,7 +195,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs false
