@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
@@ -25,6 +26,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -168,7 +170,7 @@ public final class RegistrationRepository {
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
-    TextSecurePreferences.setUnauthorizedReceived(context, false);
+    NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
 
     PinState.onRegistration(context, kbsData, pin, hasPin);
   }
