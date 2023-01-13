@@ -108,7 +108,7 @@ class ScaleTransition : Transition {
       ofFloat(View.SCALE_Y, 1f)
     ).apply {
       addListener(object : AnimatorListenerAdapter() {
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
           resetValues(start.view)
           resetValues(end.view)
         }

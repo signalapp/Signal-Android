@@ -30,7 +30,7 @@ buildscript {
 ext {
     BUILD_TOOL_VERSION = '32.0.0'
 
-    COMPILE_SDK = 32
+    COMPILE_SDK = 33
     TARGET_SDK  = 31
     MINIMUM_SDK = 19
 

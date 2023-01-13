@@ -103,14 +103,14 @@ class LottieAnimatedButton @JvmOverloads constructor(
       MotionEvent.ACTION_UP -> {
         if (isAnimating) {
           addAnimatorListener(object : AnimatorListener {
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
               removeAllAnimatorListeners()
               playAnimationReverse()
             }
 
-            override fun onAnimationStart(animation: Animator?) {}
-            override fun onAnimationCancel(animation: Animator?) {}
-            override fun onAnimationRepeat(animation: Animator?) {}
+            override fun onAnimationStart(animation: Animator) {}
+            override fun onAnimationCancel(animation: Animator) {}
+            override fun onAnimationRepeat(animation: Animator) {}
           })
         } else {
           playAnimationReverse()

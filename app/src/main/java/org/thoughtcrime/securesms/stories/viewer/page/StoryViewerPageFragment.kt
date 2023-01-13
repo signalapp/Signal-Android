@@ -1184,7 +1184,7 @@ class StoryViewerPageFragment :
       scaleFactor = 1f
       isPerformingEndAnimation = true
       card.animate().scaleX(1f).scaleY(1f).setListener(object : AnimationCompleteListener() {
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
           isPerformingEndAnimation = false
           viewModel.setIsUserScaling(false)
           sharedViewModel.setIsChildScrolling(false)
@@ -1255,7 +1255,7 @@ class StoryViewerPageFragment :
       return true
     }
 
-    override fun onFling(e1: MotionEvent?, e2: MotionEvent?, velocityX: Float, velocityY: Float): Boolean {
+    override fun onFling(e1: MotionEvent, e2: MotionEvent, velocityX: Float, velocityY: Float): Boolean {
       val isSideSwipe = abs(velocityX) > abs(velocityY)
       if (!isSideSwipe) {
         return false

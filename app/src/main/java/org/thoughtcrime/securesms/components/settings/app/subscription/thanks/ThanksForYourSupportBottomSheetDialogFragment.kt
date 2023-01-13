@@ -111,7 +111,7 @@ class ThanksForYourSupportBottomSheetDialogFragment : FixedRoundedCornerBottomSh
       lottie.visible = true
       lottie.playAnimation()
       lottie.addAnimatorListener(object : AnimationCompleteListener() {
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
           lottie.removeAnimatorListener(this)
           lottie.setMinAndMaxFrame(30, 91)
           lottie.repeatMode = LottieDrawable.RESTART

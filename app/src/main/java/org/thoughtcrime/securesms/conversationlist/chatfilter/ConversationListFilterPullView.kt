@@ -202,7 +202,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
     animateHelpText = 0
     helpTextStartFraction = ANIMATE_HELP_TEXT_START_FRACTION
     binding.helpText.animate().alpha(0f).setListener(object : AnimationCompleteListener() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         binding.helpText.visibility = INVISIBLE
       }
     })

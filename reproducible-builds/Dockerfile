@@ -11,7 +11,7 @@ RUN apt-get update -y && apt-get install -y $(cat docker/dependencies.txt)
 RUN docker/print-versions.sh docker/dependencies.txt
 
 ENV ANDROID_COMMAND_LINE_TOOLS_FILENAME commandlinetools-linux-7583922_latest.zip
-ENV ANDROID_API_LEVELS                  android-32
+ENV ANDROID_API_LEVELS                  android-33
 ENV ANDROID_BUILD_TOOLS_VERSION         32.0.0
 
 ENV ANDROID_HOME /usr/local/android-sdk-linux

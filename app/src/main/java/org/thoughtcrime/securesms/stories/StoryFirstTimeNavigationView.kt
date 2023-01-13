@@ -125,7 +125,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
 
     isPlayingAnimations = true
     tapToAdvance.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         if (isPlayingAnimations) {
           swipeUp.playAnimation()
         }
@@ -133,7 +133,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
     })
 
     swipeUp.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         if (isPlayingAnimations) {
           swipeRight.playAnimation()
         }
@@ -141,7 +141,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
     })
 
     swipeRight.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         postDelayed({
           if (isPlayingAnimations) {
             startLottieAnimations()
