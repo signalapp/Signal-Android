@@ -251,7 +251,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
     return if (linkPreviewState.linkPreview.isPresent) {
       linkPreviewState.linkPreview.get()
     } else if (!linkPreviewState.activeUrlForError.isNullOrEmpty()) {
-      LinkPreview(linkPreviewState.activeUrlForError!!, "", "", 0L, Optional.empty())
+      LinkPreview(linkPreviewState.activeUrlForError!!, linkPreviewState.activeUrlForError!!, "", 0L, Optional.empty())
     } else {
       null
     }
