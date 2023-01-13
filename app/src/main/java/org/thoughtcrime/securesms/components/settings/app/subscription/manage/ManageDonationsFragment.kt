@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.Subscription
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -245,7 +244,7 @@ class ManageDonationsFragment :
 
     sectionHeaderPref(R.string.ManageDonationsFragment__other_ways_to_give)
 
-    if (FeatureFlags.giftBadgeSendSupport() && Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
+    if (Recipient.self().giftBadgesCapability == Recipient.Capability.SUPPORTED) {
       clickPref(
         title = DSLSettingsText.from(R.string.ManageDonationsFragment__donate_for_a_friend),
         icon = DSLSettingsIcon.from(R.drawable.symbol_gift_24),

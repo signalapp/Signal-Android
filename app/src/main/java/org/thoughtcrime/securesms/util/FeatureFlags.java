@@ -89,7 +89,6 @@ public final class FeatureFlags {
   private static final String PHONE_NUMBER_PRIVACY              = "android.pnp";
   private static final String USE_FCM_FOREGROUND_SERVICE        = "android.useFcmForegroundService.3";
   private static final String STORIES_AUTO_DOWNLOAD_MAXIMUM     = "android.stories.autoDownloadMaximum";
-  private static final String GIFT_BADGE_SEND_SUPPORT           = "android.giftBadges.sending.3";
   private static final String TELECOM_MANUFACTURER_ALLOWLIST    = "android.calling.telecomAllowList";
   private static final String TELECOM_MODEL_BLOCKLIST           = "android.calling.telecomModelBlockList";
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
@@ -146,7 +145,6 @@ public final class FeatureFlags {
       PAYMENTS_COUNTRY_BLOCKLIST,
       USE_FCM_FOREGROUND_SERVICE,
       STORIES_AUTO_DOWNLOAD_MAXIMUM,
-      GIFT_BADGE_SEND_SUPPORT,
       TELECOM_MANUFACTURER_ALLOWLIST,
       TELECOM_MODEL_BLOCKLIST,
       CAMERAX_MODEL_BLOCKLIST,
@@ -495,13 +493,6 @@ public final class FeatureFlags {
    */
   public static int storiesAutoDownloadMaximum() {
     return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
-  }
-
-  /**
-   * Whether or not sending Gifting Badges should be available on this client.
-   */
-  public static boolean giftBadgeSendSupport() {
-    return getBoolean(GIFT_BADGE_SEND_SUPPORT, Environment.IS_STAGING);
   }
 
   /**
