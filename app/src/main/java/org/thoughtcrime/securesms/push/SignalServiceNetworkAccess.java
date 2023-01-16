@@ -3,9 +3,9 @@ package org.thoughtcrime.securesms.push;
 
 import android.content.Context;
 
-import com.annimon.stream.Stream;
-
 import androidx.annotation.Nullable;
+
+import com.annimon.stream.Stream;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor;
 import org.thoughtcrime.securesms.net.SequentialDns;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
+import org.thoughtcrime.securesms.net.StaticDns;
 import org.thoughtcrime.securesms.util.Base64;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.libsignal.util.guava.Optional;
@@ -33,21 +34,28 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.net.ssl.SSLContext;
+import java.util.Set;
 
 import okhttp3.CipherSuite;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
 import okhttp3.Interceptor;
 import okhttp3.TlsVersion;
-
 public class SignalServiceNetworkAccess {
 
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(SignalServiceNetworkAccess.class);
 
-  public static final Dns DNS = new SequentialDns(Dns.SYSTEM, new CustomDns("1.1.1.1"));
+  public static final Dns DNS = new SequentialDns(Dns.SYSTEM, new CustomDns("1.1.1.1"),new StaticDns(Map.of(
+                                      "chat.signal.org", Set.of(BuildConfig.SIGNAL_SERVICE_IPS),
+                                      "storage.signal.org", Set.of(BuildConfig.SIGNAL_STORAGE_IPS),
+                                      "cdn.signal.org", Set.of(BuildConfig.SIGNAL_CDN_IPS),
+                                      "cdn2.signal.org", Set.of(BuildConfig.SIGNAL_CDN2_IPS),
+                                      "api.directory.signal.org", Set.of(BuildConfig.SIGNAL_CDS_IPS),
+                                      "api.backup.signal.org", Set.of(BuildConfig.SIGNAL_KBS_IPS),
+                                      "sfu.voip.signal.org", Set.of(BuildConfig.SIGNAL_SFU_IPS),
+                                      "contentproxy.signal.org", Set.of(BuildConfig.SIGNAL_CONTENT_PROXY_IPS)
+                                      )));
 
   private static final String COUNTRY_CODE_EGYPT = "+20";
   private static final String COUNTRY_CODE_UAE   = "+971";

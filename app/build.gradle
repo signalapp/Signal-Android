@@ -6,6 +6,7 @@ apply plugin: 'org.jlleitschuh.gradle.ktlint'
 apply from: 'translations.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
+apply from: 'static-ips.gradle'
 
 repositories {
     maven {
@@ -150,6 +151,14 @@ android {
         buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_URLS", "new String[]{\"https://sfu.test.voip.signal.org\", \"https://sfu.staging.voip.signal.org\"}"
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
         buildConfigField "int", "CONTENT_PROXY_PORT", "443"
+        buildConfigField "String[]", "SIGNAL_SERVICE_IPS", service_ips
+        buildConfigField "String[]", "SIGNAL_STORAGE_IPS", storage_ips
+        buildConfigField "String[]", "SIGNAL_CDN_IPS", cdn_ips
+        buildConfigField "String[]", "SIGNAL_CDN2_IPS", cdn2_ips
+        buildConfigField "String[]", "SIGNAL_CDS_IPS", cds_ips
+        buildConfigField "String[]", "SIGNAL_KBS_IPS", kbs_ips
+        buildConfigField "String[]", "SIGNAL_SFU_IPS", sfu_ips
+        buildConfigField "String[]", "SIGNAL_CONTENT_PROXY_IPS", content_proxy_ips
         buildConfigField "String", "SIGNAL_AGENT", "\"OWA\""
         buildConfigField "String", "CDS_MRENCLAVE", "\"c98e00a4e3ff977a56afefe7362a27e4961e4f19e211febfbb19b897e6b80b15\""
         buildConfigField "org.thoughtcrime.securesms.KbsEnclave", "KBS_ENCLAVE", "new org.thoughtcrime.securesms.KbsEnclave(\"e18376436159cda3ad7a45d9320e382e4a497f26b0dca34d8eab0bd0139483b5\", " +
@@ -196,8 +205,8 @@ android {
 
     compileOptions {
         coreLibraryDesugaringEnabled true
-        sourceCompatibility JAVA_VERSION
-        targetCompatibility JAVA_VERSION
+        sourceCompatibility JavaVersion.VERSION_1_9
+        targetCompatibility JavaVersion.VERSION_1_9
     }
 
     packagingOptions {

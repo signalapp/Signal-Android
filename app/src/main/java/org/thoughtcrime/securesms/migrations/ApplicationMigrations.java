@@ -93,7 +93,7 @@ public class ApplicationMigrations {
 //    static final int CHANGE_NUMBER_CAPABILITY_3    = 49;
     static final int KBS_MIGRATION                 = 55;
   }
-  public static final int CURRENT_VERSION = 55;
+  public static final int CURRENT_VERSION = 58;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -335,7 +335,7 @@ public class ApplicationMigrations {
     }
 
     if (lastSeenVersion < Version.APPLY_UNIVERSAL_EXPIRE) {
-      jobs.put(Version.SMS_STORAGE_SYNC, new ApplyUnknownFieldsToSelfMigrationJob());
+      jobs.put(Version.APPLY_UNIVERSAL_EXPIRE, new ApplyUnknownFieldsToSelfMigrationJob());
     }
 
     if (lastSeenVersion < Version.SENDER_KEY) {
