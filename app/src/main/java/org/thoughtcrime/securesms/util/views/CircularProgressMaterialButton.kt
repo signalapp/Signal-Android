@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.util.views
 
 import android.animation.Animator
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import android.os.Parcelable
 import android.util.AttributeSet
@@ -116,7 +115,7 @@ class CircularProgressMaterialButton @JvmOverloads constructor(
       return
     }
 
-    if (!animate || Build.VERSION.SDK_INT < 21) {
+    if (!animate) {
       materialButton.visibility = state.materialButtonVisibility
       currentState = state
       return

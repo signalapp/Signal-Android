@@ -8,7 +8,6 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
-import android.os.Build
 import android.os.Bundle
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
@@ -351,9 +350,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
             scrollAlbumRailToCurrentAdapterPosition()
           }
         }
-      if (Build.VERSION.SDK_INT >= 21) {
-        viewPropertyAnimator.interpolator = PathInterpolator(0.17f, 0.17f, 0f, 1f)
-      }
+      viewPropertyAnimator.interpolator = PathInterpolator(0.17f, 0.17f, 0f, 1f)
       viewPropertyAnimator.start()
       true
     } else {

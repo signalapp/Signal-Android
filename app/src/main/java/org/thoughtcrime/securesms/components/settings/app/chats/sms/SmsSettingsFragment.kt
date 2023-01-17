@@ -8,7 +8,6 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -23,7 +22,6 @@ import org.thoughtcrime.securesms.keyvalue.SmsExportPhase
 import org.thoughtcrime.securesms.util.SmsUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val SMS_REQUEST_CODE: Short = 1234
 
@@ -146,15 +144,6 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
           viewModel.setWifiCallingCompatibilityEnabled(!state.wifiCallingCompatibilityEnabled)
         }
       )
-
-      if (Build.VERSION.SDK_INT < 21) {
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__advanced_mms_access_point_names),
-          onClick = {
-            Navigation.findNavController(requireView()).safeNavigate(R.id.action_smsSettingsFragment_to_mmsPreferencesFragment)
-          }
-        )
-      }
     }
   }
 

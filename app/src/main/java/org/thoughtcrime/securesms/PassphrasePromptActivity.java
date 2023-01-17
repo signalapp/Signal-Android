@@ -307,10 +307,8 @@ public class PassphrasePromptActivity extends PassphraseActivity {
 
   public Unit showConfirmDeviceCredentialIntent() {
     KeyguardManager keyguardManager = (KeyguardManager) getSystemService(Context.KEYGUARD_SERVICE);
-    Intent          intent          = null;
-    if (Build.VERSION.SDK_INT >= 21) {
-      intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
-    }
+    Intent          intent          = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.PassphrasePromptActivity_unlock_signal), "");
+
     startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE);
     return Unit.INSTANCE;
   }

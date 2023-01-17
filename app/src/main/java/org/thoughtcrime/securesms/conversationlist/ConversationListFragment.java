@@ -97,7 +97,6 @@ import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton;
-import org.thoughtcrime.securesms.components.reminder.Api19Reminder;
 import org.thoughtcrime.securesms.components.reminder.CdsPermanentErrorReminder;
 import org.thoughtcrime.securesms.components.reminder.CdsTemporyErrorReminder;
 import org.thoughtcrime.securesms.components.reminder.DozeReminder;
@@ -683,8 +682,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       CdsTemporaryErrorBottomSheet.show(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_cds_permanent_error_learn_more) {
       CdsPermanentErrorBottomSheet.show(getChildFragmentManager());
-    } else if (reminderActionId == R.id.reminder_action_api_19_learn_more) {
-      CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/5109141421850");
     }
   }
 
@@ -946,8 +943,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       } else if (ServiceOutageReminder.isEligible(context)) {
         ApplicationDependencies.getJobManager().add(new ServiceOutageDetectionJob());
         return Optional.of(new ServiceOutageReminder(context));
-      } else if (Api19Reminder.isEligible()) {
-        return Optional.of(new Api19Reminder(context));
       } else if (OutdatedBuildReminder.isEligible()) {
         return Optional.of(new OutdatedBuildReminder(context));
       } else if (PushRegistrationReminder.isEligible(context)) {
@@ -1387,11 +1382,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onDestroyActionMode(ActionMode mode) {
     viewModel.endSelection();
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] { android.R.attr.statusBarColor });
-      WindowUtil.setStatusBarColor(getActivity().getWindow(), color.getColor(0, Color.BLACK));
-      color.recycle();
-    }
+    TypedArray color = getActivity().getTheme().obtainStyledAttributes(new int[] { android.R.attr.statusBarColor });
+    WindowUtil.setStatusBarColor(getActivity().getWindow(), color.getColor(0, Color.BLACK));
+    color.recycle();
 
     if (Build.VERSION.SDK_INT >= 23) {
       TypedArray lightStatusBarAttr = getActivity().getTheme().obtainStyledAttributes(new int[] { android.R.attr.windowLightStatusBar });

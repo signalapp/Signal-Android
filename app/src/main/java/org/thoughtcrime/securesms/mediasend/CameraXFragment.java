@@ -73,7 +73,6 @@ import io.reactivex.rxjava3.disposables.Disposable;
  * preferred whenever possible.
  */
 @ExperimentalVideo
-@RequiresApi(21)
 public class CameraXFragment extends LoggingFragment implements CameraFragment {
 
   private static final String TAG              = Log.tag(CameraXFragment.class);

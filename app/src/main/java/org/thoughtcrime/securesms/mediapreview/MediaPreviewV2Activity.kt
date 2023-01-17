@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
 import android.content.Context
-import android.os.Build
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
@@ -26,11 +25,10 @@ class MediaPreviewV2Activity : PassphraseRequiredActivity(), VoiceNoteMediaContr
     setContentView(R.layout.activity_mediapreview_v2)
     voiceNoteMediaController = VoiceNoteMediaController(this)
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
-      window.statusBarColor = systemBarColor
-      window.navigationBarColor = systemBarColor
-    }
+    val systemBarColor = ContextCompat.getColor(this, R.color.signal_dark_colorSurface)
+    window.statusBarColor = systemBarColor
+    window.navigationBarColor = systemBarColor
+
     if (savedInstanceState == null) {
       val bundle = Bundle()
       val args = MediaIntentFactory.requireArguments(intent.extras!!)

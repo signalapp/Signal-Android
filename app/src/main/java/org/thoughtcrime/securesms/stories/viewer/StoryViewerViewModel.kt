@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.stories.viewer
 
-import android.os.Build
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,7 +30,7 @@ class StoryViewerViewModel(
         storyViewerArgs.storyThumbUri != null -> StoryViewerState.CrossfadeSource.ImageUri(storyViewerArgs.storyThumbUri, storyViewerArgs.storyThumbBlur)
         else -> StoryViewerState.CrossfadeSource.None
       },
-      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote || Build.VERSION.SDK_INT < 21
+      skipCrossfade = storyViewerArgs.isFromNotification || storyViewerArgs.isFromQuote
     )
   )
 

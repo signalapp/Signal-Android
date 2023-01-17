@@ -10,7 +10,6 @@ import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.animation.addListener
 import androidx.fragment.app.FragmentContainerView
 
@@ -19,7 +18,6 @@ private const val BOUNDS = "signal.wipedowntransition.bottom"
 /**
  * WipeDownTransition will animate the bottom position of a view such that it "wipes" down the screen to a final position.
  */
-@RequiresApi(21)
 class WipeDownTransition(context: Context, attrs: AttributeSet?) : Transition(context, attrs) {
   override fun captureStartValues(transitionValues: TransitionValues) {
     captureValues(transitionValues)

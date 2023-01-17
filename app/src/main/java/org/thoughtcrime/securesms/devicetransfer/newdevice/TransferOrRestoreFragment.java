@@ -29,11 +29,7 @@ public final class TransferOrRestoreFragment extends LoggingFragment {
         .setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_new_device_transfer_instructions));
 
     View restoreBackup = view.findViewById(R.id.transfer_or_restore_fragment_restore);
-    if (Build.VERSION.SDK_INT >= 21) {
-      restoreBackup.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_choose_backup));
-    } else {
-      restoreBackup.setVisibility(View.GONE);
-    }
+    restoreBackup.setOnClickListener(v -> SafeNavigation.safeNavigate(Navigation.findNavController(v), R.id.action_choose_backup));
 
     String description = getString(R.string.TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device);
     String toBold      = getString(R.string.TransferOrRestoreFragment__you_need_access_to_your_old_device);

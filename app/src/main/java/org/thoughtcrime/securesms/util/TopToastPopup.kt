@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.util
 
-import android.os.Build
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
@@ -24,9 +23,7 @@ class TopToastPopup private constructor(parent: ViewGroup, iconResource: Int, de
   private val description: TextView = contentView.findViewById(R.id.top_toast_popup_description)
 
   init {
-    if (Build.VERSION.SDK_INT >= 21) {
-      elevation = ViewUtil.dpToPx(8).toFloat()
-    }
+    elevation = ViewUtil.dpToPx(8).toFloat()
     animationStyle = R.style.PopupAnimation
     icon.setImageResource(iconResource)
     description.text = descriptionText

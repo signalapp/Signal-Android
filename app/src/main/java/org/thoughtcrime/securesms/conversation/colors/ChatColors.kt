@@ -7,9 +7,6 @@ import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
-import android.graphics.drawable.ShapeDrawable
-import android.graphics.drawable.shapes.OvalShape
-import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.ColorInt
@@ -35,7 +32,7 @@ class ChatColors(
   private val singleColor: Int?
 ) : Parcelable {
 
-  fun isGradient(): Boolean = Build.VERSION.SDK_INT >= 21 && linearGradient != null
+  fun isGradient(): Boolean = linearGradient != null
 
   /**
    * Returns the Drawable to render the linear gradient, or null if this ChatColors is a single color.
@@ -43,9 +40,6 @@ class ChatColors(
   val chatBubbleMask: Drawable
     get() {
       return when {
-        Build.VERSION.SDK_INT < 21 -> {
-          ColorDrawable(Color.TRANSPARENT)
-        }
         linearGradient != null -> {
           RotatableGradientDrawable(
             linearGradient.degrees,
@@ -63,11 +57,7 @@ class ChatColors(
    * Returns the ColorFilter to apply to a conversation bubble or other relevant piece of UI.
    */
   @IgnoredOnParcel
-  val chatBubbleColorFilter: ColorFilter = if (Build.VERSION.SDK_INT >= 21) {
-    PorterDuffColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN)
-  } else {
-    PorterDuffColorFilter(asSingleColor(), PorterDuff.Mode.SRC_IN)
-  }
+  val chatBubbleColorFilter: ColorFilter = PorterDuffColorFilter(Color.TRANSPARENT, PorterDuff.Mode.SRC_IN)
 
   @ColorInt
   fun asSingleColor(): Int {
@@ -115,12 +105,6 @@ class ChatColors(
   }
 
   fun asCircle(): Drawable {
-    if (Build.VERSION.SDK_INT < 21) {
-      return ShapeDrawable(OvalShape()).apply {
-        paint.color = asSingleColor()
-      }
-    }
-
     val toWrap: Drawable = chatBubbleMask
     val path = Path()
 

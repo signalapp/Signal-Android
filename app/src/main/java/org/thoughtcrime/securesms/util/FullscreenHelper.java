@@ -37,13 +37,6 @@ public final class FullscreenHelper {
   }
 
   public void configureToolbarLayout(@NonNull View spacer, @NonNull View toolbar) {
-    if (Build.VERSION.SDK_INT == 19) {
-      setSpacerHeight(spacer, ViewUtil.getStatusBarHeight(spacer));
-      int[] padding = makePaddingValuesForAPI19(activity);
-      toolbar.setPadding(padding[0], 0, padding[1], 0);
-      return;
-    }
-
     ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
       setSpacerHeight(view, insets.getSystemWindowInsetTop());
       return insets;
@@ -57,13 +50,6 @@ public final class FullscreenHelper {
   }
 
   public static void configureBottomBarLayout(@NonNull Activity activity, @NonNull View spacer, @NonNull View bottomBar) {
-    if (Build.VERSION.SDK_INT == 19) {
-      setSpacerHeight(spacer, ViewUtil.getNavigationBarHeight(spacer));
-      int[] padding = makePaddingValuesForAPI19(activity);
-      bottomBar.setPadding(padding[0], 0, padding[1], 0);
-      return;
-    }
-
     ViewCompat.setOnApplyWindowInsetsListener(spacer, (view, insets) -> {
       setSpacerHeight(view, insets.getSystemWindowInsetBottom());
       return insets;

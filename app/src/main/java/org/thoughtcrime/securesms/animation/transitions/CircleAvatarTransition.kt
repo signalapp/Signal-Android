@@ -13,7 +13,6 @@ import android.view.ViewGroup
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
-import androidx.annotation.RequiresApi
 
 private const val POSITION_ON_SCREEN = "signal.circleavatartransition.positiononscreen"
 private const val WIDTH = "signal.circleavatartransition.width"
@@ -22,7 +21,6 @@ private const val HEIGHT = "signal.circleavatartransition.height"
 /**
  * Custom transition for Circular avatars, because once you have multiple things animating stuff was getting broken and weird.
  */
-@RequiresApi(21)
 class CircleAvatarTransition(context: Context, attrs: AttributeSet?) : Transition(context, attrs) {
   override fun captureStartValues(transitionValues: TransitionValues) {
     captureValues(transitionValues)

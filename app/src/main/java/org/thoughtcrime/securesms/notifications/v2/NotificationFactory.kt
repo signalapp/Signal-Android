@@ -286,15 +286,10 @@ object NotificationFactory {
       return
     }
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      ringtone.audioAttributes = AudioAttributes.Builder()
-        .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-        .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
-        .build()
-    } else {
-      @Suppress("DEPRECATION")
-      ringtone.streamType = AudioManager.STREAM_NOTIFICATION
-    }
+    ringtone.audioAttributes = AudioAttributes.Builder()
+      .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
+      .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+      .build()
 
     ringtone.play()
   }

@@ -1,7 +1,6 @@
 package org.signal.qr
 
 import android.graphics.ImageFormat
-import androidx.annotation.RequiresApi
 import androidx.camera.core.ImageProxy
 import com.google.zxing.LuminanceSource
 import java.nio.ByteBuffer
@@ -14,7 +13,6 @@ import java.nio.ByteBuffer
  * An image width can be reported as 1080 but the row stride may be 1088. Thus when representing a row-major
  * 2D array as a 1D array, the math can go sideways if width is used instead of row stride.
  */
-@RequiresApi(21)
 class ImageProxyLuminanceSource(image: ImageProxy) : LuminanceSource(image.width, image.height) {
 
   val yData: ByteArray

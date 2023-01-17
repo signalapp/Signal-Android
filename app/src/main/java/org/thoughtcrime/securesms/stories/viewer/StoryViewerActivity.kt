@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.media.AudioManager
-import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -119,9 +118,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onEnterAnimationComplete() {
-    if (Build.VERSION.SDK_INT >= 21) {
-      window.transitionBackgroundFadeDuration = 100
-    }
+    window.transitionBackgroundFadeDuration = 100
   }
 
   private fun replaceStoryViewerFragment() {

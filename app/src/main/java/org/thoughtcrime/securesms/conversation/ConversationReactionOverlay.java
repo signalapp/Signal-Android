@@ -166,16 +166,11 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
     setupSelectedEmoji();
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      View statusBarBackground = activity.findViewById(android.R.id.statusBarBackground);
-      statusBarHeight = statusBarBackground == null ? 0 : statusBarBackground.getHeight();
+    View statusBarBackground = activity.findViewById(android.R.id.statusBarBackground);
+    statusBarHeight = statusBarBackground == null ? 0 : statusBarBackground.getHeight();
 
-      View navigationBarBackground = activity.findViewById(android.R.id.navigationBarBackground);
-      bottomNavigationBarHeight = navigationBarBackground == null ? 0 : navigationBarBackground.getHeight();
-    } else {
-      statusBarHeight           = ViewUtil.getStatusBarHeight(this);
-      bottomNavigationBarHeight = ViewUtil.getNavigationBarHeight(this);
-    }
+    View navigationBarBackground = activity.findViewById(android.R.id.navigationBarBackground);
+    bottomNavigationBarHeight = navigationBarBackground == null ? 0 : navigationBarBackground.getHeight();
 
     if (zeroNavigationBarHeightForConfiguration()) {
       bottomNavigationBarHeight = 0;
@@ -199,10 +194,8 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
     setVisibility(View.INVISIBLE);
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      this.activity = activity;
-      updateSystemUiOnShow(activity);
-    }
+    this.activity = activity;
+    updateSystemUiOnShow(activity);
 
     ViewKt.doOnLayout(this, v -> {
       showAfterLayout(activity, conversationMessage, lastSeenDownPoint, isMessageOnLeft);
@@ -908,7 +901,7 @@ public final class ConversationReactionOverlay extends FrameLayout {
     inputShadeAnim.setDuration(duration);
     animators.add(inputShadeAnim);
 
-    if (Build.VERSION.SDK_INT >= 21 && activity != null) {
+    if (activity != null) {
       ValueAnimator statusBarAnim = ValueAnimator.ofArgb(activity.getWindow().getStatusBarColor(), originalStatusBarColor);
       statusBarAnim.setDuration(duration);
       statusBarAnim.addUpdateListener(animation -> {

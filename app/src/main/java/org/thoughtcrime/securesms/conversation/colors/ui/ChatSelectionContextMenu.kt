@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.colors.ui
 
 import android.content.Context
 import android.graphics.Rect
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +17,7 @@ class ChatSelectionContextMenu(val context: Context) : PopupWindow(context) {
   init {
     contentView = LayoutInflater.from(context).inflate(R.layout.chat_colors_fragment_context_menu, null, false)
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      elevation = ViewUtil.dpToPx(8).toFloat()
-    }
+    elevation = ViewUtil.dpToPx(8).toFloat()
 
     isOutsideTouchable = false
     isFocusable = true

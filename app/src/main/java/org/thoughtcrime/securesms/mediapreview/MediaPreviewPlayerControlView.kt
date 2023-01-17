@@ -4,7 +4,6 @@ import android.animation.Animator
 import android.animation.Animator.AnimatorListener
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.animation.PathInterpolator
@@ -162,9 +161,7 @@ class AnimatedInOutImageButton @JvmOverloads constructor(
       .scaleX(1f)
       .scaleY(1f)
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      animator.interpolator = PathInterpolator(0.4f, 0.0f, 0.2f, 1f)
-    }
+    animator.interpolator = PathInterpolator(0.4f, 0.0f, 0.2f, 1f)
 
     animator.start()
   }
@@ -178,9 +175,7 @@ class AnimatedInOutImageButton @JvmOverloads constructor(
       .scaleY(0.5f)
       .withEndAction(endAction)
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      animator.interpolator = PathInterpolator(0.4f, 0.0f, 0.2f, 1f)
-    }
+    animator.interpolator = PathInterpolator(0.4f, 0.0f, 0.2f, 1f)
     animator.start()
   }
 

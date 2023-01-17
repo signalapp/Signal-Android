@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.menu
 
-import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -83,13 +82,11 @@ class ContextMenuList(recyclerView: RecyclerView, onItemClick: () -> Unit) {
       icon.setColorFilter(tintColor)
       title.setTextColor(tintColor)
 
-      if (Build.VERSION.SDK_INT >= 21) {
-        when (model.displayType) {
-          DisplayType.TOP -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_top)
-          DisplayType.BOTTOM -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_bottom)
-          DisplayType.MIDDLE -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_middle)
-          DisplayType.ONLY -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_only)
-        }
+      when (model.displayType) {
+        DisplayType.TOP -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_top)
+        DisplayType.BOTTOM -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_bottom)
+        DisplayType.MIDDLE -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_middle)
+        DisplayType.ONLY -> itemView.setBackgroundResource(R.drawable.signal_context_menu_item_background_only)
       }
     }
   }

@@ -7,7 +7,6 @@ import android.util.DisplayMetrics;
 import android.util.Size;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -28,7 +27,6 @@ public final class VideoUtil {
 
   private static final int TOTAL_BYTES_PER_SECOND = (VIDEO_BIT_RATE / 8) + (AUDIO_BIT_RATE / 8);
 
-  @RequiresApi(21)
   public static final String VIDEO_MIME_TYPE = MediaFormat.MIMETYPE_VIDEO_AVC;
   public static final String AUDIO_MIME_TYPE = "audio/mp4a-latm";
 
@@ -36,7 +34,6 @@ public final class VideoUtil {
 
   private VideoUtil() { }
 
-  @RequiresApi(21)
   public static Size getVideoRecordingSize() {
     return isPortrait(screenSize())
            ? new Size(VIDEO_SHORT_WIDTH, VIDEO_LONG_WIDTH)
@@ -54,13 +51,11 @@ public final class VideoUtil {
     return VIDEO_MAX_UPLOAD_LENGTH_S;
   }
 
-  @RequiresApi(21)
   private static Size screenSize() {
     DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
     return new Size(metrics.widthPixels, metrics.heightPixels);
   }
 
-  @RequiresApi(21)
   private static boolean isPortrait(Size size) {
     return size.getWidth() < size.getHeight();
   }

@@ -1936,8 +1936,6 @@ public class ConversationParentFragment extends Fragment
       InsightsLauncher.showInsightsDashboard(getChildFragmentManager());
     } else if (reminderActionId == R.id.reminder_action_update_now) {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-    } else if (reminderActionId == R.id.reminder_action_api_19_learn_more) {
-      CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/5109141421850");
     } else {
       throw new IllegalArgumentException("Unknown ID: " + reminderActionId);
     }
@@ -2459,7 +2457,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void showGroupCallingTooltip() {
-    if (Build.VERSION.SDK_INT == 19 || !SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
+    if (!SignalStore.tooltips().shouldShowGroupCallingTooltip() || callingTooltipShown) {
       return;
     }
 
@@ -3203,8 +3201,6 @@ public class ConversationParentFragment extends Fragment
       builder.setNeutralButton(action.getTitle(), (d, i) -> {
         if (action.getActionId() == R.id.reminder_action_update_now) {
           PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
-        } else if (action.getActionId() == R.id.reminder_action_api_19_learn_more) {
-          CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/5109141421850");
         }
       });
     }

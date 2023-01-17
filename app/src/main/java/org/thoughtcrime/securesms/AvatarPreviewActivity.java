@@ -72,12 +72,10 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
     setTheme(R.style.TextSecure_MediaPreview);
     setContentView(R.layout.contact_photo_preview_activity);
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      postponeEnterTransition();
-      TransitionInflater inflater = TransitionInflater.from(this);
-      getWindow().setSharedElementEnterTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_enter_transition_set));
-      getWindow().setSharedElementReturnTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_return_transition_set));
-    }
+    postponeEnterTransition();
+    TransitionInflater inflater = TransitionInflater.from(this);
+    getWindow().setSharedElementEnterTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_enter_transition_set));
+    getWindow().setSharedElementReturnTransition(inflater.inflateTransition(R.transition.full_screen_avatar_image_return_transition_set));
 
     Toolbar       toolbar = findViewById(R.id.toolbar);
     EmojiTextView title   = findViewById(R.id.title);
@@ -122,9 +120,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
                 @Override
                 public void onResourceReady(@NonNull Bitmap resource, @Nullable Transition<? super Bitmap> transition) {
                   avatar.setImageDrawable(RoundedBitmapDrawableFactory.create(resources, resource));
-                  if (Build.VERSION.SDK_INT >= 21) {
-                    startPostponedEnterTransition();
-                  }
+                  startPostponedEnterTransition();
                 }
 
                 @Override

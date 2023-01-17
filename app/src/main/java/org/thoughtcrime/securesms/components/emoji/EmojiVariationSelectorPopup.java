@@ -31,9 +31,7 @@ public class EmojiVariationSelectorPopup extends PopupWindow {
     setBackgroundDrawable(ContextCompat.getDrawable(context, R.drawable.emoji_variation_selector_background));
     setOutsideTouchable(true);
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      setElevation(20);
-    }
+    setElevation(20);
   }
 
   public void setVariations(List<String> variations) {

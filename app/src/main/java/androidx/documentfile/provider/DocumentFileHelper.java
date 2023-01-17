@@ -4,8 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.provider.DocumentsContract;
 
-import androidx.annotation.RequiresApi;
-
 import org.signal.core.util.logging.Log;
 
 /**
@@ -22,7 +20,6 @@ public class DocumentFileHelper {
    *
    * @return true if rename successful
    */
-  @RequiresApi(21)
   public static boolean renameTo(Context context, DocumentFile documentFile, String displayName) {
     if (documentFile instanceof TreeDocumentFile) {
       Log.d(TAG, "Renaming document directly");

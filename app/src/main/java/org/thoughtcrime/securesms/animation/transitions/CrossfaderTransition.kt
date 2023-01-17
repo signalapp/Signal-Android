@@ -7,11 +7,9 @@ import android.transition.Transition
 import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.animation.doOnEnd
 import androidx.core.animation.doOnStart
 
-@RequiresApi(21)
 class CrossfaderTransition(context: Context, attrs: AttributeSet?) : Transition(context, attrs) {
 
   companion object {

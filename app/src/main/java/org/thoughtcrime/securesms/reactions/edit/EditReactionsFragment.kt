@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.reactions.edit
 
 import android.animation.ObjectAnimator
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation
@@ -90,14 +89,10 @@ class EditReactionsFragment : LoggingFragment(R.layout.edit_reactions_fragment),
   }
 
   private fun configureToolbar() {
-    if (Build.VERSION.SDK_INT == 19) {
-      updateToolbarTopMargin(ViewUtil.getStatusBarHeight(toolbar))
-    } else {
-      @Suppress("DEPRECATION")
-      ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
-        updateToolbarTopMargin(insets.systemWindowInsetTop)
-        insets
-      }
+    @Suppress("DEPRECATION")
+    ViewCompat.setOnApplyWindowInsetsListener(toolbar) { _, insets ->
+      updateToolbarTopMargin(insets.systemWindowInsetTop)
+      insets
     }
   }
 

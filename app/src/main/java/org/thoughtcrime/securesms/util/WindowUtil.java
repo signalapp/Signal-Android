@@ -41,9 +41,7 @@ public final class WindowUtil {
   }
 
   public static void setNavigationBarColor(@NonNull Context context, @NonNull Window window, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT < 21) {
-      return;
-    } else if (Build.VERSION.SDK_INT < 27) {
+    if (Build.VERSION.SDK_INT < 27) {
       window.setNavigationBarColor(ThemeUtil.getThemedColor(context, android.R.attr.navigationBarColor));
     } else {
       window.setNavigationBarColor(color);
@@ -72,8 +70,6 @@ public final class WindowUtil {
   }
 
   public static void setStatusBarColor(@NonNull Window window, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT < 21) return;
-
     window.setStatusBarColor(color);
   }
 

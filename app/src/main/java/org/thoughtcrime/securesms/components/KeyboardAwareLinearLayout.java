@@ -111,7 +111,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void updateKeyboardState(int previousHeight) {
-    if (viewInset == 0 && Build.VERSION.SDK_INT >= 21) viewInset = getViewInset();
+    if (viewInset == 0) viewInset = getViewInset();
 
     getWindowVisibleDisplayFrame(rect);
 

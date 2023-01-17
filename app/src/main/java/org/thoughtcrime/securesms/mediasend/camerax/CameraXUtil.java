@@ -41,7 +41,6 @@ public class CameraXUtil {
 
   private static final String TAG = Log.tag(CameraXUtil.class);
 
-  @RequiresApi(21)
   private static final int[] CAMERA_HARDWARE_LEVEL_ORDERING = new int[]{CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY,
                                                                         CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LIMITED,
                                                                         CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_FULL};
@@ -60,7 +59,6 @@ public class CameraXUtil {
                                                                            CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_3};
 
   @SuppressWarnings("SuspiciousNameCombination")
-  @RequiresApi(21)
   public static ImageResult toJpeg(@NonNull ImageProxy image, boolean flip) throws IOException {
     ImageProxy.PlaneProxy[] planes   = image.getPlanes();
     ByteBuffer              buffer   = planes[0].getBuffer();
@@ -106,10 +104,9 @@ public class CameraXUtil {
   }
 
   public static boolean isSupported() {
-    return Build.VERSION.SDK_INT >= 21 && !CameraXModelBlocklist.isBlocklisted();
+    return !CameraXModelBlocklist.isBlocklisted();
   }
 
-  @RequiresApi(21)
   public static int toCameraDirectionInt(CameraSelector cameraSelector) {
     if (cameraSelector == CameraSelector.DEFAULT_FRONT_CAMERA) {
       return Camera.CameraInfo.CAMERA_FACING_FRONT;
@@ -118,7 +115,6 @@ public class CameraXUtil {
     }
   }
 
-  @RequiresApi(21)
   public static CameraSelector toCameraSelector(@CameraSelector.LensFacing int cameraDirectionInt) {
     if (cameraDirectionInt == Camera.CameraInfo.CAMERA_FACING_FRONT) {
       return CameraSelector.DEFAULT_FRONT_CAMERA;
@@ -127,7 +123,6 @@ public class CameraXUtil {
     }
   }
 
-  @RequiresApi(21)
   public static @ImageCapture.CaptureMode int getOptimalCaptureMode() {
     return FastCameraModels.contains(Build.MODEL) ? ImageCapture.CAPTURE_MODE_MAXIMIZE_QUALITY
                                                   : ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY;
@@ -138,7 +133,6 @@ public class CameraXUtil {
     return Math.max(maxDisplay, 1920);
   }
 
-  @TargetApi(21)
   public static @NonNull Size buildResolutionForRatio(int longDimension, @NonNull Rational ratio, boolean isPortrait) {
     int shortDimension = longDimension * ratio.getDenominator() / ratio.getNumerator();
 
@@ -187,7 +181,6 @@ public class CameraXUtil {
     return transformedData;
   }
 
-  @RequiresApi(21)
   private static boolean shouldCropImage(@NonNull ImageProxy image) {
     Size sourceSize = new Size(image.getWidth(), image.getHeight());
     Size targetSize = new Size(image.getCropRect().width(), image.getCropRect().height());
@@ -205,12 +198,10 @@ public class CameraXUtil {
     return out.toByteArray();
   }
 
-  @RequiresApi(21)
   public static boolean isMixedModeSupported(@NonNull Context context) {
     return getLowestSupportedHardwareLevel(context) != CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY;
   }
 
-  @RequiresApi(21)
   public static int getLowestSupportedHardwareLevel(@NonNull Context context) {
     @SuppressLint("RestrictedApi") CameraManager cameraManager = CameraManagerCompat.from(context).unwrap();
 
@@ -241,13 +232,11 @@ public class CameraXUtil {
     }
   }
 
-  @RequiresApi(21)
   private static int maxHardwareLevel() {
     if (Build.VERSION.SDK_INT >= 24) return CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_3;
     else                             return CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_FULL;
   }
 
-  @RequiresApi(21)
   private static int smallerHardwareLevel(int levelA, int levelB) {
 
     int[] hardwareInfoOrdering = getHardwareInfoOrdering();
@@ -258,7 +247,6 @@ public class CameraXUtil {
     return CameraMetadata.INFO_SUPPORTED_HARDWARE_LEVEL_LEGACY;
   }
 
-  @RequiresApi(21)
   private static int[] getHardwareInfoOrdering() {
     if      (Build.VERSION.SDK_INT >= 28) return CAMERA_HARDWARE_LEVEL_ORDERING_28;
     else if (Build.VERSION.SDK_INT >= 24) return CAMERA_HARDWARE_LEVEL_ORDERING_24;

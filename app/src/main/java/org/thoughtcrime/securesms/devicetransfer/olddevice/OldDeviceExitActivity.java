@@ -26,10 +26,6 @@ public class OldDeviceExitActivity extends AppCompatActivity {
   }
 
   private static void finishAll(@NonNull Activity activity) {
-    if (Build.VERSION.SDK_INT < 21) {
-      activity.finishAffinity();
-    } else {
-      activity.finishAndRemoveTask();
-    }
+    activity.finishAndRemoveTask();
   }
 }
