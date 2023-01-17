@@ -1,11 +1,5 @@
 package org.whispersystems.signalservice.internal.contacts.crypto;
 
-import org.threeten.bp.Instant;
-import org.threeten.bp.LocalDateTime;
-import org.threeten.bp.Period;
-import org.threeten.bp.ZoneId;
-import org.threeten.bp.ZonedDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
 import org.whispersystems.libsignal.util.ByteUtil;
 import org.whispersystems.signalservice.api.crypto.InvalidCiphertextException;
 import org.whispersystems.signalservice.internal.contacts.entities.RemoteAttestationResponse;
@@ -18,12 +12,22 @@ import java.security.MessageDigest;
 import java.security.SignatureException;
 import java.security.cert.CertPathValidatorException;
 import java.security.cert.CertificateException;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 public final class RemoteAttestationCipher {
 
+  private static final Set<String> ALLOWED_ADVISORIES = new HashSet<String>() {{
+    add("INTEL-SA-00334");
+    add("INTEL-SA-00615");
+  }};
   private RemoteAttestationCipher() {
   }
 
@@ -100,7 +104,7 @@ public final class RemoteAttestationCipher {
     if ("OK".equals(entity.getIsvEnclaveQuoteStatus())) {
       return true;
     } else if ("SW_HARDENING_NEEDED".equals(entity.getIsvEnclaveQuoteStatus())) {
-      return entity.getAdvisoryIds().length == 1 && "INTEL-SA-00334".equals(entity.getAdvisoryIds()[0]);
+      return Arrays.stream(entity.getAdvisoryIds()).allMatch(ALLOWED_ADVISORIES::contains);
     } else {
       return false;
     }
