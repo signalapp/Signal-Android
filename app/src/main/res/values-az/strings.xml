@@ -654,7 +654,7 @@
     <string name="ExpiredBuildReminder_update_now">İndi yenilə</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="ExpiredBuildReminder_api_19_message">Signal artıq bu cihazda işləmir. Signal-dan təkrar istifadə etmək üçün cihazınıza Android-in daha yeni versiyasını yükləyin, yaxud da daha yeni cihaza keçin.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1890,11 +1890,11 @@
     <string name="ThreadRecord_video">Video</string>
     <string name="ThreadRecord_chat_session_refreshed">Söhbət seansı təzələndi</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s sizin üçün ianə verdi</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Siz %1$s adlı şəxsə ianə verdiniz</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">Bir nişan aldınız</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Hekayənizə %1$s reaksiyası verdi</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2270,7 +2270,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Artıq mövcud deyil</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
+    <string name="QuoteView__donation_for_a_friend">Bir dosta ianə</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Aşağı sürüşdür</string>
@@ -4358,7 +4358,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Digər metodlar</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Bir dostunuza ianə verin</string>
 
     <string name="Boost__enter_custom_amount">Xüsusi məbləğ daxil et</string>
     <string name="Boost__one_time_contribution">Birdəfəlik töhfə</string>
@@ -4415,9 +4415,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Serverin cavabı təsdiqlənə bilmədi. Zəhmət olmasa dəstəklə əlaqə saxlayın.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <string name="DonationsErrors__donation_failed">İanə vermək mümkün olmadı</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Ödənişiniz emal edildi, amma Signal ianə mesajınızı göndərə bilmədi. Zəhmət olmasa dəstək xidməti ilə əlaqə saxlayın.</string>
     <string name="DonationsErrors__your_badge_could_not">Nişanınızı hesabınıza əlavə etmək mümkün olmadı, ancaq sizdən ödəniş alınmış ola bilər. Dəstək xidməti ilə əlaqə saxlayın.</string>
     <string name="DonationsErrors__your_payment_is_still">Ödənişiniz emal olunur. Bu, bağlantınızdan asılı olaraq bir neçə dəqiqə çəkə bilər.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Abunəlik ləğv edilmədi</string>
@@ -4426,16 +4426,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Şəbəkə xətası. Bağlantınızı yoxlayıb yenidən sınayın.</string>
     <string name="NetworkFailure__retry">Yenidən sına</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
+    <string name="DonationsErrors__cannot_send_donation">İanə göndərmək mümkün deyil</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">İstifadəçi Signal versiyasını yeniləməyənədək ianələri qəbul edə bilməyəcək.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">Şəbəkə xətasına görə ianənizi göndərmək mümkün olmadı. Bağlantınızı yoxlayıb yenidən cəhd edin.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <string name="GiftMessageView__donation_to_s">%1$s üçün ianə</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s sizin adınızdan Signal-a ianə verdi</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Al</string>
     <!-- Gift badge view action label -->
@@ -4646,7 +4646,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Birdəfəlik</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Bir dosta ianə</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4997,7 +4997,7 @@
         <item quantity="other">%1$s · %2$d günlük müddət</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Bir dostunuza ianə verin</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
@@ -5008,11 +5008,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Alıcı seçin</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">İanəni təsdiqlə</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Göndər</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Alıcıya ianə haqqında 1-ə 1 mesajla bildiriş göndəriləcək. Aşağıya öz mesajınızı əlavə edin.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Birdəfəlik ianə</string>
     <!-- Hint for add message input -->
@@ -5020,27 +5020,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">Alıcı təsdiqlənir…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s sizə bir ianə verdi</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dəstəyiniz üçün təşəkkürlər!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s sizin adınızdan Signal-a ianə verdi! Profilinizdə Signal-ı dəstəklədiyinizi göstərin.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Siz %1$s adından Signal-a ianə verdiniz. Ona öz dəstəyini profilində göstərmə imkanı veriləcək.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Al</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">İndi yox</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Nişan alınır…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Hədiyyənizi daha sonra ala bilərsiniz.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Siz %1$s adından Signal-a ianə verdiniz. Ona öz dəstəyini profilində göstərmə imkanı veriləcək.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Nişanınızın müddəti bitdi</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Nişanınızın müddəti bitdi, artıq digərləri onu profilinizdə görmür.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Sizin üçün hazırlanmış texnologiyaya dəstəyi davam etdirmək üçün zəhmət olmasa aylıq Dəstəkçi olmağı düşünün.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5413,7 +5413,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Kredit və ya debet kartı</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Bir dostunuza ianə verin</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Ləğv edilir…</string>
@@ -5481,7 +5481,7 @@
     <string name="ChatFilter__tip_pull_down">İpucu: Filtrləmək üçün çat siyahısı ekranında aşağı çəkin</string>
 
     <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+    <string name="API19Reminder_banner_message">Tezliklə Signal cihazınızın Android versiyasını dəstəkləyə bilməyəcək. Signal-dan istifadəyə davam etmək üçün cihazınızı yeniləyin və ya %1$s tarixinə qədər daha yeni bir cihaza keçin.</string>
 
     <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
     <string name="API19Reminder_learn_more">Daha ətraflı</string>

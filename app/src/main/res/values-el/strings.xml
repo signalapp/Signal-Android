@@ -654,7 +654,7 @@
     <string name="ExpiredBuildReminder_update_now">Αναβάθμιση τώρα</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="ExpiredBuildReminder_api_19_message">Η Signal δεν λειτουργεί πλέον σε αυτή τη συσκευή. Για να χρησιμοποιήσεις πάλι τη Signal, ενημέρωσε τη συσκευή σου με μια νεότερη έκδοση Android ή συνδέσου σε μια νεότερη συσκευή.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1890,11 +1890,11 @@
     <string name="ThreadRecord_video">Βίντεο</string>
     <string name="ThreadRecord_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
+    <string name="ThreadRecord__s_donated_for_you">Ο/Η %1$s έκανε δωρεά για σένα</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Έκανες δωρεά για τον/την %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">Εξαργύρωσες ένα σήμα</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Αντέδρασε με %1$s στην ιστορία σου</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2270,7 +2270,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Δεν είναι πλέον διαθέσιμη</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
+    <string name="QuoteView__donation_for_a_friend">Δωρεά για φίλους</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Πήγαινε στο τέρμα</string>
@@ -4358,7 +4358,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Άλλοι τρόποι δωρεάς</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Κάνε δωρεά για έναν φίλο ή φίλη</string>
 
     <string name="Boost__enter_custom_amount">Εισαγωγή προσαρμοσμένου ποσού</string>
     <string name="Boost__one_time_contribution">Υποστήριξη μια φορά</string>
@@ -4415,9 +4415,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Δεν μπορέσαμε να επικυρώσουμε την απάντηση του διακομιστή. Παρακαλώ επικοινώνησε με την υποστήριξη.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <string name="DonationsErrors__donation_failed">Η δωρεά απέτυχε</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Έγινε επεξεργασία της πληρωμής σου από τη Signal, αλλά δεν καταφέραμε να στείλουμε το μήνυμα της δωρεάς. Επικοινώνησε με την υποστήριξη.</string>
     <string name="DonationsErrors__your_badge_could_not">Το σήμα σου δεν ήταν δυνατό να προστεθεί στον λογαριασμό σου, αλλά ενδέχεται να έχεις χρεωθεί. Επικοινώνησε με την υποστήριξη.</string>
     <string name="DonationsErrors__your_payment_is_still">Η πληρωμή σου βρίσκεται ακόμα σε επεξεργασία. Μπορεί να πάρει ακόμα μερικά λεπτά, ανάλογα με τη σύνδεσή σου.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Αποτυχία ακύρωσης συνδρομής</string>
@@ -4426,16 +4426,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Σφάλμα δικτύου. Έλεγξε τη σύνδεσή σου και ξαναπροσπάθησε.</string>
     <string name="NetworkFailure__retry">Επανάληψη</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
+    <string name="DonationsErrors__cannot_send_donation">Δεν είναι δυνατή η αποστολή της δωρεάς</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Ο χρήστης δεν μπορεί να λάβει δωρεές μέχρι να αναβαθμίσει τη Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">Η δωρεά δεν εστάλη λόγω σφάλματος δικτύου. Έλεγξε τη σύνδεσή σου και δοκίμασε ξανά.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <string name="GiftMessageView__donation_to_s">Δωρεά στον/στην %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">Ο/Η %1$s έκανε δωρεά στη Signal εκ μέρους σου</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Εξαργύρωση</string>
     <!-- Gift badge view action label -->
@@ -4646,7 +4646,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Μια φορά</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Δωρεά για φίλους</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4997,7 +4997,7 @@
         <item quantity="other">%1$s · διάρκειας %2$d ημερών</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Κάνε δωρεά για έναν φίλο ή φίλη</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
@@ -5008,11 +5008,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Επιλογή παραλήπτη</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">Επιβεβαίωση δωρεάς</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Αποστολή σε</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Ο παραλήπτης θα ειδοποιηθεί για τη δωρεά με προσωπικό μήνυμα. Πρόσθεσε το μήνυμά σου παρακάτω.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Μεμονωμένη δωρεά</string>
     <!-- Hint for add message input -->
@@ -5020,27 +5020,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">Επιβεβαίωση παραλήπτη…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">Ο/Η %1$s έκανε δωρεά για σένα</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Ευχαριστούμε για την υποστήριξη!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">Ο/Η %1$s έκανε δωρεά στη Signal εκ μέρους σου! Δείξε την υποστήριξή σου για τη Signal στο προφίλ σου.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Έκανες δωρεά στη Signal εκ μέρους του/της %1$s. Θα τους δοθεί η επιλογή να δείξουν την υποστήριξή τους στο προφίλ τους.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Εξαργύρωση</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Όχι τώρα</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Εξαργύρωση σήματος…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Μπορείς να εξαργυρώσεις το σήμα σου αργότερα.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Έκανες δωρεά στη Signal εκ μέρους του/της %1$s. Θα τους δοθεί η επιλογή να δείξουν την υποστήριξή τους στο προφίλ τους.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Το έμβλημά σου έληξε</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Το σήμα σου έληξε</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Το σήμα σου έληξε και δεν θα εμφανίζεται πλέον σε άλλα άτομα στο προφίλ σου.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Για να συνεχίσεις να υποστηρίζεις τη τεχνολογία που έχει φτιαχτεί για εσένα, παρακαλούμε σκέψου να γίνεις μηνιαίος υποστηρικτής/τρια.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5413,7 +5413,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Πιστωτική ή χρεωστική κάρτα</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Κάνε δωρεά για έναν φίλο ή φίλη</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Ακύρωση…</string>
@@ -5481,7 +5481,7 @@
     <string name="ChatFilter__tip_pull_down">Συμβουλή: Σύρε προς τα κάτω στη λίστα συνομιλιών για φιλτράρισμα</string>
 
     <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+    <string name="API19Reminder_banner_message">Η Signal δεν θα υποστηρίζει πλέον την έκδοση Android της συσκευής σου. Για να συνεχίσεις να χρησιμοποιείς τη Signal, ενημέρωσε τη συσκευή σου ή συνδέσου σε μια νεότερη συσκευή έως τις %1$s.</string>
 
     <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
     <string name="API19Reminder_learn_more">Μάθε περισσότερα</string>

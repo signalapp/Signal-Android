@@ -634,7 +634,7 @@
     <string name="ExpiredBuildReminder_update_now">Cập nhật ngay</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="ExpiredBuildReminder_api_19_message">Signal không còn hoạt động được trên thiết bị này. Để có thể tiếp tục sử dụng Signal, cập nhật phiên bản Android mới hơn cho thiết bị của bạn hoặc đổi qua một thiết bị mới hơn.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1819,11 +1819,11 @@
     <string name="ThreadRecord_video">Video</string>
     <string name="ThreadRecord_chat_session_refreshed">Đã làm mới phiên trò chuyện</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s đã ủng hộ thay cho bạn</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">Bạn đã ủng hộ thay cho %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">Bạn đã nhận một huy hiệu</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Đã bày tỏ cảm xúc %1$s với story của bạn</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2194,7 +2194,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">Không thể xem được nữa</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
+    <string name="QuoteView__donation_for_a_friend">Khoản ủng hộ thay cho một người bạn</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">Kéo xuống dưới cùng</string>
@@ -4256,7 +4256,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">Các cách ủng hộ khác</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
 
     <string name="Boost__enter_custom_amount">Nhập vào Số tiền Tuỳ chọn</string>
     <string name="Boost__one_time_contribution">Quyên góp một lần</string>
@@ -4313,9 +4313,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">Không thể xác nhận phản hồi của máy chủ. Vui lòng liên hệ bộ phận hỗ trợ.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <string name="DonationsErrors__donation_failed">Ủng hộ thất bại</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Khoản ủng hộ của bạn đã được xử lý nhưng Signal không thể gửi tin nhắn kèm khoản ủng hộ của bạn. Vui lòng liên hệ bộ phận hỗ trợ.</string>
     <string name="DonationsErrors__your_badge_could_not">Huy hiệu của bạn không thể thêm vào tài khoản, nhưng bạn vẫn có thể bị tính phí. Xin vui lòng liên hệ với chúng tôi để được hỗ trợ.</string>
     <string name="DonationsErrors__your_payment_is_still">Thanh toán của bán đang được xử lý. Việc này có thể mất vài phút tùy vào kết nối của bạn.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Hủy gói ủng hộ không thành công</string>
@@ -4324,16 +4324,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Lỗi kết nối: Hãy kiểm tra kết nối của bạn và thử lại.</string>
     <string name="NetworkFailure__retry">Thử lại</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
+    <string name="DonationsErrors__cannot_send_donation">Không thể gửi khoản ủng hộ</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Người dùng này không thể nhận ủng hộ cho đến khi họ nâng cấp Signal.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">Khoản ủng hộ của bạn không thể gửi đi được vì lỗi mạng. Kiểm tra kết nối của bạn và thử lại.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <string name="GiftMessageView__donation_to_s">Khoản ủng hộ thay cho %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s đã thay mặt bạn ủng hộ Signal</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Nhận</string>
     <!-- Gift badge view action label -->
@@ -4544,7 +4544,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Một lần</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">Khoản ủng hộ thay cho một người bạn</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4887,7 +4887,7 @@
         <item quantity="other">%1$s · Hạn sử dụng %2$d ngày</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
@@ -4897,11 +4897,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">Chọn người nhận</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">Xác nhận khoản ủng hộ</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Gửi đến</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Người nhận sẽ được thông báo về khoản ủng hộ trong một tin nhắn trực tiếp. Thêm tin nhắn của bạn vào dưới đây.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Ủng hộ một lần</string>
     <!-- Hint for add message input -->
@@ -4909,27 +4909,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">Đang xác minh người nhận…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s đã gửi khoản ủng hộ thay cho bạn</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Cảm ơn bạn đã đống góp!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s đã gửi khoản ủng hộ cho Signal thay cho bạn! Thể hiện sự ủng hộ của bạn cho Signal trên hồ sơ của mình.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">Bạn đã gửi một khoản ủng hộ cho Signal thay cho %1$s. Họ sẽ có tuỳ chọn để thể hiện sự ủng hộ của mình trên hồ sơ.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">Nhận</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Để sau</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Đang nhận huy hiệu…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Bạn có thể nhận huy hiệu của mình sau.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">Bạn đã gửi một khoản ủng hộ cho Signal thay cho %1$s. Họ sẽ có tuỳ chọn để thể hiện sự ủng hộ của mình trên hồ sơ.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Huy hiệu của bạn đã hết hạn</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Huy hiệu quả tặng của bạn đã hết hạn và không còn hiển thị trên hồ sơ.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Để tiếp tục ủng hộ chúng tôi, ứng dụng sinh ra để dành cho bạn, hãy trở thành người ủng hộ thường xuyên hàng tháng của chúng tôi.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5290,7 +5290,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">Thẻ tín dụng hoặc ghi nợ</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Ủng hộ thay cho một người bạn</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">Đang hủy…</string>
@@ -5357,7 +5357,7 @@
     <string name="ChatFilter__tip_pull_down">Mẹo: Kéo danh sách cuộc trò chuyện xuống để lọc</string>
 
     <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+    <string name="API19Reminder_banner_message">Signal sẽ sớm không còn hỗ trợ phiên bản Android trên thiết bị của bạn. Để có thể tiếp tục sử dụng Signal, cập nhật thiết bị của bạn, hoặc đổi qua một thiết bị mới hơn của %1$s.</string>
 
     <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
     <string name="API19Reminder_learn_more">Tìm hiểu thêm</string>

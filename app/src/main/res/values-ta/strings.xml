@@ -654,7 +654,7 @@
     <string name="ExpiredBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="ExpiredBuildReminder_api_19_message">இந்த டிவைஸில் இனியும் Signal வேலை செய்யாது. மீண்டும் சிக்னலைப் பயன்படுத்த, உங்கள் டிவைஸை Android இன் புதிய பதிப்பிற்குப் புதுப்பிக்கவும் அல்லது புதிய டிவைஸிற்கு மாறவும்.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1890,11 +1890,11 @@
     <string name="ThreadRecord_video">காணொளி</string>
     <string name="ThreadRecord_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s உங்களுக்காக நன்கொடை அளித்துள்ளார்</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">நீங்கள் %1$s க்கு நன்கொடை அளித்துள்ளீர்கள்</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">நீங்கள் ஒரு பேட்ஜை ரிடீம் செய்துள்ளீர்கள்</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">உங்கள் ஸ்டோரிக்கு %1$s என்று எதிர்வினையாற்றினார்</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2270,7 +2270,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">இனி கிடைக்காது</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
+    <string name="QuoteView__donation_for_a_friend">நண்பருக்கு நன்கொடை</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">கீழே உருட்டவும்</string>
@@ -4358,7 +4358,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">கொடுக்க மற்ற வழிகள்</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
 
     <string name="Boost__enter_custom_amount">விருப்பத் தொகையை உள்ளிடவும்</string>
     <string name="Boost__one_time_contribution">ஒரு முறைக்கான பங்களிப்பு</string>
@@ -4415,9 +4415,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">சர்வர் பதிலைச் சரிபார்க்க முடியவில்லை. தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <string name="DonationsErrors__donation_failed">நன்கொடை தோல்வியடைந்தது</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">உங்கள் பணம் செலுத்தப்பட்டது ஆனால் Signal செயலியால் உங்கள் நன்கொடை செய்தியை அனுப்ப முடியவில்லை. தயவுசெய்து ஆதரவு மையத்தை தொடர்பு கொள்ளவும்.</string>
     <string name="DonationsErrors__your_badge_could_not">உங்கள் பேட்ஜை உங்கள் கணக்கில் சேர்க்க முடியவில்லை, ஆனால் உங்களிடம் கட்டணம் விதிக்கப்பட்டிருக்கலாம். தயவுசெய்து உதவி மையத்தை தொடர்பு கொள்ளவும்.</string>
     <string name="DonationsErrors__your_payment_is_still">உங்கள் கட்டணம் இன்னும் செயல்படுத்தப்படுகிறது. உங்கள் இணைப்பைப் பொறுத்து இதற்கு ஒரு சில நிமிடங்கள் ஆகலாம்.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">சந்தாவை ரத்து செய்ய முடியவில்லை</string>
@@ -4426,16 +4426,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">நெட்வொர்க் பிழை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
     <string name="NetworkFailure__retry">மீண்டும் முயற்சி செய்</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
+    <string name="DonationsErrors__cannot_send_donation">நன்கொடை அனுப்ப முடியாது</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Signalஐ மேம்படுத்தும் வரை இந்தப் பயனர் நன்கொடைகளைப் பெற முடியாது.</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">நெட்வொர்க் பிழையின் காரணமாக உங்கள் நன்கொடையை அனுப்ப முடியவில்லை. உங்கள் இணைப்பைச் சரிபார்த்து மீண்டும் முயலவும்.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <string name="GiftMessageView__donation_to_s">%1$s க்கு நன்கொடை</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">உங்கள் சார்பாக Signalக்கு %1$s நன்கொடை அளித்துள்ளார்</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">மீட்டெடு</string>
     <!-- Gift badge view action label -->
@@ -4646,7 +4646,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">ஒரு-முறை</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">நண்பருக்கு நன்கொடை</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4997,7 +4997,7 @@
         <item quantity="other">%1$s · %2$d நாள் காலம்</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
@@ -5008,11 +5008,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">பெறுநரைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">நன்கொடையை உறுதிப்படுத்துதல்</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">அனுப்பவும்</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">1 இல் 1 செய்தியில் நன்கொடை பெறுபவருக்கு அறிவிக்கப்படும். உங்கள் சொந்த செய்தியை கீழே சேர்க்கவும்.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">ஒரு முறைக்கான நன்கொடை</string>
     <!-- Hint for add message input -->
@@ -5020,27 +5020,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">பெறுநரைச் சரிபார்க்கப்படுகிறது…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s உங்களுக்காக நன்கொடை அளித்துள்ளார்</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">உங்கள் ஆதரவுக்கு நன்றி!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">உங்கள் சார்பாக Signalக்கு %1$s நன்கொடை அளித்துள்ளார்! உங்கள் புரொஃபைலில் Signalக்கான உங்கள் ஆதரவைக் காட்டுங்கள்.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">%1$s சார்பாக Signalக்கு நன்கொடை அளித்துள்ளீர்கள். அவர்களின் புரொஃபைலில் தங்கள் ஆதரவைக் காட்ட அவர்களுக்கு விருப்பம் வழங்கப்படும்.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">மீட்டெடு</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">இப்போது இல்லை</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">பேட்ஜை ரிடீம் செய்கிறது…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">உங்கள் பேட்ஜை பின்னர் நீங்கள் மீட்டெடுக்கலாம்.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">%1$s சார்பாக Signalக்கு நன்கொடை அளித்துள்ளீர்கள். அவர்களின் ப்ரொஃபைலில் தங்கள் ஆதரவைக் காட்ட அவர்களுக்கு விருப்பம் வழங்கப்படும்.</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Your badge has expired</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">உங்களது பேட்ஜ் காலாவதியாகிவிட்டது</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">உங்கள் பேட்ஜ் காலாவதியானது, மற்றும் உங்கள் ப்ரொஃபைலில் உள்ள மற்றவர்களுக்கு இனியும் அது காட்டப்படாது.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">உங்களுக்காக உருவாக்கப்பட்ட தொழில்நுட்பத்தை தொடர்ந்து ஆதரிக்க, மாதாந்திர காப்பாளராக மாற கருத்தில் கொள்ளவும்.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5413,7 +5413,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">கிரெடிட் அல்லது டெபிட் கார்டு</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">ரத்துசெய்கிறது…</string>
@@ -5481,7 +5481,7 @@
     <string name="ChatFilter__tip_pull_down">உதவிக்குறிப்பு: வடிகட்ட சாட் பட்டியலை கீழே இழுக்கவும்</string>
 
     <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+    <string name="API19Reminder_banner_message">உங்கள் டிவைஸின் Android பதிப்பை விரைவில் Signal ஆதரிக்காது. Signalஐ தொடர்ந்து பயன்படுத்த, உங்கள் டிவைஸை புதுப்பிக்கவும் அல்லது %1$s க்குள் புதிய டிவைஸிற்கு மாறவும்.</string>
 
     <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
     <string name="API19Reminder_learn_more">மேலும் அறிக</string>

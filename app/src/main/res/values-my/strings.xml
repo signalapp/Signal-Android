@@ -634,7 +634,7 @@
     <string name="ExpiredBuildReminder_update_now">ယခု Update လုပ်ပါ။</string>
 
     <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal no longer works on this device. To use Signal again, update your device to a newer version of Android or switch to a newer device.</string>
+    <string name="ExpiredBuildReminder_api_19_message">Signal သည် ဤစက်တွင် အလုပ်လုပ်တော့မည် မဟုတ်ပါ။ Signal ကို ထပ်သုံးရန် သင့်စက်ကို နောက်ဆုံးထွက် Android ဗားရှင်းသို့ အပ်ဒိတ်လုပ်ပါ သို့မဟုတ် ပိုသစ်သော စက်သို့ ပြောင်းပါ။</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1819,11 +1819,11 @@
     <string name="ThreadRecord_video">ဗီဒီယို</string>
     <string name="ThreadRecord_chat_session_refreshed">စကားပြောဆိုမှု အချိန်ပိုင်း ပြန်စတင်ခဲ့ပါသည်</string>
     <!-- Displayed in the notification when the user is sent a gift -->
-    <string name="ThreadRecord__s_donated_for_you">%1$s donated for you</string>
+    <string name="ThreadRecord__s_donated_for_you">%1$s သည် သင့်ကိုယ်စား လှူဒါန်းထားပါသည်</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">You donated for %1$s</string>
+    <string name="ThreadRecord__you_donated_for_s">သင်သည် %1$s အတွက် လှူဒါန်းထားပါသည်</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">You redeemed a badge</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">ဘဲ့ဂျ်တစ်ခု လဲလှယ်ရယူထားပါသည်</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">သင့်စတိုရီကို %1$s ဖြင့် တုံ့ပြန်ခဲ့ပါသည်</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -2194,7 +2194,7 @@
     <!-- Label indicating that the story being replied to no longer exists -->
     <string name="QuoteView_no_longer_available">နောက်ထပ် မရရှိနိုင်တော့ပါ</string>
     <!-- Label for quoted gift -->
-    <string name="QuoteView__donation_for_a_friend">Donation for a friend</string>
+    <string name="QuoteView__donation_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူဒါန်းမှု</string>
 
     <!-- conversation_fragment -->
     <string name="conversation_fragment__scroll_to_the_bottom_content_description">အောက်သို့ ဆွဲလိုက်ပါ</string>
@@ -4256,7 +4256,7 @@
     <!-- Preference heading for other ways to donate -->
     <string name="ManageDonationsFragment__other_ways_to_give">အခြားလှူဒါန်းမှုနည်းလမ်းများ</string>
     <!-- Preference label to launch badge gifting -->
-    <string name="ManageDonationsFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="ManageDonationsFragment__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
 
     <string name="Boost__enter_custom_amount">စိတ်ကြိုက်ပမာဏကို ရိုက်ထည့်ပါ</string>
     <string name="Boost__one_time_contribution">တစ်ကြိမ် ကူညီထောက်ပံ့မှု</string>
@@ -4313,9 +4313,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">ဆာဗာ တုံ့ပြန်မှုကို အတည်ပြု၍ မရနိုင်ပါ။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">Donation failed</string>
+    <string name="DonationsErrors__donation_failed">လှူဒါန်းမှု မအောင်မြင်ပါ</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Your payment was processed but Signal could not send your donation message. Please contact support.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်ပြီးသော်လည်း Signal သည် သင့်လှူဒါန်းမှု မက်ဆေ့ချ်ကို မပေးပို့နိုင်ခဲ့ပါ။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
     <string name="DonationsErrors__your_badge_could_not">သင့်ဘဲ့ဂျ်ကို သင့်အကောင့်တွင် ပေါင်းထည့်၍ မရနိုင်ခဲ့သော်လည်း သင့်ထံမှ ငွေဖြတ်တောက်သွားနိုင်ပါသည်။ အကူအညီရယူရန် ဆက်သွယ်ပါ။</string>
     <string name="DonationsErrors__your_payment_is_still">သင့်ငွေပေးချေမှုကို စီမံလုပ်ဆောင်နေဆဲ ဖြစ်ပါသည်။ သင့်ချိတ်ဆက်မှုပေါ်မူတည်၍ မိနစ်အနည်းငယ် ကြာနိုင်ပါသည်။</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">ပုံမှန်လှူဒါန်းငွေကို ပယ်ဖျက်ရန် မအောင်မြင်ပါ</string>
@@ -4324,16 +4324,16 @@
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">ကွန်ရက် ချို့ယွင်းချက်။ သင့်ချိတ်ဆက်မှုကို စစ်ဆေးပြီး ထပ်ကြိုးစားပါ။</string>
     <string name="NetworkFailure__retry">ထပ်ကြိုးစားပါ</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__cannot_send_donation">Cannot send donation</string>
+    <string name="DonationsErrors__cannot_send_donation">လှူဒါန်းမှုကို ပေးပို့၍ မရနိုင်ပါ</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
-    <string name="DonationsErrors__this_user_cant_receive_donations_until">This user can\'t receive donations until they upgrade Signal.</string>
+    <string name="DonationsErrors__this_user_cant_receive_donations_until">Signal ကို အဆင့်မြှင့်တင်မှု မလုပ်မချင်း ဤသုံးစွဲသူသည် လှူဒါန်းမှုများကို လက်ခံရရှိနိုင်မည် မဟုတ်ပါ။</string>
     <!-- Displayed as a dialog message when the user\'s profile could not be fetched, likely due to lack of internet -->
-    <string name="DonationsErrors__your_donation_could_not_be_sent">Your donation could not be sent because of a network error. Check your connection and try again.</string>
+    <string name="DonationsErrors__your_donation_could_not_be_sent">ကွန်ရက်ချို့ယွင်းချက်ကြောင့် သင့်လှူဒါန်းမှုကို မပေးပို့နိုင်ပါ။ ချိတ်ဆက်မှုစစ်ဆေးပြီး ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Donation to %1$s</string>
+    <string name="GiftMessageView__donation_to_s">%1$s သို့ လှူဒါန်းမှု</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s donated to Signal on your behalf</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s သည် သင့်ကိုယ်စား Signal သို့ လှူဒါန်းထားပါသည်</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">လဲလှယ်ရန်</string>
     <!-- Gift badge view action label -->
@@ -4544,7 +4544,7 @@
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">တစ်ကြိမ်</string>
     <!-- Donation receipts gift tab label -->
-    <string name="DonationReceiptListFragment__donation_for_a_friend">Donation for a friend</string>
+    <string name="DonationReceiptListFragment__donation_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူဒါန်းမှု</string>
     <!-- Donation receipts boost row label -->
     <!-- Donation receipts details title -->
     <!-- Donation receipts donation type heading -->
@@ -4887,7 +4887,7 @@
         <item quantity="other">%1$s · %2$d ရက်တာကာလ</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
-    <string name="GiftFlowStartFragment__donate_for_a_friend">Donate for a Friend</string>
+    <string name="GiftFlowStartFragment__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
         <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
@@ -4897,11 +4897,11 @@
     <!-- Title text on choose recipient page for badge gifting -->
     <string name="GiftFlowRecipientSelectionFragment__choose_recipient">လက်ခံသူ ရွေးရန်</string>
     <!-- Title text on confirm gift page -->
-    <string name="GiftFlowConfirmationFragment__confirm_donation">Confirm donation</string>
+    <string name="GiftFlowConfirmationFragment__confirm_donation">လှူဒါန်းမှုကို အတည်ပြုရန်</string>
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">ဖော်ပြပါသို့ ပို့ရန်</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">The recipient will be notified of the donation in a 1 on 1 message. Add your own message below.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">လက်ခံရရှိမည့် ပုဂ္ဂိုလ်အား လှူဒါန်းမှုအကြောင်းကို တစ်ဦးချင်း 1-1 မက်ဆေ့ချ်တွင် အသိပေးအကြောင်းကြားပါမည်။ အောက်တွင် သင့်ကိုယ်ပိုင်မက့်ဆေ့ချ်ကို ထည့်ပါ။</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">တစ်ကြိမ်စာ လှူဒါန်းမှု</string>
     <!-- Hint for add message input -->
@@ -4909,27 +4909,27 @@
     <!-- Displayed in the dialog while verifying the chosen recipient -->
     <string name="GiftFlowConfirmationFragment__verifying_recipient">လက်ခံသူ အတည်ပြုနေဆဲ…</string>
     <!-- Title for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s made a donation for you</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s သည် သင့်အတွက် လှူဒါန်းထားပါသည်</string>
     <!-- Title for sheet shown when opening a sent gift -->
     <string name="ViewSentGiftBottomSheet__thanks_for_your_support">သင့်ပံ့ပိုးကူညီမှုအတွက် ကျေးဇူးတင်ပါသည်။</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
-    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s made a donation to Signal on your behalf! Show your support for Signal on your profile.</string>
+    <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s သည် သင့်ကိုယ်စား Signal သို့ လှူဒါန်းထားသည်။ သင့်ပရိုဖိုင်းတွင် Signal အတွက် သင့်ပံ့ပိုးမှုကို ပြသပါ။</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">You\'ve made a donation to Signal on behalf of %1$s. They\'ll be given the option to show their support on their profile.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">သင်သည် %1$s ကိုယ်စား Signal သို့ လှူဒါန်းထားပါသည်။ ၎င်းတို့၏ ပရိုဖိုင်းတွင် ၎င်းတို့၏ ပံ့ပိုးမှုကို ပြသရန်အတွက် ၎င်းတို့အား ရွေးချယ်ခွင့် ပေးပါမည်။</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">လဲလှယ်ရန်</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">ယခု မလုပ်ဆောင်သေးပါ။</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Redeeming badge…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">ဘဲ့ဂျ် လဲလှယ်ရယူနေသည်…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">နောင်အခါ သင့်ဘဲ့ဂျ်ကို လဲလှယ်နိုင်ပါသည်။</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">You’ve made a donation to Signal on behalf of %1$s. They’ll be given the option to show their support on their profile.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">သင်သည် %1$s ကိုယ်စား Signal သို့ လှူဒါန်းထားပါသည်။ ၎င်းတို့အား ပရိုဖိုင်းတွင် ၎င်းတို့၏ ပံ့ပိုးမှုကို ပြသရန် ရွေးချယ်ခွင့် ပေးပါမည်။</string>
     <!-- Expired gift sheet title -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Your badge has expired</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">သင့်ဘဲ့ဂျ်သည် သက်တမ်းကုန်သွားပါပြီ</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Your badge has expired, and is no longer visible to others on your profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">သင့်ဘဲ့ဂျ်သည် သက်တမ်းကုန်သွားပါပြီ၊ သင့်ပရိုဖိုင်းတွင် ၎င်းကို အခြားသူများအား ပြနိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">သင့်အတွက် ဖန်တီးထားသော နည်းပညာကို ဆက်လက်ပံ့ပိုးကူညီနိုင်ရန် လစဉ် ပါဝင်အားဖြည့်သူ လုပ်ရန် စဉ်းစားပေးပါ။</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5290,7 +5290,7 @@
     <!-- Button label for paying with a credit card -->
     <string name="GatewaySelectorBottomSheet__credit_or_debit_card">ခရက်ဒစ် သို့မဟုတ် ဒက်ဘစ်ကတ်</string>
     <!-- Sheet summary when giving donating for a friend -->
-    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">Donate for a friend</string>
+    <string name="GatewaySelectorBottomSheet__donate_for_a_friend">မိတ်ဆွေတစ်ယောက်အတွက် လှူရန်</string>
 
     <!-- StripePaymentInProgressFragment -->
     <string name="StripePaymentInProgressFragment__cancelling">ပယ်ဖျက်နေဆဲ…</string>
@@ -5357,7 +5357,7 @@
     <string name="ChatFilter__tip_pull_down">အကြံပြုချက်- စစ်ထုတ်ရန် ချက်(တ်)စာရင်းတွင် အောက်သို့ ဆွဲပါ</string>
 
     <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal will no longer support your device\'s version of Android soon. To keep using Signal, update your device, or switch to a newer device by %1$s.</string>
+    <string name="API19Reminder_banner_message">Signal သည် သင့်စက်၏ Android ဗားရှင်းကို မကြာမီကာလတွင် ဆက်လက်၍ မပံ့ပိုးပေးတော့ပါ။ Signal ကို ဆက်သုံးရန် သင့်စက်ကို အပ်ဒိတ်လုပ်ပါ သို့မဟုတ် %1$s ထက် နောက်မကျဘဲ ပိုသစ်သော စက်သို့ ပြောင်းပါ။</string>
 
     <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
     <string name="API19Reminder_learn_more">ပိုမိုလေ့လာရန်</string>
