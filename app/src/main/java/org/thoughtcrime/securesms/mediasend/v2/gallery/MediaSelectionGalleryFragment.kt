@@ -37,7 +37,14 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    val isFirst = arguments?.getBoolean("suppressEmptyError") ?: arguments?.getBoolean("first") ?: false
+    val args = arguments
+    val isFirst = when {
+      args == null -> false
+      args.containsKey("suppressEmptyError") -> args.getBoolean("suppressEmptyError")
+      args.containsKey("first") -> args.getBoolean("first")
+      else -> false
+    }
+
     sharedViewModel.setSuppressEmptyError(isFirst)
     mediaGalleryFragment = ensureMediaGalleryFragment()
 
