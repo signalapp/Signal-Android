@@ -1646,7 +1646,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   private fun ConversationFilter.toQuery(): String {
     return when (this) {
       ConversationFilter.OFF -> ""
-      ConversationFilter.UNREAD -> " AND $READ != ${ReadStatus.READ.serialize()}"
+      //language=sql
+      ConversationFilter.UNREAD -> " AND ($UNREAD_COUNT > 0 OR $READ == ${ReadStatus.FORCED_UNREAD.serialize()})"
       ConversationFilter.MUTED -> error("This filter selection isn't supported yet.")
       ConversationFilter.GROUPS -> error("This filter selection isn't supported yet.")
     }
