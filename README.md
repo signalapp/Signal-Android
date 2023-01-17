@@ -26,7 +26,7 @@ The form and manner of this distribution makes it eligible for export under the 
 ## License
 
 Copyright 2013-2022 Signal 
-Copyright 2022 Punkt Tronics AG
+Copyright 2023 Punkt Tronics AG
  
 Licensed under the GPLv3: http://www.gnu.org/licenses/gpl-3.0.html
   

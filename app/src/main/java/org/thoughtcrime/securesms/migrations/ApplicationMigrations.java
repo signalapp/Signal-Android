@@ -399,6 +399,10 @@ public class ApplicationMigrations {
       jobs.put(Version.KBS_MIGRATION, new KbsEnclaveMigrationJob());
     }
 
+    if (lastSeenVersion < Version.KBS_MIGRATION_2) {
+      jobs.put(Version.KBS_MIGRATION_2, new KbsEnclaveMigrationJob());
+    }
+
     return jobs;
   }
 
