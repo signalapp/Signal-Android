@@ -335,7 +335,11 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   private static final String   RAW_ID_WHERE         = TABLE_NAME + "._id = ?";
 
   private static final String SNIPPET_QUERY = "SELECT " + MessageTable.ID + ", " + MessageTable.TYPE + ", " + MessageTable.DATE_RECEIVED + " FROM " + MessageTable.TABLE_NAME + " " +
-                                              "WHERE " + MessageTable.THREAD_ID + " = ? AND " + MessageTable.TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + " AND " + MessageTable.STORY_TYPE + " = 0 AND " + MessageTable.PARENT_STORY_ID + " <= 0 " +
+                                              "WHERE " + MessageTable.THREAD_ID + " = ? AND " +
+                                                MessageTable.TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + " AND " +
+                                                MessageTable.STORY_TYPE + " = 0 AND " +
+                                                MessageTable.PARENT_STORY_ID + " <= 0 AND " +
+                                                MessageTable.TYPE + " NOT IN (" + MessageTypes.PROFILE_CHANGE_TYPE + ", " + MessageTypes.GV1_MIGRATION_TYPE + ", " + MessageTypes.CHANGE_NUMBER_TYPE + ", " + MessageTypes.BOOST_REQUEST_TYPE + ", " + MessageTypes.SMS_EXPORT_TYPE + ") " +
                                               "ORDER BY " + MessageTable.DATE_RECEIVED + " DESC " +
                                               "LIMIT 1";
 
