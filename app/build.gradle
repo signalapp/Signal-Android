@@ -266,6 +266,7 @@ android {
                     'proguard/proguard-retrofit.pro',
                     'proguard/proguard-webrtc.pro',
                     'proguard/proguard-klinker.pro',
+                    'proguard/proguard-mobilecoin.pro',
                     'proguard/proguard-retrolambda.pro',
                     'proguard/proguard-okhttp.pro',
                     'proguard/proguard-ez-vcard.pro',
