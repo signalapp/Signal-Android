@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.pin;
 
+import android.app.backup.BackupManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -8,6 +10,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
@@ -69,6 +72,7 @@ public class KbsRepository {
 
       try {
         authorization = authorization == null ? kbs.getAuthorization() : authorization;
+        backupAuthToken(authorization);
         token = kbs.getToken(authorization);
       } catch (NonSuccessfulResponseCodeException e) {
         if (e.getCode() == 404) {
@@ -93,6 +97,13 @@ public class KbsRepository {
     }
 
     return Objects.requireNonNull(firstKnownTokenData);
+  }
+
+  private static void backupAuthToken(String token) {
+    final boolean tokenIsNew = SignalStore.kbsValues().appendAuthTokenToList(token);
+    if (tokenIsNew) {
+      new BackupManager(ApplicationDependencies.getApplication()).dataChanged();
+    }
   }
 
   /**

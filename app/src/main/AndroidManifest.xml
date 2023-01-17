@@ -98,9 +98,10 @@
                  android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
-                 tools:replace="android:allowBackup"
                  android:resizeableActivity="true"
-                 android:allowBackup="false"
+                 android:fullBackupOnly="false"
+                 android:allowBackup="true"
+                 android:backupAgent=".absbackup.SignalBackupAgent"
                  android:theme="@style/TextSecure.LightTheme"
                  android:largeHeap="true">
 

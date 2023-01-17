@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.StringStringSerializer;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.whispersystems.signalservice.api.KbsPinData;
@@ -13,6 +14,8 @@ import java.io.IOException;
 import java.security.SecureRandom;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public final class KbsValues extends SignalStoreValues {
 
@@ -24,6 +27,7 @@ public final class KbsValues extends SignalStoreValues {
   private static final String LAST_CREATE_FAILED_TIMESTAMP = "kbs.last_create_failed_timestamp";
   public  static final String OPTED_OUT                    = "kbs.opted_out";
   private static final String PIN_FORGOTTEN_OR_SKIPPED     = "kbs.pin.forgotten.or.skipped";
+  private static final String KBS_AUTH_TOKENS              = "kbs.kbs_auth_tokens";
 
   KbsValues(KeyValueStore store) {
     super(store);
@@ -163,6 +167,30 @@ public final class KbsValues extends SignalStoreValues {
 
   public synchronized void setPinForgottenOrSkipped(boolean value) {
     putBoolean(PIN_FORGOTTEN_OR_SKIPPED, value);
+  }
+
+  public synchronized void putAuthTokenList(List<String> tokens) {
+    putList(KBS_AUTH_TOKENS, tokens, StringStringSerializer.INSTANCE);
+  }
+
+  public synchronized List<String> getKbsAuthTokenList() {
+    return getList(KBS_AUTH_TOKENS, StringStringSerializer.INSTANCE);
+  }
+
+  /**
+   * Keeps the 10 most recent KBS auth tokens.
+   * @param token
+   * @return whether the token was added (new) or ignored (already existed)
+   */
+  public synchronized boolean appendAuthTokenToList(String token) {
+    List<String> tokens = getKbsAuthTokenList();
+    if (tokens.contains(token)) {
+      return false;
+    } else {
+      final List<String> result = Stream.concat(Stream.of(token), tokens.stream()).limit(10).collect(Collectors.toList());
+      putAuthTokenList(result);
+      return true;
+    }
   }
 
   /** Should only be called by {@link org.thoughtcrime.securesms.pin.PinState}. */

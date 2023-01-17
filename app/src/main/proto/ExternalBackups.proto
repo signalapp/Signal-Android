@@ -1,0 +1,16 @@
+/**
+ * Copyright (C) 2023 Open Whisper Systems
+ *
+ * Licensed according to the LICENSE file in this repository.
+ */
+
+syntax = "proto3";
+
+package signal;
+
+option java_package         = "org.thoughtcrime.securesms.absbackup";
+option java_outer_classname = "ExternalBackupProtos";
+
+message KbsAuthToken {
+  repeated string token = 1;
+}
