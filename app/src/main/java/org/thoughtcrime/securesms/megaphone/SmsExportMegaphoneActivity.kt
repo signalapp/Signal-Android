@@ -7,13 +7,14 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.databinding.SmsExportMegaphoneActivityBinding
+import org.thoughtcrime.securesms.databinding.SmsRemovalInformationFragmentBinding
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.visible
 
 class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
 
@@ -22,7 +23,7 @@ class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
   }
 
   private val theme: DynamicTheme = DynamicNoActionBarTheme()
-  private lateinit var binding: SmsExportMegaphoneActivityBinding
+  private lateinit var binding: SmsRemovalInformationFragmentBinding
   private lateinit var smsExportLauncher: ActivityResultLauncher<Intent>
 
   override fun onPreCreate() {
@@ -30,7 +31,7 @@ class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    binding = SmsExportMegaphoneActivityBinding.inflate(layoutInflater)
+    binding = SmsRemovalInformationFragmentBinding.inflate(layoutInflater)
     setContentView(binding.root)
 
     smsExportLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -43,26 +44,22 @@ class SmsExportMegaphoneActivity : PassphraseRequiredActivity() {
 
     binding.toolbar.setNavigationOnClickListener { onBackPressed() }
 
+    binding.learnMoreButton.setOnClickListener {
+      CommunicationActions.openBrowserLink(this, getString(R.string.sms_export_url))
+    }
+
     if (SignalStore.misc().smsExportPhase.isBlockingUi()) {
       binding.headline.setText(R.string.SmsExportMegaphoneActivity__signal_no_longer_supports_sms)
-      binding.description.setText(R.string.SmsExportMegaphoneActivity__signal_has_removed_support_for_sending_sms_messages)
-      binding.description.setLearnMoreVisible(false)
-      binding.laterButton.setText(R.string.SmsExportMegaphoneActivity__learn_more)
-      binding.laterButton.setOnClickListener {
-        CommunicationActions.openBrowserLink(this, getString(R.string.sms_export_url))
-      }
+      binding.laterButton.visible = false
+      binding.bullet1Text.setText(R.string.SmsRemoval_info_bullet_1_phase_3)
     } else {
       binding.headline.setText(R.string.SmsExportMegaphoneActivity__signal_will_no_longer_support_sms)
-      binding.description.setText(R.string.SmsExportMegaphoneActivity__signal_will_soon_remove_support_for_sending_sms_messages)
-      binding.description.setLearnMoreVisible(true)
-      binding.description.setLink(getString(R.string.sms_export_url))
-      binding.laterButton.setText(R.string.SmsExportMegaphoneActivity__remind_me_later)
       binding.laterButton.setOnClickListener {
         onBackPressed()
       }
     }
 
-    binding.exportButton.setOnClickListener {
+    binding.exportSmsButton.setOnClickListener {
       smsExportLauncher.launch(SmsExportActivity.createIntent(this))
     }
   }

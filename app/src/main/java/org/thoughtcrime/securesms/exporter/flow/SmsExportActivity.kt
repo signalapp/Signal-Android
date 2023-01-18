@@ -29,7 +29,7 @@ class SmsExportActivity : FragmentWrapperActivity() {
     super.onCreate(savedInstanceState, ready)
     onBackPressedDispatcher.addCallback(this, OnBackPressed())
 
-    val factory = SmsExportViewModel.Factory(intent.getBooleanExtra(IS_RE_EXPORT, false))
+    val factory = SmsExportViewModel.Factory(intent.getBooleanExtra(IS_FROM_MEGAPHONE, false), intent.getBooleanExtra(IS_RE_EXPORT, false))
     viewModel = ViewModelProvider(this, factory).get(SmsExportViewModel::class.java)
   }
 
@@ -46,13 +46,15 @@ class SmsExportActivity : FragmentWrapperActivity() {
   }
 
   companion object {
-    const val IS_RE_EXPORT = "is_re_export"
+    private const val IS_RE_EXPORT = "is_re_export"
+    private const val IS_FROM_MEGAPHONE = "is_from_megaphone"
 
     @JvmOverloads
     @JvmStatic
-    fun createIntent(context: Context, isReExport: Boolean = false): Intent {
+    fun createIntent(context: Context, isFromMegaphone: Boolean = false, isReExport: Boolean = false): Intent {
       return Intent(context, SmsExportActivity::class.java).apply {
         putExtra(IS_RE_EXPORT, isReExport)
+        putExtra(IS_FROM_MEGAPHONE, isFromMegaphone)
       }
     }
   }

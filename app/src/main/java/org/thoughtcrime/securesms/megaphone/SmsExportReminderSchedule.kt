@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.annotation.WorkerThread
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.SmsExportPhase
+import org.thoughtcrime.securesms.util.Util
 import kotlin.time.Duration.Companion.days
 
 class SmsExportReminderSchedule(private val context: Context) : MegaphoneSchedule {
@@ -18,9 +19,8 @@ class SmsExportReminderSchedule(private val context: Context) : MegaphoneSchedul
 
   @WorkerThread
   override fun shouldDisplay(seenCount: Int, lastSeen: Long, firstVisible: Long, currentTime: Long): Boolean {
-    return if (shouldShowMegaphone()) {
+    return if (Util.isDefaultSmsProvider(context)) {
       when (SignalStore.misc().smsExportPhase) {
-        SmsExportPhase.PHASE_0 -> false
         SmsExportPhase.PHASE_1 -> basicMegaphoneSchedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime)
         SmsExportPhase.PHASE_2 -> fullScreenSchedule.shouldDisplay(seenCount, lastSeen, firstVisible, currentTime)
         SmsExportPhase.PHASE_3 -> showPhase3Megaphone
@@ -28,10 +28,5 @@ class SmsExportReminderSchedule(private val context: Context) : MegaphoneSchedul
     } else {
       false
     }
-  }
-
-  @WorkerThread
-  private fun shouldShowMegaphone(): Boolean {
-    return false
   }
 }

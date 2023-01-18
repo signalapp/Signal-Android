@@ -18,8 +18,6 @@ import org.thoughtcrime.securesms.components.settings.models.OutlinedLearnMore
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.SmsExportPhase
-import org.thoughtcrime.securesms.util.SmsUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
@@ -56,16 +54,14 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
       SignalStore.settings().setDefaultSms(true)
     } else {
       SignalStore.settings().setDefaultSms(false)
-      if (SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
-        findNavController().navigateUp()
-      }
+      findNavController().navigateUp()
     }
   }
 
   private fun getConfiguration(state: SmsSettingsState): DSLConfiguration {
     return configure {
 
-      if (state.useAsDefaultSmsApp && SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
+      if (state.useAsDefaultSmsApp) {
         customPref(
           OutlinedLearnMore.Model(
             summary = DSLSettingsText.from(R.string.SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging),
@@ -112,17 +108,13 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
         SmsExportState.NOT_AVAILABLE -> Unit
       }
 
-      if (state.useAsDefaultSmsApp || SignalStore.misc().smsExportPhase == SmsExportPhase.PHASE_0) {
+      if (state.useAsDefaultSmsApp) {
         @Suppress("DEPRECATION")
         clickPref(
           title = DSLSettingsText.from(R.string.SmsSettingsFragment__use_as_default_sms_app),
-          summary = DSLSettingsText.from(if (state.useAsDefaultSmsApp) R.string.arrays__enabled else R.string.arrays__disabled),
+          summary = DSLSettingsText.from(R.string.arrays__enabled),
           onClick = {
-            if (state.useAsDefaultSmsApp) {
-              startDefaultAppSelectionIntent()
-            } else {
-              startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_REQUEST_CODE.toInt())
-            }
+            startDefaultAppSelectionIntent()
           }
         )
       }

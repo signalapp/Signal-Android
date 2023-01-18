@@ -220,7 +220,8 @@ final class MenuState {
            messageRecord.isChangeNumber() ||
            messageRecord.isBoostRequest() ||
            messageRecord.isPaymentsRequestToActivate() ||
-           messageRecord.isPaymentsActivated();
+           messageRecord.isPaymentsActivated() ||
+           messageRecord.isSmsExportType();
   }
 
   private final static class Builder {

@@ -232,6 +232,8 @@ public final class MiscellaneousValues extends SignalStoreValues {
   }
 
   public @NonNull SmsExportPhase getSmsExportPhase() {
-    return SmsExportPhase.PHASE_0;
+    long now = System.currentTimeMillis();
+    long phase1StartMs = getLong(SMS_PHASE_1_START_MS, now);
+    return SmsExportPhase.getCurrentPhase(now - phase1StartMs);
   }
 }

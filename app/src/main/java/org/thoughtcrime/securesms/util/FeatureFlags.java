@@ -94,7 +94,6 @@ public final class FeatureFlags {
   private static final String CAMERAX_MODEL_BLOCKLIST           = "android.cameraXModelBlockList";
   private static final String CAMERAX_MIXED_MODEL_BLOCKLIST     = "android.cameraXMixedModelBlockList";
   private static final String RECIPIENT_MERGE_V2                = "android.recipientMergeV2";
-  private static final String SMS_EXPORTER                      = "android.sms.exporter.2";
   private static final String HIDE_CONTACTS                     = "android.hide.contacts";
   public  static final String CREDIT_CARD_PAYMENTS              = "android.credit.card.payments.3";
   private static final String PAYMENTS_REQUEST_ACTIVATE_FLOW    = "android.payments.requestActivateFlow";
@@ -150,7 +149,6 @@ public final class FeatureFlags {
       CAMERAX_MODEL_BLOCKLIST,
       CAMERAX_MIXED_MODEL_BLOCKLIST,
       RECIPIENT_MERGE_V2,
-      SMS_EXPORTER,
       HIDE_CONTACTS,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
@@ -493,16 +491,6 @@ public final class FeatureFlags {
    */
   public static int storiesAutoDownloadMaximum() {
     return getInteger(STORIES_AUTO_DOWNLOAD_MAXIMUM, 2);
-  }
-
-  /**
-   * Whether or not we should enable the SMS exporter
-   *
-   * WARNING: This feature is under active development and is off for a reason. The exporter writes messages out to your
-   * system SMS / MMS database, and hasn't been adequately tested for public use. Don't enable this. You've been warned.
-   */
-  public static boolean smsExporter() {
-    return getBoolean(SMS_EXPORTER, false);
   }
 
   /**

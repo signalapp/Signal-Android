@@ -128,8 +128,7 @@ public class AddGroupDetailsFragment extends LoggingFragment {
     viewModel.getIsMms().observe(getViewLifecycleOwner(), isMms -> {
       disappearingMessagesRow.setVisibility(isMms ? View.GONE : View.VISIBLE);
       mmsWarning.setVisibility(isMms ? View.VISIBLE : View.GONE);
-      mmsWarningText.setText(SignalStore.misc().getSmsExportPhase().isAtLeastPhase1() ? R.string.AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal
-                                                                                      : R.string.AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support);
+      mmsWarningText.setText(R.string.AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal);
       name.setHint(isMms ? R.string.AddGroupDetailsFragment__group_name_optional : R.string.AddGroupDetailsFragment__group_name_required);
       toolbar.setTitle(isMms ? R.string.AddGroupDetailsFragment__create_group : R.string.AddGroupDetailsFragment__name_this_group);
     });

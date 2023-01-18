@@ -444,9 +444,7 @@ public class ConversationViewModel extends ViewModel {
   }
 
   public void insertSmsExportUpdateEvent(@NonNull Recipient recipient) {
-    if (SignalStore.misc().getSmsExportPhase().isAtLeastPhase1()) {
-      conversationRepository.insertSmsExportUpdateEvent(recipient);
-    }
+    conversationRepository.insertSmsExportUpdateEvent(recipient);
   }
 
   enum Event {

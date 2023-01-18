@@ -362,14 +362,15 @@ public final class Megaphones {
   private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
     SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
 
-    if (phase == SmsExportPhase.PHASE_0) {
-      throw new AssertionError("Should not be showing megaphone for Phase 0");
-    } else if (phase == SmsExportPhase.PHASE_1) {
+    if (phase == SmsExportPhase.PHASE_1) {
       return new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.BASIC)
           .setTitle(R.string.SmsExportMegaphone__sms_support_going_away)
           .setImage(R.drawable.sms_megaphone)
-          .setBody(R.string.SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging)
-          .setActionButton(R.string.SmsExportMegaphone__export_sms, (megaphone, controller) -> controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context), SmsExportMegaphoneActivity.REQUEST_CODE))
+          .setBody(R.string.SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work)
+          .setActionButton(R.string.SmsExportMegaphone__continue, (megaphone, controller) -> {
+            controller.onMegaphoneSnooze(Event.SMS_EXPORT);
+            controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context, true), SmsExportMegaphoneActivity.REQUEST_CODE);
+          })
           .setSecondaryButton(R.string.Megaphones_remind_me_later, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.SMS_EXPORT))
           .setOnVisibleListener((megaphone, controller) -> SignalStore.misc().startSmsPhase1())
           .build();

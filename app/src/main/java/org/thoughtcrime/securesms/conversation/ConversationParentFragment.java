@@ -2747,13 +2747,7 @@ public class ConversationParentFragment extends Fragment
       MaterialButton actionButton = smsExportStub.get().findViewById(R.id.export_sms_button);
       boolean        isPhase1     = SignalStore.misc().getSmsExportPhase() == SmsExportPhase.PHASE_1;
 
-      if (SignalStore.misc().getSmsExportPhase() == SmsExportPhase.PHASE_0) {
-        message.setText(getString(R.string.NewConversationActivity__s_is_not_a_signal_user, recipient.getDisplayName(requireContext())));
-        actionButton.setText(R.string.conversation_activity__enable_signal_for_sms);
-        actionButton.setOnClickListener(v -> {
-          handleMakeDefaultSms();
-        });
-      } else if (conversationSecurityInfo.getHasUnexportedInsecureMessages()) {
+      if (conversationSecurityInfo.getHasUnexportedInsecureMessages()) {
         message.setText(isPhase1 ? R.string.ConversationActivity__sms_messaging_is_currently_disabled_you_can_export_your_messages_to_another_app_on_your_phone
                                  : R.string.ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_you_can_export_your_messages_to_another_app_on_your_phone);
         actionButton.setText(R.string.ConversationActivity__export_sms_messages);

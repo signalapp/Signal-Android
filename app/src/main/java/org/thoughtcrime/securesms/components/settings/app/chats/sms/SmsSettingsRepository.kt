@@ -5,17 +5,12 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.util.FeatureFlags
 
 class SmsSettingsRepository(
   private val smsDatabase: MessageTable = SignalDatabase.messages,
   private val mmsDatabase: MessageTable = SignalDatabase.messages
 ) {
   fun getSmsExportState(): Single<SmsExportState> {
-    if (!FeatureFlags.smsExporter()) {
-      return Single.just(SmsExportState.NOT_AVAILABLE)
-    }
-
     return Single.fromCallable {
       checkInsecureMessageCount() ?: checkUnexportedInsecureMessageCount()
     }.subscribeOn(Schedulers.io())
