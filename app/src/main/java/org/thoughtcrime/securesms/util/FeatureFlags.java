@@ -103,7 +103,7 @@ public final class FeatureFlags {
   private static final String CDS_HARD_LIMIT                    = "android.cds.hardLimit";
   private static final String CHAT_FILTERS                      = "android.chat.filters.3";
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
-  private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations";
+  private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.2";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
