@@ -45,6 +45,18 @@ object ContactSearchItems {
     )
   }
 
+  fun registerKnownRecipientItems(
+    mappingAdapter: MappingAdapter,
+    displayCheckBox: Boolean,
+    displaySmsTag: DisplaySmsTag,
+    recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit
+  ) {
+    mappingAdapter.registerFactory(
+      RecipientModel::class.java,
+      LayoutFactory({ KnownRecipientViewHolder(it, displayCheckBox, displaySmsTag, recipientListener) }, R.layout.contact_search_item)
+    )
+  }
+
   fun registerHeaders(mappingAdapter: MappingAdapter) {
     mappingAdapter.registerFactory(
       HeaderModel::class.java,
@@ -52,21 +64,7 @@ object ContactSearchItems {
     )
   }
 
-  fun register(
-    mappingAdapter: MappingAdapter,
-    displayCheckBox: Boolean,
-    displaySmsTag: DisplaySmsTag,
-    recipientListener: RecipientClickListener,
-    storyListener: StoryClickListener,
-    storyContextMenuCallbacks: StoryContextMenuCallbacks,
-    expandListener: (ContactSearchData.Expand) -> Unit
-  ) {
-    registerStoryItems(mappingAdapter, displayCheckBox, storyListener, storyContextMenuCallbacks)
-    mappingAdapter.registerFactory(
-      RecipientModel::class.java,
-      LayoutFactory({ KnownRecipientViewHolder(it, displayCheckBox, displaySmsTag, recipientListener) }, R.layout.contact_search_item)
-    )
-    registerHeaders(mappingAdapter)
+  fun registerExpands(mappingAdapter: MappingAdapter, expandListener: (ContactSearchData.Expand) -> Unit) {
     mappingAdapter.registerFactory(
       ExpandModel::class.java,
       LayoutFactory({ ExpandViewHolder(it, expandListener) }, R.layout.contacts_expand_item)
@@ -90,7 +88,7 @@ object ContactSearchItems {
   /**
    * Story Model
    */
-  private class StoryModel(val story: ContactSearchData.Story, val isSelected: Boolean, val hasBeenNotified: Boolean) : MappingModel<StoryModel> {
+  class StoryModel(val story: ContactSearchData.Story, val isSelected: Boolean, val hasBeenNotified: Boolean) : MappingModel<StoryModel> {
 
     override fun areItemsTheSame(newItem: StoryModel): Boolean {
       return newItem.story == story
@@ -226,7 +224,7 @@ object ContactSearchItems {
   /**
    * Recipient model
    */
-  private class RecipientModel(val knownRecipient: ContactSearchData.KnownRecipient, val isSelected: Boolean, val shortSummary: Boolean) : MappingModel<RecipientModel> {
+  class RecipientModel(val knownRecipient: ContactSearchData.KnownRecipient, val isSelected: Boolean, val shortSummary: Boolean) : MappingModel<RecipientModel> {
 
     override fun areItemsTheSame(newItem: RecipientModel): Boolean {
       return newItem.knownRecipient == knownRecipient
@@ -363,7 +361,7 @@ object ContactSearchItems {
   /**
    * Mapping Model for section headers
    */
-  private class HeaderModel(val header: ContactSearchData.Header) : MappingModel<HeaderModel> {
+  class HeaderModel(val header: ContactSearchData.Header) : MappingModel<HeaderModel> {
     override fun areItemsTheSame(newItem: HeaderModel): Boolean {
       return header.sectionKey == newItem.header.sectionKey
     }
@@ -407,7 +405,7 @@ object ContactSearchItems {
   /**
    * Mapping Model for expandable content rows.
    */
-  private class ExpandModel(val expand: ContactSearchData.Expand) : MappingModel<ExpandModel> {
+  class ExpandModel(val expand: ContactSearchData.Expand) : MappingModel<ExpandModel> {
     override fun areItemsTheSame(newItem: ExpandModel): Boolean {
       return expand.contactSearchKey == newItem.expand.contactSearchKey
     }
