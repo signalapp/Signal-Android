@@ -152,7 +152,6 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
         super.onPageSelected(position)
         if (position != viewModel.currentPosition) {
           debouncer.clear()
-          fullscreenHelper.showSystemUI()
         }
         viewModel.setCurrentPage(position)
       }
@@ -243,7 +242,6 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
     bindAlbumRail(albumThumbnailMedia, currentItem)
 
-    fullscreenHelper.showSystemUI()
     crossfadeViewIn(binding.mediaPreviewDetailsContainer)
   }
 
@@ -449,7 +447,6 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
     if (pagerAdapter.getFragmentTag(viewModel.currentPosition) == tag) {
       debouncer.clear()
-      fullscreenHelper.showSystemUI()
     }
   }
 
