@@ -3299,7 +3299,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun markPreMessageRequestRecipientsAsProfileSharingEnabled(messageRequestEnableTime: Long) {
-    val whereArgs = SqlUtil.buildArgs(messageRequestEnableTime, messageRequestEnableTime)
+    val whereArgs = SqlUtil.buildArgs(messageRequestEnableTime)
     val select =
       """
         SELECT r.$ID FROM $TABLE_NAME AS r 
