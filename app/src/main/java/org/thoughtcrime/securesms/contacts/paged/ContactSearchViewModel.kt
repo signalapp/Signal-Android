@@ -98,7 +98,7 @@ class ContactSearchViewModel(
     return selectionStore.state
   }
 
-  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey.Story>) {
+  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey>) {
     disposables += contactSearchRepository.markDisplayAsStory(groupStories.map { it.recipientId }).subscribe {
       configurationStore.update { state ->
         state.copy(

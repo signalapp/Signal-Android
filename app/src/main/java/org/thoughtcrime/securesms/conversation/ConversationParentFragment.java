@@ -1570,7 +1570,7 @@ public class ConversationParentFragment extends Fragment
     SafetyNumberBottomSheet
         .forIdentityRecordsAndDestination(
             records,
-            new ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.getId())
+            new ContactSearchKey.RecipientSearchKey(recipient.getId(), false)
         )
         .show(getChildFragmentManager());
   }
@@ -3584,7 +3584,7 @@ public class ConversationParentFragment extends Fragment
   }
 
   @Override
-  public void sendAnywayAfterSafetyNumberChangedInBottomSheet(@NonNull List<? extends ContactSearchKey.RecipientSearchKey> destinations) {
+  public void sendAnywayAfterSafetyNumberChangedInBottomSheet(@NonNull List<ContactSearchKey.RecipientSearchKey> destinations) {
     Log.d(TAG, "onSendAnywayAfterSafetyNumberChange");
     initializeIdentityRecords().addListener(new AssertedSuccessListener<Boolean>() {
       @Override

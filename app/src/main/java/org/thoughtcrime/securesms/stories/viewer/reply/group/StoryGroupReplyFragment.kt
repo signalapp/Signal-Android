@@ -387,7 +387,7 @@ class StoryGroupReplyFragment :
             resendReaction = emoji
 
             SafetyNumberBottomSheet
-              .forIdentityRecordsAndDestination(error.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .forIdentityRecordsAndDestination(error.untrustedRecords, ContactSearchKey.RecipientSearchKey(groupRecipientId, true))
               .show(childFragmentManager)
           } else {
             Log.w(TAG, "Failed to send reply", error)
@@ -536,7 +536,7 @@ class StoryGroupReplyFragment :
             resendMentions = mentions
 
             SafetyNumberBottomSheet
-              .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey(groupRecipientId, true))
               .show(childFragmentManager)
           } else {
             Log.w(TAG, "Failed to send reply", throwable)

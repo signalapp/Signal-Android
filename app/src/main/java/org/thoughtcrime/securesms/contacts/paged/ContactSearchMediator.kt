@@ -90,7 +90,7 @@ class ContactSearchMediator(
     return viewModel.errorEventsStream.observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey.Story>) {
+  fun addToVisibleGroupStories(groupStories: Set<ContactSearchKey.RecipientSearchKey>) {
     viewModel.addToVisibleGroupStories(groupStories)
   }
 

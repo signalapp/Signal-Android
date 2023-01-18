@@ -29,7 +29,7 @@ sealed class MediaSelectionDestination {
   }
 
   class SingleRecipient(private val id: RecipientId) : MediaSelectionDestination() {
-    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey.KnownRecipient(id)
+    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey(id, false)
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
@@ -39,7 +39,7 @@ sealed class MediaSelectionDestination {
   }
 
   class SingleStory(private val id: RecipientId) : MediaSelectionDestination() {
-    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey.Story(id)
+    override fun getRecipientSearchKey(): ContactSearchKey.RecipientSearchKey = ContactSearchKey.RecipientSearchKey(id, true)
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
@@ -51,8 +51,8 @@ sealed class MediaSelectionDestination {
   class MultipleRecipients(val recipientSearchKeys: List<ContactSearchKey.RecipientSearchKey>) : MediaSelectionDestination() {
 
     companion object {
-      fun fromParcel(parcelables: List<ContactSearchKey.ParcelableRecipientSearchKey>): MultipleRecipients {
-        return MultipleRecipients(parcelables.map { it.asRecipientSearchKey() }.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
+      fun fromParcel(parcelables: List<ContactSearchKey.RecipientSearchKey>): MultipleRecipients {
+        return MultipleRecipients(parcelables)
       }
     }
 
@@ -68,7 +68,7 @@ sealed class MediaSelectionDestination {
 
     override fun toBundle(): Bundle {
       return Bundle().apply {
-        putParcelableArrayList(RECIPIENT_LIST, ArrayList(recipientSearchKeys.map { it.requireParcelable() }))
+        putParcelableArrayList(RECIPIENT_LIST, ArrayList(recipientSearchKeys.map { it.requireRecipientSearchKey() }))
       }
     }
   }

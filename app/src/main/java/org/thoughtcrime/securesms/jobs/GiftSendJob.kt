@@ -80,7 +80,7 @@ class GiftSendJob private constructor(parameters: Parameters, private val recipi
         Log.i(TAG, "Sending additional message...")
 
         val result = MultiShareSender.sendSync(
-          MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipientId)))
+          MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey(recipientId, false)))
             .withDraftText(trimmedMessage)
             .build()
         )

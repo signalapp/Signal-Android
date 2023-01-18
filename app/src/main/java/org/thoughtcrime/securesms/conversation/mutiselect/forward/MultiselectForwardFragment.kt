@@ -191,7 +191,7 @@ class MultiselectForwardFragment :
 
       shareSelectionAdapter.submitList(contactSelection.mapIndexed { index, key -> ShareSelectionMappingModel(key.requireShareContact(), index == 0) })
 
-      addMessage.visible = !args.forceDisableAddMessage && contactSelection.any { key -> key !is ContactSearchKey.RecipientSearchKey.Story } && args.multiShareArgs.isNotEmpty()
+      addMessage.visible = !args.forceDisableAddMessage && contactSelection.any { key -> !key.requireRecipientSearchKey().isStory } && args.multiShareArgs.isNotEmpty()
 
       if (contactSelection.isNotEmpty() && !bottomBar.isVisible) {
         bottomBar.animation = AnimationUtils.loadAnimation(requireContext(), R.anim.slide_fade_from_bottom)
@@ -237,13 +237,13 @@ class MultiselectForwardFragment :
 
     setFragmentResultListener(CreateStoryWithViewersFragment.REQUEST_KEY) { _, bundle ->
       val recipientId: RecipientId = bundle.getParcelable(CreateStoryWithViewersFragment.STORY_RECIPIENT)!!
-      contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey.Story(recipientId)))
+      contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey(recipientId, true)))
       contactFilterView.clear()
     }
 
     setFragmentResultListener(ChooseGroupStoryBottomSheet.GROUP_STORY) { _, bundle ->
       val groups: Set<RecipientId> = bundle.getParcelableArrayList<RecipientId>(ChooseGroupStoryBottomSheet.RESULT_SET)?.toSet() ?: emptySet()
-      val keys: Set<ContactSearchKey.RecipientSearchKey.Story> = groups.map { ContactSearchKey.RecipientSearchKey.Story(it) }.toSet()
+      val keys: Set<ContactSearchKey.RecipientSearchKey> = groups.map { ContactSearchKey.RecipientSearchKey(it, true) }.toSet()
       contactSearchMediator.addToVisibleGroupStories(keys)
       contactSearchMediator.setKeysSelected(keys)
       contactFilterView.clear()
@@ -350,7 +350,7 @@ class MultiselectForwardFragment :
     dismissibleDialog?.dismiss()
 
     val resultsBundle = Bundle().apply {
-      putParcelableArrayList(RESULT_SELECTION, ArrayList(selectedContacts.map { it.requireParcelable() }))
+      putParcelableArrayList(RESULT_SELECTION, ArrayList(selectedContacts.map { it.requireRecipientSearchKey() }))
     }
 
     callback.setResult(resultsBundle)
@@ -489,7 +489,7 @@ class MultiselectForwardFragment :
   }
 
   override fun onMyStoryConfigured(recipientId: RecipientId) {
-    contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey.Story(recipientId)))
+    contactSearchMediator.setKeysSelected(setOf(ContactSearchKey.RecipientSearchKey(recipientId, true)))
     contactSearchMediator.refresh()
   }
 

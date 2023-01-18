@@ -62,14 +62,14 @@ class MultiselectForwardRepository {
     SignalExecutors.BOUNDED.execute {
       val filteredContacts: Set<ContactSearchKey> = shareContacts
         .asSequence()
-        .filter { it is ContactSearchKey.RecipientSearchKey.Story || it is ContactSearchKey.RecipientSearchKey.KnownRecipient }
+        .filter { it is ContactSearchKey.RecipientSearchKey }
         .toSet()
 
       val mappedArgs: List<MultiShareArgs> = multiShareArgs.map { it.buildUpon(filteredContacts).build() }
       val results = mappedArgs.sortedBy { it.timestamp }.map { MultiShareSender.sendSync(it) }
 
       if (additionalMessage.isNotEmpty()) {
-        val additional = MultiShareArgs.Builder(filteredContacts.filterNot { it is ContactSearchKey.RecipientSearchKey.Story }.toSet())
+        val additional = MultiShareArgs.Builder(filteredContacts.filterNot { it is ContactSearchKey.RecipientSearchKey && it.isStory }.toSet())
           .withDraftText(additionalMessage)
           .build()
 

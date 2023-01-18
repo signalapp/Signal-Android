@@ -21,8 +21,7 @@ class ContactSearchRepository {
         val isSelectable = when (it) {
           is ContactSearchKey.Expand -> false
           is ContactSearchKey.Header -> false
-          is ContactSearchKey.RecipientSearchKey.KnownRecipient -> canSelectRecipient(it.recipientId)
-          is ContactSearchKey.RecipientSearchKey.Story -> canSelectRecipient(it.recipientId)
+          is ContactSearchKey.RecipientSearchKey -> canSelectRecipient(it.recipientId)
         }
         ContactSearchSelectionResult(it, isSelectable)
       }.toSet()

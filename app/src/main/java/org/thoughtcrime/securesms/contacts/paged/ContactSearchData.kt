@@ -18,7 +18,7 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
     val recipient: Recipient,
     val count: Int,
     val privacyMode: DistributionListPrivacyMode
-  ) : ContactSearchData(ContactSearchKey.RecipientSearchKey.Story(recipient.id))
+  ) : ContactSearchData(ContactSearchKey.RecipientSearchKey(recipient.id, true))
 
   /**
    * A row displaying a known recipient.
@@ -27,7 +27,7 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
     val recipient: Recipient,
     val shortSummary: Boolean = false,
     val headerLetter: String? = null
-  ) : ContactSearchData(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipient.id))
+  ) : ContactSearchData(ContactSearchKey.RecipientSearchKey(recipient.id, false))
 
   /**
    * A row containing a title for a given section

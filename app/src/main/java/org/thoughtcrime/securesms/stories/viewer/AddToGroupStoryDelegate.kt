@@ -128,7 +128,7 @@ class AddToGroupStoryDelegate(
     private fun sendNonPreUploadedMedia(result: MediaSendActivityResult) {
       Log.d(TAG, "Sending non-preupload media.")
 
-      val multiShareArgs = MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey.Story(result.recipientId)))
+      val multiShareArgs = MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey(result.recipientId, true)))
         .withMedia(result.nonUploadedMedia.toList())
         .withDraftText(result.body)
         .withMentions(result.mentions.toList())

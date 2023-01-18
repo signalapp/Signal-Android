@@ -86,7 +86,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
 
     mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
       adapter.submitList(
-        state.filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
+        state.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
           .map { it.recipientId }
           .mapIndexed { index, recipientId ->
             ShareSelectionMappingModel(
@@ -146,7 +146,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
           RESULT_SET,
           ArrayList(
             mediator.getSelectedContacts()
-              .filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
+              .filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
               .map { it.recipientId }
           )
         )

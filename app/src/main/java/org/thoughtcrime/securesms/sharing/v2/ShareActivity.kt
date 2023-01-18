@@ -103,7 +103,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
             openConversation(
               ShareEvent.OpenConversation(
                 shareState.loadState.resolvedShareData,
-                ContactSearchKey.RecipientSearchKey.KnownRecipient(directShareTarget)
+                ContactSearchKey.RecipientSearchKey(directShareTarget, false)
               )
             )
           } else {
@@ -134,8 +134,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       throw AssertionError("Expected a recipient selection!")
     }
 
-    val parcelizedKeys: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
-    val contactSearchKeys = parcelizedKeys.map { it.asRecipientSearchKey() }
+    val contactSearchKeys: List<ContactSearchKey.RecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
 
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
