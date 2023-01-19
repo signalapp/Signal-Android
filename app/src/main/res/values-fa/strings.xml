@@ -653,9 +653,6 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">این نسخهٔ سیگنال منقضی شده است. برای ارسال و دریافت پیام‌ها همین حالا به‌روزرسانی کنید.</string>
     <string name="ExpiredBuildReminder_update_now">همین حالا به‌روزرسانی کن</string>
 
-    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">سیگنال دیگر در این دستگاه کار نمی‌کند. برای استفاده مجدد از سیگنال، دستگاه خود را به نسخه جدیدتر اندروید به‌روزرسانی کنید یا از دستگاه جدیدتری استفاده کنید.</string>
-
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$d درخواست عضویت در حال انتظار.</item>
@@ -1892,9 +1889,9 @@
     <!-- Displayed in the notification when the user is sent a gift -->
     <string name="ThreadRecord__s_donated_for_you">%1$s از طرف شما کمک مالی اهدا کرد</string>
     <!-- Displayed in the notification when the user sends a gift -->
-    <string name="ThreadRecord__you_donated_for_s">شما از طرف %1$s کمک مالی اهدا کردید</string>
+    <string name="ThreadRecord__you_donated_for_s">از طرف %1$s کمک مالی اهدا کردید</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">شما یک نشان آزادسازی کردید</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">یک نشان آزادسازی کردید</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">با %1$s به استوری شما واکنش نشان داد</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -4415,9 +4412,9 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">اعتبار پاسخ سرور تایید نشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">اهدا کمک مالی انجام نشد</string>
+    <string name="DonationsErrors__donation_failed">اهدای کمک مالی انجام نشد</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">پرداخت شما پردازش شد اما سیگنال نتوانست پیام اهدای کمک مالی شما را ارسال کند. لطفاً با پشتیبانی تماس بگیرید.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">پرداختتان پردازش شد اما سیگنال نتوانست پیام اهدای کمک مالی شما را ارسال کند. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_badge_could_not">نشان شما به حساب کاربری‌تان اضافه نشد، اما ممکن است هزینه‌ای از شما کسر شده باشد. لطفاً با پشتیبانی تماس بگیرید.</string>
     <string name="DonationsErrors__your_payment_is_still">پرداخت شما هنوز در حال پردازش است. این فرآیند بسته به اتصال اینترنت شما ممکن است چند دقیقه به طول بیانجامد.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">لغو اشتراک انجام نشد</string>
@@ -5000,8 +4997,8 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">از طرف یکی از دوستان کمک مالی اهدا کنید</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
-        <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
+        <item quantity="one">با اهدای کمک مالی از طرف یکی از دوستان یا اعضای خانواده که از سیگنال استفاده می‌کند، از سیگنال پشتیبانی کنید. او نشانی برای نمایش در نمایه‌اش به مدت %1$d روز دریافت خواهد کرد</item>
+        <item quantity="other">با اهدای کمک مالی از طرف یکی از دوستان یا اعضای خانواده که از سیگنال استفاده می‌کند، از سیگنال پشتیبانی کنید. او نشانی برای نمایش در نمایه‌اش به مدت %1$d روز دریافت خواهد کرد</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">بعدی</string>
@@ -5012,7 +5009,7 @@
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">ارسال به</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">دریافت کننده با یک پیام اختصاصی از کمک مالی اهدایی مطلع خواهد شد. پیام خود را در زیر اضافه کنید.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">دریافت‌کننده با یک پیام اختصاصی از کمک مالی اهدایی مطلع خواهد شد. پیام خود را در زیر اضافه کنید.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">کمک مالی یک‌باره</string>
     <!-- Hint for add message input -->
@@ -5026,7 +5023,7 @@
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s از طرف شما به سیگنال کمک مالی اهدا کرد! حمایت خود را از سیگنال در نمایه خود نشان دهید.</string>
     <!-- Description for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">شما از طرف %1$s به سیگنال کمک مالی اهدا کرده‌اید. به او امکان داده می‌شود که حمایت خود را در نمایه خود نشان دهد.</string>
+    <string name="ViewSentGiftBottomSheet__youve_made_a_donation_to_signal">شما از طرف %1$s به سیگنال کمک مالی اهدا کرده‌اید. به او امکان داده می‌شود که حمایت خود را در نمایه ‌اش نشان دهد.</string>
     <!-- Primary action for pending gift sheet to redeem badge now -->
     <string name="ViewReceivedGiftSheet__redeem">آزادسازی</string>
     <!-- Primary action for pending gift sheet to redeem badge later -->
@@ -5036,11 +5033,11 @@
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">می‌توانید بعدا نشان خود را آزادسازی کنید.</string>
     <!-- Description text in gift thanks sheet -->
-    <string name="GiftThanksSheet__youve_made_a_donation">شما از طرف %1$s به سیگنال کمک مالی اهدا کرده‌اید. به او امکان داده می‌شود که حمایت خود را در نمایه خود نشان دهد.</string>
+    <string name="GiftThanksSheet__youve_made_a_donation">شما از طرف %1$s به سیگنال کمک مالی اهدا کرده‌اید. به او امکان داده می‌شود که حمایت خود را در نمایه‌اش نشان دهد.</string>
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">نشان شما منقضی شده است</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">نشان شما منقضی شده است، و دیگر روی نمایه شما برای دیگران قابل مشاهده نیست.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">نشان شما منقضی شده است و دیگر روی نمایه‌تان برای دیگران قابل مشاهده نیست.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">برای ادامهٔ حمایت از تکنولوژی‌ای که برای شما ساخته شده است. لطفاً تبدیل شدن به یک حامی ماهانه را در نظر بگیرید.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5353,9 +5350,9 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">پشتیبانی پیامک حذف می‌شود</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">پشتیبانی پیامک به‌زودی حذف خواهد شد تا روی پیام‌های رمزگذاری‌شده تمرکز شود.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">صدور پیامک</string>
+    <string name="SmsExportMegaphone__continue">Continue</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">صدور انجام شد</string>
     <!-- Button to continue to next screen -->
@@ -5480,10 +5477,17 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">نکته: لیست چت را پایین بکشید تا فیلتر شود</string>
 
-    <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">سیگنال به زودی دیگر از نسخه اندروید دستگاه شما پشتیبانی نخواهد کرد. برای ادامه استفاده از سیگنال، دستگاه خود را به‌روزرسانی کنید یا تا %1$s از دستگاه جدیدتری استفاده کنید.</string>
-
-    <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
-    <string name="API19Reminder_learn_more">بیشتر بدانید</string>
+    <!-- Title for screen describing that sms support is going to be removed soon -->
+    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
+    <string name="SmsRemoval_export_sms">Export SMS</string>
 
 </resources>

@@ -653,9 +653,6 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal லின் இந்த பதிப்பு காலாவதியானது. செய்திகளை அனுப்ப மற்றும் பெற பயன்பாட்டைப் புதுப்பிக்கவும்.</string>
     <string name="ExpiredBuildReminder_update_now">இப்பொழுது மேம்படுத்து</string>
 
-    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">இந்த டிவைஸில் இனியும் Signal வேலை செய்யாது. மீண்டும் சிக்னலைப் பயன்படுத்த, உங்கள் டிவைஸை Android இன் புதிய பதிப்பிற்குப் புதுப்பிக்கவும் அல்லது புதிய டிவைஸிற்கு மாறவும்.</string>
-
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$dஉறுப்பினர் கோரிக்கை நிலுவையில் உள்ளது</item>
@@ -5000,8 +4997,8 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">நண்பருக்காக நன்கொடை அளிக்கவும்</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
-        <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
+        <item quantity="one">Signalஐ பயன்படுத்தும் நண்பர் அல்லது குடும்ப உறுப்பினருக்கு நன்கொடை அளிப்பதன் மூலம் Signalஐ ஆதரிக்கவும். %1$d நாளுக்கு அவர்களின் ப்ரொஃபைலில் காண்பிக்க ஒரு பேட்ஜைப் பெறுவார்கள்</item>
+        <item quantity="other">சிக்னலைப் பயன்படுத்தும் நண்பர் அல்லது குடும்ப உறுப்பினருக்கு நன்கொடை அளிப்பதன் மூலம் சிக்னலை ஆதரிக்கவும். %1$d நாட்களுக்கு அவர்களின் ப்ரொஃபைலில் காண்பிக்க ஒரு பேட்ஜைப் பெறுவார்கள்</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">அடுத்தது</string>
@@ -5353,9 +5350,9 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">எஸ்.எம்.எஸ் ஆதரவு நிறுத்தப்படுகிறது</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">மறைகுறியாக்கப்பட்ட செய்தியிடலில் கவனம் செலுத்த எஸ்.எம்.எஸ் ஆதரவு விரைவில் அகற்றப்படும்.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">எஸ்எம்எஸ்-ஐ ஏற்றுமதி செய்</string>
+    <string name="SmsExportMegaphone__continue">Continue</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">ஏற்றுமதி முடிந்தது</string>
     <!-- Button to continue to next screen -->
@@ -5480,10 +5477,17 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">உதவிக்குறிப்பு: வடிகட்ட சாட் பட்டியலை கீழே இழுக்கவும்</string>
 
-    <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">உங்கள் டிவைஸின் Android பதிப்பை விரைவில் Signal ஆதரிக்காது. Signalஐ தொடர்ந்து பயன்படுத்த, உங்கள் டிவைஸை புதுப்பிக்கவும் அல்லது %1$s க்குள் புதிய டிவைஸிற்கு மாறவும்.</string>
-
-    <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
-    <string name="API19Reminder_learn_more">மேலும் அறிக</string>
+    <!-- Title for screen describing that sms support is going to be removed soon -->
+    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
+    <string name="SmsRemoval_export_sms">Export SMS</string>
 
 </resources>

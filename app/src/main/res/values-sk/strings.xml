@@ -693,9 +693,6 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Táto verzia Signalu vypršala. Pre odosielanie a príjem ďalších správ ju aktualizujte.</string>
     <string name="ExpiredBuildReminder_update_now">Aktualizovať teraz</string>
 
-    <!-- A message in a banner shown at the top of the screen indicating that the user must upgrade their device to use signal. -->
-    <string name="ExpiredBuildReminder_api_19_message">Signal už na tomto zariadení nefunguje. Ak chcete znova používať Signal, aktualizujte svoje zariadenie na novšiu verziu Androidu alebo prejdite na novšie zariadenie.</string>
-
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$d čakajúca žiadosť o členstvo.</item>
@@ -2036,7 +2033,7 @@
     <!-- Displayed in the notification when the user sends a gift -->
     <string name="ThreadRecord__you_donated_for_s">Poslali ste príspevok za používateľa %1$s</string>
     <!-- Displayed in the notification when the user has opened a received gift -->
-    <string name="ThreadRecord__you_redeemed_a_badge">Uplatnili ste odznak</string>
+    <string name="ThreadRecord__you_redeemed_a_badge">Odomkli ste odznak</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
     <string name="ThreadRecord__reacted_s_to_your_story">Poslal/a %1$s ako reakciu na tvoj príbeh</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
@@ -4637,7 +4634,7 @@
     <string name="DonationsErrors__your_donation_could_not_be_sent">Váš príspevok nebolo možné odoslať z dôvodu chyby siete. Skontrolujte pripojenie a skúste to znovu.</string>
 
     <!-- Gift message view title -->
-    <string name="GiftMessageView__donation_to_s">Príspevok pre %1$s</string>
+    <string name="GiftMessageView__donation_to_s">Príspevok pre používateľa %1$s</string>
     <!-- Gift message view title for incoming donations -->
     <string name="GiftMessageView__s_donated_to_signal_on">Používateľ %1$s prispel na Signal vo vašom mene</string>
     <!-- Gift badge redeem action label -->
@@ -5220,10 +5217,10 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">Prispejte za priateľa</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="one">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d day</item>
-        <item quantity="few">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
-        <item quantity="many">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
-        <item quantity="other">Support Signal by making a donation for a friend or family member who uses Signal. They\'ll receive a badge to display on their profile for %1$d days</item>
+        <item quantity="one">Podporte Signal príspevkom za priateľa alebo člena rodiny, ktorý používa Signal. Dostanú odznak, ktorý si môžu vystaviť na profile na %1$d deň</item>
+        <item quantity="few">Podporte Signal príspevkom za priateľa alebo člena rodiny, ktorý používa Signal. Dostanú odznak, ktorý si môžu vystaviť na profile na %1$d dni</item>
+        <item quantity="many">Podporte Signal príspevkom za priateľa alebo člena rodiny, ktorý používa Signal. Dostanú odznak, ktorý si môžu vystaviť na profile na %1$d dňa</item>
+        <item quantity="other">Podporte Signal príspevkom za priateľa alebo člena rodiny, ktorý používa Signal. Dostanú odznak, ktorý si môžu vystaviť na profile na %1$d dní</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">Ďalší</string>
@@ -5234,7 +5231,7 @@
     <!-- Heading text specifying who the gift will be sent to -->
     <string name="GiftFlowConfirmationFragment__send_to">Poslať</string>
     <!-- Text explaining that gift will be sent to the chosen recipient -->
-    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Príjemca bude o príspevku informovaný v správe. Pridajte svoju vlastnú správu nižšie.</string>
+    <string name="GiftFlowConfirmationFragment__the_recipient_will_be_notified">Príjemca bude o príspevku informovaný v správe. Pridajte svoj vlastný text správy nižšie.</string>
     <!-- Text explaining that this gift is a one time donation -->
     <string name="GiftFlowConfirmationFragment__one_time_donation">Jednorazový príspevok</string>
     <!-- Hint for add message input -->
@@ -5254,7 +5251,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Teraz nie</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">Uplatňuje sa odznak…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Odomyká sa odznak…</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">Svoj odznak si môžete uplatniť neskôr.</string>
     <!-- Description text in gift thanks sheet -->
@@ -5262,7 +5259,7 @@
     <!-- Expired gift sheet title -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired">Platnosť vášho odznaku vypršala</string>
     <!-- Expired gift sheet top description text -->
-    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Platnosť vášho odznaku vypršala a už nie je viditeľný pre ostatných vo vašom profile.</string>
+    <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Platnosť vášho odznaku vypršala a už nie je vo vašom profile viditeľný pre ostatných.</string>
     <!-- Expired gift sheet bottom description text -->
     <string name="ExpiredGiftSheetConfiguration__to_continue">Ak chcete pokračovať v podpore technológie, ktorá je vytvorená pre vás, zvážte, či sa nestanete mesačným podporovateľom.</string>
     <!-- Expired gift sheet make a monthly donation button -->
@@ -5595,9 +5592,9 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">Podpora SMS končí</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging">Podpora SMS bude čoskoro odstránená, aby sme sa mohli zamerať na šifrované správy.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__export_sms">Exportovať SMS</string>
+    <string name="SmsExportMegaphone__continue">Continue</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Export bol úspešne dokončený</string>
     <!-- Button to continue to next screen -->
@@ -5728,10 +5725,17 @@
     <!-- Displayed in the "clear filter" item in the chat feed if the user opened the filter from the overflow menu -->
     <string name="ChatFilter__tip_pull_down">Tip: Ak chcete filtrovať, potiahnite nadol v zozname četov</string>
 
-    <!-- Text for a banner that is shown at the top of the screen letting users know that they\'re version of signal will soon expire. The placeholder is a date. -->
-    <string name="API19Reminder_banner_message">Signal už čoskoro nebude podporovať verziu Androidu vo vašom zariadení. Ak chcete naďalej používať Signal, aktualizujte svoje zariadenie alebo prejdite na novšie zariadenie do %1$s.</string>
-
-    <!-- Text for a button in a banner shown at the top of the screen that users can click on to get more information. -->
-    <string name="API19Reminder_learn_more">Zistiť viac</string>
+    <!-- Title for screen describing that sms support is going to be removed soon -->
+    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
+    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
+    <string name="SmsRemoval_export_sms">Export SMS</string>
 
 </resources>
