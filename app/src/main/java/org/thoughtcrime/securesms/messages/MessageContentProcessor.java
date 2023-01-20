@@ -2002,9 +2002,16 @@ public final class MessageContentProcessor {
   }
 
   private long handleSynchronizeSentExpirationUpdate(@NonNull SentTranscriptMessage message)
-      throws MmsException, BadGroupIdException
+      throws MmsException
   {
     log(message.getTimestamp(), "Synchronize sent expiration update.");
+
+    Optional<GroupId> groupId = getSyncMessageDestination(message).getGroupId();
+
+    if (groupId.isPresent() && groupId.get().isV2()) {
+      warn(String.valueOf(message.getTimestamp()), "Expiration update received for GV2. Ignoring.");
+      return -1;
+    }
 
     MessageTable database  = SignalDatabase.messages();
     Recipient    recipient = getSyncMessageDestination(message);
@@ -2034,9 +2041,9 @@ public final class MessageContentProcessor {
     try {
       Optional<SignalServiceDataMessage.Reaction> reaction             = message.getDataMessage().get().getReaction();
       ParentStoryId                               parentStoryId;
-      SignalServiceDataMessage.StoryContext storyContext = message.getDataMessage().get().getStoryContext().get();
-      MessageTable                          database     = SignalDatabase.messages();
-      Recipient                             recipient    = getSyncMessageDestination(message);
+      SignalServiceDataMessage.StoryContext       storyContext         = message.getDataMessage().get().getStoryContext().get();
+      MessageTable                                database             = SignalDatabase.messages();
+      Recipient                                   recipient            = getSyncMessageDestination(message);
       QuoteModel                                  quoteModel           = null;
       long                                        expiresInMillis      = 0L;
       RecipientId                                 storyAuthorRecipient = RecipientId.from(storyContext.getAuthorServiceId());
@@ -2267,8 +2274,8 @@ public final class MessageContentProcessor {
   {
     log(envelopeTimestamp, "Synchronize sent media message for " + message.getTimestamp());
 
-    MessageTable database   = SignalDatabase.messages();
-    Recipient    recipients = getSyncMessageDestination(message);
+    MessageTable                database        = SignalDatabase.messages();
+    Recipient                   recipients      = getSyncMessageDestination(message);
     Optional<QuoteModel>        quote           = getValidatedQuote(message.getDataMessage().get().getQuote());
     Optional<Attachment>        sticker         = getStickerAttachment(message.getDataMessage().get().getSticker());
     Optional<List<Contact>>     sharedContacts  = getContacts(message.getDataMessage().get().getSharedContacts());
