@@ -5352,7 +5352,7 @@
     <!-- Phase 1 small megaphone description indicating sms is going away -->
     <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Continue</string>
+    <string name="SmsExportMegaphone__continue">جاری رکھیں</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">منتقلی مکمل ہو گئی</string>
     <!-- Button to continue to next screen -->
@@ -5488,6 +5488,6 @@
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
     <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Export SMS</string>
+    <string name="SmsRemoval_export_sms">SMS منتقل کریں</string>
 
 </resources>

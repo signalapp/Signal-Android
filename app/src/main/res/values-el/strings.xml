@@ -5350,9 +5350,9 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">Η υποστήριξη SMS καταργείται</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Μην ανησυχείς, τα κρυπτογραφημένα μηνύματα Signal θα συνεχίσουν να λειτουργούν.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
-    <string name="SmsExportMegaphone__continue">Continue</string>
+    <string name="SmsExportMegaphone__continue">Συνέχεια</string>
     <!-- Title for screen shown after sms export has completed -->
     <string name="ExportSmsCompleteFragment__export_complete">Ολοκληρώθηκε η εξαγωγή</string>
     <!-- Button to continue to next screen -->
@@ -5478,16 +5478,16 @@
     <string name="ChatFilter__tip_pull_down">Συμβουλή: Σύρε προς τα κάτω στη λίστα συνομιλιών για φιλτράρισμα</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <string name="SmsRemoval_title_going_away">Η υποστήριξη SMS καταργείται</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <string name="SmsRemoval_info_bullet_1">Η ανταλλαγή μηνυμάτων SMS στην εφαρμογή Signal σύντομα δεν θα υποστηρίζεται πλέον.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <string name="SmsRemoval_info_bullet_2">Τα μηνύματα SMS διαφέρουν από τα μηνύματα Signal. <b>Αυτή η αλλαγή δεν επηρεάζει τα κρυπτογραφημένα μηνύματα Signal, τα οποία θα συνεχίσουν να λειτουργούν.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <string name="SmsRemoval_info_bullet_3">Μπορείς να εξαγάγεις τα μηνύματα SMS σου και να επιλέξεις μια νέα εφαρμογή SMS.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Η Signal έχει καταργήσει την υποστήριξη για την αποστολή μηνυμάτων SMS.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
-    <string name="SmsRemoval_export_sms">Export SMS</string>
+    <string name="SmsRemoval_export_sms">Εξαγωγή SMS</string>
 
 </resources>
