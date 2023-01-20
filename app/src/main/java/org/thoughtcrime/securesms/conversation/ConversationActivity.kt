@@ -34,8 +34,11 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    shareDataTimestamp = savedInstanceState?.getLong(STATE_WATERMARK, -1L) ?: -1L
-
+    if (savedInstanceState != null) {
+      shareDataTimestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
+    } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {
+      shareDataTimestamp = System.currentTimeMillis()
+    }
     setContentView(R.layout.conversation_parent_fragment_container)
 
     if (savedInstanceState == null) {
