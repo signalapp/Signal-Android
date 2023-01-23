@@ -24,9 +24,9 @@ import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
 
 /**
- * Handle the logic and formatting of phone number input for registration/change number flows.
+ * Handle the logic and formatting of phone number input specifically for change number flows.
  */
-public final class RegistrationNumberInputController {
+public final class ChangeNumberInputController {
 
   private final Context         context;
   private final LabeledEditText countryCode;
@@ -38,12 +38,12 @@ public final class RegistrationNumberInputController {
   private AsYouTypeFormatter countryFormatter;
   private boolean            isUpdating = true;
 
-  public RegistrationNumberInputController(@NonNull Context context,
-                                           @NonNull LabeledEditText countryCode,
-                                           @NonNull LabeledEditText number,
-                                           @NonNull Spinner countrySpinner,
-                                           boolean lastInput,
-                                           @NonNull Callbacks callbacks)
+  public ChangeNumberInputController(@NonNull Context context,
+                                     @NonNull LabeledEditText countryCode,
+                                     @NonNull LabeledEditText number,
+                                     @NonNull Spinner countrySpinner,
+                                     boolean lastInput,
+                                     @NonNull Callbacks callbacks)
   {
     this.context     = context;
     this.countryCode = countryCode;

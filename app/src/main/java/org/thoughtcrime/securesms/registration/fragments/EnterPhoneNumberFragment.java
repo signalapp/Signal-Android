@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.Spinner;
-
+import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
@@ -27,6 +28,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -35,7 +37,6 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
 import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
+import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -64,10 +66,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
   private static final String TAG = Log.tag(EnterPhoneNumberFragment.class);
 
-  private LabeledEditText                countryCode;
-  private LabeledEditText                number;
+  private TextInputLayout                countryCode;
+  private TextInputLayout                number;
   private CircularProgressMaterialButton register;
-  private Spinner                        countrySpinner;
   private View                           cancel;
   private ScrollView                     scrollView;
   private RegistrationViewModel          viewModel;
@@ -91,20 +92,16 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
     setDebugLogSubmitMultiTapView(view.findViewById(R.id.verify_header));
 
-    countryCode    = view.findViewById(R.id.country_code);
-    number         = view.findViewById(R.id.number);
-    countrySpinner = view.findViewById(R.id.country_spinner);
-    cancel         = view.findViewById(R.id.cancel_button);
-    scrollView     = view.findViewById(R.id.scroll_view);
-    register       = view.findViewById(R.id.registerButton);
+    countryCode = view.findViewById(R.id.country_code);
+    number      = view.findViewById(R.id.number);
+    cancel      = view.findViewById(R.id.cancel_button);
+    scrollView  = view.findViewById(R.id.scroll_view);
+    register    = view.findViewById(R.id.registerButton);
 
     RegistrationNumberInputController controller = new RegistrationNumberInputController(requireContext(),
-                                                                                         countryCode,
-                                                                                         number,
-                                                                                         countrySpinner,
-                                                                                         true,
-                                                                                         this);
-
+                                                                                         this,
+                                                                                         Objects.requireNonNull(number.getEditText()),
+                                                                                         countryCode);
     register.setOnClickListener(v -> handleRegister(requireContext()));
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
@@ -125,7 +122,10 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
 
     Toolbar toolbar = view.findViewById(R.id.toolbar);
     ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+    final ActionBar supportActionBar = ((AppCompatActivity) requireActivity()).getSupportActionBar();
+    if (supportActionBar != null) {
+      supportActionBar.setTitle(null);
+    }
   }
 
   @Override
@@ -144,13 +144,13 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   private void handleRegister(@NonNull Context context) {
-    if (TextUtils.isEmpty(countryCode.getText())) {
+    if (TextUtils.isEmpty(countryCode.getEditText().getText())) {
       showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_country_code));
       return;
     }
 
-    if (TextUtils.isEmpty(this.number.getText())) {
-      showErrorDialog(context, getString(R.string.RegistrationActivity_you_must_specify_your_phone_number));
+    if (TextUtils.isEmpty(this.number.getEditText().getText())) {
+      showErrorDialog(context, getString(R.string.RegistrationActivity_please_enter_a_valid_phone_number_to_register));
       return;
     }
 
@@ -184,8 +184,8 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
     disableAllEntries();
 
     if (fcmSupported) {
-      SmsRetrieverClient client = SmsRetriever.getClient(context);
-      Task<Void>         task   = client.startSmsRetriever();
+      SmsRetrieverClient client  = SmsRetriever.getClient(context);
+      Task<Void>         task    = client.startSmsRetriever();
       AtomicBoolean      handled = new AtomicBoolean(false);
 
       Debouncer debouncer = new Debouncer(TimeUnit.SECONDS.toMillis(5));
@@ -224,14 +224,12 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   private void disableAllEntries() {
     countryCode.setEnabled(false);
     number.setEnabled(false);
-    countrySpinner.setEnabled(false);
     cancel.setVisibility(View.GONE);
   }
 
   private void enableAllEntries() {
     countryCode.setEnabled(true);
     number.setEnabled(true);
-    countrySpinner.setEnabled(true);
     if (viewModel.isReregister()) {
       cancel.setVisibility(View.VISIBLE);
     }
@@ -284,19 +282,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
   }
 
   @Override
-  public void onNumberInputNext(@NonNull View view) {
-    // Intentionally left blank
-  }
-
-  @Override
   public void onNumberInputDone(@NonNull View view) {
     ViewUtil.hideKeyboard(requireContext(), view);
     handleRegister(requireContext());
-  }
-
-  @Override
-  public void onPickCountry(@NonNull View view) {
-    SafeNavigation.safeNavigate(Navigation.findNavController(view), R.id.action_pickCountry);
   }
 
   @Override
@@ -325,8 +313,8 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
             d.dismiss();
           })
           .setPositiveButton(R.string.yes, (d, i) -> {
-            countryCode.setText(String.valueOf(phoneNumber.getCountryCode()));
-            number.setText(String.valueOf(phoneNumber.getNationalNumber()));
+            countryCode.getEditText().setText(String.valueOf(phoneNumber.getCountryCode()));
+            number.getEditText().setText(String.valueOf(phoneNumber.getNationalNumber()));
             requestVerificationCode(mode);
             d.dismiss();
           })
@@ -357,9 +345,9 @@ public final class EnterPhoneNumberFragment extends LoggingFragment implements R
                                         R.string.RegistrationActivity_a_verification_code_will_be_sent_to,
                                         e164number,
                                         () -> {
-                                          ViewUtil.hideKeyboard(context, number.getInput());
+                                          ViewUtil.hideKeyboard(context, number.getEditText());
                                           onConfirmed.run();
                                         },
-                                        () -> number.focusAndMoveCursorToEndAndOpenKeyboard());
+                                        () -> ViewUtil.focusAndMoveCursorToEndAndOpenKeyboard(this.number.getEditText()));
   }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/scroll_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context=".registration.fragments.EnterPhoneNumberFragment">
+    tools:context=".registration.fragments.EnterPhoneNumberFragment"
+    tools:viewBindingIgnore="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,59 +19,57 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <FrameLayout
-            android:id="@+id/country_spinner_frame"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="32dp"
-            android:background="@drawable/labeled_edit_text_background_inactive"
-
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/verify_subheader">
-
-            <Spinner
-                android:id="@+id/country_spinner"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:textAlignment="viewStart" />
-
-        </FrameLayout>
-
         <LinearLayout
             android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="16dp"
-            android:layout_marginEnd="32dp"
+            android:layout_marginEnd="12dp"
             android:layoutDirection="ltr"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/country_spinner_frame">
+            app:layout_constraintTop_toBottomOf="@id/verify_subheader">
 
-            <org.thoughtcrime.securesms.components.LabeledEditText
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/country_code"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="12dp"
-                android:layout_weight="1"
-                app:labeledEditText_background="@color/white"
-                app:labeledEditText_textLayout="@layout/country_code_text" />
+                style="@style/Widget.Signal.TextInputLayout.Registration.Dropdown"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:errorEnabled="false"
+                app:hintEnabled="false">
 
-            <org.thoughtcrime.securesms.components.LabeledEditText
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:digits="+1234567890"
+                    android:drawablePadding="-24dp"
+                    android:hint="@string/Registration_country_code_entry_hint"
+                    android:imeOptions="actionNext"
+                    android:maxLength="4"
+                    android:maxLines="1"
+                    android:padding="0dp"
+                    android:singleLine="true"
+                    tools:text="+1" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/number"
+                style="@style/Widget.Signal.TextInputLayout.Registration"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
-                app:labeledEditText_background="@color/white"
-                app:labeledEditText_label="@string/RegistrationActivity_phone_number_description"
-                app:labeledEditText_textLayout="@layout/phone_text" />
+                android:layout_weight="1"
+                android:hint="@string/RegistrationActivity_phone_number_description">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <TextView
@@ -81,8 +79,7 @@
             android:layout_gravity="center"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center"
-            android:text="@string/RegistrationActivity_enter_your_phone_number_to_get_started"
+            android:text="@string/RegistrationActivity_enter_your_phone_number"
             android:textAppearance="@style/Signal.Text.HeadlineMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -91,14 +88,14 @@
 
         <TextView
             android:id="@+id/verify_subheader"
-            style="@style/Signal.Text.Body.Registration"
+            style="@style/Signal.Text.BodyLarge"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
-            android:gravity="center"
             android:text="@string/RegistrationActivity_you_will_receive_a_verification_code"
+            android:textColor="@color/core_grey_60"
             app:layout_constraintTop_toBottomOf="@+id/verify_header"
             tools:layout_editor_absoluteX="0dp" />
 
@@ -126,14 +123,12 @@
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal"
-            app:circularProgressMaterialButton__label="@string/RegistrationActivity_next"
+            app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-            app:layout_constraintVertical_bias="0" />
+            app:layout_constraintVertical_bias="0"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

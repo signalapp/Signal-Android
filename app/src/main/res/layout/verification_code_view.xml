@@ -8,76 +8,85 @@
     android:layoutDirection="ltr"
     tools:viewBindingIgnore="true">
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_zero"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/container_one"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_zero"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:importantForAccessibility="yes"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:padding="0dp"
+            android:textSize="16sp"
             tools:text="0" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_one"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/container_two"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_zero"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_one"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:importantForAccessibility="yes"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:padding="0dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="1" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_two"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/separator"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_one"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_two"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:importantForAccessibility="yes"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:padding="0dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="2" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/separator"
@@ -87,83 +96,92 @@
         android:layout_marginStart="4dp"
         android:importantForAccessibility="no"
         android:text="-"
-        android:textColor="@color/signal_inverse_primary"
         android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/container_three"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_two"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="HardcodedText" />
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_three"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/container_four"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/separator"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_three"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:importantForAccessibility="yes"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:padding="0dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="3" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_four"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toStartOf="@+id/container_five"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_three"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_four"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
+            android:gravity="center"
             android:importantForAccessibility="yes"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:padding="0dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="4" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <FrameLayout
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/container_five"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:background="@drawable/labeled_edit_text_background_inactive"
+        app:errorEnabled="false"
+        app:hintEnabled="false"
         app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/container_four"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/code_five"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="48dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
-            android:textColor="@color/signal_inverse_primary"
-            android:textSize="28sp"
+            android:gravity="center"
+            android:padding="0dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge"
             tools:text="5" />
 
-    </FrameLayout>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -17,10 +17,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.airbnb.lottie.LottieAnimationView;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -29,19 +25,18 @@ import org.thoughtcrime.securesms.pin.PinOptOutDialog;
 import org.thoughtcrime.securesms.registration.RegistrationUtil;
 import org.thoughtcrime.securesms.util.CommunicationActions;
 import org.thoughtcrime.securesms.util.text.AfterTextChanged;
+import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 
-abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends LoggingFragment {
+public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends LoggingFragment {
 
-  private TextView            title;
-  private LearnMoreTextView   description;
-  private EditText            input;
-  private TextView            label;
-  private TextView            keyboardToggle;
-  private TextView            confirm;
-  private LottieAnimationView lottieProgress;
-  private LottieAnimationView lottieEnd;
-  private ViewModel           viewModel;
+  private TextView                       title;
+  private LearnMoreTextView              description;
+  private EditText                       input;
+  private TextView                       label;
+  private TextView                       keyboardToggle;
+  private CircularProgressMaterialButton confirm;
+  private ViewModel                      viewModel;
 
   @Override
   public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -77,10 +72,6 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     description.setOnLinkClickListener(v -> {
       CommunicationActions.openBrowserLink(requireContext(), getString(R.string.BaseKbsPinFragment__learn_more_url));
     });
-
-    Toolbar toolbar = view.findViewById(R.id.kbs_pin_toolbar);
-    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
-    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
 
     initializeListeners();
   }
@@ -137,13 +128,6 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     return input;
   }
 
-  protected LottieAnimationView getLottieProgress() {
-    return lottieProgress;
-  }
-
-  protected LottieAnimationView getLottieEnd() {
-    return lottieEnd;
-  }
 
   protected TextView getLabel() {
     return label;
@@ -153,7 +137,7 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     return keyboardToggle;
   }
 
-  protected TextView getConfirm() {
+  protected CircularProgressMaterialButton getConfirm() {
     return confirm;
   }
 
@@ -173,8 +157,6 @@ abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> extends
     label          = view.findViewById(R.id.edit_kbs_pin_input_label);
     keyboardToggle = view.findViewById(R.id.edit_kbs_pin_keyboard_toggle);
     confirm        = view.findViewById(R.id.edit_kbs_pin_confirm);
-    lottieProgress = view.findViewById(R.id.edit_kbs_pin_lottie_progress);
-    lottieEnd      = view.findViewById(R.id.edit_kbs_pin_lottie_end);
 
     initializeViewStates();
   }

@@ -500,6 +500,25 @@
         <item name="hintTextAppearance">@style/Signal.Text.LabelMedium</item>
     </style>
 
+    <style name="Widget.Signal.TextInputLayout.Registration" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
+        <item name="boxCornerRadiusTopEnd">4dp</item>
+        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="hintTextColor">@color/signal_colorPrimary</item>
+        <item name="android:textColorHint">@color/signal_colorPrimary</item>
+    </style>
+
+
+    <style name="Widget.Signal.TextInputLayout.Registration.Dropdown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">6dp</item>
+        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
+        <item name="boxCornerRadiusTopEnd">2dp</item>
+        <item name="boxCornerRadiusTopStart">2dp</item>
+        <item name="hintTextColor">@color/signal_colorPrimary</item>
+        <item name="android:textColorHint">@color/signal_colorPrimary</item>
+    </style>
+
     <style name="Widget.MaterialComponents.Button.TextButton.Dialog">
         <item name="android:minWidth">@dimen/mtrl_btn_dialog_btn_min_width</item>
         <!-- Allow buttons to span more than one line so that the end isn't cut

@@ -219,4 +219,5 @@
     <dimen name="media_preview_lottie_button_dimen">36dp</dimen>
     <dimen name="media_rail_item_size">46dp</dimen>
     <dimen name="media_rail_thumbnail_size">44dp</dimen>
+    <dimen name="registrationactivity_text_view_padding">32dp</dimen>
 </resources>

@@ -15,39 +15,53 @@
             android:id="@+id/pin_restore_pin_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="@string/RegistrationLockFragment__enter_your_pin"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
             android:textAppearance="@style/Signal.Text.HeadlineMedium"
-            app:layout_constraintBottom_toTopOf="@id/pin_restore_keyboard_toggle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="@string/RegistrationLockFragment__enter_your_pin"
+            app:layout_constraintBottom_toTopOf="@id/pin_restore_pin_description"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.20" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/pin_restore_pin_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="27dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="12dp"
-            android:layout_marginEnd="27dp"
-            android:gravity="center_horizontal"
+            android:layout_marginEnd="24dp"
             android:minHeight="66dp"
             android:text="@string/RegistrationLockFragment__enter_the_pin_you_created"
             android:textAppearance="@style/Signal.Text.BodyLarge"
             android:textColor="@color/core_grey_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_title" />
 
-        <EditText
-            android:id="@+id/pin_restore_pin_input"
-            android:layout_width="wrap_content"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/edit_kbs_textinputlayout"
+            style="@style/Widget.Signal.TextInputLayout.Registration"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:gravity="center_horizontal"
-            android:inputType="numberPassword"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
             android:minWidth="210dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_description" />
+            app:layout_constraintTop_toBottomOf="@+id/pin_restore_pin_description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/pin_restore_pin_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:imeOptions="actionDone"
+                android:inputType="numberPassword" />
+        </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/pin_restore_pin_input_label"
@@ -58,7 +72,7 @@
             android:textAppearance="@style/Signal.Text.BodyMedium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/pin_restore_pin_input"
+            app:layout_constraintTop_toBottomOf="@id/edit_kbs_textinputlayout"
             tools:text="@string/RegistrationLockFragment__incorrect_pin_try_again" />
 
         <com.google.android.material.button.MaterialButton
@@ -80,25 +94,25 @@
             style="@style/Signal.Widget.Button.Large.Secondary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            app:layout_constraintBottom_toTopOf="@id/pin_restore_pin_confirm"
             app:layout_constraintTop_toBottomOf="@id/pin_restore_forgot_pin"
-            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintVertical_bias="0.0"
+            tools:layout_editor_absoluteX="32dp"
             tools:text="Create Alphanumeric Pin" />
 
         <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/pin_restore_pin_confirm"
-            android:layout_width="0dp"
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="32dp"
             android:layout_marginEnd="32dp"
             android:layout_marginBottom="16dp"
-            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Primary"
             app:circularProgressMaterialButton__label="@string/RegistrationActivity_continue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:materialThemeOverlay="@style/ThemeOverlay.Signal.CircularProgressIndicator.Tonal" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/pin_restore_skip_button"

@@ -21,7 +21,7 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.components.registration.CallMeCountDownView;
+import org.thoughtcrime.securesms.components.registration.ActionCountDownButton;
 import org.thoughtcrime.securesms.components.registration.VerificationCodeView;
 import org.thoughtcrime.securesms.components.registration.VerificationPinKeyboard;
 import org.thoughtcrime.securesms.registration.ReceivedSmsEvent;
@@ -55,13 +55,11 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   private static final String TAG = Log.tag(BaseEnterSmsCodeFragment.class);
 
   private ScrollView              scrollView;
-  private TextView                header;
+  private TextView                subheader;
   private VerificationCodeView    verificationCodeView;
   private VerificationPinKeyboard keyboard;
-  private CallMeCountDownView     callMeCountDown;
+  private ActionCountDownButton   callMeCountDown;
   private View                    wrongNumber;
-  private View                    noCodeReceivedHelp;
-  private View                    serviceWarning;
   private boolean                 autoCompleting;
 
   private ViewModel viewModel;
@@ -80,13 +78,11 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
     setDebugLogSubmitMultiTapView(view.findViewById(R.id.verify_header));
 
     scrollView           = view.findViewById(R.id.scroll_view);
-    header               = view.findViewById(R.id.verify_header);
+    subheader            = view.findViewById(R.id.verification_subheader);
     verificationCodeView = view.findViewById(R.id.code);
     keyboard             = view.findViewById(R.id.keyboard);
     callMeCountDown      = view.findViewById(R.id.call_me_count_down);
     wrongNumber          = view.findViewById(R.id.wrong_number);
-    noCodeReceivedHelp   = view.findViewById(R.id.no_code);
-    serviceWarning       = view.findViewById(R.id.cell_service_warning);
 
     new SignalStrengthPhoneStateListener(this, this);
 
@@ -106,14 +102,12 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
       }
     });
 
-    noCodeReceivedHelp.setOnClickListener(v -> sendEmailToSupport());
 
     disposables.bindTo(getViewLifecycleOwner().getLifecycle());
     viewModel = getViewModel();
     viewModel.getSuccessfulCodeRequestAttempts().observe(getViewLifecycleOwner(), (attempts) -> {
       if (attempts >= 3) {
-        noCodeReceivedHelp.setVisibility(View.VISIBLE);
-        scrollView.postDelayed(() -> scrollView.smoothScrollTo(0, noCodeReceivedHelp.getBottom()), 15000);
+        // TODO Add bottom sheet for help
       }
     });
 
@@ -330,7 +324,7 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
   public void onResume() {
     super.onResume();
 
-    header.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, viewModel.getNumber().getFullFormattedNumber()));
+    subheader.setText(requireContext().getString(R.string.RegistrationActivity_enter_the_code_we_sent_to_s, viewModel.getNumber().getFullFormattedNumber()));
 
     viewModel.getCanCallAtTime().observe(getViewLifecycleOwner(), callAtTime -> callMeCountDown.startCountDownTo(callAtTime));
   }
@@ -348,40 +342,11 @@ public abstract class BaseEnterSmsCodeFragment<ViewModel extends BaseRegistratio
 
   @Override
   public void onNoCellSignalPresent() {
-    if (serviceWarning.getVisibility() == View.VISIBLE) {
-      return;
-    }
-    serviceWarning.setVisibility(View.VISIBLE);
-    serviceWarning.animate()
-                  .alpha(1)
-                  .setListener(null)
-                  .start();
-
-    scrollView.postDelayed(() -> {
-      if (serviceWarning.getVisibility() == View.VISIBLE) {
-        scrollView.smoothScrollTo(0, serviceWarning.getBottom());
-      }
-    }, 1000);
+    // TODO animate in bottom sheet
   }
 
   @Override
   public void onCellSignalPresent() {
-    if (serviceWarning.getVisibility() != View.VISIBLE) {
-      return;
-    }
-    serviceWarning.animate()
-                  .alpha(0)
-                  .setListener(new Animator.AnimatorListener() {
-                    @Override public void onAnimationEnd(Animator animation) {
-                      serviceWarning.setVisibility(View.GONE);
-                    }
-
-                    @Override public void onAnimationStart(Animator animation) {}
-
-                    @Override public void onAnimationCancel(Animator animation) {}
-
-                    @Override public void onAnimationRepeat(Animator animation) {}
-                  })
-                  .start();
+ // TODO animate away bottom sheet
   }
 }
