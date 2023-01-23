@@ -42,4 +42,16 @@ sealed class ContactSearchKey {
    * This is used to allow arbitrary extra data to be added to the contact search system.
    */
   data class Arbitrary(val type: String) : ContactSearchKey()
+
+  /**
+   * Search key for a ThreadRecord
+   */
+  data class Thread(val threadId: Long) : ContactSearchKey()
+
+  /**
+   * Search key for a MessageRecord
+   */
+  data class Message(val messageId: Long) : ContactSearchKey()
+
+  object Empty : ContactSearchKey()
 }

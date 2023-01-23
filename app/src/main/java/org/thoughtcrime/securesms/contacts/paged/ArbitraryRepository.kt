@@ -11,7 +11,13 @@ interface ArbitraryRepository {
   /**
    * Get the data for the given arbitrary rows within the start and end index.
    */
-  fun getData(section: ContactSearchConfiguration.Section.Arbitrary, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData.Arbitrary>
+  fun getData(
+    section: ContactSearchConfiguration.Section.Arbitrary,
+    query: String?,
+    startIndex: Int,
+    endIndex: Int,
+    totalSearchSize: Int
+  ): List<ContactSearchData.Arbitrary>
 
   /**
    * Map an arbitrary object to a mapping model

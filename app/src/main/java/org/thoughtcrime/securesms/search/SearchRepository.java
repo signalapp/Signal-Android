@@ -7,6 +7,7 @@ import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
@@ -80,15 +81,14 @@ public class SearchRepository {
     this.serialExecutor    = new SerialExecutor(SignalExecutors.BOUNDED);
   }
 
-  public void queryThreads(@NonNull String query, boolean unreadOnly, @NonNull Consumer<ThreadSearchResult> callback) {
-    searchExecutor.execute(2, () -> {
-      long               start  = System.currentTimeMillis();
-      List<ThreadRecord> result = queryConversations(query, unreadOnly);
+  @WorkerThread
+  public @NonNull ThreadSearchResult queryThreadsSync(@NonNull String query, boolean unreadOnly) {
+    long               start  = System.currentTimeMillis();
+    List<ThreadRecord> result = queryConversations(query, unreadOnly);
 
-      Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
+    Log.d(TAG, "[threads] Search took " + (System.currentTimeMillis() - start) + " ms");
 
-      callback.accept(new ThreadSearchResult(result, query));
-    });
+    return new ThreadSearchResult(result, query);
   }
 
   public void queryContacts(@NonNull String query, @NonNull Consumer<ContactSearchResult> callback) {
@@ -102,19 +102,18 @@ public class SearchRepository {
     });
   }
 
-  public void queryMessages(@NonNull String query, @NonNull Consumer<MessageSearchResult> callback) {
-    searchExecutor.execute(0, () -> {
-      long   start      = System.currentTimeMillis();
-      String cleanQuery = FtsUtil.sanitize(query);
+  @WorkerThread
+  public @NonNull MessageSearchResult queryMessagesSync(@NonNull String query) {
+    long   start      = System.currentTimeMillis();
+    String cleanQuery = FtsUtil.sanitize(query);
 
-      List<MessageResult> messages        = queryMessages(cleanQuery);
-      List<MessageResult> mentionMessages = queryMentions(sanitizeQueryAsTokens(query));
-      List<MessageResult> combined        = mergeMessagesAndMentions(messages, mentionMessages);
+    List<MessageResult> messages        = queryMessages(cleanQuery);
+    List<MessageResult> mentionMessages = queryMentions(sanitizeQueryAsTokens(query));
+    List<MessageResult> combined        = mergeMessagesAndMentions(messages, mentionMessages);
 
-      Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
+    Log.d(TAG, "[messages] Search took " + (System.currentTimeMillis() - start) + " ms");
 
-      callback.accept(new MessageSearchResult(combined, query));
-    });
+    return new MessageSearchResult(combined, query);
   }
 
   public void query(@NonNull String query, long threadId, @NonNull Callback<List<MessageResult>> callback) {
@@ -190,13 +189,13 @@ public class SearchRepository {
       }
     }
 
-    List<ThreadRecord> output = new ArrayList<>(contactIds.size() + groupsByTitleIds.size() + groupsByMemberIds.size());
+    LinkedHashSet<ThreadRecord> output = new LinkedHashSet<>();
 
     output.addAll(getMatchingThreads(contactIds, unreadOnly));
     output.addAll(getMatchingThreads(groupsByTitleIds, unreadOnly));
     output.addAll(getMatchingThreads(groupsByMemberIds, unreadOnly));
 
-    return output;
+    return new ArrayList<>(output);
   }
 
   private List<ThreadRecord> getMatchingThreads(@NonNull Collection<RecipientId> recipientIds, boolean unreadOnly) {

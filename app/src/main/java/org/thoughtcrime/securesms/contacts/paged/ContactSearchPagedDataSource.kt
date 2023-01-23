@@ -8,10 +8,15 @@ import org.thoughtcrime.securesms.contacts.paged.collections.CursorSearchIterato
 import org.thoughtcrime.securesms.contacts.paged.collections.StoriesSearchCollection
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.search.MessageResult
+import org.thoughtcrime.securesms.search.MessageSearchResult
+import org.thoughtcrime.securesms.search.SearchRepository
+import org.thoughtcrime.securesms.search.ThreadSearchResult
 import java.util.concurrent.TimeUnit
 
 /**
@@ -20,7 +25,8 @@ import java.util.concurrent.TimeUnit
 class ContactSearchPagedDataSource(
   private val contactConfiguration: ContactSearchConfiguration,
   private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(ApplicationDependencies.getApplication()),
-  private val arbitraryRepository: ArbitraryRepository? = null
+  private val arbitraryRepository: ArbitraryRepository? = null,
+  private val searchRepository: SearchRepository? = null
 ) : PagedDataSource<ContactSearchKey, ContactSearchData> {
 
   companion object {
@@ -31,13 +37,26 @@ class ContactSearchPagedDataSource(
 
   private val activeStoryCount = latestStorySends.size
 
+  private var searchCache = SearchCache()
+  private var searchSize = -1
+
   override fun size(): Int {
-    return contactConfiguration.sections.sumOf {
+    searchSize = contactConfiguration.sections.sumOf {
       getSectionSize(it, contactConfiguration.query)
+    }
+
+    return if (searchSize == 0 && contactConfiguration.hasEmptyState) {
+      1
+    } else {
+      searchSize
     }
   }
 
   override fun load(start: Int, length: Int, cancellationSignal: PagedDataSource.CancellationSignal): MutableList<ContactSearchData> {
+    if (searchSize == 0 && contactConfiguration.hasEmptyState) {
+      return mutableListOf(ContactSearchData.Empty(contactConfiguration.query))
+    }
+
     val sizeMap: Map<ContactSearchConfiguration.Section, Int> = contactConfiguration.sections.associateWith { getSectionSize(it, contactConfiguration.query) }
     val startIndex: Index = findIndex(sizeMap, start)
     val endIndex: Index = findIndex(sizeMap, start + length)
@@ -92,6 +111,8 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getSize(section, query) ?: error("Invalid arbitrary section.")
       is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersSearchIterator(query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Chats -> getThreadData(query, section.isUnreadOnly).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Messages -> getMessageData(query).getCollectionSize(section, query, null)
     }
   }
 
@@ -122,8 +143,10 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Individuals -> getNonGroupContactsData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Recents -> getRecentsContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Stories -> getStoriesContactData(section, query, startIndex, endIndex)
-      is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getData(section, query, startIndex, endIndex) ?: error("Invalid arbitrary section.")
+      is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getData(section, query, startIndex, endIndex, searchSize) ?: error("Invalid arbitrary section.")
       is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersContactData(section, query, startIndex, endIndex)
+      is ContactSearchConfiguration.Section.Chats -> getThreadContactData(section, query, startIndex, endIndex)
+      is ContactSearchConfiguration.Section.Messages -> getMessageContactData(section, query, startIndex, endIndex)
     }
   }
 
@@ -277,6 +300,63 @@ class ContactSearchPagedDataSource(
     }
   }
 
+  private fun getMessageData(query: String?): ContactSearchIterator<MessageResult> {
+    check(searchRepository != null)
+
+    if (searchCache.messageSearchResult == null && query != null) {
+      searchCache = searchCache.copy(messageSearchResult = searchRepository.queryMessagesSync(query))
+    }
+
+    return if (query != null) {
+      ListSearchIterator(searchCache.messageSearchResult!!.results)
+    } else {
+      ListSearchIterator(emptyList())
+    }
+  }
+
+  private fun getMessageContactData(section: ContactSearchConfiguration.Section.Messages, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
+    return getMessageData(query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
+        section = section,
+        startIndex = startIndex,
+        endIndex = endIndex,
+        recordMapper = {
+          ContactSearchData.Message(query ?: "", it)
+        }
+      )
+    }
+  }
+
+  private fun getThreadData(query: String?, unreadOnly: Boolean): ContactSearchIterator<ThreadRecord> {
+    check(searchRepository != null)
+    if (searchCache.threadSearchResult == null && query != null) {
+      searchCache = searchCache.copy(threadSearchResult = searchRepository.queryThreadsSync(query, unreadOnly))
+    }
+
+    return if (query != null) {
+      ListSearchIterator(searchCache.threadSearchResult!!.results)
+    } else {
+      ListSearchIterator(emptyList())
+    }
+  }
+
+  private fun getThreadContactData(section: ContactSearchConfiguration.Section.Chats, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
+    return getThreadData(query, section.isUnreadOnly).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
+        section = section,
+        startIndex = startIndex,
+        endIndex = endIndex,
+        recordMapper = {
+          ContactSearchData.Thread(query ?: "", it)
+        }
+      )
+    }
+  }
+
   private fun <R> createResultsCollection(
     section: ContactSearchConfiguration.Section,
     records: ContactSearchIterator<R>,
@@ -289,6 +369,14 @@ class ContactSearchPagedDataSource(
       else -> ContactSearchCollection(section, records, recordsPredicate, recordMapper, 0)
     }
   }
+
+  /**
+   * Caches search results of particularly intensive queries.
+   */
+  private data class SearchCache(
+    val messageSearchResult: MessageSearchResult? = null,
+    val threadSearchResult: ThreadSearchResult? = null
+  )
 
   /**
    * StoryComparator
@@ -307,5 +395,22 @@ class ContactSearchPagedDataSource(
         else -> 0
       }
     }
+  }
+
+  private class ListSearchIterator<T>(val list: List<T>) : ContactSearchIterator<T> {
+
+    private var position = -1
+
+    override fun moveToPosition(n: Int) {
+      position = n
+    }
+
+    override fun getCount(): Int = list.size
+
+    override fun hasNext(): Boolean = position < list.lastIndex
+
+    override fun next(): T = list[++position]
+
+    override fun close() = Unit
   }
 }

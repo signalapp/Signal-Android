@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.contacts.HeaderAction
  */
 class ContactSearchConfiguration private constructor(
   val query: String?,
+  val hasEmptyState: Boolean,
   val sections: List<Section>
 ) {
   sealed class Section(val sectionKey: SectionKey) {
@@ -81,6 +82,17 @@ class ContactSearchConfiguration private constructor(
       override val includeHeader: Boolean = true,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUP_MEMBERS)
+
+    data class Chats(
+      val isUnreadOnly: Boolean = false,
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.CHATS)
+
+    data class Messages(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.MESSAGES)
   }
 
   /**
@@ -116,7 +128,17 @@ class ContactSearchConfiguration private constructor(
      * Contacts that are members of groups user is in that they've not explicitly
      * started a conversation with.
      */
-    GROUP_MEMBERS
+    GROUP_MEMBERS,
+
+    /**
+     * 1:1 and Group chats
+     */
+    CHATS,
+
+    /**
+     * Messages from 1:1 and Group chats
+     */
+    MESSAGES
   }
 
   /**
@@ -147,6 +169,7 @@ class ContactSearchConfiguration private constructor(
      * }
      * ```
      */
+    @JvmStatic
     fun build(builderFunction: Builder.() -> Unit): ContactSearchConfiguration {
       return ConfigurationBuilder().let {
         it.builderFunction()
@@ -162,13 +185,14 @@ class ContactSearchConfiguration private constructor(
     private val sections: MutableList<Section> = mutableListOf()
 
     override var query: String? = null
+    override var hasEmptyState: Boolean = false
 
     override fun addSection(section: Section) {
       sections.add(section)
     }
 
     fun build(): ContactSearchConfiguration {
-      return ContactSearchConfiguration(query, sections)
+      return ContactSearchConfiguration(query, hasEmptyState, sections)
     }
   }
 
@@ -177,6 +201,8 @@ class ContactSearchConfiguration private constructor(
    */
   interface Builder {
     var query: String?
+    var hasEmptyState: Boolean
+
     fun arbitrary(first: String, vararg rest: String) {
       addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
     }

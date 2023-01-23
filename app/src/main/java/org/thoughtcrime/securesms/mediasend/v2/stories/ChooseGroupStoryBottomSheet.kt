@@ -64,7 +64,6 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     val contactRecycler: RecyclerView = view.findViewById(R.id.contact_recycler)
     mediator = ContactSearchMediator(
       fragment = this,
-      recyclerView = contactRecycler,
       selectionLimits = FeatureFlags.shareSelectionLimit(),
       displayCheckBox = true,
       displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
@@ -83,6 +82,8 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       },
       performSafetyNumberChecks = false
     )
+
+    contactRecycler.adapter = mediator.adapter
 
     mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
       adapter.submitList(

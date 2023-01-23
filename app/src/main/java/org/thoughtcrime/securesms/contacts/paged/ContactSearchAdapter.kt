@@ -94,6 +94,9 @@ open class ContactSearchAdapter(
             is ContactSearchData.Header -> HeaderModel(it)
             is ContactSearchData.TestRow -> error("This row exists for testing only.")
             is ContactSearchData.Arbitrary -> arbitraryRepository?.getMappingModel(it) ?: error("This row must be handled manually")
+            is ContactSearchData.Message -> MessageModel(it)
+            is ContactSearchData.Thread -> ThreadModel(it)
+            is ContactSearchData.Empty -> EmptyModel(it)
           }
         }
       )
@@ -294,7 +297,8 @@ open class ContactSearchAdapter(
   /**
    * Base Recipient View Holder
    */
-  private abstract class BaseRecipientViewHolder<T : MappingModel<T>, D : ContactSearchData>(
+
+  abstract class BaseRecipientViewHolder<T : MappingModel<T>, D : ContactSearchData>(
     itemView: View,
     private val displayCheckBox: Boolean,
     private val displaySmsTag: DisplaySmsTag,
@@ -392,6 +396,32 @@ open class ContactSearchAdapter(
   }
 
   /**
+   * Mapping Model for messages
+   */
+  class MessageModel(val message: ContactSearchData.Message) : MappingModel<MessageModel> {
+    override fun areItemsTheSame(newItem: MessageModel): Boolean = message.contactSearchKey == newItem.message.contactSearchKey
+
+    override fun areContentsTheSame(newItem: MessageModel): Boolean {
+      return message == newItem.message
+    }
+  }
+
+  /**
+   * Mapping Model for threads
+   */
+  class ThreadModel(val thread: ContactSearchData.Thread) : MappingModel<ThreadModel> {
+    override fun areItemsTheSame(newItem: ThreadModel): Boolean = thread.contactSearchKey == newItem.thread.contactSearchKey
+    override fun areContentsTheSame(newItem: ThreadModel): Boolean {
+      return thread == newItem.thread
+    }
+  }
+
+  class EmptyModel(val empty: ContactSearchData.Empty) : MappingModel<EmptyModel> {
+    override fun areItemsTheSame(newItem: EmptyModel): Boolean = true
+    override fun areContentsTheSame(newItem: EmptyModel): Boolean = newItem.empty == empty
+  }
+
+  /**
    * View Holder for section headers
    */
   private class HeaderViewHolder(itemView: View) : MappingViewHolder<HeaderModel>(itemView) {
@@ -408,6 +438,8 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.GROUPS -> R.string.ContactsCursorLoader_groups
           ContactSearchConfiguration.SectionKey.ARBITRARY -> error("This section does not support HEADER")
           ContactSearchConfiguration.SectionKey.GROUP_MEMBERS -> R.string.ContactsCursorLoader_group_members
+          ContactSearchConfiguration.SectionKey.CHATS -> R.string.ContactsCursorLoader__chats
+          ContactSearchConfiguration.SectionKey.MESSAGES -> R.string.ContactsCursorLoader__messages
         }
       )
 

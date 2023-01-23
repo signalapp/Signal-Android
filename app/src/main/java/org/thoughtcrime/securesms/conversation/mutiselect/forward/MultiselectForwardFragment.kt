@@ -120,13 +120,14 @@ class MultiselectForwardFragment :
     contactSearchRecycler = view.findViewById(R.id.contact_selection_list)
     contactSearchMediator = ContactSearchMediator(
       this,
-      contactSearchRecycler,
       FeatureFlags.shareSelectionLimit(),
       !args.selectSingleRecipient,
       ContactSearchAdapter.DisplaySmsTag.DEFAULT,
       this::getConfiguration,
       this::filterContacts
     )
+
+    contactSearchRecycler.adapter = contactSearchMediator.adapter
 
     callback = findListener()!!
     disposables.bindTo(viewLifecycleOwner.lifecycle)

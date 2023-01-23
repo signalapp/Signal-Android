@@ -5,23 +5,25 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.search.SearchRepository
 import org.thoughtcrime.securesms.stories.settings.custom.PrivateStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.my.MyStorySettingsFragment
 import org.thoughtcrime.securesms.stories.settings.privacy.ChooseInitialMyStoryMembershipBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil
+import java.util.concurrent.TimeUnit
 
 class ContactSearchMediator(
   private val fragment: Fragment,
-  recyclerView: RecyclerView,
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
   displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
@@ -29,25 +31,31 @@ class ContactSearchMediator(
   private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s },
   performSafetyNumberChecks: Boolean = true,
   adapterFactory: AdapterFactory = DefaultAdapterFactory,
-  arbitraryRepository: ArbitraryRepository? = null
+  arbitraryRepository: ArbitraryRepository? = null,
 ) {
+
+  private val queryDebouncer = Debouncer(300, TimeUnit.MILLISECONDS)
 
   private val viewModel: ContactSearchViewModel = ViewModelProvider(
     fragment,
-    ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository(), performSafetyNumberChecks, arbitraryRepository)
+    ContactSearchViewModel.Factory(
+      selectionLimits = selectionLimits,
+      repository = ContactSearchRepository(),
+      performSafetyNumberChecks = performSafetyNumberChecks,
+      arbitraryRepository = arbitraryRepository,
+      searchRepository = SearchRepository(fragment.requireContext().getString(R.string.note_to_self))
+    )
   )[ContactSearchViewModel::class.java]
 
+  val adapter = adapterFactory.create(
+    displayCheckBox = displayCheckBox,
+    displaySmsTag = displaySmsTag,
+    recipientListener = this::toggleSelection,
+    storyListener = this::toggleStorySelection,
+    storyContextMenuCallbacks = StoryContextMenuCallbacks()
+  ) { viewModel.expandSection(it.sectionKey) }
+
   init {
-    val adapter = adapterFactory.create(
-      displayCheckBox,
-      displaySmsTag,
-      this::toggleSelection,
-      this::toggleStorySelection,
-      StoryContextMenuCallbacks()
-    ) { viewModel.expandSection(it.sectionKey) }
-
-    recyclerView.adapter = adapter
-
     val dataAndSelection: LiveData<Pair<List<ContactSearchData>, Set<ContactSearchKey>>> = LiveDataUtil.combineLatest(
       viewModel.data,
       viewModel.selectionState,
@@ -68,7 +76,13 @@ class ContactSearchMediator(
   }
 
   fun onFilterChanged(filter: String?) {
-    viewModel.setQuery(filter)
+    queryDebouncer.publish {
+      viewModel.setQuery(filter)
+    }
+  }
+
+  fun onConversationFilterRequestChanged(conversationFilterRequest: ConversationFilterRequest) {
+    viewModel.setConversationFilterRequest(conversationFilterRequest)
   }
 
   fun setKeysSelected(keys: Set<ContactSearchKey>) {

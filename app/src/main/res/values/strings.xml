@@ -233,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">New</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Message %s</string>

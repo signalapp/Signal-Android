@@ -24,15 +24,16 @@ class ViewAllSignalConnectionsFragment : Fragment(R.layout.view_all_signal_conne
       requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
-    ContactSearchMediator(
+    val mediator = ContactSearchMediator(
       fragment = this,
-      recyclerView = binding.recycler,
       selectionLimits = SelectionLimits(0, 0),
       displayCheckBox = false,
       displaySmsTag = ContactSearchAdapter.DisplaySmsTag.IF_NOT_REGISTERED,
       mapStateToConfiguration = { getConfiguration() },
       performSafetyNumberChecks = false
     )
+
+    binding.recycler.adapter = mediator.adapter
   }
 
   private fun getConfiguration(): ContactSearchConfiguration {

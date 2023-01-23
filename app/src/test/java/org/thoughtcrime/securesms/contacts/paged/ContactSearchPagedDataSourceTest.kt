@@ -206,7 +206,7 @@ class ContactSearchPagedDataSourceTest {
   private class ArbitraryRepoFake : ArbitraryRepository {
     override fun getSize(section: ContactSearchConfiguration.Section.Arbitrary, query: String?): Int = section.types.size
 
-    override fun getData(section: ContactSearchConfiguration.Section.Arbitrary, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData.Arbitrary> {
+    override fun getData(section: ContactSearchConfiguration.Section.Arbitrary, query: String?, startIndex: Int, endIndex: Int, totalSearchSize: Int): List<ContactSearchData.Arbitrary> {
       return section.types.toList().slice(startIndex..endIndex).map {
         ContactSearchData.Arbitrary(it, bundleOf("n" to it))
       }
