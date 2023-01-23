@@ -5,7 +5,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import org.thoughtcrime.securesms.components.location.SignalPlace
-import org.thoughtcrime.securesms.components.voice.VoiceNoteDraft
 import org.thoughtcrime.securesms.database.DraftTable.Draft
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.model.Mention
@@ -14,9 +13,7 @@ import org.thoughtcrime.securesms.mms.QuoteId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.Base64
-import org.thoughtcrime.securesms.util.concurrent.ListenableFuture
 import org.thoughtcrime.securesms.util.rx.RxStore
-import java.util.concurrent.ExecutionException
 
 /**
  * ViewModel responsible for holding Voice Note draft state. The intention is to allow
@@ -46,21 +43,9 @@ class DraftViewModel @JvmOverloads constructor(
     store.update { it.copy(distributionType = distributionType) }
   }
 
-  fun saveEphemeralVoiceNoteDraft(voiceNoteDraftFuture: ListenableFuture<VoiceNoteDraft>) {
+  fun saveEphemeralVoiceNoteDraft(draft: Draft) {
     store.update { draftState ->
-      val draft: VoiceNoteDraft? = try {
-        voiceNoteDraftFuture.get()
-      } catch (e: ExecutionException) {
-        null
-      } catch (e: InterruptedException) {
-        null
-      }
-
-      if (draft != null) {
-        saveDrafts(draftState.copy(voiceNoteDraft = draft.asDraft()))
-      } else {
-        draftState
-      }
+      saveDrafts(draftState.copy(voiceNoteDraft = draft))
     }
   }
 

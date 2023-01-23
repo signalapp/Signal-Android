@@ -141,9 +141,9 @@ public class InputPanel extends LinearLayout
     this.recordTime             = new RecordTime(findViewById(R.id.record_time),
                                                  findViewById(R.id.microphone),
                                                  TimeUnit.HOURS.toSeconds(1),
-                                                 () -> microphoneRecorderView.cancelAction());
+                                                 () -> microphoneRecorderView.cancelAction(false));
 
-    this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction());
+    this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction(true));
 
     if (SignalStore.settings().isPreferSystemEmoji()) {
       mediaKeyboard.setVisibility(View.GONE);
@@ -419,7 +419,7 @@ public class InputPanel extends LinearLayout
         listener.onRecorderFinished();
       } else {
         Toast.makeText(getContext(), R.string.InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send, Toast.LENGTH_LONG).show();
-        listener.onRecorderCanceled();
+        listener.onRecorderCanceled(true);
       }
     }
   }
@@ -433,14 +433,14 @@ public class InputPanel extends LinearLayout
     if (ViewUtil.isLtr(this) && position <= 0.5 ||
         ViewUtil.isRtl(this) && position >= 0.6)
     {
-      this.microphoneRecorderView.cancelAction();
+      this.microphoneRecorderView.cancelAction(true);
     }
   }
 
   @Override
-  public void onRecordCanceled() {
+  public void onRecordCanceled(boolean byUser) {
     onRecordHideEvent();
-    if (listener != null) listener.onRecorderCanceled();
+    if (listener != null) listener.onRecorderCanceled(byUser);
   }
 
   @Override
@@ -452,7 +452,7 @@ public class InputPanel extends LinearLayout
   }
 
   public void onPause() {
-    this.microphoneRecorderView.cancelAction();
+    this.microphoneRecorderView.cancelAction(false);
   }
 
   public @NonNull Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
@@ -527,6 +527,7 @@ public class InputPanel extends LinearLayout
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
       hideNormalComposeViews();
+      fadeIn(buttonToggle);
       buttonToggle.displayQuick(sendButton);
     } else {
       voiceNoteDraftView.clearDraft();
@@ -582,7 +583,7 @@ public class InputPanel extends LinearLayout
     void onRecorderStarted();
     void onRecorderLocked();
     void onRecorderFinished();
-    void onRecorderCanceled();
+    void onRecorderCanceled(boolean byUser);
     void onRecorderPermissionRequired();
     void onEmojiToggle();
     void onLinkPreviewCanceled();

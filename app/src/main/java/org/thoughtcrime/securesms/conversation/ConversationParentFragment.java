@@ -84,7 +84,6 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import androidx.core.graphics.drawable.IconCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
@@ -326,6 +325,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
@@ -416,6 +417,7 @@ public class ConversationParentFragment extends Fragment
 
   private   AttachmentManager        attachmentManager;
   private   AudioRecorder            audioRecorder;
+  private   RecordingSession         recordingSession;
   private   BroadcastReceiver        securityUpdateReceiver;
   private   Stub<MediaKeyboard>      emojiDrawerStub;
   private   Stub<AttachmentKeyboard> attachmentKeyboardStub;
@@ -3286,7 +3288,7 @@ public class ConversationParentFragment extends Fragment
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LOCKED);
 
     voiceNoteMediaController.pausePlayback();
-    audioRecorder.startRecording();
+    recordingSession = new RecordingSession(audioRecorder.startRecording());
   }
 
   @Override
@@ -3306,22 +3308,11 @@ public class ConversationParentFragment extends Fragment
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
-    ListenableFuture<VoiceNoteDraft> future = audioRecorder.stopRecording();
-    future.addListener(new ListenableFuture.Listener<VoiceNoteDraft>() {
-      @Override
-      public void onSuccess(final @NonNull VoiceNoteDraft result) {
-        sendVoiceNote(result.getUri(), result.getSize());
-      }
-
-      @Override
-      public void onFailure(ExecutionException e) {
-        Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
-      }
-    });
+    recordingSession.completeRecording();
   }
 
   @Override
-  public void onRecorderCanceled() {
+  public void onRecorderCanceled(boolean byUser) {
     voiceRecorderWakeLock.release();
     updateToggleButtonState();
     Vibrator vibrator = ServiceUtil.getVibrator(requireContext());
@@ -3330,11 +3321,12 @@ public class ConversationParentFragment extends Fragment
     requireActivity().getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
 
-    ListenableFuture<VoiceNoteDraft> future = audioRecorder.stopRecording();
-    if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.RESUMED)) {
-      future.addListener(new DeleteCanceledVoiceNoteListener());
-    } else {
-      draftViewModel.saveEphemeralVoiceNoteDraft(future);
+    if (recordingSession != null) {
+      if (byUser) {
+        recordingSession.discardRecording();
+      } else {
+        recordingSession.saveDraft();
+      }
     }
   }
 
@@ -3590,14 +3582,55 @@ public class ConversationParentFragment extends Fragment
 
   // Listeners
 
-  private final class DeleteCanceledVoiceNoteListener implements ListenableFuture.Listener<VoiceNoteDraft> {
-    @Override
-    public void onSuccess(final VoiceNoteDraft result) {
-      draftViewModel.cancelEphemeralVoiceNoteDraft(result.asDraft());
+  private class RecordingSession implements SingleObserver<VoiceNoteDraft> {
+
+    private boolean saveDraft  = true;
+    private boolean shouldSend = false;
+
+    RecordingSession(Single<VoiceNoteDraft> observable) {
+      observable.observeOn(AndroidSchedulers.mainThread()).subscribe(this);
     }
 
     @Override
-    public void onFailure(ExecutionException e) {}
+    public void onSubscribe(@io.reactivex.rxjava3.annotations.NonNull Disposable d) {
+    }
+
+    @Override
+    public void onSuccess(@NonNull VoiceNoteDraft draft) {
+      if (shouldSend) {
+        sendVoiceNote(draft.getUri(), draft.getSize());
+      } else {
+        if (!saveDraft) {
+          draftViewModel.cancelEphemeralVoiceNoteDraft(draft.asDraft());
+        } else {
+          draftViewModel.saveEphemeralVoiceNoteDraft(draft.asDraft());
+        }
+      }
+      recordingSession = null;
+    }
+
+    @Override
+    public void onError(Throwable t) {
+      Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
+      recordingSession = null;
+    }
+
+    public void saveDraft() {
+      this.saveDraft  = true;
+      this.shouldSend = false;
+      audioRecorder.stopRecording();
+    }
+
+    public void discardRecording() {
+      this.saveDraft  = false;
+      this.shouldSend = false;
+      audioRecorder.stopRecording();
+    }
+
+    public void completeRecording() {
+      this.shouldSend = true;
+      audioRecorder.stopRecording();
+    }
   }
 
   private class QuickCameraToggleListener implements OnClickListener {
