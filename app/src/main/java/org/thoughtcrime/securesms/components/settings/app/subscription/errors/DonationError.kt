@@ -62,6 +62,16 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
      * Payment failed by the credit card processor, with a specific reason told to us by Stripe.
      */
     class StripeDeclinedError(source: DonationErrorSource, cause: Throwable, val declineCode: StripeDeclineCode, val method: PaymentSourceType.Stripe) : PaymentSetupError(source, cause)
+
+    /**
+     * Payment setup failed in some way, which we are told about by PayPal.
+     */
+    class PayPalCodedError(source: DonationErrorSource, cause: Throwable, val errorCode: Int) : PaymentSetupError(source, cause)
+
+    /**
+     * Payment failed by the credit card processor, with a specific reason told to us by PayPal.
+     */
+    class PayPalDeclinedError(source: DonationErrorSource, cause: Throwable, val code: PayPalDeclineCode.KnownCode) : PaymentSetupError(source, cause)
   }
 
   /**

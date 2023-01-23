@@ -16,6 +16,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -139,11 +140,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       if (isForKeepAlive) {
         Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
+        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
         throw new Exception("Active subscription hit a payment failure: " + subscription.getStatus());
       } else {
         Log.w(TAG, "New subscription has hit a payment failure. (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
         throw new Exception("New subscription has hit a payment failure: " + subscription.getStatus());
       }
     } else if (!subscription.isActive()) {
@@ -153,7 +154,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
         if (!isForKeepAlive) {
           Log.w(TAG, "Initial subscription payment failed, treating as a permanent failure.");
-          onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+          onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
           throw new Exception("New subscription has hit a payment failure.");
         }
       }
@@ -283,7 +284,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * 1. In the case of a keep-alive event, we want to book-keep the error to show the user on a subsequent launch, and we want to sync our failure state to
    * linked devices.
    */
-  private void onPaymentFailure(@NonNull String status, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
+  private void onPaymentFailure(@NonNull String status, @NonNull ActiveSubscription.Processor processor, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     if (isForKeepAlive) {
       Log.d(TAG, "Is for a keep-alive and we have a status. Setting UnexpectedSubscriptionCancelation state...", true);
@@ -291,8 +292,8 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
-    } else if (chargeFailure != null) {
-      Log.d(TAG, "Charge failure detected: " + chargeFailure, true);
+    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.STRIPE) {
+      Log.d(TAG, "Stripe charge failure detected: " + chargeFailure, true);
 
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
       DonationError.PaymentSetupError paymentSetupError;
@@ -311,6 +312,44 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
             getErrorSource(),
             new Exception("Card was declined. " + chargeFailure.getCode()),
             chargeFailure.getCode()
+        );
+      } else {
+        paymentSetupError = new DonationError.PaymentSetupError.GenericError(
+            getErrorSource(),
+            new Exception("Payment Failed for " + paymentSourceType.getCode())
+        );
+      }
+
+      Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
+      DonationError.routeDonationError(context, paymentSetupError);
+    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.BRAINTREE) {
+      Log.d(TAG, "PayPal charge failure detected: " + chargeFailure, true);
+
+
+      int code;
+      try {
+        code = Integer.parseInt(chargeFailure.getCode());
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "PayPal charge failure code had unexpected type.");
+        code = -1;
+      }
+
+      PayPalDeclineCode               declineCode       = new PayPalDeclineCode(code);
+      DonationError.PaymentSetupError paymentSetupError;
+      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      boolean                         isPayPalSource    = paymentSourceType instanceof PaymentSourceType.PayPal;
+
+      if (declineCode.getKnownCode() != null && isPayPalSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.PayPalDeclinedError(
+            getErrorSource(),
+            new Exception(chargeFailure.getMessage()),
+            declineCode.getKnownCode()
+        );
+      } else if (isPayPalSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.PayPalCodedError(
+            getErrorSource(),
+            new Exception("Card was declined. " + chargeFailure.getCode()),
+            code
         );
       } else {
         paymentSetupError = new DonationError.PaymentSetupError.GenericError(
