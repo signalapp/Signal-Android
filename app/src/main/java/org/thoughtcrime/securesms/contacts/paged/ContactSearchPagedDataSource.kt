@@ -19,7 +19,8 @@ import java.util.concurrent.TimeUnit
  */
 class ContactSearchPagedDataSource(
   private val contactConfiguration: ContactSearchConfiguration,
-  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(ApplicationDependencies.getApplication())
+  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(ApplicationDependencies.getApplication()),
+  private val arbitraryRepository: ArbitraryRepository? = null
 ) : PagedDataSource<ContactSearchKey, ContactSearchData> {
 
   companion object {
@@ -89,6 +90,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Groups -> contactSearchPagedDataSourceRepository.getGroupSearchIterator(section, query).getCollectionSize(section, query, this::canSendToGroup)
       is ContactSearchConfiguration.Section.Recents -> getRecentsSearchIterator(section, query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getSize(section, query) ?: error("Invalid arbitrary section.")
     }
   }
 
@@ -119,6 +121,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Individuals -> getNonGroupContactsData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Recents -> getRecentsContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Stories -> getStoriesContactData(section, query, startIndex, endIndex)
+      is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getData(section, query, startIndex, endIndex) ?: error("Invalid arbitrary section.")
     }
   }
 

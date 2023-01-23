@@ -22,6 +22,7 @@ class ContactSearchRepository {
           is ContactSearchKey.Expand -> false
           is ContactSearchKey.Header -> false
           is ContactSearchKey.RecipientSearchKey -> canSelectRecipient(it.recipientId)
+          is ContactSearchKey.Arbitrary -> false
         }
         ContactSearchSelectionResult(it, isSelectable)
       }.toSet()

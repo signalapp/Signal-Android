@@ -27,6 +27,7 @@ class ContactSearchViewModel(
   private val contactSearchRepository: ContactSearchRepository,
   private val performSafetyNumberChecks: Boolean,
   private val safetyNumberRepository: SafetyNumberRepository = SafetyNumberRepository(),
+  private val arbitraryRepository: ArbitraryRepository?
 ) : ViewModel() {
 
   private val disposables = CompositeDisposable()
@@ -53,7 +54,7 @@ class ContactSearchViewModel(
   }
 
   fun setConfiguration(contactSearchConfiguration: ContactSearchConfiguration) {
-    val pagedDataSource = ContactSearchPagedDataSource(contactSearchConfiguration)
+    val pagedDataSource = ContactSearchPagedDataSource(contactSearchConfiguration, arbitraryRepository = arbitraryRepository)
     pagedData.value = PagedData.createForLiveData(pagedDataSource, pagingConfig)
   }
 
@@ -139,10 +140,11 @@ class ContactSearchViewModel(
   class Factory(
     private val selectionLimits: SelectionLimits,
     private val repository: ContactSearchRepository,
-    private val performSafetyNumberChecks: Boolean
+    private val performSafetyNumberChecks: Boolean,
+    private val arbitraryRepository: ArbitraryRepository?
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ContactSearchViewModel(selectionLimits, repository, performSafetyNumberChecks)) as T
+      return modelClass.cast(ContactSearchViewModel(selectionLimits, repository, performSafetyNumberChecks, arbitraryRepository = arbitraryRepository)) as T
     }
   }
 }

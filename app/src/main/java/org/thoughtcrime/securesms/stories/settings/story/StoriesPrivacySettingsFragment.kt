@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.contacts.paged.ContactSearchItems
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -62,7 +62,7 @@ class StoriesPrivacySettingsFragment :
     }
 
     @Suppress("UNCHECKED_CAST")
-    ContactSearchItems.registerStoryItems(
+    ContactSearchAdapter.registerStoryItems(
       mappingAdapter = middle as PagingMappingAdapter<ContactSearchKey>,
       storyListener = { _, story, _ ->
         when {
@@ -136,9 +136,10 @@ class StoriesPrivacySettingsFragment :
   private fun getMiddleConfiguration(state: StoriesPrivacySettingsState): DSLConfiguration {
     return if (state.areStoriesEnabled) {
       configure {
-        ContactSearchItems.toMappingModelList(
+        ContactSearchAdapter.toMappingModelList(
           state.storyContactItems,
-          emptySet()
+          emptySet(),
+          null
         ).forEach {
           customPref(it)
         }

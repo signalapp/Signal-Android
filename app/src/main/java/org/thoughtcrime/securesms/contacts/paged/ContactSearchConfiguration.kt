@@ -69,6 +69,13 @@ class ContactSearchConfiguration private constructor(
       override val includeHeader: Boolean,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUPS)
+
+    data class Arbitrary(
+      val types: Set<String>
+    ) : Section(SectionKey.ARBITRARY) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
   }
 
   /**
@@ -78,7 +85,8 @@ class ContactSearchConfiguration private constructor(
     STORIES,
     RECENTS,
     INDIVIDUALS,
-    GROUPS
+    GROUPS,
+    ARBITRARY
   }
 
   /**
@@ -139,6 +147,10 @@ class ContactSearchConfiguration private constructor(
    */
   interface Builder {
     var query: String?
+    fun arbitrary(first: String, vararg rest: String) {
+      addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
+    }
+
     fun addSection(section: Section)
   }
 }

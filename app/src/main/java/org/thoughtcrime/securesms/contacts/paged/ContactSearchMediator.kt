@@ -24,14 +24,18 @@ class ContactSearchMediator(
   recyclerView: RecyclerView,
   selectionLimits: SelectionLimits,
   displayCheckBox: Boolean,
-  displaySmsTag: ContactSearchItems.DisplaySmsTag,
+  displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
   mapStateToConfiguration: (ContactSearchState) -> ContactSearchConfiguration,
   private val contactSelectionPreFilter: (View?, Set<ContactSearchKey>) -> Set<ContactSearchKey> = { _, s -> s },
   performSafetyNumberChecks: Boolean = true,
-  adapterFactory: AdapterFactory = DefaultAdapterFactory
+  adapterFactory: AdapterFactory = DefaultAdapterFactory,
+  arbitraryRepository: ArbitraryRepository? = null
 ) {
 
-  private val viewModel: ContactSearchViewModel = ViewModelProvider(fragment, ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository(), performSafetyNumberChecks)).get(ContactSearchViewModel::class.java)
+  private val viewModel: ContactSearchViewModel = ViewModelProvider(
+    fragment,
+    ContactSearchViewModel.Factory(selectionLimits, ContactSearchRepository(), performSafetyNumberChecks, arbitraryRepository)
+  )[ContactSearchViewModel::class.java]
 
   init {
     val adapter = adapterFactory.create(
@@ -51,7 +55,7 @@ class ContactSearchMediator(
     )
 
     dataAndSelection.observe(fragment.viewLifecycleOwner) { (data, selection) ->
-      adapter.submitList(ContactSearchItems.toMappingModelList(data, selection))
+      adapter.submitList(ContactSearchAdapter.toMappingModelList(data, selection, arbitraryRepository))
     }
 
     viewModel.controller.observe(fragment.viewLifecycleOwner) { controller ->
@@ -111,7 +115,7 @@ class ContactSearchMediator(
     }
   }
 
-  private inner class StoryContextMenuCallbacks : ContactSearchItems.StoryContextMenuCallbacks {
+  private inner class StoryContextMenuCallbacks : ContactSearchAdapter.StoryContextMenuCallbacks {
     override fun onOpenStorySettings(story: ContactSearchData.Story) {
       if (story.recipient.isMyStory) {
         MyStorySettingsFragment.createAsDialog()
@@ -148,10 +152,10 @@ class ContactSearchMediator(
   fun interface AdapterFactory {
     fun create(
       displayCheckBox: Boolean,
-      displaySmsTag: ContactSearchItems.DisplaySmsTag,
+      displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
       recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
       storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
-      storyContextMenuCallbacks: ContactSearchItems.StoryContextMenuCallbacks,
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
       expandListener: (ContactSearchData.Expand) -> Unit
     ): PagingMappingAdapter<ContactSearchKey>
   }
@@ -159,10 +163,10 @@ class ContactSearchMediator(
   private object DefaultAdapterFactory : AdapterFactory {
     override fun create(
       displayCheckBox: Boolean,
-      displaySmsTag: ContactSearchItems.DisplaySmsTag,
+      displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
       recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
       storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
-      storyContextMenuCallbacks: ContactSearchItems.StoryContextMenuCallbacks,
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
       expandListener: (ContactSearchData.Expand) -> Unit
     ): PagingMappingAdapter<ContactSearchKey> {
       return ContactSearchAdapter(displayCheckBox, displaySmsTag, recipientListener, storyListener, storyContextMenuCallbacks, expandListener)
