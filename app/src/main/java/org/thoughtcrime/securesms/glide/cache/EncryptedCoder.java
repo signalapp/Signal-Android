@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.StreamUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -59,11 +60,15 @@ class EncryptedCoder {
   }
 
   CipherInputStream createEncryptedInputStream(@NonNull byte[] masterKey, @NonNull File file) throws IOException {
+    Closeable cleanupFinally = null;
     try {
       Mac    mac    = Mac.getInstance("HmacSHA256");
       mac.init(new SecretKeySpec(masterKey, "HmacSHA256"));
 
-      FileInputStream fileInputStream     = new FileInputStream(file);
+      FileInputStream fileInputStream = new FileInputStream(file);
+
+      cleanupFinally = fileInputStream;
+
       byte[]          theirMagic          = new byte[MAGIC_BYTES.length];
       byte[]          theirRandom         = new byte[32];
       byte[]          theirEncryptedMagic = new byte[MAGIC_BYTES.length];
@@ -82,15 +87,19 @@ class EncryptedCoder {
       cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(key, "AES"), new IvParameterSpec(iv));
 
       CipherInputStream inputStream = new CipherInputStream(fileInputStream, cipher);
-      StreamUtil.readFully(inputStream, theirEncryptedMagic);
 
+      cleanupFinally = inputStream;
+
+      StreamUtil.readFully(inputStream, theirEncryptedMagic);
       if (!MessageDigest.isEqual(theirEncryptedMagic, MAGIC_BYTES)) {
         throw new IOException("Key change on encrypted cache file!");
       }
-
+      cleanupFinally = null;
       return inputStream;
     } catch (NoSuchAlgorithmException | InvalidKeyException | NoSuchPaddingException | InvalidAlgorithmParameterException e) {
       throw new AssertionError(e);
+    } finally {
+      StreamUtil.close(cleanupFinally);
     }
   }
 
