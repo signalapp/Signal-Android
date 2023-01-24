@@ -36,7 +36,10 @@ public class AudioRecorder {
 
   public AudioRecorder(@NonNull Context context) {
     this.context = context;
-    audioFocusManager = AudioRecorderFocusManager.create(context, focusChange -> stopRecording());
+    audioFocusManager = AudioRecorderFocusManager.create(context, focusChange -> {
+      Log.i(TAG, "Audio focus change " + focusChange + " stopping recording");
+      stopRecording();
+    });
   }
 
   public @NonNull Single<VoiceNoteDraft> startRecording() {

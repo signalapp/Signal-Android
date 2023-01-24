@@ -439,6 +439,7 @@ public class InputPanel extends LinearLayout
 
   @Override
   public void onRecordCanceled(boolean byUser) {
+    Log.d(TAG, "Recording canceled byUser=" + byUser);
     onRecordHideEvent();
     if (listener != null) listener.onRecorderCanceled(byUser);
   }
