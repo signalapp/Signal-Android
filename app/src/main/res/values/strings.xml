@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Recent chats</string>
     <string name="ContactsCursorLoader_contacts">Contacts</string>
     <string name="ContactsCursorLoader_groups">Groups</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Phone number search</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Find by username</string>

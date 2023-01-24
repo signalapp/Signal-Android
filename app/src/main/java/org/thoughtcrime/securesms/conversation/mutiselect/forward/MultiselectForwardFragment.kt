@@ -454,6 +454,14 @@ class MultiselectForwardFragment :
           )
         )
 
+        if (!query.isNullOrEmpty()) {
+          addSection(
+            ContactSearchConfiguration.Section.GroupMembers(
+              includeHeader = true
+            )
+          )
+        }
+
         addSection(
           ContactSearchConfiguration.Section.Groups(
             includeHeader = true,

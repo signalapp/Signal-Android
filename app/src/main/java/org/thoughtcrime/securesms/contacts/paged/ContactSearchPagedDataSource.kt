@@ -91,6 +91,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Recents -> getRecentsSearchIterator(section, query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getSize(section, query) ?: error("Invalid arbitrary section.")
+      is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersSearchIterator(query).getCollectionSize(section, query, null)
     }
   }
 
@@ -122,6 +123,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.Recents -> getRecentsContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Stories -> getStoriesContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getData(section, query, startIndex, endIndex) ?: error("Invalid arbitrary section.")
+      is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersContactData(section, query, startIndex, endIndex)
     }
   }
 
@@ -150,6 +152,10 @@ class ContactSearchPagedDataSource(
     }
 
     return CursorSearchIterator(contactSearchPagedDataSourceRepository.getRecents(section))
+  }
+
+  private fun getGroupMembersSearchIterator(query: String?): ContactSearchIterator<Cursor> {
+    return CursorSearchIterator(contactSearchPagedDataSourceRepository.queryGroupMemberContacts(query))
   }
 
   private fun <R> readContactData(
@@ -197,7 +203,7 @@ class ContactSearchPagedDataSource(
         startIndex = startIndex,
         endIndex = endIndex,
         recordMapper = {
-          ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromThreadCursor(it))
+          ContactSearchData.KnownRecipient(section.sectionKey, contactSearchPagedDataSourceRepository.getRecipientFromThreadCursor(it))
         }
       )
     }
@@ -219,7 +225,7 @@ class ContactSearchPagedDataSource(
         endIndex = endIndex,
         recordMapper = {
           val recipient = contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(it)
-          ContactSearchData.KnownRecipient(recipient, headerLetter = headerMap[recipient.id])
+          ContactSearchData.KnownRecipient(section.sectionKey, recipient, headerLetter = headerMap[recipient.id])
         }
       )
     }
@@ -237,7 +243,7 @@ class ContactSearchPagedDataSource(
           if (section.returnAsGroupStories) {
             ContactSearchData.Story(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), 0, DistributionListPrivacyMode.ALL)
           } else {
-            ContactSearchData.KnownRecipient(contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), shortSummary = section.shortSummary)
+            ContactSearchData.KnownRecipient(section.sectionKey, contactSearchPagedDataSourceRepository.getRecipientFromGroupRecord(it), shortSummary = section.shortSummary)
           }
         }
       )
@@ -251,6 +257,23 @@ class ContactSearchPagedDataSource(
       groupRecord.isAdmin(Recipient.self())
     } else {
       groupRecord.isActive
+    }
+  }
+
+  private fun getGroupMembersContactData(section: ContactSearchConfiguration.Section.GroupMembers, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
+    return getGroupMembersSearchIterator(query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
+        section = section,
+        startIndex = startIndex,
+        endIndex = endIndex,
+        recordMapper = {
+          val recipient = contactSearchPagedDataSourceRepository.getRecipientFromRecipientCursor(it)
+          val groupsInCommon = contactSearchPagedDataSourceRepository.getGroupsInCommon(recipient)
+          ContactSearchData.KnownRecipient(section.sectionKey, recipient, groupsInCommon = groupsInCommon)
+        }
+      )
     }
   }
 

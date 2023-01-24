@@ -3120,6 +3120,31 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
+  fun getGroupMemberContacts(): Cursor? {
+    val searchSelection = ContactSearchSelection.Builder()
+      .withGroupMembers(true)
+      .excludeId(Recipient.self().id)
+      .build()
+
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+    return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, searchSelection.where, searchSelection.args, null, null, orderBy)
+  }
+
+  fun queryGroupMemberContacts(inputQuery: String): Cursor? {
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
+    val searchSelection = ContactSearchSelection.Builder()
+      .withGroupMembers(true)
+      .excludeId(Recipient.self().id)
+      .withSearchQuery(query)
+      .build()
+
+    val selection = searchSelection.where
+    val args = searchSelection.args
+    val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + PHONE
+
+    return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
+  }
+
   fun queryAllContacts(inputQuery: String): Cursor? {
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
     val selection =
@@ -4126,6 +4151,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     internal class Builder {
       private var includeRegistered = false
       private var includeNonRegistered = false
+      private var includeGroupMembers = false
       private var excludeId: RecipientId? = null
       private var excludeGroups = false
       private var searchQuery: String? = null
@@ -4137,6 +4163,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       fun withNonRegistered(includeNonRegistered: Boolean): Builder {
         this.includeNonRegistered = includeNonRegistered
+        return this
+      }
+
+      fun withGroupMembers(includeGroupMembers: Boolean): Builder {
+        this.includeGroupMembers = includeGroupMembers
         return this
       }
 
@@ -4156,11 +4187,13 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       fun build(): ContactSearchSelection {
-        check(!(!includeRegistered && !includeNonRegistered)) { "Must include either registered or non-registered recipients in search" }
+        check(!(!includeRegistered && !includeNonRegistered && !includeGroupMembers)) { "Must include either registered, non-registered, or group member recipients in search" }
         val stringBuilder = StringBuilder("(")
         val args: MutableList<Any?> = LinkedList()
+        var hasPreceedingSection = false
 
         if (includeRegistered) {
+          hasPreceedingSection = true
           stringBuilder.append("(")
           args.add(RegisteredState.REGISTERED.id)
           args.add(1)
@@ -4175,11 +4208,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
           stringBuilder.append(")")
         }
 
-        if (includeRegistered && includeNonRegistered) {
+        if (hasPreceedingSection && includeNonRegistered) {
           stringBuilder.append(" OR ")
         }
 
         if (includeNonRegistered) {
+          hasPreceedingSection = true
           stringBuilder.append("(")
           args.add(RegisteredState.REGISTERED.id)
 
@@ -4187,6 +4221,26 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             stringBuilder.append(NON_SIGNAL_CONTACT)
           } else {
             stringBuilder.append(QUERY_NON_SIGNAL_CONTACT)
+            args.add(searchQuery)
+            args.add(searchQuery)
+            args.add(searchQuery)
+          }
+
+          stringBuilder.append(")")
+        }
+
+        if (hasPreceedingSection && includeGroupMembers) {
+          stringBuilder.append(" OR ")
+        }
+
+        if (includeGroupMembers) {
+          stringBuilder.append("(")
+          args.add(RegisteredState.REGISTERED.id)
+          args.add(1)
+          if (Util.isEmpty(searchQuery)) {
+            stringBuilder.append(GROUP_MEMBER_CONTACT)
+          } else {
+            stringBuilder.append(QUERY_GROUP_MEMBER_CONTACT)
             args.add(searchQuery)
             args.add(searchQuery)
             args.add(searchQuery)
@@ -4216,6 +4270,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     companion object {
+      const val HAS_GROUP_IN_COMMON = "EXISTS (SELECT 1 FROM ${GroupTable.MembershipTable.TABLE_NAME} WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $ID)"
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
@@ -4224,6 +4279,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($PHONE GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      const val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
+      const val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
     }
   }
 

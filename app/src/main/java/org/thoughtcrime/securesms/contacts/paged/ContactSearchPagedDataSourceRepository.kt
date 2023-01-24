@@ -48,6 +48,10 @@ open class ContactSearchPagedDataSourceRepository(
     return contactRepository.queryNonGroupContacts(query ?: "", includeSelf)
   }
 
+  open fun queryGroupMemberContacts(query: String?): Cursor? {
+    return contactRepository.queryGroupMemberContacts(query ?: "")
+  }
+
   open fun getGroupSearchIterator(
     section: ContactSearchConfiguration.Section.Groups,
     query: String?
@@ -93,6 +97,20 @@ open class ContactSearchPagedDataSourceRepository(
 
   open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ContactRepository.ID_COLUMN)))
+  }
+
+  open fun getGroupsInCommon(recipient: Recipient): GroupsInCommon {
+    val groupsInCommon = SignalDatabase.groups.getPushGroupsContainingMember(recipient.id)
+    val groupRecipientIds = groupsInCommon.take(2).map { it.recipientId }
+    val names = Recipient.resolvedList(groupRecipientIds)
+      .map { it.getDisplayName(context) }
+      .sorted()
+
+    return GroupsInCommon(groupsInCommon.size, names)
+  }
+
+  open fun hasGroupsInCommon(recipient: Recipient): Boolean {
+    return SignalDatabase.groups.getPushGroupsContainingMember(recipient.id).isNotEmpty()
   }
 
   open fun getRecipientFromGroupRecord(groupRecord: GroupRecord): Recipient {

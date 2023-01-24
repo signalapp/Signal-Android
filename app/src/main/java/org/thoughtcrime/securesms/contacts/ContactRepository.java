@@ -131,6 +131,14 @@ public class ContactRepository {
     return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
   }
 
+  @WorkerThread
+  public @NonNull Cursor queryGroupMemberContacts(@NonNull String query) {
+    Cursor cursor = TextUtils.isEmpty(query) ? recipientTable.getGroupMemberContacts()
+                                             : recipientTable.queryGroupMemberContacts(query);
+
+    return new SearchCursorWrapper(cursor, SEARCH_CURSOR_MAPPERS);
+  }
+
   private @NonNull Cursor handleNoteToSelfQuery(@NonNull String query, boolean includeSelf, Cursor cursor) {
     if (includeSelf && noteToSelfTitle.toLowerCase().contains(query.toLowerCase())) {
       Recipient self        = Recipient.self();

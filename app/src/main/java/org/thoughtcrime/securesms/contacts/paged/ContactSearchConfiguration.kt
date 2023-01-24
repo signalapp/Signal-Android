@@ -76,17 +76,47 @@ class ContactSearchConfiguration private constructor(
       override val includeHeader: Boolean = false
       override val expandConfig: ExpandConfig? = null
     }
+
+    data class GroupMembers(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.GROUP_MEMBERS)
   }
 
   /**
    * Describes a given section. Useful for labeling sections and managing expansion state.
    */
   enum class SectionKey {
+    /**
+     * Lists My Stories, distribution lists, as well as group stories.
+     */
     STORIES,
+
+    /**
+     * Recent chats.
+     */
     RECENTS,
+
+    /**
+     * 1:1 Contacts with whom I've started a chat.
+     */
     INDIVIDUALS,
+
+    /**
+     * Active groups the user is a member of
+     */
     GROUPS,
-    ARBITRARY
+
+    /**
+     * Arbitrary row (think new group button, username row, etc)
+     */
+    ARBITRARY,
+
+    /**
+     * Contacts that are members of groups user is in that they've not explicitly
+     * started a conversation with.
+     */
+    GROUP_MEMBERS
   }
 
   /**

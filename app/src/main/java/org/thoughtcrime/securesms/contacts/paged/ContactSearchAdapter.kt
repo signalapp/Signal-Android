@@ -272,10 +272,13 @@ open class ContactSearchAdapter(
     override fun getRecipient(model: RecipientModel): Recipient = model.knownRecipient.recipient
     override fun bindNumberField(model: RecipientModel) {
       val recipient = getRecipient(model)
-
-      if (model.shortSummary && recipient.isGroup) {
+      if (model.knownRecipient.sectionKey == ContactSearchConfiguration.SectionKey.GROUP_MEMBERS) {
+        number.text = model.knownRecipient.groupsInCommon.toDisplayText(context)
+        number.visible = true
+      } else if (model.shortSummary && recipient.isGroup) {
         val count = recipient.participantIds.size
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
+        number.visible = true
       } else {
         super.bindNumberField(model)
       }
@@ -404,6 +407,7 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.INDIVIDUALS -> R.string.ContactsCursorLoader_contacts
           ContactSearchConfiguration.SectionKey.GROUPS -> R.string.ContactsCursorLoader_groups
           ContactSearchConfiguration.SectionKey.ARBITRARY -> error("This section does not support HEADER")
+          ContactSearchConfiguration.SectionKey.GROUP_MEMBERS -> R.string.ContactsCursorLoader_group_members
         }
       )
 

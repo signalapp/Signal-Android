@@ -25,9 +25,11 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    * A row displaying a known recipient.
    */
   data class KnownRecipient(
+    val sectionKey: ContactSearchConfiguration.SectionKey,
     val recipient: Recipient,
     val shortSummary: Boolean = false,
-    val headerLetter: String? = null
+    val headerLetter: String? = null,
+    val groupsInCommon: GroupsInCommon = GroupsInCommon(0, listOf())
   ) : ContactSearchData(ContactSearchKey.RecipientSearchKey(recipient.id, false))
 
   /**
