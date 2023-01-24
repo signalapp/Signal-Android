@@ -34,22 +34,22 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SecurityEvent;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.CallTable;
-import org.thoughtcrime.securesms.database.GroupTable;
-import org.thoughtcrime.securesms.database.StorySendTable;
-import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.PaymentMetaDataUtil;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SentStorySyncManifest;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.DistributionListId;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageId;
@@ -2215,23 +2215,25 @@ public final class MessageContentProcessor {
                                                        null,
                                                        true);
 
-    MessageTable database = SignalDatabase.messages();
-    long         threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+    MessageTable messageTable = SignalDatabase.messages();
+    long         threadId     = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
 
     long                     messageId;
     List<DatabaseAttachment> attachments;
 
-    database.beginTransaction();
+    messageTable.beginTransaction();
     try {
-      messageId = database.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null);
+      messageId = messageTable.insertMessageOutbox(mediaMessage, threadId, false, GroupReceiptTable.STATUS_UNDELIVERED, null);
 
       if (recipient.isGroup()) {
         updateGroupReceiptStatus(message, messageId, recipient.requireGroupId());
+      } else if (recipient.getDistributionListId().isPresent()){
+        updateGroupReceiptStatusForDistributionList(message, messageId, recipient.getDistributionListId().get());
       } else {
-        database.markUnidentified(messageId, isUnidentified(message, recipient));
+        messageTable.markUnidentified(messageId, isUnidentified(message, recipient));
       }
 
-      database.markAsSent(messageId, true);
+      messageTable.markAsSent(messageId, true);
 
       List<DatabaseAttachment> allAttachments = SignalDatabase.attachments().getAttachmentsForMessage(messageId);
 
@@ -2243,9 +2245,9 @@ public final class MessageContentProcessor {
         SignalDatabase.messages().incrementReadReceiptCount(id, System.currentTimeMillis());
       }
 
-      database.setTransactionSuccessful();
+      messageTable.setTransactionSuccessful();
     } finally {
-      database.endTransaction();
+      messageTable.endTransaction();
     }
 
     for (DatabaseAttachment attachment : attachments) {
@@ -2392,8 +2394,8 @@ public final class MessageContentProcessor {
   }
 
   private void updateGroupReceiptStatus(@NonNull SentTranscriptMessage message, long messageId, @NonNull GroupId groupString) {
-    GroupReceiptTable receiptDatabase     = SignalDatabase.groupReceipts();
-    List<RecipientId> messageRecipientIds = Stream.of(message.getRecipients()).map(RecipientId::from).toList();
+    GroupReceiptTable         receiptDatabase     = SignalDatabase.groupReceipts();
+    List<RecipientId>         messageRecipientIds = Stream.of(message.getRecipients()).map(RecipientId::from).toList();
     List<Recipient>           members             = SignalDatabase.groups().getGroupMembers(groupString, GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
     Map<RecipientId, Integer> localReceipts       = Stream.of(receiptDatabase.getGroupReceiptInfo(messageId))
                                                           .collect(Collectors.toMap(GroupReceiptInfo::getRecipientId, GroupReceiptInfo::getStatus));
@@ -2411,6 +2413,27 @@ public final class MessageContentProcessor {
                                                                                                   .map(m -> new org.signal.libsignal.protocol.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId())))
                                                                                                   .toList();
     receiptDatabase.setUnidentified(unidentifiedStatus, messageId);
+  }
+
+  private void updateGroupReceiptStatusForDistributionList(@NonNull SentTranscriptMessage message, long messageId, @NonNull DistributionListId distributionListId) {
+    GroupReceiptTable         receiptTable        = SignalDatabase.groupReceipts();
+    List<RecipientId>         messageRecipientIds = message.getRecipients().stream().map(RecipientId::from).collect(java.util.stream.Collectors.toList());
+    List<Recipient>           members             = SignalDatabase.distributionLists().getMembers(distributionListId).stream().map(Recipient::resolved).collect(java.util.stream.Collectors.toList());
+    Map<RecipientId, Integer> localReceipts       = receiptTable.getGroupReceiptInfo(messageId).stream().collect(java.util.stream.Collectors.toMap(GroupReceiptInfo::getRecipientId, GroupReceiptInfo::getStatus));
+
+    for (RecipientId messageRecipientId : messageRecipientIds) {
+      //noinspection ConstantConditions
+      if (localReceipts.containsKey(messageRecipientId) && localReceipts.get(messageRecipientId) < GroupReceiptTable.STATUS_UNDELIVERED) {
+        receiptTable.update(messageRecipientId, messageId, GroupReceiptTable.STATUS_UNDELIVERED, message.getTimestamp());
+      } else if (!localReceipts.containsKey(messageRecipientId)) {
+        receiptTable.insert(Collections.singletonList(messageRecipientId), messageId, GroupReceiptTable.STATUS_UNDELIVERED, message.getTimestamp());
+      }
+    }
+
+    List<org.signal.libsignal.protocol.util.Pair<RecipientId, Boolean>> unidentifiedStatus = members.stream()
+                                                                                                    .map(m -> new org.signal.libsignal.protocol.util.Pair<>(m.getId(), message.isUnidentified(m.requireServiceId())))
+                                                                                                   .collect(java.util.stream.Collectors.toList());
+    receiptTable.setUnidentified(unidentifiedStatus, messageId);
   }
 
   private @Nullable MessageId handleTextMessage(@NonNull SignalServiceContent content,
