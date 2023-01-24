@@ -5350,7 +5350,7 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">SMS-støtten avvikles</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Ta det med ro, de krypterte meldingene på Signal vil fremdeles fungere.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
     <string name="SmsExportMegaphone__continue">Fortsett</string>
     <!-- Title for screen shown after sms export has completed -->
@@ -5478,15 +5478,15 @@
     <string name="ChatFilter__tip_pull_down">Tips: Trykk og dra ned i samtalen for å filtrere</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <string name="SmsRemoval_title_going_away">SMS-støtten avvikles</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <string name="SmsRemoval_info_bullet_1">Det vil snart ikke være mulig å sende SMS-meldinger i Signal-appen.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <string name="SmsRemoval_info_bullet_2">SMS-meldinger er annerledes enn Signal-meldinger. <b>Dette påvirker ikke de krypterte Signal-meldingene – de vil fortsette å fungere.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <string name="SmsRemoval_info_bullet_3">Du kan eksportere SMS-meldingene dine og velge en ny SMS-app.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Signal har avviklet SMS-støtten.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Eksporter SMS-meldinger</string>
 

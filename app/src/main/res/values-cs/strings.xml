@@ -5592,7 +5592,7 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">Podpora SMS končí.</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Nebojte se, šifrované zprávy Signal budou fungovat i nadále.</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
     <string name="SmsExportMegaphone__continue">Pokračovat</string>
     <!-- Title for screen shown after sms export has completed -->
@@ -5726,15 +5726,15 @@
     <string name="ChatFilter__tip_pull_down">Tip: Přetažením dolů přes seznam konverzací filtrujte</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <string name="SmsRemoval_title_going_away">Podpora SMS zpráv končí</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <string name="SmsRemoval_info_bullet_1">Zasílání SMS zpráv v aplikaci Signal již brzy nebude podporováno.</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <string name="SmsRemoval_info_bullet_2">Zprávy SMS jsou jiné než zprávy aplikace Signal. <b>To se netýká šifrovaných zpráv Signal, které budou fungovat i nadále.</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <string name="SmsRemoval_info_bullet_3">SMS zprávy můžete exportovat a vybrat si novou aplikaci pro SMS.</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">Služba Signal ukončila podporu pro odesílání SMS zpráv.</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Exportovat SMS</string>
 

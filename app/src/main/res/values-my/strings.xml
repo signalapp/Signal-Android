@@ -5229,7 +5229,7 @@
     <!-- Phase 1 Small megaphone title indicating sms is going away -->
     <string name="SmsExportMegaphone__sms_support_going_away">SMS ပံ့ပိုးမှုနှင့် ဝေးပါပြီ</string>
     <!-- Phase 1 small megaphone description indicating sms is going away -->
-    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">Don’t worry, encrypted Signal messages will continue to work.</string>
+    <string name="SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work">စိတ်မပူပါနှင့်၊ ကုဒ်ပြောင်းဝှက်ထားသော Signal မက်ဆေ့ချ်များက ဆက်လက်အလုပ်လုပ်နေပါမည်။</string>
     <!-- Phase 1 small megaphone button that takes the user to the sms export flow -->
     <string name="SmsExportMegaphone__continue">ဆက်လုပ်ရန်</string>
     <!-- Title for screen shown after sms export has completed -->
@@ -5354,15 +5354,15 @@
     <string name="ChatFilter__tip_pull_down">အကြံပြုချက်- စစ်ထုတ်ရန် ချက်(တ်)စာရင်းတွင် အောက်သို့ ဆွဲပါ</string>
 
     <!-- Title for screen describing that sms support is going to be removed soon -->
-    <string name="SmsRemoval_title_going_away">SMS support is going away</string>
+    <string name="SmsRemoval_title_going_away">SMS ပံ့ပိုးမှုကို မကြာမီတွင် ရပ်နားတော့မည် ဖြစ်သည်</string>
     <!-- Bullet point message shown on describing screen as first bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_1">SMS messaging in the Signal app will soon no longer be supported.</string>
+    <string name="SmsRemoval_info_bullet_1">Signal အက်ပ်တွင် SMS မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို မကြာမီတွင် ဆက်လက်ပံ့ပိုးတော့မည် မဟုတ်ပါ။</string>
     <!-- Bullet point message shown on describing screen as second bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_2">SMS messages are different than Signal messages. <b>This does not affect encrypted Signal messaging which will continue to work.</b></string>
+    <string name="SmsRemoval_info_bullet_2">SMS မက်ဆေ့ချ်များသည် Signal မက်ဆေ့ချ်များနှင့် ကွဲပြားပါသည်။ <b>ဤသည်က ကုဒ်ပြောင်းဝှက်သည့် Signal မက်ဆေ့ချ်များ ပေးပို့လက်ခံခြင်းကို ထိခိုက်မည်မဟုတ်ဘဲ ၎င်းသည် ဆက်လက်အလုပ်လုပ်ပါမည်။</b></string>
     <!-- Bullet point message shown on describing screen as third bullet why sms is being removed -->
-    <string name="SmsRemoval_info_bullet_3">You can export your SMS messages and choose a new SMS app.</string>
+    <string name="SmsRemoval_info_bullet_3">သင့် SMS မက်ဆေ့ချ်များကို ထုတ်သိမ်းနိုင်ပြီး SMS အက်ပ်အသစ်တစ်ခု ရွေးချယ်နိုင်ပါသည်။</string>
     <!-- Bullet point message shown on describing screen as first bullet variant why sms is being removed when user is locked out of sms -->
-    <string name="SmsRemoval_info_bullet_1_phase_3">Signal has removed support for sending SMS messages.</string>
+    <string name="SmsRemoval_info_bullet_1_phase_3">SMS မက်ဆေ့ချ်များ ပေးပို့ခြင်းအတွက် ပံ့ပိုးမှုကို Signal က ဖယ်ရှားထားပါသည်။</string>
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS ထုတ်သိမ်းရန်</string>
 
