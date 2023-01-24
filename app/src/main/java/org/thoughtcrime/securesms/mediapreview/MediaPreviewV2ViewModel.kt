@@ -27,9 +27,9 @@ class MediaPreviewV2ViewModel : ViewModel() {
   val currentPosition: Int
     get() = store.state.position
 
-  fun fetchAttachments(startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
+  fun fetchAttachments(context: Context, startingAttachmentId: AttachmentId, threadId: Long, sorting: MediaTable.Sorting, forceRefresh: Boolean = false) {
     if (store.state.loadState == MediaPreviewV2State.LoadState.INIT || forceRefresh) {
-      disposables += store.update(repository.getAttachments(startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
+      disposables += store.update(repository.getAttachments(context, startingAttachmentId, threadId, sorting)) { result: MediaPreviewRepository.Result, oldState: MediaPreviewV2State ->
         val albums = result.records.fold(mutableMapOf()) { acc: MutableMap<Long, MutableList<Media>>, mediaRecord: MediaTable.MediaRecord ->
           val attachment = mediaRecord.attachment
           if (attachment != null) {
@@ -42,6 +42,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
           oldState.copy(
             position = result.initialPosition,
             mediaRecords = result.records,
+            messageBodies = result.messageBodies,
             albums = albums,
             loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
           )
@@ -49,6 +50,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
           oldState.copy(
             position = result.records.size - result.initialPosition - 1,
             mediaRecords = result.records.reversed(),
+            messageBodies = result.messageBodies,
             albums = albums.mapValues { it.value.reversed() },
             loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
           )

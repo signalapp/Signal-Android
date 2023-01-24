@@ -27,7 +27,7 @@
         android:visibility="invisible"
         tools:visibility="visible">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
             android:id="@+id/media_preview_caption"
             style="@style/Signal.Text.Body"
             android:layout_width="match_parent"

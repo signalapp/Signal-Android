@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.mediapreview
 
+import android.text.SpannableString
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.mediasend.Media
 
@@ -11,6 +12,7 @@ data class MediaPreviewV2State(
   val allMediaInAlbumRail: Boolean = false,
   val leftIsRecent: Boolean = false,
   val albums: Map<Long, List<Media>> = mapOf(),
+  val messageBodies: Map<Long, SpannableString> = mapOf(),
 ) {
   enum class LoadState { INIT, DATA_LOADED, MEDIA_READY }
 }

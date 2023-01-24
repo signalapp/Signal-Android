@@ -9,6 +9,7 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.Menu
@@ -48,6 +49,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.MediaTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.databinding.FragmentMediaPreviewV2Binding
+import org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
 import org.thoughtcrime.securesms.mediapreview.mediarail.CenterDecoration
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter
 import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageLoadingListener
@@ -127,7 +129,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
     val sorting = MediaTable.Sorting.deserialize(args.sorting.ordinal)
-    viewModel.fetchAttachments(PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
+    viewModel.fetchAttachments(requireContext(), PartAuthority.requireAttachmentId(args.initialMediaUri), args.threadId, sorting)
   }
 
   @SuppressLint("RestrictedApi")
@@ -231,7 +233,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
       }
     }
 
-    bindTextViews(currentItem, currentState.showThread)
+    bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)
     bindMenuItems(currentItem)
     bindMediaPreviewPlaybackControls(currentItem, getMediaPreviewFragmentFromChildFragmentManager(currentPosition))
 
@@ -245,7 +247,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     crossfadeViewIn(binding.mediaPreviewDetailsContainer)
   }
 
-  private fun bindTextViews(currentItem: MediaTable.MediaRecord, showThread: Boolean) {
+  private fun bindTextViews(currentItem: MediaTable.MediaRecord, showThread: Boolean, messageBodies: Map<Long, SpannableString>) {
     binding.toolbar.title = getTitleText(currentItem, showThread)
     binding.toolbar.subtitle = getSubTitleText(currentItem)
     val messageId: Long? = currentItem.attachment?.mmsId
@@ -262,8 +264,27 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     }
 
     val caption = currentItem.attachment?.caption
-    binding.mediaPreviewCaption.text = caption
-    binding.mediaPreviewCaption.visible = caption != null
+    if (caption != null) {
+      bindCaptionView(caption)
+    } else {
+      bindCaptionView(messageBodies[messageId])
+    }
+  }
+
+  private fun bindCaptionView(displayBody: CharSequence?) {
+    val caption: ExpandingCaptionView = binding.mediaPreviewCaption
+    if (displayBody.isNullOrEmpty()) {
+      caption.visible = false
+    } else {
+      caption.expandedHeight = calculateExpandedHeight()
+      caption.fullCaptionText = displayBody
+      caption.visible = true
+    }
+  }
+
+  private fun calculateExpandedHeight(): Int {
+    val height: Int = view?.height ?: return ViewUtil.dpToPx(requireContext(), EXPANDED_CAPTION_HEIGHT_FALLBACK_DP)
+    return ((height - binding.toolbar.height - binding.mediaPreviewPlaybackControls.height) * EXPANDED_CAPTION_HEIGHT_PERCENT).roundToInt()
   }
 
   private fun bindMenuItems(currentItem: MediaTable.MediaRecord) {
@@ -602,6 +623,9 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   }
 
   companion object {
+    private const val EXPANDED_CAPTION_HEIGHT_FALLBACK_DP = 400
+    private const val EXPANDED_CAPTION_HEIGHT_PERCENT: Float = 0.7F
+
     private val TAG = Log.tag(MediaPreviewV2Fragment::class.java)
 
     const val ARGS_KEY: String = "args"

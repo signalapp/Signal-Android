@@ -2,23 +2,17 @@ package org.thoughtcrime.securesms.longmessage;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.WorkerThread;
 
-import org.signal.core.util.StreamUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
-import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.mms.TextSlide;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Optional;
 
 class LongMessageRepository {
@@ -40,15 +34,9 @@ class LongMessageRepository {
   @WorkerThread
   private Optional<LongMessage> getMmsLongMessage(@NonNull Context context, @NonNull MessageTable mmsDatabase, long messageId) {
     Optional<MmsMessageRecord> record = getMmsMessage(mmsDatabase, messageId);
-
     if (record.isPresent()) {
-      TextSlide textSlide = record.get().getSlideDeck().getTextSlide();
-
-      if (textSlide != null && textSlide.getUri() != null) {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get(), readFullBody(context, textSlide.getUri()))));
-      } else {
-        return Optional.of(new LongMessage(ConversationMessageFactory.createWithUnresolvedData(context, record.get())));
-      }
+      final ConversationMessage resolvedMessage = LongMessageResolveerKt.resolveBody(record.get(), context);
+      return  Optional.of(new LongMessage(resolvedMessage));
     } else {
       return Optional.empty();
     }
@@ -61,14 +49,6 @@ class LongMessageRepository {
     }
   }
 
-  private @NonNull String readFullBody(@NonNull Context context, @NonNull Uri uri) {
-    try (InputStream stream = PartAuthority.getAttachmentStream(context, uri)) {
-      return StreamUtil.readFullyAsString(stream);
-    } catch (IOException e) {
-      Log.w(TAG, "Failed to read full text body.", e);
-      return "";
-    }
-  }
 
   interface Callback<T> {
     void onComplete(T result);
