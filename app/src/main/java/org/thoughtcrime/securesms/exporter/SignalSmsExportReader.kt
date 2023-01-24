@@ -21,8 +21,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * we "page" through the unexported messages to reduce chances of exceeding that limit.
  */
 class SignalSmsExportReader(
-  private val smsDatabase: MessageTable = SignalDatabase.messages,
-  private val mmsDatabase: MessageTable = SignalDatabase.messages
+  private val messageTable: MessageTable = SignalDatabase.messages
 ) : Iterable<ExportableMessage>, Closeable {
 
   companion object {
@@ -30,53 +29,52 @@ class SignalSmsExportReader(
     private const val CURSOR_LIMIT = 1000
   }
 
-  private var mmsReader: MessageTable.MmsReader? = null
-  private var mmsDone: Boolean = false
+  private var messageReader: MessageTable.MmsReader? = null
+  private var done: Boolean = false
 
   override fun iterator(): Iterator<ExportableMessage> {
     return ExportableMessageIterator()
   }
 
   fun getCount(): Int {
-    return smsDatabase.unexportedInsecureMessagesCount + mmsDatabase.unexportedInsecureMessagesCount
+    return messageTable.unexportedInsecureMessagesCount
   }
 
   override fun close() {
-    mmsReader?.close()
+    messageReader?.close()
   }
 
   private fun refreshReaders() {
-    if (!mmsDone) {
-      mmsReader?.close()
-      mmsReader = null
+    if (!done) {
+      messageReader?.close()
+      messageReader = null
 
-      val refreshedMmsReader = MessageTable.mmsReaderFor(mmsDatabase.getUnexportedInsecureMessages(CURSOR_LIMIT))
+      val refreshedMmsReader = MessageTable.mmsReaderFor(messageTable.getUnexportedInsecureMessages(CURSOR_LIMIT))
       if (refreshedMmsReader.count > 0) {
-        mmsReader = refreshedMmsReader
+        messageReader = refreshedMmsReader
         return
       } else {
         refreshedMmsReader.close()
-        mmsDone = true
+        done = true
       }
     }
   }
 
   private inner class ExportableMessageIterator : Iterator<ExportableMessage> {
 
-    private var smsIterator: Iterator<MessageRecord>? = null
-    private var mmsIterator: Iterator<MessageRecord>? = null
+    private var messageIterator: Iterator<MessageRecord>? = null
 
     private fun refreshIterators() {
       refreshReaders()
-      mmsIterator = mmsReader?.iterator()
+      messageIterator = messageReader?.iterator()
     }
 
     override fun hasNext(): Boolean {
-      if (mmsIterator?.hasNext() == true) {
+      if (messageIterator?.hasNext() == true) {
         return true
-      } else if (!mmsDone) {
+      } else if (!done) {
         refreshIterators()
-        if (mmsIterator?.hasNext() == true) {
+        if (messageIterator?.hasNext() == true) {
           return true
         }
       }
@@ -87,9 +85,9 @@ class SignalSmsExportReader(
     override fun next(): ExportableMessage {
       var record: MessageRecord? = null
       try {
-        return if (mmsIterator?.hasNext() == true) {
-          record = mmsIterator!!.next()
-          readExportableMmsMessageFromRecord(record, mmsReader!!.messageExportStateForCurrentRecord)
+        return if (messageIterator?.hasNext() == true) {
+          record = messageIterator!!.next()
+          readExportableMmsMessageFromRecord(record, messageReader!!.messageExportStateForCurrentRecord)
         } else {
           throw NoSuchElementException()
         }
@@ -147,25 +145,6 @@ class SignalSmsExportReader(
         parts = parts,
         sender = sender
       )
-    }
-
-    private fun readExportableSmsMessageFromRecord(record: MessageRecord, exportState: MessageExportState): ExportableMessage {
-      val threadRecipient = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
-
-      return if (threadRecipient?.isMmsGroup == true) {
-        readExportableMmsMessageFromRecord(record, exportState)
-      } else {
-        ExportableMessage.Sms(
-          id = MessageId(record.id),
-          exportState = mapExportState(exportState),
-          address = record.recipient.smsExportAddress(),
-          dateReceived = record.dateReceived.milliseconds,
-          dateSent = record.dateSent.milliseconds,
-          isRead = true,
-          isOutgoing = record.isOutgoing,
-          body = record.body
-        )
-      }
     }
 
     private fun mapExportState(messageExportState: MessageExportState): SmsExportState {

@@ -84,11 +84,9 @@ class SignalSmsExportService : SmsExportService() {
 
   override fun clearPreviousExportState() {
     SignalDatabase.messages.clearExportState()
-    SignalDatabase.messages.clearExportState()
   }
 
   override fun prepareForExport() {
-    SignalDatabase.messages.clearInsecureMessageExportedErrorStatus()
     SignalDatabase.messages.clearInsecureMessageExportedErrorStatus()
   }
 
