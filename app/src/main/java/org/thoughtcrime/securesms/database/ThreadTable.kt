@@ -1610,12 +1610,17 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   private fun createQuery(where: String, orderBy: String, offset: Long, limit: Long): String {
     val projection = COMBINED_THREAD_RECIPIENT_GROUP_PROJECTION.joinToString(separator = ",")
 
+    //language=sql
     var query = """
-      SELECT $projection 
+      SELECT $projection, ${GroupTable.MEMBER_GROUP_CONCAT}
       FROM $TABLE_NAME 
         LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID} 
-        LEFT OUTER JOIN ${GroupTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID} 
-      WHERE $where 
+        LEFT OUTER JOIN ${GroupTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${GroupTable.TABLE_NAME}.${GroupTable.RECIPIENT_ID}
+        LEFT OUTER JOIN (
+          SELECT group_id, GROUP_CONCAT(${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID}) as ${GroupTable.MEMBER_GROUP_CONCAT} 
+          FROM ${GroupTable.MembershipTable.TABLE_NAME}
+        ) as MembershipAlias ON MembershipAlias.${GroupTable.MembershipTable.GROUP_ID} = ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID}
+      WHERE $where
       ORDER BY $orderBy
     """.trimIndent()
 

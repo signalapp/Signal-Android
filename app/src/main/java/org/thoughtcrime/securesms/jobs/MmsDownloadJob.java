@@ -245,7 +245,7 @@ public class MmsDownloadJob extends BaseJob {
     }
 
     if (members.size() > 2) {
-      List<RecipientId> recipients = new ArrayList<>(members);
+      Set<RecipientId> recipients = new HashSet<>(members);
       group = Optional.of(SignalDatabase.groups().getOrCreateMmsGroupForMembers(recipients));
     }
     IncomingMediaMessage   message      = new IncomingMediaMessage(from, group, body, TimeUnit.SECONDS.toMillis(retrieved.getDate()), -1, System.currentTimeMillis(), attachments, subscriptionId, 0, false, false, false, Optional.of(sharedContacts), false, false);

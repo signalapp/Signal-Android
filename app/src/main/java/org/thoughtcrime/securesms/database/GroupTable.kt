@@ -13,6 +13,7 @@ import org.signal.core.util.SqlUtil.appendArg
 import org.signal.core.util.SqlUtil.buildArgs
 import org.signal.core.util.SqlUtil.buildCaseInsensitiveGlobPattern
 import org.signal.core.util.SqlUtil.buildCollectionQuery
+import org.signal.core.util.delete
 import org.signal.core.util.exists
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
@@ -50,7 +51,6 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil
 import org.whispersystems.signalservice.api.groupsv2.GroupChangeReconstruct
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -58,11 +58,7 @@ import org.whispersystems.signalservice.api.push.DistributionId
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.io.Closeable
-import java.lang.AssertionError
-import java.lang.IllegalArgumentException
-import java.lang.IllegalStateException
 import java.security.SecureRandom
-import java.util.ArrayList
 import java.util.Optional
 import java.util.UUID
 import java.util.stream.Collectors
@@ -72,12 +68,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   companion object {
     private val TAG = Log.tag(GroupTable::class.java)
 
+    const val MEMBER_GROUP_CONCAT = "member_group_concat"
+
     const val TABLE_NAME = "groups"
     const val ID = "_id"
     const val GROUP_ID = "group_id"
     const val RECIPIENT_ID = "recipient_id"
     const val TITLE = "title"
-    const val MEMBERS = "members"
     const val AVATAR_ID = "avatar_id"
     const val AVATAR_KEY = "avatar_key"
     const val AVATAR_CONTENT_TYPE = "avatar_content_type"
@@ -112,7 +109,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         $GROUP_ID TEXT, 
         $RECIPIENT_ID INTEGER,
         $TITLE TEXT,
-        $MEMBERS TEXT,
         $AVATAR_ID INTEGER, 
         $AVATAR_KEY BLOB,
         $AVATAR_CONTENT_TYPE TEXT, 
@@ -145,7 +141,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       GROUP_ID,
       RECIPIENT_ID,
       TITLE,
-      MEMBERS,
       UNMIGRATED_V1_MEMBERS,
       AVATAR_ID,
       AVATAR_KEY,
@@ -165,43 +160,77 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .filterNot { it == RECIPIENT_ID }
       .map { columnName: String -> "$TABLE_NAME.$columnName" }
       .toList()
+
+    //language=sql
+    private val JOINED_GROUP_SELECT = """
+      SELECT 
+        DISTINCT $TABLE_NAME.*, 
+        GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}) as $MEMBER_GROUP_CONCAT
+      FROM $TABLE_NAME          
+      INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+    """.toSingleLine()
+
+    val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
+  }
+
+  class MembershipTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper) {
+    companion object {
+      const val TABLE_NAME = "group_membership"
+
+      const val ID = "_id"
+      const val GROUP_ID = "group_id"
+      const val RECIPIENT_ID = "recipient_id"
+
+      //language=sql
+      @JvmField
+      val CREATE_TABLE = """
+        CREATE TABLE $TABLE_NAME (
+            $ID INTEGER PRIMARY KEY,
+            $GROUP_ID TEXT NOT NULL,
+            $RECIPIENT_ID INTEGER NOT NULL,
+            UNIQUE($GROUP_ID, $RECIPIENT_ID)
+        )
+      """.toSingleLine()
+    }
   }
 
   fun getGroup(recipientId: RecipientId): Optional<GroupRecord> {
-    readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$RECIPIENT_ID = ?", recipientId)
-      .run()
-      .use { cursor ->
-        return if (cursor.moveToFirst()) {
-          getGroup(cursor)
-        } else {
-          Optional.empty()
-        }
-      }
+    return getGroup(SqlUtil.Query("$TABLE_NAME.$RECIPIENT_ID = ?", buildArgs(recipientId)))
   }
 
   fun getGroup(groupId: GroupId): Optional<GroupRecord> {
+    return getGroup(SqlUtil.Query("$TABLE_NAME.$GROUP_ID = ?", buildArgs(groupId)))
+  }
+
+  private fun getGroup(query: SqlUtil.Query): Optional<GroupRecord> {
+    //language=sql
+    val select = "$JOINED_GROUP_SELECT WHERE ${query.where} GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}"
+
     readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$GROUP_ID = ?", groupId.toString())
-      .run()
+      .query(select, query.whereArgs)
       .use { cursor ->
         return if (cursor.moveToFirst()) {
           val groupRecord = getGroup(cursor)
           if (groupRecord.isPresent && RemappedRecords.getInstance().areAnyRemapped(groupRecord.get().members)) {
+            val groupId = groupRecord.get().id
             val remaps = RemappedRecords.getInstance().buildRemapDescription(groupRecord.get().members)
             Log.w(TAG, "Found a group with remapped recipients in it's membership list! Updating the list. GroupId: $groupId, Remaps: $remaps", true)
 
-            val remapped: Collection<RecipientId> = RemappedRecords.getInstance().remap(groupRecord.get().members)
+            val oldToNew: List<Pair<RecipientId, RecipientId?>> = groupRecord.get().members.map {
+              it to RemappedRecords.getInstance().getRecipient(it).orElse(null)
+            }.filterNot { (old, new) -> new == null || old == new }
 
-            val updateCount = writableDatabase
-              .update(TABLE_NAME)
-              .values(MEMBERS to remapped.serialize())
-              .where("$GROUP_ID = ?", groupId)
-              .run()
+            var updateCount = 0
+            if (oldToNew.isNotEmpty()) {
+              writableDatabase.withinTransaction { db ->
+                for ((old, new) in oldToNew) {
+                  updateCount += db.update(MembershipTable.TABLE_NAME)
+                    .values(MembershipTable.RECIPIENT_ID to new!!.serialize())
+                    .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, old)
+                    .run()
+                }
+              }
+            }
 
             if (updateCount > 0) {
               getGroup(groupId)
@@ -240,33 +269,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    * @return A gv1 group whose expected v2 ID matches the one provided.
    */
   fun getGroupV1ByExpectedV2(gv2Id: GroupId.V2): Optional<GroupRecord> {
-    readableDatabase
-      .select(*GROUP_PROJECTION)
-      .from(TABLE_NAME)
-      .where("$EXPECTED_V2_ID = ?", gv2Id)
-      .run()
-      .use { cursor ->
-        return if (cursor.moveToFirst()) {
-          getGroup(cursor)
-        } else {
-          Optional.empty()
-        }
-      }
+    return getGroup(SqlUtil.Query("$TABLE_NAME.$EXPECTED_V2_ID = ?", buildArgs(gv2Id)))
   }
 
   fun getGroupByDistributionId(distributionId: DistributionId): Optional<GroupRecord> {
-    readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .where("$DISTRIBUTION_ID = ?", distributionId)
-      .run()
-      .use { cursor ->
-        return if (cursor.moveToFirst()) {
-          getGroup(cursor)
-        } else {
-          Optional.empty()
-        }
-      }
+    return getGroup(SqlUtil.Query("$TABLE_NAME.$DISTRIBUTION_ID = ?", buildArgs(distributionId)))
   }
 
   fun removeUnmigratedV1Members(id: GroupId.V2) {
@@ -338,7 +345,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   fun queryGroupsByTitle(inputQuery: String, includeInactive: Boolean, excludeV1: Boolean, excludeMms: Boolean): Reader {
     val query = getGroupQueryWhereStatement(inputQuery, includeInactive, excludeV1, excludeMms)
-    val cursor = databaseHelper.signalReadableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, "$TITLE COLLATE NOCASE ASC")
+    val statement = """
+      $JOINED_GROUP_SELECT
+      WHERE ${query.where}
+      GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
+      ORDER BY $TITLE COLLATE NOCASE ASC
+    """.trimIndent()
+
+    val cursor = databaseHelper.signalReadableDatabase.query(statement, query.whereArgs)
     return Reader(cursor)
   }
 
@@ -353,21 +367,17 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       recipientIds = recipientIds.take(30).toSet()
     }
 
-    val recipientLikeClauses = recipientIds
-      .map { it.toLong() }
-      .map { id -> "($MEMBERS LIKE $id || ',%' OR $MEMBERS LIKE '%,' || $id || ',%' OR $MEMBERS LIKE '%,' || $id)" }
-      .toList()
+    val membershipQuery = SqlUtil.buildSingleCollectionQuery("${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}", recipientIds)
 
     var query: String
     val queryArgs: Array<String>
-    val membershipQuery = "(" + Util.join(recipientLikeClauses, " OR ") + ")"
 
     if (includeInactive) {
-      query = "$membershipQuery AND ($ACTIVE = ? OR $RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
-      queryArgs = buildArgs(1)
+      query = "${membershipQuery.where} AND ($ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
+      queryArgs = membershipQuery.whereArgs + buildArgs(1)
     } else {
-      query = "$membershipQuery AND $ACTIVE = ?"
-      queryArgs = buildArgs(1)
+      query = "${membershipQuery.where} AND $ACTIVE = ?"
+      queryArgs = membershipQuery.whereArgs + buildArgs(1)
     }
 
     if (excludeV1) {
@@ -378,15 +388,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       query += " AND $MMS = 0"
     }
 
-    return Reader(readableDatabase.query(TABLE_NAME, null, query, queryArgs, null, null, null))
+    return Reader(readableDatabase.query("$JOINED_GROUP_SELECT WHERE $query GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}", queryArgs))
   }
 
   private fun queryGroupsByRecency(groupQuery: GroupQuery): Reader {
     val query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms)
     val sql = """
-      SELECT $TABLE_NAME.*
-      FROM $TABLE_NAME LEFT JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} 
+      $JOINED_GROUP_SELECT
       WHERE ${query.where} 
+      ${"GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}"}
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
     """.toSingleLine()
 
@@ -407,7 +417,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val caseInsensitiveQuery = buildCaseInsensitiveGlobPattern(inputQuery)
 
     if (includeInactive) {
-      query = "$TITLE GLOB ? AND ($ACTIVE = ? OR $RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
+      query = "$TITLE GLOB ? AND ($ACTIVE = ? OR $TABLE_NAME.$RECIPIENT_ID IN (SELECT ${ThreadTable.RECIPIENT_ID} FROM ${ThreadTable.TABLE_NAME}))"
       queryArgs = buildArgs(caseInsensitiveQuery, 1)
     } else {
       query = "$TITLE GLOB ? AND $ACTIVE = ?"
@@ -456,23 +466,27 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       }
   }
 
-  fun getOrCreateMmsGroupForMembers(members: List<RecipientId>): GroupId.Mms {
-    val sortedMembers = members.sorted()
+  fun getOrCreateMmsGroupForMembers(members: Set<RecipientId>): GroupId.Mms {
+    //language=sql
+    val statement = """
+      SELECT ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} as gid
+      FROM ${MembershipTable.TABLE_NAME}
+      INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+      WHERE ${MembershipTable.TABLE_NAME}.$RECIPIENT_ID IN (${members.joinToString(",") { it.serialize() }}) AND $TABLE_NAME.$MMS = 1
+      GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
+      HAVING (SELECT COUNT(*) FROM ${MembershipTable.TABLE_NAME} WHERE ${MembershipTable.GROUP_ID} = gid) = ${members.size}
+      ORDER BY ${MembershipTable.TABLE_NAME}.${MembershipTable.ID} ASC
+    """.toSingleLine()
 
-    readableDatabase
-      .select(GROUP_ID)
-      .from(TABLE_NAME)
-      .where("$MEMBERS = ? AND $MMS = ?", sortedMembers.serialize(), 1)
-      .run()
-      .use { cursor ->
-        return if (cursor.moveToNext()) {
-          GroupId.parseOrThrow(cursor.requireNonNullString(GROUP_ID)).requireMms()
-        } else {
-          val groupId = GroupId.createMms(SecureRandom())
-          create(groupId, null, sortedMembers)
-          groupId
-        }
+    return readableDatabase.query(statement).use { cursor ->
+      if (cursor.moveToNext()) {
+        return GroupId.parseOrThrow(cursor.requireNonNullString("gid")).requireMms()
+      } else {
+        val groupId = GroupId.createMms(SecureRandom())
+        create(groupId, null, members)
+        groupId
       }
+    }
   }
 
   @WorkerThread
@@ -493,9 +507,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   @WorkerThread
   fun getGroupsContainingMember(recipientId: RecipientId, pushOnly: Boolean, includeInactive: Boolean): List<GroupRecord> {
-    val table = "$TABLE_NAME INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}"
-    var query = "$MEMBERS LIKE ?"
-    var args = buildArgs("%${recipientId.serialize()}%")
+    //language=sql
+    val table = """
+      $JOINED_GROUP_SELECT
+          INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+    """.toSingleLine()
+
+    var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"
+    var args = buildArgs(recipientId)
     val orderBy = "${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC"
 
     if (pushOnly) {
@@ -509,23 +528,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     return readableDatabase
-      .query(table, null, query, args, null, null, orderBy)
+      .query("$table WHERE $query GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} ORDER BY $orderBy".apply { println(this) }, args)
       .readToList { cursor ->
-        val serializedMembers = cursor.requireNonNullString(MEMBERS)
-        if (RecipientId.serializedListContains(serializedMembers, recipientId)) {
-          getGroup(cursor).get()
-        } else {
-          null
-        }
+        getGroup(cursor).get()
       }
-      .filterNotNull()
   }
 
   fun getGroups(): Reader {
-    val cursor = readableDatabase
-      .select()
-      .from(TABLE_NAME)
-      .run()
+    val cursor = readableDatabase.query("$JOINED_GROUP_SELECT GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}")
     return Reader(cursor)
   }
 
@@ -648,6 +658,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     groupMasterKey: GroupMasterKey?,
     groupState: DecryptedGroup?
   ) {
+    val membershipValues = mutableListOf<ContentValues>()
     val groupRecipientId = recipients.getOrInsertFromGroupId(groupId)
     val members: List<RecipientId> = memberCollection.toSet().sorted()
     var groupMembers: List<RecipientId> = members
@@ -657,7 +668,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     values.put(RECIPIENT_ID, groupRecipientId.serialize())
     values.put(GROUP_ID, groupId.toString())
     values.put(TITLE, title)
-    values.put(MEMBERS, members.serialize())
+    membershipValues.addAll(members.toContentValues(groupId))
     values.put(MMS, groupId.isMms)
 
     if (avatar != null) {
@@ -693,14 +704,25 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       values.put(V2_MASTER_KEY, groupMasterKey.serialize())
       values.put(V2_REVISION, groupState.revision)
       values.put(V2_DECRYPTED_GROUP, groupState.toByteArray())
-      values.put(MEMBERS, groupMembers.serialize())
+      membershipValues.clear()
+      membershipValues.addAll(groupMembers.toContentValues(groupId))
     } else {
       if (groupId.isV2) {
         throw AssertionError("V2 group id but no master key")
       }
     }
 
-    writableDatabase.insert(TABLE_NAME, null, values)
+    writableDatabase.withinTransaction { db ->
+      db.insert(TABLE_NAME, null, values)
+      SqlUtil.buildBulkInsert(
+        MembershipTable.TABLE_NAME,
+        arrayOf(MembershipTable.GROUP_ID, MembershipTable.RECIPIENT_ID),
+        membershipValues
+      )
+        .forEach {
+          db.execSQL(it.where, it.whereArgs)
+        }
+    }
 
     if (groupState != null && groupState.hasDisappearingMessagesTimer()) {
       recipients.setExpireMessages(groupRecipientId, groupState.disappearingMessagesTimer.duration)
@@ -829,7 +851,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     val groupMembers = getV2GroupMembers(decryptedGroup, true)
-    contentValues.put(MEMBERS, groupMembers.serialize())
 
     if (existingGroup.isPresent && existingGroup.get().isV2Group) {
       val change = GroupChangeReconstruct.reconstructGroupChange(existingGroup.get().requireV2GroupProperties().decryptedGroup, decryptedGroup)
@@ -842,11 +863,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       }
     }
 
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(contentValues)
-      .where("$GROUP_ID = ?", groupId.toString())
-      .run()
+    writableDatabase.withinTransaction { database ->
+      database
+        .update(TABLE_NAME)
+        .values(contentValues)
+        .where("$GROUP_ID = ?", groupId.toString())
+        .run()
+
+      performMembershipUpdate(database, groupId, groupMembers)
+    }
 
     if (decryptedGroup.hasDisappearingMessagesTimer()) {
       recipients.setExpireMessages(groupRecipientId, decryptedGroup.disappearingMessagesTimer.duration)
@@ -898,27 +923,24 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   fun updateMembers(groupId: GroupId, members: List<RecipientId>) {
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        MEMBERS to members.sorted().serialize(),
-        ACTIVE to 1
-      )
-      .where("$GROUP_ID = ?", groupId)
-      .run()
+    writableDatabase.withinTransaction { database ->
+      database
+        .update(TABLE_NAME)
+        .values(ACTIVE to 1)
+        .where("$GROUP_ID = ?", groupId)
+        .run()
+
+      performMembershipUpdate(database, groupId, members)
+    }
 
     val groupRecipient = recipients.getOrInsertFromGroupId(groupId)
     Recipient.live(groupRecipient).refresh()
   }
 
   fun remove(groupId: GroupId, source: RecipientId) {
-    val currentMembers: MutableList<RecipientId> = getCurrentMembers(groupId)
-    currentMembers -= source
-
     writableDatabase
-      .update(TABLE_NAME)
-      .values(MEMBERS to currentMembers.serialize())
-      .where("$GROUP_ID = ?", groupId)
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, source)
       .run()
 
     val groupRecipient = recipients.getOrInsertFromGroupId(groupId)
@@ -927,15 +949,32 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   private fun getCurrentMembers(groupId: GroupId): MutableList<RecipientId> {
     return readableDatabase
-      .select(MEMBERS)
-      .from(TABLE_NAME)
-      .where("$GROUP_ID = ?", groupId)
+      .select(MembershipTable.RECIPIENT_ID)
+      .from(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.GROUP_ID} = ?", groupId)
       .run()
       .readToList { cursor ->
-        val serializedMembers = cursor.requireNonNullString(MEMBERS)
-        return RecipientId.fromSerializedList(serializedMembers)
+        RecipientId.from(cursor.requireLong(MembershipTable.RECIPIENT_ID))
       }
       .toMutableList()
+  }
+
+  private fun performMembershipUpdate(database: SQLiteDatabase, groupId: GroupId, members: Collection<RecipientId>) {
+    check(database.inTransaction())
+    database
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.GROUP_ID} = ?", groupId)
+      .run()
+
+    val inserts = SqlUtil.buildBulkInsert(
+      MembershipTable.TABLE_NAME,
+      arrayOf(MembershipTable.GROUP_ID, MembershipTable.RECIPIENT_ID),
+      members.toContentValues(groupId)
+    )
+
+    inserts.forEach {
+      database.execSQL(it.where, it.whereArgs)
+    }
   }
 
   fun isActive(groupId: GroupId): Boolean {
@@ -961,19 +1000,10 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   @WorkerThread
   fun isCurrentMember(groupId: Push, recipientId: RecipientId): Boolean {
-    readableDatabase
-      .select(MEMBERS)
-      .from(TABLE_NAME)
-      .where("$GROUP_ID = ?", groupId)
+    return readableDatabase
+      .exists(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.GROUP_ID} = ? AND ${MembershipTable.RECIPIENT_ID} = ?", groupId, recipientId)
       .run()
-      .use { cursor ->
-        return if (cursor.moveToFirst()) {
-          val serializedMembers = cursor.requireNonNullString(MEMBERS)
-          RecipientId.serializedListContains(serializedMembers, recipientId)
-        } else {
-          false
-        }
-      }
   }
 
   fun getAllGroupV2Ids(): List<GroupId.V2> {
@@ -1005,15 +1035,13 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
+    writableDatabase
+      .update(MembershipTable.TABLE_NAME)
+      .values(RECIPIENT_ID to toId.serialize())
+      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
+      .run()
+
     for (group in getGroupsContainingMember(fromId, false, true)) {
-      val newMembers: Set<RecipientId> = group.members.toSet() - fromId + toId
-
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(MEMBERS to newMembers.serialize())
-        .where("$RECIPIENT_ID = ?", group.recipientId)
-        .run()
-
       if (group.isV2Group) {
         removeUnmigratedV1Members(group.id.requireV2(), listOf(fromId))
       }
@@ -1042,7 +1070,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
           id = GroupId.parseOrThrow(cursor.requireNonNullString(GROUP_ID)),
           recipientId = RecipientId.from(cursor.requireNonNullString(RECIPIENT_ID)),
           title = cursor.requireString(TITLE),
-          serializedMembers = cursor.requireString(MEMBERS),
+          serializedMembers = cursor.requireString(MEMBER_GROUP_CONCAT),
           serializedUnmigratedV1Members = cursor.requireString(UNMIGRATED_V1_MEMBERS),
           avatarId = cursor.requireLong(AVATAR_ID),
           avatarKey = cursor.requireBlob(AVATAR_KEY),
@@ -1250,6 +1278,15 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   private fun Collection<RecipientId>.serialize(): String {
     return RecipientId.toSerializedList(this)
+  }
+
+  private fun Collection<RecipientId>.toContentValues(groupId: GroupId): List<ContentValues> {
+    return map {
+      contentValuesOf(
+        MembershipTable.GROUP_ID to groupId.serialize(),
+        MembershipTable.RECIPIENT_ID to it.serialize()
+      )
+    }
   }
 
   private fun uuidsToRecipientIds(uuids: List<UUID>): MutableList<RecipientId> {

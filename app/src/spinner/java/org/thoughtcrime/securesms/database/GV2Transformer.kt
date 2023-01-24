@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database
 import android.database.Cursor
 import com.google.protobuf.ByteString
 import org.signal.core.util.requireBlob
-import org.signal.core.util.requireString
 import org.signal.spinner.ColumnTransformer
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
@@ -14,7 +13,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil
 
 object GV2Transformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == GroupTable.V2_DECRYPTED_GROUP || columnName == GroupTable.MEMBERS
+    return columnName == GroupTable.V2_DECRYPTED_GROUP
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
@@ -23,8 +22,7 @@ object GV2Transformer : ColumnTransformer {
       val group = DecryptedGroup.parseFrom(groupBytes)
       group.formatAsHtml()
     } else {
-      val members = cursor.requireString(GroupTable.MEMBERS)
-      members?.split(',')?.chunked(20)?.joinToString("<br>") { it.joinToString(",") } ?: ""
+      ""
     }
   }
 }

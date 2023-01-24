@@ -86,7 +86,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     db.execSQL(IdentityTable.CREATE_TABLE)
     db.execSQL(DraftTable.CREATE_TABLE)
     db.execSQL(PushTable.CREATE_TABLE)
-    db.execSQL(GroupTable.CREATE_TABLE)
+    executeStatements(db, GroupTable.CREATE_TABLES)
     db.execSQL(RecipientTable.CREATE_TABLE)
     db.execSQL(GroupReceiptTable.CREATE_TABLE)
     db.execSQL(OneTimePreKeyTable.CREATE_TABLE)

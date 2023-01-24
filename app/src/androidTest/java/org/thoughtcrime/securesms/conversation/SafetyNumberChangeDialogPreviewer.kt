@@ -64,7 +64,7 @@ class SafetyNumberChangeDialogPreviewer {
       SafetyNumberBottomSheet
         .forIdentityRecordsAndDestinations(
           identityRecords = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(othersRecipients).identityRecords,
-          destinations = listOf(ContactSearchKey.RecipientSearchKey.Story(myStoryRecipientId))
+          destinations = listOf(ContactSearchKey.RecipientSearchKey(myStoryRecipientId, true))
         )
         .show(conversationActivity.supportFragmentManager)
     }
