@@ -936,7 +936,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       }
 
       if (!silent) {
-        final boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && recipient.isMuted();
+        final boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && (recipient.isMuted() || (groupRecipient != null && groupRecipient.isMuted()));
         SignalDatabase.threads().update(threadId, !keepThreadArchived);
       }
 
