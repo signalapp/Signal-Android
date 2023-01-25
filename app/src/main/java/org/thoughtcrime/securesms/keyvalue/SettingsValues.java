@@ -50,6 +50,8 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
   public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
+  public static final  String BACKUPS_SCHEDULE_HOUR                   = "settings.backups.schedule.hour";
+  public static final  String BACKUPS_SCHEDULE_MINUTE                 = "settings.backups.schedule.minute";
   public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
   public static final  String WIFI_CALLING_COMPATIBILITY_MODE_ENABLED = "settings.wifi.calling.compatibility.mode.enabled";
   public static final  String MESSAGE_NOTIFICATIONS_ENABLED           = "settings.message.notifications.enabled";
@@ -261,6 +263,19 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setBackupEnabled(boolean backupEnabled) {
     putBoolean(BACKUPS_ENABLED, backupEnabled);
+  }
+
+  public int getBackupHour() {
+    return getInteger(BACKUPS_SCHEDULE_HOUR, 2);
+  }
+
+  public int getBackupMinute() {
+    return getInteger(BACKUPS_SCHEDULE_MINUTE, 0);
+  }
+
+  public void setBackupSchedule(int hour, int minute) {
+    putInteger(BACKUPS_SCHEDULE_HOUR, hour);
+    putInteger(BACKUPS_SCHEDULE_MINUTE, minute);
   }
 
   public boolean isSmsDeliveryReportsEnabled() {

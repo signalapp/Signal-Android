@@ -595,6 +595,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Create backup</string>
     <string name="BackupsPreferenceFragment__last_backup">Last backup: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verify backup passphrase</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Test your backup passphrase and verify that it matches</string>
     <string name="BackupsPreferenceFragment__turn_on">Turn on</string>
