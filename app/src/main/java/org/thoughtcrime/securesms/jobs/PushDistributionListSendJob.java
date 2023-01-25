@@ -39,6 +39,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRecipient;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -196,16 +197,17 @@ public final class PushDistributionListSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      List<Attachment>              attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-      List<SignalServiceAttachment> attachmentPointers = getAttachmentPointersFor(attachments);
-      boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
-                                        .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      List<Attachment>                    attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<SignalServiceAttachment>       attachmentPointers = getAttachmentPointersFor(attachments);
+      List<SignalServiceProtos.BodyRange> bodyRanges         = getBodyRanges(message);
+      boolean                             isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
+                                                                     .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
       final SignalServiceStoryMessage storyMessage;
       if (message.getStoryType().isTextStory()) {
-        storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(), null, StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor), message.getStoryType().isStoryWithReplies());
+        storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(), null, StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor), message.getStoryType().isStoryWithReplies(), bodyRanges);
       } else if (!attachmentPointers.isEmpty()) {
-        storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
+        storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), null, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies(), bodyRanges);
       } else {
         throw new UndeliverableMessageException("No attachment on non-text story.");
       }

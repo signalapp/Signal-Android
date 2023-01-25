@@ -139,7 +139,7 @@ class DraftTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       const val AUDIO = "audio"
       const val LOCATION = "location"
       const val QUOTE = "quote"
-      const val MENTION = "mention"
+      const val BODY_RANGES = "mention"
       const val VOICE_NOTE = "voice_note"
     }
   }

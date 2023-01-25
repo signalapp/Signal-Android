@@ -703,8 +703,8 @@ public abstract class MessageRecord extends DisplayRecord {
     return isJumboji;
   }
 
-  public boolean hasMessageRanges() {
-    return false;
+  public @Nullable BodyRangeList getMessageRanges() {
+    return null;
   }
 
   public @NonNull BodyRangeList requireMessageRanges() {

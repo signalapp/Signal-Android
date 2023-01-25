@@ -104,6 +104,7 @@ public final class FeatureFlags {
   private static final String CHAT_FILTERS                      = "android.chat.filters.3";
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.2";
+  private static final String TEXT_FORMATTING                   = "android.textFormatting";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -158,7 +159,8 @@ public final class FeatureFlags {
       CDS_HARD_LIMIT,
       CHAT_FILTERS,
       PAYPAL_ONE_TIME_DONATIONS,
-      PAYPAL_RECURRING_DONATIONS
+      PAYPAL_RECURRING_DONATIONS,
+      TEXT_FORMATTING
   );
 
   @VisibleForTesting
@@ -220,7 +222,8 @@ public final class FeatureFlags {
       RECIPIENT_MERGE_V2,
       CREDIT_CARD_PAYMENTS,
       PAYMENTS_REQUEST_ACTIVATE_FLOW,
-      CDS_HARD_LIMIT
+      CDS_HARD_LIMIT,
+      TEXT_FORMATTING
   );
 
   /**
@@ -562,6 +565,13 @@ public final class FeatureFlags {
    */
   public static boolean paypalRecurringDonations() {
     return getBoolean(PAYPAL_RECURRING_DONATIONS, Environment.IS_STAGING);
+  }
+
+  /**
+   * Whether or not we should show text formatting options.
+   */
+  public static boolean textFormatting() {
+    return getBoolean(TEXT_FORMATTING, false);
   }
 
   /** Only for rendering debug info. */

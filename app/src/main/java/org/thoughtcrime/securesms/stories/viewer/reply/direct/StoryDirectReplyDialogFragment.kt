@@ -73,7 +73,8 @@ class StoryDirectReplyDialogFragment :
     composer = view.findViewById(R.id.input)
     composer.callback = object : StoryReplyComposer.Callback {
       override fun onSendActionClicked() {
-        lifecycleDisposable += viewModel.sendReply(composer.consumeInput().first)
+        val (body, _, bodyRanges) = composer.consumeInput()
+        lifecycleDisposable += viewModel.sendReply(body, bodyRanges)
           .observeOn(AndroidSchedulers.mainThread())
           .subscribe {
             Toast.makeText(requireContext(), R.string.StoryDirectReplyDialogFragment__sending_reply, Toast.LENGTH_LONG).show()

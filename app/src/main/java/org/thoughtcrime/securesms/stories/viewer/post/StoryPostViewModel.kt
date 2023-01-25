@@ -78,22 +78,22 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
       .doOnError { Log.w(TAG, "Failed to get typeface. Rendering with default.", it) }
       .onErrorReturn { Typeface.DEFAULT }
 
-    val postAndPreviews = repository.getRecord(recordId)
-      .map {
-        if (it.body.isNotEmpty()) {
-          StoryTextPost.parseFrom(Base64.decode(it.body)) to it.linkPreviews.firstOrNull()
+    disposables += Single.zip(typeface, repository.getRecord(recordId), ::Pair).subscribeBy(
+      onSuccess = { (t, record) ->
+        val text: StoryTextPost = if (record.body.isNotEmpty()) {
+          StoryTextPost.parseFrom(Base64.decode(record.body))
         } else {
           throw Exception("Text post message body is empty.")
         }
-      }
 
-    disposables += Single.zip(typeface, postAndPreviews, ::Pair).subscribeBy(
-      onSuccess = { (t, p) ->
+        val linkPreview = record.linkPreviews.firstOrNull()
+
         store.update {
           StoryPostState.TextPost(
-            storyTextPost = p.first,
-            linkPreview = p.second,
+            storyTextPost = text,
+            linkPreview = linkPreview,
             typeface = t,
+            bodyRanges = record.messageRanges,
             loadState = StoryPostState.LoadState.LOADED
           )
         }

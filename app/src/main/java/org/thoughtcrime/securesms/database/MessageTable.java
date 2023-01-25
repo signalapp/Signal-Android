@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.database;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.text.SpannableString;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.attachments.MmsNotificationAttachment;
 import org.thoughtcrime.securesms.contactshare.Contact;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.documents.Document;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatchSet;
@@ -169,7 +171,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   public static final String QUOTE_AUTHOR           = "quote_author";
   public static final String QUOTE_BODY             = "quote_body";
   public static final String QUOTE_MISSING          = "quote_missing";
-  public static final String QUOTE_MENTIONS         = "quote_mentions";
+  public static final String QUOTE_BODY_RANGES      = "quote_mentions";
   public static final String QUOTE_TYPE             = "quote_type";
   public static final String SHARED_CONTACTS        = "shared_contacts";
   public static final String LINK_PREVIEWS          = "link_previews";
@@ -216,7 +218,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                                                                                   QUOTE_AUTHOR           + " INTEGER DEFAULT 0, " +
                                                                                   QUOTE_BODY             + " TEXT DEFAULT NULL, " +
                                                                                   QUOTE_MISSING          + " INTEGER DEFAULT 0, " +
-                                                                                  QUOTE_MENTIONS         + " BLOB DEFAULT NULL," +
+                                                                                  QUOTE_BODY_RANGES      + " BLOB DEFAULT NULL," +
                                                                                   QUOTE_TYPE             + " INTEGER DEFAULT 0," +
                                                                                   SHARED_CONTACTS        + " TEXT DEFAULT NULL, " +
                                                                                   UNIDENTIFIED           + " INTEGER DEFAULT 0, " +
@@ -281,7 +283,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       QUOTE_BODY,
       QUOTE_TYPE,
       QUOTE_MISSING,
-      QUOTE_MENTIONS,
+      QUOTE_BODY_RANGES,
       SHARED_CONTACTS,
       LINK_PREVIEWS,
       UNIDENTIFIED,
@@ -2188,6 +2190,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
         String           networkDocument    = cursor.getString(cursor.getColumnIndexOrThrow(MessageTable.NETWORK_FAILURES));
         StoryType        storyType          = StoryType.fromCode(CursorUtil.requireInt(cursor, STORY_TYPE));
         ParentStoryId    parentStoryId      = ParentStoryId.deserialize(CursorUtil.requireLong(cursor, PARENT_STORY_ID));
+        byte[]           messageRangesData  = CursorUtil.requireBlob(cursor, MESSAGE_RANGES);
 
         long              quoteId            = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_ID));
         long              quoteAuthor        = cursor.getLong(cursor.getColumnIndexOrThrow(QUOTE_AUTHOR));
@@ -2195,7 +2198,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
         int               quoteType          = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_TYPE));
         boolean           quoteMissing       = cursor.getInt(cursor.getColumnIndexOrThrow(QUOTE_MISSING)) == 1;
         List<Attachment>  quoteAttachments   = Stream.of(associatedAttachments).filter(Attachment::isQuote).map(a -> (Attachment)a).toList();
-        List<Mention>     quoteMentions      = parseQuoteMentions(context, cursor);
+        List<Mention>     quoteMentions      = parseQuoteMentions(cursor);
+        BodyRangeList     quoteBodyRanges    = parseQuoteBodyRanges(cursor);
         List<Contact>     contacts           = getSharedContacts(cursor, associatedAttachments);
         Set<Attachment>   contactAttachments = new HashSet<>(Stream.of(contacts).map(Contact::getAvatarAttachment).filter(a -> a != null).toList());
         List<LinkPreview> previews           = getLinkPreviews(cursor, associatedAttachments);
@@ -2212,7 +2216,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
         QuoteModel               quote           = null;
 
         if (quoteId > 0 && quoteAuthor > 0 && (!TextUtils.isEmpty(quoteText) || !quoteAttachments.isEmpty())) {
-          quote = new QuoteModel(quoteId, RecipientId.from(quoteAuthor), quoteText, quoteMissing, quoteAttachments, quoteMentions, QuoteModel.Type.fromCode(quoteType));
+          quote = new QuoteModel(quoteId, RecipientId.from(quoteAuthor), quoteText, quoteMissing, quoteAttachments, quoteMentions, QuoteModel.Type.fromCode(quoteType), quoteBodyRanges);
         }
 
         if (!TextUtils.isEmpty(mismatchDocument)) {
@@ -2248,6 +2252,15 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
           giftBadge = GiftBadge.parseFrom(Base64.decode(body));
         }
 
+        BodyRangeList messageRanges = null;
+        if (messageRangesData != null) {
+          try {
+            messageRanges = BodyRangeList.parseFrom(messageRangesData);
+          } catch (InvalidProtocolBufferException e) {
+            Log.w(TAG, "Error parsing message ranges", e);
+          }
+        }
+
         OutgoingMessage message = new OutgoingMessage(recipient,
                                                       body,
                                                       attachments,
@@ -2266,7 +2279,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                                                       networkFailures,
                                                       mismatches,
                                                       giftBadge,
-                                                      MessageTypes.isSecureType(outboxType));
+                                                      MessageTypes.isSecureType(outboxType),
+                                                      messageRanges);
 
         return message;
       }
@@ -2398,14 +2412,21 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     if (retrieved.getQuote() != null) {
       contentValues.put(QUOTE_ID, retrieved.getQuote().getId());
-      contentValues.put(QUOTE_BODY, retrieved.getQuote().getText().toString());
+      contentValues.put(QUOTE_BODY, retrieved.getQuote().getText());
       contentValues.put(QUOTE_AUTHOR, retrieved.getQuote().getAuthor().serialize());
       contentValues.put(QUOTE_TYPE, retrieved.getQuote().getType().getCode());
       contentValues.put(QUOTE_MISSING, retrieved.getQuote().isOriginalMissing() ? 1 : 0);
 
+      BodyRangeList.Builder quoteBodyRanges = retrieved.getQuote().getBodyRanges() != null ? retrieved.getQuote().getBodyRanges().toBuilder()
+                                                                                           : BodyRangeList.newBuilder();
+
       BodyRangeList mentionsList = MentionUtil.mentionsToBodyRangeList(retrieved.getQuote().getMentions());
       if (mentionsList != null) {
-        contentValues.put(QUOTE_MENTIONS, mentionsList.toByteArray());
+        quoteBodyRanges.addAllRanges(mentionsList.getRangesList());
+      }
+
+      if (quoteBodyRanges.getRangesCount() > 0) {
+        contentValues.put(QUOTE_BODY_RANGES, quoteBodyRanges.build().toByteArray());
       }
 
       quoteAttachments = retrieved.getQuote().getAttachments();
@@ -2789,17 +2810,30 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       contentValues.put(QUOTE_TYPE, message.getOutgoingQuote().getType().getCode());
       contentValues.put(QUOTE_MISSING, message.getOutgoingQuote().isOriginalMissing() ? 1 : 0);
 
+      BodyRangeList adjustedQuoteBodyRanges = BodyRangeUtil.adjustBodyRanges(message.getOutgoingQuote().getBodyRanges(), updated.getBodyAdjustments());
+      BodyRangeList.Builder quoteBodyRanges;
+      if (adjustedQuoteBodyRanges != null) {
+        quoteBodyRanges = adjustedQuoteBodyRanges.toBuilder();
+      } else {
+        quoteBodyRanges = BodyRangeList.newBuilder();
+      }
+
       BodyRangeList mentionsList = MentionUtil.mentionsToBodyRangeList(updated.getMentions());
       if (mentionsList != null) {
-        contentValues.put(QUOTE_MENTIONS, mentionsList.toByteArray());
+        quoteBodyRanges.addAllRanges(mentionsList.getRangesList());
+      }
+
+      if (quoteBodyRanges.getRangesCount() > 0) {
+        contentValues.put(QUOTE_BODY_RANGES, quoteBodyRanges.build().toByteArray());
       }
 
       quoteAttachments.addAll(message.getOutgoingQuote().getAttachments());
     }
 
     MentionUtil.UpdatedBodyAndMentions updatedBodyAndMentions = MentionUtil.updateBodyAndMentionsWithPlaceholders(message.getBody(), message.getMentions());
+    BodyRangeList bodyRanges = BodyRangeUtil.adjustBodyRanges(message.getBodyRanges(), updatedBodyAndMentions.getBodyAdjustments());
 
-    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), null, contentValues, insertListener, false, false);
+    long messageId = insertMediaMessage(threadId, updatedBodyAndMentions.getBodyAsString(), message.getAttachments(), quoteAttachments, message.getSharedContacts(), message.getLinkPreviews(), updatedBodyAndMentions.getMentions(), bodyRanges, contentValues, insertListener, false, false);
 
     if (message.getRecipient().isGroup()) {
       GroupReceiptTable receiptDatabase = SignalDatabase.groupReceipts();
@@ -3281,10 +3315,37 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
   }
 
-  private static @NonNull List<Mention> parseQuoteMentions(@NonNull Context context, Cursor cursor) {
-    byte[] raw = cursor.getBlob(cursor.getColumnIndexOrThrow(QUOTE_MENTIONS));
+  private static @NonNull List<Mention> parseQuoteMentions(@NonNull Cursor cursor) {
+    byte[]        raw        = cursor.getBlob(cursor.getColumnIndexOrThrow(QUOTE_BODY_RANGES));
+    BodyRangeList bodyRanges = null;
 
-    return MentionUtil.bodyRangeListToMentions(context, raw);
+    if (raw != null) {
+      try {
+        bodyRanges = BodyRangeList.parseFrom(raw);
+      } catch (InvalidProtocolBufferException e) {
+        Log.w(TAG, "Unable to parse quote body ranges", e);
+      }
+    }
+
+    return MentionUtil.bodyRangeListToMentions(bodyRanges);
+  }
+
+  private static @Nullable BodyRangeList parseQuoteBodyRanges(@NonNull Cursor cursor) {
+    byte[] data = cursor.getBlob(cursor.getColumnIndexOrThrow(QUOTE_BODY_RANGES));
+
+    if (data != null) {
+      try {
+        final List<BodyRangeList.BodyRange> bodyRanges = Stream.of(BodyRangeList.parseFrom(data).getRangesList())
+                                                               .filter(bodyRange -> bodyRange.getAssociatedValueCase() != BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
+                                                               .toList();
+
+        return BodyRangeList.newBuilder().addAllRanges(bodyRanges).build();
+      } catch (InvalidProtocolBufferException e) {
+        // Intentionally left blank
+      }
+    }
+
+    return null;
   }
 
   public SQLiteDatabase beginTransaction() {
@@ -4574,6 +4635,32 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
   }
 
+  public @NonNull Map<Long, BodyRangeList> getBodyRangesForMessages(@NonNull List<Long> messageIds) {
+    List<SqlUtil.Query>      queries    = SqlUtil.buildCollectionQuery(ID, messageIds);
+    Map<Long, BodyRangeList> bodyRanges = new HashMap<>();
+
+    for (SqlUtil.Query query : queries) {
+      try (Cursor cursor = SQLiteDatabaseExtensionsKt.select(getReadableDatabase(), ID, MESSAGE_RANGES)
+                                                     .from(TABLE_NAME)
+                                                     .where(query.getWhere(), query.getWhereArgs())
+                                                     .run())
+      {
+        while (cursor.moveToNext()) {
+          byte[] data = CursorUtil.requireBlob(cursor, MESSAGE_RANGES);
+          if (data != null) {
+            try {
+              bodyRanges.put(CursorUtil.requireLong(cursor, ID), BodyRangeList.parseFrom(data));
+            } catch (InvalidProtocolBufferException e) {
+              Log.w(TAG, "Unable to parse body ranges for search", e);
+            }
+          }
+        }
+      }
+    }
+
+    return bodyRanges;
+  }
+
   protected enum ReceiptType {
     READ(READ_RECEIPT_COUNT, GroupReceiptTable.STATUS_READ),
     DELIVERY(DELIVERY_RECEIPT_COUNT, GroupReceiptTable.STATUS_DELIVERED),
@@ -4922,13 +5009,17 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     public MessageRecord getCurrent() {
       SlideDeck slideDeck = new SlideDeck(context, message.getAttachments());
 
-      CharSequence  quoteText     = message.getOutgoingQuote() != null ? message.getOutgoingQuote().getText() : null;
-      List<Mention> quoteMentions = message.getOutgoingQuote() != null ? message.getOutgoingQuote().getMentions() : Collections.emptyList();
+      CharSequence  quoteText       = message.getOutgoingQuote() != null ? message.getOutgoingQuote().getText() : null;
+      List<Mention> quoteMentions   = message.getOutgoingQuote() != null ? message.getOutgoingQuote().getMentions() : Collections.emptyList();
+      BodyRangeList quoteBodyRanges = message.getOutgoingQuote() != null ? message.getOutgoingQuote().getBodyRanges() : null;
 
-      if (quoteText != null && !quoteMentions.isEmpty()) {
+      if (quoteText != null && (Util.hasItems(quoteMentions) || quoteBodyRanges != null)) {
         MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions);
 
-        quoteText     = updated.getBody();
+        SpannableString styledText = new SpannableString(updated.getBody());
+        MessageStyler.style(BodyRangeUtil.adjustBodyRanges(quoteBodyRanges, updated.getBodyAdjustments()), styledText);
+
+        quoteText     = styledText;
         quoteMentions = updated.getMentions();
       }
 
@@ -5202,16 +5293,20 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       CharSequence               quoteText        = cursor.getString(cursor.getColumnIndexOrThrow(MessageTable.QUOTE_BODY));
       int                        quoteType        = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.QUOTE_TYPE));
       boolean                    quoteMissing     = cursor.getInt(cursor.getColumnIndexOrThrow(MessageTable.QUOTE_MISSING)) == 1;
-      List<Mention>              quoteMentions    = parseQuoteMentions(context, cursor);
+      List<Mention>              quoteMentions    = parseQuoteMentions(cursor);
+      BodyRangeList              bodyRanges       = parseQuoteBodyRanges(cursor);
       List<DatabaseAttachment>   attachments      = SignalDatabase.attachments().getAttachments(cursor);
       List<? extends Attachment> quoteAttachments = Stream.of(attachments).filter(Attachment::isQuote).toList();
       SlideDeck                  quoteDeck        = new SlideDeck(context, quoteAttachments);
 
       if (quoteId > 0 && quoteAuthor > 0) {
-        if (quoteText != null && !quoteMentions.isEmpty()) {
+        if (quoteText != null && (Util.hasItems(quoteMentions) || bodyRanges != null)) {
           MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, quoteText, quoteMentions);
 
-          quoteText     = updated.getBody();
+          SpannableString styledText = new SpannableString(updated.getBody());
+          MessageStyler.style(BodyRangeUtil.adjustBodyRanges(bodyRanges, updated.getBodyAdjustments()), styledText);
+
+          quoteText     = styledText;
           quoteMentions = updated.getMentions();
         }
 

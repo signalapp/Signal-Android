@@ -100,12 +100,13 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                         Collections.emptySet(),
                                                         Collections.emptySet(),
                                                         null,
-                                                        recipient.isPushGroup());
+                                                        recipient.isPushGroup(),
+                                                        null);
             threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }
           case SecureMessage: {
-            OutgoingMessage reply = OutgoingMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis());
+            OutgoingMessage reply = OutgoingMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis(), null);
             threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }

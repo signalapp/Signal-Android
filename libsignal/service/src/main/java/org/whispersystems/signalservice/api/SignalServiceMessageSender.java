@@ -101,6 +101,7 @@ import org.whispersystems.signalservice.internal.push.SendGroupMessageResponse;
 import org.whispersystems.signalservice.internal.push.SendMessageResponse;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.AttachmentPointer;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.CallMessage;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.Content;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage;
@@ -845,6 +846,10 @@ public class SignalServiceMessageSender {
       builder.setTextAttachment(createTextAttachment(message.getTextAttachment().get()));
     }
 
+    if (message.getBodyRanges().isPresent()) {
+      builder.addAllBodyRanges(message.getBodyRanges().get());
+    }
+
     builder.setAllowsReplies(message.getAllowsReplies().orElse(true));
 
     return container.setStoryMessage(builder).build();
@@ -929,13 +934,18 @@ public class SignalServiceMessageSender {
       List<SignalServiceDataMessage.Mention> mentions = message.getQuote().get().getMentions();
       if (mentions != null && !mentions.isEmpty()) {
         for (SignalServiceDataMessage.Mention mention : mentions) {
-          quoteBuilder.addBodyRanges(DataMessage.BodyRange.newBuilder()
-                                                          .setStart(mention.getStart())
-                                                          .setLength(mention.getLength())
-                                                          .setMentionUuid(mention.getServiceId().toString()));
+          quoteBuilder.addBodyRanges(BodyRange.newBuilder()
+                                              .setStart(mention.getStart())
+                                              .setLength(mention.getLength())
+                                              .setMentionUuid(mention.getServiceId().toString()));
         }
 
         builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
+      }
+
+      List<BodyRange> bodyRanges = message.getQuote().get().getBodyRanges();
+      if (bodyRanges != null) {
+        quoteBuilder.addAllBodyRanges(bodyRanges);
       }
 
       List<SignalServiceDataMessage.Quote.QuotedAttachment> attachments = message.getQuote().get().getAttachments();
@@ -972,10 +982,10 @@ public class SignalServiceMessageSender {
 
     if (message.getMentions().isPresent()) {
       for (SignalServiceDataMessage.Mention mention : message.getMentions().get()) {
-        builder.addBodyRanges(DataMessage.BodyRange.newBuilder()
-                                                   .setStart(mention.getStart())
-                                                   .setLength(mention.getLength())
-                                                   .setMentionUuid(mention.getServiceId().toString()));
+        builder.addBodyRanges(BodyRange.newBuilder()
+                                       .setStart(mention.getStart())
+                                       .setLength(mention.getLength())
+                                       .setMentionUuid(mention.getServiceId().toString()));
       }
       builder.setRequiredProtocolVersion(Math.max(DataMessage.ProtocolVersion.MENTIONS_VALUE, builder.getRequiredProtocolVersion()));
     }
@@ -1058,6 +1068,10 @@ public class SignalServiceMessageSender {
 
       builder.setGiftBadge(DataMessage.GiftBadge.newBuilder()
                                                 .setReceiptCredentialPresentation(ByteString.copyFrom(giftBadge.getReceiptCredentialPresentation().serialize())));
+    }
+
+    if (message.getBodyRanges().isPresent()) {
+      builder.addAllBodyRanges(message.getBodyRanges().get());
     }
 
     builder.setTimestamp(message.getTimestamp());

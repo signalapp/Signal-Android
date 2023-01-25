@@ -22,6 +22,7 @@ import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
@@ -336,16 +337,17 @@ class MediaSelectionViewModel(
   ): Maybe<MediaSendActivityResult> {
     return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet(), identityChangesSince).andThen(
       repository.send(
-        store.state.selectedMedia,
-        store.state.editorStateMap,
-        store.state.quality,
-        store.state.message,
-        store.state.sendType.usesSmsTransport,
-        isViewOnceEnabled(),
-        destination.getRecipientSearchKey(),
-        selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
-        MentionAnnotation.getMentionsFromAnnotations(store.state.message),
-        store.state.sendType
+        selectedMedia = store.state.selectedMedia,
+        stateMap = store.state.editorStateMap,
+        quality = store.state.quality,
+        message = store.state.message,
+        isSms = store.state.sendType.usesSmsTransport,
+        isViewOnce = isViewOnceEnabled(),
+        singleContact = destination.getRecipientSearchKey(),
+        contacts = selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
+        mentions = MentionAnnotation.getMentionsFromAnnotations(store.state.message),
+        bodyRanges = MessageStyler.getStyling(store.state.message),
+        sendType = store.state.sendType
       )
     )
   }

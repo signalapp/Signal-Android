@@ -5510,4 +5510,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Export SMS</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

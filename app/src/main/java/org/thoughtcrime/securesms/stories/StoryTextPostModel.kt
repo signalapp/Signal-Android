@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
@@ -42,13 +43,15 @@ import java.security.MessageDigest
 data class StoryTextPostModel(
   private val storyTextPost: StoryTextPost,
   private val storySentAtMillis: Long,
-  private val storyAuthor: RecipientId
+  private val storyAuthor: RecipientId,
+  private val bodyRanges: BodyRangeList?
 ) : Key, Parcelable {
 
   override fun updateDiskCacheKey(messageDigest: MessageDigest) {
     messageDigest.update(storyTextPost.toByteArray())
     messageDigest.update(storySentAtMillis.toString().toByteArray())
     messageDigest.update(storyAuthor.serialize().toByteArray())
+    messageDigest.update(bodyRanges?.toByteArray() ?: ByteArray(0))
   }
 
   val text: String = storyTextPost.body
@@ -65,6 +68,7 @@ data class StoryTextPostModel(
     ParcelUtil.writeByteArray(parcel, storyTextPost.toByteArray())
     parcel.writeLong(storySentAtMillis)
     parcel.writeParcelable(storyAuthor, flags)
+    ParcelUtil.writeByteArray(parcel, bodyRanges?.toByteArray())
   }
 
   override fun describeContents(): Int {
@@ -73,12 +77,11 @@ data class StoryTextPostModel(
 
   companion object CREATOR : Parcelable.Creator<StoryTextPostModel> {
     override fun createFromParcel(parcel: Parcel): StoryTextPostModel {
-      val storyTextPostArray = ParcelUtil.readByteArray(parcel)
-
       return StoryTextPostModel(
-        StoryTextPost.parseFrom(storyTextPostArray),
-        parcel.readLong(),
-        parcel.readParcelable(RecipientId::class.java.classLoader)!!
+        storyTextPost = StoryTextPost.parseFrom(ParcelUtil.readByteArray(parcel)),
+        storySentAtMillis = parcel.readLong(),
+        storyAuthor = parcel.readParcelable(RecipientId::class.java.classLoader)!!,
+        bodyRanges = ParcelUtil.readByteArray(parcel)?.let { BodyRangeList.parseFrom(it) }
       )
     }
 
@@ -88,19 +91,21 @@ data class StoryTextPostModel(
 
     fun parseFrom(messageRecord: MessageRecord): StoryTextPostModel {
       return parseFrom(
-        messageRecord.body,
-        messageRecord.timestamp,
-        if (messageRecord.isOutgoing) Recipient.self().id else messageRecord.individualRecipient.id
+        body = messageRecord.body,
+        storySentAtMillis = messageRecord.timestamp,
+        storyAuthor = if (messageRecord.isOutgoing) Recipient.self().id else messageRecord.individualRecipient.id,
+        bodyRanges = messageRecord.messageRanges
       )
     }
 
     @JvmStatic
     @Throws(IOException::class)
-    fun parseFrom(body: String, storySentAtMillis: Long, storyAuthor: RecipientId): StoryTextPostModel {
+    fun parseFrom(body: String, storySentAtMillis: Long, storyAuthor: RecipientId, bodyRanges: BodyRangeList?): StoryTextPostModel {
       return StoryTextPostModel(
         storyTextPost = StoryTextPost.parseFrom(Base64.decode(body)),
         storySentAtMillis = storySentAtMillis,
-        storyAuthor = storyAuthor
+        storyAuthor = storyAuthor,
+        bodyRanges = bodyRanges
       )
     }
   }
@@ -135,7 +140,7 @@ data class StoryTextPostModel(
       val useLargeThumbnail = source.text.isBlank()
 
       view.setTypeface(typeface)
-      view.bindFromStoryTextPost(source.storyTextPost)
+      view.bindFromStoryTextPost(source.storyTextPost, source.bodyRanges)
       view.bindLinkPreview(linkPreview, useLargeThumbnail, loadThumbnail = false)
       view.postAdjustLinkPreviewTranslationY()
 

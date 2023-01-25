@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.mediasend.CompositeMediaTransform
@@ -76,6 +77,7 @@ class MediaSelectionRepository(context: Context) {
     singleContact: ContactSearchKey.RecipientSearchKey?,
     contacts: List<ContactSearchKey.RecipientSearchKey>,
     mentions: List<Mention>,
+    bodyRanges: BodyRangeList?,
     sendType: MessageSendType
   ): Maybe<MediaSendActivityResult> {
     if (isSms && contacts.isNotEmpty()) {
@@ -89,9 +91,10 @@ class MediaSelectionRepository(context: Context) {
     val isSendingToStories = singleContact?.isStory == true || contacts.any { it.isStory }
     val sentMediaQuality = if (isSendingToStories) SentMediaQuality.STANDARD else quality
 
-    return Maybe.create<MediaSendActivityResult> { emitter ->
+    return Maybe.create { emitter ->
       val trimmedBody: String = if (isViewOnce) "" else getTruncatedBody(message?.toString()?.trim()) ?: ""
       val trimmedMentions: List<Mention> = if (isViewOnce) emptyList() else mentions
+      val trimmedBodyRanges: BodyRangeList? = if (isViewOnce) null else bodyRanges
       val modelsToTransform: Map<Media, MediaTransform> = buildModelsToTransform(selectedMedia, stateMap, sentMediaQuality)
       val oldToNewMediaMap: Map<Media, Media> = MediaRepository.transformMediaSync(context, selectedMedia, modelsToTransform)
       val updatedMedia = oldToNewMediaMap.values.toList()
@@ -119,6 +122,7 @@ class MediaSelectionRepository(context: Context) {
             messageSendType = sendType,
             isViewOnce = isViewOnce,
             mentions = trimmedMentions,
+            bodyRanges = trimmedBodyRanges,
             storyType = StoryType.NONE
           )
         )
@@ -154,7 +158,7 @@ class MediaSelectionRepository(context: Context) {
         uploadRepository.updateDisplayOrder(updatedMedia)
         uploadRepository.getPreUploadResults { uploadResults ->
           if (contacts.isNotEmpty()) {
-            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, isViewOnce, clippedVideosForStories)
+            sendMessages(contacts, splitBody, uploadResults, trimmedMentions, trimmedBodyRanges, isViewOnce, clippedVideosForStories)
             uploadRepository.deleteAbandonedAttachments()
             emitter.onComplete()
           } else if (uploadResults.isNotEmpty()) {
@@ -166,6 +170,7 @@ class MediaSelectionRepository(context: Context) {
                 messageSendType = sendType,
                 isViewOnce = isViewOnce,
                 mentions = trimmedMentions,
+                bodyRanges = trimmedBodyRanges,
                 storyType = storyType
               )
             )
@@ -179,6 +184,7 @@ class MediaSelectionRepository(context: Context) {
                 messageSendType = sendType,
                 isViewOnce = isViewOnce,
                 mentions = trimmedMentions,
+                bodyRanges = trimmedBodyRanges,
                 storyType = storyType
               )
             )
@@ -256,6 +262,7 @@ class MediaSelectionRepository(context: Context) {
     body: String,
     preUploadResults: Collection<PreUploadResult>,
     mentions: List<Mention>,
+    bodyRanges: BodyRangeList?,
     isViewOnce: Boolean,
     storyClips: List<Media>
   ) {
@@ -287,6 +294,7 @@ class MediaSelectionRepository(context: Context) {
         isViewOnce = isViewOnce,
         storyType = storyType,
         mentions = mentions,
+        bodyRanges = bodyRanges,
         isSecure = true
       )
 
@@ -317,6 +325,7 @@ class MediaSelectionRepository(context: Context) {
               isViewOnce = isViewOnce,
               storyType = storyType,
               mentions = mentions,
+              bodyRanges = bodyRanges,
               isSecure = true
             )
           )

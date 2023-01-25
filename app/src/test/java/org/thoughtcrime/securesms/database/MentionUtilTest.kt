@@ -20,7 +20,7 @@ class MentionUtilTest {
 
     val update: MentionUtil.UpdatedBodyAndMentions = MentionUtil.update("T test", mentions) { it.recipientId.toString() }
 
-    assertThat(update.body, Matchers.`is`("RecipientId::1 test"))
+    assertThat(update.body.toString(), Matchers.`is`("RecipientId::1 test"))
   }
 
   @Test
@@ -32,7 +32,7 @@ class MentionUtilTest {
 
     val update: MentionUtil.UpdatedBodyAndMentions = MentionUtil.update("ONETWO test", mentions) { it.recipientId.toString() }
 
-    assertThat(update.body, Matchers.`is`("RecipientId::1RecipientId::2 test"))
+    assertThat(update.body.toString(), Matchers.`is`("RecipientId::1RecipientId::2 test"))
   }
 
   @Test
@@ -44,6 +44,6 @@ class MentionUtilTest {
 
     val update: MentionUtil.UpdatedBodyAndMentions = MentionUtil.update("T test", mentions) { it.recipientId.toString() }
 
-    assertThat(update.body, Matchers.`is`("RecipientId::1est"))
+    assertThat(update.body.toString(), Matchers.`is`("RecipientId::1est"))
   }
 }

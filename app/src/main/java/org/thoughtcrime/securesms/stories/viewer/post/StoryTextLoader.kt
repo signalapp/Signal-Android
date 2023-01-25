@@ -21,7 +21,7 @@ class StoryTextLoader(
 ) {
 
   fun load() {
-    text.bindFromStoryTextPost(state.storyTextPost!!)
+    text.bindFromStoryTextPost(state.storyTextPost!!, state.bodyRanges)
     text.bindLinkPreview(state.linkPreview, state.storyTextPost.body.isBlank())
     text.postAdjustLinkPreviewTranslationY()
 

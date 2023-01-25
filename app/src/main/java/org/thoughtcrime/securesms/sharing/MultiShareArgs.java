@@ -9,10 +9,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.annimon.stream.Stream;
+import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.BreakIteratorCompat;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
@@ -31,6 +34,8 @@ import java.util.stream.Collectors;
 
 public final class MultiShareArgs implements Parcelable {
 
+  private static final String TAG = Log.tag(MultiShareArgs.class);
+
   private final Set<ContactSearchKey> contactSearchKeys;
   private final List<Media>           media;
   private final String                draftText;
@@ -44,6 +49,7 @@ public final class MultiShareArgs implements Parcelable {
   private final long                  timestamp;
   private final long                  expiresAt;
   private final boolean               isTextStory;
+  private final BodyRangeList         bodyRanges;
 
   private MultiShareArgs(@NonNull Builder builder) {
     contactSearchKeys = builder.contactSearchKeys;
@@ -59,6 +65,7 @@ public final class MultiShareArgs implements Parcelable {
     timestamp         = builder.timestamp;
     expiresAt         = builder.expiresAt;
     isTextStory       = builder.isTextStory;
+    bodyRanges        = builder.bodyRanges;
   }
 
   protected MultiShareArgs(Parcel in) {
@@ -86,6 +93,17 @@ public final class MultiShareArgs implements Parcelable {
     }
 
     linkPreview = preview;
+
+    BodyRangeList bodyRanges = null;
+    try {
+      byte[] data = ParcelUtil.readByteArray(in);
+      if (data != null) {
+        bodyRanges = BodyRangeList.parseFrom(data);
+      }
+    } catch (InvalidProtocolBufferException e) {
+      Log.w(TAG, "Invalid body range", e);
+    }
+    this.bodyRanges = bodyRanges;
   }
 
   public Set<ContactSearchKey> getContactSearchKeys() {
@@ -145,6 +163,10 @@ public final class MultiShareArgs implements Parcelable {
 
   public long getExpiresAt() {
     return expiresAt;
+  }
+
+  public @Nullable BodyRangeList getBodyRanges() {
+    return bodyRanges;
   }
 
   public boolean isValidForStories() {
@@ -241,6 +263,12 @@ public final class MultiShareArgs implements Parcelable {
     } else {
       dest.writeString("");
     }
+
+    if (bodyRanges != null) {
+      ParcelUtil.writeByteArray(dest, bodyRanges.toByteArray());
+    } else {
+      ParcelUtil.writeByteArray(dest, null);
+    }
   }
 
   public Builder buildUpon() {
@@ -259,7 +287,8 @@ public final class MultiShareArgs implements Parcelable {
                                            .withMentions(mentions)
                                            .withTimestamp(timestamp)
                                            .withExpiration(expiresAt)
-                                           .asTextStory(isTextStory);
+                                           .asTextStory(isTextStory)
+                                           .withBodyRanges(bodyRanges);
   }
 
   private boolean requiresInterstitial() {
@@ -286,6 +315,7 @@ public final class MultiShareArgs implements Parcelable {
     private long           timestamp;
     private long           expiresAt;
     private boolean        isTextStory;
+    private BodyRangeList  bodyRanges;
 
     public Builder() {
       this(Collections.emptySet());
@@ -352,6 +382,11 @@ public final class MultiShareArgs implements Parcelable {
 
     public @NonNull Builder asTextStory(boolean isTextStory) {
       this.isTextStory = isTextStory;
+      return this;
+    }
+
+    public @NonNull Builder withBodyRanges(@Nullable BodyRangeList bodyRanges) {
+      this.bodyRanges = bodyRanges;
       return this;
     }
 

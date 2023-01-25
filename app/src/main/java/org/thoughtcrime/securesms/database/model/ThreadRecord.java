@@ -25,6 +25,7 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.ThreadTable.Extra;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -98,6 +99,14 @@ public final class ThreadRecord {
 
   public @Nullable Extra getExtra() {
     return extra;
+  }
+
+  public @Nullable BodyRangeList getBodyRanges() {
+    if (extra != null && extra.getBodyRanges() != null) {
+      return BodyRangeListSerializer.INSTANCE.deserialize(extra.getBodyRanges());
+    } else {
+      return null;
+    }
   }
 
   public @Nullable String getContentType() {

@@ -132,6 +132,7 @@ class AddToGroupStoryDelegate(
         .withMedia(result.nonUploadedMedia.toList())
         .withDraftText(result.body)
         .withMentions(result.mentions.toList())
+        .withBodyRanges(result.bodyRanges)
         .build()
 
       val results = MultiShareSender.sendSync(multiShareArgs)

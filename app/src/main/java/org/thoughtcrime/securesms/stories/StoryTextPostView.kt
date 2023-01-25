@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
+import android.text.SpannableString
 import android.util.AttributeSet
 import android.view.View
 import android.widget.ImageView
@@ -13,7 +14,9 @@ import androidx.core.view.doOnNextLayout
 import androidx.core.view.isVisible
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ClippedCardView
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -119,17 +122,21 @@ class StoryTextPostView @JvmOverloads constructor(
     postAdjustLinkPreviewTranslationY()
   }
 
-  fun bindFromStoryTextPost(storyTextPost: StoryTextPost) {
+  fun bindFromStoryTextPost(storyTextPost: StoryTextPost, bodyRanges: BodyRangeList?) {
     visible = true
     linkPreviewView.visible = false
 
-    val font = TextFont.fromStyle(storyTextPost.style)
+    val font: TextFont = TextFont.fromStyle(storyTextPost.style)
     setPostBackground(ChatColors.forChatColor(ChatColors.Id.NotSet, storyTextPost.background).chatBubbleMask)
 
     if (font.isAllCaps) {
       setText(storyTextPost.body.uppercase(Locale.getDefault()), false)
     } else {
-      setText(storyTextPost.body, false)
+      val body = SpannableString(storyTextPost.body)
+      if (font == TextFont.REGULAR && bodyRanges != null) {
+        MessageStyler.style(bodyRanges, body)
+      }
+      setText(body, false)
     }
 
     setTextColor(storyTextPost.textForegroundColor, false)

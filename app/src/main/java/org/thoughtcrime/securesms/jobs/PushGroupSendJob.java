@@ -14,9 +14,9 @@ import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable.GroupReceiptInfo;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -58,6 +58,7 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessage;
 import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange;
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.GroupContextV2;
 
 import java.io.IOException;
@@ -247,10 +248,11 @@ public final class PushGroupSendJob extends PushSendJob {
       List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
       List<SignalServicePreview>                 previews           = getPreviewsFor(message);
       List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
+      List<BodyRange>                            bodyRanges         = getBodyRanges(message);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
       List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
-      boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
-                                        .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
+      boolean                                    isRecipientUpdate  = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
+                                                                            .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
       if (message.getStoryType().isStory()) {
         Optional<GroupRecord> groupRecord = SignalDatabase.groups().getGroup(groupId);
@@ -267,10 +269,13 @@ public final class PushGroupSendJob extends PushSendJob {
 
           final SignalServiceStoryMessage storyMessage;
           if (message.getStoryType().isTextStory()) {
-            storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(), groupContext, StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor), message.getStoryType()
-                                                                                                                                                                                                                 .isStoryWithReplies());
+            storyMessage = SignalServiceStoryMessage.forTextAttachment(Recipient.self().getProfileKey(),
+                                                                       groupContext,
+                                                                       StorySendUtil.deserializeBodyToStoryTextAttachment(message, this::getPreviewsFor),
+                                                                       message.getStoryType().isStoryWithReplies(),
+                                                                       bodyRanges);
           } else if (!attachmentPointers.isEmpty()) {
-            storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies());
+            storyMessage = SignalServiceStoryMessage.forFileAttachment(Recipient.self().getProfileKey(), groupContext, attachmentPointers.get(0), message.getStoryType().isStoryWithReplies(), bodyRanges);
           } else {
             throw new UndeliverableMessageException("No attachment on non-text story.");
           }
@@ -322,7 +327,8 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withSticker(sticker.orElse(null))
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
-                                                                      .withMentions(mentions);
+                                                                      .withMentions(mentions)
+                                                                      .withBodyRanges(bodyRanges);
 
         if (message.getParentStoryId() != null) {
           try {

@@ -186,6 +186,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.database.model.StoryType;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.GroupCallPeekEvent;
 import org.thoughtcrime.securesms.events.ReminderUpdateEvent;
@@ -748,11 +749,12 @@ public class ConversationParentFragment extends Fragment
         return;
       }
 
-      long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
-      boolean    initiating     = threadId == -1;
-      QuoteModel quote          = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
-      SlideDeck  slideDeck      = new SlideDeck();
-      List<Mention> mentions    = new ArrayList<>(result.getMentions());
+      long          expiresIn  = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
+      boolean       initiating = threadId == -1;
+      QuoteModel    quote      = result.isViewOnce() ? null : inputPanel.getQuote().orElse(null);
+      SlideDeck     slideDeck  = new SlideDeck();
+      List<Mention> mentions   = new ArrayList<>(result.getMentions());
+      BodyRangeList bodyRanges = result.getBodyRanges();
 
       for (Media mediaItem : result.getNonUploadedMedia()) {
         if (MediaUtil.isVideoType(mediaItem.getMimeType())) {
@@ -776,6 +778,7 @@ public class ConversationParentFragment extends Fragment
                        Collections.emptyList(),
                        Collections.emptyList(),
                        mentions,
+                       bodyRanges,
                        expiresIn,
                        result.isViewOnce(),
                        initiating,
@@ -1840,7 +1843,7 @@ public class ConversationParentFragment extends Fragment
                   quoteResult.addListener(listener);
                   break;
                 case Draft.VOICE_NOTE:
-                case Draft.MENTION:
+                case Draft.BODY_RANGES:
                   listener.onSuccess(true);
                   break;
               }
@@ -2704,7 +2707,7 @@ public class ConversationParentFragment extends Fragment
     long       expiresIn      = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     boolean    initiating     = threadId == -1;
 
-    sendMediaMessage(recipient.getId(), sendButton.getSelectedSendType(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), expiresIn, false, initiating, false, null);
+    sendMediaMessage(recipient.getId(), sendButton.getSelectedSendType(), "", attachmentManager.buildSlideDeck(), null, contacts, Collections.emptyList(), Collections.emptyList(), null, expiresIn, false, initiating, false, null);
   }
 
   private void selectContactInfo(ContactData contactData) {
@@ -2943,6 +2946,7 @@ public class ConversationParentFragment extends Fragment
                                        recipient.getEmail().isPresent()        ||
                                        inputPanel.getQuote().isPresent()       ||
                                        composeText.hasMentions()               ||
+                                       composeText.hasStyling()                ||
                                        linkPreviewViewModel.hasLinkPreview()   ||
                                        needsSplit;
 
@@ -2997,9 +3001,10 @@ public class ConversationParentFragment extends Fragment
                                                     Collections.emptySet(),
                                                     Collections.emptySet(),
                                                     null,
-                                                    true);
+                                                    true,
+                                                    result.getBodyRanges());
 
-    final Context context = requireContext().getApplicationContext();
+    final Context         context      = requireContext().getApplicationContext();
 
     ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
 
@@ -3032,6 +3037,7 @@ public class ConversationParentFragment extends Fragment
                      Collections.emptyList(),
                      linkPreviews,
                      composeText.getMentions(),
+                     composeText.getStyling(),
                      expiresIn,
                      viewOnce,
                      initiating,
@@ -3047,6 +3053,7 @@ public class ConversationParentFragment extends Fragment
                                                   List<Contact> contacts,
                                                   List<LinkPreview> previews,
                                                   List<Mention> mentions,
+                                                  @Nullable BodyRangeList styling,
                                                   final long expiresIn,
                                                   final boolean viewOnce,
                                                   final boolean initiating,
@@ -3093,7 +3100,8 @@ public class ConversationParentFragment extends Fragment
                                                                    Collections.emptySet(),
                                                                    Collections.emptySet(),
                                                                    null,
-                                                                   false);
+                                                                   false,
+                                                                   styling);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();
@@ -3154,7 +3162,7 @@ public class ConversationParentFragment extends Fragment
     OutgoingMessage message;
 
     if (sendPush) {
-      message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis());
+      message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis(), null);
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
       message = OutgoingMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
@@ -3411,6 +3419,7 @@ public class ConversationParentFragment extends Fragment
                      Collections.emptyList(),
                      Collections.emptyList(),
                      composeText.getMentions(),
+                     composeText.getStyling(),
                      expiresIn,
                      false,
                      initiating,
@@ -3443,7 +3452,7 @@ public class ConversationParentFragment extends Fragment
 
     slideDeck.addSlide(stickerSlide);
 
-    sendMediaMessage(recipient.getId(), sendType, "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), expiresIn, false, initiating, clearCompose, null);
+    sendMediaMessage(recipient.getId(), sendType, "", slideDeck, null, Collections.emptyList(), Collections.emptyList(), Collections.emptyList(), null, expiresIn, false, initiating, clearCompose, null);
   }
 
   private void silentlySetComposeText(String text) {
@@ -3746,7 +3755,7 @@ public class ConversationParentFragment extends Fragment
     }
 
     private void handleSaveDraftOnTextChange(@NonNull CharSequence text) {
-      textDraftSaveDebouncer.publish(() -> draftViewModel.setTextDraft(StringUtil.trimSequence(text).toString(), MentionAnnotation.getMentionsFromAnnotations(text)));
+      textDraftSaveDebouncer.publish(() -> draftViewModel.setTextDraft(StringUtil.trimSequence(text).toString(), MentionAnnotation.getMentionsFromAnnotations(text), MessageStyler.getStyling(text)));
     }
 
     private void handleTypingIndicatorOnTextChange(@NonNull String text) {
@@ -4185,6 +4194,7 @@ public class ConversationParentFragment extends Fragment
                      Collections.emptyList(),
                      Collections.emptyList(),
                      composeText.getMentions(),
+                     composeText.getStyling(),
                      expiresIn,
                      false,
                      initiating,

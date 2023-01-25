@@ -77,8 +77,11 @@ message ProfileChangeDetails {
 message BodyRangeList {
     message BodyRange {
         enum Style {
-            BOLD   = 0;
-            ITALIC = 1;
+            BOLD          = 0;
+            ITALIC        = 1;
+            SPOILER       = 2;
+            STRIKETHROUGH = 3;
+            MONOSPACE     = 4;
         }
 
         message Button {

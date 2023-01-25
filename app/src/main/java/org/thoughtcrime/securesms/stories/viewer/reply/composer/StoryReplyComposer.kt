@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiToggle
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -124,13 +125,14 @@ class StoryReplyComposer @JvmOverloads constructor(
     privacyChrome.visible = true
   }
 
-  fun consumeInput(): Pair<CharSequence, List<Mention>> {
+  fun consumeInput(): Input {
     val trimmedText = input.textTrimmed.toString()
     val mentions = input.mentions
+    val bodyRanges = input.styling
 
     input.setText("")
 
-    return trimmedText to mentions
+    return Input(trimmedText, mentions, bodyRanges)
   }
 
   fun openEmojiSearch() {
@@ -173,4 +175,6 @@ class StoryReplyComposer @JvmOverloads constructor(
     fun onShowEmojiKeyboard() = Unit
     fun onHideEmojiKeyboard() = Unit
   }
+
+  data class Input(val body: String, val mentions: List<Mention>, val bodyRanges: BodyRangeList?)
 }

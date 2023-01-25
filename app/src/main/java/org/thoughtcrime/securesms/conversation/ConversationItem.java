@@ -181,6 +181,8 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private static final long  MAX_CLUSTERING_TIME_DIFF   = TimeUnit.MINUTES.toMillis(3);
   private static final int   CONDENSED_MODE_MAX_LINES   = 3;
 
+  private static final SearchUtil.StyleFactory STYLE_FACTORY = () -> new CharacterStyle[] { new BackgroundColorSpan(Color.YELLOW), new ForegroundColorSpan(Color.BLACK) };
+
   private ConversationMessage         conversationMessage;
   private MessageRecord               messageRecord;
   private Optional<MessageRecord>     nextMessageRecord;
@@ -988,8 +990,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       if (messageRequestAccepted) {
         linkifyMessageBody(styledText, batchSelected.isEmpty());
       }
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new BackgroundColorSpan(Color.YELLOW), styledText, searchQuery, SearchUtil.STRICT);
-      styledText = SearchUtil.getHighlightedSpan(locale, () -> new ForegroundColorSpan(Color.BLACK), styledText, searchQuery, SearchUtil.STRICT);
+      styledText = SearchUtil.getHighlightedSpan(locale, STYLE_FACTORY, styledText, searchQuery, SearchUtil.STRICT);
 
       if (hasExtraText(messageRecord)) {
         bodyText.setOverflowText(getLongMessageSpan(messageRecord));

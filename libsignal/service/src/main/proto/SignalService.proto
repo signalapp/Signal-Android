@@ -125,20 +125,30 @@ message CallMessage {
   optional Opaque    opaque              = 10;
 }
 
+message BodyRange {
+  enum Style {
+    NONE          = 0;
+    BOLD          = 1;
+    ITALIC        = 2;
+    SPOILER       = 3;
+    STRIKETHROUGH = 4;
+    MONOSPACE     = 5;
+  }
+
+  optional uint32 start  = 1;
+  optional uint32 length = 2;
+
+  oneof associatedValue {
+    string mentionUuid = 3;
+    Style  style       = 4;
+  }
+}
+
 message DataMessage {
   enum Flags {
     END_SESSION             = 1;
     EXPIRATION_TIMER_UPDATE = 2;
     PROFILE_KEY_UPDATE      = 4;
-  }
-
-  message BodyRange {
-    optional uint32 start  = 1;
-    optional uint32 length = 2;
-
-    oneof associatedValue {
-      string mentionUuid = 3;
-    }
   }
 
   message Quote {
@@ -382,6 +392,7 @@ message StoryMessage {
     TextAttachment    textAttachment = 4;
   }
   optional bool              allowsReplies = 5;
+  repeated BodyRange         bodyRanges    = 6;
 }
 
 message Preview {

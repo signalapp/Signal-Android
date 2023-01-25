@@ -268,7 +268,14 @@ public class InputPanel extends LinearLayout
 
   public Optional<QuoteModel> getQuote() {
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
-      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions(), quoteView.getQuoteType()));
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(),
+                                        quoteView.getAuthor().getId(),
+                                        quoteView.getBody().toString(),
+                                        false,
+                                        quoteView.getAttachments(),
+                                        quoteView.getMentions(),
+                                        quoteView.getQuoteType(),
+                                        quoteView.getBodyRanges()));
     } else {
       return Optional.empty();
     }

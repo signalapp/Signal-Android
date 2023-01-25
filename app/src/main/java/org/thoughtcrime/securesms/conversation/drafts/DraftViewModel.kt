@@ -64,9 +64,19 @@ class DraftViewModel @JvmOverloads constructor(
     store.update { it.copy(recipientId = recipient.id) }
   }
 
-  fun setTextDraft(text: String, mentions: List<Mention>) {
+  fun setTextDraft(text: String, mentions: List<Mention>, styleBodyRanges: BodyRangeList?) {
     store.update {
-      saveDrafts(it.copy(textDraft = text.toTextDraft(), mentionsDraft = mentions.toMentionsDraft()))
+      val mentionRanges: BodyRangeList? = MentionUtil.mentionsToBodyRangeList(mentions)
+
+      val bodyRanges: BodyRangeList? = if (styleBodyRanges == null) {
+        mentionRanges
+      } else if (mentionRanges == null) {
+        styleBodyRanges
+      } else {
+        styleBodyRanges.toBuilder().addAllRanges(mentionRanges.rangesList).build()
+      }
+
+      saveDrafts(it.copy(textDraft = text.toTextDraft(), bodyRangesDraft = bodyRanges?.toDraft()))
     }
   }
 
@@ -118,11 +128,6 @@ private fun String.toTextDraft(): Draft? {
   return if (isNotEmpty()) Draft(Draft.TEXT, this) else null
 }
 
-private fun List<Mention>.toMentionsDraft(): Draft? {
-  val mentions: BodyRangeList? = MentionUtil.mentionsToBodyRangeList(this)
-  return if (mentions != null) {
-    Draft(Draft.MENTION, Base64.encodeBytes(mentions.toByteArray()))
-  } else {
-    null
-  }
+private fun BodyRangeList.toDraft(): Draft {
+  return Draft(Draft.BODY_RANGES, Base64.encodeBytes(toByteArray()))
 }

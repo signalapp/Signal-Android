@@ -166,7 +166,7 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
     stopwatch.split("recipient-resolves");
 
     List<ConversationMessage> messages = Stream.of(records)
-                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId())))
+                                               .map(m -> ConversationMessageFactory.createWithUnresolvedData(context, m, m.getDisplayBody(context), mentionHelper.getMentions(m.getId()), quotedHelper.isQuoted(m.getId())))
                                                .toList();
 
     stopwatch.split("conversion");
@@ -220,7 +220,11 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
 
         stopwatch.split("calls");
 
-        return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(), record, mentions, isQuoted);
+        return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(ApplicationDependencies.getApplication(),
+                                                                                       record,
+                                                                                       record.getDisplayBody(ApplicationDependencies.getApplication()),
+                                                                                       mentions,
+                                                                                       isQuoted);
       } else {
         return null;
       }

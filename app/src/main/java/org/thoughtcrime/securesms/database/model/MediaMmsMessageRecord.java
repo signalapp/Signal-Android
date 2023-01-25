@@ -179,13 +179,9 @@ public class MediaMmsMessageRecord extends MmsMessageRecord {
     return super.getUpdateDisplayBody(context, recipientClickHandler);
   }
 
+  @Override
   public @Nullable BodyRangeList getMessageRanges() {
     return messageRanges;
-  }
-
-  @Override
-  public boolean hasMessageRanges() {
-    return messageRanges != null;
   }
 
   @Override

@@ -36,10 +36,13 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messageLog
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
+import org.thoughtcrime.securesms.database.ThreadBodyUtil.ThreadBody
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.serialize
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1376,13 +1379,15 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
     }
 
+    val threadBody: ThreadBody = ThreadBodyUtil.getFormattedBodyFor(context, record)
+
     updateThread(
       threadId = threadId,
       meaningfulMessages = meaningfulMessages,
-      body = ThreadBodyUtil.getFormattedBodyFor(context, record),
+      body = threadBody.body.toString(),
       attachment = getAttachmentUriFor(record),
       contentType = getContentTypeFor(record),
-      extra = getExtrasFor(record),
+      extra = getExtrasFor(record, threadBody),
       date = record.timestamp,
       status = record.deliveryStatus,
       deliveryReceiptCount = record.deliveryReceiptCount,
@@ -1534,7 +1539,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return null
   }
 
-  private fun getExtrasFor(record: MessageRecord): Extra? {
+  private fun getExtrasFor(record: MessageRecord, body: ThreadBody): Extra? {
     val threadRecipient = if (record.isOutgoing) record.recipient else getRecipientForThreadId(record.threadId)
     val messageRequestAccepted = RecipientUtil.isMessageRequestAccepted(record.threadId, threadRecipient)
     val individualRecipientId = record.individualRecipient.id
@@ -1567,7 +1572,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       }
     }
 
-    return if (record.isRemoteDelete) {
+    val extras: Extra? = if (record.isRemoteDelete) {
       Extra.forRemoteDelete(individualRecipientId)
     } else if (record.isViewOnce) {
       Extra.forViewOnce(individualRecipientId)
@@ -1580,6 +1585,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       Extra.forDefault(individualRecipientId)
     } else {
       null
+    }
+
+    return if (record.messageRanges != null) {
+      val bodyRanges = record.requireMessageRanges().adjustBodyRanges(body.bodyAdjustments)!!
+      extras?.copy(bodyRanges = bodyRanges.serialize()) ?: Extra.forBodyRanges(bodyRanges, individualRecipientId)
+    } else {
+      extras
     }
   }
 
@@ -1754,15 +1766,16 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   data class Extra(
-    @field:JsonProperty @param:JsonProperty("isRevealable") val isViewOnce: Boolean,
-    @field:JsonProperty @param:JsonProperty("isSticker") val isSticker: Boolean,
-    @field:JsonProperty @param:JsonProperty("stickerEmoji") val stickerEmoji: String?,
-    @field:JsonProperty @param:JsonProperty("isAlbum") val isAlbum: Boolean,
-    @field:JsonProperty @param:JsonProperty("isRemoteDelete") val isRemoteDelete: Boolean,
-    @field:JsonProperty @param:JsonProperty("isMessageRequestAccepted") val isMessageRequestAccepted: Boolean,
-    @field:JsonProperty @param:JsonProperty("isGv2Invite") val isGv2Invite: Boolean,
-    @field:JsonProperty @param:JsonProperty("groupAddedBy") val groupAddedBy: String?,
-    @field:JsonProperty @param:JsonProperty("individualRecipientId") private val individualRecipientId: String
+    @field:JsonProperty @param:JsonProperty("isRevealable") val isViewOnce: Boolean = false,
+    @field:JsonProperty @param:JsonProperty("isSticker") val isSticker: Boolean = false,
+    @field:JsonProperty @param:JsonProperty("stickerEmoji") val stickerEmoji: String? = null,
+    @field:JsonProperty @param:JsonProperty("isAlbum") val isAlbum: Boolean = false,
+    @field:JsonProperty @param:JsonProperty("isRemoteDelete") val isRemoteDelete: Boolean = false,
+    @field:JsonProperty @param:JsonProperty("isMessageRequestAccepted") val isMessageRequestAccepted: Boolean = true,
+    @field:JsonProperty @param:JsonProperty("isGv2Invite") val isGv2Invite: Boolean = false,
+    @field:JsonProperty @param:JsonProperty("groupAddedBy") val groupAddedBy: String? = null,
+    @field:JsonProperty @param:JsonProperty("individualRecipientId") private val individualRecipientId: String,
+    @field:JsonProperty @param:JsonProperty("bodyRanges") val bodyRanges: String? = null
   ) {
 
     fun getIndividualRecipientId(): String {
@@ -1771,35 +1784,39 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     companion object {
       fun forViewOnce(individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = true, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = true, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(isViewOnce = true, individualRecipientId = individualRecipient.serialize())
       }
 
       fun forSticker(emoji: String?, individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = true, stickerEmoji = emoji, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = true, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(isSticker = true, stickerEmoji = emoji, individualRecipientId = individualRecipient.serialize())
       }
 
       fun forAlbum(individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = true, isRemoteDelete = false, isMessageRequestAccepted = true, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(isAlbum = true, individualRecipientId = individualRecipient.serialize())
       }
 
       fun forRemoteDelete(individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = true, isMessageRequestAccepted = true, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(isRemoteDelete = true, individualRecipientId = individualRecipient.serialize())
       }
 
       fun forMessageRequest(individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = false, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(isMessageRequestAccepted = false, individualRecipientId = individualRecipient.serialize())
       }
 
       fun forGroupMessageRequest(recipientId: RecipientId, individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = false, isGv2Invite = false, groupAddedBy = recipientId.serialize(), individualRecipientId = individualRecipient.serialize())
+        return Extra(isMessageRequestAccepted = false, groupAddedBy = recipientId.serialize(), individualRecipientId = individualRecipient.serialize())
       }
 
       fun forGroupV2invite(recipientId: RecipientId, individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = false, isGv2Invite = true, groupAddedBy = recipientId.serialize(), individualRecipientId = individualRecipient.serialize())
+        return Extra(isGv2Invite = true, groupAddedBy = recipientId.serialize(), individualRecipientId = individualRecipient.serialize())
       }
 
       fun forDefault(individualRecipient: RecipientId): Extra {
-        return Extra(isViewOnce = false, isSticker = false, stickerEmoji = null, isAlbum = false, isRemoteDelete = false, isMessageRequestAccepted = true, isGv2Invite = false, groupAddedBy = null, individualRecipientId = individualRecipient.serialize())
+        return Extra(individualRecipientId = individualRecipient.serialize())
+      }
+
+      fun forBodyRanges(bodyRanges: BodyRangeList, individualRecipient: RecipientId): Extra {
+        return Extra(individualRecipientId = individualRecipient.serialize(), bodyRanges = bodyRanges.serialize())
       }
     }
   }

@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewMod
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
@@ -154,6 +155,7 @@ class StoryGroupReplyFragment :
   private var resendBody: CharSequence? = null
   private var resendMentions: List<Mention> = emptyList()
   private var resendReaction: String? = null
+  private var resendBodyRanges: BodyRangeList? = null
 
   private lateinit var inlineQueryResultsController: InlineQueryResultsController
 
@@ -349,8 +351,8 @@ class StoryGroupReplyFragment :
   }
 
   override fun onSendActionClicked() {
-    val (body, mentions) = composer.consumeInput()
-    performSend(body, mentions)
+    val (body, mentions, bodyRanges) = composer.consumeInput()
+    performSend(body, mentions, bodyRanges)
   }
 
   override fun onPickReactionClicked() {
@@ -530,14 +532,15 @@ class StoryGroupReplyFragment :
     }
   }
 
-  private fun performSend(body: CharSequence, mentions: List<Mention>) {
-    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
+  private fun performSend(body: CharSequence, mentions: List<Mention>, bodyRanges: BodyRangeList?) {
+    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions, bodyRanges)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onError = { throwable ->
           if (throwable is UntrustedRecords.UntrustedRecordsException) {
             resendBody = body
             resendMentions = mentions
+            resendBodyRanges = bodyRanges
 
             SafetyNumberBottomSheet
               .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey(groupRecipientId, true))
@@ -557,7 +560,7 @@ class StoryGroupReplyFragment :
     val resendBody = resendBody
     val resendReaction = resendReaction
     if (resendBody != null) {
-      performSend(resendBody, resendMentions)
+      performSend(resendBody, resendMentions, resendBodyRanges)
     } else if (resendReaction != null) {
       sendReaction(resendReaction)
     }
@@ -571,6 +574,7 @@ class StoryGroupReplyFragment :
     resendBody = null
     resendMentions = emptyList()
     resendReaction = null
+    resendBodyRanges = null
   }
 
   @ColorInt

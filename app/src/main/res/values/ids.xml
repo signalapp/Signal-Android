@@ -22,4 +22,9 @@
     <item name="navigation_bar_guideline" type="id" />
 
     <item name="reaction_bar" type="id" />
+
+    <item name="edittext_bold" type="id" />
+    <item name="edittext_italic" type="id" />
+    <item name="edittext_strikethrough" type="id" />
+    <item name="edittext_monospace" type="id" />
 </resources>

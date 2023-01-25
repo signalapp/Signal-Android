@@ -680,9 +680,9 @@ import javax.annotation.Nullable;
     Optional<SignalServiceGroupV2> groupContext = Optional.ofNullable(groupInfoV2);
 
     List<SignalServiceAttachment>            attachments      = new LinkedList<>();
-    boolean                                  endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE            ) != 0);
+    boolean                                  endSession       = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.END_SESSION_VALUE) != 0);
     boolean                                  expirationUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.EXPIRATION_TIMER_UPDATE_VALUE) != 0);
-    boolean                                  profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE     ) != 0);
+    boolean                                  profileKeyUpdate = ((content.getFlags() & SignalServiceProtos.DataMessage.Flags.PROFILE_KEY_UPDATE_VALUE) != 0);
     boolean                                  isGroupV2        = groupInfoV2 != null;
     SignalServiceDataMessage.Quote           quote            = createQuote(content, isGroupV2);
     List<SharedContact>                      sharedContacts   = createSharedContacts(content);
@@ -694,6 +694,7 @@ import javax.annotation.Nullable;
     SignalServiceDataMessage.GroupCallUpdate groupCallUpdate  = createGroupCallUpdate(content);
     SignalServiceDataMessage.StoryContext    storyContext     = createStoryContext(content);
     SignalServiceDataMessage.GiftBadge       giftBadge        = createGiftBadge(content);
+    List<SignalServiceProtos.BodyRange>      bodyRanges       = createBodyRanges(content.getBodyRangesList(), content.getBody());
 
     if (content.getRequiredProtocolVersion() > SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE) {
       throw new UnsupportedDataMessageProtocolVersionException(SignalServiceProtos.DataMessage.ProtocolVersion.CURRENT_VALUE,
@@ -745,6 +746,7 @@ import javax.annotation.Nullable;
                                    .withPayment(payment)
                                    .withStoryContext(storyContext)
                                    .withGiftBadge(giftBadge)
+                                   .withBodyRanges(bodyRanges)
                                    .build();
   }
 
@@ -1092,12 +1094,14 @@ import javax.annotation.Nullable;
       return SignalServiceStoryMessage.forFileAttachment(profileKey,
                                                          createGroupV2Info(content),
                                                          createAttachmentPointer(content.getFileAttachment()),
-                                                         content.getAllowsReplies());
+                                                         content.getAllowsReplies(),
+                                                         content.getBodyRangesList());
     } else {
       return SignalServiceStoryMessage.forTextAttachment(profileKey,
                                                          createGroupV2Info(content),
                                                          createTextAttachment(content.getTextAttachment()),
-                                                         content.getAllowsReplies());
+                                                         content.getAllowsReplies(),
+                                                         content.getBodyRangesList());
     }
   }
 
@@ -1121,7 +1125,8 @@ import javax.annotation.Nullable;
                                                 content.getQuote().getText(),
                                                 attachments,
                                                 createMentions(content.getQuote().getBodyRangesList(), content.getQuote().getText(), isGroupV2),
-                                                SignalServiceDataMessage.Quote.Type.fromProto(content.getQuote().getType()));
+                                                SignalServiceDataMessage.Quote.Type.fromProto(content.getQuote().getType()),
+                                                createBodyRanges(content.getQuote().getBodyRangesList(), content.getQuote().getText()));
     } else {
       Log.w(TAG, "Quote was missing an author! Returning null.");
       return null;
@@ -1154,7 +1159,7 @@ import javax.annotation.Nullable;
                                     Optional.ofNullable(attachment));
   }
 
-  private static @Nullable List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.DataMessage.BodyRange> bodyRanges, String body, boolean isGroupV2)
+  private static @Nullable List<SignalServiceDataMessage.Mention> createMentions(List<SignalServiceProtos.BodyRange> bodyRanges, String body, boolean isGroupV2)
       throws InvalidMessageStructureException
   {
     if (bodyRanges == null || bodyRanges.isEmpty() || body == null) {
@@ -1163,7 +1168,7 @@ import javax.annotation.Nullable;
 
     List<SignalServiceDataMessage.Mention> mentions = new LinkedList<>();
 
-    for (SignalServiceProtos.DataMessage.BodyRange bodyRange : bodyRanges) {
+    for (SignalServiceProtos.BodyRange bodyRange : bodyRanges) {
       if (bodyRange.hasMentionUuid()) {
         try {
           mentions.add(new SignalServiceDataMessage.Mention(ServiceId.parseOrThrow(bodyRange.getMentionUuid()), bodyRange.getStart(), bodyRange.getLength()));
@@ -1178,6 +1183,22 @@ import javax.annotation.Nullable;
     }
 
     return mentions;
+  }
+
+  private static @Nullable List<SignalServiceProtos.BodyRange> createBodyRanges(List<SignalServiceProtos.BodyRange> bodyRanges, String body) {
+    if (bodyRanges == null || bodyRanges.isEmpty() || body == null) {
+      return null;
+    }
+
+    List<SignalServiceProtos.BodyRange> ranges = new LinkedList<>();
+
+    for (SignalServiceProtos.BodyRange bodyRange : bodyRanges) {
+      if (bodyRange.hasStyle()) {
+        ranges.add(bodyRange);
+      }
+    }
+
+    return ranges;
   }
 
   private static @Nullable SignalServiceDataMessage.Sticker createSticker(SignalServiceProtos.DataMessage content) throws InvalidMessageStructureException {

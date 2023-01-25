@@ -8,12 +8,16 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.DraftTable
 import org.thoughtcrime.securesms.database.DraftTable.Drafts
 import org.thoughtcrime.securesms.database.MentionUtil
 import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
+import org.thoughtcrime.securesms.database.adjustBodyRanges
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -57,15 +61,18 @@ class DraftRepository(
   fun loadDrafts(threadId: Long): Single<DatabaseDraft> {
     return Single.fromCallable {
       val drafts: Drafts = draftTable.getDrafts(threadId)
-      val mentionsDraft = drafts.getDraftOfType(DraftTable.Draft.MENTION)
+      val bodyRangesDraft = drafts.getDraftOfType(DraftTable.Draft.BODY_RANGES)
       var updatedText: Spannable? = null
 
-      if (mentionsDraft != null) {
-        val text = drafts.getDraftOfType(DraftTable.Draft.TEXT)!!.value
-        val mentions = MentionUtil.bodyRangeListToMentions(context, Base64.decodeOrThrow(mentionsDraft.value))
-        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, text, mentions)
+      if (bodyRangesDraft != null) {
+        val bodyRanges: BodyRangeList = BodyRangeList.parseFrom(Base64.decodeOrThrow(bodyRangesDraft.value))
+        val mentions: List<Mention> = MentionUtil.bodyRangeListToMentions(bodyRanges)
+
+        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, drafts.getDraftOfType(DraftTable.Draft.TEXT)!!.value, mentions)
+
         updatedText = SpannableString(updated.body)
         MentionAnnotation.setMentionAnnotations(updatedText, updated.mentions)
+        MessageStyler.style(bodyRanges.adjustBodyRanges(updated.bodyAdjustments), updatedText)
       }
 
       DatabaseDraft(drafts, updatedText)

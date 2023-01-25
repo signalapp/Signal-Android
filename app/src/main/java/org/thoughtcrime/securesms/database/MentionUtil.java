@@ -10,10 +10,7 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 import com.annimon.stream.function.Function;
-import com.google.protobuf.InvalidProtocolBufferException;
 
-import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
@@ -35,25 +32,14 @@ public final class MentionUtil {
   private MentionUtil() { }
 
   @WorkerThread
-  public static @NonNull CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord) {
-    return updateBodyWithDisplayNames(context, messageRecord, messageRecord.getDisplayBody(context));
+  public static @Nullable CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord) {
+    return updateBodyWithDisplayNames(context, messageRecord, messageRecord.getDisplayBody(context)).getBody();
   }
 
   @WorkerThread
-  public static @NonNull CharSequence updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
-    if (messageRecord.isMms()) {
-      List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
-      CharSequence  updated  = updateBodyAndMentionsWithDisplayNames(context, body, mentions).getBody();
-      if (updated != null) {
-        return updated;
-      }
-    }
-    return body;
-  }
-
-  @WorkerThread
-  public static @NonNull UpdatedBodyAndMentions updateBodyAndMentionsWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull List<Mention> mentions) {
-    return updateBodyAndMentionsWithDisplayNames(context, messageRecord.getDisplayBody(context), mentions);
+  public static @NonNull UpdatedBodyAndMentions updateBodyWithDisplayNames(@NonNull Context context, @NonNull MessageRecord messageRecord, @NonNull CharSequence body) {
+    List<Mention> mentions = SignalDatabase.mentions().getMentionsForMessage(messageRecord.getId());
+    return updateBodyAndMentionsWithDisplayNames(context, body, mentions);
   }
 
   @WorkerThread
@@ -68,12 +54,13 @@ public final class MentionUtil {
   @VisibleForTesting
   static @NonNull UpdatedBodyAndMentions update(@Nullable CharSequence body, @NonNull List<Mention> mentions, @NonNull Function<Mention, CharSequence> replacementTextGenerator) {
     if (body == null || mentions.isEmpty()) {
-      return new UpdatedBodyAndMentions(body, mentions);
+      return new UpdatedBodyAndMentions(body, mentions, Collections.emptyList());
     }
 
     SortedSet<Mention>     sortedMentions  = new TreeSet<>(mentions);
     SpannableStringBuilder updatedBody     = new SpannableStringBuilder();
     List<Mention>          updatedMentions = new ArrayList<>();
+    List<BodyAdjustment>   bodyAdjustments = new ArrayList<>();
 
     int bodyIndex = 0;
 
@@ -89,6 +76,8 @@ public final class MentionUtil {
       updatedBody.append(replaceWith);
       updatedMentions.add(updatedMention);
 
+      bodyAdjustments.add(new BodyAdjustment(mention.getStart(), mention.getLength(), updatedMention.getLength()));
+
       bodyIndex = mention.getStart() + mention.getLength();
     }
 
@@ -96,7 +85,7 @@ public final class MentionUtil {
       updatedBody.append(body.subSequence(bodyIndex, body.length()));
     }
 
-    return new UpdatedBodyAndMentions(updatedBody.toString(), updatedMentions);
+    return new UpdatedBodyAndMentions(updatedBody, updatedMentions, bodyAdjustments);
   }
 
   public static @Nullable BodyRangeList mentionsToBodyRangeList(@Nullable List<Mention> mentions) {
@@ -117,32 +106,18 @@ public final class MentionUtil {
     return builder.build();
   }
 
-  public static @NonNull List<Mention> bodyRangeListToMentions(@NonNull Context context, @Nullable byte[] data) {
-    if (data != null) {
-      try {
-        return Stream.of(BodyRangeList.parseFrom(data).getRangesList())
-                     .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
-                     .map(mention -> {
-                       RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid())).getId();
-                       return new Mention(id, mention.getStart(), mention.getLength());
-                     })
-                     .toList();
-      } catch (InvalidProtocolBufferException e) {
-        return Collections.emptyList();
-      }
+  public static @NonNull List<Mention> bodyRangeListToMentions(@Nullable BodyRangeList bodyRanges) {
+    if (bodyRanges != null) {
+      return Stream.of(bodyRanges.getRangesList())
+                   .filter(bodyRange -> bodyRange.getAssociatedValueCase() == BodyRangeList.BodyRange.AssociatedValueCase.MENTIONUUID)
+                   .map(mention -> {
+                     RecipientId id = Recipient.externalPush(ServiceId.parseOrThrow(mention.getMentionUuid())).getId();
+                     return new Mention(id, mention.getStart(), mention.getLength());
+                   })
+                   .toList();
     } else {
       return Collections.emptyList();
     }
-  }
-
-  public static @NonNull String getMentionSettingDisplayValue(@NonNull Context context, @NonNull MentionSetting mentionSetting) {
-    switch (mentionSetting) {
-      case ALWAYS_NOTIFY:
-        return context.getString(R.string.GroupMentionSettingDialog_always_notify_me);
-      case DO_NOT_NOTIFY:
-        return context.getString(R.string.GroupMentionSettingDialog_dont_notify_me);
-    }
-    throw new IllegalArgumentException("Unknown mention setting: " + mentionSetting);
   }
 
   private static boolean invalidMention(@NonNull CharSequence body, @NonNull Mention mention) {
@@ -153,12 +128,14 @@ public final class MentionUtil {
   }
 
   public static class UpdatedBodyAndMentions {
-    @Nullable private final CharSequence  body;
-    @NonNull  private final List<Mention> mentions;
+    @Nullable private final CharSequence         body;
+    @NonNull private final  List<Mention>        mentions;
+    @NonNull private final  List<BodyAdjustment> bodyAdjustments;
 
-    public UpdatedBodyAndMentions(@Nullable CharSequence body, @NonNull List<Mention> mentions) {
-      this.body     = body;
-      this.mentions = mentions;
+    private UpdatedBodyAndMentions(@Nullable CharSequence body, @NonNull List<Mention> mentions, @NonNull List<BodyAdjustment> bodyAdjustments) {
+      this.body            = body;
+      this.mentions        = mentions;
+      this.bodyAdjustments = bodyAdjustments;
     }
 
     public @Nullable CharSequence getBody() {
@@ -167,6 +144,10 @@ public final class MentionUtil {
 
     public @NonNull List<Mention> getMentions() {
       return mentions;
+    }
+
+    public @NonNull List<BodyAdjustment> getBodyAdjustments() {
+      return bodyAdjustments;
     }
 
     @Nullable String getBodyAsString() {

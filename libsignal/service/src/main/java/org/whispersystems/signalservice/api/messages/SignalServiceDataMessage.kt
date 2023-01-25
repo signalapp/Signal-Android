@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.OptionalUtil.emptyIfStringEmpty
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos.BodyRange
 import java.util.LinkedList
 import java.util.Optional
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos.DataMessage.Payment as PaymentProto
@@ -47,7 +48,8 @@ class SignalServiceDataMessage private constructor(
   val groupCallUpdate: Optional<GroupCallUpdate>,
   val payment: Optional<Payment>,
   val storyContext: Optional<StoryContext>,
-  val giftBadge: Optional<GiftBadge>
+  val giftBadge: Optional<GiftBadge>,
+  val bodyRanges: Optional<List<BodyRange>>
 ) {
   val isActivatePaymentsRequest: Boolean = payment.map { it.isActivationRequest }.orElse(false)
   val isPaymentsActivated: Boolean = payment.map { it.isActivation }.orElse(false)
@@ -92,6 +94,7 @@ class SignalServiceDataMessage private constructor(
     private var payment: Payment? = null
     private var storyContext: StoryContext? = null
     private var giftBadge: GiftBadge? = null
+    private var bodyRanges: MutableList<BodyRange> = LinkedList<BodyRange>()
 
     fun withTimestamp(timestamp: Long): Builder {
       this.timestamp = timestamp
@@ -210,6 +213,11 @@ class SignalServiceDataMessage private constructor(
       return this
     }
 
+    fun withBodyRanges(bodyRanges: List<BodyRange>?): Builder {
+      bodyRanges?.let { this.bodyRanges.addAll(bodyRanges) }
+      return this
+    }
+
     fun build(): SignalServiceDataMessage {
       if (timestamp == 0L) {
         timestamp = System.currentTimeMillis()
@@ -236,7 +244,8 @@ class SignalServiceDataMessage private constructor(
         groupCallUpdate = groupCallUpdate.asOptional(),
         payment = payment.asOptional(),
         storyContext = storyContext.asOptional(),
-        giftBadge = giftBadge.asOptional()
+        giftBadge = giftBadge.asOptional(),
+        bodyRanges = bodyRanges.asOptional()
       )
     }
   }
@@ -247,7 +256,8 @@ class SignalServiceDataMessage private constructor(
     val text: String,
     val attachments: List<QuotedAttachment>?,
     val mentions: List<Mention>?,
-    val type: Type
+    val type: Type,
+    val bodyRanges: List<BodyRange>?
   ) {
     enum class Type(val protoType: QuoteProto.Type) {
       NORMAL(QuoteProto.Type.NORMAL),

@@ -193,17 +193,17 @@ class MessageNotification(threadRecipient: Recipient, record: MessageRecord) : N
     } else if (record.isRemoteDelete) {
       SpanUtil.italic(context.getString(R.string.MessageNotifier_this_message_was_deleted))
     } else if (record.isMms && !record.isMmsNotification && (record as MmsMessageRecord).slideDeck.slides.isNotEmpty()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record)
+      ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else if (record.isGroupCall) {
       MessageRecord.getGroupCallUpdateDescription(context, record.body, false).spannable
     } else if (record.hasGiftBadge()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record)
+      ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else if (record.isStoryReaction()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record)
+      ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else if (record.isPaymentNotification()) {
-      ThreadBodyUtil.getFormattedBodyFor(context, record)
+      ThreadBodyUtil.getFormattedBodyFor(context, record).body
     } else {
-      MentionUtil.updateBodyWithDisplayNames(context, record)
+      MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
     }
   }
 
@@ -299,7 +299,7 @@ class ReactionNotification(threadRecipient: Recipient, record: MessageRecord, va
   }
 
   private fun getReactionMessageBody(context: Context): CharSequence {
-    val body: CharSequence = MentionUtil.updateBodyWithDisplayNames(context, record)
+    val body: CharSequence = MentionUtil.updateBodyWithDisplayNames(context, record) ?: ""
     val bodyIsEmpty: Boolean = TextUtils.isEmpty(body)
 
     return if (record.hasSharedContact()) {

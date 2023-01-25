@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
@@ -65,6 +66,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.SignalServiceProtos;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -78,6 +80,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public abstract class PushSendJob extends SendJob {
 
@@ -296,6 +299,7 @@ public abstract class PushSendJob extends SendJob {
     String                                                quoteBody            = message.getOutgoingQuote().getText();
     RecipientId                                           quoteAuthor          = message.getOutgoingQuote().getAuthor();
     List<SignalServiceDataMessage.Mention>                quoteMentions        = getMentionsFor(message.getOutgoingQuote().getMentions());
+    List<SignalServiceProtos.BodyRange>                   bodyRanges           = getBodyRanges(message.getOutgoingQuote().getBodyRanges());
     QuoteModel.Type                                       quoteType            = message.getOutgoingQuote().getType();
     List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments     = new LinkedList<>();
     Optional<Attachment>                                  localQuoteAttachment = message.getOutgoingQuote()
@@ -344,9 +348,9 @@ public abstract class PushSendJob extends SendJob {
     Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);
 
     if (quoteAuthorRecipient.isMaybeRegistered()) {
-      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, RecipientUtil.getOrFetchServiceId(context, quoteAuthorRecipient), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType()));
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, RecipientUtil.getOrFetchServiceId(context, quoteAuthorRecipient), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType(), bodyRanges));
     } else if (quoteAuthorRecipient.hasServiceId()) {
-      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAuthorRecipient.requireServiceId(), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType()));
+      return Optional.of(new SignalServiceDataMessage.Quote(quoteId, quoteAuthorRecipient.requireServiceId(), quoteBody, quoteAttachments, quoteMentions, quoteType.getDataMessageType(), bodyRanges));
     } else {
       return Optional.empty();
     }
@@ -431,6 +435,51 @@ public abstract class PushSendJob extends SendJob {
     } catch (InvalidInputException invalidInputException) {
       throw new UndeliverableMessageException(invalidInputException);
     }
+  }
+
+  protected @Nullable List<SignalServiceProtos.BodyRange> getBodyRanges(@NonNull OutgoingMessage message) {
+    return getBodyRanges(message.getBodyRanges());
+  }
+
+  protected @Nullable List<SignalServiceProtos.BodyRange> getBodyRanges(@Nullable BodyRangeList bodyRanges) {
+    if (bodyRanges == null || bodyRanges.getRangesCount() == 0) {
+      return null;
+    }
+
+    return bodyRanges
+        .getRangesList()
+        .stream()
+        .map(range -> {
+          SignalServiceProtos.BodyRange.Builder builder = SignalServiceProtos.BodyRange.newBuilder()
+                                                                                       .setStart(range.getStart())
+                                                                                       .setLength(range.getLength());
+
+          if (range.hasStyle()) {
+            switch (range.getStyle()) {
+              case BOLD:
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.BOLD);
+                break;
+              case ITALIC:
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.ITALIC);
+                break;
+              case SPOILER:
+                // Intentionally left blank
+                break;
+              case STRIKETHROUGH:
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.STRIKETHROUGH);
+                break;
+              case MONOSPACE:
+                builder.setStyle(SignalServiceProtos.BodyRange.Style.MONOSPACE);
+                break;
+              default:
+                throw new IllegalArgumentException("Unrecognized style");
+            }
+          } else {
+            throw new IllegalArgumentException("Only supports style");
+          }
+
+          return builder.build();
+        }).collect(Collectors.toList());
   }
 
   protected void rotateSenderCertificateIfNecessary() throws IOException {

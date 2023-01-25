@@ -116,6 +116,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         .withMentions(conversationMessage.mentions)
         .withTimestamp(conversationMessage.messageRecord.timestamp)
         .withExpiration(conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn)
+        .withBodyRanges(conversationMessage.messageRecord.messageRanges)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
         val mediaMessage: MmsMessageRecord? = conversationMessage.messageRecord as? MmsMessageRecord

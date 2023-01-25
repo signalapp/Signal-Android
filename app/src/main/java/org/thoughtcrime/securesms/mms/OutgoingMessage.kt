@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.database.documents.NetworkFailure
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.StoryType
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
@@ -34,6 +35,7 @@ data class OutgoingMessage(
   val attachments: List<Attachment> = emptyList(),
   val sharedContacts: List<Contact> = emptyList(),
   val linkPreviews: List<LinkPreview> = emptyList(),
+  val bodyRanges: BodyRangeList? = null,
   val mentions: List<Mention> = emptyList(),
   val isGroup: Boolean = false,
   val isGroupUpdate: Boolean = false,
@@ -75,7 +77,8 @@ data class OutgoingMessage(
     networkFailures: Set<NetworkFailure> = emptySet(),
     mismatches: Set<IdentityKeyMismatch> = emptySet(),
     giftBadge: GiftBadge? = null,
-    isSecure: Boolean = false
+    isSecure: Boolean = false,
+    bodyRanges: BodyRangeList? = null
   ) : this(
     recipient = recipient,
     body = body ?: "",
@@ -95,7 +98,8 @@ data class OutgoingMessage(
     networkFailures = networkFailures,
     identityKeyMismatches = mismatches,
     giftBadge = giftBadge,
-    isSecure = isSecure
+    isSecure = isSecure,
+    bodyRanges = bodyRanges
   )
 
   /**
@@ -112,7 +116,8 @@ data class OutgoingMessage(
     storyType: StoryType = StoryType.NONE,
     linkPreviews: List<LinkPreview> = emptyList(),
     mentions: List<Mention> = emptyList(),
-    isSecure: Boolean = false
+    isSecure: Boolean = false,
+    bodyRanges: BodyRangeList? = null
   ) : this(
     recipient = recipient,
     body = buildMessage(slideDeck, body ?: ""),
@@ -124,7 +129,8 @@ data class OutgoingMessage(
     storyType = storyType,
     linkPreviews = linkPreviews,
     mentions = mentions,
-    isSecure = isSecure
+    isSecure = isSecure,
+    bodyRanges = bodyRanges
   )
 
   fun withExpiry(expiresIn: Long): OutgoingMessage {
@@ -167,14 +173,21 @@ data class OutgoingMessage(
      * A secure message that only contains text.
      */
     @JvmStatic
-    fun text(recipient: Recipient, body: String, expiresIn: Long, sentTimeMillis: Long = System.currentTimeMillis()): OutgoingMessage {
+    fun text(
+      recipient: Recipient,
+      body: String,
+      expiresIn: Long,
+      sentTimeMillis: Long = System.currentTimeMillis(),
+      bodyRanges: BodyRangeList? = null
+    ): OutgoingMessage {
       return OutgoingMessage(
         recipient = recipient,
         sentTimeMillis = sentTimeMillis,
         body = body,
         expiresIn = expiresIn,
         isUrgent = true,
-        isSecure = true
+        isSecure = true,
+        bodyRanges = bodyRanges
       )
     }
 
@@ -239,7 +252,8 @@ data class OutgoingMessage(
       body: String,
       sentTimeMillis: Long,
       storyType: StoryType,
-      linkPreviews: List<LinkPreview>
+      linkPreviews: List<LinkPreview>,
+      bodyRanges: BodyRangeList?
     ): OutgoingMessage {
       return OutgoingMessage(
         recipient = recipient,
@@ -247,6 +261,7 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         storyType = storyType,
         linkPreviews = linkPreviews,
+        bodyRanges = bodyRanges,
         isSecure = true
       )
     }

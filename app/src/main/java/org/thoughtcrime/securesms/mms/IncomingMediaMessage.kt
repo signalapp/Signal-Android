@@ -90,6 +90,7 @@ class IncomingMediaMessage(
     isPaymentsActivated = paymentsActivated
   )
 
+  @JvmOverloads
   constructor(
     from: RecipientId?,
     sentTimeMillis: Long,
@@ -114,7 +115,8 @@ class IncomingMediaMessage(
     serverGuid: String?,
     giftBadge: GiftBadge?,
     activatePaymentsRequest: Boolean,
-    paymentsActivated: Boolean
+    paymentsActivated: Boolean,
+    messageRanges: BodyRangeList? = null
   ) : this(
     from = from,
     groupId = if (group.isPresent) GroupId.v2(group.get().masterKey) else null,
@@ -139,7 +141,8 @@ class IncomingMediaMessage(
     mentions = mentions.orElse(emptyList()),
     giftBadge = giftBadge,
     isActivatePaymentsRequest = activatePaymentsRequest,
-    isPaymentsActivated = paymentsActivated
+    isPaymentsActivated = paymentsActivated,
+    messageRanges = messageRanges
   )
 
   companion object {

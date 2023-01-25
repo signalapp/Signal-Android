@@ -99,7 +99,7 @@ class MessageQuotesRepository {
       .buildUpdatedModels(ApplicationDependencies.getApplication(), listOf(originalRecord))
       .get(0)
 
-    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, originalRecord.getDisplayBody(application), false)
+    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, false)
 
     return replies + originalMessage
   }
