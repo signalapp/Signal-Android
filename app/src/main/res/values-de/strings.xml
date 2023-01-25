@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Letzte Unterhaltungen</string>
     <string name="ContactsCursorLoader_contacts">Kontakte</string>
     <string name="ContactsCursorLoader_groups">Gruppen</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Rufnummernsuche</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Nach Nutzernamen suchen</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">Meine Storys</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Neu</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Nachricht %1$s</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Sicherung erstellen</string>
     <string name="BackupsPreferenceFragment__last_backup">Letzte Sicherung: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Ordner für Datensicherung</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Sicherungspassphrase überprüfen</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deiner Datensicherung und vergewissere dich, dass du sie öffnen kannst</string>
     <string name="BackupsPreferenceFragment__turn_on">Einschalten</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">Die Rufnummer von %1$s hat sich geändert.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Dir gefällt diese neue Funktion? Unterstütze Signal mit einer einmaligen Spende.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Dein Nachrichtenverlauf mit %1$s und seiner*ihrer Nummer %2$s wurde zusammengeführt.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Dein Nachrichtenverlauf mit %1$s und einer anderen Unterhaltung, die dazu gehört, wurde zusammengeführt.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Du hast %1$s eine Anfrage zur Aktivierung von Zahlungen geschickt.</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">Wähle dein Land aus</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Du musst deine Landesvorwahl angeben
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">Du musst deine Rufnummer angeben
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">Ungültige Rufnummer</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die angegebene Rufnummer (%1$s) ist ungültig.
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">Weiter</string>
     <string name="RegistrationActivity_continue">Weiter</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Nimm Privatsphäre mit dir.\nSei du selbst in jeder Nachricht.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Gib deine Rufnummer ein, um zu beginnen</string>
     <string name="RegistrationActivity_enter_your_phone_number">Gib deine Rufnummer ein</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Du wirst einen Verifikationscode erhalten. Dabei können Mobilfunkgebühren anfallen.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Gib den Code ein, den wir an %1$s gesendet haben</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sorge für den Empfang deiner SMS oder deines Anrufs dafür, dass dein Telefon Mobilfunkempfang hat.</string>
 
     <string name="RegistrationActivity_phone_number_description">Rufnummer</string>
     <string name="RegistrationActivity_country_code_description">Landesvorwahl</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">Mich anrufen</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Registrierungssperre einschalten?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">Medienfehler</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fehler beim Löschen der Nachricht, die Nachricht ist möglicherweise noch vorhanden</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d neue Nachrichten in %2$d Unterhaltungen</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Neue PIN erstellen</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Du kannst deine PIN solange ändern, wie dieses Gerät registriert ist.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Deine PIN erstellen</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Wähle eine stärkere PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINs stimmen nicht überein. Bitte versuche es erneut.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Bestätige deine PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN konnte nicht erstellt werden</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Deine PIN wurde nicht gespeichert. Wir werden dich später daran erinnern, eine PIN zu erstellen.</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Dein Backup enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle ein neues Backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
-    <string name="RegistrationActivity_wrong_number">Falsche Rufnummer</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Mich stattdessen anrufen \n (Verfügbar in %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal-Support kontaktieren</string>
     <string name="RegistrationActivity_code_support_subject">Signal-Registrierung – Verifikationscode für Android</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Alle Mitglieder in der Gruppenunterhaltung können Antworten auf die Story sehen.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Weiter</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS exportieren</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

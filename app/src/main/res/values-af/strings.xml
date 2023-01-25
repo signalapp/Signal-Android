@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Onlangse gesprekke</string>
     <string name="ContactsCursorLoader_contacts">Kontakte</string>
     <string name="ContactsCursorLoader_groups">Groepe</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Foonnommer-soek</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Vind volgens gebruikersnaam</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">My Stories</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Nuut</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Boodskap %1$s</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Skep rugsteunkopie</string>
     <string name="BackupsPreferenceFragment__last_backup">Laaste rugsteun: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Rugsteungids</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifieer rugsteun-wagwoordfrase</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Toets jou wagwoordfrase en verifieer dat dit ooreenkom</string>
     <string name="BackupsPreferenceFragment__turn_on">Skakel aan</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s het hul telefoonnommer verander.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Hou jy van hierdie nuwe kenmerk? Help om Signal te ondersteun met \'n eenmalige skenking.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Jou boodskapgeskiedenis met %1$s en hul nommer %2$s is saamgevoeg.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jou boodskapgeskiedenis met %1$s en \'n ander klets wat aan hulle behoort het, is saamgevoeg.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Jy het vir %1$s \'n versoek gestuur om Betalings te aktiveer</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">Kies jou land</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Jy moet jou landkode spesifiseer
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">Jy moet jou telefoonnommer spesifiseer
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">Ongeldige nommer</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Die nommer wat jy gespesifiseer het (%1$s), is ongeldig.
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">Volgende</string>
     <string name="RegistrationActivity_continue">Gaan voort</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Neem privaatheid saam met jou.\nWees jouself in elke boodskap.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Tik jou telefoonnommer in om te begin</string>
     <string name="RegistrationActivity_enter_your_phone_number">Voer jou foonnommer in</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Jy sal ’n verifikasiekode ontvang. Jy sal dalk draer-/diensverskafferfooie moet betaal.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Voer die kode in wat aan %1$s gestuur is</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Maak seker jou foon het ’n sellulêre sein om jou SMS of oproep te kan ontvang</string>
 
     <string name="RegistrationActivity_phone_number_description">Telefoonnommer</string>
     <string name="RegistrationActivity_country_code_description">Landkode</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">Bel</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Skakel registrasieslot aan?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">Mediafout</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Fout met skrap van boodskap, boodskap mag dalk nog bestaan</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d nuwe boodskappe in %2$d gesprekke</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Skep \'n nuwe PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Jy kan jou PIN verander solank hierdie toestel geregistreer is.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Skep jou PIN</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN\'s hou inligting wat in Signal gestoor is, geënkripteer sodat jy alleen toegang daartoe het. Jou profiel, instellings en kontakte sal herstel word wanneer jy herinstalleer. Jy sal nie jou PIN nodig hê om die toepassing oop te maak nie.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Kies ’n sterker PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN’s is nie dieselfde nie. Probeer weer.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Voer jou PIN weer in.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Kon nie PIN skep nie</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Jou PIN is nie gestoor nie. Ons sal jou later herinner om ’n PIN te skep.</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jou rugsteun bevat \'n baie groot lêer wat nie gerugsteun kan word nie. Skrap dit asb. en skep \'n nuwe rugsteun.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tik om rugsteunkopieë te bestuur.</string>
-    <string name="RegistrationActivity_wrong_number">Verkeerde nommer</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Bel my eerder \n (Beskikbaar oor %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontak Signal-steundiens</string>
     <string name="RegistrationActivity_code_support_subject">Signal-registrasie - verifikasiekode vir Android</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Alle groepkletslede kan antwoorde op stories sien.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Volgende</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Voer SMS\'e uit</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

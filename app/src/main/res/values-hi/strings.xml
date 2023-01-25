@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">नवीनतम बातचीत</string>
     <string name="ContactsCursorLoader_contacts">संपर्क</string>
     <string name="ContactsCursorLoader_groups">समूह</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">फ़ोन नंबर खोजें</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">यूज़रनेम द्वारा खोजें</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">मेरी स्टोरीज़</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">नया</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s को मेसेज</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">बैकअप बनाओ</string>
     <string name="BackupsPreferenceFragment__last_backup">पिछला बैकअप:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">बैकअप फ़ोल्डर</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">बैकअप पासफ्रेज की पुष्टि करें</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">अपने बैकअप पासफ्रेज की जाँच करें और इसके मेल खाने की पुष्टि करें</string>
     <string name="BackupsPreferenceFragment__turn_on">शुरु करें</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपने फ़ोन नंबर बदल दिए।</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">यह नया फ़ीचर पसंद आया? एक बार का दान देकर Signal को सहयोग देने में मदद करें।</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s के साथ आपके संदेश इतिहास को उनके नंबर %2$s के साथ जोड़ दिया गया है।</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s के साथ आपके संदेश इतिहास को उनके साथ ही किसी अन्य चैट के साथ जोड़ दिया गया है।</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">आपने भुगतान सक्रीय करने हेतु %1$s को एक अनुरोध भेजा</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">आपको अपना फोन नंबर निर्दिष्ट करना होगा
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">अवैध नंबर</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%1$s) अमान्य है।
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">अगला</string>
     <string name="RegistrationActivity_continue">आगे</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">अपनी गुप्तता बानाये रखें। वास्तविक बने रहें|</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">आरंभ करने के लिए अपना फोन नंबर दर्ज करें</string>
     <string name="RegistrationActivity_enter_your_phone_number">अपना फ़ोन नंबर दर्ज करें</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">आपको एक सत्यापन कोड प्राप्त होगा। कैरियर दरें लागू हो सकती हैं।</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s को भेजे गए सत्यापन कोड दर्ज करें</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">सुनिश्चित करें कि आपके फ़ोन में आपका SMS या कॉल प्राप्त करने के लिए सेल्यूलर सिग्नल है</string>
 
     <string name="RegistrationActivity_phone_number_description">फोन नंबर</string>
     <string name="RegistrationActivity_country_code_description">देश कोड</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">कोल</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">रजिस्ट्रेशन लॉक चालू करना है?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">मीडिया त्रुटि</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">संदेश डिलीट करने में त्रुटि हुई, शायद संदेश अब भी मौजूद हो</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d संवाद में %1$d नए मेसेज</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">नया पिेन बनाएँ</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">जब तक आपका डिवाइस पंजीकृत है, आप अपना पिन कभी भी बदल सकते हैं।</string>
     <string name="CreateKbsPinFragment__create_your_pin">अपना पिन बनाएँ</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">पिन Signal द्वारा संग्रहीत जानकारी को एन्क्रिप्ट रखता है, ताकी सिर्फ़ आप उसे देख पाएँ। आपका प्रोफ़ाइल, सेटिंग्स, और संपर्क, अपके Signal इंस्टाॅल के बाद, पुनः स्थापित हो जाऐंगे। ऐप को खोलने के लिए आपको पिन की ज़रूरत नहीं होगी।</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">औेर कठिन पिन चुनें</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">पिन मेल नहीं खाते। पुनः प्रयास करें।</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">अपने पिन की पुष्टि करें।</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">पिन निर्माण विफल रहा</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">आपका पिन सहेजा नहीं गया था| हम आपको बाद में एक पिन बनाने के लिए संकेत देंगे।</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपके बैकअप में एक बहुत बड़ी फ़ाइल है जिसका बैकअप नहीं किया जा सकता। कृपया उसे डिलीट करके एक नया बैकअप बनाएँ।</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">बैकअप प्रबंधन के लिए टैप करें</string>
-    <string name="RegistrationActivity_wrong_number">गलत नंबर</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">मुझे काॅल करें (%1$02d:%2$02d में उपलब्ध)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal समर्थन से संपर्क करें</string>
     <string name="RegistrationActivity_code_support_subject">Signal पंजीकरण - Android के लिये वेरीफिकेशन कोड</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">ग्रुप चैट के सभी सदस्य स्टोरी पर मिलनेवाले जवाब देख सकते हैं।</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">अगला</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS निर्यात करें</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

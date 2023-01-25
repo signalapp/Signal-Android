@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Nesenās sarunas</string>
     <string name="ContactsCursorLoader_contacts">Kontakti</string>
     <string name="ContactsCursorLoader_groups">Grupas</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Tālruņa numura meklēšana</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Atrast pēc lietotājvārds</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">Mani stāsti</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Jauns</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Ziņa %1$s</string>
@@ -613,6 +619,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Izveidot rezerves kopiju</string>
     <string name="BackupsPreferenceFragment__last_backup">Pēdējā rezerves kopija: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Rezerves kopiju mape</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Pārbaudiet rezerves kopijas paroles frāzi, un pārliecinieties, ka tā sakrīt</string>
     <string name="BackupsPreferenceFragment__turn_on">Ieslēgt</string>
@@ -1418,10 +1426,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s nomainīja savu telefona numuru.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Jums patīk šī jaunā funkcija? Palīdziet atbalstīt Signal ar vienreizēju ziedojumu.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Jūsu ziņu vēsture ar lietotāju %1$s un šī lietotāja numuru %2$s ir apvienota.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Jūsu ziņu vēsture ar lietotāju %1$s un citu šī lietotāja sarunu ir apvienota.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Jūs nosūtījāt lietotājam %1$s pieprasījumu aktivizēt maksājumus</string>
     <!-- Request message from recipient to activate payments -->
@@ -1764,8 +1774,7 @@
     <string name="RegistrationActivity_select_your_country">Izvēlieties savu valsti</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Jums jānorāda savas valsts kods
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">Jums jānorāda savs tālruņa numurs
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">Nederīgs numurs</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numurs, kuru jūs norādījāt (%1$s), ir nederīgs
     </string>
@@ -1796,15 +1805,17 @@
     <string name="RegistrationActivity_next">Tālāk</string>
     <string name="RegistrationActivity_continue">Turpināt</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Ņem privātumu savās rokās.\nKatrā rakstītajā ziņā esi tu pats!</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Lai sāktu, ievadiet savu numuru</string>
     <string name="RegistrationActivity_enter_your_phone_number">Ievadiet savu tālruņa numuru</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Jūs saņemsiet verifikācijas kodu. Var tikt piemēroti mobilā operatora tarifi.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ievadiet kodu, kuru nosūtījām uz %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pārbaudiet, vai tālrunim ir mobilā tīkla signāls, lai saņemtu īsziņu vai zvanu</string>
 
     <string name="RegistrationActivity_phone_number_description">Tālruņa numurs</string>
     <string name="RegistrationActivity_country_code_description">Valsts kods</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">Zvanīt</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Ieslēgt reģistrācijas bloķēšanu?</string>
@@ -2077,6 +2088,8 @@
     <string name="MediaPreviewFragment_edit_media_error">Multivides faila kļūda</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Dzēšot ziņu, radās kļūda. Ziņa var nebūt izdzēsta</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d jaunas ziņas %2$dsarunās</string>
@@ -3262,11 +3275,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Izveidot jaunu PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Varat labot PIN kamēr ierīce ir reģistrēta.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Izveido savu PIN</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN kodos ir informācija, kas lietotnē Signal ir šifrēta, lai šai informācijai varētu piekļūt tikai jūs. Veicot atkārtotu instalēšanu, jūsu profils, iestatījumi un kontaktpersonas tiks atjaunotas. Lai atvērtu lietotni, PIN kods nebūs nepieciešams.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izveidojiet sarežģītāku PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINi nesakrīt. Mēģiniet vēlreiz.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Apstiprināt PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN izveide neizdevās</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Jūsu PIN netika saglabāts. Mēs aicināsim jūs izveidot PIN vēlāk.</string>
@@ -3411,7 +3426,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Jūsu rezerves kopija satur ļoti lielu failu, ko nav iespējams dublēt. Lūdzu, izdzēsiet to un izveidojiet jaunu rezerves kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pieskarties, lai pārvaldību rezerves kopijas</string>
-    <string name="RegistrationActivity_wrong_number">Nepareizs numurs</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Tā vietā piezvaniet man \n (Pieejams pēc %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Sazināties ar Signal tehnisko atbalstu</string>
     <string name="RegistrationActivity_code_support_subject">Signal reģistrācija - Android ierīces verifikācijas kods</string>
@@ -5586,6 +5601,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Visi grupas čata dalībnieki var skatīt stāstu atbildes.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Tālāk</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5614,4 +5630,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Eksportēt īsziņas</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

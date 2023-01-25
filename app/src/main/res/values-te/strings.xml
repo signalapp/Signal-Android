@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">ఇటీవలి చాట్లు</string>
     <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
     <string name="ContactsCursorLoader_groups">సమూహాలు</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">యూజర్‌నేమ్ ద్వారా కనుగొనండి</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">నా స్టోరీస్</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">కొత్తది</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$sకి సందేశం పంపు</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">ప్రత్యామ్నాయ సృష్టించు</string>
     <string name="BackupsPreferenceFragment__last_backup">మునుపటి బ్యాకప్: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">బ్యాకప్ ఫోల్డర్</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">బ్యాకప్ పాస్‌ఫ్రేజ్‌ని ధృవీకరించండి</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">మీ ప్రత్యామ్నాయము పాస్‌ఫ్రేజ్‌ని పరీక్షించండి మరియు అది సరిపోతుందో లేదో ధృవీకరించండి</string>
     <string name="BackupsPreferenceFragment__turn_on">ఆరంభించండి</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s వారి ఫోన్ నెంబర్‌ని మార్చారు.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ఈ కొత్త ఫీచర్ నచ్చిందా? ఒక్కసారి విరాళంతో Signal కు మద్దతు ఇవ్వడానికి సహాయపడండి.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటి నంబరు %2$s విలీనం చేయబడ్డాయి.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s తో మీ సందేశ చరిత్ర మరియు వాటికి సంబంధించిన మరో చాట్ విలీనం చేయబడ్డాయి.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">చెల్లింపులను యాక్టివేట్ చేయడానికి మీరు %1$s కు ఒక అభ్యర్థనను పంపారు</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">మీ దేశాన్ని ఎంచుకోండి</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">మీరు మీ దేశం కోడ్ తప్పకుండా పేర్కొనాలి
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">మీరు మీ ఫోను నంబరు తప్పకుండా పేర్కొనాలి
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">చెల్లని సంఖ్య</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">మీరు పేర్కొన్న సంఖ్య (%1$s) చెల్లదు.
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">తరువాత</string>
     <string name="RegistrationActivity_continue">కొనసాగించు</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">మీతో గోప్యతను తీసుకోండి.\nప్రతి సందేశంలో మీరే ఉండండి.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ప్రారంభించడానికి మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
     <string name="RegistrationActivity_enter_your_phone_number">మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">మేము పంపిన కోడ్‌ను నమోదు చేయండి %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">మీ SMS లేదా కాల్‌ను స్వీకరించడానికి మీ ఫోన్‌కు సెల్యులార్ సంకేతం ఉందని నిర్ధారించుకోండి</string>
 
     <string name="RegistrationActivity_phone_number_description">ఫోను నంబరు</string>
     <string name="RegistrationActivity_country_code_description">దేశం కోడ్</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">కాల్</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">రిజిస్ట్రేషన్ లాక్ ఆన్ చేయాలా?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">మీడియా లోపం</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">సందేశాన్ని తొలగించడంలో లోపం. సందేశం ఇప్పటికీ ఉండవచ్చు</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d సంభాషణలొ కొత్త %1$d సందేశాలు</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">క్రొత్త పిన్ను సృష్టించండి</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ఈ పరికరం నమోదు చేయబడినంత వరకు మీరు మీ పిన్‌ను మార్చవచ్చు.</string>
     <string name="CreateKbsPinFragment__create_your_pin">మీ పిన్ను సృష్టించండి</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">పిన్‌లు Signal గుప్తీకరించిన సమాచారాన్ని నిల్వ చేస్తాయి కాబట్టి మీరు మాత్రమే దీన్ని యాక్సెస్ చేయవచ్చు. మీరు మళ్లీ ఇన్‌స్టాల్ చేసినప్పుడు మీ ప్రొఫైల్, సెట్టింగ్‌లు మరియు పరిచయాలు పునరుద్ధరించబడతాయి. యాప్ తెరవడానికి మీకు మీ పిన్ అవసరం లేదు</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">బలమైన పిన్ను ఎంచుకోండి</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">పిన్‌లు సరిపోలడం లేదు. మళ్ళీ ప్రయత్నించండి.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">మీ పిన్ను నిర్ధారించండి.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">పిన్ సృష్టి విఫలమైంది</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">మీ పిన్ సేవ్ చేయబడలేదు. తరువాత పిన్ సృష్టించమని మేము మిమ్మల్ని అడుగుతాము.</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">మీ బ్యాకప్‌లో బ్యాకప్ చేయలేని చాలా పెద్ద ఫైలు ఉంది. దయచేసి దానిని తొలగించండి మరియు కొత్త బ్యాకప్‌ని సృష్టించండి.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ప్రత్యామ్నాయములు ను నిర్వహించడానికి నొక్కండి.</string>
-    <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్య</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">బదులుగా నాకు కాల్ చేయండి \n (అందుబాటులో ఉంది %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">గ్రూప్ చాట్ సభ్యులు అందరూ కథ ప్రత్యుత్తరాలను వీక్షించవచ్చు.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">తరువాత</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS ఎగుమతి చేయండి</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">최근 대화</string>
     <string name="ContactsCursorLoader_contacts">연락처</string>
     <string name="ContactsCursorLoader_groups">그룹</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">전화번호 검색</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">사용자명으로 검색</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">내 스토리</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">새 스토리</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$s에 메시지 보내기</string>
@@ -573,6 +579,8 @@
     <string name="BackupsPreferenceFragment__create_backup">백업 생성</string>
     <string name="BackupsPreferenceFragment__last_backup">마지막 백업: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">백업 폴더</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">백업 암호 인증</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">백업 암호를 테스트하고 일치함을 인증</string>
     <string name="BackupsPreferenceFragment__turn_on">켜기</string>
@@ -1306,10 +1314,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s가 자신의 전화번호를 변경하였습니다.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">새로운 기능이 마음에 드시나요? 일회성 기부로 Signal을 지원해 주세요.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s 님과 해당 사용자 번호 %2$s의 메시지 기록을 병합했습니다.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s 님과의 메시지 기록과 해당 사용자가 속하는 다른 채팅의 메시지 기록을 병합했습니다.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">%1$s 님에게 결제를 활성화해달라는 요청을 보냈습니다.</string>
     <!-- Request message from recipient to activate payments -->
@@ -1624,8 +1634,7 @@
     <string name="RegistrationActivity_select_your_country">국가 선택</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">국가 번호를 입력해야 합니다.
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">전화번호를 입력해야 합니다.
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">잘못된 전화번호</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">입력한 전화번호 (%1$s)가 잘못되었습니다.
     </string>
@@ -1654,15 +1663,17 @@
     <string name="RegistrationActivity_next">다음</string>
     <string name="RegistrationActivity_continue">확인</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">내 개인 정보는 내 손에서만.\n안전하게 메시지를 보내세요.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">시작하려면 휴대 전화 번호를 입력하세요.</string>
     <string name="RegistrationActivity_enter_your_phone_number">전화번호를 입력하세요.</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">인증 코드를 보내드립니다. 통신사 요금이 적용될 수 있습니다.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s 번호로 보낸 코드를 입력해 주세요.</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS 또는 전화를 수신하려면 휴대전화에서 데이터 네트워크가 켜져 있어야 합니다.</string>
 
     <string name="RegistrationActivity_phone_number_description">전화번호</string>
     <string name="RegistrationActivity_country_code_description">국가 번호</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">전화</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">등록 잠금을 켜시겠습니까?</string>
@@ -1933,6 +1944,8 @@
     <string name="MediaPreviewFragment_edit_media_error">미디어 오류</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">메시지 삭제 중 오류가 발생했습니다. 메시지가 삭제되지 않았을 수 있습니다.</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">대화 %2$d개 내 새 메시지 %1$d개</string>
@@ -3088,11 +3101,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">새 번호 생성</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">기기가 등록된 동안은 PIN 번호를 언제든지 변경할 수 있습니다</string>
     <string name="CreateKbsPinFragment__create_your_pin">내 번호 생성</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN은 Signal을 암호화하여 저장된 정보를 유지하므로 사용자만 액세스할 수 있습니다. 다시 설치하면 프로필, 설정 및 연락처가 복원됩니다. 앱을 여는 데는 PIN이 필요하지 않습니다.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">더 강력한 PIN 번호 선택</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">번호가 일치하지 않습니다. 다시 시도해 주세요.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">번호를 확인하세요.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">번호 생성 실패</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">번호가 저장되지 않았습니다. 번호를 생성할 수 있을 때 다시 알려드리겠습니다.</string>
@@ -3227,7 +3242,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">백업에 대용량 파일이 포함되어 있습니다. 이 파일을 삭제하고 새로운 백업을 만드세요.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">탭하여 백업을 관리하세요.</string>
-    <string name="RegistrationActivity_wrong_number">잘못된 번호</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">전화로 인증\n(%1$02d:%2$02d 이후 이용 가능)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
     <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
@@ -5338,6 +5353,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">모든 그룹 채팅 멤버가 스토리 답장을 볼 수 있습니다.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">다음</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5366,4 +5382,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS 내보내기</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">சமீபத்திய உரையாடல்கள்</string>
     <string name="ContactsCursorLoader_contacts">தொடர்புகள்</string>
     <string name="ContactsCursorLoader_groups">குழுக்கள்</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">தொலைபேசி எண் தேடல்</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">பயனர் பெயர் மூலம் கண்டறியவும்</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">எனது ஸ்டோரீஸ்</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">புதியது</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">செய்தி %1$s</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">காப்புப்பதிவு பயனர் தரவு உருவாக்கவும்</string>
     <string name="BackupsPreferenceFragment__last_backup">கடைசியாக மறுபிரதி எடுக்கப்பட்டது:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">மறுபிரதி கோப்புறை</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">காப்புப்பிரதி கடவுச்சொற்றொடரை சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரைச் சோதித்து, அது பொருந்துமா என்பதைச் சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__turn_on">இயக்கவும்</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s அவர்களது தொலைபேசி எண்ணை மாற்றியுள்ளார்.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">இந்த புதிய அம்சம் பிடித்திருக்கிறதா? ஒரு முறைக்கான நன்கொடை மூலம் Signalஐ ஆதரித்து உதவுங்கள்.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறு மற்றும் அவர்களின் எண் %2$s இணைக்கப்பட்டது.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s உடனான உங்கள் செய்தி வரலாறும் அவர்களுக்குச் சொந்தமான மற்றொரு சாட்டும் இணைக்கப்பட்டது.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">கட்டணங்களைச் செயல்படுத்த %1$s க்குக் கோரிக்கை அனுப்பியுள்ளீர்கள்</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக குறிப்பிடவேண்டியது உங்கள்: நாட்டின் குறியீடு
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">நீங்கள் குறிப்பிடவேண்டியது உங்கள்: தொலைபேசி எண்
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட எண் (%1$s) செல்லாது.
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">அடுத்தது</string>
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">தொடங்க உங்கள் தொலைபேசி எண்ணை உள்ளிடவும்</string>
     <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
 
     <string name="RegistrationActivity_phone_number_description">தொலைபேசி எண்</string>
     <string name="RegistrationActivity_country_code_description">நாட்டின் குறியீடு</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">அழை</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">பதிவு பூட்டை இயக்கவா?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">மீடியா பிழை</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">செய்தியை நீக்குவதில் பிழை, செய்தி இன்னும் இருக்கலாம்</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
     <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Signal இடம் சேமிக்கப்படும் தகவல்களை மறையாக்கி நீங்கள் மட்டும் அணுகும் வகையில் PIN-கள் வைக்கும். நீங்கள் மீண்டும் நிறுவும்போது உங்கள் சுயவிவரம், அமைப்புகள் மற்றும் தொடர்புகள் மீட்டமைக்கப்படும். பயன்பாட்டைத் திறக்க உங்கள் PIN தேவைப்படாது.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">உங்கள் காப்புப்பிரதியில் நகலெடுக்க முடியாத மிகப் பெரிய கோப்பு ஒன்று உள்ளது. தயவுசெய்து அதை நீக்கிவிட்டு ஒரு புதிய காப்புப்பிரதியை உருவாக்கவும்.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
-    <string name="RegistrationActivity_wrong_number">தவறான எண்</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">அதற்கு பதிலாக என்னை அழைக்கவும் \\ n ( %1$02d :%2$02d இல் கிடைக்கும்)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">அனைத்து குழு சாட்ஸ் உறுப்பினர்களும் ஸ்டோரி பதில்களைப் பார்க்கலாம்.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">அடுத்தது</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMSஐ ஏற்றுமதி செய்</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

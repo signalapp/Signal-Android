@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Trò chuyện gần đây</string>
     <string name="ContactsCursorLoader_contacts">Danh bạ</string>
     <string name="ContactsCursorLoader_groups">Nhóm</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Tìm theo tên người dùng</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">Các Story của tôi</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Mới</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Tin nhắn %1$s</string>
@@ -573,6 +579,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Tạo bản sao lưu</string>
     <string name="BackupsPreferenceFragment__last_backup">Sao lưu gần đây nhất: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Thư mục sao lưu</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Xác minh mật khẩu sao lưu</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Kiểm tra mật khẩu sao lưu của bạn xem có khớp không</string>
     <string name="BackupsPreferenceFragment__turn_on">Bật</string>
@@ -1306,10 +1314,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s đã đổi số điện thoại của mình.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Bạn thích tính năng mới này? Hãy hỗ trợ Signal với khoản ủng hộ một lần.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Lịch sử tin nhắn của bạn với %1$s và số điện thoại %2$s của liên hệ này đã được hợp nhất.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Lịch sử tin nhắn của bạn với %1$s và một cuộc trò chuyện khác của liên hệ này đã được hợp nhất.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Bạn đã gửi cho %1$s một yêu cầu bật tính năng Thanh toán</string>
     <!-- Request message from recipient to activate payments -->
@@ -1624,8 +1634,7 @@
     <string name="RegistrationActivity_select_your_country">Chọn quốc gia bạn</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Bạn phải cho biết mã quốc gia bạn
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">Bạn phải cho biết số điện thoại của bạn
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">Số không hợp lệ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Số bạn cung cấp (%1$s) không hợp lệ.
     </string>
@@ -1654,15 +1663,17 @@
     <string name="RegistrationActivity_next">Tiếp</string>
     <string name="RegistrationActivity_continue">Tiếp tục</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mang quyền riêng tư luôn bên bạn.\nHãy là chính mình trong từng tin nhắn.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Điền số điện thoại của bạn để bắt đầu</string>
     <string name="RegistrationActivity_enter_your_phone_number">Nhập số điện thoại của bạn</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh. Có thể mất phí nhà mạng.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Đảm bảo là điện thoại của bạn có tín hiệu di động để nhận tin nhắn SMS hoặc cuộc gọi</string>
 
     <string name="RegistrationActivity_phone_number_description">Số điện thoại</string>
     <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">Gọi</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Bật Khóa đăng kí?</string>
@@ -1933,6 +1944,8 @@
     <string name="MediaPreviewFragment_edit_media_error">Lỗi tệp Đa phương tiện</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Có lỗi khi xóa tin nhắn, tin nhắn có thể vẫn còn</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc trò chuyện</string>
@@ -3088,11 +3101,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bạn có thể thay đổi mã PIN của bạn với điều kiện thiết bị được đăng ký.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">Mã PIN mã hoá các thông tin được lưu trữ với Signal để chỉ mình bạn có thể truy cập được. Thông tin người dùng, cài đặt, và các liên hệ sẽ được khôi phục khi bạn cài lại Signal. Bạn không cần điền PIN mỗi lần mở ứng dụng.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chọn mã PIN mạnh hơn</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Không thể tạo mã PIN</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
@@ -3227,7 +3242,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Bản lưu dự phòng của bạn chứa một tập tin rất lớn và không thể được sao lưu. Vui lòng xóa tập tin đó và tạo một bản lưu dự phòng mới.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Nhấn để quản lý các bản sao lưu.</string>
-    <string name="RegistrationActivity_wrong_number">Sai số điện thoại</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Hãy gọi tôi \n (Khả dụng sau %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
     <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
@@ -5338,6 +5353,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Tất cả thành viên của cuộc trò chuyện nhóm có thể xem các câu trả lời của story.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Tiếp</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5366,4 +5382,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Xuất SMS</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

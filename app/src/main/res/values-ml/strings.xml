@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">സമീപകാല ചാറ്റുകൾ</string>
     <string name="ContactsCursorLoader_contacts">കോൺ‌ടാക്റ്റുകൾ</string>
     <string name="ContactsCursorLoader_groups">ഗ്രൂപ്പുകൾ</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">ഫോൺ നമ്പർ തിരയൽ</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ഉപയോക്തൃനാമം ഉപയോഗിച്ച് കണ്ടെത്തുക</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">എന്റെ സ്റ്റോറികൾ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">പുതിയത്</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">സന്ദേശ൦ %1$s</string>
@@ -593,6 +599,8 @@
     <string name="BackupsPreferenceFragment__create_backup">ബാക്കപ്പ് സൃഷ്ടിക്കുക</string>
     <string name="BackupsPreferenceFragment__last_backup">അവസാന ബാക്കപ്പ്:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">ബാക്കപ്പ് ഫോൾഡർ</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം ഉറപ്പാക്കുക</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് രഹസ്യവാക്യം പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
     <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
@@ -1362,10 +1370,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s അവരുടെ ഫോൺ നമ്പർ മാറ്റി.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ഈ പുതിയ സവിശേഷത ഇഷ്‌ടമായോ? ഒരു ഒറ്റത്തവണ സംഭാവന നൽകി Signal-നെ പിന്തുണയ്ക്കൂ.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സന്ദേശ ചരിത്രവും അവരുടെ %2$s നമ്പരും ലയിപ്പിച്ചു.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സന്ദേശ ചരിത്രവും അവരുടേതായ മറ്റൊരു ചാറ്റും ലയിപ്പിച്ചിരിക്കുന്നു.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">പേയ്മെന്റുകൾ ആക്‌ടിവേറ്റ് ചെയ്യാൻ നിങ്ങൾ %1$s എന്നതിന് ഒരു അഭ്യർത്ഥന അയച്ചു</string>
     <!-- Request message from recipient to activate payments -->
@@ -1694,8 +1704,7 @@
     <string name="RegistrationActivity_select_your_country">നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുക്കുക</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">നിങ്ങളുടെ രാജ്യ കോഡ് വ്യക്തമാക്കണം
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ വ്യക്തമാക്കണം
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">അസാധുവായ നമ്പർ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ (%1$s) അസാധുവാണ്.
     </string>
@@ -1725,15 +1734,17 @@
     <string name="RegistrationActivity_next">അടുത്തത്</string>
     <string name="RegistrationActivity_continue">തുടരുക</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">ആരംഭിക്കാൻ നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
     <string name="RegistrationActivity_enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">നിങ്ങളുടെ SMS അല്ലെങ്കിൽ കോൾ സ്വീകരിക്കുന്നതിന് നിങ്ങളുടെ ഫോണിന് സെല്ലുലാർ സിഗ്നൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
 
     <string name="RegistrationActivity_phone_number_description">ഫോൺ നമ്പർ</string>
     <string name="RegistrationActivity_country_code_description">രാജ്യ കോഡ്</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">വിളിക്കുക</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">രജിസ്ട്രേഷൻ ലോക്ക് ഓണാക്കണോ?</string>
@@ -2005,6 +2016,8 @@
     <string name="MediaPreviewFragment_edit_media_error">മീഡിയ പിശക്</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">സന്ദേശം ഇല്ലാതാക്കുന്നതിൽ പിശക്, എന്നിരുന്നാലും സന്ദേശം നിലനിന്നേക്കും</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d സംഭാഷണങ്ങളിൽ %1$d പുതിയ സന്ദേശങ്ങൾ</string>
@@ -3175,11 +3188,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">ഒരു പുതിയ PIN സൃഷ്ടിക്കുക</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ഈ ഡിവൈസ് രജിസ്റ്റർ ചെയ്തിരിക്കുന്ന കാലത്തോളം നിങ്ങൾക്ക് നിങ്ങളുടെ PIN മാറ്റാവുന്നതാണ്.</string>
     <string name="CreateKbsPinFragment__create_your_pin">നിങ്ങളുടെ PIN സൃഷ്ടിക്കുക</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN-ഉകൾ / പിന്നുകൾ (സിഗ്നൽ ഉപയോഗിച്ച് സംഭരിച്ചിരിക്കുന്ന) വിവരങ്ങൾ എൻ‌ക്രിപ്റ്റ് ചെയ്യുന്നതിനാൽ നിങ്ങൾക്ക് മാത്രമേ ഇത് ആക്സസ് ചെയ്യാൻ കഴിയൂ. നിങ്ങൾ വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുമ്പോൾ നിങ്ങളുടെ പ്രൊഫൈൽ, ക്രമീകരണങ്ങൾ, കോൺടാക്റ്റുകൾ എന്നിവ പുന.സ്ഥാപിക്കും. അപ്ലിക്കേഷൻ തുറക്കാൻ നിങ്ങളുടെ PIN (പിൻ) ആവശ്യം വരില്ല.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">ശക്തമായ ഒരു PIN തിരഞ്ഞെടുക്കുക</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-കൾ പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">നിങ്ങളുടെ PIN ഉറപ്പാക്കു.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">നിങ്ങളുടെ PIN സംരക്ഷിച്ചില്ല. പിന്നീട് ഒരു PIN സൃഷ്ടിക്കാൻ ഞങ്ങൾ നിങ്ങളോട് ആവശ്യപ്പെടും.</string>
@@ -3319,7 +3334,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ബാക്കപ്പ് ചെയ്യാൻ കഴിയാത്ത വളരെ വലിയ ഒരു ഫയൽ നിങ്ങളുടെ ബാക്കപ്പിൽ ഉൾപ്പെട്ടിട്ടുണ്ട്. അത് ഇല്ലാതാക്കിയ ശേഷം പുതിയ ഒരു ബാക്കപ്പ് സൃഷ്‌ടിക്കുക.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ബാക്കപ്പുകൾ നിയന്ത്രിക്കാൻ തൊടുക.</string>
-    <string name="RegistrationActivity_wrong_number">തെറ്റായ നമ്പർ</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">പകരം എന്നെ വിളിക്കൂ \n(%1$02d:%2$02d ൽ ലഭ്യമാകും)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal പിന്തുണ ബന്ധപ്പെടുക</string>
     <string name="RegistrationActivity_code_support_subject">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള സ്ഥിരീകരണ കോഡ്</string>
@@ -5462,6 +5477,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">എല്ലാ ഗ്രൂപ്പ് ചാറ്റ് അംഗങ്ങൾക്കും സ്റ്റോറി മറുപടികൾ കാണാൻ കഴിയും.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">അടുത്തത്</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5490,4 +5506,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">SMS എക്‌സ്പോർട്ട് ചെയ്യുക</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

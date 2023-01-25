@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">ការសន្ទនាថ្មីៗ</string>
     <string name="ContactsCursorLoader_contacts">បញ្ជីទំនាក់ទំនង</string>
     <string name="ContactsCursorLoader_groups">ក្រុម</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">ស្វែងរកលេខទូរស័ព្ទ</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ស្វែងរកតាមឈ្មោះអ្នកប្រើ</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">រឿងរ៉ាវរបស់ខ្ញុំ</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">ថ្មី</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">សារ %1$s</string>
@@ -573,6 +579,8 @@
     <string name="BackupsPreferenceFragment__create_backup">បង្កើតការបម្រុងទុក</string>
     <string name="BackupsPreferenceFragment__last_backup">ការបម្រុងទុកចុងក្រោយ៖ %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">ថតឯកសារបម្រុងទុក</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ផ្ទៀងផ្ទាត់ឃ្លាសម្ងាត់បម្រុងទុក</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">សាកល្បងឃ្លាសម្ងាត់បម្រុងទុករបស់អ្នក និងផ្ទៀងផ្ទាត់ថាវាត្រូវគ្នា</string>
     <string name="BackupsPreferenceFragment__turn_on">បើក</string>
@@ -1306,10 +1314,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s បានផ្លាស់ប្តូរលេខទូរស័ព្ទរបស់គេ។</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">ចូលចិត្តមុខងារថ្មីនេះឬ? ជួយគាំទ្រ Signal តាមរយៈការបរិច្ចាគតែមួយដង។</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងលេខ %2$s របស់គេត្រូវបានបញ្ចូលគ្នា។</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ប្រវត្តិសាររបស់អ្នកជាមួយ %1$s និងការជជែកមួយផ្សេងទៀតដែលមានគេនៅក្នុងនោះដែរត្រូវបានបញ្ចូលគ្នា។</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">អ្នកបានផ្ញើសំណើទៅ %1$s ដើម្បីបើកដំណើរការការបង់ប្រាក់</string>
     <!-- Request message from recipient to activate payments -->
@@ -1624,8 +1634,7 @@
     <string name="RegistrationActivity_select_your_country">ជ្រើសរើសប្រទេសរបស់អ្នក</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">អ្នកត្រូវបញ្ជាក់ លេខកូដប្រទេសរបស់អ្នក
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">អ្នកត្រូវបញ្ជាក់ លេខទូរស័ព្ទរបស់អ្នក
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">លេខទូរសព្ទមិនត្រឹមត្រូវ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">លេខរបស់អ្នក ដែលបានបញ្ជាក់(%1$s) មិនត្រឹមត្រូវ
     </string>
@@ -1654,15 +1663,17 @@
     <string name="RegistrationActivity_next">បន្ទាប់</string>
     <string name="RegistrationActivity_continue">បន្ត</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">យកភាពឯកជនជាមួយអ្នក។ \\ n សូមធ្វើខ្លួនអ្នកនៅក្នុងគ្រប់សារទាំងអស់។</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">បញ្ចូលលេខទូរស័ព្ទរបស់អ្នកដើម្បីចាប់ផ្ដើម</string>
     <string name="RegistrationActivity_enter_your_phone_number">វាយបញ្ចូលលេខរបស់អ្នក</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">អ្នកនឹងទទួលបានកូដផ្ទៀងផ្ទាត់។ អត្រាគិតប្រាក់ក្រុមហ៊ុនអាចនឹងត្រូវបានអនុវត្ត។</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">បញ្ចូលលេខកូដដែលយើងបានផ្ញើទៅ%1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ប្រាកដថា ទូរស័ព្ទរបស់អ្នកមានសេវា ដើម្បីទទូលបានសារ SMS ឬការហៅ</string>
 
     <string name="RegistrationActivity_phone_number_description">លេខទូរស័ព្ទ</string>
     <string name="RegistrationActivity_country_code_description">កូដប្រទេស</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">ហៅចេញ</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">បើកការចាក់សោរចុះឈ្មោះ?</string>
@@ -1933,6 +1944,8 @@
     <string name="MediaPreviewFragment_edit_media_error">បញ្ហាមេឌៀ</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">មានបញ្ហាក្នុងការលុបសារ ហើយសារអាចនៅតែមាន</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d សារថ្មីក្នុង %2$d ការសន្ទនា</string>
@@ -3088,11 +3101,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">បង្កើតលេខ PIN ថ្មី</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">អ្នកអាចប្តូរលេខ PIN របស់អ្នក លុះត្រាឧបករណ៍នេះត្រូវបានចុះឈ្មោះ។</string>
     <string name="CreateKbsPinFragment__create_your_pin">បង្កើតលេខ PIN របស់អ្នក</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">លេខកូដ​ PINs រក្សាទុកព័ត៌មានជាមួយកូដនីយកម្ម Signal ដូចនេះមានតែអ្នកប៉ុណ្ណោះចូលប្រើប្រាស់វាបាន។ ប្រវត្តិរូប ការកំណត់ និងបញ្ជីទំនាក់ទំនងរបស់អ្នក នឹងស្តារឡើងវិញនៅពេលអ្នកដំឡើងវិញ។ អ្នកនឹងមិនត្រូវការលេខកូដ PIN ដើម្បីបើកកម្មវិធីទេ។</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">ជ្រើសរើសលេខ PIN ខ្លាំងជាងនេះ</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINs មិនត្រូវគ្នា។ សាកល្បងម្តងទៀត។</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">ផ្ទៀងផ្ទាត់លេខ PIN របស់អ្នក។</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">ការបង្កើត PIN បរាជ័យ</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">លេខ PIN របស់អ្នកមិនបានរក្សាទុក។ យើងនឹងណែនាំអ្នកអោយបង្កើតកូដ PIN នៅពេលក្រោយ។</string>
@@ -3227,7 +3242,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ការបម្រុងទុករបស់អ្នកមានឯកសារមួយដែលមានទំហំធំខ្លាំងណាស់ដែលមិនអាចបម្រុងទុកបានទេ។ សូមលុបវា ហើយបង្កើតការបម្រុងទុកថ្មី។</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ចុច ដើម្បីគ្រប់គ្រងការបម្រុងទុក។</string>
-    <string name="RegistrationActivity_wrong_number">ខុសលេខ</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
     <string name="RegistrationActivity_code_support_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
@@ -5338,6 +5353,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">សមាជិកជជែកជាក្រុមទាំងអស់អាចមើលការឆ្លើយតបរឿងរ៉ាវបាន។</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">បន្ទាប់</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5366,4 +5382,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">នាំចេញសារជាអក្សរ</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>

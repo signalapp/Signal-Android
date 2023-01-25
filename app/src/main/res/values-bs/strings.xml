@@ -224,6 +224,8 @@
     <string name="ContactsCursorLoader_recent_chats">Nedavne konverzacije</string>
     <string name="ContactsCursorLoader_contacts">Kontakti</string>
     <string name="ContactsCursorLoader_groups">Grupe</string>
+    <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Pretraživanje po broju</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Pronađite po korisničkom imenu</string>
@@ -231,6 +233,10 @@
     <string name="ContactsCursorLoader_my_stories">Moje priče</string>
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Novo</string>
+    <!-- Header for conversation search section labeled "Chats" -->
+    <string name="ContactsCursorLoader__chats">Chats</string>
+    <!-- Header for conversation search section labeled "Messages" -->
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Poruka %1$s</string>
@@ -633,6 +639,8 @@
     <string name="BackupsPreferenceFragment__create_backup">Kreiraj rezervnu kopiju</string>
     <string name="BackupsPreferenceFragment__last_backup">Zadnja kreirana kopija: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Direktorij za rezervne kopije</string>
+    <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
+    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potvrdite lozinku za rezervne kopije</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Provjerite svoju lozinku za rezervne kopije i potvrdite da je tačna</string>
     <string name="BackupsPreferenceFragment__turn_on">Uključi</string>
@@ -1474,10 +1482,12 @@
     <string name="MessageRecord_s_changed_their_phone_number">%1$s je promijenio/la broj.</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Sviđa vam se nova funkcija? Podržite Signal jednokratnom donacijom.</string>
-    <!-- Update item message shown when we merge two threads together -->
+    <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
     <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Vaša historija razmjenjivanja poruka s korisnikom %1$s i njihovim brojem %2$s je spojena.</string>
-    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread -->
+    <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Vaša historija razmjenjivanja poruka s korisnikom %1$s i drugim chatom koji je pripadao toj osobi je spojena.</string>
+    <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
+    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Korisniku %1$s ste poslali zahtjev da aktivira Plaćanja</string>
     <!-- Request message from recipient to activate payments -->
@@ -1834,8 +1844,7 @@
     <string name="RegistrationActivity_select_your_country">Odaberite svoju zemlju</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Morate precizirati kōd svoje države
     </string>
-    <string name="RegistrationActivity_you_must_specify_your_phone_number">Morate unijeti broj svoga telefona
-    </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
     <string name="RegistrationActivity_invalid_number">Nevažeći broj</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Broji koji ste unijeli (%1$s) nije važeći.
     </string>
@@ -1867,15 +1876,17 @@
     <string name="RegistrationActivity_next">Dalje</string>
     <string name="RegistrationActivity_continue">Nastavi</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Privatnost držite uza se.\nBudite svoji u svakoj poruci.</string>
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Unesite svoj broj telefona da počnete</string>
     <string name="RegistrationActivity_enter_your_phone_number">Unesite svoj broj telefona</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Primit ćete kōd za potvrdu. Vaš operater možda naplati uslugu.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Unesite kōd koji smo poslali na %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Potvrdite da je Vaš telefon spojen na mobilnu mrežu kako biste mogli primiti SMS ili poziv</string>
 
     <string name="RegistrationActivity_phone_number_description">Broj telefona</string>
     <string name="RegistrationActivity_country_code_description">Državni kōd</string>
+    <string name="RegistrationActivity_country_code_hint">Country</string>
     <string name="RegistrationActivity_call">Poziv</string>
+    <string name="RegistrationActivity_verification_code">Verification Code</string>
+    <string name="RegistrationActivity_resend_code">Resend Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Uključiti zaključavanje registracije?</string>
@@ -2149,6 +2160,8 @@
     <string name="MediaPreviewFragment_edit_media_error">Greška medijskog sadržaja</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Greška prilikom brisanja poruke, poruka može i dalje postojati</string>
+    <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d novih poruka u %2$d konverzacija</string>
@@ -3349,11 +3362,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Kreirajte novi PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Možete promijeniti PIN sve dok je ovaj uređaj registrovan.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Kreirajte svoj PIN</string>
-    <string name="CreateKbsPinFragment__pins_keep_information_stored_with_signal_encrypted">PIN služi za šifriranje informacija na Signalu tako da im samo Vi možete pristupiti. Vaš profil, podešavanja i kontakti bit će sačuvani i učitani kad ponovo instalirate Signal. PIN Vam neće trebati da otvorite aplikaciju.</string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izaberite snažniji PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-ovi se ne podudaraju. Pokušajte ponovo.</string>
+    <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Potvrdite svoj PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Neuspjelo kreiranje PIN-a.</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN nije pohranjen. Podsjetit ćemo Vas kasnije da kreirate PIN.</string>
@@ -3503,7 +3518,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša sigurnosna kopija sadrži veoma veliku datoteku za koju nije moguće kreirati sigurnosnu kopiju. Izbrišite je i kreirajte novu sigurnosnu kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite da rasporedite rezervne kopije.</string>
-    <string name="RegistrationActivity_wrong_number">Pogrešan broj</string>
+    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Radije me pozovite \n (Dostupni u %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
     <string name="RegistrationActivity_code_support_subject">Signal registracija – potvrda kōda za Android</string>
@@ -5710,6 +5725,7 @@
     <string name="GroupStoryEducationSheet__all_group_chat_members">Svi članovi grupnog chata mogu vidjeti odgovore na priče.</string>
     <!-- Button label to dismiss sheet -->
     <string name="GroupStoryEducationSheet__next">Dalje</string>
+    <string name="Registration_country_code_entry_hint">+0</string>
 
     <!-- EOF -->
 
@@ -5738,4 +5754,13 @@
     <!-- Button label on sms removal info/megaphone to start the export SMS flow -->
     <string name="SmsRemoval_export_sms">Izvezi SMS</string>
 
+    <!-- Text Formatting -->
+    <!-- Popup menu label for applying bold style -->
+    <string name="TextFormatting_bold">Bold</string>
+    <!-- Popup menu label for applying italic style -->
+    <string name="TextFormatting_italic">Italic</string>
+    <!-- Popup menu label for applying strikethrough style -->
+    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <!-- Popup menu label for applying monospace font style -->
+    <string name="TextFormatting_monospace">Monospace</string>
 </resources>
