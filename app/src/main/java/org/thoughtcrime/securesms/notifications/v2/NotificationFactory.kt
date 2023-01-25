@@ -288,7 +288,7 @@ object NotificationFactory {
 
     ringtone.audioAttributes = AudioAttributes.Builder()
       .setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-      .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+      .setUsage(AudioAttributes.USAGE_NOTIFICATION)
       .build()
 
     ringtone.play()

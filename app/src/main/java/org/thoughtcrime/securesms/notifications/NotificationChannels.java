@@ -7,6 +7,7 @@ import android.app.NotificationChannel;
 import android.app.NotificationChannelGroup;
 import android.app.NotificationManager;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.AudioAttributes;
@@ -55,12 +56,13 @@ public class NotificationChannels {
   private static final long[] EMPTY_VIBRATION_PATTERN = new long[] { 0 };
 
   private static class Version {
-    static final int MESSAGES_CATEGORY   = 2;
-    static final int CALLS_PRIORITY_BUMP = 3;
-    static final int VIBRATE_OFF_OTHER   = 4;
+    static final int MESSAGES_CATEGORY      = 2;
+    static final int CALLS_PRIORITY_BUMP    = 3;
+    static final int VIBRATE_OFF_OTHER      = 4;
+    static final int AUDIO_ATTRIBUTE_CHANGE = 5;
   }
 
-  private static final int VERSION = 4;
+  private static final int VERSION = 5;
 
   private static final String CATEGORY_MESSAGES = "messages";
   private static final String CONTACT_PREFIX    = "contact_";
@@ -249,7 +251,7 @@ public class NotificationChannels {
 
     if (messageSound != null) {
       channel.setSound(messageSound, new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-                                                                  .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+                                                                  .setUsage(AudioAttributes.USAGE_NOTIFICATION)
                                                                   .build());
     }
 
@@ -688,6 +690,37 @@ public class NotificationChannels {
     if (oldVersion < Version.VIBRATE_OFF_OTHER) {
       notificationManager.deleteNotificationChannel("other_v2");
     }
+
+    if (oldVersion < Version.AUDIO_ATTRIBUTE_CHANGE) {
+      Context context                       = ApplicationDependencies.getApplication();
+      int     existingMessageChannelVersion = TextSecurePreferences.getNotificationMessagesChannelVersion(context);
+      int     newMessageChannelVersion      = existingMessageChannelVersion + 1;
+      String  existingChannelId             = "messages_" + existingMessageChannelVersion;
+      String  newChannelId                  = "messages_" + newMessageChannelVersion;
+
+      Log.i(TAG, "Migrating message channel from version " + existingMessageChannelVersion + " to " + newMessageChannelVersion);
+
+      NotificationChannel existingChannel = notificationManager.getNotificationChannel(existingChannelId);
+      if (existingChannel != null) {
+        notificationManager.deleteNotificationChannel(existingChannelId);
+
+        NotificationChannel newChannel = new NotificationChannel(newChannelId, existingChannel.getName(), existingChannel.getImportance());
+
+        newChannel.setGroup(existingChannel.getGroup());
+        newChannel.setSound(existingChannel.getSound(), new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN).setUsage(AudioAttributes.USAGE_NOTIFICATION).build());
+        newChannel.setBypassDnd(existingChannel.canBypassDnd());
+        newChannel.setVibrationPattern(existingChannel.getVibrationPattern());
+        newChannel.enableVibration(existingChannel.shouldVibrate());
+        newChannel.setLockscreenVisibility(existingChannel.getLockscreenVisibility());
+        newChannel.setShowBadge(existingChannel.canShowBadge());
+        newChannel.setLightColor(existingChannel.getLightColor());
+        newChannel.enableLights(existingChannel.shouldShowLights());
+
+        notificationManager.createNotificationChannel(newChannel);
+
+        TextSecurePreferences.setNotificationMessagesChannelVersion(context, newMessageChannelVersion);
+      }
+    }
   }
 
   @TargetApi(26)
@@ -784,10 +817,9 @@ public class NotificationChannels {
     return true;
   }
 
-  @TargetApi(21)
   private static AudioAttributes getRingtoneAudioAttributes() {
     return new AudioAttributes.Builder().setContentType(AudioAttributes.CONTENT_TYPE_UNKNOWN)
-        .setUsage(AudioAttributes.USAGE_NOTIFICATION_COMMUNICATION_INSTANT)
+        .setUsage(AudioAttributes.USAGE_NOTIFICATION)
         .build();
   }
 
