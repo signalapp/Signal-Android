@@ -170,6 +170,18 @@ class GroupTableTest {
     assertEquals(mmsGroup, actual)
   }
 
+  @Test
+  fun givenTwoGroupsWithoutMembers_whenIQueryThem_thenIExpectEach() {
+    val g1 = insertPushGroup(listOf())
+    val g2 = insertPushGroup(listOf())
+
+    val gr1 = groupTable.getGroup(g1)
+    val gr2 = groupTable.getGroup(g2)
+
+    assertEquals(g1, gr1.get().id)
+    assertEquals(g2, gr2.get().id)
+  }
+
   private fun insertThread(groupId: GroupId): Long {
     val groupRecipient = SignalDatabase.recipients.getByGroupId(groupId).get()
     return SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(groupRecipient))
@@ -188,23 +200,23 @@ class GroupTableTest {
     return id
   }
 
-  private fun insertPushGroup(): GroupId {
+  private fun insertPushGroup(
+    members: List<DecryptedMember> = listOf(
+      DecryptedMember.newBuilder()
+        .setUuid(harness.self.requireServiceId().toByteString())
+        .setJoinedAtRevision(0)
+        .setRole(Member.Role.DEFAULT)
+        .build(),
+      DecryptedMember.newBuilder()
+        .setUuid(Recipient.resolved(harness.others[0]).requireServiceId().toByteString())
+        .setJoinedAtRevision(0)
+        .setRole(Member.Role.DEFAULT)
+        .build()
+    )
+  ): GroupId {
     val groupMasterKey = GroupMasterKey(Random.nextBytes(GroupMasterKey.SIZE))
     val decryptedGroupState = DecryptedGroup.newBuilder()
-      .addAllMembers(
-        listOf(
-          DecryptedMember.newBuilder()
-            .setUuid(harness.self.requireServiceId().toByteString())
-            .setJoinedAtRevision(0)
-            .setRole(Member.Role.DEFAULT)
-            .build(),
-          DecryptedMember.newBuilder()
-            .setUuid(Recipient.resolved(harness.others[0]).requireServiceId().toByteString())
-            .setJoinedAtRevision(0)
-            .setRole(Member.Role.DEFAULT)
-            .build()
-        )
-      )
+      .addAllMembers(members)
       .setRevision(0)
       .build()
 

@@ -167,7 +167,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         DISTINCT $TABLE_NAME.*, 
         GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}) as $MEMBER_GROUP_CONCAT
       FROM $TABLE_NAME          
-      INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+      LEFT JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
     """.toSingleLine()
 
     val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
@@ -204,7 +204,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   private fun getGroup(query: SqlUtil.Query): Optional<GroupRecord> {
     //language=sql
-    val select = "$JOINED_GROUP_SELECT WHERE ${query.where} GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}"
+    val select = "$JOINED_GROUP_SELECT WHERE ${query.where} GROUP BY $TABLE_NAME.$GROUP_ID"
 
     readableDatabase
       .query(select, query.whereArgs)
@@ -345,10 +345,11 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   fun queryGroupsByTitle(inputQuery: String, includeInactive: Boolean, excludeV1: Boolean, excludeMms: Boolean): Reader {
     val query = getGroupQueryWhereStatement(inputQuery, includeInactive, excludeV1, excludeMms)
+    //language=sql
     val statement = """
       $JOINED_GROUP_SELECT
       WHERE ${query.where}
-      GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
+      GROUP BY $TABLE_NAME.$GROUP_ID
       ORDER BY $TITLE COLLATE NOCASE ASC
     """.trimIndent()
 
@@ -388,7 +389,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       query += " AND $MMS = 0"
     }
 
-    return Reader(readableDatabase.query("$JOINED_GROUP_SELECT WHERE $query GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}", queryArgs))
+    return Reader(readableDatabase.query("$JOINED_GROUP_SELECT WHERE $query GROUP BY $TABLE_NAME.$GROUP_ID", queryArgs))
   }
 
   private fun queryGroupsByRecency(groupQuery: GroupQuery): Reader {
@@ -396,7 +397,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val sql = """
       $JOINED_GROUP_SELECT
       WHERE ${query.where} 
-      ${"GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}"}
+      GROUP BY $TABLE_NAME.$GROUP_ID
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
     """.toSingleLine()
 
@@ -473,7 +474,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       FROM ${MembershipTable.TABLE_NAME}
       INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
       WHERE ${MembershipTable.TABLE_NAME}.$RECIPIENT_ID IN (${members.joinToString(",") { it.serialize() }}) AND $TABLE_NAME.$MMS = 1
-      GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
+      GROUP BY $TABLE_NAME.$GROUP_ID
       HAVING (SELECT COUNT(*) FROM ${MembershipTable.TABLE_NAME} WHERE ${MembershipTable.GROUP_ID} = gid) = ${members.size}
       ORDER BY ${MembershipTable.TABLE_NAME}.${MembershipTable.ID} ASC
     """.toSingleLine()
@@ -528,14 +529,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     return readableDatabase
-      .query("$table WHERE $query GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} ORDER BY $orderBy".apply { println(this) }, args)
+      .query("$table WHERE $query GROUP BY $TABLE_NAME.$GROUP_ID ORDER BY $orderBy".apply { println(this) }, args)
       .readToList { cursor ->
         getGroup(cursor).get()
       }
   }
 
   fun getGroups(): Reader {
-    val cursor = readableDatabase.query("$JOINED_GROUP_SELECT GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}")
+    val cursor = readableDatabase.query("$JOINED_GROUP_SELECT GROUP BY $TABLE_NAME.$GROUP_ID")
     return Reader(cursor)
   }
 
