@@ -111,7 +111,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetPni(result.id, PNI_A),
           PnpOperation.SetAci(result.id, ACI_A)
         )
@@ -131,9 +131,9 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetPni(result.id, PNI_A),
-          PnpOperation.SessionSwitchoverInsert(result.id)
+          PnpOperation.SessionSwitchoverInsert(result.id, E164_A)
         )
       ),
       result.changeSet
@@ -151,7 +151,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetPni(result.id, PNI_A)
         )
       ),
@@ -170,7 +170,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetAci(result.id, ACI_A)
         )
       ),
@@ -189,9 +189,9 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetAci(result.id, ACI_A),
-          PnpOperation.SessionSwitchoverInsert(result.id)
+          PnpOperation.SessionSwitchoverInsert(result.id, E164_A)
         )
       ),
       result.changeSet
@@ -209,7 +209,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetPni(result.id, PNI_A)
         )
       ),
@@ -228,7 +228,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.SetAci(result.id, ACI_A)
         )
@@ -248,10 +248,10 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.SetAci(result.id, ACI_A),
-          PnpOperation.SessionSwitchoverInsert(result.id)
+          PnpOperation.SessionSwitchoverInsert(result.id, E164_A)
         )
       ),
       result.changeSet
@@ -269,7 +269,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.SetAci(result.id, ACI_A),
           PnpOperation.ChangeNumberInsert(
@@ -277,7 +277,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
             oldE164 = E164_B,
             newE164 = E164_A
           ),
-          PnpOperation.SessionSwitchoverInsert(result.id)
+          PnpOperation.SessionSwitchoverInsert(result.id, E164_A)
         )
       ),
       result.changeSet
@@ -295,7 +295,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
         )
       ),
@@ -314,7 +314,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.ChangeNumberInsert(
             recipientId = result.id,
@@ -338,7 +338,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.SetPni(result.id, PNI_A)
         )
@@ -358,7 +358,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.SetE164(result.id, E164_A),
           PnpOperation.SetPni(result.id, PNI_A),
           PnpOperation.ChangeNumberInsert(
@@ -387,7 +387,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.thirdId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.Merge(
             primaryId = result.firstId,
             secondaryId = result.secondId
@@ -416,7 +416,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.Merge(
             primaryId = result.firstId,
             secondaryId = result.secondId
@@ -441,7 +441,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.Merge(
             primaryId = result.firstId,
             secondaryId = result.secondId
@@ -470,7 +470,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.secondId),
           PnpOperation.SetPni(
             recipientId = result.firstId,
@@ -496,7 +496,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.firstId),
           PnpOperation.Merge(
             primaryId = result.firstId,
@@ -522,7 +522,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.secondId),
           PnpOperation.SetPni(result.firstId, PNI_A)
         )
@@ -545,11 +545,11 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.firstId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.secondId),
           PnpOperation.SetPni(result.firstId, PNI_A),
-          PnpOperation.SessionSwitchoverInsert(result.secondId),
-          PnpOperation.SessionSwitchoverInsert(result.firstId)
+          PnpOperation.SessionSwitchoverInsert(result.secondId, E164_A),
+          PnpOperation.SessionSwitchoverInsert(result.firstId, E164_A)
         )
       ),
       result.changeSet
@@ -570,7 +570,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.secondId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.Merge(
             primaryId = result.secondId,
             secondaryId = result.firstId
@@ -595,7 +595,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.secondId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.firstId),
           PnpOperation.SetPni(
             recipientId = result.secondId,
@@ -625,7 +625,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.secondId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.firstId),
           PnpOperation.SetPni(
             recipientId = result.secondId,
@@ -660,7 +660,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.secondId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemovePni(result.secondId),
           PnpOperation.RemoveE164(result.secondId),
           PnpOperation.Merge(
@@ -692,7 +692,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     assertEquals(
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.secondId),
-        operations = listOf(
+        operations = linkedSetOf(
           PnpOperation.RemoveE164(result.secondId),
           PnpOperation.Merge(
             primaryId = result.secondId,

@@ -50,6 +50,7 @@ public interface MessageTypes {
   long BOOST_REQUEST_TYPE       = 15;
   long THREAD_MERGE_TYPE        = 16;
   long SMS_EXPORT_TYPE          = 17;
+  long SESSION_SWITCHOVER_TYPE  = 18;
 
   long BASE_INBOX_TYPE                    = 20;
   long BASE_OUTBOX_TYPE                   = 21;
@@ -205,6 +206,10 @@ public interface MessageTypes {
 
   static boolean isThreadMergeType(long type) {
     return (type & BASE_TYPE_MASK) == THREAD_MERGE_TYPE;
+  }
+
+  static boolean isSessionSwitchoverType(long type) {
+    return (type & BASE_TYPE_MASK) == SESSION_SWITCHOVER_TYPE;
   }
 
   static boolean isSecureType(long type) {

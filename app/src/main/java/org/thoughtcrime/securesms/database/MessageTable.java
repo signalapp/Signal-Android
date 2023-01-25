@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateD
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails;
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent;
+import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
@@ -94,6 +95,7 @@ import org.thoughtcrime.securesms.sms.IncomingGroupUpdateMessage;
 import org.thoughtcrime.securesms.sms.IncomingTextMessage;
 import org.thoughtcrime.securesms.stories.Stories;
 import org.thoughtcrime.securesms.util.Base64;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -1117,6 +1119,26 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     values.put(DATE_SENT, System.currentTimeMillis());
     values.put(READ, 1);
     values.put(TYPE, MessageTypes.THREAD_MERGE_TYPE);
+    values.put(THREAD_ID, threadId);
+    values.put(BODY, Base64.encodeBytes(event.toByteArray()));
+
+    getWritableDatabase().insert(TABLE_NAME, null, values);
+
+    ApplicationDependencies.getDatabaseObserver().notifyConversationListeners(threadId);
+  }
+
+  public void insertSessionSwitchoverEvent(@NonNull RecipientId recipientId, long threadId, @NonNull SessionSwitchoverEvent event) {
+    if (!FeatureFlags.phoneNumberPrivacy()) {
+      throw new IllegalStateException("Should not occur in a non-PNP world!");
+    }
+
+    ContentValues values = new ContentValues();
+    values.put(RECIPIENT_ID, recipientId.serialize());
+    values.put(RECIPIENT_DEVICE_ID, 1);
+    values.put(DATE_RECEIVED, System.currentTimeMillis());
+    values.put(DATE_SENT, System.currentTimeMillis());
+    values.put(READ, 1);
+    values.put(TYPE, MessageTypes.SESSION_SWITCHOVER_TYPE);
     values.put(THREAD_ID, threadId);
     values.put(BODY, Base64.encodeBytes(event.toByteArray()));
 

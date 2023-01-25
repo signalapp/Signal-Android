@@ -266,3 +266,7 @@ message MessageExportState {
 message ThreadMergeEvent {
     string previousE164 = 1;
 }
+
+message SessionSwitchoverEvent {
+    string e164 = 1;
+}

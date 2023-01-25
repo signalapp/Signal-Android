@@ -37,7 +37,7 @@ data class PnpDataSet(
    * Applies the set of operations and returns the resulting dataset.
    * Important: This only occurs _in memory_. You must still apply the operations to disk to persist them.
    */
-  fun perform(operations: List<PnpOperation>): PnpDataSet {
+  fun perform(operations: LinkedHashSet<PnpOperation>): PnpDataSet {
     if (operations.isEmpty()) {
       return this
     }
@@ -136,7 +136,7 @@ data class PnpDataSet(
  */
 data class PnpChangeSet(
   val id: PnpIdResolver,
-  val operations: List<PnpOperation> = emptyList(),
+  val operations: LinkedHashSet<PnpOperation> = linkedSetOf(),
   val breadCrumbs: List<String> = emptyList()
 ) {
   // We want to exclude breadcrumbs from equality for testing purposes
@@ -213,7 +213,8 @@ sealed class PnpOperation {
   }
 
   data class SessionSwitchoverInsert(
-    override val recipientId: RecipientId
+    override val recipientId: RecipientId,
+    val e164: String?
   ) : PnpOperation()
 
   data class ChangeNumberInsert(
