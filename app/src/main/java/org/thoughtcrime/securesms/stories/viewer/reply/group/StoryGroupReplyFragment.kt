@@ -338,6 +338,10 @@ class StoryGroupReplyFragment :
   override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
     currentChild = child
     updateNestedScrolling()
+
+    if (currentChild != StoryViewsAndRepliesPagerParent.Child.REPLIES) {
+      composer.close()
+    }
   }
 
   private fun updateNestedScrolling() {

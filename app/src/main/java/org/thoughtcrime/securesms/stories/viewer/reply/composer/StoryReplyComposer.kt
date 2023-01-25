@@ -1,10 +1,8 @@
 package org.thoughtcrime.securesms.stories.viewer.reply.composer
 
-import android.app.Dialog
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -147,6 +145,10 @@ class StoryReplyComposer @JvmOverloads constructor(
     emojiDrawer.onCloseEmojiSearch()
   }
 
+  fun close() {
+    inputAwareLayout.hideCurrentInput(input)
+  }
+
   private fun onEmojiToggleClicked() {
     if (!emojiDrawer.isInitialised) {
       callback?.onInitializeEmojiDrawer(emojiDrawer)
@@ -159,12 +161,8 @@ class StoryReplyComposer @JvmOverloads constructor(
       callback?.onHideEmojiKeyboard()
     } else {
       isRequestingEmojiDrawer = true
-      inputAwareLayout.hideSoftkey(input) {
-        inputAwareLayout.post {
-          inputAwareLayout.show(input, emojiDrawer)
-          emojiDrawer.post { callback?.onShowEmojiKeyboard() }
-        }
-      }
+      inputAwareLayout.show(input, emojiDrawer)
+      emojiDrawer.post { callback?.onShowEmojiKeyboard() }
     }
   }
 
@@ -174,23 +172,5 @@ class StoryReplyComposer @JvmOverloads constructor(
     fun onInitializeEmojiDrawer(mediaKeyboard: MediaKeyboard)
     fun onShowEmojiKeyboard() = Unit
     fun onHideEmojiKeyboard() = Unit
-  }
-
-  companion object {
-    fun installIntoBottomSheet(context: Context, dialog: Dialog): StoryReplyComposer {
-      val container: ViewGroup = dialog.findViewById(R.id.container)
-
-      val oldComposer: StoryReplyComposer? = container.findViewById(R.id.input)
-      if (oldComposer != null) {
-        return oldComposer
-      }
-
-      val composer = StoryReplyComposer(context)
-
-      composer.id = R.id.input
-
-      container.addView(composer)
-      return composer
-    }
   }
 }

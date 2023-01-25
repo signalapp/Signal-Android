@@ -16,11 +16,9 @@
  */
 package org.thoughtcrime.securesms.components;
 
-import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Rect;
 import android.os.Build;
-import android.os.Build.VERSION_CODES;
 import android.preference.PreferenceManager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -107,10 +105,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
   }
 
   private void updateKeyboardState() {
-    updateKeyboardState(Integer.MAX_VALUE);
-  }
-
-  private void updateKeyboardState(int previousHeight) {
     if (viewInset == 0) viewInset = getViewInset();
 
     getWindowVisibleDisplayFrame(rect);
@@ -130,11 +124,7 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
         onKeyboardOpen(keyboardHeight);
       }
     } else if (keyboardOpen) {
-      if (previousHeight == keyboardHeight) {
-        onKeyboardClose();
-      } else {
-        postDelayed(() -> updateKeyboardState(keyboardHeight), 100);
-      }
+      onKeyboardClose();
     }
   }
 
@@ -159,7 +149,6 @@ public class KeyboardAwareLinearLayout extends LinearLayoutCompat {
     }
   }
 
-  @TargetApi(VERSION_CODES.LOLLIPOP)
   private int getViewInset() {
     try {
       Field attachInfoField = View.class.getDeclaredField("mAttachInfo");
