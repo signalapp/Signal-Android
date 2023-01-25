@@ -1034,7 +1034,12 @@ public class SignalServiceMessageSender {
     }
 
     if (message.getGroupCallUpdate().isPresent()) {
-      builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.newBuilder().setEraId(message.getGroupCallUpdate().get().getEraId()));
+      String eraId = message.getGroupCallUpdate().get().getEraId();
+      if (eraId != null) {
+        builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.newBuilder().setEraId(eraId));
+      } else {
+        builder.setGroupCallUpdate(DataMessage.GroupCallUpdate.getDefaultInstance());
+      }
     }
 
     if (message.getPayment().isPresent()) {

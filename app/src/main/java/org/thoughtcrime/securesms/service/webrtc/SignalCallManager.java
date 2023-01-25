@@ -361,7 +361,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
           }
         });
       } catch (IOException | VerificationFailedException | CallException e) {
-        Log.e(TAG, "error peeking from active conversation", e);
+        Log.i(TAG, "error peeking from active conversation", e);
       }
     });
   }
@@ -389,7 +389,7 @@ private void processStateless(@NonNull Function1<WebRtcEphemeralState, WebRtcEph
                                   members,
                                   peekInfo -> receivedGroupCallPeekForRingingCheck(info, peekInfo));
       } catch (IOException | VerificationFailedException | CallException e) {
-        Log.e(TAG, "error peeking for ringing check", e);
+        Log.i(TAG, "error peeking for ringing check", e);
       }
     });
   }

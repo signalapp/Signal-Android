@@ -73,7 +73,7 @@ public class GroupCallUpdateSendJob extends BaseJob {
   }
 
   private GroupCallUpdateSendJob(@NonNull RecipientId recipientId,
-                                 @NonNull String eraId,
+                                 @Nullable String eraId,
                                  @NonNull List<RecipientId> recipients,
                                  int initialRecipientCount,
                                  @NonNull Parameters parameters)
