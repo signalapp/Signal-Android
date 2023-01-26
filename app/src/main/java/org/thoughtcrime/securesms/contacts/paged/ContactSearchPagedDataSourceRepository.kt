@@ -84,6 +84,10 @@ open class ContactSearchPagedDataSourceRepository(
     return SignalDatabase.distributionLists.getAllListsForContactSelectionUiCursor(query, myStoryContainsQuery(query ?: ""))
   }
 
+  open fun getGroupsWithMembers(query: String): Cursor {
+    return SignalDatabase.groups.queryGroupsByMemberName(query)
+  }
+
   open fun getRecipientFromDistributionListCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, DistributionListTables.RECIPIENT_ID)))
   }

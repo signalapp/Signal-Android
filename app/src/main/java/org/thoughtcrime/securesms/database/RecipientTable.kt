@@ -30,6 +30,7 @@ import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.select
+import org.signal.core.util.toSingleLine
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.IdentityKey
@@ -3177,6 +3178,27 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       """.trimIndent()
     val args = SqlUtil.buildArgs(0, 0, query, query, query, query)
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, null)
+  }
+
+  /**
+   * Gets the query used for performing the all contacts search so that it can be injected as a subquery.
+   */
+  fun getAllContactsSubquery(inputQuery: String): SqlUtil.Query {
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
+
+    //language=sql
+    val subquery = """SELECT $ID FROM (
+      SELECT ${SEARCH_PROJECTION.joinToString(",")} FROM $TABLE_NAME
+      WHERE $BLOCKED = ? AND $HIDDEN = ? AND
+      (
+          $SORT_NAME GLOB ? OR 
+          $USERNAME GLOB ? OR 
+          $PHONE GLOB ? OR 
+          $EMAIL GLOB ?
+      ))
+    """.toSingleLine()
+
+    return SqlUtil.Query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
   }
 
   @JvmOverloads

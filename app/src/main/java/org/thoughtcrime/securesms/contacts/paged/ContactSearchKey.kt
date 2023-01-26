@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sharing.ShareContact
 
@@ -47,6 +48,11 @@ sealed class ContactSearchKey {
    * Search key for a ThreadRecord
    */
   data class Thread(val threadId: Long) : ContactSearchKey()
+
+  /**
+   * Search key for [ContactSearchData.GroupWithMembers]
+   */
+  data class GroupWithMembers(val groupId: GroupId) : ContactSearchKey()
 
   /**
    * Search key for a MessageRecord

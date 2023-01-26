@@ -24,12 +24,13 @@ import java.util.Locale
 class ConversationListSearchAdapter(
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
-  storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
+  recipientListener: Listener<ContactSearchData.KnownRecipient>,
+  storyListener: Listener<ContactSearchData.Story>,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   expandListener: (ContactSearchData.Expand) -> Unit,
-  threadListener: (View, ContactSearchData.Thread, Boolean) -> Unit,
-  messageListener: (View, ContactSearchData.Message, Boolean) -> Unit,
+  threadListener: Listener<ContactSearchData.Thread>,
+  messageListener: Listener<ContactSearchData.Message>,
+  groupWithMembersListener: Listener<ContactSearchData.GroupWithMembers>,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests,
   clearFilterListener: () -> Unit
@@ -55,6 +56,10 @@ class ConversationListSearchAdapter(
       EmptyModel::class.java,
       LayoutFactory({ EmptyViewHolder(it) }, R.layout.conversation_list_empty_search_state)
     )
+    registerFactory(
+      GroupWithMembersModel::class.java,
+      LayoutFactory({ GroupWithMembersViewHolder(groupWithMembersListener, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+    )
   }
 
   private class EmptyViewHolder(
@@ -70,14 +75,14 @@ class ConversationListSearchAdapter(
   }
 
   private class ThreadViewHolder(
-    private val threadListener: (View, ContactSearchData.Thread, Boolean) -> Unit,
+    private val threadListener: Listener<ContactSearchData.Thread>,
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
   ) : MappingViewHolder<ThreadModel>(itemView) {
     override fun bind(model: ThreadModel) {
       itemView.setOnClickListener {
-        threadListener(itemView, model.thread, false)
+        threadListener.listen(itemView, model.thread, false)
       }
 
       (itemView as ConversationListItem).bindThread(
@@ -93,14 +98,14 @@ class ConversationListSearchAdapter(
   }
 
   private class MessageViewHolder(
-    private val messageListener: (View, ContactSearchData.Message, Boolean) -> Unit,
+    private val messageListener: Listener<ContactSearchData.Message>,
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
   ) : MappingViewHolder<MessageModel>(itemView) {
     override fun bind(model: MessageModel) {
       itemView.setOnClickListener {
-        messageListener(itemView, model.message, false)
+        messageListener.listen(itemView, model.message, false)
       }
 
       (itemView as ConversationListItem).bindMessage(
@@ -109,6 +114,26 @@ class ConversationListSearchAdapter(
         glideRequests,
         Locale.getDefault(),
         model.message.query
+      )
+    }
+  }
+
+  private class GroupWithMembersViewHolder(
+    private val groupWithMembersListener: Listener<ContactSearchData.GroupWithMembers>,
+    private val lifecycleOwner: LifecycleOwner,
+    private val glideRequests: GlideRequests,
+    itemView: View
+  ) : MappingViewHolder<GroupWithMembersModel>(itemView) {
+    override fun bind(model: GroupWithMembersModel) {
+      itemView.setOnClickListener {
+        groupWithMembersListener.listen(itemView, model.groupWithMembers, false)
+      }
+
+      (itemView as ConversationListItem).bindGroupWithMembers(
+        lifecycleOwner,
+        model.groupWithMembers,
+        glideRequests,
+        Locale.getDefault()
       )
     }
   }

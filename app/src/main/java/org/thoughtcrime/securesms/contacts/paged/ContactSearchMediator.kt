@@ -168,8 +168,8 @@ class ContactSearchMediator(
     fun create(
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
-      storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
+      recipientListener: ContactSearchAdapter.Listener<ContactSearchData.KnownRecipient>,
+      storyListener: ContactSearchAdapter.Listener<ContactSearchData.Story>,
       storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
       expandListener: (ContactSearchData.Expand) -> Unit
     ): PagingMappingAdapter<ContactSearchKey>
@@ -179,8 +179,8 @@ class ContactSearchMediator(
     override fun create(
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
-      storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
+      recipientListener: ContactSearchAdapter.Listener<ContactSearchData.KnownRecipient>,
+      storyListener: ContactSearchAdapter.Listener<ContactSearchData.Story>,
       storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
       expandListener: (ContactSearchData.Expand) -> Unit
     ): PagingMappingAdapter<ContactSearchKey> {

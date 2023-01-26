@@ -83,6 +83,18 @@ class ContactSearchConfiguration private constructor(
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.GROUP_MEMBERS)
 
+    /**
+     * Includes a list of groups with members whose search name match the search query.
+     * This section will only be rendered if there is a non-null, non-empty query present.
+     *
+     * Key: [ContactSearchKey.GroupWithMembers]
+     * Data: [ContactSearchData.GroupWithMembers]
+     */
+    data class GroupsWithMembers(
+      override val includeHeader: Boolean = true,
+      override val expandConfig: ExpandConfig? = null
+    ) : Section(SectionKey.GROUPS_WITH_MEMBERS)
+
     data class Chats(
       val isUnreadOnly: Boolean = false,
       override val includeHeader: Boolean = true,
@@ -118,6 +130,11 @@ class ContactSearchConfiguration private constructor(
      * Active groups the user is a member of
      */
     GROUPS,
+
+    /**
+     * Section Key for [Section.GroupsWithMembers]
+     */
+    GROUPS_WITH_MEMBERS,
 
     /**
      * Arbitrary row (think new group button, username row, etc)
@@ -205,6 +222,13 @@ class ContactSearchConfiguration private constructor(
 
     fun arbitrary(first: String, vararg rest: String) {
       addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
+    }
+
+    fun groupsWithMembers(
+      includeHeader: Boolean = true,
+      expandConfig: ExpandConfig? = null
+    ) {
+      addSection(Section.GroupsWithMembers(includeHeader, expandConfig))
     }
 
     fun addSection(section: Section)

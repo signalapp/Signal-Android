@@ -33,11 +33,12 @@ import org.thoughtcrime.securesms.util.visible
 open class ContactSearchAdapter(
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit,
-  storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
+  recipientListener: Listener<ContactSearchData.KnownRecipient>,
+  storyListener: Listener<ContactSearchData.Story>,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   expandListener: (ContactSearchData.Expand) -> Unit
 ) : PagingMappingAdapter<ContactSearchKey>() {
+
   init {
     registerStoryItems(this, displayCheckBox, storyListener, storyContextMenuCallbacks)
     registerKnownRecipientItems(this, displayCheckBox, displaySmsTag, recipientListener)
@@ -49,7 +50,7 @@ open class ContactSearchAdapter(
     fun registerStoryItems(
       mappingAdapter: MappingAdapter,
       displayCheckBox: Boolean = false,
-      storyListener: (View, ContactSearchData.Story, Boolean) -> Unit,
+      storyListener: Listener<ContactSearchData.Story>,
       storyContextMenuCallbacks: StoryContextMenuCallbacks? = null
     ) {
       mappingAdapter.registerFactory(
@@ -62,7 +63,7 @@ open class ContactSearchAdapter(
       mappingAdapter: MappingAdapter,
       displayCheckBox: Boolean,
       displaySmsTag: DisplaySmsTag,
-      recipientListener: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit
+      recipientListener: Listener<ContactSearchData.KnownRecipient>
     ) {
       mappingAdapter.registerFactory(
         RecipientModel::class.java,
@@ -97,6 +98,7 @@ open class ContactSearchAdapter(
             is ContactSearchData.Message -> MessageModel(it)
             is ContactSearchData.Thread -> ThreadModel(it)
             is ContactSearchData.Empty -> EmptyModel(it)
+            is ContactSearchData.GroupWithMembers -> GroupWithMembersModel(it)
           }
         }
       )
@@ -133,7 +135,7 @@ open class ContactSearchAdapter(
   private class StoryViewHolder(
     itemView: View,
     displayCheckBox: Boolean,
-    onClick: (View, ContactSearchData.Story, Boolean) -> Unit,
+    onClick: Listener<ContactSearchData.Story>,
     private val storyContextMenuCallbacks: StoryContextMenuCallbacks?
   ) : BaseRecipientViewHolder<StoryModel, ContactSearchData.Story>(itemView, displayCheckBox, DisplaySmsTag.NEVER, onClick) {
     override fun isSelected(model: StoryModel): Boolean = model.isSelected
@@ -265,7 +267,7 @@ open class ContactSearchAdapter(
     itemView: View,
     displayCheckBox: Boolean,
     displaySmsTag: DisplaySmsTag,
-    onClick: (View, ContactSearchData.KnownRecipient, Boolean) -> Unit
+    onClick: Listener<ContactSearchData.KnownRecipient>
   ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, displaySmsTag, onClick), LetterHeaderDecoration.LetterHeaderItem {
 
     private var headerLetter: String? = null
@@ -302,7 +304,7 @@ open class ContactSearchAdapter(
     itemView: View,
     private val displayCheckBox: Boolean,
     private val displaySmsTag: DisplaySmsTag,
-    val onClick: (View, D, Boolean) -> Unit
+    val onClick: Listener<D>
   ) : MappingViewHolder<T>(itemView) {
 
     protected val avatar: AvatarImageView = itemView.findViewById(R.id.contact_photo_image)
@@ -316,7 +318,7 @@ open class ContactSearchAdapter(
     override fun bind(model: T) {
       checkbox.visible = displayCheckBox
       checkbox.isChecked = isSelected(model)
-      itemView.setOnClickListener { onClick(avatar, getData(model), isSelected(model)) }
+      itemView.setOnClickListener { onClick.listen(avatar, getData(model), isSelected(model)) }
       bindLongPress(model)
 
       if (payload.isNotEmpty()) {
@@ -421,6 +423,15 @@ open class ContactSearchAdapter(
   }
 
   /**
+   * Mapping Model for [ContactSearchData.GroupWithMembers]
+   */
+  class GroupWithMembersModel(val groupWithMembers: ContactSearchData.GroupWithMembers) : MappingModel<GroupWithMembersModel> {
+    override fun areContentsTheSame(newItem: GroupWithMembersModel): Boolean = newItem.groupWithMembers == groupWithMembers
+
+    override fun areItemsTheSame(newItem: GroupWithMembersModel): Boolean = newItem.groupWithMembers.contactSearchKey == groupWithMembers.contactSearchKey
+  }
+
+  /**
    * View Holder for section headers
    */
   private class HeaderViewHolder(itemView: View) : MappingViewHolder<HeaderModel>(itemView) {
@@ -439,6 +450,7 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.GROUP_MEMBERS -> R.string.ContactsCursorLoader_group_members
           ContactSearchConfiguration.SectionKey.CHATS -> R.string.ContactsCursorLoader__chats
           ContactSearchConfiguration.SectionKey.MESSAGES -> R.string.ContactsCursorLoader__messages
+          ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS -> R.string.ContactsCursorLoader_group_members
         }
       )
 
@@ -494,5 +506,9 @@ open class ContactSearchAdapter(
     DEFAULT,
     IF_NOT_REGISTERED,
     NEVER
+  }
+
+  fun interface Listener<D : ContactSearchData> {
+    fun listen(view: View, data: D, isSelected: Boolean)
   }
 }

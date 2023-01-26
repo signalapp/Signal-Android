@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.search.MessageResult
@@ -49,6 +50,16 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
     val query: String,
     val threadRecord: ThreadRecord
   ) : ContactSearchData(ContactSearchKey.Thread(threadRecord.threadId))
+
+  /**
+   * A row displaying a group which has members that match the given query.
+   * Rows of this type are only present if the query is non-empty and non-null.
+   */
+  data class GroupWithMembers(
+    val query: String,
+    val groupRecord: GroupRecord,
+    val date: Long
+  ) : ContactSearchData(ContactSearchKey.GroupWithMembers(groupRecord.id))
 
   /**
    * A row containing a title for a given section

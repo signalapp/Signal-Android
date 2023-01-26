@@ -190,19 +190,10 @@ public class SearchRepository {
       }
     }
 
-    Set<RecipientId> groupsByMemberIds = new LinkedHashSet<>();
-
-    try (GroupTable.Reader reader = SignalDatabase.groups().queryGroupsByMembership(filteredContacts, true, false, false)) {
-      while ((record = reader.getNext()) != null) {
-        groupsByMemberIds.add(record.getRecipientId());
-      }
-    }
-
     LinkedHashSet<ThreadRecord> output = new LinkedHashSet<>();
 
     output.addAll(getMatchingThreads(contactIds, unreadOnly));
     output.addAll(getMatchingThreads(groupsByTitleIds, unreadOnly));
-    output.addAll(getMatchingThreads(groupsByMemberIds, unreadOnly));
 
     return new ArrayList<>(output);
   }

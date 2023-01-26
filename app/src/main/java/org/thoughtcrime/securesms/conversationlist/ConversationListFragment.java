@@ -313,11 +313,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                             expandListener,
                                                             (v, t, b) -> {
                                                               onConversationClicked(t.getThreadRecord());
-                                                              return Unit.INSTANCE;
                                                             },
                                                             (v, m, b) -> {
                                                               onMessageClicked(m.getMessageResult());
-                                                              return Unit.INSTANCE;
+                                                            },
+                                                            (v, m, b) -> {
+                                                              onContactClicked(Recipient.resolved(m.getGroupRecord().getRecipientId()));
                                                             },
                                                             getViewLifecycleOwner(),
                                                             GlideApp.with(this),
@@ -600,12 +601,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     if (TextUtils.isEmpty(state.getQuery())) {
       return ContactSearchConfiguration.build(b -> Unit.INSTANCE);
     } else {
-      return ContactSearchConfiguration.build(b -> {
+      return ContactSearchConfiguration.build(builder -> {
         ConversationFilterRequest conversationFilterRequest = state.getConversationFilterRequest();
         boolean                   unreadOnly                = conversationFilterRequest != null && conversationFilterRequest.getFilter() == ConversationFilter.UNREAD;
 
-        b.setQuery(state.getQuery());
-        b.addSection(new ContactSearchConfiguration.Section.Chats(
+        builder.setQuery(state.getQuery());
+        builder.addSection(new ContactSearchConfiguration.Section.Chats(
             unreadOnly,
             true,
               new ContactSearchConfiguration.ExpandConfig(
@@ -615,17 +616,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         ));
 
         if (!unreadOnly) {
+          builder.addSection(new ContactSearchConfiguration.Section.GroupsWithMembers(
+              true,
+              new ContactSearchConfiguration.ExpandConfig(
+                  state.getExpandedSections().contains(ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS),
+                  (a) -> 5
+              )
+          ));
 
-          // Groups-with-member-section
-
-          b.addSection(new ContactSearchConfiguration.Section.Messages(
+          builder.addSection(new ContactSearchConfiguration.Section.Messages(
               true,
               null
           ));
 
-          b.setHasEmptyState(true);
+          builder.setHasEmptyState(true);
         } else {
-          b.arbitrary(
+          builder.arbitrary(
               conversationFilterRequest.getSource() == ConversationFilterSource.DRAG
                 ? ConversationListSearchAdapter.ChatFilterOptions.WITHOUT_TIP.getCode()
                 : ConversationListSearchAdapter.ChatFilterOptions.WITH_TIP.getCode()

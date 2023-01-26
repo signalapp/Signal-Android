@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms.contacts.paged
 
 import android.database.Cursor
+import org.signal.core.util.requireLong
 import org.signal.paging.PagedDataSource
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchCollection
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.contacts.paged.collections.CursorSearchIterator
 import org.thoughtcrime.securesms.contacts.paged.collections.StoriesSearchCollection
+import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -112,6 +114,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersSearchIterator(query).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Chats -> getThreadData(query, section.isUnreadOnly).getCollectionSize(section, query, null)
       is ContactSearchConfiguration.Section.Messages -> getMessageData(query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.GroupsWithMembers -> getGroupsWithMembersIterator(query).getCollectionSize(section, query, null)
     }
   }
 
@@ -146,6 +149,7 @@ class ContactSearchPagedDataSource(
       is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Chats -> getThreadContactData(section, query, startIndex, endIndex)
       is ContactSearchConfiguration.Section.Messages -> getMessageContactData(section, query, startIndex, endIndex)
+      is ContactSearchConfiguration.Section.GroupsWithMembers -> getGroupsWithMembersContactData(section, query, startIndex, endIndex)
     }
   }
 
@@ -166,6 +170,14 @@ class ContactSearchPagedDataSource(
 
   private fun getStoriesSearchIterator(query: String?): ContactSearchIterator<Cursor> {
     return CursorSearchIterator(contactSearchPagedDataSourceRepository.getStories(query))
+  }
+
+  private fun getGroupsWithMembersIterator(query: String?): ContactSearchIterator<Cursor> {
+    return if (query.isNullOrEmpty()) {
+      CursorSearchIterator(null)
+    } else {
+      CursorSearchIterator(contactSearchPagedDataSourceRepository.getGroupsWithMembers(query))
+    }
   }
 
   private fun getRecentsSearchIterator(section: ContactSearchConfiguration.Section.Recents, query: String?): ContactSearchIterator<Cursor> {
@@ -212,6 +224,22 @@ class ContactSearchPagedDataSource(
           ContactSearchData.Story(recipient, count, privacyMode)
         },
         extraData = getFilteredGroupStories(section, query)
+      )
+    }
+  }
+
+  private fun getGroupsWithMembersContactData(section: ContactSearchConfiguration.Section.GroupsWithMembers, query: String?, startIndex: Int, endIndex: Int): List<ContactSearchData> {
+    return getGroupsWithMembersIterator(query).use { records ->
+      readContactData(
+        records = records,
+        recordsPredicate = null,
+        section = section,
+        startIndex = startIndex,
+        endIndex = endIndex,
+        recordMapper = { cursor ->
+          val record = GroupTable.Reader(cursor).getCurrent()
+          ContactSearchData.GroupWithMembers(query!!, record!!, cursor.requireLong(GroupTable.THREAD_DATE))
+        }
       )
     }
   }

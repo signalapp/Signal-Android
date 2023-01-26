@@ -69,6 +69,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     private val TAG = Log.tag(GroupTable::class.java)
 
     const val MEMBER_GROUP_CONCAT = "member_group_concat"
+    const val THREAD_DATE = "thread_date"
 
     const val TABLE_NAME = "groups"
     const val ID = "_id"
@@ -344,6 +345,24 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val noMembers = group.get().members.isEmpty() || group.get().members.size == 1 && group.get().members.contains(Recipient.self().id)
 
     return noMetadata && noMembers
+  }
+
+  fun queryGroupsByMemberName(inputQuery: String): Cursor {
+    val subquery = recipients.getAllContactsSubquery(inputQuery)
+    val statement = """
+      SELECT 
+        DISTINCT $TABLE_NAME.*, 
+        GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}) as $MEMBER_GROUP_CONCAT,
+        ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} as $THREAD_DATE
+      FROM $TABLE_NAME          
+      INNER JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+      INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
+      WHERE $ACTIVE = 1 AND ${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} IN (${subquery.where})
+      GROUP BY ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID}
+      ORDER BY $TITLE COLLATE NOCASE ASC
+    """.toSingleLine()
+
+    return databaseHelper.signalReadableDatabase.query(statement, subquery.whereArgs)
   }
 
   fun queryGroupsByTitle(inputQuery: String, includeInactive: Boolean, excludeV1: Boolean, excludeMms: Boolean): Reader {

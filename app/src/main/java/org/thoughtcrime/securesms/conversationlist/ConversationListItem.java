@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.CharacterStyle;
 import android.text.style.ForegroundColorSpan;
 import android.text.style.StyleSpan;
@@ -60,6 +61,7 @@ import org.thoughtcrime.securesms.components.DeliveryStatusView;
 import org.thoughtcrime.securesms.components.FromTextView;
 import org.thoughtcrime.securesms.components.TypingIndicatorView;
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MessageTypes;
@@ -80,10 +82,19 @@ import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
+import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 import static org.thoughtcrime.securesms.database.model.LiveUpdateMessage.recipientToStringAsync;
 
@@ -129,6 +140,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   private SearchUtil.StyleFactory searchStyleFactory;
 
   private LiveData<SpannableString> displayBody;
+  private Disposable                joinMembersDisposable = Disposable.empty();
 
   public ConversationListItem(Context context) {
     this(context, null);
@@ -219,6 +231,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     observeRecipient(lifecycleOwner, thread.getRecipient().live());
     observeDisplayBody(null, null);
+    joinMembersDisposable.dispose();
 
     if (highlightSubstring != null) {
       String name = recipient.get().isSelf() ? getContext().getString(R.string.note_to_self) : recipient.get().getDisplayName(getContext());
@@ -277,6 +290,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     observeRecipient(lifecycleOwner, contact.live());
     observeDisplayBody(null, null);
+    joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
     fromView.setText(contact, SearchUtil.getHighlightedSpan(locale, searchStyleFactory, new SpannableString(contact.getDisplayName(getContext())), highlightSubstring, SearchUtil.MATCH_ALL), true, null);
@@ -305,6 +319,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
 
     observeRecipient(lifecycleOwner, messageResult.getConversationRecipient().live());
     observeDisplayBody(null, null);
+    joinMembersDisposable.dispose();
     setSubjectViewText(null);
 
     fromView.setText(recipient.get(), false);
@@ -321,6 +336,46 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
   }
 
+  public void bindGroupWithMembers(@NonNull LifecycleOwner lifecycleOwner,
+                                   @NonNull ContactSearchData.GroupWithMembers groupWithMembers,
+                                   @NonNull GlideRequests glideRequests,
+                                   @NonNull Locale locale)
+  {
+    this.glideRequests      = glideRequests;
+    this.locale             = locale;
+    this.highlightSubstring = groupWithMembers.getQuery();
+
+    observeRecipient(lifecycleOwner, Recipient.live(groupWithMembers.getGroupRecord().getRecipientId()));
+    observeDisplayBody(null, null);
+    joinMembersDisposable.dispose();
+    joinMembersDisposable = joinMembersToDisplayBody(groupWithMembers.getGroupRecord().getMembers(), groupWithMembers.getQuery()).subscribe(joined -> {
+      setSubjectViewText(SearchUtil.getHighlightedSpan(locale, searchStyleFactory, joined, highlightSubstring, SearchUtil.MATCH_ALL));
+    });
+
+    fromView.setText(recipient.get(), false);
+    dateView.setText(DateUtils.getBriefRelativeTimeSpanString(getContext(), locale, groupWithMembers.getDate()));
+    archivedView.setVisibility(GONE);
+    unreadIndicator.setVisibility(GONE);
+    unreadMentions.setVisibility(GONE);
+    deliveryStatusIndicator.setNone();
+    alertView.setNone();
+
+    setSelectedConversations(new ConversationSet());
+    setBadgeFromRecipient(recipient.get());
+    contactPhotoImage.setAvatar(glideRequests, recipient.get(), !batchMode);
+  }
+
+  private @NonNull Single<String> joinMembersToDisplayBody(@NonNull List<RecipientId> members, @NonNull String highlightSubstring) {
+    return Single.fromCallable(() -> {
+      return Util.join(Recipient.resolvedList(members)
+                                .stream()
+                                .map(r -> r.getDisplayName(getContext()))
+                                .sorted(new JoinMembersComparator(highlightSubstring))
+                                .limit(5)
+                                .collect(Collectors.toList()), ",");
+    }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+  }
+
   @Override
   public void unbind() {
     if (this.recipient != null) {
@@ -330,6 +385,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     }
 
     observeDisplayBody(null, null);
+    joinMembersDisposable.dispose();
   }
 
   @Override
