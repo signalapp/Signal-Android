@@ -100,8 +100,12 @@ public class IndividualSendJob extends PushSendJob {
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId, @NonNull Recipient recipient) {
     try {
-      OutgoingMessage message             = SignalDatabase.messages().getOutgoingMessage(messageId);
-      Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+      OutgoingMessage message = SignalDatabase.messages().getOutgoingMessage(messageId);
+      if (message.getScheduledDate() != -1) {
+        ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
+        return;
+      }
+      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       jobManager.add(IndividualSendJob.create(messageId, recipient, attachmentUploadIds.size() > 0), attachmentUploadIds, recipient.getId().toQueueKey());
     } catch (NoSuchMessageException | MmsException e) {

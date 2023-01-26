@@ -333,7 +333,13 @@ class MediaSelectionViewModel(
   }
 
   fun send(
-    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList()
+    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList(),
+    scheduledDate: Long? = null
+  ): Maybe<MediaSendActivityResult> = send(selectedContacts, scheduledDate ?: -1)
+
+  fun send(
+    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList(),
+    scheduledDate: Long
   ): Maybe<MediaSendActivityResult> {
     return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet(), identityChangesSince).andThen(
       repository.send(
@@ -347,7 +353,8 @@ class MediaSelectionViewModel(
         contacts = selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
         mentions = MentionAnnotation.getMentionsFromAnnotations(store.state.message),
         bodyRanges = MessageStyler.getStyling(store.state.message),
-        sendType = store.state.sendType
+        sendType = store.state.sendType,
+        scheduledTime = scheduledDate
       )
     )
   }

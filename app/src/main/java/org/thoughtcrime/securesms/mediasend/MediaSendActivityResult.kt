@@ -27,7 +27,8 @@ class MediaSendActivityResult(
   val isViewOnce: Boolean,
   val mentions: List<Mention>,
   @TypeParceler<BodyRangeList?, BodyRangeListParceler>() val bodyRanges: BodyRangeList?,
-  val storyType: StoryType
+  val storyType: StoryType,
+  val scheduledTime: Long = -1
 ) : Parcelable {
 
   val isPushPreUpload: Boolean

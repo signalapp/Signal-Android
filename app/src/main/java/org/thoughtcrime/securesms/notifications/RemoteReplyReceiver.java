@@ -101,7 +101,8 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
                                                         Collections.emptySet(),
                                                         null,
                                                         recipient.isPushGroup(),
-                                                        null);
+                                                        null,
+                                                        -1);
             threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }

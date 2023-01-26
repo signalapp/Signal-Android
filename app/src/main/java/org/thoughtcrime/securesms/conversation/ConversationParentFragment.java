@@ -136,6 +136,8 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
+import org.thoughtcrime.securesms.components.menu.ActionItem;
+import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
@@ -284,6 +286,7 @@ import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.DrawableUtil;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.FullscreenHelper;
 import org.thoughtcrime.securesms.util.IdentityUtil;
 import org.thoughtcrime.securesms.util.LifecycleDisposable;
@@ -329,6 +332,7 @@ import io.reactivex.rxjava3.core.Flowable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.core.SingleObserver;
 import io.reactivex.rxjava3.disposables.Disposable;
+import kotlin.Unit;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
@@ -363,7 +367,9 @@ public class ConversationParentFragment extends Fragment
                EmojiSearchFragment.Callback,
                StickerKeyboardPageFragment.Callback,
                Material3OnScrollHelperBinder,
-               MessageDetailsFragment.Callback
+               MessageDetailsFragment.Callback,
+               ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
+               ScheduledMessagesBottomSheet.Callback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -431,6 +437,7 @@ public class ConversationParentFragment extends Fragment
   private   View                     cancelJoinRequest;
   private   Stub<View>               releaseChannelUnmute;
   private   Stub<View>               mentionsSuggestions;
+  private   Stub<View>               scheduledMessagesBarStub;
   private   MaterialButton           joinGroupCallButton;
   private   boolean                  callingTooltipShown;
   private   ImageView                wallpaper;
@@ -556,6 +563,7 @@ public class ConversationParentFragment extends Fragment
     initializeActionBar();
 
     disposables.add(viewModel.getStoryViewState().subscribe(titleView::setStoryRingFromState));
+    disposables.add(viewModel.getScheduledMessageCount().subscribe(this::updateScheduledMessagesBar));
 
     backPressedCallback = new OnBackPressedCallback(true) {
       @Override
@@ -783,7 +791,8 @@ public class ConversationParentFragment extends Fragment
                        result.isViewOnce(),
                        initiating,
                        true,
-                       null).addListener(new AssertedSuccessListener<Void>() {
+                       null,
+                       result.getScheduledTime()).addListener(new AssertedSuccessListener<Void>() {
         @Override
         public void onSuccess(Void result) {
           AsyncTask.THREAD_POOL_EXECUTOR.execute(() -> {
@@ -2039,6 +2048,7 @@ public class ConversationParentFragment extends Fragment
     wallpaperDim             = view.findViewById(R.id.conversation_wallpaper_dim);
     voiceNotePlayerViewStub  = ViewUtil.findStubById(view, R.id.voice_note_player_stub);
     navigationBarBackground  = view.findViewById(R.id.navbar_background);
+    scheduledMessagesBarStub = ViewUtil.findStubById(view, R.id.scheduled_messages_stub);
 
     ImageButton quickCameraToggle      = view.findViewById(R.id.quick_camera_toggle);
     ImageButton inlineAttachmentButton = view.findViewById(R.id.inline_attachment_button);
@@ -2073,6 +2083,18 @@ public class ConversationParentFragment extends Fragment
     attachButton.setOnClickListener(new AttachButtonListener());
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
+    if (FeatureFlags.scheduledMessageSends()) {
+      sendButton.setScheduledSendListener(() -> {
+        ScheduleMessageContextMenu.show(sendButton, (ViewGroup) requireView(), time -> {
+          if (time == -1) {
+            ScheduleMessageTimePickerBottomSheet.showSchedule(getChildFragmentManager());
+          } else {
+            sendMessage(null, time);
+          }
+          return Unit.INSTANCE;
+        });
+      });
+    }
     sendButton.setEnabled(true);
     sendButton.addOnSelectionChangedListener((newMessageSendType, manuallySelected) -> {
       if (getContext() == null) {
@@ -2916,6 +2938,13 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMessage(@Nullable String metricId) {
+    sendMessage(metricId, -1);
+  }
+
+  private void sendMessage(@Nullable String metricId, long scheduledDate) {
+    if (scheduledDate != -1 && !SignalStore.uiHints().hasSeenScheduledMessagesInfoSheet()) {
+      ScheduleMessageFtuxBottomSheetDialog.show(getChildFragmentManager());
+    }
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();
       return;
@@ -2925,7 +2954,7 @@ public class ConversationParentFragment extends Fragment
     if (voiceNote != null) {
       AudioSlide audioSlide = AudioSlide.createFromVoiceNoteDraft(requireContext(), voiceNote);
 
-      sendVoiceNote(Objects.requireNonNull(audioSlide.getUri()), audioSlide.getFileSize());
+      sendVoiceNote(Objects.requireNonNull(audioSlide.getUri()), audioSlide.getFileSize(), scheduledDate);
       return;
     }
 
@@ -2957,9 +2986,9 @@ public class ConversationParentFragment extends Fragment
       } else if (sendType.usesSignalTransport() && (identityRecords.isUnverified(true) || identityRecords.isUntrusted(true))) {
         handleRecentSafetyNumberChange();
       } else if (isMediaMessage) {
-        sendMediaMessage(sendType, expiresIn, false, initiating, metricId);
+        sendMediaMessage(sendType, expiresIn, false, initiating, metricId, scheduledDate);
       } else {
-        sendTextMessage(sendType, expiresIn, initiating, metricId);
+        sendTextMessage(sendType, expiresIn, initiating, metricId, scheduledDate);
       }
     } catch (RecipientFormattingException ex) {
       Toast.makeText(requireContext(),
@@ -3002,7 +3031,8 @@ public class ConversationParentFragment extends Fragment
                                                     Collections.emptySet(),
                                                     null,
                                                     true,
-                                                    result.getBodyRanges());
+                                                    result.getBodyRanges(),
+                                                    -1);
 
     final Context         context      = requireContext().getApplicationContext();
 
@@ -3012,7 +3042,7 @@ public class ConversationParentFragment extends Fragment
     attachmentManager.clear(glideRequests, false);
     silentlySetComposeText("");
 
-    long id = fragment.stageOutgoingMessage(message);
+    fragment.stageOutgoingMessage(message);
 
     SimpleTask.run(() -> {
       long resultId = MessageSender.sendPushWithPreUploadedMedia(context, message, result.getPreUploadResults(), thread, null);
@@ -3024,7 +3054,7 @@ public class ConversationParentFragment extends Fragment
     }, this::sendComplete);
   }
 
-  private void sendMediaMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean viewOnce, final boolean initiating, @Nullable String metricId)
+  private void sendMediaMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean viewOnce, final boolean initiating, @Nullable String metricId, long scheduledDate)
       throws InvalidMessageException
   {
     Log.i(TAG, "Sending media message...");
@@ -3042,7 +3072,8 @@ public class ConversationParentFragment extends Fragment
                      viewOnce,
                      initiating,
                      true,
-                     metricId);
+                     metricId,
+                     scheduledDate);
   }
 
   private ListenableFuture<Void> sendMediaMessage(@NonNull RecipientId recipientId,
@@ -3059,6 +3090,25 @@ public class ConversationParentFragment extends Fragment
                                                   final boolean initiating,
                                                   final boolean clearComposeBox,
                                                   final @Nullable String metricId)
+  {
+    return sendMediaMessage(recipientId, sendType, body, slideDeck, quote, contacts, previews, mentions, styling, expiresIn, viewOnce, initiating, clearComposeBox, metricId, -1);
+  }
+
+  private ListenableFuture<Void> sendMediaMessage(@NonNull RecipientId recipientId,
+                                                  @NonNull MessageSendType sendType,
+                                                  @NonNull String body,
+                                                  SlideDeck slideDeck,
+                                                  QuoteModel quote,
+                                                  List<Contact> contacts,
+                                                  List<LinkPreview> previews,
+                                                  List<Mention> mentions,
+                                                  @Nullable BodyRangeList styling,
+                                                  final long expiresIn,
+                                                  final boolean viewOnce,
+                                                  final boolean initiating,
+                                                  final boolean clearComposeBox,
+                                                  final @Nullable String metricId,
+                                                  final long scheduledDate)
   {
     if (ExpiredBuildReminder.isEligible()) {
       showExpiredDialog();
@@ -3101,7 +3151,8 @@ public class ConversationParentFragment extends Fragment
                                                                    Collections.emptySet(),
                                                                    null,
                                                                    false,
-                                                                   styling);
+                                                                   styling,
+                                                                   scheduledDate);
 
     final SettableFuture<Void> future  = new SettableFuture<>();
     final Context              context = requireContext().getApplicationContext();
@@ -3126,7 +3177,7 @@ public class ConversationParentFragment extends Fragment
                    silentlySetComposeText("");
                  }
 
-                 final long id = fragment.stageOutgoingMessage(outgoingMessage);
+                 fragment.stageOutgoingMessage(outgoingMessage);
 
                  SimpleTask.run(() -> {
                    return MessageSender.send(context, outgoingMessage, thread, sendType.usesSmsTransport() ? SendType.MMS : SendType.SIGNAL, metricId, null);
@@ -3141,7 +3192,7 @@ public class ConversationParentFragment extends Fragment
     return future;
   }
 
-  private void sendTextMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean initiating, final @Nullable String metricId)
+  private void sendTextMessage(@NonNull MessageSendType sendType, final long expiresIn, final boolean initiating, final @Nullable String metricId, long scheduledDate)
       throws InvalidMessageException
   {
     if (ExpiredBuildReminder.isEligible()) {
@@ -3159,10 +3210,14 @@ public class ConversationParentFragment extends Fragment
     final String  messageBody = getMessage();
     final boolean sendPush    = sendType.usesSignalTransport();
 
-    OutgoingMessage message;
+    final OutgoingMessage message;
 
     if (sendPush) {
-      message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis(), null);
+      if (scheduledDate > 0) {
+        message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis(), null).sendAt(scheduledDate);
+      } else {
+        message = OutgoingMessage.text(recipient.get(), messageBody, expiresIn, System.currentTimeMillis(), null);
+      }
       ApplicationDependencies.getTypingStatusSender().onTypingStopped(thread);
     } else {
       message = OutgoingMessage.sms(recipient.get(), messageBody, sendType.getSimSubscriptionIdOr(-1));
@@ -3257,6 +3312,22 @@ public class ConversationParentFragment extends Fragment
       linkPreviewViewModel.onTextChanged(requireContext(), composeText.getTextTrimmed().toString(), composeText.getSelectionStart(), composeText.getSelectionEnd());
     } else {
       linkPreviewViewModel.onUserCancel();
+    }
+  }
+
+  private void updateScheduledMessagesBar(@NonNull Integer count) {
+    if (count <= 0) {
+      scheduledMessagesBarStub.setVisibility(View.GONE);
+    } else {
+      if (!scheduledMessagesBarStub.resolved()) {
+        View scheduledMessagesBar = scheduledMessagesBarStub.get();
+        scheduledMessagesBar.findViewById(R.id.scheduled_messages_show_all).setOnClickListener(v -> {
+          ScheduledMessagesBottomSheet.show(getChildFragmentManager(), threadId, recipient.getId());
+        });
+      }
+      scheduledMessagesBarStub.setVisibility(View.VISIBLE);
+      TextView scheduledText = scheduledMessagesBarStub.get().findViewById(R.id.scheduled_messages_text);
+      scheduledText.setText(getResources().getQuantityString(R.plurals.conversation_scheduled_messages_bar__number_of_messages, count, count));
     }
   }
 
@@ -3403,7 +3474,7 @@ public class ConversationParentFragment extends Fragment
     container.hideAttachedInput(true);
   }
 
-  private void sendVoiceNote(@NonNull Uri uri, long size) {
+  private void sendVoiceNote(@NonNull Uri uri, long size, long scheduledDate) {
     boolean    initiating = threadId == -1;
     long       expiresIn  = TimeUnit.SECONDS.toMillis(recipient.get().getExpiresInSeconds());
     AudioSlide audioSlide = new AudioSlide(requireContext(), uri, size, MediaUtil.AUDIO_AAC, true);
@@ -3424,7 +3495,8 @@ public class ConversationParentFragment extends Fragment
                      false,
                      initiating,
                      true,
-                     null);
+                     null,
+                     scheduledDate);
   }
 
   private void sendSticker(@NonNull StickerRecord stickerRecord, boolean clearCompose) {
@@ -3589,6 +3661,14 @@ public class ConversationParentFragment extends Fragment
     });
   }
 
+  public void onScheduleSend(long scheduledTime) {
+    sendMessage(null, scheduledTime);
+  }
+
+  public @NonNull ConversationAdapter.ItemClickListener getConversationAdapterListener() {
+    return fragment.getConversationAdapterListener();
+  }
+  
   // Listeners
 
   private class RecordingSession implements SingleObserver<VoiceNoteDraft> {
@@ -3607,7 +3687,7 @@ public class ConversationParentFragment extends Fragment
     @Override
     public void onSuccess(@NonNull VoiceNoteDraft draft) {
       if (shouldSend) {
-        sendVoiceNote(draft.getUri(), draft.getSize());
+        sendVoiceNote(draft.getUri(), draft.getSize(), -1);
       } else {
         if (!saveDraft) {
           draftViewModel.cancelEphemeralVoiceNoteDraft(draft.asDraft());
@@ -3688,7 +3768,7 @@ public class ConversationParentFragment extends Fragment
   private class AttachButtonLongClickListener implements View.OnLongClickListener {
     @Override
     public boolean onLongClick(View v) {
-      return sendButton.performLongClick();
+      return sendButton.showSendTypeMenu();
     }
   }
 

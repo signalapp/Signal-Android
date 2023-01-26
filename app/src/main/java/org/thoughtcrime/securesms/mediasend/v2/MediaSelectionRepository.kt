@@ -78,7 +78,8 @@ class MediaSelectionRepository(context: Context) {
     contacts: List<ContactSearchKey.RecipientSearchKey>,
     mentions: List<Mention>,
     bodyRanges: BodyRangeList?,
-    sendType: MessageSendType
+    sendType: MessageSendType,
+    scheduledTime: Long = -1
   ): Maybe<MediaSendActivityResult> {
     if (isSms && contacts.isNotEmpty()) {
       throw IllegalStateException("Provided recipients to send to, but this is SMS!")
@@ -112,8 +113,8 @@ class MediaSelectionRepository(context: Context) {
         StoryType.NONE
       }
 
-      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, MessageSender.SendType.SIGNAL)) {
-        Log.i(TAG, "SMS or local self-send. Skipping pre-upload.")
+      if (isSms || MessageSender.isLocalSelfSend(context, singleRecipient, MessageSender.SendType.SIGNAL) || (scheduledTime != -1L && storyType == StoryType.NONE)) {
+        Log.i(TAG, "SMS, local self-send, or scheduled send. Skipping pre-upload.")
         emitter.onSuccess(
           MediaSendActivityResult(
             recipientId = singleRecipient!!.id,
@@ -123,7 +124,8 @@ class MediaSelectionRepository(context: Context) {
             isViewOnce = isViewOnce,
             mentions = trimmedMentions,
             bodyRanges = trimmedBodyRanges,
-            storyType = StoryType.NONE
+            storyType = StoryType.NONE,
+            scheduledTime = scheduledTime
           )
         )
       } else {

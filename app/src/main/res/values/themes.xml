@@ -229,6 +229,9 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
+
+        <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
+        <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
     </style>
 
     <style name="TextSecure.DarkTheme" parent="@style/TextSecure.BaseDarkTheme">
@@ -315,6 +318,9 @@
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Signal.MaterialAlertDialog</item>
         <item name="materialTimePickerTheme">@style/Signal.ThemeOverlay.TimePicker</item>
         <item name="materialTimePickerStyle">@style/Signal.Widget.TimePicker</item>
+
+        <item name="materialCalendarStyle">@style/Signal.Widget.Calendar</item>
+        <item name="materialCalendarTheme">@style/Signal.ThemeOverlay.Calendar</item>
     </style>
 
     <style name="Theme.Signal.AlertDialog.Light.Cornered" parent="MaterialAlertDialog.Material3">

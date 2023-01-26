@@ -6,6 +6,7 @@ import android.content.res.ColorStateList
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -29,6 +30,8 @@ import org.signal.core.util.concurrent.SimpleTask
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.ScheduleMessageContextMenu
+import org.thoughtcrime.securesms.conversation.ScheduleMessageTimePickerBottomSheet
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
@@ -44,6 +47,7 @@ import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.scribbles.ImageEditorFragment
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.SystemWindowInsetsSetter
@@ -55,7 +59,7 @@ import org.thoughtcrime.securesms.util.visible
 /**
  * Allows the user to view and edit selected media.
  */
-class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
+class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), ScheduleMessageTimePickerBottomSheet.ScheduleCallback {
 
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -87,6 +91,8 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
 
   private var animatorSet: AnimatorSet? = null
   private var disposables: LifecycleDisposable = LifecycleDisposable()
+
+  private var scheduledSendTime: Long? = null
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     postponeEnterTransition()
@@ -198,6 +204,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
           } else {
             storiesLauncher.launch(StoriesMultiselectForwardActivity.Args(args, emptyList()))
           }
+          scheduledSendTime = null
         } else {
           multiselectLauncher.launch(args)
         }
@@ -207,8 +214,23 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
           .setPositiveButton(R.string.MediaReviewFragment__add_to_story) { _, _ -> performSend() }
           .setNegativeButton(android.R.string.cancel) { _, _ -> }
           .show()
+        scheduledSendTime = null
       } else {
         performSend()
+      }
+    }
+    if (FeatureFlags.scheduledMessageSends()) {
+      sendButton.setOnLongClickListener {
+        ScheduleMessageContextMenu.show(it, (requireView() as ViewGroup)) { time: Long ->
+          if (time == -1L) {
+            scheduledSendTime = null
+            ScheduleMessageTimePickerBottomSheet.showSchedule(childFragmentManager)
+          } else {
+            scheduledSendTime = time
+            sendButton.performClick()
+          }
+        }
+        true
       }
     }
 
@@ -325,7 +347,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
       .alpha(1f)
 
     disposables += sharedViewModel
-      .send(selection.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java))
+      .send(selection.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java), scheduledSendTime)
       .subscribe(
         { result -> callback.onSentWithResult(result) },
         { error -> callback.onSendError(error) },
@@ -559,5 +581,10 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment) {
     fun onSendError(error: Throwable)
     fun onNoMediaSelected()
     fun onPopFromReview()
+  }
+
+  override fun onScheduleSend(scheduledTime: Long) {
+    scheduledSendTime = scheduledTime
+    sendButton.performClick()
   }
 }

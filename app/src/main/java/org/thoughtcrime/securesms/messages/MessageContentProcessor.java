@@ -2111,7 +2111,8 @@ public final class MessageContentProcessor {
                                                          Collections.emptySet(),
                                                          null,
                                                          true,
-                                                         null);
+                                                         null,
+                                                         -1);
 
       if (recipient.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
         handleSynchronizeSentExpirationUpdate(message);
@@ -2231,7 +2232,8 @@ public final class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        null,
                                                        true,
-                                                       null);
+                                                       null,
+                                                       -1);
 
     MessageTable messageTable = SignalDatabase.messages();
     long         threadId     = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
@@ -2329,7 +2331,8 @@ public final class MessageContentProcessor {
                                                        Collections.emptySet(),
                                                        giftBadge.orElse(null),
                                                        true,
-                                                       null);
+                                                       null,
+                                                       -1);
 
     if (recipients.getExpiresInSeconds() != message.getDataMessage().get().getExpiresInSeconds()) {
       handleSynchronizeSentExpirationUpdate(message);

@@ -109,6 +109,27 @@
         android:padding="8dp"
         android:orientation="vertical" />
 
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/body_bubble"
+        android:layout_alignTop="@id/body_bubble"
+        android:layout_alignBottom="@id/body_bubble"
+        android:layout_marginStart="-42dp" >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/scheduled_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            app:srcCompat="@drawable/ic_calendar_24" />
+
+    </FrameLayout>
+
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView
         android:id="@+id/reactions_view"
         android:layout_width="wrap_content"

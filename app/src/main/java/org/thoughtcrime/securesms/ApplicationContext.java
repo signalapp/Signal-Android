@@ -182,6 +182,7 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
                             .addNonBlocking(this::cleanAvatarStorage)
                             .addNonBlocking(this::initializeRevealableMessageManager)
                             .addNonBlocking(this::initializePendingRetryReceiptManager)
+                            .addNonBlocking(this::initializeScheduledMessageManager)
                             .addNonBlocking(this::initializeFcmCheck)
                             .addNonBlocking(PreKeysSyncJob::enqueueIfNeeded)
                             .addNonBlocking(this::initializePeriodicTasks)
@@ -388,6 +389,10 @@ public class ApplicationContext extends MultiDexApplication implements AppForegr
 
   private void initializePendingRetryReceiptManager() {
     ApplicationDependencies.getPendingRetryReceiptManager().scheduleIfNecessary();
+  }
+
+  private void initializeScheduledMessageManager() {
+    ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
   }
 
   private void initializeTrimThreadsByDateManager() {

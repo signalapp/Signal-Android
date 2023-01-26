@@ -42,6 +42,7 @@ public class DatabaseObserver {
   private static final String KEY_NOTIFICATION_PROFILES = "NotificationProfiles";
   private static final String KEY_RECIPIENT             = "Recipient";
   private static final String KEY_STORY_OBSERVER        = "Story";
+  private static final String KEY_SCHEDULED_MESSAGES    = "ScheduledMessages";
 
   private final Application application;
   private final Executor    executor;
@@ -50,6 +51,7 @@ public class DatabaseObserver {
   private final Map<Long, Set<Observer>>        conversationObservers;
   private final Map<Long, Set<Observer>>        verboseConversationObservers;
   private final Map<UUID, Set<Observer>>        paymentObservers;
+  private final Map<Long, Set<Observer>>        scheduledMessageObservers;
   private final Set<Observer>                   allPaymentsObservers;
   private final Set<Observer>                   chatColorsObservers;
   private final Set<Observer>                   stickerObservers;
@@ -76,6 +78,7 @@ public class DatabaseObserver {
     this.messageInsertObservers       = new HashMap<>();
     this.notificationProfileObservers = new HashSet<>();
     this.storyObservers               = new HashMap<>();
+    this.scheduledMessageObservers    = new HashMap<>();
   }
 
   public void registerConversationListObserver(@NonNull Observer listener) {
@@ -156,6 +159,12 @@ public class DatabaseObserver {
   public void registerStoryObserver(@NonNull RecipientId recipientId, @NonNull Observer listener) {
     executor.execute(() -> {
       registerMapped(storyObservers, recipientId, listener);
+    });
+  }
+
+  public void registerScheduledMessageObserver(long threadId, @NonNull Observer listener) {
+    executor.execute(() -> {
+      registerMapped(scheduledMessageObservers, threadId, listener);
     });
   }
 
@@ -288,6 +297,12 @@ public class DatabaseObserver {
         notifyMapped(storyObservers, recipientId);
       });
     }
+  }
+
+  public void notifyScheduledMessageObservers(long threadId) {
+    runPostSuccessfulTransaction(KEY_SCHEDULED_MESSAGES + threadId, () -> {
+      notifyMapped(scheduledMessageObservers, threadId);
+    });
   }
 
   private void runPostSuccessfulTransaction(@NonNull String dedupeKey, @NonNull Runnable runnable) {

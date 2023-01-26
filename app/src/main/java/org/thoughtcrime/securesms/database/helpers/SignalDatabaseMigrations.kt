@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V169_EmojiSearchInd
 import org.thoughtcrime.securesms.database.helpers.migration.V170_CallTableMigration
 import org.thoughtcrime.securesms.database.helpers.migration.V171_ThreadForeignKeyFix
 import org.thoughtcrime.securesms.database.helpers.migration.V172_GroupMembershipMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V173_ScheduledMessagesMigration
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -36,7 +37,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 172
+  const val DATABASE_VERSION = 173
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -134,6 +135,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 172) {
       V172_GroupMembershipMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 173) {
+      V173_ScheduledMessagesMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

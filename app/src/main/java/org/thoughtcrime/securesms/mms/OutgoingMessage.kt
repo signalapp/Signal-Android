@@ -50,6 +50,7 @@ data class OutgoingMessage(
   val isEndSession: Boolean = false,
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
+  val scheduledDate: Long = -1,
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -78,7 +79,8 @@ data class OutgoingMessage(
     mismatches: Set<IdentityKeyMismatch> = emptySet(),
     giftBadge: GiftBadge? = null,
     isSecure: Boolean = false,
-    bodyRanges: BodyRangeList? = null
+    bodyRanges: BodyRangeList? = null,
+    scheduledDate: Long = -1
   ) : this(
     recipient = recipient,
     body = body ?: "",
@@ -99,7 +101,8 @@ data class OutgoingMessage(
     identityKeyMismatches = mismatches,
     giftBadge = giftBadge,
     isSecure = isSecure,
-    bodyRanges = bodyRanges
+    bodyRanges = bodyRanges,
+    scheduledDate = scheduledDate
   )
 
   /**
@@ -151,6 +154,10 @@ data class OutgoingMessage(
 
   fun requireGroupV2Properties(): MessageGroupContext.GroupV2Properties {
     return messageGroupContext!!.requireGroupV2Properties()
+  }
+
+  fun sendAt(scheduledDate: Long): OutgoingMessage {
+    return copy(scheduledDate = scheduledDate)
   }
 
   companion object {

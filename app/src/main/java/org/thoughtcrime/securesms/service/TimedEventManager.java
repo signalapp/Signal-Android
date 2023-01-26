@@ -5,6 +5,7 @@ import android.app.Application;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Handler;
 import android.os.HandlerThread;
 
@@ -14,12 +15,15 @@ import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 
 /**
  * Class to help manage scheduling events to happen in the future, whether the app is open or not.
  */
 public abstract class TimedEventManager<E> {
+
+  private static final String TAG = Log.tag(TimedEventManager.class);
 
   private final Application application;
   private final Handler     handler;
@@ -90,5 +94,30 @@ public abstract class TimedEventManager<E> {
 
     alarmManager.cancel(pendingIntent);
     alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + delay, pendingIntent);
+  }
+
+  protected static void trySetExactAlarm(@NonNull Context context, long timestamp, @NonNull Class alarmClass) {
+    Intent        intent        = new Intent(context, alarmClass);
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntentFlags.mutable());
+    AlarmManager  alarmManager  = ServiceUtil.getAlarmManager(context);
+
+    alarmManager.cancel(pendingIntent);
+
+    boolean hasManagerPermission = Build.VERSION.SDK_INT < 31 || alarmManager.canScheduleExactAlarms();
+    if (hasManagerPermission) {
+      try {
+        if (Build.VERSION.SDK_INT >= 23) {
+          alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
+        } else {
+          alarmManager.setExact(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
+        }
+        return;
+      } catch (Exception e) {
+        Log.w(TAG, e);
+      }
+    }
+
+    Log.w(TAG, "Unable to schedule exact alarm, falling back to inexact alarm, scheduling alarm for: " + timestamp);
+    alarmManager.set(AlarmManager.RTC_WAKEUP, timestamp, pendingIntent);
   }
 }

@@ -186,6 +186,10 @@ public class ConversationDataSource implements PagedDataSource<MessageId, Conver
       return null;
     }
 
+    if (record instanceof MediaMmsMessageRecord && ((MediaMmsMessageRecord) record).getScheduledDate() != -1) {
+      return null;
+    }
+
     stopwatch.split("message");
 
     try {

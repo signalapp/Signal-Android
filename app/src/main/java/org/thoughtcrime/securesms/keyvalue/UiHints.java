@@ -13,6 +13,7 @@ public class UiHints extends SignalStoreValues {
   private static final String HAS_CONFIRMED_DELETE_FOR_EVERYONE_ONCE = "uihints.has_confirmed_delete_for_everyone_once";
   private static final String HAS_SET_OR_SKIPPED_USERNAME_CREATION   = "uihints.has_set_or_skipped_username_creation";
   private static final String NEVER_DISPLAY_PULL_TO_FILTER_TIP       = "uihints.never_display_pull_to_filter_tip";
+  private static final String HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE  = "uihints.has_seen_scheduled_messages_info_once";
 
   UiHints(@NonNull KeyValueStore store) {
     super(store);
@@ -34,6 +35,14 @@ public class UiHints extends SignalStoreValues {
 
   public boolean hasSeenGroupSettingsMenuToast() {
     return getBoolean(HAS_SEEN_GROUP_SETTINGS_MENU_TOAST, false);
+  }
+
+  public void markHasSeenScheduledMessagesInfoSheet() {
+    putBoolean(HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE, true);
+  }
+
+  public boolean hasSeenScheduledMessagesInfoSheet() {
+    return getBoolean(HAS_SEEN_SCHEDULED_MESSAGES_INFO_ONCE, false);
   }
 
   public void markHasConfirmedDeleteForEveryoneOnce() {

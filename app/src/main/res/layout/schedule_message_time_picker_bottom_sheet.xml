@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/anchor"
+        android:layout_width="48dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@color/signal_icon_tint_tab_unselected"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/title"
+        style="@style/Signal.Text.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/anchor"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="@string/ScheduleMessageTimePickerBottomSheet__dialog_title"/>
+
+    <TextView
+        android:id="@+id/timezone_disclaimer"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="56dp"
+        android:gravity="start"
+        android:textColor="@color/signal_colorOnSurfaceVariant_60"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        tools:text="All times in (UTC -5:00) Eastern Time (US and Canada)"
+        app:layout_constraintTop_toBottomOf="@id/title"/>
+
+    <LinearLayout
+        android:id="@+id/day_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="6dp"
+        android:paddingVertical="8dp"
+        android:layout_marginStart="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/time_selector">
+
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Today"
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_expand_down_24"
+            android:background="?selectableItemBackgroundBorderless"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/time_selector"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="6dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="16dp"
+        android:paddingVertical="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/timezone_disclaimer">
+
+        <TextView
+            android:id="@+id/time_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="1:00 p.m."
+            android:drawablePadding="8dp"
+            android:textAppearance="@style/Signal.Text.BodyLarge" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/ic_expand_down_24"
+            android:background="?selectableItemBackgroundBorderless"/>
+
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/schedule_send"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="18dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@id/day_selector"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="24dp"
+        android:text="@string/ScheduleMessageTimePickerBottomSheet__schedule_send"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

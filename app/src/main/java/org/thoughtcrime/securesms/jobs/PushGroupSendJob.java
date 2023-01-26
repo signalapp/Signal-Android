@@ -116,7 +116,16 @@ public final class PushGroupSendJob extends PushSendJob {
 
       MessageTable    database            = SignalDatabase.messages();
       OutgoingMessage message             = database.getOutgoingMessage(messageId);
-      Set<String>     attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
+
+      if (message.getScheduledDate() != -1) {
+        if (!filterAddresses.isEmpty()) {
+          throw new MmsException("Cannot schedule a group message with filter addresses!");
+        }
+        ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
+        return;
+      }
+
+      Set<String> attachmentUploadIds = enqueueCompressingAndUploadAttachmentsChains(jobManager, message);
 
       if (message.getGiftBadge() != null) {
         throw new MmsException("Cannot send a gift badge to a group!");

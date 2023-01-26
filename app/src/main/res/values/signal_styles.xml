@@ -253,6 +253,31 @@
         <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
+    <style name="Signal.Widget.Calendar" parent="Widget.Material3.MaterialCalendar">
+        <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
+    </style>
+
+    <style name="Signal.ThemeOverlay.Calendar" parent="@style/ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorSurface">@color/signal_background_dialog</item>
+        <item name="borderlessButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="colorPrimary">@color/signal_colorPrimary</item>
+        <item name="colorOnPrimary">@color/signal_colorOnPrimary</item>
+        <item name="colorAccent">@color/signal_accent_primary</item>
+        <item name="materialCalendarHeaderTitle">@style/MaterialCalendar.Signal.HeaderTitle</item>
+        <item name="materialCalendarHeaderSelection">@style/MaterialCalendar.Signal.HeaderSelection</item>
+
+        <item name="buttonBarPositiveButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Signal.Widget.Button.Dialog</item>
+    </style>
+
+    <style name="MaterialCalendar.Signal.HeaderTitle" parent="Widget.Material3.MaterialCalendar.HeaderTitle">
+        <item name="android:textAppearance">@style/Signal.Text.LabelMedium</item>
+    </style>
+
+    <style name="MaterialCalendar.Signal.HeaderSelection" parent="Widget.Material3.MaterialCalendar.HeaderSelection">
+        <item name="android:textAppearance">@style/Signal.Text.HeadlineLarge</item>
+    </style>
+
     <style name="Signal.Widget.TimePicker" parent="Widget.MaterialComponents.TimePicker">
         <item name="shapeAppearance">@style/Signal.ShapeOverlay.Rounded</item>
     </style>

@@ -1,0 +1,295 @@
+package org.thoughtcrime.securesms.conversation
+
+import android.annotation.SuppressLint
+import android.content.DialogInterface
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.doOnNextLayout
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.StreamUtil
+import org.signal.core.util.concurrent.SimpleTask
+import org.signal.core.util.dp
+import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
+import org.thoughtcrime.securesms.components.SignalProgressDialog
+import org.thoughtcrime.securesms.components.menu.ActionItem
+import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
+import org.thoughtcrime.securesms.conversation.colors.Colorizer
+import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart.Attachments
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
+import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ItemDecoration
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicy
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
+import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
+import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
+import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.mms.PartAuthority
+import org.thoughtcrime.securesms.mms.TextSlide
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.BottomSheetUtil
+import org.thoughtcrime.securesms.util.BottomSheetUtil.requireCoordinatorLayout
+import org.thoughtcrime.securesms.util.LifecycleDisposable
+import org.thoughtcrime.securesms.util.StickyHeaderDecoration
+import org.thoughtcrime.securesms.util.Util
+import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.hasTextSlide
+import org.thoughtcrime.securesms.util.requireTextSlide
+import java.io.IOException
+import java.util.Locale
+
+/**
+ * Bottom sheet dialog to view all scheduled messages within a given thread.
+ */
+class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(), ScheduleMessageTimePickerBottomSheet.RescheduleCallback {
+
+  override val peekHeightPercentage: Float = 0.66f
+  override val themeResId: Int = R.style.Widget_Signal_FixedRoundedCorners_Messages
+
+  private var firstRender: Boolean = true
+
+  private lateinit var messageAdapter: ConversationAdapter
+  private lateinit var callback: Callback
+
+  private val viewModel: ScheduledMessagesViewModel by viewModels(
+    factoryProducer = {
+      val threadId = requireArguments().getLong(KEY_THREAD_ID)
+      ScheduledMessagesViewModel.Factory(threadId)
+    }
+  )
+
+  private val disposables: LifecycleDisposable = LifecycleDisposable()
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    val view = inflater.inflate(R.layout.scheduled_messages_bottom_sheet, container, false)
+    disposables.bindTo(viewLifecycleOwner)
+    return view
+  }
+
+  @SuppressLint("WrongThread")
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    val conversationRecipientId = RecipientId.from(arguments?.getString(KEY_CONVERSATION_RECIPIENT_ID, null) ?: throw IllegalArgumentException())
+    val conversationRecipient = Recipient.resolved(conversationRecipientId)
+
+    callback = requireListener()
+
+    val colorizer = Colorizer()
+
+    messageAdapter = ConversationAdapter(requireContext(), viewLifecycleOwner, GlideApp.with(this), Locale.getDefault(), ConversationAdapterListener(), conversationRecipient, colorizer).apply {
+      setCondensedMode(true)
+      setScheduledMessagesMode(true)
+    }
+
+    val list: RecyclerView = view.findViewById<RecyclerView>(R.id.scheduled_list).apply {
+      layoutManager = SmoothScrollingLinearLayoutManager(requireContext(), true)
+      adapter = messageAdapter
+      itemAnimator = null
+
+      doOnNextLayout {
+        // Adding this without waiting for a layout pass would result in an indeterminate amount of padding added to the top of the view
+        addItemDecoration(StickyHeaderDecoration(messageAdapter, false, false, ConversationAdapter.HEADER_TYPE_INLINE_DATE))
+      }
+    }
+
+    val recyclerViewColorizer = RecyclerViewColorizer(list)
+
+    disposables += viewModel.getMessages(requireContext()).subscribe { messages ->
+      if (messages.isEmpty()) {
+        dismiss()
+      }
+
+      messageAdapter.submitList(messages) {
+        if (firstRender) {
+          (list.layoutManager as LinearLayoutManager).scrollToPositionWithOffset(messages.size - 1, 100)
+
+          firstRender = false
+        } else if (!list.canScrollVertically(1)) {
+          list.layoutManager?.scrollToPosition(0)
+        }
+      }
+      recyclerViewColorizer.setChatColors(conversationRecipient.chatColors)
+    }
+
+    initializeGiphyMp4(view.findViewById(R.id.video_container) as ViewGroup, list)
+  }
+
+  private fun initializeGiphyMp4(videoContainer: ViewGroup, list: RecyclerView): GiphyMp4ProjectionRecycler {
+    val maxPlayback = GiphyMp4PlaybackPolicy.maxSimultaneousPlaybackInConversation()
+    val holders = GiphyMp4ProjectionPlayerHolder.injectVideoViews(
+      requireContext(),
+      viewLifecycleOwner.lifecycle,
+      videoContainer,
+      maxPlayback
+    )
+    val callback = GiphyMp4ProjectionRecycler(holders)
+
+    GiphyMp4PlaybackController.attach(list, callback, maxPlayback)
+    list.addItemDecoration(GiphyMp4ItemDecoration(callback) {}, 0)
+
+    return callback
+  }
+
+  private fun showScheduledMessageContextMenu(view: View, messageRecord: MessageRecord) {
+    SignalContextMenu.Builder(view, requireCoordinatorLayout())
+      .offsetX(12.dp)
+      .offsetY(12.dp)
+      .preferredVerticalPosition(SignalContextMenu.VerticalPosition.ABOVE)
+      .show(getMenuActionItems(messageRecord))
+  }
+
+  private fun getMenuActionItems(messageRecord: MessageRecord): List<ActionItem> {
+    val message = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), messageRecord)
+    val canCopy = message.multiselectCollection.toSet().any { it !is Attachments && messageRecord.body.isNotEmpty() }
+    val items: MutableList<ActionItem> = ArrayList()
+    items.add(ActionItem(R.drawable.ic_delete_tinted_24, resources.getString(R.string.conversation_selection__menu_delete), action = { handleDeleteMessage(messageRecord) }))
+    if (canCopy) {
+      items.add(ActionItem(R.drawable.ic_copy_24_tinted, resources.getString(R.string.conversation_selection__menu_copy), action = { handleCopyMessage(message) }))
+    }
+    items.add(ActionItem(R.drawable.ic_send_outline_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_send_now), action = { handleSendMessageNow(messageRecord) }))
+    items.add(ActionItem(R.drawable.ic_calendar_24, resources.getString(R.string.ScheduledMessagesBottomSheet_menu_reschedule), action = { handleRescheduleMessage(messageRecord) }))
+    return items
+  }
+
+  private fun handleRescheduleMessage(messageRecord: MessageRecord) {
+    ScheduleMessageTimePickerBottomSheet.showReschedule(childFragmentManager, messageRecord.id, (messageRecord as MediaMmsMessageRecord).scheduledDate)
+  }
+
+  private fun handleSendMessageNow(messageRecord: MessageRecord) {
+    viewModel.rescheduleMessage(messageRecord.id, System.currentTimeMillis())
+  }
+
+  private fun handleDeleteMessage(messageRecord: MessageRecord) {
+    buildDeleteScheduledMessageConfirmationDialog(messageRecord).show()
+  }
+
+  private fun handleCopyMessage(message: ConversationMessage) {
+    SimpleTask.run(
+      viewLifecycleOwner.lifecycle,
+      { getMessageText(message) },
+      { bodies: CharSequence? ->
+        if (!Util.isEmpty(bodies)) {
+          Util.copyToClipboard(requireContext(), bodies!!)
+        }
+      }
+    )
+  }
+
+  private fun buildDeleteScheduledMessageConfirmationDialog(messageRecord: MessageRecord): AlertDialog.Builder {
+    return MaterialAlertDialogBuilder(requireContext())
+      .setTitle(resources.getString(R.string.ScheduledMessagesBottomSheet_delete_dialog_message))
+      .setCancelable(true)
+      .setPositiveButton(R.string.ScheduledMessagesBottomSheet_delete_dialog_action) { _: DialogInterface?, _: Int ->
+        deleteMessage(messageRecord.id)
+      }
+      .setNegativeButton(android.R.string.cancel, null)
+  }
+
+  private fun getMessageText(message: ConversationMessage): CharSequence {
+    if (message.messageRecord.hasTextSlide()) {
+      val textSlide: TextSlide = message.messageRecord.requireTextSlide()
+      if (textSlide.uri == null) {
+        return message.getDisplayBody(requireContext())
+      }
+      try {
+        PartAuthority.getAttachmentStream(requireContext(), textSlide.uri!!).use { stream ->
+          val body = StreamUtil.readFullyAsString(stream)
+          return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), message.messageRecord, body)
+            .getDisplayBody(requireContext())
+        }
+      } catch (e: IOException) {
+        Log.w(TAG, "Failed to read text slide data.")
+      }
+    }
+    return ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(requireContext(), message.messageRecord).getDisplayBody(requireContext())
+  }
+
+  private fun deleteMessage(messageId: Long) {
+    val progressDialog = SignalProgressDialog.show(
+      context = requireContext(),
+      message = resources.getString(R.string.ScheduledMessagesBottomSheet_deleting_progress_message),
+      indeterminate = true
+    )
+    SimpleTask.run(viewLifecycleOwner.lifecycle, {
+      SignalDatabase.messages.deleteScheduledMessage(messageId)
+    }, {
+      progressDialog.dismiss()
+    })
+  }
+
+  override fun onReschedule(scheduledTime: Long, messageId: Long) {
+    viewModel.rescheduleMessage(messageId, scheduledTime)
+  }
+
+  private fun getAdapterListener(): ConversationAdapter.ItemClickListener {
+    return callback.getConversationAdapterListener()
+  }
+
+  private inner class ConversationAdapterListener : ConversationAdapter.ItemClickListener by getAdapterListener() {
+    override fun onItemClick(item: MultiselectPart) = Unit
+    override fun onItemLongClick(itemView: View, item: MultiselectPart) = Unit
+    override fun onQuoteClicked(messageRecord: MmsMessageRecord) = Unit
+    override fun onLinkPreviewClicked(linkPreview: LinkPreview) = Unit
+    override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
+    override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
+    override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit
+    override fun onMessageWithRecaptchaNeededClicked(messageRecord: MessageRecord) = Unit
+    override fun onGroupMigrationLearnMoreClicked(membershipChange: GroupMigrationMembershipChange) = Unit
+    override fun onChatSessionRefreshLearnMoreClicked() = Unit
+    override fun onBadDecryptLearnMoreClicked(author: RecipientId) = Unit
+    override fun onSafetyNumberLearnMoreClicked(recipient: Recipient) = Unit
+    override fun onJoinGroupCallClicked() = Unit
+    override fun onInviteFriendsToGroupClicked(groupId: GroupId.V2) = Unit
+    override fun onEnableCallNotificationsClicked() = Unit
+    override fun onCallToAction(action: String) = Unit
+    override fun onDonateClicked() = Unit
+    override fun onRecipientNameClicked(target: RecipientId) = Unit
+    override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) = Unit
+    override fun onActivatePaymentsClicked() = Unit
+    override fun onSendPaymentClicked(recipientId: RecipientId) = Unit
+    override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) {
+      showScheduledMessageContextMenu(view, messageRecord)
+    }
+  }
+
+  interface Callback {
+    fun getConversationAdapterListener(): ConversationAdapter.ItemClickListener
+  }
+
+  companion object {
+    private val TAG = Log.tag(ScheduledMessagesBottomSheet::class.java)
+
+    private const val KEY_THREAD_ID = "thread_id"
+    private const val KEY_CONVERSATION_RECIPIENT_ID = "conversation_recipient_id"
+
+    @JvmStatic
+    fun show(fragmentManager: FragmentManager, threadId: Long, conversationRecipientId: RecipientId) {
+      val args = Bundle().apply {
+        putLong(KEY_THREAD_ID, threadId)
+        putString(KEY_CONVERSATION_RECIPIENT_ID, conversationRecipientId.serialize())
+      }
+
+      val fragment = ScheduledMessagesBottomSheet().apply {
+        arguments = args
+      }
+
+      fragment.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+  }
+}

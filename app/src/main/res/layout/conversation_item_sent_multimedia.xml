@@ -236,6 +236,17 @@
             android:tint="@color/signal_colorOnSurfaceVariant"
             app:srcCompat="@drawable/ic_replies_outline_20" />
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/scheduled_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            app:srcCompat="@drawable/ic_calendar_24" />
+
     </FrameLayout>
 
     <org.thoughtcrime.securesms.reactions.ReactionsConversationView

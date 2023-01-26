@@ -105,6 +105,7 @@ public final class FeatureFlags {
   private static final String PAYPAL_ONE_TIME_DONATIONS         = "android.oneTimePayPalDonations.2";
   private static final String PAYPAL_RECURRING_DONATIONS        = "android.recurringPayPalDonations.2";
   private static final String TEXT_FORMATTING                   = "android.textFormatting";
+  private static final String SCHEDULED_MESSAGE_SENDS           = "android.scheduledMessageSends";
 
   /**
    * We will only store remote values for flags in this set. If you want a flag to be controllable
@@ -160,7 +161,8 @@ public final class FeatureFlags {
       CHAT_FILTERS,
       PAYPAL_ONE_TIME_DONATIONS,
       PAYPAL_RECURRING_DONATIONS,
-      TEXT_FORMATTING
+      TEXT_FORMATTING,
+      SCHEDULED_MESSAGE_SENDS
   );
 
   @VisibleForTesting
@@ -572,6 +574,13 @@ public final class FeatureFlags {
    */
   public static boolean textFormatting() {
     return getBoolean(TEXT_FORMATTING, false);
+  }
+
+  /**
+   *  Whether or not we allow the user to schedule message sends. This takes over the entry point for SMS message sends
+   */
+  public static boolean scheduledMessageSends() {
+    return getBoolean(SCHEDULED_MESSAGE_SENDS, false);
   }
 
   /** Only for rendering debug info. */

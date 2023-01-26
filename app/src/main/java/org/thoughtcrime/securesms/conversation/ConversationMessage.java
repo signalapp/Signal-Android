@@ -115,6 +115,10 @@ public class ConversationMessage {
            getBottomButton() == null;
   }
 
+  public boolean hasBeenScheduled() {
+    return MessageRecordUtil.isScheduled(messageRecord);
+  }
+
   /**
    * Factory providing multiple ways of creating {@link ConversationMessage}s.
    */

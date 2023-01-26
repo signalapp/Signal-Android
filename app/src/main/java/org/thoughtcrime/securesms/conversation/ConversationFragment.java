@@ -1188,15 +1188,16 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
                    Toast.LENGTH_LONG).show();
   }
 
-  public long stageOutgoingMessage(OutgoingMessage message) {
+  public void stageOutgoingMessage(OutgoingMessage message) {
+    if (message.getScheduledDate() != -1) {
+      return;
+    }
     MessageRecord messageRecord = MessageTable.readerFor(message, threadId).getCurrent();
 
     if (getListAdapter() != null) {
       setLastSeen(0);
       list.post(() -> list.scrollToPosition(0));
     }
-
-    return messageRecord.getId();
   }
 
   private void presentConversationMetadata(@NonNull ConversationData conversation) {
@@ -2113,6 +2114,11 @@ public class ConversationFragment extends LoggingFragment implements Multiselect
     @Override
     public void onSendPaymentClicked(@NonNull RecipientId recipientId) {
       AttachmentManager.selectPayment(ConversationFragment.this, recipient.get());
+    }
+
+    @Override
+    public void onScheduledIndicatorClicked(@NonNull View view, @NonNull MessageRecord messageRecord) {
+
     }
   }
 

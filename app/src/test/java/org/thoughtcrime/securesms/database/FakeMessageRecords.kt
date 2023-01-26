@@ -175,7 +175,8 @@ object FakeMessageRecords {
       parentStoryId,
       giftBadge,
       payment,
-      call
+      call,
+      -1
     )
   }
 }

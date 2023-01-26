@@ -141,6 +141,10 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
       )
 }
 
+fun MessageRecord.isScheduled(): Boolean {
+  return (this as? MediaMmsMessageRecord)?.scheduledDate?.let { it != -1L } ?: false
+}
+
 /**
  * Returns the QuoteType for this record, as if it was being quoted.
  */

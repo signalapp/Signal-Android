@@ -46,6 +46,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart;
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
@@ -120,6 +121,7 @@ public class ConversationAdapter
   private Colorizer           colorizer;
   private boolean             isTypingViewEnabled;
   private boolean             condensedMode;
+  private boolean             scheduledMessagesMode;
   private PulseRequest        pulseRequest;
 
   public ConversationAdapter(@NonNull Context context,
@@ -261,6 +263,11 @@ public class ConversationAdapter
     notifyDataSetChanged();
   }
 
+  public void setScheduledMessagesMode(boolean scheduledMessagesMode) {
+    this.scheduledMessagesMode = scheduledMessagesMode;
+    notifyDataSetChanged();
+  }
+
   @Override
   public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
     switch (getItemViewType(position)) {
@@ -331,7 +338,11 @@ public class ConversationAdapter
 
     if (conversationMessage == null) return -1;
 
-    calendar.setTimeInMillis(conversationMessage.getMessageRecord().getDateSent());
+    if (scheduledMessagesMode) {
+      calendar.setTimeInMillis(((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate());
+    } else {
+      calendar.setTimeInMillis(conversationMessage.getMessageRecord().getDateSent());
+    }
     return calendar.get(Calendar.YEAR) * 1000L + calendar.get(Calendar.DAY_OF_YEAR);
   }
 
@@ -345,7 +356,11 @@ public class ConversationAdapter
     Context             context             = viewHolder.itemView.getContext();
     ConversationMessage conversationMessage = Objects.requireNonNull(getItem(position));
 
-    viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateSent()));
+    if (scheduledMessagesMode) {
+      viewHolder.setText(DateUtils.getScheduledMessagesDateHeaderString(viewHolder.itemView.getContext(), locale, ((MediaMmsMessageRecord) conversationMessage.getMessageRecord()).getScheduledDate()));
+    } else {
+      viewHolder.setText(DateUtils.getConversationDateHeaderString(viewHolder.itemView.getContext(), locale, conversationMessage.getMessageRecord().getDateSent()));
+    }
 
     if (type == HEADER_TYPE_POPOVER_DATE) {
       if (hasWallpaper) {

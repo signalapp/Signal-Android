@@ -815,6 +815,8 @@
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
+    <receiver android:name=".service.ScheduledMessageManager$ScheduledMessagesAlarm" />
+
     <receiver android:name=".service.PendingRetryReceiptManager$PendingRetryReceiptAlarm" />
 
     <receiver android:name=".service.TrimThreadsByDateManager$TrimThreadsByDateAlarm" />
