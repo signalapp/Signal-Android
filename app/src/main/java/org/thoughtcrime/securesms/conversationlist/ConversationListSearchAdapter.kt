@@ -24,33 +24,28 @@ import java.util.Locale
 class ConversationListSearchAdapter(
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  recipientListener: Listener<ContactSearchData.KnownRecipient>,
-  storyListener: Listener<ContactSearchData.Story>,
+  onClickedCallbacks: ConversationListSearchClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
-  expandListener: (ContactSearchData.Expand) -> Unit,
-  threadListener: Listener<ContactSearchData.Thread>,
-  messageListener: Listener<ContactSearchData.Message>,
-  groupWithMembersListener: Listener<ContactSearchData.GroupWithMembers>,
   lifecycleOwner: LifecycleOwner,
-  glideRequests: GlideRequests,
-  clearFilterListener: () -> Unit
-) : ContactSearchAdapter(displayCheckBox, displaySmsTag, recipientListener, storyListener, storyContextMenuCallbacks, expandListener) {
+  glideRequests: GlideRequests
+) : ContactSearchAdapter(displayCheckBox, displaySmsTag, onClickedCallbacks, storyContextMenuCallbacks) {
+
   init {
     registerFactory(
       ThreadModel::class.java,
-      LayoutFactory({ ThreadViewHolder(threadListener, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ ThreadViewHolder(onClickedCallbacks::onThreadClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
     )
     registerFactory(
       MessageModel::class.java,
-      LayoutFactory({ MessageViewHolder(messageListener, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ MessageViewHolder(onClickedCallbacks::onMessageClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
     )
     registerFactory(
       ChatFilterMappingModel::class.java,
-      LayoutFactory({ ChatFilterViewHolder(it, clearFilterListener) }, R.layout.conversation_list_item_clear_filter)
+      LayoutFactory({ ChatFilterViewHolder(it, onClickedCallbacks::onClearFilterClicked) }, R.layout.conversation_list_item_clear_filter)
     )
     registerFactory(
       ChatFilterEmptyMappingModel::class.java,
-      LayoutFactory({ ChatFilterViewHolder(it, clearFilterListener) }, R.layout.conversation_list_item_clear_filter_empty)
+      LayoutFactory({ ChatFilterViewHolder(it, onClickedCallbacks::onClearFilterClicked) }, R.layout.conversation_list_item_clear_filter_empty)
     )
     registerFactory(
       EmptyModel::class.java,
@@ -58,7 +53,7 @@ class ConversationListSearchAdapter(
     )
     registerFactory(
       GroupWithMembersModel::class.java,
-      LayoutFactory({ GroupWithMembersViewHolder(groupWithMembersListener, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
+      LayoutFactory({ GroupWithMembersViewHolder(onClickedCallbacks::onGroupWithMembersClicked, lifecycleOwner, glideRequests, it) }, R.layout.conversation_list_item_view)
     )
   }
 
@@ -75,14 +70,14 @@ class ConversationListSearchAdapter(
   }
 
   private class ThreadViewHolder(
-    private val threadListener: Listener<ContactSearchData.Thread>,
+    private val threadListener: OnClickedCallback<ContactSearchData.Thread>,
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
   ) : MappingViewHolder<ThreadModel>(itemView) {
     override fun bind(model: ThreadModel) {
       itemView.setOnClickListener {
-        threadListener.listen(itemView, model.thread, false)
+        threadListener.onClicked(itemView, model.thread, false)
       }
 
       (itemView as ConversationListItem).bindThread(
@@ -98,14 +93,14 @@ class ConversationListSearchAdapter(
   }
 
   private class MessageViewHolder(
-    private val messageListener: Listener<ContactSearchData.Message>,
+    private val messageListener: OnClickedCallback<ContactSearchData.Message>,
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
   ) : MappingViewHolder<MessageModel>(itemView) {
     override fun bind(model: MessageModel) {
       itemView.setOnClickListener {
-        messageListener.listen(itemView, model.message, false)
+        messageListener.onClicked(itemView, model.message, false)
       }
 
       (itemView as ConversationListItem).bindMessage(
@@ -119,14 +114,14 @@ class ConversationListSearchAdapter(
   }
 
   private class GroupWithMembersViewHolder(
-    private val groupWithMembersListener: Listener<ContactSearchData.GroupWithMembers>,
+    private val groupWithMembersListener: OnClickedCallback<ContactSearchData.GroupWithMembers>,
     private val lifecycleOwner: LifecycleOwner,
     private val glideRequests: GlideRequests,
     itemView: View
   ) : MappingViewHolder<GroupWithMembersModel>(itemView) {
     override fun bind(model: GroupWithMembersModel) {
       itemView.setOnClickListener {
-        groupWithMembersListener.listen(itemView, model.groupWithMembers, false)
+        groupWithMembersListener.onClicked(itemView, model.groupWithMembers, false)
       }
 
       (itemView as ConversationListItem).bindGroupWithMembers(
@@ -196,5 +191,12 @@ class ConversationListSearchAdapter(
         ChatFilterMappingModel(options)
       }
     }
+  }
+
+  interface ConversationListSearchClickCallbacks : ClickCallbacks {
+    fun onThreadClicked(view: View, thread: ContactSearchData.Thread, isSelected: Boolean)
+    fun onMessageClicked(view: View, thread: ContactSearchData.Message, isSelected: Boolean)
+    fun onGroupWithMembersClicked(view: View, groupWithMembers: ContactSearchData.GroupWithMembers, isSelected: Boolean)
+    fun onClearFilterClicked()
   }
 }

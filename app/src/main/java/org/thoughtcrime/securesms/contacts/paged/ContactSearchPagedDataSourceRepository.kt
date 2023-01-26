@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.contacts.ContactRepository
 import org.thoughtcrime.securesms.contacts.paged.collections.ContactSearchIterator
 import org.thoughtcrime.securesms.database.DistributionListTables
 import org.thoughtcrime.securesms.database.GroupTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
@@ -88,6 +89,10 @@ open class ContactSearchPagedDataSourceRepository(
     return SignalDatabase.groups.queryGroupsByMemberName(query)
   }
 
+  open fun getContactsWithoutThreads(query: String): Cursor {
+    return SignalDatabase.recipients.getAllContactsWithoutThreads(query)
+  }
+
   open fun getRecipientFromDistributionListCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, DistributionListTables.RECIPIENT_ID)))
   }
@@ -100,8 +105,12 @@ open class ContactSearchPagedDataSourceRepository(
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ThreadTable.RECIPIENT_ID)))
   }
 
-  open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {
+  open fun getRecipientFromSearchCursor(cursor: Cursor): Recipient {
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, ContactRepository.ID_COLUMN)))
+  }
+
+  open fun getRecipientFromRecipientCursor(cursor: Cursor): Recipient {
+    return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, RecipientTable.ID)))
   }
 
   open fun getGroupsInCommon(recipient: Recipient): GroupsInCommon {

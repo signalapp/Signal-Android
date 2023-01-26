@@ -3201,6 +3201,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return SqlUtil.Query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
   }
 
+  fun getAllContactsWithoutThreads(inputQuery: String): Cursor {
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)
+
+    //language=sql
+    val subquery = """
+      SELECT ${SEARCH_PROJECTION.joinToString(", ")} FROM $TABLE_NAME
+      WHERE $BLOCKED = ? AND $HIDDEN = ? AND NOT EXISTS (SELECT 1 FROM ${ThreadTable.TABLE_NAME} WHERE ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$ID LIMIT 1) 
+      AND (
+          $SORT_NAME GLOB ? OR 
+          $USERNAME GLOB ? OR 
+          $PHONE GLOB ? OR 
+          $EMAIL GLOB ?
+      )
+    """.toSingleLine()
+
+    return readableDatabase.query(subquery, SqlUtil.buildArgs(0, 0, query, query, query, query))
+  }
+
   @JvmOverloads
   fun queryRecipientsForMentions(inputQuery: String, recipientIds: List<RecipientId>? = null): List<Recipient> {
     val query = SqlUtil.buildCaseInsensitiveGlobPattern(inputQuery)

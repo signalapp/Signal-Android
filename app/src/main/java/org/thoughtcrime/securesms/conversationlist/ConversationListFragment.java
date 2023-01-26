@@ -114,6 +114,7 @@ import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlayerView;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration;
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
@@ -214,6 +215,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private static final String TAG = Log.tag(ConversationListFragment.class);
 
   private static final int MAXIMUM_PINNED_CONVERSATIONS = 4;
+  private static final int MAX_CHATS_ABOVE_FOLD = 7;
+  private static final int MAX_CONTACTS_ABOVE_FOLD = 5;
+  private static final int MAX_GROUP_MEMBERSHIPS_ABOVE_FOLD = 5;
 
   private ActionMode                     actionMode;
   private View                           coordinator;
@@ -298,34 +302,17 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                       false,
                                                       (displayCheckBox,
                                                        displaySmsTag,
-                                                       recipientListener,
-                                                       storyListener,
-                                                       storyContextMenuCallbacks,
-                                                       expandListener
+                                                       callbacks,
+                                                       storyContextMenuCallbacks
                                                       ) -> {
                                                         //noinspection CodeBlock2Expr
                                                         return new ConversationListSearchAdapter(
                                                             displayCheckBox,
                                                             displaySmsTag,
-                                                            recipientListener,
-                                                            storyListener,
+                                                            new ContactSearchClickCallbacks(callbacks),
                                                             storyContextMenuCallbacks,
-                                                            expandListener,
-                                                            (v, t, b) -> {
-                                                              onConversationClicked(t.getThreadRecord());
-                                                            },
-                                                            (v, m, b) -> {
-                                                              onMessageClicked(m.getMessageResult());
-                                                            },
-                                                            (v, m, b) -> {
-                                                              onContactClicked(Recipient.resolved(m.getGroupRecord().getRecipientId()));
-                                                            },
                                                             getViewLifecycleOwner(),
-                                                            GlideApp.with(this),
-                                                            () -> {
-                                                              onClearFilterClick();
-                                                              return Unit.INSTANCE;
-                                                            }
+                                                            GlideApp.with(this)
                                                         );
                                                       },
                                                       new ConversationListSearchAdapter.ChatFilterRepository()
@@ -611,7 +598,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
             true,
               new ContactSearchConfiguration.ExpandConfig(
                   state.getExpandedSections().contains(ContactSearchConfiguration.SectionKey.CHATS),
-                  (a) -> 7
+                  (a) -> MAX_CHATS_ABOVE_FOLD
               )
         ));
 
@@ -620,7 +607,15 @@ public class ConversationListFragment extends MainFragment implements ActionMode
               true,
               new ContactSearchConfiguration.ExpandConfig(
                   state.getExpandedSections().contains(ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS),
-                  (a) -> 5
+                  (a) -> MAX_GROUP_MEMBERSHIPS_ABOVE_FOLD
+              )
+          ));
+
+          builder.addSection(new ContactSearchConfiguration.Section.ContactsWithoutThreads(
+              true,
+              new ContactSearchConfiguration.ExpandConfig(
+                  state.getExpandedSections().contains(ContactSearchConfiguration.SectionKey.CONTACTS_WITHOUT_THREADS),
+                  (a) -> MAX_CONTACTS_ABOVE_FOLD
               )
           ));
 
@@ -1847,6 +1842,50 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @Override
     public void onNavigateToMessage(long threadId, @NonNull RecipientId threadRecipientId, @NonNull RecipientId senderId, long messageSentAt, long messagePositionInThread) {
       MainNavigator.get(requireActivity()).goToConversation(threadRecipientId, threadId, ThreadTable.DistributionTypes.DEFAULT, (int) messagePositionInThread);
+    }
+  }
+
+  private class ContactSearchClickCallbacks implements ConversationListSearchAdapter.ConversationListSearchClickCallbacks {
+
+    private final ContactSearchAdapter.ClickCallbacks delegate;
+
+    private ContactSearchClickCallbacks(@NonNull ContactSearchAdapter.ClickCallbacks delegate) {
+      this.delegate = delegate;
+    }
+
+    @Override
+    public void onThreadClicked(@NonNull View view, @NonNull ContactSearchData.Thread thread, boolean isSelected) {
+      onConversationClicked(thread.getThreadRecord());
+    }
+
+    @Override
+    public void onMessageClicked(@NonNull View view, @NonNull ContactSearchData.Message thread, boolean isSelected) {
+      ConversationListFragment.this.onMessageClicked(thread.getMessageResult());
+    }
+
+    @Override
+    public void onGroupWithMembersClicked(@NonNull View view, @NonNull ContactSearchData.GroupWithMembers groupWithMembers, boolean isSelected) {
+      onContactClicked(Recipient.resolved(groupWithMembers.getGroupRecord().getRecipientId()));
+    }
+
+    @Override
+    public void onClearFilterClicked() {
+      onClearFilterClick();
+    }
+
+    @Override
+    public void onStoryClicked(@NonNull View view, @NonNull ContactSearchData.Story story, boolean isSelected) {
+      throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void onKnownRecipientClicked(@NonNull View view, @NonNull ContactSearchData.KnownRecipient knownRecipient, boolean isSelected) {
+      onContactClicked(knownRecipient.getRecipient());
+    }
+
+    @Override
+    public void onExpandClicked(@NonNull ContactSearchData.Expand expand) {
+      delegate.onExpandClicked(expand);
     }
   }
 

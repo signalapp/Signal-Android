@@ -51,10 +51,21 @@ class ContactSearchMediator(
   val adapter = adapterFactory.create(
     displayCheckBox = displayCheckBox,
     displaySmsTag = displaySmsTag,
-    recipientListener = this::toggleSelection,
-    storyListener = this::toggleStorySelection,
+    callbacks = object : ContactSearchAdapter.ClickCallbacks {
+      override fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean) {
+        toggleStorySelection(view, story, isSelected)
+      }
+
+      override fun onKnownRecipientClicked(view: View, knownRecipient: ContactSearchData.KnownRecipient, isSelected: Boolean) {
+        toggleSelection(view, knownRecipient, isSelected)
+      }
+
+      override fun onExpandClicked(expand: ContactSearchData.Expand) {
+        viewModel.expandSection(expand.sectionKey)
+      }
+    },
     storyContextMenuCallbacks = StoryContextMenuCallbacks()
-  ) { viewModel.expandSection(it.sectionKey) }
+  )
 
   init {
     val dataAndSelection: LiveData<Pair<List<ContactSearchData>, Set<ContactSearchKey>>> = LiveDataUtil.combineLatest(
@@ -168,10 +179,8 @@ class ContactSearchMediator(
     fun create(
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      recipientListener: ContactSearchAdapter.Listener<ContactSearchData.KnownRecipient>,
-      storyListener: ContactSearchAdapter.Listener<ContactSearchData.Story>,
-      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
-      expandListener: (ContactSearchData.Expand) -> Unit
+      callbacks: ContactSearchAdapter.ClickCallbacks,
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
     ): PagingMappingAdapter<ContactSearchKey>
   }
 
@@ -179,12 +188,10 @@ class ContactSearchMediator(
     override fun create(
       displayCheckBox: Boolean,
       displaySmsTag: ContactSearchAdapter.DisplaySmsTag,
-      recipientListener: ContactSearchAdapter.Listener<ContactSearchData.KnownRecipient>,
-      storyListener: ContactSearchAdapter.Listener<ContactSearchData.Story>,
-      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks,
-      expandListener: (ContactSearchData.Expand) -> Unit
+      callbacks: ContactSearchAdapter.ClickCallbacks,
+      storyContextMenuCallbacks: ContactSearchAdapter.StoryContextMenuCallbacks
     ): PagingMappingAdapter<ContactSearchKey> {
-      return ContactSearchAdapter(displayCheckBox, displaySmsTag, recipientListener, storyListener, storyContextMenuCallbacks, expandListener)
+      return ContactSearchAdapter(displayCheckBox, displaySmsTag, callbacks, storyContextMenuCallbacks)
     }
   }
 }

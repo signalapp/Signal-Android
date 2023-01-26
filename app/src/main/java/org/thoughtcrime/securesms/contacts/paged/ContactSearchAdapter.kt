@@ -33,24 +33,22 @@ import org.thoughtcrime.securesms.util.visible
 open class ContactSearchAdapter(
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
-  recipientListener: Listener<ContactSearchData.KnownRecipient>,
-  storyListener: Listener<ContactSearchData.Story>,
-  storyContextMenuCallbacks: StoryContextMenuCallbacks,
-  expandListener: (ContactSearchData.Expand) -> Unit
+  onClickCallbacks: ClickCallbacks,
+  storyContextMenuCallbacks: StoryContextMenuCallbacks
 ) : PagingMappingAdapter<ContactSearchKey>() {
 
   init {
-    registerStoryItems(this, displayCheckBox, storyListener, storyContextMenuCallbacks)
-    registerKnownRecipientItems(this, displayCheckBox, displaySmsTag, recipientListener)
+    registerStoryItems(this, displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
+    registerKnownRecipientItems(this, displayCheckBox, displaySmsTag, onClickCallbacks::onKnownRecipientClicked)
     registerHeaders(this)
-    registerExpands(this, expandListener)
+    registerExpands(this, onClickCallbacks::onExpandClicked)
   }
 
   companion object {
     fun registerStoryItems(
       mappingAdapter: MappingAdapter,
       displayCheckBox: Boolean = false,
-      storyListener: Listener<ContactSearchData.Story>,
+      storyListener: OnClickedCallback<ContactSearchData.Story>,
       storyContextMenuCallbacks: StoryContextMenuCallbacks? = null
     ) {
       mappingAdapter.registerFactory(
@@ -63,7 +61,7 @@ open class ContactSearchAdapter(
       mappingAdapter: MappingAdapter,
       displayCheckBox: Boolean,
       displaySmsTag: DisplaySmsTag,
-      recipientListener: Listener<ContactSearchData.KnownRecipient>
+      recipientListener: OnClickedCallback<ContactSearchData.KnownRecipient>
     ) {
       mappingAdapter.registerFactory(
         RecipientModel::class.java,
@@ -135,7 +133,7 @@ open class ContactSearchAdapter(
   private class StoryViewHolder(
     itemView: View,
     displayCheckBox: Boolean,
-    onClick: Listener<ContactSearchData.Story>,
+    onClick: OnClickedCallback<ContactSearchData.Story>,
     private val storyContextMenuCallbacks: StoryContextMenuCallbacks?
   ) : BaseRecipientViewHolder<StoryModel, ContactSearchData.Story>(itemView, displayCheckBox, DisplaySmsTag.NEVER, onClick) {
     override fun isSelected(model: StoryModel): Boolean = model.isSelected
@@ -267,7 +265,7 @@ open class ContactSearchAdapter(
     itemView: View,
     displayCheckBox: Boolean,
     displaySmsTag: DisplaySmsTag,
-    onClick: Listener<ContactSearchData.KnownRecipient>
+    onClick: OnClickedCallback<ContactSearchData.KnownRecipient>
   ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, displaySmsTag, onClick), LetterHeaderDecoration.LetterHeaderItem {
 
     private var headerLetter: String? = null
@@ -304,7 +302,7 @@ open class ContactSearchAdapter(
     itemView: View,
     private val displayCheckBox: Boolean,
     private val displaySmsTag: DisplaySmsTag,
-    val onClick: Listener<D>
+    val onClick: OnClickedCallback<D>
   ) : MappingViewHolder<T>(itemView) {
 
     protected val avatar: AvatarImageView = itemView.findViewById(R.id.contact_photo_image)
@@ -318,7 +316,7 @@ open class ContactSearchAdapter(
     override fun bind(model: T) {
       checkbox.visible = displayCheckBox
       checkbox.isChecked = isSelected(model)
-      itemView.setOnClickListener { onClick.listen(avatar, getData(model), isSelected(model)) }
+      itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
       bindLongPress(model)
 
       if (payload.isNotEmpty()) {
@@ -451,6 +449,7 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.CHATS -> R.string.ContactsCursorLoader__chats
           ContactSearchConfiguration.SectionKey.MESSAGES -> R.string.ContactsCursorLoader__messages
           ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS -> R.string.ContactsCursorLoader_group_members
+          ContactSearchConfiguration.SectionKey.CONTACTS_WITHOUT_THREADS -> R.string.ContactsCursorLoader_contacts
         }
       )
 
@@ -508,7 +507,13 @@ open class ContactSearchAdapter(
     NEVER
   }
 
-  fun interface Listener<D : ContactSearchData> {
-    fun listen(view: View, data: D, isSelected: Boolean)
+  fun interface OnClickedCallback<D : ContactSearchData> {
+    fun onClicked(view: View, data: D, isSelected: Boolean)
+  }
+
+  interface ClickCallbacks {
+    fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean)
+    fun onKnownRecipientClicked(view: View, knownRecipient: ContactSearchData.KnownRecipient, isSelected: Boolean)
+    fun onExpandClicked(expand: ContactSearchData.Expand)
   }
 }
