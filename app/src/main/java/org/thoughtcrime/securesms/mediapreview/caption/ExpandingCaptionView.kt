@@ -5,7 +5,6 @@ import android.text.method.ScrollingMovementMethod
 import android.util.AttributeSet
 import android.view.ViewGroup
 import androidx.core.view.updateLayoutParams
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 
@@ -23,40 +22,49 @@ class ExpandingCaptionView @JvmOverloads constructor(
     set(value) {
       field = value
       expanded = false
-      updateExpansionState()
+      updateExpansionState(expanded)
     }
 
   init {
     setOnClickListener { toggleExpansion() }
   }
 
-  fun toggleExpansion() {
-    expanded = !expanded
-    updateExpansionState()
+  private fun toggleExpansion() {
+    expanded = if (isExpandable()) {
+      !expanded
+    } else {
+      false
+    }
+    updateExpansionState(expanded)
   }
 
-  private fun updateExpansionState() {
-    if (expanded) {
-      Log.d(TAG, "The view should be expanded now.")
+  private fun updateExpansionState(expand: Boolean) {
+    if (expand) {
       text = fullCaptionText
       movementMethod = ScrollingMovementMethod()
       scrollTo(0, 0)
       updateLayoutParams { height = expandedHeight }
     } else {
-      Log.d(TAG, "The view should be collapsed now.")
-      text = if (fullCaptionText.length <= CHAR_LIMIT_MESSAGE_PREVIEW) {
-        fullCaptionText
-      } else {
+      text = if (isExpandable()) {
         context.getString(R.string.MediaPreviewFragment_see_more, fullCaptionText.substring(0, CHAR_LIMIT_MESSAGE_PREVIEW))
+      } else {
+        fullCaptionText
       }
       movementMethod = null
       updateLayoutParams { height = ViewGroup.LayoutParams.WRAP_CONTENT }
     }
-    setOnClickListener { toggleExpansion() }
+    if (isExpandable()) {
+      setOnClickListener { toggleExpansion() }
+    } else {
+      setOnClickListener(null)
+    }
+  }
+
+  private fun isExpandable(): Boolean {
+    return fullCaptionText.length > CHAR_LIMIT_MESSAGE_PREVIEW
   }
 
   companion object {
-    private val TAG = Log.tag(ExpandingCaptionView::class.java)
     const val CHAR_LIMIT_MESSAGE_PREVIEW = 280
   }
 }

@@ -337,7 +337,12 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
         albumRail.alpha = 0f
       }
       val railItems = albumThumbnailMedia.map { MediaRailAdapter.MediaRailItem(it, it.uri == currentItem.attachment?.uri) }
-      albumRailAdapter.submitList(railItems) { albumRail.post { scrollAlbumRailToCurrentAdapterPosition(!firstRailDisplay) } }
+      albumRailAdapter.submitList(railItems) {
+        albumRail.post {
+          scrollAlbumRailToCurrentAdapterPosition(!firstRailDisplay)
+          crossfadeViewIn(albumRail)
+        }
+      }
     } else {
       albumRail.visibility = View.GONE
       albumRailAdapter.submitList(emptyList())
