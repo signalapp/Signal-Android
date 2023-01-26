@@ -84,7 +84,7 @@ object MessageStyler {
   fun hasStyling(text: Spanned): Boolean {
     return if (FeatureFlags.textFormatting()) {
       text.getSpans(0, text.length, CharacterStyle::class.java)
-        .any { s -> isSupportedCharacterStyle(s) }
+        .any { s -> isSupportedCharacterStyle(s) && text.getSpanEnd(s) - text.getSpanStart(s) > 0 }
     } else {
       false
     }
@@ -96,7 +96,7 @@ object MessageStyler {
       text
         .getSpans(0, text.length, CharacterStyle::class.java)
         .filter { s -> isSupportedCharacterStyle(s) }
-        .map { span: CharacterStyle ->
+        .mapNotNull { span: CharacterStyle ->
           val spanStart = text.getSpanStart(span)
           val spanLength = text.getSpanEnd(span) - spanStart
 
@@ -107,7 +107,11 @@ object MessageStyler {
             else -> throw IllegalArgumentException("Provided text contains unsupported spans")
           }
 
-          BodyRangeList.BodyRange.newBuilder().setStart(spanStart).setLength(spanLength).setStyle(style).build()
+          if (spanLength > 0) {
+            BodyRangeList.BodyRange.newBuilder().setStart(spanStart).setLength(spanLength).setStyle(style).build()
+          } else {
+            null
+          }
         }
         .toList()
     } else {

@@ -3830,7 +3830,7 @@ public class ConversationParentFragment extends Fragment
 
     @Override
     public void onTextChanged(@NonNull CharSequence text) {
-      handleSaveDraftOnTextChange(text);
+      handleSaveDraftOnTextChange(composeText.getTextTrimmed());
       handleTypingIndicatorOnTextChange(text.toString());
     }
 

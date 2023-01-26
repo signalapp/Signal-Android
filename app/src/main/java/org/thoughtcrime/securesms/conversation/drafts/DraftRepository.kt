@@ -61,14 +61,15 @@ class DraftRepository(
   fun loadDrafts(threadId: Long): Single<DatabaseDraft> {
     return Single.fromCallable {
       val drafts: Drafts = draftTable.getDrafts(threadId)
-      val bodyRangesDraft = drafts.getDraftOfType(DraftTable.Draft.BODY_RANGES)
+      val bodyRangesDraft: DraftTable.Draft? = drafts.getDraftOfType(DraftTable.Draft.BODY_RANGES)
+      val textDraft: DraftTable.Draft? = drafts.getDraftOfType(DraftTable.Draft.TEXT)
       var updatedText: Spannable? = null
 
-      if (bodyRangesDraft != null) {
+      if (textDraft != null && bodyRangesDraft != null) {
         val bodyRanges: BodyRangeList = BodyRangeList.parseFrom(Base64.decodeOrThrow(bodyRangesDraft.value))
         val mentions: List<Mention> = MentionUtil.bodyRangeListToMentions(bodyRanges)
 
-        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, drafts.getDraftOfType(DraftTable.Draft.TEXT)!!.value, mentions)
+        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, textDraft.value, mentions)
 
         updatedText = SpannableString(updated.body)
         MentionAnnotation.setMentionAnnotations(updatedText, updated.mentions)
