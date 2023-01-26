@@ -133,7 +133,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
   private static final String TAG = Log.tag(MessageTable.class);
 
-  public static final String TABLE_NAME             = "mms";
+  public static final String TABLE_NAME             = "message";
   public static final String ID                     = "_id";
   public static final String DATE_SENT              = "date_sent";
   public static final String DATE_RECEIVED          = "date_received";

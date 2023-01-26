@@ -138,7 +138,6 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
 
     executeStatements(db, SearchTable.CREATE_TRIGGERS)
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
-    executeStatements(db, ReactionTable.CREATE_TRIGGERS)
 
     DistributionListTables.insertInitialDistributionListAtCreationTime(db)
 
