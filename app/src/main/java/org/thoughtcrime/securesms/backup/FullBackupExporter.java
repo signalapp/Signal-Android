@@ -97,7 +97,7 @@ public class FullBackupExporter extends FullBackupBase {
       SignedPreKeyTable.TABLE_NAME,
       OneTimePreKeyTable.TABLE_NAME,
       SessionTable.TABLE_NAME,
-      SearchTable.MMS_FTS_TABLE_NAME,
+      SearchTable.FTS_TABLE_NAME,
       EmojiSearchTable.TABLE_NAME,
       SenderKeyTable.TABLE_NAME,
       SenderKeySharedTable.TABLE_NAME,
@@ -368,7 +368,7 @@ public class FullBackupExporter extends FullBackupBase {
     }
 
     boolean isReservedTable       = table.startsWith("sqlite_");
-    boolean isMmsFtsSecretTable   = !table.equals(SearchTable.MMS_FTS_TABLE_NAME) && table.startsWith(SearchTable.MMS_FTS_TABLE_NAME);
+    boolean isMmsFtsSecretTable   = !table.equals(SearchTable.FTS_TABLE_NAME) && table.startsWith(SearchTable.FTS_TABLE_NAME);
     boolean isEmojiFtsSecretTable = !table.equals(EmojiSearchTable.TABLE_NAME) && table.startsWith(EmojiSearchTable.TABLE_NAME);
 
     return !isReservedTable &&

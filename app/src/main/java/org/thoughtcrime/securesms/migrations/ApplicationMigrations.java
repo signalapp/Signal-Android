@@ -117,9 +117,10 @@ public class ApplicationMigrations {
     static final int UPDATE_SMS_JOBS               = 73;
     static final int OPTIMIZE_MESSAGE_FTS_INDEX    = 74;
     static final int REACTION_DATABASE_MIGRATION   = 75;
+    static final int REBUILD_MESSAGE_FTS_INDEX_2   = 76;
   }
 
-  public static final int CURRENT_VERSION = 75;
+  public static final int CURRENT_VERSION = 76;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -519,6 +520,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.REACTION_DATABASE_MIGRATION) {
       jobs.put(Version.REACTION_DATABASE_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_2) {
+      jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_2, new RebuildMessageSearchIndexMigrationJob());
     }
 
     return jobs;
