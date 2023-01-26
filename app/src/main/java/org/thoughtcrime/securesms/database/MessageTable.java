@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.insights.InsightsConstants;
+import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob;
 import org.thoughtcrime.securesms.jobs.TrimThreadJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
@@ -1534,6 +1535,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String[]       args = SqlUtil.buildArgs(parentStoryId);
 
     db.delete(TABLE_NAME, PARENT_STORY_ID + " = ?", args);
+    OptimizeMessageSearchIndexJob.enqueue();
   }
 
   public int deleteStoriesOlderThan(long timestamp, boolean hasSeenReleaseChannelStories) {
@@ -1576,6 +1578,10 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
           long id = cursor.getLong(cursor.getColumnIndexOrThrow(ID));
           deleteMessage(id);
         }
+      }
+
+      if (deletedStoryCount > 0) {
+        OptimizeMessageSearchIndexJob.enqueue();
       }
 
       db.setTransactionSuccessful();
@@ -3041,7 +3047,16 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     return deleteMessage(messageId, threadId);
   }
 
+  public boolean deleteMessage(long messageId, boolean notify) {
+    long threadId = getThreadIdForMessage(messageId);
+    return deleteMessage(messageId, threadId, notify);
+  }
+
   public boolean deleteMessage(long messageId, long threadId) {
+    return deleteMessage(messageId, threadId, true);
+  }
+
+  private boolean deleteMessage(long messageId, long threadId, boolean notify) {
     Log.d(TAG, "deleteMessage(" + messageId + ")");
 
     AttachmentTable attachmentDatabase = SignalDatabase.attachments();
@@ -3058,9 +3073,14 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     SignalDatabase.threads().setLastScrolled(threadId, 0);
     boolean threadDeleted = SignalDatabase.threads().update(threadId, false);
-    notifyConversationListeners(threadId);
-    notifyStickerListeners();
-    notifyStickerPackListeners();
+
+    if (notify) {
+      notifyConversationListeners(threadId);
+      notifyStickerListeners();
+      notifyStickerPackListeners();
+      OptimizeMessageSearchIndexJob.enqueue();
+    }
+
     return threadDeleted;
   }
 
@@ -3269,6 +3289,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       setTransactionSuccessful();
     } finally {
       endTransaction();
+      OptimizeMessageSearchIndexJob.enqueue();
     }
   }
 
@@ -3286,16 +3307,27 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     try (Cursor cursor = db.query(TABLE_NAME, new String[] {ID}, where, null, null, null, null)) {
       while (cursor != null && cursor.moveToNext()) {
-        deleteMessage(cursor.getLong(0));
+        deleteMessage(cursor.getLong(0), false);
       }
     }
+
+    notifyConversationListeners(threadIds);
+    notifyStickerListeners();
+    notifyStickerPackListeners();
+    OptimizeMessageSearchIndexJob.enqueue();
   }
 
   int deleteMessagesInThreadBeforeDate(long threadId, long date) {
     SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
+    int count = db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
+
+    if (count > 0) {
+      OptimizeMessageSearchIndexJob.enqueue();
+    }
+
+    return count;
   }
 
   void deleteAbandonedMessages() {
@@ -3305,6 +3337,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     int deletes = db.delete(TABLE_NAME, where, null);
     if (deletes > 0) {
       Log.i(TAG, "Deleted " + deletes + " abandoned messages");
+      OptimizeMessageSearchIndexJob.enqueue();
     }
   }
 
@@ -3342,6 +3375,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     SQLiteDatabase database = databaseHelper.getSignalWritableDatabase();
     database.delete(TABLE_NAME, null, null);
+    OptimizeMessageSearchIndexJob.enqueue();
   }
 
   public @Nullable ViewOnceExpirationInfo getNearestExpiringViewOnceMessage() {

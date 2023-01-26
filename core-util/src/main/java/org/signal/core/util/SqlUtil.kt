@@ -36,6 +36,15 @@ object SqlUtil {
     return tables
   }
 
+  /**
+   * Returns the total number of changes that have been made since the creation of this database connection.
+   *
+   * IMPORTANT: Due to how connection pooling is handled in the app, the only way to have this return useful numbers is to call it within a transaction.
+   */
+  fun getTotalChanges(db: SupportSQLiteDatabase): Long {
+    return db.query("SELECT total_changes()", null).readToSingleLong()
+  }
+
   @JvmStatic
   fun getAllTriggers(db: SupportSQLiteDatabase): List<String> {
     val tables: MutableList<String> = LinkedList()
