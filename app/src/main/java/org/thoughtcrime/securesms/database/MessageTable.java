@@ -239,7 +239,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
                                                                                   EXPORTED               + " INTEGER DEFAULT 0, " +
                                                                                   SCHEDULED_DATE         + " INTEGER DEFAULT -1);";
 
-  private static final String INDEX_THREAD_DATE = "mms_thread_date_index";
+  private static final String INDEX_THREAD_DATE                 = "mms_thread_date_index";
+  private static final String INDEX_THREAD_STORY_SCHEDULED_DATE = "mms_thread_story_parent_story_scheduled_date_index";
 
   public static final String[] CREATE_INDEXS = {
     "CREATE INDEX IF NOT EXISTS mms_read_and_notified_and_thread_id_index ON " + TABLE_NAME + "(" + READ + "," + NOTIFIED + "," + THREAD_ID + ");",
@@ -250,7 +251,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     "CREATE INDEX IF NOT EXISTS mms_reactions_unread_index ON " + TABLE_NAME + " (" + REACTIONS_UNREAD + ");",
     "CREATE INDEX IF NOT EXISTS mms_story_type_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
-    "CREATE INDEX IF NOT EXISTS mms_thread_story_parent_story_scheduled_date_index ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + "," + SCHEDULED_DATE + ");",
+    "CREATE INDEX IF NOT EXISTS " + INDEX_THREAD_STORY_SCHEDULED_DATE + " ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + "," + SCHEDULED_DATE + ");",
     "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
     "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");",
     "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
@@ -1644,7 +1645,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String   query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " != ?";
     String[] args  = SqlUtil.buildArgs(threadId, 0, 0, -1);
 
-    try (Cursor cursor = db.query(TABLE_NAME, COUNT, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_STORY_SCHEDULED_DATE, COUNT, query, args, null, null, null)) {
       if (cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
@@ -1659,7 +1660,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String   query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " = ?";
     String[] args  = SqlUtil.buildArgs(threadId, 0, 0, -1);
 
-    try (Cursor cursor = db.query(TABLE_NAME, COUNT, query, args, null, null, null)) {
+    try (Cursor cursor = db.query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_STORY_SCHEDULED_DATE, COUNT, query, args, null, null, null)) {
       if (cursor != null && cursor.moveToFirst()) {
         return cursor.getInt(0);
       }
@@ -4593,7 +4594,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String[] args      = SqlUtil.buildArgs(threadId, 0, 0, -1);
     String   order     = SCHEDULED_DATE + " DESC";
 
-    try (MmsReader reader = mmsReaderFor(getReadableDatabase().query(TABLE_NAME, MMS_PROJECTION, selection, args, null, null, order))) {
+    try (MmsReader reader = mmsReaderFor(getReadableDatabase().query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_STORY_SCHEDULED_DATE, MMS_PROJECTION, selection, args, null, null, order))) {
       List<MessageRecord> results = new ArrayList<>(reader.getCount());
       while (reader.getNext() != null) {
         results.add(reader.getCurrent());
