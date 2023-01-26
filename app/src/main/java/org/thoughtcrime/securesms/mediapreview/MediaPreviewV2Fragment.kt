@@ -254,7 +254,10 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
     if (messageId != null) {
       binding.toolbar.setOnClickListener { v ->
         viewModel.jumpToFragment(v.context, messageId).subscribeBy(
-          onSuccess = { startActivity(it) },
+          onSuccess = {
+            startActivity(it)
+            requireActivity().finish()
+          },
           onError = {
             Log.e(TAG, "Could not find message position for message ID: $messageId", it)
             Toast.makeText(v.context, R.string.MediaPreviewActivity_error_finding_message, Toast.LENGTH_LONG).show()
