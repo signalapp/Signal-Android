@@ -396,6 +396,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val query = getGroupQueryWhereStatement(groupQuery.searchQuery, groupQuery.includeInactive, !groupQuery.includeV1, !groupQuery.includeMms)
     val sql = """
       $JOINED_GROUP_SELECT
+      INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
       WHERE ${query.where} 
       GROUP BY $TABLE_NAME.$GROUP_ID
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
