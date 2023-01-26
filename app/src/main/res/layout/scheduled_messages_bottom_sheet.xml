@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.appcompat.widget.LinearLayoutCompat
     xmlns:tools="http://schemas.android.com/tools"
     tools:viewBindingIgnore="true"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -28,6 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="18dp"
         android:text="@string/ScheduledMessagesBottomSheet__schedules_messages"/>
 
@@ -51,4 +52,4 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

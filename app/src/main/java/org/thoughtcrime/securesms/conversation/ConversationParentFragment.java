@@ -20,6 +20,7 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -2942,8 +2943,8 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMessage(@Nullable String metricId, long scheduledDate) {
-    if (scheduledDate != -1 && !SignalStore.uiHints().hasSeenScheduledMessagesInfoSheet()) {
-      ScheduleMessageFtuxBottomSheetDialog.show(getChildFragmentManager());
+    if (scheduledDate != -1) {
+      ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager());
     }
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();

@@ -648,7 +648,10 @@
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
-
+    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
     <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
