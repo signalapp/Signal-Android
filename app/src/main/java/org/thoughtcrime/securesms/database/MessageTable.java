@@ -252,7 +252,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     "CREATE INDEX IF NOT EXISTS mms_story_type_index ON " + TABLE_NAME + " (" + STORY_TYPE + ");",
     "CREATE INDEX IF NOT EXISTS mms_parent_story_id_index ON " + TABLE_NAME + " (" + PARENT_STORY_ID + ");",
     "CREATE INDEX IF NOT EXISTS " + INDEX_THREAD_STORY_SCHEDULED_DATE + " ON " + TABLE_NAME + " (" + THREAD_ID + ", " + DATE_RECEIVED + "," + STORY_TYPE + "," + PARENT_STORY_ID + "," + SCHEDULED_DATE + ");",
-    "CREATE INDEX IF NOT EXISTS mms_quote_id_quote_author_index ON " + TABLE_NAME + "(" + QUOTE_ID + ", " + QUOTE_AUTHOR + ");",
+    "CREATE INDEX IF NOT EXISTS message_quote_id_quote_author_scheduled_date_index ON " + TABLE_NAME + " (" + QUOTE_ID + ", " + QUOTE_AUTHOR + ", " + SCHEDULED_DATE + ");",
     "CREATE INDEX IF NOT EXISTS mms_exported_index ON " + TABLE_NAME + " (" + EXPORTED + ");",
     "CREATE INDEX IF NOT EXISTS mms_id_type_payment_transactions_index ON " + TABLE_NAME + " (" + ID + "," + TYPE + ") WHERE " + TYPE + " & " + MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION + " != 0;"
   };
@@ -3844,8 +3844,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     RecipientId author    = messageRecord.isOutgoing() ? Recipient.self().getId() : messageRecord.getRecipient().getId();
     long        timestamp = messageRecord.getDateSent();
 
-    String   where      = MessageTable.QUOTE_ID + " = ?  AND " + MessageTable.QUOTE_AUTHOR + " = ?";
-    String[] whereArgs  = SqlUtil.buildArgs(timestamp, author);
+    String   where      = MessageTable.QUOTE_ID + " = ?  AND " + MessageTable.QUOTE_AUTHOR + " = ? AND " + SCHEDULED_DATE + " = ?";
+    String[] whereArgs  = SqlUtil.buildArgs(timestamp, author, -1);
 
     try (Cursor cursor = getReadableDatabase().query(MessageTable.TABLE_NAME, new String[]{ "1" }, where, whereArgs, null, null, null, "1")) {
       return cursor.moveToFirst();
@@ -3862,19 +3862,19 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
 
     Map<QuoteDescriptor, MessageRecord> byQuoteDescriptor = new HashMap<>(records.size());
-    List<String[]>                                  args              = new ArrayList<>(records.size());
+    List<String[]>                      args              = new ArrayList<>(records.size());
 
     for (MessageRecord record : records) {
       long        timestamp = record.getDateSent();
       RecipientId author    = record.isOutgoing() ? Recipient.self().getId() : record.getRecipient().getId();
 
       byQuoteDescriptor.put(new QuoteDescriptor(timestamp, author), record);
-      args.add(SqlUtil.buildArgs(timestamp, author));
+      args.add(SqlUtil.buildArgs(timestamp, author, -1));
     }
 
 
     String[]            projection = new String[] { QUOTE_ID, QUOTE_AUTHOR };
-    List<SqlUtil.Query> queries    = SqlUtil.buildCustomCollectionQuery(QUOTE_ID + " = ?  AND " + QUOTE_AUTHOR + " = ?", args);
+    List<SqlUtil.Query> queries    = SqlUtil.buildCustomCollectionQuery(QUOTE_ID + " = ?  AND " + QUOTE_AUTHOR + " = ? AND " + SCHEDULED_DATE + " = ?", args);
     Set<Long>           quotedIds  = new HashSet<>();
 
     for (SqlUtil.Query query : queries) {
@@ -3930,7 +3930,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
 
     RecipientId author = targetMessage.isOutgoing() ? Recipient.self().getId() : targetMessage.getRecipient().getId();
-    String      query  = QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + QUOTE_AUTHOR + " = " + author.serialize();
+    String      query  = QUOTE_ID + " = " + targetMessage.getDateSent() + " AND " + QUOTE_AUTHOR + " = " + author.serialize() + " AND " + SCHEDULED_DATE + " = -1";
     String      order  = DATE_RECEIVED + " DESC";
 
     List<MessageRecord> records = new ArrayList<>();
@@ -3959,7 +3959,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   public int getQuotedMessagePosition(long threadId, long quoteId, @NonNull RecipientId recipientId) {
     String[] projection = new String[]{ DATE_SENT, RECIPIENT_ID, REMOTE_DELETED};
     String   order      = DATE_RECEIVED + " DESC";
-    String   selection  = THREAD_ID + " = " + threadId + " AND " + STORY_TYPE + " = 0" + " AND " + PARENT_STORY_ID + " <= 0";
+    String   selection  = THREAD_ID + " = " + threadId + " AND " + STORY_TYPE + " = 0" + " AND " + PARENT_STORY_ID + " <= 0 AND " + SCHEDULED_DATE + " = -1";
 
     try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, selection, null, null, null, order)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();
@@ -3983,7 +3983,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   public int getMessagePositionInConversation(long threadId, long receivedTimestamp, @NonNull RecipientId recipientId) {
     String[] projection = new String[]{ DATE_RECEIVED, RECIPIENT_ID, REMOTE_DELETED};
     String   order      = DATE_RECEIVED + " DESC";
-    String   selection  = THREAD_ID + " = " + threadId + " AND " + STORY_TYPE + " = 0" + " AND " + PARENT_STORY_ID + " <= 0";
+    String   selection  = THREAD_ID + " = " + threadId + " AND " + STORY_TYPE + " = 0" + " AND " + PARENT_STORY_ID + " <= 0 AND " + SCHEDULED_DATE + " = -1";
 
     try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, projection, selection, null, null, null, order)) {
       boolean isOwnNumber = Recipient.resolved(recipientId).isSelf();

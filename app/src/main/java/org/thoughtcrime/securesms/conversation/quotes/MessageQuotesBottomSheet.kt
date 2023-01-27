@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
@@ -137,8 +138,8 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
     return callback
   }
 
-  private fun getCallback(): Callback {
-    return findListener<Callback>() ?: throw IllegalStateException("Parent must implement callback interface!")
+  private fun getCallback(): ConversationBottomSheetCallback {
+    return findListener<ConversationBottomSheetCallback>() ?: throw IllegalStateException("Parent must implement callback interface!")
   }
 
   private fun getAdapterListener(): ConversationAdapter.ItemClickListener {
@@ -249,11 +250,6 @@ class MessageQuotesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment() {
       dismiss()
       getAdapterListener().onSendPaymentClicked(recipientId)
     }
-  }
-
-  interface Callback {
-    fun getConversationAdapterListener(): ConversationAdapter.ItemClickListener
-    fun jumpToMessage(messageRecord: MessageRecord)
   }
 
   companion object {

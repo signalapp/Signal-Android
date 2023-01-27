@@ -38,7 +38,6 @@ import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionRecycler
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange
-import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.TextSlide
@@ -67,7 +66,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   private var deleteDialog: AlertDialog? = null
 
   private lateinit var messageAdapter: ConversationAdapter
-  private lateinit var callback: Callback
+  private lateinit var callback: ConversationBottomSheetCallback
 
   private val viewModel: ScheduledMessagesViewModel by viewModels(
     factoryProducer = {
@@ -244,18 +243,25 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     viewModel.rescheduleMessage(messageId, scheduledTime)
   }
 
-  private fun getAdapterListener(): ConversationAdapter.ItemClickListener {
-    return callback.getConversationAdapterListener()
-  }
+  private inner class ConversationAdapterListener : ConversationAdapter.ItemClickListener by callback.getConversationAdapterListener() {
+    override fun onQuoteClicked(messageRecord: MmsMessageRecord) {
+      dismissAllowingStateLoss()
+      callback.getConversationAdapterListener().onQuoteClicked(messageRecord)
+    }
 
-  private inner class ConversationAdapterListener : ConversationAdapter.ItemClickListener by getAdapterListener() {
+    override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) {
+      showScheduledMessageContextMenu(view, messageRecord)
+    }
+
+    override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) {
+      dismissAllowingStateLoss()
+      callback.getConversationAdapterListener().onGroupMemberClicked(recipientId, groupId)
+    }
+
     override fun onItemClick(item: MultiselectPart) = Unit
     override fun onItemLongClick(itemView: View, item: MultiselectPart) = Unit
-    override fun onQuoteClicked(messageRecord: MmsMessageRecord) = Unit
-    override fun onLinkPreviewClicked(linkPreview: LinkPreview) = Unit
     override fun onQuotedIndicatorClicked(messageRecord: MessageRecord) = Unit
     override fun onReactionClicked(multiselectPart: MultiselectPart, messageId: Long, isMms: Boolean) = Unit
-    override fun onGroupMemberClicked(recipientId: RecipientId, groupId: GroupId) = Unit
     override fun onMessageWithRecaptchaNeededClicked(messageRecord: MessageRecord) = Unit
     override fun onGroupMigrationLearnMoreClicked(membershipChange: GroupMigrationMembershipChange) = Unit
     override fun onChatSessionRefreshLearnMoreClicked() = Unit
@@ -270,13 +276,6 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     override fun onViewGiftBadgeClicked(messageRecord: MessageRecord) = Unit
     override fun onActivatePaymentsClicked() = Unit
     override fun onSendPaymentClicked(recipientId: RecipientId) = Unit
-    override fun onScheduledIndicatorClicked(view: View, messageRecord: MessageRecord) {
-      showScheduledMessageContextMenu(view, messageRecord)
-    }
-  }
-
-  interface Callback {
-    fun getConversationAdapterListener(): ConversationAdapter.ItemClickListener
   }
 
   companion object {

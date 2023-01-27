@@ -20,7 +20,6 @@ import android.Manifest;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
-import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -137,8 +136,6 @@ import org.thoughtcrime.securesms.components.emoji.RecentEmojiPageModel;
 import org.thoughtcrime.securesms.components.identity.UnverifiedBannerView;
 import org.thoughtcrime.securesms.components.location.SignalPlace;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
-import org.thoughtcrime.securesms.components.menu.ActionItem;
-import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
 import org.thoughtcrime.securesms.components.reminder.BubbleOptOutReminder;
 import org.thoughtcrime.securesms.components.reminder.ExpiredBuildReminder;
 import org.thoughtcrime.securesms.components.reminder.GroupsV1MigrationSuggestionsReminder;
@@ -180,6 +177,7 @@ import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.database.identity.IdentityRecordList;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Mention;
@@ -337,8 +335,6 @@ import kotlin.Unit;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
-import org.thoughtcrime.securesms.database.model.GroupRecord;
-
 /**
  * Fragment for displaying a message thread, as well as
  * composing/sending a new message into that thread.
@@ -370,7 +366,7 @@ public class ConversationParentFragment extends Fragment
                Material3OnScrollHelperBinder,
                MessageDetailsFragment.Callback,
                ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
-               ScheduledMessagesBottomSheet.Callback
+               ConversationBottomSheetCallback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -3677,10 +3673,16 @@ public class ConversationParentFragment extends Fragment
     sendMessage(null, scheduledTime);
   }
 
+  @Override
   public @NonNull ConversationAdapter.ItemClickListener getConversationAdapterListener() {
     return fragment.getConversationAdapterListener();
   }
-  
+
+  @Override
+  public void jumpToMessage(@NonNull MessageRecord messageRecord) {
+    fragment.jumpToMessage(messageRecord);
+  }
+
   // Listeners
 
   private class RecordingSession implements SingleObserver<VoiceNoteDraft> {
