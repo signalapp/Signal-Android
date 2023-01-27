@@ -17,6 +17,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -73,6 +75,10 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
       CommunicationActions.openBrowserLink(requireContext(), getString(R.string.BaseKbsPinFragment__learn_more_url));
     });
 
+    Toolbar toolbar = view.findViewById(R.id.kbs_pin_toolbar);
+    ((AppCompatActivity) requireActivity()).setSupportActionBar(toolbar);
+    ((AppCompatActivity) requireActivity()).getSupportActionBar().setTitle(null);
+
     initializeListeners();
   }
 
@@ -100,16 +106,15 @@ public abstract class BaseKbsPinFragment<ViewModel extends BaseKbsPinViewModel> 
 
   @Override
   public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-    switch (item.getItemId()) {
-      case R.id.menu_pin_learn_more:
-        onLearnMore();
-        return true;
-      case R.id.menu_pin_skip:
-        onPinSkipped();
-        return true;
+    if (item.getItemId() == R.id.menu_pin_learn_more) {
+      onLearnMore();
+      return true;
+    } else if (item.getItemId() == R.id.menu_pin_skip) {
+      onPinSkipped();
+      return true;
+    } else {
+      return false;
     }
-
-    return false;
   }
 
   protected abstract ViewModel initializeViewModel();
