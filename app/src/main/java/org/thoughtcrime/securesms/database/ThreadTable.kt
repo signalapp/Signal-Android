@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.serialize
 import org.thoughtcrime.securesms.groups.BadGroupIdException
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.jobs.OptimizeMessageSearchIndexJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.mms.StickerSlide
@@ -311,6 +312,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyAttachmentListeners()
     notifyStickerPackListeners()
+    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   fun trimThread(threadId: Long, length: Int, trimBeforeDate: Long) {
@@ -333,6 +335,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
     notifyAttachmentListeners()
     notifyStickerPackListeners()
+    OptimizeMessageSearchIndexJob.enqueue()
   }
 
   private fun trimThreadInternal(threadId: Long, length: Int, trimBeforeDate: Long) {

@@ -3322,24 +3322,18 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         where = THREAD_ID + " = ? AND " + DATE_RECEIVED + " < " + date;
 
-    int count = db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
-
-    if (count > 0) {
-      OptimizeMessageSearchIndexJob.enqueue();
-    }
-
-    return count;
+    return db.delete(TABLE_NAME, where, SqlUtil.buildArgs(threadId));
   }
 
-  void deleteAbandonedMessages() {
+  int deleteAbandonedMessages() {
     SQLiteDatabase db    = databaseHelper.getSignalWritableDatabase();
     String         where = THREAD_ID + " NOT IN (SELECT _id FROM " + ThreadTable.TABLE_NAME + ")";
 
     int deletes = db.delete(TABLE_NAME, where, null);
     if (deletes > 0) {
       Log.i(TAG, "Deleted " + deletes + " abandoned messages");
-      OptimizeMessageSearchIndexJob.enqueue();
     }
+    return deletes;
   }
 
   public void deleteRemotelyDeletedStory(long messageId) {
