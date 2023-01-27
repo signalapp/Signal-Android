@@ -64,6 +64,7 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   override val themeResId: Int = R.style.Widget_Signal_FixedRoundedCorners_Messages
 
   private var firstRender: Boolean = true
+  private var deleteDialog: AlertDialog? = null
 
   private lateinit var messageAdapter: ConversationAdapter
   private lateinit var callback: Callback
@@ -112,7 +113,8 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
 
     disposables += viewModel.getMessages(requireContext()).subscribe { messages ->
       if (messages.isEmpty()) {
-        dismiss()
+        deleteDialog?.dismiss()
+        dismissAllowingStateLoss()
       }
 
       messageAdapter.submitList(messages) {
@@ -176,7 +178,10 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   }
 
   private fun handleDeleteMessage(messageRecord: MessageRecord) {
-    buildDeleteScheduledMessageConfirmationDialog(messageRecord).show()
+    deleteDialog?.dismiss()
+    deleteDialog = buildDeleteScheduledMessageConfirmationDialog(messageRecord)
+      .setOnDismissListener { deleteDialog = null }
+      .show()
   }
 
   private fun handleCopyMessage(message: ConversationMessage) {
@@ -221,16 +226,18 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
   }
 
   private fun deleteMessage(messageId: Long) {
-    val progressDialog = SignalProgressDialog.show(
-      context = requireContext(),
-      message = resources.getString(R.string.ScheduledMessagesBottomSheet_deleting_progress_message),
-      indeterminate = true
-    )
-    SimpleTask.run(viewLifecycleOwner.lifecycle, {
-      SignalDatabase.messages.deleteScheduledMessage(messageId)
-    }, {
-      progressDialog.dismiss()
-    })
+    context?.let { context ->
+      val progressDialog = SignalProgressDialog.show(
+        context = context,
+        message = resources.getString(R.string.ScheduledMessagesBottomSheet_deleting_progress_message),
+        indeterminate = true
+      )
+      SimpleTask.run({
+        SignalDatabase.messages.deleteScheduledMessage(messageId)
+      }, {
+        progressDialog.dismiss()
+      })
+    }
   }
 
   override fun onReschedule(scheduledTime: Long, messageId: Long) {
