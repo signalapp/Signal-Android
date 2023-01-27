@@ -30,7 +30,7 @@
             android:padding="9dp"
             android:tint="@color/signal_icon_tint_primary"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_reply_24" />
+            app:srcCompat="@drawable/symbol_reply_24" />
 
     </FrameLayout>
 
@@ -126,7 +126,7 @@
             android:backgroundTint="@color/signal_colorSurfaceVariant"
             android:padding="6dp"
             android:tint="@color/signal_colorOnSurfaceVariant"
-            app:srcCompat="@drawable/ic_calendar_24" />
+            app:srcCompat="@drawable/symbol_calendar_24" />
 
     </FrameLayout>
 

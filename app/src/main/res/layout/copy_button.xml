@@ -12,7 +12,7 @@
     android:textAlignment="viewStart"
     android:textColor="@color/signal_colorOnSurface"
     app:cornerRadius="12dp"
-    app:icon="@drawable/ic_copy_24"
+    app:icon="@drawable/symbol_copy_android_24"
     app:iconGravity="end"
     app:iconSize="24dp"
     app:iconTint="@color/signal_colorOnSurface"

@@ -199,7 +199,7 @@ open class ContactSearchAdapter(
 
     private fun getMyStoryContextMenuActions(model: StoryModel, callbacks: StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.ic_settings_24, context.getString(R.string.ContactSearchItems__story_settings)) {
+        ActionItem(R.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
           callbacks.onOpenStorySettings(model.story)
         }
       )
@@ -207,7 +207,7 @@ open class ContactSearchAdapter(
 
     private fun getGroupStoryContextMenuActions(model: StoryModel, callbacks: StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.ic_minus_circle_20, context.getString(R.string.ContactSearchItems__remove_story)) {
+        ActionItem(R.drawable.symbol_minus_circle_24, context.getString(R.string.ContactSearchItems__remove_story)) {
           callbacks.onRemoveGroupStory(model.story, model.isSelected)
         }
       )
@@ -215,10 +215,10 @@ open class ContactSearchAdapter(
 
     private fun getPrivateStoryContextMenuActions(model: StoryModel, callbacks: StoryContextMenuCallbacks): List<ActionItem> {
       return listOf(
-        ActionItem(R.drawable.ic_settings_24, context.getString(R.string.ContactSearchItems__story_settings)) {
+        ActionItem(R.drawable.symbol_settings_android_24, context.getString(R.string.ContactSearchItems__story_settings)) {
           callbacks.onOpenStorySettings(model.story)
         },
-        ActionItem(R.drawable.ic_delete_24, context.getString(R.string.ContactSearchItems__delete_story), R.color.signal_colorError) {
+        ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.ContactSearchItems__delete_story), R.color.signal_colorError) {
           callbacks.onDeletePrivateStory(model.story, model.isSelected)
         }
       )
@@ -234,7 +234,7 @@ open class ContactSearchAdapter(
 
     private class MyStoryFallbackPhotoProvider(private val name: String, private val targetSize: Int) : Recipient.FallbackPhotoProvider() {
       override fun getPhotoForLocalNumber(): FallbackContactPhoto {
-        return GeneratedContactPhoto(name, R.drawable.ic_profile_outline_40, targetSize)
+        return GeneratedContactPhoto(name, R.drawable.symbol_person_40, targetSize)
       }
     }
   }

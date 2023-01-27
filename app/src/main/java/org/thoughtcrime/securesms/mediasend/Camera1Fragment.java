@@ -284,7 +284,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
            .into(thumbnail);
     } else {
       thumbBackground.setBackgroundResource(R.drawable.media_selection_camera_switch_background);
-      thumbnail.setImageResource(R.drawable.ic_gallery_outline_24);
+      thumbnail.setImageResource(R.drawable.symbol_album_tilt_24);
       thumbnail.setColorFilter(Color.WHITE);
       thumbnail.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }

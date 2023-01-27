@@ -204,7 +204,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
       }.toMutableList()
     if (allowScheduling && listener?.canSchedule() == true) {
       items += ActionItem(
-        iconRes = R.drawable.ic_calendar_24,
+        iconRes = R.drawable.symbol_calendar_24,
         title = context.getString(R.string.conversation_activity__option_schedule_message),
         action = { listener.onSendScheduled() }
       )

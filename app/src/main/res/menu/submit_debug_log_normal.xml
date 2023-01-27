@@ -5,7 +5,7 @@
 
   <item
       android:id="@+id/menu_search"
-      android:icon="@drawable/ic_search_24"
+      android:icon="@drawable/symbol_search_24"
       android:title="@string/CameraContacts__menu_search"
       android:visible="false"
       app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
@@ -25,7 +25,7 @@
 
   <item
       android:id="@+id/menu_save"
-      android:icon="@drawable/ic_save_24"
+      android:icon="@drawable/symbol_save_android_24"
       android:title="@string/SubmitDebugLogActivity_save"
       android:visible="false"
       app:showAsAction="never" />

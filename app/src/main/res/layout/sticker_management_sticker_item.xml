@@ -90,7 +90,7 @@
         app:layout_constraintEnd_toEndOf="@id/sticker_management_share_button"
         app:layout_constraintStart_toStartOf="@id/sticker_management_share_button"
         app:layout_constraintTop_toTopOf="@id/sticker_management_share_button"
-        app:srcCompat="@drawable/ic_forward_24" />
+        app:srcCompat="@drawable/symbol_forward_24" />
 
     <View
         android:id="@+id/sticker_management_action_button"
@@ -111,7 +111,7 @@
         app:layout_constraintEnd_toEndOf="@id/sticker_management_action_button"
         app:layout_constraintStart_toStartOf="@id/sticker_management_action_button"
         app:layout_constraintTop_toTopOf="@id/sticker_management_action_button"
-        tools:src="@drawable/ic_arrow_down" />
+        tools:src="@drawable/symbol_arrow_down_24" />
 
     <View
         android:id="@+id/sticker_management_divider"

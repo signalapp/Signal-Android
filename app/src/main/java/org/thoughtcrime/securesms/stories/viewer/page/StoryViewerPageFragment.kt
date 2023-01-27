@@ -982,14 +982,14 @@ class StoryViewerPageFragment :
   }
 
   private fun presentPartialSendBottomBar() {
-    viewsAndReplies.setIconResource(R.drawable.ic_error_outline_24)
+    viewsAndReplies.setIconResource(R.drawable.symbol_error_circle_24)
     viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_light_colorError))
     viewsAndReplies.iconSize = 20.dp
     viewsAndReplies.setText(R.string.StoryViewerPageFragment__partially_sent)
   }
 
   private fun presentSendFailureBottomBar() {
-    viewsAndReplies.setIconResource(R.drawable.ic_error_outline_24)
+    viewsAndReplies.setIconResource(R.drawable.symbol_error_circle_24)
     viewsAndReplies.iconTint = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.signal_light_colorError))
     viewsAndReplies.iconSize = 20.dp
     viewsAndReplies.setText(R.string.StoryViewerPageFragment__send_failed)
@@ -1002,12 +1002,12 @@ class StoryViewerPageFragment :
     if (Recipient.self() == post.sender) {
       if (isReceiptsEnabled) {
         if (post.replyCount == 0) {
-          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_bold_16)
+          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
           viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
           viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
           viewsAndReplies.text = views
         } else {
-          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_bold_16)
+          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
           viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
           viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
           viewsAndReplies.text = getString(R.string.StoryViewerFragment__s_s, views, replies)
@@ -1017,24 +1017,24 @@ class StoryViewerPageFragment :
           viewsAndReplies.icon = null
           viewsAndReplies.setText(R.string.StoryViewerPageFragment__views_off)
         } else {
-          viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_bold_16)
+          viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
           viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
           viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
           viewsAndReplies.text = replies
         }
       }
     } else if (post.replyCount > 0) {
-      viewsAndReplies.setIconResource(R.drawable.ic_chevron_end_bold_16)
+      viewsAndReplies.setIconResource(R.drawable.symbol_chevron_right_compact_bold_16)
       viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(16f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_END
       viewsAndReplies.text = replies
     } else if (post.group != null) {
-      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.setIconResource(R.drawable.symbol_reply_24)
       viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply_to_group)
     } else {
-      viewsAndReplies.setIconResource(R.drawable.ic_reply_24_outline)
+      viewsAndReplies.setIconResource(R.drawable.symbol_reply_24)
       viewsAndReplies.iconSize = DimensionUnit.DP.toPixels(20f).toInt()
       viewsAndReplies.iconGravity = MaterialButton.ICON_GRAVITY_TEXT_START
       viewsAndReplies.setText(R.string.StoryViewerPageFragment__reply)
@@ -1288,7 +1288,7 @@ class StoryViewerPageFragment :
 
   private class FallbackPhotoProvider : Recipient.FallbackPhotoProvider() {
     override fun getPhotoForGroup(): FallbackContactPhoto {
-      return FallbackPhoto20dp(R.drawable.ic_group_outline_20)
+      return FallbackPhoto20dp(R.drawable.symbol_group_20)
     }
 
     override fun getPhotoForResolvingRecipient(): FallbackContactPhoto {
@@ -1300,11 +1300,11 @@ class StoryViewerPageFragment :
     }
 
     override fun getPhotoForRecipientWithName(name: String, targetSize: Int): FallbackContactPhoto {
-      return FixedSizeGeneratedContactPhoto(name, R.drawable.ic_profile_outline_20)
+      return FixedSizeGeneratedContactPhoto(name, R.drawable.symbol_person_20)
     }
 
     override fun getPhotoForRecipientWithoutName(): FallbackContactPhoto {
-      return FallbackPhoto20dp(R.drawable.ic_profile_outline_20)
+      return FallbackPhoto20dp(R.drawable.symbol_person_20)
     }
   }
 

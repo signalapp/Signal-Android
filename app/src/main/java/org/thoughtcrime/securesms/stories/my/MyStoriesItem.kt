@@ -185,10 +185,10 @@ object MyStoriesItem {
         .offsetY(DimensionUnit.DP.toPixels(12f).toInt())
         .show(
           listOf(
-            ActionItem(R.drawable.ic_delete_24_tinted, context.getString(R.string.delete)) { model.onDeleteClick(model) },
-            ActionItem(R.drawable.ic_forward_24_tinted, context.getString(R.string.MyStories_forward)) { model.onForwardClick(model) },
-            ActionItem(R.drawable.ic_share_24_tinted, context.getString(R.string.StoriesLandingItem__share)) { model.onShareClick(model) },
-            ActionItem(R.drawable.ic_info_outline_message_details_24, context.getString(R.string.StoriesLandingItem__info)) { model.onInfoClick(model, storyPreview) }
+            ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.delete)) { model.onDeleteClick(model) },
+            ActionItem(R.drawable.symbol_forward_24, context.getString(R.string.MyStories_forward)) { model.onForwardClick(model) },
+            ActionItem(R.drawable.symbol_share_android_24, context.getString(R.string.StoriesLandingItem__share)) { model.onShareClick(model) },
+            ActionItem(R.drawable.symbol_info_24, context.getString(R.string.StoriesLandingItem__info)) { model.onInfoClick(model, storyPreview) }
           )
         )
     }

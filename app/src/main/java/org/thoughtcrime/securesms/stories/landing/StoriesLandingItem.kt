@@ -232,7 +232,7 @@ object StoriesLandingItem {
       icon.setImageResource(
         when {
           model.data.hasReplies -> R.drawable.ic_messages_solid_20
-          else -> R.drawable.ic_reply_24_solid_tinted
+          else -> R.drawable.symbol_reply_fill_24
         }
       )
 

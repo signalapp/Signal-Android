@@ -3938,7 +3938,7 @@ public class ConversationParentFragment extends Fragment
 
         reviewBanner.get().setBannerMessage(message);
 
-        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.ic_info_white_24).mutate();
+        Drawable drawable = ContextUtil.requireDrawable(requireContext(), R.drawable.symbol_info_24).mutate();
         DrawableCompat.setTint(drawable, ContextCompat.getColor(requireContext(), R.color.signal_icon_tint_primary));
 
         reviewBanner.get().setBannerIcon(drawable);

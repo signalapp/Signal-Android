@@ -28,7 +28,7 @@ class ScheduleMessageContextMenu {
             action(it)
           }
         } else {
-          ActionItem(R.drawable.ic_calendar_24, anchor.context.getString(R.string.ScheduledMessages_pick_time)) {
+          ActionItem(R.drawable.symbol_calendar_24, anchor.context.getString(R.string.ScheduledMessages_pick_time)) {
             action(it)
           }
         }

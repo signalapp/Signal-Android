@@ -122,7 +122,7 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
             ) { _, _ -> viewModel.disablePushMessages() }
           }
 
-          val icon: Drawable = requireNotNull(ContextCompat.getDrawable(builder.context, R.drawable.ic_info_outline))
+          val icon: Drawable = requireNotNull(ContextCompat.getDrawable(builder.context, R.drawable.symbol_info_24))
           icon.setBounds(0, 0, ViewUtil.dpToPx(32), ViewUtil.dpToPx(32))
 
           val title = TextView(builder.context)
