@@ -174,7 +174,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
     val scheduleListener = scheduledSendListener
     if (availableSendTypes.size == 1) {
-      return if (scheduleListener != null) {
+      return if (scheduleListener?.canSchedule() == true) {
         scheduleListener.onSendScheduled()
         true
       } else if (!SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
@@ -202,7 +202,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
           action = { setSendType(option) }
         )
       }.toMutableList()
-    if (allowScheduling && listener != null) {
+    if (allowScheduling && listener?.canSchedule() == true) {
       items += ActionItem(
         iconRes = R.drawable.ic_calendar_24,
         title = context.getString(R.string.conversation_activity__option_schedule_message),
@@ -222,5 +222,6 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
   interface ScheduledSendListener {
     fun onSendScheduled()
+    fun canSchedule(): Boolean
   }
 }

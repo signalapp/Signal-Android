@@ -2086,15 +2086,23 @@ public class ConversationParentFragment extends Fragment
     attachButton.setOnLongClickListener(new AttachButtonLongClickListener());
     sendButton.setOnClickListener(sendButtonListener);
     if (FeatureFlags.scheduledMessageSends()) {
-      sendButton.setScheduledSendListener(() -> {
-        ScheduleMessageContextMenu.show(sendButton, (ViewGroup) requireView(), time -> {
-          if (time == -1) {
-            ScheduleMessageTimePickerBottomSheet.showSchedule(getChildFragmentManager());
-          } else {
-            sendMessage(null, time);
-          }
-          return Unit.INSTANCE;
-        });
+      sendButton.setScheduledSendListener(new SendButton.ScheduledSendListener() {
+        @Override
+        public void onSendScheduled() {
+          ScheduleMessageContextMenu.show(sendButton, (ViewGroup) requireView(), time -> {
+            if (time == -1) {
+              ScheduleMessageTimePickerBottomSheet.showSchedule(getChildFragmentManager());
+            } else {
+              sendMessage(null, time);
+            }
+            return Unit.INSTANCE;
+          });
+        }
+
+        @Override
+        public boolean canSchedule() {
+          return !(inputPanel.isRecordingInLockedMode() || draftViewModel.getVoiceNoteDraft() != null);
+        }
       });
     }
     sendButton.setEnabled(true);
