@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.conversationlist
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.MotionEvent
 import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout.Behavior
@@ -25,6 +26,14 @@ class ConversationFilterBehavior(context: Context, attributeSet: AttributeSet) :
     super.onStopNestedScroll(coordinatorLayout, child, target, type)
     child.setExpanded(false, true)
     callback?.onStopNestedScroll()
+  }
+
+  override fun onTouchEvent(parent: CoordinatorLayout, child: AppBarLayout, ev: MotionEvent): Boolean {
+    if (ev.action == MotionEvent.ACTION_UP) {
+      child.setExpanded(false, true)
+      callback?.onStopNestedScroll()
+    }
+    return super.onTouchEvent(parent, child, ev)
   }
 
   interface Callback {
