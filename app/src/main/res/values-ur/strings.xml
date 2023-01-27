@@ -669,7 +669,7 @@
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Delete</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">حذف کریں</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
     <!-- Progress message shown while deleting selected scheduled message -->

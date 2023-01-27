@@ -631,7 +631,7 @@
     <string name="DateUtils_today">ਅੱਜ</string>
     <string name="DateUtils_yesterday">ਕੱਲ੍ਹ</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s at %2$s</string>
+    <string name="DateUtils_schedule_at">%2$s ਉੱਤੇ %1$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
     <string name="DateUtils_tomorrow">Tomorrow</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
@@ -647,7 +647,7 @@
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">ਠੀਕ ਹੈ</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
     <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->

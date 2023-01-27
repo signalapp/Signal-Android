@@ -627,7 +627,7 @@
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">확인</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
     <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
@@ -649,7 +649,7 @@
     <!-- Context menu option to reschedule a selected message -->
     <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Delete</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">삭제</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
     <!-- Progress message shown while deleting selected scheduled message -->

@@ -687,7 +687,7 @@
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
     <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">Gerai</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
     <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
