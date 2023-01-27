@@ -165,9 +165,12 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     private val JOINED_GROUP_SELECT = """
       SELECT 
         DISTINCT $TABLE_NAME.*, 
-        GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID}) as $MEMBER_GROUP_CONCAT
+        (
+            SELECT GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID})
+            FROM ${MembershipTable.TABLE_NAME} 
+            WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+        ) as $MEMBER_GROUP_CONCAT
       FROM $TABLE_NAME          
-      LEFT JOIN ${MembershipTable.TABLE_NAME} ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
     """.toSingleLine()
 
     val CREATE_TABLES = arrayOf(CREATE_TABLE, MembershipTable.CREATE_TABLE)
@@ -204,7 +207,7 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
   private fun getGroup(query: SqlUtil.Query): Optional<GroupRecord> {
     //language=sql
-    val select = "$JOINED_GROUP_SELECT WHERE ${query.where} GROUP BY $TABLE_NAME.$GROUP_ID"
+    val select = "$JOINED_GROUP_SELECT WHERE ${query.where}"
 
     readableDatabase
       .query(select, query.whereArgs)
@@ -349,7 +352,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     val statement = """
       $JOINED_GROUP_SELECT
       WHERE ${query.where}
-      GROUP BY $TABLE_NAME.$GROUP_ID
       ORDER BY $TITLE COLLATE NOCASE ASC
     """.trimIndent()
 
@@ -389,7 +391,20 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       query += " AND $MMS = 0"
     }
 
-    return Reader(readableDatabase.query("$JOINED_GROUP_SELECT WHERE $query GROUP BY $TABLE_NAME.$GROUP_ID", queryArgs))
+    val selection = """
+      SELECT DISTINCT
+                $TABLE_NAME.*, 
+                (
+                    SELECT GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID})
+                    FROM ${MembershipTable.TABLE_NAME} 
+                    WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+                ) as $MEMBER_GROUP_CONCAT
+      FROM ${MembershipTable.TABLE_NAME}
+      INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+      WHERE $query
+    """.trimIndent()
+
+    return Reader(readableDatabase.query(selection, queryArgs))
   }
 
   private fun queryGroupsByRecency(groupQuery: GroupQuery): Reader {
@@ -398,7 +413,6 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       $JOINED_GROUP_SELECT
       INNER JOIN ${ThreadTable.TABLE_NAME} ON ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID} = $TABLE_NAME.$RECIPIENT_ID
       WHERE ${query.where} 
-      GROUP BY $TABLE_NAME.$GROUP_ID
       ORDER BY ${ThreadTable.TABLE_NAME}.${ThreadTable.DATE} DESC
     """.toSingleLine()
 
@@ -511,8 +525,16 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   fun getGroupsContainingMember(recipientId: RecipientId, pushOnly: Boolean, includeInactive: Boolean): List<GroupRecord> {
     //language=sql
     val table = """
-      $JOINED_GROUP_SELECT
-          INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
+      SELECT 
+        DISTINCT $TABLE_NAME.*, 
+        (
+          SELECT GROUP_CONCAT(${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID})
+          FROM ${MembershipTable.TABLE_NAME} 
+          WHERE ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+        ) as $MEMBER_GROUP_CONCAT
+      FROM ${MembershipTable.TABLE_NAME}
+      INNER JOIN $TABLE_NAME ON ${MembershipTable.TABLE_NAME}.${MembershipTable.GROUP_ID} = $TABLE_NAME.$GROUP_ID
+      INNER JOIN ${ThreadTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${ThreadTable.TABLE_NAME}.${ThreadTable.RECIPIENT_ID}
     """.toSingleLine()
 
     var query = "${MembershipTable.TABLE_NAME}.${MembershipTable.RECIPIENT_ID} = ?"
@@ -530,14 +552,14 @@ class GroupTable(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     }
 
     return readableDatabase
-      .query("$table WHERE $query GROUP BY $TABLE_NAME.$GROUP_ID ORDER BY $orderBy".apply { println(this) }, args)
+      .query("$table WHERE $query ORDER BY $orderBy", args)
       .readToList { cursor ->
         getGroup(cursor).get()
       }
   }
 
   fun getGroups(): Reader {
-    val cursor = readableDatabase.query("$JOINED_GROUP_SELECT GROUP BY $TABLE_NAME.$GROUP_ID")
+    val cursor = readableDatabase.query(JOINED_GROUP_SELECT)
     return Reader(cursor)
   }
 
