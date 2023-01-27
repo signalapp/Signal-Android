@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 public class ViewOnceMessageView extends LinearLayout {
@@ -112,7 +113,7 @@ public class ViewOnceMessageView extends LinearLayout {
     int iconColor;
     boolean showProgress = false;
 
-    if (messageRecord.isOutgoing() && networkInProgress(messageRecord)) {
+    if (messageRecord.isOutgoing() && networkInProgress(messageRecord) && !MessageRecordUtil.isScheduled(messageRecord)) {
       iconColor = openedIconColor;
       text.setText(R.string.RevealableMessageView_media);
       icon.setImageResource(0);
