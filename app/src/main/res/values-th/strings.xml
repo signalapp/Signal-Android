@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">ผู้ติดต่อ</string>
     <string name="ContactsCursorLoader_groups">กลุ่ม</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Group members</string>
+    <string name="ContactsCursorLoader_group_members">สมาชิกกลุ่ม</string>
     <string name="ContactsCursorLoader_phone_number_search">ค้นด้วยหมายเลขโทรศัพท์</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ค้นหาด้วยชื่อผู้ใช้</string>
@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">ใหม่</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Chats</string>
+    <string name="ContactsCursorLoader__chats">การสนทนา</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">Messages</string>
+    <string name="ContactsCursorLoader__messages">ข้อความ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">ข้อความ %1$s</string>
@@ -610,6 +610,50 @@
     <string name="DateUtils_minutes_ago">%1$d m</string>
     <string name="DateUtils_today">วันนี้</string>
     <string name="DateUtils_yesterday">เมื่อวาน</string>
+    <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
+    <string name="DateUtils_schedule_at">%1$s at %2$s</string>
+    <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
+    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
+    <string name="DateUtils_tonight">Tonight</string>
+
+    <!-- Scheduled Messages -->
+    <!-- Title for dialog that shows all the users scheduled messages for a chat -->
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <!-- Option when scheduling a message to select a specific date and time to send a message -->
+    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <!-- Title for dialog explaining to users how the scheduled messages work -->
+    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <!-- Confirmation button text acknowledging the user understands the disclaimer -->
+    <string name="ScheduleMessageFTUXBottomSheet__okay">ตกลง</string>
+    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+
+    <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+
+    <!-- Context menu option to send a scheduled message now -->
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <!-- Context menu option to reschedule a selected message -->
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Delete</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <!-- Progress message shown while deleting selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ข้อมูลสนทนาถูกเรียกขึ้นใหม่</string>
@@ -1319,7 +1363,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">ประวัติการส่งข้อความของคุณกับ %1$s และอีกแชทของผู้ติดต่อถูกรวมเข้าด้วยกันเรียบร้อยแล้ว</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s เป็นหมายเลขโทรศัพท์ของ %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">คุณได้ส่งคำขอให้ %1$s เปิดใช้การชำระเงินแล้ว</string>
     <!-- Request message from recipient to activate payments -->
@@ -1634,7 +1678,7 @@
     <string name="RegistrationActivity_select_your_country">เลือกประเทศของคุณ</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">คุณต้องระบุรหัส ประเทศของคุณ
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">โปรดป้อนหมายเลขโทรศัพท์ที่ถูกต้องเพื่อลงทะเบียน</string>
     <string name="RegistrationActivity_invalid_number">หมายเลขไม่ถูกรูปแบบ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">หมายที่คุณ ระบุ (%1$s) ไม่ถูกรูปแบบ
     </string>
@@ -1664,16 +1708,16 @@
     <string name="RegistrationActivity_continue">ทำต่อ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">นำความเป็นส่วนตัวไปกับคุณทุกที่\nเป็นตัวคุณในทุกข้อความ</string>
     <string name="RegistrationActivity_enter_your_phone_number">ป้อนหมายเลขโทรศัพท์ของคุณ</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">คุณจะได้รับรหัสตรวจยืนยัน ซึ่งอาจมีค่าบริการจากผู้ให้บริการโทรศัพท์</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ใส่รหัสที่เราส่งไปให้ %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ตรวจสอบให้แน่ใจว่าโทรศัพท์ของคุณมีสัญญาณเซลลูลาร์เพื่อรับ SMS หรือการโทร</string>
 
     <string name="RegistrationActivity_phone_number_description">หมายเลขโทรศัพท์</string>
     <string name="RegistrationActivity_country_code_description">รหัสประเทศ</string>
-    <string name="RegistrationActivity_country_code_hint">Country</string>
+    <string name="RegistrationActivity_country_code_hint">ประเทศ</string>
     <string name="RegistrationActivity_call">โทร</string>
-    <string name="RegistrationActivity_verification_code">Verification Code</string>
-    <string name="RegistrationActivity_resend_code">Resend Code</string>
+    <string name="RegistrationActivity_verification_code">รหัสยืนยัน</string>
+    <string name="RegistrationActivity_resend_code">ส่งรหัสอีกครั้ง</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">เปิดกุญแจลงทะเบียนหรือไม่?</string>
@@ -2132,6 +2176,8 @@
     <string name="conversation_activity__type_message_push">ข้อความ Signal</string>
     <string name="conversation_activity__type_message_sms_insecure">SMS ที่ไม่ปลอดภัย</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS ที่ไม่ปลอดภัย</string>
+    <!-- Option in send button context menu to schedule the message instead of sending it directly -->
+    <string name="conversation_activity__option_schedule_message">Schedule message</string>
     <string name="conversation_activity__from_sim_name">จาก %1$s</string>
     <string name="conversation_activity__sim_n">ซิม %1$d</string>
     <string name="conversation_activity__send">ส่ง</string>
@@ -3011,6 +3057,15 @@
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
 
+    <!-- conversation scheduled messages bar -->
+
+    <!-- Label for button in a banner to show all messages currently scheduled -->
+    <string name="conversation_scheduled_messages_bar__see_all">ดูทั้งหมด</string>
+    <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
+    <plurals name="conversation_scheduled_messages_bar__number_of_messages">
+        <item quantity="other">%1$d messages scheduled</item>
+    </plurals>
+
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">รายชื่อผู้รับ</string>
     <string name="conversation_group_options__delivery">ส่ง</string>
@@ -3242,7 +3297,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ข้อมูลสำรองของคุณมีไฟล์ขนาดใหญ่ที่ไม่สามารถเก็บสำรองได้ กรุณาลบไฟล์ดังกล่าวและสร้างข้อมูลสำรองใหม่</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้องหรือ?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
     <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
@@ -5384,7 +5439,7 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">ตัวหนา</string>
     <!-- Popup menu label for applying italic style -->
     <string name="TextFormatting_italic">Italic</string>
     <!-- Popup menu label for applying strikethrough style -->

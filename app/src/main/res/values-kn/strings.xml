@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">ಸಂಪರ್ಕಗಳು</string>
     <string name="ContactsCursorLoader_groups">ಗುಂಪುಗಳು</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Group members</string>
+    <string name="ContactsCursorLoader_group_members">ಗುಂಪಿನ ಸದಸ್ಯರು</string>
     <string name="ContactsCursorLoader_phone_number_search">ದೂರವಾಣಿ ಸಂಖ್ಯೆ ಹುಡುಕಾಟ</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ಯೂಸರ್‌ನೇಮ್‌ನಿಂದ ಹುಡುಕಿ</string>
@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">ಹೊಸ</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Chats</string>
+    <string name="ContactsCursorLoader__chats">ಚಾಟ್‌‌ ಗಳು</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">Messages</string>
+    <string name="ContactsCursorLoader__messages">ಸಂದೇಶಗಳು</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">ಸಂದೇಶ %1$s</string>
@@ -630,6 +630,50 @@
     <string name="DateUtils_minutes_ago">%1$dನಿ</string>
     <string name="DateUtils_today">ಇಂದು</string>
     <string name="DateUtils_yesterday">ನಿನ್ನೆ</string>
+    <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
+    <string name="DateUtils_schedule_at">%1$s at %2$s</string>
+    <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
+    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
+    <string name="DateUtils_tonight">Tonight</string>
+
+    <!-- Scheduled Messages -->
+    <!-- Title for dialog that shows all the users scheduled messages for a chat -->
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <!-- Option when scheduling a message to select a specific date and time to send a message -->
+    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <!-- Title for dialog explaining to users how the scheduled messages work -->
+    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <!-- Confirmation button text acknowledging the user understands the disclaimer -->
+    <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
+    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+
+    <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+
+    <!-- Context menu option to send a scheduled message now -->
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <!-- Context menu option to reschedule a selected message -->
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Delete</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <!-- Progress message shown while deleting selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ಚಾಟ್ ಸೆಷನ್ ರಿಫ್ರೆಶ್ ಮಾಡಲಾಗಿದೆ</string>
@@ -1375,7 +1419,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s ಅವರೊಂದಿಗಿನ ನಿಮ್ಮ ಮೆಸೇಜ್ ಇತಿಹಾಸ ಮತ್ತು ಅವರಿಗೆ ಸೇರಿದ ಬೇರೊಂದು ಚಾಟ್ ಅನ್ನು ವಿಲೀನಗೊಳಿಸಲಾಗಿದೆ.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s ಯು %2$s ಅವರದ್ದಾಗಿದೆ</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">ಪಾವತಿಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲು ನೀವು %1$s ಅವರಿಗೆ ವಿನಂತಿ ಕಳುಹಿಸಿದ್ದೀರಿ</string>
     <!-- Request message from recipient to activate payments -->
@@ -1704,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">ನಿಮ್ಮ ದೇಶವನ್ನು ಆಯ್ಕೆಮಾಡಿ</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">ನಿಮ್ಮ ದೇಶದ ಸಂಕೇತವನ್ನು ನೀವು ನಿರ್ದಿಷ್ಟಪಡಿಸಬೇಕು
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">ನೋಂದಾಯಿಸಲು ದಯವಿಟ್ಟು ಮಾನ್ಯವಾದ ಫೋನ್ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ.</string>
     <string name="RegistrationActivity_invalid_number">ಅಮಾನ್ಯವಾದ ಸಂಖ್ಯೆ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">ನೀವು ನಿರ್ದಿಷ್ಟಪಡಿಸಿದ ಸಂಖ್ಯೆ (%1$s) ಅಮಾನ್ಯವಾಗಿದೆ.
     </string>
@@ -1735,16 +1779,16 @@
     <string name="RegistrationActivity_continue">ಮುಂದುವರಿಸಿ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">ಖಾಸಗಿತನವನ್ನು ನಿಮ್ಮೊಂದಿಗೆ ಇರಿಸಿಕೊಳ್ಳಿ. \nನಿಮ್ಮ ಪ್ರತಿ ಸಂದೇಶದಲ್ಲಿಯೂ ಸ್ವಂತಿಕೆ ಕಾಯ್ದುಕೊಳ್ಳಿ.</string>
     <string name="RegistrationActivity_enter_your_phone_number">ನಿಮ್ಮ ಫೋನ್‌ ಸಂಖ್ಯೆಯನ್ನು ನಮೂದಿಸಿ</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">ನೀವು ದೃಢೀಕರಣ ಕೋಡ್ ಅನ್ನು ಪಡೆಯುತ್ತೀರಿ. ಕೆರಿಯರ್ ದರಗಳು ಅನ್ವಯವಾಗಬಹುದು.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s ಗೆ ನಾವು ಕಳುಹಿಸಿದ ಕೋಡ್ ನಮೂದಿಸಿ</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">ನಿಮ್ಮ ಎಸ್‌ಎಂಎಸ್ ಅಥಬಾ ಕರೆಯನ್ನು ಸ್ವೀಕರಿಸಲು ನಿಮ್ಮ ಫೋನ್‌ ಮೊಬೈಲ್ ಸಿಗ್ನಲ್ ಅನ್ನು ನಿಮ್ಮ ಫೋನ್‌ ಹೊಂದಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳ</string>
 
     <string name="RegistrationActivity_phone_number_description">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
     <string name="RegistrationActivity_country_code_description">ದೇಶದ ಕೋಡ್</string>
-    <string name="RegistrationActivity_country_code_hint">Country</string>
+    <string name="RegistrationActivity_country_code_hint">ದೇಶ</string>
     <string name="RegistrationActivity_call">ಕರೆ</string>
-    <string name="RegistrationActivity_verification_code">Verification Code</string>
-    <string name="RegistrationActivity_resend_code">Resend Code</string>
+    <string name="RegistrationActivity_verification_code">ದೃಢೀಕರಣ ಕೋಡ್</string>
+    <string name="RegistrationActivity_resend_code">ಕೋಡ್ ಅನ್ನು ಪುನಃ ಕಳುಹಿಸಿ</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">ರಿಜಿಸ್ಟ್ರೇಶನ್‌ ಲಾಕ್ ಆನ್‌ ಮಾಡುವುದೇ?</string>
@@ -2208,6 +2252,8 @@
     <string name="conversation_activity__type_message_push">Signal ಸಂದೇಶ</string>
     <string name="conversation_activity__type_message_sms_insecure">ಅಸುರಕ್ಷಿತ ಎಸ್‌ಎಂಎಸ್</string>
     <string name="conversation_activity__type_message_mms_insecure">ಅಸುರಕ್ಷಿತ ಎಂಎಂಎಸ್</string>
+    <!-- Option in send button context menu to schedule the message instead of sending it directly -->
+    <string name="conversation_activity__option_schedule_message">Schedule message</string>
     <string name="conversation_activity__from_sim_name">ಇಂದ %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">ಕಳುಹಿಸು</string>
@@ -3096,6 +3142,16 @@
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">ಸಂಪರ್ಕಗಳಿಗೆ ಸೇರಿಸು</string>
 
+    <!-- conversation scheduled messages bar -->
+
+    <!-- Label for button in a banner to show all messages currently scheduled -->
+    <string name="conversation_scheduled_messages_bar__see_all">ಎಲ್ಲವನ್ನು ನೋಡಿ</string>
+    <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
+    <plurals name="conversation_scheduled_messages_bar__number_of_messages">
+        <item quantity="one">%1$d message scheduled</item>
+        <item quantity="other">%1$d messages scheduled</item>
+    </plurals>
+
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">ಸ್ವೀಕೃತದಾರರ ಪಟ್ಟಿ</string>
     <string name="conversation_group_options__delivery">ಡೆಲಿವರಿ</string>
@@ -3334,7 +3390,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ನಿಮ್ಮ ಬ್ಯಾಕಪ್, ಬ್ಯಾಕ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲದ‌ ತೀರಾ ದೊಡ್ಡ ಫೈಲ್ ಅನ್ನು ಹೊಂದಿದೆ. ದಯವಿಟ್ಟು ಅದನ್ನು ಅಳಿಸಿ ಮತ್ತು ಹೊಸ ಬ್ಯಾಕಪ್ ರಚಿಸಿ.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ನಿರ್ವಯಿಸಲು ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="RegistrationActivity_wrong_number">ತಪ್ಪಾದ ಸಂಖ್ಯೆ?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">ಬದಲಿಗೆ ನನಗೆ ಕರೆ ಮಾಡಿ \n (%1$02d:%2$02dನಲ್ಲಿ ಲಭ್ಯವಿದೆ)</string>
     <string name="RegistrationActivity_contact_signal_support">ಸಂಪರ್ಕಿಸಿ Signal ಬೆಂಬಲ</string>
     <string name="RegistrationActivity_code_support_subject">Signal ನೋಂದಣಿ - ಆಂಡ್ರಾಯ್ಡ್‌ಗೆ ದೃಢೀಕರಣ ಕೋಡ್</string>
@@ -5508,7 +5564,7 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">ದಪ್ಪ</string>
     <!-- Popup menu label for applying italic style -->
     <string name="TextFormatting_italic">Italic</string>
     <!-- Popup menu label for applying strikethrough style -->

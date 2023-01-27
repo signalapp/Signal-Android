@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">კონტაქტები</string>
     <string name="ContactsCursorLoader_groups">ჯგუფები</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Group members</string>
+    <string name="ContactsCursorLoader_group_members">ჯგუფის წევრები</string>
     <string name="ContactsCursorLoader_phone_number_search">ტელეფონის ნომრის ძიება</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">ძებნა მომხმარებლის სახელით</string>
@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">ახალი</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Chats</string>
+    <string name="ContactsCursorLoader__chats">ჩატები</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">Messages</string>
+    <string name="ContactsCursorLoader__messages">შეტყობინებები</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">შეტყობინება %1$s</string>
@@ -630,6 +630,50 @@
     <string name="DateUtils_minutes_ago">%1$dწ</string>
     <string name="DateUtils_today">დღეს</string>
     <string name="DateUtils_yesterday">გუშინ</string>
+    <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
+    <string name="DateUtils_schedule_at">%1$s არის %2$s</string>
+    <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
+    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
+    <string name="DateUtils_tonight">Tonight</string>
+
+    <!-- Scheduled Messages -->
+    <!-- Title for dialog that shows all the users scheduled messages for a chat -->
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <!-- Option when scheduling a message to select a specific date and time to send a message -->
+    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <!-- Title for dialog explaining to users how the scheduled messages work -->
+    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <!-- Confirmation button text acknowledging the user understands the disclaimer -->
+    <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
+    <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+
+    <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+
+    <!-- Context menu option to send a scheduled message now -->
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <!-- Context menu option to reschedule a selected message -->
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">წაშლა</string>
+    <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <!-- Progress message shown while deleting selected scheduled message -->
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ჩატის სესია განახლდა</string>
@@ -1375,7 +1419,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-სთან შენი მიმოწერის ისტორია და სხვა ჩატი, რომელიც მას ეკუთვნოდა, გაერთიანდა.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s belongs to %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s %2$s-ს ეკუთვნის</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">შენ გაუგზავნე მოთხოვნა %1$s-ს, რომ ტრანზაქციები გაააქტიუროს</string>
     <!-- Request message from recipient to activate payments -->
@@ -1735,7 +1779,7 @@
     <string name="RegistrationActivity_continue">გაგრძელება</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">გაითვალისწინეთ კონფიდენციალურობა.\nიყავით საკუთარი თავი ყველა შეტყობინებაში.</string>
     <string name="RegistrationActivity_enter_your_phone_number">შეიყვანე შენი ტელეფონის ნომერი</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">You will receive a verification code.\nCarrier rates may apply.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">თქვენ მიიღებთ დადასტურების კოდს. შეიძლება მოქმედებდეს გადამზიდავის ტარიფები.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">შეიყვანეთ კოდი, რომელიც გამოვგზავნეთ %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">დარწმუნდით, რომ თქვენს ტელეფონს აქვს მობილური სიგნალი SMS-ის ან ზარის მისაღებად</string>
 
@@ -2208,6 +2252,8 @@
     <string name="conversation_activity__type_message_push">Signal-ის შეტყობინება</string>
     <string name="conversation_activity__type_message_sms_insecure">დაუცველი SMS-ი</string>
     <string name="conversation_activity__type_message_mms_insecure">დაუცველი MMS-ი</string>
+    <!-- Option in send button context menu to schedule the message instead of sending it directly -->
+    <string name="conversation_activity__option_schedule_message">Schedule message</string>
     <string name="conversation_activity__from_sim_name">%1$s-დან</string>
     <string name="conversation_activity__sim_n">SIM-ბარათი %1$d</string>
     <string name="conversation_activity__send">გაგზავნა</string>
@@ -3095,6 +3141,16 @@
 
     <!-- conversation_callable_insecure -->
     <string name="conversation_add_to_contacts__menu_add_to_contacts">კონტაქტებში დამატება</string>
+
+    <!-- conversation scheduled messages bar -->
+
+    <!-- Label for button in a banner to show all messages currently scheduled -->
+    <string name="conversation_scheduled_messages_bar__see_all">ყველას ნახვა</string>
+    <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
+    <plurals name="conversation_scheduled_messages_bar__number_of_messages">
+        <item quantity="one">%1$d message scheduled</item>
+        <item quantity="other">%1$d messages scheduled</item>
+    </plurals>
 
     <!-- conversation_group_options -->
     <string name="convesation_group_options__recipients_list">მიმღებთა სია</string>
@@ -5508,7 +5564,7 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">მუქი</string>
     <!-- Popup menu label for applying italic style -->
     <string name="TextFormatting_italic">Italic</string>
     <!-- Popup menu label for applying strikethrough style -->
