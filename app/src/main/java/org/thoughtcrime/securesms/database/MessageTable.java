@@ -4588,11 +4588,14 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
     return getReadableDatabase().query(TABLE_NAME, MMS_PROJECTION, selection, args, null, null, order, limitStr);
   }
-  
+
+  /**
+   * Returns messages ordered for display in a reverse list (newest first).
+   */
   public List<MessageRecord> getScheduledMessagesInThread(long threadId) {
     String   selection = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " != ?";
     String[] args      = SqlUtil.buildArgs(threadId, 0, 0, -1);
-    String   order     = SCHEDULED_DATE + " DESC";
+    String   order     = SCHEDULED_DATE + " DESC, " + ID + " DESC";
 
     try (MmsReader reader = mmsReaderFor(getReadableDatabase().query(TABLE_NAME + " INDEXED BY " + INDEX_THREAD_STORY_SCHEDULED_DATE, MMS_PROJECTION, selection, args, null, null, order))) {
       List<MessageRecord> results = new ArrayList<>(reader.getCount());
@@ -4604,10 +4607,13 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
   }
 
+  /**
+   * Returns messages order for sending (oldest first).
+   */
   public List<MessageRecord> getScheduledMessagesBefore(long time) {
     String   selection = STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " != ? AND " + SCHEDULED_DATE + " <= ?";
     String[] args      = SqlUtil.buildArgs(0, 0, -1, time);
-    String   order     = SCHEDULED_DATE + " DESC";
+    String   order     = SCHEDULED_DATE + " ASC, " + ID + " ASC";
 
     try (MmsReader reader = mmsReaderFor(getReadableDatabase().query(TABLE_NAME, MMS_PROJECTION, selection, args, null, null, order))) {
       List<MessageRecord> results = new ArrayList<>(reader.getCount());
@@ -4623,7 +4629,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     String[] columns   = new String[] { SCHEDULED_DATE };
     String   selection = STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " != ?";
     String[] args      = SqlUtil.buildArgs(0, 0, -1);
-    String   order     = SCHEDULED_DATE + " ASC";
+    String   order     = SCHEDULED_DATE + " ASC, " + ID + " ASC";
     String   limit     = "1";
 
     try (Cursor cursor = getReadableDatabase().query(TABLE_NAME, columns, selection, args, null, null, order, limit)) {

@@ -28,9 +28,10 @@ class ScheduledMessageManager(
     scheduleIfNecessary()
   }
 
+  @Suppress("UsePropertyAccessSyntax")
   @WorkerThread
   override fun getNextClosestEvent(): Event? {
-    val oldestTimestamp = messagesTable.oldestScheduledSendTimestamp ?: return null
+    val oldestTimestamp = messagesTable.getOldestScheduledSendTimestamp() ?: return null
 
     val delay = (oldestTimestamp - System.currentTimeMillis()).coerceAtLeast(0)
     Log.i(TAG, "The next scheduled message needs to be sent in $delay ms.")
