@@ -469,6 +469,7 @@ public class ConversationParentFragment extends Fragment
   private int           distributionType;
   private int           reactWithAnyEmojiStartPage = -1;
   private boolean       isSearchRequested          = false;
+  private boolean       reshowScheduleMessagesBar  = false;
 
   private final LifecycleDisposable disposables            = new LifecycleDisposable();
   private final Debouncer           optionsMenuDebouncer   = new Debouncer(50);
@@ -3316,18 +3317,20 @@ public class ConversationParentFragment extends Fragment
     }
   }
 
-  private void updateScheduledMessagesBar(@NonNull Integer count) {
+  private void updateScheduledMessagesBar(int count) {
     if (count <= 0) {
       scheduledMessagesBarStub.setVisibility(View.GONE);
+      reshowScheduleMessagesBar = false;
     } else {
-      if (!scheduledMessagesBarStub.resolved()) {
-        View scheduledMessagesBar = scheduledMessagesBarStub.get();
-        scheduledMessagesBar.findViewById(R.id.scheduled_messages_show_all).setOnClickListener(v -> {
-          ScheduledMessagesBottomSheet.show(getChildFragmentManager(), threadId, recipient.getId());
-        });
-      }
-      scheduledMessagesBarStub.setVisibility(View.VISIBLE);
-      TextView scheduledText = scheduledMessagesBarStub.get().findViewById(R.id.scheduled_messages_text);
+      View scheduledMessagesBar = scheduledMessagesBarStub.get();
+
+      scheduledMessagesBar.findViewById(R.id.scheduled_messages_show_all).setOnClickListener(v -> {
+        ScheduledMessagesBottomSheet.show(getChildFragmentManager(), threadId, recipient.getId());
+      });
+
+      scheduledMessagesBar.setVisibility(View.VISIBLE);
+      reshowScheduleMessagesBar = true;
+      TextView scheduledText = scheduledMessagesBar.findViewById(R.id.scheduled_messages_text);
       scheduledText.setText(getResources().getQuantityString(R.plurals.conversation_scheduled_messages_bar__number_of_messages, count, count));
     }
   }
@@ -4151,11 +4154,19 @@ public class ConversationParentFragment extends Fragment
   public void onMessageActionToolbarOpened() {
     searchViewItem.collapseActionView();
     toolbar.setVisibility(View.GONE);
+    if (scheduledMessagesBarStub.getVisibility() == View.VISIBLE) {
+      reshowScheduleMessagesBar = true;
+      scheduledMessagesBarStub.setVisibility(View.GONE);
+    }
   }
 
   @Override
   public void onMessageActionToolbarClosed() {
     toolbar.setVisibility(View.VISIBLE);
+    if (reshowScheduleMessagesBar) {
+      scheduledMessagesBarStub.setVisibility(View.VISIBLE);
+      reshowScheduleMessagesBar = false;
+    }
   }
 
   @Override
