@@ -174,7 +174,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
 
     val scheduleListener = scheduledSendListener
     if (availableSendTypes.size == 1) {
-      return if (scheduleListener?.canSchedule() == true) {
+      return if (scheduleListener?.canSchedule() == true && selectedSendType.transportType != MessageSendType.TransportType.SMS) {
         scheduleListener.onSendScheduled()
         true
       } else if (!SignalStore.misc().smsExportPhase.allowSmsFeatures()) {
@@ -185,7 +185,7 @@ class SendButton(context: Context, attributeSet: AttributeSet?) : AppCompatImage
       }
     }
 
-    showSendTypeContextMenu(true)
+    showSendTypeContextMenu(selectedSendType.transportType != MessageSendType.TransportType.SMS)
 
     return true
   }
