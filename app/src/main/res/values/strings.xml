@@ -3170,6 +3170,8 @@
     <string name="text_secure_normal__invite_friends">Invite friends</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Filter unread chats</string>
+    <!-- Overflow menu entry to disable unread chats filter -->
+    <string name="text_secure_normal__clear_unread_filter">Clear unread filter</string>
 
     <!-- verify_display_fragment -->
     <string name="verify_display_fragment_context_menu__copy_to_clipboard">Copy to clipboard</string>

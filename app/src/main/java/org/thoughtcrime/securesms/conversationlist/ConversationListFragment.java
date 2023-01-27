@@ -549,7 +549,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   public void onPrepareOptionsMenu(Menu menu) {
     menu.findItem(R.id.menu_insights).setVisible(Util.isDefaultSmsProvider(requireContext()));
     menu.findItem(R.id.menu_clear_passphrase).setVisible(!TextSecurePreferences.isPasswordDisabled(requireContext()));
-    menu.findItem(R.id.menu_filter_unread_chats).setVisible(FeatureFlags.chatFilters());
+
+    ConversationFilterRequest request             = viewModel.getConversationFilterRequest().getValue();
+    boolean                   isChatFilterEnabled = request != null && request.getFilter() == ConversationFilter.UNREAD;
+
+    menu.findItem(R.id.menu_filter_unread_chats).setVisible(FeatureFlags.chatFilters() && !isChatFilterEnabled);
+    menu.findItem(R.id.menu_clear_unread_filter).setVisible(FeatureFlags.chatFilters() && isChatFilterEnabled);
   }
 
   @Override
@@ -573,6 +578,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         handleNotificationProfile(); return true;
       case R.id.menu_filter_unread_chats:
         handleFilterUnreadChats(); return true;
+      case R.id.menu_clear_unread_filter:
+        onClearFilterClick(); return true;
     }
 
     return false;
