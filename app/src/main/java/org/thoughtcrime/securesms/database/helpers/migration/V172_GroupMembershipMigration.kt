@@ -55,7 +55,7 @@ object V172_GroupMembershipMigration : SignalDatabaseMigration {
         )
 
         for (query in queries) {
-          db.execSQL(query.where, query.whereArgs)
+          db.execSQL("${query.where} ON CONFLICT (group_id, recipient_id) DO NOTHING", query.whereArgs)
         }
       }
     }
