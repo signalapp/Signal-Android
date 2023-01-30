@@ -109,10 +109,6 @@ open class ContactSearchPagedDataSourceRepository(
     return GroupsInCommon(groupsInCommon.size, names)
   }
 
-  open fun hasGroupsInCommon(recipient: Recipient): Boolean {
-    return SignalDatabase.groups.getPushGroupsContainingMember(recipient.id).isNotEmpty()
-  }
-
   open fun getRecipientFromGroupRecord(groupRecord: GroupRecord): Recipient {
     return Recipient.resolved(groupRecord.recipientId)
   }

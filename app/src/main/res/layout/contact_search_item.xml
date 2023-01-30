@@ -87,7 +87,7 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toEndOf="@id/contact_photo_image"
         app:layout_constraintTop_toBottomOf="@id/name"
-        tools:text="@sample/contacts.json/data/number" />
+        tools:text="@tools:sample/lorem/random" />
 
     <TextView
         android:id="@+id/label"
@@ -101,6 +101,7 @@
         app:layout_constraintEnd_toEndOf="@id/name"
         app:layout_constraintStart_toEndOf="@id/number"
         app:layout_constraintTop_toTopOf="@id/number"
+        tools:visibility="gone"
         tools:ignore="RtlSymmetry"
         tools:text="· Mobile" />
 

@@ -362,7 +362,6 @@ open class ContactSearchAdapter(
         DisplaySmsTag.IF_NOT_REGISTERED -> isNotRegistered(model)
         DisplaySmsTag.NEVER -> false
       }
-      smsTag.visible = isSmsContact(model)
     }
 
     protected open fun bindLongPress(model: T) = Unit
