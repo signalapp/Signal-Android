@@ -53,10 +53,8 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
-import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
-import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -355,27 +353,12 @@ class StoryGroupReplyFragment :
     performSend(body, mentions, bodyRanges)
   }
 
-  override fun onPickReactionClicked() {
-    displayInDialogAboveAnchor(composer.reactionButton, R.layout.stories_reaction_bar_layout) { dialog, view ->
-      view.findViewById<StoryReactionBar>(R.id.reaction_bar).apply {
-        callback = object : StoryReactionBar.Callback {
-          override fun onTouchOutsideOfReactionBar() {
-            dialog.dismiss()
-          }
+  override fun onPickAnyReactionClicked() {
+    ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
+  }
 
-          override fun onReactionSelected(emoji: String) {
-            dialog.dismiss()
-            sendReaction(emoji)
-          }
-
-          override fun onOpenReactionPicker() {
-            dialog.dismiss()
-            ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
-          }
-        }
-        animateIn()
-      }
-    }
+  override fun onReactionClicked(emoji: String) {
+    sendReaction(emoji)
   }
 
   override fun onEmojiSelected(emoji: String?) {

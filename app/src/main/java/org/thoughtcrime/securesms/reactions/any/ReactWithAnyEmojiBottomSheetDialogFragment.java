@@ -48,7 +48,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
                                                                                                                              EmojiPageViewGridAdapter.VariationSelectorListener
 {
 
-  private static final String REACTION_STORAGE_KEY = "reactions_recent_emoji";
+  public  static final String REACTION_STORAGE_KEY = "reactions_recent_emoji";
   private static final String ABOUT_STORAGE_KEY    = TextSecurePreferences.RECENT_STORAGE_KEY;
 
   private static final String ARG_MESSAGE_ID = "arg_message_id";
