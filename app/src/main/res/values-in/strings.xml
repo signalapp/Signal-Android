@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Pencadangan terakhir: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Folder cadangan</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Waktu pencadangan</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikasi frasa sandi cadangan</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Uji frasa sandi cadangan Anda dan verifikasi kecocokannya</string>
     <string name="BackupsPreferenceFragment__turn_on">Nyalakan</string>
@@ -613,47 +613,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s pada %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Besok</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Malam ini</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Pesan terjadwal</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Pilih Tanggal &amp; Waktu</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Pesan terjadwal</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Saat Anda mengirim pesan terjadwal, pastikan perangkat Anda aktif dan terhubung ke internet pada saat pengiriman. Jika tidak, pesan Anda akan dikirim saat perangkat terhubung kembali.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Oke</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Untuk aktifkan penjadwalan pesan:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Untuk aktifkan lagi penjadwalan pesan:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Pilih tanggal</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Pilih waktu</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Jadwalkan pesan</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Jadwalkan pengiriman</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Semua waktu dalam (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Kirim sekarang</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Jadwal ulang</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Hapus</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Hapus pesan terjadwal yang dipilih?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Menghapus pesan terjadwal…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Sesi percakapan diperbarui</string>
@@ -1363,7 +1363,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Riwayat pesan Anda dengan %1$s dan satu obrolan lain dengan mereka telah digabungkan.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s milik dari %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s milik %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Anda mengirimi %1$s permintaan untuk mengaktifkan Pembayaran</string>
     <!-- Request message from recipient to activate payments -->
@@ -1678,7 +1678,7 @@
     <string name="RegistrationActivity_select_your_country">Pilih negara Anda</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Anda harus mengisi kode negara Anda
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Tolong masukkan nomor telepon yang sah untuk mendaftar</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Masukkan nomor telepon yang valid untuk mendaftar.</string>
     <string name="RegistrationActivity_invalid_number">Nomor telepon tidak valid</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Nomor yang anda isikan (%1$s) tidak valid.
     </string>
@@ -1708,7 +1708,7 @@
     <string name="RegistrationActivity_continue">Lanjutkan</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Jaga privasimu.\nJadilah dirimu sendiri pada setiap pesan.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Masukkan nomor telepon Anda</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan mendapakan kode verifikasi. Tarif operator mungkin berlaku.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Anda akan menerima kode verifikasi.\nTarif operator mungkin berlaku.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Masukkan kode yang kami kirimkan ke %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Pastikan ponsel Anda dapat menerima SMS atau panggilan</string>
 
@@ -1717,7 +1717,7 @@
     <string name="RegistrationActivity_country_code_hint">Negara</string>
     <string name="RegistrationActivity_call">Panggil</string>
     <string name="RegistrationActivity_verification_code">Kode Verifikasi</string>
-    <string name="RegistrationActivity_resend_code">Kirim Ulang Kode Verifikasi</string>
+    <string name="RegistrationActivity_resend_code">Kirim Ulang Kode</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Nyalakan Kunci Pendaftaran?</string>
@@ -1989,7 +1989,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Eror Saat Menghapus Pesan, Pesan Mungkin Masih Ada</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Baca Selengkapnya</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d pesan baru dalam %2$d percakapan</string>
@@ -2177,7 +2177,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS tanpa enkripsi</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS tanpa enkripsi</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Jadwalkan pesan</string>
     <string name="conversation_activity__from_sim_name">Dari %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Kirim</string>
@@ -3063,7 +3063,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">Lihat semua</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">%1$d pesan terjadwal</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3156,13 +3156,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Buat PIN baru</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Anda dapat mengganti PIN Anda selama perangkat ini terdaftar.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Buat PIN Anda</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN dapat membantu Anda memulihkan akun dan memastikan info Anda terenkripsi di Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Buat PIN yang lebih kuah</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN tidak cocok. Coba lagi.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Masukkan lagi PIN yang baru saja dibuat.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Konfirmasi PIN Anda.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Pembuatan PIN gagal</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN Anda tidak disimpan. Signal akan meminta Anda membuat PIN lagi nanti.</string>
@@ -5441,9 +5441,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Tebal</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Miring</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Dicoret</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
 </resources>

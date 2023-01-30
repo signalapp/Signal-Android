@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">Danh bạ</string>
     <string name="ContactsCursorLoader_groups">Nhóm</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Thành viên trong nhóm</string>
+    <string name="ContactsCursorLoader_group_members">Thành viên nhóm</string>
     <string name="ContactsCursorLoader_phone_number_search">Tìm kiếm số điện thoại</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Tìm theo tên người dùng</string>
@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Sao lưu gần đây nhất: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Thư mục sao lưu</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Thời gian sao lưu</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Xác minh mật khẩu sao lưu</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Kiểm tra mật khẩu sao lưu của bạn xem có khớp không</string>
     <string name="BackupsPreferenceFragment__turn_on">Bật</string>
@@ -611,49 +611,49 @@
     <string name="DateUtils_today">Hôm nay</string>
     <string name="DateUtils_yesterday">Hôm qua</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s tại %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s vào lúc %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Ngày mai</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Tối nay</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Tin nhắn đã lên lịch</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Chọn Ngày &amp; Giờ</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Tin nhắn đã lên lịch</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Khi bạn muốn gửi tin nhắn được lên lịch, đảm bảo rằng thiết bị của bạn được kết nối internet ở thời điểm bạn muốn tin nhắn được gửi đi. Nếu không, tin nhắn sẽ gửi đi khi thiết bị có kết nối trở lại.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">OK</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Để bật tính năng lên lịch gửi tin nhắn:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Để bật lại tính năng lên lịch gửi tin nhắn:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Chọn ngày</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Chọn giờ</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Lên lịch tin nhắn</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Lên lịch gửi</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Thời gian hiển thị là (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Gửi ngay</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Lên lịch lại</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Xóa</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Xóa tin nhắn đã lên lịch được chọn?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Xóa tin nhắn đã lên lịch…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Đã làm mới phiên trò chuyện</string>
@@ -1708,7 +1708,7 @@
     <string name="RegistrationActivity_continue">Tiếp tục</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Mang quyền riêng tư luôn bên bạn.\nHãy là chính mình trong từng tin nhắn.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Nhập số điện thoại của bạn</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh. Có thể mất phí nhà mạng.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Bạn sẽ nhận tin nhắn chứa mã xác minh.\nCó thể mất phí nhà mạng.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Điền mã xác minh được gửi đến %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Đảm bảo là điện thoại của bạn có tín hiệu di động để nhận tin nhắn SMS hoặc cuộc gọi</string>
 
@@ -1716,7 +1716,7 @@
     <string name="RegistrationActivity_country_code_description">Mã quốc gia</string>
     <string name="RegistrationActivity_country_code_hint">Quốc gia</string>
     <string name="RegistrationActivity_call">Gọi</string>
-    <string name="RegistrationActivity_verification_code">Mã Xác nhận</string>
+    <string name="RegistrationActivity_verification_code">Mã Xác minh</string>
     <string name="RegistrationActivity_resend_code">Gửi lại Mã</string>
 
     <!-- RegistrationLockV2Dialog -->
@@ -1989,7 +1989,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Có lỗi khi xóa tin nhắn, tin nhắn có thể vẫn còn</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Đọc Thêm</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d tin nhắn mới trong %2$d cuộc trò chuyện</string>
@@ -2177,7 +2177,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS không bảo mật</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS không bảo mật</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Lên lịch tin nhắn</string>
     <string name="conversation_activity__from_sim_name">Từ %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Gửi</string>
@@ -3063,7 +3063,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">Xem tất cả</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">%1$d tin nhắn đã lên lịch</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3156,13 +3156,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Tạo mã PIN mới</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Bạn có thể thay đổi mã PIN của bạn với điều kiện thiết bị được đăng ký.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Tạo mã PIN của bạn</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Mã PIN có thể giúp bạn khôi phục tài khoản và giúp mã hóa thông tin của bạn với Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Chọn mã PIN mạnh hơn</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Mã PIN không khớp. Vui lòng thử lại.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Nhập lại mã PIN bạn vừa tạo.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Xác nhận mã PIN của bạn.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Không thể tạo mã PIN</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Mã PIN của bạn chưa được lưu. Chúng tôi sẽ nhắc bạn tạo mã PIN sau.</string>
@@ -5441,9 +5441,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Đậm</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Nghiêng</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Có gạch ngang</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Đơn cách</string>
 </resources>

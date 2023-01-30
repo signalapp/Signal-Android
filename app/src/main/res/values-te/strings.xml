@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">కాంటాక్ట్స్</string>
     <string name="ContactsCursorLoader_groups">సమూహాలు</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">సమూహ సభ్యులు</string>
+    <string name="ContactsCursorLoader_group_members">గ్రూపు సభ్యులు</string>
     <string name="ContactsCursorLoader_phone_number_search">ఫోన్ నంబర్ శోధన</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">యూజర్‌నేమ్ ద్వారా కనుగొనండి</string>
@@ -234,7 +234,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">కొత్తది</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">మాటామంతి</string>
+    <string name="ContactsCursorLoader__chats">చాట్స్</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">సందేశాలు</string>
 
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">మునుపటి బ్యాకప్: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">బ్యాకప్ ఫోల్డర్</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">బ్యాకప్ సమయం</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">బ్యాకప్ పాస్‌ఫ్రేజ్‌ని ధృవీకరించండి</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">మీ ప్రత్యామ్నాయము పాస్‌ఫ్రేజ్‌ని పరీక్షించండి మరియు అది సరిపోతుందో లేదో ధృవీకరించండి</string>
     <string name="BackupsPreferenceFragment__turn_on">ఆరంభించండి</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">నేడు</string>
     <string name="DateUtils_yesterday">నిన్న</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%2$s వద్ద %1$s</string>
+    <string name="DateUtils_schedule_at">%2$s %1$s గం.లకు</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">రేపు</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">ఈరాత్రికి</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">షెడ్యూల్ చేయబడ్డ సందేశాలు</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">తేదీ &amp; సమయం ఎంచుకోండి</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">షెడ్యూల్ చేయబడ్డ సందేశాలు</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">మీరు షెడ్యూల్ చేయబడ్డ సందేశాన్ని పంపినప్పుడు, మీ పరికరం ఆన్ చేయబడినట్లుగా మరియు పంపే సమయంలో ఇంటర్నెట్‌కు కనెక్ట్ చేసినట్లుగా ధృవీకరించుకోండి. లేనట్లయితే, మీ పరికరం తిరిగి కనెక్ట్ చేయబడినప్పుడు మీ సందేశం పంపబడుతుంది.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">సరే</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">సందేశ షెడ్యూలింగ్‌ను తిరిగి ప్రారంభించడానికి:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">సందేశ షెడ్యూలింగ్‌ను తిరిగి ప్రారంభించడానికి:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">తేదీని ఎంచుకోండి</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">సమయాన్ని ఎంచుకోండి</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">సందేశాన్ని షెడ్యూల్ చేయండి</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">షెడ్యూల్ పంపండి</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">అన్ని సమయాలు (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">ఇప్పుడే పంపండి</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">రీషెడ్యూల్ చేయండి</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">తొలగించండి</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">ఎంపిక చేసిన షెడ్యూల్ చేసిన సందేశాన్ని తొలగించేదా?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">షెడ్యూల్ చేసిన సందేశాన్ని తొలగిస్తున్నాను…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">చాట్ సెషన్ రిఫ్రెష్ చేయబడింది</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">మీ దేశాన్ని ఎంచుకోండి</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">మీరు మీ దేశం కోడ్ తప్పకుండా పేర్కొనాలి
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">నమోదు చేయడానికి దయచేసి చెల్లుబాటు అయ్యే ఫోన్ నంబర్‌ను నమోదు చేయండి.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">నమోదు చేయడానికి దయచేసి చెల్లుబాటు అయ్యే ఫోన్ నంబర్‌ను ఎంటర్ చేయండి.</string>
     <string name="RegistrationActivity_invalid_number">చెల్లని సంఖ్య</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">మీరు పేర్కొన్న సంఖ్య (%1$s) చెల్లదు.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">కొనసాగించు</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">మీతో గోప్యతను తీసుకోండి.\nప్రతి సందేశంలో మీరే ఉండండి.</string>
     <string name="RegistrationActivity_enter_your_phone_number">మీ ఫోన్ నంబర్‌ను నమోదు చేయండి</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు. క్యారియర్ రేట్లు వర్తించవచ్చు.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">మీరు ధృవీకరణ కోడ్‌ను అందుకుంటారు.\nక్యారియర్ రేట్లు వర్తించవచ్చు.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">మేము పంపిన కోడ్‌ను నమోదు చేయండి %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">మీ SMS లేదా కాల్‌ను స్వీకరించడానికి మీ ఫోన్‌కు సెల్యులార్ సంకేతం ఉందని నిర్ధారించుకోండి</string>
 
@@ -1788,7 +1788,7 @@
     <string name="RegistrationActivity_country_code_hint">దేశం</string>
     <string name="RegistrationActivity_call">కాల్</string>
     <string name="RegistrationActivity_verification_code">ధృవీకరణ కోడ్</string>
-    <string name="RegistrationActivity_resend_code">మళ్ళీ పంపు కోడ్</string>
+    <string name="RegistrationActivity_resend_code">కోడ్ మళ్ళీ పంపండి</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">రిజిస్ట్రేషన్ లాక్ ఆన్ చేయాలా?</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">సందేశాన్ని తొలగించడంలో లోపం. సందేశం ఇప్పటికీ ఉండవచ్చు</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s…<b>మరింత చదవండి</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d సంభాషణలొ కొత్త %1$d సందేశాలు</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">భద్రతలేని సందేశం</string>
     <string name="conversation_activity__type_message_mms_insecure">భద్రతలేని MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">సందేశాన్ని షెడ్యూల్ చేయండి</string>
     <string name="conversation_activity__from_sim_name">%1$s నుండి</string>
     <string name="conversation_activity__sim_n">%1$dSIM</string>
     <string name="conversation_activity__send">పంపించు</string>
@@ -3145,11 +3145,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">అన్నింటిని చూడు</string>
+    <string name="conversation_scheduled_messages_bar__see_all">అన్నింటిని చూడండి</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d సందేశం షెడ్యూల్ చేయబడింది</item>
+        <item quantity="other">%1$d సందేశాలు షెడ్యూల్ చేయబడ్డాయి</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">క్రొత్త పిన్ను సృష్టించండి</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ఈ పరికరం నమోదు చేయబడినంత వరకు మీరు మీ పిన్‌ను మార్చవచ్చు.</string>
     <string name="CreateKbsPinFragment__create_your_pin">మీ పిన్ను సృష్టించండి</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">మీ ఖాతాను పునరుద్ధరించడానికి మరియు మీ సమాచారాన్ని Signal వద్ద ఎన్‌క్రిప్ట్ చేసి ఉంచడానికి PIN లు మీకు సహాయపడగలవు. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">బలమైన పిన్ను ఎంచుకోండి</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">పిన్‌లు సరిపోలడం లేదు. మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">మీరు ఇప్పుడే సృష్టించిన PIN ను తిరిగి నమోదు చేయండి</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">మీ పిన్ను నిర్ధారించండి.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">పిన్ సృష్టి విఫలమైంది</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">మీ పిన్ సేవ్ చేయబడలేదు. తరువాత పిన్ సృష్టించమని మేము మిమ్మల్ని అడుగుతాము.</string>
@@ -3390,7 +3390,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">మీ బ్యాకప్‌లో బ్యాకప్ చేయలేని చాలా పెద్ద ఫైలు ఉంది. దయచేసి దానిని తొలగించండి మరియు కొత్త బ్యాకప్‌ని సృష్టించండి.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ప్రత్యామ్నాయములు ను నిర్వహించడానికి నొక్కండి.</string>
-    <string name="RegistrationActivity_wrong_number">తపైనా సంఖ్యా?</string>
+    <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్యా?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">బదులుగా నాకు కాల్ చేయండి \n (అందుబాటులో ఉంది %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
@@ -5566,9 +5566,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">బోల్డ్</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">ఇటాలిక్</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">స్ట్రైక్‌త్రూ</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">మోనోస్పేస్</string>
 </resources>

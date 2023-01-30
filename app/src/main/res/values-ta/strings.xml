@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">புதியது</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">உரையாடல்கள்  </string>
+    <string name="ContactsCursorLoader__chats">சாட்ஸ்</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">செய்திகள்</string>
+    <string name="ContactsCursorLoader__messages">மெசேஜ்கள்</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">செய்தி %1$s</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">கடைசியாக மறுபிரதி எடுக்கப்பட்டது:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">மறுபிரதி கோப்புறை</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">காப்பு நேரம்</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">காப்புப்பிரதி கடவுச்சொற்றொடரை சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">உங்கள் காப்புப்பிரதி கடவுச்சொற்றொடரைச் சோதித்து, அது பொருந்துமா என்பதைச் சரிபார்க்கவும்</string>
     <string name="BackupsPreferenceFragment__turn_on">இயக்கவும்</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">இன்று</string>
     <string name="DateUtils_yesterday">நேற்று</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s இல் %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s மணிக்கு</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">நாளை</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">இன்றிரவு</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">திட்டமிடப்பட்ட மெசேஜ்கள்</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">தேதி &amp; நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">திட்டமிடப்பட்ட மெசேஜ்கள்</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">திட்டமிடப்பட்ட மெசேஜை நீங்கள் அனுப்பும்போது, அனுப்பும் நேரத்தில் உங்கள் டிவைஸ் ஆன் செய்யப்பட்டு இணையத்துடன் இணைக்கப்பட்டுள்ளதா என்பதை உறுதிப்படுத்திக்கொள்ளவும். இல்லையெனில், உங்கள் டிவைஸ் மீண்டும் இணைக்கப்படும்போது உங்கள் செய்தி அனுப்பப்படும்.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">சரி</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">மெசேஜ் திட்டமிடலை இயக்க:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">மெசேஜ் திட்டமிடலை மீண்டும் இயக்க:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">தேதியைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">நேரத்தைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">மெசேஜைத் திட்டமிடுக</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">அனுப்புவதை திட்டமிடுக</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s இன் எல்லா நேரங்களும்</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">இப்போது அனுப்பு</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">மீண்டும் திட்டமிடு</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">அழி</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">நீக்கு</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">தேர்ந்தெடுக்கப்பட்ட திட்டமிடப்பட்ட மெசேஜை நீக்க வேண்டுமா?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">திட்டமிடப்பட்ட மெசேஜை அழிக்கிறது…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">உரையாடல் அமர்வு புதுப்பிக்கப்பட்டது</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">உங்கள் நாட்டை தேர்ந்தெடுக்கவும்</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">நீங்கள் கண்டிப்பாக குறிப்பிடவேண்டியது உங்கள்: நாட்டின் குறியீடு
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான தொலைபேசி எண்ணை உள்ளிடவும்.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">பதிவு செய்ய சரியான ஃபோன் எண்ணை உள்ளிடவும்.</string>
     <string name="RegistrationActivity_invalid_number">செல்லா எண்</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">நீங்கள் குறிப்பிட்ட எண் (%1$s) செல்லாது.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">தொடர்</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">உங்களுடன் தனியுரிமையைப் பெறுங்கள். ஒவ்வொரு செய்தியிலும் நீங்கள் நீங்கலாய் இருங்கள் .</string>
     <string name="RegistrationActivity_enter_your_phone_number">உள்ளிடவும் உங்கள் தொலைபேசி எண்</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள். கேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">சரிபார்ப்புக் குறியீட்டைப் பெறுவீர்கள்.\nகேரியர் கட்டணங்கள் பொருந்தக்கூடும்.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">நாங்கள் அனுப்பிய குறியீட்டை %1$s க்கு உள்ளிடவும்</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">உங்கள் எஸ்எம்எஸ் அல்லது அழைப்பைப் பெற உங்கள் தொலைபேசியில் செல்லுலார் சிக்னல் இருப்பதை உறுதிப்படுத்திக் கொள்ளுங்கள்</string>
 
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">செய்தியை நீக்குவதில் பிழை, செய்தி இன்னும் இருக்கலாம்</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>மேலும் படிக்க</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d உரையாடல்களில் %1$d புதிய செய்திகள்</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">பாதுகாப்பற்ற SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">பாதுகாப்பற்ற எம்.எம்.எஸ்</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">மெசேஜைத் திட்டமிடுக</string>
     <string name="conversation_activity__from_sim_name">%1$s இலிருந்து</string>
     <string name="conversation_activity__sim_n">சிம் 1%1$d</string>
     <string name="conversation_activity__send">அனுப்பு</string>
@@ -3145,11 +3145,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">அனைத்தையும் பார்</string>
+    <string name="conversation_scheduled_messages_bar__see_all">அனைத்தையும் காட்டு</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d மெசேஜ் திட்டமிடப்பட்டது</item>
+        <item quantity="other">%1$d மெசேஜ்கள் திட்டமிடப்பட்டன</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">புதிய பின்னை உருவாக்கவும்</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">நீங்கள் முடியும் மாற்றம் உங்கள் பின் இந்த வரை சாதனம் பதிவு செய்யப்பட்டுள்ளது.</string>
     <string name="CreateKbsPinFragment__create_your_pin">உங்கள் பின்னை உருவாக்கவும்</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">உங்கள் கணக்கை மீட்டெடுக்கவும், உங்கள் தகவலை சிக்னல் மூலம் குறியாக்கம் செய்து வைத்திருக்கவும் பின்கள் உதவும். </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">வலுவானதைத் தேர்வுசெய்க பின்</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">பின்-கள் பொருந்தவில்லை. மீண்டும் முயற்சி செய்க.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">நீங்கள் தற்பொழுது உருவாக்கிய பின்னை மீண்டும் உள்ளிடவும்.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">உங்கள் பின்னை உறுதிப்படுத்தவும்.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">பின் உருவாக்கம் தோல்வியடைந்தது</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">உங்கள் பின் சேமிக்கப்படவில்லை. பின்னை உருவாக்க நாங்கள் உங்களைத் தூண்டுவோம்.</string>
@@ -5564,11 +5564,11 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">போல்ட்</string>
+    <string name="TextFormatting_bold">போல்டு</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">இத்தாலிக்</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">ஸ்ட்ரைக் த்ரூ</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">மோனோஸ்பேஸ்</string>
 </resources>

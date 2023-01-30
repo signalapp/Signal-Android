@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Azkenengo babeskopia: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Babeskopiak gordetzeko karpeta</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Babeskopiak egiteko ordua</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Egiaztatu babeskopiaren pasaesaldia</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Probatu zure babeskopiaren pasaesaldia eta egiaztatu bat datorrela</string>
     <string name="BackupsPreferenceFragment__turn_on">Aktibatu</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">Gaur</string>
     <string name="DateUtils_yesterday">Atzo</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s %2$sn</string>
+    <string name="DateUtils_schedule_at">%1$s (%2$s)</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Bihar</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Gaur gauean</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Programatutako mezuak</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Aukeratu data eta ordua</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Programatutako mezuak</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Programatutako mezu bat bidaltzeko, ziurtatu gailua piztuta eta Internetera konektatuta dagoela mezua bidaltzeko unean. Hala ez bada, gailua berriro konektatzen denean bidaliko da mezua.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Ados</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Mezuen programazioa gaitzeko:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Mezuen programazioa berriro gaitzeko:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Hautatu data</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Hautatu ordua</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Programatu mezua</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Programatu bidalketa</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Ordu guztiak (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Bidali orain</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Programatu berriro</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Ezabatu</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Hautatutako mezu programatua ezabatu nahi duzu?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Programatutako mezua ezabatzen…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Txataren sesioa eguneratu egin da</string>
@@ -1419,7 +1419,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s(r)ekin izandako mezuen historia eta hari zegokion beste txat bat bateratu egin dira.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s %2$s erabiltzailearena da</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s zenbakia %2$s erabiltzailearena da</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Ordainketak aktibatzeko eskaera bat bidali diozu %1$s(r)i</string>
     <!-- Request message from recipient to activate payments -->
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">Aukeratu zure herrialdea</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Zure herrialdearen kodea zehaztu behar duzu
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Mesedez, baliozkoa den telefono zenbaki bat idatzi erregistratzeko.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Erregistratzeko, idatzi balio duen telefono-zenbaki bat.</string>
     <string name="RegistrationActivity_invalid_number">Zenbaki baliogabea</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Zehaztu duzun zenbakia (%1$s) baliogabea da.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">Jarraitu</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Pribatutasuna zurekin eraman.\nZu zeu izan mezu bakoitzean.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Idatzi zure telefono zenbakia</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Berifikazio kode bat jasoko duzu. Operadoreak tarifa bat jarri dezake.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Egiaztapen-kode bat jasoko duzu.\nBaliteke operadoreak tarifa bat kobratzea.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Sartu %1$s telefonora bidali dugun kodea.</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Ziurtatu zure telefonoa lineara konektatuta dagoela eta SMSak eta dei arruntak jasotzeko gai dela</string>
 
@@ -1787,8 +1787,8 @@
     <string name="RegistrationActivity_country_code_description">Herrialde kodea</string>
     <string name="RegistrationActivity_country_code_hint">Herrialdea</string>
     <string name="RegistrationActivity_call">Deitu</string>
-    <string name="RegistrationActivity_verification_code">Baieztapen kodea</string>
-    <string name="RegistrationActivity_resend_code">Kodea birbidali</string>
+    <string name="RegistrationActivity_verification_code">Egiaztapen-kodea</string>
+    <string name="RegistrationActivity_resend_code">Bidali kodea berriro</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Aktibatu Erregistratzeko Blokeoa?</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Errore bat gertatu da mezua ezabatzean; baliteke mezua oraindik existitzea</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Irakurri gehiago</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mezu berri %2$d solasalditan</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS ez segurua</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS ez segurua</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Programatu mezua</string>
     <string name="conversation_activity__from_sim_name">%1$s-(e)tik</string>
     <string name="conversation_activity__sim_n">%1$d SIM-a</string>
     <string name="conversation_activity__send">Bidali</string>
@@ -3148,8 +3148,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">Ikusi denak</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d mezu programatuta</item>
+        <item quantity="other">%1$d mezu programatuta</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Sortu PIN berria</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Zure PIN-a alda dezakezu gailua erregistratuta dagoen bitartean.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Sortu zure PINa</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINei esker, kontua leheneratu, eta Signal-eko informazioa enkriptatuta mantendu ahalko duzu. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Aukeratu PIN hobea</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PINak ez datoz bat. Saia zaitez berriro</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Idatzi berriro sortu berri duzun PINa.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Baieztatu zure PIN-a.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN-a sortzeak huts egin du</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Zure PIN-a ez da gorde. Beranduago PIN bat sortzea eskatuko dizugu.</string>
@@ -5566,9 +5566,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Lodia</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Etzana</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Marratua</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Tarte bakarrekoa</string>
 </resources>

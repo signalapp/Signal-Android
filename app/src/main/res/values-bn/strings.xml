@@ -236,7 +236,7 @@
     <!-- Header for conversation search section labeled "Chats" -->
     <string name="ContactsCursorLoader__chats">চ্যাট</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">বার্তা সমূহ</string>
+    <string name="ContactsCursorLoader__messages">ম্যাসেজ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">%1$sটি বার্তা</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">সর্বশেষ ব্যাকআপ%1$s:</string>
     <string name="BackupsPreferenceFragment__backup_folder">ব্যাকআপ ফোল্ডার</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">ব্যাকআপের সময়</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ব্যাকআপ পাসফ্রেজ যাচাই করুন</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">আপনার ব্যাকআপ পাসফ্রেজটি পরীক্ষা করুন এবং এটি মিলছে কিনা তা যাচাই করুন</string>
     <string name="BackupsPreferenceFragment__turn_on">চালু করুন</string>
@@ -633,47 +633,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%2$s-তে %1$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">আগামীকাল</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">আজ রাতে</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">নির্ধারিত সূচি অনুযায়ী ম্যাসেজ</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">তারিখ ও সময় বেছে নিন</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">নির্ধারিত সূচি অনুযায়ী ম্যাসেজ</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">আপনি যখন কোনো নির্ধারিত সূচি অনুযায়ী ম্যাসেজ পাঠান, তখন নিশ্চিত করুন যে পাঠানোর সময় আপনার ডিভাইস চালু আছে এবং ডিভাইসটি ইন্টারনেটের সাথে সংযুক্ত আছে। অন্যথায়, আপনার ডিভাইসে যখন ইন্টারনেট সংযোগ হবে তখন আপনার ম্যাসেজ পাঠানো হবে।</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">ঠিক আছে</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">ম্যাসেজ পাঠানোর সূচি চালু করতে:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">ম্যাসেজ পাঠানোর সূচি আবারো চালু করতে:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">তারিখ নির্বাচন করুন</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">সময় নির্বাচন করুন</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">ম্যাসেজ পাঠানোর সূচি নির্ধারণ করুন</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">সময়সূচী পাঠান</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">সব সময় (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">এখনই পাঠান</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">পুনঃনির্ধারণ করুন</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">মুছে দিন</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">সূচি অনুযায়ী পাঠানোর জন্য নির্বাচিত ম্যাসেজটি মুছে ফেলবেন?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">সূচি অনুযায়ী পাঠানোর জন্য নির্বাচিত ম্যাসেজটি মুছে ফেলা হচ্ছে…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">চ্যাট সেশনটি পুনরায় লোড হয়েছে</string>
@@ -1419,7 +1419,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s-এর সাথে আপনার ম্যাসেজের ইতিহাস এবং তাদের সাথে সম্পর্কিত অন্য একটি চ্যাট একত্রিত করা হয়েছে।</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s নম্বরটি %2$s-এর।</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s নম্বরটি %2$s-এর</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">পেমেন্ট সক্রিয় করার জন্য আপনি %1$s-কে একটি অনুরোধ পাঠিয়েছেন</string>
     <!-- Request message from recipient to activate payments -->
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">আপনার দেশ নির্বাচন করুন</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">আপনাকে অবশ্যই নির্দিষ্ট করতে হবে দেশ কোড
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">নিবন্ধন করতে একটি সঠিক ফোন নাম্বার লিখুন।</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">নিবন্ধন করতে একটি সঠিক ফোন নম্বর লিখুন।</string>
     <string name="RegistrationActivity_invalid_number">অকার্যকর নাম্বার</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">আপনি যে নাম্বার নির্দিষ্ট করেছেন (%1$s) তা সঠিক নয়।
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">চলতে থাকুন</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">আপনার গোপনীয়তা বজায় রাখুন।\n প্রতিটি বার্তায় নিজস্ব থাকুন।</string>
     <string name="RegistrationActivity_enter_your_phone_number">আপনার ফোন নম্বর লিখুন</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন। ক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">আপনি একটি যাচাইকরণ কোড পাবেন।\nক্যারিয়ারের হার প্রযোজ্য হতে পারে।</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s-তে পাঠানো কোড টি এন্টার করুন</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">এসএমএস বা কল পেতে আপনার ফোনে সেলুলার সিগন্যাল রয়েছে তা নিশ্চিত করুন</string>
 
@@ -1788,7 +1788,7 @@
     <string name="RegistrationActivity_country_code_hint">দেশ</string>
     <string name="RegistrationActivity_call">কল করুন</string>
     <string name="RegistrationActivity_verification_code">যাচাইকরণ কোড</string>
-    <string name="RegistrationActivity_resend_code">কোড পুনরায় পাঠান</string>
+    <string name="RegistrationActivity_resend_code">কোডটি আবারো পাঠান</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">রেজিস্ট্রেশন লক চালু করবেন?</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">ম্যাসেজ মুছতে ত্রুটি হয়েছে, ম্যাসেজ এখনও থেকে যেতে পারে</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>আরো পড়ুন</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dটি নতুন বার্তা%2$dটি কথোপকথন</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">অনিরাপদ এসএমএস</string>
     <string name="conversation_activity__type_message_mms_insecure">অনিরাপদ এমএমএস</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">ম্যাসেজ পাঠানোর সূচি নির্ধারণ করুন</string>
     <string name="conversation_activity__from_sim_name">%1$s থেকে</string>
     <string name="conversation_activity__sim_n">সিম %1$d</string>
     <string name="conversation_activity__send">পাঠান</string>
@@ -3148,8 +3148,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">সব দেখুন</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d ম্যাসেজ পাঠানোর সূচি নির্ধারণ করা হয়েছে</item>
+        <item quantity="other">%1$d ম্যাসেজ পাঠানোর সূচি নির্ধারণ করা হয়েছে</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">একটি নতুন পিন তৈরি করুন</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">এই ডিভাইসটি নিবন্ধিত থাকা অবধি আপনি আপনার পিন পরিবর্তন করতে পারবেন।</string>
     <string name="CreateKbsPinFragment__create_your_pin">আপনার পিন তৈরি করুন</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">পিন আপনাকে আপনার অ্যাকাউন্ট পুনরুদ্ধার করতে এবং Signal-এর সাথে আপনার তথ্য এনক্রিপ্ট করে রাখতে সাহায্য করতে পারে। </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">একটি শক্তিশালী পিন চয়ন করুন</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">পিনগুলি মেলে না। আবার চেষ্টা করুন|</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">এই মাত্র তৈরি করা পিনটি আবারো লিখুন।</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">আপনার পিনটি নিশ্চিত করুন।</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">পিন তৈরি ব্যর্থ হয়েছে</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">আপনার পিন সংরক্ষণ করা হয়নি। আমরা আপনাকে পরে একটি পিন তৈরি করতে অনুরোধ করব।</string>
@@ -3390,7 +3390,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">আপনার ব্যাকআপে একটি বেশ বড় আকারের ফাইল রয়েছে যার ব্যাকআপ নেওয়া যাচ্ছে না। ফাইলটি মুছে দিন এবং একটি নতুন ব্যাকআপ তৈরি করুন।</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ব্যাকআপগুলি পরিচালনা করতে আলতো চাপুন।</string>
-    <string name="RegistrationActivity_wrong_number">ভুল নাম্বার?</string>
+    <string name="RegistrationActivity_wrong_number">ভুল নম্বর?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">পরিবর্তে আমাকে কল করুন \n (%1$02d:%2$02d পাওয়া যাচ্ছে)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal সহায়তায় যোগাযোগ করুন</string>
     <string name="RegistrationActivity_code_support_subject">Signal নিবন্ধন - অ্যানড্রয়েড এর জন্য যাচাইকরণ কোড</string>
@@ -5566,9 +5566,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">বোল্ড</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">ইটালিক</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">স্ট্রাইকথ্রু</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">মনোস্পেস</string>
 </resources>

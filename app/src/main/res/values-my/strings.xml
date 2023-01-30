@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">အသစ်</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">စကားပြောဆိုမှုများ</string>
+    <string name="ContactsCursorLoader__chats">ချက်(တ်)များ</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">စာများ</string>
+    <string name="ContactsCursorLoader__messages">မက်ဆေ့ချ်များ</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">စာတို %1$s</string>
@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">နောက်ဆုံးအရန်:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Backup ဖိုင်တွဲ</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">ဘက်ခ်အပ်လုပ်ချိန်</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">backup စကားဝှက်ကိုစစ်ဆေးပါ</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">သင်၏ backup စကားဝှက်ကိုစစ်ဆေးပြီး ကိုက်ညီမှုရှိမရှိစစ်ဆေးပါ</string>
     <string name="BackupsPreferenceFragment__turn_on">ဖွင့်မည်</string>
@@ -611,49 +611,49 @@
     <string name="DateUtils_today">ယနေ့</string>
     <string name="DateUtils_yesterday">မနေ့က</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s ကို %2$s ဖြင့်</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">မနက်ဖြန်</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">ယနေ့ည</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">စီစဉ်ထားသော မက်ဆေ့ချ်များ</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">ရက်စွဲနှင့် အချိန် ရွေးရန်</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">စီစဉ်ထားသော မက်ဆေ့ချ်များ</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">စီစဉ်ထားသော မက်ဆေ့ချ်တစ်စောင် ပို့သည့်အခါ သင့်စက်ကို ဖွင့်ထားပြီး ပို့သည့်အချိန်တွင် အင်တာနက်နှင့် ချိတ်ဆက်ထားကြောင်း သေချာပါစေ။ မဟုတ်ပါက မက်ဆေ့ချ်သည် သင့်စက် ပြန်ချိတ်ဆက်သည့်အခါ ပို့ပါမည်။</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">အိုကေ</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">မက်ဆေ့ချ် စီစဉ်မှုကို ဖွင့်ရန်-</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">မက်ဆေ့ချ် စီစဉ်မှုကို ပြန်ဖွင့်ရန်-</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">ရက်စွဲ ရွေးရန်</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">အချိန် ရွေးရန်</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">မက်ဆေ့ချ် စီစဉ်ရန်</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">ပေးပို့မှုကို စီစဉ်ရန်</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">(%1$s) %2$s ဖြင့် အချိန်တိုင်း</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">ယခု ပို့ရန်</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">ပြန်စီစဉ်ရန်</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">ဖျက်ပါ</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">ဖျက်ရန်</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">ရွေးချယ်ထားသည့် စီစဉ်ထားသော မက်ဆေ့ချ်ကို ဖျက်မည်လား။</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">စီစဉ်ထားသော မက်ဆေ့ချ်ကို ဖျက်နေဆဲ…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">စကားပြောဆိုမှု အပိုင်းကို ပြန်လည်တင်ထားသည်</string>
@@ -1678,7 +1678,7 @@
     <string name="RegistrationActivity_select_your_country">နိုင်ငံရွေးချယ်ပါ</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">နိုင်ငံ၏ ဖုန်းကုဒ်အားဖော်ပြရမည်
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">စာရင်းသွင်းရန် ဆီလျော်သည့် ဖုန်းနံပါတ်ကို ထည့်သွင်းပါ။ </string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">စာရင်းသွင်းရန် မှန်ကန်သည့် ဖုန်းနံပါတ်ကို ထည့်သွင်းပါ။</string>
     <string name="RegistrationActivity_invalid_number">နံပါတ် မှားနေသည်</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">သင်ထည့်လိုက်သော နံပါတ် ( %1$s) သည်မှားယွင်းနေသည်။
     </string>
@@ -1708,7 +1708,7 @@
     <string name="RegistrationActivity_continue">ရှေ့ဆက်ပါ</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">လုံခြုံရေးကို သင်နှင့် ယူဆောင်သွားပါ။ \n မက်ဆေ့ချ်တိုင်းတွင် သင်ကိုယ်တိုင်ဖြစ်နိုင်ပါစေ။</string>
     <string name="RegistrationActivity_enter_your_phone_number">သင့်ဖုန်းနံပါတ်ကိုထည့်ပါ</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">အတည်ပြုချက်နံပါတ် သင်လက်ခံရရှိပါမည်၊ ဖုန်းခေါ်ဆိုခ သို့ SMS မက်ဆေ့ချ် ပို့ဆောင်ခ ကျသင့်မည်ဖြစ်သည်။</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">အတည်ပြုကုဒ် သင်လက်ခံရရှိပါမည်။\nဆက်သွယ်ရေးကုန်ကျစရိတ် ကျသင့်နိုင်ပါသည်။</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s ကို ပို့လိုက်သည့် အတည်ပြုကုဒ်ကို ထည့်ပါ။</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">မက်ဆေ့ချ် သို့မဟုတ် အဝင်ဖုန်း လက်ခံရရှိရန်အတွက် သင့်ဖုန်းလိုင်းမိနေရန် လိုအပ်သည်</string>
 
@@ -1716,8 +1716,8 @@
     <string name="RegistrationActivity_country_code_description">နိုင်ငံ ကုဒ်</string>
     <string name="RegistrationActivity_country_code_hint">နိုင်ငံ</string>
     <string name="RegistrationActivity_call">ဖုန်းခေါ်ဆိုမှု</string>
-    <string name="RegistrationActivity_verification_code">အတည်ပြုချက်ကုဒ်</string>
-    <string name="RegistrationActivity_resend_code">ကုဒ်ကို ပြန်ပို့ပါ</string>
+    <string name="RegistrationActivity_verification_code">အတည်ပြုကုဒ်</string>
+    <string name="RegistrationActivity_resend_code">ကုဒ် ပြန်ပို့ရန်</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">မှတ်ပုံတင်မှု ပိတ်ထားခြင်းကို အသုံးပြုမည်လား?</string>
@@ -1989,7 +1989,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">မက်ဆေ့ချ် ဖျက်မှု ချို့ယွင်းချက်၊ မက်ဆေ့ချ် ဆက်လက်ရှိနေနိုင်ပါသည်</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>ပိုမိုဖတ်ရှုရန်</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">စကားဝိုင်း %2$d တွင် စာပေါင်း %1$d ရှိသည်။</string>
@@ -2177,7 +2177,7 @@
     <string name="conversation_activity__type_message_sms_insecure">မလုံခြုံသော SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">မလုံခြုံသော MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">မက်ဆေ့ချ် စီစဉ်ရန်</string>
     <string name="conversation_activity__from_sim_name">%1$s မှ</string>
     <string name="conversation_activity__sim_n">ဆင်းမ်ကဒ်%1$d</string>
     <string name="conversation_activity__send">ပို့ပါ</string>
@@ -3060,10 +3060,10 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">အားလုံးကြည့်မည်</string>
+    <string name="conversation_scheduled_messages_bar__see_all">အားလုံးကြည့်ရန်</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">မက်ဆေ့ချ် %1$d စောင် စီစဉ်ထားပြီး</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3156,13 +3156,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">ပင်နံပါတ်အသစ်တစ်ခုဖန်တီးပါ</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">၎င်းစက်အား စာရင်းသွင်းထားသည်၍ သင့်ပင်နံပါတ်ကို ပြောင်းလဲနိုင်ပါသည်။</string>
     <string name="CreateKbsPinFragment__create_your_pin">သင်၏ ပင်နံပါတ်ကို ဖန်တီးပါ</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">သင့်အကောင့်ကို ပြန်လည်ရယူရာတွင် PIN များက သင့်အား ကူညီပေးပြီး သင့်အချက်အလက်ကို Signal နှင့်အတူ ကုဒ်ပြောင်းဝှက်ထားပါသည်။ </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">ပိုခိုင်မာသော ပင်နံပါတ်ကို ရွေးပါ</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">ပင်နံပါတ်များ မကိုက်ညီပါ။ ပြန်စမ်းပေးပါ။</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">သင်ဖန်တီးထားသော PIN ကို ပြန်ရိုက်ထည့်ပါ။</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">သင့်ပင်နံပါတ်ကို အတည်ပြုမယ်</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">ပင်နံပါတ် ဖန်တီးခြင်း မအောင်မြင်ပါ</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">သင်၏ ပင်နံပါတ်ကို မသိမ်းဆည်းထားပါ။ နောက်မှ ပင်နံပါတ် တစ်ခုကို ဖန်တီးရန် သင့်အား ကျွန်ုပ်တို့ညွှန်းကြားပါမည်။</string>
@@ -3297,7 +3297,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် ဘက်ခ်အပ်လုပ်၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
-    <string name="RegistrationActivity_wrong_number">ဖုန်းနံပါတ်မှားနေပါသလား?</string>
+    <string name="RegistrationActivity_wrong_number">နံပါတ် မှားနေပါသလား။</string>
     <string name="RegistrationActivity_call_me_instead_available_in">ဤအချိန် (%1$02d:%2$02d အတွင်း) \n ဖုန်းခေါ်ပေးပါ</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
@@ -5439,11 +5439,11 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">စာလုံးအထူ</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">စာလုံးအစောင်း</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">ခါးဖြတ်မျဉ်း</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
 </resources>

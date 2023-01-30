@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">上次備份：%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">備份資料夾</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">備份時間</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">驗證備份密碼</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">測試您的備份密碼並驗證是否相符</string>
     <string name="BackupsPreferenceFragment__turn_on">開啟</string>
@@ -611,49 +611,49 @@
     <string name="DateUtils_today">今天</string>
     <string name="DateUtils_yesterday">昨天</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s，於 %2$s 換算</string>
+    <string name="DateUtils_schedule_at">%1$s %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">明天</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">今晚</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">已排程訊息</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">選擇日期及時間</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">已排程訊息</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">當你傳送已排程訊息時，請確保裝置在傳送時開啟並連線至互聯網。否則，你的訊息將在裝置重新連線時才會傳送。</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
-    <string name="ScheduleMessageFTUXBottomSheet__okay">好</string>
+    <string name="ScheduleMessageFTUXBottomSheet__okay">確定</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">重新啟動訊息排程：</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">重新啟動訊息排程：</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">選擇日期</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">選擇時間</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">設定傳送時間</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">排定傳送時間</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">所有時間均為%2$s (%1$s)</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">立即傳送</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">重新排程</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">刪除</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">要刪除所選的已排程訊息嗎？</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">正在刪除已排程訊息…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">聊天工作階段已重新整理</string>
@@ -1363,7 +1363,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">你與 %1$s 的訊息紀錄和屬於他們的另一個聊天已經合併。</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s 是屬於 %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s 是 %2$s 的手機號碼</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">你向 %1$s 傳送了啟動付款的請求</string>
     <!-- Request message from recipient to activate payments -->
@@ -1678,7 +1678,7 @@
     <string name="RegistrationActivity_select_your_country">選擇你的國家</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">你必須標明 國家編號
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的電話號碼來註冊。</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">請輸入有效的手機號碼以註冊。</string>
     <string name="RegistrationActivity_invalid_number">電話號碼無效</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">你所標明的號碼 (%1$s) 無效
     </string>
@@ -1708,13 +1708,13 @@
     <string name="RegistrationActivity_continue">繼續</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">保護你的私隱。\n讓你在所有訊息中都能安然做自己。</string>
     <string name="RegistrationActivity_enter_your_phone_number">輸入您的電話號碼</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到一個驗證碼。網絡供應商或會收取相關費用。</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">你將會收到驗證碼。\n網路供應商或會收取相關費用。</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">請輸入發送到 %1$s 的代碼</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">請確保你的電話已接駁流動通訊訊號，以接收短訊或來電用</string>
 
     <string name="RegistrationActivity_phone_number_description">電話號碼</string>
     <string name="RegistrationActivity_country_code_description">國碼</string>
-    <string name="RegistrationActivity_country_code_hint">國家</string>
+    <string name="RegistrationActivity_country_code_hint">國家/地區</string>
     <string name="RegistrationActivity_call">通話</string>
     <string name="RegistrationActivity_verification_code">驗證碼</string>
     <string name="RegistrationActivity_resend_code">重新傳送驗證碼</string>
@@ -1989,7 +1989,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">刪除訊息時發生錯誤，訊息可能仍然存在</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>閱讀更多</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">來自 %2$d 個對話的 %1$d 則新訊息</string>
@@ -2177,7 +2177,7 @@
     <string name="conversation_activity__type_message_sms_insecure">不安全的短訊</string>
     <string name="conversation_activity__type_message_mms_insecure">不安全的多媒體短訊</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">設定傳送時間</string>
     <string name="conversation_activity__from_sim_name">自 %1$s</string>
     <string name="conversation_activity__sim_n">SIM 卡 %1$d</string>
     <string name="conversation_activity__send">傳送</string>
@@ -3063,7 +3063,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">查看全部</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">已排程 %1$d 個訊息</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3156,13 +3156,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">建立一個新的 PIN 碼</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">只要此裝置維持註冊，您可隨時變更您的 PIN 碼。</string>
     <string name="CreateKbsPinFragment__create_your_pin">建立您的 PIN 碼</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN 碼可協助你還原帳戶，並確保 Signal 內的資料安全加密。 </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">選擇一個更強的 PIN 碼</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN 碼不匹配。請再試一次。</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">請重新輸入你剛建立的 PIN 碼。</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">確認您的 PIN 碼。</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN 碼建立失敗</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">您的 PIN 碼未有儲存。我們稍後將提示您建立一個 PIN 碼。</string>
@@ -5441,9 +5441,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">粗體</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">斜體</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">刪除線</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">等寬</string>
 </resources>

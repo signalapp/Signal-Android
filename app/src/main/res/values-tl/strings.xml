@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">Mga Kontak</string>
     <string name="ContactsCursorLoader_groups">Mga Grupo</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Mga kasapi ng grupo</string>
+    <string name="ContactsCursorLoader_group_members">Group members</string>
     <string name="ContactsCursorLoader_phone_number_search">Maghanap ng numero ng telepono</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Hanapin gamit ang username</string>
@@ -234,9 +234,9 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Bago</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Mga chat</string>
+    <string name="ContactsCursorLoader__chats">Chats</string>
     <!-- Header for conversation search section labeled "Messages" -->
-    <string name="ContactsCursorLoader__messages">Mga Mensahe</string>
+    <string name="ContactsCursorLoader__messages">Messages</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Mensahe %1$s</string>
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Huling backup: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Backup folder</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Oras ng pag-backup</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Iberipika ang passphrase ng backup</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Subukan ang iyong passphrase ng backup at iberipika na magkatulad ito</string>
     <string name="BackupsPreferenceFragment__turn_on">Buksan</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">Ngayong araw</string>
     <string name="DateUtils_yesterday">Kahapon</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s at %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s nang %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Bukas</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Mamayang gabi</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
     <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Pumili ng Petsa &amp; Oras</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
     <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Kapag nag-send ka ng scheduled message, siguraduhing bukas ang iyong device at connected ito sa internet sa oras ng pag-send. Kung hindi, mase-send lang ang iyong message kapag na-reconnect na ang device mo sa internet.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Okay</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Para ma-enable ang pag-schedule ng message:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Para ma-enable ulit ang pag-schedule ng message:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Pumili ng petsa</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Pumili ng oras</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">I-schedule ang message</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">I-schedule ang pag-send</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Lahat ng oras ay (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">I-send na</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">I-reschedule</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Burahin</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Gusto mo bang burahin ang pinili mong scheduled message?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Binubura ang scheduled message…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chat session refreshed</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">Piliin ang iyong bansa</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Kailangan mong tukuyin ang iyong country code
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Maglagay ng valid phone number para makapag-register.</string>
     <string name="RegistrationActivity_invalid_number">Hindi valid ang numero</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ang numerong iyong tinukoy (%1$s) ay hindi valid.
     </string>
@@ -1779,16 +1779,16 @@
     <string name="RegistrationActivity_continue">Magpatuloy</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Dalhin ang privacy kahit saan.\nMaging ikaw sa bawat mensahe.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Ilagay ang numero ng iyong telepono</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Makakatanggap ka ng verification code. Maaaring mailapat ang mga singilin ng Carrier.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Makakatanggap ka ng verification code.\nMaaari kang singilin ng telco provider mo.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Ilagay ang code na ipinadala namin sa %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Siguraduhing may cellular signal ang iyong telepono para matanggap ang iyong mga tawag at SMS</string>
 
     <string name="RegistrationActivity_phone_number_description">Numero ng telepono</string>
     <string name="RegistrationActivity_country_code_description">Country code</string>
-    <string name="RegistrationActivity_country_code_hint">Country</string>
+    <string name="RegistrationActivity_country_code_hint">Bansa</string>
     <string name="RegistrationActivity_call">Tawag</string>
     <string name="RegistrationActivity_verification_code">Verification Code</string>
-    <string name="RegistrationActivity_resend_code">Resend Code</string>
+    <string name="RegistrationActivity_resend_code">I-resend ang Code</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Paganahin ang Registration Lock?</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Nagka-error sa Pag-delete ng Message, Maaaring Narito Pa Ito</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Magbasa Pa</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d bagong mensahe sa %2$d pag-uusap</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">Hindi secure na SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Hindi secure na MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">I-schedule ang message</string>
     <string name="conversation_activity__from_sim_name">Mula kay %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Ipadala</string>
@@ -3148,8 +3148,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">Ipakita lahat</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d message ang na-schedule</item>
+        <item quantity="other">%1$d messages ang na-schedule</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Lumikha ng bagong PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mapapalitan mo ang iyong PIN hangga\'t rehistrado ang device na ito.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Likhain ang iyong PIN</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Nakatutulong ang PINs para ma-restore ang iyong account at mapanatiling encrypted ang info mo sa Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Pumili ng mas malakas na PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Hindi tugma ang mga PIN. Subukang muli.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Ilagay ulit ang PIN na ginawa mo.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Kumpirmahin ang iyong PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Nabigo ang paglikha ng PIN</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Ang iyong PIN ay hindi nai-save. Paaalahanan ka namin na lumikha ng PIN sa ibang pagkakataon.</string>
@@ -3390,7 +3390,7 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ang backup mo ay may lamang masyadong malaking file na hindi ma-back up. Mangyaring burahin ito at gumawa ng bagong backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">I-tap to manage backups.</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
+    <string name="RegistrationActivity_wrong_number">Maling number?</string>
     <string name="RegistrationActivity_call_me_instead_available_in">Sa halip ay tawagan ako \n (Maaari sa %1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Makipag-ugnayan sa Suporta ng Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pagpaparehistro sa Signal - Verification Code para sa Android</string>

@@ -234,7 +234,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">I ri</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Fjalosje</string>
+    <string name="ContactsCursorLoader__chats">Bisedat</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Mesazhe</string>
 
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Kopjeruajtja e fundit: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Dosje kopjeruajtjesh</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Ora e kopjeruajtjes</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verifikoni frazëkalim kopjeruajtjeje</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Testoni frazëkalimin tuaj për kopjeruajtjen dhe verifikoni që përputhet</string>
     <string name="BackupsPreferenceFragment__turn_on">Aktivizoje</string>
@@ -633,47 +633,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s më %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Nesër</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Sonte</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Mesazhet e planifikuara</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Zgjidh datën dhe orën</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Mesazhet e planifikuara</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Kur dërgon një mesazh të planifikuar, sigurohu që pajisjen ta kesh të ndezur dhe të lidhur me internet në momentin e dërgimit. Nëse nuk ke internet, atëherë mesazhi yt do të dërgohet kur pajisja të rilidhet.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">OK</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Për të aktivizuar planifikimin e mesazhit:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Për të riaktivizuar planifikimin e mesazhit:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Zgjidh datën</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Zgjidh orën</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Planifiko mesazhin</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Planifiko dërgimin</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Gjithë orët në (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Dërgo tani</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Riplanifiko</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Fshije</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Të fshihet mesazhi i planifikuar i zgjedhur?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Mesazhi i planifikuar po fshihet…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Sesioni i fjalosjes u rifreskua</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">Përzgjidhni vendin tuaj</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Duhet të specifikoni kodin e vendit tuaj
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Ju lutemi, jepni për regjistrim një numër telefoni të vlefshëm.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Të lutem vendos një numër telefoni të vlefshëm për t\'u regjistruar.</string>
     <string name="RegistrationActivity_invalid_number">Numër i pavlefshëm</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Numri që specifikuat (%1$s) është i pavlefshëm.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">Vazhdo</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Merreni privatësinë me vete.\nJini ju vetë, në çdo mesazh.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Jepni numrin e telefonit tuaj</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të merrni një kod verifikimi. Mund të ketë tarifa operatori.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Do të marrësh një kod verifikimi. \n Mund të aplikohen tarifat e operatorit.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Jepni kodin që dërguam te %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Sigurohuni se telefoni juaj ka sinjal celulari për të marrë SMS-në ose thirrjen tuaj</string>
 
@@ -1787,8 +1787,8 @@
     <string name="RegistrationActivity_country_code_description">Kod vendi</string>
     <string name="RegistrationActivity_country_code_hint">Vend</string>
     <string name="RegistrationActivity_call">Thirrje</string>
-    <string name="RegistrationActivity_verification_code">Kod Verifikimi</string>
-    <string name="RegistrationActivity_resend_code">Ridërgo Kod</string>
+    <string name="RegistrationActivity_verification_code">Kod verifikimi</string>
+    <string name="RegistrationActivity_resend_code">Ridërgo kodin</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Të aktivizohet Kyçja e Regjistrimeve?</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Gabim gjatë fshirjes së mesazhit, mesazhi mund të ekzistojë ende</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s … <b> Lexo më shumë </b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mesazhe të reja në %2$d biseda</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS e pasiguruar</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS e pasiguruar</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Planifiko mesazhin</string>
     <string name="conversation_activity__from_sim_name">Nga %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Dërgoje</string>
@@ -3145,11 +3145,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">Shihini krejt</string>
+    <string name="conversation_scheduled_messages_bar__see_all">Shihi të gjitha</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d mesazh i planifikuar</item>
+        <item quantity="other">%1$d mesazhe të planifikuara</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Krijoni një PIN të ri</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Mundeni ta ndryshoni PIN-in tuaj, sa kohë që kjo pajisje është e regjistruar.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Krijoni PIN-in tuaj</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN-et mund të të ndihmojnë të rimarrësh llogarinë dhe t\'i mbash informacionet e tua të koduara me Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Zgjidhni një PIN më të fuqishëm</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-et s\\’përputhen. Riprovoni.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Rivendos kodin PIN që sapo krijover.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Ripohoni PIN-in tuaj.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Krijimi i PIN-it dështoi</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN-i juaj s\\’u ruajt.Do t\\’ju kujtojmë më vonë të krijoni një PIN.</string>
@@ -5564,11 +5564,11 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">I theksuar</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Kursiv</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Mesvijëzuar</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Njëhapësirëshe</string>
 </resources>
