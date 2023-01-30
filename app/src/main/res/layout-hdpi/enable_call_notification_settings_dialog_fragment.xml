@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.gridlayout.widget.GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="?attr/dialogPreferredPadding"
+    app:alignmentMode="alignBounds"
+    app:columnCount="2">
+
+    <TextView
+        android:id="@+id/enable_call_notification_settings_dialog_system_all_configured"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/EnableCallNotificationSettingsDialog__everything_looks_good_now"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:visibility="gone"
+        app:layout_columnSpan="2" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/enable_call_notification_settings_dialog_system_setting_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_info_white_24"
+        app:tint="@color/signal_alert_primary" />
+
+    <TextView
+        android:id="@+id/enable_call_notification_settings_dialog_system_setting_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:text="@string/EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_show_notifications"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="center_vertical" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/enable_call_notification_settings_dialog_channel_setting_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_info_white_24"
+        app:tint="@color/signal_alert_primary" />
+
+    <TextView
+        android:id="@+id/enable_call_notification_settings_dialog_channel_setting_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:text="@string/EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_turn_on_notifications"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="center_vertical" />
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/enable_call_notification_settings_dialog_background_restricted_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_gravity="center_vertical"
+        app:srcCompat="@drawable/ic_info_white_24"
+        app:tint="@color/signal_alert_primary" />
+
+    <TextView
+        android:id="@+id/enable_call_notification_settings_dialog_background_restricted_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:text="@string/EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_here_and_enable_background_activity_in_battery_settings"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_columnWeight="1"
+        app:layout_gravity="center_vertical" />
+
+</androidx.gridlayout.widget.GridLayout>

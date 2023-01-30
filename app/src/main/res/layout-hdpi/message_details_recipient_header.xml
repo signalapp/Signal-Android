@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/group_media_card"
+    style="@style/Widget.Signal.CardView.PreferenceRow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingTop="24dp"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:paddingBottom="12dp">
+
+        <TextView
+            android:id="@+id/recipient_header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            android:textStyle="bold"
+            tools:text="Read by" />
+
+        <org.thoughtcrime.securesms.components.DeliveryStatusView
+            android:id="@+id/recipient_header_delivery_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:iconColor="@color/signal_inverse_primary"
+            android:layout_gravity="end|center_vertical" />
+
+    </FrameLayout>
+</androidx.cardview.widget.CardView>

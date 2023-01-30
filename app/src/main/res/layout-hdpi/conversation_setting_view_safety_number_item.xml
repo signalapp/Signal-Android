@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/view_safety_number"
+    style="@style/Mp02.Signal.ListTextView"
+    android:text="@string/ManageRecipientActivity_view_safety_number"
+    tools:ignore="UnusedAttribute" />

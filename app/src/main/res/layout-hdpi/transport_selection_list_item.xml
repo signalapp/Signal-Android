@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
+              android:layout_width="@dimen/transport_selection_popup_width"
+              android:layout_height="60dp"
+              android:gravity="center_vertical"
+              android:paddingStart="10dp"
+              android:paddingEnd="10dp">
+
+    <androidx.appcompat.widget.AppCompatImageView android:id="@+id/icon"
+                                                  android:layout_width="wrap_content"
+                                                  android:layout_height="wrap_content"
+                                                  android:padding="7dp"
+                                                  android:background="@drawable/circle_tintable"
+                                                  android:contentDescription="@string/transport_selection_list_item__transport_icon"
+                                                  android:tint="@color/white"
+                                                  tools:src="@drawable/ic_send_lock_24"
+                                                  tools:tint="@color/white"
+                                                  tools:backgroundTint="@color/core_ultramarine" />
+
+    <LinearLayout android:orientation="vertical"
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:gravity="center_vertical"
+                  android:paddingStart="10dp">
+
+        <TextView android:id="@+id/text"
+                  android:fontFamily="sans-serif-light"
+                  android:textSize="16sp"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  tools:text="TextSecure" />
+
+        <TextView android:id="@+id/subtext"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:fontFamily="sans-serif-light"
+                  android:textSize="12dp"
+                  android:visibility="gone"
+                  tools:text="From Home"
+                  tools:visibility="visible"/>
+
+    </LinearLayout>
+</LinearLayout>

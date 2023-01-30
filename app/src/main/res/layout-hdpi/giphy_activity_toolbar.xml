@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatImageView android:id="@+id/action_icon"
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="center_vertical"
+                   android:gravity="center_vertical"
+                   android:clickable="true"
+                   android:background="@drawable/circle_touch_highlight_background"
+                   android:tint="@color/signal_text_toolbar_subtitle"
+                   app:srcCompat="@drawable/ic_search_24" />
+
+        <LinearLayout android:id="@+id/toggle_container"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal">
+
+            <EditText android:id="@+id/search_view"
+                      android:layout_height="wrap_content"
+                      android:layout_width="0px"
+                      android:layout_weight="1"
+                      android:layout_marginStart="5dp"
+                      android:hint="@string/giphy_activity_toolbar__search_gifs"
+                      android:textColor="@color/signal_text_toolbar_title"
+                      android:textColorHint="@color/signal_text_toolbar_subtitle"
+                      android:textCursorDrawable="@null"
+                      android:maxLines="1"
+                      android:singleLine="true"
+                      android:ellipsize="end"
+                      android:imeOptions="actionSearch"
+                      android:background="@android:color/transparent"
+                      android:layout_gravity="center_vertical"
+                      android:gravity="center_vertical"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/search_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true"
+                android:visibility="invisible"
+                android:background="@drawable/circle_touch_highlight_background"
+                android:tint="@color/signal_text_toolbar_subtitle"
+                app:srcCompat="@drawable/ic_x" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</merge>

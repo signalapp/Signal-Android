@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:background="@drawable/background_pattern_repeat">
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center" >
+        
+        <LinearLayout android:id="@+id/prompt_layout"
+                      android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:visibility="gone"
+                      android:orientation="vertical">
+    
+            <TextView style="@style/Registration.Description"
+                      android:layout_width="fill_parent"
+                      android:layout_marginBottom="16dip"
+                      android:text="@string/database_migration_activity__would_you_like_to_import_your_existing_text_messages"/>
+            
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:src="@drawable/import_database"/>
+        
+            <TextView style="@style/Registration.Description"
+                      android:layout_width="fill_parent"
+                      android:layout_marginBottom="16dip"
+                      android:layout_marginTop="16dip"
+                      android:text="@string/database_migration_activity__the_default_system_database_will_not_be_modified"/>
+            
+            <LinearLayout android:orientation="horizontal"
+                          android:gravity="center"
+                          android:layout_width="fill_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="20dip">
+
+                <Button android:id="@+id/skip_button"
+                        android:text="@string/database_migration_activity__skip"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="7dip"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>
+                
+                <Button android:id="@+id/import_button"
+                        android:text="@string/database_migration_activity__import"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceMedium"/>                
+            </LinearLayout>
+        </LinearLayout>
+        
+        <LinearLayout android:id="@+id/progress_layout"
+                      android:paddingEnd="16dip"
+                      android:paddingStart="16dip"
+                      android:paddingTop="10dip"
+                      android:layout_width="fill_parent"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      android:visibility="visible"
+                      android:orientation="vertical">
+    
+            <ImageView android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="center"
+                       android:src="@drawable/import_database"/>
+            
+            
+            <TextView style="@style/Registration.Description"
+                      android:layout_width="fill_parent"
+                      android:layout_marginTop="34dip"
+                      android:layout_marginBottom="16dip"
+                      android:text="@string/database_migration_activity__this_could_take_a_moment_please_be_patient"/>
+            
+            <RelativeLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dip"
+                android:layout_weight="1.0" >
+
+                <TextView
+                    android:id="@+id/import_status"
+                    style="@style/Registration.Constant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    tools:text="0/100"
+                    android:textSize="12.0sp" />
+
+                <TextView
+                    style="@style/Registration.Constant"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/database_migration_activity__importing"
+                    android:textAllCaps="true"
+                    android:textSize="12.0sp"
+                    android:textStyle="normal" />
+            </RelativeLayout>
+
+            <ProgressBar
+                android:id="@+id/import_progress"
+                style="@style/Widget.ProgressBar.Horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14.0dip"
+                android:layout_marginTop="2.0dip" />
+            
+        </LinearLayout>        
+    </FrameLayout>
+</ScrollView>

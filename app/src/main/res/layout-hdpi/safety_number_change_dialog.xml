@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    tools:background="@color/signal_background_dialog">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/safety_number_change_dialog__the_following_people_may_have_reinstalled_or_changed_devices" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/safety_number_change_dialog_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:scrollIndicators="top|bottom"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/safety_number_change_recipient" />
+
+</LinearLayout>

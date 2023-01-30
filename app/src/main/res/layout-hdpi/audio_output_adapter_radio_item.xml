@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="?attr/selectableItemBackground"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/listPreferredItemHeight">
+    <RadioButton
+        android:id="@+id/radio"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/listPreferredItemHeight"
+        android:layout_marginStart="16dp"
+        android:drawablePadding="12dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:textColor="@color/signal_text_primary"
+        android:textSize="16sp"
+        app:drawableTint="@color/signal_text_primary"
+        tools:drawableStart="@drawable/ic_photo_24"
+        tools:text="@string/WebRtcAudioOutputToggle__phone_earpiece" />
+</FrameLayout>
+

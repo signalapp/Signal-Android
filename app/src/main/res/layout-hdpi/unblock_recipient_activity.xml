@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/unblock_recipient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:defaultFocusHighlightEnabled="false"
+    android:background="@drawable/pigeon_item_bg">
+
+    <FrameLayout
+        android:id="@+id/unblock_recipient_fragment"
+        android:layout_width="match_parent"
+        android:defaultFocusHighlightEnabled="false"
+        android:layout_height="match_parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

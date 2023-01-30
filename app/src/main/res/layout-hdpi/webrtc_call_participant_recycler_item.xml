@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="4dp"
+    android:background="@null"
+    android:clipChildren="true"
+    app:cardCornerRadius="8dp"
+    tools:background="@color/red"
+    tools:visibility="visible">
+
+    <include
+        android:id="@+id/call_participant"
+        layout="@layout/call_participant_item"
+        android:layout_width="72dp"
+        android:layout_height="72dp" />
+
+</androidx.cardview.widget.CardView>

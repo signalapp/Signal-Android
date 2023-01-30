@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="32dp"
+    android:paddingEnd="32dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp">
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      android:gravity="center"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintBottom_toTopOf="@id/client_deprecated_update_button"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_signal_logo_large" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="27dp"
+        android:text="@string/ClientDeprecatedActivity_update_signal"
+        style="@style/Signal.Text.Headline"
+        android:textStyle="bold"
+        android:gravity="center" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported"
+        style="@style/Signal.Text.Body"
+        android:gravity="center" />
+
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/client_deprecated_update_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/ClientDeprecatedActivity_update"
+      style="@style/Button.Primary"
+      app:layout_constraintBottom_toTopOf="@id/client_deprecated_dont_update_button"/>
+
+  <Button
+      android:id="@+id/client_deprecated_dont_update_button"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="@string/ClientDeprecatedActivity_dont_update"
+      style="@style/Button.Borderless.LowPriority"
+      app:layout_constraintBottom_toBottomOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

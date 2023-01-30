@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      tools:layout_height="200dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/attachment_keyboard_media_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:paddingStart="8dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/attachment_keyboard_button_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/attachment_keyboard_button_list"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:paddingStart="8dp"
+        android:clipToPadding="false"
+        android:clipChildren="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/attachment_keyboard_permission_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos"
+        android:textColor="@color/attachment_keyboard_button_foreground"
+        android:gravity="center"
+        android:visibility="gone"
+        style="@style/Signal.Text.Body"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/attachment_keyboard_permission_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
+        android:id="@+id/attachment_keyboard_permission_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/AttachmentKeyboard_give_access"
+        android:visibility="gone"
+        style="@style/Button.Primary"
+        app:layout_constraintTop_toBottomOf="@id/attachment_keyboard_permission_text"
+        app:layout_constraintBottom_toTopOf="@id/attachment_keyboard_button_list"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</merge>

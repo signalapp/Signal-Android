@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pigeon_item_bg">
+<!--
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/avatar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/display_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        app:layout_constraintBottom_toTopOf="@id/number_or_username"
+        app:layout_constraintStart_toEndOf="@id/avatar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Aadam" />-->
+
+    <TextView
+        android:id="@+id/number_or_username"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:paddingStart="30dp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        android:textSize="24sp"
+        tools:text="1 234 567 8901"
+        android:background="@drawable/pigeon_item_bg"/>
+
+</LinearLayout>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="left|center_vertical"
+    android:orientation="vertical"
+    android:paddingLeft="5dp">
+
+    <FrameLayout
+        android:id="@+id/tempLaout0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000"
+        android:gravity="left|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temp_item_name0"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/item_textsize"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/temp_item_name02"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/item_textsize" />
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/tempLaout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff000000"
+        android:gravity="left|center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temp_item_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false"
+            android:focusable="false"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/item_textsize"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/temp_item_name2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false"
+            android:ellipsize="marquee"
+            android:focusable="false"
+            android:gravity="left|center_vertical"
+            android:includeFontPadding="false"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textSize="@dimen/item_textsize" />
+    </FrameLayout>
+</LinearLayout>

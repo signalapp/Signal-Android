@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/conversation_no_longer_member_banner"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_background_tertiary"
+    android:gravity="center"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp"
+    android:text="@string/ConversationActivity_you_cant_send_messages_to_this_group"
+    android:textColor="@color/signal_text_secondary" />

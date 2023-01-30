@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reactions_bottom_view_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:minHeight="340dp"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/reactions_bottom_view_recipient_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="4dp"
+        android:layout_weight="1" />
+</LinearLayout>

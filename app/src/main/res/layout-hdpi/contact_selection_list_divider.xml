@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.emoji.EmojiTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/label"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:focusable="false"
+    style="@style/Signal.Text.Preview"
+    tools:text="@string/CameraContacts_recent_contacts" />

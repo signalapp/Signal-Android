@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@drawable/pigeon_item_bg"
+    android:clickable="true">
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/recipient_name"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingStart="@dimen/item_padding_x"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textSize="24sp"
+        android:textColor="@color/white_not_focus"
+        app:layout_constraintBottom_toTopOf="@+id/sms_contact"
+        app:layout_constraintEnd_toStartOf="@+id/sms_warning"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        android:maxLines="2"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@tools:sample/full_names" />
+
+    <ImageButton
+        android:id="@+id/delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:background="#00ffffff"
+        android:contentDescription="@string/GroupCreateActivity_remove_member_description"
+        android:src="@drawable/ic_menu_remove_holo_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/recipient_name"
+        app:layout_constraintBottom_toBottomOf="@id/recipient_name"/>
+
+    <TextView
+        android:id="@+id/sms_contact"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/AddGroupDetailsFragment__sms_contact"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/recipient_name"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintTop_toBottomOf="@+id/recipient_name" />
+
+
+    <ImageView
+        android:id="@+id/sms_warning"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/recipient_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recipient_name"
+        app:layout_constraintTop_toTopOf="@id/recipient_name"
+        app:srcCompat="@drawable/ic_error_outline_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/sim_background"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <!--<ScrollView
+        android:id="@+id/idScrol"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:clickable="false"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:visibility="gone">
+
+        <LinearLayout
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:text="@string/AndroidManifest__invite_friends"
+                android:textColor="@color/white"
+                android:textSize="24px"/>
+
+            <org.thoughtcrime.securesms.InviteEditText
+                android:id="@+id/invite_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:minLines="2"
+                tools:text="Let's switch to Pigeon: https://sgnl.link/asdfdfsa"
+                android:background="@null"
+                android:textColor="@color/white"
+                android:minHeight="@dimen/invite_edit_text_min_height"
+                android:inputType="textShortMessage|textMultiLine" />
+
+            <TextView
+                android:id="@+id/sms_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:layout_marginLeft="30px"
+                android:text="@string/InviteActivity_share_with_contacts"
+                android:textSize="24px"/>
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/share_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:layout_marginLeft="30px"
+                android:text="@string/InviteActivity_choose_how_to_share"
+                android:textSize="24px"/>
+
+
+        </LinearLayout>
+    </ScrollView>-->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcv_first"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:descendantFocusability="afterDescendants"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="false"/>
+
+    <LinearLayout
+        android:id="@+id/sms_send_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="?android:windowBackground"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+            android:visibility="gone"
+            android:id="@+id/sms_send_frame_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:theme="?attr/settingsToolbarStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:title="@string/InviteActivity_invite_to_signal"
+            app:titleTextAppearance="@style/Signal.Text.Title" />
+
+        <org.thoughtcrime.securesms.components.ContactFilterView
+            android:id="@+id/contact_filter_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="@dimen/dsl_settings_gutter"
+            android:minHeight="44dp"
+            android:visibility="gone"/>
+
+        <fragment
+            android:id="@+id/contact_selection_list_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:name="org.thoughtcrime.securesms.ContactSelectionListFragment2"
+            tools:layout="@layout/contact_selection_list_fragment" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="5dp"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/cancel_sms_button"
+                style="@style/Signal.Widget.Button.Large.Primary.Inverse"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="@string/InviteActivity_cancel" />
+
+            <Button
+                android:id="@+id/send_sms_button"
+                style="@style/Signal.Widget.Button.Large.Primary.Inverse"
+                android:textColor="#2090ea"
+                android:enabled="false"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                tools:text="Send SMS (0)"/>
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

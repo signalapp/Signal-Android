@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:defaultFocusHighlightEnabled="false"
+    android:paddingStart="35dp"
+    android:paddingEnd="5dp"
+    tools:targetApi="o">
+
+    <TextView
+        android:id="@+id/item_singleline_tv"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+</FrameLayout>

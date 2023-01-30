@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="@layout/conversation_input_panel">
+
+    <ImageButton
+        android:id="@+id/quick_audio_toggle"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="2dp"
+        android:background="@null"
+        android:contentDescription="@string/conversation_activity__quick_attachment_drawer_record_and_send_audio_description"
+        android:scaleType="fitCenter"
+        android:tint="@color/signal_icon_tint_primary"
+        app:srcCompat="@drawable/ic_mic_24" />
+
+    <LinearLayout
+        android:id="@+id/lock_drop_target"
+        android:layout_width="40dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        android:background="@drawable/compose_background"
+        android:clipChildren="false"
+        android:orientation="vertical"
+        android:visibility="gone"
+        tools:showIn="@layout/conversation_input_panel"
+        tools:translationY="@dimen/recording_voice_lock_target"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:contentDescription="@string/conversation_activity__quick_attachment_drawer_lock_record_description"
+            android:tint="@color/signal_icon_tint_secondary"
+            app:srcCompat="@drawable/ic_lock" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="6dp"
+            android:contentDescription="@string/conversation_activity__quick_attachment_drawer_lock_record_description"
+            android:tint="@color/signal_icon_tint_secondary"
+            app:srcCompat="@drawable/ic_chevron_up" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/quick_audio_fab"
+        android:layout_width="74dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="-18dp"
+        android:layout_marginTop="-18dp"
+        android:padding="18dp"
+        android:background="@drawable/circle_tintable"
+        android:clickable="false"
+        android:visibility="gone"
+        android:tint="@color/core_white"
+        app:srcCompat="@drawable/ic_mic_24"
+        tools:ignore="ContentDescription"
+        tools:visibility="visible" />
+</merge>

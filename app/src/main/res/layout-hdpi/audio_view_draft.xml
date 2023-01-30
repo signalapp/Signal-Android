@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="org.thoughtcrime.securesms.components.AudioView">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/conversation_compose_height"
+        android:orientation="horizontal"
+        tools:background="#ff00ff">
+
+        <include layout="@layout/audio_view_draft_circle" />
+
+        <org.thoughtcrime.securesms.components.WaveFormSeekBarView
+            android:id="@+id/seek"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/conversation_compose_height"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:paddingStart="4dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="2dp"
+            android:paddingBottom="8dp"
+            android:thumb="@drawable/audio_wave_thumb"
+            tools:progress="50" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="12dp"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_text_hint"
+            android:visibility="gone"
+            tools:text="00:30"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</merge>

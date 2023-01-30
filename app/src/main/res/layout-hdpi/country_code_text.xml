@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="11dp"
+    android:paddingEnd="11dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="3dp"
+        android:src="@drawable/ic_add_white_original_24dp"
+        android:tint="@color/core_grey_60"
+        android:contentDescription="+"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="7dp"
+        android:paddingBottom="16dp"
+        android:background="@color/transparent"
+        android:singleLine="true"
+        android:inputType="number"
+        android:maxLength="3"
+        android:digits="1234567890"
+        android:saveEnabled="false"
+        android:hint="@string/RegistrationActivity_country_code_description"
+        tools:text="123" />
+
+</LinearLayout>

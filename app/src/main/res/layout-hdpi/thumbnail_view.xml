@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/thumbnail_blurhash"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:longClickable="false"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/conversation_item__mms_image_description" />
+
+    <ImageView
+        android:id="@+id/thumbnail_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:longClickable="false"
+        android:scaleType="fitCenter"
+        android:contentDescription="@string/conversation_item__mms_image_description" />
+
+    <ImageView
+        android:id="@+id/thumbnail_caption_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="6dp"
+        android:src="@drawable/ic_caption_28"
+        android:visibility="gone"
+        android:contentDescription="@string/ThumbnailView_Has_a_caption_description"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/play_overlay"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:background="@drawable/circle_white"
+        android:layout_gravity="center"
+        android:longClickable="false"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="12dp"
+            android:contentDescription="@string/ThumbnailView_Play_video_description"
+            android:paddingLeft="5dp"
+            android:scaleType="fitXY"
+            android:tint="@color/core_ultramarine"
+            app:srcCompat="@drawable/triangle_right"
+            tools:ignore="RtlHardcoded,RtlSymmetry" />
+
+    </FrameLayout>
+
+    <ViewStub
+        android:id="@+id/transfer_controls_stub"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout="@layout/transfer_controls_stub" />
+
+</merge>

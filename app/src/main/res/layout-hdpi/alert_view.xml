@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+       xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/sms_failed_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_error"
+        android:visibility="gone"
+        android:tint="@color/core_red"
+        tools:visibility="visible"
+        android:contentDescription="@string/conversation_item_sent__send_failed_indicator_description" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/pending_approval_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_error"
+        android:tint="@color/core_grey_60"
+        android:visibility="gone"
+        tools:visibility="visible"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/conversation_item_sent__pending_approval_description" />
+
+</merge>

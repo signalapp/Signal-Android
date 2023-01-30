@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/expiration_badge_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="11dp"
+    android:gravity="center"
+    android:visibility="gone"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/menu_badge_icon"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="3dp"
+        android:scaleType="fitCenter"
+        android:tint="@color/signal_text_toolbar_subtitle"
+        app:srcCompat="@drawable/ic_timer_60_12" />
+
+    <TextView
+        android:id="@+id/expiration_badge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center_horizontal|bottom"
+        android:paddingTop="1dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/signal_text_toolbar_subtitle"
+        android:textSize="14dp"
+        tools:text="1w"
+        tools:ignore="SpUsage" />
+</LinearLayout>

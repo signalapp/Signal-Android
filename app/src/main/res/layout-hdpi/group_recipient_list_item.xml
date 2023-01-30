@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:minHeight="32px"
+    android:layout_height="wrap_content"
+    android:background="@drawable/pigeon_item_bg"
+    android:clickable="true"
+    android:focusable="true">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/recipient_avatar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars"
+        android:visibility="gone"/>
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/recipient_selected"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/contact_selection_checkbox"
+        android:button="@null"
+        android:clickable="false"
+        android:focusable="false"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        tools:checked="true" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/recipient_about"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:gravity="start|center_vertical"
+        android:maxLines="1"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.Preview"
+        android:textColor="@color/signal_text_secondary"
+        app:emoji_forceCustom="true"
+        app:layout_constraintBottom_toBottomOf="@+id/recipient_avatar"
+        app:layout_constraintEnd_toStartOf="@+id/admin"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/recipient_avatar"
+        app:layout_constraintTop_toBottomOf="@+id/recipient_name"
+        tools:text="Hangin' around the web" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/recipient_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/item_padding_x"
+        android:gravity="start|center_vertical"
+        android:textAlignment="viewStart"
+        android:textSize="24px"
+        android:singleLine="true"
+        android:textColor="@color/white_not_focus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:maxLines="2"
+        app:layout_constraintEnd_toStartOf="@+id/admin"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Miles Morales" />
+
+    <TextView
+        android:id="@+id/admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:gravity="start|center_vertical"
+        android:text="@string/GroupRecipientListItem_admin"
+        android:textSize="24px"
+        android:textColor="@color/white_not_focus"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/popupMenuProgressContainer"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@+id/recipient_name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <FrameLayout
+        android:id="@+id/popupMenuProgressContainer"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible">
+
+        <org.thoughtcrime.securesms.groups.ui.PopupMenuView
+            android:id="@+id/popupMenu"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginEnd="16dp"
+            android:visibility="gone"
+            app:background_tint="@color/signal_text_primary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/menuBusyProgress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="true"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

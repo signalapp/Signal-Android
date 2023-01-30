@@ -4,6 +4,8 @@
     <color name="black">@color/core_black</color>
 
     <color name="signal_accent_green">#4CAF50</color>
+    <color name="white_not_focus">#80FFFFFF</color>
+    <color name="white_focus">#FFFFFFFF</color>
 
     <color name="story_gradient_start">#99000000</color>
     <color name="story_caption_gradient_start">#CC000000</color>
@@ -55,4 +57,11 @@
     <color name="storage_color_files">#ffA23474</color>
     <color name="conversation_list_archive_background_start">@color/signal_colorPrimary</color>
     <color name="conversation_list_archive_background_end">@color/signal_colorPrimary</color>
+
+    <color name="sim_background">#000e00</color>
+    <color name="focused_text_color">#FFFFFFFF</color>
+    <color name="normal_text_color">#80FFFFFF</color>
+    <color name="message_focused_text_color">#1E1E1E</color>
+    <color name="message_normal_text_color">#80000000</color>
+    <color name="text_primary">#81FFFFFF</color>
 </resources>

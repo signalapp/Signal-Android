@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tv_name"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:paddingLeft="30px"
+    android:singleLine="true"
+    android:textSize="24px"
+    android:ellipsize="marquee"
+    android:textColor="@color/white_not_focus"
+    android:text="@string/text_secure_normal__menu_new_group"
+    android:textAlignment="viewStart"
+    tools:ignore="RtlSymmetry"
+    android:focusable="true"
+    android:focusableInTouchMode="false" />
+
+
+    <!--    android:id="@+id/digits"-->
+    <!--    android:textCursorDrawable="@drawable/cursor_color"-->
+    <!--    android:includeFontPadding="false"-->
+    <!--    android:defaultFocusHighlightEnabled="false"-->
+    <!--    android:textColor="@drawable/sim_text_item_color"-->
+    <!--    android:textSize="@dimen/item_textsize"-->
+    <!--    android:lineSpacingMultiplier="0.78"-->
+    <!--    android:letterSpacing="0.01"-->
+    <!--    android:gravity="left|bottom"-->
+    <!--    android:paddingLeft="@dimen/item_padding_x"-->
+    <!--    android:background="@null"-->
+    <!--    android:numeric="integer"-->
+    <!--    android:phoneNumber="true"-->
+    <!--    android:maxLines="2"-->
+    <!--    android:focusable="true"-->

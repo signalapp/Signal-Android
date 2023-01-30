@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="org.thoughtcrime.securesms.components.webrtc.PigeonWebRtcCallView"
+    android:background="@color/sim_background">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/call_screen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="false"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                android:focusable="false"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/item_padding_x">
+
+                <TextView
+                    android:id="@+id/call_screen_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="0dp"
+                    android:focusable="false"
+                    android:gravity="start"
+                    android:paddingStart="0dp"
+                    android:paddingTop="8dp"
+                    android:paddingEnd="24dp"
+                    android:paddingBottom="8dp"
+                    android:singleLine="true"
+                    android:text="@string/redphone_call_card__signal_call"
+                    android:textColor="@drawable/sim_text_item_color" />
+
+                <TextView
+                    android:id="@+id/call_screen_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/item_padding_x"
+                    android:background="@color/sim_background"
+                    android:focusable="false"
+                    android:singleLine="true"
+                    android:textAllCaps="true"
+                    android:textColor="@drawable/sim_text_item_color"
+                    tools:text="connected" />
+
+                <Chronometer
+                    android:id="@+id/elapsedTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/sim_background"
+                    android:textColor="@drawable/sim_text_item_color"
+                    android:visibility="gone" />
+
+
+                <!-- Elapsed time indication for a call in progress. -->
+                <TextView
+                    android:id="@+id/elapsedTime1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+
+                    android:singleLine="true"
+                    android:textColor="@drawable/sim_text_item_color"
+                    android:visibility="gone"
+                    tools:text="0:00" />
+
+            </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/expanded_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:defaultFocusHighlightEnabled="false"
+            android:focusable="true"
+            android:orientation="vertical"
+            tools:ignore="UnusedAttribute">
+
+            <TextView
+                android:id="@+id/call_screen_recipient_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:ellipsize="end"
+                android:focusable="false"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:singleLine="true"
+                android:textAlignment="viewStart"
+                android:textColor="@drawable/sim_text_item_color"
+                tools:text="Ali Connors" />
+
+            <TextView
+                android:id="@+id/call_screen_recipient_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="false"
+                android:letterSpacing="0.01"
+                android:lineSpacingMultiplier="0.78"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:singleLine="true"
+                android:textColor="@drawable/sim_text_item_color"
+                android:textSize="@dimen/item_textsize"
+                tools:text="+14152222222" />
+        </LinearLayout>
+
+            <TextView
+                android:id="@+id/call_screen_participants_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__view_participants_list"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
+            <TextView
+                android:id="@+id/call_screen_start_call_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__start_call"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/call_screen_volume_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallControls_volume_button_description"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize" />
+
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallMenuText
+                android:id="@+id/call_screen_audio_ring_toggle_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallView__ring"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone"/>
+
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallMenuText
+                android:id="@+id/call_screen_speaker_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallControls_speaker_button_description_on"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize" />
+
+            <org.thoughtcrime.securesms.components.webrtc.WebRtcCallMenuText
+                android:id="@+id/call_screen_audio_mic_toggle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallControls_mute_button_description_off"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize" />
+
+            <TextView
+                android:id="@+id/call_screen_end_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallScreen_end_call"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/call_screen_answer_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallControls_answer_call_description"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/call_screen_decline_call"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/sim_background"
+                android:defaultFocusHighlightEnabled="false"
+                android:focusable="true"
+                android:paddingLeft="@dimen/item_padding_x"
+                android:text="@string/WebRtcCallControls_reject_call_description"
+                android:textColor="@color/white_not_focus"
+                android:textSize="@dimen/item_textsize"
+                android:visibility="gone" />
+        </LinearLayout>
+    </ScrollView>
+</merge>

@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase"
+            android:textAppearance="@style/Signal.Text.Preview"
+            android:textColor="@color/signal_text_secondary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_backup_create"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:minHeight="?attr/listPreferredItemHeightLarge"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:id="@+id/fragment_backup_create_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__create_backup"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_create_summary"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <TextView
+                android:id="@+id/fragment_backup_create_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__last_backup"
+                android:textAppearance="@style/Signal.Text.Preview"
+                android:textColor="@color/signal_text_secondary"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_progress"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_create_title" />
+
+            <ProgressBar
+                android:id="@+id/fragment_backup_progress"
+                style="?android:progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/fragment_backup_progress_summary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_create_summary"
+                tools:visibility="visible" />
+
+            <TextView
+                android:id="@+id/fragment_backup_progress_summary"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textColor="@color/signal_text_secondary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_backup_progress"
+                tools:text="10000 so far..."
+                tools:visibility="visible" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_backup_folder"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeightLarge"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__backup_folder"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary" />
+
+            <TextView
+                android:id="@+id/fragment_backup_folder_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:textAppearance="@style/Signal.Text.Preview"
+                android:textColor="@color/signal_text_secondary" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_backup_verify"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/listPreferredItemHeightLarge"
+            android:background="?attr/selectableItemBackground"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__verify_backup_passphrase"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/BackupsPreferenceFragment__test_your_backup_passphrase"
+                android:textAppearance="@style/Signal.Text.Preview"
+                android:textColor="@color/signal_text_secondary" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/fragment_backup_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/primary_action_button_background_36dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/BackupsPreferenceFragment__turn_on"
+            android:textColor="@color/core_white"
+            app:backgroundTint="?colorAccent" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/signal_divider_major" />
+
+        <TextView
+            android:id="@+id/fragment_backup_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/BackupsPreferenceFragment__to_restore_a_backup"
+            android:textAppearance="@style/Signal.Text.Preview"
+            android:textColor="@color/signal_text_secondary" />
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

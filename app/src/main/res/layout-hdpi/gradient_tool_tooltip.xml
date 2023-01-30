@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="12dp"
+    android:paddingBottom="12dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:tint="@color/signal_accent_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/tooltip_arrow_up" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/bubble"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="295dp"
+        app:srcCompat="@drawable/chat_wallpaper_preview_bubble_8"
+        app:tint="@color/signal_accent_primary" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/icon"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="7dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/bubble"
+        app:layout_constraintEnd_toStartOf="@id/text"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@id/bubble"
+        app:layout_constraintTop_toTopOf="@id/bubble"
+        app:srcCompat="@drawable/ic_union" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="12dp"
+        android:text="@string/CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient"
+        android:textAppearance="@style/Signal.Text.Body"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/bubble"
+        app:layout_constraintStart_toEndOf="@id/icon"
+        app:layout_constraintTop_toTopOf="@id/bubble" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

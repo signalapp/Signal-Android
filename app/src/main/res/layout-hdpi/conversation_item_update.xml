@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.conversation.ConversationUpdateItem
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/conversation_update_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:focusable="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="6dp"
+    android:paddingStart="28dp"
+    android:paddingEnd="28dp"
+    android:paddingTop="8dp">
+
+    <LinearLayout
+        android:id="@+id/conversation_update_background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="3dp"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp">
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+            android:id="@+id/conversation_update_body"
+            style="@style/TextAppearance.Signal.Subtitle"
+            android:textSize="13sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/conversation_item_update_text_color"
+            tools:text="Gwen Stacy set the disappearing message timer to 1 hour" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/conversation_update_action"
+            style="@style/Signal.Widget.Button.Small.Primary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:visibility="gone"
+            tools:text="Learn more"
+            tools:visibility="visible" />
+
+    </LinearLayout>
+
+</org.thoughtcrime.securesms.conversation.ConversationUpdateItem>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/group_join_recipient_avatar"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/group_join_busy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/group_join_recipient_avatar"
+        app:layout_constraintEnd_toEndOf="@+id/group_join_recipient_avatar"
+        app:layout_constraintStart_toStartOf="@+id/group_join_recipient_avatar"
+        app:layout_constraintTop_toTopOf="@+id/group_join_recipient_avatar"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/group_join_group_name"
+        style="@style/TextAppearance.Signal.Body1.Bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_join_recipient_avatar"
+        tools:text="Parkdale Run Club" />
+
+    <TextView
+        android:id="@+id/group_join_group_details"
+        style="@style/Signal.Text.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_join_group_name"
+        tools:text="Group · 12 members" />
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/group_join_group_description"
+        style="@style/Signal.Text.Body"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:maxLines="2"
+        android:textColor="@color/signal_text_secondary"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/group_join_group_details"
+        tools:text="Coordinate the folks to do the thing"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/group_join_explain"
+        style="@style/TextAppearance.Signal.Body2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/signal_text_primary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_join_group_description"
+        tools:text="@string/GroupJoinBottomSheetDialogFragment_admin_approval_needed" />
+
+    <Button
+        android:id="@+id/group_join_cancel_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="@android:string/cancel"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/group_join_button"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_join_explain"
+        app:layout_constraintVertical_bias="0"
+        tools:visibility="visible" />
+
+    <Button
+        android:id="@+id/group_join_button"
+        style="@style/Button.Primary"
+        android:layout_width="0dp"
+        android:layout_height="64dp"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/group_join_cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/group_join_explain"
+        app:layout_constraintVertical_bias="0"
+        tools:text="@string/GroupJoinBottomSheetDialogFragment_join"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" 
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/camera_contacts_horizontal_margin"
+    android:paddingEnd="@dimen/camera_contacts_horizontal_margin"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:gravity="center_vertical"
+    android:background="?selectableItemBackground">
+    
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/camera_contact_item_avatar"
+        android:layout_width="44dp"
+        android:layout_height="44dp" />
+    
+    <org.thoughtcrime.securesms.components.FromTextView
+        android:id="@+id/camera_contact_item_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginStart="12dp"
+        android:maxLines="2"
+        android:ellipsize="end"
+        style="@style/Signal.Text.Body"/>
+
+    <CheckBox
+        android:id="@+id/camera_contact_item_checkbox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:clickable="false"/>
+
+</LinearLayout>

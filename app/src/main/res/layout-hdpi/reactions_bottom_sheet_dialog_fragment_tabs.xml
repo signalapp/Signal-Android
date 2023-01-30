@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.tabs.TabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/emoji_tabs"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/react_with_any_emoji_bottom_sheet_dialog_fragment_tabs_height"
+    android:layout_gravity="bottom"
+    android:background="@color/signal_background_tertiary"
+    app:layout_constraintTop_toTopOf="parent"
+    app:tabIndicatorColor="?colorAccent"
+    app:tabIndicatorGravity="top"
+    app:tabMinWidth="48dp"
+    app:tabMode="scrollable"
+    app:tabPadding="0dp"
+    app:tabPaddingBottom="10dp"
+    app:tabPaddingEnd="12dp"
+    app:tabPaddingStart="12dp"
+    app:tabPaddingTop="10dp" />

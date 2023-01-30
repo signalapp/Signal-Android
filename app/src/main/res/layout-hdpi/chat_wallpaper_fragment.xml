@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/chat_wallpaper_preview_lightbox"
+                android:layout_width="0dp"
+                android:layout_height="320dp"
+                android:background="@color/signal_background_tertiary"
+                app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/chat_wallpaper_preview_background" />
+
+            <ImageView
+                android:id="@+id/chat_wallpaper_preview_background"
+                android:layout_width="156dp"
+                android:layout_height="288dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@color/signal_background_primary"
+                android:contentDescription="@string/ChatWallpaperFragment__wallpaper_preview_description"
+                android:scaleType="fitXY"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:src="@drawable/test_gradient" />
+
+            <View
+                android:id="@+id/chat_wallpaper_dim"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/black"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@id/chat_wallpaper_preview_bottom_bar"
+                app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar"
+                tools:visibility="visible" />
+
+            <org.thoughtcrime.securesms.conversation.colors.ColorizerView
+                android:id="@+id/colorizer"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@id/chat_wallpaper_preview_bottom_bar"
+                app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar" />
+
+            <View
+                android:id="@+id/chat_wallpaper_preview_top_bar"
+                android:layout_width="156dp"
+                android:layout_height="28dp"
+                android:background="@drawable/chat_wallpaper_preview_top_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintVertical_chainStyle="packed" />
+
+            <View
+                android:id="@+id/chat_wallpaper_preview_bottom_bar"
+                android:layout_width="156dp"
+                android:layout_height="24dp"
+                android:background="@drawable/chat_wallpaper_preview_bottom_bar"
+                app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <org.thoughtcrime.securesms.components.AvatarImageView
+                android:id="@+id/chat_wallpaper_preview_today"
+                android:layout_width="24dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar"
+                app:srcCompat="@drawable/chat_wallpaper_preview_bubble_10"
+                app:tint="@color/signal_background_tertiary" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/chat_wallpaper_preview_bubble_1"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="30dp"
+                app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar"
+                app:srcCompat="@drawable/chat_wallpaper_preview_bubble_10" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/chat_wallpaper_preview_bubble_2"
+                android:layout_width="100dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="66dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_top_bar"
+                app:srcCompat="@drawable/chat_wallpaper_preview_bubble_10"
+                app:tint="@color/signal_alert_primary" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/chat_wallpaper_preview_outline"
+                app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_bottom_bar"
+                app:layout_constraintEnd_toEndOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_background"
+                app:layout_constraintTop_toTopOf="@id/chat_wallpaper_preview_top_bar" />
+
+            <TextView
+                android:id="@+id/chat_wallpaper_set_chat_color"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ChatWallpaperFragment__chat_color"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_preview_lightbox" />
+
+            <TextView
+                android:id="@+id/chat_wallpaper_reset_chat_colors"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ChatWallpaperFragment__reset_chat_colors"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_set_chat_color" />
+
+            <View
+                android:id="@+id/chat_wallpaper_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="@color/signal_inverse_transparent_15"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_reset_chat_colors" />
+
+            <TextView
+                android:id="@+id/chat_wallpaper_set_wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ChatWallpaperFragment__set_wallpaper"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_divider" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/chat_wallpaper_dark_theme_dims_wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ChatWallpaperFragment__dark_mode_dims_wallpaper"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_set_wallpaper" />
+
+            <TextView
+                android:id="@+id/chat_wallpaper_reset_all_wallpapers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="?selectableItemBackground"
+                android:gravity="center_vertical"
+                android:minHeight="56dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@string/ChatWallpaperFragment__reset_wallpapers"
+                android:textAppearance="@style/Signal.Text.Body"
+                android:textColor="@color/signal_text_primary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/chat_wallpaper_dark_theme_dims_wallpaper" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

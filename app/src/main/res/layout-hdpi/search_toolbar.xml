@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    tools:parentTag="android.widget.LinearLayout"
+    tools:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/signal_background_primary"/>
+
+    <View android:layout_width="match_parent"
+          android:layout_height="4dp"
+          android:background="@drawable/search_toolbar_shadow"/>
+
+</merge>

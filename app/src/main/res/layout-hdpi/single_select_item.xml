@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckedTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/single_select_item_text"
+    style="@style/Mp02.Signal.Text.CommonTextButton"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawablePadding="20dp"
+    android:paddingStart="30dp"
+    android:paddingEnd="5dp"
+    android:gravity="center_vertical"
+    android:minHeight="?attr/listPreferredItemHeightSmall"
+    android:textAppearance="?android:attr/textAppearanceListItem"
+    android:textColor="@color/grey"
+    android:theme="@style/Signal.Widget.CompoundButton.RadioButton"
+    tools:text="Pick me!"/>

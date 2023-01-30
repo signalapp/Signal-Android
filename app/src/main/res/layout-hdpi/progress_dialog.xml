@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.pnikosis.materialishprogress.ProgressWheel
+        android:id="@+id/mediasend_progress_wheel"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:padding="8dp"
+        android:indeterminate="true"
+        app:matProg_progressIndeterminate="true"
+        app:matProg_barColor="@color/core_grey_25"/>
+
+</FrameLayout>

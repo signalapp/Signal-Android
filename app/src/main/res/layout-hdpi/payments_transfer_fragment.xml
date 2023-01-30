@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/payments_transfer_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:title="@string/PaymentsTransferFragment__transfer"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
+
+    <EditText
+        android:id="@+id/payments_transfer_to_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="@string/PaymentsTransferFragment__to_scan_or_enter_wallet_address"
+        android:imeActionLabel="@string/PaymentsTransferFragment__scan_qr_code"
+        android:imeOptions="flagNoAccessoryAction"
+        android:inputType="textMultiLine|textVisiblePassword"
+        android:paddingEnd="32dp"
+        android:textColorHint="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payments_transfer_toolbar"
+        tools:ignore="RtlSymmetry" />
+
+    <ImageButton
+        android:id="@+id/payments_transfer_scan_qr"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="8dp"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/PaymentsTransferFragment__scan_qr_code"
+        app:layout_constraintBottom_toBottomOf="@+id/payments_transfer_to_address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payments_transfer_toolbar"
+        app:srcCompat="@drawable/ic_qrcode_24_tinted"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/PaymentsTransferFragment__you_can_transfer"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/payments_transfer_to_address" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/payments_transfer_next"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:contentDescription="@string/PaymentsTransferFragment__next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_continue_24" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

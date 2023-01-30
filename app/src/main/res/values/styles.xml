@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Mp02">Mp02</style>
+
+    <style name="Mp02.Signal">Mp02.Signal</style>
+
+    <style name="Mp02.Signal.CustomDialog" parent="@android:style/Theme.NoTitleBar.Fullscreen">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
     <style name="Widget.Signal.Snackbar" parent="Widget.Material3.Snackbar">
         <item name="backgroundTint">@color/signal_dark_colorSurface4</item>
         <item name="android:layout_margin">16dp</item>
