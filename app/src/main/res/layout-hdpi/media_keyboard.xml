@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="org.thoughtcrime.securesms.components.emoji.MediaKeyboard">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/media_keyboard_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</merge>

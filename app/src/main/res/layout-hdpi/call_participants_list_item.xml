@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="8dp">
+
+
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        android:id="@+id/recipient_view_name"
+        style="@style/TextAppearance.Signal.Body1"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textAlignment="viewStart"
+        android:textAppearance="@style/Signal.Text.Preview"
+        android:textColor="@color/white"
+        tools:text="@tools:sample/full_names" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_video_muted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:srcCompat="@drawable/ic_video_off_solid_white_18"
+        app:tint="@color/core_white"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_audio_muted"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@drawable/ic_mic_off_solid_18"
+        app:tint="@color/core_white"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/call_participant_screen_sharing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        app:srcCompat="@drawable/ic_share_screen_20"
+        app:tint="@color/core_white"/>
+
+</LinearLayout>

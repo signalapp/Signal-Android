@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/name"
+        style="@style/Mp02.Signal.ListTextView"
+        android:elevation="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        tools:text="Parkdale Run Crew" />
+
+    <TextView
+        android:id="@+id/member_count"
+        style="@style/Mp02.Signal.ListTextView"
+        tools:text="12 members (4 invited)" />
+</LinearLayout>

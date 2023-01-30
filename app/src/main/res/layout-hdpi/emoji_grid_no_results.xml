@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:text="@string/ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found"
+    android:textAppearance="@style/TextAppearance.Signal.Body1"
+    android:textColor="@color/signal_text_secondary" />

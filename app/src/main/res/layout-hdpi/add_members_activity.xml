@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/confirm_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:defaultFocusHighlightEnabled="false"
+        android:focusable="true"
+        android:paddingLeft="30px"
+        android:text="@string/ChooseNewAdminActivity_done"
+        android:textSize="24px"
+        tools:ignore="UnusedAttribute"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="center"
+        android:orientation="vertical">
+
+        <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:theme="?attr/settingsToolbarStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:titleTextAppearance="@style/Signal.Text.Title"
+            app:title="@string/AddMembersActivity__add_members"
+            android:visibility="gone"/>
+
+        <org.thoughtcrime.securesms.components.ContactFilterView
+            android:id="@+id/contact_filter_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dsl_settings_gutter"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="12dp"
+            android:layout_marginRight="@dimen/dsl_settings_gutter"
+            android:minHeight="44dp"
+            android:visibility="gone"/>
+
+        <fragment
+            android:id="@+id/contact_selection_list_fragment"
+            android:name="org.thoughtcrime.securesms.ContactSelectionListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="@color/white"
+        app:cpb_colorIndicator="@color/white"
+        app:cpb_colorProgress="?colorAccent"
+        app:cpb_cornerRadius="28dp"
+        app:cpb_selectorIdle="@drawable/progress_button_state"
+        app:cpb_textIdle="@string/AddMembersActivity__done"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+</FrameLayout>

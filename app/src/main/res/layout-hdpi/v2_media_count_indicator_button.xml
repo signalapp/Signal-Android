@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/v2_media_count_indicator_background"
+    android:contentDescription="@string/MediaCountIndicatorButton__send"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <TextView
+        android:id="@+id/media_count_indicator_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/v2_media_count_indicator_text_background"
+        android:paddingStart="9.5dp"
+        android:paddingTop="3dp"
+        android:paddingEnd="9.5dp"
+        android:paddingBottom="3dp"
+        android:textColor="@color/core_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="100+" />
+
+    <ImageView
+        android:id="@+id/media_count_indicator_chevron"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="8dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/media_count_indicator_text"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_right" />
+
+</merge>

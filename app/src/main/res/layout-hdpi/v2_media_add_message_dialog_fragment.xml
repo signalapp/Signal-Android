@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.InputAwareLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/hud"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <View
+            android:id="@+id/background_holder"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/core_grey_95"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="@id/input_barrier" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/input_barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="add_a_message_input,confirm_button" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/rounded_rectangle_secondary_dark"
+            app:layout_constraintBottom_toBottomOf="@id/add_a_message_input"
+            app:layout_constraintEnd_toEndOf="@id/add_a_message_input"
+            app:layout_constraintStart_toStartOf="@id/emoji_toggle"
+            app:layout_constraintTop_toTopOf="@id/add_a_message_input" />
+
+        <org.thoughtcrime.securesms.components.emoji.EmojiToggle
+            android:id="@+id/emoji_toggle"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/conversation_compose_height"
+            android:layout_gravity="bottom"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="6dp"
+            android:background="?selectableItemBackgroundBorderless"
+            android:contentDescription="@string/conversation_activity__emoji_toggle_description"
+            android:paddingStart="8dp"
+            android:paddingEnd="6dp"
+            app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <org.thoughtcrime.securesms.components.ComposeText
+            android:id="@+id/add_a_message_input"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="8dp"
+            android:background="@null"
+            android:hint="@string/MediaReviewFragment__add_a_message"
+            android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
+            android:minHeight="36dp"
+            android:paddingEnd="10dp"
+            android:maxLines="3"
+            android:maxLength="65536"
+            android:imeOptions="flagNoEnterAction"
+            android:textAppearance="@style/Signal.Text.Body"
+            app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
+            app:layout_constraintEnd_toStartOf="@id/confirm_button"
+            app:layout_constraintStart_toEndOf="@id/emoji_toggle"
+            app:layout_constraintTop_toTopOf="@id/input_barrier"
+            app:layout_goneMarginStart="12dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/confirm_button"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:padding="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
+            app:srcCompat="@drawable/v2_media_add_a_message_check" />
+
+        <ViewStub
+            android:id="@+id/emoji_drawer_stub"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inflatedId="@+id/emoji_drawer_stub"
+            android:layout="@layout/scribble_fragment_emojidrawer_stub"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/mentions_picker_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="bottom"
+            app:layout_constraintBottom_toTopOf="@id/input_barrier"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.thoughtcrime.securesms.components.InputAwareLayout>

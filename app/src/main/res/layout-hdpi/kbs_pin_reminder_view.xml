@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    tools:layout_width="300dp">
+
+    <TextView
+        android:id="@+id/pin_reminder_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/KbsReminderDialog__enter_your_signal_pin"
+        style="@style/Signal.Text.Body"
+        android:fontFamily="sans-serif-medium"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <EditText
+        android:id="@+id/pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="105sp"
+        android:paddingTop="40dp"
+        android:gravity="center"
+        android:textColor="@color/signal_inverse_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/pin_reminder_title"
+        tools:text="******"/>
+
+    <TextView
+        android:id="@+id/pin_status"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/core_red"
+        app:layout_constraintTop_toBottomOf="@id/pin"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/KbsReminderDialog__incorrect_pin_try_again">
+
+    </TextView>
+
+    <TextView
+        android:id="@+id/reminder"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.3"
+        android:paddingTop="40dp"
+        android:paddingBottom="40dp"
+        style="@style/Signal.Text.Preview"
+        app:layout_constraintTop_toBottomOf="@id/pin_status"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="@string/KbsReminderDialog__to_help_you_memorize_your_pin" />
+
+    <Button
+        android:id="@+id/skip"
+        style="@style/Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/KbsReminderDialog__skip"
+        app:layout_constraintTop_toTopOf="@id/submit"
+        app:layout_constraintEnd_toStartOf="@id/submit"/>
+
+    <Button
+        android:id="@+id/submit"
+        style="@style/Button.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/KbsReminderDialog__submit"
+        app:layout_constraintTop_toBottomOf="@id/reminder"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

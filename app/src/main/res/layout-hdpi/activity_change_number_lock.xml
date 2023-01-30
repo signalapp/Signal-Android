@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/change_number_lock_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/change_number_lock_hero"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="@dimen/transfer_top_padding"
+            app:layout_constraintBottom_toTopOf="@id/change_number_lock_header"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintVertical_bias="0"
+            app:tint="@color/signal_alert_primary"
+            app:srcCompat="@drawable/ic_alert" />
+
+        <TextView
+            android:id="@+id/change_number_lock_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="@dimen/transfer_item_spacing"
+            android:layout_marginEnd="32dp"
+            android:gravity="center"
+            android:text="@string/AccountSettingsFragment__change_phone_number"
+            android:textAppearance="@style/TextAppearance.Signal.Title1"
+            app:layout_constraintBottom_toTopOf="@id/change_number_lock_body"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/change_number_lock_hero" />
+
+        <TextView
+            android:id="@+id/change_number_lock_body"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginBottom="32dp"
+            android:gravity="center_horizontal"
+            android:text="@string/ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now"
+            android:textAppearance="@style/TextAppearance.Signal.Body1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/change_number_lock_header" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/change_phone_number_verify_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/transfer_top_padding"
+            android:indeterminate="true"
+            app:indicatorColor="@color/signal_accent_primary"
+            app:indicatorSize="48dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/change_number_lock_body" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

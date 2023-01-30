@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/create_payment_fragment_info_tap_region"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="?selectableItemBackground"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toBottomOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintEnd_toEndOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintStart_toStartOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintTop_toBottomOf="@id/create_payment_fragment_large_currency_space" />
+
+    <org.thoughtcrime.securesms.payments.MoneyView
+        android:id="@+id/create_payment_fragment_amount"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:textColor="@color/signal_text_primary"
+        app:autoSizeMaxTextSize="54sp"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintEnd_toEndOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintStart_toStartOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintTop_toTopOf="@id/create_payment_fragment_large_currency_space"
+        tools:money="MOB:275000000000000" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/create_payment_fragment_toggle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginEnd="4dp"
+        android:background="?selectableItemBackground"
+        android:contentDescription="@string/CreatePaymentFragment__toggle_content_description"
+        android:padding="12dp"
+        android:scaleType="centerInside"
+        app:layout_constraintBottom_toBottomOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/create_payment_fragment_large_currency_space"
+        app:srcCompat="@drawable/ic_toggle_24"
+        app:tint="@color/signal_icon_tint_primary" />
+
+    <TextView
+        android:id="@+id/create_payment_fragment_exchange"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:textColor="@color/signal_text_secondary"
+        app:autoSizeMaxTextSize="54sp"
+        app:autoSizeMinTextSize="14sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintEnd_toEndOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintStart_toStartOf="@id/create_payment_fragment_small_currency_space"
+        app:layout_constraintTop_toTopOf="@id/create_payment_fragment_small_currency_space"
+        tools:text="$50 USD" />
+
+    <Space
+        android:id="@+id/create_payment_fragment_large_currency_space"
+        android:layout_width="0dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="60dp"
+        app:layout_constraintEnd_toStartOf="@id/create_payment_fragment_toggle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/create_payment_fragment_small_currency_space"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingBottom="16dp"
+        app:layout_constraintEnd_toEndOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintStart_toStartOf="@id/create_payment_fragment_large_currency_space"
+        app:layout_constraintTop_toBottomOf="@id/create_payment_fragment_large_currency_space" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

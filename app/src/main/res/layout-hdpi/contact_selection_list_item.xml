@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.contacts.ContactSelectionListItem xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:defaultFocusHighlightEnabled="false"
+    android:focusable="true"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="30px">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <org.thoughtcrime.securesms.components.FromTextView
+                android:id="@+id/name"
+                style="@style/Signal.Text.Body"
+                android:layout_width="wrap_content"
+                android:layout_height="32px"
+                android:checkMark="?android:attr/listChoiceIndicatorMultiple"
+                android:drawablePadding="4dp"
+                android:ellipsize="marquee"
+                android:marqueeRepeatLimit="marquee_forever"
+                android:singleLine="true"
+                android:textColor="@color/white_not_focus"
+                android:textSize="24px"
+                tools:drawableStart="@drawable/ic_bell_24"
+                tools:drawableTint="@color/signal_icon_tint_secondary"
+                tools:text="Ottttooooooooo Ocataaaaaaaavius" />
+
+            <LinearLayout
+                android:id="@+id/number_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32px"
+                    android:layout_marginLeft="30px"
+                    android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white_not_focus"
+                    android:textDirection="ltr"
+                    android:textSize="24px"
+                    tools:text="+1 (555) 555-5555" />
+
+                <TextView
+                    android:id="@+id/label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32px"
+                    android:ellipsize="end"
+                    android:paddingStart="10dip"
+                    android:singleLine="true"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:textColor="@color/white_not_focus"
+                    android:textSize="24px"
+                    tools:ignore="RtlSymmetry"
+                    tools:text="Mobile" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <CheckBox
+            android:id="@+id/check_box"
+            style="@style/CustomCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:clickable="false"
+            android:focusable="false" />
+
+        <TextView
+            android:id="@+id/sms_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/ContactSelectionListItem__sms"
+            android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_text_secondary"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+</org.thoughtcrime.securesms.contacts.ContactSelectionListItem>

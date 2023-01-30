@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="bottom">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/place_chosen_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:contentDescription="@string/PlacePickerActivity_accept_address"
+        android:scaleType="center"
+        android:tint="@color/white"
+        app:backgroundTint="?attr/colorPrimary"
+        app:elevation="3dp"
+        app:fabSize="normal"
+        app:layout_anchor="@id/root_bottom_sheet"
+        app:layout_anchorGravity="top|end"
+        app:srcCompat="@drawable/ic_check_24" />
+
+    <LinearLayout
+        android:id="@+id/root_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/compose_divider_background"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="12dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/text_view_place_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="16dp"
+                    style="@style/Signal.Text.Body"
+                    android:fontFamily="sans-serif-medium"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/signal_text_primary"
+                    tools:text="Short address" />
+
+                <TextView
+                    android:id="@+id/text_view_place_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    style="@style/Signal.Text.Preview"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="@color/signal_text_secondary"
+                    tools:text="Precise address" />
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar_place"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:indeterminate="true"
+                android:visibility="invisible"
+                tools:visibility="visible" />
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

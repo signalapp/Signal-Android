@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="?android:windowBackground">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/camera_contacts_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:theme="?actionBarStyle"
+        app:title="@string/CameraContacts_select_signal_recipients"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/camera_contacts_top_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/search_toolbar_shadow"
+        app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/camera_contacts_empty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/no_contacts"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            style="@style/Signal.Text.Body"
+            android:text="@string/CameraContacts_no_signal_contacts"
+            android:fontFamily="sans-serif-medium"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:gravity="center_horizontal"
+            style="@style/Signal.Text.Body"
+            android:text="@string/CameraContacts_you_can_only_use_the_camera_button"/>
+
+        <Button
+            android:id="@+id/camera_contacts_invite_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center"
+            style="@style/Button.Borderless"
+            android:text="@string/CameraContacts_invite_a_contact_to_join_signal" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/camera_contacts_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/camera_contacts_footer_barrier"
+        app:layout_constraintTop_toBottomOf="@id/camera_contacts_toolbar" />
+
+    <View
+        android:id="@+id/camera_contacts_bottom_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@drawable/compose_divider_background"
+        app:layout_constraintBottom_toTopOf="@id/camera_contacts_footer_barrier" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/camera_contacts_footer_barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top"
+        app:constraint_referenced_ids="camera_contacts_selected_list,camera_contacts_send_button" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/camera_contacts_selected_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:paddingTop="22dp"
+        android:paddingBottom="22dp"
+        android:paddingStart="16dp"
+        android:clipToPadding="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/camera_contacts_send_button"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/camera_contacts_send_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="6dp"
+        android:tint="@color/white"
+        app:srcCompat="@drawable/ic_send_lock_24"
+        android:background="@drawable/camera_send_button_background"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="@id/camera_contacts_selected_list"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/camera_contacts_selected_list" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/camera_contacts_footer_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:constraint_referenced_ids="camera_contacts_send_button,camera_contacts_selected_list,camera_contacts_bottom_shadow" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

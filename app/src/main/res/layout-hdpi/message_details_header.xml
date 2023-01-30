@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/group_media_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="24dp"
+        android:paddingBottom="32dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp">
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_update"/>
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_sent_multimedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout="@layout/conversation_item_sent_multimedia"/>
+
+            <ViewStub
+                android:id="@+id/message_details_header_message_view_received_multimedia"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:visibility="visible"
+                android:layout="@layout/conversation_item_received_multimedia"/>
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            tools:visibility="visible">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/message_details_header_error_text"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:textSize="16sp"
+                android:padding="5dp"
+                tools:visibility="visible"
+                android:text="@string/message_details_header__issues_need_your_attention"
+                android:drawablePadding="4dp"
+                app:drawableStartCompat="@drawable/ic_info_outline_message_details_24"
+                android:gravity="center_vertical" />
+
+            <Button
+                android:id="@+id/message_details_header_resend_button"
+                android:layout_width="wrap_content"
+                android:layout_height="38sp"
+                style="@style/InfoButton"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:layout_gravity="center_vertical"
+                android:drawableStart="@drawable/ic_refresh_white_18dp"
+                android:text="@string/message_recipients_list_item__resend"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/message_details_header_message_metadata"
+            android:layout_marginTop="12dp"
+            android:layout_marginStart="@dimen/dsl_settings_gutter"
+            android:layout_marginEnd="@dimen/dsl_settings_gutter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/message_details_header_sent_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="@string/message_details_header__sent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/message_details_header_received_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="@string/message_details_header__received"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_sent_time" />
+
+            <TextView
+                android:id="@+id/message_details_header_expires_in"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="@string/message_details_header__disappears"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_received_time" />
+
+            <TextView
+                android:id="@+id/message_details_header_transport"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                tools:text="@string/message_details_header__via"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/message_details_header_expires_in" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="bottom"
+        android:background="@color/signal_inverse_transparent_05" />
+
+</FrameLayout>

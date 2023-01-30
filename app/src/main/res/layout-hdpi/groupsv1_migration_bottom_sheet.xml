@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="14dp"
+    android:paddingEnd="14dp"
+    android:orientation="vertical"
+    tools:theme="@style/Theme.Signal.RoundedBottomSheet.Light">
+
+    <TextView
+        android:id="@+id/gv1_migrate_title"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="20dp"
+        android:text="@string/GroupsV1MigrationInitiation_upgrade_to_new_group"
+        android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:textColor="@color/signal_text_primary"
+        android:gravity="center" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/paragraph_marker" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:text="@string/GroupsV1MigrationInitiation_new_groups_have_features_like_mentions"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textColor="@color/signal_text_primary" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/paragraph_marker" />
+
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:text="@string/GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    android:textColor="@color/signal_text_primary" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/gv1_migrate_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="75dp"
+                android:layout_marginTop="23dp"
+                android:indeterminate="true" />
+
+            <LinearLayout
+                android:id="@+id/gv1_migrate_invite_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/paragraph_marker" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/gv1_migrate_invite_title"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textColor="@color/signal_text_primary"
+                        tools:text="Plurized string for invited members." />
+
+                    <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                        android:id="@+id/gv1_migrate_invite_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="-12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/gv1_migrate_ineligible_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="23dp"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:src="@drawable/paragraph_marker" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="14dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/gv1_migrate_ineligible_title"
+                        android:layout_height="wrap_content"
+                        android:layout_width="wrap_content"
+                        android:textAppearance="@style/TextAppearance.Signal.Body1"
+                        android:textColor="@color/signal_text_primary"
+                        tools:text="Plurized string for ineligible members." />
+
+                    <org.thoughtcrime.securesms.groups.ui.GroupMemberListView
+                        android:id="@+id/gv1_migrate_ineligible_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginStart="-12dp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/gv1_migrate_upgrade_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="20dp"
+                style="@style/Button.Primary"
+                android:text="@string/GroupsV1MigrationInitiation_upgrade_this_group" />
+
+            <Button
+                android:id="@+id/gv1_migrate_cancel_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                style="@style/Button.Borderless"
+                android:text="@android:string/cancel" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

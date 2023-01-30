@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/voice_note_draft_delete"
+        android:layout_width="@dimen/conversation_compose_height"
+        android:layout_height="@dimen/conversation_compose_height"
+        android:layout_gravity="center_vertical"
+        android:layout_marginStart="4dp"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/ic_trash_filled_24"
+        app:tint="@color/signal_alert_primary" />
+
+    <org.thoughtcrime.securesms.components.AudioView
+        android:id="@+id/voice_note_audio_view"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/conversation_compose_height"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="16dp"
+        android:layout_weight="1"
+        app:audioView_mode="draft"
+        app:foregroundTintColor="@color/signal_icon_tint_secondary"
+        app:progressAndPlayTint="@android:color/transparent"
+        app:waveformPlayedBarsColor="@color/signal_icon_tint_secondary"
+        app:waveformThumbTint="@color/signal_icon_tint_secondary"
+        app:waveformUnplayedBarsColor="@color/signal_inverse_transparent_40" />
+
+</merge>

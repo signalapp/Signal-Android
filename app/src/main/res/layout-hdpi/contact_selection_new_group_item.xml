@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Signal.Text.Body"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:paddingLeft="30px"
+    android:singleLine="true"
+    android:textSize="24px"
+    android:text="@string/contact_selection_activity__new_group"
+    android:textColor="@color/white_not_focus"
+    android:textAlignment="viewStart"
+    tools:ignore="RtlSymmetry" />

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="16dp"
+    android:layout_marginEnd="16dp"
+    android:background="@drawable/rounded_outline">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/payment_info_card_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:theme="@style/Signal.Toolbar.PaymentInfoCard"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextAppearance="@style/TextAppearance.Signal.Title.InfoCard"
+        tools:menu="@menu/pin_skip"
+        tools:title="@string/payment_info_card_about_mobilecoin" />
+
+    <ImageView
+        android:id="@+id/payment_info_card_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_info_card_toolbar"
+        app:layout_constraintVertical_bias="0"
+        tools:srcCompat="@drawable/circle_ultramarine" />
+
+    <TextView
+        android:id="@+id/payment_info_card_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="42dp"
+        android:lineSpacingExtra="8sp"
+        android:textAppearance="@style/TextAppearance.Signal.Body2"
+        app:layout_constraintBottom_toTopOf="@id/payment_info_card_learn_more"
+        app:layout_constraintEnd_toStartOf="@id/payment_info_card_icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_info_card_toolbar"
+        app:layout_constraintVertical_bias="0"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_goneMarginEnd="16dp"
+        tools:text="@string/payment_info_card_mobilecoin_is_a_new_privacy_focused_digital_currency" />
+
+    <TextView
+        android:id="@+id/payment_info_card_learn_more"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="42dp"
+        android:background="?selectableItemBackground"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:paddingStart="8dp"
+        android:paddingTop="8dp"
+        android:paddingEnd="8dp"
+        android:text="@string/LearnMoreTextView_learn_more"
+        android:textAppearance="@style/TextAppearance.Signal.Body2.Bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/payment_info_card_icon"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/payment_info_card_message"
+        app:layout_constraintVertical_bias="0"
+        tools:textColor="?colorAccent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

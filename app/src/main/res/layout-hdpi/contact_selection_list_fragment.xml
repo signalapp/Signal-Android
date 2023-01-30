@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:defaultFocusHighlightEnabled="false">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer">
+
+        <RelativeLayout
+            android:id="@+id/rl_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:scrollbars="none"
+                android:scrollbarThumbVertical="@drawable/contact_selection_scrollbar_thumb"
+                android:defaultFocusHighlightEnabled="false"
+                tools:listitem="@layout/contact_selection_list_item" />
+        </RelativeLayout>
+        <TextView
+            android:id="@android:id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:gravity="center|center_vertical"
+            android:text="@string/contact_selection_group_activity__finding_contacts"
+            android:textSize="20sp" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <LinearLayout
+        android:id="@+id/show_contacts_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chipGroupScrollContainer"
+        tools:visibility="visible">
+
+
+        <TextView
+            android:id="@+id/show_contacts_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:background="@color/transparent"
+            android:defaultFocusHighlightEnabled="false"
+            android:padding="10dp"
+            android:text="@string/contact_selection_list_fragment__show_contacts"
+            android:textColor="@color/white" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.pnikosis.materialishprogress.ProgressWheel
+                android:id="@+id/progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="invisible"
+                app:matProg_barColor="@color/core_ultramarine_dark"
+                app:matProg_barWidth="6dp"
+                app:matProg_circleRadius="145dp"
+                app:matProg_progressIndeterminate="true"
+                app:matProg_rimColor="@color/core_ultramarine"
+                tools:visibility="visible" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:importantForAccessibility="no"
+                android:src="@drawable/no_contacts" />
+
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/show_contacts_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="50dp"
+            android:gravity="center"
+            android:lineSpacingMultiplier="1.3"
+            android:text="@string/contact_selection_list_fragment__signal_needs_access_to_your_contacts_in_order_to_display_them"
+            android:textSize="15sp" />
+
+    </LinearLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/chipGroupScrollContainer"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:scrollbars="none"
+        android:visibility="gone"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="gone">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginEnd="96dp"
+                android:animateLayoutChanges="true"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:text="Example"
+                    tools:visibility="visible" />
+
+            </com.google.android.material.chip.ChipGroup>
+        </FrameLayout>
+
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:alpha="0"
+        android:background="@drawable/toolbar_shadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/swipe_refresh" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

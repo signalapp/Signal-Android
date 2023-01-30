@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sub_menu"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_vertical"
+    android:defaultFocusHighlightEnabled="false"
+    android:focusable="true"
+    android:textColor="@color/white_not_focus"
+    android:paddingLeft="30px"
+    android:textSize="24px"
+    android:clickable="true"
+    tools:ignore="UnusedAttribute" />

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/selected_indicator"
+    android:layout_width="56dp"
+    android:layout_height="56dp"
+    android:alpha="0"
+    app:layout_constraintBottom_toBottomOf="@id/image_container"
+    app:layout_constraintEnd_toEndOf="@id/image_container"
+    app:layout_constraintStart_toStartOf="@id/image_container"
+    app:layout_constraintTop_toTopOf="@id/image_container"
+    tools:alpha="1"
+    tools:showIn="@layout/media_overview_detail_item_media">
+
+    <ImageView
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_gravity="bottom|end"
+        android:background="@drawable/circle_tintable"
+        android:contentDescription="@string/MediaOverviewActivity_Selected_description"
+        android:padding="1dp"
+        android:scaleType="centerInside"
+        app:backgroundTint="@color/signal_background_primary"
+        app:srcCompat="@drawable/ic_check_circle_solid_20" />
+
+</FrameLayout>

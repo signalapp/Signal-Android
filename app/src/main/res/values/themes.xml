@@ -31,6 +31,7 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionModeOverlay">true</item>
+        <item name="android:windowBackground">@drawable/mp02_splash_bg</item>
 
         <item name="theme_type">light</item>
         <item name="colorPrimary">@color/core_ultramarine</item>
@@ -644,6 +645,23 @@
         <item name="colorControlNormal">@color/signal_accent_primary</item>
         <item name="colorControlHighlight">@color/signal_accent_primary</item>
         <item name="colorControlActivated">@color/signal_accent_primary</item>
+    </style>
+
+    <style name="Mp02.Signal.PreferenceActivity" parent="Theme.AppCompat.NoActionBar">
+        <item name="preferenceTheme">@style/Mp02.Signal.PreferenceTheme</item>
+    </style>
+
+    <style name="Mp02.Signal.PreferenceTheme" parent="PreferenceThemeOverlay">
+        <item name="android:scrollbars">none</item>
+        <item name="preferenceStyle">@style/Mp02.Signal.PreferenceTheme.PreferenceStyle</item>
+    </style>
+
+    <style name="Mp02.Signal.PreferenceTheme.PreferenceStyle">
+        <item name="layout">@layout/preference_material_mp02</item>
+        <item name="allowDividerAbove">false</item>
+        <item name="allowDividerBelow">true</item>
+        <item name="singleLineTitle">false</item>
+        <item name="iconSpaceReserved">false</item>
     </style>
 
 </resources>

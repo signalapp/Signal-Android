@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/leaveGroup"
+    style="@style/Mp02.Signal.ListTextView"
+    android:text="@string/ManageGroupActivity_leave_group"
+    tools:ignore="UnusedAttribute"
+    android:visibility="gone"/>

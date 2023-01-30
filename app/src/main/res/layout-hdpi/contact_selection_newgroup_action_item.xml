@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Signal.Text.Body"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:layout_marginLeft="30px"
+    android:singleLine="true"
+    android:textSize="24px"
+    android:textColor="@color/white_not_focus"
+    android:text="@string/text_secure_normal__menu_new_group"
+    android:textAlignment="viewStart"
+    tools:ignore="RtlSymmetry" />
+

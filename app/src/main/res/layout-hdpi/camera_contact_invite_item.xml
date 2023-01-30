@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/camera_contacts_horizontal_margin"
+    android:paddingEnd="@dimen/camera_contacts_horizontal_margin"
+    android:paddingTop="30dp"
+    android:paddingBottom="10dp"
+    android:gravity="center"
+    android:background="?selectableItemBackground">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Signal.Text.Preview"
+        android:text="@string/CameraContacts_cant_find_who_youre_looking_for"/>
+
+    <Button
+        android:id="@+id/camera_contact_invite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        style="@style/Button.Borderless"
+        android:text="@string/CameraContacts_invite_a_contact_to_join_signal" />
+
+</LinearLayout>

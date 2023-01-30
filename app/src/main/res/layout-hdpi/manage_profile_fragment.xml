@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView
+    android:id="@+id/scrollview_profile"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/manage_profile_name_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="30px"
+        android:layout_marginBottom="16dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="PxUsage">
+
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/manage_profile_name"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          style="@style/Mp02.Signal.Text.CommonTextButton"
+          android:textAlignment="viewStart"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          tools:text="Peter Parker"
+          tools:textSize="24dp"
+          android:singleLine="true"
+          android:focusable="true"
+          android:defaultFocusHighlightEnabled="false"
+          tools:ignore="UnusedAttribute" />
+
+      <TextView
+          android:id="@+id/manage_profile_name_subtitle"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          style="@style/Signal.Text.Preview"
+          android:text="@string/ManageProfileFragment_your_name"
+          tools:textSize="24dp"
+          android:visibility="visible"
+          android:textColor="@color/signal_text_secondary"
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_name"
+          app:layout_constraintStart_toStartOf="@id/manage_profile_name"
+          app:layout_constraintEnd_toEndOf="parent"
+          tools:singleLine="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/manage_profile_username_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="30px"
+        android:layout_marginBottom="16dp"
+        android:background="?selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/manage_profile_name_container"
+        tools:ignore="PxUsage,RtlHardcoded,RtlSymmetry">
+
+
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/manage_profile_username"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          style="@style/Mp02.Signal.Text.CommonTextButton"
+          android:textAlignment="viewStart"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          tools:text="\@spiderman"
+          tools:textSize="24dp"
+          tools:singleLine="true"
+          android:ellipsize="marquee"
+          android:marqueeRepeatLimit="marquee_forever"
+          android:focusable="true"
+          tools:defaultFocusHighlightEnabled="false" />
+
+      <TextView
+          android:id="@+id/manage_profile_username_subtitle"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          style="@style/Signal.Text.Preview"
+          android:text="@string/ManageProfileFragment_your_username"
+          android:textSize="24dp"
+          android:visibility="gone"
+          android:textColor="@color/signal_text_secondary"
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_username"
+          app:layout_constraintStart_toStartOf="@id/manage_profile_username"
+          app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/manage_profile_about_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="30px"
+        android:background="?selectableItemBackground"
+        app:layout_constraintTop_toBottomOf="@id/manage_profile_username_container"
+        tools:ignore="PxUsage,RtlHardcoded,RtlSymmetry">
+
+      <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+          android:id="@+id/manage_profile_about"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          style="@style/Mp02.Signal.Text.CommonTextButton"
+          android:textAlignment="viewStart"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:emoji_forceCustom="true"
+          tools:text="Photographer for the Daily Bugle"
+          tools:textSize="24dp"
+          tools:singleLine="true"
+          android:focusable="true"
+          android:defaultFocusHighlightEnabled="false"
+          tools:ignore="UnusedAttribute" />
+
+      <TextView
+          android:id="@+id/manage_profile_about_subtitle"
+          android:layout_width="0dp"
+          android:layout_height="0dp"
+          style="@style/Signal.Text.Preview"
+          android:text="@string/ManageProfileFragment_write_a_few_words_about_yourself"
+          android:textSize="24dp"
+          android:visibility="visible"
+          android:singleLine="true"
+          android:defaultFocusHighlightEnabled="false"
+          android:ellipsize="marquee"
+          android:marqueeRepeatLimit="marquee_forever"
+          android:textColor="@color/signal_text_secondary"
+          app:layout_constraintTop_toBottomOf="@id/manage_profile_about"
+          app:layout_constraintStart_toStartOf="@id/manage_profile_about"
+          app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <org.thoughtcrime.securesms.util.views.LearnMoreTextView
+        android:id="@+id/description_text"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:paddingLeft="30px"
+        tools:defaultFocusHighlightEnabled="false"
+        android:layout_marginBottom="16dp"
+        android:text="@string/CreateProfileActivity_signal_profiles_are_end_to_end_encrypted"
+        android:textSize="24dp"
+        android:singleLine="true"
+        android:defaultFocusHighlightEnabled="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manage_profile_about_container"
+        app:layout_constraintVertical_bias="1.0" />
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

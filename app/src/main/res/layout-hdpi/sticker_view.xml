@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:parentTag="org.thoughtcrime.securesms.components.BorderlessImageView">
+
+    <View
+        android:id="@+id/sticker_missing_shade"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/sticker_missing_background"
+        android:visibility="gone"
+        tools:visibility="visible"/>
+
+    <org.thoughtcrime.securesms.components.ThumbnailView
+        android:id="@+id/sticker_thumbnail"
+        android:layout_width="@dimen/media_bubble_sticker_dimens"
+        android:layout_height="@dimen/media_bubble_sticker_dimens"
+        app:thumbnail_radius="0dp"
+        app:thumbnail_fit="fit_center"
+        app:minWidth="@dimen/media_bubble_min_width_solo"
+        app:maxWidth="@dimen/media_bubble_max_width"
+        app:minHeight="@dimen/media_bubble_min_height"
+        app:maxHeight="@dimen/media_bubble_max_height" />
+
+</merge>

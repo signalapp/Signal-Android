@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="44dp"
+    android:layout_height="44dp"
+    android:layout_marginStart="8dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/media_selection_image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.MediaSelection" />
+
+    <ImageView
+        android:id="@+id/media_selection_play_overlay"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:src="@drawable/v2_media_gallery_item_video_overlay"
+        android:visibility="gone" />
+
+</FrameLayout>

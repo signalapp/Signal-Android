@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Copyright (C) 2009 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/base_item_view_bg"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="292dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:includeFontPadding="false"
+        android:paddingLeft="@dimen/item_padding_x"
+        android:singleLine="true"
+        android:textColor="@drawable/app_text_color"
+        android:textSize="@dimen/item_textsize" />
+    <!--<RadioButton-->
+    <!--android:id="@android:id/checkbox"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_marginRight ="5dp"-->
+    <!--android:focusable="false"-->
+    <!--android:clickable="true" />-->
+    <LinearLayout
+        android:id="@+id/check_layout"
+        android:layout_width="28px"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:paddingRight="12px"
+        android:paddingBottom="5px">
+
+        <CheckBox
+            android:id="@android:id/checkbox"
+            android:layout_width="18px"
+            android:layout_height="18px"
+            android:background="@drawable/custom_checkbox"
+            android:button="@null" />
+    </LinearLayout>
+</LinearLayout>

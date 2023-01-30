@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/menu_item"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:defaultFocusHighlightEnabled="false"
+    android:ellipsize="marquee"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:paddingLeft="25px"
+    android:singleLine="true"
+    android:textColor="#80FFFFFF"
+    android:textSize="24px"
+    tools:ignore="UnusedAttribute" />
+

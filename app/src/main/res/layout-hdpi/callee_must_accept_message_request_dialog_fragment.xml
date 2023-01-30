@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <org.thoughtcrime.securesms.components.AvatarImageView
+        android:id="@+id/avatar"
+        android:layout_width="112dp"
+        android:layout_height="112dp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/description"
+        style="@style/TextAppearance.AppCompat.Body1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:textColor="@color/core_grey_05"
+        android:textSize="16sp"
+        app:lineHeight="22sp"
+        tools:text="+1234567890 will get a message request from you. You can call once your message request is accepted." />
+
+    <Button
+        android:id="@+id/okay"
+        style="@style/Widget.Signal.Button.CalleeDialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@android:string/ok" />
+
+</LinearLayout>

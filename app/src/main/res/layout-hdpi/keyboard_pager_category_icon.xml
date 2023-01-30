@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackground">
+
+    <View
+        android:id="@+id/category_icon_selected"
+        android:layout_width="@dimen/keyboard_toolbar_height"
+        android:layout_height="@dimen/keyboard_toolbar_height"
+        android:background="@drawable/keyboard_pager_fragment_category_selected" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/category_icon"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_gravity="center"
+        android:scaleType="fitCenter"
+        app:tint="@color/icon_tab_selector"
+        tools:srcCompat="@drawable/ic_recent_20" />
+
+</FrameLayout>

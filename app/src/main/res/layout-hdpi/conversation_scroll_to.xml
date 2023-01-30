@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <ImageButton
+        android:id="@+id/conversation_scroll_to_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/scroll_to_bottom_background"
+        android:contentDescription="@string/conversation_fragment__scroll_to_the_bottom_content_description"
+        android:elevation="1dp"
+        android:scaleType="center"
+        android:tint="@color/conversation_scroll_to_bottom_foreground_color"
+        tools:src="@drawable/ic_chevron_down_20" />
+
+    <TextView
+        android:id="@+id/conversation_scroll_to_count"
+        style="@style/Signal.Text.Caption"
+        android:layout_width="wrap_content"
+        android:layout_height="16dp"
+        android:layout_gravity="top|center"
+        android:layout_marginBottom="26dp"
+        android:background="@drawable/unread_count_background"
+        android:elevation="1dp"
+        android:gravity="center"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:textColor="@color/core_white"
+        android:textSize="12dp"
+        tools:ignore="SpUsage"
+        tools:text="999+" />
+
+</merge>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/volume_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/sim_background"
+    android:defaultFocusHighlightEnabled="false"
+    android:focusable="false" >
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24px"
+        />
+    <TextView
+        android:id="@+id/volume_index"
+        android:layout_width="match_parent"
+        android:layout_height="192px"
+        android:background="#00000000"
+        android:textSize="77px"
+        android:gravity="center_horizontal"
+        android:paddingTop="29px"
+        android:textColor="#FFFFFFFF"
+        android:focusable="false" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="24px"
+        />
+</LinearLayout>
+
+

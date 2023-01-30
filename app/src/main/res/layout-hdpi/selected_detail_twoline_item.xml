@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="32px"
+    android:paddingStart="35dp"
+    android:paddingEnd="5dp"
+    android:focusable="true"
+    android:clickable="true"
+    android:defaultFocusHighlightEnabled="false"
+    android:orientation="vertical"
+    tools:targetApi="o"
+    android:descendantFocusability="blocksDescendants">
+
+    <TextView
+        android:id="@+id/selected_item_twoline_title"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ellipsize="marquee"
+        android:focusable="false"
+        android:marqueeRepeatLimit="marquee_forever" />
+
+    <TextView
+        android:id="@+id/selected_item_twoline_msg"
+        style="@style/Mp02.Signal.Text.BigCommonTextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:focusable="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:textCursorDrawable="@drawable/mp02_cursor_style"
+        android:visibility="visible" />
+</LinearLayout>

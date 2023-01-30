@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/old_device_transfer_instructions_fragment_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_arrow_left_24" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        android:scrollIndicators="bottom"
+        tools:ignore="UnusedAttribute">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                android:scaleX="@integer/image_scale_flip"
+                app:srcCompat="@drawable/ic_transfer_account" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:gravity="center"
+                android:lines="1"
+                android:text="@string/OldDeviceTransferInstructions__transfer_account"
+                android:textAppearance="@style/Signal.Text.Headline"
+                app:autoSizeMaxTextSize="28sp"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeTextType="uniform" />
+
+            <androidx.gridlayout.widget.GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="16dp"
+                android:layout_weight="1"
+                app:alignmentMode="alignBounds"
+                app:columnCount="2">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/OldDeviceTransferInstructions__first_bullet"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/OldDeviceTransferInstructions__download_signal_on_your_new_android_device"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    app:layout_columnWeight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/OldDeviceTransferInstructions__second_bullet"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    android:text="@string/OldDeviceTransferInstructions__tap_on_transfer_or_restore_account"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    app:layout_columnWeight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/OldDeviceTransferInstructions__third_bullet"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue"
+                    android:textAlignment="viewStart"
+                    android:textAppearance="@style/TextAppearance.Signal.Body1"
+                    app:layout_columnWeight="1" />
+
+            </androidx.gridlayout.widget.GridLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/old_device_transfer_instructions_fragment_continue"
+                style="@style/Signal.Widget.Button.Large.Primary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:text="@string/OldDeviceTransferInstructions__continue" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

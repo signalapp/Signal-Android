@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.AppCompatTextView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/avatar_selection_bottom_sheet_dialog_fragment_recycler"
+    android:layout_width="match_parent"
+    android:layout_height="?listPreferredItemHeight"
+    android:drawablePadding="16dp"
+    android:gravity="center_vertical"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:textSize="16sp"
+    app:drawableTint="@color/signal_icon_tint_primary" />

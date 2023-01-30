@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:minHeight="56dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <FrameLayout
+        android:id="@+id/image_container"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <ImageView
+            android:id="@+id/icon"
+            android:layout_width="38dp"
+            android:layout_height="50dp"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_document_large" />
+
+        <TextView
+            android:id="@+id/document_extension"
+            style="@style/Signal.Text.Caption"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:clickable="false"
+            android:textAppearance="@style/TextAppearance.Signal.Subtitle.Bold"
+            android:textColor="@color/core_black"
+            android:visibility="visible"
+            tools:text="pdf"
+            tools:visibility="visible" />
+    </FrameLayout>
+
+    <include layout="@layout/media_overview_selected_overlay" />
+
+    <include layout="@layout/media_overview_detail_text" />
+
+    <View
+        android:id="@+id/audio"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

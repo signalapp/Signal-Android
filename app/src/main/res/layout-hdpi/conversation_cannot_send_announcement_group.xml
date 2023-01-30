@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/signal_transparent_80"
+    android:gravity="center"
+    android:padding="17dp"
+    android:visibility="gone"
+    style="@style/Signal.Text.Preview"
+    tools:text="Only admins can send messages."
+    android:textColor="@color/signal_text_secondary" />

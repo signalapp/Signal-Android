@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/kb_aware_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/signal_background_secondary">
+
+        <org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView
+            android:id="@+id/emoji_search_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:transitionName="emoji_search_transition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:search_hint="@string/KeyboardPagerFragment_search_emoji"
+            app:show_always="true" />
+
+        <TextView
+            android:id="@+id/emoji_search_empty"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/EmojiSearchFragment__no_results_found"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/emoji_search_results_container"
+            app:layout_constraintTop_toTopOf="@id/emoji_search_results_container"
+            tools:visibility="visible" />
+
+        <FrameLayout
+            android:id="@+id/emoji_search_results_container"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/emoji_drawer_item_width"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emoji_search_view" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</org.thoughtcrime.securesms.components.KeyboardAwareLinearLayout>
