@@ -62,6 +62,7 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/edit_kbs_pin_input"
+                style="@style/Widget.Signal.TextInputEditText.Registration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"

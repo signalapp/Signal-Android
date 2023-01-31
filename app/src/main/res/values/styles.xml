@@ -505,7 +505,13 @@
         <item name="boxCornerRadiusTopEnd">4dp</item>
         <item name="boxCornerRadiusTopStart">4dp</item>
         <item name="hintTextColor">@color/signal_colorPrimary</item>
-        <item name="android:textColorHint">@color/signal_colorPrimary</item>
+        <item name="android:textColorHint">@color/signal_colorOnSurfaceVariant</item>
+        <item name="android:textCursorDrawable">@color/signal_colorPrimary</item>
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="Widget.Signal.TextInputEditText.Registration" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
+        <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>
     </style>
 
 
@@ -515,8 +521,6 @@
         <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
         <item name="boxCornerRadiusTopEnd">2dp</item>
         <item name="boxCornerRadiusTopStart">2dp</item>
-        <item name="hintTextColor">@color/signal_colorPrimary</item>
-        <item name="android:textColorHint">@color/signal_colorPrimary</item>
     </style>
 
     <style name="Widget.MaterialComponents.Button.TextButton.Dialog">

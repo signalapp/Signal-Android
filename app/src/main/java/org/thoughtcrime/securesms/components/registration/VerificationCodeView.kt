@@ -11,6 +11,7 @@ class VerificationCodeView @JvmOverloads constructor(context: Context, attrs: At
   private val containers: MutableList<TextInputLayout> = ArrayList(6)
   private var listener: OnCodeEnteredListener? = null
   private var index = 0
+
   init {
     inflate(context, R.layout.verification_code_view, this)
     containers.add(findViewById(R.id.container_zero))
@@ -19,6 +20,8 @@ class VerificationCodeView @JvmOverloads constructor(context: Context, attrs: At
     containers.add(findViewById(R.id.container_three))
     containers.add(findViewById(R.id.container_four))
     containers.add(findViewById(R.id.container_five))
+
+    containers.forEach { it.editText?.showSoftInputOnFocus = false }
   }
 
   fun setOnCompleteListener(listener: OnCodeEnteredListener?) {
@@ -31,7 +34,10 @@ class VerificationCodeView @JvmOverloads constructor(context: Context, attrs: At
 
     if (index == containers.size) {
       listener?.onCodeComplete(containers.joinToString("") { it.editText?.text.toString() })
+      return
     }
+
+    containers[index].editText?.requestFocus()
   }
 
   fun delete() {

@@ -51,6 +51,8 @@
                     android:maxLines="1"
                     android:padding="0dp"
                     android:singleLine="true"
+                    android:textColor="@color/signal_colorOnSurfaceVariant"
+                    android:textColorHint="@color/signal_colorOnSurfaceVariant"
                     tools:text="+1" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -67,7 +69,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:imeOptions="actionDone"
-                    android:inputType="phone" />
+                    android:inputType="phone"
+                    style="@style/Widget.Signal.TextInputEditText.Registration">
+
+                    <requestFocus />
+                </com.google.android.material.textfield.TextInputEditText>
 
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>

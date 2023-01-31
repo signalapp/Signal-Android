@@ -43,6 +43,10 @@ class RegistrationNumberInputController(
     spinnerView.addTextChangedListener(CountryCodeEntryListener())
   }
 
+  fun prepopulateCountryCode() {
+    spinnerView.setText(supportedCountryPrefixes[0].toString())
+  }
+
   private fun advanceToPhoneNumberInput() {
     if (!isUpdating) {
       phoneNumberInputLayout.requestFocus()

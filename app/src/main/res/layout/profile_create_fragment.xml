@@ -143,7 +143,7 @@
 
                         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                             android:id="@+id/given_name"
-                            style="@style/Signal.Text.Body"
+                            style="@style/Widget.Signal.TextInputEditText.Registration"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -176,7 +176,7 @@
 
                         <org.thoughtcrime.securesms.components.emoji.EmojiEditText
                             android:id="@+id/family_name"
-                            style="@style/Signal.Text.Body"
+                            style="@style/Widget.Signal.TextInputEditText.Registration"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -264,9 +264,9 @@
 
         <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
             android:id="@+id/finish_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:layout_gravity="center_horizontal"
+            android:layout_gravity="end"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="32dp"

@@ -93,7 +93,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_backup_outline_60"
-                app:tint="@color/signal_accent_primary" />
+                app:tint="@color/signal_colorPrimary" />
 
             <TextView
                 android:id="@+id/transfer_or_restore_fragment_restore_header"

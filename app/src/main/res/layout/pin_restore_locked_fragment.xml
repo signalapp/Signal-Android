@@ -5,30 +5,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/pin_locked_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="49dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/PinRestoreLockedFragment_create_your_pin"
-        android:textAppearance="@style/TextAppearance.Signal.Title1"
+        android:textAppearance="@style/Signal.Text.HeadlineMedium"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
     <TextView
         android:id="@+id/pin_locked_description"
+        style="@style/Signal.Text.BodyLarge"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="27dp"
-        android:gravity="center_horizontal"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         android:minHeight="66dp"
-        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="@color/core_grey_60"
         android:text="@string/PinRestoreLockedFragment_youve_run_out_of_pin_guesses"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +39,7 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/pin_locked_next"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
