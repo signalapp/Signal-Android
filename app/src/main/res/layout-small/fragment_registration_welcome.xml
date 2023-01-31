@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/Mp02.Signal.Background"
-    android:padding="@dimen/pigeon_small_margin"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:padding="@dimen/pigeon_small_margin"
+    tools:viewBindingIgnore="true">
 
     <ImageView
         android:id="@+id/image"
@@ -14,8 +14,8 @@
         android:layout_height="0dp"
         android:layout_margin="16dp"
         android:importantForAccessibility="no"
-        android:visibility="gone"
         android:src="@drawable/welcome"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,11 +26,11 @@
         style="@style/Mp02.Signal.Text.CommonTextButton.NoFocus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/white_not_focus"
-        android:layout_marginTop="@dimen/pigeon_normal_margin"
         android:layout_marginStart="@dimen/pigeon_normal_margin"
+        android:layout_marginTop="@dimen/pigeon_normal_margin"
         android:gravity="center"
         android:text="@string/RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message"
+        android:textColor="@color/white_not_focus"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,9 +39,9 @@
         style="@style/Mp02.Signal.Text.CommonTextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:ellipsize="end"
         android:layout_marginStart="@dimen/pigeon_normal_margin"
+        android:ellipsize="end"
+        android:gravity="center"
         android:text="@string/RegistrationActivity_terms_and_privacy"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
@@ -61,10 +61,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:visibility="gone"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:text="@string/registration_activity__transfer_or_restore_account"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/welcome_continue_button"
         app:layout_constraintStart_toStartOf="@+id/welcome_continue_button" />
