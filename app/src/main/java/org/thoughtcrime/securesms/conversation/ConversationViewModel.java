@@ -205,7 +205,7 @@ public class ConversationViewModel extends ViewModel {
 
     scheduledMessageCount = threadId
         .observeOn(Schedulers.io())
-        .flatMap(scheduledMessagesRepository::getScheduledMessageCount);
+        .switchMap(scheduledMessagesRepository::getScheduledMessageCount);
 
     Observable<Recipient> liveRecipient = recipientId.distinctUntilChanged().switchMap(id -> Recipient.live(id).asObservable());
 
