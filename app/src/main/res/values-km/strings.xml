@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ការបម្រុងទុករបស់អ្នកមានឯកសារមួយដែលមានទំហំធំខ្លាំងណាស់ដែលមិនអាចបម្រុងទុកបានទេ។ សូមលុបវា ហើយបង្កើតការបម្រុងទុកថ្មី។</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ចុច ដើម្បីគ្រប់គ្រងការបម្រុងទុក។</string>
     <string name="RegistrationActivity_wrong_number">ខុសលេខ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">ហៅមកខ្ញុំជំនួសវិញ \n (ទំនេរក្នុងរយៈពេល %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ទាក់ទងជំនួយ Signal</string>
     <string name="RegistrationActivity_code_support_subject">ការចុះឈ្មោះ Signal - ការផ្ទៀងផ្ទាត់កូដសម្រាប់ Android</string>
     <string name="RegistrationActivity_incorrect_code">លេខកូដមិនត្រឹមត្រូវ</string>

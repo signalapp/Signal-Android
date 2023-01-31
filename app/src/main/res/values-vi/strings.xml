@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Bản lưu dự phòng của bạn chứa một tập tin rất lớn và không thể được sao lưu. Vui lòng xóa tập tin đó và tạo một bản lưu dự phòng mới.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Nhấn để quản lý các bản sao lưu.</string>
     <string name="RegistrationActivity_wrong_number">Sai số điện thoại?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Hãy gọi tôi \n (Khả dụng sau %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Liên lạc Bộ phận hỗ trợ Signal</string>
     <string name="RegistrationActivity_code_support_subject">Đăng ký Signal - Mã Xác minh cho Android</string>
     <string name="RegistrationActivity_incorrect_code">Mã không đúng</string>

@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Τελευταίο αντίγραφο ασφαλείας: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Φάκελος αντίγραφου ασφαλείας</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Εφεδρική ώρα</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Επιβεβαίωση συνθηματικού αντιγράφου ασφαλείας</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Δοκίμασε το συνθηματικό του αντιγράφου ασφαλείας σου και επιβεβαίωσε ότι ταιριάζει.</string>
     <string name="BackupsPreferenceFragment__turn_on">Ενεργοποίηση</string>
@@ -633,47 +633,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s στις %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Αύριο</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Απόψε</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Προγραμματισμένα μηνύματα</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Επιλογή ημερομηνίας και ώρας</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Προγραμματισμένα μηνύματα</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Όταν στέλνεις ένα προγραμματισμένο μήνυμα, βεβαιώσου ότι η συσκευή σου θα είναι ενεργοποιημένη και συνδεδεμένη στο διαδίκτυο τη στιγμή της αποστολής. Εάν όχι, το μήνυμά σου θα σταλεί όταν η συσκευή σου επανασυνδεθεί.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Εντάξει</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Για να ενεργοποιήσεις τον προγραμματισμό μηνύματος:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Για να ενεργοποιήσεις ξανά τον προγραμματισμό μηνύματος:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Επιλογή ημερομηνίας</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Επιλογή ώρας</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Προγραμματισμός μηνύματος</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Προγραμματισμός αποστολής</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Όλες οι ώρες σε (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Αποστολή τώρα</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Επαναπρογραμματισμός</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Διαγραφή</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Διαγραφή επιλεγμένου προγραμματισμένου μηνύματος;</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Διαγραφή προγραμματισμένου μηνύματος…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Η συνομιλία ανανεώθηκε</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">Διάλεξε τη χώρα σου</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Πρέπει να γράψεις τον κωδικό της χώρας σου
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Παρακαλώ γράψε έναν έγκυρο αριθμό τηλεφώνου για να εγγραφείς.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Γράψε έναν έγκυρο αριθμό τηλεφώνου για να εγγραφείς.</string>
     <string name="RegistrationActivity_invalid_number">Μη έγκυρος αριθμός</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Ο αριθμός που έγραψες (%1$s) δεν είναι έγκυρος.
     </string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Σφάλμα κατά τη διαγραφή του μηνύματος, το μήνυμα μπορεί να υπάρχει ακόμα</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Διάβασε περισσότερα</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d νέα μηνύματα σε %2$d συνομιλίες</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">Μη ασφαλές SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Μη ασφαλές MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Προγραμματισμός μηνύματος</string>
     <string name="conversation_activity__from_sim_name">Από%1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Αποστολή</string>
@@ -3148,8 +3148,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">Προβολή όλων</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d προγραμματισμένο μήνυμα</item>
+        <item quantity="other">%1$d προγραμματισμένα μηνύματα</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Δημιουργία νέου PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Μπορείς να αλλάξεις το PIN σου εφ\' όσον αυτή η συσκευή είναι εγγεγραμμένη.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Δημιουργία του PIN σου</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Τα PIN μπορούν να σε βοηθήσουν να επαναφέρεις τον λογαριασμό σου και να διατηρήσεις τις πληροφορίες σου κρυπτογραφημένες με το Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Επέλεξε ενα δυνατότερο PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Τα PIN δεν ταιριάζουν. Ξαναδοκίμασε.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Γράψε ξανά το PIN που μόλις δημιούργησες.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Επιβεβαίωσε το PIN σου.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Η δημιουργία PIN απέτυχε</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Το PIN δεν αποθηκεύτηκε. Θα σου ζητήσουμε να ορίσεις ένα PIN αργότερα.</string>
@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Το αντίγραφο ασφαλείας σου περιέχει ένα πολύ μεγάλο αρχείο που δεν μπορεί να αντιγραφεί. Διάγραψέ το και δημιούργησε ένα καινούργιο αντίγραφο ασφαλείας.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Πάτα για διαχείριση αντίγραφων ασφαλείας.</string>
     <string name="RegistrationActivity_wrong_number">Λάθος αριθμός;</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Καλέστε με \n (Διαθέσιμο σε %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Επικοινωνία με την Υποστήριξη Signal</string>
     <string name="RegistrationActivity_code_support_subject">Εγγραφή Signal - Κωδικός επαλήθευσης για Android</string>
     <string name="RegistrationActivity_incorrect_code">Λάθος κωδικός</string>

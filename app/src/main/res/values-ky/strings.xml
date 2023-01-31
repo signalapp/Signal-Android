@@ -580,7 +580,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Акыркы жолу качан сакталган: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Камдык көчүрмөлөрдүн папкасы</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Камдык көчүрмө качан сакталат</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Камдык көчүрмөнүн сыр сөз айкашын текшерүү</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Камдык көчүрмөңүздүн сыр сөз айкашын сынап көрүп, анын иштеп жатканын текшериңиз</string>
     <string name="BackupsPreferenceFragment__turn_on">Күйгүзүү</string>
@@ -613,47 +613,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s - %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Эртең</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Бүгүн кечинде</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Пландалган билдирүүлөр</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Күндү жана убакытты тандоо</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Пландалган билдирүүлөр</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Пландалган билдирүүнү жөнөтүп жатканда, түзмөгүңүз күйгүзүлүп, анда Интернет байланышы болушу керек. Болбосо, билдирүүңүз түзмөгүңүз кайра Интернетке байланышканда жөнөтүлөт.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Макул</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Билдирүү пландоосун иштетүү үчүн:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Билдирүү пландоосун кайра иштетүү үчүн:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Күн тандоо</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Убакыт тандоо</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Билдирүүнү пландоо</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Жөнөтүүнү пландоо</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Убакыт алкагы: (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Азыр жөнөтүү</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Кайра пландоо</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Өчүрүү</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Пландалган билдирүүнү өчүрөсүзбү?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Өчүрүлүүдө…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Маектин сессиясы жаңырды</string>
@@ -1363,7 +1363,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">%1$s менен болгон билдирүүлөр таржымалыңыз жана аларга таандык маек бирикти.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">(%1$s) %2$s таандык.</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s номери %2$s деген кишиге таандык</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Төлөмдөр кызматын иштетүү өтүнүчүн жөнөттүңүз: %1$s</string>
     <!-- Request message from recipient to activate payments -->
@@ -1678,7 +1678,7 @@
     <string name="RegistrationActivity_select_your_country">Өлкөңүздү тандаңыз</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Өлкөңүздүн кодун киргизүү зарыл
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Please enter a valid phone number to register.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Катталуу үчүн колдонуп жүргөн телефон номериңизди киргизиңиз.</string>
     <string name="RegistrationActivity_invalid_number">Жараксыз номер</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Сиз киргизген номер (%1$s) жараксыз.
     </string>
@@ -1708,16 +1708,16 @@
     <string name="RegistrationActivity_continue">Улантуу</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Купуялуулукту сактаңыз. \\ NБардык билдирүүлөрдө өзүңүздөй жооп бериңиз.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Телефон номериңизди киргизиңиз</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Сиз текшерүү кодун аласыз. Оператордун тарифтери колдонулушу мүмкүн.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Текшерүү кодун аласыз.\nБайланыш оператору акы алышы мүмкүн.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$sномерине жиберилген кодду киргизиңиз</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">SMS катты же чалууну кабыл алуу үчүн сиздин телефонунундагы уюлдук байланышта болуусун текшериңиз</string>
 
     <string name="RegistrationActivity_phone_number_description">Телефон номериңиз</string>
     <string name="RegistrationActivity_country_code_description">Өлкөнүн коду</string>
-    <string name="RegistrationActivity_country_code_hint">Country</string>
+    <string name="RegistrationActivity_country_code_hint">Өлкө</string>
     <string name="RegistrationActivity_call">Чалуу</string>
-    <string name="RegistrationActivity_verification_code">Verification Code</string>
-    <string name="RegistrationActivity_resend_code">Resend Code</string>
+    <string name="RegistrationActivity_verification_code">Текшерүү коду</string>
+    <string name="RegistrationActivity_resend_code">Кодду кайра жөнөтүү</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Катталууну Кулпулоо колдонулсунбу?</string>
@@ -1989,7 +1989,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Билдирүү өчкөн жок, Билдирүү дагы деле көрүнүшү мүмкүн</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Кененирээк маалымат</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d сүйлөшүүдө %1$d жаңы билдирүү</string>
@@ -2177,7 +2177,7 @@
     <string name="conversation_activity__type_message_sms_insecure">Корголбогон SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Корголбогон MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Билдирүүнү пландоо</string>
     <string name="conversation_activity__from_sim_name">Каяктан: %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Жөнөтүү</string>
@@ -3063,7 +3063,7 @@
     <string name="conversation_scheduled_messages_bar__see_all">Баарын көрүү</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="other">%1$d пландалган билдирүүлөр</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3156,13 +3156,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Жаңы PIN код түзүү</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Бул түзмөк катталганда сиз PIN кодуңузду өзгөртө аласыз.</string>
     <string name="CreateKbsPinFragment__create_your_pin">PIN код түзүңүз</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN коддор аркылуу аккаунтуңузду калыбына келтирип, маалыматыңыз Signal\'да шифрленет. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Күчтүү PIN тандаңыз</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN коддор дал келбейт. Кайталап көрүңүз.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Жаңы түзүлгөн PIN кодду кайра киргизиңиз.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">PIN кодуңузду ырастаңыз.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN код түзүлбөй калды</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">PIN кодуңуз сакталган жок. PIN кодду кийинчерээк түзүүнү сунуштайбыз.</string>
@@ -3297,8 +3297,8 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Камдык көчүрмөңүздө өтө көлөмдүү файл болгондуктан, ал түзүлгөн жок. Аны өчүрүп туруп, жаңысын түзүңүз.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Камдык көчүрмөлөрдү башкаруу үчүн басыңыз.</string>
-    <string name="RegistrationActivity_wrong_number">Wrong number?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Анын ордуна мага чалыңыз \n (%1$02d:%2$02dүчүн колдонууга мүмкүн)</string>
+    <string name="RegistrationActivity_wrong_number">Номер туура эмеспи?</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal\'дын кардарларды колдоо кызматы менен байланышыңыз</string>
     <string name="RegistrationActivity_code_support_subject">Signal\'ды каттоо - Android үчүн текшерүү коду</string>
     <string name="RegistrationActivity_incorrect_code">Код туура эмес</string>
@@ -5441,9 +5441,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Жоон</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Кыйгач</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Чийилген</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
 </resources>

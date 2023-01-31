@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">మీ బ్యాకప్‌లో బ్యాకప్ చేయలేని చాలా పెద్ద ఫైలు ఉంది. దయచేసి దానిని తొలగించండి మరియు కొత్త బ్యాకప్‌ని సృష్టించండి.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ప్రత్యామ్నాయములు ను నిర్వహించడానికి నొక్కండి.</string>
     <string name="RegistrationActivity_wrong_number">తప్పు సంఖ్యా?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">బదులుగా నాకు కాల్ చేయండి \n (అందుబాటులో ఉంది %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal మద్దతును సంప్రదించండి</string>
     <string name="RegistrationActivity_code_support_subject">Signal రిజిస్ట్రేషన్ - Android కోసం ధృవీకరణ కోడ్</string>
     <string name="RegistrationActivity_incorrect_code">తప్పు కోడ్</string>

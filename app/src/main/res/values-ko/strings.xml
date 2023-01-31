@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">백업에 대용량 파일이 포함되어 있습니다. 이 파일을 삭제하고 새로운 백업을 만드세요.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">탭하여 백업을 관리하세요.</string>
     <string name="RegistrationActivity_wrong_number">번호가 잘못되었나요?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">전화로 인증\n(%1$02d:%2$02d 이후 이용 가능)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal 지원 팀에 문의</string>
     <string name="RegistrationActivity_code_support_subject">Signal 등록 - 안드로이드용 인증 코드</string>
     <string name="RegistrationActivity_incorrect_code">올바르지 않은 코드</string>

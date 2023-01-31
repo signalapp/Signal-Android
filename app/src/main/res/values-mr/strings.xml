@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">आपल्या बॅकअपमध्ये एक अतिशय मोठी फाईल आहे जिचा बॅकअप घेतला जाऊ शकत नाही. कृपया ती हटवा किंवा नवीन तयार करा.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">बॅकअप व्यवस्थापित करण्यासाठी टॅप करा.</string>
     <string name="RegistrationActivity_wrong_number">चुकीचा नंबर?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">नाहीतर मला कॉल करा \n (%1$02d:%2$02d मध्ये उपलब्ध)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal समर्थनाशी संपर्क साधा</string>
     <string name="RegistrationActivity_code_support_subject">Signal नोंदणी - Android करिता सत्यापन कोड</string>
     <string name="RegistrationActivity_incorrect_code">चुकीचा कोड</string>

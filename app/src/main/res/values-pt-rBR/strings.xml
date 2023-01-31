@@ -234,7 +234,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">Novidade</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">Conversas</string>
+    <string name="ContactsCursorLoader__chats">Chats</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Mensagens</string>
 
@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Último backup: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Pasta do backup</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Horário do backup</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Verificar senha de backup</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste sua senha de backup e verifique se elas correspondem.</string>
     <string name="BackupsPreferenceFragment__turn_on">Ativar</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">Hoje</string>
     <string name="DateUtils_yesterday">Ontem</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s a %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s à(s) %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Amanhã</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Hoje à noite</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Mensagens programadas</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Escolha uma data e hora</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Mensagens programadas</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Ao enviar uma mensagem programada, verifique se o seu dispositivo estará ligado e conectado à internet no horário do envio. Caso não esteja, a mensagem será enviada quando você reconectar seu dispositivo.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Ok</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Para ativar o agendamento de mensagens:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Para reativar o agendamento de mensagens:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Escolha a data</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Escolha a hora</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Programar mensagem</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Horário enviado</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Todos os horários estão sendo exibidos em (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Enviar agora</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Remarcar</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Excluir</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Excluir mensagem programada selecionada?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Excluindo mensagem programada…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">A sessão da conversa foi reiniciada</string>
@@ -1419,7 +1419,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Seu histórico de mensagens com %1$s e outro chat pertencente a este usuário foram mesclados.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s pertence à conversa %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s pertence ao usuário %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Você enviou uma solicitação para %1$s para ativar Pagamentos</string>
     <!-- Request message from recipient to activate payments -->
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">Selecione seu país</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Você deve especificar o código do seu país
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Por favor, forneça um número de telefone válido para registrar.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Digite um número de telefone válido para se cadastrar.</string>
     <string name="RegistrationActivity_invalid_number">Número inválido</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">O número que você especificou (%1$s) é inválido.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">Continuar</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Leve a privacidade com você.\nSeja você em cada mensagem.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Digite o seu número de telefone</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação. Taxas da operadora podem ser aplicadas.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Você vai receber um código de verificação.\nTaxas da operadora podem ser aplicadas.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Insira o código que enviamos para %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Verifique se o seu telefone está captando sinal de rede para receber SMS ou chamadas</string>
 
@@ -1787,7 +1787,7 @@
     <string name="RegistrationActivity_country_code_description">Código do país</string>
     <string name="RegistrationActivity_country_code_hint">País</string>
     <string name="RegistrationActivity_call">Ligar</string>
-    <string name="RegistrationActivity_verification_code">Código de Verificação</string>
+    <string name="RegistrationActivity_verification_code">Código de verificação</string>
     <string name="RegistrationActivity_resend_code">Reenviar código</string>
 
     <!-- RegistrationLockV2Dialog -->
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Erro ao excluir mensagem, é possível que a mensagem ainda exista</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Ler mais</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d mensagens novas em %2$d conversas</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS inseguro</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS inseguro</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Programar mensagem</string>
     <string name="conversation_activity__from_sim_name">Usando %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Enviar</string>
@@ -3145,11 +3145,11 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">Ver todos</string>
+    <string name="conversation_scheduled_messages_bar__see_all">Ver tudo</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d mensagem programada</item>
+        <item quantity="other">%1$d mensagens programadas</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Criar um novo PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Você pode modificar seu PIN enquanto este dispositivo estiver registrado.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Criar seu PIN</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Os PINs podem ajudar você a restaurar sua conta e a manter suas informações criptografadas no Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Escolha um PIN mais forte</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Os PINs não correspondem. Tente outra vez.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Digite novamente o PIN que você acabou de criar.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirme seu PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">A criação do PIN falhou</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Seu PIN não foi salvo. Nós lembraremos você de criar um PIN depois.</string>
@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Seu backup contém um arquivo muito grande não compatível com backup. Exclua e crie um backup novo.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toque para gerenciar os backups.</string>
     <string name="RegistrationActivity_wrong_number">Número errado?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Me ligue \n (Disponível em %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Entre em contato com o Suporte do Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registro Signal - Código de verificação para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorreto</string>
@@ -5566,9 +5566,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Negrito</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Itálico</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Riscado</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Espaçamento simples</string>
 </resources>

@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Ang backup mo ay may lamang masyadong malaking file na hindi ma-back up. Mangyaring burahin ito at gumawa ng bagong backup.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">I-tap to manage backups.</string>
     <string name="RegistrationActivity_wrong_number">Maling number?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Sa halip ay tawagan ako \n (Maaari sa %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Makipag-ugnayan sa Suporta ng Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pagpaparehistro sa Signal - Verification Code para sa Android</string>
     <string name="RegistrationActivity_incorrect_code">Maling kodigo</string>

@@ -3763,7 +3763,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">تحتوي نسختك الاحتياطية على ملف كبير جدًا لا يُمكن نسخه احتياطيًا. يُرجى حذفه وإنشاء نسخة احتياطية جديدة.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">يُرجى اللمس لإدارة النسخ الاحتياطية.</string>
     <string name="RegistrationActivity_wrong_number">رقم غير صحيح؟</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">اتصل بي أفضل \n (متاح في %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">الاتصال بخدمة دعم Signal</string>
     <string name="RegistrationActivity_code_support_subject">تسجيل Signal - رمز التّحقق لِ Android</string>
     <string name="RegistrationActivity_incorrect_code">رمز غير صحيح</string>

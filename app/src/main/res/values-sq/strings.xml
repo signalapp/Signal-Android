@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Rezerva jote përmban një skedar shumë të madh, që nuk mund të rezervohet. Të lutem, fshije dhe krijo një kopje të re rezervë.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Prekeni që të administroni kopjeruajtje.</string>
     <string name="RegistrationActivity_wrong_number">Numër i gabuar?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Telefonomëni, më mirë \n (E përdorshme në %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Lidhuni Me Asistencën e Signal-it</string>
     <string name="RegistrationActivity_code_support_subject">Regjistrim Signal-i - Kod Verifikimi për Android</string>
     <string name="RegistrationActivity_incorrect_code">Kod i gabuar</string>

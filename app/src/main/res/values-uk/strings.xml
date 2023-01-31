@@ -3577,7 +3577,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Резервна копія містить великий файл, який неможливо зберегти. Будь ласка, видаліть його і створіть нову резервну копію.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Натисніть, щоб керувати резервним копіюванням.</string>
     <string name="RegistrationActivity_wrong_number">Невірний номер?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Подзвони мені взамін \n (Доступний о%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Зверніться в службу підтримки Signal</string>
     <string name="RegistrationActivity_code_support_subject">Реєстрація в Signal - код підтвердження для Android</string>
     <string name="RegistrationActivity_incorrect_code">Невірний код</string>

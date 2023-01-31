@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Вашата резервна копија содржи многу голема датотека од која не може да се направи резервна копија. Ве молиме избришете ја и создајте нова резервна копија.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Допрете за управување со резервните копии.</string>
     <string name="RegistrationActivity_wrong_number">Погрешен број?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Повикај ме \n (Достапно за %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Контактирај Signal Поддршка</string>
     <string name="RegistrationActivity_code_support_subject">Регистрација на Signal - Код за проверка за Android</string>
     <string name="RegistrationActivity_incorrect_code">Погрешен код</string>

@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A túa copia de seguranza contén un arquivo moi grande que non se pode gardar. Elimínao e crea unha nova copia.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Toca para administrar as copias de seguranza.</string>
     <string name="RegistrationActivity_wrong_number">Número incorrecto?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Chámame mellor \n (Dispoñible en%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacta co Centro de Axuda de Signal</string>
     <string name="RegistrationActivity_code_support_subject">Rexistrarse en Signal - Código de verificación para Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>

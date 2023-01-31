@@ -225,7 +225,7 @@
     <string name="ContactsCursorLoader_contacts">Teagmhálaithe</string>
     <string name="ContactsCursorLoader_groups">Baiclí</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
-    <string name="ContactsCursorLoader_group_members">Comhaltaí na baicle</string>
+    <string name="ContactsCursorLoader_group_members">Baill den ghrúpa</string>
     <string name="ContactsCursorLoader_phone_number_search">Cuardach uimhreach gutháin</string>
     <!-- Header for username search -->
     <string name="ContactsCursorLoader_find_by_username">Aimsigh de réir ainm úsáideora</string>
@@ -660,7 +660,7 @@
     <string name="BackupsPreferenceFragment__last_backup">An cúltaca deireanach: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Fillteán cúltaca</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Am cúltacaithe</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Fíoraigh pasfhrása an chúltaca</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Dearbháil do nath cúltaca agus deimhnigh go bhfuil siad mar an gcéanna</string>
     <string name="BackupsPreferenceFragment__turn_on">Cuir ar siúl</string>
@@ -691,49 +691,49 @@
     <string name="DateUtils_today">Inniu</string>
     <string name="DateUtils_yesterday">Inné</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%1$s at %2$s</string>
+    <string name="DateUtils_schedule_at">%1$s ag %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Amárach</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Anocht</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Teachtaireachtaí sceidealaithe</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Roghnaigh Dáta agus Am</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Teachtaireachtaí sceidealaithe</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Nuair a sheolann tú teachtaireacht sceidealaithe, cinntigh go mbeidh do ghléas casta air agus nasctha leis an Idirlíon ag uair an tseolta. Mura ndéantar amhlaidh, seolfar do theachtaireacht ar athnascadh do ghléis.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Tá go maith</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Chun sceidealú teachtaireachtaí a chumasú:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Chun sceidealú teachtaireachtaí a athchumasú:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Roghnaigh dáta</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Roghnaigh am</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Sceidealaigh teachtaireacht</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Sceidealaigh seoladh</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Gach am in (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Seol anois</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Athsceidealaigh</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Scrios</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Scrios an teachtaireachtaí sceidealaithe atá roghnaithe?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Teachtaireacht sceidealaithe á scriosadh…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Chat session refreshed</string>
@@ -1958,7 +1958,7 @@
     <string name="RegistrationActivity_select_your_country">Roghnaigh do thír</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">Ba chóir do cód na tuaithe a shonrú
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Caithfidh tú uimhir ghutháin bhailí a chur isteach chun clárú.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">Cuir isteach uimhir ghutháin bhailí chun clárú.</string>
     <string name="RegistrationActivity_invalid_number">Uimhir neamhbhailí</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">Shonraigh tú uimhir (%1$s) neamhbailí.
     </string>
@@ -1992,7 +1992,7 @@
     <string name="RegistrationActivity_continue">Lean ar aghaidh</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Beir an príobháideachas leat.\nBíodh cead cainte agat i ngach teachtaireacht.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Cuir isteach d\'uimhir ghuthàn</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Gheobhaidh tú cód deimhniúcháin. D\'fhéadfadh do sholáthraí seirbhíse táille a ghearradh ort.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Gheobhaidh tú cód fíoraithe.\nD\'fhéadfadh go mbeadh táillí iompróra i gceist.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Cuir isteach an cód a sheolamar chuig %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Deimhnigh go bhfuil comhartha ceallach ar fáil chun glacadh leis an SMS nó leis an nglao</string>
 
@@ -2000,8 +2000,8 @@
     <string name="RegistrationActivity_country_code_description">Cód Tíre</string>
     <string name="RegistrationActivity_country_code_hint">Tír</string>
     <string name="RegistrationActivity_call">Glao</string>
-    <string name="RegistrationActivity_verification_code">Verification code</string>
-    <string name="RegistrationActivity_resend_code">Seol Cód Nua</string>
+    <string name="RegistrationActivity_verification_code">Cód Fíoraithe</string>
+    <string name="RegistrationActivity_resend_code">Athsheol Cód</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">An bhfuil fonn ort Glas Clárúcháin a chur ar siúl?</string>
@@ -2277,7 +2277,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Earráid leis an Teachtaireacht a Scriosadh, Seans go mBeidh an Teachtaireacht Ann Fós.</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>Léigh Tuilleadh</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d dteachtaireacht nua i %2$d gcomhrá</string>
@@ -2481,7 +2481,7 @@
     <string name="conversation_activity__type_message_sms_insecure">SMS nach bhfuil slán</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS nach bhfuil slán</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Sceidealaigh teachtaireacht</string>
     <string name="conversation_activity__from_sim_name">Ó %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Seol</string>
@@ -3400,14 +3400,14 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">See All</string>
+    <string name="conversation_scheduled_messages_bar__see_all">Féach ar gach rud</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="two">%1$d messages scheduled</item>
-        <item quantity="few">%1$d messages scheduled</item>
-        <item quantity="many">%1$d messages scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d teachtaireacht sceidealaithe</item>
+        <item quantity="two">%1$d theachtaireacht sceidealaithe</item>
+        <item quantity="few">%1$d theachtaireacht sceidealaithe</item>
+        <item quantity="many">%1$d dteachtaireacht sceidealaithe</item>
+        <item quantity="other">%1$d teachtaireacht sceidealaithe</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3508,13 +3508,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Cruthaigh UAP nua</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Is féidir leat d\'UAP a athrú chomh fada is atá an gléas seo cláraithe.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Cruthaigh d\'UAP</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Is féidir le UAPanna cabhrú leat do chuntas a aischur agus d’fhaisnéis a choinneáil criptithe le Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Ba chóir duit UAP níos láidre a roghnú</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Ní hionann na UAPanna. Déan arís é.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Cuir isteach arís an UAP a chruthaigh tú.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Deimhnigh d\'UAP.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Níorbh fhéidir an UAP a chruthú</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Níor sábháladh an UAP agat. Iarrfaimid ort UAP a shocrú níos déanaí.</string>
@@ -3670,7 +3670,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Tá comhad an-mhór i do chúltaca nach féidir a chúltacú. Scrios é agus cruthaigh cúltaca nua.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapáil chun cúltacaí a bhainistiú.</string>
     <string name="RegistrationActivity_wrong_number">Uimhir mhícheart?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Cuir glao orm ina ionad sin \n (Ar fáil i gceann %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Déan teagmháil le foireann tacaíochta Signal</string>
     <string name="RegistrationActivity_code_support_subject">Clárúchán Signal — Cód Deimhniúcháin ar Android</string>
     <string name="RegistrationActivity_incorrect_code">Cód mícheart</string>
@@ -5941,9 +5941,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Trom</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Iodálach</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Líne tríd</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">Aonleithead</string>
 </resources>

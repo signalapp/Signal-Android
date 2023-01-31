@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Babeskopiak oso handia den fitxategi bat dauka, eta ezin da egin haren babeskopia. Ezaba ezazu eta sortu beste babeskopia bat.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Sakatu babeskopiak kudeatzeko.</string>
     <string name="RegistrationActivity_wrong_number">Zenbaki okerra?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Dei iezadazu \n (Hemen topatuko nauzu: %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Harremanetan jarri Signal Laguntza Taldearekin</string>
     <string name="RegistrationActivity_code_support_subject">Signal Errejistratzea - Androiderako Egiaztatze Kodea</string>
     <string name="RegistrationActivity_incorrect_code">Kodea ez da zuzena</string>

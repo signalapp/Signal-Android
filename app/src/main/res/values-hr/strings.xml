@@ -3577,7 +3577,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša sigurnosna kopija sadrži vrlo veliku datoteku koja se ne može sigurnosno kopirati. Izbrišite je i napravite novu sigurnosnu kopiju.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Pritisnite za upravljanje sigurnosnim kopijama.</string>
     <string name="RegistrationActivity_wrong_number">Pogrešan broj?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Nazovi me \n (Dostupno za %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktirajte Signalovu podršku</string>
     <string name="RegistrationActivity_code_support_subject">Registracija Signala - Potvrdni kôd za Android</string>
     <string name="RegistrationActivity_incorrect_code">Pogrešan kôd</string>

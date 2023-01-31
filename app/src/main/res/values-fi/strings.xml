@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Varmuuskopiosi sisältää erittäin suuren tiedoston, jota ei voi varmuuskopioida. Poista se ja luo uusi varmuuskopio.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Hallitse varmuuskopioita napauttamalla.</string>
     <string name="RegistrationActivity_wrong_number">Väärä numero?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Käytettävissä %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
     <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti – vahvistuskoodi Androidille</string>
     <string name="RegistrationActivity_incorrect_code">Väärä koodi</string>

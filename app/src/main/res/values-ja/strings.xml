@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">非常に大きなファイルが含まれているためバックアップできません。そのファイルを削除して、新しいバックアップを作成してください。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">タップしてバックアップを管理</string>
     <string name="RegistrationActivity_wrong_number">電話番号を訂正</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">代わりに電話してください\n (利用可能になるまで %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signalサポートに問い合わせ</string>
     <string name="RegistrationActivity_code_support_subject">Signal登録 - Android用認証コード</string>
     <string name="RegistrationActivity_incorrect_code">コードが違います</string>

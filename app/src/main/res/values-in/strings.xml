@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Pencadangan Anda berisi file sangat besar yang tidak dapat dicadangkan. Hapus file dan buat pencadangan baru.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tekan untuk mengatur cadangan.</string>
     <string name="RegistrationActivity_wrong_number">Salah nomor?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Panggil saya \n (Tersedia di %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontak Pusat Bantuan Signal</string>
     <string name="RegistrationActivity_code_support_subject">Pendaftaran Signal - Kode Verifikasi untuk Android</string>
     <string name="RegistrationActivity_incorrect_code">Kode Salah</string>

@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ข้อมูลสำรองของคุณมีไฟล์ขนาดใหญ่ที่ไม่สามารถเก็บสำรองได้ กรุณาลบไฟล์ดังกล่าวและสร้างข้อมูลสำรองใหม่</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">แตะเพื่อจัดการข้อมูลสำรอง</string>
     <string name="RegistrationActivity_wrong_number">หมายเลขไม่ถูกต้องหรือเปล่า</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">โทรหาฉันแทน \n (ใช้งานได้ใน %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">ติดต่อทีมซัพพอร์ตของ Signal</string>
     <string name="RegistrationActivity_code_support_subject">การลงทะเบียน Signal - รหัสตรวจยืนยันสำหรับ Android</string>
     <string name="RegistrationActivity_incorrect_code">รหัสไม่ถูกต้อง</string>

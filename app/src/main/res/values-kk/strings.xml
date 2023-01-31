@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Резервтік көшірмеде өте үлкен файл бар және оның резервтік көшірмесін жасау мүмкін емес. Үлкен файлды жойып тастап, жаңасын жасаңыз.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Резервтік көшірмелерді басқару үшін түртіңіз.</string>
     <string name="RegistrationActivity_wrong_number">Нөмір қате ме?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Оның орнына маған қоңырау соғу \n (%1$02d:%2$02d боспын)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal қолдау қызметіне хабарласу</string>
     <string name="RegistrationActivity_code_support_subject">Signal қолданбасында тіркелу - Android жүйесіне арналған тексеру коды</string>
     <string name="RegistrationActivity_incorrect_code">Код дұрыс емес</string>

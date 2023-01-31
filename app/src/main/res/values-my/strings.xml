@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် ဘက်ခ်အပ်လုပ်၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
     <string name="RegistrationActivity_wrong_number">နံပါတ် မှားနေပါသလား။</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">ဤအချိန် (%1$02d:%2$02d အတွင်း) \n ဖုန်းခေါ်ပေးပါ</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>

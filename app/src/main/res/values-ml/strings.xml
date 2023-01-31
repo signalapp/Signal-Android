@@ -600,7 +600,7 @@
     <string name="BackupsPreferenceFragment__last_backup">അവസാന ബാക്കപ്പ്:%1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">ബാക്കപ്പ് ഫോൾഡർ</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">ബാക്കപ്പ് സമയം</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">ബാക്കപ്പിന്റെ രഹസ്യവാചകം ഉറപ്പാക്കുക</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">നിങ്ങളുടെ ബാക്കപ്പ് രഹസ്യവാക്യം പരിശോധിച്ച് അത് പൊരുത്തപ്പെടുന്നുണ്ടോയെന്ന് പരിശോധിക്കുക</string>
     <string name="BackupsPreferenceFragment__turn_on">ഓൺ ചെയ്യുക</string>
@@ -631,49 +631,49 @@
     <string name="DateUtils_today">ഇന്ന്</string>
     <string name="DateUtils_yesterday">ഇന്നലെ</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
-    <string name="DateUtils_schedule_at">%2$s-യിൽ %1$s-ന്</string>
+    <string name="DateUtils_schedule_at">%2$s %1$s-ന്</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">നാളെ</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">ഇന്ന് രാത്രിയിൽ</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">ഷെഡ്യൂൾ ചെയ്‌ത സന്ദേശങ്ങൾ</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">തീയതിയും സമയവും തിരഞ്ഞെടുക്കുക</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">ഷെഡ്യൂൾ ചെയ്‌ത സന്ദേശങ്ങൾ</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">ഷെഡ്യൂൾ ചെയ്‌തൊരു സന്ദേശം അയയ്ക്കുന്ന സമയത്ത് നിങ്ങളുടെ ഉപകരണം ഓണാണെന്നും ഇന്‍റർനെറ്റിലേക്ക് കണക്റ്റ് ചെയ്തിട്ടുണ്ടെന്നും ഉറപ്പാക്കുക. അങ്ങനെയല്ലെങ്കിൽ, നിങ്ങളുടെ ഉപകരണം കണക്റ്റാകുന്ന സമയത്തെ സന്ദേശം അയയ്ക്കൂ.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">ശരി</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">സന്ദേശം ഷെഡ്യൂൾ ചെയ്യൽ പ്രവർത്തനക്ഷമമാക്കാൻ:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">സന്ദേശം ഷെഡ്യൂൾ ചെയ്യൽ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കാൻ:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">തീയതി തിരഞ്ഞെടുക്കുക</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">സമയം തിരഞ്ഞെടുക്കുക</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">സന്ദേശം ഷെഡ്യൂൾ ചെയ്യുക</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">അയയ്ക്കാനായി ഷെഡ്യൂൾ ചെയ്യുക</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">എല്ലാ സമയങ്ങളും (%1$s) %2$s എന്നതിലാണ്</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">ഇപ്പോൾ അയയ്ക്കുക</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">റീഷെഡ്യൂൾ ചെയ്യുക</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">ഇല്ലാതാക്കൂ</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">തിരഞ്ഞെടുത്ത ഷെഡ്യൂൾ ചെയ്ത സന്ദേശങ്ങൾ ഇല്ലാതാക്കണോ?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">ഷെഡ്യൂൾ ചെയ്ത സന്ദേശം ഇല്ലാതാക്കുന്നു…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">ചാറ്റ് സെഷൻ പുതുക്കി</string>
@@ -1748,7 +1748,7 @@
     <string name="RegistrationActivity_select_your_country">നിങ്ങളുടെ രാജ്യം തിരഞ്ഞെടുക്കുക</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">നിങ്ങളുടെ രാജ്യ കോഡ് വ്യക്തമാക്കണം
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">രജിസ്റ്റർ ചെയ്യുന്നതിനായി സാധുവായ ഒരു ഫോൺ നമ്പർ നൽകുക.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">രജിസ്റ്റർ ചെയ്യാൻ സാധുതയുള്ളൊരു ഫോൺ നമ്പർ നൽകുക.</string>
     <string name="RegistrationActivity_invalid_number">അസാധുവായ നമ്പർ</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">നിങ്ങൾ വ്യക്തമാക്കിയ നമ്പർ (%1$s) അസാധുവാണ്.
     </string>
@@ -1779,7 +1779,7 @@
     <string name="RegistrationActivity_continue">തുടരുക</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">സ്വകാര്യത നിങ്ങൾക്കൊപ്പം കൊണ്ടുപോകുക.\nഎല്ലാ സന്ദേശത്തിലും നിങ്ങൾ നിങ്ങളെപ്പോലെ ആകുക.</string>
     <string name="RegistrationActivity_enter_your_phone_number">നിങ്ങളുടെ ഫോൺ നമ്പർ നൽകുക</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും. കാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">നിങ്ങൾക്ക് ഒരു സ്ഥിരീകരണ കോഡ് ലഭിക്കും.\nകാരിയർ നിരക്കുകൾ ബാധകമായേക്കാം.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">ഞങ്ങൾ %1$s-ലേക്ക് അയച്ച കോഡ് നൽകുക</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">നിങ്ങളുടെ SMS അല്ലെങ്കിൽ കോൾ സ്വീകരിക്കുന്നതിന് നിങ്ങളുടെ ഫോണിന് സെല്ലുലാർ സിഗ്നൽ ഉണ്ടെന്ന് ഉറപ്പാക്കുക</string>
 
@@ -1787,7 +1787,7 @@
     <string name="RegistrationActivity_country_code_description">രാജ്യ കോഡ്</string>
     <string name="RegistrationActivity_country_code_hint">രാജ്യം</string>
     <string name="RegistrationActivity_call">വിളിക്കുക</string>
-    <string name="RegistrationActivity_verification_code">പരിശോധിച്ചുറപ്പാക്കൽ കോഡ്</string>
+    <string name="RegistrationActivity_verification_code">പരിശോധിച്ചുറപ്പിക്കൽ കോഡ്</string>
     <string name="RegistrationActivity_resend_code">കോഡ് വീണ്ടും അയയ്‌ക്കുക</string>
 
     <!-- RegistrationLockV2Dialog -->
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">സന്ദേശം ഇല്ലാതാക്കുന്നതിൽ പിശക്, എന്നിരുന്നാലും സന്ദേശം നിലനിന്നേക്കും</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>കൂടുതൽ വായിക്കുക</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%2$d സംഭാഷണങ്ങളിൽ %1$d പുതിയ സന്ദേശങ്ങൾ</string>
@@ -2253,7 +2253,7 @@
     <string name="conversation_activity__type_message_sms_insecure">സുരക്ഷിതമല്ലാത്ത SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">സുരക്ഷിതമല്ലാത്ത MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">സന്ദേശം ഷെഡ്യൂൾ ചെയ്യുക</string>
     <string name="conversation_activity__from_sim_name">%1$s നിന്ന്</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">അയയ്‌ക്കുക</string>
@@ -3148,8 +3148,8 @@
     <string name="conversation_scheduled_messages_bar__see_all">എല്ലാം കാണുക</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d സന്ദേശം ഷെഡ്യൂൾ ചെയ്‌തു</item>
+        <item quantity="other">%1$d സന്ദേശങ്ങൾ ഷെഡ്യൂൾ ചെയ്‌തു</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3244,13 +3244,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">ഒരു പുതിയ PIN സൃഷ്ടിക്കുക</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">ഈ ഡിവൈസ് രജിസ്റ്റർ ചെയ്തിരിക്കുന്ന കാലത്തോളം നിങ്ങൾക്ക് നിങ്ങളുടെ PIN മാറ്റാവുന്നതാണ്.</string>
     <string name="CreateKbsPinFragment__create_your_pin">നിങ്ങളുടെ PIN സൃഷ്ടിക്കുക</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">നിങ്ങളുടെ അക്കൗണ്ട് പുനഃസ്ഥാപിക്കാനും Signal-ൽ നിങ്ങളുടെ വിവരങ്ങൾ എൻക്രിപ്റ്റ് ചെയ്‌ത നിലയിൽ നിലനിർത്താനും PIN നമ്പറുകൾക്ക് സഹായിക്കാനാകും. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">ശക്തമായ ഒരു PIN തിരഞ്ഞെടുക്കുക</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN-കൾ പൊരുത്തപ്പെടുന്നില്ല. വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">നിങ്ങൾ സൃഷ്ടിച്ച PIN വീണ്ടും നൽകുക.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">നിങ്ങളുടെ PIN ഉറപ്പാക്കു.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">PIN സൃഷ്ടിക്കൽ പരാജയപ്പെട്ടു</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">നിങ്ങളുടെ PIN സംരക്ഷിച്ചില്ല. പിന്നീട് ഒരു PIN സൃഷ്ടിക്കാൻ ഞങ്ങൾ നിങ്ങളോട് ആവശ്യപ്പെടും.</string>
@@ -3390,8 +3390,8 @@
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">ബാക്കപ്പ് ചെയ്യാൻ കഴിയാത്ത വളരെ വലിയ ഒരു ഫയൽ നിങ്ങളുടെ ബാക്കപ്പിൽ ഉൾപ്പെട്ടിട്ടുണ്ട്. അത് ഇല്ലാതാക്കിയ ശേഷം പുതിയ ഒരു ബാക്കപ്പ് സൃഷ്‌ടിക്കുക.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">ബാക്കപ്പുകൾ നിയന്ത്രിക്കാൻ തൊടുക.</string>
-    <string name="RegistrationActivity_wrong_number">തെറ്റായ നമ്പർ?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">പകരം എന്നെ വിളിക്കൂ \n(%1$02d:%2$02d ൽ ലഭ്യമാകും)</string>
+    <string name="RegistrationActivity_wrong_number">നമ്പർ തെറ്റാണോ?</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal പിന്തുണ ബന്ധപ്പെടുക</string>
     <string name="RegistrationActivity_code_support_subject">Signal രജിസ്ട്രേഷൻ - Android-നായുള്ള സ്ഥിരീകരണ കോഡ്</string>
     <string name="RegistrationActivity_incorrect_code">കോഡ് തെറ്റാണ്</string>
@@ -5566,9 +5566,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">ബോൾഡ്</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">ഇറ്റാലിക്ക്</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">സ്ട്രൈക്ക്ത്രൂ</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">മോണോസ്പേസ്</string>
 </resources>

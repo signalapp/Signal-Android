@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">உங்கள் காப்புப்பிரதியில் நகலெடுக்க முடியாத மிகப் பெரிய கோப்பு ஒன்று உள்ளது. தயவுசெய்து அதை நீக்கிவிட்டு ஒரு புதிய காப்புப்பிரதியை உருவாக்கவும்.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">மறுபிரதிகளை நிர்வகிக்க தட்டவும்</string>
     <string name="RegistrationActivity_wrong_number">தவறான எண்?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">அதற்கு பதிலாக என்னை அழைக்கவும் \\ n ( %1$02d :%2$02d இல் கிடைக்கும்)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal ஆதரவைத் தொடர்பு கொள்ளுங்கள்</string>
     <string name="RegistrationActivity_code_support_subject">Signal பதிவு - அண்ட்ராய்டு க்கான சரிபார்ப்புக் குறியீடு</string>
     <string name="RegistrationActivity_incorrect_code">தவறான குறியீடு</string>

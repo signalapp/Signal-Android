@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">A biztonsági mentés egy olyan nagyon nagy fájlt tartalmaz, amelyről nem lehet biztonsági másolatot készíteni. Kérjük, töröld, és hozz létre egy új biztonsági mentést!</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Koppints a biztonsági mentések kezeléséhez!</string>
     <string name="RegistrationActivity_wrong_number">Helytelen telefonszám?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Hívást kérek inkább \n (elérhető %1$02d:%2$02d múlva)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kapcsolatfelvétel a Signal támogatással</string>
     <string name="RegistrationActivity_code_support_subject">Signal regisztráció - megerősítő kód Androidhoz</string>
     <string name="RegistrationActivity_incorrect_code">Helytelen kód</string>
