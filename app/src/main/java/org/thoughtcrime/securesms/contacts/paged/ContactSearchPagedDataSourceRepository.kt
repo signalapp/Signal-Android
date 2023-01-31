@@ -22,10 +22,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  * having to deal with database access.
  */
 open class ContactSearchPagedDataSourceRepository(
-  private val context: Context
+  context: Context
 ) {
 
   private val contactRepository = ContactRepository(context, context.getString(R.string.note_to_self))
+  private val context = context.applicationContext
 
   open fun getLatestStorySends(activeStoryCutoffDuration: Long): List<StorySend> {
     return SignalStore.storyValues()

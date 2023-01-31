@@ -12,12 +12,15 @@ import org.signal.paging.ProxyPagingController
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSource
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class StoriesPrivacySettingsViewModel : ViewModel() {
+class StoriesPrivacySettingsViewModel(
+  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
+) : ViewModel() {
 
   private val repository = StoriesPrivacySettingsRepository()
 
@@ -49,7 +52,7 @@ class StoriesPrivacySettingsViewModel : ViewModel() {
       )
     }
 
-    val pagedDataSource = ContactSearchPagedDataSource(configuration)
+    val pagedDataSource = ContactSearchPagedDataSource(configuration, contactSearchPagedDataSourceRepository)
     val observablePagedData = PagedData.createForObservable(pagedDataSource, pagingConfig)
 
     pagingController.set(observablePagedData.controller)

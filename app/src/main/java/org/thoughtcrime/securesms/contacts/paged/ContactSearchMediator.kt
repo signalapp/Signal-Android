@@ -43,7 +43,8 @@ class ContactSearchMediator(
       repository = ContactSearchRepository(),
       performSafetyNumberChecks = performSafetyNumberChecks,
       arbitraryRepository = arbitraryRepository,
-      searchRepository = SearchRepository(fragment.requireContext().getString(R.string.note_to_self))
+      searchRepository = SearchRepository(fragment.requireContext().getString(R.string.note_to_self)),
+      contactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(fragment.requireContext())
     )
   )[ContactSearchViewModel::class.java]
 

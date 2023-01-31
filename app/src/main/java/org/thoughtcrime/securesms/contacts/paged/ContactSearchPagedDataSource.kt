@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.contacts.paged.collections.StoriesSearchCollec
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
-import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -24,7 +23,7 @@ import java.util.concurrent.TimeUnit
  */
 class ContactSearchPagedDataSource(
   private val contactConfiguration: ContactSearchConfiguration,
-  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository = ContactSearchPagedDataSourceRepository(ApplicationDependencies.getApplication()),
+  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository,
   private val arbitraryRepository: ArbitraryRepository? = null,
   private val searchRepository: SearchRepository? = null
 ) : PagedDataSource<ContactSearchKey, ContactSearchData> {
