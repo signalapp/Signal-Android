@@ -54,7 +54,7 @@ public class SearchUtil {
       return text;
     }
 
-    SpannableString              spanned = SpannableString.valueOf(text);
+    SpannableString              spanned = new SpannableString(text);
     List<Pair<Integer, Integer>> ranges;
 
     switch (matchMode) {
