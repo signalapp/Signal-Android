@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">ဟုတ်ကဲ့</string>
     <string name="no">မလုပ်ပါ</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">မိမိမှတ်စု</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal ကို အပ်ဒိတ်လုပ်နေသည်…</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">ပင်နံပါတ်ကို မပိတ်မီ ငွေပေးချေသည့် အကောင့်ကို ပြန်ရယူနိုင်ရန် ငွေပေးချေမှု ပြန်လည်ရယူသည့် စာပုဒ်တိုကို မှတ်ထားရပါမည်။</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Backspace</string>
 
@@ -724,7 +724,7 @@
     <string name="GroupManagement_access_level_all_members">အဖွဲ့ဝင် အားလုံး</string>
     <string name="GroupManagement_access_level_only_admins">အက်မင်များသာ</string>
     <string name="GroupManagement_access_level_no_one">မည်သူမှ မဟုတ်သူ</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1088,8 +1088,8 @@
     <string name="MediaOverviewActivity_audio">အသံ</string>
     <string name="MediaOverviewActivity_video">ဗီဒီယို</string>
     <string name="MediaOverviewActivity_image">ရုပ်ပုံ</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">%1$s မှ ပို့သည်</string>
     <string name="MediaOverviewActivity_sent_by_you">သင်မှ ပို့ခဲ့သည်</string>
@@ -1423,7 +1423,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">ဤအဖွဲ့တွင် ပါဝင်ပြီး ၎င်းမန်ဘာများထံ သင့်အမည်နှင့် ဓာတ်ပုံကို မျှဝေမည်လား။ သင် လက်မခံမချင်း ၎င်းတို့၏ မက်ဆေ့ချ်များကို မြင်နိုင်မည် မဟုတ်ပါ။</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">၎င်းအဖွဲ့သို့ ဝင်ရောက်မည်လား? အခြားအဖွဲ့ဝင်များသည် သင်မှ ၎င်းတို့၏ မက်ဆေ့ချ်များကို ဖတ်ရှုခဲ့သည်ကို သင်လက်ခံသည်အထိ မတွေ့ရပါ။</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">၎င်းအဖွဲ့ကို ပိတ်ထားခြင်းမှ ပြန်ဖြည်ပြီး အဖွဲ့ဝင်များနှင့် သင်၏ အမည်နှင့် ရုပ်ပုံကို မျှဝေမည်လား? သင်မှ ပြန်ဖြည်သည်အထိ မည်သည့်မက်ဆေ့ချ်များကို မရရှိနိုင်ပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">ကြည့်မယ်</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s ၏ အဖွဲ့ဝင်</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s နှင့် %2$s အဖွဲ့တို့၏ အဖွဲ့ဝင်</string>
@@ -1515,7 +1515,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">သင်၏ပင်နံပါတ်ကိုဖန်တီးပါ</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">သင်မှ ပင်နံပါတ် မှန်းနိုင်သည့် အကြိမ်းပေါင်း ကုန်သွားပါပြီ၊ သို့သော် သင်သည် ပင်နံပါတ်အသစ် ဖန်တီး၍ သင့် Signal အကောင့်ကို ပြန်ရရှိနိုင်ပါသည်။​ သင့်ပုဂ္ဂိုလ်လုံခြုံရေးအတွက် မည်သည့် သိမ်းဆည်းထားသော ပရိုဖိုင်း အချက်အလက်နှင့် အပြင်အဆင်များ မပါဘဲ သင့်အကောင့်ကို ပြန်လည်ရယူပါမည်။</string>
     <string name="PinRestoreLockedFragment_create_new_pin">ပင်နံပါတ်အသစ်ဖန်တီးပါ</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">သတိပေးချက်</string>
@@ -1739,12 +1739,12 @@
     <string name="SearchFragment_header_messages">စာများ</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">အဆက်အသွယ်များထဲသို့ ထည့်မည်</string>
@@ -1825,7 +1825,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ကူညီပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန်အတွက် ဤမှတ်တမ်းကို အွန်လိုင်းတွင် လူသူမရွေးကြည့်နိုင်ရန် တင်သွားပါမည်။ အပ်လုဒ်မလုပ်မီ ဆန်းစစ်နိုင်ပါသည်။</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">စီစစ်ခြင်း -</string>
     <string name="SupportEmailUtil_device_info">ကိရိယာအချက်အလက် -</string>
     <string name="SupportEmailUtil_android_version">Android ဗားရှင်း -</string>
@@ -1940,10 +1940,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s ၏ လုံခြုံရေးနံပါတ်ကို ကြည်ရှုရန် သင်မှအရင် မက်ဆေ့ချ်များကို ပေးပို့လက်ခံ ရပါမည်။</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">ရှိမနေတော့သည့် ဆက်ရှင်အတွက် စာများကို encrpyt လုပ်ထားပါသည်။</string>
@@ -2425,7 +2425,7 @@
     <string name="EditProfileFragment__edit_group">အဖွဲ့ကို ပြင်မည်</string>
     <string name="EditProfileFragment__group_name">အဖွဲ့နာမည်</string>
     <string name="EditProfileFragment__group_description">အဖွဲ့ ဖော်ပြချက်</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">သင့်အမည်</string>
@@ -2505,13 +2505,13 @@
     <string name="HelpFragment__whats_this">ဒါဘာပါလဲ?</string>
     <string name="HelpFragment__how_do_you_feel">သင်ဘယ်လိုခံစားရပါသလဲ? (မဖြစ်မနေ ဖြေစရာမလိုပါ)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">ကျွန်ုပ်တို့အား အဘယ်ကြောင့် ဆက်သွယ်လဲသိပါရစေ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">ပံ့ပိုးမှု အချက်အလက်များ</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android ပံ့ပိုးရန် တောင်းဆိုမှု</string>
     <string name="HelpFragment__debug_log">ပျက်ကွက်မှုဖြေရှင်းသည့် မှတ်တမ်းစာ -</string>
@@ -2678,7 +2678,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">စာရိုက်ညွှန်ကိန်းများကို ပိတ်ထားပါက အခြားသူများမှ စာရိုက်ညွှန်းကိန်းများကို သင်မမြင်နိုင်ပါ။</string>
     <string name="preferences__request_keyboard_to_disable">တစ်ဦးချင်းအလိုက် ကိုက်ညီမှုရှိအောင် လေ့လာသင်ယူမှုကို ပိတ်ရန် ကီးဘုတ်ကို တောင်းဆိုပါ။</string>
     <string name="preferences__this_setting_is_not_a_guarantee">ဤဆက်တင်သည် မသေချာသည့်အပြင် သင့်ကီးဘုတ်က ၎င်းကို လျစ်လျူရှုနိုင်ပါသည်။</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">မိုဘိုင်းအင်တာနက်ကို အသုံးပြုသည့်အခါ</string>
     <string name="preferences_chats__when_using_wifi">ဝိုင်ဖိုင်ကို အသုံးပြုသည့်အခါ</string>
     <string name="preferences_chats__when_roaming">Roaming လုပ်သည့်အခါ</string>
@@ -2762,9 +2762,9 @@
     <string name="configurable_single_select__customize_option">ရွေးချယ်မှုကို စိတ်ကြိုက်ပြင်ဆင်မယ်</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2807,13 +2807,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ငွေပေးချေမှုများ ပိတ်ပြီး</string>
     <string name="PaymentsHomeFragment__payment_failed">ငွေပေးချေမှု မအောင်မြင်ပါ</string>
     <string name="PaymentsHomeFragment__details">အသေးစိတ်အချက်အလက်များ</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal ကို သုံး၍ MobileCoin ကို ပေးပို့လက်ခံနိုင်ပါသည်။ ငွေပေးချေမှုများအားလုံးသည် MobileCoin နှင့် MobileCoin Wallet ၏ စည်းကမ်းသတ်မှတ်ချက်များကို လိုက်နာရပါမည်။ ၎င်းသည် စမ်းသပ်သည့်ဗားရှင်းသာဖြစ်၍ အချို့ကိစ္စရပ်များ ကြုံတွေ့နိုင်ပြီး ငွေပေးချေမှုများ သို့မဟုတ် လက်ကျန်ငွေတို့ ဆုံးရှူံးခဲ့လျှင် ပြန်လည်မရရှိနိုင်ပါ။ </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal ကို သုံး၍ MobileCoin ကို ပေးပို့လက်ခံနိုင်ပါသည်။ ငွေပေးချေမှုများအားလုံးသည် MobileCoin နှင့် MobileCoin Wallet ၏ စည်းကမ်းသတ်မှတ်ချက်များကို လိုက်နာရပါမည်။ ၎င်းသည် စမ်းသပ်သည့်ဗားရှင်းသာဖြစ်၍ အချို့ကိစ္စရပ်များ ကြုံတွေ့နိုင်ပြီး ငွေပေးချေမှုများ သို့မဟုတ် လက်ကျန်ငွေတို့ ဆုံးရှူံးခဲ့လျှင် ပြန်လည်မရရှိနိုင်ပါ။ </string>
     <string name="PaymentsHomeFragment__activate">ဖွင့်မယ်</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">MobileCoin ၏သတ်မှတ်ချက်များ ကြည့်ရှုမယ်</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal ထဲတွင် ငွေပေးချေမှုများ မလုပ်ဆောင်နိုင်တော့ပါ။ ငွေလဲလှယ်မှုတစ်ခုသို့ ငွေများလွှဲနိုင်ပါသည်၊ သို့သော် သင်မှ ငွေပေးချေမှုများ ပေးပို့လက်ခံလို့မရတော့ပါ၊​ ငွေလည်း ထည့်ပေါင်းလို့မရတော့ပါ။</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">နောင်လာမည့် ပေးပို့မှုများအတွက် ငွေပေးချေမှုလော့ခ်ကို ဖွင့်မည်လား။</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2857,7 +2857,7 @@
     <string name="PaymentsAddMoneyFragment__copy">ကူးမည်</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">ကလစ်ဘုတ်သို့ကူးယူပြီး</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">ငွေဖြည့်ရန် သင့် ပိုက်ဆံအိတ် Wallet လိပ်စာသို့ MobileCoin ပို့ပါ။ သင့် အကောင့်မှ MobileCoin ပံ့ပိုးသော လွှဲပြောင်းမှုနှင့် ငွေပေးငွေယူမှုတစ်ကြောင်းလုပ်ဆောင်ပါ၊ ပြီးလျှင် QR ကုဒ်စကင်ဖတ်ပါ သို့မဟုတ် သင့် ပိုက်ဆံအိတ် Wallet လိပ်စာ ကော်ပီကူးပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">အသေးစိတ်အချက်အလက်များ</string>
@@ -2877,8 +2877,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">အကြွေစေ့ရှင်းရေးအခကြေး</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">ငွေပေးချေမှု လုပ်ဆောင်ရန် သင့်လက်ထဲတွင်ရှိသော အကြွေစေ့များကိုပေါင်းစပ်သော်လည်း မလုံလောက်မှုဖြစ်ခဲ့လျှင် \"အကြွေစေ့ရှင်းရေးအခကြေး\" ကို ကောက်ခံယူပါမည်။ ရှင်းခြင်းဖြင့် ငွေပေးချေမှုများ ဆက်လက် ပေးပို့နိုင်ပါမည်။</string>
     <string name="PaymentsDetailsFragment__no_details_available">၎င်းငွေပေးချေမှုအတွက် အခြားအချက်အလက်များ မရရှိနိုင်ပါ</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">ငွေပေးချေပြီး</string>
     <string name="PaymentsDetailsFragment__received_payment">ငွေပေးချေမှုလက်ခံရယူပြီး</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">ငွေပေးချေမှု အောင်မြင်ပြီး %1$s</string>
@@ -2922,7 +2922,7 @@
     <string name="CreatePaymentFragment__backspace">Backspace</string>
     <string name="CreatePaymentFragment__add_note">မှတ်ချက်ထည့်မယ်</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">ငွေပြောင်းလဲခြင်းများသည် ခန့်မှန်းတွက်ချက်မှုများသာ ဖြစ်ပြီး မတိကျနိုင်ပါ။</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">မှတ်ချက်</string>
@@ -3144,7 +3144,7 @@
     <string name="BaseKbsPinFragment__next">နောက်ထက်</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">အက္ခရာနံပါတ်ပါ ပင်နံပါတ် ကိုဖန်တီးပါ</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">နံပါတ်ပါ ပင်နံပါတ်ကိုဖန်တီးပါ</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3174,7 +3174,7 @@
     <string name="KbsSplashFragment__introducing_pins">ပင်နံပါတ်များကို မိတ်ဆက်ပေးသည်</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">ပင်နံပါတ်များသည် Signal ပေါ်တွင် အချက်အလက်များကို ကုဒ်ဖြင့်သိမ်းဆည်းထားဖြင့် သင်သာ သုံးခွင်းရှိပါသည်။ သင့် ပရိုဖိုင်း၊ အပြင်အဆင်များ၊ နှင့် အဆက်အသွယ်များကို သင် ပြန်ထည့်သွင်းသောအခါ ပြန်လည်ရရှိပါမည်။​ အပ္ပလီကေးရှင်း ဖွင့်ရန် သင့် ပင်နံပါတ်မလိုအပ်ပါ။</string>
     <string name="KbsSplashFragment__learn_more">ထပ်မံလေ့လာရန်</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">မှတ်ပုံတင်ခြင်း သော့ပိတ်ထားမှု = ပင်နံပါတ်</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">သင်၏ မှတ်ပုံတင်ခြင် သော့ပိတ်ထားမှုသည် ပင်နံပါတ်လို့ခေါ်ပါသည်။ ထပ်မံလုပ်ဆောင်ချက်များလည်း လုပ်ဆောင်ပါသည်။ ယခုဘဲ အပ်ဒိတ်လိုက်ပါ။</string>
     <string name="KbsSplashFragment__update_pin">ပင်နံပါတ်ကိုအသစ်ပြောင်းပါ</string>
@@ -3195,7 +3195,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">သင့်အကောင့်၏ ပုဂ္ဂိုလ်လုံခြုံရေးအတွက် ကျွန်ုပ်တို့မှ အကောင့်ကို လော့ခတ်လိုက်ပါပြီ။လှုပ်ရှားမှုမရှိဘဲ %1$d ရက်အကြာတွင် သင့် ပင်နံပါတ်မလိုဘဲ သင့်ဖုန်းနံပါတ်ဖြင့် ပြန်မှတ်ပုံစာရင်းသွင်းနိုင်ပါမည်။ သို့သော်လည်း အကောင့်ထဲရှိ အရာများအားလုံး ဖျက်သိမ်းသွားပါမည်။</string>
     <string name="AccountLockedFragment__next">နောက်ထက်</string>
     <string name="AccountLockedFragment__learn_more">ထပ်မံလေ့လာရန်</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">သင်၏ ပင်နံပါတ် ကိုထည့်ပါ</string>
@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">သင့်ဘက်ခ်အပ်တွင် ဘက်ခ်အပ်လုပ်၍ မရနိုင်သည့် အလွန်ကြီးသော ဖိုင်တစ်ဖိုင် ပါဝင်နေပါသည်။ ၎င်းကို ဖျက်ပြီး ဘက်ခ်အပ်အသစ် ဖန်တီးပါ။</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">အရန်ကူးခြင်းများကိုစီမံရန် နှိပ်ပါ</string>
     <string name="RegistrationActivity_wrong_number">နံပါတ် မှားနေပါသလား။</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">ဤအချိန် (%1$02d:%2$02d အတွင်း) \n ဖုန်းခေါ်ပေးပါ</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal အကူအညီ ရယူမည်</string>
     <string name="RegistrationActivity_code_support_subject">Signal မှတ်ပုံတင်ခြင်း Android အတွက် အတည်ပြုကုဒ်</string>
     <string name="RegistrationActivity_incorrect_code">ကုဒ် မှားနေပါသည်</string>
@@ -3674,9 +3674,9 @@
     <string name="payment_info_card_with_a_high_balance">လက်ကျန်ငွေများလျှင် သင့်အကောင့်ကို ပိုမိုလုံခြုံမှုရှိစေရန် အက္ခရာနံပါတ်ပါသော ပင်နံပါတ်သို့ အပ်ဒိတ်ပြုလုပ်ပြီး သင့်အကောင့်ကို ကာကွယ်နိုင်ပါသည်။</string>
     <string name="payment_info_card_update_pin">ပင်နံပါတ်ကို အပ်ဒိတ်ပြုလုပ်မယ်</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">ပိုက်ဆံအိတ် Wallet ကို ပိတ်မယ်</string>
@@ -3688,7 +3688,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">မလွှဲဘဲ ပိတ်မည်လား?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">သင်မှ ငွေပေးချေမှုများကို ပြန်ဖွင့်ခဲ့လျှင် သင့် လက်ကျန်ငွေသည် Signal နှင့် ချိတ်ထားသော သင့်ပိုက်ဆံအိတ် wallet ထဲတွင် ကျန်ရှိနေပါမည်။</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">ပိုက်ဆံအိတ် wallet ပိတ်ခြင်းတွင် ပျက်ကွက်မှုဖြစ်</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တို</string>
@@ -3723,8 +3723,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">ပြန်လည်ရယူရန် စာပုဒ်တိုသည် မမှန်ကန်ပါ</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">သင်မှ စကားလုံး %1$d လုံးကို ရိုက်ထည့်ထားသည်ကို သေချာစေပြီး ပြန်စမ်းကြည့်ပေးပါ။</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">နောက်ထက်</string>
@@ -3774,7 +3774,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">၎င်းအဖွဲ့ထဲတွင် သင်၏ အဆက်အသွယ်များ သို့မဟုတ် သင်နှင့် စကားပြောဆိုထားသူများ တစ်ယောက်မှ မရှိပါ။ အလိုမရှိသော မက်ဆေ့ချ်များကို မလက်ခံမီ တောင်းဆိုမှုများကို သေချာစွာ သုံးသပ်ပါ။</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">မက်ဆေ့ခ်ျတောင်းဆိုမှုများ အကြောင်း</string>
     <string name="GroupsInCommonMessageRequest__okay">အိုကေ</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">ဤသည်မှာ ချက်(တ်) အရောင် အစမ်းပြသမှု ဖြစ်ပါသည်။</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">ဤအရောင်ကို သင်တစ်ဦးတည်းသာ မြင်ရပါမည်။</string>
 
@@ -3920,7 +3920,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">အခြေအနေ အိုင်ကွန်ကို ပြသရန်</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">ချိပ်ပိတ်ပေးပို့သူကို သုံး၍ မက်ဆေ့ချ်များ ပေးပို့သည့်အခါ မက်ဆေ့ချ် အသေးစိတ်တွင် အိုင်ကွန်တစ်ခု ပြသပါ။</string>
 
@@ -4066,7 +4066,7 @@
     <string name="ConversationSettingsFragment__search">ရှာဖွေမယ်</string>
     <string name="ConversationSettingsFragment__disappearing_messages">ပျောက်ကွယ်မည့် မက်ဆေ့ချ်များ</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">အသံနှင့် အသိပေးချက်</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">အဆက်အသွယ် အသေးစိတ်</string>
     <string name="ConversationSettingsFragment__view_safety_number">လုံခြုံရေးနံပါတ်ကိုကြည့်မယ်</string>
     <string name="ConversationSettingsFragment__block">ပိတ်ပယ်မယ်</string>

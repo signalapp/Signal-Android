@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">Da</string>
     <string name="no">Ne</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">Osebna zabeležka</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Aplikacija Signal se posodablja …</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Preden onemogočite svoj PIN, morate shraniti obnovitveno frazo za plačila, da jih boste lahko kasneje obnovili.</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Nazaj</string>
 
@@ -640,7 +640,7 @@
     <string name="BackupsPreferenceFragment__last_backup">Zadnja varnostna kopija: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">Mesto za varnostne kopije</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">Čas ustvarjanja varnostne kopije</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">Potrdi geslo za varnostno kopijo</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Preizkusite geslo svoje varnostne kopije, da vidite, če se ujema</string>
     <string name="BackupsPreferenceFragment__turn_on">Vklopi</string>
@@ -673,47 +673,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s ob %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">Jutri</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">Nocoj</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">Načrtovana sporočila</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">Izberite datum in uro</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">Načrtovana sporočila</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">Ko pošljete načrtovano sporočilo, se prepričajte, da je vaša naprava v času pošiljanja vklopljena in povezana z internetom. V nasprotnem primeru bo vaše sporočilo poslano, ko se vaša naprava znova poveže.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">Okej</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">Če želite omogočiti načrtovanje sporočil:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">Če želite znova omogočiti načrtovanje sporočil:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Izberite datum</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Izberite čas</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Načrtujte sporočilo</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Načrtuj pošiljanje</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">Vsi časi v (%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">Pošlji zdaj</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Prerazporedi</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">Izbriši</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Želite izbrisati izbrano načrtovano sporočilo?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Brisanje načrtovanega sporočila …</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Seja pogovora je bila osvežena</string>
@@ -787,7 +787,7 @@
     <string name="GroupManagement_access_level_all_members">Vsi člani</string>
     <string name="GroupManagement_access_level_only_admins">Samo skrbniki_ce</string>
     <string name="GroupManagement_access_level_no_one">Nihče</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1232,8 +1232,8 @@
     <string name="MediaOverviewActivity_audio">Zvok</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Slika</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">Poslano od uporabnika_ce %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Poslano od vas</string>
@@ -1597,7 +1597,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Se želite pridružiti skupini in z njenimi člani_cami deliti svoje ime in fotografijo? Dokler se ne pridružite, ne boste videli njihovih sporočil.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Se želite pridružiti skupini? Dokler se ne pridružite, skupina ne bo vedela, da ste videli njena sporočila.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Želite omogočiti članom_icam skupine, da vam pošiljajo sporočila in z njimi deliti svoje ime in fotografijo? Dokler jih ne odblokirate, od njih ne boste prejemali sporočil.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">Preglej</string>
     <string name="MessageRequestProfileView_member_of_one_group">Član_ica skupine %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Član_ica skupin %1$s in %2$s</string>
@@ -1707,7 +1707,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Ustvarite svoj PIN</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Ostali ste brez poskusov za vnos PINa. Za dostop do računa Signal morate ustvariti nov PIN. Zaradi varnosti in zasebnosti bo vaš račun obnovljen brez podatkov shranjenih v vašem profilu.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Ustvari nov PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Opozorilo</string>
@@ -1921,7 +1921,7 @@
     <string name="RegistrationActivity_continue">Nadaljuj</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">Vzemite svojo zasebnost v lastne roke!\nDa boste v sporočilih lahko to kar ste.</string>
     <string name="RegistrationActivity_enter_your_phone_number">Vnesite svojo telefonsko številko</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo. Sporočilo SMS je lahko plačljivo.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Prejeli boste potrditveno kodo.\nSporočilo SMS je lahko plačljivo.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Vpišite kodo poslano na %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">Prepričajte se, če ima vaš telefon dostop do mobilnega signala, da lahko prejmete naš SMS ali klic</string>
 
@@ -1930,7 +1930,7 @@
     <string name="RegistrationActivity_country_code_hint">Država</string>
     <string name="RegistrationActivity_call">Kliči</string>
     <string name="RegistrationActivity_verification_code">Verifikacijska koda</string>
-    <string name="RegistrationActivity_resend_code">Ponovno mi pošljite kodo</string>
+    <string name="RegistrationActivity_resend_code">Ponovno mi pošlji kodo</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">Želite vklopiti zaklep registracije?</string>
@@ -1952,12 +1952,12 @@
     <string name="SearchFragment_header_messages">Sporočila</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Dodaj med stike</string>
@@ -2038,7 +2038,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Sistemska zabeležba bo javno objavljena na spletu za razvijalce aplikacije. Pred objavo jo lahko pregledate.</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">Filter:</string>
     <string name="SupportEmailUtil_device_info">Podatki o napravi:</string>
     <string name="SupportEmailUtil_android_version">Različica Android:</string>
@@ -2156,10 +2156,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Za ogled varnostnih števil člana_ice %1$s morate z njim_njo najprej izmenjati sporočili.</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Sporočilo je bilo šifrirano za neobstoječo sejo</string>
@@ -2205,7 +2205,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">Napaka pri brisanju sporočila, sporočilo morda še obstaja</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s … <b>Preberi več</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">Novih sporočil: %1$d, pogovorov: %2$d</string>
@@ -2405,7 +2405,7 @@
     <string name="conversation_activity__type_message_sms_insecure">Nezavarovan SMS</string>
     <string name="conversation_activity__type_message_mms_insecure">Nezavarovan MMS</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">Načrtujte sporočilo</string>
     <string name="conversation_activity__from_sim_name">Od %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">Pošlji</string>
@@ -2674,7 +2674,7 @@
     <string name="EditProfileFragment__edit_group">Uredi skupino</string>
     <string name="EditProfileFragment__group_name">Ime skupine</string>
     <string name="EditProfileFragment__group_description">Opis skupine</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Vaše ime</string>
@@ -2754,13 +2754,13 @@
     <string name="HelpFragment__whats_this">Kaj je to?</string>
     <string name="HelpFragment__how_do_you_feel">Kako se počutite? (neobvezno)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Povejte nam, zakaj ste se obrnili na nas.</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Podporne informacije</string>
     <string name="HelpFragment__signal_android_support_request">Zahteva za podporo Signal Android</string>
     <string name="HelpFragment__debug_log">Sistemska zabeležba:</string>
@@ -2930,7 +2930,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Če nimate vklopljenih kazalnikov tipkanja zase, tudi ne morete videti, kdaj vaš_a partner_ka tipka svoje sporočilo.</string>
     <string name="preferences__request_keyboard_to_disable">Zahteva tipkovnici za izklop personaliziranega učenja.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Ta nastavitev ne zagotavlja, da bo tipkovnica tudi upoštevala zahtevo.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">Ob uporabi mobilnega omrežja</string>
     <string name="preferences_chats__when_using_wifi">Ob uporabi omrežja Wi-Fi</string>
     <string name="preferences_chats__when_roaming">Med gostovanjem</string>
@@ -3014,9 +3014,9 @@
     <string name="configurable_single_select__customize_option">Nastavitve po meri</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -3059,13 +3059,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Plačila so deaktivirana.</string>
     <string name="PaymentsHomeFragment__payment_failed">Plačilo ni uspelo</string>
     <string name="PaymentsHomeFragment__details">Podrobnosti</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal lahko uporabljate za pošiljanje in prejem MobileCoinov. Vsa plačila so izvedena v skladu s Pogoji uporabe za MobileCoin in MobileCoin Wallet. Storitev v okviru Signala je trenutno v fazi \'beta\', zato lahko občasno prihaja do težav, izgubljena plačila in stanja na računu pa ne bodo mogla biti obnovljena. </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signal lahko uporabljate za pošiljanje in prejem MobileCoinov. Vsa plačila so izvedena v skladu s Pogoji uporabe za MobileCoin in MobileCoin Wallet. Storitev v okviru Signala je trenutno v fazi \'beta\', zato lahko občasno prihaja do težav, izgubljena plačila in stanja na računu pa ne bodo mogla biti obnovljena. </string>
     <string name="PaymentsHomeFragment__activate">Aktiviraj</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Pogoji MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">Plačila v Signalu niso več na voljo. Še vedno lahko prenesete sredstva v menjalnico, ne morete pa več pošiljati in prejemati plačil ali dodajati sredstev.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Želite vklopiti potrjevanje plačila?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -3109,7 +3109,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Kopiraj</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopirano v odložišče</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Za dodajanje sredstev pošljite svoje MobileCoine na naslov svoje denarnice. S transakcijo začnete v svojem računu v menjalnici, ki podpira MobileCoin, nato skenirate kodo QR ali prekopirate naslov denarnice.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Podrobnosti</string>
@@ -3129,8 +3129,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Stroški čiščenja</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\'Stroški čiščenja\' se zaračunajo, kadar se novcev v vaši lasti ne da uporabiti za dokončanje transakcije. Čiščenje bo zagotovilo, da boste lahko še naprej pošiljali plačila.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Več podatkov o transakciji ni na voljo</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">Poslano plačilo</string>
     <string name="PaymentsDetailsFragment__received_payment">Prejeto plačilo</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Plačilo je zaključeno %1$s</string>
@@ -3174,7 +3174,7 @@
     <string name="CreatePaymentFragment__backspace">Nazaj</string>
     <string name="CreatePaymentFragment__add_note">Dodaj zaznamek</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Pretvorbe so zgolj informativne narave in niso nujno točne.</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Zaznamek</string>
@@ -3318,10 +3318,10 @@
     <string name="conversation_scheduled_messages_bar__see_all">Prikaz vseh</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="two">%1$d messages scheduled</item>
-        <item quantity="few">%1$d messages scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">%1$d načrtovano sporočilo</item>
+        <item quantity="two">%1$d načrtovani sporočili</item>
+        <item quantity="few">%1$d načrtovana sporočila</item>
+        <item quantity="other">%1$d načrtovanih sporočil</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3402,7 +3402,7 @@
     <string name="BaseKbsPinFragment__next">Naprej</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Ustvari alfanumerični PIN</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Ustvari številčni PIN</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3420,13 +3420,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Ustvari nov PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">PIN lahko spreminjate dokler je naprava registrirana.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Ustvarite svoj PIN</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PIN koda vam lahko pomaga obnoviti račun in ohraniti podatke v Signalu šifrirane. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Izberite močnejši PIN</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">PIN se ne ujema. Poskusite znova.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Ponovno vnesite PIN, ki ste ga pravkar določili.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Potrdite svoj PIN.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Kreiranje PINa ni uspelo</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Vaš PIN ni bil shranjen. Kasneje vas bomo spomnili, da ustvarite novega.</string>
@@ -3438,7 +3438,7 @@
     <string name="KbsSplashFragment__introducing_pins">Predstavljamo vam PIN!</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">S kodo PIN zavarujete podatke shranjene na Signalu s šifriranjem, tako da so dostopni le vam. Vaš profil, nastavitve in stiki bodo ob ponovni namestitvi aplikacije Signal obnovljeni. Vnos PINa ob vsakokratnem zagonu aplikacije ne bo potreben.</string>
     <string name="KbsSplashFragment__learn_more">Več o tem…</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">PIN = koda za zaklep registracije</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">PIN za prijavo v omrežje je izboljšan in odslej ponuja več možnosti. Posodobite ga zdaj!</string>
     <string name="KbsSplashFragment__update_pin">Posodobite PIN</string>
@@ -3459,7 +3459,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Zaradi zaščite vaše varnosti in zasebnosti je bil vaš račun zaklenjen. Po %1$d dneh neaktivnosti računa se boste zopet lahko prijavili s to telefonsko številko brez vnosa PINa. Vsa vsebina bo izbrisana.</string>
     <string name="AccountLockedFragment__next">Naprej</string>
     <string name="AccountLockedFragment__learn_more">Več o tem…</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Vnesite svoj PIN</string>
@@ -3577,7 +3577,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Vaša varnostna kopija vsebuje zelo veliko datoteko, ki je ni mogoče varnostno kopirati. Izbrišite jo in ustvarite novo varnostno kopijo.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Tapnite za urejanje varnostnih kopij.</string>
     <string name="RegistrationActivity_wrong_number">Napačna številka?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Raje me pokličite \n (Dostopno čez %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Kontaktiraj center za podporo Signal</string>
     <string name="RegistrationActivity_code_support_subject">Registracija za storitev Signal - verifikacijska koda za Android</string>
     <string name="RegistrationActivity_incorrect_code">Napačna koda</string>
@@ -3962,9 +3962,9 @@
     <string name="payment_info_card_with_a_high_balance">Zaradi višine zneskov bi morda želeli spremeniti svoj PIN v alfanumeričnega in tako zagotoviti večjo varnost računa.</string>
     <string name="payment_info_card_update_pin">Posodobite PIN</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Deaktiviraj denarnico</string>
@@ -3976,7 +3976,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Ali res želite deaktivacijo brez prenosa sredstev?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Vaše stanje bo ostalo zabeleženo v vaši denarnici, povezani s Signalom, če bi se odločili ponovno aktivirati plačila.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Napaka pri deaktivaciji denarnice.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Obnovitvena fraza</string>
@@ -4014,8 +4014,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Neveljavna obnovitvena fraza</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Prepričajte se, da ste vnesli %1$d besed in poskusite znova.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Naprej</string>
@@ -4065,7 +4065,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">V tej skupini ni nikogar iz vašega imenika ali ljudi s katerimi si pošiljate sporočila. Pred potrditvijo dobro preverite prošnje, da se izognete neželeni pošti.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">O prošnjah za pogovor</string>
     <string name="GroupsInCommonMessageRequest__okay">Okej</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Tu je predogled barve pogovora.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Barva je vidna samo vam.</string>
 
@@ -4211,7 +4211,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Prikaži statusno ikono</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Prikaz ikone v detajlih sporočil, kadar so ta dostavljena s pomočjo zakritega pošiljatelja.</string>
 
@@ -4363,7 +4363,7 @@
     <string name="ConversationSettingsFragment__search">Iskanje</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Izginjajoča sporočila</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Zvoki &amp; obvestila</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Podrobnosti o stiku</string>
     <string name="ConversationSettingsFragment__view_safety_number">Pregled varnostnega števila</string>
     <string name="ConversationSettingsFragment__block">Blokiraj</string>
@@ -5816,9 +5816,9 @@
     <!-- Popup menu label for applying bold style -->
     <string name="TextFormatting_bold">Krepko</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">Ležeče</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">Prečrtano</string>
     <!-- Popup menu label for applying monospace font style -->
     <string name="TextFormatting_monospace">Monospace</string>
 </resources>

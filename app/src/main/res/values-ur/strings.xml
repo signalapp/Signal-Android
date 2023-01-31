@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">جی ہاں</string>
     <string name="no">جی نہیں</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">اپنے لئے نوٹ کریں</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal کی تجدید ہورہی ہے۔۔۔</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">اپنے پن کو غیر فعال کرنے سے پہلے ، آپ کو اپنے ادائیگیوں کے کھاتے کی وصولی کو یقینی بنانے کے لئے اپنے ادائیگیوں کی بازیابی کے جملہ کو ریکارڈ کرنا ہوگا۔</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">بیک اسپیس</string>
 
@@ -745,7 +745,7 @@
     <string name="GroupManagement_access_level_all_members">تمام ممبران</string>
     <string name="GroupManagement_access_level_only_admins">صرف منتظمین</string>
     <string name="GroupManagement_access_level_no_one">کوئی نہیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1136,8 +1136,8 @@
     <string name="MediaOverviewActivity_audio">آڈیو</string>
     <string name="MediaOverviewActivity_video">وڈیو</string>
     <string name="MediaOverviewActivity_image">تصویر</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">کی طرف سے بھیجا%1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">آپ کے ذریعہ بھیجا گیا</string>
@@ -1481,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">اس گروپ میں شامل ہوں اور اس کے اراکین کے ساتھ اپنا نام اور تصویر شیئر کریں؟ آپ قبول کرنے تک ان کے پیغامات نہیں دیکھ پائیں گے۔</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">اس گروپ میں شامل ہوں؟ جب تک آپ ان کو قبول نہ کریں تب تک وہ نہیں جانیں گے کہ آپ نے ان کے پیغامات دیکھے ہیں۔</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">اس گروپ کو غیر مسدود کریں اور اس کے ممبروں کے ساتھ اپنا نام اور تصویر شئیر کریں؟ آپ کو کوئی پیغامات موصول نہیں ہوگا جب تک کہ آپ ان کو بلاک نہیں کردیں گے۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">دیکھیں</string>
     <string name="MessageRequestProfileView_member_of_one_group">کا رکن%1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">ممبر%1$s اور%2$s</string>
@@ -1579,7 +1579,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">اپنا پن بنائیں</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">آپ کے پاس PIN کے اندازے ختم ہوچکے ہیں ، لیکن آپ پھر بھی نیا PIN بنا کر اپنے Signal اکاؤنٹ تک رسائی حاصل کرسکتے ہیں۔ آپ کی رازداری اور سیکیورٹی کے لیئے آپ کا اکاؤنٹ بغیر کسی محفوظ پروفائل کی معلومات یا ترتیبات کے بحال ہوگا۔</string>
     <string name="PinRestoreLockedFragment_create_new_pin">نیا PIN بنائیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">انتباہ</string>
@@ -1810,12 +1810,12 @@
     <string name="SearchFragment_header_messages">پیغامات</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">رابطوں میں شامل کریں</string>
@@ -1896,7 +1896,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">اس لاگ کو دیکھنے والوں کے دیکھنے کے لئے عوامی سطح پر آن لائن پوسٹ کیا جائے گا۔ اپ لوڈ کرنے سے پہلے آپ اس کی جانچ کرسکتے ہیں۔</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">فلٹر:</string>
     <string name="SupportEmailUtil_device_info">Device کی معلومات:</string>
     <string name="SupportEmailUtil_android_version">Android ورژن:</string>
@@ -2012,10 +2012,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s کے حفاظتی نمبر کو دیکھنے کے لیئے آپ کو پہلے پیغامات کا تبادلہ کرنا ہوگا۔</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">غیر موجود سیشن کیلئے خفیہ کردہ پیغام</string>
@@ -2061,7 +2061,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">میسج حذف کرنے میں نقص پیش آیا، میسج اب بھی موجود ہو سکتا ہے</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>مزید پڑھیں</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s... <b>مزید پڑھیں</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$dنئے پیغامات %2$dگفتگو میں</string>
@@ -2508,7 +2508,7 @@
     <string name="EditProfileFragment__edit_group">گروپ میں ترمیم کریں</string>
     <string name="EditProfileFragment__group_name">گروپ کا نام</string>
     <string name="EditProfileFragment__group_description">گروپ کی تفصیل</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">آپ کا نام</string>
@@ -2588,13 +2588,13 @@
     <string name="HelpFragment__whats_this">یہ کیا ہے؟</string>
     <string name="HelpFragment__how_do_you_feel">اپ کیسا محسوس کر رہے ہیں؟ (اختیاری)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">ہمیں بتائیں کہ آپ کیوں رابطہ کر رہے ہیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">مدد کی معلومات</string>
     <string name="HelpFragment__signal_android_support_request">Signalا Android کی مدد کی درخواست</string>
     <string name="HelpFragment__debug_log">ڈیبگ لاگ:</string>
@@ -2762,7 +2762,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">اگر ٹائپنگ اندیکیٹرز غیر فعال ہیں، آپ دوسروں سے ٹائپنگ انڈیکیٹرز دیکھنے کے قابل نہیں ہیں۔</string>
     <string name="preferences__request_keyboard_to_disable">ذاتی سیکھنے کو غیر فعال کرنے کے لئے کی بورڈ سے درخواست کریں۔</string>
     <string name="preferences__this_setting_is_not_a_guarantee">یہ ترتیب ضمانت نہیں ہے ، اور آپ کا کی بورڈ اسے نظرانداز کرسکتا ہے۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">جب موبائل ڈیٹا استعمال کریں</string>
     <string name="preferences_chats__when_using_wifi">جب وائی فائی استعمال کریں</string>
     <string name="preferences_chats__when_roaming">جب رومنگ ہو رہی ہو</string>
@@ -2846,9 +2846,9 @@
     <string name="configurable_single_select__customize_option">آپشن کو کسٹمائز کریں</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2891,13 +2891,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">ادائیگی غیر فعال ہوگئی۔</string>
     <string name="PaymentsHomeFragment__payment_failed">ادائیگی ناکام ہوگئی</string>
     <string name="PaymentsHomeFragment__details">تفصیلات</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">آپ موبائل کوائن بھیجنے اور وصول کرنے کے لئے Signal کا استعمال کرسکتے ہیں۔ تمام ادائیگیاں موبائل کوائنز اور موبائل کوائن والیٹ کیلئے استعمال کی شرائط سے مشروط ہیں۔ یہ ایک بیٹا خصوصیت ہے لہذا آپ کو کچھ مسائل اور ادائیگیوں یا بیلنس کا سامنا کرنا پڑ سکتا ہے جو آپ کھو سکتے ہیں بازیافت نہیں ہوسکتے ہیں۔ </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">آپ موبائل کوائن بھیجنے اور وصول کرنے کے لئے Signal کا استعمال کرسکتے ہیں۔ تمام ادائیگیاں موبائل کوائنز اور موبائل کوائن والیٹ کیلئے استعمال کی شرائط سے مشروط ہیں۔ یہ ایک بیٹا خصوصیت ہے لہذا آپ کو کچھ مسائل اور ادائیگیوں یا بیلنس کا سامنا کرنا پڑ سکتا ہے جو آپ کھو سکتے ہیں بازیافت نہیں ہوسکتے ہیں۔ </string>
     <string name="PaymentsHomeFragment__activate">فعال</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">موبائل کوائن کی شرائط دیکھیں</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signal میں ادائیگی اب دستیاب نہیں ہے۔ آپ اب بھی ایکسچینج میں فنڈز کی منتقلی کرسکتے ہیں لیکن آپ اب ادائیگی بھیجنے اور وصول کرنے یا فنڈز شامل نہیں کرسکتے ہیں۔</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">مستقبل میں بھیجنے کے لیے پیمنٹ لاک آن کریں؟</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2941,7 +2941,7 @@
     <string name="PaymentsAddMoneyFragment__copy">کاپی کریں</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">فنڈز شامل کرنے کے لئے ، اپنے Wallet کے پتے پر موبائل کوائن بھیجیں۔ اپنے تبادلے سے اپنے اکاؤنٹ سے لین دین شروع کریں جو موبائل کوائن کو سپورٹ کرتا ہے ، پھر کیو آر کوڈ اسکین کریں یا اپنے Wallet کے پتے کو کاپی کریں۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">تفصیلات</string>
@@ -2961,8 +2961,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Coin Cleanup فیس</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">جب آپ کے پاس موجود سکے کو ٹرانزیکشن کو مکمل کرنے کے لئے جوڑ نہیں کیا جاسکتا ہے تو \"Coin cleanup fee\" وصول کی جاتی ہے۔ Cleanup آپ کو ادائیگی بھیجنا جاری رکھنے کی اجازت دے گی۔</string>
     <string name="PaymentsDetailsFragment__no_details_available">اس لین دین کے لئے مزید کوئی تفصیلات دستیاب نہیں ہیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">ادائیگی بھیجی گئی</string>
     <string name="PaymentsDetailsFragment__received_payment">ادائیگی موصول ہوئی</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">ادائیگی مکمل ہوگئی%1$s</string>
@@ -3006,7 +3006,7 @@
     <string name="CreatePaymentFragment__backspace">بیک اسپیس</string>
     <string name="CreatePaymentFragment__add_note">نوٹ شامل کریں</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">تبادلوں کا صرف اندازہ ہے اور ہوسکتا ہے کہ یہ درست نہ ہوں۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">نوٹ</string>
@@ -3230,7 +3230,7 @@
     <string name="BaseKbsPinFragment__next">اگلا</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Alphanumeric پن بنائیں</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">عددی پن بنائیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3262,7 +3262,7 @@
     <string name="KbsSplashFragment__introducing_pins">پن ز متعارف ہو رہے ہیں</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PINs Signal کے ساتھ ذخیرہ شدہ معلومات کو خفیہ شدہ رکھتا ہے لہذا صرف آپ ہی اس تک رسائی حاصل کرسکتے ہیں۔ جب آپ دوبارہ انسٹال کریں گے تو آپ کا پروفائل ، ترتیبات اور رابطے بحال ہوں گے۔ ایپ کو کھولنے کے لیئے آپ کو اپنے PIN کی ضرورت نہیں ہوگی۔</string>
     <string name="KbsSplashFragment__learn_more">مزید پڑھیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">رجسٹریشن لاک=پن</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">آپ کے رجسٹریشن لاک کو اب ایک PIN کہا جاتا ہے ، اور یہ اور بھی کرتا ہے۔ ابھی اسے اپ ڈیٹ کریں۔</string>
     <string name="KbsSplashFragment__update_pin">پن کو اپ ڈیٹ کریں</string>
@@ -3283,7 +3283,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">آپ کی نجی معلومات کی حفاظتی اور حفاظت کے لیئے آپ کا اکاؤنٹ مقفل کردیا گیا ہے۔ آپ کے اکاؤنٹ میں %1$dدن غیر فعال ہونے کے بعد آپ اپنے فون کی ضرورت کے بغیر اس فون نمبر کو دوبارہ رجسٹر کرسکیں گے۔ تمام مشمولات کو حذف کردیا جائے گا۔</string>
     <string name="AccountLockedFragment__next">اگلا</string>
     <string name="AccountLockedFragment__learn_more">مزید پڑھیں</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">اپنا پن داخل کریں</string>
@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">آپ کے بیک اپ میں ایک بہت بڑی فائل شامل ہے جسے بیک اپ نہیں کیا جا سکتا۔ براہ کرم اسے حذف کریں اور ایک نیا بیک اپ تخلیق کریں۔</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">بیک اپ کا انتظام کرنے کے لئے ٹیپ کریں۔</string>
     <string name="RegistrationActivity_wrong_number">غلط نمبر؟</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">اس کی بجائے مجھے کال کریں/n ( %1$02d: %2$02d میں دستیاب ہے)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Signal رابطہ سپورٹ کریں</string>
     <string name="RegistrationActivity_code_support_subject">Signal رجسٹریشن- Android کے لیے تصدیقی کوڈ درج کریں</string>
     <string name="RegistrationActivity_incorrect_code">غلط کوڈ</string>
@@ -3446,7 +3446,7 @@
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">ترتیبات کو کھولنے کے لئے بائیں طرف اوپر اپنے پروفائل فوٹو پر ٹیپ کریں</string>
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="NewDeviceTransferInstructions__tap_on_account">"\'اکاؤنٹ\' پر ٹیپ کریں"</string>
+    <string name="NewDeviceTransferInstructions__tap_on_account">"'اکاؤنٹ' پر ٹیپ کریں"</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"\"ٹرانسفر اکاؤنٹ\" پر ٹیپ کریں اور پھر دونوں ڈیوائسز پر \"جاری رکھیں\""</string>
 
@@ -3770,9 +3770,9 @@
     <string name="payment_info_card_with_a_high_balance">اعلی بیلنس کے ساتھ ، آپ اپنے اکاؤنٹ میں مزید تحفظ شامل کرنے کے لئے کسی حرفی نمبر کو اپ ڈیٹ کرنا چاہتے ہو۔</string>
     <string name="payment_info_card_update_pin">پن کو اپ ڈیٹ کریں</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Wallet کو غیر فعال کریں</string>
@@ -3784,7 +3784,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">منتقلی کے بغیر غیر فعال کریں؟</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">اگر آپ ادائیگیوں کو دوبارہ فعال کرنے کا انتخاب کرتے ہیں تو آپ کا بیلنس Signal سے منسلک آپ کے Wallet میں رہے گا۔</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Wallet کو غیر فعال کرنے میں خرابی۔</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">بازیافت جملہ</string>
@@ -3820,8 +3820,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">بازیافت کا غلط جملہ</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">یقینی بنائیں کہ آپ نے %1$d الفاظ داخل کیے ہیں اور دوبارہ کوشش کریں۔</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">اگلا</string>
@@ -3871,7 +3871,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">آپ کے رابطوں یا لوگوں میں سے کوئی بھی آپ اس چیٹ میں نہیں ہے۔ ناپسندیدہ پیغامات سے بچنے کے لئے قبول کرنے سے پہلے درخواستوں کا بغور جائزہ لیں۔</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">پیغام کی درخواستوں کے بارے میں</string>
     <string name="GroupsInCommonMessageRequest__okay">ٹھیک ہے</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">یہاں چیٹ کے رنگ کا پیش نظارہ ہے۔</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">رنگ صرف آپ کو نظر آتا ہے۔</string>
 
@@ -4017,7 +4017,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">حیثیت کا آئیکن دکھائیں</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">جب مہر بند مرسل کا استعمال کرکے پیغام پہنچایا گیا تو پیغام کی تفصیلات میں ایک آئکن دکھائیں۔</string>
 
@@ -4165,7 +4165,7 @@
     <string name="ConversationSettingsFragment__search">تلاش کریں</string>
     <string name="ConversationSettingsFragment__disappearing_messages">پیغامات غائب ہو رہے ہیں</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">آواز &amp; amp؛ اطلاعات</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">رابطہ کی تفصیلات</string>
     <string name="ConversationSettingsFragment__view_safety_number">حفاظتی نمبر دیکھیں</string>
     <string name="ConversationSettingsFragment__block">بلاک</string>

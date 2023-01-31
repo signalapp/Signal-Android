@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">Kyllä</string>
     <string name="no">Ei</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">Viestit itselleni</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal päivittyy…</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">Ennen tunnusluvun ottamista pois käytöstä tallenna palautuslause. Sitä tarvitaan maksutilin palauttamiseen.</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">Askelpalautin</string>
 
@@ -745,7 +745,7 @@
     <string name="GroupManagement_access_level_all_members">Kaikki jäsenet</string>
     <string name="GroupManagement_access_level_only_admins">Vain ylläpitäjät</string>
     <string name="GroupManagement_access_level_no_one">Ei kukaan</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1136,8 +1136,8 @@
     <string name="MediaOverviewActivity_audio">Ääni</string>
     <string name="MediaOverviewActivity_video">Video</string>
     <string name="MediaOverviewActivity_image">Kuva</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">Lähettäjä %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">Sinun lähettämäsi</string>
@@ -1481,7 +1481,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Haluatko liittyä ryhmään ja jakaa nimesi ja profiilikuvasi ryhmän jäsenten kanssa? Et näe ryhmän viestejä, ennen kuin hyväksyt liittymisen.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Haluatko liittyä tähän ryhmään? He eivät tiedä, että olet nähnyt heidän viestinsä ennen hyväksymistä.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Poistetaanko tämän ryhmän esto ja näytetäänkö nimesi ja profiilikuvasi sen jäsenille? Et saa viestejä ennen eston poistamista.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">Näytä</string>
     <string name="MessageRequestProfileView_member_of_one_group">Jäsen ryhmässä %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">Jäsen ryhmissä %1$s ja %2$s</string>
@@ -1579,7 +1579,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">Valitse tunnusluku</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">Tunnuslukuyritykset ovat loppuneet, mutta voit silti käyttää Signal-tiliäsi luomalla uuden tunnusluvun. Yksityisyys- ja tietoturvasyistä tili palautetaan ilman tallennettuja profiilitietoja tai asetuksia.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">Luo uusi tunnusluku</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Varoitus</string>
@@ -1810,12 +1810,12 @@
     <string name="SearchFragment_header_messages">Viestit</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">Lisää yhteystietoihin</string>
@@ -1896,7 +1896,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Loki julkaistaan intermetissä, jossa se on kehittäjien nähtävissä. Voit tutkia sitä ennen lähettämistä.</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">Suodatin:</string>
     <string name="SupportEmailUtil_device_info">Laitetiedot:</string>
     <string name="SupportEmailUtil_android_version">Android-versio:</string>
@@ -2012,10 +2012,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">Voit nähdä käyttäjän %1$s turvanumeron viestimällä hänen kanssaan.</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Viesti salattu istunnolle, jota ei ole olemassa</string>
@@ -2508,7 +2508,7 @@
     <string name="EditProfileFragment__edit_group">Muokkaa ryhmää</string>
     <string name="EditProfileFragment__group_name">Ryhmän nimi</string>
     <string name="EditProfileFragment__group_description">Ryhmän kuvaus</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Nimesi</string>
@@ -2588,13 +2588,13 @@
     <string name="HelpFragment__whats_this">Mikä tämä on?</string>
     <string name="HelpFragment__how_do_you_feel">Mitä mieltä olet? (valinnainen)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">Kerro, miksi otat yhteyttä.</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">Tukitiedot</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android -tukipyyntö</string>
     <string name="HelpFragment__debug_log">Virheenkorjausloki:</string>
@@ -2762,7 +2762,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">Jos kirjoittamisen ilmaisin ei ole käytössä, et näe muiden käyttäjien kirjoittamisen ilmaisinta.</string>
     <string name="preferences__request_keyboard_to_disable">Pyydä näppäimistöä kytkemään sanakirjan automaattinen päivittäminen pois päältä</string>
     <string name="preferences__this_setting_is_not_a_guarantee">Asetus ei välttämättä toimi, näppäimistösi saattaa olla tottelematta sitä.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">Mobiiliverkossa</string>
     <string name="preferences_chats__when_using_wifi">Wi-Fi-verkossa</string>
     <string name="preferences_chats__when_roaming">Roaming-tilassa</string>
@@ -2846,9 +2846,9 @@
     <string name="configurable_single_select__customize_option">Mukautettu vaihtoehto</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2891,13 +2891,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">Maksutoiminto otettu pois käytöstä</string>
     <string name="PaymentsHomeFragment__payment_failed">Maksu epäonnistui</string>
     <string name="PaymentsHomeFragment__details">Lisätietoja</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signalissa voi lähettää tai vastaanottaa MobileCoineja MobileCoinsin ja MobileCoin Walletin käyttöehtojen mukaisesti. Toiminto on yhä kehitysvaiheessa, joten teknisten ongelmien takia keskeytyneitä siirtoja tai katemenetyksiä ei korvata. </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">Signalissa voi lähettää tai vastaanottaa MobileCoineja MobileCoinsin ja MobileCoin Walletin käyttöehtojen mukaisesti. Toiminto on yhä kehitysvaiheessa, joten teknisten ongelmien takia keskeytyneitä siirtoja tai katemenetyksiä ei korvata. </string>
     <string name="PaymentsHomeFragment__activate">Aktivoi</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">Näytä MobileCoinin ehdot</string>
     <string name="PaymentsHomeFragment__payments_not_available">Signalin maksutoiminto ei ole enää käytettävissä. Varat voi yhä siirtää toiseen kauppapaikkaan, mutta varojen lisääminen tai maksujen lähettäminen ja vastaanottaminen ei ole enää mahdollista.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">Otetaanko maksun lukitus käyttöön tuleville maksuille?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2941,7 +2941,7 @@
     <string name="PaymentsAddMoneyFragment__copy">Kopioi</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">Kopioitu leikepöydälle</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">Lisää varoja lähettämällä MobileCoineja lompakko-osoitteeseesi. Aloita siirto tililtäsi MobileCoin-yhteensopivan kauppapaikan kautta ja sitten skannaamalla QR-koodi tai kopioimalla lompakko-osoite.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">Lisätietoja</string>
@@ -2961,8 +2961,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Kolikoiden siivousmaksu</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">Jos siirtoon vaadittavat kolikot eivät mene tasan, summasta peritään kolikoiden siivousmaksu. Siivouksen jälkeen maksujen lähettäminen on jälleen mahdollista.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Siirrosta ei ole saatavilla lisätietoja</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">Maksu lähetetty</string>
     <string name="PaymentsDetailsFragment__received_payment">Maksu vastaanotettu</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Maksu on suoritettu %1$s</string>
@@ -3006,7 +3006,7 @@
     <string name="CreatePaymentFragment__backspace">Askelpalautin</string>
     <string name="CreatePaymentFragment__add_note">Lisää viesti</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">Muunnokset ovat vain arvioita ja saattavat olla epätarkkoja.</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">Huomautus</string>
@@ -3230,7 +3230,7 @@
     <string name="BaseKbsPinFragment__next">Seuraava</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">Luo aakkosnumeerinen tunnusluku</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">Luo numeerinen tunnusluku</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3262,7 +3262,7 @@
     <string name="KbsSplashFragment__introducing_pins">Esittelyssä tunnusluku</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">Tunnusluvulla salataan Signaliin tallentamasi tiedot, jotta vain sinä pääset niihin käsiksi. Profiilisi, asetuksesi ja yhteystietosi palautetaan, kun asennat Signalin uudelleen. Tunnuslukua ei tarvita sovelluksen avaamiseen.</string>
     <string name="KbsSplashFragment__learn_more">Lue lisää</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">Rekisteröintiesto = tunnusluku</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">Rekisteröintiesto on nyt tunnusluku ja sillä on uusia toimintoja. Päivitä sovellus nyt.</string>
     <string name="KbsSplashFragment__update_pin">Päivitä tunnusluku</string>
@@ -3283,7 +3283,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Tili on lukittu yksityisyytesi ja tietoturvasi suojaamiseksi. Kun %1$d päivää on kulunut, voit rekisteröidä tämän puhelinnumeron uudelleen ilman tunnuslukua. Kaikki sisältö tullaan poistamaan.</string>
     <string name="AccountLockedFragment__next">Seuraava</string>
     <string name="AccountLockedFragment__learn_more">Lue lisää</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Syötä tunnusluku</string>
@@ -3391,7 +3391,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Varmuuskopiosi sisältää erittäin suuren tiedoston, jota ei voi varmuuskopioida. Poista se ja luo uusi varmuuskopio.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">Hallitse varmuuskopioita napauttamalla.</string>
     <string name="RegistrationActivity_wrong_number">Väärä numero?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">Soita minulle sen sijaan \n (Käytettävissä %1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Ota yhteyttä Signalin tukeen</string>
     <string name="RegistrationActivity_code_support_subject">Signalin rekisteröinti – vahvistuskoodi Androidille</string>
     <string name="RegistrationActivity_incorrect_code">Väärä koodi</string>
@@ -3770,9 +3770,9 @@
     <string name="payment_info_card_with_a_high_balance">Tili kannattaa suojata aakkosnumeerisella suojakoodilla, erityisesti jos sen kate on korkea.</string>
     <string name="payment_info_card_update_pin">Päivitä tunnusluku</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">Poista Wallet käytöstä</string>
@@ -3784,7 +3784,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">Poistetaanko käytöstä siirtämättä varoja?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">Varat säilytetään Signal-tiliin liitetyssä lompakossa siltä varalta, että maksut otetaan uudestaan käyttöön.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">Lompakon poisto käytöstä epäonnistui.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">Palautuslause</string>
@@ -3820,8 +3820,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">Virheellinen palautuslause</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">Varmista, että olet syöttänyt %1$d sanaa ja yritä uudelleen.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">Seuraava</string>
@@ -3871,7 +3871,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Kukaan yhteyshenkilöistäsi tai käyttäjistä, joiden kanssa viestit, ei kuulu tähän ryhmään. Käy pyynnöt huolellisesti läpi ennen hyväksymistä välttääksesi ei-toivotut viestit.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Tietoa viestipyynnöistä</string>
     <string name="GroupsInCommonMessageRequest__okay">Selvä</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">Tässä on esikatselu keskustelun väristä.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">Väri näkyy vain sinulle.</string>
 
@@ -4017,7 +4017,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Näytä tilailmaisin</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">Näytä viestin lisätiedoissa kuvake niille viesteille, jotka toimitettiin lähettäjäsinetillä.</string>
 
@@ -4165,7 +4165,7 @@
     <string name="ConversationSettingsFragment__search">Haku</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Katoavat viestit</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Äänet ja ilmoitukset</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">Yhteystieto</string>
     <string name="ConversationSettingsFragment__view_safety_number">Näytä turvanumero</string>
     <string name="ConversationSettingsFragment__block">Estä</string>

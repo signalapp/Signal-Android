@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">כן</string>
     <string name="no">לא</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">הערה לעצמי</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal מתעדכן…</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">לפני שתוכל להשבית את ה־PIN שלך, אתה חייב לתעד את משפט ההשבה של התשלומים שלך כדי להבטיח שתוכל להשיב את חשבון התשלומים שלך.</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">מקש חזרה</string>
 
@@ -234,7 +234,7 @@
     <!-- Text for a button that brings up a bottom sheet to create a new story. -->
     <string name="ContactsCursorLoader_new">חדש</string>
     <!-- Header for conversation search section labeled "Chats" -->
-    <string name="ContactsCursorLoader__chats">התכתבויות</string>
+    <string name="ContactsCursorLoader__chats">צ׳אטים</string>
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">הודעות</string>
 
@@ -640,7 +640,7 @@
     <string name="BackupsPreferenceFragment__last_backup">גיבוי אחרון: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">תיקיית גיבוי</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Backup time</string>
+    <string name="BackupsPreferenceFragment__backup_time">זמן גיבוי</string>
     <string name="BackupsPreferenceFragment__verify_backup_passphrase">וודא משפט־סיסמת גיבוי</string>
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">בחן את משפט־סיסמת הגיבוי שלך ווודא שהוא תואם</string>
     <string name="BackupsPreferenceFragment__turn_on">הפעל</string>
@@ -673,47 +673,47 @@
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
     <string name="DateUtils_schedule_at">%1$s בשעה %2$s</string>
     <!-- Used when getting a time in the future. For example, Tomorrow at 9:00pm -->
-    <string name="DateUtils_tomorrow">Tomorrow</string>
+    <string name="DateUtils_tomorrow">מחר</string>
     <!-- Used in the context: Tonight at 9:00pm for example. Specifically this is after 7pm -->
-    <string name="DateUtils_tonight">Tonight</string>
+    <string name="DateUtils_tonight">הלילה</string>
 
     <!-- Scheduled Messages -->
     <!-- Title for dialog that shows all the users scheduled messages for a chat -->
-    <string name="ScheduledMessagesBottomSheet__schedules_messages">Scheduled messages</string>
+    <string name="ScheduledMessagesBottomSheet__schedules_messages">הודעות מתוזמנות</string>
     <!-- Option when scheduling a message to select a specific date and time to send a message -->
-    <string name="ScheduledMessages_pick_time">Pick Date &amp; Time</string>
+    <string name="ScheduledMessages_pick_time">בחירת תאריך ושעה</string>
     <!-- Title for dialog explaining to users how the scheduled messages work -->
-    <string name="ScheduleMessageFTUXBottomSheet__title">Scheduled messages</string>
+    <string name="ScheduleMessageFTUXBottomSheet__title">הודעות מתוזמנות</string>
     <!-- Disclaimer text for scheduled messages explaining to users that the scheduled messages will only send if connected to the internet -->
-    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">When you send a scheduled message, make sure your device will be on and connected to the internet at the time of sending. If not, your message will send when your device reconnects.</string>
+    <string name="ScheduleMessageFTUXBottomSheet__disclaimer">כששולחים הודעה מתוזמנת, חשוב לוודא שהמכשיר שלך יהיה מופעל ומחובר לאינטרנט בזמן השליחה. אם לא, ההודעה שלך תישלח כשהמכשיר שלך יתחבר מחדש.</string>
     <!-- Confirmation button text acknowledging the user understands the disclaimer -->
     <string name="ScheduleMessageFTUXBottomSheet__okay">בסדר</string>
     <!-- Title for section asking users to allow alarm permissions for scheduled messages -->
-    <string name="ScheduleMessageFTUXBottomSheet_enable_title">To enable message scheduling:</string>
+    <string name="ScheduleMessageFTUXBottomSheet_enable_title">כדי להפעיל תזמון הודעות:</string>
     <!-- Title for dialog asking users to allow alarm permissions for scheduled messages -->
-    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">To re-enable message scheduling:</string>
+    <string name="ReenableScheduleMessagesDialogFragment_reenable_title">כדי להפעיל מחדש תזמון הודעות:</string>
     <!-- Title of dialog with a calendar to select the date the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">Select date</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_date_title">בחירת תאריך</string>
     <!-- Title of dialog with a clock to select the time at which the user wants to schedule a message. -->
-    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">Select time</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__select_time_title">בחירת שעה</string>
     <!-- Title of dialog that allows user to set the time and day that their message will be sent -->
-    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">Schedule message</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__dialog_title">תזמון הודעה</string>
     <!-- Text for confirmation button when scheduling messages that allows the user to confirm and schedule the sending time -->
-    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">Schedule send</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__schedule_send">תזמון שליחה</string>
 
     <!-- Disclaimer in message scheduling dialog. %1$s replaced with a GMT offset (e.g. GMT-05:00), and %2$s is replaced with the time zone name (e.g. Eastern Standard Time) -->
-    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">All times in (%1$s) %2$s</string>
+    <string name="ScheduleMessageTimePickerBottomSheet__timezone_disclaimer">כל הזמנים ב–(%1$s) %2$s</string>
 
     <!-- Context menu option to send a scheduled message now -->
-    <string name="ScheduledMessagesBottomSheet_menu_send_now">Send now</string>
+    <string name="ScheduledMessagesBottomSheet_menu_send_now">שליחה כעת</string>
     <!-- Context menu option to reschedule a selected message -->
-    <string name="ScheduledMessagesBottomSheet_menu_reschedule">Reschedule</string>
+    <string name="ScheduledMessagesBottomSheet_menu_reschedule">תזמון מחדש</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">מחק</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_action">מחיקה</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">Delete selected scheduled message?</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">למחוק הודעה מתוזמנת שנבחרה?</string>
     <!-- Progress message shown while deleting selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">Deleting scheduled message…</string>
+    <string name="ScheduledMessagesBottomSheet_deleting_progress_message">מוחקים הודעה מתוזמנת…</string>
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">שיח התכתבות רוענן</string>
@@ -787,7 +787,7 @@
     <string name="GroupManagement_access_level_all_members">כל חברי הקבוצה</string>
     <string name="GroupManagement_access_level_only_admins">רק מנהלנים</string>
     <string name="GroupManagement_access_level_no_one">אף אחד</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1232,8 +1232,8 @@
     <string name="MediaOverviewActivity_audio">שמע</string>
     <string name="MediaOverviewActivity_video">סרטון</string>
     <string name="MediaOverviewActivity_image">תמונה</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">נשלח על ידי %1$s</string>
     <string name="MediaOverviewActivity_sent_by_you">נשלח על ידך</string>
@@ -1597,7 +1597,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">להצטרף אל קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תראה את ההודעות שלהם עד שלא תאשר.</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">להצטרף אל קבוצה זו? הקבוצה לא תידע שראית את ההודעות שלה עד שתאשר.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">לשחרר חסימת קבוצה זו ולשתף את השם והתמונה שלך עם חברי הקבוצה? לא תקבל הודעות כלשהן עד שתשחרר חסימה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">הצג</string>
     <string name="MessageRequestProfileView_member_of_one_group">חבר קבוצה של %1$s</string>
     <string name="MessageRequestProfileView_member_of_two_groups">חבר קבוצה של %1$s ושל %2$s</string>
@@ -1707,7 +1707,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">צור את ה־PIN שלך</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">ניחושי PIN אזלו לך, אבל אתה עדין יכול להשיג גישה אל חשבון Signal שלך ע״י יצירת PIN חדש. למען פרטיותך ואבטחתך, חשבונך ישוחזר בלי מידע פרופיל שמור כלשהו או הגדרות שמורות כלשהן.</string>
     <string name="PinRestoreLockedFragment_create_new_pin">צור PIN חדש</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">אזהרה</string>
@@ -1888,7 +1888,7 @@
     <string name="RegistrationActivity_select_your_country">בחר את מדינתך</string>
     <string name="RegistrationActivity_you_must_specify_your_country_code">אתה חייב לציין את קוד המדינה שלך
     </string>
-    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">אנא הכנס מספר תקף של טלפון כדי להירשם.</string>
+    <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">יש להזין מספר טלפון חוקי כדי להירשם.</string>
     <string name="RegistrationActivity_invalid_number">מספר בלתי־תקף</string>
     <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">המספר שציינת (%1$s) אינו תקף.
     </string>
@@ -1921,7 +1921,7 @@
     <string name="RegistrationActivity_continue">המשך</string>
     <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">קח פרטיות איתך.\nהייה עצמך בכל הודעה.</string>
     <string name="RegistrationActivity_enter_your_phone_number">הכנס את מספר הטלפון שלך</string>
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">תקבל קוד וידוא. תשלומי מפעיל עשויים לחול.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">נשלח לך קוד אימות.\nעשויים לחול תעריפים של הספק.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">הכנס את הקוד ששלחנו אל %1$s</string>
     <string name="RegistrationActivity_make_sure_your_phone_has_a_cellular_signal">וודא שלטלפון שלך יש אות סלולרי לקבל מסרון או שיחה</string>
 
@@ -1929,8 +1929,8 @@
     <string name="RegistrationActivity_country_code_description">קוד מדינה</string>
     <string name="RegistrationActivity_country_code_hint">מדינה</string>
     <string name="RegistrationActivity_call">התקשר</string>
-    <string name="RegistrationActivity_verification_code">קוד וידוא</string>
-    <string name="RegistrationActivity_resend_code">שלח מחדש קוד</string>
+    <string name="RegistrationActivity_verification_code">קוד אימות</string>
+    <string name="RegistrationActivity_resend_code">שליחת קוד מחדש</string>
 
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">להפעיל נעילת הרשמה?</string>
@@ -1952,12 +1952,12 @@
     <string name="SearchFragment_header_messages">הודעות</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">הוסף לאנשי קשר</string>
@@ -2038,7 +2038,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">יומן זה יפורסם באופן ציבורי ומקוון עבור מתנדבים כדי שיצפו בו, אתה יכול לבחון אותו לפני העלאה.</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">סנן:</string>
     <string name="SupportEmailUtil_device_info">מידע מכשיר:</string>
     <string name="SupportEmailUtil_android_version">גרסת Android:</string>
@@ -2156,10 +2156,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">אתה חייב תחילה להחליף הודעות על מנת להציג את מספר הביטחון של %1$s.</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">הודעה הוצפנה עבור שיח בלתי־קיים</string>
@@ -2205,7 +2205,7 @@
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
     <string name="MediaPreviewFragment_media_delete_error">שגיאה במחיקת הודעה, יתכן שההודעה עדיין קיימת</string>
     <!-- A suffix to be attached to truncated captions that the user may tap onto to view the entire text caption -->
-    <string name="MediaPreviewFragment_see_more">%1$s… <b>Read More</b></string>
+    <string name="MediaPreviewFragment_see_more">%1$s… <b>לקרוא עוד</b></string>
 
     <!-- MessageNotifier -->
     <string name="MessageNotifier_d_new_messages_in_d_conversations">%1$d הודעות חדשות ב־%2$d שיחות</string>
@@ -2405,7 +2405,7 @@
     <string name="conversation_activity__type_message_sms_insecure">מסרון בלתי מאובטח</string>
     <string name="conversation_activity__type_message_mms_insecure">MMS בלתי מאובטח</string>
     <!-- Option in send button context menu to schedule the message instead of sending it directly -->
-    <string name="conversation_activity__option_schedule_message">Schedule message</string>
+    <string name="conversation_activity__option_schedule_message">תזמון הודעה</string>
     <string name="conversation_activity__from_sim_name">מאת %1$s</string>
     <string name="conversation_activity__sim_n">SIM %1$d</string>
     <string name="conversation_activity__send">שלח</string>
@@ -2674,7 +2674,7 @@
     <string name="EditProfileFragment__edit_group">ערוך קבוצה</string>
     <string name="EditProfileFragment__group_name">שם קבוצה</string>
     <string name="EditProfileFragment__group_description">תיאור קבוצה</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">שמך</string>
@@ -2754,13 +2754,13 @@
     <string name="HelpFragment__whats_this">מה זה?</string>
     <string name="HelpFragment__how_do_you_feel">איך אתה מרגיש? (רשותי)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">ספר לנו מדוע אתה יוצר קשר.</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">מידע תמיכה</string>
     <string name="HelpFragment__signal_android_support_request">בקשת תמיכה של Signal Android</string>
     <string name="HelpFragment__debug_log">יומן ניפוי תקלים:</string>
@@ -2930,7 +2930,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">אם מחווני הקלדה מושבתים, לא תוכל לראות מחווני הקלדה מאחרים.</string>
     <string name="preferences__request_keyboard_to_disable">בקש מהמקלדת להשבית למידה מותאמת אישית.</string>
     <string name="preferences__this_setting_is_not_a_guarantee">הגדרה זו אינה מובטחת, והמקלדת שלך עשויה להתעלם ממנה.</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">בעת שימוש בנתונים ניידים</string>
     <string name="preferences_chats__when_using_wifi">בעת שימוש ב־Wi-Fi</string>
     <string name="preferences_chats__when_roaming">בעת נדידה</string>
@@ -3014,9 +3014,9 @@
     <string name="configurable_single_select__customize_option">התאם אישית אפשרות</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -3059,13 +3059,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">הפעלת תשלומים בוטלה.</string>
     <string name="PaymentsHomeFragment__payment_failed">תשלום נכשל</string>
     <string name="PaymentsHomeFragment__details">פרטים</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">אתה יכול להשתמש ב־Signal כדי לשלוח ולקבל MobileCoin. כל התשלומים כפופים אל תנאי השימוש עבור MobileCoins וארנק MobileCoin. זהו מאפיין בטא כך שאתה עשוי להיתקל במספר סוגיות ותשלומים או מאזנים שיתכן שתאבד אינם ניתנים להשבה. </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">אתה יכול להשתמש ב־Signal כדי לשלוח ולקבל MobileCoin. כל התשלומים כפופים אל תנאי השימוש עבור MobileCoins וארנק MobileCoin. זהו מאפיין בטא כך שאתה עשוי להיתקל במספר סוגיות ותשלומים או מאזנים שיתכן שתאבד אינם ניתנים להשבה. </string>
     <string name="PaymentsHomeFragment__activate">הפעל</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">הצג תנאי MobileCoin</string>
     <string name="PaymentsHomeFragment__payments_not_available">תשלומים ב־Signal אינם זמינים יותר. אתה עדיין יכול להעביר כספים אל מסחר אבל אתה לא יכול יותר לשלוח ולקבל תשלומים או להוסיף כספים.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">להפעיל נעילת אבטחה לתשלום עבור העברות עתידיות?</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -3109,7 +3109,7 @@
     <string name="PaymentsAddMoneyFragment__copy">העתק</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">הועתק ללוח</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">כדי להוסיף כספים, שלח MobileCoin  אל כתובת הארנק שלך. התחל עסקה מהחשבון שלך במסחר שתומך ב־MobileCoin, ואז סרוק את קוד ה־QR או העתק את כתובת הארנק שלך.</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">פרטים</string>
@@ -3129,8 +3129,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">עמלת ניקוי מטבעות</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">\"עמלת ניקוי מטבעות\" מחויבת כאשר המטבעות בחזקתך אינם יכולים להתאחד כדי להשלים עסקה. ניקוי יתיר לך להמשיך לשלוח תשלומים.</string>
     <string name="PaymentsDetailsFragment__no_details_available">אין פרטים נוספים זמינים עבור עסקה זו</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">תשלום נשלח</string>
     <string name="PaymentsDetailsFragment__received_payment">תשלום התקבל</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">תשלום הושלם %1$s</string>
@@ -3174,7 +3174,7 @@
     <string name="CreatePaymentFragment__backspace">מקש חזרה</string>
     <string name="CreatePaymentFragment__add_note">הוסף הערה</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">המרות הן רק השערות ויתכן שהן לא מדויקות.</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">הערה</string>
@@ -3315,13 +3315,13 @@
     <!-- conversation scheduled messages bar -->
 
     <!-- Label for button in a banner to show all messages currently scheduled -->
-    <string name="conversation_scheduled_messages_bar__see_all">ראה הכול</string>
+    <string name="conversation_scheduled_messages_bar__see_all">הצגת הכל</string>
     <!-- Body text for banner to show all scheduled messages for the chat that tells the user how many scheduled messages there are -->
     <plurals name="conversation_scheduled_messages_bar__number_of_messages">
-        <item quantity="one">%1$d message scheduled</item>
-        <item quantity="two">%1$d messages scheduled</item>
-        <item quantity="many">%1$d messages scheduled</item>
-        <item quantity="other">%1$d messages scheduled</item>
+        <item quantity="one">הודעה %1$d מתוזמנת</item>
+        <item quantity="two">%1$d הודעות מתוזמנות</item>
+        <item quantity="many">%1$d הודעות מתוזמנות</item>
+        <item quantity="other">%1$d הודעות מתוזמנות</item>
     </plurals>
 
     <!-- conversation_group_options -->
@@ -3402,7 +3402,7 @@
     <string name="BaseKbsPinFragment__next">הבא</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">צור PIN אלפאנומרי</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">צור PIN מספרי</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3420,13 +3420,13 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">צור PIN חדש</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">אתה יכול לשנות את ה־PIN שלך כל עוד מכשיר זה רשום.</string>
     <string name="CreateKbsPinFragment__create_your_pin">צור את ה־PIN שלך</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">PINs can help you restore your account and keep your info encrypted with Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">קוד PIN יכול לעזור לך לשחזר את החשבון שלך ולשמור על המידע שלך מוצפן עם Signal. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">בחר PIN חזק יותר</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">קודי PIN אינם תואמים. נסה שוב.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Re-enter the PIN you just created.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">יש להכניס שוב את ה–PIN שעכשיו יצרת.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">אמת את ה־PIN שלך.</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">יצירת PIN נכשלה</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">ה־PIN שלך לא נשמר. ניידע אותך ליצור PIN מאוחר יותר.</string>
@@ -3438,7 +3438,7 @@
     <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">קודי PIN שומרים על מידע מאוחסן עם Signal מוצפן כך שרק אתה יכול להשיג גישה אליו. הפרופיל, ההגדרות ואנשי הקשר שלך ישוחזרו כשתתקין מחדש את Signal. לא תצטרך את ה־PIN שלך כדי לפתוח את היישום.</string>
     <string name="KbsSplashFragment__learn_more">למד עוד</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">נעילת הרשמה = PIN</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">נעילת ההרשמה שלך נקראת כעת PIN, והיא עושה יותר. עדכן אותה כעת.</string>
     <string name="KbsSplashFragment__update_pin">עדכן PIN</string>
@@ -3459,7 +3459,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">חשבונך ננעל כדי להגן על פרטיותך ואבטחתך. לאחר %1$d ימים של אי־פעילות בחשבונך, תוכל להירשם שוב עם מספר טלפון זה ללא צורך ב־PIN שלך. כל התוכן יימחק.</string>
     <string name="AccountLockedFragment__next">הבא</string>
     <string name="AccountLockedFragment__learn_more">למד עוד</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">הכנס את ה־PIN שלך</string>
@@ -3577,7 +3577,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">הגיבוי שלך מכיל קובץ גדול מאוד שלא ניתן לגבות. צריך למחוק אותו וליצור גיבוי חדש.</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">הקש כדי לנהל גיבויים.</string>
     <string name="RegistrationActivity_wrong_number">מספר שגוי?</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">התקשר אליי במקום \n (זמין ב־%1$02d:%2$02d)</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">צור קשר עם תמיכת Signal</string>
     <string name="RegistrationActivity_code_support_subject">הרשמת Signal - קוד וידוא עבור Android</string>
     <string name="RegistrationActivity_incorrect_code">קוד שגוי</string>
@@ -3962,9 +3962,9 @@
     <string name="payment_info_card_with_a_high_balance">עם מאזן גבוה, יתכן שתרצה לעדכן אל PIN אלפאנומרי כדי להוסיף עוד הגנה אל החשבון שלך</string>
     <string name="payment_info_card_update_pin">עדכן PIN</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">בטל הפעלת ארנק</string>
@@ -3976,7 +3976,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">לבטל הפעלה בלי להעביר?</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">המאזן שלך יישאר בארנק שמקושר אל Signal אם תבחר להפעיל מחדש תשלומים.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">שגיאה בביטול הפעלת ארנק.</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">משפט השבה</string>
@@ -4014,8 +4014,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">משפט השבה בלתי תקף</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">וודא שהכנסת %1$d מילים ונסה שוב.</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">הבא</string>
@@ -4065,7 +4065,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">אף אחד מחברי הקבוצה שלך או האנשים שאתה מתכתב איתם נמצאים בקבוצה הזאת. סקור בקשות בזהירות טרם אישור שלהן כדי להימנע מהודעות בלתי רצויות.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">על אודות בקשות הודעה</string>
     <string name="GroupsInCommonMessageRequest__okay">בסדר</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">הנה תצוגה מקדימה של צבע ההתכתבות.</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">הצבע גלוי רק לך.</string>
 
@@ -4211,7 +4211,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">הראה איקון מעמד</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">הראה איקון בפרטי הודעה כאשר היא נשלחה ע״י שימוש בשולח אטום.</string>
 
@@ -4363,7 +4363,7 @@
     <string name="ConversationSettingsFragment__search">חפש</string>
     <string name="ConversationSettingsFragment__disappearing_messages">הודעות נעלמות</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">צלילים והתראות</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">פרטי איש קשר</string>
     <string name="ConversationSettingsFragment__view_safety_number">הצג מספר ביטחון</string>
     <string name="ConversationSettingsFragment__block">חוסם</string>
@@ -5814,11 +5814,11 @@
 
     <!-- Text Formatting -->
     <!-- Popup menu label for applying bold style -->
-    <string name="TextFormatting_bold">Bold</string>
+    <string name="TextFormatting_bold">מודגש</string>
     <!-- Popup menu label for applying italic style -->
-    <string name="TextFormatting_italic">Italic</string>
+    <string name="TextFormatting_italic">נטוי</string>
     <!-- Popup menu label for applying strikethrough style -->
-    <string name="TextFormatting_strikethrough">Strikethrough</string>
+    <string name="TextFormatting_strikethrough">קו חוצה</string>
     <!-- Popup menu label for applying monospace font style -->
-    <string name="TextFormatting_monospace">Monospace</string>
+    <string name="TextFormatting_monospace">רוחב אחיד</string>
 </resources>

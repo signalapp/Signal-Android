@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- smartling.instruction_comments_enabled = on -->
 <resources>
-  <!-- Removed by excludeNonTranslatables <string name="app_name" translatable="false">Signal</string> -->
+    <string name="app_name" translatable="false">Signal</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="install_url" translatable="false">https://signal.org/install</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donate_url" translatable="false">https://signal.org/donate</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="support_center_url" translatable="false">https://support.signal.org/</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="google_pay_url" translatable="false">https://pay.google.com</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string> -->
+    <string name="install_url" translatable="false">https://signal.org/install</string>
+    <string name="donate_url" translatable="false">https://signal.org/donate</string>
+    <string name="backup_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="transfer_support_url" translatable="false">https://support.signal.org/hc/articles/360007059752</string>
+    <string name="support_center_url" translatable="false">https://support.signal.org/</string>
+    <string name="terms_and_privacy_policy_url" translatable="false">https://signal.org/legal</string>
+    <string name="google_pay_url" translatable="false">https://pay.google.com</string>
+    <string name="donation_decline_code_error_url" translatable="false">https://support.signal.org/hc/articles/4408365318426#errors</string>
+    <string name="sms_export_url" translatable="false">https://support.signal.org/hc/articles/360007321171</string>
+    <string name="signal_me_username_url" translatable="false">https://signal.me/#u/%1$s</string>
+    <string name="signal_me_username_url_no_scheme" translatable="false">signal.me/#u/%1$s</string>
 
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -23,7 +23,7 @@
     <string name="note_to_self">給自己的筆記</string>
 
     <!-- AlbumThumbnailView -->
-  <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
+    <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string>
 
     <!-- ApplicationMigrationActivity -->
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal 正在更新…</string>
@@ -44,16 +44,16 @@
     <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">在您可停用您的 PIN 碼之前，您必須先記錄您的付款恢復片語，以確保您可還原您的付款帳戶。</string>
 
     <!-- NumericKeyboardView -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__2" translatable="false">2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__3" translatable="false">3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__4" translatable="false">4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__5" translatable="false">5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__6" translatable="false">6</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__7" translatable="false">7</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__8" translatable="false">8</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__9" translatable="false">9</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__0" translatable="false">0</string> -->
+    <string name="NumericKeyboardView__1" translatable="false">1</string>
+    <string name="NumericKeyboardView__2" translatable="false">2</string>
+    <string name="NumericKeyboardView__3" translatable="false">3</string>
+    <string name="NumericKeyboardView__4" translatable="false">4</string>
+    <string name="NumericKeyboardView__5" translatable="false">5</string>
+    <string name="NumericKeyboardView__6" translatable="false">6</string>
+    <string name="NumericKeyboardView__7" translatable="false">7</string>
+    <string name="NumericKeyboardView__8" translatable="false">8</string>
+    <string name="NumericKeyboardView__9" translatable="false">9</string>
+    <string name="NumericKeyboardView__0" translatable="false">0</string>
     <!-- Back button on numeric keyboard -->
     <string name="NumericKeyboardView__backspace">退格鍵</string>
 
@@ -724,7 +724,7 @@
     <string name="GroupManagement_access_level_all_members">所有成員</string>
     <string name="GroupManagement_access_level_only_admins">僅限管理員</string>
     <string name="GroupManagement_access_level_no_one">沒有人</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
+    <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string>
     <array name="GroupManagement_edit_group_membership_choices">
         <item>@string/GroupManagement_access_level_all_members</item>
         <item>@string/GroupManagement_access_level_only_admins</item>
@@ -1088,8 +1088,8 @@
     <string name="MediaOverviewActivity_audio">音訊</string>
     <string name="MediaOverviewActivity_video">影片</string>
     <string name="MediaOverviewActivity_image">影像</string>
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
+    <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string>
+    <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string>
 
     <string name="MediaOverviewActivity_sent_by_s">由 %1$s 傳送</string>
     <string name="MediaOverviewActivity_sent_by_you">由您傳送</string>
@@ -1423,7 +1423,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">要加入此群組，並向其成員分享您的名稱和照片嗎？在您接受之前，您不會看到他們的訊息。</string>
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">要加入此群組嗎？在您接受之前，別人不會知道您已看過其訊息。</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">要解除封鎖此群組，並向其成員分享您的名稱和照片嗎？在您解除封鎖之前，您不會收到他們任何訊息。</string>
-  <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="MessageRequestProfileView_view">檢視</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s 的成員</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s 和 %2$s 的成員</string>
@@ -1515,7 +1515,7 @@
     <string name="PinRestoreLockedFragment_create_your_pin">建立您的 PIN 碼</string>
     <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">您已耗盡了 PIN 碼猜測，但您仍可建立一個新的 PIN 碼以存取您的 Signal 帳戶。為確保您的私隱和安全性，還原您的帳戶時將不包括任何已儲存的個人資料或設定。</string>
     <string name="PinRestoreLockedFragment_create_new_pin">建立新的 PIN 碼</string>
-  <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">警告</string>
@@ -1739,12 +1739,12 @@
     <string name="SearchFragment_header_messages">訊息</string>
 
     <!-- ShakeToReport -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_submit" translatable="false">Submit</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_success" translatable="false">Success!</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
+    <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string>
+    <string name="ShakeToReport_submit_debug_log" translatable="false">Submit debug log?</string>
+    <string name="ShakeToReport_submit" translatable="false">Submit</string>
+    <string name="ShakeToReport_failed_to_submit" translatable="false">Failed to submit :(</string>
+    <string name="ShakeToReport_success" translatable="false">Success!</string>
+    <string name="ShakeToReport_share" translatable="false">Share</string>
 
     <!-- SharedContactDetailsActivity -->
     <string name="SharedContactDetailsActivity_add_to_contacts">新增至通訊錄</string>
@@ -1825,7 +1825,7 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此記錄檔將會在線上公開張貼，以供各貢獻者查看。您可先行檢閱，然後才上載。</string>
 
     <!-- SupportEmailUtil -->
-  <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
+    <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
     <string name="SupportEmailUtil_filter">篩選：</string>
     <string name="SupportEmailUtil_device_info">裝置資訊：</string>
     <string name="SupportEmailUtil_android_version">Android 版本：</string>
@@ -1940,10 +1940,10 @@
     <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">您必須先交換訊息，以便檢視 %1$s 的安全碼。</string>
 
     <!-- ViewOnceMessageActivity -->
-  <!-- Removed by excludeNonTranslatables <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string> -->
+    <string name="ViewOnceMessageActivity_video_duration" translatable="false">%1$02d:%2$02d</string>
 
     <!-- AudioView -->
-  <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
+    <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string>
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">訊息加密的工作階段並不存在</string>
@@ -2425,7 +2425,7 @@
     <string name="EditProfileFragment__edit_group">編輯群組</string>
     <string name="EditProfileFragment__group_name">群組名稱</string>
     <string name="EditProfileFragment__group_description">群組描述</string>
-  <!-- Removed by excludeNonTranslatables <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="EditProfileFragment__support_link" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
 
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">您的名稱</string>
@@ -2505,13 +2505,13 @@
     <string name="HelpFragment__whats_this">這是甚麼？</string>
     <string name="HelpFragment__how_do_you_feel">您覺得怎麼看？ (選用)</string>
     <string name="HelpFragment__tell_us_why_youre_reaching_out">請說明來鴻所為何事。</string>
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string> -->
+    <string name="HelpFragment__emoji_5" translatable="false">emoji_5</string>
+    <string name="HelpFragment__emoji_4" translatable="false">emoji_4</string>
+    <string name="HelpFragment__emoji_3" translatable="false">emoji_3</string>
+    <string name="HelpFragment__emoji_2" translatable="false">emoji_2</string>
+    <string name="HelpFragment__emoji_1" translatable="false">emoji_1</string>
+    <string name="HelpFragment__link__debug_info" translatable="false">https://support.signal.org/hc/articles/360007318591</string>
+    <string name="HelpFragment__link__faq" translatable="false">https://support.signal.org</string>
     <string name="HelpFragment__support_info">支援資訊</string>
     <string name="HelpFragment__signal_android_support_request">Signal Android 支援請求</string>
     <string name="HelpFragment__debug_log">除錯記錄檔：</string>
@@ -2678,7 +2678,7 @@
     <string name="preferences__if_typing_indicators_are_disabled_you_wont_be_able_to_see_typing_indicators">若打字狀態已停用，您將不會看見別人的打字狀態。</string>
     <string name="preferences__request_keyboard_to_disable">要求鍵盤停用個人化學習。</string>
     <string name="preferences__this_setting_is_not_a_guarantee">此設定不具保證，或會被您的鍵盤忽略。</string>
-  <!-- Removed by excludeNonTranslatables <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string> -->
+    <string name="preferences__incognito_keyboard_learn_more" translatable="false">https://support.signal.org/hc/articles/360055276112</string>
     <string name="preferences_chats__when_using_mobile_data">當使用流動數據時</string>
     <string name="preferences_chats__when_using_wifi">當使用 Wi-Fi 時</string>
     <string name="preferences_chats__when_roaming">當漫遊時</string>
@@ -2762,9 +2762,9 @@
     <string name="configurable_single_select__customize_option">自訂選項</string>
 
     <!-- Internal only preferences -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_details" translatable="false">Internal Details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string> -->
+    <string name="preferences__internal_preferences" translatable="false">Internal Preferences</string>
+    <string name="preferences__internal_details" translatable="false">Internal Details</string>
+    <string name="preferences__internal_stories_dialog_launcher" translatable="false">Stories dialog launcher</string>
 
 
     <!-- Payments -->
@@ -2807,13 +2807,13 @@
     <string name="PaymentsHomeFragment__payments_deactivated">付款已停用。</string>
     <string name="PaymentsHomeFragment__payment_failed">付款失敗</string>
     <string name="PaymentsHomeFragment__details">詳細資料</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
-    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">您可使用 Signal 發送和接收 MobileCoin。所有付款均受 MobileCoin 和 MobileCoin Wallet 的使用條款約束。這是一項測試版功能，因此您或會遇到一些問題，您或會遺失付款或餘額而無法還原。 </string> -->
+    <string name="PaymentsHomeFragment__learn_more__activate_payments" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_activate </string>
+    <string name="PaymentsHomeFragment__you_can_use_signal_to_send">您可使用 Signal 發送和接收 MobileCoin。所有付款均受 MobileCoin 和 MobileCoin Wallet 的使用條款約束。這是一項測試版功能，因此您或會遇到一些問題，您或會遺失付款或餘額而無法還原。 </string>
     <string name="PaymentsHomeFragment__activate">啟用</string>
     <string name="PaymentsHomeFragment__view_mobile_coin_terms">檢視 MobileCoin 條款</string>
     <string name="PaymentsHomeFragment__payments_not_available">付款已不再在 Signal 上可用。您仍可轉移款項至交易平台，惟您不再能發送和接收付款或增加款項。</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string> -->
+    <string name="PaymentsHomeFragment__mobile_coin_terms_url" translatable="false">https://www.mobilecoin.com/terms-of-use.html</string>
     <!-- Alert dialog title which shows up after a payment to turn on payment lock -->
     <string name="PaymentsHomeFragment__turn_on">要為日後的付款開啟付款鎖定嗎？</string>
     <!-- Alert dialog description for why payment lock should be enabled before sending payments -->
@@ -2857,7 +2857,7 @@
     <string name="PaymentsAddMoneyFragment__copy">複製</string>
     <string name="PaymentsAddMoneyFragment__copied_to_clipboard">已複製至剪貼簿</string>
     <string name="PaymentsAddMoneyFragment__to_add_funds">若要增加款項，請發送 MobileCoin 到您的錢包位址。請在支援 MobileCoin 的交易平台上以您所屬的帳戶開始一筆交易，然後掃描二維碼或複製您的錢包位址。</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
+    <string name="PaymentsAddMoneyFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
 
     <!-- PaymentsDetailsFragment -->
     <string name="PaymentsDetailsFragment__details">詳細資料</string>
@@ -2877,8 +2877,8 @@
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">金幣清理費用</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_information">當您擁有的金幣無法合併以完成一筆交易時，將會徵收一項「金幣清理費用」。清理將會允許您繼續發送付款。</string>
     <string name="PaymentsDetailsFragment__no_details_available">此交易無進一步詳情提供</string>
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
+    <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string>
+    <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string>
     <string name="PaymentsDetailsFragment__sent_payment">已發送付款</string>
     <string name="PaymentsDetailsFragment__received_payment">已接收付款</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">付款已完成 %1$s</string>
@@ -2922,7 +2922,7 @@
     <string name="CreatePaymentFragment__backspace">退格鍵</string>
     <string name="CreatePaymentFragment__add_note">新增備註</string>
     <string name="CreatePaymentFragment__conversions_are_just_estimates">換算僅為估算，並非準確。</string>
-  <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
+    <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string>
 
     <!-- EditNoteFragment -->
     <string name="EditNoteFragment_note">備註</string>
@@ -3144,7 +3144,7 @@
     <string name="BaseKbsPinFragment__next">下一步</string>
     <string name="BaseKbsPinFragment__create_alphanumeric_pin">建立字母數字 PIN 碼</string>
     <string name="BaseKbsPinFragment__create_numeric_pin">建立數字 PIN 碼</string>
-  <!-- Removed by excludeNonTranslatables <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="BaseKbsPinFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- CreateKbsPinFragment -->
     <plurals name="CreateKbsPinFragment__pin_must_be_at_least_characters">
@@ -3174,7 +3174,7 @@
     <string name="KbsSplashFragment__introducing_pins">PIN 碼登場</string>
     <string name="KbsSplashFragment__pins_keep_information_stored_with_signal_encrypted">PIN 碼讓在 Signal 中的資訊得以加密保存並僅供您存取。當您重新安裝時，您的個人資料、設定和聯絡人將會還原。開啟應用程式不需輸入 PIN 碼。</string>
     <string name="KbsSplashFragment__learn_more">了解更多</string>
-  <!-- Removed by excludeNonTranslatables <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="KbsSplashFragment__learn_more_link" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
     <string name="KbsSplashFragment__registration_lock_equals_pin">註冊鎖定 ＝ PIN 碼</string>
     <string name="KbsSplashFragment__your_registration_lock_is_now_called_a_pin">你的註冊鎖定現稱為 PIN 碼，並有更多功用。請立即更新。</string>
     <string name="KbsSplashFragment__update_pin">更新 PIN 碼</string>
@@ -3195,7 +3195,7 @@
     <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">您的帳戶已被鎖定，以保護您的私隱和安全性。在您的帳戶閒置 %1$d 天後，您將可毋須使用您的 PIN 碼而重新註冊此電話號碼。惟所有內容將會被刪除。</string>
     <string name="AccountLockedFragment__next">下一步</string>
     <string name="AccountLockedFragment__learn_more">了解更多</string>
-  <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
+    <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string>
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">輸入你的 PIN 碼</string>
@@ -3298,7 +3298,7 @@
     <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">你的備份包含一個非常大型的檔案，而且無法進行備份。請刪除該檔案，並建立新的備份。</string>
     <string name="LocalBackupJobApi29_tap_to_manage_backups">輕觸以管理備份。</string>
     <string name="RegistrationActivity_wrong_number">號碼錯誤？</string>
-    <string name="RegistrationActivity_call_me_instead_available_in">請致電給我 \n （將於%1$02d：%2$02d 內可行）</string>
+    <string name="RegistrationActivity_call_me_instead_available_in">Call me (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">聯絡 Signal 支援</string>
     <string name="RegistrationActivity_code_support_subject">Signal 註冊 — Android 用的驗證碼</string>
     <string name="RegistrationActivity_incorrect_code">錯誤編號</string>
@@ -3674,9 +3674,9 @@
     <string name="payment_info_card_with_a_high_balance">若有高餘額，您或會希望更新至字母數字 PIN 碼，以便為您的帳戶增加更多保護。</string>
     <string name="payment_info_card_update_pin">更新 PIN 碼</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string> -->
+    <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string>
+    <string name="payment_info_card__learn_more__adding_to_your_wallet" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_from_exchange</string>
+    <string name="payment_info_card__learn_more__cashing_out" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_transfer_to_exchange</string>
 
     <!-- DeactivateWalletFragment -->
     <string name="DeactivateWalletFragment__deactivate_wallet">停用錢包</string>
@@ -3688,7 +3688,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">要停用而不作轉移嗎？</string>
     <string name="DeactivateWalletFragment__your_balance_will_remain">若您選擇重新啟用付款，您的餘額將會保留在您已連結至 Signal 的錢包中。</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">停用錢包時發生錯誤。</string>
-  <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
+    <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string>
 
     <!-- PaymentsRecoveryStartFragment -->
     <string name="PaymentsRecoveryStartFragment__recovery_phrase">恢復片語</string>
@@ -3723,8 +3723,8 @@
     <string name="PaymentsRecoveryPasteFragment__invalid_recovery_phrase">恢復片語無效</string>
     <string name="PaymentsRecoveryPasteFragment__make_sure">請確定您已輸入 %1$d 個字詞，然後再試一次。</string>
 
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string> -->
-  <!-- Removed by excludeNonTranslatables <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string> -->
+    <string name="PaymentsRecoveryStartFragment__learn_more__view" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_view_passphrase</string>
+    <string name="PaymentsRecoveryStartFragment__learn_more__restore" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_wallet_restore_passphrase</string>
 
     <!-- PaymentsRecoveryPhraseFragment -->
     <string name="PaymentsRecoveryPhraseFragment__next">下一步</string>
@@ -3774,7 +3774,7 @@
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">您的聯絡人或曾與您聊天的人俱不在此群組中。請仔細檢閱方接受請求，以免無謂訊息滋擾。</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">關於訊息請求</string>
     <string name="GroupsInCommonMessageRequest__okay">好</string>
-  <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
+    <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string>
     <string name="ChatColorSelectionFragment__heres_a_preview_of_the_chat_color">這是聊天色彩的預覽。</string>
     <string name="ChatColorSelectionFragment__the_color_is_visible_to_only_you">色彩只有您看得見。</string>
 
@@ -3920,7 +3920,7 @@
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
-  <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
+    <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string>
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">顯示狀態圖示</string>
     <string name="AdvancedPrivacySettingsFragment__show_an_icon">當訊息是以密封寄件人送達時，在訊息詳情中標示此圖示。</string>
 
@@ -4066,7 +4066,7 @@
     <string name="ConversationSettingsFragment__search">搜尋</string>
     <string name="ConversationSettingsFragment__disappearing_messages">限時訊息</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">聲效與通知</string>
-  <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
+    <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string>
     <string name="ConversationSettingsFragment__contact_details">聯絡人詳情</string>
     <string name="ConversationSettingsFragment__view_safety_number">檢視安全碼</string>
     <string name="ConversationSettingsFragment__block">封鎖</string>
@@ -4988,7 +4988,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">現在不要</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">兌換徽章…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">兌換徽章...</string>
     <!-- Snackbar text when user presses "not now" on redemption sheet -->
     <string name="ConversationFragment__you_can_redeem_your_badge_later">您可稍後換領您的徽章。</string>
     <!-- Description text in gift thanks sheet -->
