@@ -43,6 +43,8 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.Optional;
 
+import pigeon.extensions.JavaExtensions;
+
 import static org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView;
 
 public final class WelcomeFragment extends LoggingFragment {
@@ -116,6 +118,8 @@ public final class WelcomeFragment extends LoggingFragment {
 
       TextView welcomeTermsButton = view.findViewById(R.id.welcome_terms_button);
       welcomeTermsButton.setOnClickListener(v -> onTermsClicked());
+
+      JavaExtensions.onFocusTextChangeListener(welcomeTermsButton);
 
       if (!canUserSelectBackup()) {
         restoreFromBackup.setText(R.string.registration_activity__transfer_account);

@@ -5,19 +5,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:parentTag="org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton">
 
-    <com.google.android.material.progressindicator.CircularProgressIndicator
-        android:id="@+id/progress_indicator"
-        style="?circularProgressIndicatorStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+<!--    <com.google.android.material.progressindicator.CircularProgressIndicator-->
+<!--        android:id="@+id/progress_indicator"-->
+<!--        style="?circularProgressIndicatorStyle"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        android:layout_gravity="center_horizontal" />-->
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
         android:id="@+id/button"
-        style="?circularProgressMaterialButtonStyle"
+        style="@style/Mp02.Signal.Text.CommonTextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:text="Material Button"
-        tools:visibility="invisible" />
+        tools:visibility="visible" />
+<!--    style="?circularProgressMaterialButtonStyle"-->
 
 </merge>

@@ -1,0 +1,16 @@
+package pigeon.extensions
+
+import android.view.View
+import android.widget.TextView
+
+fun TextView.onFocusTextChangeListener() {
+  val focus = View.OnFocusChangeListener { _, hasFocus ->
+    val textSize = if (hasFocus) {
+      36f
+    } else {
+      24f
+    }
+    this.textSize = textSize
+  }
+  this.onFocusChangeListener = focus
+}
