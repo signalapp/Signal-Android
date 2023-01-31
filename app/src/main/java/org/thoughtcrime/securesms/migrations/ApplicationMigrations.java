@@ -118,9 +118,10 @@ public class ApplicationMigrations {
     static final int OPTIMIZE_MESSAGE_FTS_INDEX    = 74;
     static final int REACTION_DATABASE_MIGRATION   = 75;
     static final int REBUILD_MESSAGE_FTS_INDEX_2   = 76;
+    static final int GLIDE_CACHE_CLEAR             = 77;
   }
 
-  public static final int CURRENT_VERSION = 76;
+  public static final int CURRENT_VERSION = 77;
 
   /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -524,6 +525,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.REBUILD_MESSAGE_FTS_INDEX_2) {
       jobs.put(Version.REBUILD_MESSAGE_FTS_INDEX_2, new RebuildMessageSearchIndexMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GLIDE_CACHE_CLEAR) {
+      jobs.put(Version.GLIDE_CACHE_CLEAR, new ClearGlideCacheMigrationJob());
     }
 
     return jobs;
