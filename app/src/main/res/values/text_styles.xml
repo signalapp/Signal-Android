@@ -37,6 +37,7 @@
         <item name="android:textColor">@color/mp02_common_text_button</item>
         <item name="android:textAlignment">textStart</item>
         <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
     </style>
 
