@@ -18,6 +18,7 @@ import com.google.android.material.shape.ShapeAppearanceModel
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.WindowUtil
 
 /**
  * Forces rounded corners on BottomSheet
@@ -37,6 +38,11 @@ abstract class FixedRoundedCornerBottomSheetDialogFragment : BottomSheetDialogFr
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setStyle(STYLE_NORMAL, themeResId)
+  }
+
+  override fun onResume() {
+    super.onResume()
+    WindowUtil.initializeScreenshotSecurity(requireContext(), dialog!!.window!!)
   }
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

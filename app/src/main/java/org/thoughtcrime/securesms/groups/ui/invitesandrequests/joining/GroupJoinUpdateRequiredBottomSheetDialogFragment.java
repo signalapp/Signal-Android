@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.PlayStoreUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends BottomSheetDialogFragment {
 
@@ -60,6 +61,12 @@ public final class GroupJoinUpdateRequiredBottomSheetDialogFragment extends Bott
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext());
       dismiss();
     });
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   @Override

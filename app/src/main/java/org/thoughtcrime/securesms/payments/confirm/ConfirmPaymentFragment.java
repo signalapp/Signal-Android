@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModelList;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.whispersystems.signalservice.api.payments.FormatterOptions;
@@ -155,6 +156,12 @@ public class ConfirmPaymentFragment extends BottomSheetDialogFragment {
   public void onDismiss(@NonNull DialogInterface dialog) {
     super.onDismiss(dialog);
     ThreadUtil.cancelRunnableOnMain(dismiss);
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   @Override
