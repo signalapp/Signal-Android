@@ -106,11 +106,6 @@ android {
         }
     }
 
-    dependenciesInfo {
-        includeInBundle false
-        includeInApk false
-    }
-
     testOptions {
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
 
