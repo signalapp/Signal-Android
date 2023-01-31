@@ -9,20 +9,19 @@ import android.content.Intent
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.os.Bundle
+import android.text.Annotation
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
-import android.view.ViewGroup.GONE
-import android.view.ViewGroup.MarginLayoutParams
-import android.view.ViewGroup.VISIBLE
 import android.view.animation.PathInterpolator
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.core.app.ShareCompat
 import androidx.core.content.ContextCompat
+import androidx.core.text.getSpans
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
@@ -44,6 +43,7 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.MediaTable
@@ -268,19 +268,19 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
     val caption = currentItem.attachment?.caption
     if (caption != null) {
-      bindCaptionView(caption)
+      bindCaptionView(SpannableString(caption))
     } else {
       bindCaptionView(messageBodies[messageId])
     }
   }
 
-  private fun bindCaptionView(displayBody: CharSequence?) {
+  private fun bindCaptionView(displayBody: SpannableString?) {
     val caption: ExpandingCaptionView = binding.mediaPreviewCaption
     if (displayBody.isNullOrEmpty()) {
       caption.visible = false
     } else {
       caption.expandedHeight = calculateExpandedHeight()
-      caption.fullCaptionText = displayBody
+      caption.fullCaptionText = displayBody.removeMentionAnnotations()
       caption.visible = true
     }
   }
@@ -331,7 +331,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
   private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {
     val albumRail: RecyclerView = binding.mediaPreviewPlaybackControls.recyclerView
     if (albumThumbnailMedia.size > 1) {
-      val firstRailDisplay = albumRail.visibility == GONE
+      val firstRailDisplay = albumRail.visibility == View.GONE
       if (firstRailDisplay) {
         albumRail.visibility = View.INVISIBLE
         albumRail.alpha = 0f
@@ -370,7 +370,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
         .alpha(1f)
         .setDuration(duration)
         .withStartAction {
-          view.visibility = VISIBLE
+          view.visibility = View.VISIBLE
         }
         .withEndAction {
           if (getView() != null && view == binding.mediaPreviewPlaybackControls.recyclerView) {
@@ -439,7 +439,7 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
 
   private fun anchorMarginsToBottomInsets(viewToAnchor: View) {
     ViewCompat.setOnApplyWindowInsetsListener(viewToAnchor) { view: View, windowInsetsCompat: WindowInsetsCompat ->
-      val layoutParams = view.layoutParams as MarginLayoutParams
+      val layoutParams = view.layoutParams as ViewGroup.MarginLayoutParams
       layoutParams.setMargins(
         windowInsetsCompat.systemWindowInsetLeft,
         layoutParams.topMargin,
@@ -643,4 +643,14 @@ class MediaPreviewV2Fragment : LoggingFragment(R.layout.fragment_media_preview_v
       return MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)
     }
   }
+}
+
+private fun SpannableString.removeMentionAnnotations(): CharSequence {
+  val spans: Array<out Annotation> = this.getSpans()
+  spans.forEach {
+    if (MentionAnnotation.isMentionAnnotation(it)) {
+      this.removeSpan(it)
+    }
+  }
+  return this
 }
