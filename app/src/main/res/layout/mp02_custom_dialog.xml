@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:defaultFocusHighlightEnabled="false"
+        android:scrollbarSize="0dp"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                style="@style/Theme.AppCompat.NoActionBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60px"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                android:transitionGroup="false"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/focus_item_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="55px"
+                    android:background="@color/transparent"
+                    android:defaultFocusHighlightEnabled="false"
+                    android:paddingStart="5px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="40px" />
+
+                <TextView
+                    android:id="@+id/focus_item_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/transparent"
+                    android:defaultFocusHighlightEnabled="false"
+                    android:paddingStart="5px"
+                    android:singleLine="false"
+                    android:textColor="@color/white"
+                    android:textSize="40px"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/linearLayout">
+
+                <TextView
+                    android:id="@+id/unfocus_top_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="32px"
+                    android:paddingStart="30px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="24px"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/unfocus_top_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="32px"
+                    android:paddingStart="30px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="24px"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:animateLayoutChanges="true"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                <TextView
+                    android:id="@+id/unfocus_bottom_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="32px"
+                    android:paddingStart="30px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="24px"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/unfocus_bottom_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="32px"
+                    android:paddingStart="30px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="24px"
+                    android:visibility="visible" />
+
+                <TextView
+                    android:id="@+id/unfocus_bottom_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="32px"
+                    android:paddingStart="30px"
+                    android:singleLine="true"
+                    android:textColor="@color/white"
+                    android:textSize="24px"
+                    android:visibility="visible" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

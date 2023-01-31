@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.permissions;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -170,13 +171,15 @@ public class Permissions {
 
     @SuppressWarnings("ConstantConditions")
     private void executePermissionsRequestWithRationale(PermissionsRequest request) {
-      RationaleDialog.createFor(permissionObject.getContext(), rationaleDialogMessage, rationalDialogHeader)
-                     .setPositiveButton(R.string.Permissions_continue, (dialog, which) -> executePermissionsRequest(request))
-                     .setNegativeButton(R.string.Permissions_not_now, (dialog, which) -> executeNoPermissionsRequest(request))
-                     .setCancelable(rationaleDialogCancelable)
-                     .show()
-                     .getWindow()
-                     .setLayout((int)(permissionObject.getWindowWidth() * .75), ViewGroup.LayoutParams.WRAP_CONTENT);
+      AlertDialog dialog = RationaleDialog.createNonMsgDialog(permissionObject.getContext(),
+                                                              rationaleDialogMessage,
+                                                              R.string.Permissions_continue,
+                                                              R.string.Permissions_not_now,
+                                                              () -> executePermissionsRequest(request),
+                                                              () -> executeNoPermissionsRequest(request),
+                                                              null);
+      dialog.setCancelable(rationaleDialogCancelable);
+      dialog.show();
     }
 
     private void executePermissionsRequest(PermissionsRequest request) {
