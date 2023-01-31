@@ -132,7 +132,7 @@ public class IncomingMessageObserver {
   }
 
   public boolean isDecryptionDrained() {
-    return decryptionDrained || !networkAccess.supportsWebsockets();
+    return decryptionDrained;
   }
 
   public void notifyDecryptionsDrained() {
@@ -174,13 +174,12 @@ public class IncomingMessageObserver {
       Log.d(TAG, "Removed old keep web socket open requests.");
     }
 
-    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Supports websockets: %s, Registered: %s, Proxy: %s, Force websocket: %s",
-                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), networkAccess.supportsWebsockets(), registered, hasProxy, forceWebsocket));
+    Log.d(TAG, String.format("Network: %s, Foreground: %s, FCM: %s, Stay open requests: [%s], Censored: %s, Registered: %s, Proxy: %s, Force websocket: %s",
+                             hasNetwork, appVisible, fcmEnabled, Util.join(keepAliveTokens.entrySet(), ","), networkAccess.isCensored(), registered, hasProxy, forceWebsocket));
 
     return registered &&
            (appVisible || !fcmEnabled || forceWebsocket || Util.hasItems(keepAliveTokens)) &&
-           hasNetwork &&
-           networkAccess.supportsWebsockets();
+           hasNetwork;
   }
 
   private synchronized void waitForConnectionNecessary() {

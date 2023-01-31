@@ -13,7 +13,6 @@ public final class SignalServiceConfiguration {
 
   private final SignalServiceUrl[]           signalServiceUrls;
   private final Map<Integer, SignalCdnUrl[]> signalCdnUrlMap;
-  private final SignalContactDiscoveryUrl[]  signalContactDiscoveryUrls;
   private final SignalCdsiUrl[]              signalCdsiUrls;
   private final SignalKeyBackupServiceUrl[]  signalKeyBackupServiceUrls;
   private final SignalStorageUrl[]           signalStorageUrls;
@@ -21,23 +20,19 @@ public final class SignalServiceConfiguration {
   private final Optional<Dns>                dns;
   private final Optional<SignalProxy>        proxy;
   private final byte[]                       zkGroupServerPublicParams;
-  private final boolean                      supportsWebSocket;
 
   public SignalServiceConfiguration(SignalServiceUrl[] signalServiceUrls,
                                     Map<Integer, SignalCdnUrl[]> signalCdnUrlMap,
-                                    SignalContactDiscoveryUrl[] signalContactDiscoveryUrls,
                                     SignalKeyBackupServiceUrl[] signalKeyBackupServiceUrls,
                                     SignalStorageUrl[] signalStorageUrls,
                                     SignalCdsiUrl[] signalCdsiUrls,
                                     List<Interceptor> networkInterceptors,
                                     Optional<Dns> dns,
                                     Optional<SignalProxy> proxy,
-                                    byte[] zkGroupServerPublicParams,
-                                    boolean supportsWebSocket)
+                                    byte[] zkGroupServerPublicParams)
   {
     this.signalServiceUrls          = signalServiceUrls;
     this.signalCdnUrlMap            = signalCdnUrlMap;
-    this.signalContactDiscoveryUrls = signalContactDiscoveryUrls;
     this.signalCdsiUrls             = signalCdsiUrls;
     this.signalKeyBackupServiceUrls = signalKeyBackupServiceUrls;
     this.signalStorageUrls          = signalStorageUrls;
@@ -45,7 +40,6 @@ public final class SignalServiceConfiguration {
     this.dns                        = dns;
     this.proxy                      = proxy;
     this.zkGroupServerPublicParams  = zkGroupServerPublicParams;
-    this.supportsWebSocket          = supportsWebSocket;
   }
 
   public SignalServiceUrl[] getSignalServiceUrls() {
@@ -54,10 +48,6 @@ public final class SignalServiceConfiguration {
 
   public Map<Integer, SignalCdnUrl[]> getSignalCdnUrlMap() {
     return signalCdnUrlMap;
-  }
-
-  public SignalContactDiscoveryUrl[] getSignalContactDiscoveryUrls() {
-    return signalContactDiscoveryUrls;
   }
 
   public SignalCdsiUrl[] getSignalCdsiUrls() {
@@ -86,9 +76,5 @@ public final class SignalServiceConfiguration {
 
   public Optional<SignalProxy> getSignalProxy() {
     return proxy;
-  }
-
-  public boolean supportsWebSockets() {
-    return supportsWebSocket;
   }
 }

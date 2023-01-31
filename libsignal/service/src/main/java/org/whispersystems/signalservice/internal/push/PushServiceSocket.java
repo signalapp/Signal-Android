@@ -292,7 +292,6 @@ public class PushServiceSocket {
 
   private final ServiceConnectionHolder[]        serviceClients;
   private final Map<Integer, ConnectionHolder[]> cdnClientsMap;
-  private final ConnectionHolder[]               contactDiscoveryClients;
   private final ConnectionHolder[]               keyBackupServiceClients;
   private final ConnectionHolder[]               storageClients;
 
@@ -313,7 +312,6 @@ public class PushServiceSocket {
     this.automaticNetworkRetry     = automaticNetworkRetry;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
-    this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.keyBackupServiceClients   = createConnectionHolders(configuration.getSignalKeyBackupServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.random                    = new SecureRandom();
@@ -1155,14 +1153,6 @@ public class PushServiceSocket {
     }
   }
 
-  public DiscoveryResponse getContactDiscoveryRegisteredUsers(String authorizationToken, DiscoveryRequest request, List<String> cookies, String mrenclave)
-      throws IOException
-  {
-    try (Response response = makeRequest(ClientSet.ContactDiscovery, authorizationToken, cookies, "/v1/discovery/" + mrenclave, "PUT", JsonUtil.toJson(request))) {
-      return readBodyJson(response, DiscoveryResponse.class);
-    }
-  }
-
   public KeyBackupResponse putKbsData(String authorizationToken, KeyBackupRequest request, List<String> cookies, String mrenclave)
       throws IOException
   {
@@ -1842,8 +1832,6 @@ public class PushServiceSocket {
 
   private ConnectionHolder[] clientsFor(ClientSet clientSet) {
     switch (clientSet) {
-      case ContactDiscovery:
-        return contactDiscoveryClients;
       case KeyBackup:
         return keyBackupServiceClients;
       default:
@@ -2319,7 +2307,7 @@ public class PushServiceSocket {
     public void handle(int responseCode, ResponseBody body) { }
   }
 
-  public enum ClientSet { ContactDiscovery, KeyBackup }
+  public enum ClientSet { KeyBackup }
 
   public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
       throws IOException

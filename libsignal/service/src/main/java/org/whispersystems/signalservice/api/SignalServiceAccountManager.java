@@ -475,50 +475,6 @@ public class SignalServiceAccountManager {
   }
 
   @SuppressWarnings("SameParameterValue")
-  public Map<String, ACI> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
-      throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException, InvalidKeyException
-  {
-    if (e164numbers.isEmpty()) {
-      return Collections.emptyMap();
-    }
-
-    try {
-      String                         authorization = this.pushServiceSocket.getContactDiscoveryAuthorization();
-      Map<String, RemoteAttestation> attestations  = RemoteAttestationUtil.getAndVerifyMultiRemoteAttestation(pushServiceSocket,
-                                                                                                              PushServiceSocket.ClientSet.ContactDiscovery,
-                                                                                                              iasKeyStore,
-                                                                                                              mrenclave,
-                                                                                                              mrenclave,
-                                                                                                              authorization);
-
-      List<String> addressBook = new ArrayList<>(e164numbers.size());
-
-      for (String e164number : e164numbers) {
-        addressBook.add(e164number.substring(1));
-      }
-
-      List<String>      cookies  = attestations.values().iterator().next().getCookies();
-      DiscoveryRequest  request  = ContactDiscoveryCipher.createDiscoveryRequest(addressBook, attestations);
-      DiscoveryResponse response = this.pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, cookies, mrenclave);
-      byte[]            data     = ContactDiscoveryCipher.getDiscoveryResponseData(response, attestations.values());
-
-      HashMap<String, ACI> results         = new HashMap<>(addressBook.size());
-      DataInputStream      uuidInputStream = new DataInputStream(new ByteArrayInputStream(data));
-
-      for (String candidate : addressBook) {
-        long candidateUuidHigh = uuidInputStream.readLong();
-        long candidateUuidLow  = uuidInputStream.readLong();
-        if (candidateUuidHigh != 0 || candidateUuidLow != 0) {
-          results.put('+' + candidate, ACI.from(new UUID(candidateUuidHigh, candidateUuidLow)));
-        }
-      }
-
-      return results;
-    } catch (InvalidCiphertextException e) {
-      throw new UnauthenticatedResponseException(e);
-    }
-  }
-
   public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
                                                            Set<String> newE164s,
                                                            Map<ServiceId, ProfileKey> serviceIds,
