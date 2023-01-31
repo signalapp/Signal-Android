@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/title"
-        style="@style/Mp02.Signal.Text.CommonTextButton"
+        style="@style/Mp02.Signal.Text.CommonTextButton.NoFocus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textColor="@color/white_not_focus"

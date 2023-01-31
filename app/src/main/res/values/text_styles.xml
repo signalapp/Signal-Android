@@ -38,6 +38,11 @@
         <item name="android:defaultFocusHighlightEnabled" tools:ignore="NewApi">false</item>
     </style>
 
+    <style name="Mp02.Signal.Text.CommonTextButton.NoFocus" parent="Mp02.Signal.Text.CommonTextButton">
+        <item name="android:focusable">false</item>
+        <item name="android:focusableInTouchMode">false</item>
+    </style>
+
     <style name="Mp02.Signal.Text.BigCommonTextButton">
         <item name="android:textSize">36sp</item>
         <item name="android:includeFontPadding">false</item>
