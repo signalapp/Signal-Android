@@ -105,6 +105,7 @@ internal class SpinnerServer(
         tables = db.getTables().use { it.toTableInfo() },
         indices = db.getIndexes().use { it.toIndexInfo() },
         triggers = db.getTriggers().use { it.toTriggerInfo() },
+        foreignKeys = db.getForeignKeys(),
         queryResult = db.getTables().use { it.toQueryResult() }
       )
     )
@@ -410,6 +411,7 @@ internal class SpinnerServer(
     val tables: List<TableInfo>,
     val indices: List<IndexInfo>,
     val triggers: List<TriggerInfo>,
+    val foreignKeys: List<ForeignKeyConstraint>,
     val queryResult: QueryResult? = null
   ) : PrefixPageData
 
