@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.stories.settings.story
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
@@ -19,7 +20,7 @@ import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
 
 class StoriesPrivacySettingsViewModel(
-  private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
+  contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
 ) : ViewModel() {
 
   private val repository = StoriesPrivacySettingsRepository()
@@ -97,6 +98,14 @@ class StoriesPrivacySettingsViewModel(
   private fun updateUserHasStories() {
     disposables += repository.userHasOutgoingStories().subscribe { userHasActiveStories ->
       store.update { it.copy(userHasStories = userHasActiveStories) }
+    }
+  }
+
+  class Factory(
+    private val contactSearchPagedDataSourceRepository: ContactSearchPagedDataSourceRepository
+  ) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+      return modelClass.cast(StoriesPrivacySettingsViewModel(contactSearchPagedDataSourceRepository)) as T
     }
   }
 }

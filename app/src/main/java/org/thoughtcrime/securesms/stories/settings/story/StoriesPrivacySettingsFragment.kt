@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
@@ -39,7 +40,10 @@ class StoriesPrivacySettingsFragment :
   ChooseStoryTypeBottomSheet.Callback,
   GroupStoryEducationSheet.Callback {
 
-  private val viewModel: StoriesPrivacySettingsViewModel by viewModels()
+  private val viewModel: StoriesPrivacySettingsViewModel by viewModels(factoryProducer = {
+    StoriesPrivacySettingsViewModel.Factory(ContactSearchPagedDataSourceRepository(requireContext()))
+  })
+
   private val lifecycleDisposable = LifecycleDisposable()
   private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment() }
 
