@@ -434,6 +434,7 @@ dependencies {
             strictly '1.5.1'
         }
     }
+
     implementation libs.androidx.window.window
     implementation libs.androidx.window.java
     implementation libs.androidx.recyclerview
