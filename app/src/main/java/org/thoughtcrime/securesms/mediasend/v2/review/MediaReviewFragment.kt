@@ -219,7 +219,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
         performSend()
       }
     }
-    if (FeatureFlags.scheduledMessageSends()) {
+    if (FeatureFlags.scheduledMessageSends() && !sharedViewModel.isStory()) {
       sendButton.setOnLongClickListener {
         ScheduleMessageContextMenu.show(it, (requireView() as ViewGroup)) { time: Long ->
           if (time == -1L) {
