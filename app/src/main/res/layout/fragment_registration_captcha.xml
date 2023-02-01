@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/sim_background"
@@ -8,5 +10,24 @@
     <WebView
         android:id="@+id/registration_captcha_web_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:elevation="0dp"
+        android:scrollbars="none">
+
+    </WebView>
+
+    <TextView
+        android:id="@+id/mouse_cursor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="31px"
+        android:layout_marginTop="103px"
+        android:background="#00ffffff"
+        android:elevation="2dp"
+        android:rotation="225"
+        android:text="@string/RegistrationActivity_pigeon_captcha_mouse_cursor"
+        android:textColor="#ff000000"
+        android:textSize="40px"
+        android:visibility="visible" />
+
 </FrameLayout>

@@ -4043,6 +4043,7 @@ Updated May 25, 2018\n
     <!-- DSLSettingsToolbar -->
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
     <string name="NotificationSettingsFragment__failed_to_open_picker">Failed to open picker.</string>
+    <string name="RegistrationActivity_pigeon_captcha_mouse_cursor">➤</string>
 
     <!-- EOF -->
 

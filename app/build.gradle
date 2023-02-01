@@ -64,34 +64,36 @@ protobuf {
     }
 }
 
-def canonicalVersionCode = 800
-def canonicalVersionName = "Pigeon 1.2.0800 upon Signal 5.28.8"
+def canonicalVersionCode = 801
+def canonicalVersionName = "Pigeon 1.2.0801 upon Signal 5.28.8"
 
 def postFixSize = 100
 def abiPostFix = ['universal'  : 0,
                   'armeabi-v7a': 1,
-
                   'arm64-v8a'  : 2,
                   'x86'        : 3,
                   'x86_64'     : 4]
 
 def keystores = [ 'debug'  : loadKeystoreProperties('keystore.debug.properties') ]
 
+//'nightlyProdFlipper',
+//'nightlyProdPerf',
+//'nightlyProdRelease',
+//'playProdDebug',
+//'playProdFlipper',
+//'playProdPerf',
+//'playProdRelease',
+//'playStagingDebug',
+//'playStagingFlipper',
+//'playStagingPerf',
+//'playStagingRelease',
+//'studyProdMock',
+//'studyProdPerf',
+//'websiteProdFlipper',
+//'websiteProdRelease',
 def selectableVariants = [
-        'nightlyProdFlipper',
-        'nightlyProdPerf',
-        'nightlyProdRelease',
         'playProdDebug',
-        'playProdFlipper',
-        'playProdPerf',
         'playProdRelease',
-        'playStagingDebug',
-        'playStagingFlipper',
-        'playStagingPerf',
-        'playStagingRelease',
-        'studyProdMock',
-        'studyProdPerf',
-        'websiteProdFlipper',
         'websiteProdRelease',
 ]
 
@@ -172,7 +174,6 @@ android {
         buildConfigField "String[]", "LANGUAGES", "new String[]{\"" + autoResConfig().collect { s -> s.replace('-r', '_') }.join('", "') + '"}'
         buildConfigField "int", "CANONICAL_VERSION_CODE", "$canonicalVersionCode"
         buildConfigField "String", "DEFAULT_CURRENCIES", "\"EUR,AUD,GBP,CAD,CNY\""
-//        buildConfigField "int[]", "MOBILE_COIN_BLACKLIST", "new int[]{98,963,53,850,7}"
         buildConfigField "int[]", "MOBILE_COIN_BLACKLIST", "new int[]{98,963,53,850,7}"
         buildConfigField "String", "GIPHY_API_KEY", "\"3o6ZsYH6U6Eri53TXy\""
         buildConfigField "String", "SIGNAL_CAPTCHA_URL", "\"https://signalcaptchas.org/registration/generate.html\""
