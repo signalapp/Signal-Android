@@ -39,6 +39,7 @@ class RegistrationNumberInputController(
   init {
     setUpNumberInput()
 
+    spinnerView.threshold = 100
     spinnerView.setAdapter(spinnerAdapter)
     spinnerView.addTextChangedListener(CountryCodeEntryListener())
   }
