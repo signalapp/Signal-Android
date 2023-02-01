@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointForward
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import org.thoughtcrime.securesms.R
@@ -64,15 +65,14 @@ class ScheduleMessageTimePickerBottomSheet : FixedRoundedCornerBottomSheetDialog
     scheduledMinute = scheduledLocalDateTime.minute
 
     binding.scheduleSend.setOnClickListener {
-      dismiss()
-      val messageId = arguments?.getLong(KEY_MESSAGE_ID)
-      if (messageId == null) {
-        findListener<ScheduleCallback>()?.onScheduleSend(getSelectedTimestamp())
+      if (getSelectedTimestamp() < System.currentTimeMillis()) {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage(R.string.ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_warning)
+          .setPositiveButton(R.string.ScheduleMessageTimePickerBottomSheet__select_time_in_past_dialog_positive_button) { _, _ -> scheduleMessageSend() }
+          .setNegativeButton(android.R.string.cancel, null)
+          .show()
       } else {
-        val selectedTime = getSelectedTimestamp()
-        if (selectedTime != arguments?.getLong(KEY_INITIAL_TIME)) {
-          findListener<RescheduleCallback>()?.onReschedule(selectedTime, messageId)
-        }
+        scheduleMessageSend()
       }
     }
 
@@ -164,6 +164,19 @@ class ScheduleMessageTimePickerBottomSheet : FixedRoundedCornerBottomSheetDialog
   private fun updateSelectedTime() {
     val scheduledTime = LocalTime.of(scheduledHour, scheduledMinute)
     binding.timeText.text = scheduledTime.formatHours(requireContext())
+  }
+
+  private fun scheduleMessageSend() {
+    dismissAllowingStateLoss()
+    val messageId = arguments?.getLong(KEY_MESSAGE_ID)
+    if (messageId == null) {
+      findListener<ScheduleCallback>()?.onScheduleSend(getSelectedTimestamp())
+    } else {
+      val selectedTime = getSelectedTimestamp()
+      if (selectedTime != arguments?.getLong(KEY_INITIAL_TIME)) {
+        findListener<RescheduleCallback>()?.onReschedule(selectedTime, messageId)
+      }
+    }
   }
 
   interface ScheduleCallback {
