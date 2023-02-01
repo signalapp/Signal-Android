@@ -3721,6 +3721,7 @@ public class ConversationParentFragment extends Fragment
     @Override
     public void onError(Throwable t) {
       Toast.makeText(requireContext(), R.string.ConversationActivity_unable_to_record_audio, Toast.LENGTH_LONG).show();
+      Log.e(TAG, "Error in RecordingSession.", t);
       recordingSession.dispose();
       recordingSession = null;
     }
