@@ -180,6 +180,7 @@ public class DatabaseObserver {
       attachmentObservers.remove(listener);
       notificationProfileObservers.remove(listener);
       unregisterMapped(storyObservers, listener);
+      unregisterMapped(scheduledMessageObservers, listener);
     });
   }
 
