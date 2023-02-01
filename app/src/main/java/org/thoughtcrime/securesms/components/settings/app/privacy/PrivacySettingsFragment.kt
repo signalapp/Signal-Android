@@ -57,7 +57,6 @@ import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.lang.Integer.max
-import java.util.Locale
 import java.util.concurrent.TimeUnit
 
 private val TAG = Log.tag(PrivacySettingsFragment::class.java)
@@ -387,13 +386,10 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
   }
 
   private fun getScreenLockInactivityTimeoutSummary(timeoutSeconds: Long): String {
-    val hours = TimeUnit.SECONDS.toHours(timeoutSeconds)
-    val minutes = TimeUnit.SECONDS.toMinutes(timeoutSeconds) - hours * 60
-
     return if (timeoutSeconds <= 0) {
       getString(R.string.AppProtectionPreferenceFragment_none)
     } else {
-      String.format(Locale.getDefault(), "%02d:%02d", hours, minutes)
+      ExpirationUtil.getExpirationDisplayValue(requireContext(), timeoutSeconds.toInt())
     }
   }
 
