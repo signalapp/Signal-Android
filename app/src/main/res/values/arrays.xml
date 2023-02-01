@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string-array name="username_edit_entries">
+        <item>@string/UsernameEditDialog__edit_username</item>
+        <item>@string/UsernameEditDialog__delete_username</item>
+    </string-array>
 
   <string-array name="language_entries">
 <!-- zz --><item>@string/preferences__system_default</item>

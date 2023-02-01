@@ -234,6 +234,11 @@
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog.Wide</item>
     </style>
 
+    <style name="ThemeOverlay.Signal.MaterialAlertDialog.List">
+        <item name="materialAlertDialogBodyTextStyle">@style/Signal.Text.BodyLarge</item>
+        <item name="listPreferredItemHeightSmall">56dp</item>
+    </style>
+
     <style name="Widget.Signal.CheckedTextView" parent="Widget.Material3.CheckedTextView">
         <item name="android:textAppearance">@style/Signal.Text.BodyLarge</item>
         <item name="android:textColor">@color/signal_colorOnSurfaceVariant</item>

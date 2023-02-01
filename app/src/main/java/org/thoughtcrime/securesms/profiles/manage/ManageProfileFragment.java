@@ -20,6 +20,7 @@ import androidx.navigation.Navigation;
 
 import com.airbnb.lottie.SimpleColorFilter;
 import com.bumptech.glide.Glide;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.snackbar.Snackbar;
 
 import org.signal.core.util.logging.Log;
@@ -33,11 +34,12 @@ import org.thoughtcrime.securesms.badges.self.none.BecomeASustainerFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.databinding.ManageProfileFragmentBinding;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.profiles.manage.ManageProfileViewModel.AvatarState;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.util.FeatureFlags;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.NameUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
@@ -49,6 +51,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Optional;
 
+import io.reactivex.rxjava3.disposables.Disposable;
+
 public class ManageProfileFragment extends LoggingFragment {
 
   private static final String TAG = Log.tag(ManageProfileFragment.class);
@@ -56,6 +60,7 @@ public class ManageProfileFragment extends LoggingFragment {
   private AlertDialog                  avatarProgress;
   private ManageProfileViewModel       viewModel;
   private ManageProfileFragmentBinding binding;
+  private LifecycleDisposable          disposables;
 
   @Override
   public @Nullable View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -66,6 +71,9 @@ public class ManageProfileFragment extends LoggingFragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    disposables = new LifecycleDisposable();
+    disposables.bindTo(getViewLifecycleOwner());
+
     new UsernameEditFragment.ResultContract().registerForResult(getParentFragmentManager(), getViewLifecycleOwner(), isUsernameCreated -> {
       Snackbar.make(view, R.string.ManageProfileFragment__username_created, Snackbar.LENGTH_SHORT).show();
     });
@@ -85,7 +93,28 @@ public class ManageProfileFragment extends LoggingFragment {
     });
 
     binding.manageProfileUsernameContainer.setOnClickListener(v -> {
-      SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+      if (SignalStore.uiHints().hasSeenUsernameEducation()) {
+        if (Recipient.self().getUsername().isPresent()) {
+          new MaterialAlertDialogBuilder(requireContext(), R.style.ThemeOverlay_Signal_MaterialAlertDialog_List)
+              .setItems(R.array.username_edit_entries, (d, w) -> {
+                switch (w) {
+                  case 0:
+                    SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+                    break;
+                  case 1:
+                    displayConfirmUsernameDeletionDialog();
+                    break;
+                  default:
+                    throw new IllegalStateException();
+                }
+              })
+              .show();
+        } else {
+          SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageUsername());
+        }
+      } else {
+        SafeNavigation.safeNavigate(Navigation.findNavController(v), ManageProfileFragmentDirections.actionManageProfileFragmentToUsernameEducationFragment());
+      }
     });
 
     binding.manageProfileAboutContainer.setOnClickListener(v -> {
@@ -271,5 +300,30 @@ public class ManageProfileFragment extends LoggingFragment {
 
   private void onEditAvatarClicked() {
     SafeNavigation.safeNavigate(Navigation.findNavController(requireView()), ManageProfileFragmentDirections.actionManageProfileFragmentToAvatarPicker(null, null));
+  }
+
+  private void displayConfirmUsernameDeletionDialog() {
+    new MaterialAlertDialogBuilder(requireContext())
+        .setTitle("Delete Username?") // TODO [alex] -- Final copy
+        .setMessage("This will remove your username, allowing other users to claim it. Are you sure?") // TODO [alex] -- Final copy
+        .setPositiveButton(R.string.delete, (d, w) -> {
+          onUserConfirmedUsernameDeletion();
+        })
+        .setNegativeButton(android.R.string.cancel, (d, w) -> {})
+        .show();
+  }
+
+  private void onUserConfirmedUsernameDeletion() {
+    binding.progressCard.setVisibility(View.VISIBLE);
+    Disposable disposable = viewModel.deleteUsername()
+                                     .subscribe(result -> {
+                                       binding.progressCard.setVisibility(View.GONE);
+                                       handleUsernameDeletionResult(result);
+                                     });
+    disposables.add(disposable);
+  }
+
+  private void handleUsernameDeletionResult(@NonNull UsernameEditRepository.UsernameDeleteResult usernameDeleteResult) {
+    // TODO [alex] -- Snackbar?
   }
 }
