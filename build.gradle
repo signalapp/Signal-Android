@@ -24,6 +24,13 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
         classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
+        classpath ('com.squareup.wire:wire-gradle-plugin:4.4.3') {
+            exclude group: 'com.squareup.wire', module: 'wire-swift-generator'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-client'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-jvm'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-server-generator'
+            exclude group: 'io.outfoxx', module: 'swiftpoet'
+        }
     }
 }
 

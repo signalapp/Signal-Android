@@ -8,9 +8,8 @@ syntax = "proto3";
 
 package signal;
 
-option java_package         = "org.thoughtcrime.securesms.absbackup";
-option java_outer_classname = "ExternalBackupProtos";
+option java_package = "org.thoughtcrime.securesms.absbackup.protos";
 
 message KbsAuthToken {
-  repeated string token = 1;
+  repeated string tokens = 1;
 }

@@ -29,13 +29,14 @@ import java.security.MessageDigest;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import javax.crypto.Cipher;
 import javax.crypto.Mac;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static org.thoughtcrime.securesms.devicelist.DeviceNameProtos.DeviceName;
+import org.thoughtcrime.securesms.devicelist.protos.DeviceName;
 
 public class DeviceListLoader extends AsyncLoader<List<Device>> {
 
@@ -71,9 +72,9 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
         throw new IOException("Invalid DeviceInfo name.");
       }
 
-      DeviceName deviceName = DeviceName.parseFrom(Base64.decode(deviceInfo.getName()));
+      DeviceName deviceName = DeviceName.ADAPTER.decode(Base64.decode(deviceInfo.getName()));
 
-      if (!deviceName.hasCiphertext() || !deviceName.hasEphemeralPublic() || !deviceName.hasSyntheticIv()) {
+      if (deviceName.ciphertext == null || deviceName.ephemeralPublic == null || deviceName.syntheticIv == null) {
         throw new IOException("Got a DeviceName that wasn't properly populated.");
       }
 
@@ -90,10 +91,10 @@ public class DeviceListLoader extends AsyncLoader<List<Device>> {
 
   @VisibleForTesting
   public static byte[] decryptName(DeviceName deviceName, IdentityKeyPair identityKeyPair) throws InvalidKeyException, GeneralSecurityException {
-    byte[]       syntheticIv     = deviceName.getSyntheticIv().toByteArray();
-    byte[]       cipherText      = deviceName.getCiphertext().toByteArray();
+    byte[]       syntheticIv     = Objects.requireNonNull(deviceName.syntheticIv).toByteArray();
+    byte[]       cipherText      = Objects.requireNonNull(deviceName.ciphertext).toByteArray();
     ECPrivateKey identityKey     = identityKeyPair.getPrivateKey();
-    ECPublicKey  ephemeralPublic = Curve.decodePoint(deviceName.getEphemeralPublic().toByteArray(), 0);
+    ECPublicKey  ephemeralPublic = Curve.decodePoint(Objects.requireNonNull(deviceName.ephemeralPublic).toByteArray(), 0);
     byte[]       masterSecret    = Curve.calculateAgreement(ephemeralPublic, identityKey);
 
     Mac mac = Mac.getInstance("HmacSHA256");

@@ -8,8 +8,7 @@ syntax = "proto2";
 
 package signalservice;
 
-option java_package         = "org.thoughtcrime.securesms.devicelist";
-option java_outer_classname = "DeviceNameProtos";
+option java_package = "org.thoughtcrime.securesms.devicelist.protos";
 
 message DeviceName {
   optional bytes ephemeralPublic = 1;

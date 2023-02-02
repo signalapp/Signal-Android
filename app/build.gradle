@@ -9,7 +9,9 @@ apply from: 'translations.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.squareup.wire'
 apply from: 'static-ips.gradle'
+
 
 repositories {
     maven {
@@ -44,6 +46,16 @@ protobuf {
                 }
             }
         }
+    }
+}
+
+wire {
+    kotlin {
+        javaInterop = true
+    }
+
+    sourcePath {
+        srcDir 'src/main/protowire'
     }
 }
 
