@@ -1703,7 +1703,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     SQLiteDatabase db                      = databaseHelper.getSignalReadableDatabase();
     String[]       projection              = SqlUtil.COUNT;
     SqlUtil.Query  meaningfulMessagesQuery = buildMeaningfulMessagesQuery(threadId);
-    String         where                   = meaningfulMessagesQuery.getWhere() + " AND " + DATE_RECEIVED + " >= ?";
+    String         where                   = meaningfulMessagesQuery.getWhere() + " AND " + DATE_RECEIVED + " >= ? AND NOT (" + getOutgoingTypeClause() + ")";
     String[]       whereArgs               = SqlUtil.appendArg(meaningfulMessagesQuery.getWhereArgs(), String.valueOf(afterTime));
 
     try (Cursor cursor = db.query(TABLE_NAME, projection, where, whereArgs, null, null, null, "1")) {
