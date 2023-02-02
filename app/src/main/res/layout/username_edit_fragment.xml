@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_x_24"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
         app:title="@string/UsernameEditFragment_username"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
@@ -47,7 +47,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summary"
         app:suffixTextColor="@color/signal_colorOnSurface"
-        tools:suffixText="| #1234">
+        tools:suffixText="| .1234">
 
         <EditText
             android:id="@+id/username_text"
