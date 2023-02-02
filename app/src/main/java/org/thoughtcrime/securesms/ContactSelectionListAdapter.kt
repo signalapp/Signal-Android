@@ -1,11 +1,13 @@
 package org.thoughtcrime.securesms
 
 import android.content.Context
+import android.view.View
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
+import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
 
 class ContactSelectionListAdapter(
   context: Context,
@@ -18,8 +20,8 @@ class ContactSelectionListAdapter(
 ) : ContactSearchAdapter(context, emptySet(), displayCheckBox, displaySmsTag, displayPhoneNumber, onClickCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
 
   init {
-    registerFactory(NewGroupModel::class.java, LayoutFactory({ StaticMappingViewHolder(it, onClickCallbacks::onNewGroupClicked) }, R.layout.contact_selection_new_group_item))
-    registerFactory(InviteToSignalModel::class.java, LayoutFactory({ StaticMappingViewHolder(it, onClickCallbacks::onInviteToSignalClicked) }, R.layout.contact_selection_invite_action_item))
+    registerFactory(NewGroupModel::class.java, LayoutFactory({ NewGroupViewHolder(it, onClickCallbacks::onNewGroupClicked) }, R.layout.contact_selection_new_group_item))
+    registerFactory(InviteToSignalModel::class.java, LayoutFactory({ InviteToSignalViewHolder(it, onClickCallbacks::onInviteToSignalClicked) }, R.layout.contact_selection_invite_action_item))
   }
 
   class NewGroupModel : MappingModel<NewGroupModel> {
@@ -30,6 +32,22 @@ class ContactSelectionListAdapter(
   class InviteToSignalModel : MappingModel<InviteToSignalModel> {
     override fun areItemsTheSame(newItem: InviteToSignalModel): Boolean = true
     override fun areContentsTheSame(newItem: InviteToSignalModel): Boolean = true
+  }
+
+  private class InviteToSignalViewHolder(itemView: View, onClickListener: () -> Unit) : MappingViewHolder<InviteToSignalModel>(itemView) {
+    init {
+      itemView.setOnClickListener { onClickListener() }
+    }
+
+    override fun bind(model: InviteToSignalModel) = Unit
+  }
+
+  private class NewGroupViewHolder(itemView: View, onClickListener: () -> Unit) : MappingViewHolder<NewGroupModel>(itemView) {
+    init {
+      itemView.setOnClickListener { onClickListener() }
+    }
+
+    override fun bind(model: NewGroupModel) = Unit
   }
 
   class ArbitraryRepository : org.thoughtcrime.securesms.contacts.paged.ArbitraryRepository {
