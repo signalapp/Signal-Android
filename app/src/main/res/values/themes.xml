@@ -170,6 +170,7 @@
         <item name="colorOnBackground">@color/signal_colorOnBackground</item>
         <item name="colorOutline">@color/signal_colorOutline</item>
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
+        <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
         <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
 
         <item name="search_view_style">@style/Signal.SearchView</item>
@@ -258,6 +259,7 @@
         <item name="colorOnBackground">@color/signal_colorOnBackground</item>
         <item name="colorOutline">@color/signal_colorOutline</item>
         <item name="textAppearanceBodyMedium">@style/Signal.Text.BodyMedium</item>
+        <item name="textAppearanceBodyLarge">@style/Signal.Text.BodyLarge</item>
         <item name="textAppearanceLabelLarge">@style/Signal.Text.LabelLarge</item>
 
         <item name="circularProgressMaterialButtonStyle">@style/Signal.Widget.Button.Large.Tonal</item>

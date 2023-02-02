@@ -15,6 +15,12 @@ dependencyResolutionManagement {
             version('libsignal-client', '0.21.1')
             version('mp4parser', '1.9.39')
 
+            // Compose
+            alias('androidx-compose-bom').to('androidx.compose:compose-bom:2022.12.00')
+            alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
+            alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
+            alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
+
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')
 
