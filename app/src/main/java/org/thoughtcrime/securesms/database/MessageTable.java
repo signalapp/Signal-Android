@@ -127,6 +127,8 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.function.Function;
 
+import kotlin.Unit;
+
 import static org.thoughtcrime.securesms.contactshare.Contact.Avatar;
 
 public class MessageTable extends DatabaseTable implements MessageTypes, RecipientIdDatabaseReference, ThreadIdDatabaseReference  {
@@ -3108,6 +3110,22 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     }
     ApplicationDependencies.getScheduledMessageManager().scheduleIfNecessary();
     ApplicationDependencies.getDatabaseObserver().notifyScheduledMessageObservers(threadId);
+  }
+
+  public void deleteScheduledMessages(@NonNull RecipientId recipientId) {
+    Log.d(TAG, "deleteScheduledMessages(" + recipientId + ")");
+    Long threadId = SignalDatabase.threads().getThreadIdFor(recipientId);
+    if (threadId != null) {
+      SQLiteDatabaseExtensionsKt.withinTransaction(getWritableDatabase(), d -> {
+        List<MessageRecord> scheduledMessages = getScheduledMessagesInThread(threadId);
+        for (MessageRecord record : scheduledMessages) {
+          deleteScheduledMessage(record.getId());
+        }
+        return Unit.INSTANCE;
+      });
+    } else {
+      Log.i(TAG, "No thread exists for " + recipientId);
+    }
   }
 
   public void deleteThread(long threadId) {
