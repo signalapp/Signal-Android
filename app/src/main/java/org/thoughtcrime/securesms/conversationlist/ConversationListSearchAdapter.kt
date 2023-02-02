@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.conversationlist
 
+import android.content.Context
 import android.view.View
 import android.widget.TextView
 import androidx.core.os.bundleOf
@@ -9,6 +10,7 @@ import org.thoughtcrime.securesms.contacts.paged.ArbitraryRepository
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -22,13 +24,17 @@ import java.util.Locale
  * as well as ChatFilter row support and empty state handler.
  */
 class ConversationListSearchAdapter(
+  context: Context,
+  fixedContacts: Set<ContactSearchKey>,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
+  displayPhoneNumber: DisplayPhoneNumber,
   onClickedCallbacks: ConversationListSearchClickCallbacks,
+  longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks,
   lifecycleOwner: LifecycleOwner,
   glideRequests: GlideRequests
-) : ContactSearchAdapter(displayCheckBox, displaySmsTag, onClickedCallbacks, storyContextMenuCallbacks) {
+) : ContactSearchAdapter(context, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, onClickedCallbacks, longClickCallbacks, storyContextMenuCallbacks) {
 
   init {
     registerFactory(

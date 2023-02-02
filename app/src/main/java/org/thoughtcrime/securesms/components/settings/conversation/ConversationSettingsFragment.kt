@@ -54,7 +54,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.L
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.SharedMediaPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
@@ -768,7 +768,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
       AddMembersActivity.createIntent(
         requireContext(),
         addMembersToGroup.groupId,
-        ContactsCursorLoader.DisplayMode.FLAG_PUSH,
+        ContactSelectionDisplayMode.FLAG_PUSH,
         addMembersToGroup.selectionWarning,
         addMembersToGroup.selectionLimit,
         addMembersToGroup.isAnnouncementGroup,

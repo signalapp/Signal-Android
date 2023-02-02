@@ -89,4 +89,13 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
    */
   @VisibleForTesting
   class TestRow(val value: Int) : ContactSearchData(ContactSearchKey.Expand(ContactSearchConfiguration.SectionKey.RECENTS))
+
+  /**
+   * A row displaying an unknown phone number or username
+   */
+  data class UnknownRecipient(
+    val sectionKey: ContactSearchConfiguration.SectionKey,
+    val mode: ContactSearchConfiguration.NewRowMode,
+    val query: String
+  ) : ContactSearchData(ContactSearchKey.UnknownRecipientKey(sectionKey, query))
 }

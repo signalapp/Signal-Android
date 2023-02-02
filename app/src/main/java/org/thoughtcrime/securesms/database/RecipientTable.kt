@@ -4362,7 +4362,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             SELECT 1 
             FROM ${GroupTable.MembershipTable.TABLE_NAME}
             INNER JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} = ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.GROUP_ID}
-            WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = ${TABLE_NAME}.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
+            WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $TABLE_NAME.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
         )
       """.toSingleLine()
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"

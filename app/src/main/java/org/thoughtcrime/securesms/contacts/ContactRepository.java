@@ -37,7 +37,7 @@ public class ContactRepository {
   private final Context           context;
 
   public static final String ID_COLUMN           = "id";
-         static final String NAME_COLUMN         = "name";
+  public static final String NAME_COLUMN         = "name";
          static final String NUMBER_COLUMN       = "number";
          static final String NUMBER_TYPE_COLUMN  = "number_type";
          static final String LABEL_COLUMN        = "label";

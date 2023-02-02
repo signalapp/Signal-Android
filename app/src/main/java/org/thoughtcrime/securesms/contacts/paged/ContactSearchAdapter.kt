@@ -1,15 +1,18 @@
 package org.thoughtcrime.securesms.contacts.paged
 
+import android.content.Context
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.TextView
 import com.google.android.material.button.MaterialButton
+import org.signal.core.util.BreakIteratorCompat
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.FromTextView
+import org.thoughtcrime.securesms.components.RecyclerViewFastScroller.FastScrollAdapter
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.LetterHeaderDecoration
@@ -31,17 +34,35 @@ import org.thoughtcrime.securesms.util.visible
  */
 @Suppress("LeakingThis")
 open class ContactSearchAdapter(
+  private val context: Context,
+  fixedContacts: Set<ContactSearchKey>,
   displayCheckBox: Boolean,
   displaySmsTag: DisplaySmsTag,
+  displayPhoneNumber: DisplayPhoneNumber,
   onClickCallbacks: ClickCallbacks,
+  longClickCallbacks: LongClickCallbacks,
   storyContextMenuCallbacks: StoryContextMenuCallbacks
-) : PagingMappingAdapter<ContactSearchKey>() {
+) : PagingMappingAdapter<ContactSearchKey>(), FastScrollAdapter {
 
   init {
     registerStoryItems(this, displayCheckBox, onClickCallbacks::onStoryClicked, storyContextMenuCallbacks)
-    registerKnownRecipientItems(this, displayCheckBox, displaySmsTag, onClickCallbacks::onKnownRecipientClicked)
+    registerKnownRecipientItems(this, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, onClickCallbacks::onKnownRecipientClicked, longClickCallbacks::onKnownRecipientLongClick)
     registerHeaders(this)
     registerExpands(this, onClickCallbacks::onExpandClicked)
+    registerFactory(UnknownRecipientModel::class.java, LayoutFactory({ UnknownRecipientViewHolder(it, onClickCallbacks::onUnknownRecipientClicked, displayCheckBox) }, R.layout.contact_search_unknown_item))
+  }
+
+  override fun getBubbleText(position: Int): CharSequence {
+    val model = getItem(position)
+    return if (model is FastScrollCharacterProvider) {
+      model.getFastScrollCharacter(context)
+    } else {
+      " "
+    }
+  }
+
+  interface FastScrollCharacterProvider {
+    fun getFastScrollCharacter(context: Context): CharSequence
   }
 
   companion object {
@@ -59,13 +80,16 @@ open class ContactSearchAdapter(
 
     fun registerKnownRecipientItems(
       mappingAdapter: MappingAdapter,
+      fixedContacts: Set<ContactSearchKey>,
       displayCheckBox: Boolean,
       displaySmsTag: DisplaySmsTag,
-      recipientListener: OnClickedCallback<ContactSearchData.KnownRecipient>
+      displayPhoneNumber: DisplayPhoneNumber,
+      recipientListener: OnClickedCallback<ContactSearchData.KnownRecipient>,
+      recipientLongClickCallback: OnLongClickedCallback<ContactSearchData.KnownRecipient>
     ) {
       mappingAdapter.registerFactory(
         RecipientModel::class.java,
-        LayoutFactory({ KnownRecipientViewHolder(it, displayCheckBox, displaySmsTag, recipientListener) }, R.layout.contact_search_item)
+        LayoutFactory({ KnownRecipientViewHolder(it, fixedContacts, displayCheckBox, displaySmsTag, displayPhoneNumber, recipientListener, recipientLongClickCallback) }, R.layout.contact_search_item)
       )
     }
 
@@ -97,6 +121,7 @@ open class ContactSearchAdapter(
             is ContactSearchData.Thread -> ThreadModel(it)
             is ContactSearchData.Empty -> EmptyModel(it)
             is ContactSearchData.GroupWithMembers -> GroupWithMembersModel(it)
+            is ContactSearchData.UnknownRecipient -> UnknownRecipientModel(it)
           }
         }
       )
@@ -161,6 +186,7 @@ open class ContactSearchAdapter(
               context.resources.getQuantityString(R.plurals.ContactSearchItems__my_story_s_dot_d_viewers, count, presentPrivacyMode(model.story.privacyMode), count)
             }
           }
+
           else -> context.resources.getQuantityString(R.plurals.ContactSearchItems__custom_story_d_viewers, count, count)
         }
       }
@@ -242,7 +268,32 @@ open class ContactSearchAdapter(
   /**
    * Recipient model
    */
-  class RecipientModel(val knownRecipient: ContactSearchData.KnownRecipient, val isSelected: Boolean, val shortSummary: Boolean) : MappingModel<RecipientModel> {
+  class RecipientModel(
+    val knownRecipient: ContactSearchData.KnownRecipient,
+    val isSelected: Boolean,
+    val shortSummary: Boolean
+  ) : MappingModel<RecipientModel>, FastScrollCharacterProvider {
+
+    override fun getFastScrollCharacter(context: Context): CharSequence {
+      val name = if (knownRecipient.recipient.isSelf) {
+        context.getString(R.string.note_to_self)
+      } else {
+        knownRecipient.recipient.getDisplayName(context)
+      }
+
+      var letter = BreakIteratorCompat.getInstance().apply { setText(name) }.take(1)
+      if (letter != null) {
+        letter = letter.trim { it <= ' ' }
+        if (letter.isNotEmpty()) {
+          val firstChar = letter[0]
+          if (Character.isLetterOrDigit(firstChar)) {
+            return firstChar.uppercaseChar().toString()
+          }
+        }
+      }
+
+      return "#"
+    }
 
     override fun areItemsTheSame(newItem: RecipientModel): Boolean {
       return newItem.knownRecipient == knownRecipient
@@ -261,11 +312,47 @@ open class ContactSearchAdapter(
     }
   }
 
+  class UnknownRecipientModel(val data: ContactSearchData.UnknownRecipient) : MappingModel<UnknownRecipientModel> {
+    override fun areItemsTheSame(newItem: UnknownRecipientModel): Boolean = true
+
+    override fun areContentsTheSame(newItem: UnknownRecipientModel): Boolean = data == newItem.data
+  }
+
+  private class UnknownRecipientViewHolder(
+    itemView: View,
+    private val onClick: OnClickedCallback<ContactSearchData.UnknownRecipient>,
+    private val displayCheckBox: Boolean
+  ) : MappingViewHolder<UnknownRecipientModel>(itemView) {
+
+    private val checkbox: CheckBox = itemView.findViewById(R.id.check_box)
+    private val name: FromTextView = itemView.findViewById(R.id.name)
+    private val number: TextView = itemView.findViewById(R.id.number)
+
+    override fun bind(model: UnknownRecipientModel) {
+      checkbox.visible = displayCheckBox
+      checkbox.isSelected = false
+      name.setText(
+        when (model.data.mode) {
+          ContactSearchConfiguration.NewRowMode.NEW_CONVERSATION -> R.string.contact_selection_list__unknown_contact
+          ContactSearchConfiguration.NewRowMode.BLOCK -> R.string.contact_selection_list__unknown_contact_block
+          ContactSearchConfiguration.NewRowMode.ADD_TO_GROUP -> R.string.contact_selection_list__unknown_contact_add_to_group
+        }
+      )
+      number.text = model.data.query
+      itemView.setOnClickListener {
+        onClick.onClicked(itemView, model.data, false)
+      }
+    }
+  }
+
   private class KnownRecipientViewHolder(
     itemView: View,
+    private val fixedContacts: Set<ContactSearchKey>,
     displayCheckBox: Boolean,
     displaySmsTag: DisplaySmsTag,
-    onClick: OnClickedCallback<ContactSearchData.KnownRecipient>
+    private val displayPhoneNumber: DisplayPhoneNumber,
+    onClick: OnClickedCallback<ContactSearchData.KnownRecipient>,
+    private val onLongClick: OnLongClickedCallback<ContactSearchData.KnownRecipient>
   ) : BaseRecipientViewHolder<RecipientModel, ContactSearchData.KnownRecipient>(itemView, displayCheckBox, displaySmsTag, onClick), LetterHeaderDecoration.LetterHeaderItem {
 
     private var headerLetter: String? = null
@@ -282,6 +369,9 @@ open class ContactSearchAdapter(
         val count = recipient.participantIds.size
         number.text = context.resources.getQuantityString(R.plurals.ContactSearchItems__group_d_members, count, count)
         number.visible = true
+      } else if (displayPhoneNumber == DisplayPhoneNumber.ALWAYS && recipient.hasE164()) {
+        number.text = recipient.requireE164()
+        number.visible = true
       } else {
         super.bindNumberField(model)
       }
@@ -289,15 +379,22 @@ open class ContactSearchAdapter(
       headerLetter = model.knownRecipient.headerLetter
     }
 
+    override fun bindCheckbox(model: RecipientModel) {
+      checkbox.isEnabled = !fixedContacts.contains(model.knownRecipient.contactSearchKey)
+    }
+
     override fun getHeaderLetter(): String? {
       return headerLetter
+    }
+
+    override fun bindLongPress(model: RecipientModel) {
+      itemView.setOnLongClickListener { onLongClick.onLongClicked(itemView, model.knownRecipient) }
     }
   }
 
   /**
    * Base Recipient View Holder
    */
-
   abstract class BaseRecipientViewHolder<T : MappingModel<T>, D : ContactSearchData>(
     itemView: View,
     private val displayCheckBox: Boolean,
@@ -316,6 +413,7 @@ open class ContactSearchAdapter(
     override fun bind(model: T) {
       checkbox.visible = displayCheckBox
       checkbox.isChecked = isSelected(model)
+
       itemView.setOnClickListener { onClick.onClicked(avatar, getData(model), isSelected(model)) }
       bindLongPress(model)
 
@@ -331,6 +429,8 @@ open class ContactSearchAdapter(
       bindLabelField(model)
       bindSmsTagField(model)
     }
+
+    protected open fun bindCheckbox(model: T) = Unit
 
     protected open fun bindAvatar(model: T) {
       avatar.setAvatar(getRecipient(model))
@@ -444,12 +544,12 @@ open class ContactSearchAdapter(
           ContactSearchConfiguration.SectionKey.RECENTS -> R.string.ContactsCursorLoader_recent_chats
           ContactSearchConfiguration.SectionKey.INDIVIDUALS -> R.string.ContactsCursorLoader_contacts
           ContactSearchConfiguration.SectionKey.GROUPS -> R.string.ContactsCursorLoader_groups
-          ContactSearchConfiguration.SectionKey.ARBITRARY -> error("This section does not support HEADER")
           ContactSearchConfiguration.SectionKey.GROUP_MEMBERS -> R.string.ContactsCursorLoader_group_members
           ContactSearchConfiguration.SectionKey.CHATS -> R.string.ContactsCursorLoader__chats
           ContactSearchConfiguration.SectionKey.MESSAGES -> R.string.ContactsCursorLoader__messages
           ContactSearchConfiguration.SectionKey.GROUPS_WITH_MEMBERS -> R.string.ContactsCursorLoader_group_members
           ContactSearchConfiguration.SectionKey.CONTACTS_WITHOUT_THREADS -> R.string.ContactsCursorLoader_contacts
+          else -> error("This section does not support HEADER")
         }
       )
 
@@ -507,13 +607,33 @@ open class ContactSearchAdapter(
     NEVER
   }
 
+  enum class DisplayPhoneNumber {
+    NEVER,
+    ALWAYS
+  }
+
   fun interface OnClickedCallback<D : ContactSearchData> {
     fun onClicked(view: View, data: D, isSelected: Boolean)
+  }
+
+  fun interface OnLongClickedCallback<D : ContactSearchData> {
+    fun onLongClicked(view: View, data: D): Boolean
   }
 
   interface ClickCallbacks {
     fun onStoryClicked(view: View, story: ContactSearchData.Story, isSelected: Boolean)
     fun onKnownRecipientClicked(view: View, knownRecipient: ContactSearchData.KnownRecipient, isSelected: Boolean)
     fun onExpandClicked(expand: ContactSearchData.Expand)
+    fun onUnknownRecipientClicked(view: View, unknownRecipient: ContactSearchData.UnknownRecipient, isSelected: Boolean) {
+      throw NotImplementedError()
+    }
+  }
+
+  interface LongClickCallbacks {
+    fun onKnownRecipientLongClick(view: View, data: ContactSearchData.KnownRecipient): Boolean
+  }
+
+  class LongClickCallbacksAdapter : LongClickCallbacks {
+    override fun onKnownRecipientLongClick(view: View, data: ContactSearchData.KnownRecipient): Boolean = false
   }
 }

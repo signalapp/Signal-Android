@@ -172,6 +172,16 @@ class ContactSearchConfiguration private constructor(
       override val includeHeader: Boolean = true,
       override val expandConfig: ExpandConfig? = null
     ) : Section(SectionKey.CONTACTS_WITHOUT_THREADS)
+
+    data class Username(val newRowMode: NewRowMode) : Section(SectionKey.USERNAME) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
+
+    data class PhoneNumber(val newRowMode: NewRowMode) : Section(SectionKey.PHONE_NUMBER) {
+      override val includeHeader: Boolean = false
+      override val expandConfig: ExpandConfig? = null
+    }
   }
 
   /**
@@ -227,7 +237,17 @@ class ContactSearchConfiguration private constructor(
     /**
      * Messages from 1:1 and Group chats
      */
-    MESSAGES
+    MESSAGES,
+
+    /**
+     * A row representing the search query as a phone number
+     */
+    PHONE_NUMBER,
+
+    /**
+     * A row representing the search query as a username
+     */
+    USERNAME
   }
 
   /**
@@ -245,6 +265,15 @@ class ContactSearchConfiguration private constructor(
     PUSH,
     SMS,
     ALL
+  }
+
+  /**
+   * Describes the mode for 'Username' or 'PhoneNumber'
+   */
+  enum class NewRowMode {
+    NEW_CONVERSATION,
+    BLOCK,
+    ADD_TO_GROUP
   }
 
   companion object {
@@ -296,11 +325,12 @@ class ContactSearchConfiguration private constructor(
       addSection(Section.Arbitrary(setOf(first) + rest.toSet()))
     }
 
-    fun groupsWithMembers(
-      includeHeader: Boolean = true,
-      expandConfig: ExpandConfig? = null
-    ) {
-      addSection(Section.GroupsWithMembers(includeHeader, expandConfig))
+    fun username(newRowMode: NewRowMode) {
+      addSection(Section.Username(newRowMode))
+    }
+
+    fun phone(newRowMode: NewRowMode) {
+      addSection(Section.PhoneNumber(newRowMode))
     }
 
     fun addSection(section: Section)

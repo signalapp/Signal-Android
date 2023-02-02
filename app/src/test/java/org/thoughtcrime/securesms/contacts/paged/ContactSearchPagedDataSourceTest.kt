@@ -30,12 +30,13 @@ class ContactSearchPagedDataSourceTest {
   @Before
   fun setUp() {
     whenever(repository.getRecipientFromGroupRecord(any())).thenReturn(Recipient.UNKNOWN)
-    whenever(repository.getRecipientFromSearchCursor(cursor)).thenReturn(Recipient.UNKNOWN)
+    whenever(repository.getRecipientFromSearchCursor(any())).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromThreadCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getRecipientFromDistributionListCursor(cursor)).thenReturn(Recipient.UNKNOWN)
     whenever(repository.getPrivacyModeFromDistributionListCursor(cursor)).thenReturn(DistributionListPrivacyMode.ALL)
     whenever(repository.getGroupStories()).thenReturn(emptySet())
     whenever(repository.getLatestStorySends(any())).thenReturn(emptyList())
+    whenever(cursor.getString(any())).thenReturn("A")
     whenever(cursor.moveToPosition(any())).thenCallRealMethod()
     whenever(cursor.moveToNext()).thenCallRealMethod()
     whenever(cursor.position).thenCallRealMethod()

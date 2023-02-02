@@ -120,11 +120,17 @@ class MultiselectForwardFragment :
     contactSearchRecycler = view.findViewById(R.id.contact_selection_list)
     contactSearchMediator = ContactSearchMediator(
       this,
+      emptySet(),
       FeatureFlags.shareSelectionLimit(),
       !args.selectSingleRecipient,
       ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+      ContactSearchAdapter.DisplayPhoneNumber.NEVER,
       this::getConfiguration,
-      this::filterContacts
+      object : ContactSearchMediator.SimpleCallbacks() {
+        override fun onBeforeContactsSelected(view: View?, contactSearchKeys: Set<ContactSearchKey>): Set<ContactSearchKey> {
+          return filterContacts(view, contactSearchKeys)
+        }
+      }
     )
 
     contactSearchRecycler.adapter = contactSearchMediator.adapter

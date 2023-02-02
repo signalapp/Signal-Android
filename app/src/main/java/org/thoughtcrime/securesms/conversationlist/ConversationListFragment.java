@@ -294,22 +294,32 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     cameraFab.setVisibility(View.VISIBLE);
 
     contactSearchMediator = new ContactSearchMediator(this,
+                                                      Collections.emptySet(),
                                                       SelectionLimits.NO_LIMITS,
                                                       false,
                                                       ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+                                                      ContactSearchAdapter.DisplayPhoneNumber.NEVER,
                                                       this::mapSearchStateToConfiguration,
-                                                      (v, s) -> s,
+                                                      new ContactSearchMediator.SimpleCallbacks(),
                                                       false,
-                                                      (displayCheckBox,
+                                                      (context,
+                                                       fixedContacts,
+                                                       displayCheckBox,
                                                        displaySmsTag,
+                                                       displayPhoneNumber,
                                                        callbacks,
+                                                       longClickCallbacks,
                                                        storyContextMenuCallbacks
                                                       ) -> {
                                                         //noinspection CodeBlock2Expr
                                                         return new ConversationListSearchAdapter(
+                                                            context,
+                                                            fixedContacts,
                                                             displayCheckBox,
                                                             displaySmsTag,
+                                                            displayPhoneNumber,
                                                             new ContactSearchClickCallbacks(callbacks),
+                                                            longClickCallbacks,
                                                             storyContextMenuCallbacks,
                                                             getViewLifecycleOwner(),
                                                             GlideApp.with(this)
@@ -1893,6 +1903,11 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     @Override
     public void onExpandClicked(@NonNull ContactSearchData.Expand expand) {
       delegate.onExpandClicked(expand);
+    }
+
+    @Override
+    public void onUnknownRecipientClicked(@NonNull View view, @NonNull ContactSearchData.UnknownRecipient unknownRecipient, boolean isSelected) {
+      throw new UnsupportedOperationException();
     }
   }
 
