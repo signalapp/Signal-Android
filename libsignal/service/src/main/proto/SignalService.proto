@@ -36,7 +36,8 @@ message Envelope {
   optional bool   urgent          = 14 [default = true];
   reserved      /*updatedPni*/      15; // Not used presently, may be used in the future
   optional bool   story           = 16;
-  // NEXT ID: 17
+  optional bytes reporting_token  = 17;
+  // NEXT ID: 18
 }
 
 message Content {

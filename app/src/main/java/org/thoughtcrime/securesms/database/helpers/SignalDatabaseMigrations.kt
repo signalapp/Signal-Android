@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V174_ReactionForeig
 import org.thoughtcrime.securesms.database.helpers.migration.V175_FixFullTextSearchLink
 import org.thoughtcrime.securesms.database.helpers.migration.V176_AddScheduledDateToQuoteIndex
 import org.thoughtcrime.securesms.database.helpers.migration.V177_MessageSendLogTableCleanupMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V178_ReportingTokenColumnMigration
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -41,7 +42,7 @@ object SignalDatabaseMigrations {
 
   val TAG: String = Log.tag(SignalDatabaseMigrations.javaClass)
 
-  const val DATABASE_VERSION = 177
+  const val DATABASE_VERSION = 178
 
   @JvmStatic
   fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -159,6 +160,10 @@ object SignalDatabaseMigrations {
 
     if (oldVersion < 177) {
       V177_MessageSendLogTableCleanupMigration.migrate(context, db, oldVersion, newVersion)
+    }
+
+    if (oldVersion < 178) {
+      V178_ReportingTokenColumnMigration.migrate(context, db, oldVersion, newVersion)
     }
   }
 

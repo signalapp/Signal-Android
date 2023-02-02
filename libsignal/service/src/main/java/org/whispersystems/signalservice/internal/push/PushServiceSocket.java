@@ -2487,10 +2487,10 @@ public class PushServiceSocket {
     }
   }
 
-  public void reportSpam(ServiceId serviceId, String serverGuid)
+  public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken)
       throws NonSuccessfulResponseCodeException, MalformedResponseException, PushNetworkException
   {
-    makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", "");
+    makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", JsonUtil.toJson(new SpamTokenMessage(reportingToken)));
   }
 
   private static class VerificationCodeResponseHandler implements ResponseCodeHandler {

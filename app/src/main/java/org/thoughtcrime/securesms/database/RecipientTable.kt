@@ -186,6 +186,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     private const val NEEDS_PNI_SIGNATURE = "needs_pni_signature"
     private const val UNREGISTERED_TIMESTAMP = "unregistered_timestamp"
     private const val HIDDEN = "hidden"
+    const val REPORTING_TOKEN = "reporting_token"
 
     @JvmField
     val CREATE_TABLE =
@@ -246,7 +247,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         $DISTRIBUTION_LIST_ID INTEGER DEFAULT NULL,
         $NEEDS_PNI_SIGNATURE INTEGER DEFAULT 0,
         $UNREGISTERED_TIMESTAMP INTEGER DEFAULT 0,
-        $HIDDEN INTEGER DEFAULT 0
+        $HIDDEN INTEGER DEFAULT 0,
+        $REPORTING_TOKEN BLOB DEFAULT NULL
       )
       """.trimIndent()
 
@@ -308,7 +310,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       BADGES,
       DISTRIBUTION_LIST_ID,
       NEEDS_PNI_SIGNATURE,
-      HIDDEN
+      HIDDEN,
+      REPORTING_TOKEN
     )
 
     private val ID_PROJECTION = arrayOf(ID)
@@ -1719,6 +1722,31 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     return updated
+  }
+
+  fun setReportingToken(id: RecipientId, reportingToken: ByteArray) {
+    val values = ContentValues(1).apply {
+      put(REPORTING_TOKEN, reportingToken)
+    }
+
+    if (update(id, values)) {
+      ApplicationDependencies.getDatabaseObserver().notifyRecipientChanged(id)
+    }
+  }
+
+  fun getReportingToken(id: RecipientId): ByteArray? {
+    readableDatabase
+      .select(REPORTING_TOKEN)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, id)
+      .run()
+      .use { cursor ->
+        if (cursor.moveToFirst()) {
+          return cursor.requireBlob(REPORTING_TOKEN)
+        } else {
+          return null
+        }
+      }
   }
 
   fun getSimilarRecipientIds(recipient: Recipient): List<RecipientId> {
