@@ -4356,7 +4356,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     companion object {
-      const val HAS_GROUP_IN_COMMON = "EXISTS (SELECT 1 FROM ${GroupTable.MembershipTable.TABLE_NAME} WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = $ID)"
+      //language=sql
+      private val HAS_GROUP_IN_COMMON = """
+        EXISTS (
+            SELECT 1 
+            FROM ${GroupTable.MembershipTable.TABLE_NAME}
+            INNER JOIN ${GroupTable.TABLE_NAME} ON ${GroupTable.TABLE_NAME}.${GroupTable.GROUP_ID} = ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.GROUP_ID}
+            WHERE ${GroupTable.MembershipTable.TABLE_NAME}.${GroupTable.MembershipTable.RECIPIENT_ID} = ${TABLE_NAME}.$ID AND ${GroupTable.TABLE_NAME}.${GroupTable.ACTIVE} = 1 AND ${GroupTable.TABLE_NAME}.${GroupTable.MMS} = 0
+        )
+      """.toSingleLine()
       const val FILTER_GROUPS = " AND $GROUP_ID IS NULL"
       const val FILTER_ID = " AND $ID != ?"
       const val FILTER_BLOCKED = " AND $BLOCKED = ?"
@@ -4365,8 +4373,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       const val QUERY_NON_SIGNAL_CONTACT = "$NON_SIGNAL_CONTACT AND ($PHONE GLOB ? OR $EMAIL GLOB ? OR $SYSTEM_JOINED_NAME GLOB ?)"
       const val SIGNAL_CONTACT = "$REGISTERED = ? AND (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       const val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
-      const val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
-      const val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
+      val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($PHONE GLOB ? OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
     }
   }
 
