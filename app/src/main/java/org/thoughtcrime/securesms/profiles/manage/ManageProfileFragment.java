@@ -324,6 +324,15 @@ public class ManageProfileFragment extends LoggingFragment {
   }
 
   private void handleUsernameDeletionResult(@NonNull UsernameEditRepository.UsernameDeleteResult usernameDeleteResult) {
-    // TODO [alex] -- Snackbar?
+    switch (usernameDeleteResult) {
+      case SUCCESS:
+        // TODO [alex] - Final copy
+        Snackbar.make(requireView(), R.string.preferences_success, Snackbar.LENGTH_SHORT).show();
+        break;
+      case NETWORK_ERROR:
+        // TODO [alex] - Final copy
+        Snackbar.make(requireView(), R.string.error, Snackbar.LENGTH_SHORT).show();
+        break;
+    }
   }
 }
