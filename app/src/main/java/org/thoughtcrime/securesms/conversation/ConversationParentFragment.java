@@ -366,7 +366,8 @@ public class ConversationParentFragment extends Fragment
                Material3OnScrollHelperBinder,
                MessageDetailsFragment.Callback,
                ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
-               ConversationBottomSheetCallback
+               ConversationBottomSheetCallback,
+               ScheduleMessageDialogCallback
 {
 
   private static final int SHORTCUT_ICON_SIZE = Build.VERSION.SDK_INT >= 26 ? ViewUtil.dpToPx(72) : ViewUtil.dpToPx(48 + 16 * 2);
@@ -2948,9 +2949,10 @@ public class ConversationParentFragment extends Fragment
   }
 
   private void sendMessage(@Nullable String metricId, long scheduledDate) {
-    if (scheduledDate != -1) {
-      ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager());
+    if (scheduledDate != -1 && ReenableScheduledMessagesDialogFragment.showIfNeeded(requireContext(), getChildFragmentManager(), metricId, scheduledDate)) {
+      return;
     }
+
     if (inputPanel.isRecordingInLockedMode()) {
       inputPanel.releaseRecordingLock();
       return;
@@ -3671,6 +3673,7 @@ public class ConversationParentFragment extends Fragment
     });
   }
 
+  @Override
   public void onScheduleSend(long scheduledTime) {
     sendMessage(null, scheduledTime);
   }
@@ -3683,6 +3686,11 @@ public class ConversationParentFragment extends Fragment
   @Override
   public void jumpToMessage(@NonNull MessageRecord messageRecord) {
     fragment.jumpToMessage(messageRecord);
+  }
+
+  @Override
+  public void onSchedulePermissionsGranted(@Nullable String metricId, long scheduledDate) {
+    sendMessage(metricId, scheduledDate);
   }
 
   // Listeners
