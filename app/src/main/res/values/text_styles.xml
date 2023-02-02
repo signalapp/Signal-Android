@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Signal.Text.Zero" parent="">
+        <item name="android:textSize">0sp</item>
+    </style>
 
     <!-- region Material3 Styles -->
     <style name="Signal.Text.HeadlineLarge" parent="TextAppearance.Material3.HeadlineLarge">

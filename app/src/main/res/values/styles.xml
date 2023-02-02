@@ -479,11 +479,11 @@
     <style name="Widget.Signal.TextInputLayout.FilledBox" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
         <item name="android:paddingStart">@dimen/dsl_settings_gutter</item>
         <item name="android:paddingEnd">@dimen/dsl_settings_gutter</item>
-        <item name="boxBackgroundColor">@color/signal_colorSurfaceVariant</item>
-        <item name="boxCornerRadiusBottomEnd">0dp</item>
-        <item name="boxCornerRadiusBottomStart">0dp</item>
-        <item name="boxCornerRadiusTopEnd">4dp</item>
-        <item name="boxCornerRadiusTopStart">4dp</item>
+        <item name="boxBackgroundColor">@color/signal_background_secondary</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
         <item name="boxStrokeWidth">0dp</item>
         <item name="boxStrokeWidthFocused">0dp</item>
         <item name="hintTextColor">@color/signal_text_hint</item>
@@ -508,6 +508,8 @@
         <item name="android:textColorHint">@color/signal_colorOnSurfaceVariant</item>
         <item name="android:textCursorDrawable">@color/signal_colorPrimary</item>
         <item name="colorAccent">@android:color/white</item>
+        <item name="hintTextAppearance">@style/Signal.Text.LabelMedium</item>
+        <item name="boxStrokeErrorColor">@color/signal_colorError</item>
     </style>
 
     <style name="Widget.Signal.TextInputEditText.Registration" parent="Widget.MaterialComponents.TextInputEditText.FilledBox">
