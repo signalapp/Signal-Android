@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.UsernameEducationFragmentBinding
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -28,6 +30,7 @@ class UsernameEducationFragment : Fragment(R.layout.username_education_fragment)
 
     binding.continueButton.setOnClickListener {
       SignalStore.uiHints().markHasSeenUsernameEducation()
+      ApplicationDependencies.getMegaphoneRepository().markFinished(Megaphones.Event.SET_UP_YOUR_USERNAME)
       findNavController().safeNavigate(UsernameEducationFragmentDirections.actionUsernameEducationFragmentToUsernameManageFragment())
     }
   }

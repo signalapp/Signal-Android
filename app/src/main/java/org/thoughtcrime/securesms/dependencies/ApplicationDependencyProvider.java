@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.dependencies;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -191,6 +192,7 @@ public class ApplicationDependencyProvider implements ApplicationDependencies.Pr
     return new FrameRateTracker(context);
   }
 
+  @SuppressLint("DiscouragedApi")
   public @NonNull MegaphoneRepository provideMegaphoneRepository() {
     return new MegaphoneRepository(context);
   }
