@@ -19,7 +19,7 @@ import org.whispersystems.signalservice.api.messages.SendMessageResult
 import org.whispersystems.signalservice.internal.push.SignalServiceProtos
 
 /**
- * Stores a 24-hr buffer of all outgoing messages. Used for the retry logic required for sender key.
+ * Stores a rolling buffer of all outgoing messages. Used for the retry logic required for sender key.
  *
  * General note: This class is actually three tables:
  * - one to store the entry
@@ -53,16 +53,16 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     private val TAG = Log.tag(MessageSendLogTables::class.java)
 
     @JvmField
-    val CREATE_TABLE: Array<String> = arrayOf(PayloadTable.CREATE_TABLE, RecipientTable.CREATE_TABLE, MessageTable.CREATE_TABLE)
+    val CREATE_TABLE: Array<String> = arrayOf(MslPayloadTable.CREATE_TABLE, MslRecipientTable.CREATE_TABLE, MslMessageTable.CREATE_TABLE)
 
     @JvmField
-    val CREATE_INDEXES: Array<String> = PayloadTable.CREATE_INDEXES + RecipientTable.CREATE_INDEXES + MessageTable.CREATE_INDEXES
+    val CREATE_INDEXES: Array<String> = MslPayloadTable.CREATE_INDEXES + MslRecipientTable.CREATE_INDEXES + MslMessageTable.CREATE_INDEXES
 
     @JvmField
-    val CREATE_TRIGGERS: Array<String> = PayloadTable.CREATE_TRIGGERS
+    val CREATE_TRIGGERS: Array<String> = MslPayloadTable.CREATE_TRIGGERS
   }
 
-  private object PayloadTable {
+  private object MslPayloadTable {
     const val TABLE_NAME = "msl_payload"
 
     const val ID = "_id"
@@ -88,21 +88,21 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
     val CREATE_TRIGGERS = arrayOf(
       """
-        CREATE TRIGGER msl_mms_delete AFTER DELETE ON ${org.thoughtcrime.securesms.database.MessageTable.TABLE_NAME} 
+        CREATE TRIGGER msl_message_delete AFTER DELETE ON ${MessageTable.TABLE_NAME} 
         BEGIN 
-        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MessageTable.PAYLOAD_ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.MESSAGE_ID} = old.${org.thoughtcrime.securesms.database.MessageTable.ID} AND ${MessageTable.IS_MMS} = 1);
+        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${MessageTable.ID});
         END
       """,
       """
         CREATE TRIGGER msl_attachment_delete AFTER DELETE ON ${AttachmentTable.TABLE_NAME}
         BEGIN
-        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MessageTable.PAYLOAD_ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.MESSAGE_ID} = old.${AttachmentTable.MMS_ID} AND ${MessageTable.IS_MMS} = 1);
+        	DELETE FROM $TABLE_NAME WHERE $ID IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = old.${AttachmentTable.MMS_ID});
         END
       """
     )
   }
 
-  private object RecipientTable {
+  private object MslRecipientTable {
     const val TABLE_NAME = "msl_recipient"
 
     const val ID = "_id"
@@ -113,7 +113,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
-        $PAYLOAD_ID INTEGER NOT NULL REFERENCES ${PayloadTable.TABLE_NAME} (${PayloadTable.ID}) ON DELETE CASCADE,
+        $PAYLOAD_ID INTEGER NOT NULL REFERENCES ${MslPayloadTable.TABLE_NAME} (${MslPayloadTable.ID}) ON DELETE CASCADE,
         $RECIPIENT_ID INTEGER NOT NULL, 
         $DEVICE INTEGER NOT NULL
       )
@@ -126,26 +126,24 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     )
   }
 
-  private object MessageTable {
+  private object MslMessageTable {
     const val TABLE_NAME = "msl_message"
 
     const val ID = "_id"
     const val PAYLOAD_ID = "payload_id"
     const val MESSAGE_ID = "message_id"
-    const val IS_MMS = "is_mms"
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
-        $PAYLOAD_ID INTEGER NOT NULL REFERENCES ${PayloadTable.TABLE_NAME} (${PayloadTable.ID}) ON DELETE CASCADE,
-        $MESSAGE_ID INTEGER NOT NULL, 
-        $IS_MMS INTEGER NOT NULL
+        $PAYLOAD_ID INTEGER NOT NULL REFERENCES ${MslPayloadTable.TABLE_NAME} (${MslPayloadTable.ID}) ON DELETE CASCADE,
+        $MESSAGE_ID INTEGER NOT NULL,
       )
     """
 
-    /** Created for [PayloadTable.CREATE_TRIGGERS] and [deleteAllRelatedToMessage] */
+    /** Created for [MslPayloadTable.CREATE_TRIGGERS] and [deleteAllRelatedToMessage] */
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX msl_message_message_index ON $TABLE_NAME ($MESSAGE_ID, $IS_MMS, $PAYLOAD_ID)"
+      "CREATE INDEX msl_message_message_index ON $TABLE_NAME ($MESSAGE_ID, $PAYLOAD_ID)"
     )
   }
 
@@ -205,12 +203,12 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
       try {
         sendMessageResult.success.devices.forEach { device ->
           val recipientValues = ContentValues().apply {
-            put(RecipientTable.PAYLOAD_ID, payloadId)
-            put(RecipientTable.RECIPIENT_ID, recipientId.serialize())
-            put(RecipientTable.DEVICE, device)
+            put(MslRecipientTable.PAYLOAD_ID, payloadId)
+            put(MslRecipientTable.RECIPIENT_ID, recipientId.serialize())
+            put(MslRecipientTable.DEVICE, device)
           }
 
-          db.insert(RecipientTable.TABLE_NAME, null, recipientValues)
+          db.insert(MslRecipientTable.TABLE_NAME, null, recipientValues)
         }
 
         db.setTransactionSuccessful()
@@ -233,36 +231,35 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     db.beginTransaction()
     try {
       val payloadValues = ContentValues().apply {
-        put(PayloadTable.DATE_SENT, dateSent)
-        put(PayloadTable.CONTENT, content.toByteArray())
-        put(PayloadTable.CONTENT_HINT, contentHint.type)
-        put(PayloadTable.URGENT, urgent.toInt())
+        put(MslPayloadTable.DATE_SENT, dateSent)
+        put(MslPayloadTable.CONTENT, content.toByteArray())
+        put(MslPayloadTable.CONTENT_HINT, contentHint.type)
+        put(MslPayloadTable.URGENT, urgent.toInt())
       }
 
-      val payloadId: Long = db.insert(PayloadTable.TABLE_NAME, null, payloadValues)
+      val payloadId: Long = db.insert(MslPayloadTable.TABLE_NAME, null, payloadValues)
 
       val recipientValues: MutableList<ContentValues> = mutableListOf()
       recipients.forEach { recipientDevice ->
         recipientDevice.devices.forEach { device ->
           recipientValues += ContentValues().apply {
-            put(RecipientTable.PAYLOAD_ID, payloadId)
-            put(RecipientTable.RECIPIENT_ID, recipientDevice.recipientId.serialize())
-            put(RecipientTable.DEVICE, device)
+            put(MslRecipientTable.PAYLOAD_ID, payloadId)
+            put(MslRecipientTable.RECIPIENT_ID, recipientDevice.recipientId.serialize())
+            put(MslRecipientTable.DEVICE, device)
           }
         }
       }
-      SqlUtil.buildBulkInsert(RecipientTable.TABLE_NAME, arrayOf(RecipientTable.PAYLOAD_ID, RecipientTable.RECIPIENT_ID, RecipientTable.DEVICE), recipientValues)
+      SqlUtil.buildBulkInsert(MslRecipientTable.TABLE_NAME, arrayOf(MslRecipientTable.PAYLOAD_ID, MslRecipientTable.RECIPIENT_ID, MslRecipientTable.DEVICE), recipientValues)
         .forEach { query -> db.execSQL(query.where, query.whereArgs) }
 
       val messageValues: MutableList<ContentValues> = mutableListOf()
       messageIds.forEach { messageId ->
         messageValues += ContentValues().apply {
-          put(MessageTable.PAYLOAD_ID, payloadId)
-          put(MessageTable.MESSAGE_ID, messageId.id)
-          put(MessageTable.IS_MMS, 0)
+          put(MslMessageTable.PAYLOAD_ID, payloadId)
+          put(MslMessageTable.MESSAGE_ID, messageId.id)
         }
       }
-      SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, arrayOf(MessageTable.PAYLOAD_ID, MessageTable.MESSAGE_ID, MessageTable.IS_MMS), messageValues)
+      SqlUtil.buildBulkInsert(MslMessageTable.TABLE_NAME, arrayOf(MslMessageTable.PAYLOAD_ID, MslMessageTable.MESSAGE_ID), messageValues)
         .forEach { query -> db.execSQL(query.where, query.whereArgs) }
 
       db.setTransactionSuccessful()
@@ -278,31 +275,31 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     trimOldMessages(System.currentTimeMillis(), FeatureFlags.retryRespondMaxAge())
 
     val db = databaseHelper.signalReadableDatabase
-    val table = "${PayloadTable.TABLE_NAME} LEFT JOIN ${RecipientTable.TABLE_NAME} ON ${PayloadTable.TABLE_NAME}.${PayloadTable.ID} = ${RecipientTable.TABLE_NAME}.${RecipientTable.PAYLOAD_ID}"
-    val query = "${PayloadTable.DATE_SENT} = ? AND ${RecipientTable.RECIPIENT_ID} = ? AND ${RecipientTable.DEVICE} = ?"
+    val table = "${MslPayloadTable.TABLE_NAME} LEFT JOIN ${MslRecipientTable.TABLE_NAME} ON ${MslPayloadTable.TABLE_NAME}.${MslPayloadTable.ID} = ${MslRecipientTable.TABLE_NAME}.${MslRecipientTable.PAYLOAD_ID}"
+    val query = "${MslPayloadTable.DATE_SENT} = ? AND ${MslRecipientTable.RECIPIENT_ID} = ? AND ${MslRecipientTable.DEVICE} = ?"
     val args = SqlUtil.buildArgs(dateSent, recipientId, device)
 
     db.query(table, null, query, args, null, null, null).use { entryCursor ->
       if (entryCursor.moveToFirst()) {
-        val payloadId = CursorUtil.requireLong(entryCursor, RecipientTable.PAYLOAD_ID)
+        val payloadId = CursorUtil.requireLong(entryCursor, MslRecipientTable.PAYLOAD_ID)
 
-        db.query(MessageTable.TABLE_NAME, null, "${MessageTable.PAYLOAD_ID}  = ?", SqlUtil.buildArgs(payloadId), null, null, null).use { messageCursor ->
+        db.query(MslMessageTable.TABLE_NAME, null, "${MslMessageTable.PAYLOAD_ID}  = ?", SqlUtil.buildArgs(payloadId), null, null, null).use { messageCursor ->
           val messageIds: MutableList<MessageId> = mutableListOf()
 
           while (messageCursor.moveToNext()) {
             messageIds.add(
               MessageId(
-                id = CursorUtil.requireLong(messageCursor, MessageTable.MESSAGE_ID)
+                id = CursorUtil.requireLong(messageCursor, MslMessageTable.MESSAGE_ID)
               )
             )
           }
 
           return MessageLogEntry(
-            recipientId = RecipientId.from(CursorUtil.requireLong(entryCursor, RecipientTable.RECIPIENT_ID)),
-            dateSent = CursorUtil.requireLong(entryCursor, PayloadTable.DATE_SENT),
-            content = SignalServiceProtos.Content.parseFrom(CursorUtil.requireBlob(entryCursor, PayloadTable.CONTENT)),
-            contentHint = ContentHint.fromType(CursorUtil.requireInt(entryCursor, PayloadTable.CONTENT_HINT)),
-            urgent = entryCursor.requireBoolean(PayloadTable.URGENT),
+            recipientId = RecipientId.from(CursorUtil.requireLong(entryCursor, MslRecipientTable.RECIPIENT_ID)),
+            dateSent = CursorUtil.requireLong(entryCursor, MslPayloadTable.DATE_SENT),
+            content = SignalServiceProtos.Content.parseFrom(CursorUtil.requireBlob(entryCursor, MslPayloadTable.CONTENT)),
+            contentHint = ContentHint.fromType(CursorUtil.requireInt(entryCursor, MslPayloadTable.CONTENT_HINT)),
+            urgent = entryCursor.requireBoolean(MslPayloadTable.URGENT),
             relatedMessages = messageIds
           )
         }
@@ -312,14 +309,14 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     return null
   }
 
-  fun deleteAllRelatedToMessage(messageId: Long, mms: Boolean) {
+  fun deleteAllRelatedToMessage(messageId: Long) {
     if (!FeatureFlags.retryReceipts()) return
 
     val db = databaseHelper.signalWritableDatabase
-    val query = "${PayloadTable.ID} IN (SELECT ${MessageTable.PAYLOAD_ID} FROM ${MessageTable.TABLE_NAME} WHERE ${MessageTable.MESSAGE_ID} = ? AND ${MessageTable.IS_MMS} = ?)"
-    val args = SqlUtil.buildArgs(messageId, if (mms) 1 else 0)
+    val query = "${MslPayloadTable.ID} IN (SELECT ${MslMessageTable.PAYLOAD_ID} FROM ${MslMessageTable.TABLE_NAME} WHERE ${MslMessageTable.MESSAGE_ID} = ?)"
+    val args = SqlUtil.buildArgs(messageId)
 
-    db.delete(PayloadTable.TABLE_NAME, query, args)
+    db.delete(MslPayloadTable.TABLE_NAME, query, args)
   }
 
   fun deleteEntryForRecipient(dateSent: Long, recipientId: RecipientId, device: Int) {
@@ -336,19 +333,19 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
     db.beginTransaction()
     try {
       val query = """
-        ${RecipientTable.RECIPIENT_ID} = ? AND
-        ${RecipientTable.DEVICE} = ? AND
-        ${RecipientTable.PAYLOAD_ID} IN (
-          SELECT ${PayloadTable.ID} 
-          FROM ${PayloadTable.TABLE_NAME} 
-          WHERE ${PayloadTable.DATE_SENT} IN (${dateSent.joinToString(",")}) 
+        ${MslRecipientTable.RECIPIENT_ID} = ? AND
+        ${MslRecipientTable.DEVICE} = ? AND
+        ${MslRecipientTable.PAYLOAD_ID} IN (
+          SELECT ${MslPayloadTable.ID} 
+          FROM ${MslPayloadTable.TABLE_NAME} 
+          WHERE ${MslPayloadTable.DATE_SENT} IN (${dateSent.joinToString(",")}) 
         )"""
       val args = SqlUtil.buildArgs(recipientId, device)
 
-      db.delete(RecipientTable.TABLE_NAME, query, args)
+      db.delete(MslRecipientTable.TABLE_NAME, query, args)
 
-      val cleanQuery = "${PayloadTable.ID} NOT IN (SELECT ${RecipientTable.PAYLOAD_ID} FROM ${RecipientTable.TABLE_NAME})"
-      db.delete(PayloadTable.TABLE_NAME, cleanQuery, null)
+      val cleanQuery = "${MslPayloadTable.ID} NOT IN (SELECT ${MslRecipientTable.PAYLOAD_ID} FROM ${MslRecipientTable.TABLE_NAME})"
+      db.delete(MslPayloadTable.TABLE_NAME, cleanQuery, null)
 
       db.setTransactionSuccessful()
     } finally {
@@ -359,29 +356,29 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
   fun deleteAll() {
     if (!FeatureFlags.retryReceipts()) return
 
-    databaseHelper.signalWritableDatabase.delete(PayloadTable.TABLE_NAME, null, null)
+    databaseHelper.signalWritableDatabase.delete(MslPayloadTable.TABLE_NAME, null, null)
   }
 
   fun trimOldMessages(currentTime: Long, maxAge: Long) {
     if (!FeatureFlags.retryReceipts()) return
 
     val db = databaseHelper.signalWritableDatabase
-    val query = "${PayloadTable.DATE_SENT} < ?"
+    val query = "${MslPayloadTable.DATE_SENT} < ?"
     val args = SqlUtil.buildArgs(currentTime - maxAge)
 
-    db.delete(PayloadTable.TABLE_NAME, query, args)
+    db.delete(MslPayloadTable.TABLE_NAME, query, args)
   }
 
   override fun remapRecipient(oldRecipientId: RecipientId, newRecipientId: RecipientId) {
     val values = ContentValues().apply {
-      put(RecipientTable.RECIPIENT_ID, newRecipientId.serialize())
+      put(MslRecipientTable.RECIPIENT_ID, newRecipientId.serialize())
     }
 
     val db = databaseHelper.signalWritableDatabase
-    val query = "${RecipientTable.RECIPIENT_ID} = ?"
+    val query = "${MslRecipientTable.RECIPIENT_ID} = ?"
     val args = SqlUtil.buildArgs(oldRecipientId.serialize())
 
-    db.update(RecipientTable.TABLE_NAME, values, query, args)
+    db.update(MslRecipientTable.TABLE_NAME, values, query, args)
   }
 
   private data class RecipientDevice(val recipientId: RecipientId, val devices: List<Int>)

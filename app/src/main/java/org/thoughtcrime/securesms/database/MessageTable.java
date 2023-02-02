@@ -1927,7 +1927,7 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
 
       deletedAttachments = SignalDatabase.attachments().deleteAttachmentsForMessage(messageId);
       SignalDatabase.mentions().deleteMentionsForMessage(messageId);
-      SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId, true);
+      SignalDatabase.messageLog().deleteAllRelatedToMessage(messageId);
       SignalDatabase.reactions().deleteReactions(new MessageId(messageId));
       deleteGroupStoryReplies(messageId);
       disassociateStoryQuotes(messageId);
