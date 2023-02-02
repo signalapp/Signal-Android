@@ -45,9 +45,9 @@ class ScheduledMessageManager(
     for (record in scheduledMessagesToSend) {
       if (SignalDatabase.messages.clearScheduledStatus(record.threadId, record.id)) {
         if (record.recipient.isPushGroup) {
-          PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet())
+          PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet(), true)
         } else {
-          IndividualSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient)
+          IndividualSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient, true)
         }
       } else {
         Log.i(TAG, "messageId=${record.id} was not a scheduled message, ignoring")

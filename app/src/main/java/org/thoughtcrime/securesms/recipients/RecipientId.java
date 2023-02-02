@@ -158,6 +158,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
     return "RecipientId::" + id + (forMedia ? "::MEDIA" : "");
   }
 
+  public @NonNull String toScheduledSendQueueKey() {
+    return "RecipientId::" + id + "::SCHEDULED";
+  }
+
   @Override
   public @NonNull String toString() {
     return "RecipientId::" + id;
