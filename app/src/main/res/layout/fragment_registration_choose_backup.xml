@@ -50,12 +50,13 @@
         android:background="@drawable/circle_tintable"
         android:contentDescription="@string/ChooseBackupFragment__icon_content_description"
         android:padding="30dp"
-        app:backgroundTint="@color/core_grey_02"
+        app:backgroundTint="@color/signal_colorSurfaceVariant"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_backup_outline_60" />
+        app:srcCompat="@drawable/ic_backup_outline_60"
+        app:tint="@color/signal_colorPrimary"/>
 
     <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
         android:id="@+id/choose_backup_fragment_button"
