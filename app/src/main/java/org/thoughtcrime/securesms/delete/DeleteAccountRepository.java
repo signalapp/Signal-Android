@@ -85,7 +85,9 @@ class DeleteAccountRepository {
 
         while (groupRecord != null) {
           if (groupRecord.getId().isPush() && groupRecord.isActive()) {
-            GroupManager.leaveGroup(ApplicationDependencies.getApplication(), groupRecord.getId().requirePush());
+            if (!groupRecord.isV1Group()) {
+              GroupManager.leaveGroup(ApplicationDependencies.getApplication(), groupRecord.getId().requirePush());
+            }
             onDeleteAccountEvent.accept(new DeleteAccountEvent.LeaveGroupsProgress(groups.getCount(), ++groupsLeft));
           }
 
