@@ -13,7 +13,7 @@ import org.signal.contacts.SystemContactsRepository
 
 class ContactsAdapter(private val onContactClickedListener: (Uri) -> Unit) : ListAdapter<SystemContactsRepository.ContactDetails, ContactsAdapter.ContactViewHolder>(object : DiffUtil.ItemCallback<SystemContactsRepository.ContactDetails>() {
   override fun areItemsTheSame(oldItem: SystemContactsRepository.ContactDetails, newItem: SystemContactsRepository.ContactDetails): Boolean {
-    return oldItem == newItem
+    return oldItem.id == newItem.id
   }
 
   override fun areContentsTheSame(oldItem: SystemContactsRepository.ContactDetails, newItem: SystemContactsRepository.ContactDetails): Boolean {
@@ -48,3 +48,10 @@ class ContactsAdapter(private val onContactClickedListener: (Uri) -> Unit) : Lis
     }
   }
 }
+	class PhoneAdapter(private val onContactClickedListener: (Uri) -> Unit) : RecyclerView.Adapter<PhoneAdapter.PhoneViewHolder>() {
+  private val phones = mutableListOf<SystemContactsRepository.ContactDetails.PhoneNumber>()
+  fun submitList(newPhones: List<SystemContactsRepository.ContactDetails.PhoneNumber>) {
+    val result = DiffUtil.calculateDiff(PhoneDiffUtilCallback(phones, newPhones))
+    phones.clear()
+    phones.addAll(newPhones)
+    result.dispatchUpdates
