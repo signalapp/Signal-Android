@@ -137,7 +137,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $PAYLOAD_ID INTEGER NOT NULL REFERENCES ${MslPayloadTable.TABLE_NAME} (${MslPayloadTable.ID}) ON DELETE CASCADE,
-        $MESSAGE_ID INTEGER NOT NULL,
+        $MESSAGE_ID INTEGER NOT NULL
       )
     """
 
