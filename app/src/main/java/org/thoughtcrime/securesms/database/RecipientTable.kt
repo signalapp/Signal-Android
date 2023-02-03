@@ -3078,9 +3078,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return readableDatabase.query(TABLE_NAME, SEARCH_PROJECTION, selection, args, null, null, orderBy)
   }
 
-  fun querySignalContactLetterHeaders(inputQuery: String, includeSelf: Boolean): Map<RecipientId, String> {
+  fun querySignalContactLetterHeaders(inputQuery: String, includeSelf: Boolean, includePush: Boolean, includeSms: Boolean): Map<RecipientId, String> {
     val searchSelection = ContactSearchSelection.Builder()
-      .withRegistered(true)
+      .withRegistered(includePush)
+      .withNonRegistered(includeSms)
       .withGroups(false)
       .excludeId(if (includeSelf) null else Recipient.self().id)
       .withSearchQuery(inputQuery)
