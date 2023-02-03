@@ -130,7 +130,7 @@ object Buttons {
     enabled: Boolean = true,
     shape: Shape = ButtonDefaults.shape,
     colors: ButtonColors = ButtonDefaults.buttonColors(
-      containerColor = MaterialTheme.colorScheme.secondaryContainer, // TODO -- need extended colors
+      containerColor = SignalTheme.colors.colorSurface2,
       contentColor = MaterialTheme.colorScheme.onSurface
     ),
     elevation: ButtonElevation? = ButtonDefaults.buttonElevation(),
