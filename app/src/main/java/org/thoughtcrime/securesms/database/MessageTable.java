@@ -1716,8 +1716,8 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
   }
 
   private @NonNull SqlUtil.Query buildMeaningfulMessagesQuery(long threadId) {
-    String query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + SCHEDULED_DATE + " = ? AND (NOT " + TYPE + " & ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + ")";
-    return SqlUtil.buildQuery(query, threadId, 0, 0, -1, MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING, MessageTypes.PROFILE_CHANGE_TYPE, MessageTypes.CHANGE_NUMBER_TYPE, MessageTypes.SMS_EXPORT_TYPE, MessageTypes.BOOST_REQUEST_TYPE);
+    String query = THREAD_ID + " = ? AND " + STORY_TYPE + " = ? AND " + PARENT_STORY_ID + " <= ? AND " + "(NOT " + TYPE + " & ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " != ? AND " + TYPE + " & " + MessageTypes.GROUP_V2_LEAVE_BITS + " != " + MessageTypes.GROUP_V2_LEAVE_BITS + ")";
+    return SqlUtil.buildQuery(query, threadId, 0, 0, MessageTypes.IGNORABLE_TYPESMASK_WHEN_COUNTING, MessageTypes.PROFILE_CHANGE_TYPE, MessageTypes.CHANGE_NUMBER_TYPE, MessageTypes.SMS_EXPORT_TYPE, MessageTypes.BOOST_REQUEST_TYPE);
   }
 
   public void addFailures(long messageId, List<NetworkFailure> failure) {

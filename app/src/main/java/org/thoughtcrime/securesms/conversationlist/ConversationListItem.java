@@ -493,7 +493,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (!thread.isOutgoing() ||
                thread.isOutgoingAudioCall() ||
                thread.isOutgoingVideoCall() ||
-               thread.isVerificationStatusChange())
+               thread.isVerificationStatusChange() ||
+               thread.isScheduledMessage())
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
@@ -588,6 +589,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_secure_session_reset), defaultTint);
     } else if (MessageTypes.isLegacyType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported), defaultTint);
+    } else if (thread.isScheduledMessage()) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_scheduled_message), R.drawable.symbol_calendar_compact_light_16, defaultTint);
     } else if (MessageTypes.isDraftMessageType(thread.getType())) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(context, draftText + " " + thread.getBody(), defaultTint);
