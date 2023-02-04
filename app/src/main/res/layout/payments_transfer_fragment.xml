@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:viewBindingIgnore="true">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/payments_transfer_toolbar"
@@ -45,7 +45,8 @@
         app:layout_constraintBottom_toBottomOf="@+id/payments_transfer_to_address"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payments_transfer_toolbar"
-        app:srcCompat="@drawable/ic_qrcode_24_tinted"
+        app:srcCompat="@drawable/symbol_qrcode_24"
+        app:tint="@color/signal_colorOnSurface"
         tools:ignore="RtlSymmetry" />
 
     <TextView
