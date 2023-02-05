@@ -6,9 +6,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.BadGroupIdException;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -24,16 +25,16 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
 
   private static final String TAG = Log.tag(GroupV1RecordProcessor.class);
 
-  private final GroupDatabase     groupDatabase;
-  private final RecipientDatabase recipientDatabase;
+  private final GroupTable     groupDatabase;
+  private final RecipientTable recipientTable;
 
   public GroupV1RecordProcessor(@NonNull Context context) {
     this(SignalDatabase.groups(), SignalDatabase.recipients());
   }
 
-  GroupV1RecordProcessor(@NonNull GroupDatabase groupDatabase, @NonNull RecipientDatabase recipientDatabase) {
-    this.groupDatabase     = groupDatabase;
-    this.recipientDatabase = recipientDatabase;
+  GroupV1RecordProcessor(@NonNull GroupTable groupDatabase, @NonNull RecipientTable recipientTable) {
+    this.groupDatabase  = groupDatabase;
+    this.recipientTable = recipientTable;
   }
 
   /**
@@ -46,8 +47,8 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   @Override
   boolean isInvalid(@NonNull SignalGroupV1Record remote) {
     try {
-      GroupId.V1                          id       = GroupId.v1(remote.getGroupId());
-      Optional<GroupDatabase.GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
+      GroupId.V1            id       = GroupId.v1(remote.getGroupId());
+      Optional<GroupRecord> v2Record = groupDatabase.getGroup(id.deriveV2MigrationGroupId());
 
       if (v2Record.isPresent()) {
         Log.w(TAG, "We already have an upgraded V2 group for this V1 group -- marking as invalid.");
@@ -65,9 +66,9 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
   @NonNull Optional<SignalGroupV1Record> getMatching(@NonNull SignalGroupV1Record record, @NonNull StorageKeyGenerator keyGenerator) {
     GroupId.V1 groupId = GroupId.v1orThrow(record.getGroupId());
 
-    Optional<RecipientId> recipientId = recipientDatabase.getByGroupId(groupId);
+    Optional<RecipientId> recipientId = recipientTable.getByGroupId(groupId);
 
-    return recipientId.map(recipientDatabase::getRecordForSync)
+    return recipientId.map(recipientTable::getRecordForSync)
                       .map(StorageSyncModels::localToRemoteRecord)
                       .map(r -> r.getGroupV1().get());
   }
@@ -100,12 +101,12 @@ public final class GroupV1RecordProcessor extends DefaultStorageRecordProcessor<
 
   @Override
   void insertLocal(@NonNull SignalGroupV1Record record) {
-    recipientDatabase.applyStorageSyncGroupV1Insert(record);
+    recipientTable.applyStorageSyncGroupV1Insert(record);
   }
 
   @Override
   void updateLocal(@NonNull StorageRecordUpdate<SignalGroupV1Record> update) {
-    recipientDatabase.applyStorageSyncGroupV1Update(update);
+    recipientTable.applyStorageSyncGroupV1Update(update);
   }
 
   @Override

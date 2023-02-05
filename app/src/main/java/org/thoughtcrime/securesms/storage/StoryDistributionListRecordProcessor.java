@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -84,7 +84,7 @@ public class StoryDistributionListRecordProcessor extends DefaultStorageRecordPr
         throw new IllegalStateException("Found matching recipient but couldn't generate record for sync.");
       }
 
-      if (recordForSync.getGroupType().getId() != RecipientDatabase.GroupType.DISTRIBUTION_LIST.getId()) {
+      if (recordForSync.getGroupType().getId() != RecipientTable.GroupType.DISTRIBUTION_LIST.getId()) {
         Log.d(TAG, "Record has an incorrect group type.");
         throw new InvalidGroupTypeException();
       }

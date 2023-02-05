@@ -1,5 +1,5 @@
 buildscript {
-    ext.kotlin_version = '1.6.21'
+    ext.kotlin_version = '1.7.20'
     repositories {
         google()
         mavenCentral()
@@ -24,15 +24,22 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:10.2.1"
         classpath 'app.cash.exhaustive:exhaustive-gradle:0.1.1'
+        classpath ('com.squareup.wire:wire-gradle-plugin:4.4.3') {
+            exclude group: 'com.squareup.wire', module: 'wire-swift-generator'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-client'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-jvm'
+            exclude group: 'com.squareup.wire', module: 'wire-grpc-server-generator'
+            exclude group: 'io.outfoxx', module: 'swiftpoet'
+        }
     }
 }
 
 ext {
     BUILD_TOOL_VERSION = '32.0.0'
 
-    COMPILE_SDK = 32
+    COMPILE_SDK = 33
     TARGET_SDK  = 31
-    MINIMUM_SDK = 19
+    MINIMUM_SDK = 21
 
     JAVA_VERSION = JavaVersion.VERSION_1_8
 }
@@ -79,6 +86,7 @@ task qa {
             ':Signal-Android:lintPlayProdRelease',
             'Signal-Android:ktlintCheck',
             ':libsignal-service:test',
+            ':libsignal-service:ktlintCheck',
             ':Signal-Android:assemblePlayProdRelease'
 }
 

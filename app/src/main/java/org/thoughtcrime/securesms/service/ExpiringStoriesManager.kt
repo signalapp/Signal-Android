@@ -24,7 +24,7 @@ class ExpiringStoriesManager(
     private val STORY_LIFESPAN = TimeUnit.HOURS.toMillis(24)
   }
 
-  private val mmsDatabase = SignalDatabase.mms
+  private val mmsDatabase = SignalDatabase.messages
 
   init {
     scheduleIfNecessary()

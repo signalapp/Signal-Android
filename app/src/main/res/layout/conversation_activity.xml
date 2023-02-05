@@ -77,6 +77,13 @@
                 android:clipChildren="false"
                 android:clipToPadding="false">
 
+                <ViewStub
+                    android:id="@+id/scheduled_messages_stub"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inflatedId="@+id/scheduled_messages"
+                    android:layout="@layout/conversation_activity_scheduled_messages_stub" />
+
                 <include layout="@layout/conversation_search_nav" />
 
                 <FrameLayout

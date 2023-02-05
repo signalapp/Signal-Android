@@ -13,7 +13,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.util.Consumer;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase.MentionSetting;
+import org.thoughtcrime.securesms.database.RecipientTable.MentionSetting;
 
 public final class GroupMentionSettingDialog {
 

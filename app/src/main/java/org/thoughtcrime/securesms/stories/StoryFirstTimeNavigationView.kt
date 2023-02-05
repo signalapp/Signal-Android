@@ -19,6 +19,7 @@ import com.bumptech.glide.request.target.Target
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.mms.GlideApp
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.visible
 
 class StoryFirstTimeNavigationView @JvmOverloads constructor(
@@ -118,9 +119,13 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
   }
 
   private fun startLottieAnimations() {
+    if (ContextUtil.getAnimationScale(context) == 0f) {
+      return
+    }
+
     isPlayingAnimations = true
     tapToAdvance.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         if (isPlayingAnimations) {
           swipeUp.playAnimation()
         }
@@ -128,7 +133,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
     })
 
     swipeUp.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         if (isPlayingAnimations) {
           swipeRight.playAnimation()
         }
@@ -136,7 +141,7 @@ class StoryFirstTimeNavigationView @JvmOverloads constructor(
     })
 
     swipeRight.addAnimatorListener(object : AnimatorListenerAdapter() {
-      override fun onAnimationEnd(animation: Animator?) {
+      override fun onAnimationEnd(animation: Animator) {
         postDelayed({
           if (isPlayingAnimations) {
             startLottieAnimations()

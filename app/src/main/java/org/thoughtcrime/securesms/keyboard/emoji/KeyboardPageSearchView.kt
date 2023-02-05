@@ -72,6 +72,7 @@ class KeyboardPageSearchView @JvmOverloads constructor(
     }
 
     clearButton.setOnClickListener { clearQuery() }
+    clearButton.isClickable = false
 
     context.obtainStyledAttributes(attrs, R.styleable.KeyboardPageSearchView, 0, 0).use { typedArray ->
       val showAlways: Boolean = typedArray.getBoolean(R.styleable.KeyboardPageSearchView_show_always, false)
@@ -155,7 +156,7 @@ class KeyboardPageSearchView @JvmOverloads constructor(
         .setDuration(REVEAL_DURATION)
         .alpha(0f)
         .setListener(object : AnimationCompleteListener() {
-          override fun onAnimationEnd(animation: Animator?) {
+          override fun onAnimationEnd(animation: Animator) {
             visibility = INVISIBLE
           }
         })

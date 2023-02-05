@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:padding="9dp"
             android:tint="@color/signal_icon_tint_primary"
-            app:srcCompat="@drawable/ic_reply_24" />
+            app:srcCompat="@drawable/symbol_reply_24" />
 
     </FrameLayout>
 

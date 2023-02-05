@@ -8,7 +8,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.ListUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.StoryType;
@@ -139,7 +139,7 @@ public class SendViewedReceiptJob extends BaseJob {
 
     List<MessageId> foundMessageIds       = new LinkedList<>();
     List<Long>      messageSentTimestamps = new LinkedList<>();
-    List<StoryType> storyTypes            = SignalDatabase.mms().getStoryTypes(this.messageIds);
+    List<StoryType> storyTypes            = SignalDatabase.messages().getStoryTypes(this.messageIds);
 
     for (int i = 0; i < storyTypes.size(); i++) {
       StoryType storyType = storyTypes.get(i);

@@ -7,8 +7,8 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.audio.AudioHash;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
-import org.thoughtcrime.securesms.database.AttachmentDatabase.TransformProperties;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties;
 import org.thoughtcrime.securesms.stickers.StickerLocator;
 
 public abstract class Attachment {
@@ -118,13 +118,13 @@ public abstract class Attachment {
   }
 
   public boolean isInProgress() {
-    return transferState != AttachmentDatabase.TRANSFER_PROGRESS_DONE &&
-           transferState != AttachmentDatabase.TRANSFER_PROGRESS_FAILED &&
-           transferState != AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+    return transferState != AttachmentTable.TRANSFER_PROGRESS_DONE &&
+           transferState != AttachmentTable.TRANSFER_PROGRESS_FAILED &&
+           transferState != AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
   }
 
   public boolean isPermanentlyFailed() {
-    return transferState == AttachmentDatabase.TRANSFER_PROGRESS_PERMANENT_FAILURE;
+    return transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE;
   }
 
   public long getSize() {

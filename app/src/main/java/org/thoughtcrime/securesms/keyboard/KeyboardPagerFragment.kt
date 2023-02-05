@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyboard
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -57,10 +56,6 @@ class KeyboardPagerFragment : Fragment() {
   }
 
   override fun onHiddenChanged(hidden: Boolean) {
-    if (Build.VERSION.SDK_INT < 21) {
-      return
-    }
-
     if (hidden) {
       WindowUtil.setNavigationBarColor(requireActivity(), ThemeUtil.getThemedColor(requireContext(), android.R.attr.navigationBarColor))
     } else {

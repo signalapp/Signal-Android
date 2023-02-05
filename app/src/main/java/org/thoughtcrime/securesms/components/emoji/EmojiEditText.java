@@ -51,7 +51,9 @@ public class EmojiEditText extends AppCompatEditText {
       }
     });
 
-    EditTextExtensionsKt.setIncognitoKeyboardEnabled(this, TextSecurePreferences.isIncognitoKeyboardEnabled(context));
+    if (!isInEditMode()) {
+      EditTextExtensionsKt.setIncognitoKeyboardEnabled(this, TextSecurePreferences.isIncognitoKeyboardEnabled(context));
+    }
   }
 
   public void insertEmoji(String emoji) {

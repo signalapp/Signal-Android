@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:minHeight="88dp"
+    android:orientation="vertical">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/clear_filter"
+        style="@style/Signal.Widget.Button.Small.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/ConversationListFragment__clear_filter"
+        android:textColor="@color/signal_colorOnSurfaceVariant" />
+
+    <TextView
+        android:id="@+id/clear_filter_tip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/dsl_settings_gutter"
+        android:paddingEnd="@dimen/dsl_settings_gutter"
+        android:text="@string/ChatFilter__tip_pull_down"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorOnSurfaceVariant"
+        android:visibility="gone" />
+
+</LinearLayout>

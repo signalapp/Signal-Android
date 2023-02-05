@@ -14,19 +14,24 @@ import org.whispersystems.signalservice.internal.push.AuthCredentials;
 
 import java.io.IOException;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 final class MobileCoinTestNetConfig extends MobileCoinConfig {
 
- private final SignalServiceAccountManager signalServiceAccountManager;
+  private final SignalServiceAccountManager signalServiceAccountManager;
 
   public MobileCoinTestNetConfig(@NonNull SignalServiceAccountManager signalServiceAccountManager) {
     this.signalServiceAccountManager = signalServiceAccountManager;
   }
 
   @Override
-  @NonNull Uri getConsensusUri() {
-    return Uri.parse("mc://node1.test.mobilecoin.com");
+  @NonNull List<Uri> getConsensusUris() {
+    return Arrays.asList(
+     Uri.parse("mc://node1.consensus.mob.staging.namda.net"),
+     Uri.parse("mc://node2.consensus.mob.staging.namda.net")
+    );
   }
 
   @Override
@@ -52,17 +57,16 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
   @Override
   @NonNull ClientConfig getConfig() {
     try {
-      Set<X509Certificate> trustRoots          = getTrustRoots(R.raw.signal_mobilecoin_authority);
-      ClientConfig         config              = new ClientConfig();
-      String[]             hardeningAdvisories = { "INTEL-SA-00334", "INTEL-SA-00615" };
-      VerifierFactory      verifierFactory     = new VerifierFactory(hardeningAdvisories,
-                                                                     // ~August 15, 2022
-                                                                     new ServiceConfig(
-                                                                         "01746f4dd25f8623d603534425ed45833687eca2b3ba25bdd87180b9471dac28",
-                                                                         "3e9bf61f3191add7b054f0e591b62f832854606f6594fd63faef1e2aedec4021",
-                                                                         "92fb35d0f603ceb5eaf2988b24a41d4a4a83f8fb9cd72e67c3bc37960d864ad6",
-                                                                         "3d6e528ee0574ae3299915ea608b71ddd17cbe855d4f5e1c46df9b0d22b04cdb"
-                                                                     ));
+      Set<X509Certificate> trustRoots = getTrustRoots(R.raw.signal_mobilecoin_authority);
+      ClientConfig         config     = new ClientConfig();
+      VerifierFactory verifierFactory = new VerifierFactory(// ~January 27, 2023
+                                                            new ServiceConfig(
+                                                                "4f3879bfffb7b9f86a33086202b6120a32da0ca159615fbbd6fbac6aa37bbf02",
+                                                                "16d73984c2d2712156135ab69987ca78aca67a2cf4f0f2287ea584556f9d223a",
+                                                                "23ececb2482e3b1d9e284502e2beb65ae76492f2791f3bfef50852ee64b883c3",
+                                                                "f52b3dc018195eae42f543e64e976c818c06672b5489746e2bf74438d488181b",
+                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
+                                                            ));
 
       config.logAdapter = new MobileCoinLogAdapter();
       config.fogView    = new ClientConfig.Service().withTrustRoots(trustRoots)

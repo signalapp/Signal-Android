@@ -6,7 +6,9 @@ import androidx.annotation.Nullable;
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public final class MiscellaneousValues extends SignalStoreValues {
 
@@ -23,11 +25,11 @@ public final class MiscellaneousValues extends SignalStoreValues {
   private static final String CENSORSHIP_SERVICE_REACHABLE    = "misc.censorship.service_reachable";
   private static final String LAST_GV2_PROFILE_CHECK_TIME     = "misc.last_gv2_profile_check_time";
   private static final String CDS_TOKEN                       = "misc.cds_token";
+  private static final String CDS_BLOCKED_UNTIL               = "misc.cds_blocked_until";
   private static final String LAST_FCM_FOREGROUND_TIME        = "misc.last_fcm_foreground_time";
   private static final String LAST_FOREGROUND_TIME            = "misc.last_foreground_time";
   private static final String PNI_INITIALIZED_DEVICES         = "misc.pni_initialized_devices";
-  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.2";
-  private static final String STORIES_FEATURE_AVAILABLE_MS    = "misc.stories_feature_available_ms";
+  private static final String SMS_PHASE_1_START_MS            = "misc.sms_export.phase_1_start.3";
 
   MiscellaneousValues(@NonNull KeyValueStore store) {
     super(store);
@@ -40,10 +42,7 @@ public final class MiscellaneousValues extends SignalStoreValues {
 
   @Override
   @NonNull List<String> getKeysToIncludeInBackup() {
-    return Arrays.asList(
-        SMS_PHASE_1_START_MS,
-        STORIES_FEATURE_AVAILABLE_MS
-    );
+    return Collections.singletonList(SMS_PHASE_1_START_MS);
   }
 
   public long getLastPrekeyRefreshTime() {
@@ -166,6 +165,42 @@ public final class MiscellaneousValues extends SignalStoreValues {
               .commit();
   }
 
+  /**
+   * Marks the time at which we think the next CDS request will succeed. This should be taken from the service response.
+   */
+  public void setCdsBlockedUtil(long time) {
+    putLong(CDS_BLOCKED_UNTIL, time);
+  }
+
+  /**
+   * Indicates that a CDS request will never succeed at the current contact count.
+   */
+  public void markCdsPermanentlyBlocked() {
+    putLong(CDS_BLOCKED_UNTIL, Long.MAX_VALUE);
+  }
+
+  /**
+   * Clears any rate limiting state related to CDS.
+   */
+  public void clearCdsBlocked() {
+    setCdsBlockedUtil(0);
+  }
+
+  /**
+   * Whether or not we expect the next CDS request to succeed.
+   */
+  public boolean isCdsBlocked() {
+    return getCdsBlockedUtil() > 0;
+  }
+
+  /**
+   * This represents the next time we think we'll be able to make a successful CDS request. If it is before this time, we expect the request will fail
+   * (assuming the user still has the same number of new E164s).
+   */
+  public long getCdsBlockedUtil() {
+    return getLong(CDS_BLOCKED_UNTIL, 0);
+  }
+
   public long getLastFcmForegroundServiceTime() {
     return getLong(LAST_FCM_FOREGROUND_TIME, 0);
   }
@@ -196,20 +231,9 @@ public final class MiscellaneousValues extends SignalStoreValues {
     }
   }
 
-  public long getStoriesFeatureAvailableTimestamp() {
-    return getLong(STORIES_FEATURE_AVAILABLE_MS, 0);
-  }
-
-  public void setStoriesFeatureAvailableTimestamp(long timestamp) {
-    putLong(STORIES_FEATURE_AVAILABLE_MS, timestamp);
-  }
-
   public @NonNull SmsExportPhase getSmsExportPhase() {
-    if (getLong(SMS_PHASE_1_START_MS, 0) == 0) {
-      return SmsExportPhase.PHASE_0;
-    }
-
     long now = System.currentTimeMillis();
-    return SmsExportPhase.getCurrentPhase(now - getLong(SMS_PHASE_1_START_MS, now));
+    long phase1StartMs = getLong(SMS_PHASE_1_START_MS, now);
+    return SmsExportPhase.getCurrentPhase(now - phase1StartMs);
   }
 }

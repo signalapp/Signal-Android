@@ -1,3 +1,5 @@
+import com.android.build.api.dsl.ManagedVirtualDevice
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'com.google.protobuf'
@@ -7,11 +9,13 @@ apply from: 'translations.gradle'
 apply plugin: 'org.jetbrains.kotlin.android'
 apply plugin: 'app.cash.exhaustive'
 apply plugin: 'kotlin-parcelize'
+apply plugin: 'com.squareup.wire'
 apply from: 'static-ips.gradle'
+
 
 repositories {
     maven {
-        url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
+        url "https://raw.githubusercontent.com/signalapp/maven/master/sqlcipher/release/"
         content {
             includeGroupByRegex "org\\.signal.*"
         }
@@ -45,13 +49,23 @@ protobuf {
     }
 }
 
+wire {
+    kotlin {
+        javaInterop = true
+    }
+
+    sourcePath {
+        srcDir 'src/main/protowire'
+    }
+}
+
 ktlint {
     // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
     version = "0.43.2"
 }
 
-def canonicalVersionCode = 1157
-def canonicalVersionName = "6.1.0"
+def canonicalVersionCode = 1206
+def canonicalVersionName = "6.11.0"
 
 def postFixSize = 100
 def abiPostFix = ['universal'   : 0,
@@ -93,10 +107,6 @@ android {
         freeCompilerArgs = ["-Xallow-result-return-type"]
     }
 
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
-
     signingConfigs {
         if (keystores.debug != null) {
             debug {
@@ -113,6 +123,17 @@ android {
 
         unitTests {
             includeAndroidResources = true
+        }
+
+        managedDevices {
+            devices {
+                pixel3api30 (ManagedVirtualDevice) {
+                    device = "Pixel 3"
+                    apiLevel = 30
+                    systemImageSource = "google-atd"
+                    require64Bit = false
+                }
+            }
         }
     }
 
@@ -153,6 +174,11 @@ android {
 
     buildFeatures {
         viewBinding true
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = '1.3.2'
     }
 
     defaultConfig {
@@ -165,7 +191,7 @@ android {
         multiDexEnabled true
 
         vectorDrawables.useSupportLibrary = true
-        project.ext.set("archivesBaseName", "Signal");
+        project.ext.set("archivesBaseName", "Signal")
 
         manifestPlaceholders = [mapsKey:"AIzaSyCSx9xea86GwDKGznCAULE9Y5a8b-TfN9U"]
 
@@ -180,6 +206,7 @@ android {
         buildConfigField "String", "SIGNAL_SERVICE_STATUS_URL", "\"uptime.signal.org\""
         buildConfigField "String", "SIGNAL_KEY_BACKUP_URL", "\"https://api.backup.signal.org\""
         buildConfigField "String", "SIGNAL_SFU_URL", "\"https://sfu.voip.signal.org\""
+        buildConfigField "String", "SIGNAL_STAGING_SFU_URL", "\"https://sfu.staging.voip.signal.org\""
         buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_NAMES", "new String[]{\"Test\", \"Staging\", \"Development\"}"
         buildConfigField "String[]", "SIGNAL_SFU_INTERNAL_URLS", "new String[]{\"https://sfu.test.voip.signal.org\", \"https://sfu.staging.voip.signal.org\", \"https://sfu.staging.test.voip.signal.org\"}"
         buildConfigField "String", "CONTENT_PROXY_HOST", "\"contentproxy.signal.org\""
@@ -256,6 +283,7 @@ android {
                     'proguard/proguard-retrofit.pro',
                     'proguard/proguard-webrtc.pro',
                     'proguard/proguard-klinker.pro',
+                    'proguard/proguard-mobilecoin.pro',
                     'proguard/proguard-retrolambda.pro',
                     'proguard/proguard-okhttp.pro',
                     'proguard/proguard-ez-vcard.pro',
@@ -566,6 +594,8 @@ dependencies {
     implementation libs.rxdogtag
 
     androidTestUtil testLibs.androidx.test.orchestrator
+
+    implementation project(':core-ui')
 }
 
 def getLastCommitTimestamp() {
@@ -574,7 +604,7 @@ def getLastCommitTimestamp() {
     }
 
     new ByteArrayOutputStream().withStream { os ->
-        def result = exec {
+        exec {
             executable = 'git'
             args = ['log', '-1', '--pretty=format:%ct']
             standardOutput = os
@@ -586,20 +616,20 @@ def getLastCommitTimestamp() {
 
 def getGitHash() {
     if (!(new File('.git').exists())) {
-        return "abcd1234"
+        throw new IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
     }
 
     def stdout = new ByteArrayOutputStream()
     exec {
-        commandLine 'git', 'rev-parse', '--short', 'HEAD'
+        commandLine 'git', 'rev-parse', 'HEAD'
         standardOutput = stdout
     }
-    return stdout.toString().trim()
+    return stdout.toString().trim().substring(0, 12)
 }
 
 def getCurrentGitTag() {
     if (!(new File('.git').exists())) {
-        return ''
+        throw new IllegalStateException("Must be a git repository to guarantee reproducible builds! (git hash is part of APK)")
     }
 
     def stdout = new ByteArrayOutputStream()
@@ -633,13 +663,13 @@ def loadKeystoreProperties(filename) {
     if (keystorePropertiesFile.exists()) {
         def keystoreProperties = new Properties()
         keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-        return keystoreProperties;
+        return keystoreProperties
     } else {
-        return null;
+        return null
     }
 }
 
-def getDateSuffix() {
+static def getDateSuffix() {
     def date = new Date()
     def formattedDate = date.format('yyyy-MM-dd-HH:mm')
     return formattedDate

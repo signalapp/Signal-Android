@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.util.Base64
 class StoryTextPostRepository {
   fun getRecord(recordId: Long): Single<MmsMessageRecord> {
     return Single.fromCallable {
-      SignalDatabase.mms.getMessageRecord(recordId) as MmsMessageRecord
+      SignalDatabase.messages.getMessageRecord(recordId) as MmsMessageRecord
     }.subscribeOn(Schedulers.io())
   }
 

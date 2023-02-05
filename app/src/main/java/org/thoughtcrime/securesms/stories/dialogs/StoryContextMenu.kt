@@ -197,13 +197,13 @@ object StoryContextMenu {
       if (!isFromSelf || isToGroup) {
         if (canHide) {
           add(
-            ActionItem(R.drawable.ic_circle_x_24_tinted, context.getString(R.string.StoriesLandingItem__hide_story)) {
+            ActionItem(R.drawable.symbol_x_circle_24, context.getString(R.string.StoriesLandingItem__hide_story)) {
               callbacks.onHide()
             }
           )
         } else {
           add(
-            ActionItem(R.drawable.ic_check_circle_24, context.getString(R.string.StoriesLandingItem__unhide_story)) {
+            ActionItem(R.drawable.symbol_check_circle_24, context.getString(R.string.StoriesLandingItem__unhide_story)) {
               callbacks.onUnhide()
             }
           )
@@ -212,22 +212,22 @@ object StoryContextMenu {
 
       if (isFromSelf) {
         add(
-          ActionItem(R.drawable.ic_forward_24_tinted, context.getString(R.string.StoriesLandingItem__forward)) {
+          ActionItem(R.drawable.symbol_forward_24, context.getString(R.string.StoriesLandingItem__forward)) {
             callbacks.onForward()
           }
         )
         add(
-          ActionItem(R.drawable.ic_share_24_tinted, context.getString(R.string.StoriesLandingItem__share)) {
+          ActionItem(R.drawable.symbol_share_android_24, context.getString(R.string.StoriesLandingItem__share)) {
             callbacks.onShare()
           }
         )
         add(
-          ActionItem(R.drawable.ic_delete_24_tinted, context.getString(R.string.delete)) {
+          ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.delete)) {
             callbacks.onDelete()
           }
         )
         add(
-          ActionItem(R.drawable.ic_download_24_tinted, context.getString(R.string.save)) {
+          ActionItem(R.drawable.symbol_save_android_24, context.getString(R.string.save)) {
             callbacks.onSave()
           }
         )
@@ -235,14 +235,14 @@ object StoryContextMenu {
 
       if ((isToGroup || !isFromSelf) && !isFromReleaseChannel) {
         add(
-          ActionItem(R.drawable.ic_open_24_tinted, context.getString(R.string.StoriesLandingItem__go_to_chat)) {
+          ActionItem(R.drawable.symbol_open_20, context.getString(R.string.StoriesLandingItem__go_to_chat)) {
             callbacks.onGoToChat()
           }
         )
       }
 
       add(
-        ActionItem(R.drawable.ic_info_outline_message_details_24, context.getString(R.string.StoriesLandingItem__info)) {
+        ActionItem(R.drawable.symbol_info_24, context.getString(R.string.StoriesLandingItem__info)) {
           callbacks.onInfo()
         }
       )

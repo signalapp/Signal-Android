@@ -10,6 +10,7 @@ import android.text.Spanned
 import android.text.TextWatcher
 import android.text.method.DigitsKeyListener
 import android.view.View
+import android.widget.TextView
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
@@ -26,6 +27,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
+import org.thoughtcrime.securesms.util.visible
 import java.lang.Integer.min
 import java.text.DecimalFormatSymbols
 import java.text.NumberFormat
@@ -102,7 +104,9 @@ data class Boost(
     val currency: Currency,
     override val isEnabled: Boolean,
     val onBoostClick: (View, Boost) -> Unit,
+    val minimumAmount: FiatMoney,
     val isCustomAmountFocused: Boolean,
+    val isCustomAmountTooSmall: Boolean,
     val onCustomAmountChanged: (String) -> Unit,
     val onCustomAmountFocusChanged: (Boolean) -> Unit,
   ) : PreferenceModel<SelectionModel>(isEnabled = isEnabled) {
@@ -113,7 +117,10 @@ data class Boost(
         newItem.boosts == boosts &&
         newItem.selectedBoost == selectedBoost &&
         newItem.currency == currency &&
-        newItem.isCustomAmountFocused == isCustomAmountFocused
+        newItem.isCustomAmountFocused == isCustomAmountFocused &&
+        newItem.isCustomAmountTooSmall == isCustomAmountTooSmall &&
+        newItem.minimumAmount.amount == minimumAmount.amount &&
+        newItem.minimumAmount.currency == minimumAmount.currency
     }
   }
 
@@ -126,6 +133,7 @@ data class Boost(
     private val boost5: MaterialButton = itemView.findViewById(R.id.boost_5)
     private val boost6: MaterialButton = itemView.findViewById(R.id.boost_6)
     private val custom: AppCompatEditText = itemView.findViewById(R.id.boost_custom)
+    private val error: TextView = itemView.findViewById(R.id.boost_custom_too_small)
 
     private val boostButtons: List<MaterialButton>
       get() {
@@ -144,6 +152,16 @@ data class Boost(
 
     override fun bind(model: SelectionModel) {
       itemView.isEnabled = model.isEnabled
+
+      error.text = context.getString(
+        R.string.Boost__the_minimum_amount_you_can_donate_is_s,
+        FiatMoneyUtil.format(
+          context.resources, model.minimumAmount,
+          FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
+        )
+      )
+
+      error.visible = model.isCustomAmountTooSmall
 
       model.boosts.zip(boostButtons).forEach { (boost, button) ->
         val isSelected = boost == model.selectedBoost && !model.isCustomAmountFocused

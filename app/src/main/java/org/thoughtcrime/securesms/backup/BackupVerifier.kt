@@ -15,6 +15,7 @@ object BackupVerifier {
   private val TAG = Log.tag(BackupVerifier::class.java)
 
   @JvmStatic
+  @Throws(IOException::class)
   fun verifyFile(cipherStream: InputStream, passphrase: String, expectedCount: Long): Boolean {
     val inputStream = BackupRecordInputStream(cipherStream, passphrase)
 
@@ -47,7 +48,7 @@ object BackupVerifier {
     try {
       inputStream.readAttachmentTo(NullOutputStream, attachment.length)
     } catch (e: IOException) {
-      Log.w(TAG, "Bad attachment: ${attachment.attachmentId}", e)
+      Log.w(TAG, "Bad attachment id: ${attachment.attachmentId} len: ${attachment.length}", e)
       return false
     }
 
@@ -58,7 +59,7 @@ object BackupVerifier {
     try {
       inputStream.readAttachmentTo(NullOutputStream, sticker.length)
     } catch (e: IOException) {
-      Log.w(TAG, "Bad sticker: ${sticker.rowId}", e)
+      Log.w(TAG, "Bad sticker id: ${sticker.rowId} len: ${sticker.length}", e)
       return false
     }
     return true
@@ -68,7 +69,7 @@ object BackupVerifier {
     try {
       inputStream.readAttachmentTo(NullOutputStream, avatar.length)
     } catch (e: IOException) {
-      Log.w(TAG, "Bad sticker: ${avatar.recipientId}", e)
+      Log.w(TAG, "Bad avatar id: ${avatar.recipientId} len: ${avatar.length}", e)
       return false
     }
     return true

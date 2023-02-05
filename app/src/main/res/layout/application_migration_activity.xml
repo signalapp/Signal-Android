@@ -17,6 +17,7 @@
         android:text="@string/ApplicationMigrationActivity__signal_is_updating"
         android:gravity="center"
         android:textSize="22sp"
+        android:textColor="@color/signal_colorOnBackground"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 

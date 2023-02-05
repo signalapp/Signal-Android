@@ -51,6 +51,7 @@
     <color name="signal_colorSecondaryContainer_12">#1F414659</color>
     <color name="signal_colorSurface_60">#991B1C1F</color>
     <color name="signal_colorSurfaceVariant_38">#61303133</color>
+    <color name="signal_colorSurfaceVariant_64">#A3303133</color>
     <color name="signal_colorOnSurface_12">#1FE2E1E5</color>
     <color name="signal_colorOnSurfaceVariant_60">#99BEBFC5</color>
     <color name="signal_colorOnBackground_60">#99E2E1E5</color>

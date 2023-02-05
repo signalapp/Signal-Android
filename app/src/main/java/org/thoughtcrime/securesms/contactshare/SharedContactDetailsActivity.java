@@ -22,7 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.mms.GlideApp;
@@ -194,7 +194,7 @@ public class SharedContactDetailsActivity extends PassphraseRequiredActivity {
     List<Recipient> systemUsers = new ArrayList<>(recipients.size());
 
     for (LiveRecipient recipient : activeRecipients.values()) {
-      if (recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+      if (recipient.get().getRegistered() == RecipientTable.RegisteredState.REGISTERED) {
         pushUsers.add(recipient.get());
       } else if (recipient.get().isSystemContact()) {
         systemUsers.add(recipient.get());

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.graphics.Canvas;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Annotation;
@@ -14,8 +15,15 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextUtils.TruncateAt;
+import android.text.style.CharacterStyle;
 import android.text.style.RelativeSizeSpan;
+import android.text.style.StrikethroughSpan;
+import android.text.style.StyleSpan;
+import android.text.style.TypefaceSpan;
 import android.util.AttributeSet;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
 
@@ -35,18 +43,19 @@ import org.thoughtcrime.securesms.components.mention.MentionDeleter;
 import org.thoughtcrime.securesms.components.mention.MentionRendererDelegate;
 import org.thoughtcrime.securesms.components.mention.MentionValidatorWatcher;
 import org.thoughtcrime.securesms.conversation.MessageSendType;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQuery;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryChangedListener;
 import org.thoughtcrime.securesms.conversation.ui.inlinequery.InlineQueryReplacement;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.RecipientId;
+import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.TimeUnit;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import static org.thoughtcrime.securesms.database.MentionUtil.MENTION_STARTER;
@@ -248,10 +257,6 @@ public class ComposeText extends EmojiEditText {
       editorInfo.imeOptions &= ~EditorInfo.IME_FLAG_NO_ENTER_ACTION;
     }
 
-    if (Build.VERSION.SDK_INT < 21) {
-      return inputConnection;
-    }
-
     if (mediaListener == null) {
       return inputConnection;
     }
@@ -280,6 +285,19 @@ public class ComposeText extends EmojiEditText {
     return MentionAnnotation.getMentionsFromAnnotations(getText());
   }
 
+  public boolean hasStyling() {
+    CharSequence trimmed = getTextTrimmed();
+    return FeatureFlags.textFormatting() && (trimmed instanceof Spanned) && MessageStyler.hasStyling((Spanned) trimmed);
+  }
+
+  public @Nullable BodyRangeList getStyling() {
+    if (FeatureFlags.textFormatting()) {
+      return MessageStyler.getStyling(getTextTrimmed());
+    } else {
+      return null;
+    }
+  }
+
   private void initialize() {
     if (TextSecurePreferences.isIncognitoKeyboardEnabled(getContext())) {
       setImeOptions(getImeOptions() | 16777216);
@@ -290,6 +308,80 @@ public class ComposeText extends EmojiEditText {
     addTextChangedListener(new MentionDeleter());
     mentionValidatorWatcher = new MentionValidatorWatcher();
     addTextChangedListener(mentionValidatorWatcher);
+
+    if (FeatureFlags.textFormatting()) {
+      setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+          MenuItem copy         = menu.findItem(android.R.id.copy);
+          MenuItem cut          = menu.findItem(android.R.id.cut);
+          MenuItem paste        = menu.findItem(android.R.id.paste);
+          int      copyOrder    = copy != null ? copy.getOrder() : 0;
+          int      cutOrder     = cut != null ? cut.getOrder() : 0;
+          int      pasteOrder   = paste != null ? paste.getOrder() : 0;
+          int      largestOrder = Math.max(copyOrder, Math.max(cutOrder, pasteOrder));
+
+          menu.add(0, R.id.edittext_bold, largestOrder, getContext().getString(R.string.TextFormatting_bold));
+          menu.add(0, R.id.edittext_italic, largestOrder, getContext().getString(R.string.TextFormatting_italic));
+          menu.add(0, R.id.edittext_strikethrough, largestOrder, getContext().getString(R.string.TextFormatting_strikethrough));
+          menu.add(0, R.id.edittext_monospace, largestOrder, getContext().getString(R.string.TextFormatting_monospace));
+
+          return true;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+          Editable text = getText();
+
+          if (text == null) {
+            return false;
+          }
+
+          if (item.getItemId() != R.id.edittext_bold &&
+              item.getItemId() != R.id.edittext_italic &&
+              item.getItemId() != R.id.edittext_strikethrough &&
+              item.getItemId() != R.id.edittext_monospace) {
+            return false;
+          }
+
+          int start = getSelectionStart();
+          int end   = getSelectionEnd();
+
+          CharSequence    charSequence = text.subSequence(start, end);
+          SpannableString replacement  = new SpannableString(charSequence);
+          CharacterStyle  style        = null;
+
+          if (item.getItemId() == R.id.edittext_bold) {
+            style = MessageStyler.boldStyle();
+          } else if (item.getItemId() == R.id.edittext_italic) {
+            style = MessageStyler.italicStyle();
+          } else if (item.getItemId() == R.id.edittext_strikethrough) {
+            style = MessageStyler.strikethroughStyle();
+          } else if (item.getItemId() == R.id.edittext_monospace) {
+            style = MessageStyler.monoStyle();
+          }
+
+          if (style != null) {
+            replacement.setSpan(style, 0, charSequence.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+          }
+
+          clearComposingText();
+
+          text.replace(start, end, replacement);
+
+          mode.finish();
+          return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+          return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {}
+      });
+    }
   }
 
   private void setHintWithChecks(@Nullable CharSequence newHint) {

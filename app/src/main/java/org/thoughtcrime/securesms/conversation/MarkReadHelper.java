@@ -8,9 +8,9 @@ import androidx.lifecycle.LifecycleOwner;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
@@ -47,8 +47,8 @@ public class MarkReadHelper {
 
     debouncer.publish(() -> {
       EXECUTOR.execute(() -> {
-        ThreadDatabase                          threadDatabase = SignalDatabase.threads();
-        List<MessageDatabase.MarkedMessageInfo> infos          = threadDatabase.setReadSince(conversationId, false, timestamp);
+        ThreadTable                          threadTable = SignalDatabase.threads();
+        List<MessageTable.MarkedMessageInfo> infos       = threadTable.setReadSince(conversationId, false, timestamp);
 
         Log.d(TAG, "Marking " + infos.size() + " messages as read.");
 

@@ -309,7 +309,7 @@ public class EditProfileFragment extends LoggingFragment {
   private void handleUpload() {
     viewModel.getUploadResult().observe(getViewLifecycleOwner(), uploadResult -> {
       if (uploadResult == EditProfileRepository.UploadResult.SUCCESS) {
-        if (Build.VERSION.SDK_INT >= 21 && !viewModel.isGroup()) {
+        if (!viewModel.isGroup()) {
           handleFinishedLollipop();
         }
         else {
@@ -330,7 +330,6 @@ public class EditProfileFragment extends LoggingFragment {
     controller.onProfileNameUploadCompleted();
   }
 
-  @RequiresApi(api = 21)
   private void handleFinishedLollipop() {
     int[] finishButtonLocation = new int[2];
     int[] revealLocation       = new int[2];

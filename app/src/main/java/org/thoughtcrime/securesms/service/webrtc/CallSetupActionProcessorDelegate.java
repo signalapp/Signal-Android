@@ -37,6 +37,12 @@ public class CallSetupActionProcessorDelegate extends WebRtcActionProcessor {
 
     RemotePeer activePeer = currentState.getCallInfoState().requireActivePeer();
 
+    webRtcInteractor.sendAcceptedCallEventSyncMessage(
+      activePeer,
+      currentState.getCallInfoState().getCallState() == WebRtcViewModel.State.CALL_RINGING,
+      currentState.getCallSetupState(activePeer).isAcceptWithVideo() || currentState.getLocalDeviceState().getCameraState().isEnabled()
+    );
+
     ApplicationDependencies.getAppForegroundObserver().removeListener(webRtcInteractor.getForegroundListener());
     webRtcInteractor.startAudioCommunication();
     webRtcInteractor.activateCall(activePeer.getId());

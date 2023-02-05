@@ -183,11 +183,11 @@ class RotationDialView @JvmOverloads constructor(
   }
 
   private inner class GestureListener : GestureDetector.SimpleOnGestureListener() {
-    override fun onDown(e: MotionEvent?): Boolean {
+    override fun onDown(e: MotionEvent): Boolean {
       return true
     }
 
-    override fun onScroll(e1: MotionEvent?, e2: MotionEvent?, distanceX: Float, distanceY: Float): Boolean {
+    override fun onScroll(e1: MotionEvent, e2: MotionEvent, distanceX: Float, distanceY: Float): Boolean {
       val degreeIncrement: Float = distanceX / dimensions.spaceBetweenAngleIndicators
       val prevDialDegrees = getDialDegrees(degrees)
       val newDialDegrees = getDialDegrees(degrees + degreeIncrement)

@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.HidingLinearLayout
 import org.thoughtcrime.securesms.components.reminder.ReminderView
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
@@ -34,8 +34,11 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    shareDataTimestamp = savedInstanceState?.getLong(STATE_WATERMARK, -1L) ?: -1L
-
+    if (savedInstanceState != null) {
+      shareDataTimestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
+    } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {
+      shareDataTimestamp = System.currentTimeMillis()
+    }
     setContentView(R.layout.conversation_parent_fragment_container)
 
     if (savedInstanceState == null) {
@@ -57,6 +60,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     replaceFragment(intent!!)
   }
 
+  @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
     googlePayResultPublisher.onNext(DonationPaymentComponent.GooglePayResult(requestCode, resultCode, data))
@@ -113,6 +117,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), ConversationPare
     return fragment.reminderView
   }
 
-  override val donationPaymentRepository: DonationPaymentRepository by lazy { DonationPaymentRepository(this) }
+  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
   override val googlePayResultPublisher: Subject<DonationPaymentComponent.GooglePayResult> = PublishSubject.create()
 }

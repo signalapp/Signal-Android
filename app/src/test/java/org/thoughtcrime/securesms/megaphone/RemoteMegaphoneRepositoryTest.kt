@@ -21,7 +21,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.SignalStoreRule
-import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
+import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.util.toMillis
@@ -45,14 +45,14 @@ class RemoteMegaphoneRepositoryTest {
 
   @After
   fun tearDown() {
-    clearMocks(remoteMegaphoneDatabase)
+    clearMocks(remoteMegaphoneTable)
   }
 
   /** Should return null if no megaphones in database. */
   @Test
   fun getRemoteMegaphoneToShow_noMegaphones() {
     // GIVEN
-    every { remoteMegaphoneDatabase.getPotentialMegaphonesAndClearOld(any()) } returns emptyList()
+    every { remoteMegaphoneTable.getPotentialMegaphonesAndClearOld(any()) } returns emptyList()
 
     // WHEN
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(0)
@@ -64,7 +64,7 @@ class RemoteMegaphoneRepositoryTest {
   @Test
   fun getRemoteMegaphoneToShow_oneMegaphone() {
     // GIVEN
-    every { remoteMegaphoneDatabase.getPotentialMegaphonesAndClearOld(any()) } returns listOf(megaphone(1))
+    every { remoteMegaphoneTable.getPotentialMegaphonesAndClearOld(any()) } returns listOf(megaphone(1))
 
     // WHEN
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(0)
@@ -84,7 +84,7 @@ class RemoteMegaphoneRepositoryTest {
       secondaryActionData = JSONObject("{\"snoozeDurationDays\":[3]}")
     )
 
-    every { remoteMegaphoneDatabase.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
+    every { remoteMegaphoneTable.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
 
     // WHEN
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
@@ -104,7 +104,7 @@ class RemoteMegaphoneRepositoryTest {
       secondaryActionData = JSONObject("{\"snoozeDurationDays\":[3]}")
     )
 
-    every { remoteMegaphoneDatabase.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
+    every { remoteMegaphoneTable.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
 
     // WHEN
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
@@ -124,7 +124,7 @@ class RemoteMegaphoneRepositoryTest {
       secondaryActionData = JSONObject("{\"snoozeDurationDays\":[3, 5, 7]}")
     )
 
-    every { remoteMegaphoneDatabase.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
+    every { remoteMegaphoneTable.getPotentialMegaphonesAndClearOld(now.toMillis()) } returns listOf(snoozed)
 
     // WHEN
     val record = RemoteMegaphoneRepository.getRemoteMegaphoneToShow(now.toMillis())
@@ -136,13 +136,13 @@ class RemoteMegaphoneRepositoryTest {
   companion object {
     private val now = LocalDateTime.of(2021, 11, 5, 12, 0)
 
-    private val remoteMegaphoneDatabase: RemoteMegaphoneDatabase = mockk()
+    private val remoteMegaphoneTable: RemoteMegaphoneTable = mockk()
 
     @BeforeClass
     @JvmStatic
     fun classSetup() {
       mockkObject(SignalDatabase.Companion)
-      every { SignalDatabase.remoteMegaphones } returns remoteMegaphoneDatabase
+      every { SignalDatabase.remoteMegaphones } returns remoteMegaphoneTable
     }
 
     @AfterClass

@@ -41,22 +41,19 @@ public class DeviceAddFragment extends LoggingFragment {
     this.devicesImage = container.findViewById(R.id.devices);
     ViewCompat.setTransitionName(devicesImage, "devices");
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      container.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
-        @TargetApi(21)
-        @Override
-        public void onLayoutChange(View v, int left, int top, int right, int bottom,
-                                   int oldLeft, int oldTop, int oldRight, int oldBottom)
-        {
-          v.removeOnLayoutChangeListener(this);
+    container.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+      @Override
+      public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                                 int oldLeft, int oldTop, int oldRight, int oldBottom)
+      {
+        v.removeOnLayoutChangeListener(this);
 
-          Animator reveal = ViewAnimationUtils.createCircularReveal(v, right, bottom, 0, (int) Math.hypot(right, bottom));
-          reveal.setInterpolator(new DecelerateInterpolator(2f));
-          reveal.setDuration(800);
-          reveal.start();
-        }
-      });
-    }
+        Animator reveal = ViewAnimationUtils.createCircularReveal(v, right, bottom, 0, (int) Math.hypot(right, bottom));
+        reveal.setInterpolator(new DecelerateInterpolator(2f));
+        reveal.setDuration(800);
+        reveal.start();
+      }
+    });
 
     scannerView.start(getViewLifecycleOwner(), CameraXModelBlocklist.isBlocklisted());
 

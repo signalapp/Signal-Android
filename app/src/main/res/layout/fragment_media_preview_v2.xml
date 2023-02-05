@@ -11,25 +11,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clickable="true"
-        android:focusable="true" />
+        android:focusable="true"
+        android:layoutDirection="ltr" />
 
     <LinearLayout
         android:id="@+id/media_preview_details_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:animateLayoutChanges="true"
+        android:alpha="0"
+        android:animateLayoutChanges="false"
         android:background="@color/signal_dark_colorSurface_87"
         android:gravity="bottom"
         android:orientation="vertical"
+        android:visibility="invisible"
         tools:visibility="visible">
 
-        <org.thoughtcrime.securesms.components.emoji.EmojiTextView
+        <org.thoughtcrime.securesms.mediapreview.caption.ExpandingCaptionView
             android:id="@+id/media_preview_caption"
             style="@style/Signal.Text.Body"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="bottom"
+            android:paddingTop="16dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:paddingBottom="8dp"

@@ -17,8 +17,9 @@ import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedRequestingMember;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberEntry;
 import org.thoughtcrime.securesms.groups.v2.GroupInviteLinkUrl;
@@ -46,10 +47,10 @@ public final class LiveGroup {
                                                                                                            .thenComparing(HAS_DISPLAY_NAME)
                                                                                                            .thenComparing(ALPHABETICAL);
 
-  private final GroupDatabase                                     groupDatabase;
-  private final LiveData<Recipient>                               recipient;
-  private final LiveData<GroupDatabase.GroupRecord>               groupRecord;
-  private final LiveData<List<GroupMemberEntry.FullMember>>       fullMembers;
+  private final GroupTable                                  groupDatabase;
+  private final LiveData<Recipient>                         recipient;
+  private final LiveData<GroupRecord>                       groupRecord;
+  private final LiveData<List<GroupMemberEntry.FullMember>> fullMembers;
   private final LiveData<List<GroupMemberEntry.RequestingMember>> requestingMembers;
   private final LiveData<GroupLinkUrlAndStatus>                   groupLink;
 
@@ -64,7 +65,7 @@ public final class LiveGroup {
     this.requestingMembers = mapToRequestingMembers(this.groupRecord);
 
     if (groupId.isV2()) {
-      LiveData<GroupDatabase.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupDatabase.GroupRecord::requireV2GroupProperties);
+      LiveData<GroupTable.V2GroupProperties> v2Properties = Transformations.map(this.groupRecord, GroupRecord::requireV2GroupProperties);
       this.groupLink = Transformations.map(v2Properties, g -> {
                          DecryptedGroup               group             = g.getDecryptedGroup();
                          AccessControl.AccessRequired addFromInviteLink = group.getAccessControl().getAddFromInviteLink();
@@ -87,7 +88,7 @@ public final class LiveGroup {
     SignalExecutors.BOUNDED.execute(() -> liveRecipient.postValue(Recipient.externalGroupExact(groupId).live()));
   }
 
-  protected static LiveData<List<GroupMemberEntry.FullMember>> mapToFullMembers(@NonNull LiveData<GroupDatabase.GroupRecord> groupRecord) {
+  protected static LiveData<List<GroupMemberEntry.FullMember>> mapToFullMembers(@NonNull LiveData<GroupRecord> groupRecord) {
     return LiveDataUtil.mapAsync(groupRecord,
                                  g -> Stream.of(g.getMembers())
                                             .map(m -> {
@@ -98,7 +99,7 @@ public final class LiveGroup {
                                             .toList());
   }
 
-  protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupDatabase.GroupRecord> groupRecord) {
+  protected static LiveData<List<GroupMemberEntry.RequestingMember>> mapToRequestingMembers(@NonNull LiveData<GroupRecord> groupRecord) {
     return LiveDataUtil.mapAsync(groupRecord,
                                  g -> {
                                    if (!g.isV2Group()) {
@@ -128,11 +129,11 @@ public final class LiveGroup {
   }
 
   public LiveData<String> getDescription() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getDescription);
+    return Transformations.map(groupRecord, GroupRecord::getDescription);
   }
 
   public LiveData<Boolean> isAnnouncementGroup() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isAnnouncementGroup);
+    return Transformations.map(groupRecord, GroupRecord::isAnnouncementGroup);
   }
 
   public LiveData<Recipient> getGroupRecipient() {
@@ -148,7 +149,7 @@ public final class LiveGroup {
   }
 
   public LiveData<Boolean> isActive() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::isActive);
+    return Transformations.map(groupRecord, GroupRecord::isActive);
   }
 
   public LiveData<Boolean> getRecipientIsAdmin(@NonNull RecipientId recipientId) {
@@ -171,11 +172,11 @@ public final class LiveGroup {
   }
 
   public LiveData<GroupAccessControl> getMembershipAdditionAccessControl() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getMembershipAdditionAccessControl);
+    return Transformations.map(groupRecord, GroupRecord::getMembershipAdditionAccessControl);
   }
 
   public LiveData<GroupAccessControl> getAttributesAccessControl() {
-    return Transformations.map(groupRecord, GroupDatabase.GroupRecord::getAttributesAccessControl);
+    return Transformations.map(groupRecord, GroupRecord::getAttributesAccessControl);
   }
 
   public LiveData<List<GroupMemberEntry.FullMember>> getNonAdminFullMembers() {
@@ -221,7 +222,7 @@ public final class LiveGroup {
     return Transformations.map(getFullMembers(), fullMembers -> getMembershipDescription(resources, 0, fullMembers.size()));
   }
 
-  public LiveData<GroupDatabase.MemberLevel> getMemberLevel(@NonNull Recipient recipient) {
+  public LiveData<GroupTable.MemberLevel> getMemberLevel(@NonNull Recipient recipient) {
     return Transformations.map(groupRecord, g -> g.memberLevel(recipient));
   }
 
@@ -234,14 +235,14 @@ public final class LiveGroup {
     }
   }
 
-  private LiveData<GroupDatabase.MemberLevel> selfMemberLevel() {
+  private LiveData<GroupTable.MemberLevel> selfMemberLevel() {
     return Transformations.map(groupRecord, g -> g.memberLevel(Recipient.self()));
   }
 
-  private static boolean applyAccessControl(@NonNull GroupDatabase.MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
+  private static boolean applyAccessControl(@NonNull GroupTable.MemberLevel memberLevel, @NonNull GroupAccessControl rights) {
     switch (rights) {
       case ALL_MEMBERS: return memberLevel.isInGroup();
-      case ONLY_ADMINS: return memberLevel == GroupDatabase.MemberLevel.ADMINISTRATOR;
+      case ONLY_ADMINS: return memberLevel == GroupTable.MemberLevel.ADMINISTRATOR;
       case NO_ONE     : return false;
       default:          throw new AssertionError();
     }

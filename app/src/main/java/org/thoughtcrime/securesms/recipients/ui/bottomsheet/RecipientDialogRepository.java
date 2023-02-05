@@ -9,8 +9,9 @@ import androidx.core.util.Consumer;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.database.GroupDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
@@ -106,11 +107,11 @@ final class RecipientDialogRepository {
   void getGroupMembership(@NonNull Consumer<List<RecipientId>> onComplete) {
     SimpleTask.run(SignalExecutors.UNBOUNDED,
                    () -> {
-                     GroupDatabase                   groupDatabase   = SignalDatabase.groups();
-                     List<GroupDatabase.GroupRecord> groupRecords    = groupDatabase.getPushGroupsContainingMember(recipientId);
-                     ArrayList<RecipientId>          groupRecipients = new ArrayList<>(groupRecords.size());
+                     GroupTable             groupDatabase   = SignalDatabase.groups();
+                     List<GroupRecord>      groupRecords    = groupDatabase.getPushGroupsContainingMember(recipientId);
+                     ArrayList<RecipientId> groupRecipients = new ArrayList<>(groupRecords.size());
 
-                     for (GroupDatabase.GroupRecord groupRecord : groupRecords) {
+                     for (GroupRecord groupRecord : groupRecords) {
                        groupRecipients.add(groupRecord.getRecipientId());
                      }
 

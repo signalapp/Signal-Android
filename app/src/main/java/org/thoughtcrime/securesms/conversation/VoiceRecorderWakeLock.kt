@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.conversation
 
-import android.os.Build
 import android.os.PowerManager
 import androidx.activity.ComponentActivity
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -30,9 +29,7 @@ class VoiceRecorderWakeLock(
         return
       }
 
-      if (Build.VERSION.SDK_INT >= 21) {
-        wakeLock = WakeLockUtil.acquire(activity, PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TimeUnit.HOURS.toMillis(1), "voiceRecorder")
-      }
+      wakeLock = WakeLockUtil.acquire(activity, PowerManager.PROXIMITY_SCREEN_OFF_WAKE_LOCK, TimeUnit.HOURS.toMillis(1), "voiceRecorder")
     }
   }
 

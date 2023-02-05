@@ -239,7 +239,7 @@ final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.Playbac
 
   private @NonNull List<MediaItem> loadMediaItemsForSinglePlayback(long messageId) {
     try {
-      MessageRecord messageRecord = SignalDatabase.mms()
+      MessageRecord messageRecord = SignalDatabase.messages()
                                                   .getMessageRecord(messageId);
 
       if (!MessageRecordUtil.hasAudio(messageRecord)) {
@@ -267,8 +267,7 @@ final class   VoiceNotePlaybackPreparer implements MediaSessionConnector.Playbac
   @WorkerThread
   private @NonNull List<MediaItem> loadMediaItemsForConsecutivePlayback(long messageId) {
     try {
-      List<MessageRecord> recordsAfter = SignalDatabase.mmsSms()
-                                                        .getMessagesAfterVoiceNoteInclusive(messageId, LIMIT);
+      List<MessageRecord> recordsAfter = SignalDatabase.messages().getMessagesAfterVoiceNoteInclusive(messageId, LIMIT);
 
       return buildFilteredMessageRecordList(recordsAfter).stream()
                                                          .map(record -> VoiceNoteMediaItemFactory

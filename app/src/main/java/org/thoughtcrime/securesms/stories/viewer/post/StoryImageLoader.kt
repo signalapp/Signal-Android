@@ -9,7 +9,6 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideApp
 import org.thoughtcrime.securesms.stories.viewer.page.StoryCache
@@ -24,9 +23,19 @@ class StoryImageLoader(
   private val storyCache: StoryCache,
   private val storySize: StoryDisplay.Size,
   private val postImage: ImageView,
-  private val blurImage: ImageView,
+  blurImage: ImageView,
   private val callback: StoryPostFragment.Callback
-) {
+) : StoryBlurLoader.Callback {
+
+  private val blurLoader = StoryBlurLoader(
+    fragment.viewLifecycleOwner.lifecycle,
+    imagePost.blurHash,
+    imagePost.imageUri,
+    storyCache,
+    storySize,
+    blurImage,
+    this
+  )
 
   companion object {
     private val TAG = Log.tag(StoryImageLoader::class.java)
@@ -37,6 +46,7 @@ class StoryImageLoader(
 
   private val imageListener = object : StoryCache.Listener {
     override fun onResourceReady(resource: Drawable) {
+      Log.d(TAG, "Loaded cached resource of size w${resource.intrinsicWidth} x h${resource.intrinsicHeight}")
       postImage.setImageDrawable(resource)
       imageState = LoadState.READY
       notifyListeners()
@@ -48,80 +58,39 @@ class StoryImageLoader(
     }
   }
 
-  private val blurListener = object : StoryCache.Listener {
-    override fun onResourceReady(resource: Drawable) {
-      blurImage.setImageDrawable(resource)
-      blurState = LoadState.READY
-      notifyListeners()
-    }
-
-    override fun onLoadFailed() {
-      blurState = LoadState.FAILED
-      notifyListeners()
-    }
-  }
-
   fun load() {
     val cacheValue = storyCache.getFromCache(imagePost.imageUri)
     if (cacheValue != null) {
       loadViaCache(cacheValue)
     } else {
-      loadViaGlide(imagePost.blurHash, storySize)
+      loadViaGlide(storySize)
     }
+
+    blurLoader.load()
   }
 
   fun clear() {
     GlideApp.with(postImage).clear(postImage)
-    GlideApp.with(blurImage).clear(blurImage)
 
     postImage.setImageDrawable(null)
-    blurImage.setImageDrawable(null)
+
+    blurLoader.clear()
   }
 
   private fun loadViaCache(cacheValue: StoryCache.StoryCacheValue) {
-    Log.d(TAG, "Attachment in cache. Loading via cache...")
-    val blurTarget = cacheValue.blurTarget
-    if (blurTarget != null) {
-      blurTarget.addListener(blurListener)
-      fragment.viewLifecycleOwner.lifecycle.addObserver(OnDestroy { blurTarget.removeListener(blurListener) })
-    } else {
-      blurState = LoadState.FAILED
-      notifyListeners()
-    }
+    Log.d(TAG, "Image in cache. Loading via cache...")
 
-    val imageTarget = cacheValue.imageTarget
+    val imageTarget = cacheValue.imageTarget!!
     imageTarget.addListener(imageListener)
-    fragment.viewLifecycleOwner.lifecycle.addObserver(OnDestroy { imageTarget.removeListener(blurListener) })
+    fragment.viewLifecycleOwner.lifecycle.addObserver(OnDestroy { imageTarget.removeListener(imageListener) })
   }
 
-  private fun loadViaGlide(blurHash: BlurHash?, storySize: StoryDisplay.Size) {
-    Log.d(TAG, "Attachment not in cache. Loading via glide...")
-    if (blurHash != null) {
-      GlideApp.with(blurImage)
-        .load(blurHash)
-        .override(storySize.width, storySize.height)
-        .addListener(object : RequestListener<Drawable> {
-          override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-            blurState = LoadState.FAILED
-            notifyListeners()
-            return false
-          }
-
-          override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
-            blurState = LoadState.READY
-            notifyListeners()
-            return false
-          }
-        })
-        .into(blurImage)
-    } else {
-      blurState = LoadState.FAILED
-      notifyListeners()
-    }
-
+  private fun loadViaGlide(storySize: StoryDisplay.Size) {
+    Log.d(TAG, "Image not in cache. Loading via glide...")
     GlideApp.with(postImage)
       .load(DecryptableStreamUriLoader.DecryptableUri(imagePost.imageUri))
       .override(storySize.width, storySize.height)
+      .centerInside()
       .addListener(object : RequestListener<Drawable> {
         override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
           imageState = LoadState.FAILED
@@ -136,6 +105,16 @@ class StoryImageLoader(
         }
       })
       .into(postImage)
+  }
+
+  override fun onBlurLoaded() {
+    blurState = LoadState.READY
+    notifyListeners()
+  }
+
+  override fun onBlurFailed() {
+    blurState = LoadState.FAILED
+    notifyListeners()
   }
 
   private fun notifyListeners() {
@@ -153,15 +132,15 @@ class StoryImageLoader(
     }
   }
 
-  private inner class OnDestroy(private val onDestroy: () -> Unit) : DefaultLifecycleObserver {
-    override fun onDestroy(owner: LifecycleOwner) {
-      onDestroy()
-    }
-  }
-
   private enum class LoadState {
     INIT,
     READY,
     FAILED
+  }
+
+  private inner class OnDestroy(private val onDestroy: () -> Unit) : DefaultLifecycleObserver {
+    override fun onDestroy(owner: LifecycleOwner) {
+      onDestroy()
+    }
   }
 }

@@ -10,7 +10,7 @@ import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -49,7 +49,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                                                                   @NonNull RemotePeer remotePeerGroup,
                                                                   @NonNull GroupId.V2 groupId,
                                                                   long ringId,
-                                                                  @NonNull UUID uuid,
+                                                                  @NonNull UUID sender,
                                                                   @NonNull CallManager.RingUpdate ringUpdate)
   {
     Log.i(TAG, "handleGroupCallRingUpdate(): recipient: " + remotePeerGroup.getId() + " ring: " + ringId + " update: " + ringUpdate);
@@ -122,14 +122,14 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
     }
 
     if (shouldDisturbUserWithCall && SignalStore.settings().isCallNotificationsEnabled()) {
-      Uri                            ringtone     = recipient.resolve().getCallRingtone();
-      RecipientDatabase.VibrateState vibrateState = recipient.resolve().getCallVibrate();
+      Uri                         ringtone     = recipient.resolve().getCallRingtone();
+      RecipientTable.VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
       if (ringtone == null) {
         ringtone = SignalStore.settings().getCallRingtone();
       }
 
-      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
+      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
     webRtcInteractor.registerPowerButtonReceiver();
@@ -138,7 +138,7 @@ public final class IncomingGroupCallActionProcessor extends DeviceAwareActionPro
                        .changeCallSetupState(RemotePeer.GROUP_CALL_ID)
                        .isRemoteVideoOffer(true)
                        .ringId(ringId)
-                       .ringerRecipient(Recipient.externalPush(ServiceId.from(uuid)))
+                       .ringerRecipient(Recipient.externalPush(ServiceId.from(sender)))
                        .commit()
                        .changeCallInfoState()
                        .activePeer(new RemotePeer(currentState.getCallInfoState().getCallRecipient().getId(), RemotePeer.GROUP_CALL_ID))

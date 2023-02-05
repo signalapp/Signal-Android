@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.money.FiatMoney;
-import org.thoughtcrime.securesms.database.PaymentDatabase.PaymentTransaction;
+import org.thoughtcrime.securesms.database.PaymentTable.PaymentTransaction;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.payments.CreatePaymentDetails;
@@ -99,6 +99,12 @@ final class ConfirmPaymentViewModel extends ViewModel {
   void confirmPayment() {
     store.update(state -> state.updateStatus(ConfirmPaymentState.Status.SUBMITTING));
     confirmPaymentRepository.confirmPayment(store.getState(), this::handleConfirmPaymentResult);
+  }
+
+  @Override
+  protected void onCleared() {
+    super.onCleared();
+    store.clear();
   }
 
   void refreshFee() {

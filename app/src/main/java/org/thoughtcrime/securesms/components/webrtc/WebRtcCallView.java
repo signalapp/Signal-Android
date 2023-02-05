@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.ResizeAnimation;
 import org.thoughtcrime.securesms.components.AccessibleToggleButton;
 import org.thoughtcrime.securesms.components.AvatarImageView;
+import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -147,6 +148,7 @@ public class WebRtcCallView extends ConstraintLayout {
   };
 
   private CallParticipantsViewState lastState;
+  private ContactPhoto              previousLocalAvatar;
 
   public WebRtcCallView(@NonNull Context context) {
     this(context, null);
@@ -506,11 +508,16 @@ public class WebRtcCallView extends ConstraintLayout {
         largeLocalRenderNoVideo.setVisibility(View.VISIBLE);
         largeLocalRenderNoVideoAvatar.setVisibility(View.VISIBLE);
 
-        GlideApp.with(getContext().getApplicationContext())
-                .load(new ProfileContactPhoto(localCallParticipant.getRecipient()))
-                .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .into(largeLocalRenderNoVideoAvatar);
+        ContactPhoto localAvatar = new ProfileContactPhoto(localCallParticipant.getRecipient());
+
+        if (!localAvatar.equals(previousLocalAvatar)) {
+          previousLocalAvatar = localAvatar;
+          GlideApp.with(getContext().getApplicationContext())
+                  .load(localAvatar)
+                  .transform(new CenterCrop(), new BlurTransformation(getContext(), 0.25f, BlurTransformation.MAX_RADIUS))
+                  .diskCacheStrategy(DiskCacheStrategy.ALL)
+                  .into(largeLocalRenderNoVideoAvatar);
+        }
 
         smallLocalRenderFrame.setVisibility(View.GONE);
         break;

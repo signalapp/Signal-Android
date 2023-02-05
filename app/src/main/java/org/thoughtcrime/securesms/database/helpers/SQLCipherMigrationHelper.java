@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.crypto.MasterCipher;
 import org.thoughtcrime.securesms.crypto.MasterSecret;
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil;
+import org.thoughtcrime.securesms.jobs.UnableToStartException;
 import org.thoughtcrime.securesms.migrations.LegacyMigrationJob;
 import org.thoughtcrime.securesms.service.GenericForegroundService;
 import org.thoughtcrime.securesms.service.NotificationController;
@@ -51,7 +52,7 @@ public class SQLCipherMigrationHelper {
       copyTable("recipient_preferences", legacyDb, modernDb, null);
       copyTable("group_receipts", legacyDb, modernDb, null);
       modernDb.setTransactionSuccessful();
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       throw new IllegalStateException(e);
     } finally {
       modernDb.endTransaction();
@@ -176,7 +177,7 @@ public class SQLCipherMigrationHelper {
       AttachmentSecretProvider.getInstance(context).setClassicKey(context, masterSecret.getEncryptionKey().getEncoded(), masterSecret.getMacKey().getEncoded());
       TextSecurePreferences.setNeedsSqlCipherMigration(context, false);
       modernDb.setTransactionSuccessful();
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       throw new IllegalStateException(e);
     } finally {
       modernDb.endTransaction();

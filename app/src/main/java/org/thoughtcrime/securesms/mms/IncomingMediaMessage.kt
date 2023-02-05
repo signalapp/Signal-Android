@@ -12,8 +12,10 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
+import org.whispersystems.signalservice.api.messages.SignalServiceContent
 import org.whispersystems.signalservice.api.messages.SignalServiceGroupV2
 import java.util.Optional
+import java.util.UUID
 
 class IncomingMediaMessage(
   val from: RecipientId?,
@@ -39,6 +41,7 @@ class IncomingMediaMessage(
   linkPreviews: List<LinkPreview> = emptyList(),
   mentions: List<Mention> = emptyList(),
   val giftBadge: GiftBadge? = null,
+  val isPaymentsNotification: Boolean = false,
   val isActivatePaymentsRequest: Boolean = false,
   val isPaymentsActivated: Boolean = false
 ) {
@@ -87,6 +90,7 @@ class IncomingMediaMessage(
     isPaymentsActivated = paymentsActivated
   )
 
+  @JvmOverloads
   constructor(
     from: RecipientId?,
     sentTimeMillis: Long,
@@ -111,7 +115,8 @@ class IncomingMediaMessage(
     serverGuid: String?,
     giftBadge: GiftBadge?,
     activatePaymentsRequest: Boolean,
-    paymentsActivated: Boolean
+    paymentsActivated: Boolean,
+    messageRanges: BodyRangeList? = null
   ) : this(
     from = from,
     groupId = if (group.isPresent) GroupId.v2(group.get().masterKey) else null,
@@ -136,6 +141,31 @@ class IncomingMediaMessage(
     mentions = mentions.orElse(emptyList()),
     giftBadge = giftBadge,
     isActivatePaymentsRequest = activatePaymentsRequest,
-    isPaymentsActivated = paymentsActivated
+    isPaymentsActivated = paymentsActivated,
+    messageRanges = messageRanges
   )
+
+  companion object {
+    @JvmStatic
+    fun createIncomingPaymentNotification(
+      from: RecipientId,
+      content: SignalServiceContent,
+      receivedTime: Long,
+      expiresIn: Long,
+      paymentUuid: UUID
+    ): IncomingMediaMessage {
+      return IncomingMediaMessage(
+        from = from,
+        body = paymentUuid.toString(),
+        sentTimeMillis = content.timestamp,
+        serverTimeMillis = content.serverReceivedTimestamp,
+        receivedTimeMillis = receivedTime,
+        expiresIn = expiresIn,
+        isUnidentified = content.isNeedsReceipt,
+        serverGuid = content.serverUuid,
+        isPushMessage = true,
+        isPaymentsNotification = true
+      )
+    }
+  }
 }

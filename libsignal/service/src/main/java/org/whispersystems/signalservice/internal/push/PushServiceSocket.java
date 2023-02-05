@@ -8,7 +8,6 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.google.protobuf.InvalidProtocolBufferException;
 import com.google.protobuf.MessageLite;
 
@@ -86,8 +85,10 @@ import org.whispersystems.signalservice.api.push.exceptions.UsernameMalformedExc
 import org.whispersystems.signalservice.api.push.exceptions.UsernameTakenException;
 import org.whispersystems.signalservice.api.storage.StorageAuthResponse;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
-import org.whispersystems.signalservice.api.subscriptions.SubscriptionClientSecret;
-import org.whispersystems.signalservice.api.subscriptions.SubscriptionLevels;
+import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse;
+import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
+import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
 import org.whispersystems.signalservice.api.util.TlsProxySocketFactory;
@@ -141,7 +142,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
@@ -261,17 +261,18 @@ public class PushServiceSocket {
 
   private static final String DONATION_REDEEM_RECEIPT = "/v1/donation/redeem-receipt";
 
-  private static final String SUBSCRIPTION_LEVELS                 = "/v1/subscription/levels";
-  private static final String UPDATE_SUBSCRIPTION_LEVEL           = "/v1/subscription/%s/level/%s/%s/%s";
-  private static final String SUBSCRIPTION                        = "/v1/subscription/%s";
-  private static final String CREATE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
-  private static final String DEFAULT_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
-  private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS    = "/v1/subscription/%s/receipt_credentials";
-  private static final String BOOST_AMOUNTS                       = "/v1/subscription/boost/amounts";
-  private static final String GIFT_AMOUNT                         = "/v1/subscription/boost/amounts/gift";
-  private static final String CREATE_BOOST_PAYMENT_INTENT         = "/v1/subscription/boost/create";
-  private static final String BOOST_RECEIPT_CREDENTIALS           = "/v1/subscription/boost/receipt_credentials";
-  private static final String BOOST_BADGES                        = "/v1/subscription/boost/badges";
+  private static final String UPDATE_SUBSCRIPTION_LEVEL                  = "/v1/subscription/%s/level/%s/%s/%s";
+  private static final String SUBSCRIPTION                               = "/v1/subscription/%s";
+  private static final String CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method";
+  private static final String CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD  = "/v1/subscription/%s/create_payment_method/paypal";
+  private static final String DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/%s";
+  private static final String DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD = "/v1/subscription/%s/default_payment_method/braintree/%s";
+  private static final String SUBSCRIPTION_RECEIPT_CREDENTIALS           = "/v1/subscription/%s/receipt_credentials";
+  private static final String CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/create";
+  private static final String CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT      = "/v1/subscription/boost/paypal/create";
+  private static final String CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT     = "/v1/subscription/boost/paypal/confirm";
+  private static final String BOOST_RECEIPT_CREDENTIALS                  = "/v1/subscription/boost/receipt_credentials";
+  private static final String DONATIONS_CONFIGURATION                    = "/v1/subscription/configuration";
 
   private static final String CDSI_AUTH = "/v2/directory/auth";
 
@@ -291,7 +292,6 @@ public class PushServiceSocket {
 
   private final ServiceConnectionHolder[]        serviceClients;
   private final Map<Integer, ConnectionHolder[]> cdnClientsMap;
-  private final ConnectionHolder[]               contactDiscoveryClients;
   private final ConnectionHolder[]               keyBackupServiceClients;
   private final ConnectionHolder[]               storageClients;
 
@@ -312,15 +312,15 @@ public class PushServiceSocket {
     this.automaticNetworkRetry     = automaticNetworkRetry;
     this.serviceClients            = createServiceConnectionHolders(configuration.getSignalServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.cdnClientsMap             = createCdnClientsMap(configuration.getSignalCdnUrlMap(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
-    this.contactDiscoveryClients   = createConnectionHolders(configuration.getSignalContactDiscoveryUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.keyBackupServiceClients   = createConnectionHolders(configuration.getSignalKeyBackupServiceUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.storageClients            = createConnectionHolders(configuration.getSignalStorageUrls(), configuration.getNetworkInterceptors(), configuration.getDns(), configuration.getSignalProxy());
     this.random                    = new SecureRandom();
     this.clientZkProfileOperations = clientZkProfileOperations;
   }
 
-  public void requestSmsVerificationCode(boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
-    String path = String.format(CREATE_ACCOUNT_SMS_PATH, credentialsProvider.getE164(), androidSmsRetriever ? "android-2021-03" : "android");
+  public void requestSmsVerificationCode(Locale locale, boolean androidSmsRetriever, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
+    Map<String, String> headers = locale != null ? Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry()) : NO_HEADERS;
+    String              path    = String.format(CREATE_ACCOUNT_SMS_PATH, credentialsProvider.getE164(), androidSmsRetriever ? "android-2021-03" : "android");
 
     if (captchaToken.isPresent()) {
       path += "&captcha=" + captchaToken.get();
@@ -328,7 +328,7 @@ public class PushServiceSocket {
       path += "&challenge=" + challenge.get();
     }
 
-    makeServiceRequest(path, "GET", null, NO_HEADERS, new VerificationCodeResponseHandler(), Optional.empty());
+    makeServiceRequest(path, "GET", null, headers, new VerificationCodeResponseHandler(), Optional.empty());
   }
 
   public void requestVoiceVerificationCode(Locale locale, Optional<String> captchaToken, Optional<String> challenge) throws IOException {
@@ -1017,31 +1017,36 @@ public class PushServiceSocket {
     makeServiceRequest(DONATION_REDEEM_RECEIPT, "POST", payload);
   }
 
-  public SubscriptionClientSecret createBoostPaymentMethod(String currencyCode, long amount, long level) throws IOException {
-    String payload = JsonUtil.toJson(new DonationIntentPayload(amount, currencyCode, level));
-    String result  = makeServiceRequestWithoutAuthentication(CREATE_BOOST_PAYMENT_INTENT, "POST", payload);
-    return JsonUtil.fromJsonResponse(result, SubscriptionClientSecret.class);
+  public StripeClientSecret createStripeOneTimePaymentIntent(String currencyCode, long amount, long level) throws IOException {
+    String payload = JsonUtil.toJson(new StripeOneTimePaymentIntentPayload(amount, currencyCode, level));
+    String result  = makeServiceRequestWithoutAuthentication(CREATE_STRIPE_ONE_TIME_PAYMENT_INTENT, "POST", payload);
+    return JsonUtil.fromJsonResponse(result, StripeClientSecret.class);
   }
 
-  public Map<String, List<BigDecimal>> getBoostAmounts() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(BOOST_AMOUNTS, "GET", null);
-    TypeReference<HashMap<String, List<BigDecimal>>> typeRef = new TypeReference<HashMap<String, List<BigDecimal>>>() {};
-    return JsonUtil.fromJsonResponse(result, typeRef);
+  public PayPalCreatePaymentIntentResponse createPayPalOneTimePaymentIntent(Locale locale, String currencyCode, long amount, long level, String returnUrl, String cancelUrl) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              payload = JsonUtil.toJson(new PayPalCreateOneTimePaymentIntentPayload(amount, currencyCode, level, returnUrl, cancelUrl));
+    String              result  = makeServiceRequestWithoutAuthentication(CREATE_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload, headers, NO_HANDLER);
+
+    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentIntentResponse.class);
   }
 
-  public Map<String, BigDecimal> getGiftAmount() throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(GIFT_AMOUNT, "GET", null);
-    TypeReference<HashMap<String, BigDecimal>> typeRef = new TypeReference<HashMap<String, BigDecimal>>() {};
-    return JsonUtil.fromJsonResponse(result, typeRef);
+  public PayPalConfirmPaymentIntentResponse confirmPayPalOneTimePaymentIntent(String currency, String amount, long level, String payerId, String paymentId, String paymentToken) throws IOException {
+    String payload = JsonUtil.toJson(new PayPalConfirmOneTimePaymentIntentPayload(amount, currency, level, payerId, paymentId, paymentToken));
+    Log.d(TAG, payload);
+    String result  = makeServiceRequestWithoutAuthentication(CONFIRM_PAYPAL_ONE_TIME_PAYMENT_INTENT, "POST", payload);
+    return JsonUtil.fromJsonResponse(result, PayPalConfirmPaymentIntentResponse.class);
   }
 
-  public SubscriptionLevels getBoostLevels(Locale locale) throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(BOOST_BADGES, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), NO_HANDLER);
-    return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
+  public PayPalCreatePaymentMethodResponse createPayPalPaymentMethod(Locale locale, String subscriberId, String returnUrl, String cancelUrl) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              payload = JsonUtil.toJson(new PayPalCreatePaymentMethodPayload(returnUrl, cancelUrl));
+    String              result  = makeServiceRequestWithoutAuthentication(String.format(CREATE_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", payload, headers, NO_HANDLER);
+    return JsonUtil.fromJsonResponse(result, PayPalCreatePaymentMethodResponse.class);
   }
 
-  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
-    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest));
+  public ReceiptCredentialResponse submitBoostReceiptCredentials(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) throws IOException {
+    String payload  = JsonUtil.toJson(new BoostReceiptCredentialRequestJson(paymentIntentId, receiptCredentialRequest, processor));
     String response = makeServiceRequestWithoutAuthentication(
         BOOST_RECEIPT_CREDENTIALS,
         "POST",
@@ -1059,10 +1064,14 @@ public class PushServiceSocket {
     }
   }
 
+  /**
+   * Get the DonationsConfiguration pointed at by /v1/subscriptions/configuration
+   */
+  public DonationsConfiguration getDonationsConfiguration(Locale locale) throws IOException {
+    Map<String, String> headers = Collections.singletonMap("Accept-Language", locale.getLanguage() + "-" + locale.getCountry());
+    String              result  = makeServiceRequestWithoutAuthentication(DONATIONS_CONFIGURATION, "GET", null, headers, NO_HANDLER);
 
-  public SubscriptionLevels getSubscriptionLevels(Locale locale) throws IOException {
-    String result = makeServiceRequestWithoutAuthentication(SUBSCRIPTION_LEVELS, "GET", null, AcceptLanguagesUtil.getHeadersWithAcceptLanguage(locale), NO_HANDLER);
-    return JsonUtil.fromJsonResponse(result, SubscriptionLevels.class);
+    return JsonUtil.fromJson(result, DonationsConfiguration.class);
   }
 
   public void updateSubscriptionLevel(String subscriberId, String level, String currencyCode, String idempotencyKey) throws IOException {
@@ -1082,13 +1091,17 @@ public class PushServiceSocket {
     makeServiceRequestWithoutAuthentication(String.format(SUBSCRIPTION, subscriberId), "DELETE", null);
   }
 
-  public SubscriptionClientSecret createSubscriptionPaymentMethod(String subscriberId) throws IOException {
-    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
-    return JsonUtil.fromJson(response, SubscriptionClientSecret.class);
+  public StripeClientSecret createStripeSubscriptionPaymentMethod(String subscriberId) throws IOException {
+    String response = makeServiceRequestWithoutAuthentication(String.format(CREATE_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId), "POST", "");
+    return JsonUtil.fromJson(response, StripeClientSecret.class);
   }
 
-  public void setDefaultSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
-    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+  public void setDefaultStripeSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_STRIPE_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
+  }
+
+  public void setDefaultPaypalSubscriptionPaymentMethod(String subscriberId, String paymentMethodId) throws IOException {
+    makeServiceRequestWithoutAuthentication(String.format(DEFAULT_PAYPAL_SUBSCRIPTION_PAYMENT_METHOD, subscriberId, paymentMethodId), "POST", "");
   }
 
   public ReceiptCredentialResponse submitReceiptCredentials(String subscriptionId, ReceiptCredentialRequest receiptCredentialRequest) throws IOException {
@@ -1137,14 +1150,6 @@ public class PushServiceSocket {
   {
     try (Response response = makeRequest(ClientSet.KeyBackup, authorizationToken, null, "/v1/token/" + enclaveName, "GET", null)) {
       return readBodyJson(response, TokenResponse.class);
-    }
-  }
-
-  public DiscoveryResponse getContactDiscoveryRegisteredUsers(String authorizationToken, DiscoveryRequest request, List<String> cookies, String mrenclave)
-      throws IOException
-  {
-    try (Response response = makeRequest(ClientSet.ContactDiscovery, authorizationToken, cookies, "/v1/discovery/" + mrenclave, "PUT", JsonUtil.toJson(request))) {
-      return readBodyJson(response, DiscoveryResponse.class);
     }
   }
 
@@ -1827,8 +1832,6 @@ public class PushServiceSocket {
 
   private ConnectionHolder[] clientsFor(ClientSet clientSet) {
     switch (clientSet) {
-      case ContactDiscovery:
-        return contactDiscoveryClients;
       case KeyBackup:
         return keyBackupServiceClients;
       default:
@@ -2304,7 +2307,7 @@ public class PushServiceSocket {
     public void handle(int responseCode, ResponseBody body) { }
   }
 
-  public enum ClientSet { ContactDiscovery, KeyBackup }
+  public enum ClientSet { KeyBackup }
 
   public CredentialResponse retrieveGroupsV2Credentials(long todaySeconds)
       throws IOException
@@ -2484,10 +2487,10 @@ public class PushServiceSocket {
     }
   }
 
-  public void reportSpam(ServiceId serviceId, String serverGuid)
+  public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken)
       throws NonSuccessfulResponseCodeException, MalformedResponseException, PushNetworkException
   {
-    makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", "");
+    makeServiceRequest(String.format(REPORT_SPAM, serviceId.toString(), serverGuid), "POST", JsonUtil.toJson(new SpamTokenMessage(reportingToken)));
   }
 
   private static class VerificationCodeResponseHandler implements ResponseCodeHandler {

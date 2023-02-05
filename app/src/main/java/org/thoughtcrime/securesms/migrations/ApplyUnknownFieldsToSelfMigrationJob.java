@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import com.google.protobuf.InvalidProtocolBufferException;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -57,7 +57,7 @@ public class ApplyUnknownFieldsToSelfMigrationJob extends MigrationJob {
     try {
       self     = Recipient.self();
       settings = SignalDatabase.recipients().getRecordForSync(self.getId());
-    } catch (RecipientDatabase.MissingRecipientException e) {
+    } catch (RecipientTable.MissingRecipientException e) {
       Log.w(TAG, "Unable to find self");
       return;
     }

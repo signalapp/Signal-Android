@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:parentTag="android.widget.FrameLayout">
+
+    <org.thoughtcrime.securesms.conversationlist.chatfilter.FilterCircleView
+        android:id="@+id/filter_circle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/filter_text"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="10dp"
+        android:enabled="false"
+        android:text="@string/ChatFilter__filtered_by_unread"
+        android:textAppearance="@style/Signal.Text.LabelLarge"
+        android:textColor="@color/signal_colorOnSurface"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        app:chipBackgroundColor="@color/signal_colorSecondaryContainer"
+        app:chipCornerRadius="8dp"
+        app:chipMinHeight="32dp"
+        app:chipStartPadding="8dp"
+        app:chipEndPadding="8dp"
+        app:closeIconStartPadding="6dp"
+        app:closeIconEndPadding="0dp"
+        app:textStartPadding="0dp"
+        app:textEndPadding="0dp"
+        app:closeIcon="@drawable/ic_x_20"
+        app:closeIconTint="@color/signal_colorOnSurface"
+        app:closeIconEnabled="true"
+        app:closeIconSize="18dp"
+        app:ensureMinTouchTargetSize="false" />
+
+    <TextView
+        android:id="@+id/help_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:alpha="0"
+        android:text="@string/ChatFilter__pull_to_filter"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorSecondary" />
+
+</merge>

@@ -58,7 +58,7 @@
                 android:text="@string/message_details_header__issues_need_your_attention"
                 android:textAppearance="@style/Signal.Text.BodyLarge"
                 android:visibility="gone"
-                app:drawableStartCompat="@drawable/ic_info_outline_message_details_24"
+                app:drawableStartCompat="@drawable/symbol_info_24"
                 tools:visibility="visible" />
 
             <com.google.android.material.button.MaterialButton

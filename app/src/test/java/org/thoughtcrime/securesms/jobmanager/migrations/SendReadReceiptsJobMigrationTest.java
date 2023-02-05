@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import org.junit.Test;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobs.SendReadReceiptJob;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 public class SendReadReceiptsJobMigrationTest {
 
-  private final MmsSmsDatabase               mockDatabase = mock(MmsSmsDatabase.class);
+  private final MessageTable                 mockDatabase = mock(MessageTable.class);
   private final SendReadReceiptsJobMigration testSubject  = new SendReadReceiptsJobMigration(mockDatabase);
 
   @Test
@@ -30,7 +30,7 @@ public class SendReadReceiptsJobMigrationTest {
                                                                     .putString("recipient", RecipientId.from(2).serialize())
                                                                     .putLongArray("message_ids", new long[]{1, 2, 3, 4, 5})
                                                                     .putLong("timestamp", 292837649).build());
-    when(mockDatabase.getThreadForMessageId(anyLong())).thenReturn(1234L);
+    when(mockDatabase.getThreadIdForMessage(anyLong())).thenReturn(1234L);
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);
@@ -52,7 +52,7 @@ public class SendReadReceiptsJobMigrationTest {
                                                                 .putString("recipient", RecipientId.from(2).serialize())
                                                                 .putLongArray("message_ids", new long[]{})
                                                                 .putLong("timestamp", 292837649).build());
-    when(mockDatabase.getThreadForMessageId(anyLong())).thenReturn(-1L);
+    when(mockDatabase.getThreadIdForMessage(anyLong())).thenReturn(-1L);
 
     // WHEN
     JobMigration.JobData result = testSubject.migrate(jobData);

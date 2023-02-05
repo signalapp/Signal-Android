@@ -16,9 +16,8 @@ import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.IdentityTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
@@ -63,9 +62,7 @@ public final class SafetyNumberChangeRepository {
   public Single<TrustAndVerifyResult> trustOrVerifyChangedRecipientsAndResendRx(@NonNull List<SafetyNumberRecipient> safetyNumberRecipients, @NonNull MessageId messageId) {
     Log.d(TAG, "Trust or verify changed recipients and resend message: " + messageId + " for: " + Util.join(safetyNumberRecipients, ","));
     return Single.fromCallable(() -> {
-      MessageRecord messageRecord = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
-                                                      : SignalDatabase.sms().getMessageRecord(messageId.getId());
-
+      MessageRecord messageRecord = SignalDatabase.messages().getMessageRecord(messageId.getId());
       return trustOrVerifyChangedRecipientsAndResendInternal(fromSafetyNumberRecipients(safetyNumberRecipients), messageRecord);
     }).subscribeOn(Schedulers.io());
   }
@@ -113,14 +110,7 @@ public final class SafetyNumberChangeRepository {
   @WorkerThread
   private @Nullable MessageRecord getMessageRecord(Long messageId, String messageType) {
     try {
-      switch (messageType) {
-        case MmsSmsDatabase.SMS_TRANSPORT:
-          return SignalDatabase.sms().getMessageRecord(messageId);
-        case MmsSmsDatabase.MMS_TRANSPORT:
-          return SignalDatabase.mms().getMessageRecord(messageId);
-        default:
-          throw new AssertionError("no valid message type specified");
-      }
+      return SignalDatabase.messages().getMessageRecord(messageId);
     } catch (NoSuchMessageException e) {
       Log.i(TAG, e);
     }
@@ -139,7 +129,7 @@ public final class SafetyNumberChangeRepository {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as verified");
           ApplicationDependencies.getProtocolStore().aci().identities().setVerified(identityRecord.getRecipientId(),
                                                                                     identityRecord.getIdentityKey(),
-                                                                                    IdentityDatabase.VerifiedStatus.DEFAULT);
+                                                                                    IdentityTable.VerifiedStatus.DEFAULT);
         } else {
           Log.d(TAG, "Setting " + identityRecord.getRecipientId() + " as approved");
           identityStore.setApproval(identityRecord.getRecipientId(), true);
@@ -185,16 +175,14 @@ public final class SafetyNumberChangeRepository {
   @WorkerThread
   private void processOutgoingMessageRecord(@NonNull List<ChangedRecipient> changedRecipients, @NonNull MessageRecord messageRecord) {
     Log.d(TAG, "processOutgoingMessageRecord");
-    MessageDatabase  smsDatabase = SignalDatabase.sms();
-    MessageDatabase  mmsDatabase = SignalDatabase.mms();
-    Set<RecipientId> resendIds   = new HashSet<>();
+    Set<RecipientId> resendIds = new HashSet<>();
 
     for (ChangedRecipient changedRecipient : changedRecipients) {
       RecipientId id          = changedRecipient.getRecipient().getId();
       IdentityKey identityKey = changedRecipient.getIdentityRecord().getIdentityKey();
 
       if (messageRecord.isMms()) {
-        mmsDatabase.removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
+        SignalDatabase.messages().removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
 
         if (messageRecord.getRecipient().isDistributionList() || messageRecord.getRecipient().isPushGroup()) {
           resendIds.add(id);
@@ -202,7 +190,7 @@ public final class SafetyNumberChangeRepository {
           MessageSender.resend(context, messageRecord);
         }
       } else {
-        smsDatabase.removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
+        SignalDatabase.messages().removeMismatchedIdentity(messageRecord.getId(), id, identityKey);
 
         MessageSender.resend(context, messageRecord);
       }

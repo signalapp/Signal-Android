@@ -24,6 +24,7 @@ public final class NotificationIds {
   public static final int STORY_THREAD                   = 700000;
   public static final int MESSAGE_DELIVERY_FAILURE       = 800000;
   public static final int STORY_MESSAGE_DELIVERY_FAILURE = 900000;
+  public static final int UNREGISTERED_NOTIFICATION_ID   = 20230102;
 
   private NotificationIds() { }
 

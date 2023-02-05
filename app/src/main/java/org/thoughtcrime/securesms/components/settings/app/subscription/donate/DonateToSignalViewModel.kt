@@ -12,24 +12,23 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.signal.core.util.money.PlatformCurrencyUtil
+import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeDonationRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.boost.Boost
-import org.thoughtcrime.securesms.components.settings.app.subscription.boost.BoostRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.manage.SubscriptionRedemptionJobWatcher
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.subscription.LevelUpdate
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.subscription.Subscription
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
-import org.thoughtcrime.securesms.util.PlatformCurrencyUtil
-import org.thoughtcrime.securesms.util.next
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
-import org.whispersystems.signalservice.api.util.Preconditions
 import java.math.BigDecimal
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -42,8 +41,8 @@ import java.util.Currency
  */
 class DonateToSignalViewModel(
   startType: DonateToSignalType,
-  private val subscriptionsRepository: SubscriptionsRepository,
-  private val boostRepository: BoostRepository
+  private val subscriptionsRepository: MonthlyDonationRepository,
+  private val oneTimeDonationRepository: OneTimeDonationRepository
 ) : ViewModel() {
 
   companion object {
@@ -57,13 +56,11 @@ class DonateToSignalViewModel(
   private val _actions = PublishSubject.create<DonateToSignalAction>()
   private val _activeSubscription = PublishSubject.create<ActiveSubscription>()
 
-  private var gatewayRequest: GatewayRequest? = null
-
   val state = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
   val actions: Observable<DonateToSignalAction> = _actions.observeOn(AndroidSchedulers.mainThread())
 
   init {
-    initializeOneTimeDonationState(boostRepository)
+    initializeOneTimeDonationState(oneTimeDonationRepository)
     initializeMonthlyDonationState(subscriptionsRepository)
 
     networkDisposable += InternetConnectionObserver
@@ -87,7 +84,7 @@ class DonateToSignalViewModel(
   fun retryOneTimeDonationState() {
     if (!oneTimeDonationDisposables.isDisposed && store.state.oneTimeDonationState.donationStage == DonateToSignalState.DonationStage.FAILURE) {
       store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(donationStage = DonateToSignalState.DonationStage.INIT)) }
-      initializeOneTimeDonationState(boostRepository)
+      initializeOneTimeDonationState(oneTimeDonationRepository)
     }
   }
 
@@ -120,7 +117,15 @@ class DonateToSignalViewModel(
   }
 
   fun toggleDonationType() {
-    store.update { it.copy(donateToSignalType = it.donateToSignalType.next()) }
+    store.update {
+      it.copy(
+        donateToSignalType = when (it.donateToSignalType) {
+          DonateToSignalType.ONE_TIME -> DonateToSignalType.MONTHLY
+          DonateToSignalType.MONTHLY -> DonateToSignalType.ONE_TIME
+          DonateToSignalType.GIFT -> error("We are in an illegal state")
+        }
+      )
+    }
   }
 
   fun setSelectedSubscription(subscription: Subscription) {
@@ -178,7 +183,8 @@ class DonateToSignalViewModel(
       label = snapshot.badge!!.description,
       price = amount.amount,
       currencyCode = amount.currency.currencyCode,
-      level = snapshot.level.toLong()
+      level = snapshot.level.toLong(),
+      recipientId = Recipient.self().id
     )
   }
 
@@ -186,6 +192,7 @@ class DonateToSignalViewModel(
     return when (snapshot.donateToSignalType) {
       DonateToSignalType.ONE_TIME -> getOneTimeAmount(snapshot.oneTimeDonationState)
       DonateToSignalType.MONTHLY -> getSelectedSubscriptionCost()
+      DonateToSignalType.GIFT -> error("This ViewModel does not support gifts.")
     }
   }
 
@@ -197,8 +204,8 @@ class DonateToSignalViewModel(
     }
   }
 
-  private fun initializeOneTimeDonationState(boostRepository: BoostRepository) {
-    oneTimeDonationDisposables += boostRepository.getBoostBadge().subscribeBy(
+  private fun initializeOneTimeDonationState(oneTimeDonationRepository: OneTimeDonationRepository) {
+    oneTimeDonationDisposables += oneTimeDonationRepository.getBoostBadge().subscribeBy(
       onSuccess = { badge ->
         store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(badge = badge)) }
       },
@@ -207,7 +214,16 @@ class DonateToSignalViewModel(
       }
     )
 
-    val boosts: Observable<Map<Currency, List<Boost>>> = boostRepository.getBoosts().toObservable()
+    oneTimeDonationDisposables += oneTimeDonationRepository.getMinimumDonationAmounts().subscribeBy(
+      onSuccess = { amountMap ->
+        store.update { it.copy(oneTimeDonationState = it.oneTimeDonationState.copy(minimumDonationAmounts = amountMap)) }
+      },
+      onError = {
+        Log.w(TAG, "Could not load minimum custom donation amounts.", it)
+      }
+    )
+
+    val boosts: Observable<Map<Currency, List<Boost>>> = oneTimeDonationRepository.getBoosts().toObservable()
     val oneTimeCurrency: Observable<Currency> = SignalStore.donationsValues().observableOneTimeCurrency
 
     oneTimeDonationDisposables += Observable.combineLatest(boosts, oneTimeCurrency) { boostMap, currency ->
@@ -225,6 +241,7 @@ class DonateToSignalViewModel(
           state.copy(
             oneTimeDonationState = state.oneTimeDonationState.copy(
               boosts = boostList,
+              selectedBoost = null,
               selectedCurrency = currency,
               donationStage = DonateToSignalState.DonationStage.READY,
               selectableCurrencyCodes = availableCurrencies.map(Currency::getCurrencyCode),
@@ -243,7 +260,7 @@ class DonateToSignalViewModel(
     )
   }
 
-  private fun initializeMonthlyDonationState(subscriptionsRepository: SubscriptionsRepository) {
+  private fun initializeMonthlyDonationState(subscriptionsRepository: MonthlyDonationRepository) {
     monitorLevelUpdateProcessing()
 
     val allSubscriptions = subscriptionsRepository.getSubscriptions()
@@ -348,25 +365,13 @@ class DonateToSignalViewModel(
     store.dispose()
   }
 
-  fun provideGatewayRequestForGooglePay(request: GatewayRequest) {
-    Log.d(TAG, "Provided with a gateway request.")
-    Preconditions.checkState(gatewayRequest == null)
-    gatewayRequest = request
-  }
-
-  fun consumeGatewayRequestForGooglePay(): GatewayRequest? {
-    val request = gatewayRequest
-    gatewayRequest = null
-    return request
-  }
-
   class Factory(
     private val startType: DonateToSignalType,
-    private val subscriptionsRepository: SubscriptionsRepository = SubscriptionsRepository(ApplicationDependencies.getDonationsService()),
-    private val boostRepository: BoostRepository = BoostRepository(ApplicationDependencies.getDonationsService())
+    private val subscriptionsRepository: MonthlyDonationRepository = MonthlyDonationRepository(ApplicationDependencies.getDonationsService()),
+    private val oneTimeDonationRepository: OneTimeDonationRepository = OneTimeDonationRepository(ApplicationDependencies.getDonationsService())
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, boostRepository)) as T
+      return modelClass.cast(DonateToSignalViewModel(startType, subscriptionsRepository, oneTimeDonationRepository)) as T
     }
   }
 }

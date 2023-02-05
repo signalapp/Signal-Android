@@ -7,11 +7,11 @@ import org.thoughtcrime.securesms.R;
 
 public enum AttachmentKeyboardButton {
 
-  GALLERY(R.string.AttachmentKeyboard_gallery, R.drawable.ic_gallery_outline_24),
-  FILE(R.string.AttachmentKeyboard_file, R.drawable.ic_file_outline_24),
-  PAYMENT(R.string.AttachmentKeyboard_payment, R.drawable.ic_payments_24),
-  CONTACT(R.string.AttachmentKeyboard_contact, R.drawable.ic_contact_outline_24),
-  LOCATION(R.string.AttachmentKeyboard_location, R.drawable.ic_location_outline_24);
+  GALLERY(R.string.AttachmentKeyboard_gallery, R.drawable.symbol_album_tilt_24),
+  FILE(R.string.AttachmentKeyboard_file, R.drawable.symbol_file_24),
+  PAYMENT(R.string.AttachmentKeyboard_payment, R.drawable.symbol_payment_24),
+  CONTACT(R.string.AttachmentKeyboard_contact, R.drawable.symbol_person_circle_24),
+  LOCATION(R.string.AttachmentKeyboard_location, R.drawable.symbol_location_circle_24);
 
   private final int titleRes;
   private final int iconRes;

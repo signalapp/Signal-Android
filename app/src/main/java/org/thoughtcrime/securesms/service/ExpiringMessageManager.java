@@ -3,10 +3,8 @@ package org.thoughtcrime.securesms.service;
 import android.content.Context;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 
 import java.util.Comparator;
@@ -21,14 +19,14 @@ public class ExpiringMessageManager {
   private final TreeSet<ExpiringMessageReference> expiringMessageReferences = new TreeSet<>(new ExpiringMessageComparator());
   private final Executor                          executor                  = Executors.newSingleThreadExecutor();
 
-  private final MessageDatabase smsDatabase;
-  private final MessageDatabase mmsDatabase;
-  private final Context         context;
+  private final MessageTable smsDatabase;
+  private final MessageTable mmsDatabase;
+  private final Context      context;
 
   public ExpiringMessageManager(Context context) {
     this.context     = context.getApplicationContext();
-    this.smsDatabase = SignalDatabase.sms();
-    this.mmsDatabase = SignalDatabase.mms();
+    this.smsDatabase = SignalDatabase.messages();
+    this.mmsDatabase = SignalDatabase.messages();
 
     executor.execute(new LoadTask());
     executor.execute(new ProcessTask());
@@ -55,16 +53,9 @@ public class ExpiringMessageManager {
 
   private class LoadTask implements Runnable {
     public void run() {
-      SmsDatabase.Reader smsReader = SmsDatabase.readerFor(smsDatabase.getExpirationStartedMessages());
-      MmsDatabase.Reader mmsReader = MmsDatabase.readerFor(mmsDatabase.getExpirationStartedMessages());
+      MessageTable.MmsReader mmsReader = MessageTable.mmsReaderFor(mmsDatabase.getExpirationStartedMessages());
 
       MessageRecord messageRecord;
-
-      while ((messageRecord = smsReader.getNext()) != null) {
-        expiringMessageReferences.add(new ExpiringMessageReference(messageRecord.getId(),
-                                                                   messageRecord.isMms(),
-                                                                   messageRecord.getExpireStarted() + messageRecord.getExpiresIn()));
-      }
 
       while ((messageRecord = mmsReader.getNext()) != null) {
         expiringMessageReferences.add(new ExpiringMessageReference(messageRecord.getId(),
@@ -72,7 +63,6 @@ public class ExpiringMessageManager {
                                                                    messageRecord.getExpireStarted() + messageRecord.getExpiresIn()));
       }
 
-      smsReader.close();
       mmsReader.close();
     }
   }

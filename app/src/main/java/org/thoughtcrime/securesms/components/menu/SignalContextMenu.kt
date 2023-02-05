@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.components.menu
 
 import android.content.Context
 import android.graphics.Rect
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,9 +49,7 @@ class SignalContextMenu private constructor(
       setOnDismissListener { onDismiss.run() }
     }
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      elevation = 20f
-    }
+    elevation = 20f
 
     contextMenuList.setItems(items)
   }

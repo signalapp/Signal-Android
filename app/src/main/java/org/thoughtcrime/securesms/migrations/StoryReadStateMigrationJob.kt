@@ -1,6 +1,6 @@
 package org.thoughtcrime.securesms.migrations
 
-import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mms
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.jobmanager.Data
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -26,7 +26,7 @@ internal class StoryReadStateMigrationJob(
   override fun performMigration() {
     if (!SignalStore.storyValues().hasUserOnboardingStoryReadBeenSet()) {
       SignalStore.storyValues().userHasReadOnboardingStory = SignalStore.storyValues().userHasReadOnboardingStory
-      mms.markOnboardingStoryRead()
+      SignalDatabase.messages.markOnboardingStoryRead()
 
       if (SignalStore.account().isRegistered) {
         recipients.markNeedsSync(Recipient.self().id)

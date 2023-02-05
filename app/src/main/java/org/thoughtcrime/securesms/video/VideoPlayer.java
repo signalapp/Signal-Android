@@ -107,7 +107,11 @@ public class VideoPlayer extends FrameLayout {
           switch (playbackState) {
             case Player.STATE_READY:
               playerCallback.onReady();
-              if (playWhenReady) playerCallback.onPlaying();
+              if (playWhenReady) {
+                playerCallback.onPlaying();
+              } else {
+                playerCallback.onStopped();
+              }
               break;
             case Player.STATE_ENDED:
               playerCallback.onStopped();
@@ -248,7 +252,10 @@ public class VideoPlayer extends FrameLayout {
 
     if (this.exoPlayer != null) {
       exoView.setPlayer(null);
-      exoControls.setPlayer(null);
+
+      if (exoPlayer.equals(exoControls.getPlayer())) {
+        exoControls.setPlayer(null);
+      }
 
       exoPlayer.removeListener(playerListener);
       exoPlayer.removeListener(exoPlayerListener);

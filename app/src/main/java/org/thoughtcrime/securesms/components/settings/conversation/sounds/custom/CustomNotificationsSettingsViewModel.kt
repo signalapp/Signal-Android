@@ -4,12 +4,11 @@ import android.net.Uri
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.livedata.Store
 
 class CustomNotificationsSettingsViewModel(
@@ -31,11 +30,11 @@ class CustomNotificationsSettingsViewModel(
         messageSound = recipient.messageRingtone,
         messageVibrateState = recipient.messageVibrate,
         messageVibrateEnabled = when (recipient.messageVibrate) {
-          RecipientDatabase.VibrateState.DEFAULT -> SignalStore.settings().isMessageVibrateEnabled
-          RecipientDatabase.VibrateState.ENABLED -> true
-          RecipientDatabase.VibrateState.DISABLED -> false
+          RecipientTable.VibrateState.DEFAULT -> SignalStore.settings().isMessageVibrateEnabled
+          RecipientTable.VibrateState.ENABLED -> true
+          RecipientTable.VibrateState.DISABLED -> false
         },
-        showCallingOptions = recipient.isRegistered && (!recipient.isGroup || FeatureFlags.groupCallRinging()),
+        showCallingOptions = recipient.isRegistered,
         callSound = recipient.callRingtone,
         callVibrateState = recipient.callVibrate
       )
@@ -46,7 +45,7 @@ class CustomNotificationsSettingsViewModel(
     repository.setHasCustomNotifications(recipientId, hasCustomNotifications)
   }
 
-  fun setMessageVibrate(messageVibrateState: RecipientDatabase.VibrateState) {
+  fun setMessageVibrate(messageVibrateState: RecipientTable.VibrateState) {
     repository.setMessageVibrate(recipientId, messageVibrateState)
   }
 
@@ -54,7 +53,7 @@ class CustomNotificationsSettingsViewModel(
     repository.setMessageSound(recipientId, uri)
   }
 
-  fun setCallVibrate(callVibrateState: RecipientDatabase.VibrateState) {
+  fun setCallVibrate(callVibrateState: RecipientTable.VibrateState) {
     repository.setCallingVibrate(recipientId, callVibrateState)
   }
 

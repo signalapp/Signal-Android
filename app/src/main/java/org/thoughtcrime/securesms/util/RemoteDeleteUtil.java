@@ -29,7 +29,7 @@ public final class RemoteDeleteUtil {
 
     return isValidIncomingOutgoing &&
            isValidSender           &&
-           (deleteServerTimestamp - messageTimestamp) < RECEIVE_THRESHOLD;
+           (((deleteServerTimestamp - messageTimestamp) < RECEIVE_THRESHOLD) || (deleteSender.isSelf() && targetMessage.isOutgoing()));
   }
 
   public static boolean isValidSend(@NonNull Collection<MessageRecord> targetMessages, long currentTime) {
@@ -42,9 +42,9 @@ public final class RemoteDeleteUtil {
            message.isOutgoing()                                                          &&
            message.isPush()                                                              &&
            (!message.getRecipient().isGroup() || message.getRecipient().isActiveGroup()) &&
-           !message.getRecipient().isSelf()                                              &&
            !message.isRemoteDelete()                                                     &&
            !MessageRecordUtil.hasGiftBadge(message)                                      &&
-           (currentTime - message.getDateSent()) < SEND_THRESHOLD;
+           !message.isPaymentNotification()                                              &&
+           (((currentTime - message.getDateSent()) < SEND_THRESHOLD) || message.getRecipient().isSelf());
   }
 }

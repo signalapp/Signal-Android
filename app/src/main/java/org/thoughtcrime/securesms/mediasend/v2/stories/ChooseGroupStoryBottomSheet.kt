@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.RecyclerView
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchConfiguration
-import org.thoughtcrime.securesms.contacts.paged.ContactSearchItems
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder
@@ -64,10 +64,10 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
     val contactRecycler: RecyclerView = view.findViewById(R.id.contact_recycler)
     mediator = ContactSearchMediator(
       fragment = this,
-      recyclerView = contactRecycler,
       selectionLimits = FeatureFlags.shareSelectionLimit(),
       displayCheckBox = true,
-      displaySmsTag = ContactSearchItems.DisplaySmsTag.DEFAULT,
+      displaySmsTag = ContactSearchAdapter.DisplaySmsTag.DEFAULT,
+      displayPhoneNumber = ContactSearchAdapter.DisplayPhoneNumber.NEVER,
       mapStateToConfiguration = { state ->
         ContactSearchConfiguration.build {
           query = state.query
@@ -84,9 +84,11 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
       performSafetyNumberChecks = false
     )
 
+    contactRecycler.adapter = mediator.adapter
+
     mediator.getSelectionState().observe(viewLifecycleOwner) { state ->
       adapter.submitList(
-        state.filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
+        state.filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
           .map { it.recipientId }
           .mapIndexed { index, recipientId ->
             ShareSelectionMappingModel(
@@ -146,7 +148,7 @@ class ChooseGroupStoryBottomSheet : FixedRoundedCornerBottomSheetDialogFragment(
           RESULT_SET,
           ArrayList(
             mediator.getSelectedContacts()
-              .filterIsInstance(ContactSearchKey.RecipientSearchKey.KnownRecipient::class.java)
+              .filterIsInstance(ContactSearchKey.RecipientSearchKey::class.java)
               .map { it.recipientId }
           )
         )

@@ -203,7 +203,7 @@ object StoryGroupReplyItem {
 
       val actions = mutableListOf<ActionItem>()
       if (model.onCopyClick != null) {
-        actions += ActionItem(R.drawable.ic_copy_24_tinted, context.getString(R.string.StoryGroupReplyItem__copy)) {
+        actions += ActionItem(R.drawable.symbol_copy_android_24, context.getString(R.string.StoryGroupReplyItem__copy)) {
           val toCopy: CharSequence = when (model) {
             is TextModel -> model.text.message.getDisplayBody(context)
             else -> model.messageRecord.getDisplayBody(context)
@@ -211,7 +211,7 @@ object StoryGroupReplyItem {
           model.onCopyClick.invoke(toCopy)
         }
       }
-      actions += ActionItem(R.drawable.ic_trash_24, context.getString(R.string.StoryGroupReplyItem__delete)) { model.onDeleteClick(model.messageRecord) }
+      actions += ActionItem(R.drawable.symbol_trash_24, context.getString(R.string.StoryGroupReplyItem__delete)) { model.onDeleteClick(model.messageRecord) }
 
       SignalContextMenu.Builder(itemView, itemView.rootView as ViewGroup)
         .preferredHorizontalPosition(SignalContextMenu.HorizontalPosition.START)

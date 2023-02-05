@@ -6,7 +6,7 @@ plugins {
 
 repositories {
     maven {
-        url "https://raw.github.com/signalapp/maven/master/sqlcipher/release/"
+        url "https://raw.githubusercontent.com/signalapp/maven/master/sqlcipher/release/"
         content {
             includeGroupByRegex "org\\.signal.*"
         }
@@ -50,6 +50,7 @@ dependencies {
     implementation libs.androidx.activity.ktx
     implementation libs.androidx.appcompat
     implementation libs.material.material
+    implementation libs.androidx.multidex
     implementation libs.androidx.constraintlayout
     implementation libs.signal.android.database.sqlcipher
     implementation libs.androidx.sqlite

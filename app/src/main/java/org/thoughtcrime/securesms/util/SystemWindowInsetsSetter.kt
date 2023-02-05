@@ -25,11 +25,23 @@ object SystemWindowInsetsSetter {
           insets.bottom
         )
       } else {
+        val top = if (insetType and WindowInsetsCompat.Type.statusBars() != 0) {
+          ViewUtil.getStatusBarHeight(view)
+        } else {
+          0
+        }
+
+        val bottom = if (insetType and WindowInsetsCompat.Type.navigationBars() != 0) {
+          ViewUtil.getNavigationBarHeight(view)
+        } else {
+          0
+        }
+
         view.setPadding(
           0,
-          ViewUtil.getStatusBarHeight(view),
+          top,
           0,
-          ViewUtil.getNavigationBarHeight(view)
+          bottom
         )
       }
     }

@@ -11,6 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/preferences_share"
-        app:icon="@drawable/ic_share_24"
+        app:icon="@drawable/symbol_share_android_24"
         app:iconSize="20dp" />
 </FrameLayout>

@@ -73,7 +73,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/sort_order"
             app:layout_constraintStart_toEndOf="@+id/sort_order"
             app:layout_constraintTop_toTopOf="@+id/sort_order"
-            app:srcCompat="@drawable/ic_arrow_down_14" />
+            app:srcCompat="@drawable/symbol_arrow_down_compact_bold_16" />
 
 
         <org.thoughtcrime.securesms.components.AnimatingToggle
@@ -99,7 +99,7 @@
                 android:gravity="center_vertical"
                 android:tint="@color/signal_inverse_primary"
                 android:visibility="visible"
-                app:srcCompat="@drawable/ic_grid_20" />
+                app:srcCompat="@drawable/symbol_grid_square_24" />
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/view_detail"
@@ -113,7 +113,7 @@
                 android:gravity="center_vertical"
                 android:tint="@color/signal_inverse_primary"
                 android:visibility="gone"
-                app:srcCompat="@drawable/ic_list_20" />
+                app:srcCompat="@drawable/symbol_list_bullet_24" />
 
         </org.thoughtcrime.securesms.components.AnimatingToggle>
 

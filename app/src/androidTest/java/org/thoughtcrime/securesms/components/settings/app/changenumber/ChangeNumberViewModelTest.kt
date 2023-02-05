@@ -2,9 +2,11 @@ package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import androidx.test.filters.FlakyTest
 import okhttp3.mockwebserver.MockResponse
 import org.junit.After
 import org.junit.Before
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -17,7 +19,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor
 import org.thoughtcrime.securesms.testing.Get
 import org.thoughtcrime.securesms.testing.MockProvider
 import org.thoughtcrime.securesms.testing.Put
@@ -115,7 +117,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs true
@@ -146,7 +148,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs false
@@ -166,6 +168,8 @@ class ChangeNumberViewModelTest {
    * and apply the pending state after confirming the change on the server.
    */
   @Test
+  @FlakyTest
+  @Ignore("Test sometimes requires manual intervention to continue.")
   fun testChangeNumber_givenNetworkFailedApiCallEnRouteToClient() {
     // GIVEN
     val aci = Recipient.self().requireServiceId()
@@ -191,7 +195,7 @@ class ChangeNumberViewModelTest {
     )
 
     // WHEN
-    val processor: VerifyAccountResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
+    val processor: VerifyResponseProcessor = viewModel.verifyCodeWithoutRegistrationLock("123456").blockingGet()
 
     // THEN
     processor.isServerSentError() assertIs false

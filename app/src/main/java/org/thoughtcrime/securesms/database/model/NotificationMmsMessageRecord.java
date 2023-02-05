@@ -23,8 +23,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MmsDatabase;
-import org.thoughtcrime.securesms.database.SmsDatabase.Status;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.Status;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -117,9 +117,9 @@ public class NotificationMmsMessageRecord extends MmsMessageRecord {
 
   @Override
   public SpannableString getDisplayBody(@NonNull Context context) {
-    if (status == MmsDatabase.Status.DOWNLOAD_INITIALIZED) {
+    if (status == MessageTable.MmsStatus.DOWNLOAD_INITIALIZED) {
       return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_multimedia_message));
-    } else if (status == MmsDatabase.Status.DOWNLOAD_CONNECTING) {
+    } else if (status == MessageTable.MmsStatus.DOWNLOAD_CONNECTING) {
       return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_downloading_mms_message));
     } else {
       return emphasisAdded(context.getString(R.string.NotificationMmsMessageRecord_error_downloading_mms_message));

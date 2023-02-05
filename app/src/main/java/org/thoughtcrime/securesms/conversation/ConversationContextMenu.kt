@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation
 
 import android.content.Context
-import android.os.Build
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -36,9 +35,7 @@ class ConversationContextMenu(private val anchor: View, items: List<ActionItem>)
     isFocusable = false
     isOutsideTouchable = true
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      elevation = 20f
-    }
+    elevation = 20f
 
     setTouchInterceptor { _, event ->
       event.action == MotionEvent.ACTION_OUTSIDE

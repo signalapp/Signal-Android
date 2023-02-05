@@ -5,8 +5,9 @@ import android.net.Uri
 import com.bumptech.glide.Priority
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
 import org.thoughtcrime.securesms.mms.GlideRequests
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -19,6 +20,11 @@ class StoryCache(
   private val glideRequests: GlideRequests,
   private val storySize: StoryDisplay.Size
 ) {
+
+  companion object {
+    private val TAG = Log.tag(StoryCache::class.java)
+  }
+
   private val cache = mutableMapOf<Uri, StoryCacheValue>()
 
   /**
@@ -26,18 +32,25 @@ class StoryCache(
    * downloaded, not images, or already in progress.
    */
   fun prefetch(attachments: List<Attachment>) {
+    Log.d(TAG, "Loading ${attachments.size} attachments at $storySize")
+
     val prefetchableAttachments: List<Attachment> = attachments
       .asSequence()
       .filter { it.uri != null && it.uri !in cache }
-      .filter { MediaUtil.isImage(it) }
-      .filter { it.transferState == AttachmentDatabase.TRANSFER_PROGRESS_DONE }
+      .filter { MediaUtil.isImage(it) || it.blurHash != null }
+      .filter { it.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE }
       .toList()
 
     val newMappings: Map<Uri, StoryCacheValue> = prefetchableAttachments.associateWith { attachment ->
-      val imageTarget = glideRequests
-        .load(DecryptableStreamUriLoader.DecryptableUri(attachment.uri!!))
-        .priority(Priority.HIGH)
-        .into(StoryCacheTarget(attachment.uri!!, storySize))
+      val imageTarget = if (MediaUtil.isImage(attachment)) {
+        glideRequests
+          .load(DecryptableStreamUriLoader.DecryptableUri(attachment.uri!!))
+          .priority(Priority.HIGH)
+          .centerInside()
+          .into(StoryCacheTarget(attachment.uri!!, storySize))
+      } else {
+        null
+      }
 
       val blurTarget = if (attachment.blurHash != null) {
         glideRequests
@@ -79,7 +92,7 @@ class StoryCache(
   /**
    * Represents the load targets for an image and blur.
    */
-  data class StoryCacheValue(val imageTarget: StoryCacheTarget, val blurTarget: StoryCacheTarget?)
+  data class StoryCacheValue(val imageTarget: StoryCacheTarget?, val blurTarget: StoryCacheTarget?)
 
   /**
    * A custom glide target for loading a drawable. Placeholder immediately clears, and we don't want to do that, so we use this instead.

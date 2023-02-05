@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.pin;
 
+import android.app.backup.BackupManager;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -8,12 +10,14 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.thoughtcrime.securesms.KbsEnclave;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.lock.PinHashing;
 import org.whispersystems.signalservice.api.KbsPinData;
 import org.whispersystems.signalservice.api.KeyBackupService;
 import org.whispersystems.signalservice.api.KeyBackupServicePinException;
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException;
 import org.whispersystems.signalservice.api.kbs.HashedPin;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.contacts.crypto.UnauthenticatedResponseException;
 import org.whispersystems.signalservice.internal.contacts.entities.TokenResponse;
@@ -64,11 +68,22 @@ public class KbsRepository {
 
     for (KbsEnclave enclave : KbsEnclaves.all()) {
       KeyBackupService kbs = ApplicationDependencies.getKeyBackupService(enclave);
+      TokenResponse    token;
 
-      authorization = authorization == null ? kbs.getAuthorization() : authorization;
+      try {
+        authorization = authorization == null ? kbs.getAuthorization() : authorization;
+        backupAuthToken(authorization);
+        token = kbs.getToken(authorization);
+      } catch (NonSuccessfulResponseCodeException e) {
+        if (e.getCode() == 404) {
+          Log.i(TAG, "Enclave decommissioned, skipping", e);
+          continue;
+        } else {
+          throw e;
+        }
+      }
 
-      TokenResponse token     = kbs.getToken(authorization);
-      TokenData     tokenData = new TokenData(enclave, authorization, token);
+      TokenData tokenData = new TokenData(enclave, authorization, token);
 
       if (tokenData.getTriesRemaining() > 0) {
         Log.i(TAG, "Found data! " + enclave.getEnclaveName());
@@ -82,6 +97,13 @@ public class KbsRepository {
     }
 
     return Objects.requireNonNull(firstKnownTokenData);
+  }
+
+  private static void backupAuthToken(String token) {
+    final boolean tokenIsNew = SignalStore.kbsValues().appendAuthTokenToList(token);
+    if (tokenIsNew) {
+      new BackupManager(ApplicationDependencies.getApplication()).dataChanged();
+    }
   }
 
   /**

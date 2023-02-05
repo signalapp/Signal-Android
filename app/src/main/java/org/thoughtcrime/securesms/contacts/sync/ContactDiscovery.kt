@@ -10,7 +10,7 @@ import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.SyncSystemContactLinksJob
@@ -93,7 +93,7 @@ object ContactDiscovery {
   @JvmStatic
   @Throws(IOException::class)
   @WorkerThread
-  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean): RecipientDatabase.RegisteredState {
+  fun refresh(context: Context, recipient: Recipient, notifyOfNewUsers: Boolean): RecipientTable.RegisteredState {
     val result: RefreshResult = refreshRecipients(
       context = context,
       descriptor = "refresh-single",
@@ -105,9 +105,9 @@ object ContactDiscovery {
     )
 
     return if (result.registeredIds.contains(recipient.id)) {
-      RecipientDatabase.RegisteredState.REGISTERED
+      RecipientTable.RegisteredState.REGISTERED
     } else {
-      RecipientDatabase.RegisteredState.NOT_REGISTERED
+      RecipientTable.RegisteredState.NOT_REGISTERED
     }
   }
 
@@ -193,7 +193,7 @@ object ContactDiscovery {
     Recipient.resolvedList(newUserIds)
       .filter { !it.isSelf && it.hasAUserSetDisplayName(context) && !hasSession(it.id) }
       .map { IncomingJoinedMessage(it.id) }
-      .map { SignalDatabase.sms.insertMessageInbox(it) }
+      .map { SignalDatabase.messages.insertMessageInbox(it) }
       .filter { it.isPresent }
       .map { it.get() }
       .forEach { result ->
@@ -263,7 +263,7 @@ object ContactDiscovery {
         var recipient: Recipient? = reader.getNext()
 
         while (recipient != null) {
-          NotificationChannels.updateContactChannelName(context, recipient)
+          NotificationChannels.getInstance().updateContactChannelName(recipient)
           recipient = reader.getNext()
         }
       }

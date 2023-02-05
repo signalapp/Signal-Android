@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.crypto.IdentityKeyParcelable;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
+import org.thoughtcrime.securesms.database.IdentityTable;
 import org.thoughtcrime.securesms.database.model.IdentityRecord;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -34,7 +34,7 @@ public class VerifyIdentityActivity extends PassphraseRequiredActivity {
     return newIntent(context,
                      identityRecord.getRecipientId(),
                      identityRecord.getIdentityKey(),
-                     identityRecord.getVerifiedStatus() == IdentityDatabase.VerifiedStatus.VERIFIED);
+                     identityRecord.getVerifiedStatus() == IdentityTable.VerifiedStatus.VERIFIED);
   }
 
   public static Intent newIntent(@NonNull Context context,

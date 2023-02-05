@@ -177,7 +177,7 @@ public abstract class BaseRegistrationLockFragment extends LoggingFragment {
                                    if (processor.hasResult()) {
                                      handleSuccessfulPinEntry(pin);
                                    } else if (processor.wrongPin()) {
-                                     onIncorrectKbsRegistrationLockPin(processor.getToken());
+                                     onIncorrectKbsRegistrationLockPin(processor.getTokenData());
                                    } else if (processor.isKbsLocked() || processor.registrationLock()) {
                                      onKbsAccountLocked();
                                    } else if (processor.rateLimit()) {

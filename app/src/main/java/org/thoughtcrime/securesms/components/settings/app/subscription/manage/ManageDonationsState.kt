@@ -22,7 +22,7 @@ data class ManageDonationsState(
     }
   }
 
-  fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): SubscriptionRedemptionState? {
+  private fun getStateFromActiveSubscription(activeSubscription: ActiveSubscription): SubscriptionRedemptionState? {
     return when {
       activeSubscription.isFailedPayment -> SubscriptionRedemptionState.FAILED
       activeSubscription.isInProgress -> SubscriptionRedemptionState.IN_PROGRESS

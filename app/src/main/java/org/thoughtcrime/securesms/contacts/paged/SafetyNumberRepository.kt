@@ -77,8 +77,8 @@ class SafetyNumberRepository(
   private fun List<ContactSearchKey>.flattenToRecipientIds(): Set<RecipientId> {
     return this
       .map {
-        when (it) {
-          is ContactSearchKey.RecipientSearchKey.KnownRecipient -> {
+        when {
+          it is ContactSearchKey.RecipientSearchKey && !it.isStory -> {
             val recipient = Recipient.resolved(it.recipientId)
             if (recipient.isGroup) {
               recipient.participantIds
@@ -86,7 +86,7 @@ class SafetyNumberRepository(
               listOf(it.recipientId)
             }
           }
-          is ContactSearchKey.RecipientSearchKey.Story -> Recipient.resolved(it.recipientId).participantIds
+          it is ContactSearchKey.RecipientSearchKey -> Recipient.resolved(it.recipientId).participantIds
           else -> throw AssertionError("Invalid contact selection $it")
         }
       }

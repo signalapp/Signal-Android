@@ -1,40 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
 
     <ImageView
-        android:importantForAccessibility="no"
         android:id="@+id/text_story_post_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
 
-    <org.thoughtcrime.securesms.stories.StoryTextView
-        android:id="@+id/text_story_post_text"
-        android:layout_width="match_parent"
+    <org.thoughtcrime.securesms.components.ClippedCardView
+        android:id="@+id/text_story_text_background"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="start|center_vertical"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:focusable="false"
-        android:gravity="center"
-        android:paddingHorizontal="12dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="13dp"
-        android:text="@string/TextStoryPostCreationFragment__tap_to_add_text"
-        android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
-        android:textColor="@color/core_white"
-        android:textSize="34dp"
+        app:cardCornerRadius="18dp"
+        app:cardElevation="0dp"
         app:layout_constrainedWidth="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="SpUsage"
-        tools:text="TEST" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <org.thoughtcrime.securesms.stories.StoryTextView
+            android:id="@+id/text_story_post_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start|center_vertical"
+            android:focusable="false"
+            android:gravity="center"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="13dp"
+            android:text="@string/TextStoryPostCreationFragment__tap_to_add_text"
+            android:textAppearance="@style/TextAppearance.Signal.Body1.Bold"
+            android:textColor="@color/core_white"
+            android:textSize="34dp"
+            tools:ignore="SpUsage"
+            tools:text="TEST" />
+
+    </org.thoughtcrime.securesms.components.ClippedCardView>
 
     <org.thoughtcrime.securesms.stories.StoryLinkPreviewView
         android:id="@+id/text_story_post_link_preview"

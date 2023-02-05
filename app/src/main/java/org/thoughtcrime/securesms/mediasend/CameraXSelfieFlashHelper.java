@@ -5,12 +5,10 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.camera.core.CameraSelector;
 import androidx.camera.core.ImageCapture;
 import androidx.camera.view.CameraController;
 
-@RequiresApi(21)
 final class CameraXSelfieFlashHelper {
 
   private static final float MAX_SCREEN_BRIGHTNESS    = 1f;

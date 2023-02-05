@@ -5,6 +5,7 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
+import androidx.core.app.NotificationManagerCompat;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.state.PreKeyRecord;
@@ -17,19 +18,19 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
 import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore;
 import org.thoughtcrime.securesms.crypto.storage.SignalServiceAccountDataStoreImpl;
-import org.thoughtcrime.securesms.database.IdentityDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.IdentityTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.pin.PinState;
 import org.thoughtcrime.securesms.push.AccountManagerFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.registration.VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse;
 import org.thoughtcrime.securesms.service.DirectoryRefreshListener;
 import org.thoughtcrime.securesms.service.RotateSignedPreKeyListener;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -93,27 +94,17 @@ public final class RegistrationRepository {
     return profileKey;
   }
 
-  public Single<ServiceResponse<VerifyAccountResponse>> registerAccountWithoutRegistrationLock(@NonNull RegistrationData registrationData,
-                                                                                               @NonNull VerifyAccountResponse response)
+  public Single<ServiceResponse<VerifyResponse>> registerAccount(@NonNull RegistrationData registrationData,
+                                                                 @NonNull VerifyResponse response)
   {
-    return registerAccount(registrationData, response, null, null);
-  }
-
-  public Single<ServiceResponse<VerifyAccountResponse>> registerAccountWithRegistrationLock(@NonNull RegistrationData registrationData,
-                                                                                            @NonNull VerifyAccountWithRegistrationLockResponse response,
-                                                                                            @NonNull String pin)
-  {
-    return registerAccount(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData());
-  }
-
-  private Single<ServiceResponse<VerifyAccountResponse>> registerAccount(@NonNull RegistrationData registrationData,
-                                                                         @NonNull VerifyAccountResponse response,
-                                                                         @Nullable String pin,
-                                                                         @Nullable KbsPinData kbsData)
-  {
-    return Single.<ServiceResponse<VerifyAccountResponse>>fromCallable(() -> {
+    return Single.<ServiceResponse<VerifyResponse>>fromCallable(() -> {
       try {
-        registerAccountInternal(registrationData, response, pin, kbsData);
+        String pin = response.getPin();
+        registerAccountInternal(registrationData, response.getVerifyAccountResponse(), pin, response.getKbsData());
+
+        if (pin != null && !pin.isEmpty()) {
+          PinState.onPinChangedOrCreated(context, pin, SignalStore.pinValues().getKeyboardType());
+        }
 
         JobManager jobManager = ApplicationDependencies.getJobManager();
         jobManager.add(new DirectoryRefreshJob(false));
@@ -158,13 +149,13 @@ public final class RegistrationRepository {
       accountManager.setGcmId(Optional.ofNullable(registrationData.getFcmToken()));
     }
 
-    RecipientDatabase recipientDatabase = SignalDatabase.recipients();
-    RecipientId       selfId            = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
+    RecipientTable recipientTable = SignalDatabase.recipients();
+    RecipientId    selfId         = Recipient.trustedPush(aci, pni, registrationData.getE164()).getId();
 
-    recipientDatabase.setProfileSharing(selfId, true);
-    recipientDatabase.markRegisteredOrThrow(selfId, aci);
-    recipientDatabase.linkIdsForSelf(aci, pni, registrationData.getE164());
-    recipientDatabase.setProfileKey(selfId, registrationData.getProfileKey());
+    recipientTable.setProfileSharing(selfId, true);
+    recipientTable.markRegisteredOrThrow(selfId, aci);
+    recipientTable.linkIdsForSelf(aci, pni, registrationData.getE164());
+    recipientTable.setProfileKey(selfId, registrationData.getProfileKey());
 
     ApplicationDependencies.getRecipientCache().clearSelf();
 
@@ -179,7 +170,7 @@ public final class RegistrationRepository {
     SignalStore.account().setServicePassword(registrationData.getPassword());
     SignalStore.account().setRegistered(true);
     TextSecurePreferences.setPromptedPushRegistration(context, true);
-    TextSecurePreferences.setUnauthorizedReceived(context, false);
+    NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID);
 
     PinState.onRegistration(context, kbsData, pin, hasPin);
   }
@@ -201,7 +192,7 @@ public final class RegistrationRepository {
   private void saveOwnIdentityKey(@NonNull RecipientId selfId, @NonNull SignalServiceAccountDataStoreImpl protocolStore, long now) {
     protocolStore.identities().saveIdentityWithoutSideEffects(selfId,
                                                               protocolStore.getIdentityKeyPair().getPublicKey(),
-                                                              IdentityDatabase.VerifiedStatus.VERIFIED,
+                                                              IdentityTable.VerifiedStatus.VERIFIED,
                                                               true,
                                                               now,
                                                               true);
@@ -209,8 +200,8 @@ public final class RegistrationRepository {
 
   @WorkerThread
   private static @Nullable ProfileKey findExistingProfileKey(@NonNull String e164number) {
-    RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
-    Optional<RecipientId> recipient         = recipientDatabase.getByE164(e164number);
+    RecipientTable        recipientTable = SignalDatabase.recipients();
+    Optional<RecipientId> recipient      = recipientTable.getByE164(e164number);
 
     if (recipient.isPresent()) {
       return ProfileKeyUtil.profileKeyOrNull(Recipient.resolved(recipient.get()).getProfileKey());

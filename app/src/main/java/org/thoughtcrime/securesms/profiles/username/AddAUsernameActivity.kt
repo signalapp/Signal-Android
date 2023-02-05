@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 
 class AddAUsernameActivity : BaseActivity() {
-  protected open val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
-  protected open val contentViewId: Int = R.layout.fragment_container
+  private val dynamicTheme: DynamicTheme = DynamicNoActionBarTheme()
+  private val contentViewId: Int = R.layout.fragment_container
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)

@@ -7,9 +7,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.AppCapabilities
 import org.thoughtcrime.securesms.gcm.FcmUtil
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
-import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.push.AccountManagerFactory
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.KbsPinData
@@ -46,12 +44,12 @@ class VerifyAccountRepository(private val context: Application) {
       if (mode == Mode.PHONE_CALL) {
         accountManager.requestVoiceVerificationCode(Locale.getDefault(), Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       } else {
-        accountManager.requestSmsVerificationCode(mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
+        accountManager.requestSmsVerificationCode(Locale.getDefault(), mode.isSmsRetrieverSupported, Optional.ofNullable(captchaToken), pushChallenge, fcmToken)
       }
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccount(registrationData: RegistrationData): Single<ServiceResponse<VerifyAccountResponse>> {
+  fun verifyAccount(registrationData: RegistrationData): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -63,7 +61,7 @@ class VerifyAccountRepository(private val context: Application) {
     )
 
     return Single.fromCallable {
-      accountManager.verifyAccount(
+      val response = accountManager.verifyAccount(
         registrationData.code,
         registrationData.registrationId,
         registrationData.isNotFcm,
@@ -73,10 +71,11 @@ class VerifyAccountRepository(private val context: Application) {
         SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
         registrationData.pniRegistrationId
       )
+      VerifyResponse.from(response, null, null)
     }.subscribeOn(Schedulers.io())
   }
 
-  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, tokenData: TokenData): Single<ServiceResponse<VerifyAccountWithRegistrationLockResponse>> {
+  fun verifyAccountWithPin(registrationData: RegistrationData, pin: String, kbsPinDataProducer: KbsPinDataProducer): Single<ServiceResponse<VerifyResponse>> {
     val universalUnidentifiedAccess: Boolean = TextSecurePreferences.isUniversalUnidentifiedAccess(context)
     val unidentifiedAccessKey: ByteArray = UnidentifiedAccess.deriveAccessKeyFrom(registrationData.profileKey)
 
@@ -89,7 +88,7 @@ class VerifyAccountRepository(private val context: Application) {
 
     return Single.fromCallable {
       try {
-        val kbsData: KbsPinData = KbsRepository.restoreMasterKey(pin, tokenData.enclave, tokenData.basicAuth, tokenData.tokenResponse)!!
+        val kbsData = kbsPinDataProducer.produceKbsPinData()
         val registrationLockV2: String = kbsData.masterKey.deriveRegistrationLock()
 
         val response: ServiceResponse<VerifyAccountResponse> = accountManager.verifyAccountWithRegistrationLockPin(
@@ -103,7 +102,7 @@ class VerifyAccountRepository(private val context: Application) {
           SignalStore.phoneNumberPrivacy().phoneNumberListingMode.isDiscoverable,
           registrationData.pniRegistrationId
         )
-        VerifyAccountWithRegistrationLockResponse.from(response, kbsData)
+        VerifyResponse.from(response, kbsData, pin)
       } catch (e: KeyBackupSystemWrongPinException) {
         ServiceResponse.forExecutionError(e)
       } catch (e: KeyBackupSystemNoDataException) {
@@ -112,6 +111,11 @@ class VerifyAccountRepository(private val context: Application) {
         ServiceResponse.forExecutionError(e)
       }
     }.subscribeOn(Schedulers.io())
+  }
+
+  interface KbsPinDataProducer {
+    @Throws(IOException::class, KeyBackupSystemWrongPinException::class, KeyBackupSystemNoDataException::class)
+    fun produceKbsPinData(): KbsPinData
   }
 
   enum class Mode(val isSmsRetrieverSupported: Boolean) {
@@ -123,17 +127,5 @@ class VerifyAccountRepository(private val context: Application) {
   companion object {
     private val TAG = Log.tag(VerifyAccountRepository::class.java)
     private val PUSH_REQUEST_TIMEOUT = TimeUnit.SECONDS.toMillis(5)
-  }
-
-  data class VerifyAccountWithRegistrationLockResponse(val verifyAccountResponse: VerifyAccountResponse, val kbsData: KbsPinData) {
-    companion object {
-      fun from(response: ServiceResponse<VerifyAccountResponse>, kbsData: KbsPinData): ServiceResponse<VerifyAccountWithRegistrationLockResponse> {
-        return if (response.result.isPresent) {
-          ServiceResponse.forResult(VerifyAccountWithRegistrationLockResponse(response.result.get(), kbsData), 200, null)
-        } else {
-          ServiceResponse.coerceError(response)
-        }
-      }
-    }
   }
 }

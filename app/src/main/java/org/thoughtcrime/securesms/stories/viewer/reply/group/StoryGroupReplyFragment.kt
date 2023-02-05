@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerViewMod
 import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyboard.KeyboardPage
@@ -52,10 +53,8 @@ import org.thoughtcrime.securesms.safety.SafetyNumberBottomSheet
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerChild
 import org.thoughtcrime.securesms.stories.viewer.reply.StoryViewsAndRepliesPagerParent
-import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReactionBar
 import org.thoughtcrime.securesms.stories.viewer.reply.composer.StoryReplyComposer
 import org.thoughtcrime.securesms.util.DeleteDialog
-import org.thoughtcrime.securesms.util.FragmentDialogs.displayInDialogAboveAnchor
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -154,6 +153,7 @@ class StoryGroupReplyFragment :
   private var resendBody: CharSequence? = null
   private var resendMentions: List<Mention> = emptyList()
   private var resendReaction: String? = null
+  private var resendBodyRanges: BodyRangeList? = null
 
   private lateinit var inlineQueryResultsController: InlineQueryResultsController
 
@@ -181,6 +181,7 @@ class StoryGroupReplyFragment :
     StoryGroupReplyItem.register(adapter)
 
     composer.callback = this
+    composer.hint = getString(R.string.StoryViewerPageFragment__reply_to_group)
 
     onPageSelected(findListener<StoryViewsAndRepliesPagerParent>()?.selectedChild ?: StoryViewsAndRepliesPagerParent.Child.REPLIES)
 
@@ -337,6 +338,10 @@ class StoryGroupReplyFragment :
   override fun onPageSelected(child: StoryViewsAndRepliesPagerParent.Child) {
     currentChild = child
     updateNestedScrolling()
+
+    if (currentChild != StoryViewsAndRepliesPagerParent.Child.REPLIES) {
+      composer.close()
+    }
   }
 
   private fun updateNestedScrolling() {
@@ -344,31 +349,16 @@ class StoryGroupReplyFragment :
   }
 
   override fun onSendActionClicked() {
-    val (body, mentions) = composer.consumeInput()
-    performSend(body, mentions)
+    val (body, mentions, bodyRanges) = composer.consumeInput()
+    performSend(body, mentions, bodyRanges)
   }
 
-  override fun onPickReactionClicked() {
-    displayInDialogAboveAnchor(composer.reactionButton, R.layout.stories_reaction_bar_layout) { dialog, view ->
-      view.findViewById<StoryReactionBar>(R.id.reaction_bar).apply {
-        callback = object : StoryReactionBar.Callback {
-          override fun onTouchOutsideOfReactionBar() {
-            dialog.dismiss()
-          }
+  override fun onPickAnyReactionClicked() {
+    ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
+  }
 
-          override fun onReactionSelected(emoji: String) {
-            dialog.dismiss()
-            sendReaction(emoji)
-          }
-
-          override fun onOpenReactionPicker() {
-            dialog.dismiss()
-            ReactWithAnyEmojiBottomSheetDialogFragment.createForStory().show(childFragmentManager, null)
-          }
-        }
-        animateIn()
-      }
-    }
+  override fun onReactionClicked(emoji: String) {
+    sendReaction(emoji)
   }
 
   override fun onEmojiSelected(emoji: String?) {
@@ -386,7 +376,7 @@ class StoryGroupReplyFragment :
             resendReaction = emoji
 
             SafetyNumberBottomSheet
-              .forIdentityRecordsAndDestination(error.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .forIdentityRecordsAndDestination(error.untrustedRecords, ContactSearchKey.RecipientSearchKey(groupRecipientId, true))
               .show(childFragmentManager)
           } else {
             Log.w(TAG, "Failed to send reply", error)
@@ -525,17 +515,18 @@ class StoryGroupReplyFragment :
     }
   }
 
-  private fun performSend(body: CharSequence, mentions: List<Mention>) {
-    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions)
+  private fun performSend(body: CharSequence, mentions: List<Mention>, bodyRanges: BodyRangeList?) {
+    lifecycleDisposable += StoryGroupReplySender.sendReply(requireContext(), storyId, body, mentions, bodyRanges)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy(
         onError = { throwable ->
           if (throwable is UntrustedRecords.UntrustedRecordsException) {
             resendBody = body
             resendMentions = mentions
+            resendBodyRanges = bodyRanges
 
             SafetyNumberBottomSheet
-              .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey.Story(groupRecipientId))
+              .forIdentityRecordsAndDestination(throwable.untrustedRecords, ContactSearchKey.RecipientSearchKey(groupRecipientId, true))
               .show(childFragmentManager)
           } else {
             Log.w(TAG, "Failed to send reply", throwable)
@@ -552,7 +543,7 @@ class StoryGroupReplyFragment :
     val resendBody = resendBody
     val resendReaction = resendReaction
     if (resendBody != null) {
-      performSend(resendBody, resendMentions)
+      performSend(resendBody, resendMentions, resendBodyRanges)
     } else if (resendReaction != null) {
       sendReaction(resendReaction)
     }
@@ -566,6 +557,7 @@ class StoryGroupReplyFragment :
     resendBody = null
     resendMentions = emptyList()
     resendReaction = null
+    resendBodyRanges = null
   }
 
   @ColorInt

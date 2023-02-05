@@ -36,7 +36,8 @@ message Envelope {
   optional bool   urgent          = 14 [default = true];
   reserved      /*updatedPni*/      15; // Not used presently, may be used in the future
   optional bool   story           = 16;
-  // NEXT ID: 17
+  optional bytes reporting_token  = 17;
+  // NEXT ID: 18
 }
 
 message Content {
@@ -125,20 +126,30 @@ message CallMessage {
   optional Opaque    opaque              = 10;
 }
 
+message BodyRange {
+  enum Style {
+    NONE          = 0;
+    BOLD          = 1;
+    ITALIC        = 2;
+    SPOILER       = 3;
+    STRIKETHROUGH = 4;
+    MONOSPACE     = 5;
+  }
+
+  optional uint32 start  = 1;
+  optional uint32 length = 2;
+
+  oneof associatedValue {
+    string mentionUuid = 3;
+    Style  style       = 4;
+  }
+}
+
 message DataMessage {
   enum Flags {
     END_SESSION             = 1;
     EXPIRATION_TIMER_UPDATE = 2;
     PROFILE_KEY_UPDATE      = 4;
-  }
-
-  message BodyRange {
-    optional uint32 start  = 1;
-    optional uint32 length = 2;
-
-    oneof associatedValue {
-      string mentionUuid = 3;
-    }
   }
 
   message Quote {
@@ -382,6 +393,7 @@ message StoryMessage {
     TextAttachment    textAttachment = 4;
   }
   optional bool              allowsReplies = 5;
+  repeated BodyRange         bodyRanges    = 6;
 }
 
 message Preview {
@@ -590,6 +602,33 @@ message SyncMessage {
     optional uint32 registrationId  = 3;
   }
 
+  message CallEvent {
+    enum Type {
+      UNKNOWN_TYPE = 0;
+      AUDIO_CALL   = 1;
+      VIDEO_CALL   = 2;
+    }
+
+    enum Direction {
+      UNKNOWN_DIRECTION = 0;
+      INCOMING          = 1;
+      OUTGOING          = 2;
+    }
+
+    enum Event {
+      UNKNOWN_ACTION = 0;
+      ACCEPTED       = 1;
+      NOT_ACCEPTED   = 2;
+    }
+
+    optional bytes     peerUuid  = 1;
+    optional uint64    id        = 2;
+    optional uint64    timestamp = 3;
+    optional Type      type      = 4;
+    optional Direction direction = 5;
+    optional Event     event     = 6;
+  }
+
   optional Sent                   sent                   = 1;
   optional Contacts               contacts               = 2;
   optional Groups                 groups                 = 3;
@@ -608,6 +647,7 @@ message SyncMessage {
   repeated Viewed                 viewed                 = 16;
   optional PniIdentity            pniIdentity            = 17;
   optional PniChangeNumber        pniChangeNumber        = 18;
+  optional CallEvent              callEvent              = 19;
 }
 
 message AttachmentPointer {

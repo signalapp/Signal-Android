@@ -15,7 +15,7 @@ import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.dependencies.InstrumentationApplicationDependencyProvider
@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.registration.RegistrationData
 import org.thoughtcrime.securesms.registration.RegistrationRepository
 import org.thoughtcrime.securesms.registration.RegistrationUtil
+import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.profiles.SignalServiceProfile
 import org.whispersystems.signalservice.api.push.ACI
@@ -74,7 +75,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     val registrationRepository = RegistrationRepository(application)
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(Put("/v2/keys") { MockResponse().success() })
-    val response: ServiceResponse<VerifyAccountResponse> = registrationRepository.registerAccountWithoutRegistrationLock(
+    val response: ServiceResponse<VerifyResponse> = registrationRepository.registerAccount(
       RegistrationData(
         code = "123123",
         e164 = "+15555550101",
@@ -84,7 +85,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
         fcmToken = null,
         pniRegistrationId = registrationRepository.pniRegistrationId
       ),
-      VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false)
+      VerifyResponse(VerifyAccountResponse(UUID.randomUUID().toString(), UUID.randomUUID().toString(), false), null, null)
     ).blockingGet()
 
     ServiceResponseProcessor.DefaultProcessor(response).resultOrThrow
@@ -108,7 +109,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
       val recipientId = RecipientId.from(SignalServiceAddress(aci, "+15555551%03d".format(i)))
       SignalDatabase.recipients.setProfileName(recipientId, ProfileName.fromParts("Buddy", "#$i"))
       SignalDatabase.recipients.setProfileKeyIfAbsent(recipientId, ProfileKeyUtil.createNew())
-      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true, true))
+      SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true, true, true, true, true, true, true, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
       ApplicationDependencies.getProtocolStore().aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), IdentityKeyUtil.generateIdentityKeyPair().publicKey)
@@ -130,7 +131,7 @@ class SignalActivityRule(private val othersCount: Int = 4) : ExternalResource() 
     return ApplicationDependencies.getProtocolStore().aci().identities().getIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0))
   }
 
-  fun setVerified(recipient: Recipient, status: IdentityDatabase.VerifiedStatus) {
-    ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityDatabase.VerifiedStatus.VERIFIED)
+  fun setVerified(recipient: Recipient, status: IdentityTable.VerifiedStatus) {
+    ApplicationDependencies.getProtocolStore().aci().identities().setVerified(recipient.id, getIdentity(recipient), IdentityTable.VerifiedStatus.VERIFIED)
   }
 }

@@ -1,7 +1,6 @@
 package org.signal.qr
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.lifecycle.DefaultLifecycleObserver
@@ -28,7 +27,7 @@ class QrScannerView @JvmOverloads constructor(
   val qrData: Observable<String> = qrDataPublish
 
   private fun initScannerView(forceLegacy: Boolean) {
-    val scannerView: FrameLayout = if (Build.VERSION.SDK_INT >= 21 && !forceLegacy) {
+    val scannerView: FrameLayout = if (!forceLegacy) {
       ScannerView21(context) { qrDataPublish.onNext(it) }
     } else {
       ScannerView19(context) { qrDataPublish.onNext(it) }

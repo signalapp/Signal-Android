@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.R;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
@@ -44,6 +45,7 @@ public class DateUtils extends android.text.format.DateUtils {
   private static final ThreadLocal<SimpleDateFormat> DATE_FORMAT            = new ThreadLocal<>();
   private static final ThreadLocal<SimpleDateFormat> BRIEF_EXACT_FORMAT     = new ThreadLocal<>();
   private static final long                          MAX_RELATIVE_TIMESTAMP = TimeUnit.MINUTES.toMillis(3);
+  private static final int                           HALF_A_YEAR_IN_DAYS    = 182;
 
   private static boolean isWithin(final long millis, final long span, final TimeUnit unit) {
     return System.currentTimeMillis() - millis <= unit.toMillis(span);
@@ -110,9 +112,20 @@ public class DateUtils extends android.text.format.DateUtils {
       int mins = (int) TimeUnit.MINUTES.convert(System.currentTimeMillis() - timestamp, TimeUnit.MILLISECONDS);
       return context.getResources().getString(R.string.DateUtils_minutes_ago, mins);
     } else {
-      String format = DateFormat.is24HourFormat(context) ? "HH:mm" : "hh:mm a";
-      return getFormattedDateTime(timestamp, format, locale);
+      return getOnlyTimeString(context, locale, timestamp);
     }
+  }
+
+  /**
+   * Formats a given timestamp as just the time.
+   *
+   * For example:
+   *  For 12 hour locale: 7:23 pm
+   *  For 24 hour locale: 19:23
+   */
+  public static String getOnlyTimeString(final Context context, final Locale locale, final long timestamp) {
+    String format = DateFormat.is24HourFormat(context) ? "HH:mm" : "hh:mm a";
+    return getFormattedDateTime(timestamp, format, locale);
   }
 
   public static String getTimeString(final Context c, final Locale locale, final long timestamp) {
@@ -127,6 +140,37 @@ public class DateUtils extends android.text.format.DateUtils {
     else                              format.append("hh:mm a");
 
     return getFormattedDateTime(timestamp, format.toString(), locale);
+  }
+
+  /**
+   * Formats the passed timestamp based on the current time at a day precision.
+   *
+   * For example:
+   *  - Today
+   *  - Wed
+   *  - Mon
+   *  - Jan 31
+   *  - Feb 4
+   *  - Jan 12, 2033
+   */
+  public static String getDayPrecisionTimeString(Context context, Locale locale, long timestamp) {
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMdd");
+
+    if (simpleDateFormat.format(System.currentTimeMillis()).equals(simpleDateFormat.format(timestamp))) {
+      return context.getString(R.string.DeviceListItem_today);
+    } else {
+      String format;
+
+      if (isWithinAbs(timestamp, 6, TimeUnit.DAYS)) {
+        format = "EEE ";
+      } else if (isWithinAbs(timestamp, 365, TimeUnit.DAYS)) {
+        format = "MMM d";
+      } else {
+        format = "MMM d, yyy";
+      }
+
+      return getFormattedDateTime(timestamp, format, locale);
+    }
   }
 
   public static String getDayPrecisionTimeSpanString(Context context, Locale locale, long timestamp) {
@@ -165,11 +209,42 @@ public class DateUtils extends android.text.format.DateUtils {
       return context.getString(R.string.DateUtils_today);
     } else if (isYesterday(timestamp)) {
       return context.getString(R.string.DateUtils_yesterday);
-    } else if (isWithin(timestamp, 182, TimeUnit.DAYS)) {
+    } else if (isWithin(timestamp, HALF_A_YEAR_IN_DAYS, TimeUnit.DAYS)) {
       return formatDateWithDayOfWeek(locale, timestamp);
     } else {
       return formatDateWithYear(locale, timestamp);
     }
+  }
+
+  public static String getScheduledMessagesDateHeaderString(@NonNull Context context,
+                                                            @NonNull Locale locale,
+                                                            long timestamp)
+  {
+    if (isToday(timestamp)) {
+      return context.getString(R.string.DateUtils_today);
+    } else if (isWithinAbs(timestamp, HALF_A_YEAR_IN_DAYS, TimeUnit.DAYS)) {
+      return formatDateWithDayOfWeek(locale, timestamp);
+    } else {
+      return formatDateWithYear(locale, timestamp);
+    }
+  }
+
+  public static String getScheduledMessageDateString(@NonNull Context context, @NonNull Locale locale, long timestamp) {
+    String dayModifier;
+    if (isToday(timestamp)) {
+      Calendar calendar = Calendar.getInstance(locale);
+      if (calendar.get(Calendar.HOUR_OF_DAY) >= 19) {
+        dayModifier = context.getString(R.string.DateUtils_tonight);
+      } else {
+        dayModifier = context.getString(R.string.DateUtils_today);
+      }
+    } else {
+      dayModifier = context.getString(R.string.DateUtils_tomorrow);
+    }
+    String format = DateFormat.is24HourFormat(context) ? "HH:mm" : "hh:mm a";
+    String time   = getFormattedDateTime(timestamp, format, locale);
+
+    return context.getString(R.string.DateUtils_schedule_at, dayModifier, time);
   }
 
   public static String formatDateWithDayOfWeek(@NonNull Locale locale, long timestamp) {

@@ -38,7 +38,7 @@ public class Quote {
     this.mentions   = mentions;
     this.quoteType  = quoteType;
 
-    SpannableString spannable = new SpannableString(Util.emptyIfNull(text));
+    SpannableString spannable = SpannableString.valueOf(Util.emptyIfNull(text));
     MentionAnnotation.setMentionAnnotations(spannable, mentions);
 
     this.text = spannable;
@@ -47,7 +47,6 @@ public class Quote {
   public @NonNull Quote withAttachment(@NonNull SlideDeck updatedAttachment) {
     return new Quote(id, author, text, missing, updatedAttachment, mentions, quoteType);
   }
-
 
   public long getId() {
     return id;

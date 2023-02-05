@@ -2,11 +2,12 @@ package org.thoughtcrime.securesms.conversation
 
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
+import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
@@ -19,6 +20,7 @@ import org.thoughtcrime.securesms.testing.SignalActivityRule
 /**
  * Android test to help show SNC dialog quickly with custom data to make sure it displays properly.
  */
+@Ignore("For testing/previewing manually, no assertions")
 @RunWith(AndroidJUnit4::class)
 class SafetyNumberChangeDialogPreviewer {
 
@@ -30,7 +32,7 @@ class SafetyNumberChangeDialogPreviewer {
 
     SignalDatabase.recipients.setProfileName(other.id, ProfileName.fromParts("Super really long name like omg", "But seriously it's long like really really long"))
 
-    harness.setVerified(other, IdentityDatabase.VerifiedStatus.VERIFIED)
+    harness.setVerified(other, IdentityTable.VerifiedStatus.VERIFIED)
     harness.changeIdentityKey(other)
 
     val scenario: ActivityScenario<ConversationActivity> = harness.launchActivity { putExtra("recipient_id", other.id.serialize()) }
@@ -50,7 +52,7 @@ class SafetyNumberChangeDialogPreviewer {
     othersRecipients.forEach { other ->
       SignalDatabase.recipients.setProfileName(other.id, ProfileName.fromParts("My", "Name"))
 
-      harness.setVerified(other, IdentityDatabase.VerifiedStatus.DEFAULT)
+      harness.setVerified(other, IdentityTable.VerifiedStatus.DEFAULT)
       harness.changeIdentityKey(other)
 
       SignalDatabase.distributionLists.addMemberToList(DistributionListId.MY_STORY, DistributionListPrivacyMode.ONLY_WITH, other.id)
@@ -62,7 +64,7 @@ class SafetyNumberChangeDialogPreviewer {
       SafetyNumberBottomSheet
         .forIdentityRecordsAndDestinations(
           identityRecords = ApplicationDependencies.getProtocolStore().aci().identities().getIdentityRecords(othersRecipients).identityRecords,
-          destinations = listOf(ContactSearchKey.RecipientSearchKey.Story(myStoryRecipientId))
+          destinations = listOf(ContactSearchKey.RecipientSearchKey(myStoryRecipientId, true))
         )
         .show(conversationActivity.supportFragmentManager)
     }

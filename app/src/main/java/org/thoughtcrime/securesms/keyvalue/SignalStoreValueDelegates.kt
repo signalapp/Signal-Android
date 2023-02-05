@@ -70,6 +70,7 @@ private class BooleanValue(private val key: String, private val default: Boolean
 
 private class StringValue<T : String?>(private val key: String, private val default: T, store: KeyValueStore) : SignalStoreValueDelegate<T>(store) {
   override fun getValue(values: KeyValueStore): T {
+    @Suppress("UNCHECKED_CAST")
     return values.getString(key, default) as T
   }
 

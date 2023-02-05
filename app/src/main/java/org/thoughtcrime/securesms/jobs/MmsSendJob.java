@@ -27,11 +27,11 @@ import org.signal.core.util.StreamUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -43,7 +43,7 @@ import org.thoughtcrime.securesms.mms.CompatMmsConnection;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.MmsSendResult;
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage;
+import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil;
@@ -80,8 +80,8 @@ public final class MmsSendJob extends SendJob {
   /** Enqueues compression jobs for attachments and finally the MMS send job. */
   @WorkerThread
   public static void enqueue(@NonNull Context context, @NonNull JobManager jobManager, long messageId) {
-    MessageDatabase      database = SignalDatabase.mms();
-    OutgoingMediaMessage message;
+    MessageTable    database = SignalDatabase.messages();
+    OutgoingMessage message;
 
     try {
       message = database.getOutgoingMessage(messageId);
@@ -117,13 +117,13 @@ public final class MmsSendJob extends SendJob {
 
   @Override
   public void onAdded() {
-    SignalDatabase.mms().markAsSending(messageId);
+    SignalDatabase.messages().markAsSending(messageId);
   }
 
   @Override
   public void onSend() throws MmsException, NoSuchMessageException, IOException {
-    MessageDatabase      database = SignalDatabase.mms();
-    OutgoingMediaMessage message  = database.getOutgoingMessage(messageId);
+    MessageTable    database = SignalDatabase.messages();
+    OutgoingMessage message  = database.getOutgoingMessage(messageId);
 
     if (database.isSent(messageId)) {
       Log.w(TAG, "Message " + messageId + " was already sent. Ignoring.");
@@ -164,7 +164,7 @@ public final class MmsSendJob extends SendJob {
   @Override
   public void onFailure() {
     Log.i(TAG, JobLogger.format(this, "onFailure() messageId: " + messageId));
-    SignalDatabase.mms().markAsSentFailed(messageId);
+    SignalDatabase.messages().markAsSentFailed(messageId);
     notifyMediaMessageDeliveryFailed(context, messageId);
   }
 
@@ -211,7 +211,7 @@ public final class MmsSendJob extends SendJob {
     }
   }
 
-  private void validateDestinations(OutgoingMediaMessage media, SendReq message) throws UndeliverableMessageException {
+  private void validateDestinations(OutgoingMessage media, SendReq message) throws UndeliverableMessageException {
     validateDestinations(message.getTo());
     validateDestinations(message.getCc());
     validateDestinations(message.getBcc());
@@ -225,7 +225,7 @@ public final class MmsSendJob extends SendJob {
     }
   }
 
-  private SendReq constructSendPdu(OutgoingMediaMessage message)
+  private SendReq constructSendPdu(OutgoingMessage message)
       throws UndeliverableMessageException
   {
     SendReq          req               = new SendReq();
@@ -240,14 +240,14 @@ public final class MmsSendJob extends SendJob {
     }
 
     if (message.getRecipient().isMmsGroup()) {
-      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupDatabase.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
+      List<Recipient> members = SignalDatabase.groups().getGroupMembers(message.getRecipient().requireGroupId(), GroupTable.MemberSet.FULL_MEMBERS_EXCLUDING_SELF);
 
       for (Recipient member : members) {
         if (!member.hasSmsAddress()) {
           throw new UndeliverableMessageException("One of the group recipients did not have an SMS address! " + member.getId());
         }
 
-        if (message.getDistributionType() == ThreadDatabase.DistributionTypes.BROADCAST) {
+        if (message.getDistributionType() == ThreadTable.DistributionTypes.BROADCAST) {
           req.addBcc(new EncodedStringValue(member.requireSmsAddress()));
         } else {
           req.addTo(new EncodedStringValue(member.requireSmsAddress()));
@@ -344,7 +344,7 @@ public final class MmsSendJob extends SendJob {
   }
 
   private void notifyMediaMessageDeliveryFailed(Context context, long messageId) {
-    long      threadId  = SignalDatabase.mms().getThreadIdForMessage(messageId);
+    long      threadId  = SignalDatabase.messages().getThreadIdForMessage(messageId);
     Recipient recipient = SignalDatabase.threads().getRecipientForThreadId(threadId);
 
     if (recipient != null) {

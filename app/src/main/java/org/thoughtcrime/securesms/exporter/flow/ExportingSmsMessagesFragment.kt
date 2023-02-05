@@ -8,6 +8,7 @@ import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
@@ -27,6 +28,8 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
  * when we start exporting messages.
  */
 class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fragment) {
+
+  private val viewModel: SmsExportViewModel by activityViewModels()
 
   private val lifecycleDisposable = LifecycleDisposable()
   private var navigationDisposable = Disposable.disposed()
@@ -109,7 +112,7 @@ class ExportingSmsMessagesFragment : Fragment(R.layout.exporting_sms_messages_fr
       .request(Manifest.permission.READ_SMS)
       .ifNecessary()
       .withRationaleDialog(getString(R.string.ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages), R.drawable.ic_messages_solid_24)
-      .onAllGranted { SignalSmsExportService.start(requireContext()) }
+      .onAllGranted { SignalSmsExportService.start(requireContext(), viewModel.isReExport) }
       .withPermanentDenialDialog(getString(R.string.ExportingSmsMessagesFragment__signal_needs_the_sms_permission_to_be_able_to_export_your_sms_messages)) { requireActivity().finish() }
       .onAnyDenied { checkPermissionsAndStartExport() }
       .execute()

@@ -2,12 +2,12 @@ package org.thoughtcrime.securesms.contacts.selection
 
 import android.os.Bundle
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 data class ContactSelectionArguments(
-  val displayMode: Int = ContactsCursorLoader.DisplayMode.FLAG_ALL,
+  val displayMode: Int = ContactSelectionDisplayMode.FLAG_ALL,
   val isRefreshable: Boolean = true,
   val displayRecents: Boolean = false,
   val selectionLimits: SelectionLimits? = null,

@@ -16,8 +16,8 @@ import com.google.android.gms.common.api.Status;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.InsertResult;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -154,7 +154,7 @@ public class SmsReceiveJob extends BaseJob {
   }
 
   private Optional<InsertResult> storeMessage(IncomingTextMessage message) throws MigrationPendingException {
-    MessageDatabase database = SignalDatabase.sms();
+    MessageTable database = SignalDatabase.messages();
     database.ensureMigration();
 
     if (TextSecurePreferences.getNeedsSqlCipherMigration(context)) {
@@ -195,7 +195,7 @@ public class SmsReceiveJob extends BaseJob {
   private static Notification buildPreRegistrationNotification(@NonNull Context context, @NonNull IncomingTextMessage message) {
     Recipient sender = Recipient.resolved(message.getSender());
 
-    return new NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
+    return new NotificationCompat.Builder(context, NotificationChannels.getInstance().getMessagesChannel())
                                  .setStyle(new NotificationCompat.MessagingStyle(new Person.Builder()
                                                                  .setName(sender.getE164().orElse(""))
                                                                  .build())

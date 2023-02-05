@@ -21,13 +21,14 @@
         android:id="@+id/add_to_story"
         android:layout_width="24dp"
         android:layout_height="24dp"
+        android:padding="5dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="28dp"
         android:background="@drawable/stories_my_story_add_background"
-        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="@id/avatar"
         app:layout_constraintTop_toTopOf="@id/avatar"
-        app:srcCompat="@drawable/ic_union" />
+        app:tint="@color/signal_colorBackground"
+        app:srcCompat="@drawable/symbol_plus_compact_16" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/sender"

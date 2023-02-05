@@ -33,13 +33,14 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.audio.AudioRecordingHandler;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiToggle;
 import org.thoughtcrime.securesms.components.emoji.MediaKeyboard;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.conversation.ConversationStickerSuggestionAdapter;
 import org.thoughtcrime.securesms.conversation.VoiceNoteDraftView;
-import org.thoughtcrime.securesms.database.DraftDatabase;
+import org.thoughtcrime.securesms.database.DraftTable;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -63,7 +64,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 public class InputPanel extends LinearLayout
-    implements MicrophoneRecorderView.Listener,
+    implements AudioRecordingHandler,
                KeyboardAwareLinearLayout.OnKeyboardShownListener,
                EmojiEventListener,
                ConversationStickerSuggestionAdapter.EventListener
@@ -137,13 +138,13 @@ public class InputPanel extends LinearLayout
     this.voiceNoteDraftView     = findViewById(R.id.voice_note_draft_view);
     this.slideToCancel          = new SlideToCancel(findViewById(R.id.slide_to_cancel));
     this.microphoneRecorderView = findViewById(R.id.recorder_view);
-    this.microphoneRecorderView.setListener(this);
+    this.microphoneRecorderView.setHandler(this);
     this.recordTime             = new RecordTime(findViewById(R.id.record_time),
                                                  findViewById(R.id.microphone),
                                                  TimeUnit.HOURS.toSeconds(1),
-                                                 () -> microphoneRecorderView.cancelAction());
+                                                 () -> microphoneRecorderView.cancelAction(false));
 
-    this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction());
+    this.recordLockCancel.setOnClickListener(v -> microphoneRecorderView.cancelAction(true));
 
     if (SignalStore.settings().isPreferSystemEmoji()) {
       mediaKeyboard.setVisibility(View.GONE);
@@ -268,7 +269,14 @@ public class InputPanel extends LinearLayout
 
   public Optional<QuoteModel> getQuote() {
     if (quoteView.getQuoteId() > 0 && quoteView.getVisibility() == View.VISIBLE) {
-      return Optional.of(new QuoteModel(quoteView.getQuoteId(), quoteView.getAuthor().getId(), quoteView.getBody().toString(), false, quoteView.getAttachments(), quoteView.getMentions(), quoteView.getQuoteType()));
+      return Optional.of(new QuoteModel(quoteView.getQuoteId(),
+                                        quoteView.getAuthor().getId(),
+                                        quoteView.getBody().toString(),
+                                        false,
+                                        quoteView.getAttachments(),
+                                        quoteView.getMentions(),
+                                        quoteView.getQuoteType(),
+                                        quoteView.getBodyRanges()));
     } else {
       return Optional.empty();
     }
@@ -419,7 +427,7 @@ public class InputPanel extends LinearLayout
         listener.onRecorderFinished();
       } else {
         Toast.makeText(getContext(), R.string.InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send, Toast.LENGTH_LONG).show();
-        listener.onRecorderCanceled();
+        listener.onRecorderCanceled(true);
       }
     }
   }
@@ -433,14 +441,15 @@ public class InputPanel extends LinearLayout
     if (ViewUtil.isLtr(this) && position <= 0.5 ||
         ViewUtil.isRtl(this) && position >= 0.6)
     {
-      this.microphoneRecorderView.cancelAction();
+      this.microphoneRecorderView.cancelAction(true);
     }
   }
 
   @Override
-  public void onRecordCanceled() {
+  public void onRecordCanceled(boolean byUser) {
+    Log.d(TAG, "Recording canceled byUser=" + byUser);
     onRecordHideEvent();
-    if (listener != null) listener.onRecorderCanceled();
+    if (listener != null) listener.onRecorderCanceled(byUser);
   }
 
   @Override
@@ -452,7 +461,7 @@ public class InputPanel extends LinearLayout
   }
 
   public void onPause() {
-    this.microphoneRecorderView.cancelAction();
+    this.microphoneRecorderView.cancelAction(false);
   }
 
   public @NonNull Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
@@ -489,6 +498,10 @@ public class InputPanel extends LinearLayout
     mediaKeyboard.setToMedia();
   }
 
+  public void setToIme() {
+    mediaKeyboard.setToIme();
+  }
+
   @Override
   public void onKeyEvent(KeyEvent keyEvent) {
     composeText.dispatchKeyEvent(keyEvent);
@@ -518,11 +531,12 @@ public class InputPanel extends LinearLayout
     microphoneRecorderView.unlockAction();
   }
 
-  public void setVoiceNoteDraft(@Nullable DraftDatabase.Draft voiceNoteDraft) {
+  public void setVoiceNoteDraft(@Nullable DraftTable.Draft voiceNoteDraft) {
     if (voiceNoteDraft != null) {
       voiceNoteDraftView.setDraft(voiceNoteDraft);
       voiceNoteDraftView.setVisibility(VISIBLE);
       hideNormalComposeViews();
+      fadeIn(buttonToggle);
       buttonToggle.displayQuick(sendButton);
     } else {
       voiceNoteDraftView.clearDraft();
@@ -531,7 +545,7 @@ public class InputPanel extends LinearLayout
     }
   }
 
-  public @Nullable DraftDatabase.Draft getVoiceNoteDraft() {
+  public @Nullable DraftTable.Draft getVoiceNoteDraft() {
     return voiceNoteDraftView.getDraft();
   }
 
@@ -578,7 +592,7 @@ public class InputPanel extends LinearLayout
     void onRecorderStarted();
     void onRecorderLocked();
     void onRecorderFinished();
-    void onRecorderCanceled();
+    void onRecorderCanceled(boolean byUser);
     void onRecorderPermissionRequired();
     void onEmojiToggle();
     void onLinkPreviewCanceled();

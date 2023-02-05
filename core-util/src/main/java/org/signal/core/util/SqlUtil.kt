@@ -4,11 +4,14 @@ import android.content.ContentValues
 import android.text.TextUtils
 import androidx.annotation.VisibleForTesting
 import androidx.sqlite.db.SupportSQLiteDatabase
+import org.signal.core.util.logging.Log
 import java.util.LinkedList
 import java.util.Locale
 import java.util.stream.Collectors
 
 object SqlUtil {
+  private val TAG = Log.tag(SqlUtil::class.java)
+
   /** The maximum number of arguments (i.e. question marks) allowed in a SQL statement.  */
   private const val MAX_QUERY_ARGS = 999
 
@@ -31,6 +34,57 @@ object SqlUtil {
       }
     }
     return tables
+  }
+
+  /**
+   * Returns the total number of changes that have been made since the creation of this database connection.
+   *
+   * IMPORTANT: Due to how connection pooling is handled in the app, the only way to have this return useful numbers is to call it within a transaction.
+   */
+  fun getTotalChanges(db: SupportSQLiteDatabase): Long {
+    return db.query("SELECT total_changes()", null).readToSingleLong()
+  }
+
+  @JvmStatic
+  fun getAllTriggers(db: SupportSQLiteDatabase): List<String> {
+    val tables: MutableList<String> = LinkedList()
+    db.query("SELECT name FROM sqlite_master WHERE type=?", arrayOf("trigger")).use { cursor ->
+      while (cursor.moveToNext()) {
+        tables.add(cursor.getString(0))
+      }
+    }
+    return tables
+  }
+
+  @JvmStatic
+  fun getNextAutoIncrementId(db: SupportSQLiteDatabase, table: String): Long {
+    db.query("SELECT * FROM sqlite_sequence WHERE name = ?", arrayOf(table)).use { cursor ->
+      if (cursor.moveToFirst()) {
+        val current = cursor.requireLong("seq")
+        return current + 1
+      } else if (db.query("SELECT COUNT(*) FROM $table").readToSingleLong(defaultValue = 0) == 0L) {
+        Log.w(TAG, "No entries exist in $table. Returning 1.")
+        return 1
+      } else if (columnExists(db, table, "_id")) {
+        Log.w(TAG, "There are entries in $table, but we couldn't get the auto-incrementing id? Using the max _id in the table.")
+        val current = db.query("SELECT MAX(_id) FROM $table").readToSingleLong(defaultValue = 0)
+        return current + 1
+      } else {
+        Log.w(TAG, "No autoincrement _id, non-empty table, no _id column!")
+        throw IllegalArgumentException("Table must have an auto-incrementing primary key!")
+      }
+    }
+  }
+
+  /**
+   * Given a table, this will return a set of tables that it has a foreign key dependency on.
+   */
+  @JvmStatic
+  fun getForeignKeyDependencies(db: SupportSQLiteDatabase, table: String): Set<String> {
+    return db.query("PRAGMA foreign_key_list($table)")
+      .readToSet{ cursor ->
+        cursor.requireNonNullString("table")
+      }
   }
 
   @JvmStatic

@@ -79,8 +79,7 @@ class GiftFlowRecipientSelectionFragment : Fragment(R.layout.gift_flow_recipient
   override fun onSearchInputFocused() = Unit
 
   override fun setResult(bundle: Bundle) {
-    val parcelableContacts: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
-    val contacts = parcelableContacts.map { it.asRecipientSearchKey() }
+    val contacts: List<ContactSearchKey.RecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
 
     if (contacts.isNotEmpty()) {
       viewModel.setSelectedContact(contacts.first())

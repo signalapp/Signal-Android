@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.jobmanager.migrations;
 
 import androidx.annotation.NonNull;
 
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 
@@ -11,22 +11,22 @@ import java.util.TreeSet;
 
 public class SendReadReceiptsJobMigration extends JobMigration {
 
-  private final MmsSmsDatabase mmsSmsDatabase;
+  private final MessageTable messageTable;
 
-  public SendReadReceiptsJobMigration(@NonNull MmsSmsDatabase mmsSmsDatabase) {
+  public SendReadReceiptsJobMigration(@NonNull MessageTable messageTable) {
     super(5);
-    this.mmsSmsDatabase = mmsSmsDatabase;
+    this.messageTable = messageTable;
   }
 
   @Override
   protected @NonNull JobData migrate(@NonNull JobData jobData) {
     if ("SendReadReceiptJob".equals(jobData.getFactoryKey())) {
-      return migrateSendReadReceiptJob(mmsSmsDatabase, jobData);
+      return migrateSendReadReceiptJob(messageTable, jobData);
     }
     return jobData;
   }
 
-  private static @NonNull JobData migrateSendReadReceiptJob(@NonNull MmsSmsDatabase mmsSmsDatabase, @NonNull JobData jobData) {
+  private static @NonNull JobData migrateSendReadReceiptJob(@NonNull MessageTable messageTable, @NonNull JobData jobData) {
     Data data = jobData.getData();
 
     if (!data.hasLong("thread")) {
@@ -34,7 +34,7 @@ public class SendReadReceiptsJobMigration extends JobMigration {
       SortedSet<Long> threadIds  = new TreeSet<>();
 
       for (long id : messageIds) {
-        long threadForMessageId = mmsSmsDatabase.getThreadForMessageId(id);
+        long threadForMessageId = messageTable.getThreadIdForMessage(id);
         if (id != -1) {
           threadIds.add(threadForMessageId);
         }

@@ -8,9 +8,8 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob;
 import org.thoughtcrime.securesms.messages.MessageDecryptionUtil.DecryptionResult;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.GroupUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.Stopwatch;
@@ -66,13 +64,11 @@ public class IncomingMessageProcessor {
 
   public class Processor implements Closeable {
 
-    private final Context           context;
-    private final MmsSmsDatabase    mmsSmsDatabase;
-    private final JobManager        jobManager;
+    private final Context     context;
+    private final JobManager  jobManager;
 
     private Processor(@NonNull Context context) {
       this.context           = context;
-      this.mmsSmsDatabase    = SignalDatabase.mmsSms();
       this.jobManager        = ApplicationDependencies.getJobManager();
     }
 
@@ -161,7 +157,7 @@ public class IncomingMessageProcessor {
       Recipient sender = Recipient.externalPush(envelope.getSourceAddress());
       Log.i(TAG, "Received server receipt. Sender: " + sender.getId() + ", Device: " + envelope.getSourceDevice() + ", Timestamp: " + envelope.getTimestamp());
 
-      mmsSmsDatabase.incrementDeliveryReceiptCount(new SyncMessageId(sender.getId(), envelope.getTimestamp()), System.currentTimeMillis());
+      SignalDatabase.messages().incrementDeliveryReceiptCount(new SyncMessageId(sender.getId(), envelope.getTimestamp()), System.currentTimeMillis());
       SignalDatabase.messageLog().deleteEntryForRecipient(envelope.getTimestamp(), sender.getId(), envelope.getSourceDevice());
     }
 
@@ -177,8 +173,8 @@ public class IncomingMessageProcessor {
         GroupId groupId = GroupId.v2(groupContext.getMasterKey());
 
         if (groupId.isV2()) {
-          String        queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
-          GroupDatabase groupDatabase = SignalDatabase.groups();
+          String     queueName     = PushProcessMessageJob.getQueueName(Recipient.externalPossiblyMigratedGroup(groupId).getId());
+          GroupTable groupDatabase = SignalDatabase.groups();
 
           return !jobManager.isQueueEmpty(queueName)                                                                   ||
                  groupContext.getRevision() > groupDatabase.getGroupV2Revision(groupId.requireV2()) ||

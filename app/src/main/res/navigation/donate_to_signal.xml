@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_donateToSignalFragment_to_creditCardFragment"
             app:destination="@id/creditCardFragment" />
+        <action
+            android:id="@+id/action_donateToSignalFragment_to_paypalPaymentInProgressFragment"
+            app:destination="@id/paypalPaymentInProgressFragment" />
 
     </fragment>
 
@@ -74,11 +77,11 @@
         android:id="@+id/stripePaymentInProgressFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripePaymentInProgressFragment"
         android:label="stripe_payment_in_progress_fragment"
-        tools:layout="@layout/stripe_payment_in_progress_fragment">
+        tools:layout="@layout/donation_in_progress_fragment">
 
         <argument
             android:name="action"
-            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.StripeAction"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction"
             app:nullable="false" />
 
         <argument
@@ -123,17 +126,83 @@
             android:name="request"
             app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
+
+        <action
+            android:id="@+id/action_creditCardFragment_to_yourInformationIsPrivateBottomSheet"
+            app:destination="@id/yourInformationIsPrivateBottomSheet" />
+        <action
+            android:id="@+id/action_creditCardFragment_to_stripePaymentInProgressFragment"
+            app:destination="@id/stripePaymentInProgressFragment" />
     </fragment>
 
     <dialog
         android:id="@+id/stripe3dsDialogFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.Stripe3DSDialogFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.stripe.Stripe3DSDialogFragment"
         android:label="stripe_3ds_dialog_fragment"
-        tools:layout="@layout/stripe_3ds_dialog_fragment">
+        tools:layout="@layout/donation_webview_fragment">
 
         <argument
             android:name="uri"
             app:argType="android.net.Uri"
+            app:nullable="false" />
+
+        <argument
+            android:name="return_uri"
+            app:argType="android.net.Uri"
+            app:nullable="false" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/yourInformationIsPrivateBottomSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.YourInformationIsPrivateBottomSheet"
+        android:label="your_information_is_private_bottom_sheet"
+        tools:layout="@layout/dsl_settings_bottom_sheet" />
+
+    <dialog
+        android:id="@+id/paypalPaymentInProgressFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalPaymentInProgressFragment"
+        android:label="paypal_payment_in_progress"
+        tools:layout="@layout/donation_in_progress_fragment">
+
+        <argument
+            android:name="action"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction"
+            app:nullable="false" />
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
+            app:nullable="false" />
+        <action
+            android:id="@+id/action_paypalPaymentInProgressFragment_to_paypalConfirmationFragment"
+            app:destination="@id/paypalConfirmationFragment" />
+        <action
+            android:id="@+id/action_paypalPaymentInProgressFragment_to_paypalCompleteOrderBottomSheet"
+            app:destination="@id/paypalCompleteOrderBottomSheet" />
+    </dialog>
+
+    <dialog
+        android:id="@+id/paypalConfirmationFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalConfirmationDialogFragment"
+        android:label="paypal_confirmation_dialog_fragment"
+        tools:layout="@layout/donation_webview_fragment">
+
+        <argument
+            android:name="uri"
+            app:argType="android.net.Uri"
+            app:nullable="false" />
+
+    </dialog>
+
+    <dialog
+        android:id="@+id/paypalCompleteOrderBottomSheet"
+        android:name="org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal.PayPalCompleteOrderBottomSheet"
+        android:label="paypal_complete_order_bottom_sheet"
+        tools:layout="@layout/dsl_settings_bottom_sheet">
+
+        <argument
+            android:name="request"
+            app:argType="org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest"
             app:nullable="false" />
     </dialog>
 

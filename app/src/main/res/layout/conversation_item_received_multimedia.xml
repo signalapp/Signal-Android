@@ -31,7 +31,7 @@
             android:layout_gravity="center"
             android:padding="9dp"
             android:tint="@color/signal_icon_tint_primary"
-            app:srcCompat="@drawable/ic_reply_24" />
+            app:srcCompat="@drawable/symbol_reply_24" />
 
     </FrameLayout>
 
@@ -207,6 +207,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout="@layout/conversation_item_received_gift" />
+
+        <ViewStub
+            android:id="@+id/payment_view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_payment" />
 
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/conversation_item_body"

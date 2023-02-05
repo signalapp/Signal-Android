@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 
 import org.signal.core.util.logging.Log;
+import org.signal.donations.PaymentSourceType;
 import org.signal.donations.StripeDeclineCode;
 import org.signal.libsignal.zkgroup.InvalidInputException;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
@@ -15,6 +16,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError;
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource;
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.PayPalDeclineCode;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DonationReceiptRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -138,11 +140,11 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
       if (isForKeepAlive) {
         Log.w(TAG, "Subscription payment failure in active subscription response (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
+        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), true);
         throw new Exception("Active subscription hit a payment failure: " + subscription.getStatus());
       } else {
         Log.w(TAG, "New subscription has hit a payment failure. (status = " + subscription.getStatus() + ").", true);
-        onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+        onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
         throw new Exception("New subscription has hit a payment failure: " + subscription.getStatus());
       }
     } else if (!subscription.isActive()) {
@@ -152,7 +154,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
 
         if (!isForKeepAlive) {
           Log.w(TAG, "Initial subscription payment failed, treating as a permanent failure.");
-          onPaymentFailure(subscription.getStatus(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
+          onPaymentFailure(subscription.getStatus(), subscription.getProcessor(), chargeFailure, subscription.getEndOfCurrentPeriod(), false);
           throw new Exception("New subscription has hit a payment failure.");
         }
       }
@@ -166,6 +168,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       Log.i(TAG, "Subscription is valid, proceeding with request for ReceiptCredentialResponse", true);
       long storedEndOfPeriod = SignalStore.donationsValues().getLastEndOfPeriod();
       if (storedEndOfPeriod < subscription.getEndOfCurrentPeriod()) {
+        Log.i(TAG, "Storing lastEndOfPeriod and syncing with linked devices", true);
         SignalStore.donationsValues().setLastEndOfPeriod(subscription.getEndOfCurrentPeriod());
         MultiDeviceSubscriptionSyncRequestJob.enqueue();
       }
@@ -264,7 +267,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
         throw new Exception(response.getApplicationError().get());
       case 409:
         onAlreadyRedeemed(response);
-        throw new Exception(response.getApplicationError().get());
+        break;
       default:
         Log.w(TAG, "Encountered a server failure response: " + response.getStatus(), response.getApplicationError().get(), true);
         throw new RetryableException();
@@ -281,7 +284,7 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
    * 1. In the case of a keep-alive event, we want to book-keep the error to show the user on a subsequent launch, and we want to sync our failure state to
    * linked devices.
    */
-  private void onPaymentFailure(@NonNull String status, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
+  private void onPaymentFailure(@NonNull String status, @NonNull ActiveSubscription.Processor processor, @Nullable ActiveSubscription.ChargeFailure chargeFailure, long timestamp, boolean isForKeepAlive) {
     SignalStore.donationsValues().setShouldCancelSubscriptionBeforeNextSubscribeAttempt(true);
     if (isForKeepAlive) {
       Log.d(TAG, "Is for a keep-alive and we have a status. Setting UnexpectedSubscriptionCancelation state...", true);
@@ -289,23 +292,69 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationReason(status);
       SignalStore.donationsValues().setUnexpectedSubscriptionCancelationTimestamp(timestamp);
       MultiDeviceSubscriptionSyncRequestJob.enqueue();
-    } else if (chargeFailure != null) {
-      Log.d(TAG, "Charge failure detected: " + chargeFailure, true);
+    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.STRIPE) {
+      Log.d(TAG, "Stripe charge failure detected: " + chargeFailure, true);
 
       StripeDeclineCode               declineCode = StripeDeclineCode.Companion.getFromCode(chargeFailure.getOutcomeNetworkReason());
       DonationError.PaymentSetupError paymentSetupError;
+      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      boolean                         isStripeSource = paymentSourceType instanceof PaymentSourceType.Stripe;
 
-      if (declineCode.isKnown()) {
-        paymentSetupError = new DonationError.PaymentSetupError.DeclinedError(
+      if (declineCode.isKnown() && isStripeSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.StripeDeclinedError(
             getErrorSource(),
             new Exception(chargeFailure.getMessage()),
-            declineCode
+            declineCode,
+            (PaymentSourceType.Stripe) paymentSourceType
         );
-      } else {
-        paymentSetupError = new DonationError.PaymentSetupError.CodedError(
+      } else if (isStripeSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.StripeCodedError(
             getErrorSource(),
             new Exception("Card was declined. " + chargeFailure.getCode()),
             chargeFailure.getCode()
+        );
+      } else {
+        paymentSetupError = new DonationError.PaymentSetupError.GenericError(
+            getErrorSource(),
+            new Exception("Payment Failed for " + paymentSourceType.getCode())
+        );
+      }
+
+      Log.w(TAG, "Not for a keep-alive and we have a charge failure. Routing a payment setup error...", true);
+      DonationError.routeDonationError(context, paymentSetupError);
+    } else if (chargeFailure != null && processor == ActiveSubscription.Processor.BRAINTREE) {
+      Log.d(TAG, "PayPal charge failure detected: " + chargeFailure, true);
+
+
+      int code;
+      try {
+        code = Integer.parseInt(chargeFailure.getCode());
+      } catch (NumberFormatException e) {
+        Log.w(TAG, "PayPal charge failure code had unexpected type.");
+        code = -1;
+      }
+
+      PayPalDeclineCode               declineCode       = new PayPalDeclineCode(code);
+      DonationError.PaymentSetupError paymentSetupError;
+      PaymentSourceType               paymentSourceType = SignalStore.donationsValues().getSubscriptionPaymentSourceType();
+      boolean                         isPayPalSource    = paymentSourceType instanceof PaymentSourceType.PayPal;
+
+      if (declineCode.getKnownCode() != null && isPayPalSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.PayPalDeclinedError(
+            getErrorSource(),
+            new Exception(chargeFailure.getMessage()),
+            declineCode.getKnownCode()
+        );
+      } else if (isPayPalSource) {
+        paymentSetupError = new DonationError.PaymentSetupError.PayPalCodedError(
+            getErrorSource(),
+            new Exception("Card was declined. " + chargeFailure.getCode()),
+            code
+        );
+      } else {
+        paymentSetupError = new DonationError.PaymentSetupError.GenericError(
+            getErrorSource(),
+            new Exception("Payment Failed for " + paymentSourceType.getCode())
         );
       }
 
@@ -320,12 +369,17 @@ public class SubscriptionReceiptRequestResponseJob extends BaseJob {
     }
   }
 
-  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) {
+  /**
+   * Handle 409 error code. This is a permanent failure for new subscriptions but an ignorable error for keep-alive messages.
+   */
+  private void onAlreadyRedeemed(ServiceResponse<ReceiptCredentialResponse> response) throws Exception {
     if (isForKeepAlive) {
       Log.i(TAG, "KeepAlive: Latest paid receipt on subscription already redeemed with a different request credential, ignoring.", response.getApplicationError().get(), true);
+      setOutputData(new Data.Builder().putBoolean(DonationReceiptRedemptionJob.INPUT_KEEP_ALIVE_409, true).build());
     } else {
       Log.w(TAG, "Latest paid receipt on subscription already redeemed with a different request credential.", response.getApplicationError().get(), true);
       DonationError.routeDonationError(context, DonationError.genericBadgeRedemptionFailure(getErrorSource()));
+      throw new Exception(response.getApplicationError().get());
     }
   }
 

@@ -5,8 +5,6 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.test.core.app.ApplicationProvider
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
-import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -19,18 +17,17 @@ import org.thoughtcrime.securesms.testing.TestDatabaseUtil
 @Config(manifest = Config.NONE, application = Application::class)
 class MmsSmsDatabaseTest {
 
-  private lateinit var mmsSmsDatabase: MmsSmsDatabase
+  private lateinit var messageTable: MessageTable
   private lateinit var db: SQLiteDatabase
 
   @Before
   fun setup() {
     val sqlCipher = TestDatabaseUtil.inMemoryDatabase {
-      execSQL(MmsDatabase.CREATE_TABLE)
-      execSQL(SmsDatabase.CREATE_TABLE)
+      execSQL(MessageTable.CREATE_TABLE)
     }
 
     db = sqlCipher.writableDatabase
-    mmsSmsDatabase = MmsSmsDatabase(ApplicationProvider.getApplicationContext(), sqlCipher)
+    messageTable = MessageTable(ApplicationProvider.getApplicationContext(), sqlCipher)
   }
 
   @After
@@ -41,20 +38,18 @@ class MmsSmsDatabaseTest {
   @Test
   fun `getConversationSnippet when single normal SMS, return SMS message id and transport as false`() {
     TestSms.insert(db)
-    mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
-      assertFalse(CursorUtil.requireBoolean(cursor, MmsSmsDatabase.TRANSPORT))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 
   @Test
   fun `getConversationSnippet when single normal MMS, return MMS message id and transport as true`() {
     TestMms.insert(db)
-    mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
-      assertTrue(CursorUtil.requireBoolean(cursor, MmsSmsDatabase.TRANSPORT))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 
@@ -63,17 +58,15 @@ class MmsSmsDatabaseTest {
     val timestamp = System.currentTimeMillis()
 
     TestMms.insert(db, receivedTimestampMillis = timestamp + 2)
-    mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
-      assertTrue(CursorUtil.requireBoolean(cursor, MmsSmsDatabase.TRANSPORT))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
 
-    TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MmsSmsColumns.Types.BASE_SENDING_TYPE or MmsSmsColumns.Types.SECURE_MESSAGE_BIT or MmsSmsColumns.Types.PUSH_MESSAGE_BIT or MmsSmsColumns.Types.GROUP_V2_LEAVE_BITS)
-    mmsSmsDatabase.getConversationSnippetCursor(1).use { cursor ->
+    TestSms.insert(db, receivedTimestampMillis = timestamp + 3, type = MessageTypes.BASE_SENDING_TYPE or MessageTypes.SECURE_MESSAGE_BIT or MessageTypes.PUSH_MESSAGE_BIT or MessageTypes.GROUP_V2_LEAVE_BITS)
+    messageTable.getConversationSnippetCursor(1).use { cursor ->
       cursor.moveToFirst()
-      assertEquals(1, CursorUtil.requireLong(cursor, MmsSmsColumns.ID))
-      assertTrue(CursorUtil.requireBoolean(cursor, MmsSmsDatabase.TRANSPORT))
+      assertEquals(1, CursorUtil.requireLong(cursor, MessageTable.ID))
     }
   }
 }

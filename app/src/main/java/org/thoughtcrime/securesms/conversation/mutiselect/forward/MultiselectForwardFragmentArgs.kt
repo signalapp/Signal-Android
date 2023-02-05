@@ -35,6 +35,7 @@ import java.util.function.Consumer
  * @param forceDisableAddMessage Hide the add message field even if it would normally be available.
  * @param forceSelectionOnly     Force the fragment to only select recipients, never actually performing the send.
  * @param selectSingleRecipient  Only allow the selection of a single recipient.
+ * @param isWrappedInBottomSheet Whether the fragment is wrapped in a bottom sheet.
  */
 @Parcelize
 data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
@@ -47,7 +48,8 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
   val sendButtonColors: ViewColorSet = ViewColorSet.PRIMARY,
   val storySendRequirements: Stories.MediaTransform.SendRequirements = Stories.MediaTransform.SendRequirements.CAN_NOT_SEND,
   val isSearchEnabled: Boolean = true,
-  val isViewOnce: Boolean = false
+  val isViewOnce: Boolean = false,
+  val isWrappedInBottomSheet: Boolean = false
 ) : Parcelable {
 
   fun withSendButtonTint(@ColorInt sendButtonTint: Int) = copy(sendButtonColors = ViewColorSet.forCustomColor(sendButtonTint))
@@ -114,6 +116,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
         .withMentions(conversationMessage.mentions)
         .withTimestamp(conversationMessage.messageRecord.timestamp)
         .withExpiration(conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn)
+        .withBodyRanges(conversationMessage.messageRecord.messageRanges)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
         val mediaMessage: MmsMessageRecord? = conversationMessage.messageRecord as? MmsMessageRecord

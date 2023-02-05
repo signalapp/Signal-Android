@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.stories.viewer.first
 import android.app.Dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
@@ -36,14 +35,12 @@ class StoryFirstTimeNavigationFragment : DialogFragment(R.layout.story_viewer_fi
     val dialog = super.onCreateDialog(savedInstanceState)
     dialog.window!!.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      dialog.window!!.addFlags(
-        WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION or
-          WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or
-          WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS or
-          WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-      )
-    }
+    dialog.window!!.addFlags(
+      WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION or
+        WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS or
+        WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS or
+        WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+    )
     return dialog
   }
 

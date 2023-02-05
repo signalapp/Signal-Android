@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item app:state_flash_auto="true" android:drawable="@drawable/flash_auto_32" />
-    <item app:state_flash_off="true" android:drawable="@drawable/ic_flash_24" />
-    <item app:state_flash_on="true" android:drawable="@drawable/ic_flash_filled_24" />
+    <item app:state_flash_auto="true" android:drawable="@drawable/symbol_flash_auto_24" />
+    <item app:state_flash_off="true" android:drawable="@drawable/symbol_flash_slash_24" />
+    <item app:state_flash_on="true" android:drawable="@drawable/symbol_flash_24" />
 </selector>

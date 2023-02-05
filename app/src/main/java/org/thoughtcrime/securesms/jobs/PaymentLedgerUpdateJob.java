@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 import com.mobilecoin.lib.exceptions.FogSyncException;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -64,8 +64,8 @@ public final class PaymentLedgerUpdateJob extends BaseJob {
 
     Long minimumBlockIndex = null;
     if (paymentUuid != null) {
-      PaymentDatabase.PaymentTransaction payment = SignalDatabase.payments()
-                                                                 .getPayment(paymentUuid);
+      PaymentTable.PaymentTransaction payment = SignalDatabase.payments()
+                                                              .getPayment(paymentUuid);
 
       if (payment != null) {
         minimumBlockIndex = payment.getBlockIndex();

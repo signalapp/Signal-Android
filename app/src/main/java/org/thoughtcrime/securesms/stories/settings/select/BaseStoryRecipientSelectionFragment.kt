@@ -12,13 +12,12 @@ import com.google.android.material.button.MaterialButton
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sharing.ShareContact
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.findListener
 import java.util.Optional
@@ -78,7 +77,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
 
     viewModel.state.observe(viewLifecycleOwner) {
       if (it.distributionListId == null || it.privateStory != null) {
-        getAttachedContactSelectionFragment().markSelected(it.selection.map(::ShareContact).toSet())
+        getAttachedContactSelectionFragment().markSelected(it.selection.toSet())
         presentTitle(toolbar, it.selection.size)
       }
     }
@@ -141,7 +140,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
   private fun initializeContactSelectionFragment() {
     val contactSelectionListFragment = ContactSelectionListFragment()
     val arguments = ContactSelectionArguments(
-      displayMode = ContactsCursorLoader.DisplayMode.FLAG_PUSH or ContactsCursorLoader.DisplayMode.FLAG_HIDE_NEW,
+      displayMode = ContactSelectionDisplayMode.FLAG_PUSH or ContactSelectionDisplayMode.FLAG_HIDE_NEW,
       isRefreshable = false,
       displayRecents = false,
       selectionLimits = SelectionLimits.NO_LIMITS,

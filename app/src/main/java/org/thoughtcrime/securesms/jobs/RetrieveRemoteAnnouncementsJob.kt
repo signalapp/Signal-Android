@@ -9,8 +9,9 @@ import org.signal.core.util.Hex
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BuildConfig
-import org.thoughtcrime.securesms.database.MessageDatabase
-import org.thoughtcrime.securesms.database.RemoteMegaphoneDatabase
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
+import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.RemoteMegaphoneTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.addButton
@@ -150,7 +151,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     }
 
     if (!values.hasMetConversationRequirement) {
-      if ((SignalDatabase.threads.getArchivedConversationListCount() + SignalDatabase.threads.getUnarchivedConversationListCount()) < 6) {
+      if ((SignalDatabase.threads.getArchivedConversationListCount(ConversationFilter.OFF) + SignalDatabase.threads.getUnarchivedConversationListCount(ConversationFilter.OFF)) < 6) {
         Log.i(TAG, "User does not have enough conversations to show release channel")
         values.nextScheduledCheck = System.currentTimeMillis() + RETRIEVE_FREQUENCY
         return
@@ -202,14 +203,15 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
         }
 
         ThreadUtil.sleep(5)
-        val insertResult: MessageDatabase.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
+        val insertResult: MessageTable.InsertResult? = ReleaseChannel.insertReleaseChannelMessage(
           recipientId = values.releaseChannelRecipientId!!,
           body = body,
           threadId = threadId,
           messageRanges = bodyRangeList.build(),
-          image = note.translation.image,
-          imageWidth = note.translation.imageWidth?.toIntOrNull() ?: 0,
-          imageHeight = note.translation.imageHeight?.toIntOrNull() ?: 0
+          media = note.translation.media,
+          mediaWidth = note.translation.mediaWidth?.toIntOrNull() ?: 0,
+          mediaHeight = note.translation.mediaHeight?.toIntOrNull() ?: 0,
+          mediaType = note.translation.mediaContentType ?: "image/webp"
         )
 
         if (insertResult != null) {
@@ -226,7 +228,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     if (addedNewNotes) {
       ThreadUtil.sleep(5)
-      SignalDatabase.sms.insertBoostRequestMessage(values.releaseChannelRecipientId!!, threadId)
+      SignalDatabase.messages.insertBoostRequestMessage(values.releaseChannelRecipientId!!, threadId)
     }
 
     values.highestVersionNoteReceived = highestVersion
@@ -293,7 +295,7 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
     val megaphonesToDelete = existingMegaphones
       .filterKeys { !manifestMegaphones.contains(it) }
-      .filterValues { it.minimumVersion != RemoteMegaphoneDatabase.VERSION_FINISHED }
+      .filterValues { it.minimumVersion != RemoteMegaphoneTable.VERSION_FINISHED }
 
     if (megaphonesToDelete.isNotEmpty()) {
       Log.i(TAG, "Clearing ${megaphonesToDelete.size} stale megaphones ${megaphonesToDelete.keys}")
@@ -396,9 +398,10 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
 
   data class TranslatedReleaseNote(
     @JsonProperty val uuid: String,
-    @JsonProperty val image: String?,
-    @JsonProperty val imageWidth: String?,
-    @JsonProperty val imageHeight: String?,
+    @JsonProperty val media: String?,
+    @JsonProperty val mediaWidth: String?,
+    @JsonProperty val mediaHeight: String?,
+    @JsonProperty val mediaContentType: String?,
     @JsonProperty val linkText: String?,
     @JsonProperty val title: String,
     @JsonProperty val body: String,

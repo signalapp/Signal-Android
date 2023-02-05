@@ -26,12 +26,14 @@ import com.bumptech.glide.load.resource.bitmap.BitmapTransformation;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.FitCenter;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.Request;
+import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.RequestOptions;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequest;
 import org.thoughtcrime.securesms.mms.GlideRequests;
@@ -344,7 +346,7 @@ public class ThumbnailView extends FrameLayout {
     }
 
     if (slide.getUri() != null && slide.hasPlayOverlay() &&
-        (slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE || isPreview))
+        (slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE || isPreview))
     {
       this.playOverlay.setVisibility(View.VISIBLE);
     } else {
@@ -418,13 +420,21 @@ public class ThumbnailView extends FrameLayout {
   }
 
   public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height) {
+    return setImageResource(glideRequests, uri, width, height, true, null);
+  }
+
+  public ListenableFuture<Boolean> setImageResource(@NonNull GlideRequests glideRequests, @NonNull Uri uri, int width, int height, boolean animate, @Nullable ThumbnailRequestListener listener) {
     SettableFuture<Boolean> future = new SettableFuture<>();
 
     if (transferControls.isPresent()) getTransferControls().setVisibility(View.GONE);
 
-    GlideRequest request = glideRequests.load(new DecryptableUri(uri))
-                                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                                        .transition(withCrossFade());
+    GlideRequest<Drawable> request = glideRequests.load(new DecryptableUri(uri))
+                                                  .diskCacheStrategy(DiskCacheStrategy.NONE)
+                                                  .listener(listener);
+
+    if (animate) {
+      request = request.transition(withCrossFade());
+    }
 
     if (width > 0 && height > 0) {
       request = request.override(width, height);
@@ -436,7 +446,17 @@ public class ThumbnailView extends FrameLayout {
       request = request.transforms(new CenterCrop());
     }
 
-    request.into(new GlideDrawableListeningTarget(image, future));
+    GlideDrawableListeningTarget target = new GlideDrawableListeningTarget(image, future);
+    Request previousRequest = target.getRequest();
+    boolean previousRequestRunning = previousRequest != null && previousRequest.isRunning();
+    request.into(target);
+    if (listener != null) {
+      listener.onLoadScheduled();
+      if (previousRequestRunning) {
+        listener.onLoadCanceled();
+      }
+    }
+
     blurhash.setImageDrawable(null);
 
     return future;
@@ -563,12 +583,17 @@ public class ThumbnailView extends FrameLayout {
     return 0;
   }
 
+  public interface ThumbnailRequestListener extends RequestListener<Drawable> {
+    void onLoadCanceled();
+    void onLoadScheduled();
+  }
+
   private class ThumbnailClickDispatcher implements View.OnClickListener {
     @Override
     public void onClick(View view) {
       boolean validThumbnail = slide != null &&
                                slide.asAttachment().getUri() != null &&
-                               slide.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_DONE;
+                               slide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_DONE;
 
       boolean permanentFailure = slide != null && slide.asAttachment().isPermanentlyFailed();
 

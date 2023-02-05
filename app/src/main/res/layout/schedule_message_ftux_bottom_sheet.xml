@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <View
+        android:layout_width="48dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:background="@color/signal_icon_tint_tab_unselected"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/schedule_message_large"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center_horizontal"/>
+
+    <TextView
+        style="@style/Signal.Text.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="@string/ScheduleMessageFTUXBottomSheet__title"
+        />
+
+    <TextView
+        style="@style/Signal.Text.BodyMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_marginTop="12dp"
+        android:layout_marginHorizontal="24dp"
+        android:text="@string/ScheduleMessageFTUXBottomSheet__disclaimer"
+        />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/reenable_settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="@string/ReenableScheduleMessagesDialogFragment_reenable_title"
+            android:textAppearance="@style/Signal.Text.TitleMedium"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:viewBindingIgnore="true"
+            />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ChooseANewDefaultSmsAppFragment__bullet_1"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_colorSurface3"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/headline"
+                tools:viewBindingIgnore="true"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="32dp"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bullet_1"
+                app:layout_constraintTop_toBottomOf="@id/headline"
+                tools:viewBindingIgnore="true"/>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/bullet_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/ChooseANewDefaultSmsAppFragment__bullet_2"
+                android:background="@drawable/circle_tintable"
+                android:backgroundTint="@color/signal_colorSurface3"
+                android:textAppearance="@style/Signal.Text.BodyMedium"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                android:textStyle="bold"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bullet_1_barrier"
+                tools:viewBindingIgnore="true"/>
+
+            <TextView
+                android:id="@+id/bullet_2_text"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="23dp"
+                android:layout_marginEnd="32dp"
+                android:minWidth="28dp"
+                android:minHeight="28dp"
+                android:padding="4dp"
+                android:text="@string/BackupSchedulePermissionMegaphone__turn_on_allow_settings_alarms_and_reminders"
+                android:textAlignment="viewStart"
+                android:textAppearance="@style/Signal.Text.BodyLarge"
+                android:textColor="@color/signal_colorOnSurfaceVariant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/bullet_2"
+                app:layout_constraintTop_toBottomOf="@id/bullet_1_barrier"
+                tools:viewBindingIgnore="true"/>
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/bullet_2_barrier"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:orientation="horizontal"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="bullet_2,bullet_2_text"
+                tools:viewBindingIgnore="true"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Signal.Widget.Button.Large.Tonal"
+            android:id="@+id/enable_scheduled_messages_go_to_settings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="24dp"
+            android:text="@string/BackupSchedulePermissionMegaphone__go_to_settings"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/bullet_2_barrier" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/okay"
+        style="@style/Signal.Widget.Button.Medium.Tonal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:text="@string/ScheduleMessageFTUXBottomSheet__okay"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

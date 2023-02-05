@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:background="@color/signal_colorSurface1">
+
+        <TextView
+            android:id="@+id/scheduled_messages_text"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="17dp"
+            tools:text="1 message scheduled"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/scheduled_messages_show_all"
+            style="@style/Widget.Signal.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/conversation_scheduled_messages_bar__see_all" />
+
+</LinearLayout>

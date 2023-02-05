@@ -27,13 +27,13 @@ class SafetyNumberBottomSheetRepositoryTest {
   @Test
   fun givenIOnlyHave1to1Destinations_whenIGetBuckets_thenIOnlyHaveContactsBucketContainingAllRecipients() {
     val recipients = harness.others
-    val destinations = harness.others.map { ContactSearchKey.RecipientSearchKey.KnownRecipient(it) }
+    val destinations = harness.others.map { ContactSearchKey.RecipientSearchKey(it, false) }
 
     val result = subjectUnderTest.getBuckets(recipients, destinations).test()
 
     testScheduler.triggerActions()
 
-    result.assertValueAt(1) { map ->
+    result.assertValueAt(0) { map ->
       assertMatch(map, mapOf(SafetyNumberBucket.ContactsBucket to harness.others))
     }
   }
@@ -42,7 +42,7 @@ class SafetyNumberBottomSheetRepositoryTest {
   fun givenIOnlyHaveASingle1to1Destination_whenIGetBuckets_thenIOnlyHaveContactsBucketContainingAllRecipients() {
     // GIVEN
     val recipients = harness.others
-    val destination = harness.others.take(1).map { ContactSearchKey.RecipientSearchKey.KnownRecipient(it) }
+    val destination = harness.others.take(1).map { ContactSearchKey.RecipientSearchKey(it, false) }
 
     // WHEN
     val result = subjectUnderTest.getBuckets(recipients, destination).test(1)
@@ -59,7 +59,7 @@ class SafetyNumberBottomSheetRepositoryTest {
     // GIVEN
     val distributionListMembers = harness.others.take(5)
     val distributionList = SignalDatabase.distributionLists.createList("ListA", distributionListMembers)!!
-    val destinationKey = ContactSearchKey.RecipientSearchKey.Story(SignalDatabase.distributionLists.getRecipientId(distributionList)!!)
+    val destinationKey = ContactSearchKey.RecipientSearchKey(SignalDatabase.distributionLists.getRecipientId(distributionList)!!, true)
 
     // WHEN
     val result = subjectUnderTest.getBuckets(harness.others, listOf(destinationKey)).test(1)
@@ -82,7 +82,7 @@ class SafetyNumberBottomSheetRepositoryTest {
     val distributionListMembers = harness.others.take(5)
     val toRemove = distributionListMembers.last()
     val distributionList = SignalDatabase.distributionLists.createList("ListA", distributionListMembers)!!
-    val destinationKey = ContactSearchKey.RecipientSearchKey.Story(SignalDatabase.distributionLists.getRecipientId(distributionList)!!)
+    val destinationKey = ContactSearchKey.RecipientSearchKey(SignalDatabase.distributionLists.getRecipientId(distributionList)!!, true)
     val testSubscriber = subjectUnderTest.getBuckets(distributionListMembers, listOf(destinationKey)).test(2)
     testScheduler.triggerActions()
 
@@ -108,7 +108,7 @@ class SafetyNumberBottomSheetRepositoryTest {
     // GIVEN
     val distributionListMembers = harness.others.take(5)
     val distributionList = SignalDatabase.distributionLists.createList("ListA", distributionListMembers)!!
-    val destinationKey = ContactSearchKey.RecipientSearchKey.Story(SignalDatabase.distributionLists.getRecipientId(distributionList)!!)
+    val destinationKey = ContactSearchKey.RecipientSearchKey(SignalDatabase.distributionLists.getRecipientId(distributionList)!!, true)
     val testSubscriber = subjectUnderTest.getBuckets(distributionListMembers, listOf(destinationKey)).test(2)
     testScheduler.triggerActions()
 

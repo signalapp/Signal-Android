@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
@@ -27,7 +27,7 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   private static final String TAG = Log.tag(ContactRecordProcessor.class);
 
-  private final RecipientDatabase recipientDatabase;
+  private final RecipientTable recipientTable;
 
   private final ACI    selfAci;
   private final PNI    selfPni;
@@ -40,11 +40,11 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
          SignalDatabase.recipients());
   }
 
-  ContactRecordProcessor(@Nullable ACI selfAci, @Nullable PNI selfPni, @Nullable String selfE164, @NonNull RecipientDatabase recipientDatabase) {
-    this.recipientDatabase = recipientDatabase;
-    this.selfAci           = selfAci;
-    this.selfPni           = selfPni;
-    this.selfE164          = selfE164;
+  ContactRecordProcessor(@Nullable ACI selfAci, @Nullable PNI selfPni, @Nullable String selfE164, @NonNull RecipientTable recipientTable) {
+    this.recipientTable = recipientTable;
+    this.selfAci        = selfAci;
+    this.selfPni        = selfPni;
+    this.selfE164       = selfE164;
   }
 
   /**
@@ -83,29 +83,29 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
       remote = remote.withoutPni();
     }
 
-    Optional<RecipientId> found = recipientDatabase.getByServiceId(remote.getServiceId());
+    Optional<RecipientId> found = recipientTable.getByServiceId(remote.getServiceId());
 
     if (!found.isPresent() && remote.getNumber().isPresent()) {
-      found = recipientDatabase.getByE164(remote.getNumber().get());
+      found = recipientTable.getByE164(remote.getNumber().get());
     }
 
     if (!found.isPresent() && remote.getPni().isPresent()) {
-      found = recipientDatabase.getByServiceId(remote.getPni().get());
+      found = recipientTable.getByServiceId(remote.getPni().get());
     }
 
     if (!found.isPresent() && remote.getPni().isPresent()) {
-      found = recipientDatabase.getByPni(remote.getPni().get());
+      found = recipientTable.getByPni(remote.getPni().get());
     }
 
-    return found.map(recipientDatabase::getRecordForSync)
+    return found.map(recipientTable::getRecordForSync)
                 .map(settings -> {
                   if (settings.getStorageId() != null) {
                     return StorageSyncModels.localToRemoteRecord(settings);
                   } else {
                     Log.w(TAG, "Newly discovering a registered user via storage service. Saving a storageId for them.");
-                    recipientDatabase.updateStorageId(settings.getId(), keyGenerator.generate());
+                    recipientTable.updateStorageId(settings.getId(), keyGenerator.generate());
 
-                    RecipientRecord updatedSettings = Objects.requireNonNull(recipientDatabase.getRecordForSync(settings.getId()));
+                    RecipientRecord updatedSettings = Objects.requireNonNull(recipientTable.getRecordForSync(settings.getId()));
                     return StorageSyncModels.localToRemoteRecord(updatedSettings);
                   }
                 })
@@ -230,12 +230,12 @@ public class ContactRecordProcessor extends DefaultStorageRecordProcessor<Signal
 
   @Override
   void insertLocal(@NonNull SignalContactRecord record) {
-    recipientDatabase.applyStorageSyncContactInsert(record);
+    recipientTable.applyStorageSyncContactInsert(record);
   }
 
   @Override
   void updateLocal(@NonNull StorageRecordUpdate<SignalContactRecord> update) {
-    recipientDatabase.applyStorageSyncContactUpdate(update);
+    recipientTable.applyStorageSyncContactUpdate(update);
   }
 
   @Override

@@ -19,7 +19,7 @@ enum class StoryViewState {
   companion object {
     @JvmStatic
     fun getForRecipientId(recipientId: RecipientId): Observable<StoryViewState> {
-      if (recipientId.equals(Recipient.self().id)) {
+      if (recipientId == Recipient.self().id) {
         return Observable.fromCallable {
           SignalDatabase.recipients.getDistributionListRecipientIds()
         }.flatMap { ids ->
@@ -27,7 +27,7 @@ enum class StoryViewState {
             if (combined.isEmpty()) {
               NONE
             } else {
-              val results = combined.toList() as List<StoryViewState>
+              val results: List<StoryViewState> = combined.filterIsInstance<StoryViewState>()
               when {
                 results.any { it == UNVIEWED } -> UNVIEWED
                 results.any { it == VIEWED } -> VIEWED
@@ -45,7 +45,7 @@ enum class StoryViewState {
     private fun getState(recipientId: RecipientId): Observable<StoryViewState> {
       return Observable.create<StoryViewState> { emitter ->
         fun refresh() {
-          emitter.onNext(SignalDatabase.mms.getStoryViewState(recipientId))
+          emitter.onNext(SignalDatabase.messages.getStoryViewState(recipientId))
         }
 
         val storyObserver = DatabaseObserver.Observer {

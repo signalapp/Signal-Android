@@ -4,7 +4,6 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Size
 import android.widget.FrameLayout
-import androidx.annotation.RequiresApi
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ImageAnalysis
@@ -22,7 +21,6 @@ import java.util.concurrent.Executors
  * API21+ version of QR scanning view. Uses camerax APIs.
  */
 @SuppressLint("ViewConstructor")
-@RequiresApi(21)
 internal class ScannerView21 constructor(
   context: Context,
   private val listener: ScanListener

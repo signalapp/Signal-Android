@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeApi
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.VerificationFailedException
@@ -95,6 +96,18 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
      * assumed that there is no work to be done.
      */
     private const val SUBSCRIPTION_EOP_REDEEMED = "subscription.eop.redeemed"
+
+    /**
+     * Notes the type of payment the user utilized for the latest subscription. This is useful
+     * in determining which error messaging they should see if something goes wrong.
+     */
+    private const val SUBSCRIPTION_PAYMENT_SOURCE_TYPE = "subscription.payment.source.type"
+
+    /**
+     * Marked whenever we check for Google Pay availability, to help make decisions without
+     * awaiting the background task.
+     */
+    private const val IS_GOOGLE_PAY_READY = "subscription.is.google.pay.ready"
   }
 
   override fun onFirstEverAppLaunch() = Unit
@@ -112,7 +125,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     SUBSCRIPTION_CREDENTIAL_RECEIPT,
     SUBSCRIPTION_EOP_STARTED_TO_CONVERT,
     SUBSCRIPTION_EOP_STARTED_TO_REDEEM,
-    SUBSCRIPTION_EOP_REDEEMED
+    SUBSCRIPTION_EOP_REDEEMED,
+    SUBSCRIPTION_PAYMENT_SOURCE_TYPE
   )
 
   private val subscriptionCurrencyPublisher: Subject<Currency> by lazy { BehaviorSubject.createDefault(getSubscriptionCurrency()) }
@@ -346,6 +360,8 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
     get() = getBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, false)
     set(value) = putBoolean(SHOULD_CANCEL_SUBSCRIPTION_BEFORE_NEXT_SUBSCRIBE_ATTEMPT, value)
 
+  var isGooglePayReady: Boolean by booleanValue(IS_GOOGLE_PAY_READY, false)
+
   /**
    * Consolidates a bunch of data clears that should occur whenever a user manually cancels their
    * subscription:
@@ -440,6 +456,14 @@ internal class DonationsValues internal constructor(store: KeyValueStore) : Sign
 
   fun clearSubscriptionReceiptCredential() {
     remove(SUBSCRIPTION_CREDENTIAL_RECEIPT)
+  }
+
+  fun setSubscriptionPaymentSourceType(paymentSourceType: PaymentSourceType) {
+    putString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, paymentSourceType.code)
+  }
+
+  fun getSubscriptionPaymentSourceType(): PaymentSourceType {
+    return PaymentSourceType.fromCode(getString(SUBSCRIPTION_PAYMENT_SOURCE_TYPE, null))
   }
 
   var subscriptionEndOfPeriodConversionStarted by longValue(SUBSCRIPTION_EOP_STARTED_TO_CONVERT, 0L)

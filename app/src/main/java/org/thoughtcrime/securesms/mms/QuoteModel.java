@@ -6,6 +6,7 @@ import androidx.annotation.Nullable;
 
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 
@@ -21,6 +22,7 @@ public class QuoteModel {
   private final List<Attachment> attachments;
   private final List<Mention>    mentions;
   private final Type             type;
+  private final BodyRangeList    bodyRanges;
 
   public QuoteModel(long id,
                     @NonNull RecipientId author,
@@ -28,7 +30,8 @@ public class QuoteModel {
                     boolean missing,
                     @Nullable List<Attachment> attachments,
                     @Nullable List<Mention> mentions,
-                    @NonNull Type type)
+                    @NonNull Type type,
+                    @Nullable BodyRangeList bodyRanges)
   {
     this.id          = id;
     this.author      = author;
@@ -37,6 +40,7 @@ public class QuoteModel {
     this.attachments = attachments;
     this.mentions    = mentions != null ? mentions : Collections.emptyList();
     this.type        = type;
+    this.bodyRanges  = bodyRanges;
   }
 
   public long getId() {
@@ -65,6 +69,10 @@ public class QuoteModel {
 
   public Type getType() {
     return type;
+  }
+
+  public @Nullable BodyRangeList getBodyRanges() {
+    return bodyRanges;
   }
 
   public enum Type {

@@ -239,9 +239,9 @@ public class SignalServiceAccountManager {
    * @param captchaToken                 If the user has done a CAPTCHA, include this.
    * @param challenge                    If present, it can bypass the CAPTCHA.
    */
-  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
+  public ServiceResponse<RequestVerificationCodeResponse> requestSmsVerificationCode(Locale locale, boolean androidSmsRetrieverSupported, Optional<String> captchaToken, Optional<String> challenge, Optional<String> fcmToken) {
     try {
-      this.pushServiceSocket.requestSmsVerificationCode(androidSmsRetrieverSupported, captchaToken, challenge);
+      this.pushServiceSocket.requestSmsVerificationCode(locale, androidSmsRetrieverSupported, captchaToken, challenge);
       return ServiceResponse.forResult(new RequestVerificationCodeResponse(fcmToken), 200, null);
     } catch (IOException e) {
       return ServiceResponse.forUnknownError(e);
@@ -475,50 +475,6 @@ public class SignalServiceAccountManager {
   }
 
   @SuppressWarnings("SameParameterValue")
-  public Map<String, ACI> getRegisteredUsers(KeyStore iasKeyStore, Set<String> e164numbers, String mrenclave)
-      throws IOException, Quote.InvalidQuoteFormatException, UnauthenticatedQuoteException, SignatureException, UnauthenticatedResponseException, InvalidKeyException
-  {
-    if (e164numbers.isEmpty()) {
-      return Collections.emptyMap();
-    }
-
-    try {
-      String                         authorization = this.pushServiceSocket.getContactDiscoveryAuthorization();
-      Map<String, RemoteAttestation> attestations  = RemoteAttestationUtil.getAndVerifyMultiRemoteAttestation(pushServiceSocket,
-                                                                                                              PushServiceSocket.ClientSet.ContactDiscovery,
-                                                                                                              iasKeyStore,
-                                                                                                              mrenclave,
-                                                                                                              mrenclave,
-                                                                                                              authorization);
-
-      List<String> addressBook = new ArrayList<>(e164numbers.size());
-
-      for (String e164number : e164numbers) {
-        addressBook.add(e164number.substring(1));
-      }
-
-      List<String>      cookies  = attestations.values().iterator().next().getCookies();
-      DiscoveryRequest  request  = ContactDiscoveryCipher.createDiscoveryRequest(addressBook, attestations);
-      DiscoveryResponse response = this.pushServiceSocket.getContactDiscoveryRegisteredUsers(authorization, request, cookies, mrenclave);
-      byte[]            data     = ContactDiscoveryCipher.getDiscoveryResponseData(response, attestations.values());
-
-      HashMap<String, ACI> results         = new HashMap<>(addressBook.size());
-      DataInputStream      uuidInputStream = new DataInputStream(new ByteArrayInputStream(data));
-
-      for (String candidate : addressBook) {
-        long candidateUuidHigh = uuidInputStream.readLong();
-        long candidateUuidLow  = uuidInputStream.readLong();
-        if (candidateUuidHigh != 0 || candidateUuidLow != 0) {
-          results.put('+' + candidate, ACI.from(new UUID(candidateUuidHigh, candidateUuidLow)));
-        }
-      }
-
-      return results;
-    } catch (InvalidCiphertextException e) {
-      throw new UnauthenticatedResponseException(e);
-    }
-  }
-
   public CdsiV2Service.Response getRegisteredUsersWithCdsi(Set<String> previousE164s,
                                                            Set<String> newE164s,
                                                            Map<ServiceId, ProfileKey> serviceIds,
@@ -803,8 +759,8 @@ public class SignalServiceAccountManager {
     return this.pushServiceSocket.getCurrencyConversions();
   }
 
-  public void reportSpam(ServiceId serviceId, String serverGuid) throws IOException {
-    this.pushServiceSocket.reportSpam(serviceId, serverGuid);
+  public void reportSpam(ServiceId serviceId, String serverGuid, String reportingToken) throws IOException {
+    this.pushServiceSocket.reportSpam(serviceId, serverGuid, reportingToken);
   }
 
   /**

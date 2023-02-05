@@ -8,7 +8,6 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
@@ -19,11 +18,8 @@ import org.thoughtcrime.securesms.components.settings.models.OutlinedLearnMore
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.SmsExportPhase
-import org.thoughtcrime.securesms.util.SmsUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val SMS_REQUEST_CODE: Short = 1234
 
@@ -58,16 +54,14 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
       SignalStore.settings().setDefaultSms(true)
     } else {
       SignalStore.settings().setDefaultSms(false)
-      if (SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
-        findNavController().navigateUp()
-      }
+      findNavController().navigateUp()
     }
   }
 
   private fun getConfiguration(state: SmsSettingsState): DSLConfiguration {
     return configure {
 
-      if (state.useAsDefaultSmsApp && SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
+      if (state.useAsDefaultSmsApp) {
         customPref(
           OutlinedLearnMore.Model(
             summary = DSLSettingsText.from(R.string.SmsSettingsFragment__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging),
@@ -98,23 +92,29 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
             }
           )
 
+          clickPref(
+            title = DSLSettingsText.from(R.string.SmsSettingsFragment__export_sms_messages_again),
+            summary = DSLSettingsText.from(R.string.SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages),
+            onClick = {
+              SmsExportDialogs.showSmsReExportDialog(requireContext()) {
+                smsExportLauncher.launch(SmsExportActivity.createIntent(requireContext(), isReExport = true))
+              }
+            }
+          )
+
           dividerPref()
         }
         SmsExportState.NO_SMS_MESSAGES_IN_DATABASE -> Unit
         SmsExportState.NOT_AVAILABLE -> Unit
       }
 
-      if (state.useAsDefaultSmsApp || SignalStore.misc().smsExportPhase == SmsExportPhase.PHASE_0) {
+      if (state.useAsDefaultSmsApp) {
         @Suppress("DEPRECATION")
         clickPref(
           title = DSLSettingsText.from(R.string.SmsSettingsFragment__use_as_default_sms_app),
-          summary = DSLSettingsText.from(if (state.useAsDefaultSmsApp) R.string.arrays__enabled else R.string.arrays__disabled),
+          summary = DSLSettingsText.from(R.string.arrays__enabled),
           onClick = {
-            if (state.useAsDefaultSmsApp) {
-              startDefaultAppSelectionIntent()
-            } else {
-              startActivityForResult(SmsUtil.getSmsRoleIntent(requireContext()), SMS_REQUEST_CODE.toInt())
-            }
+            startDefaultAppSelectionIntent()
           }
         )
       }
@@ -136,15 +136,6 @@ class SmsSettingsFragment : DSLSettingsFragment(R.string.preferences__sms_mms) {
           viewModel.setWifiCallingCompatibilityEnabled(!state.wifiCallingCompatibilityEnabled)
         }
       )
-
-      if (Build.VERSION.SDK_INT < 21) {
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__advanced_mms_access_point_names),
-          onClick = {
-            Navigation.findNavController(requireView()).safeNavigate(R.id.action_smsSettingsFragment_to_mmsPreferencesFragment)
-          }
-        )
-      }
     }
   }
 

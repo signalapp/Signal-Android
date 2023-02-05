@@ -29,7 +29,9 @@ import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation;
 import org.thoughtcrime.securesms.components.quotes.QuoteViewColorTheme;
+import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.model.Mention;
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -224,7 +226,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
   }
 
   private @Nullable CharSequence resolveBody(@Nullable CharSequence body, @NonNull QuoteModel.Type quoteType) {
-    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__gift) : body;
+    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__donation_for_a_friend) : body;
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -437,7 +439,7 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
     }
 
     try {
-      return StoryTextPostModel.parseFrom(body.toString(), id, author.getId());
+      return StoryTextPostModel.parseFrom(body.toString(), id, author.getId(), MessageStyler.getStyling(body));
     } catch (IOException ioException) {
       return null;
     }
@@ -469,6 +471,10 @@ public class QuoteView extends FrameLayout implements RecipientForeverObserver {
 
   public @NonNull List<Mention> getMentions() {
     return MentionAnnotation.getMentionsFromAnnotations(body);
+  }
+
+  public @Nullable BodyRangeList getBodyRanges() {
+    return MessageStyler.getStyling(body);
   }
 
   private @NonNull ShapeAppearanceModel buildShapeAppearanceForLayoutDirection() {

@@ -15,6 +15,7 @@ import androidx.core.content.pm.ShortcutManagerCompat
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.Result
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
@@ -103,7 +104,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
             openConversation(
               ShareEvent.OpenConversation(
                 shareState.loadState.resolvedShareData,
-                ContactSearchKey.RecipientSearchKey.KnownRecipient(directShareTarget)
+                ContactSearchKey.RecipientSearchKey(directShareTarget, false)
               )
             )
           } else {
@@ -134,8 +135,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       throw AssertionError("Expected a recipient selection!")
     }
 
-    val parcelizedKeys: List<ContactSearchKey.ParcelableRecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
-    val contactSearchKeys = parcelizedKeys.map { it.asRecipientSearchKey() }
+    val contactSearchKeys: List<ContactSearchKey.RecipientSearchKey> = bundle.getParcelableArrayList(MultiselectForwardFragment.RESULT_SELECTION)!!
 
     viewModel.onContactSelectionConfirmed(contactSearchKeys)
   }
@@ -222,8 +222,9 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
       .asBorderless(multiShareArgs.isBorderless)
       .withShareDataTimestamp(System.currentTimeMillis())
 
+    val mainActivityIntent = MainActivity.clearTop(this)
     finish()
-    startActivity(conversationIntentBuilder.build())
+    startActivities(arrayOf(mainActivityIntent, conversationIntentBuilder.build()))
   }
 
   private fun openMediaInterstitial(shareEvent: ShareEvent.OpenMediaInterstitial) {

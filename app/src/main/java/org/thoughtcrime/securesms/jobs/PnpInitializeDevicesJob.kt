@@ -9,7 +9,8 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs
+import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs
+import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import java.io.IOException
 
@@ -27,7 +28,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.misc().hasPniInitializedDevices() || !SignalStore.account().isRegistered || SignalStore.account().aci == null || Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED) {
+      if (SignalStore.misc().hasPniInitializedDevices() || !SignalStore.account().isRegistered || SignalStore.account().aci == null || Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED || !FeatureFlags.phoneNumberPrivacy()) {
         return
       }
 
@@ -49,6 +50,14 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
 
   @Throws(Exception::class)
   public override fun onRun() {
+    if (Recipient.self().pnpCapability != Recipient.Capability.SUPPORTED) {
+      throw IllegalStateException("This should only be run if you have the capability!")
+    }
+
+    if (!FeatureFlags.phoneNumberPrivacy()) {
+      throw IllegalStateException("This should only be running if PNP is enabled!")
+    }
+
     if (!SignalStore.account().isRegistered || SignalStore.account().aci == null) {
       Log.w(TAG, "Not registered! Skipping, as it wouldn't do anything.")
       return
@@ -80,7 +89,7 @@ class PnpInitializeDevicesJob private constructor(parameters: Parameters) : Base
         Log.i(TAG, "Calling change number with our current number to distribute PNI messages")
         changeNumberRepository
           .changeNumber(code = PLACEHOLDER_CODE, newE164 = e164, pniUpdateMode = true)
-          .map(::VerifyAccountResponseWithoutKbs)
+          .map(::VerifyResponseWithoutKbs)
           .safeBlockingGet()
           .resultOrThrow
       } catch (e: InterruptedException) {

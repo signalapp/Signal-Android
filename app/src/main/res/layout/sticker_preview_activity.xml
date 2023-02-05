@@ -24,7 +24,7 @@
         app:layout_constraintTop_toTopOf="@id/sticker_install_title"
         app:layout_constraintBottom_toBottomOf="@id/sticker_install_author"
         app:layout_constraintStart_toStartOf="parent"
-        tools:src="@mipmap/ic_person_shortcut"/>
+        tools:src="@tools:sample/avatars"/>
 
     <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/sticker_install_title"
@@ -72,7 +72,7 @@
         android:layout_height="wrap_content"
         android:tint="@color/sticker_management_action_button_color"
         android:visibility="gone"
-        app:srcCompat="@drawable/ic_forward_24"
+        app:srcCompat="@drawable/symbol_forward_24"
         app:layout_constraintTop_toTopOf="@id/sticker_install_share_button"
         app:layout_constraintBottom_toBottomOf="@id/sticker_install_share_button"
         app:layout_constraintStart_toStartOf="@id/sticker_install_share_button"

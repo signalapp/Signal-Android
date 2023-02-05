@@ -10,7 +10,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.CallManager;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.CallTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
@@ -130,8 +131,6 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "handleAcceptCall(): call_id: " + activePeer.getCallId());
 
-    SignalDatabase.sms().insertReceivedCall(activePeer.getId(), currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
-
     currentState = currentState.builder()
                                .changeCallSetupState(activePeer.getCallId())
                                .acceptWithVideo(answerWithVideo)
@@ -156,10 +155,13 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
 
     Log.i(TAG, "handleDenyCall():");
 
+    webRtcInteractor.sendNotAcceptedCallEventSyncMessage(activePeer,
+                                                         false,
+                                                         currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
+
     try {
       webRtcInteractor.rejectIncomingCall(activePeer.getId());
       webRtcInteractor.getCallManager().hangup();
-      SignalDatabase.sms().insertMissedCall(activePeer.getId(), System.currentTimeMillis(), currentState.getCallSetupState(activePeer).isRemoteVideoOffer());
       return terminate(currentState, activePeer);
     } catch (CallException e) {
       return callFailure(currentState, "hangup() failed: ", e);
@@ -173,6 +175,14 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     Recipient  recipient  = remotePeer.getRecipient();
 
     activePeer.localRinging();
+
+    SignalDatabase.calls().insertCall(remotePeer.getCallId().longValue(),
+                                      System.currentTimeMillis(),
+                                      remotePeer.getId(),
+                                      currentState.getCallSetupState(activePeer).isRemoteVideoOffer() ? CallTable.Type.VIDEO_CALL : CallTable.Type.AUDIO_CALL,
+                                      CallTable.Direction.INCOMING,
+                                      CallTable.Event.ONGOING);
+
     webRtcInteractor.updatePhoneState(LockManager.PhoneState.INTERACTIVE);
 
     boolean shouldDisturbUserWithCall = DoNotDisturbUtil.shouldDisturbUserWithCall(context.getApplicationContext(), recipient);
@@ -185,14 +195,14 @@ public class IncomingCallActionProcessor extends DeviceAwareActionProcessor {
     }
 
     if (shouldDisturbUserWithCall && SignalStore.settings().isCallNotificationsEnabled()) {
-      Uri                            ringtone     = recipient.resolve().getCallRingtone();
-      RecipientDatabase.VibrateState vibrateState = recipient.resolve().getCallVibrate();
+      Uri                         ringtone     = recipient.resolve().getCallRingtone();
+      RecipientTable.VibrateState vibrateState = recipient.resolve().getCallVibrate();
 
       if (ringtone == null) {
         ringtone = SignalStore.settings().getCallRingtone();
       }
 
-      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientDatabase.VibrateState.ENABLED || (vibrateState == RecipientDatabase.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
+      webRtcInteractor.startIncomingRinger(ringtone, vibrateState == RecipientTable.VibrateState.ENABLED || (vibrateState == RecipientTable.VibrateState.DEFAULT && SignalStore.settings().isCallVibrateEnabled()));
     }
 
     webRtcInteractor.setCallInProgressNotification(TYPE_INCOMING_RINGING, activePeer);

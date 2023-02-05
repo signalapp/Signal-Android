@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 import java.util.List;
 
@@ -83,6 +84,12 @@ public final class GroupsV1MigrationInfoBottomSheetDialogFragment extends Bottom
     viewModel.getDroppedMembers().observe(getViewLifecycleOwner(), this::onDroppedMembersChanged);
 
     view.findViewById(R.id.gv1_learn_more_ok_button).setOnClickListener(v -> dismiss());
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   @Override

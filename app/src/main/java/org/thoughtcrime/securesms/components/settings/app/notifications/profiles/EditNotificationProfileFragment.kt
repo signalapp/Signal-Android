@@ -178,7 +178,7 @@ class EditNotificationProfileFragment : DSLSettingsFragment(layoutId = R.layout.
       emojiView?.setImageDrawable(drawable)
       viewModel.onEmojiSelected(emoji)
     } else {
-      emojiView?.setImageResource(R.drawable.ic_add_emoji)
+      emojiView?.setImageResource(R.drawable.symbol_emoji_plus_24)
       viewModel.onEmojiSelected("")
     }
   }

@@ -16,8 +16,8 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
 
   private final DefaultValueLiveData<KbsPin>          userEntry     = new DefaultValueLiveData<>(KbsPin.EMPTY);
   private final DefaultValueLiveData<PinKeyboardType> keyboard      = new DefaultValueLiveData<>(PinKeyboardType.NUMERIC);
-  private final DefaultValueLiveData<SaveAnimation>   saveAnimation = new DefaultValueLiveData<>(SaveAnimation.NONE);
-  private final DefaultValueLiveData<Label>           label         = new DefaultValueLiveData<>(Label.RE_ENTER_PIN);
+  private final DefaultValueLiveData<SaveAnimation> saveAnimation = new DefaultValueLiveData<>(SaveAnimation.NONE);
+  private final DefaultValueLiveData<LabelState>    label         = new DefaultValueLiveData<>(LabelState.EMPTY);
 
   private final KbsPin pinToConfirm;
 
@@ -35,27 +35,23 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
     return Transformations.distinctUntilChanged(saveAnimation);
   }
 
-  LiveData<Label> getLabel() {
+  LiveData<LabelState> getLabel() {
     return Transformations.distinctUntilChanged(label);
   }
 
   @Override
   public void confirm() {
     KbsPin userEntry = this.userEntry.getValue();
-    this.userEntry.setValue(KbsPin.EMPTY);
 
     if (pinToConfirm.toString().equals(userEntry.toString())) {
-      this.label.setValue(Label.CREATING_PIN);
+      this.label.setValue(LabelState.CREATING_PIN);
       this.saveAnimation.setValue(SaveAnimation.LOADING);
 
       repository.setPin(pinToConfirm, this.keyboard.getValue(), this::handleResult);
     } else {
-      this.label.setValue(Label.PIN_DOES_NOT_MATCH);
+      this.userEntry.setValue(KbsPin.EMPTY);
+      this.label.setValue(LabelState.PIN_DOES_NOT_MATCH);
     }
-  }
-
-  void onLoadingAnimationComplete() {
-    this.label.setValue(Label.EMPTY);
   }
 
   @Override
@@ -91,7 +87,7 @@ final class ConfirmKbsPinViewModel extends ViewModel implements BaseKbsPinViewMo
     }
   }
 
-  enum Label {
+  enum LabelState {
     RE_ENTER_PIN,
     PIN_DOES_NOT_MATCH,
     CREATING_PIN,

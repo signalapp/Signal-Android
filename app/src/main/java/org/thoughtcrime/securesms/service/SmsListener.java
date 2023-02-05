@@ -86,9 +86,6 @@ public class SmsListener extends BroadcastReceiver {
     if (isExemption(message, messageBody))
       return false;
 
-    if (!ApplicationMigrationService.isDatabaseImported(context))
-      return false;
-
     if (SMS_RECEIVED_ACTION.equals(intent.getAction()) && Util.isDefaultSmsProvider(context)) {
       return false;
     }

@@ -169,10 +169,8 @@ public abstract class AudioManagerCompat {
   public static AudioManagerCompat create(@NonNull Context context) {
     if (Build.VERSION.SDK_INT >= 26) {
       return new Api26AudioManagerCompat(context);
-    } else if (Build.VERSION.SDK_INT >= 21) {
-      return new Api21AudioManagerCompat(context);
     } else {
-      return new Api19AudioManagerCompat(context);
+      return new Api21AudioManagerCompat(context);
     }
   }
 
@@ -242,7 +240,6 @@ public abstract class AudioManagerCompat {
     }
   }
 
-  @RequiresApi(21)
   private static class Api21AudioManagerCompat extends Api19AudioManagerCompat {
 
     private static AudioAttributes AUDIO_ATTRIBUTES = new AudioAttributes.Builder()

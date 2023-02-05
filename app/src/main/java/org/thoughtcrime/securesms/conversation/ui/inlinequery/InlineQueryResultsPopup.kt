@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.conversation.ui.inlinequery
 
 import android.content.Context
 import android.graphics.Rect
-import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,10 +33,8 @@ class InlineQueryResultsPopup(
   private val adapter: MappingAdapter
 
   init {
-    if (Build.VERSION.SDK_INT >= 21) {
-      contentView.outlineProvider = ViewOutlineProvider.BACKGROUND
-      contentView.clipToOutline = true
-    }
+    contentView.outlineProvider = ViewOutlineProvider.BACKGROUND
+    contentView.clipToOutline = true
 
     inputMethodMode = INPUT_METHOD_NOT_NEEDED
 
@@ -46,9 +43,7 @@ class InlineQueryResultsPopup(
       callback = null
     }
 
-    if (Build.VERSION.SDK_INT >= 21) {
-      elevation = 20f
-    }
+    elevation = 20f
 
     adapter = InlineQueryAdapter { m -> callback?.onSelection(m) }
     list.adapter = adapter

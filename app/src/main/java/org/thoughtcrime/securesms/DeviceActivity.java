@@ -140,27 +140,18 @@ public class DeviceActivity extends PassphraseRequiredActivity
       Uri uri = Uri.parse(data);
       deviceLinkFragment.setLinkClickedListener(uri, DeviceActivity.this);
 
-      if (Build.VERSION.SDK_INT >= 21) {
-        deviceAddFragment.setSharedElementReturnTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(R.transition.fragment_shared));
-        deviceAddFragment.setExitTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(android.R.transition.fade));
+      deviceAddFragment.setSharedElementReturnTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(R.transition.fragment_shared));
+      deviceAddFragment.setExitTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(android.R.transition.fade));
 
-        deviceLinkFragment.setSharedElementEnterTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(R.transition.fragment_shared));
-        deviceLinkFragment.setEnterTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(android.R.transition.fade));
+      deviceLinkFragment.setSharedElementEnterTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(R.transition.fragment_shared));
+      deviceLinkFragment.setEnterTransition(TransitionInflater.from(DeviceActivity.this).inflateTransition(android.R.transition.fade));
 
-        getSupportFragmentManager().beginTransaction()
-                                   .addToBackStack(null)
-                                   .addSharedElement(deviceAddFragment.getDevicesImage(), "devices")
-                                   .replace(R.id.fragment_container, deviceLinkFragment)
-                                   .commit();
+      getSupportFragmentManager().beginTransaction()
+                                 .addToBackStack(null)
+                                 .addSharedElement(deviceAddFragment.getDevicesImage(), "devices")
+                                 .replace(R.id.fragment_container, deviceLinkFragment)
+                                 .commit();
 
-      } else {
-        getSupportFragmentManager().beginTransaction()
-                                   .setCustomAnimations(R.anim.slide_from_bottom, R.anim.slide_to_bottom,
-                                                        R.anim.slide_from_bottom, R.anim.slide_to_bottom)
-                                   .replace(R.id.fragment_container, deviceLinkFragment)
-                                   .addToBackStack(null)
-                                   .commit();
-      }
     });
   }
 

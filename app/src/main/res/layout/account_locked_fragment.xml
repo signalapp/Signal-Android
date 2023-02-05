@@ -36,15 +36,13 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/account_locked_next"
-        style="@style/Signal.Widget.Button.Large.Primary"
+        style="@style/Signal.Widget.Button.Large.Tonal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/cta_button_background"
         android:text="@string/AccountLockedFragment__next"
-        android:textColor="@color/core_white"
         app:layout_constraintBottom_toTopOf="@id/account_locked_learn_more"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

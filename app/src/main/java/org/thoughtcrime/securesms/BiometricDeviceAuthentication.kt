@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import androidx.activity.result.contract.ActivityResultContract
-import androidx.annotation.RequiresApi
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.biometric.BiometricPrompt.PromptInfo
@@ -44,7 +43,7 @@ class BiometricDeviceAuthentication(
         Log.i(TAG, "Skipping show system biometric or device lock dialog unless forced")
       }
       true
-    } else if (Build.VERSION.SDK_INT >= 21) {
+    } else {
       if (force) {
         Log.i(TAG, "firing intent...")
         showConfirmDeviceCredentialIntent()
@@ -52,9 +51,6 @@ class BiometricDeviceAuthentication(
         Log.i(TAG, "Skipping firing intent unless forced")
       }
       true
-    } else {
-      Log.w(TAG, "Not compatible...")
-      false
     }
   }
 
@@ -65,7 +61,6 @@ class BiometricDeviceAuthentication(
 
 class BiometricDeviceLockContract : ActivityResultContract<String, Int>() {
 
-  @RequiresApi(api = 21)
   override fun createIntent(context: Context, input: String): Intent {
     val keyguardManager = ServiceUtil.getKeyguardManager(context)
     return keyguardManager.createConfirmDeviceCredentialIntent(input, "")

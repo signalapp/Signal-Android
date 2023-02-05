@@ -34,6 +34,9 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Single;
+
 class ManageProfileViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(ManageProfileViewModel.class);
@@ -46,22 +49,24 @@ class ManageProfileViewModel extends ViewModel {
   private final LiveData<AvatarState>                avatarState;
   private final SingleLiveEvent<Event>               events;
   private final RecipientForeverObserver             observer;
-  private final ManageProfileRepository          repository;
-  private final MutableLiveData<Optional<Badge>> badge;
+  private final ManageProfileRepository              repository;
+  private final UsernameEditRepository               usernameEditRepository;
+  private final MutableLiveData<Optional<Badge>>     badge;
 
   private byte[] previousAvatar;
 
   public ManageProfileViewModel() {
-    this.internalAvatarState = new MutableLiveData<>();
-    this.profileName         = new MutableLiveData<>();
-    this.username            = new MutableLiveData<>();
-    this.about               = new MutableLiveData<>();
-    this.aboutEmoji          = new MutableLiveData<>();
-    this.events              = new SingleLiveEvent<>();
-    this.repository          = new ManageProfileRepository();
-    this.badge               = new DefaultValueLiveData<>(Optional.empty());
-    this.observer            = this::onRecipientChanged;
-    this.avatarState         = LiveDataUtil.combineLatest(Recipient.self().live().getLiveData(), internalAvatarState, (self, state) -> new AvatarState(state, self));
+    this.internalAvatarState    = new MutableLiveData<>();
+    this.profileName            = new MutableLiveData<>();
+    this.username               = new MutableLiveData<>();
+    this.about                  = new MutableLiveData<>();
+    this.aboutEmoji             = new MutableLiveData<>();
+    this.events                 = new SingleLiveEvent<>();
+    this.repository             = new ManageProfileRepository();
+    this.usernameEditRepository = new UsernameEditRepository();
+    this.badge                  = new DefaultValueLiveData<>(Optional.empty());
+    this.observer               = this::onRecipientChanged;
+    this.avatarState            = LiveDataUtil.combineLatest(Recipient.self().live().getLiveData(), internalAvatarState, (self, state) -> new AvatarState(state, self));
 
     SignalExecutors.BOUNDED.execute(() -> {
       onRecipientChanged(Recipient.self().fresh());
@@ -97,6 +102,10 @@ class ManageProfileViewModel extends ViewModel {
 
   public @NonNull LiveData<Event> getEvents() {
     return events;
+  }
+
+  public Single<UsernameEditRepository.UsernameDeleteResult> deleteUsername() {
+    return usernameEditRepository.deleteUsername().observeOn(AndroidSchedulers.mainThread());
   }
 
   public boolean shouldShowUsername() {
@@ -271,7 +280,7 @@ class ManageProfileViewModel extends ViewModel {
 
   static class Factory extends ViewModelProvider.NewInstanceFactory {
     @Override
-    public @NonNull<T extends ViewModel> T create(@NonNull Class<T> modelClass) {
+    public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       return Objects.requireNonNull(modelClass.cast(new ManageProfileViewModel()));
     }
   }

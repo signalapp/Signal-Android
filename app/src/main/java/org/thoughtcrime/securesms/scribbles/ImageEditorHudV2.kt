@@ -231,9 +231,6 @@ class ImageEditorHudV2 @JvmOverloads constructor(
     isAvatarEdit = true
   }
 
-  fun setColorPalette(colors: Set<Int>) {
-  }
-
   fun getActiveColor(): Int {
     return if (currentMode == Mode.HIGHLIGHT) {
       withHighlighterAlpha(drawSeekBar.getColor())

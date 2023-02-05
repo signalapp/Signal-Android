@@ -39,7 +39,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/media_count_indicator_text"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_chevron_end_24"
+        app:srcCompat="@drawable/symbol_chevron_right_24"
         app:tint="@color/signal_colorOnSurface" />
 
 </merge>

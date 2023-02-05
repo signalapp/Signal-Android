@@ -57,7 +57,7 @@
         android:layout_marginBottom="32dp"
         android:minHeight="48dp"
         android:layout_gravity="center_horizontal"
-        android:text="@string/ViewBadgeBottomSheetDialogFragment__become_a_sustainer"
+        android:text="@string/ViewBadgeBottomSheetDialogFragment__donate_now"
         app:iconGravity="textEnd"
         app:iconTint="@color/signal_colorOnSurfaceVariant"
         tools:icon="@drawable/ic_open_20" />

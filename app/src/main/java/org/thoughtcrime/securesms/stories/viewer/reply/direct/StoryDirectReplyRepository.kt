@@ -8,8 +8,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
-import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -22,13 +22,13 @@ class StoryDirectReplyRepository(context: Context) {
 
   fun getStoryPost(storyId: Long): Single<MessageRecord> {
     return Single.fromCallable {
-      SignalDatabase.mms.getMessageRecord(storyId)
+      SignalDatabase.messages.getMessageRecord(storyId)
     }.subscribeOn(Schedulers.io())
   }
 
-  fun send(storyId: Long, groupDirectReplyRecipientId: RecipientId?, charSequence: CharSequence, isReaction: Boolean): Completable {
+  fun send(storyId: Long, groupDirectReplyRecipientId: RecipientId?, body: CharSequence, bodyRangeList: BodyRangeList?, isReaction: Boolean): Completable {
     return Completable.create { emitter ->
-      val message = SignalDatabase.mms.getMessageRecord(storyId) as MediaMmsMessageRecord
+      val message = SignalDatabase.messages.getMessageRecord(storyId) as MediaMmsMessageRecord
       val (recipient, threadId) = if (groupDirectReplyRecipientId == null) {
         message.recipient to message.threadId
       } else {
@@ -43,28 +43,18 @@ class StoryDirectReplyRepository(context: Context) {
 
       MessageSender.send(
         context,
-        OutgoingMediaMessage(
-          recipient,
-          charSequence.toString(),
-          emptyList(),
-          System.currentTimeMillis(),
-          0,
-          TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
-          false,
-          0,
-          StoryType.NONE,
-          ParentStoryId.DirectReply(storyId),
-          isReaction,
-          QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL),
-          emptyList(),
-          emptyList(),
-          emptyList(),
-          emptySet(),
-          emptySet(),
-          null
+        OutgoingMessage(
+          recipient = recipient,
+          body = body.toString(),
+          sentTimeMillis = System.currentTimeMillis(),
+          expiresIn = TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
+          parentStoryId = ParentStoryId.DirectReply(storyId),
+          isStoryReaction = isReaction,
+          outgoingQuote = QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL, message.messageRanges),
+          bodyRanges = bodyRangeList
         ),
         threadId,
-        false,
+        MessageSender.SendType.SIGNAL,
         null
       ) {
         emitter.onComplete()

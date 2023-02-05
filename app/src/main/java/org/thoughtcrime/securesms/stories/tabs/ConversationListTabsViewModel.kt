@@ -23,8 +23,8 @@ class ConversationListTabsViewModel(repository: ConversationListTabRepository) :
   val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
 
   init {
-    disposables += repository.getNumberOfUnreadConversations().subscribe { unreadChats ->
-      store.update { it.copy(unreadChatsCount = unreadChats) }
+    disposables += repository.getNumberOfUnreadMessages().subscribe { unreadChats ->
+      store.update { it.copy(unreadMessagesCount = unreadChats) }
     }
 
     disposables += repository.getNumberOfUnseenStories().subscribe { unseenStories ->

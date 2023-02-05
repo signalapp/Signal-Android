@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Build;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.provider.Settings;
 
 import androidx.annotation.NonNull;
 
@@ -26,5 +27,11 @@ public final class VibrateUtil {
     } else {
       vibrator.vibrate(duration);
     }
+  }
+
+  public static boolean isHapticFeedbackEnabled(@NonNull Context context) {
+      int enabled = Settings.System.getInt(context.getContentResolver(),
+                                           android.provider.Settings.System.HAPTIC_FEEDBACK_ENABLED, 0);
+      return enabled != 0;
   }
 }

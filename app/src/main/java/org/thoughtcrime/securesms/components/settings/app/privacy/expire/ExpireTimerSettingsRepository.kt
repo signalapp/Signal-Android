@@ -5,11 +5,11 @@ import androidx.annotation.WorkerThread
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.groups.GroupChangeException
 import org.thoughtcrime.securesms.groups.GroupManager
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.OutgoingExpirationUpdateMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
@@ -39,8 +39,8 @@ class ExpireTimerSettingsRepository(val context: Context) {
         }
       } else {
         SignalDatabase.recipients.setExpireMessages(recipientId, newExpirationTime)
-        val outgoingMessage = OutgoingExpirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
-        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), false, null, null)
+        val outgoingMessage = OutgoingMessage.expirationUpdateMessage(Recipient.resolved(recipientId), System.currentTimeMillis(), newExpirationTime * 1000L)
+        MessageSender.send(context, outgoingMessage, getThreadId(recipientId), MessageSender.SendType.SIGNAL, null, null)
         consumer.invoke(Result.success(newExpirationTime))
       }
     }
@@ -57,8 +57,8 @@ class ExpireTimerSettingsRepository(val context: Context) {
 
   @WorkerThread
   private fun getThreadId(recipientId: RecipientId): Long {
-    val threadDatabase: ThreadDatabase = SignalDatabase.threads
+    val threadTable: ThreadTable = SignalDatabase.threads
     val recipient: Recipient = Recipient.resolved(recipientId)
-    return threadDatabase.getOrCreateThreadIdFor(recipient)
+    return threadTable.getOrCreateThreadIdFor(recipient)
   }
 }

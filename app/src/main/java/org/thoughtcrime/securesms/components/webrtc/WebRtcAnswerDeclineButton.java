@@ -190,11 +190,8 @@ public final class WebRtcAnswerDeclineButton extends LinearLayout implements Acc
           swipeUpText.setAlpha(1);
           swipeDownText.setAlpha(1);
           answer.setRotation(0);
-
-          if (Build.VERSION.SDK_INT >= 21) {
-            answer.getDrawable().setTint(getResources().getColor(R.color.green_600));
-            answer.getBackground().setTint(Color.WHITE);
-          }
+          answer.getDrawable().setTint(getResources().getColor(R.color.green_600));
+          answer.getBackground().setTint(Color.WHITE);
 
           animating = true;
           animateElements(0);

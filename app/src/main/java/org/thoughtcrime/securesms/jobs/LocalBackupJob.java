@@ -96,7 +96,7 @@ public final class LocalBackupJob extends BaseJob {
     ProgressUpdater updater = new ProgressUpdater(context.getString(R.string.LocalBackupJob_verifying_signal_backup));
     try (NotificationController notification = GenericForegroundService.startForegroundTask(context,
                                                                      context.getString(R.string.LocalBackupJob_creating_signal_backup),
-                                                                     NotificationChannels.BACKUPS,
+                                                                     NotificationChannels.getInstance().BACKUPS,
                                                                      R.drawable.ic_signal_backup))
     {
       updater.setNotification(notification);
@@ -165,7 +165,7 @@ public final class LocalBackupJob extends BaseJob {
       }
 
       BackupUtil.deleteOldBackups();
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       Log.w(TAG, "This should not happen on API < 31");
       throw new AssertionError(e);
     } finally {

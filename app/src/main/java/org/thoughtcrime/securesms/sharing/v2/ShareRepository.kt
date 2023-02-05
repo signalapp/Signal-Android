@@ -10,6 +10,7 @@ import androidx.annotation.WorkerThread
 import androidx.core.content.ContextCompat
 import androidx.core.util.toKotlinPair
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
@@ -29,12 +30,12 @@ class ShareRepository(context: Context) {
 
   private val appContext = context.applicationContext
 
-  fun resolve(unresolvedShareData: UnresolvedShareData): Single<ResolvedShareData> {
+  fun resolve(unresolvedShareData: UnresolvedShareData): Single<out ResolvedShareData> {
     return when (unresolvedShareData) {
       is UnresolvedShareData.ExternalMultiShare -> Single.fromCallable { resolve(unresolvedShareData) }
       is UnresolvedShareData.ExternalSingleShare -> Single.fromCallable { resolve(unresolvedShareData) }
       is UnresolvedShareData.ExternalPrimitiveShare -> Single.just(ResolvedShareData.Primitive(unresolvedShareData.text))
-    }
+    }.subscribeOn(Schedulers.io())
   }
 
   @NonNull

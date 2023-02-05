@@ -1,45 +1,45 @@
 package org.thoughtcrime.securesms.preferences;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
-import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.BackpressureStrategy;
-
-import static androidx.lifecycle.LiveDataReactiveStreams.fromPublisher;
+import io.reactivex.rxjava3.core.Flowable;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.subjects.BehaviorSubject;
+import io.reactivex.rxjava3.subjects.PublishSubject;
 
 public class EditProxyViewModel extends ViewModel {
 
-  private final SingleLiveEvent<Event>             events;
-  private final MutableLiveData<UiState>           uiState;
-  private final MutableLiveData<SaveState>         saveState;
-  private final LiveData<WebSocketConnectionState> pipeState;
+  private final PublishSubject<Event>              events;
+  private final BehaviorSubject<UiState>           uiState;
+  private final BehaviorSubject<SaveState>         saveState;
+  private final Flowable<WebSocketConnectionState> pipeState;
 
   public EditProxyViewModel() {
-    this.events    = new SingleLiveEvent<>();
-    this.uiState   = new MutableLiveData<>();
-    this.saveState = new MutableLiveData<>(SaveState.IDLE);
-    this.pipeState = SignalStore.account().getE164() == null ? new MutableLiveData<>()
-                                                             : fromPublisher(ApplicationDependencies.getSignalWebSocket()
-                                                                                                    .getWebSocketState()
-                                                                                                    .toFlowable(BackpressureStrategy.LATEST));
+    this.events    = PublishSubject.create();
+    this.uiState   = BehaviorSubject.create();
+    this.saveState = BehaviorSubject.createDefault(SaveState.IDLE);
+    this.pipeState = SignalStore.account().getE164() == null ? Flowable.empty()
+                                                             : ApplicationDependencies.getSignalWebSocket()
+                                                                                      .getWebSocketState()
+                                                                                      .toFlowable(BackpressureStrategy.LATEST);
 
     if (SignalStore.proxy().isProxyEnabled()) {
-      uiState.setValue(UiState.ALL_ENABLED);
+      uiState.onNext(UiState.ALL_ENABLED);
     } else {
-      uiState.setValue(UiState.ALL_DISABLED);
+      uiState.onNext(UiState.ALL_DISABLED);
     }
   }
 
@@ -50,20 +50,20 @@ public class EditProxyViewModel extends ViewModel {
       if (currentProxy != null && !Util.isEmpty(currentProxy.getHost())) {
         SignalProxyUtil.enableProxy(currentProxy);
       }
-      uiState.postValue(UiState.ALL_ENABLED);
+      uiState.onNext(UiState.ALL_ENABLED);
     } else if (Util.isEmpty(text)) {
         SignalProxyUtil.disableAndClearProxy();
-        uiState.postValue(UiState.ALL_DISABLED);
+        uiState.onNext(UiState.ALL_DISABLED);
     } else {
         SignalProxyUtil.disableProxy();
-        uiState.postValue(UiState.ALL_DISABLED);
+        uiState.onNext(UiState.ALL_DISABLED);
     }
   }
 
   public void onSaveClicked(@NonNull String host) {
     String trueHost = SignalProxyUtil.convertUserEnteredAddressToHost(host);
 
-    saveState.postValue(SaveState.IN_PROGRESS);
+    saveState.onNext(SaveState.IN_PROGRESS);
 
     SignalExecutors.BOUNDED.execute(() -> {
       SignalProxyUtil.enableProxy(new SignalProxy(trueHost, 443));
@@ -71,30 +71,30 @@ public class EditProxyViewModel extends ViewModel {
       boolean success = SignalProxyUtil.testWebsocketConnection(TimeUnit.SECONDS.toMillis(10));
 
       if (success) {
-        events.postValue(Event.PROXY_SUCCESS);
+        events.onNext(Event.PROXY_SUCCESS);
       } else {
         SignalProxyUtil.disableProxy();
-        events.postValue(Event.PROXY_FAILURE);
+        events.onNext(Event.PROXY_FAILURE);
       }
 
-      saveState.postValue(SaveState.IDLE);
+      saveState.onNext(SaveState.IDLE);
     });
   }
 
-  @NonNull LiveData<UiState> getUiState() {
-    return uiState;
+  @NonNull Observable<UiState> getUiState() {
+    return uiState.observeOn(AndroidSchedulers.mainThread());
   }
 
-  public @NonNull LiveData<Event> getEvents() {
-    return events;
+  public @NonNull Observable<Event> getEvents() {
+    return events.observeOn(AndroidSchedulers.mainThread());
   }
 
-  @NonNull LiveData<WebSocketConnectionState> getProxyState() {
-    return pipeState;
+  @NonNull Flowable<WebSocketConnectionState> getProxyState() {
+    return pipeState.observeOn(AndroidSchedulers.mainThread());
   }
 
-  public @NonNull LiveData<SaveState> getSaveState() {
-    return saveState;
+  public @NonNull Observable<SaveState> getSaveState() {
+    return saveState.observeOn(AndroidSchedulers.mainThread());
   }
 
   enum UiState {

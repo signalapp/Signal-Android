@@ -44,6 +44,8 @@ public final class SignalStore {
   private final ReleaseChannelValues      releaseChannelValues;
   private final StoryValues               storyValues;
 
+  private final PlainTextSharedPrefsDataStore plainTextValues;
+
   private static volatile SignalStore instance;
 
   private static @NonNull SignalStore getInstance() {
@@ -85,6 +87,7 @@ public final class SignalStore {
     this.notificationProfileValues = new NotificationProfileValues(store);
     this.releaseChannelValues      = new ReleaseChannelValues(store);
     this.storyValues               = new StoryValues(store);
+    this.plainTextValues           = new PlainTextSharedPrefsDataStore(ApplicationDependencies.getApplication());
   }
 
   public static void onFirstEverAppLaunch() {
@@ -267,6 +270,10 @@ public final class SignalStore {
 
   public static @NonNull PreferenceDataStore getPreferenceDataStore() {
     return new SignalPreferenceDataStore(getStore());
+  }
+
+  public static @NonNull PlainTextSharedPrefsDataStore plaintext() {
+    return getInstance().plainTextValues;
   }
 
   /**

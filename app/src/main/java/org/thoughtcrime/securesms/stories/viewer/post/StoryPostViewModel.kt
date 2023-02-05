@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
 import org.thoughtcrime.securesms.stories.viewer.page.StoryPost
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.rx.RxStore
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.microseconds
 
 class StoryPostViewModel(private val repository: StoryTextPostRepository) : ViewModel() {
@@ -40,11 +41,26 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
           store.update { StoryPostState.None() }
         } else if (storyPostContent.isVideo()) {
           store.update {
+            val shouldSkipTransform = storyPostContent.attachment.transformProperties.shouldSkipTransform()
+
+            val clipStart: Duration = if (shouldSkipTransform) {
+              0L.microseconds
+            } else {
+              storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds
+            }
+
+            val clipEnd: Duration = if (shouldSkipTransform) {
+              0L.microseconds
+            } else {
+              storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+            }
+
             StoryPostState.VideoPost(
               videoUri = storyPostContent.uri,
               size = storyPostContent.attachment.size,
-              clipStart = storyPostContent.attachment.transformProperties.videoTrimStartTimeUs.microseconds,
-              clipEnd = storyPostContent.attachment.transformProperties.videoTrimEndTimeUs.microseconds
+              clipStart = clipStart,
+              clipEnd = clipEnd,
+              blurHash = storyPostContent.attachment.blurHash
             )
           }
         } else {
@@ -62,22 +78,22 @@ class StoryPostViewModel(private val repository: StoryTextPostRepository) : View
       .doOnError { Log.w(TAG, "Failed to get typeface. Rendering with default.", it) }
       .onErrorReturn { Typeface.DEFAULT }
 
-    val postAndPreviews = repository.getRecord(recordId)
-      .map {
-        if (it.body.isNotEmpty()) {
-          StoryTextPost.parseFrom(Base64.decode(it.body)) to it.linkPreviews.firstOrNull()
+    disposables += Single.zip(typeface, repository.getRecord(recordId), ::Pair).subscribeBy(
+      onSuccess = { (t, record) ->
+        val text: StoryTextPost = if (record.body.isNotEmpty()) {
+          StoryTextPost.parseFrom(Base64.decode(record.body))
         } else {
           throw Exception("Text post message body is empty.")
         }
-      }
 
-    disposables += Single.zip(typeface, postAndPreviews, ::Pair).subscribeBy(
-      onSuccess = { (t, p) ->
+        val linkPreview = record.linkPreviews.firstOrNull()
+
         store.update {
           StoryPostState.TextPost(
-            storyTextPost = p.first,
-            linkPreview = p.second,
+            storyTextPost = text,
+            linkPreview = linkPreview,
             typeface = t,
+            bodyRanges = record.messageRanges,
             loadState = StoryPostState.LoadState.LOADED
           )
         }

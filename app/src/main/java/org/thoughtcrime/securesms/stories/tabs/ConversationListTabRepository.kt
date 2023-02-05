@@ -14,13 +14,10 @@ class ConversationListTabRepository {
     private val TAG = Log.tag(ConversationListTabRepository::class.java)
   }
 
-  fun getNumberOfUnreadConversations(): Observable<Long> {
+  fun getNumberOfUnreadMessages(): Observable<Long> {
     return Observable.create<Long> {
       fun refresh() {
-        it.onNext(SignalDatabase.threads.getUnreadThreadCount())
-
-        val ids = SignalDatabase.threads.getUnreadThreadIdList()
-        Log.d(TAG, "Unread threads: { $ids }")
+        it.onNext(SignalDatabase.threads.getUnreadMessageCount())
       }
 
       val listener = DatabaseObserver.Observer {
@@ -37,7 +34,7 @@ class ConversationListTabRepository {
   fun getNumberOfUnseenStories(): Observable<Long> {
     return Observable.create<Long> { emitter ->
       fun refresh() {
-        emitter.onNext(SignalDatabase.mms.unreadStoryThreadRecipientIds.map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
+        emitter.onNext(SignalDatabase.messages.unreadStoryThreadRecipientIds.map { Recipient.resolved(it) }.filterNot { it.shouldHideStory() }.size.toLong())
       }
 
       val listener = DatabaseObserver.Observer {

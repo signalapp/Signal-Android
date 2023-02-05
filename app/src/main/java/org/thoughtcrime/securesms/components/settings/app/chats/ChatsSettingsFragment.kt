@@ -14,8 +14,6 @@ import org.thoughtcrime.securesms.components.settings.app.chats.sms.SmsExportSta
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity
 import org.thoughtcrime.securesms.exporter.flow.SmsExportDialogs
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.FeatureFlags
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -47,7 +45,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
   private fun getConfiguration(state: ChatsSettingsState): DSLConfiguration {
     return configure {
 
-      if (!state.useAsDefaultSmsApp && SignalStore.misc().smsExportPhase.isAtLeastPhase1()) {
+      if (!state.useAsDefaultSmsApp) {
         when (state.smsExportState) {
           SmsExportState.FETCHING -> Unit
           SmsExportState.HAS_UNEXPORTED_MESSAGES -> {
@@ -67,6 +65,16 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
               summary = DSLSettingsText.from(R.string.SmsSettingsFragment__remove_sms_messages_from_signal_to_clear_up_storage_space),
               onClick = {
                 SmsExportDialogs.showSmsRemovalDialog(requireContext(), requireView())
+              }
+            )
+
+            clickPref(
+              title = DSLSettingsText.from(R.string.SmsSettingsFragment__export_sms_messages_again),
+              summary = DSLSettingsText.from(R.string.SmsSettingsFragment__exporting_again_can_result_in_duplicate_messages),
+              onClick = {
+                SmsExportDialogs.showSmsReExportDialog(requireContext()) {
+                  smsExportLauncher.launch(SmsExportActivity.createIntent(requireContext(), isReExport = true))
+                }
               }
             )
 
@@ -104,16 +112,14 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
         }
       )
 
-      if (FeatureFlags.keepMutedChatsArchived() || FeatureFlags.internalUser()) {
-        switchPref(
-          title = DSLSettingsText.from(R.string.preferences__pref_keep_muted_chats_archived),
-          summary = DSLSettingsText.from(R.string.preferences__muted_chats_that_are_archived_will_remain_archived),
-          isChecked = state.keepMutedChatsArchived,
-          onClick = {
-            viewModel.setKeepMutedChatsArchived(!state.keepMutedChatsArchived)
-          }
-        )
-      }
+      switchPref(
+        title = DSLSettingsText.from(R.string.preferences__pref_keep_muted_chats_archived),
+        summary = DSLSettingsText.from(R.string.preferences__muted_chats_that_are_archived_will_remain_archived),
+        isChecked = state.keepMutedChatsArchived,
+        onClick = {
+          viewModel.setKeepMutedChatsArchived(!state.keepMutedChatsArchived)
+        }
+      )
 
       dividerPref()
 

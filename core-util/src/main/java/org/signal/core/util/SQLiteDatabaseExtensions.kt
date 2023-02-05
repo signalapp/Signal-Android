@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
+import org.intellij.lang.annotations.Language
 
 /**
  * Begins a transaction on the `this` database, runs the provided [block] providing the `this` value as it's argument
@@ -37,10 +38,8 @@ fun SupportSQLiteDatabase.getTableRowCount(table: String): Int {
 /**
  * Checks if a row exists that matches the query.
  */
-fun SupportSQLiteDatabase.exists(table: String, query: String, vararg args: Any): Boolean {
-  return this.query("SELECT EXISTS(SELECT 1 FROM $table WHERE $query)", SqlUtil.buildArgs(*args)).use { cursor ->
-    cursor.moveToFirst() && cursor.getInt(0) == 1
-  }
+fun SupportSQLiteDatabase.exists(table: String): ExistsBuilderPart1 {
+  return ExistsBuilderPart1(this, table)
 }
 
 /**
@@ -85,8 +84,12 @@ class SelectBuilderPart2(
   private val columns: Array<String>,
   private val tableName: String
 ) {
-  fun where(where: String, vararg whereArgs: Any): SelectBuilderPart3 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): SelectBuilderPart3 {
     return SelectBuilderPart3(db, columns, tableName, where, SqlUtil.buildArgs(*whereArgs))
+  }
+
+  fun where(where: String, whereArgs: Array<String>): SelectBuilderPart3 {
+    return SelectBuilderPart3(db, columns, tableName, where, whereArgs)
   }
 
   fun run(): Cursor {
@@ -213,7 +216,7 @@ class UpdateBuilderPart2(
   private val tableName: String,
   private val values: ContentValues
 ) {
-  fun where(where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
     return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(*whereArgs))
   }
 
@@ -239,7 +242,7 @@ class DeleteBuilderPart1(
   private val db: SupportSQLiteDatabase,
   private val tableName: String
 ) {
-  fun where(where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): DeleteBuilderPart2 {
     return DeleteBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
   }
 
@@ -256,5 +259,34 @@ class DeleteBuilderPart2(
 ) {
   fun run(): Int {
     return db.delete(tableName, where, whereArgs)
+  }
+}
+
+class ExistsBuilderPart1(
+  private val db: SupportSQLiteDatabase,
+  private val tableName: String
+) {
+
+  fun where(@Language("sql") where: String, vararg whereArgs: Any): ExistsBuilderPart2 {
+    return ExistsBuilderPart2(db, tableName, where, SqlUtil.buildArgs(*whereArgs))
+  }
+
+  fun run(): Boolean {
+    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName)", null).use { cursor ->
+      cursor.moveToFirst() && cursor.getInt(0) == 1
+    }
+  }
+}
+
+class ExistsBuilderPart2(
+  private val db: SupportSQLiteDatabase,
+  private val tableName: String,
+  private val where: String,
+  private val whereArgs: Array<String>
+) {
+  fun run(): Boolean {
+    return db.query("SELECT EXISTS(SELECT 1 FROM $tableName WHERE $where)", SqlUtil.buildArgs(*whereArgs)).use { cursor ->
+      cursor.moveToFirst() && cursor.getInt(0) == 1
+    }
   }
 }

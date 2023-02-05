@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.SimpleTextWatcher;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.util.CommunicationActions;
+import org.thoughtcrime.securesms.util.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.SignalProxyUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
@@ -40,6 +41,7 @@ public class EditProxyFragment extends Fragment {
   private View                           shareButton;
   private CircularProgressMaterialButton saveButton;
   private EditProxyViewModel             viewModel;
+  private LifecycleDisposable            lifecycleDisposable;
 
   public static EditProxyFragment newInstance() {
     return new EditProxyFragment();
@@ -58,6 +60,9 @@ public class EditProxyFragment extends Fragment {
     this.proxyStatus = view.findViewById(R.id.edit_proxy_status);
     this.saveButton  = view.findViewById(R.id.edit_proxy_save);
     this.shareButton = view.findViewById(R.id.edit_proxy_share);
+
+    lifecycleDisposable = new LifecycleDisposable();
+    lifecycleDisposable.bindTo(getViewLifecycleOwner());
 
     proxyText.addTextChangedListener(new SimpleTextWatcher() {
       @Override
@@ -92,10 +97,12 @@ public class EditProxyFragment extends Fragment {
   private void initViewModel() {
     viewModel = new ViewModelProvider(this).get(EditProxyViewModel.class);
 
-    viewModel.getUiState().observe(getViewLifecycleOwner(), this::presentUiState);
-    viewModel.getProxyState().observe(getViewLifecycleOwner(), this::presentProxyState);
-    viewModel.getEvents().observe(getViewLifecycleOwner(), this::presentEvent);
-    viewModel.getSaveState().observe(getViewLifecycleOwner(), this::presentSaveState);
+    lifecycleDisposable.addAll(
+        viewModel.getUiState().subscribe(this::presentUiState),
+        viewModel.getProxyState().subscribe(this::presentProxyState),
+        viewModel.getEvents().subscribe(this::presentEvent),
+        viewModel.getSaveState().subscribe(this::presentSaveState)
+    );
   }
 
   private void presentUiState(@NonNull EditProxyViewModel.UiState uiState) {

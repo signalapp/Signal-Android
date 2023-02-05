@@ -4,7 +4,7 @@ import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.google.android.mms.pdu_alt.PduHeaders
 import org.thoughtcrime.securesms.database.model.StoryType
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -23,14 +23,14 @@ object TestMms {
     subscriptionId: Int = -1,
     expiresIn: Long = 0,
     viewOnce: Boolean = false,
-    distributionType: Int = ThreadDatabase.DistributionTypes.DEFAULT,
-    type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
+    distributionType: Int = ThreadTable.DistributionTypes.DEFAULT,
+    type: Long = MessageTypes.BASE_INBOX_TYPE,
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
     storyType: StoryType = StoryType.NONE
   ): Long {
-    val message = OutgoingMediaMessage(
+    val message = OutgoingMessage(
       recipient,
       body,
       emptyList(),
@@ -66,51 +66,49 @@ object TestMms {
 
   fun insert(
     db: SQLiteDatabase,
-    message: OutgoingMediaMessage,
+    message: OutgoingMessage,
     recipientId: RecipientId = message.recipient.id,
     body: String = message.body,
-    type: Long = MmsSmsColumns.Types.BASE_INBOX_TYPE,
+    type: Long = MessageTypes.BASE_INBOX_TYPE,
     unread: Boolean = false,
     viewed: Boolean = false,
     threadId: Long = 1,
     receivedTimestampMillis: Long = System.currentTimeMillis(),
   ): Long {
     val contentValues = ContentValues().apply {
-      put(MmsDatabase.DATE_SENT, message.sentTimeMillis)
-      put(MmsDatabase.MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
+      put(MessageTable.DATE_SENT, message.sentTimeMillis)
+      put(MessageTable.MMS_MESSAGE_TYPE, PduHeaders.MESSAGE_TYPE_SEND_REQ)
 
-      put(MmsDatabase.MESSAGE_BOX, type)
-      put(MmsSmsColumns.THREAD_ID, threadId)
-      put(MmsSmsColumns.READ, if (unread) 0 else 1)
-      put(MmsDatabase.DATE_RECEIVED, receivedTimestampMillis)
-      put(MmsSmsColumns.SUBSCRIPTION_ID, message.subscriptionId)
-      put(MmsSmsColumns.EXPIRES_IN, message.expiresIn)
-      put(MmsDatabase.VIEW_ONCE, message.isViewOnce)
-      put(MmsSmsColumns.RECIPIENT_ID, recipientId.serialize())
-      put(MmsSmsColumns.DELIVERY_RECEIPT_COUNT, 0)
-      put(MmsSmsColumns.RECEIPT_TIMESTAMP, 0)
-      put(MmsSmsColumns.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
-      put(MmsDatabase.STORY_TYPE, message.storyType.code)
+      put(MessageTable.TYPE, type)
+      put(MessageTable.THREAD_ID, threadId)
+      put(MessageTable.READ, if (unread) 0 else 1)
+      put(MessageTable.DATE_RECEIVED, receivedTimestampMillis)
+      put(MessageTable.SMS_SUBSCRIPTION_ID, message.subscriptionId)
+      put(MessageTable.EXPIRES_IN, message.expiresIn)
+      put(MessageTable.VIEW_ONCE, message.isViewOnce)
+      put(MessageTable.RECIPIENT_ID, recipientId.serialize())
+      put(MessageTable.DELIVERY_RECEIPT_COUNT, 0)
+      put(MessageTable.RECEIPT_TIMESTAMP, 0)
+      put(MessageTable.VIEWED_RECEIPT_COUNT, if (viewed) 1 else 0)
+      put(MessageTable.STORY_TYPE, message.storyType.code)
 
-      put(MmsSmsColumns.BODY, body)
-      put(MmsDatabase.PART_COUNT, 0)
-      put(MmsDatabase.MENTIONS_SELF, 0)
+      put(MessageTable.BODY, body)
+      put(MessageTable.MENTIONS_SELF, 0)
     }
 
-    return db.insert(MmsDatabase.TABLE_NAME, null, contentValues)
+    return db.insert(MessageTable.TABLE_NAME, null, contentValues)
   }
 
   fun markAsRemoteDelete(db: SQLiteDatabase, messageId: Long) {
     val values = ContentValues()
-    values.put(MmsSmsColumns.REMOTE_DELETED, 1)
-    values.putNull(MmsSmsColumns.BODY)
-    values.putNull(MmsDatabase.QUOTE_BODY)
-    values.putNull(MmsDatabase.QUOTE_AUTHOR)
-    values.putNull(MmsDatabase.QUOTE_ATTACHMENT)
-    values.put(MmsDatabase.QUOTE_TYPE, -1)
-    values.putNull(MmsDatabase.QUOTE_ID)
-    values.putNull(MmsDatabase.LINK_PREVIEWS)
-    values.putNull(MmsDatabase.SHARED_CONTACTS)
-    db.update(MmsDatabase.TABLE_NAME, values, Database.ID_WHERE, arrayOf(messageId.toString()))
+    values.put(MessageTable.REMOTE_DELETED, 1)
+    values.putNull(MessageTable.BODY)
+    values.putNull(MessageTable.QUOTE_BODY)
+    values.putNull(MessageTable.QUOTE_AUTHOR)
+    values.put(MessageTable.QUOTE_TYPE, -1)
+    values.putNull(MessageTable.QUOTE_ID)
+    values.putNull(MessageTable.LINK_PREVIEWS)
+    values.putNull(MessageTable.SHARED_CONTACTS)
+    db.update(MessageTable.TABLE_NAME, values, DatabaseTable.ID_WHERE, arrayOf(messageId.toString()))
   }
 }

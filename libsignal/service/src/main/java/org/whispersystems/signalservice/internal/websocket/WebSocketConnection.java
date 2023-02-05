@@ -13,6 +13,7 @@ import org.whispersystems.signalservice.api.websocket.HealthMonitor;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 import org.whispersystems.signalservice.internal.configuration.SignalProxy;
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
+import org.whispersystems.signalservice.internal.configuration.SignalServiceUrl;
 import org.whispersystems.signalservice.internal.util.BlacklistingTrustManager;
 import org.whispersystems.signalservice.internal.util.Util;
 
@@ -75,6 +76,7 @@ public class WebSocketConnection extends WebSocketListener {
   private final Optional<SignalProxy>                     signalProxy;
   private final BehaviorSubject<WebSocketConnectionState> webSocketState;
   private final boolean                                   allowStories;
+  private final SignalServiceUrl                          serviceUrl;
 
   private WebSocket client;
 
@@ -105,8 +107,9 @@ public class WebSocketConnection extends WebSocketListener {
     this.healthMonitor       = healthMonitor;
     this.webSocketState      = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED);
     this.allowStories        = allowStories;
+    this.serviceUrl          = serviceConfiguration.getSignalServiceUrls()[0];
 
-    String uri = serviceConfiguration.getSignalServiceUrls()[0].getUrl().replace("https://", "wss://").replace("http://", "ws://");
+    String uri = serviceUrl.getUrl().replace("https://", "wss://").replace("http://", "ws://");
 
     if (credentialsProvider.isPresent()) {
       this.wsUri = uri + "/v1/websocket/" + extraPathUri + "?login=%s&password=%s";
@@ -161,6 +164,11 @@ public class WebSocketConnection extends WebSocketListener {
       }
 
       requestBuilder.addHeader("X-Signal-Receive-Stories", allowStories ? "true" : "false");
+
+      if (serviceUrl.getHostHeader().isPresent()) {
+        requestBuilder.addHeader("Host", serviceUrl.getHostHeader().get());
+        Log.w(TAG, "Using alternate host: " + serviceUrl.getHostHeader().get());
+      }
 
       webSocketState.onNext(WebSocketConnectionState.CONNECTING);
 

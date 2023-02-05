@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import androidx.annotation.WorkerThread
 import org.signal.core.util.concurrent.SignalExecutors
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -20,14 +20,14 @@ class CustomNotificationsSettingsRepository(context: Context) {
   fun ensureCustomChannelConsistency(recipientId: RecipientId, onComplete: () -> Unit) {
     executor.execute {
       if (NotificationChannels.supported()) {
-        NotificationChannels.ensureCustomChannelConsistency(context)
+        NotificationChannels.getInstance().ensureCustomChannelConsistency()
 
         val recipient = Recipient.resolved(recipientId)
         val database = SignalDatabase.recipients
         if (recipient.notificationChannel != null) {
-          val ringtoneUri: Uri? = NotificationChannels.getMessageRingtone(context, recipient)
+          val ringtoneUri: Uri? = NotificationChannels.getInstance().getMessageRingtone(recipient)
           database.setMessageRingtone(recipient.id, if (ringtoneUri == Uri.EMPTY) null else ringtoneUri)
-          database.setMessageVibrate(recipient.id, RecipientDatabase.VibrateState.fromBoolean(NotificationChannels.getMessageVibrate(context, recipient)))
+          database.setMessageVibrate(recipient.id, RecipientTable.VibrateState.fromBoolean(NotificationChannels.getInstance().getMessageVibrate(recipient)))
         }
       }
 
@@ -45,16 +45,16 @@ class CustomNotificationsSettingsRepository(context: Context) {
     }
   }
 
-  fun setMessageVibrate(recipientId: RecipientId, vibrateState: RecipientDatabase.VibrateState) {
+  fun setMessageVibrate(recipientId: RecipientId, vibrateState: RecipientTable.VibrateState) {
     executor.execute {
       val recipient: Recipient = Recipient.resolved(recipientId)
 
       SignalDatabase.recipients.setMessageVibrate(recipient.id, vibrateState)
-      NotificationChannels.updateMessageVibrate(context, recipient, vibrateState)
+      NotificationChannels.getInstance().updateMessageVibrate(recipient, vibrateState)
     }
   }
 
-  fun setCallingVibrate(recipientId: RecipientId, vibrateState: RecipientDatabase.VibrateState) {
+  fun setCallingVibrate(recipientId: RecipientId, vibrateState: RecipientTable.VibrateState) {
     executor.execute {
       SignalDatabase.recipients.setCallVibrate(recipientId, vibrateState)
     }
@@ -67,7 +67,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
       val newValue: Uri? = if (defaultValue == sound) null else sound ?: Uri.EMPTY
 
       SignalDatabase.recipients.setMessageRingtone(recipient.id, newValue)
-      NotificationChannels.updateMessageRingtone(context, recipient, newValue)
+      NotificationChannels.getInstance().updateMessageRingtone(recipient, newValue)
     }
   }
 
@@ -83,7 +83,7 @@ class CustomNotificationsSettingsRepository(context: Context) {
   @WorkerThread
   private fun createCustomNotificationChannel(recipientId: RecipientId) {
     val recipient: Recipient = Recipient.resolved(recipientId)
-    val channelId = NotificationChannels.createChannelFor(context, recipient)
+    val channelId = NotificationChannels.getInstance().createChannelFor(recipient)
     SignalDatabase.recipients.setNotificationChannel(recipient.id, channelId)
   }
 
@@ -91,6 +91,6 @@ class CustomNotificationsSettingsRepository(context: Context) {
   private fun deleteCustomNotificationChannel(recipientId: RecipientId) {
     val recipient: Recipient = Recipient.resolved(recipientId)
     SignalDatabase.recipients.setNotificationChannel(recipient.id, null)
-    NotificationChannels.deleteChannelFor(context, recipient)
+    NotificationChannels.getInstance().deleteChannelFor(recipient)
   }
 }

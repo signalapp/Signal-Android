@@ -68,7 +68,8 @@ public final class BubbleUtil {
     NotificationChannel conversationChannel = notificationManager.getNotificationChannel(ConversationUtil.getChannelId(context, recipient),
                                                                                          ConversationUtil.getShortcutId(recipientId));
 
-    return notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble());
+    return (Build.VERSION.SDK_INT < 31 || (notificationManager.areBubblesEnabled() && notificationManager.getBubblePreference() != NotificationManager.BUBBLE_PREFERENCE_NONE)) &&
+           (notificationManager.areBubblesAllowed() || (conversationChannel != null && conversationChannel.canBubble()));
   }
 
   /**

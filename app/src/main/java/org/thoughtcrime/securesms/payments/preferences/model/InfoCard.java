@@ -78,7 +78,7 @@ public class InfoCard implements MappingModel<InfoCard> {
     List<InfoCard> infoCards      = new ArrayList<>(Type.values().length);
     PaymentsValues paymentsValues = SignalStore.paymentsValues();
 
-    if (!paymentsValues.isMnemonicConfirmed()) {
+    if (!paymentsValues.isMnemonicConfirmed() && paymentsValues.hasPaymentsEntropy()) {
       infoCards.add(new InfoCard(R.string.payment_info_card_save_recovery_phrase,
                                  R.string.payment_info_card_your_recovery_phrase_gives_you,
                                  R.string.payment_info_card_save_your_phrase,

@@ -116,13 +116,13 @@ object JumboEmoji {
         Log.i(TAG, "No file for emoji, downloading jumbo")
         EmojiDownloader.streamFileFromRemote(version, version.density, archiveName) { stream ->
           stream.use { remote ->
-            val jumbomojiPack = JumbomojiPack.parseFrom(remote)
+            val jumbomojiPack = JumbomojiPack.ADAPTER.decode(remote)
 
-            jumbomojiPack.itemsList.forEach { jumbo ->
+            jumbomojiPack.items.forEach { jumbo ->
               val emojiNameEntry = EmojiFiles.Name(jumbo.name, UUID.randomUUID())
               val outputStream = EmojiFiles.openForWriting(applicationContext, version, emojiNameEntry.uuid)
 
-              outputStream.use { jumbo.image.writeTo(it) }
+              outputStream.use { jumbo.image.write(it) }
 
               jumbos = EmojiFiles.JumboCollection.append(applicationContext, jumbos, emojiNameEntry)
             }

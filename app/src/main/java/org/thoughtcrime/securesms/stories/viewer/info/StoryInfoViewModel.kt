@@ -22,7 +22,7 @@ class StoryInfoViewModel(storyId: Long, repository: MessageDetailsRepository = M
   val state: Flowable<StoryInfoState> = store.stateFlowable.observeOn(AndroidSchedulers.mainThread())
 
   init {
-    disposables += store.update(repository.getMessageDetails(MessageId(storyId, true)).toFlowable(BackpressureStrategy.LATEST)) { messageDetails, storyInfoState ->
+    disposables += store.update(repository.getMessageDetails(MessageId(storyId)).toFlowable(BackpressureStrategy.LATEST)) { messageDetails, storyInfoState ->
       storyInfoState.copy(
         messageDetails = messageDetails
       )

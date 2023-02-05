@@ -10,7 +10,6 @@ import android.transition.TransitionValues
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.RequiresApi
 import androidx.core.view.ViewCompat
 
 class ScaleTransition : Transition {
@@ -36,7 +35,6 @@ class ScaleTransition : Transition {
 
   constructor() : super()
 
-  @RequiresApi(21)
   constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
 
   override fun getTransitionProperties(): Array<String> {
@@ -108,7 +106,7 @@ class ScaleTransition : Transition {
       ofFloat(View.SCALE_Y, 1f)
     ).apply {
       addListener(object : AnimatorListenerAdapter() {
-        override fun onAnimationEnd(animation: Animator?) {
+        override fun onAnimationEnd(animation: Animator) {
           resetValues(start.view)
           resetValues(end.view)
         }

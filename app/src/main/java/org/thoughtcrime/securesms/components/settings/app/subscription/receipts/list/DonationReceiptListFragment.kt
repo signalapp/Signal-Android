@@ -32,7 +32,7 @@ class DonationReceiptListFragment : Fragment(R.layout.donation_receipt_list_frag
           0 -> R.string.DonationReceiptListFragment__all
           1 -> R.string.DonationReceiptListFragment__recurring
           2 -> R.string.DonationReceiptListFragment__one_time
-          3 -> R.string.DonationReceiptListFragment__gift
+          3 -> R.string.DonationReceiptListFragment__donation_for_a_friend
           else -> error("Unsupported index $position")
         }
       )

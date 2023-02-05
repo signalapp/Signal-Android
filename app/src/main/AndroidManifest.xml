@@ -98,9 +98,10 @@
                  android:icon="@mipmap/ic_launcher"
                  android:label="@string/app_name"
                  android:supportsRtl="true"
-                 tools:replace="android:allowBackup"
                  android:resizeableActivity="true"
-                 android:allowBackup="false"
+                 android:fullBackupOnly="false"
+                 android:allowBackup="true"
+                 android:backupAgent=".absbackup.SignalBackupAgent"
                  android:theme="@style/TextSecure.LightTheme"
                  android:largeHeap="true">
 
@@ -331,11 +332,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:theme="@style/Signal.DayNight.NoActionBar"
               android:windowSoftInputMode="adjustResize"/>
-
-    <activity android:name=".DatabaseMigrationActivity"
-              android:theme="@style/NoAnimation.Theme.AppCompat.Light.DarkActionBar"
-              android:launchMode="singleTask"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
     <activity android:name=".migrations.ApplicationMigrationActivity"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
@@ -696,9 +692,12 @@
               android:screenOrientation="portrait"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
+    <activity android:name=".components.settings.app.subscription.donate.DonateToSignalActivity"
+              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
+              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
+
     <service android:enabled="true" android:name=".exporter.SignalSmsExportService" android:foregroundServiceType="dataSync" />
     <service android:enabled="true" android:name=".service.webrtc.WebRtcCallService" android:foregroundServiceType="camera|microphone"/>
-    <service android:enabled="true" android:name=".service.ApplicationMigrationService"/>
     <service android:enabled="true" android:exported="false" android:name=".service.KeyCachingService"/>
     <service android:enabled="true" android:name=".messages.IncomingMessageObserver$ForegroundService"/>
     <service android:name=".service.webrtc.AndroidCallConnectionService"
@@ -816,6 +815,8 @@
 
     <receiver android:name=".revealable.ViewOnceMessageManager$ViewOnceAlarm" />
 
+    <receiver android:name=".service.ScheduledMessageManager$ScheduledMessagesAlarm" />
+
     <receiver android:name=".service.PendingRetryReceiptManager$PendingRetryReceiptAlarm" />
 
     <receiver android:name=".service.TrimThreadsByDateManager$TrimThreadsByDateAlarm" />
@@ -884,7 +885,7 @@
         </intent-filter>
     </receiver>
 
-    <receiver android:name="org.thoughtcrime.securesms.jobs.ForegroundUtil$Receiver" android:exported="false" />
+    <receiver android:name="org.thoughtcrime.securesms.jobs.ForegroundServiceUtil$Receiver" android:exported="false" />
 
     <receiver android:name=".service.PersistentConnectionBootListener" android:exported="false">
         <intent-filter>

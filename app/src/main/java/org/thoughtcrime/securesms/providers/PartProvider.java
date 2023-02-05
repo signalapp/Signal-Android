@@ -41,7 +41,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.thoughtcrime.securesms.service.KeyCachingService;
@@ -215,10 +215,10 @@ public final class PartProvider extends BaseContentProvider {
   @RequiresApi(26)
   private static final class ProxyCallback extends ProxyFileDescriptorCallback {
 
-    private AttachmentDatabase attachments;
-    private AttachmentId       attachmentId;
+    private AttachmentTable attachments;
+    private AttachmentId    attachmentId;
 
-    public ProxyCallback(@NonNull AttachmentDatabase attachments, @NonNull AttachmentId attachmentId) {
+    public ProxyCallback(@NonNull AttachmentTable attachments, @NonNull AttachmentId attachmentId) {
       this.attachments  = attachments;
       this.attachmentId = attachmentId;
     }

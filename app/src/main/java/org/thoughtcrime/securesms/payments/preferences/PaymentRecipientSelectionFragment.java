@@ -15,7 +15,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
-import org.thoughtcrime.securesms.contacts.ContactsCursorLoader.DisplayMode;
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.payments.CanNotSendPaymentDialog;
@@ -49,7 +49,7 @@ public class PaymentRecipientSelectionFragment extends LoggingFragment implement
 
     Bundle arguments = new Bundle();
     arguments.putBoolean(ContactSelectionListFragment.REFRESHABLE, false);
-    arguments.putInt(ContactSelectionListFragment.DISPLAY_MODE, DisplayMode.FLAG_PUSH | DisplayMode.FLAG_HIDE_NEW);
+    arguments.putInt(ContactSelectionListFragment.DISPLAY_MODE, ContactSelectionDisplayMode.FLAG_PUSH | ContactSelectionDisplayMode.FLAG_HIDE_NEW);
     arguments.putBoolean(ContactSelectionListFragment.CAN_SELECT_SELF, false);
 
     Fragment child = getChildFragmentManager().findFragmentById(R.id.contact_selection_list_fragment_holder);

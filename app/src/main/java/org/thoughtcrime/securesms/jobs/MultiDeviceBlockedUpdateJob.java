@@ -4,8 +4,8 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.crypto.UnidentifiedAccessUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase.RecipientReader;
+import org.thoughtcrime.securesms.database.RecipientTable;
+import org.thoughtcrime.securesms.database.RecipientTable.RecipientReader;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -71,7 +71,7 @@ public class MultiDeviceBlockedUpdateJob extends BaseJob {
       return;
     }
 
-    RecipientDatabase database = SignalDatabase.recipients();
+    RecipientTable database = SignalDatabase.recipients();
 
     try (RecipientReader reader = database.readerForBlocked(database.getBlocked())) {
       List<SignalServiceAddress> blockedIndividuals = new LinkedList<>();

@@ -15,7 +15,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer;
-import org.thoughtcrime.securesms.database.MmsSmsDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackController;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4ProjectionPlayerHolder;
@@ -35,7 +34,6 @@ import java.util.List;
 public final class MessageDetailsFragment extends FullScreenDialogFragment {
 
   private static final String MESSAGE_ID_EXTRA = "message_id";
-  private static final String TYPE_EXTRA       = "type";
   private static final String RECIPIENT_EXTRA  = "recipient_id";
 
   private GlideRequests           glideRequests;
@@ -49,7 +47,6 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
     Bundle         args           = new Bundle();
 
     args.putLong(MESSAGE_ID_EXTRA, message.getId());
-    args.putString(TYPE_EXTRA, message.isMms() ? MmsSmsDatabase.MMS_TRANSPORT : MmsSmsDatabase.SMS_TRANSPORT);
     args.putParcelable(RECIPIENT_EXTRA, recipientId);
 
     dialogFragment.setArguments(args);
@@ -102,9 +99,8 @@ public final class MessageDetailsFragment extends FullScreenDialogFragment {
 
   private void initializeViewModel() {
     final RecipientId recipientId = requireArguments().getParcelable(RECIPIENT_EXTRA);
-    final String      type        = requireArguments().getString(TYPE_EXTRA);
     final Long        messageId   = requireArguments().getLong(MESSAGE_ID_EXTRA, -1);
-    final Factory     factory     = new Factory(recipientId, type, messageId);
+    final Factory     factory     = new Factory(recipientId, messageId);
 
     viewModel = new ViewModelProvider(this, factory).get(MessageDetailsViewModel.class);
     viewModel.getMessageDetails().observe(this, details -> {

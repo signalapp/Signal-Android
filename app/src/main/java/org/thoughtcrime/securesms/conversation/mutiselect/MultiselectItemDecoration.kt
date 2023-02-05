@@ -1,5 +1,7 @@
 package org.thoughtcrime.securesms.conversation.mutiselect
 
+import android.animation.Animator
+import android.animation.AnimatorSet
 import android.animation.ArgbEvaluator
 import android.animation.ValueAnimator
 import android.content.Context
@@ -15,15 +17,19 @@ import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.animation.doOnEnd
 import androidx.core.content.ContextCompat
+import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.children
 import androidx.core.view.forEach
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.SimpleColorFilter
+import com.google.android.material.animation.ArgbEvaluatorCompat
 import org.signal.core.util.SetUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationAdapter.PulseRequest
+import org.thoughtcrime.securesms.conversation.ConversationItem
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -58,6 +64,10 @@ class MultiselectItemDecoration(
   private var enterExitAnimation: ValueAnimator? = null
   private var hideShadeAnimation: ValueAnimator? = null
   private val multiselectPartAnimatorMap: MutableMap<MultiselectPart, ValueAnimator> = mutableMapOf()
+
+  private val pulseIncomingColor = ContextCompat.getColor(context, R.color.pulse_incoming_message)
+  private val pulseOutgoingColor = ContextCompat.getColor(context, R.color.pulse_outgoing_message)
+  private val pulseRequestAnimators: MutableMap<PulseRequest, PulseAnimator> = mutableMapOf()
 
   private var checkedBitmap: Bitmap? = null
 
@@ -139,6 +149,8 @@ class MultiselectItemDecoration(
 
     outRect.setEmpty()
     updateChildOffsets(parent, view)
+
+    consumePulseRequest(parent.adapter as ConversationAdapter)
   }
 
   /**
@@ -214,7 +226,10 @@ class MultiselectItemDecoration(
       drawFocusShadeOverIfNecessary(canvas, parent)
     }
 
-    invalidateIfAnimatorsAreRunning(parent)
+    drawPulseShadeOverIfNecessary(canvas, parent)
+
+    invalidateIfPulseRequestAnimatorsAreRunning(parent)
+    invalidateIfEnterExitAnimatorsAreRunning(parent)
   }
 
   private fun drawChecks(parent: RecyclerView, canvas: Canvas, adapter: ConversationAdapter) {
@@ -400,6 +415,34 @@ class MultiselectItemDecoration(
     }
   }
 
+  private fun drawPulseShadeOverIfNecessary(canvas: Canvas, parent: RecyclerView) {
+    if (!hasRunningPulseRequestAnimators()) {
+      return
+    }
+
+    for (child in parent.children) {
+      if (child is ConversationItem) {
+        path.reset()
+        canvas.save()
+
+        val adapterPosition = parent.getChildAdapterPosition(child)
+        val request = pulseRequestAnimators.keys.firstOrNull { it.position == adapterPosition && it.isOutgoing == child.isOutgoing } ?: continue
+        val animator = pulseRequestAnimators[request] ?: continue
+        if (!animator.isRunning) {
+          continue
+        }
+
+        child.getSnapshotProjections(parent, false, false).use { projectionList ->
+          projectionList.forEach { it.applyToPath(path) }
+        }
+
+        canvas.clipPath(path)
+        canvas.drawColor(animator.animatedValue)
+        canvas.restore()
+      }
+    }
+  }
+
   private fun Canvas.drawShade() {
     val progress = hideShadeAnimation?.animatedValue as? Float
     if (progress == null) {
@@ -417,7 +460,7 @@ class MultiselectItemDecoration(
       duration = 150L
 
       addUpdateListener {
-        invalidateIfAnimatorsAreRunning(list)
+        invalidateIfEnterExitAnimatorsAreRunning(list)
       }
 
       doOnEnd {
@@ -474,12 +517,82 @@ class MultiselectItemDecoration(
     }
   }
 
-  private fun invalidateIfAnimatorsAreRunning(parent: RecyclerView) {
+  private fun cleanPulseAnimators() {
+    val toRemove = pulseRequestAnimators.filter { !it.value.isRunning }.keys
+    toRemove.forEach { pulseRequestAnimators.remove(it) }
+  }
+
+  private fun hasRunningPulseRequestAnimators(): Boolean {
+    cleanPulseAnimators()
+    return pulseRequestAnimators.any { (_, v) -> v.isRunning }
+  }
+
+  private fun invalidateIfPulseRequestAnimatorsAreRunning(parent: RecyclerView) {
+    if (hasRunningPulseRequestAnimators()) {
+      parent.invalidateItemDecorations()
+    }
+  }
+
+  private fun invalidateIfEnterExitAnimatorsAreRunning(parent: RecyclerView) {
     if (enterExitAnimation?.isRunning == true ||
       multiselectPartAnimatorMap.values.any { it.isRunning } ||
       hideShadeAnimation?.isRunning == true
     ) {
       parent.invalidate()
+    }
+  }
+
+  private fun consumePulseRequest(adapter: ConversationAdapter) {
+    val pulseRequest = adapter.consumePulseRequest()
+    if (pulseRequest != null) {
+      val pulseColor = if (pulseRequest.isOutgoing) pulseOutgoingColor else pulseIncomingColor
+      pulseRequestAnimators[pulseRequest]?.cancel()
+      pulseRequestAnimators[pulseRequest] = PulseAnimator(pulseColor).apply { start() }
+    }
+  }
+
+  private class PulseAnimator(pulseColor: Int) {
+
+    companion object {
+      private val PULSE_BEZIER = PathInterpolatorCompat.create(0.17f, 0.17f, 0f, 1f)
+    }
+
+    private val animator = AnimatorSet().apply {
+      playSequentially(
+        pulseInAnimator(pulseColor),
+        pulseOutAnimator(pulseColor),
+        pulseInAnimator(pulseColor),
+        pulseOutAnimator(pulseColor)
+      )
+      interpolator = PULSE_BEZIER
+    }
+
+    val isRunning: Boolean get() = animator.isRunning
+    var animatedValue: Int = Color.TRANSPARENT
+      private set
+
+    fun start() = animator.start()
+    fun cancel() = animator.cancel()
+
+    private fun pulseInAnimator(pulseColor: Int): Animator {
+      return ValueAnimator.ofInt(Color.TRANSPARENT, pulseColor).apply {
+        duration = 200
+        setEvaluator(ArgbEvaluatorCompat.getInstance())
+        addUpdateListener {
+          this@PulseAnimator.animatedValue = animatedValue as Int
+        }
+      }
+    }
+
+    private fun pulseOutAnimator(pulseColor: Int): Animator {
+      return ValueAnimator.ofInt(pulseColor, Color.TRANSPARENT).apply {
+        startDelay = 200
+        duration = 200
+        setEvaluator(ArgbEvaluatorCompat.getInstance())
+        addUpdateListener {
+          this@PulseAnimator.animatedValue = animatedValue as Int
+        }
+      }
     }
   }
 

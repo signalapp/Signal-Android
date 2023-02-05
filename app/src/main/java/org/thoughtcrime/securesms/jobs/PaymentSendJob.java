@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
@@ -85,7 +85,7 @@ public final class PaymentSendJob extends BaseJob {
                                                     .then(new MultiDeviceOutgoingPaymentSyncJob(uuid));
 
     if (recipientId != null) {
-      chain.then(new PaymentNotificationSendJob(recipientId, uuid, recipientId.toQueueKey(true)));
+      chain.then(PaymentNotificationSendJob.create(recipientId, uuid, recipientId.toQueueKey(true)));
     }
 
     chain.then(PaymentLedgerUpdateJob.updateLedgerToReflectPayment(uuid))
@@ -135,8 +135,8 @@ public final class PaymentSendJob extends BaseJob {
 
     Stopwatch stopwatch = new Stopwatch("Payment submission");
 
-    Wallet          wallet          = ApplicationDependencies.getPayments().getWallet();
-    PaymentDatabase paymentDatabase = SignalDatabase.payments();
+    Wallet       wallet          = ApplicationDependencies.getPayments().getWallet();
+    PaymentTable paymentDatabase = SignalDatabase.payments();
 
     paymentDatabase.createOutgoingPayment(uuid,
                                           recipientId,

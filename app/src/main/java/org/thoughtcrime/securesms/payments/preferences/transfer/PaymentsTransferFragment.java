@@ -92,7 +92,7 @@ public final class PaymentsTransferFragment extends LoggingFragment {
   }
 
   private void scanQrCode() {
-    Permissions.with(requireActivity())
+    Permissions.with(this)
                .request(Manifest.permission.CAMERA)
                .ifNecessary()
                .withRationaleDialog(getString(R.string.PaymentsTransferFragment__to_scan_a_qr_code_signal_needs), R.drawable.ic_camera_24)
@@ -109,5 +109,11 @@ public final class PaymentsTransferFragment extends LoggingFragment {
                    .setPositiveButton(R.string.PaymentsTransferFragment__settings, (dialog, which) -> requireActivity().startActivity(Permissions.getApplicationSettingsIntent(requireContext())))
                    .setNegativeButton(android.R.string.cancel, null)
                    .show();
+  }
+
+  @Override
+  @SuppressWarnings("deprecation")
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 }

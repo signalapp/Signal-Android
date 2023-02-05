@@ -3,4 +3,5 @@
     <bool name="enable_alarm_manager">true</bool>
     <bool name="enable_job_service">false</bool>
     <integer name="image_scale_flip">1</integer>
+    <drawable name="paypal_themed">@drawable/paypal</drawable>
 </resources>

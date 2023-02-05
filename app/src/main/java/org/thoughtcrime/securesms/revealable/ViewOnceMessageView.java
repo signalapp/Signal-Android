@@ -21,13 +21,14 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.DrawableUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 public class ViewOnceMessageView extends LinearLayout {
@@ -94,8 +95,8 @@ public class ViewOnceMessageView extends LinearLayout {
     }
 
     Attachment attachment = messageRecord.getSlideDeck().getThumbnailSlide().asAttachment();
-    return attachment.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_FAILED ||
-           attachment.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_PENDING;
+    return attachment.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_FAILED ||
+           attachment.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_PENDING;
   }
 
   public void setMessage(@NonNull MmsMessageRecord message, boolean hasWallpaper) {
@@ -112,7 +113,7 @@ public class ViewOnceMessageView extends LinearLayout {
     int iconColor;
     boolean showProgress = false;
 
-    if (messageRecord.isOutgoing() && networkInProgress(messageRecord)) {
+    if (messageRecord.isOutgoing() && networkInProgress(messageRecord) && !MessageRecordUtil.isScheduled(messageRecord)) {
       iconColor = openedIconColor;
       text.setText(R.string.RevealableMessageView_media);
       icon.setImageResource(0);
@@ -168,7 +169,7 @@ public class ViewOnceMessageView extends LinearLayout {
     if (messageRecord.getSlideDeck().getThumbnailSlide() == null) return false;
 
     Attachment attachment = messageRecord.getSlideDeck().getThumbnailSlide().asAttachment();
-    return attachment.getTransferState() == AttachmentDatabase.TRANSFER_PROGRESS_STARTED;
+    return attachment.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED;
   }
 
   private @NonNull String formatFileSize(@NonNull MmsMessageRecord messageRecord) {

@@ -12,7 +12,12 @@
         tools:layout="@layout/fragment_container">
         <action
             android:id="@+id/action_mediaCaptureFragment_to_mediaGalleryFragment"
-            app:destination="@id/mediaGalleryFragment" />
+            app:destination="@id/mediaGalleryFragment">
+            <argument
+                android:name="suppressEmptyError"
+                android:defaultValue="true"
+                app:argType="boolean" />
+        </action>
         <action
             android:id="@+id/action_mediaCaptureFragment_to_textStoryPostCreationFragment"
             app:destination="@id/textStoryPostCreationFragment"

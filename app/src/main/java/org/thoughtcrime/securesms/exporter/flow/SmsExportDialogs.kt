@@ -19,11 +19,21 @@ object SmsExportDialogs {
       }
       .setNegativeButton(R.string.RemoveSmsMessagesDialogFragment__remove_messages) { _, _ ->
         SignalExecutors.BOUNDED.execute {
-          SignalDatabase.sms.deleteExportedMessages()
-          SignalDatabase.mms.deleteExportedMessages()
+          SignalDatabase.messages.deleteExportedMessages()
+          SignalDatabase.messages.deleteExportedMessages()
         }
         Snackbar.make(view, R.string.SmsSettingsFragment__removing_sms_messages_from_signal, Snackbar.LENGTH_SHORT).show()
       }
+      .show()
+  }
+
+  @JvmStatic
+  fun showSmsReExportDialog(context: Context, continueCallback: Runnable) {
+    MaterialAlertDialogBuilder(context)
+      .setTitle(R.string.ReExportSmsMessagesDialogFragment__export_sms_again)
+      .setMessage(R.string.ReExportSmsMessagesDialogFragment__you_already_exported_your_sms_messages)
+      .setPositiveButton(R.string.ReExportSmsMessagesDialogFragment__continue) { _, _ -> continueCallback.run() }
+      .setNegativeButton(R.string.ReExportSmsMessagesDialogFragment__cancel, null)
       .show()
   }
 }

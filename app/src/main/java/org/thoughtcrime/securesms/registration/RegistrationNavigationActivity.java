@@ -43,12 +43,6 @@ public final class RegistrationNavigationActivity extends AppCompatActivity {
   }
 
   @Override
-  protected void attachBaseContext(@NonNull Context newBase) {
-    getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-    super.attachBaseContext(newBase);
-  }
-
-  @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     viewModel = new ViewModelProvider(this, new RegistrationViewModel.Factory(this, isReregister(getIntent()))).get(RegistrationViewModel.class);

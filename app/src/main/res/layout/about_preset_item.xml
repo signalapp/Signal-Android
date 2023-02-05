@@ -17,7 +17,7 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="@id/about_preset_body"
       app:layout_constraintBottom_toBottomOf="@id/about_preset_body"
-      tools:src="@drawable/ic_add_emoji"/>
+      tools:src="@drawable/symbol_emoji_plus_24"/>
 
   <TextView
       android:id="@+id/about_preset_body"

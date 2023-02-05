@@ -12,17 +12,20 @@ import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.MapUtil;
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.exporter.flow.SmsExportActivity;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
+import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.SmsExportPhase;
 import org.thoughtcrime.securesms.lock.SignalPinReminderDialog;
@@ -36,7 +39,6 @@ import org.thoughtcrime.securesms.profiles.manage.ManageProfileActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.FeatureFlags;
 import org.thoughtcrime.securesms.util.LocaleFeatureFlags;
-import org.thoughtcrime.securesms.util.PlayServicesUtil;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
@@ -54,13 +56,13 @@ import java.util.concurrent.TimeUnit;
  * - Add an enum to {@link Event}
  * - Return a megaphone in {@link #forRecord(Context, MegaphoneRecord)}
  * - Include the event in {@link #buildDisplayOrder(Context, Map)}
- *
+ * <p>
  * Common patterns:
  * - For events that have a snooze-able recurring display schedule, use a {@link RecurringSchedule}.
  * - For events guarded by feature flags, set a {@link ForeverSchedule} with false in
- *   {@link #buildDisplayOrder(Context, Map)}.
+ * {@link #buildDisplayOrder(Context, Map)}.
  * - For events that change, return different megaphones in {@link #forRecord(Context, MegaphoneRecord)}
- *   based on whatever properties you're interested in.
+ * based on whatever properties you're interested in.
  */
 public final class Megaphones {
 
@@ -80,7 +82,7 @@ public final class Megaphones {
 
     List<Megaphone> megaphones = Stream.of(buildDisplayOrder(context, records))
                                        .filter(e -> {
-                                         MegaphoneRecord   record = Objects.requireNonNull(records.get(e.getKey()));
+                                         MegaphoneRecord   record   = Objects.requireNonNull(records.get(e.getKey()));
                                          MegaphoneSchedule schedule = e.getValue();
 
                                          return !record.isFinished() && schedule.shouldDisplay(record.getSeenCount(), record.getLastSeen(), record.getFirstVisible(), currentTime);
@@ -100,7 +102,7 @@ public final class Megaphones {
   /**
    * The megaphones we want to display *in priority order*. This is a {@link LinkedHashMap}, so order is preserved.
    * We will render the first applicable megaphone in this collection.
-   *
+   * <p>
    * This is also when you would hide certain megaphones based on things like {@link FeatureFlags}.
    */
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
@@ -115,6 +117,7 @@ public final class Megaphones {
       put(Event.DONATE_Q2_2022, shouldShowDonateMegaphone(context, Event.DONATE_Q2_2022, records) ? ShowForDurationSchedule.showForDays(7) : NEVER);
       put(Event.REMOTE_MEGAPHONE, shouldShowRemoteMegaphone(records) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(1)) : NEVER);
       put(Event.PIN_REMINDER, new SignalPinReminderSchedule());
+      put(Event.SET_UP_YOUR_USERNAME, shouldShowSetUpYourUsernameMegaphone(records) ? ALWAYS : NEVER);
 
       // Feature-introduction megaphones should *probably* be added below this divider
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
@@ -147,6 +150,9 @@ public final class Megaphones {
         return buildBackupPermissionMegaphone(context);
       case SMS_EXPORT:
         return buildSmsExportMegaphone(context);
+      case SET_UP_YOUR_USERNAME:
+        return buildSetUpYourUsernameMegaphone(context);
+
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -155,110 +161,110 @@ public final class Megaphones {
   private static @NonNull Megaphone buildPinsForAllMegaphone(@NonNull MegaphoneRecord record) {
     if (PinsForAllSchedule.shouldDisplayFullScreen(record.getFirstVisible(), System.currentTimeMillis())) {
       return new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.FULLSCREEN)
-                          .enableSnooze(null)
-                          .setOnVisibleListener((megaphone, listener) -> {
-                            if (new NetworkConstraint.Factory(ApplicationDependencies.getApplication()).create().isMet()) {
-                              listener.onMegaphoneNavigationRequested(KbsMigrationActivity.createIntent(), KbsMigrationActivity.REQUEST_NEW_PIN);
-                            }
-                          })
-                          .build();
+          .enableSnooze(null)
+          .setOnVisibleListener((megaphone, listener) -> {
+            if (new NetworkConstraint.Factory(ApplicationDependencies.getApplication()).create().isMet()) {
+              listener.onMegaphoneNavigationRequested(KbsMigrationActivity.createIntent(), KbsMigrationActivity.REQUEST_NEW_PIN);
+            }
+          })
+          .build();
     } else {
       return new Megaphone.Builder(Event.PINS_FOR_ALL, Megaphone.Style.BASIC)
-                          .setImage(R.drawable.kbs_pin_megaphone)
-                          .setTitle(R.string.KbsMegaphone__create_a_pin)
-                          .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
-                          .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
-                            Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
+          .setImage(R.drawable.kbs_pin_megaphone)
+          .setTitle(R.string.KbsMegaphone__create_a_pin)
+          .setBody(R.string.KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped)
+          .setActionButton(R.string.KbsMegaphone__create_pin, (megaphone, listener) -> {
+            Intent intent = CreateKbsPinActivity.getIntentForPinCreate(ApplicationDependencies.getApplication());
 
-                            listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
-                          })
-                          .build();
+            listener.onMegaphoneNavigationRequested(intent, CreateKbsPinActivity.REQUEST_NEW_PIN);
+          })
+          .build();
     }
   }
 
   @SuppressWarnings("CodeBlock2Expr")
   private static @NonNull Megaphone buildPinReminderMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.PIN_REMINDER, Megaphone.Style.BASIC)
-                        .setTitle(R.string.Megaphones_verify_your_signal_pin)
-                        .setBody(R.string.Megaphones_well_occasionally_ask_you_to_verify_your_pin)
-                        .setImage(R.drawable.kbs_pin_megaphone)
-                        .setActionButton(R.string.Megaphones_verify_pin, (megaphone, controller) -> {
-                          SignalPinReminderDialog.show(controller.getMegaphoneActivity(), controller::onMegaphoneNavigationRequested, new SignalPinReminderDialog.Callback() {
-                            @Override
-                            public void onReminderDismissed(boolean includedFailure) {
-                              Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
-                              if (includedFailure) {
-                                SignalStore.pinValues().onEntrySkipWithWrongGuess();
-                              }
-                            }
+        .setTitle(R.string.Megaphones_verify_your_signal_pin)
+        .setBody(R.string.Megaphones_well_occasionally_ask_you_to_verify_your_pin)
+        .setImage(R.drawable.kbs_pin_megaphone)
+        .setActionButton(R.string.Megaphones_verify_pin, (megaphone, controller) -> {
+          SignalPinReminderDialog.show(controller.getMegaphoneActivity(), controller::onMegaphoneNavigationRequested, new SignalPinReminderDialog.Callback() {
+            @Override
+            public void onReminderDismissed(boolean includedFailure) {
+              Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
+              if (includedFailure) {
+                SignalStore.pinValues().onEntrySkipWithWrongGuess();
+              }
+            }
 
-                            @Override
-                            public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
-                              Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
-                              if (includedFailure) {
-                                SignalStore.pinValues().onEntrySuccessWithWrongGuess(pin);
-                              } else {
-                                SignalStore.pinValues().onEntrySuccess(pin);
-                              }
+            @Override
+            public void onReminderCompleted(@NonNull String pin, boolean includedFailure) {
+              Log.i(TAG, "[PinReminder] onReminderCompleted(" + includedFailure + ")");
+              if (includedFailure) {
+                SignalStore.pinValues().onEntrySuccessWithWrongGuess(pin);
+              } else {
+                SignalStore.pinValues().onEntrySuccess(pin);
+              }
 
-                              controller.onMegaphoneSnooze(Event.PIN_REMINDER);
-                              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
-                            }
-                          });
-                        })
-                        .build();
+              controller.onMegaphoneSnooze(Event.PIN_REMINDER);
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getReminderString(SignalStore.pinValues().getCurrentInterval())));
+            }
+          });
+        })
+        .build();
   }
 
   private static @NonNull Megaphone buildClientDeprecatedMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.CLIENT_DEPRECATED, Megaphone.Style.FULLSCREEN)
-                        .disableSnooze()
-                        .setOnVisibleListener((megaphone, listener) -> listener.onMegaphoneNavigationRequested(new Intent(context, ClientDeprecatedActivity.class)))
-                        .build();
+        .disableSnooze()
+        .setOnVisibleListener((megaphone, listener) -> listener.onMegaphoneNavigationRequested(new Intent(context, ClientDeprecatedActivity.class)))
+        .build();
   }
 
   private static @NonNull Megaphone buildOnboardingMegaphone() {
     return new Megaphone.Builder(Event.ONBOARDING, Megaphone.Style.ONBOARDING)
-                        .build();
+        .build();
   }
 
   private static @NonNull Megaphone buildNotificationsMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.NOTIFICATIONS, Megaphone.Style.BASIC)
-                        .setTitle(R.string.NotificationsMegaphone_turn_on_notifications)
-                        .setBody(R.string.NotificationsMegaphone_never_miss_a_message)
-                        .setImage(R.drawable.megaphone_notifications_64)
-                        .setActionButton(R.string.NotificationsMegaphone_turn_on, (megaphone, controller) -> {
-                          if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.isMessageChannelEnabled(context)) {
-                            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
-                            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getMessagesChannel(context));
-                            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                            controller.onMegaphoneNavigationRequested(intent);
-                          } else if (Build.VERSION.SDK_INT >= 26 &&
-                                     (!NotificationChannels.areNotificationsEnabled(context) || !NotificationChannels.isMessagesChannelGroupEnabled(context)))
-                          {
-                            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
-                            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
-                            controller.onMegaphoneNavigationRequested(intent);
-                          } else {
-                            controller.onMegaphoneNavigationRequested(AppSettingsActivity.notifications(context));
-                          }
-                        })
-                        .setSecondaryButton(R.string.NotificationsMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.NOTIFICATIONS))
-                        .build();
+        .setTitle(R.string.NotificationsMegaphone_turn_on_notifications)
+        .setBody(R.string.NotificationsMegaphone_never_miss_a_message)
+        .setImage(R.drawable.megaphone_notifications_64)
+        .setActionButton(R.string.NotificationsMegaphone_turn_on, (megaphone, controller) -> {
+          if (Build.VERSION.SDK_INT >= 26 && !NotificationChannels.getInstance().isMessageChannelEnabled()) {
+            Intent intent = new Intent(Settings.ACTION_CHANNEL_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_CHANNEL_ID, NotificationChannels.getInstance().getMessagesChannel());
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+            controller.onMegaphoneNavigationRequested(intent);
+          } else if (Build.VERSION.SDK_INT >= 26 &&
+                     (!NotificationChannels.getInstance().areNotificationsEnabled() || !NotificationChannels.getInstance().isMessagesChannelGroupEnabled()))
+          {
+            Intent intent = new Intent(Settings.ACTION_APP_NOTIFICATION_SETTINGS);
+            intent.putExtra(Settings.EXTRA_APP_PACKAGE, context.getPackageName());
+            controller.onMegaphoneNavigationRequested(intent);
+          } else {
+            controller.onMegaphoneNavigationRequested(AppSettingsActivity.notifications(context));
+          }
+        })
+        .setSecondaryButton(R.string.NotificationsMegaphone_not_now, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.NOTIFICATIONS))
+        .build();
   }
 
   private static @NonNull Megaphone buildAddAProfilePhotoMegaphone(@NonNull Context context) {
     return new Megaphone.Builder(Event.ADD_A_PROFILE_PHOTO, Megaphone.Style.BASIC)
-                        .setTitle(R.string.AddAProfilePhotoMegaphone__add_a_profile_photo)
-                        .setImage(R.drawable.ic_add_a_profile_megaphone_image)
-                        .setBody(R.string.AddAProfilePhotoMegaphone__choose_a_look_and_color)
-                        .setActionButton(R.string.AddAProfilePhotoMegaphone__add_photo, (megaphone, listener) -> {
-                          listener.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(context));
-                          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
-                        })
-                        .setSecondaryButton(R.string.AddAProfilePhotoMegaphone__not_now, (megaphone, listener) -> {
-                          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
-                        })
-                        .build();
+        .setTitle(R.string.AddAProfilePhotoMegaphone__add_a_profile_photo)
+        .setImage(R.drawable.ic_add_a_profile_megaphone_image)
+        .setBody(R.string.AddAProfilePhotoMegaphone__choose_a_look_and_color)
+        .setActionButton(R.string.AddAProfilePhotoMegaphone__add_photo, (megaphone, listener) -> {
+          listener.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForAvatarEdit(context));
+          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
+        })
+        .setSecondaryButton(R.string.AddAProfilePhotoMegaphone__not_now, (megaphone, listener) -> {
+          listener.onMegaphoneCompleted(Event.ADD_A_PROFILE_PHOTO);
+        })
+        .build();
   }
 
   private static @NonNull Megaphone buildBecomeASustainerMegaphone(@NonNull Context context) {
@@ -362,14 +368,15 @@ public final class Megaphones {
   private static @NonNull Megaphone buildSmsExportMegaphone(@NonNull Context context) {
     SmsExportPhase phase = SignalStore.misc().getSmsExportPhase();
 
-    if (phase == SmsExportPhase.PHASE_0) {
-      throw new AssertionError("Should not be showing megaphone for Phase 0");
-    } else if (phase == SmsExportPhase.PHASE_1) {
+    if (phase == SmsExportPhase.PHASE_1) {
       return new Megaphone.Builder(Event.SMS_EXPORT, Megaphone.Style.BASIC)
           .setTitle(R.string.SmsExportMegaphone__sms_support_going_away)
           .setImage(R.drawable.sms_megaphone)
-          .setBody(R.string.SmsExportMegaphone__sms_support_will_be_removed_soon_to_focus_on_encrypted_messaging)
-          .setActionButton(R.string.SmsExportMegaphone__export_sms, (megaphone, controller) -> controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context), SmsExportMegaphoneActivity.REQUEST_CODE))
+          .setBody(R.string.SmsExportMegaphone__dont_worry_encrypted_signal_messages_will_continue_to_work)
+          .setActionButton(R.string.SmsExportMegaphone__continue, (megaphone, controller) -> {
+            controller.onMegaphoneSnooze(Event.SMS_EXPORT);
+            controller.onMegaphoneNavigationRequested(SmsExportActivity.createIntent(context, true), SmsExportMegaphoneActivity.REQUEST_CODE);
+          })
           .setSecondaryButton(R.string.Megaphones_remind_me_later, (megaphone, controller) -> controller.onMegaphoneSnooze(Event.SMS_EXPORT))
           .setOnVisibleListener((megaphone, controller) -> SignalStore.misc().startSmsPhase1())
           .build();
@@ -390,13 +397,26 @@ public final class Megaphones {
     }
   }
 
+  public static @NonNull Megaphone buildSetUpYourUsernameMegaphone(@NonNull Context context) {
+    return new Megaphone.Builder(Event.SET_UP_YOUR_USERNAME, Megaphone.Style.BASIC)
+        .setTitle(R.string.SetUpYourUsername__set_up_your_signal_username)
+        .setBody(R.string.SetUpYourUsername__usernames_let_others)
+        .setActionButton(R.string.SetUpYourUsername__continue, (megaphone, controller) -> {
+          controller.onMegaphoneNavigationRequested(ManageProfileActivity.getIntentForUsernameEdit(context));
+        })
+        .setSecondaryButton(R.string.SetUpYourUsername__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneCompleted(Event.SET_UP_YOUR_USERNAME);
+        })
+        .build();
+  }
+
   private static boolean shouldShowDonateMegaphone(@NonNull Context context, @NonNull Event event, @NonNull Map<Event, MegaphoneRecord> records) {
     long timeSinceLastDonatePrompt = timeSinceLastDonatePrompt(event, records);
 
     return timeSinceLastDonatePrompt > MIN_TIME_BETWEEN_DONATE_MEGAPHONES &&
            VersionTracker.getDaysSinceFirstInstalled(context) >= 7 &&
            LocaleFeatureFlags.isInDonateMegaphone() &&
-           PlayServicesUtil.getPlayServicesStatus(context) == PlayServicesUtil.PlayServicesStatus.SUCCESS &&
+           InAppDonations.INSTANCE.hasAtLeastOnePaymentMethodAvailable() &&
            Recipient.self()
                     .getBadges()
                     .stream()
@@ -415,16 +435,16 @@ public final class Megaphones {
 
   private static boolean shouldShowNotificationsMegaphone(@NonNull Context context) {
     boolean shouldShow = !SignalStore.settings().isMessageNotificationsEnabled() ||
-                         !NotificationChannels.isMessageChannelEnabled(context) ||
-                         !NotificationChannels.isMessagesChannelGroupEnabled(context) ||
-                         !NotificationChannels.areNotificationsEnabled(context);
+                         !NotificationChannels.getInstance().isMessageChannelEnabled() ||
+                         !NotificationChannels.getInstance().isMessagesChannelGroupEnabled() ||
+                         !NotificationChannels.getInstance().areNotificationsEnabled();
     if (shouldShow) {
       Locale locale = DynamicLanguageContextWrapper.getUsersSelectedLocale(context);
       if (!new TranslationDetection(context, locale)
-               .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
-                                          R.string.NotificationsMegaphone_never_miss_a_message,
-                                          R.string.NotificationsMegaphone_turn_on,
-                                          R.string.NotificationsMegaphone_not_now))
+          .textExistsInUsersLanguage(R.string.NotificationsMegaphone_turn_on_notifications,
+                                     R.string.NotificationsMegaphone_never_miss_a_message,
+                                     R.string.NotificationsMegaphone_turn_on,
+                                     R.string.NotificationsMegaphone_not_now))
       {
         Log.i(TAG, "Would show NotificationsMegaphone but is not yet translated in " + locale);
         return false;
@@ -445,6 +465,23 @@ public final class Megaphones {
     }
 
     return true;
+  }
+
+  /**
+   * Prompt megaphone 3 days after turning off phone number discovery when no username is set.
+   */
+  private static boolean shouldShowSetUpYourUsernameMegaphone(@NonNull Map<Event, MegaphoneRecord> records) {
+    boolean                                         hasUsername                    = SignalStore.account().isRegistered() && Recipient.self().getUsername().isPresent();
+    boolean                                         hasCompleted                   = MapUtil.mapOrDefault(records, Event.SET_UP_YOUR_USERNAME, MegaphoneRecord::isFinished, false);
+    long                                            phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberListingModeTimestamp();
+    PhoneNumberPrivacyValues.PhoneNumberListingMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberListingMode();
+
+    return FeatureFlags.usernames() &&
+           !hasUsername &&
+           listingMode.isUnlisted() &&
+           !hasCompleted &&
+           phoneNumberDiscoveryDisabledAt > 0 &&
+           (System.currentTimeMillis() - phoneNumberDiscoveryDisabledAt) >= TimeUnit.DAYS.toMillis(3);
   }
 
   @WorkerThread
@@ -487,7 +524,8 @@ public final class Megaphones {
     TURN_OFF_CENSORSHIP_CIRCUMVENTION("turn_off_censorship_circumvention"),
     REMOTE_MEGAPHONE("remote_megaphone"),
     BACKUP_SCHEDULE_PERMISSION("backup_schedule_permission"),
-    SMS_EXPORT("sms_export");
+    SMS_EXPORT("sms_export"),
+    SET_UP_YOUR_USERNAME("set_up_your_username");
 
     private final String key;
 

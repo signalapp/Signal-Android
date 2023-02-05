@@ -22,6 +22,7 @@ import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.conversation.MessageSendType
+import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaSendActivityResult
 import org.thoughtcrime.securesms.mediasend.VideoEditorFragment
@@ -45,6 +46,7 @@ class MediaSelectionViewModel(
   initialMessage: CharSequence?,
   val isReply: Boolean,
   isStory: Boolean,
+  val isAddToGroupStoryFlow: Boolean,
   private val repository: MediaSelectionRepository,
   private val identityChangesSince: Long = System.currentTimeMillis()
 ) : ViewModel() {
@@ -331,20 +333,28 @@ class MediaSelectionViewModel(
   }
 
   fun send(
-    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList()
+    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList(),
+    scheduledDate: Long? = null
+  ): Maybe<MediaSendActivityResult> = send(selectedContacts, scheduledDate ?: -1)
+
+  fun send(
+    selectedContacts: List<ContactSearchKey.RecipientSearchKey> = emptyList(),
+    scheduledDate: Long
   ): Maybe<MediaSendActivityResult> {
     return UntrustedRecords.checkForBadIdentityRecords(selectedContacts.toSet(), identityChangesSince).andThen(
       repository.send(
-        store.state.selectedMedia,
-        store.state.editorStateMap,
-        store.state.quality,
-        store.state.message,
-        store.state.sendType.usesSmsTransport,
-        isViewOnceEnabled(),
-        destination.getRecipientSearchKey(),
-        selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
-        MentionAnnotation.getMentionsFromAnnotations(store.state.message),
-        store.state.sendType
+        selectedMedia = store.state.selectedMedia,
+        stateMap = store.state.editorStateMap,
+        quality = store.state.quality,
+        message = store.state.message,
+        isSms = store.state.sendType.usesSmsTransport,
+        isViewOnce = isViewOnceEnabled(),
+        singleContact = destination.getRecipientSearchKey(),
+        contacts = selectedContacts.ifEmpty { destination.getRecipientSearchKeyList() },
+        mentions = MentionAnnotation.getMentionsFromAnnotations(store.state.message),
+        bodyRanges = MessageStyler.getStyling(store.state.message),
+        sendType = store.state.sendType,
+        scheduledTime = scheduledDate
       )
     )
   }
@@ -360,10 +370,10 @@ class MediaSelectionViewModel(
       return
     }
 
-    val filteredPreUploadMedia = if (Stories.isFeatureEnabled()) {
-      media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
-    } else {
+    val filteredPreUploadMedia = if (destination is MediaSelectionDestination.SingleRecipient || !Stories.isFeatureEnabled()) {
       media
+    } else {
+      media.filter { Stories.MediaTransform.canPreUploadMedia(it) }
     }
 
     repository.uploadRepository.startUpload(filteredPreUploadMedia, store.state.recipient)
@@ -482,10 +492,11 @@ class MediaSelectionViewModel(
     private val initialMessage: CharSequence?,
     private val isReply: Boolean,
     private val isStory: Boolean,
+    private val isAddToGroupStoryFlow: Boolean,
     private val repository: MediaSelectionRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, sendType, initialMedia, initialMessage, isReply, isStory, repository)))
+      return requireNotNull(modelClass.cast(MediaSelectionViewModel(destination, sendType, initialMedia, initialMessage, isReply, isStory, isAddToGroupStoryFlow, repository)))
     }
   }
 }

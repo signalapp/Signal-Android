@@ -16,7 +16,7 @@ import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
 import org.mockito.kotlin.whenever
 import org.thoughtcrime.securesms.attachments.AttachmentId
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.FakeMessageRecords
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -30,7 +30,7 @@ class StoriesTest {
   val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
   @Mock
-  private lateinit var mockAttachmentDatabase: AttachmentDatabase
+  private lateinit var mockAttachmentTable: AttachmentTable
 
   @Mock
   private lateinit var mockJobManager: JobManager
@@ -52,9 +52,9 @@ class StoriesTest {
     RxJavaPlugins.setIoSchedulerHandler { testScheduler }
 
     SignalDatabase.setSignalDatabaseInstanceForTesting(mockSignalDatabase)
-    whenever(SignalDatabase.attachments).thenReturn(mockAttachmentDatabase)
+    whenever(SignalDatabase.attachments).thenReturn(mockAttachmentTable)
     whenever(ApplicationDependencies.getJobManager()).thenReturn(mockJobManager)
-    whenever(mockAttachmentDatabase.getAttachmentsForMessage(any())).thenReturn(emptyList())
+    whenever(mockAttachmentTable.getAttachmentsForMessage(any())).thenReturn(emptyList())
   }
 
   @After
@@ -103,7 +103,7 @@ class StoriesTest {
     // GIVEN
     val attachment = FakeMessageRecords.buildDatabaseAttachment()
     val messageRecord = FakeMessageRecords.buildMediaMmsMessageRecord()
-    whenever(mockAttachmentDatabase.getAttachmentsForMessage(any())).thenReturn(listOf(attachment))
+    whenever(mockAttachmentTable.getAttachmentsForMessage(any())).thenReturn(listOf(attachment))
 
     // WHEN
     val testObserver = Stories.enqueueAttachmentsFromStoryForDownload(messageRecord, true).test()

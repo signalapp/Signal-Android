@@ -10,11 +10,12 @@ import androidx.annotation.NonNull;
 import com.annimon.stream.Collectors;
 import com.annimon.stream.Stream;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase.ExpirationInfo;
-import org.thoughtcrime.securesms.database.MessageDatabase.MarkedMessageInfo;
-import org.thoughtcrime.securesms.database.MessageDatabase.SyncMessageId;
+import org.thoughtcrime.securesms.database.MessageTable.ExpirationInfo;
+import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
+import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceReadUpdateJob;
@@ -72,21 +73,15 @@ public class MarkReadReceiver extends BroadcastReceiver {
   public static void process(@NonNull Context context, @NonNull List<MarkedMessageInfo> markedReadMessages) {
     if (markedReadMessages.isEmpty()) return;
 
-    List<SyncMessageId>  syncMessageIds    = Stream.of(markedReadMessages)
-                                                   .map(MarkedMessageInfo::getSyncMessageId)
-                                                   .toList();
-    List<ExpirationInfo> mmsExpirationInfo = Stream.of(markedReadMessages)
-                                                   .map(MarkedMessageInfo::getExpirationInfo)
-                                                   .filter(ExpirationInfo::isMms)
-                                                   .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
-                                                   .toList();
-    List<ExpirationInfo> smsExpirationInfo = Stream.of(markedReadMessages)
-                                                   .map(MarkedMessageInfo::getExpirationInfo)
-                                                   .filterNot(ExpirationInfo::isMms)
-                                                   .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
-                                                   .toList();
+    List<SyncMessageId>  syncMessageIds = Stream.of(markedReadMessages)
+                                                .map(MarkedMessageInfo::getSyncMessageId)
+                                                .toList();
+    List<ExpirationInfo> expirationInfo = Stream.of(markedReadMessages)
+                                                .map(MarkedMessageInfo::getExpirationInfo)
+                                                .filter(info -> info.getExpiresIn() > 0 && info.getExpireStarted() <= 0)
+                                                .toList();
 
-    scheduleDeletion(context, smsExpirationInfo, mmsExpirationInfo);
+    scheduleDeletion(expirationInfo);
 
     MultiDeviceReadUpdateJob.enqueue(syncMessageIds);
 
@@ -108,23 +103,13 @@ public class MarkReadReceiver extends BroadcastReceiver {
     });
   }
 
-  private static void scheduleDeletion(@NonNull Context context,
-                                       @NonNull List<ExpirationInfo> smsExpirationInfo,
-                                       @NonNull List<ExpirationInfo> mmsExpirationInfo)
-  {
-    if (smsExpirationInfo.size() > 0) {
-      SignalDatabase.sms().markExpireStarted(Stream.of(smsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
-    }
+  private static void scheduleDeletion(@NonNull List<ExpirationInfo> expirationInfo) {
+    if (expirationInfo.size() > 0) {
+      SignalDatabase.messages().markExpireStarted(Stream.of(expirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
 
-    if (mmsExpirationInfo.size() > 0) {
-      SignalDatabase.mms().markExpireStarted(Stream.of(mmsExpirationInfo).map(ExpirationInfo::getId).toList(), System.currentTimeMillis());
-    }
-
-    if (smsExpirationInfo.size() + mmsExpirationInfo.size() > 0) {
       ExpiringMessageManager expirationManager = ApplicationDependencies.getExpiringMessageManager();
 
-      Stream.concat(Stream.of(smsExpirationInfo), Stream.of(mmsExpirationInfo))
-            .forEach(info -> expirationManager.scheduleDeletion(info.getId(), info.isMms(), info.getExpiresIn()));
+      expirationInfo.stream().forEach(info -> expirationManager.scheduleDeletion(info.getId(), info.isMms(), info.getExpiresIn()));
     }
   }
 }

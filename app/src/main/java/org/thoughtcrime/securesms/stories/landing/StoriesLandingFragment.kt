@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SearchBinder
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -92,6 +93,8 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     viewModel.isTransitioningToAnotherScreen = false
     initializeSearchAction()
     viewModel.markStoriesRead()
+
+    ApplicationDependencies.getExpireStoriesManager().scheduleIfNecessary()
   }
 
   override fun onPause() {
@@ -103,6 +106,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     val searchBinder = requireListener<SearchBinder>()
     searchBinder.getSearchAction().setOnClickListener {
       searchBinder.onSearchOpened()
+      searchBinder.getSearchToolbar().get().setSearchInputHint(R.string.SearchToolbar_search)
 
       searchBinder.getSearchToolbar().get().listener = object : Material3SearchToolbar.Listener {
         override fun onSearchTextChange(text: String) {
@@ -138,11 +142,11 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     setEnterSharedElementCallback(object : SharedElementCallback() {
       override fun onSharedElementStart(sharedElementNames: MutableList<String>?, sharedElements: MutableList<View>?, sharedElementSnapshots: MutableList<View>?) {
         if (sharedElementNames?.contains("camera_fab") == true) {
-          cameraFab.setImageResource(R.drawable.ic_compose_outline_24)
+          cameraFab.setImageResource(R.drawable.symbol_edit_24)
           lifecycleDisposable += Single.timer(200, TimeUnit.MILLISECONDS)
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeBy {
-              cameraFab.setImageResource(R.drawable.ic_camera_outline_24)
+              cameraFab.setImageResource(R.drawable.symbol_camera_24)
               sharedElementTarget.alpha = 0f
             }
         }
@@ -153,7 +157,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       Permissions.with(this)
         .request(Manifest.permission.CAMERA)
         .ifNecessary()
-        .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.ic_camera_24)
+        .withRationaleDialog(getString(R.string.ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera), R.drawable.symbol_camera_24)
         .withPermanentDenialDialog(getString(R.string.ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video))
         .onAllGranted {
           startActivityIfAble(MediaSelectionActivity.camera(requireContext(), isStory = true))
@@ -276,6 +280,12 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       },
       onAvatarClick = {
         cameraFab.performClick()
+      },
+      onLockList = {
+        recyclerView?.suppressLayout(true)
+      },
+      onUnlockList = {
+        recyclerView?.suppressLayout(false)
       }
     )
   }

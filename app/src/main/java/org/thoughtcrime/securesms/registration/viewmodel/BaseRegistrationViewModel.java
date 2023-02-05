@@ -6,19 +6,19 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.SavedStateHandle;
 import androidx.lifecycle.ViewModel;
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.pin.KbsRepository;
 import org.thoughtcrime.securesms.pin.TokenData;
 import org.thoughtcrime.securesms.registration.RequestVerificationCodeResponseProcessor;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository;
 import org.thoughtcrime.securesms.registration.VerifyAccountRepository.Mode;
-import org.thoughtcrime.securesms.registration.VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseProcessor;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithFailedKbs;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithSuccessfulKbs;
-import org.thoughtcrime.securesms.registration.VerifyAccountResponseWithoutKbs;
-import org.thoughtcrime.securesms.registration.VerifyCodeWithRegistrationLockResponseProcessor;
+import org.thoughtcrime.securesms.registration.VerifyResponse;
+import org.thoughtcrime.securesms.registration.VerifyResponseProcessor;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithFailedKbs;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithSuccessfulKbs;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithoutKbs;
+import org.thoughtcrime.securesms.registration.VerifyResponseWithRegistrationLockProcessor;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.push.VerifyAccountResponse;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -202,18 +202,22 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
                                   });
   }
 
-  public Single<VerifyAccountResponseProcessor> verifyCodeWithoutRegistrationLock(@NonNull String code) {
+  public Single<VerifyResponseProcessor> verifyCodeWithoutRegistrationLock(@NonNull String code) {
     onVerificationCodeEntered(code);
 
     return verifyAccountWithoutRegistrationLock()
-        .map(VerifyAccountResponseWithoutKbs::new)
-        .flatMap(processor -> {
+        .flatMap(response -> {
+          if (response.getResult().isPresent() && response.getResult().get().getKbsData() != null) {
+            return onVerifySuccessWithRegistrationLock(new VerifyResponseWithRegistrationLockProcessor(response, null), response.getResult().get().getPin());
+          }
+
+          VerifyResponseProcessor processor = new VerifyResponseWithoutKbs(response);
           if (processor.hasResult()) {
             return onVerifySuccess(processor);
           } else if (processor.registrationLock() && !processor.isKbsLocked()) {
             return kbsRepository.getToken(processor.getLockedException().getBasicStorageCredentials())
-                                .map(r -> r.getResult().isPresent() ? new VerifyAccountResponseWithSuccessfulKbs(processor.getResponse(), r.getResult().get())
-                                                                    : new VerifyAccountResponseWithFailedKbs(r));
+                                .map(r -> r.getResult().isPresent() ? new VerifyResponseWithSuccessfulKbs(processor.getResponse(), r.getResult().get())
+                                                                    : new VerifyResponseWithFailedKbs(r));
           }
           return Single.just(processor);
         })
@@ -228,33 +232,33 @@ public abstract class BaseRegistrationViewModel extends ViewModel {
         });
   }
 
-  public Single<VerifyCodeWithRegistrationLockResponseProcessor> verifyCodeAndRegisterAccountWithRegistrationLock(@NonNull String pin) {
+  public Single<VerifyResponseWithRegistrationLockProcessor> verifyCodeAndRegisterAccountWithRegistrationLock(@NonNull String pin) {
     TokenData kbsTokenData = Objects.requireNonNull(getKeyBackupCurrentToken());
 
     return verifyAccountWithRegistrationLock(pin, kbsTokenData)
-        .map(r -> new VerifyCodeWithRegistrationLockResponseProcessor(r, kbsTokenData))
+        .map(r -> new VerifyResponseWithRegistrationLockProcessor(r, kbsTokenData))
         .flatMap(processor -> {
           if (processor.hasResult()) {
             return onVerifySuccessWithRegistrationLock(processor, pin);
           } else if (processor.wrongPin()) {
             TokenData newToken = TokenData.withResponse(kbsTokenData, processor.getTokenResponse());
-            return Single.just(new VerifyCodeWithRegistrationLockResponseProcessor(processor.getResponse(), newToken));
+            return Single.just(new VerifyResponseWithRegistrationLockProcessor(processor.getResponse(), newToken));
           }
           return Single.just(processor);
         })
         .observeOn(AndroidSchedulers.mainThread())
         .doOnSuccess(processor -> {
           if (processor.wrongPin()) {
-            setKeyBackupTokenData(processor.getToken());
+            setKeyBackupTokenData(processor.getTokenData());
           }
         });
   }
 
-  protected abstract Single<ServiceResponse<VerifyAccountResponse>> verifyAccountWithoutRegistrationLock();
+  protected abstract Single<ServiceResponse<VerifyResponse>> verifyAccountWithoutRegistrationLock();
 
-  protected abstract Single<ServiceResponse<VerifyAccountWithRegistrationLockResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData);
+  protected abstract Single<ServiceResponse<VerifyResponse>> verifyAccountWithRegistrationLock(@NonNull String pin, @NonNull TokenData kbsTokenData);
 
-  protected abstract Single<VerifyAccountResponseProcessor> onVerifySuccess(@NonNull VerifyAccountResponseProcessor processor);
+  protected abstract Single<VerifyResponseProcessor> onVerifySuccess(@NonNull VerifyResponseProcessor processor);
 
-  protected abstract Single<VerifyCodeWithRegistrationLockResponseProcessor> onVerifySuccessWithRegistrationLock(@NonNull VerifyCodeWithRegistrationLockResponseProcessor processor, String pin);
+  protected abstract Single<VerifyResponseWithRegistrationLockProcessor> onVerifySuccessWithRegistrationLock(@NonNull VerifyResponseWithRegistrationLockProcessor processor, String pin);
 }

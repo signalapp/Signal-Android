@@ -73,8 +73,8 @@ open class MultiselectForwardActivity : FragmentWrapperActivity(), MultiselectFo
       } else if (intent == null || !intent.hasExtra(RESULT_SELECTION)) {
         throw IllegalStateException("Selection contract requires a selection.")
       } else {
-        val selection: List<ContactSearchKey.ParcelableRecipientSearchKey> = intent.getParcelableArrayListExtra(RESULT_SELECTION)!!
-        selection.map { it.asRecipientSearchKey() }
+        val selection: List<ContactSearchKey.RecipientSearchKey> = intent.getParcelableArrayListExtra(RESULT_SELECTION)!!
+        selection
       }
     }
   }

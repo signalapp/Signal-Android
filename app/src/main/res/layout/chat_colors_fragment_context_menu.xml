@@ -15,7 +15,7 @@
         android:gravity="center_vertical"
         android:minHeight="48dp"
         android:text="@string/ChatColorSelectionFragment__edit"
-        app:drawableEndCompat="@drawable/ic_compose_24"
+        app:drawableEndCompat="@drawable/symbol_edit_24"
         app:drawableTint="@color/signal_icon_tint_primary" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -25,7 +25,7 @@
         android:gravity="center_vertical"
         android:minHeight="48dp"
         android:text="@string/ChatColorSelectionFragment__duplicate"
-        app:drawableEndCompat="@drawable/ic_copy_24"
+        app:drawableEndCompat="@drawable/symbol_copy_android_24"
         app:drawableTint="@color/signal_icon_tint_primary" />
 
     <androidx.appcompat.widget.AppCompatTextView
@@ -35,6 +35,6 @@
         android:gravity="center_vertical"
         android:minHeight="48dp"
         android:text="@string/ChatColorSelectionFragment__delete"
-        app:drawableEndCompat="@drawable/ic_trash_24"
+        app:drawableEndCompat="@drawable/symbol_trash_24"
         app:drawableTint="@color/signal_icon_tint_primary" />
 </LinearLayout>

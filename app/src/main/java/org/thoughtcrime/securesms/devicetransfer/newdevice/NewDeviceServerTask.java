@@ -50,7 +50,7 @@ final class NewDeviceServerTask implements ServerTask {
                                     passphrase);
 
       SignalDatabase.upgradeRestored(database);
-      NotificationChannels.restoreContactNotificationChannels(context);
+      NotificationChannels.getInstance().restoreContactNotificationChannels();
 
       AppInitialization.onPostBackupRestore(context);
 

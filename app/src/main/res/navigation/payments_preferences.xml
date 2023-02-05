@@ -243,6 +243,11 @@
             app:argType="string"
             app:nullable="true" />
 
+        <argument
+            android:name="finish_on_confirm"
+            app:argType="boolean"
+            android:defaultValue="false" />
+
     </action>
 
     <action

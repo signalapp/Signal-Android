@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNum
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberViewModel.ContinueStatus
 import org.thoughtcrime.securesms.registration.fragments.CountryPickerFragment
 import org.thoughtcrime.securesms.registration.fragments.CountryPickerFragmentArgs
-import org.thoughtcrime.securesms.registration.util.RegistrationNumberInputController
+import org.thoughtcrime.securesms.registration.util.ChangeNumberInputController
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -54,13 +54,13 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
     oldNumberCountryCode = view.findViewById(R.id.change_number_enter_phone_number_old_number_country_code)
     oldNumber = view.findViewById(R.id.change_number_enter_phone_number_old_number_number)
 
-    val oldController = RegistrationNumberInputController(
+    val oldController = ChangeNumberInputController(
       requireContext(),
       oldNumberCountryCode,
       oldNumber,
       oldNumberCountrySpinner,
       false,
-      object : RegistrationNumberInputController.Callbacks {
+      object : ChangeNumberInputController.Callbacks {
         override fun onNumberFocused() {
           scrollView.postDelayed({ scrollView.smoothScrollTo(0, oldNumber.bottom) }, 250)
         }
@@ -91,13 +91,13 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
     newNumberCountryCode = view.findViewById(R.id.change_number_enter_phone_number_new_number_country_code)
     newNumber = view.findViewById(R.id.change_number_enter_phone_number_new_number_number)
 
-    val newController = RegistrationNumberInputController(
+    val newController = ChangeNumberInputController(
       requireContext(),
       newNumberCountryCode,
       newNumber,
       newNumberCountrySpinner,
       true,
-      object : RegistrationNumberInputController.Callbacks {
+      object : ChangeNumberInputController.Callbacks {
         override fun onNumberFocused() {
           scrollView.postDelayed({ scrollView.smoothScrollTo(0, newNumber.bottom) }, 250)
         }

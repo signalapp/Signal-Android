@@ -5,7 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 
 /**
  * An attachment that represents where an attachment used to be. Useful when you need to know that
@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.database.AttachmentDatabase;
 public class TombstoneAttachment extends Attachment {
 
   public TombstoneAttachment(@NonNull String contentType, boolean quote) {
-    super(contentType, AttachmentDatabase.TRANSFER_PROGRESS_DONE, 0, null, 0, null, null, null, null, null, false, false, false, 0, 0, quote, 0, null, null, null, null, null);
+    super(contentType, AttachmentTable.TRANSFER_PROGRESS_DONE, 0, null, 0, null, null, null, null, null, false, false, false, 0, 0, quote, 0, null, null, null, null, null);
   }
 
   @Override

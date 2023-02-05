@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_x_24"
+        app:navigationIcon="@drawable/ic_arrow_left_24"
         app:title="@string/UsernameEditFragment_username"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 
@@ -36,18 +36,22 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/username_text_wrapper"
-        style="@style/Widget.Signal.TextInputLayout.FilledBox.ContactNameEditor"
+        style="@style/Widget.Signal.TextInputLayout.Registration"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dsl_settings_gutter"
         android:layout_marginTop="24dp"
+        android:layout_marginEnd="@dimen/dsl_settings_gutter"
         app:boxStrokeColor="@color/signal_colorPrimary"
         app:boxStrokeWidthFocused="2dp"
+        app:errorTextAppearance="@style/Signal.Text.Zero"
         app:expandedHintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/summary"
         app:suffixTextColor="@color/signal_colorOnSurface"
-        tools:suffixText="| #1234">
+        tools:errorEnabled="true"
+        tools:suffixText="| .1234">
 
         <EditText
             android:id="@+id/username_text"
@@ -65,6 +69,19 @@
         </EditText>
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:id="@+id/username_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textAppearance="@style/Signal.Text.BodyMedium"
+        android:textColor="@color/signal_colorError"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/username_description"
+        app:layout_constraintTop_toBottomOf="@id/username_text_wrapper"
+        tools:text="Error something bad happened"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/summary"
@@ -87,7 +104,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/dsl_settings_gutter"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="@dimen/dsl_settings_gutter"
         android:layout_marginBottom="24dp"
         android:text="@string/UsernameEditFragment__usernames_let_others_message"
@@ -96,7 +113,7 @@
         app:layout_constraintBottom_toTopOf="@id/username_button_barrier"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username_text_wrapper"
+        app:layout_constraintTop_toBottomOf="@id/username_error"
         app:layout_constraintVertical_bias="0" />
 
     <com.google.android.material.button.MaterialButton

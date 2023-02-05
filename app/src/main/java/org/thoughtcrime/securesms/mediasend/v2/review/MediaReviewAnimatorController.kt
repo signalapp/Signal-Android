@@ -2,19 +2,21 @@ package org.thoughtcrime.securesms.mediasend.v2.review
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
+import android.animation.ValueAnimator
 import android.view.View
 import androidx.core.animation.doOnEnd
-import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.visible
 
 object MediaReviewAnimatorController {
 
   fun getSlideInAnimator(view: View): Animator {
-    return ObjectAnimator.ofFloat(view, "translationY", view.translationY, 0f)
-  }
-
-  fun getSlideOutAnimator(view: View): Animator {
-    return ObjectAnimator.ofFloat(view, "translationY", view.translationX, ViewUtil.dpToPx(48).toFloat())
+    return if (ContextUtil.getAnimationScale(view.context) == 0f) {
+      view.translationY = 0f
+      ValueAnimator.ofFloat(0f, 1f)
+    } else {
+      ObjectAnimator.ofFloat(view, "translationY", view.translationY, 0f)
+    }
   }
 
   fun getFadeInAnimator(view: View, isEnabled: Boolean = true): Animator {

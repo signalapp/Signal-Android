@@ -11,7 +11,7 @@ import com.annimon.stream.Stream;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.RecipientRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
@@ -105,10 +105,10 @@ public final class StorageSyncHelper {
   }
 
   public static SignalStorageRecord buildAccountRecord(@NonNull Context context, @NonNull Recipient self) {
-    RecipientDatabase     recipientDatabase = SignalDatabase.recipients();
-    RecipientRecord       record            = recipientDatabase.getRecordForSync(self.getId());
+    RecipientTable  recipientTable = SignalDatabase.recipients();
+    RecipientRecord record         = recipientTable.getRecordForSync(self.getId());
     List<RecipientRecord> pinned            = Stream.of(SignalDatabase.threads().getPinnedRecipientIds())
-                                                    .map(recipientDatabase::getRecordForSync)
+                                                    .map(recipientTable::getRecordForSync)
                                                     .toList();
 
     final OptionalBool storyViewReceiptsState = SignalStore.storyValues().getViewedReceiptsEnabled() ? OptionalBool.ENABLED
@@ -118,7 +118,7 @@ public final class StorageSyncHelper {
       Log.w(TAG, "[buildAccountRecord] No storageId for self! Generating. (Record had ID: " + (record != null && record.getStorageId() != null) + ")");
       SignalDatabase.recipients().updateStorageId(self.getId(), generateKey());
       self = Recipient.self().fresh();
-      record = recipientDatabase.getRecordForSync(self.getId());
+      record = recipientTable.getRecordForSync(self.getId());
     }
 
     final boolean hasReadOnboardingStory = SignalStore.storyValues().getUserHasViewedOnboardingStory() || SignalStore.storyValues().getUserHasReadOnboardingStory();
@@ -152,6 +152,7 @@ public final class StorageSyncHelper {
                                                          .setStoriesDisabled(SignalStore.storyValues().isFeatureDisabled())
                                                          .setStoryViewReceiptsState(storyViewReceiptsState)
                                                          .setHasReadOnboardingStory(hasReadOnboardingStory)
+                                                         .setHasSeenGroupStoryEducationSheet(SignalStore.storyValues().getUserHasSeenGroupStoryEducationSheet())
                                                          .build();
 
     return SignalStorageRecord.forAccount(account);
@@ -181,6 +182,7 @@ public final class StorageSyncHelper {
     SignalStore.storyValues().setUserHasViewedOnboardingStory(update.getNew().hasViewedOnboardingStory());
     SignalStore.storyValues().setFeatureDisabled(update.getNew().isStoriesDisabled());
     SignalStore.storyValues().setUserHasReadOnboardingStory(update.getNew().hasReadOnboardingStory());
+    SignalStore.storyValues().setUserHasSeenGroupStoryEducationSheet(update.getNew().hasSeenGroupStoryEducationSheet());
 
     if (update.getNew().getStoryViewReceiptsState() == OptionalBool.UNSET) {
       SignalStore.storyValues().setViewedReceiptsEnabled(update.getNew().isReadReceiptsEnabled());

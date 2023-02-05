@@ -25,8 +25,15 @@ public class DirectoryRefreshListener extends PersistentAlarmManagerListener {
       ApplicationDependencies.getJobManager().add(new DirectoryRefreshJob(true));
     }
 
-    long interval = TimeUnit.SECONDS.toMillis(FeatureFlags.cdsRefreshIntervalSeconds());
-    long newTime  = System.currentTimeMillis() + interval;
+    long newTime;
+
+    if (SignalStore.misc().isCdsBlocked()) {
+      newTime = Math.min(System.currentTimeMillis() + TimeUnit.HOURS.toMillis(6),
+                         SignalStore.misc().getCdsBlockedUtil());
+    } else {
+      newTime = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(FeatureFlags.cdsRefreshIntervalSeconds());
+      TextSecurePreferences.setDirectoryRefreshTime(context, newTime);
+    }
 
     TextSecurePreferences.setDirectoryRefreshTime(context, newTime);
 

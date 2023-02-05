@@ -14,16 +14,16 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.database.AttachmentDatabase
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.ResumableUploadSpecJob
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.testutil.OutgoingMediaMessageBuilder
-import org.thoughtcrime.securesms.testutil.OutgoingMediaMessageBuilder.secure
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testutil.UriAttachmentBuilder
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -51,7 +51,7 @@ class UploadDependencyGraphTest {
   fun `Given a list of Uri attachments and a list of Messages, when I get the dependencyMap, then I expect a times m results`() {
     // GIVEN
     val uriAttachments = (1..5).map { UriAttachmentBuilder.build(id = uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG) }
-    val messages = (1..5).map { OutgoingMediaMessageBuilder.create(attachments = uriAttachments).secure() }
+    val messages = (1..5).createMessages(uriAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -66,7 +66,7 @@ class UploadDependencyGraphTest {
   fun `Given a list of Uri attachments and a list of Messages, when I consumeDeferredQueue, then I expect one upload chain and one copy job for each attachment`() {
     // GIVEN
     val uriAttachments = (1..5).map { UriAttachmentBuilder.build(id = uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG) }
-    val messages = (1..5).map { OutgoingMediaMessageBuilder.create(attachments = uriAttachments).secure() }
+    val messages = (1..5).createMessages(uriAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -84,11 +84,11 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentDatabase.TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code)
+        transformProperties = AttachmentTable.TransformProperties(false, true, increment, increment + 1, SentMediaQuality.STANDARD.code)
       )
     }
 
-    val messages = (1..5).map { OutgoingMediaMessageBuilder.create(attachments = uriAttachments).secure() }
+    val messages = (1..5).createMessages(uriAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -108,7 +108,7 @@ class UploadDependencyGraphTest {
       )
     }
 
-    val messages = (1..5).map { OutgoingMediaMessageBuilder.create(attachments = uriAttachments).secure() }
+    val messages = (1..5).createMessages(uriAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -126,11 +126,11 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         id = 10,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = if (it != 1) AttachmentDatabase.TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code) else null
+        transformProperties = if (it != 1) AttachmentTable.TransformProperties(false, true, 1, 2, SentMediaQuality.STANDARD.code) else null
       )
     }
 
-    val messages = (1..8).map { OutgoingMediaMessageBuilder.create(attachments = uriAttachments).secure() }
+    val messages = (1..8).createMessages(uriAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -150,7 +150,7 @@ class UploadDependencyGraphTest {
       getAttachmentForPreUpload(id, uriAttachment)
     }
 
-    val messages = (1..5).map { OutgoingMediaMessageBuilder.create(attachments = databaseAttachments).secure() }
+    val messages = (1..5).createMessages(databaseAttachments)
     val testSubject = UploadDependencyGraph.create(messages, jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -166,8 +166,8 @@ class UploadDependencyGraphTest {
     // GIVEN
     val attachment1 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
     val attachment2 = UriAttachmentBuilder.build(uniqueLong.getAndIncrement(), contentType = MediaUtil.IMAGE_JPEG)
-    val message1 = OutgoingMediaMessageBuilder.create(attachments = listOf(attachment1))
-    val message2 = OutgoingMediaMessageBuilder.create(attachments = listOf(attachment2))
+    val message1 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = listOf(attachment1))
+    val message2 = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis() + 1, attachments = listOf(attachment2))
     val testSubject = UploadDependencyGraph.create(listOf(message1, message2), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
 
     // WHEN
@@ -186,11 +186,11 @@ class UploadDependencyGraphTest {
       UriAttachmentBuilder.build(
         1L,
         contentType = MediaUtil.IMAGE_JPEG,
-        transformProperties = AttachmentDatabase.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
+        transformProperties = AttachmentTable.TransformProperties.forVideoTrim(it.toLong(), it.toLong() + 1)
       )
     }
 
-    val message = OutgoingMediaMessageBuilder.create(attachments = uriAttachments)
+    val message = OutgoingMessage(recipient = Recipient.UNKNOWN, sentTimeMillis = System.currentTimeMillis(), attachments = uriAttachments)
     val testSubject = UploadDependencyGraph.create(listOf(message), jobManager) { getAttachmentForPreUpload(uniqueLong.getAndIncrement(), it) }
     val result = testSubject.consumeDeferredQueue()
 
@@ -229,11 +229,11 @@ class UploadDependencyGraphTest {
   private fun getAttachmentForPreUpload(id: Long, attachment: Attachment): DatabaseAttachment {
     return DatabaseAttachment(
       AttachmentId(id, id),
-      AttachmentDatabase.PREUPLOAD_MESSAGE_ID,
+      AttachmentTable.PREUPLOAD_MESSAGE_ID,
       false,
       false,
       attachment.contentType,
-      AttachmentDatabase.TRANSFER_PROGRESS_PENDING,
+      AttachmentTable.TRANSFER_PROGRESS_PENDING,
       attachment.size,
       attachment.fileName,
       attachment.cdnNumber,
@@ -256,5 +256,16 @@ class UploadDependencyGraphTest {
       0,
       attachment.uploadTimestamp
     )
+  }
+
+  private fun Iterable<Int>.createMessages(uriAttachments: List<Attachment>): List<OutgoingMessage> {
+    return mapIndexed { index, _ ->
+      OutgoingMessage(
+        recipient = Recipient.UNKNOWN,
+        sentTimeMillis = System.currentTimeMillis() + index,
+        attachments = uriAttachments,
+        isSecure = true
+      )
+    }
   }
 }

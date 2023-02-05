@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
 import org.thoughtcrime.securesms.components.emoji.EmojiPageView
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter
 import org.thoughtcrime.securesms.components.emoji.EmojiPageViewGridAdapter.EmojiHeader
+import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconMappingModel
 import org.thoughtcrime.securesms.keyboard.KeyboardPageSelected
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ThemedFragment.themedInflate
@@ -107,7 +108,7 @@ class EmojiKeyboardPageFragment : Fragment(), EmojiEventListener, EmojiPageViewG
 
   private fun updateCategoryTab(key: String) {
     emojiCategoriesRecycler.post {
-      val index: Int = categoriesAdapter.indexOfFirst(EmojiKeyboardPageCategoryMappingModel::class.java) { it.key == key }
+      val index: Int = categoriesAdapter.indexOfFirst(KeyboardPageCategoryIconMappingModel::class.java) { it.key == key }
 
       if (index != -1) {
         emojiCategoriesRecycler.smoothScrollToPosition(index)

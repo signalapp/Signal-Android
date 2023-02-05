@@ -115,7 +115,7 @@
         android:textAppearance="@style/Signal.Text.TitleLarge"
         android:textColor="@color/signal_light_colorOnSurface"
         app:layout_constraintBottom_toTopOf="@id/numeric_keyboard_0"
-        app:layout_constraintEnd_toEndOf="@id/numeric_keyboard_9"
+        app:layout_constraintEnd_toStartOf="@id/numeric_keyboard_9"
         app:layout_constraintStart_toEndOf="@id/numeric_keyboard_7"
         app:layout_constraintTop_toBottomOf="@id/numeric_keyboard_4" />
 

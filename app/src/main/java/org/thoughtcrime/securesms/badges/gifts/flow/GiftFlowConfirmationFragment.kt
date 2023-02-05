@@ -1,13 +1,14 @@
 package org.thoughtcrime.securesms.badges.gifts.flow
 
-import android.content.DialogInterface
 import android.view.KeyEvent
 import android.widget.FrameLayout
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
@@ -20,10 +21,10 @@ import org.thoughtcrime.securesms.components.emoji.MediaKeyboard
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationEvent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorDialogs
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationCheckoutDelegate
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway.GatewayRequest
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
@@ -33,22 +34,24 @@ import org.thoughtcrime.securesms.keyboard.KeyboardPage
 import org.thoughtcrime.securesms.keyboard.KeyboardPagerViewModel
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageFragment
 import org.thoughtcrime.securesms.keyboard.emoji.search.EmojiSearchFragment
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
-import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
  * Allows the user to confirm details about a gift, add a message, and finally make a payment.
  */
 class GiftFlowConfirmationFragment :
   DSLSettingsFragment(
-    titleId = R.string.GiftFlowConfirmationFragment__confirm_gift,
+    titleId = R.string.GiftFlowConfirmationFragment__confirm_donation,
     layoutId = R.layout.gift_flow_confirmation_fragment
   ),
   EmojiKeyboardPageFragment.Callback,
   EmojiEventListener,
-  EmojiSearchFragment.Callback {
+  EmojiSearchFragment.Callback,
+  DonationCheckoutDelegate.Callback {
 
   companion object {
     private val TAG = Log.tag(GiftFlowConfirmationFragment::class.java)
@@ -66,10 +69,9 @@ class GiftFlowConfirmationFragment :
   private lateinit var emojiKeyboard: MediaKeyboard
 
   private val lifecycleDisposable = LifecycleDisposable()
-  private var errorDialog: DialogInterface? = null
+  private var donationCheckoutDelegate: DonationCheckoutDelegate? = null
   private lateinit var processingDonationPaymentDialog: AlertDialog
   private lateinit var verifyingRecipientDonationPaymentDialog: AlertDialog
-  private lateinit var donationPaymentComponent: DonationPaymentComponent
   private lateinit var textInputViewHolder: TextInput.MultilineViewHolder
 
   private val eventPublisher = PublishSubject.create<TextInput.TextInputEvent>()
@@ -81,7 +83,7 @@ class GiftFlowConfirmationFragment :
 
     keyboardPagerViewModel.setOnlyPage(KeyboardPage.EMOJI)
 
-    donationPaymentComponent = requireListener()
+    donationCheckoutDelegate = DonationCheckoutDelegate(this, this, DonationErrorSource.GIFT)
 
     processingDonationPaymentDialog = MaterialAlertDialogBuilder(requireContext())
       .setView(R.layout.processing_payment_dialog)
@@ -98,13 +100,29 @@ class GiftFlowConfirmationFragment :
 
     emojiKeyboard.setFragmentManager(childFragmentManager)
 
-    val googlePayButton = requireView().findViewById<GooglePayButton>(R.id.google_pay_button)
-    googlePayButton.setOnGooglePayClickListener {
-      viewModel.requestTokenFromGooglePay(getString(R.string.preferences__one_time))
+    val continueButton = requireView().findViewById<MaterialButton>(R.id.continue_button)
+    continueButton.setOnClickListener {
+      findNavController().safeNavigate(
+        GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
+          with(viewModel.snapshot) {
+            GatewayRequest(
+              donateToSignalType = DonateToSignalType.GIFT,
+              badge = giftBadge!!,
+              label = getString(R.string.preferences__one_time),
+              price = giftPrices[currency]!!.amount,
+              currencyCode = currency.currencyCode,
+              level = giftLevel!!,
+              recipientId = recipient!!.id,
+              additionalMessage = additionalMessage?.toString()
+            )
+          }
+        )
+      )
     }
 
     val textInput = requireView().findViewById<FrameLayout>(R.id.text_input)
     val emojiToggle = textInput.findViewById<ImageView>(R.id.emoji_toggle)
+    val amountView = requireView().findViewById<TextView>(R.id.amount)
     textInputViewHolder = TextInput.MultilineViewHolder(textInput, eventPublisher)
     textInputViewHolder.onAttachedToWindow()
 
@@ -139,7 +157,7 @@ class GiftFlowConfirmationFragment :
           viewModel.setAdditionalMessage(it)
         },
         onEmojiToggleClicked = {
-          if (inputAwareLayout.isKeyboardOpen || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
+          if ((inputAwareLayout.isKeyboardOpen && !emojiKeyboard.isEmojiSearchMode) || (!inputAwareLayout.isKeyboardOpen && !inputAwareLayout.isInputOpen)) {
             inputAwareLayout.show(it, emojiKeyboard)
             emojiToggle.setImageResource(R.drawable.ic_keyboard_24)
           } else {
@@ -165,29 +183,11 @@ class GiftFlowConfirmationFragment :
       } else {
         processingDonationPaymentDialog.dismiss()
       }
+
+      amountView.text = FiatMoneyUtil.format(resources, state.giftPrices[state.currency]!!, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
     }
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
-
-    lifecycleDisposable += DonationError
-      .getErrorsForSource(DonationErrorSource.GIFT)
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { donationError ->
-        onPaymentError(donationError)
-      }
-
-    lifecycleDisposable += viewModel.events.observeOn(AndroidSchedulers.mainThread()).subscribe { donationEvent ->
-      when (donationEvent) {
-        is DonationEvent.PaymentConfirmationSuccess -> onPaymentConfirmed()
-        DonationEvent.RequestTokenSuccess -> Log.i(TAG, "Successfully got request token from Google Pay")
-        DonationEvent.SubscriptionCancelled -> Unit
-        is DonationEvent.SubscriptionCancellationFailed -> Unit
-      }
-    }
-
-    lifecycleDisposable += donationPaymentComponent.googlePayResultPublisher.subscribe {
-      viewModel.onActivityResult(it.requestCode, it.resultCode, it.data)
-    }
   }
 
   override fun onDestroyView() {
@@ -196,6 +196,7 @@ class GiftFlowConfirmationFragment :
     processingDonationPaymentDialog.dismiss()
     debouncer.clear()
     verifyingRecipientDonationPaymentDialog.dismiss()
+    donationCheckoutDelegate = null
   }
 
   private fun getConfiguration(giftFlowState: GiftFlowState): DSLConfiguration {
@@ -220,37 +221,9 @@ class GiftFlowConfirmationFragment :
       )
 
       textPref(
-        summary = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__your_gift_will_be_sent_in)
+        summary = DSLSettingsText.from(R.string.GiftFlowConfirmationFragment__the_recipient_will_be_notified)
       )
     }
-  }
-
-  private fun onPaymentConfirmed() {
-    val mainActivityIntent = MainActivity.clearTop(requireContext())
-    val conversationIntent = ConversationIntents
-      .createBuilder(requireContext(), viewModel.snapshot.recipient!!.id, -1L)
-      .withGiftBadge(viewModel.snapshot.giftBadge!!)
-      .build()
-
-    requireActivity().startActivities(arrayOf(mainActivityIntent, conversationIntent))
-  }
-
-  private fun onPaymentError(throwable: Throwable?) {
-    Log.w(TAG, "onPaymentError", throwable, true)
-
-    if (errorDialog != null) {
-      Log.i(TAG, "Already displaying an error dialog. Skipping.")
-      return
-    }
-
-    errorDialog = DonationErrorDialogs.show(
-      requireContext(), throwable,
-      object : DonationErrorDialogs.DialogCallback() {
-        override fun onDialogDismissed() {
-          requireActivity().finish()
-        }
-      }
-    )
   }
 
   override fun onToolbarNavigationClicked() {
@@ -275,5 +248,32 @@ class GiftFlowConfirmationFragment :
     if (keyEvent != null) {
       eventPublisher.onNext(TextInput.TextInputEvent.OnKeyEvent(keyEvent))
     }
+  }
+
+  override fun navigateToStripePaymentInProgress(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  }
+
+  override fun navigateToPayPalPaymentInProgress(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(DonationProcessorAction.PROCESS_NEW_DONATION, gatewayRequest))
+  }
+
+  override fun navigateToCreditCardForm(gatewayRequest: GatewayRequest) {
+    findNavController().safeNavigate(GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(gatewayRequest))
+  }
+
+  override fun onPaymentComplete(gatewayRequest: GatewayRequest) {
+    val mainActivityIntent = MainActivity.clearTop(requireContext())
+    val conversationIntent = ConversationIntents
+      .createBuilder(requireContext(), viewModel.snapshot.recipient!!.id, -1L)
+      .withGiftBadge(viewModel.snapshot.giftBadge!!)
+      .build()
+
+    requireActivity().startActivities(arrayOf(mainActivityIntent, conversationIntent))
+  }
+
+  override fun onProcessorActionProcessed() = Unit
+  override fun onUserCancelledPaymentFlow() {
+    findNavController().popBackStack(R.id.giftFlowConfirmationFragment, false)
   }
 }

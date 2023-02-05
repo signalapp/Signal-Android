@@ -120,6 +120,10 @@ class Camera1Controller {
     });
   }
 
+  boolean isCameraFacingFront() {
+    return cameraId == Camera.CameraInfo.CAMERA_FACING_FRONT;
+  }
+
   int flip() {
     Log.d(TAG, "flip()");
     SurfaceTexture surfaceTexture = previewSurface;

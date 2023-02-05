@@ -4,6 +4,9 @@ function init() {
       console.log('clicked');
       elem.classList.toggle('active');
       document.getElementById(elem.dataset.for).classList.toggle('hidden');
+      document.dispatchEvent(new CustomEvent('header-toggle', {
+        detail: document.getElementById(elem.dataset.for)
+      }))
     }
   });
 

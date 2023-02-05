@@ -184,7 +184,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   }
 
   private void showNotificationChannelSettings() {
-    NotificationChannels.openChannelSettings(requireContext(), NotificationChannels.CALLS, null);
+    NotificationChannels.getInstance().openChannelSettings(requireActivity(), NotificationChannels.getInstance().CALLS, null);
   }
 
   private void showAppSettings() {
@@ -194,7 +194,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   }
 
   private static boolean areNotificationsDisabled(@NonNull Context context) {
-    return !NotificationChannels.areNotificationsEnabled(context);
+    return !NotificationChannels.getInstance().areNotificationsEnabled();
   }
 
   private static boolean areCallNotificationsDisabled(Context context) {
@@ -202,7 +202,7 @@ public final class EnableCallNotificationSettingsDialog extends DialogFragment {
   }
 
   private static boolean isCallChannelInvalid(Context context) {
-    return !NotificationChannels.isCallsChannelValid(context);
+    return !NotificationChannels.getInstance().isCallsChannelValid();
   }
 
   private static boolean isBackgroundRestricted(Context context) {

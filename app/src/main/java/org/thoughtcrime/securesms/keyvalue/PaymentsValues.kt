@@ -68,6 +68,7 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
     get() = getBoolean(USER_CONFIRMED_MNEMONIC_LARGE_BALANCE, false)
     set(value) = putBoolean(USER_CONFIRMED_MNEMONIC_LARGE_BALANCE, value)
   private val liveCurrentCurrency: MutableLiveData<Currency> by lazy { MutableLiveData(currentCurrency()) }
+  private val enclaveFailure: MutableLiveData<Boolean> by lazy { MutableLiveData(false) }
   private val liveMobileCoinLedger: MutableLiveData<MobileCoinLedgerWrapper> by lazy { MutableLiveData(mobileCoinLatestFullLedger()) }
   private val liveMobileCoinBalance: LiveData<Balance> by lazy { Transformations.map(liveMobileCoinLedger) { obj: MobileCoinLedgerWrapper -> obj.balance } }
 
@@ -212,6 +213,14 @@ internal class PaymentsValues internal constructor(store: KeyValueStore) : Signa
 
   fun liveCurrentCurrency(): MutableLiveData<Currency> {
     return liveCurrentCurrency
+  }
+
+  fun setEnclaveFailure(failure: Boolean) {
+    enclaveFailure.postValue(failure)
+  }
+
+  fun enclaveFailure(): LiveData<Boolean> {
+    return enclaveFailure
   }
 
   fun showAboutMobileCoinInfoCard(): Boolean {

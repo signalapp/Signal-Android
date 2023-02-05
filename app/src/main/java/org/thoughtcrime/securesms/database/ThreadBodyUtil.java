@@ -19,6 +19,8 @@ import org.thoughtcrime.securesms.mms.StickerSlide;
 import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.Util;
 
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
 public final class ThreadBodyUtil {
@@ -28,19 +30,19 @@ public final class ThreadBodyUtil {
   private ThreadBodyUtil() {
   }
 
-  public static @NonNull String getFormattedBodyFor(@NonNull Context context, @NonNull MessageRecord record) {
+  public static @NonNull ThreadBody getFormattedBodyFor(@NonNull Context context, @NonNull MessageRecord record) {
     if (record.isMms()) {
       return getFormattedBodyForMms(context, (MmsMessageRecord) record);
     }
 
-    return record.getBody();
+    return new ThreadBody(record.getBody());
   }
 
-  private static @NonNull String getFormattedBodyForMms(@NonNull Context context, @NonNull MmsMessageRecord record) {
+  private static @NonNull ThreadBody getFormattedBodyForMms(@NonNull Context context, @NonNull MmsMessageRecord record) {
     if (record.getSharedContacts().size() > 0) {
       Contact contact = record.getSharedContacts().get(0);
 
-      return ContactUtil.getStringSummary(context, contact).toString();
+      return new ThreadBody(ContactUtil.getStringSummary(context, contact).toString());
     } else if (record.getSlideDeck().getDocumentSlide() != null) {
       return format(context, record, EmojiStrings.FILE, R.string.ThreadRecord_file);
     } else if (record.getSlideDeck().getAudioSlide() != null) {
@@ -49,13 +51,17 @@ public final class ThreadBodyUtil {
       String emoji = getStickerEmoji(record);
       return format(context, record, emoji, R.string.ThreadRecord_sticker);
     } else if (MessageRecordUtil.hasGiftBadge(record)) {
-      return String.format("%s %s", EmojiStrings.GIFT, getGiftSummary(context, record));
+      return format(EmojiStrings.GIFT, getGiftSummary(context, record));
     } else if (MessageRecordUtil.isStoryReaction(record)) {
-      return getStoryReactionSummary(context, record);
-    } else if (MessageRecordUtil.isPaymentActivationRequest(record)) {
-      return String.format("%s %s", EmojiStrings.CARD, getPaymentActivationRequestSummary(context, record));
-    } else if (MessageRecordUtil.isPaymentsActivated(record)) {
-      return String.format("%s %s", EmojiStrings.CARD, getPaymentActivatedSummary(context, record));
+      return new ThreadBody(getStoryReactionSummary(context, record));
+    } else if (record.isPaymentNotification()) {
+      return format(EmojiStrings.CARD, context.getString(R.string.ThreadRecord_payment));
+    } else if (record.isPaymentsRequestToActivate()) {
+      return format(EmojiStrings.CARD, getPaymentActivationRequestSummary(context, record));
+    } else if (record.isPaymentsActivated()) {
+      return format(EmojiStrings.CARD, getPaymentActivatedSummary(context, record));
+    } else if (record.isCallLog() && !record.isGroupCall()) {
+      return new ThreadBody(getCallLogSummary(context, record));
     }
 
     boolean hasImage = false;
@@ -75,7 +81,7 @@ public final class ThreadBodyUtil {
     } else if (hasImage) {
       return format(context, record, EmojiStrings.PHOTO, R.string.ThreadRecord_photo);
     } else if (TextUtils.isEmpty(record.getBody())) {
-      return context.getString(R.string.ThreadRecord_media_message);
+      return new ThreadBody(context.getString(R.string.ThreadRecord_media_message));
     } else {
       return getBody(context, record);
     }
@@ -83,11 +89,11 @@ public final class ThreadBodyUtil {
 
   private static @NonNull String getGiftSummary(@NonNull Context context, @NonNull MessageRecord messageRecord) {
     if (messageRecord.isOutgoing()) {
-      return context.getString(R.string.ThreadRecord__you_sent_a_gift);
+      return context.getString(R.string.ThreadRecord__you_donated_for_s, messageRecord.getRecipient().getShortDisplayName(context));
     } else if (messageRecord.getViewedReceiptCount() > 0) {
-      return context.getString(R.string.ThreadRecord__you_redeemed_a_gift_badge);
+      return context.getString(R.string.ThreadRecord__you_redeemed_a_badge);
     } else {
-      return context.getString(R.string.ThreadRecord__you_received_a_gift);
+      return context.getString(R.string.ThreadRecord__s_donated_for_you, messageRecord.getRecipient().getShortDisplayName(context));
     }
   }
 
@@ -114,17 +120,51 @@ public final class ThreadBodyUtil {
       return context.getString(R.string.ThreadRecord_can_accept_payments, messageRecord.getRecipient().getShortDisplayName(context));
     }
   }
+
+  private static @NonNull String getCallLogSummary(@NonNull Context context, @NonNull MessageRecord record) {
+    CallTable.Call call = SignalDatabase.calls().getCallByMessageId(record.getId());
+    if (call != null) {
+      boolean accepted = call.getEvent() == CallTable.Event.ACCEPTED;
+      if (call.getDirection() == CallTable.Direction.OUTGOING) {
+        if (call.getType() == CallTable.Type.AUDIO_CALL) {
+          return context.getString(accepted ? R.string.MessageRecord_outgoing_voice_call : R.string.MessageRecord_unanswered_voice_call);
+        } else {
+          return context.getString(accepted ? R.string.MessageRecord_outgoing_video_call : R.string.MessageRecord_unanswered_video_call);
+        }
+      } else {
+        boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
+        boolean isMissed    = call.getEvent() == CallTable.Event.MISSED;
+
+        if (accepted) {
+          return context.getString(isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call);
+        } else if (isMissed) {
+          return isVideoCall ? context.getString(R.string.MessageRecord_missed_video_call) : context.getString(R.string.MessageRecord_missed_voice_call);
+        } else {
+          return isVideoCall ? context.getString(R.string.MessageRecord_you_declined_a_video_call) : context.getString(R.string.MessageRecord_you_declined_a_voice_call);
+        }
+      }
+    } else {
+      return "";
+    }
+  }
   
-  private static @NonNull String format(@NonNull Context context, @NonNull MessageRecord record, @NonNull String emoji, @StringRes int defaultStringRes) {
-    return String.format("%s %s", emoji, getBodyOrDefault(context, record, defaultStringRes));
+  private static @NonNull ThreadBody format(@NonNull Context context, @NonNull MessageRecord record, @NonNull String emoji, @StringRes int defaultStringRes) {
+    CharSequence body = getBodyOrDefault(context, record, defaultStringRes).getBody();
+    return format(emoji, body);
   }
 
-  private static @NonNull String getBodyOrDefault(@NonNull Context context, @NonNull MessageRecord record, @StringRes int defaultStringRes) {
-    return TextUtils.isEmpty(record.getBody()) ? context.getString(defaultStringRes) : getBody(context, record);
+  private static @NonNull ThreadBody format(@NonNull CharSequence prefix, @NonNull CharSequence body) {
+    return new ThreadBody(String.format("%s %s", prefix, body), prefix.length() + 1);
   }
 
-  private static @NonNull String getBody(@NonNull Context context, @NonNull MessageRecord record) {
-    return MentionUtil.updateBodyWithDisplayNames(context, record, record.getBody()).toString();
+  private static @NonNull ThreadBody getBodyOrDefault(@NonNull Context context, @NonNull MessageRecord record, @StringRes int defaultStringRes) {
+    return TextUtils.isEmpty(record.getBody()) ? new ThreadBody(context.getString(defaultStringRes)) : getBody(context, record);
+  }
+
+  private static @NonNull ThreadBody getBody(@NonNull Context context, @NonNull MessageRecord record) {
+    MentionUtil.UpdatedBodyAndMentions updated = MentionUtil.updateBodyWithDisplayNames(context, record, record.getBody());
+    //noinspection ConstantConditions
+    return new ThreadBody(updated.getBody(), updated.getBodyAdjustments());
   }
 
   private static @NonNull String getStickerEmoji(@NonNull MessageRecord record) {
@@ -132,5 +172,31 @@ public final class ThreadBodyUtil {
 
     return Util.isEmpty(slide.getEmoji()) ? EmojiStrings.STICKER
                                           : slide.getEmoji();
+  }
+
+  public static class ThreadBody {
+    private final CharSequence         body;
+    private final List<BodyAdjustment> bodyAdjustments;
+
+    public ThreadBody(@NonNull CharSequence body) {
+      this(body, 0);
+    }
+
+    public ThreadBody(@NonNull CharSequence body, int startOffset) {
+      this(body, startOffset == 0 ? Collections.emptyList() : Collections.singletonList(new BodyAdjustment(0, 0, startOffset)));
+    }
+
+    public ThreadBody(@NonNull CharSequence body, @NonNull List<BodyAdjustment> bodyAdjustments) {
+      this.body            = body;
+      this.bodyAdjustments = bodyAdjustments;
+    }
+
+    public @NonNull CharSequence getBody() {
+      return body;
+    }
+
+    public @NonNull List<BodyAdjustment> getBodyAdjustments() {
+      return bodyAdjustments;
+    }
   }
 }

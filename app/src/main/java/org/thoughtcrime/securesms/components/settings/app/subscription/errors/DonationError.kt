@@ -5,6 +5,7 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
+import org.signal.donations.PaymentSourceType
 import org.signal.donations.StripeDeclineCode
 import org.signal.donations.StripeError
 
@@ -17,6 +18,11 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     class NotAvailableError(source: DonationErrorSource, cause: Throwable) : GooglePayError(source, cause)
     class RequestTokenError(source: DonationErrorSource, cause: Throwable) : GooglePayError(source, cause)
   }
+
+  /**
+   * Utilized when the user cancels the payment flow, by either exiting a WebView or not confirming on the complete order sheet.
+   */
+  class UserCancelledPaymentError(source: DonationErrorSource) : DonationError(source, Exception("User cancelled payment."))
 
   /**
    * Gifting recipient validation errors, which occur before the user could be charged for a gift.
@@ -50,12 +56,22 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
     /**
      * Payment setup failed in some way, which we are told about by Stripe.
      */
-    class CodedError(source: DonationErrorSource, cause: Throwable, val errorCode: String) : PaymentSetupError(source, cause)
+    class StripeCodedError(source: DonationErrorSource, cause: Throwable, val errorCode: String) : PaymentSetupError(source, cause)
 
     /**
      * Payment failed by the credit card processor, with a specific reason told to us by Stripe.
      */
-    class DeclinedError(source: DonationErrorSource, cause: Throwable, val declineCode: StripeDeclineCode) : PaymentSetupError(source, cause)
+    class StripeDeclinedError(source: DonationErrorSource, cause: Throwable, val declineCode: StripeDeclineCode, val method: PaymentSourceType.Stripe) : PaymentSetupError(source, cause)
+
+    /**
+     * Payment setup failed in some way, which we are told about by PayPal.
+     */
+    class PayPalCodedError(source: DonationErrorSource, cause: Throwable, val errorCode: Int) : PaymentSetupError(source, cause)
+
+    /**
+     * Payment failed by the credit card processor, with a specific reason told to us by PayPal.
+     */
+    class PayPalDeclinedError(source: DonationErrorSource, cause: Throwable, val code: PayPalDeclineCode.KnownCode) : PaymentSetupError(source, cause)
   }
 
   /**
@@ -128,18 +144,18 @@ sealed class DonationError(val source: DonationErrorSource, cause: Throwable) : 
 
     /**
      * Converts a throwable into a payment setup error. This should only be used when
-     * handling errors handed back via the Stripe API, when we know for sure that no
+     * handling errors handed back via the Stripe API or via PayPal, when we know for sure that no
      * charge has occurred.
      */
     @JvmStatic
-    fun getPaymentSetupError(source: DonationErrorSource, throwable: Throwable): DonationError {
+    fun getPaymentSetupError(source: DonationErrorSource, throwable: Throwable, method: PaymentSourceType): DonationError {
       return if (throwable is StripeError.PostError) {
         val declineCode: StripeDeclineCode? = throwable.declineCode
         val errorCode: String? = throwable.errorCode
 
         when {
-          declineCode != null -> PaymentSetupError.DeclinedError(source, throwable, declineCode)
-          errorCode != null -> PaymentSetupError.CodedError(source, throwable, errorCode)
+          declineCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeDeclinedError(source, throwable, declineCode, method)
+          errorCode != null && method is PaymentSourceType.Stripe -> PaymentSetupError.StripeCodedError(source, throwable, errorCode)
           else -> PaymentSetupError.GenericError(source, throwable)
         }
       } else {

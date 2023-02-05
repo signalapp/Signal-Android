@@ -1,7 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="signal_m3_large_button_height">44sp</dimen>
-    <dimen name="signal_m3_large_button_corner_radius">22dp</dimen>
-    <dimen name="signal_m3_large_button_padding_horizontal">24dp</dimen>
-    <dimen name="signal_m3_large_button_padding_vertical">12dp</dimen>
 </resources>

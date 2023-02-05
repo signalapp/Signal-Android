@@ -31,14 +31,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   private boolean     isVideoGif;
 
   @Override
-  public void onCreate(@Nullable Bundle savedInstanceState) {
-    super.onCreate(savedInstanceState);
-  }
-
-  @Override
-  public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                           Bundle savedInstanceState)
-  {
+  public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
     View    itemView    = inflater.inflate(R.layout.media_preview_video_fragment, container, false);
     Bundle  arguments   = requireArguments();
     Uri     uri         = arguments.getParcelable(DATA_URI);
@@ -74,15 +67,17 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
         if (!isVideoGif && activity instanceof VoiceNoteMediaControllerOwner) {
           ((VoiceNoteMediaControllerOwner) activity).getVoiceNoteMediaController().pausePlayback();
         }
+        events.onPlaying();
       }
 
       @Override
       public void onStopped() {
+        events.onStopped(getTag());
       }
 
       @Override
       public void onError() {
-        events.onMediaNotAvailable();
+        events.unableToPlayMedia();
       }
     });
 
@@ -110,13 +105,6 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   @Override
-  public void cleanUp() {
-    if (videoView != null) {
-      videoView.cleanup();
-    }
-  }
-
-  @Override
   public void onResume() {
     super.onResume();
 
@@ -130,6 +118,20 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
   }
 
   @Override
+  public void autoPlayIfNeeded() {
+    if (videoView != null && videoView.getPlaybackPosition() < videoView.getDuration()) {
+      videoView.play();
+    }
+  }
+
+  @Override
+  public void cleanUp() {
+    if (videoView != null) {
+      videoView.cleanup();
+    }
+  }
+
+  @Override
   public void pause() {
     if (videoView != null) {
       videoView.pause();
@@ -138,11 +140,6 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
     if (events.getVideoControlsDelegate() != null) {
       events.getVideoControlsDelegate().detachPlayer();
     }
-  }
-
-  @Override
-  public @Nullable ViewGroup getBottomBarControls() {
-    return videoView.getControlView();
   }
 
   @Override

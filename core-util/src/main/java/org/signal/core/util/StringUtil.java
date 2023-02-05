@@ -1,5 +1,7 @@
 package org.signal.core.util;
 
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 
 import androidx.annotation.NonNull;
@@ -325,5 +327,53 @@ public final class StringUtil {
 
   public static String forceLtr(@NonNull CharSequence text) {
     return "\u202a" + text + "\u202c";
+  }
+
+  public static @NonNull CharSequence replace(@NonNull CharSequence text, char toReplace, String replacement) {
+    SpannableStringBuilder updatedText = null;
+
+    for (int i = text.length() - 1; i >= 0; i--) {
+      if (text.charAt(i) == toReplace) {
+        if (updatedText == null) {
+          updatedText = SpannableStringBuilder.valueOf(text);
+        }
+        updatedText.replace(i, i + 1, replacement);
+      }
+    }
+
+    if (updatedText != null) {
+      return updatedText;
+    } else {
+      return text;
+    }
+  }
+
+  public static boolean startsWith(@NonNull CharSequence text, @NonNull CharSequence substring) {
+    if (substring.length() > text.length()) {
+      return false;
+    }
+
+    for (int i = 0; i < substring.length(); i++) {
+      if (text.charAt(i) != substring.charAt(i)) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  public static boolean endsWith(@NonNull CharSequence text, @NonNull CharSequence substring) {
+    if (substring.length() > text.length()) {
+      return false;
+    }
+
+    int textIndex = text.length() - 1;
+    for (int substringIndex = substring.length() - 1; substringIndex >= 0; substringIndex--, textIndex--) {
+      if (text.charAt(textIndex) != substring.charAt(substringIndex)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }

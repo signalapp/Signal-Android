@@ -36,7 +36,7 @@ class PushProcessEarlyMessagesJob private constructor(parameters: Parameters) : 
 
   override fun onRun() {
     val earlyIds: List<ServiceMessageId> = ApplicationDependencies.getEarlyMessageCache().allReferencedIds
-      .filter { SignalDatabase.mmsSms.getMessageFor(it.sentTimestamp, it.sender) != null }
+      .filter { SignalDatabase.messages.getMessageFor(it.sentTimestamp, it.sender) != null }
       .sortedBy { it.sentTimestamp }
 
     if (earlyIds.isNotEmpty()) {

@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.jobs;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.attachments.AttachmentId;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -75,7 +75,7 @@ public class AttachmentCopyJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    AttachmentDatabase database = SignalDatabase.attachments();
+    AttachmentTable database = SignalDatabase.attachments();
 
     for (AttachmentId destinationId : destinationIds) {
       database.copyAttachmentData(sourceId, destinationId);

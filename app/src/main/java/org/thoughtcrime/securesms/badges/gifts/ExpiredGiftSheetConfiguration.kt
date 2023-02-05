@@ -30,14 +30,14 @@ object ExpiredGiftSheetConfiguration {
   private fun DSLConfiguration.expiredSheet(onMakeAMonthlyDonation: () -> Unit, onNotNow: () -> Unit) {
     textPref(
       title = DSLSettingsText.from(
-        stringId = R.string.ExpiredGiftSheetConfiguration__your_gift_badge_has_expired,
+        stringId = R.string.ExpiredGiftSheetConfiguration__your_badge_has_expired,
         DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
       )
     )
 
     textPref(
       title = DSLSettingsText.from(
-        stringId = R.string.ExpiredGiftSheetConfiguration__your_gift_badge_has_expired_and_is,
+        stringId = R.string.ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is,
         DSLSettingsText.CenterModifier
       )
     )

@@ -22,7 +22,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.contactshare.ContactUtil;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideRequests;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -195,7 +195,7 @@ public class SharedContactView extends LinearLayout implements RecipientForeverO
     List<Recipient> systemUsers = new ArrayList<>(recipients.size());
 
     for (LiveRecipient recipient : activeRecipients.values()) {
-      if (recipient.get().getRegistered() == RecipientDatabase.RegisteredState.REGISTERED) {
+      if (recipient.get().getRegistered() == RecipientTable.RegisteredState.REGISTERED) {
         pushUsers.add(recipient.get());
       } else if (recipient.get().isSystemContact()) {
         systemUsers.add(recipient.get());

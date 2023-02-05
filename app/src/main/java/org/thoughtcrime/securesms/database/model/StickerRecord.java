@@ -5,6 +5,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.database.StickerTable;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
@@ -12,7 +13,7 @@ import org.thoughtcrime.securesms.util.Util;
 import java.util.Objects;
 
 /**
- * Represents a record for a sticker pack in the {@link org.thoughtcrime.securesms.database.StickerDatabase}.
+ * Represents a record for a sticker pack in the {@link StickerTable}.
  */
 public final class StickerRecord {
 

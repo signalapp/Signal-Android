@@ -1,9 +1,10 @@
 package org.thoughtcrime.securesms.stories.viewer
 
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.media.AudioManager
-import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -32,6 +33,8 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   private val viewModel: StoryVolumeViewModel by viewModels()
   private val storyViewStateViewModel: StoryViewStateViewModel by viewModels()
+
+  val ringerModeReceiver = RingerModeReceiver()
 
   override lateinit var voiceNoteMediaController: VoiceNoteMediaController
 
@@ -88,6 +91,11 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     outState.putParcelable(DATA_CACHE, storyViewStateViewModel.storyViewStateCache)
   }
 
+  override fun onPause() {
+    super.onPause()
+    unregisterReceiver(ringerModeReceiver)
+  }
+
   override fun onDestroy() {
     super.onDestroy()
     Glide.get(this).setMemoryCategory(MemoryCategory.NORMAL)
@@ -95,6 +103,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
 
   override fun onResume() {
     super.onResume()
+    registerReceiver(ringerModeReceiver, IntentFilter(AudioManager.RINGER_MODE_CHANGED_ACTION))
     if (StoryMutePolicy.isContentMuted) {
       viewModel.mute()
     } else {
@@ -109,9 +118,7 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
   }
 
   override fun onEnterAnimationComplete() {
-    if (Build.VERSION.SDK_INT >= 21) {
-      window.transitionBackgroundFadeDuration = 100
-    }
+    window.transitionBackgroundFadeDuration = 100
   }
 
   private fun replaceStoryViewerFragment() {
@@ -140,6 +147,21 @@ class StoryViewerActivity : PassphraseRequiredActivity(), VoiceNoteMediaControll
     }
 
     return super.onKeyDown(keyCode, event)
+  }
+
+  inner class RingerModeReceiver : BroadcastReceiver() {
+    override fun onReceive(context: Context?, intent: Intent?) {
+      when (intent?.getIntExtra(AudioManager.EXTRA_RINGER_MODE, AudioManager.RINGER_MODE_SILENT)) {
+        AudioManager.RINGER_MODE_NORMAL -> {
+          StoryMutePolicy.isContentMuted = false
+          viewModel.unmute()
+        }
+        else -> {
+          StoryMutePolicy.isContentMuted = true
+          viewModel.mute()
+        }
+      }
+    }
   }
 
   companion object {

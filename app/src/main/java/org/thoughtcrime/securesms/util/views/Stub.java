@@ -35,4 +35,12 @@ public class Stub<T extends View> {
     }
   }
 
+  public int getVisibility() {
+    if (resolved()) {
+      return get().getVisibility();
+    } else {
+      return View.GONE;
+    }
+  }
+
 }

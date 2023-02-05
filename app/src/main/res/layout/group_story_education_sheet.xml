@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:viewBindingIgnore="true">
+
+    <ImageView
+        android:id="@+id/handle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="10dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/bottom_sheet_handle" />
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/handle"
+        app:srcCompat="@drawable/group_story" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/GroupStoryEducationSheet__introducing_group_stories"
+        android:textAppearance="@style/Signal.Text.TitleLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image" />
+
+    <ImageView
+        android:id="@+id/share_story_updates_img"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="32dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/share_story_updates_text"
+        app:srcCompat="@drawable/symbol_group_24"
+        app:tint="@color/signal_colorOnSurface" />
+
+    <ImageView
+        android:id="@+id/anyone_in_group_img"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="32dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/anyone_in_group_text"
+        app:srcCompat="@drawable/symbol_plus_24"
+        app:tint="@color/signal_colorOnSurface" />
+
+    <ImageView
+        android:id="@+id/all_group_chat_members_img"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginStart="32dp"
+        android:importantForAccessibility="no"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/all_group_chat_members_text"
+        app:srcCompat="@drawable/symbol_reply_24"
+        app:tint="@color/signal_colorOnSurface" />
+
+    <TextView
+        android:id="@+id/share_story_updates_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/GroupStoryEducationSheet__share_story_updates_to"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/share_story_updates_img"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <TextView
+        android:id="@+id/anyone_in_group_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/GroupStoryEducationSheet__anyone_in_the_group"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/anyone_in_group_img"
+        app:layout_constraintTop_toBottomOf="@id/share_story_updates_text" />
+
+    <TextView
+        android:id="@+id/all_group_chat_members_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/GroupStoryEducationSheet__all_group_chat_members"
+        android:textAppearance="@style/Signal.Text.BodyLarge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/all_group_chat_members_img"
+        app:layout_constraintTop_toBottomOf="@id/anyone_in_group_text" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/next"
+        style="@style/Signal.Widget.Button.Medium.Primary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/GroupStoryEducationSheet__next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/all_group_chat_members_text" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

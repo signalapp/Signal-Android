@@ -20,10 +20,10 @@ import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientForeverObserver
 import org.thoughtcrime.securesms.recipients.RecipientId
-import org.thoughtcrime.securesms.sms.OutgoingEncryptedMessage
 import org.thoughtcrime.securesms.subscription.Subscriber
 import org.thoughtcrime.securesms.util.Base64
 import org.thoughtcrime.securesms.util.FeatureFlags
@@ -242,14 +242,13 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
               val splitRecipient: Recipient = Recipient.resolved(splitRecipientId)
               val splitThreadId: Long = SignalDatabase.threads.getOrCreateThreadIdFor(splitRecipient)
 
-              val messageId: Long = SignalDatabase.sms.insertMessageOutbox(
+              val messageId: Long = SignalDatabase.messages.insertMessageOutbox(
+                OutgoingMessage.text(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
                 splitThreadId,
-                OutgoingEncryptedMessage(splitRecipient, "Test Message ${System.currentTimeMillis()}", 0),
                 false,
-                System.currentTimeMillis(),
                 null
               )
-              SignalDatabase.sms.markAsSent(messageId, true)
+              SignalDatabase.messages.markAsSent(messageId, true)
 
               SignalDatabase.threads.update(splitThreadId, true)
 

@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.util.UuidUtil;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -155,6 +156,10 @@ public class RecipientId implements Parcelable, Comparable<RecipientId>, Databas
 
   public @NonNull String toQueueKey(boolean forMedia) {
     return "RecipientId::" + id + (forMedia ? "::MEDIA" : "");
+  }
+
+  public @NonNull String toScheduledSendQueueKey() {
+    return "RecipientId::" + id + "::SCHEDULED";
   }
 
   @Override

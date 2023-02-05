@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.database.MessageDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
@@ -21,10 +21,10 @@ class ViewOnceMessageRepository {
 
   private static final String TAG = Log.tag(ViewOnceMessageRepository.class);
 
-  private final MessageDatabase mmsDatabase;
+  private final MessageTable mmsDatabase;
 
   ViewOnceMessageRepository(@NonNull Context context) {
-    this.mmsDatabase = SignalDatabase.mms();
+    this.mmsDatabase = SignalDatabase.messages();
   }
 
   void getMessage(long messageId, @NonNull Callback<Optional<MmsMessageRecord>> callback) {
@@ -32,7 +32,7 @@ class ViewOnceMessageRepository {
       try {
         MmsMessageRecord record = (MmsMessageRecord) mmsDatabase.getMessageRecord(messageId);
 
-        MessageDatabase.MarkedMessageInfo info = mmsDatabase.setIncomingMessageViewed(record.getId());
+        MessageTable.MarkedMessageInfo info = mmsDatabase.setIncomingMessageViewed(record.getId());
         if (info != null) {
           ApplicationDependencies.getJobManager().add(new SendViewedReceiptJob(record.getThreadId(),
                                                                                info.getSyncMessageId().getRecipientId(),

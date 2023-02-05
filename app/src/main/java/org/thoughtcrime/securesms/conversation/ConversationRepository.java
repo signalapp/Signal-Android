@@ -10,11 +10,11 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.MessageDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobs.MultiDeviceViewedUpdateJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -58,8 +58,8 @@ class ConversationRepository {
 
   @WorkerThread
   public @NonNull ConversationData getConversationData(long threadId, @NonNull Recipient conversationRecipient, int jumpToPosition) {
-    ThreadDatabase.ConversationMetadata metadata                       = SignalDatabase.threads().getConversationMetadata(threadId);
-    int                                 threadSize                     = SignalDatabase.mmsSms().getConversationCount(threadId);
+    ThreadTable.ConversationMetadata metadata   = SignalDatabase.threads().getConversationMetadata(threadId);
+    int                              threadSize = SignalDatabase.messages().getMessageCountForThread(threadId);
     long                                lastSeen                       = metadata.getLastSeen();
     int                                 lastSeenPosition               = 0;
     long                                lastScrolled                   = metadata.getLastScrolled();
@@ -69,7 +69,7 @@ class ConversationRepository {
     boolean                             showUniversalExpireTimerUpdate = false;
 
     if (lastSeen > 0) {
-      lastSeenPosition = SignalDatabase.mmsSms().getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
+      lastSeenPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastSeen);
     }
 
     if (lastSeenPosition <= 0) {
@@ -77,14 +77,14 @@ class ConversationRepository {
     }
 
     if (lastSeen == 0 && lastScrolled > 0) {
-      lastScrolledPosition = SignalDatabase.mmsSms().getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
+      lastScrolledPosition = SignalDatabase.messages().getMessagePositionOnOrAfterTimestamp(threadId, lastScrolled);
     }
 
     if (!isMessageRequestAccepted) {
       boolean isGroup                             = false;
       boolean recipientIsKnownOrHasGroupsInCommon = false;
       if (conversationRecipient.isGroup()) {
-        Optional<GroupDatabase.GroupRecord> group = SignalDatabase.groups().getGroup(conversationRecipient.getId());
+        Optional<GroupRecord> group = SignalDatabase.groups().getGroup(conversationRecipient.getId());
         if (group.isPresent()) {
           List<Recipient> recipients = Recipient.resolvedList(group.get().getMembers());
           for (Recipient recipient : recipients) {
@@ -105,7 +105,7 @@ class ConversationRepository {
         conversationRecipient.getExpiresInSeconds() == 0 &&
         !conversationRecipient.isGroup() &&
         conversationRecipient.isRegistered() &&
-        (threadId == -1 || !SignalDatabase.mmsSms().hasMeaningfulMessage(threadId)))
+        (threadId == -1 || !SignalDatabase.messages().hasMeaningfulMessage(threadId)))
     {
       showUniversalExpireTimerUpdate = true;
     }
@@ -115,12 +115,12 @@ class ConversationRepository {
 
   void markGiftBadgeRevealed(long messageId) {
     SignalExecutors.BOUNDED_IO.execute(() -> {
-      List<MessageDatabase.MarkedMessageInfo> markedMessageInfo = SignalDatabase.mms().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
+      List<MessageTable.MarkedMessageInfo> markedMessageInfo = SignalDatabase.messages().setOutgoingGiftsRevealed(Collections.singletonList(messageId));
       if (!markedMessageInfo.isEmpty()) {
         Log.d(TAG, "Marked gift badge revealed. Sending view sync message.");
         MultiDeviceViewedUpdateJob.enqueue(
             markedMessageInfo.stream()
-                             .map(MessageDatabase.MarkedMessageInfo::getSyncMessageId)
+                             .map(MessageTable.MarkedMessageInfo::getSyncMessageId)
                              .collect(Collectors.toList()));
       }
     });
@@ -148,11 +148,11 @@ class ConversationRepository {
   private @NonNull Single<ConversationSecurityInfo> getSecurityInfo(@NonNull Recipient recipient) {
     return Single.fromCallable(() -> {
       Log.i(TAG, "Resolving registered state...");
-      RecipientDatabase.RegisteredState registeredState;
+      RecipientTable.RegisteredState registeredState;
 
       if (recipient.isPushGroup()) {
         Log.i(TAG, "Push group recipient...");
-        registeredState = RecipientDatabase.RegisteredState.REGISTERED;
+        registeredState = RecipientTable.RegisteredState.REGISTERED;
       } else {
         Log.i(TAG, "Checking through resolved recipient");
         registeredState = recipient.getRegistered();
@@ -161,7 +161,7 @@ class ConversationRepository {
       Log.i(TAG, "Resolved registered state: " + registeredState);
       boolean signalEnabled = Recipient.self().isRegistered();
 
-      if (registeredState == RecipientDatabase.RegisteredState.UNKNOWN) {
+      if (registeredState == RecipientTable.RegisteredState.UNKNOWN) {
         try {
           Log.i(TAG, "Refreshing directory for user: " + recipient.getId().serialize());
           registeredState = ContactDiscovery.refresh(context, recipient, false);
@@ -172,11 +172,11 @@ class ConversationRepository {
 
       long threadId = SignalDatabase.threads().getThreadIdIfExistsFor(recipient.getId());
 
-      boolean hasUnexportedInsecureMessages = threadId != -1 && SignalDatabase.mmsSms().getUnexportedInsecureMessagesCount(threadId) > 0;
+      boolean hasUnexportedInsecureMessages = threadId != -1 && SignalDatabase.messages().getUnexportedInsecureMessagesCount(threadId) > 0;
 
       Log.i(TAG, "Returning registered state...");
       return new ConversationSecurityInfo(recipient.getId(),
-                                          registeredState == RecipientDatabase.RegisteredState.REGISTERED && signalEnabled,
+                                          registeredState == RecipientTable.RegisteredState.REGISTERED && signalEnabled,
                                           Util.isDefaultSmsProvider(context),
                                           true,
                                           hasUnexportedInsecureMessages);
@@ -190,7 +190,7 @@ class ConversationRepository {
 
     return Observable.<Integer> create(emitter -> {
 
-      DatabaseObserver.Observer listener = () -> emitter.onNext(SignalDatabase.mmsSms().getIncomingMeaningfulMessageCountSince(threadId, afterTime));
+      DatabaseObserver.Observer listener = () -> emitter.onNext(SignalDatabase.messages().getIncomingMeaningfulMessageCountSince(threadId, afterTime));
 
       ApplicationDependencies.getDatabaseObserver().registerConversationObserver(threadId, listener);
       emitter.setCancellable(() -> ApplicationDependencies.getDatabaseObserver().unregisterObserver(listener));
@@ -208,7 +208,7 @@ class ConversationRepository {
       }
 
       if (RecipientUtil.isSmsOnly(threadId, recipient) && (!recipient.isMmsGroup() || Util.isDefaultSmsProvider(context))) {
-        SignalDatabase.sms().insertSmsExportMessage(recipient.getId(), threadId);
+        SignalDatabase.messages().insertSmsExportMessage(recipient.getId(), threadId);
       }
     });
   }

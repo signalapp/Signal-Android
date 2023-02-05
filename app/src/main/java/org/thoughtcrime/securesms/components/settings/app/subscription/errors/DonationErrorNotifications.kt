@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 object DonationErrorNotifications {
   fun displayErrorNotification(context: Context, donationError: DonationError) {
     val parameters = DonationErrorParams.create(context, donationError, NotificationCallback)
-    val notification = NotificationCompat.Builder(context, NotificationChannels.FAILURES)
+    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle(context.getString(parameters.title))
       .setContentText(context.getString(parameters.message)).apply {
@@ -62,6 +62,8 @@ object DonationErrorNotifications {
         actionIntent = Intent(Intent.ACTION_VIEW, Uri.parse(context.getString(R.string.donation_decline_code_error_url)))
       )
     }
+
+    override fun onTryCreditCardAgain(context: Context): DonationErrorParams.ErrorAction<PendingIntent>? = null
 
     override fun onGoToGooglePay(context: Context): DonationErrorParams.ErrorAction<PendingIntent> {
       return createAction(

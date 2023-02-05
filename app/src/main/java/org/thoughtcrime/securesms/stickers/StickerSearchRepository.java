@@ -7,10 +7,10 @@ import androidx.annotation.NonNull;
 
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase;
-import org.thoughtcrime.securesms.database.StickerDatabase.StickerRecordReader;
+import org.thoughtcrime.securesms.database.StickerTable;
+import org.thoughtcrime.securesms.database.StickerTable.StickerRecordReader;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import java.util.Set;
 
 public final class StickerSearchRepository {
 
-  private final StickerDatabase    stickerDatabase;
-  private final AttachmentDatabase attachmentDatabase;
+  private final StickerTable    stickerDatabase;
+  private final AttachmentTable attachmentDatabase;
 
   public StickerSearchRepository(@NonNull Context context) {
     this.stickerDatabase    = SignalDatabase.stickers();

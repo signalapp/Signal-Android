@@ -12,7 +12,7 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.database.model.toProtoByteString
@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.pin.KbsRepository
 import org.thoughtcrime.securesms.pin.KeyBackupSystemWrongPinException
 import org.thoughtcrime.securesms.pin.TokenData
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.registration.VerifyAccountRepository
+import org.thoughtcrime.securesms.registration.VerifyResponse
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.KbsPinData
 import org.whispersystems.signalservice.api.KeyBackupSystemNoDataException
@@ -44,6 +44,7 @@ import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevic
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.SecureRandom
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.locks.ReentrantLock
 
 private val TAG: String = Log.tag(ChangeNumberRepository::class.java)
@@ -90,9 +91,10 @@ class ChangeNumberRepository(
           emitter.onComplete()
         }
     }.subscribeOn(Schedulers.single())
+      .timeout(15, TimeUnit.SECONDS)
   }
 
-  fun changeNumber(code: String, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyAccountResponse>> {
+  fun changeNumber(code: String, newE164: String, pniUpdateMode: Boolean = false): Single<ServiceResponse<VerifyResponse>> {
     return Single.fromCallable {
       var completed = false
       var attempts = 0
@@ -119,7 +121,7 @@ class ChangeNumberRepository(
         }
       }
 
-      changeNumberResponse
+      VerifyResponse.from(changeNumberResponse, null, null)
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -129,7 +131,7 @@ class ChangeNumberRepository(
     newE164: String,
     pin: String,
     tokenData: TokenData
-  ): Single<ServiceResponse<VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse>> {
+  ): Single<ServiceResponse<VerifyResponse>> {
     return Single.fromCallable {
       val kbsData: KbsPinData
       val registrationLock: String
@@ -170,7 +172,7 @@ class ChangeNumberRepository(
         }
       }
 
-      VerifyAccountRepository.VerifyAccountWithRegistrationLockResponse.from(changeNumberResponse, kbsData)
+      VerifyResponse.from(changeNumberResponse, kbsData, pin)
     }.subscribeOn(Schedulers.single())
       .onErrorReturn { t -> ServiceResponse.forExecutionError(t) }
   }
@@ -235,7 +237,7 @@ class ChangeNumberRepository(
       pniProtocolStore.identities().saveIdentityWithoutSideEffects(
         Recipient.self().id,
         pniProtocolStore.identityKeyPair.publicKey,
-        IdentityDatabase.VerifiedStatus.VERIFIED,
+        IdentityTable.VerifiedStatus.VERIFIED,
         true,
         System.currentTimeMillis(),
         true

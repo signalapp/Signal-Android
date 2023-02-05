@@ -21,7 +21,7 @@
             android:id="@+id/quote_bar"
             android:layout_width="@dimen/quote_corner_radius_bottom"
             android:layout_height="match_parent"
-            tools:background="@color/purple_400" />
+            tools:background="@color/signal_colorPrimary" />
 
         <LinearLayout
             android:layout_width="match_parent"

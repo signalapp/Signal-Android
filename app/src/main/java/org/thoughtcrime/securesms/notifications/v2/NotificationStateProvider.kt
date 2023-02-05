@@ -3,14 +3,15 @@ package org.thoughtcrime.securesms.notifications.v2
 import androidx.annotation.WorkerThread
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.database.MmsSmsColumns
-import org.thoughtcrime.securesms.database.MmsSmsDatabase
+import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.NoSuchMessageException
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.MediaMmsMessageRecord
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.ReactionRecord
+import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.isStoryReaction
@@ -26,40 +27,47 @@ object NotificationStateProvider {
   fun constructNotificationState(stickyThreads: Map<ConversationId, DefaultMessageNotifier.StickyThread>, notificationProfile: NotificationProfile?): NotificationState {
     val messages: MutableList<NotificationMessage> = mutableListOf()
 
-    SignalDatabase.mmsSms.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
+    SignalDatabase.messages.getMessagesForNotificationState(stickyThreads.values).use { unreadMessages ->
       if (unreadMessages.count == 0) {
         return NotificationState.EMPTY
       }
 
-      MmsSmsDatabase.readerFor(unreadMessages).use { reader ->
+      MessageTable.mmsReaderFor(unreadMessages).use { reader ->
         var record: MessageRecord? = reader.next
         while (record != null) {
           val threadRecipient: Recipient? = SignalDatabase.threads.getRecipientForThreadId(record.threadId)
           if (threadRecipient != null) {
-            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.REACTIONS_UNREAD) == 1
+            val hasUnreadReactions = CursorUtil.requireInt(unreadMessages, MessageTable.REACTIONS_UNREAD) == 1
             val conversationId = ConversationId.fromMessageRecord(record)
 
             val parentRecord = conversationId.groupStoryId?.let {
               try {
-                SignalDatabase.mms.getMessageRecord(it)
+                SignalDatabase.messages.getMessageRecord(it)
               } catch (e: NoSuchMessageException) {
                 null
               }
             }
 
             val hasSelfRepliedToGroupStory = conversationId.groupStoryId?.let {
-              SignalDatabase.mms.hasGroupReplyOrReactionInStory(it)
+              SignalDatabase.messages.hasGroupReplyOrReactionInStory(it)
+            }
+
+            if (record is MediaMmsMessageRecord) {
+              val attachments = SignalDatabase.attachments.getAttachmentsForMessage(record.id)
+              if (attachments.isNotEmpty()) {
+                record = record.withAttachments(ApplicationDependencies.getApplication(), attachments)
+              }
             }
 
             messages += NotificationMessage(
               messageRecord = record,
-              reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id, record.isMms)) else emptyList(),
+              reactions = if (hasUnreadReactions) SignalDatabase.reactions.getReactions(MessageId(record.id)) else emptyList(),
               threadRecipient = threadRecipient,
               thread = conversationId,
               stickyThread = stickyThreads.containsKey(conversationId),
-              isUnreadMessage = CursorUtil.requireInt(unreadMessages, MmsSmsColumns.READ) == 0,
+              isUnreadMessage = CursorUtil.requireInt(unreadMessages, MessageTable.READ) == 0,
               hasUnreadReactions = hasUnreadReactions,
-              lastReactionRead = CursorUtil.requireLong(unreadMessages, MmsSmsColumns.REACTIONS_LAST_SEEN),
+              lastReactionRead = CursorUtil.requireLong(unreadMessages, MessageTable.REACTIONS_LAST_SEEN),
               isParentStorySentBySelf = parentRecord?.isOutgoing ?: false,
               hasSelfRepliedToStory = hasSelfRepliedToGroupStory ?: false
             )
@@ -131,7 +139,12 @@ object NotificationStateProvider {
   ) {
     private val isGroupStoryReply: Boolean = thread.groupStoryId != null
     private val isUnreadIncoming: Boolean = isUnreadMessage && !messageRecord.isOutgoing && !isGroupStoryReply
-    private val isNotifiableGroupStoryMessage: Boolean = isUnreadMessage && !messageRecord.isOutgoing && isGroupStoryReply && (isParentStorySentBySelf || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
+
+    private val isNotifiableGroupStoryMessage: Boolean =
+      isUnreadMessage &&
+        !messageRecord.isOutgoing &&
+        isGroupStoryReply &&
+        (isParentStorySentBySelf || messageRecord.hasSelfMention() || (hasSelfRepliedToStory && !messageRecord.isStoryReaction()))
 
     fun includeMessage(notificationProfile: NotificationProfile?): MessageInclusion {
       return if (isUnreadIncoming || stickyThread || isNotifiableGroupStoryMessage) {
@@ -160,7 +173,7 @@ object NotificationStateProvider {
     }
 
     private val Recipient.isDoNotNotifyMentions: Boolean
-      get() = mentionSetting == RecipientDatabase.MentionSetting.DO_NOT_NOTIFY
+      get() = mentionSetting == RecipientTable.MentionSetting.DO_NOT_NOTIFY
   }
 
   private enum class MessageInclusion {

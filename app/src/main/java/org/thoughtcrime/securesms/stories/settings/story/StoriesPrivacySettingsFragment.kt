@@ -13,11 +13,14 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsAdapter
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.contacts.paged.ContactSearchItems
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchAdapter
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
+import org.thoughtcrime.securesms.contacts.paged.ContactSearchPagedDataSourceRepository
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseGroupStoryBottomSheet
 import org.thoughtcrime.securesms.mediasend.v2.stories.ChooseStoryTypeBottomSheet
+import org.thoughtcrime.securesms.stories.GroupStoryEducationSheet
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryFlowDialogFragment
 import org.thoughtcrime.securesms.stories.settings.create.CreateStoryWithViewersFragment
@@ -34,9 +37,13 @@ class StoriesPrivacySettingsFragment :
   DSLSettingsFragment(
     titleId = R.string.preferences__stories
   ),
-  ChooseStoryTypeBottomSheet.Callback {
+  ChooseStoryTypeBottomSheet.Callback,
+  GroupStoryEducationSheet.Callback {
 
-  private val viewModel: StoriesPrivacySettingsViewModel by viewModels()
+  private val viewModel: StoriesPrivacySettingsViewModel by viewModels(factoryProducer = {
+    StoriesPrivacySettingsViewModel.Factory(ContactSearchPagedDataSourceRepository(requireContext()))
+  })
+
   private val lifecycleDisposable = LifecycleDisposable()
   private val progressDisplayManager = DialogFragmentDisplayManager { ProgressCardDialogFragment() }
 
@@ -59,7 +66,7 @@ class StoriesPrivacySettingsFragment :
     }
 
     @Suppress("UNCHECKED_CAST")
-    ContactSearchItems.registerStoryItems(
+    ContactSearchAdapter.registerStoryItems(
       mappingAdapter = middle as PagingMappingAdapter<ContactSearchKey>,
       storyListener = { _, story, _ ->
         when {
@@ -133,9 +140,10 @@ class StoriesPrivacySettingsFragment :
   private fun getMiddleConfiguration(state: StoriesPrivacySettingsState): DSLConfiguration {
     return if (state.areStoriesEnabled) {
       configure {
-        ContactSearchItems.toMappingModelList(
+        ContactSearchAdapter.toMappingModelList(
           state.storyContactItems,
-          emptySet()
+          emptySet(),
+          null
         ).forEach {
           customPref(it)
         }
@@ -181,10 +189,18 @@ class StoriesPrivacySettingsFragment :
   }
 
   override fun onGroupStoryClicked() {
-    ChooseGroupStoryBottomSheet().show(parentFragmentManager, ChooseGroupStoryBottomSheet.GROUP_STORY)
+    if (SignalStore.storyValues().userHasSeenGroupStoryEducationSheet) {
+      onGroupStoryEducationSheetNext()
+    } else {
+      GroupStoryEducationSheet().show(childFragmentManager, GroupStoryEducationSheet.KEY)
+    }
   }
 
   override fun onNewStoryClicked() {
     CreateStoryFlowDialogFragment().show(parentFragmentManager, CreateStoryWithViewersFragment.REQUEST_KEY)
+  }
+
+  override fun onGroupStoryEducationSheetNext() {
+    ChooseGroupStoryBottomSheet().show(parentFragmentManager, ChooseGroupStoryBottomSheet.GROUP_STORY)
   }
 }

@@ -18,9 +18,9 @@ import androidx.core.graphics.drawable.IconCompat
 import org.signal.core.util.PendingIntentFlags.mutable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationIntents
-import org.thoughtcrime.securesms.database.GroupDatabase
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.ReplyMethod
@@ -117,7 +117,7 @@ sealed class NotificationBuilder(protected val context: Context) {
   fun addReplyActions(conversation: NotificationConversation) {
     if (privacy.isDisplayMessage && isNotLocked && !conversation.recipient.isPushV1Group && RecipientUtil.isMessageRequestAccepted(context, conversation.recipient)) {
       if (conversation.recipient.isPushV2Group) {
-        val group: Optional<GroupDatabase.GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
+        val group: Optional<GroupRecord> = SignalDatabase.groups.getGroup(conversation.recipient.requireGroupId())
         if (group.isPresent && group.get().isAnnouncementGroup && !group.get().isAdmin(Recipient.self())) {
           return
         }
@@ -186,7 +186,7 @@ sealed class NotificationBuilder(protected val context: Context) {
    * Notification builder using solely androidx/compat libraries.
    */
   private class NotificationBuilderCompat(context: Context) : NotificationBuilder(context) {
-    val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getMessagesChannel(context))
+    val builder: NotificationCompat.Builder = NotificationCompat.Builder(context, NotificationChannels.getInstance().messagesChannel)
 
     override fun addActions(replyMethod: ReplyMethod, conversation: NotificationConversation) {
       val extender: NotificationCompat.WearableExtender = NotificationCompat.WearableExtender()
@@ -210,13 +210,13 @@ sealed class NotificationBuilder(protected val context: Context) {
         val actionName: String = context.getString(R.string.MessageNotifier_reply)
         val label: String = context.getString(replyMethod.toLongDescription())
         val replyAction: NotificationCompat.Action? = if (Build.VERSION.SDK_INT >= 24 && remoteReply != null) {
-          NotificationCompat.Action.Builder(R.drawable.ic_reply_white_36dp, actionName, remoteReply)
+          NotificationCompat.Action.Builder(R.drawable.symbol_reply_36, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .setSemanticAction(NotificationCompat.Action.SEMANTIC_ACTION_REPLY)
             .setShowsUserInterface(false)
             .build()
         } else if (quickReply != null) {
-          NotificationCompat.Action(R.drawable.ic_reply_white_36dp, actionName, quickReply)
+          NotificationCompat.Action(R.drawable.symbol_reply_36, actionName, quickReply)
         } else {
           null
         }
@@ -224,7 +224,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.addAction(replyAction)
 
         if (remoteReply != null) {
-          val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.ic_reply, actionName, remoteReply)
+          val wearableReplyAction = NotificationCompat.Action.Builder(R.drawable.symbol_reply_24, actionName, remoteReply)
             .addRemoteInput(RemoteInput.Builder(DefaultMessageNotifier.EXTRA_REMOTE_REPLY).setLabel(label).build())
             .build()
 
@@ -342,7 +342,7 @@ sealed class NotificationBuilder(protected val context: Context) {
         builder.setSound(ringtone)
       }
 
-      if (vibrate == RecipientDatabase.VibrateState.ENABLED || vibrate == RecipientDatabase.VibrateState.DEFAULT && defaultVibrate) {
+      if (vibrate == RecipientTable.VibrateState.ENABLED || vibrate == RecipientTable.VibrateState.DEFAULT && defaultVibrate) {
         builder.setDefaults(Notification.DEFAULT_VIBRATE)
       }
     }

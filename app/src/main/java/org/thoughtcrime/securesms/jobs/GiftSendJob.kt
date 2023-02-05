@@ -4,7 +4,7 @@ import com.google.protobuf.ByteString
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.badges.gifts.Gifts
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
-import org.thoughtcrime.securesms.database.RecipientDatabase
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.jobmanager.Data
@@ -52,7 +52,7 @@ class GiftSendJob private constructor(parameters: Parameters, private val recipi
 
     val recipient = Recipient.resolved(recipientId)
 
-    if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientDatabase.RegisteredState.REGISTERED) {
+    if (recipient.isGroup || recipient.isDistributionList || recipient.registered != RecipientTable.RegisteredState.REGISTERED) {
       Log.w(TAG, "Invalid recipient $recipientId for gift send.")
       return Result.failure()
     }
@@ -68,19 +68,20 @@ class GiftSendJob private constructor(parameters: Parameters, private val recipi
 
     Log.i(TAG, "Sending gift badge to $recipientId...")
     var didInsert = false
-    MessageSender.send(context, outgoingMessage, thread, false, null) {
+    MessageSender.send(context, outgoingMessage, thread, MessageSender.SendType.SIGNAL, null) {
       didInsert = true
     }
 
     return if (didInsert) {
       Log.i(TAG, "Successfully inserted outbox message for gift", true)
 
-      if (additionalMessage != null) {
+      val trimmedMessage = additionalMessage?.trim()
+      if (!trimmedMessage.isNullOrBlank()) {
         Log.i(TAG, "Sending additional message...")
 
         val result = MultiShareSender.sendSync(
-          MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(recipientId)))
-            .withDraftText(additionalMessage)
+          MultiShareArgs.Builder(setOf(ContactSearchKey.RecipientSearchKey(recipientId, false)))
+            .withDraftText(trimmedMessage)
             .build()
         )
 

@@ -80,6 +80,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/blocked_users_header"
-        tools:listitem="@layout/contact_selection_list_item" />
+        tools:listitem="@layout/contact_search_item" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

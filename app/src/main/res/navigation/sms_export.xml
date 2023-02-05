@@ -3,7 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/sms_export"
-    app:startDestination="@id/exportYourSmsMessagesFragment">
+    app:startDestination="@id/smsRemovalInformationFragment">
+
+    <fragment
+        android:id="@+id/smsRemovalInformationFragment"
+        android:name="org.thoughtcrime.securesms.exporter.flow.SmsRemovalInformationFragment"
+        tools:layout="@layout/export_your_sms_messages_fragment">
+        <action
+            android:id="@+id/action_smsRemovalInformationFragment_to_exportYourSmsMessagesFragment"
+            app:destination="@id/exportYourSmsMessagesFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit"
+            app:popUpTo="@id/sms_export"
+            app:popUpToInclusive="true" />
+    </fragment>
 
     <fragment
         android:id="@+id/exportYourSmsMessagesFragment"

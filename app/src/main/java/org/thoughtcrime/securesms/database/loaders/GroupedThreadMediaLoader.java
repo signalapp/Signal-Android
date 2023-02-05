@@ -11,7 +11,7 @@ import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.MediaDatabase;
+import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.util.CalendarDateOnly;
 
@@ -27,14 +27,14 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
   private static final String TAG = Log.tag(GroupedThreadMediaLoader.class);
 
   private final DatabaseObserver.Observer observer;
-  private final MediaLoader.MediaType     mediaType;
-  private final MediaDatabase.Sorting     sorting;
-  private final long                      threadId;
+  private final MediaLoader.MediaType mediaType;
+  private final MediaTable.Sorting    sorting;
+  private final long                  threadId;
 
   public GroupedThreadMediaLoader(@NonNull Context context,
                                   long threadId,
                                   @NonNull MediaLoader.MediaType mediaType,
-                                  @NonNull MediaDatabase.Sorting sorting)
+                                  @NonNull MediaTable.Sorting sorting)
   {
     super(context);
     this.threadId  = threadId;
@@ -75,11 +75,11 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     try (Cursor cursor = ThreadMediaLoader.createThreadMediaCursor(context, threadId, mediaType, sorting)) {
       while (cursor != null && cursor.moveToNext()) {
-        mediaGrouping.add(MediaDatabase.MediaRecord.from(cursor));
+        mediaGrouping.add(MediaTable.MediaRecord.from(cursor));
       }
     }
 
-    if (sorting == MediaDatabase.Sorting.Oldest || sorting == MediaDatabase.Sorting.Largest) {
+    if (sorting == MediaTable.Sorting.Oldest || sorting == MediaTable.Sorting.Largest) {
       return new ReversedGroupedThreadMedia(mediaGrouping);
     } else {
       return mediaGrouping;
@@ -88,7 +88,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
   public interface GroupingMethod {
 
-   int groupForRecord(@NonNull MediaDatabase.MediaRecord mediaRecord);
+   int groupForRecord(@NonNull MediaTable.MediaRecord mediaRecord);
 
    @NonNull String groupName(int groupNo);
   }
@@ -121,7 +121,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     }
 
     @Override
-    public int groupForRecord(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+    public int groupForRecord(@NonNull MediaTable.MediaRecord mediaRecord) {
       long date = mediaRecord.getDate();
 
       if (date > todayStart)     return TODAY;
@@ -181,7 +181,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     }
 
     @Override
-    public int groupForRecord(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+    public int groupForRecord(@NonNull MediaTable.MediaRecord mediaRecord) {
       long size = mediaRecord.getAttachment().getSize();
 
       if (size < MB)      return SMALL;
@@ -207,7 +207,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
 
     public abstract int getSectionItemCount(int section);
 
-    public abstract @NonNull MediaDatabase.MediaRecord get(int section, int item);
+    public abstract @NonNull MediaTable.MediaRecord get(int section, int item);
 
     public abstract @NonNull String getName(int section);
 
@@ -226,7 +226,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     }
 
     @Override
-    public @NonNull MediaDatabase.MediaRecord get(int section, int item) {
+    public @NonNull MediaTable.MediaRecord get(int section, int item) {
       throw new AssertionError();
     }
 
@@ -255,7 +255,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     }
 
     @Override
-    public @NonNull MediaDatabase.MediaRecord get(int section, int item) {
+    public @NonNull MediaTable.MediaRecord get(int section, int item) {
       return decorated.get(getReversedSection(section), item);
     }
 
@@ -274,16 +274,16 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     @NonNull
     private final GroupingMethod groupingMethod;
 
-    private final SparseArray<List<MediaDatabase.MediaRecord>> records = new SparseArray<>();
+    private final SparseArray<List<MediaTable.MediaRecord>> records = new SparseArray<>();
 
     private PopulatedGroupedThreadMedia(@NonNull GroupingMethod groupingMethod) {
       this.groupingMethod = groupingMethod;
     }
 
-    private void add(@NonNull MediaDatabase.MediaRecord mediaRecord) {
+    private void add(@NonNull MediaTable.MediaRecord mediaRecord) {
       int groupNo = groupingMethod.groupForRecord(mediaRecord);
 
-      List<MediaDatabase.MediaRecord> mediaRecords = records.get(groupNo);
+      List<MediaTable.MediaRecord> mediaRecords = records.get(groupNo);
       if (mediaRecords == null) {
         mediaRecords = new LinkedList<>();
         records.put(groupNo, mediaRecords);
@@ -303,7 +303,7 @@ public final class GroupedThreadMediaLoader extends AsyncTaskLoader<GroupedThrea
     }
 
     @Override
-    public @NonNull MediaDatabase.MediaRecord get(int section, int item) {
+    public @NonNull MediaTable.MediaRecord get(int section, int item) {
       return records.get(records.keyAt(section)).get(item);
     }
 

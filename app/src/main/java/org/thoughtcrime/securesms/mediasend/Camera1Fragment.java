@@ -5,11 +5,13 @@ import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.SurfaceTexture;
 import android.graphics.drawable.Drawable;
+import android.hardware.Camera;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.GestureDetector;
@@ -27,11 +29,9 @@ import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.Px;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.core.view.ViewKt;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.MultiTransformation;
@@ -40,18 +40,17 @@ import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
+import org.thoughtcrime.securesms.mediasend.camerax.CameraXModelBlocklist;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.GlideApp;
-import org.thoughtcrime.securesms.stories.Stories;
-import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay;
 import org.thoughtcrime.securesms.util.ServiceUtil;
-import org.signal.core.util.Stopwatch;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
@@ -61,29 +60,28 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
 
 /**
- * Camera capture implemented with the legacy camera API's. Should only be used if sdk < 21.
+ * Camera capture implemented with the legacy camera API's. Should only be used if a device is on the {@link CameraXModelBlocklist}.
  */
 public class Camera1Fragment extends LoggingFragment implements CameraFragment,
-                                                             TextureView.SurfaceTextureListener,
-                                                             Camera1Controller.EventListener
+                                                                TextureView.SurfaceTextureListener,
+                                                                Camera1Controller.EventListener
 {
 
   private static final String TAG = Log.tag(Camera1Fragment.class);
 
-  private TextureView                  cameraPreview;
-  private ViewGroup                    controlsContainer;
-  private ImageButton                  flipButton;
-  private View                         captureButton;
-  private Camera1Controller            camera;
-  private Controller                   controller;
-  private OrderEnforcer<Stage>         orderEnforcer;
-  private Camera1Controller.Properties properties;
-  private RotationListener             rotationListener;
-  private Disposable                   rotationListenerDisposable;
-  private Disposable                   mostRecentItemDisposable = Disposable.disposed();
-
-  private boolean isThumbAvailable;
-  private boolean isMediaSelected;
+  private TextureView                      cameraPreview;
+  private ViewGroup                        controlsContainer;
+  private ImageButton                      flipButton;
+  private View                             captureButton;
+  private Camera1Controller                camera;
+  private Controller                       controller;
+  private OrderEnforcer<Stage>             orderEnforcer;
+  private Camera1Controller.Properties     properties;
+  private RotationListener                 rotationListener;
+  private Disposable                       rotationListenerDisposable;
+  private Disposable                       mostRecentItemDisposable = Disposable.disposed();
+  private CameraScreenBrightnessController cameraScreenBrightnessController;
+  private boolean                          isMediaSelected;
 
   public static Camera1Fragment newInstance() {
     return new Camera1Fragment();
@@ -124,6 +122,8 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     super.onViewCreated(view, savedInstanceState);
     requireActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_SENSOR);
+    cameraScreenBrightnessController = new CameraScreenBrightnessController(requireActivity().getWindow(), new CameraStateProvider(camera));
+    getViewLifecycleOwner().getLifecycle().addObserver(cameraScreenBrightnessController);
 
     rotationListener  = new RotationListener(requireContext());
     cameraPreview     = view.findViewById(R.id.camera_preview);
@@ -271,21 +271,23 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   }
 
   private void presentRecentItemThumbnail(@Nullable Media media) {
-    ImageView thumbnail = controlsContainer.findViewById(R.id.camera_gallery_button);
+    View      thumbBackground = controlsContainer.findViewById(R.id.camera_gallery_button_background);
+    ImageView thumbnail       = controlsContainer.findViewById(R.id.camera_gallery_button);
 
     if (media != null) {
-      thumbnail.setVisibility(View.VISIBLE);
+      thumbBackground.setBackgroundResource(R.drawable.circle_tintable);
+      thumbnail.clearColorFilter();
+      thumbnail.setScaleType(ImageView.ScaleType.FIT_CENTER);
       Glide.with(this)
            .load(new DecryptableUri(media.getUri()))
            .centerCrop()
            .into(thumbnail);
     } else {
-      thumbnail.setVisibility(View.GONE);
-      thumbnail.setImageResource(0);
+      thumbBackground.setBackgroundResource(R.drawable.media_selection_camera_switch_background);
+      thumbnail.setImageResource(R.drawable.symbol_album_tilt_24);
+      thumbnail.setColorFilter(Color.WHITE);
+      thumbnail.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
     }
-
-    isThumbAvailable = media != null;
-    updateGalleryVisibility();
   }
 
   @Override
@@ -309,7 +311,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
   private void updateGalleryVisibility() {
     View cameraGalleryContainer = controlsContainer.findViewById(R.id.camera_gallery_button_background);
 
-    if (isMediaSelected || !isThumbAvailable) {
+    if (isMediaSelected) {
       cameraGalleryContainer.setVisibility(View.GONE);
     } else {
       cameraGalleryContainer.setVisibility(View.VISIBLE);
@@ -338,7 +340,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
     orderEnforcer.run(Stage.CAMERA_PROPERTIES_AVAILABLE, () -> {
       if (properties.getCameraCount() > 1) {
         flipButton.setVisibility(properties.getCameraCount() > 1 ? View.VISIBLE : View.GONE);
-        flipButton.setOnClickListener(v ->  {
+        flipButton.setOnClickListener(v -> {
           int newCameraId = camera.flip();
           TextSecurePreferences.setDirectCaptureCameraId(getContext(), newCameraId);
 
@@ -346,6 +348,7 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
           animation.setDuration(200);
           animation.setInterpolator(new DecelerateInterpolator());
           flipButton.startAnimation(animation);
+          cameraScreenBrightnessController.onCameraDirectionChanged(newCameraId == Camera.CameraInfo.CAMERA_FACING_FRONT);
         });
       } else {
         flipButton.setVisibility(View.GONE);
@@ -474,5 +477,24 @@ public class Camera1Fragment extends LoggingFragment implements CameraFragment,
 
   private enum Stage {
     SURFACE_AVAILABLE, CAMERA_PROPERTIES_AVAILABLE
+  }
+
+  private static class CameraStateProvider implements CameraScreenBrightnessController.CameraStateProvider {
+
+    private final Camera1Controller camera1Controller;
+
+    private CameraStateProvider(Camera1Controller camera1Controller) {
+      this.camera1Controller = camera1Controller;
+    }
+
+    @Override
+    public boolean isFrontFacingCameraSelected() {
+      return camera1Controller.isCameraFacingFront();
+    }
+
+    @Override
+    public boolean isFlashEnabled() {
+      return false;
+    }
   }
 }

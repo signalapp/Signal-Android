@@ -8,12 +8,16 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
-import org.thoughtcrime.securesms.database.DraftDatabase
-import org.thoughtcrime.securesms.database.DraftDatabase.Drafts
+import org.thoughtcrime.securesms.conversation.MessageStyler
+import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.DraftTable.Drafts
 import org.thoughtcrime.securesms.database.MentionUtil
-import org.thoughtcrime.securesms.database.MmsSmsColumns
+import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.ThreadDatabase
+import org.thoughtcrime.securesms.database.ThreadTable
+import org.thoughtcrime.securesms.database.adjustBodyRanges
+import org.thoughtcrime.securesms.database.model.Mention
+import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -23,12 +27,12 @@ import java.util.concurrent.Executor
 
 class DraftRepository(
   private val context: Context = ApplicationDependencies.getApplication(),
-  private val threadDatabase: ThreadDatabase = SignalDatabase.threads,
-  private val draftDatabase: DraftDatabase = SignalDatabase.drafts,
+  private val threadTable: ThreadTable = SignalDatabase.threads,
+  private val draftTable: DraftTable = SignalDatabase.drafts,
   private val saveDraftsExecutor: Executor = SerialMonoLifoExecutor(SignalExecutors.BOUNDED)
 ) {
 
-  fun deleteVoiceNoteDraftData(draft: DraftDatabase.Draft?) {
+  fun deleteVoiceNoteDraftData(draft: DraftTable.Draft?) {
     if (draft != null) {
       SignalExecutors.BOUNDED.execute {
         BlobProvider.getInstance().delete(context, Uri.parse(draft.value).buildUpon().clearQuery().build())
@@ -40,32 +44,36 @@ class DraftRepository(
     saveDraftsExecutor.execute {
       if (drafts.isNotEmpty()) {
         val actualThreadId = if (threadId == -1L) {
-          threadDatabase.getOrCreateThreadIdFor(recipient, distributionType)
+          threadTable.getOrCreateThreadIdFor(recipient, distributionType)
         } else {
           threadId
         }
 
-        draftDatabase.replaceDrafts(actualThreadId, drafts)
-        threadDatabase.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.uriSnippet, System.currentTimeMillis(), MmsSmsColumns.Types.BASE_DRAFT_TYPE, true)
+        draftTable.replaceDrafts(actualThreadId, drafts)
+        threadTable.updateSnippet(actualThreadId, drafts.getSnippet(context), drafts.getUriSnippet(), System.currentTimeMillis(), MessageTypes.BASE_DRAFT_TYPE, true)
       } else if (threadId > 0) {
-        threadDatabase.update(threadId, false)
-        draftDatabase.clearDrafts(threadId)
+        draftTable.clearDrafts(threadId)
+        threadTable.update(threadId, unarchive = false, allowDeletion = false)
       }
     }
   }
 
   fun loadDrafts(threadId: Long): Single<DatabaseDraft> {
     return Single.fromCallable {
-      val drafts: Drafts = draftDatabase.getDrafts(threadId)
-      val mentionsDraft = drafts.getDraftOfType(DraftDatabase.Draft.MENTION)
+      val drafts: Drafts = draftTable.getDrafts(threadId)
+      val bodyRangesDraft: DraftTable.Draft? = drafts.getDraftOfType(DraftTable.Draft.BODY_RANGES)
+      val textDraft: DraftTable.Draft? = drafts.getDraftOfType(DraftTable.Draft.TEXT)
       var updatedText: Spannable? = null
 
-      if (mentionsDraft != null) {
-        val text = drafts.getDraftOfType(DraftDatabase.Draft.TEXT)!!.value
-        val mentions = MentionUtil.bodyRangeListToMentions(context, Base64.decodeOrThrow(mentionsDraft.value))
-        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, text, mentions)
+      if (textDraft != null && bodyRangesDraft != null) {
+        val bodyRanges: BodyRangeList = BodyRangeList.parseFrom(Base64.decodeOrThrow(bodyRangesDraft.value))
+        val mentions: List<Mention> = MentionUtil.bodyRangeListToMentions(bodyRanges)
+
+        val updated = MentionUtil.updateBodyAndMentionsWithDisplayNames(context, textDraft.value, mentions)
+
         updatedText = SpannableString(updated.body)
         MentionAnnotation.setMentionAnnotations(updatedText, updated.mentions)
+        MessageStyler.style(bodyRanges.adjustBodyRanges(updated.bodyAdjustments), updatedText)
       }
 
       DatabaseDraft(drafts, updatedText)

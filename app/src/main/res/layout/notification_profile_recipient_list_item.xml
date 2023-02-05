@@ -62,7 +62,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/ic_minus_circle_20" />
+            android:tint="@color/core_grey_45"
+            app:srcCompat="@drawable/symbol_minus_circle_24" />
 
     </FrameLayout>
 

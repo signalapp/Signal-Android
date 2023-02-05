@@ -5,6 +5,5 @@ package org.thoughtcrime.securesms.database.model
  */
 data class DistributionListPrivacyData(
   val privacyMode: DistributionListPrivacyMode,
-  val rawMemberCount: Int,
   val memberCount: Int
 )

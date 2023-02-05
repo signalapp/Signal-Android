@@ -21,7 +21,7 @@ import androidx.annotation.NonNull;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.jobmanager.Data;
 import org.thoughtcrime.securesms.jobmanager.Job;
@@ -71,10 +71,10 @@ public class TrimThreadJob extends BaseJob {
     KeepMessagesDuration keepMessagesDuration = SignalStore.settings().getKeepMessagesDuration();
 
     int trimLength = SignalStore.settings().isTrimByLengthEnabled() ? SignalStore.settings().getThreadTrimLength()
-                                                                    : ThreadDatabase.NO_TRIM_MESSAGE_COUNT_SET;
+                                                                    : ThreadTable.NO_TRIM_MESSAGE_COUNT_SET;
 
     long trimBeforeDate = keepMessagesDuration != KeepMessagesDuration.FOREVER ? System.currentTimeMillis() - keepMessagesDuration.getDuration()
-                                                                               : ThreadDatabase.NO_TRIM_BEFORE_DATE_SET;
+                                                                               : ThreadTable.NO_TRIM_BEFORE_DATE_SET;
 
     SignalDatabase.threads().trimThread(threadId, trimLength, trimBeforeDate);
   }

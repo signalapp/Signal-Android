@@ -11,10 +11,11 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactRepository;
-import org.thoughtcrime.securesms.database.GroupDatabase;
-import org.thoughtcrime.securesms.database.RecipientDatabase;
+import org.thoughtcrime.securesms.database.GroupTable;
+import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.database.ThreadDatabase;
+import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -36,19 +37,19 @@ class CameraContactsRepository {
 
   private static final int RECENT_MAX = 25;
 
-  private final Context           context;
-  private final ThreadDatabase    threadDatabase;
-  private final GroupDatabase     groupDatabase;
-  private final RecipientDatabase recipientDatabase;
+  private final Context     context;
+  private final ThreadTable threadTable;
+  private final GroupTable  groupDatabase;
+  private final RecipientTable    recipientTable;
   private final ContactRepository contactRepository;
   private final Executor          serialExecutor;
   private final ExecutorService   parallelExecutor;
 
   CameraContactsRepository(@NonNull Context context) {
-    this.context           = context.getApplicationContext();
-    this.threadDatabase    = SignalDatabase.threads();
-    this.groupDatabase     = SignalDatabase.groups();
-    this.recipientDatabase = SignalDatabase.recipients();
+    this.context       = context.getApplicationContext();
+    this.threadTable   = SignalDatabase.threads();
+    this.groupDatabase = SignalDatabase.groups();
+    this.recipientTable    = SignalDatabase.recipients();
     this.contactRepository = new ContactRepository(context, context.getString(R.string.note_to_self));
     this.serialExecutor    = SignalExecutors.SERIAL;
     this.parallelExecutor  = SignalExecutors.BOUNDED;
@@ -87,7 +88,7 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>(RECENT_MAX);
 
-    try (ThreadDatabase.Reader threadReader = threadDatabase.readerFor(threadDatabase.getRecentPushConversationList(RECENT_MAX, false))) {
+    try (ThreadTable.Reader threadReader = threadTable.readerFor(threadTable.getRecentPushConversationList(RECENT_MAX, false))) {
       ThreadRecord threadRecord;
       while ((threadRecord = threadReader.getNext()) != null) {
         recipients.add(threadRecord.getRecipient().resolve());
@@ -120,10 +121,10 @@ class CameraContactsRepository {
 
     List<Recipient> recipients = new ArrayList<>();
 
-    try (GroupDatabase.Reader reader = groupDatabase.queryGroupsByTitle(query, false, true, true)) {
-      GroupDatabase.GroupRecord groupRecord;
+    try (GroupTable.Reader reader = groupDatabase.queryGroupsByTitle(query, false, true, true)) {
+      GroupRecord groupRecord;
       while ((groupRecord = reader.getNext()) != null) {
-        RecipientId recipientId = recipientDatabase.getOrInsertFromGroupId(groupRecord.getId());
+        RecipientId recipientId = recipientTable.getOrInsertFromGroupId(groupRecord.getId());
         recipients.add(Recipient.resolved(recipientId));
       }
     }

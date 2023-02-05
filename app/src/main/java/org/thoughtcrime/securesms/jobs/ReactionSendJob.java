@@ -7,7 +7,7 @@ import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
-import org.thoughtcrime.securesms.database.ReactionDatabase;
+import org.thoughtcrime.securesms.database.ReactionTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
@@ -44,7 +44,6 @@ public class ReactionSendJob extends BaseJob {
   private static final String TAG = Log.tag(ReactionSendJob.class);
 
   private static final String KEY_MESSAGE_ID              = "message_id";
-  private static final String KEY_IS_MMS                  = "is_mms";
   private static final String KEY_REACTION_EMOJI          = "reaction_emoji";
   private static final String KEY_REACTION_AUTHOR         = "reaction_author";
   private static final String KEY_REACTION_DATE_SENT      = "reaction_date_sent";
@@ -67,8 +66,7 @@ public class ReactionSendJob extends BaseJob {
                                                 boolean remove)
       throws NoSuchMessageException
   {
-    MessageRecord message = messageId.isMms() ? SignalDatabase.mms().getMessageRecord(messageId.getId())
-                                              : SignalDatabase.sms().getSmsMessage(messageId.getId());
+    MessageRecord message = SignalDatabase.messages().getMessageRecord(messageId.getId());
 
     Recipient conversationRecipient = SignalDatabase.threads().getRecipientForThreadId(message.getThreadId());
 
@@ -116,7 +114,6 @@ public class ReactionSendJob extends BaseJob {
   @Override
   public @NonNull Data serialize() {
     return new Data.Builder().putLong(KEY_MESSAGE_ID, messageId.getId())
-                             .putBoolean(KEY_IS_MMS, messageId.isMms())
                              .putString(KEY_REACTION_EMOJI, reaction.getEmoji())
                              .putString(KEY_REACTION_AUTHOR, reaction.getAuthor().serialize())
                              .putLong(KEY_REACTION_DATE_SENT, reaction.getDateSent())
@@ -138,15 +135,8 @@ public class ReactionSendJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
-
-    MessageRecord  message;
-
-    if (messageId.isMms()) {
-      message = SignalDatabase.mms().getMessageRecord(messageId.getId());
-    } else {
-      message = SignalDatabase.sms().getSmsMessage(messageId.getId());
-    }
+    ReactionTable reactionTable = SignalDatabase.reactions();
+    MessageRecord message       = SignalDatabase.messages().getMessageRecord(messageId.getId());
 
     Recipient targetAuthor        = message.isOutgoing() ? Recipient.self() : message.getIndividualRecipient();
     long      targetSentTimestamp = message.getDateSent();
@@ -155,12 +145,12 @@ public class ReactionSendJob extends BaseJob {
       return;
     }
 
-    if (!remove && !reactionDatabase.hasReaction(messageId, reaction)) {
+    if (!remove && !reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to add a reaction, but it's no longer present on the message!");
       return;
     }
 
-    if (remove && reactionDatabase.hasReaction(messageId, reaction)) {
+    if (remove && reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Went to remove a reaction, but it's still there!");
       return;
     }
@@ -209,14 +199,14 @@ public class ReactionSendJob extends BaseJob {
 
     Log.w(TAG, "Failed to send the reaction to all recipients!");
 
-    ReactionDatabase reactionDatabase = SignalDatabase.reactions();
+    ReactionTable reactionTable = SignalDatabase.reactions();
 
-    if (remove && !reactionDatabase.hasReaction(messageId, reaction)) {
+    if (remove && !reactionTable.hasReaction(messageId, reaction)) {
       Log.w(TAG, "Reaction removal failed, so adding the reaction back.");
-      reactionDatabase.addReaction(messageId, reaction);
-    } else if (!remove && reactionDatabase.hasReaction(messageId, reaction)){
+      reactionTable.addReaction(messageId, reaction);
+    } else if (!remove && reactionTable.hasReaction(messageId, reaction)){
       Log.w(TAG, "Reaction addition failed, so removing the reaction.");
-      reactionDatabase.deleteReaction(messageId, reaction.getAuthor());
+      reactionTable.deleteReaction(messageId, reaction.getAuthor());
     } else {
       Log.w(TAG, "Reaction state didn't match what we'd expect to revert it, so we're just leaving it alone.");
     }
@@ -273,7 +263,6 @@ public class ReactionSendJob extends BaseJob {
     public @NonNull
     ReactionSendJob create(@NonNull Parameters parameters, @NonNull Data data) {
       long              messageId             = data.getLong(KEY_MESSAGE_ID);
-      boolean           isMms                 = data.getBoolean(KEY_IS_MMS);
       List<RecipientId> recipients            = RecipientId.fromSerializedList(data.getString(KEY_RECIPIENTS));
       int               initialRecipientCount = data.getInt(KEY_INITIAL_RECIPIENT_COUNT);
       ReactionRecord    reaction              = new ReactionRecord(data.getString(KEY_REACTION_EMOJI),
@@ -282,7 +271,7 @@ public class ReactionSendJob extends BaseJob {
                                                                    data.getLong(KEY_REACTION_DATE_RECEIVED));
       boolean           remove                = data.getBoolean(KEY_REMOVE);
 
-      return new ReactionSendJob(new MessageId(messageId, isMms), recipients, initialRecipientCount, reaction, remove, parameters);
+      return new ReactionSendJob(new MessageId(messageId), recipients, initialRecipientCount, reaction, remove, parameters);
     }
   }
 }

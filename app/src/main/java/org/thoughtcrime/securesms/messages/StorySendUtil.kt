@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.messages
 
 import com.google.protobuf.InvalidProtocolBufferException
 import org.thoughtcrime.securesms.database.model.databaseprotos.StoryTextPost
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.util.Base64
 import org.whispersystems.signalservice.api.messages.SignalServicePreview
 import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment
@@ -12,7 +12,7 @@ import kotlin.math.roundToInt
 object StorySendUtil {
   @JvmStatic
   @Throws(InvalidProtocolBufferException::class)
-  fun deserializeBodyToStoryTextAttachment(message: OutgoingMediaMessage, getPreviewsFor: (OutgoingMediaMessage) -> List<SignalServicePreview>): SignalServiceTextAttachment {
+  fun deserializeBodyToStoryTextAttachment(message: OutgoingMessage, getPreviewsFor: (OutgoingMessage) -> List<SignalServicePreview>): SignalServiceTextAttachment {
     val storyTextPost = StoryTextPost.parseFrom(Base64.decode(message.body))
     val preview = if (message.linkPreviews.isEmpty()) {
       Optional.empty()

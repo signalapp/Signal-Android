@@ -49,7 +49,7 @@ object NotificationThumbnails {
       return NotificationItem.ThumbnailInfo(thumbnailSlide.publicUri, thumbnailSlide.contentType)
     }
 
-    val messageId = MessageId(notificationItem.id, notificationItem.isMms)
+    val messageId = MessageId(notificationItem.id)
     val thumbnail: CachedThumbnail? = synchronized(thumbnailCache) { thumbnailCache[messageId] }
 
     if (thumbnail != null) {
@@ -110,7 +110,7 @@ object NotificationThumbnails {
   }
 
   fun removeAllExcept(notificationItems: List<NotificationItem>) {
-    val currentMessages = notificationItems.map { MessageId(it.id, it.isMms) }
+    val currentMessages = notificationItems.map { MessageId(it.id) }
     synchronized(thumbnailCache) {
       thumbnailCache.keys.removeIf { !currentMessages.contains(it) }
     }

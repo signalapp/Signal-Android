@@ -4,11 +4,8 @@ import android.content.Context
 import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.ThreadDatabase
-import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
-import org.thoughtcrime.securesms.mms.OutgoingMediaMessage
-import org.thoughtcrime.securesms.mms.OutgoingSecureMediaMessage
+import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.Base64
 import java.lang.Integer.min
@@ -32,23 +29,14 @@ object Gifts {
     giftBadge: GiftBadge,
     sentTimestamp: Long,
     expiresIn: Long
-  ): OutgoingMediaMessage {
-    return OutgoingSecureMediaMessage(
-      recipient,
-      Base64.encodeBytes(giftBadge.toByteArray()),
-      listOf(),
-      sentTimestamp,
-      ThreadDatabase.DistributionTypes.CONVERSATION,
-      expiresIn,
-      false,
-      StoryType.NONE,
-      null,
-      false,
-      null,
-      listOf(),
-      listOf(),
-      listOf(),
-      giftBadge
+  ): OutgoingMessage {
+    return OutgoingMessage(
+      recipient = recipient,
+      body = Base64.encodeBytes(giftBadge.toByteArray()),
+      isSecure = true,
+      sentTimeMillis = sentTimestamp,
+      expiresIn = expiresIn,
+      giftBadge = giftBadge
     )
   }
 

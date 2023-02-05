@@ -23,7 +23,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore
-import org.thoughtcrime.securesms.database.IdentityDatabase
+import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -90,7 +90,7 @@ class SafetyNumberRepositoryTest {
       val record = IdentityRecord(
         recipientId = recipient.id,
         identityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey,
-        verifiedStatus = IdentityDatabase.VerifiedStatus.DEFAULT,
+        verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
         firstUse = false,
         timestamp = 0,
         nonblockingApproval = false
@@ -108,7 +108,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_batchOf1_noChanges() {
     val other = recipientPool[1]
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
@@ -127,7 +127,7 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val otherAci = ACI.from(other.requireServiceId())
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
@@ -148,7 +148,7 @@ class SafetyNumberRepositoryTest {
     val secondOther = recipientPool[2]
     val otherAci = ACI.from(other.requireServiceId())
     val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id), ContactSearchKey.RecipientSearchKey.KnownRecipient(secondOther.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false), ContactSearchKey.RecipientSearchKey(secondOther.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other, secondOther))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey, secondOther.requireServiceId() to identityPool[secondOther]!!.identityKey)))
@@ -166,7 +166,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_batchOf1_abortOnPriorRecentCheck() {
     val other = recipientPool[1]
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
@@ -187,7 +187,7 @@ class SafetyNumberRepositoryTest {
    */
   @Test
   fun batchSafetyNumberCheckSync_batchOf10WithSmallBatchSize_noChanges() {
-    val keys = recipientPool.map { ContactSearchKey.RecipientSearchKey.KnownRecipient(it.id) }
+    val keys = recipientPool.map { ContactSearchKey.RecipientSearchKey(it.id, false) }
     val others = recipientPool.subList(1, recipientPool.lastIndex)
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(others.map { it.id }) }) }.thenReturn(others)
@@ -205,7 +205,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_serverError() {
     val other = recipientPool[1]
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
@@ -219,7 +219,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_networkError() {
     val other = recipientPool[1]
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))
@@ -233,7 +233,7 @@ class SafetyNumberRepositoryTest {
   @Test
   fun batchSafetyNumberCheckSync_badJson() {
     val other = recipientPool[1]
-    val keys = listOf(ContactSearchKey.RecipientSearchKey.KnownRecipient(other.id))
+    val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     staticRecipient.`when`<List<Recipient>> { Recipient.resolvedList(argThat { containsAll(keys.map { it.recipientId }) }) }.thenReturn(listOf(other))
     whenever(profileService.performIdentityCheck(mapOf(other.requireServiceId() to identityPool[other]!!.identityKey)))

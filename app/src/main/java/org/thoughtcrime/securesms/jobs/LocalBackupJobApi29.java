@@ -6,7 +6,6 @@ import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import androidx.documentfile.provider.DocumentFile;
 import androidx.documentfile.provider.DocumentFileHelper;
 
@@ -99,9 +98,9 @@ public final class LocalBackupJobApi29 extends BaseJob {
     try {
       notification = GenericForegroundService.startForegroundTask(context,
                                                                   context.getString(R.string.LocalBackupJob_creating_signal_backup),
-                                                                  NotificationChannels.BACKUPS,
+                                                                  NotificationChannels.getInstance().BACKUPS,
                                                                   R.drawable.ic_signal_backup);
-    } catch (GenericForegroundService.UnableToStartException e) {
+    } catch (UnableToStartException e) {
       Log.w(TAG, "Unable to start foreground backup service, continuing without service");
     }
 
@@ -198,7 +197,12 @@ public final class LocalBackupJobApi29 extends BaseJob {
       ThreadUtil.sleep(WAIT_FOR_SCOPED_STORAGE[attempts]);
 
       try (InputStream cipherStream = context.getContentResolver().openInputStream(temporaryFile.getUri())) {
-        valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount());
+        try {
+          valid = BackupVerifier.verifyFile(cipherStream, backupPassword, finishedEvent.getCount());
+        } catch (IOException e) {
+          Log.w(TAG, "Unable to verify backup", e);
+          valid = false;
+        }
       } catch (IOException e) {
         attempts++;
         Log.w(TAG, "Unable to find backup file, attempt: " + attempts + "/" + MAX_STORAGE_ATTEMPTS);

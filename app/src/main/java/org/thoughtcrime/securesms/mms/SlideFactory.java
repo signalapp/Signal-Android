@@ -9,11 +9,10 @@ import android.util.Pair;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.WorkerThread;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
-import org.thoughtcrime.securesms.database.AttachmentDatabase;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
@@ -41,7 +40,7 @@ public final class SlideFactory {
    *
    * @return A Slide with all the information we can gather about it.
    */
-  public static @Nullable Slide getSlide(@NonNull Context context, @Nullable String contentType, @NonNull Uri uri, int width, int height, @Nullable AttachmentDatabase.TransformProperties transformProperties) {
+  public static @Nullable Slide getSlide(@NonNull Context context, @Nullable String contentType, @NonNull Uri uri, int width, int height, @Nullable AttachmentTable.TransformProperties transformProperties) {
     MediaType mediaType = MediaType.from(contentType);
 
     try {
@@ -65,7 +64,7 @@ public final class SlideFactory {
       @NonNull Uri uri,
       int width,
       int height,
-      @Nullable AttachmentDatabase.TransformProperties transformProperties
+      @Nullable AttachmentTable.TransformProperties transformProperties
   ) {
     long start = System.currentTimeMillis();
 
@@ -99,7 +98,7 @@ public final class SlideFactory {
       @NonNull Uri uri,
       int width,
       int height,
-      @Nullable AttachmentDatabase.TransformProperties transformProperties
+      @Nullable AttachmentTable.TransformProperties transformProperties
   ) throws IOException
   {
     long     start     = System.currentTimeMillis();
@@ -162,7 +161,7 @@ public final class SlideFactory {
                                       int       width,
                                       int       height,
                                       boolean   gif,
-                                      @Nullable AttachmentDatabase.TransformProperties transformProperties)
+                                      @Nullable AttachmentTable.TransformProperties transformProperties)
     {
       if (mimeType == null) {
         mimeType = "application/octet-stream";

@@ -30,7 +30,7 @@
             android:layout_gravity="center"
             android:padding="9dp"
             android:tint="@color/signal_icon_tint_primary"
-            app:srcCompat="@drawable/ic_reply_24" />
+            app:srcCompat="@drawable/symbol_reply_24" />
 
     </FrameLayout>
 
@@ -140,6 +140,12 @@
             android:layout="@layout/conversation_item_sent_gift" />
 
         <ViewStub
+            android:id="@+id/payment_view_stub"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout="@layout/conversation_item_payment" />
+
+        <ViewStub
             android:id="@+id/revealable_view_stub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -229,6 +235,17 @@
             android:padding="6dp"
             android:tint="@color/signal_colorOnSurfaceVariant"
             app:srcCompat="@drawable/ic_replies_outline_20" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/scheduled_indicator"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/circle_tintable"
+            android:backgroundTint="@color/signal_colorSurfaceVariant"
+            android:padding="6dp"
+            android:tint="@color/signal_colorOnSurfaceVariant"
+            app:srcCompat="@drawable/symbol_calendar_24" />
 
     </FrameLayout>
 

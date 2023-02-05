@@ -19,8 +19,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_notification_profile_done"
-            tools:backgroundTint="@color/blue_200" />
+            app:srcCompat="@drawable/ic_notification_profile_done" />
 
         <TextView
             android:id="@+id/notification_profile_created_title"

@@ -35,6 +35,9 @@ object DonationPillToggle {
         DonateToSignalType.MONTHLY -> {
           presentButtons(model, binding.monthly, binding.oneTime)
         }
+        DonateToSignalType.GIFT -> {
+          error("Unsupported donation type.")
+        }
       }
     }
 

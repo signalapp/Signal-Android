@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.util.Base64
 
 object GV2UpdateTransformer : ColumnTransformer {
   override fun matches(tableName: String?, columnName: String): Boolean {
-    return columnName == MmsSmsColumns.BODY && (tableName == null || (tableName == SmsDatabase.TABLE_NAME || tableName == MmsDatabase.TABLE_NAME))
+    return columnName == MessageTable.BODY && (tableName == null || tableName == MessageTable.TABLE_NAME)
   }
 
   override fun transform(tableName: String?, columnName: String, cursor: Cursor): String {
@@ -23,9 +23,9 @@ object GV2UpdateTransformer : ColumnTransformer {
       return DefaultColumnTransformer.transform(tableName, columnName, cursor)
     }
 
-    val body: String? = CursorUtil.requireString(cursor, MmsSmsColumns.BODY)
+    val body: String? = CursorUtil.requireString(cursor, MessageTable.BODY)
 
-    return if (MmsSmsColumns.Types.isGroupV2(type) && MmsSmsColumns.Types.isGroupUpdate(type) && body != null) {
+    return if (MessageTypes.isGroupV2(type) && MessageTypes.isGroupUpdate(type) && body != null) {
       val decoded = Base64.decode(body)
       val decryptedGroupV2Context = DecryptedGroupV2Context.parseFrom(decoded)
       val gv2ChangeDescription: UpdateDescription = MessageRecord.getGv2ChangeDescription(ApplicationDependencies.getApplication(), body, null)
@@ -39,8 +39,7 @@ object GV2UpdateTransformer : ColumnTransformer {
 
 private fun Cursor.getMessageType(): Long {
   return when {
-    getColumnIndex(SmsDatabase.TYPE) != -1 -> requireLong(SmsDatabase.TYPE)
-    getColumnIndex(MmsDatabase.MESSAGE_BOX) != -1 -> requireLong(MmsDatabase.MESSAGE_BOX)
+    getColumnIndex(MessageTable.TYPE) != -1 -> requireLong(MessageTable.TYPE)
     else -> -1
   }
 }

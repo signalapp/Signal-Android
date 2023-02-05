@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.gateway
 
+import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
@@ -18,7 +19,9 @@ import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonateToSignalType
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
+import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
 import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.components.settings.models.IndeterminateLoadingCircle
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
@@ -33,12 +36,14 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
 
   private val viewModel: GatewaySelectorViewModel by viewModels(factoryProducer = {
-    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().donationPaymentRepository)
+    GatewaySelectorViewModel.Factory(args, requireListener<DonationPaymentComponent>().stripeRepository)
   })
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     BadgeDisplay112.register(adapter)
     GooglePayButton.register(adapter)
+    PayPalButton.register(adapter)
+    IndeterminateLoadingCircle.register(adapter)
 
     lifecycleDisposable.bindTo(viewLifecycleOwner)
 
@@ -58,12 +63,15 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
       space(12.dp)
 
-      when (args.request.donateToSignalType) {
-        DonateToSignalType.MONTHLY -> presentMonthlyText()
-        DonateToSignalType.ONE_TIME -> presentOneTimeText()
-      }
+      presentTitleAndSubtitle(requireContext(), args.request)
 
-      space(68.dp)
+      space(66.dp)
+
+      if (state.loading) {
+        customPref(IndeterminateLoadingCircle)
+        space(16.dp)
+        return@configure
+      }
 
       if (state.isGooglePayAvailable) {
         customPref(
@@ -78,11 +86,23 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         )
       }
 
-      // PayPal
+      if (state.isPayPalAvailable) {
+        space(8.dp)
 
-      // Credit Card
+        customPref(
+          PayPalButton.Model(
+            onClick = {
+              findNavController().popBackStack()
+              val response = GatewayResponse(GatewayResponse.Gateway.PAYPAL, args.request)
+              setFragmentResult(REQUEST_KEY, bundleOf(REQUEST_KEY to response))
+            },
+            isEnabled = true
+          )
+        )
+      }
+
       if (state.isCreditCardAvailable) {
-        space(12.dp)
+        space(8.dp)
 
         primaryButton(
           text = DSLSettingsText.from(R.string.GatewaySelectorBottomSheet__credit_or_debit_card),
@@ -99,45 +119,72 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.presentMonthlyText() {
-    noPadTextPref(
-      title = DSLSettingsText.from(
-        getString(R.string.GatewaySelectorBottomSheet__donate_s_month_to_signal, FiatMoneyUtil.format(resources, args.request.fiat)),
-        DSLSettingsText.CenterModifier,
-        DSLSettingsText.TitleLargeModifier
-      )
-    )
-    space(6.dp)
-    noPadTextPref(
-      title = DSLSettingsText.from(
-        getString(R.string.GatewaySelectorBottomSheet__get_a_s_badge, args.request.badge.name),
-        DSLSettingsText.CenterModifier,
-        DSLSettingsText.BodyLargeModifier,
-        DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
-      )
-    )
-  }
-
-  private fun DSLConfiguration.presentOneTimeText() {
-    noPadTextPref(
-      title = DSLSettingsText.from(
-        getString(R.string.GatewaySelectorBottomSheet__donate_s_to_signal, FiatMoneyUtil.format(resources, args.request.fiat)),
-        DSLSettingsText.CenterModifier,
-        DSLSettingsText.TitleLargeModifier
-      )
-    )
-    space(6.dp)
-    noPadTextPref(
-      title = DSLSettingsText.from(
-        resources.getQuantityString(R.plurals.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, 30, args.request.badge.name, 30),
-        DSLSettingsText.CenterModifier,
-        DSLSettingsText.BodyLargeModifier,
-        DSLSettingsText.ColorModifier(ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant))
-      )
-    )
-  }
-
   companion object {
     const val REQUEST_KEY = "payment_checkout_mode"
+
+    fun DSLConfiguration.presentTitleAndSubtitle(context: Context, request: GatewayRequest) {
+      when (request.donateToSignalType) {
+        DonateToSignalType.MONTHLY -> presentMonthlyText(context, request)
+        DonateToSignalType.ONE_TIME -> presentOneTimeText(context, request)
+        DonateToSignalType.GIFT -> presentGiftText(context, request)
+      }
+    }
+
+    private fun DSLConfiguration.presentMonthlyText(context: Context, request: GatewayRequest) {
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          context.getString(R.string.GatewaySelectorBottomSheet__donate_s_month_to_signal, FiatMoneyUtil.format(context.resources, request.fiat)),
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TitleLargeModifier
+        )
+      )
+      space(6.dp)
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          context.getString(R.string.GatewaySelectorBottomSheet__get_a_s_badge, request.badge.name),
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.BodyLargeModifier,
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+        )
+      )
+    }
+
+    private fun DSLConfiguration.presentOneTimeText(context: Context, request: GatewayRequest) {
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          context.getString(R.string.GatewaySelectorBottomSheet__donate_s_to_signal, FiatMoneyUtil.format(context.resources, request.fiat)),
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TitleLargeModifier
+        )
+      )
+      space(6.dp)
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          context.resources.getQuantityString(R.plurals.GatewaySelectorBottomSheet__get_a_s_badge_for_d_days, 30, request.badge.name, 30),
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.BodyLargeModifier,
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+        )
+      )
+    }
+
+    private fun DSLConfiguration.presentGiftText(context: Context, request: GatewayRequest) {
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          context.getString(R.string.GatewaySelectorBottomSheet__donate_s_to_signal, FiatMoneyUtil.format(context.resources, request.fiat)),
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TitleLargeModifier
+        )
+      )
+      space(6.dp)
+      noPadTextPref(
+        title = DSLSettingsText.from(
+          R.string.GatewaySelectorBottomSheet__donate_for_a_friend,
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.BodyLargeModifier,
+          DSLSettingsText.ColorModifier(ContextCompat.getColor(context, R.color.signal_colorOnSurfaceVariant))
+        )
+      )
+    }
   }
 }

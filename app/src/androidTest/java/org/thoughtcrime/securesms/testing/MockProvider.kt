@@ -81,7 +81,7 @@ object MockProvider {
     }
 
     kbsRepository.stub {
-      on { getToken(any() as String) } doReturn Single.just(ServiceResponse.forResult(tokenData, 200, ""))
+      on { getToken(any() as? String) } doReturn Single.just(ServiceResponse.forResult(tokenData, 200, ""))
     }
 
     val session: KeyBackupService.RestoreSession = object : KeyBackupService.RestoreSession {

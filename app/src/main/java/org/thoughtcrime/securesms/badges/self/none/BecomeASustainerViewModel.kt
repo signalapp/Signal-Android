@@ -7,10 +7,10 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.util.livedata.Store
 
-class BecomeASustainerViewModel(subscriptionsRepository: SubscriptionsRepository) : ViewModel() {
+class BecomeASustainerViewModel(subscriptionsRepository: MonthlyDonationRepository) : ViewModel() {
 
   private val store = Store(BecomeASustainerState())
 
@@ -37,7 +37,7 @@ class BecomeASustainerViewModel(subscriptionsRepository: SubscriptionsRepository
     private val TAG = Log.tag(BecomeASustainerViewModel::class.java)
   }
 
-  class Factory(private val subscriptionsRepository: SubscriptionsRepository) : ViewModelProvider.Factory {
+  class Factory(private val subscriptionsRepository: MonthlyDonationRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(BecomeASustainerViewModel(subscriptionsRepository))!!
     }

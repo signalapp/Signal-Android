@@ -89,7 +89,7 @@ public class MessageCountsViewModel extends ViewModel {
   }
 
   private int getUnreadMentionsCount(@NonNull Context context, long threadId) {
-    return SignalDatabase.mms().getUnreadMentionCount(threadId);
+    return SignalDatabase.messages().getUnreadMentionCount(threadId);
   }
 
   @Override

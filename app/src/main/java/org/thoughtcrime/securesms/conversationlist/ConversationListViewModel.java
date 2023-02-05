@@ -1,12 +1,10 @@
 package org.thoughtcrime.securesms.conversationlist;
 
-import android.app.Application;
-import android.text.TextUtils;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.LiveDataReactiveStreams;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,13 +14,17 @@ import org.signal.paging.PagedData;
 import org.signal.paging.PagingConfig;
 import org.signal.paging.PagingController;
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
+import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.model.Conversation;
+import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPayments;
 import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.Megaphone;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.megaphone.Megaphones;
@@ -30,7 +32,6 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile;
 import org.thoughtcrime.securesms.payments.UnreadPaymentsRepository;
 import org.thoughtcrime.securesms.search.SearchRepository;
 import org.thoughtcrime.securesms.search.SearchResult;
-import org.thoughtcrime.securesms.util.Debouncer;
 import org.thoughtcrime.securesms.util.ThrottledDebouncer;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 import org.thoughtcrime.securesms.util.paging.Invalidator;
@@ -50,6 +51,7 @@ import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
+import kotlin.Pair;
 
 class ConversationListViewModel extends ViewModel {
 
@@ -57,67 +59,62 @@ class ConversationListViewModel extends ViewModel {
 
   private static boolean coldStart = true;
 
-  private final MutableLiveData<Megaphone>        megaphone;
-  private final MutableLiveData<SearchResult>     searchResult;
-  private final MutableLiveData<ConversationSet>  selectedConversations;
-  private final Set<Conversation>                 internalSelection;
-  private final ConversationListDataSource        conversationListDataSource;
-  private final LivePagedData<Long, Conversation> pagedData;
-  private final LiveData<Boolean>                 hasNoConversations;
-  private final SearchRepository                  searchRepository;
-  private final MegaphoneRepository               megaphoneRepository;
-  private final Debouncer                         messageSearchDebouncer;
-  private final Debouncer                         contactSearchDebouncer;
-  private final ThrottledDebouncer                updateDebouncer;
-  private final DatabaseObserver.Observer         observer;
-  private final Invalidator                       invalidator;
-  private final CompositeDisposable               disposables;
-  private final UnreadPaymentsLiveData            unreadPaymentsLiveData;
-  private final UnreadPaymentsRepository          unreadPaymentsRepository;
-  private final NotificationProfilesRepository    notificationProfilesRepository;
+  private final MutableLiveData<Megaphone>                  megaphone;
+  private final MutableLiveData<ConversationSet>            selectedConversations;
+  private final MutableLiveData<ConversationFilterRequest>  conversationFilterRequest;
+  private final LiveData<ConversationListDataSource>        conversationListDataSource;
+  private final Set<Conversation>                           internalSelection;
+  private final LiveData<LivePagedData<Long, Conversation>> pagedData;
+  private final LiveData<Boolean>                           hasNoConversations;
+  private final MegaphoneRepository                         megaphoneRepository;
+  private final ThrottledDebouncer                          updateDebouncer;
+  private final DatabaseObserver.Observer                   observer;
+  private final Invalidator                                 invalidator;
+  private final CompositeDisposable                         disposables;
+  private final UnreadPaymentsLiveData                      unreadPaymentsLiveData;
+  private final UnreadPaymentsRepository                    unreadPaymentsRepository;
+  private final NotificationProfilesRepository              notificationProfilesRepository;
+  private int                     pinnedCount;
 
-  private String       activeQuery;
-  private SearchResult activeSearchResult;
-  private int          pinnedCount;
-
-  private ConversationListViewModel(@NonNull Application application, @NonNull SearchRepository searchRepository, boolean isArchived) {
+  private ConversationListViewModel(boolean isArchived) {
     this.megaphone                      = new MutableLiveData<>();
-    this.searchResult                   = new MutableLiveData<>();
     this.internalSelection              = new HashSet<>();
     this.selectedConversations          = new MutableLiveData<>(new ConversationSet());
-    this.searchRepository               = searchRepository;
     this.megaphoneRepository            = ApplicationDependencies.getMegaphoneRepository();
     this.unreadPaymentsRepository       = new UnreadPaymentsRepository();
     this.notificationProfilesRepository = new NotificationProfilesRepository();
-    this.messageSearchDebouncer         = new Debouncer(500);
-    this.contactSearchDebouncer         = new Debouncer(100);
     this.updateDebouncer                = new ThrottledDebouncer(500);
-    this.activeSearchResult             = SearchResult.EMPTY;
     this.invalidator                    = new Invalidator();
     this.disposables                    = new CompositeDisposable();
-    this.conversationListDataSource     = ConversationListDataSource.create(application, isArchived);
-    this.pagedData                      = PagedData.createForLiveData(conversationListDataSource,
-                                                                      new PagingConfig.Builder()
-                                                                           .setPageSize(15)
-                                                                           .setBufferPages(2)
-                                                                           .build());
+    this.conversationFilterRequest      = new MutableLiveData<>(new ConversationFilterRequest(ConversationFilter.OFF, ConversationFilterSource.DRAG));
+    this.conversationListDataSource     = Transformations.map(Transformations.distinctUntilChanged(conversationFilterRequest),
+                                                              request -> ConversationListDataSource.create(request.getFilter(),
+                                                                                                           isArchived,
+                                                                                                           SignalStore.uiHints().canDisplayPullToFilterTip() && request.getSource() == ConversationFilterSource.OVERFLOW));
+    this.pagedData                      = Transformations.map(conversationListDataSource, source -> PagedData.createForLiveData(source,
+                                                                                                                                new PagingConfig.Builder()
+                                                                                                                                    .setPageSize(15)
+                                                                                                                                    .setBufferPages(2)
+                                                                                                                                    .build()));
     this.unreadPaymentsLiveData         = new UnreadPaymentsLiveData();
     this.observer                       = () -> {
       updateDebouncer.publish(() -> {
-        if (!TextUtils.isEmpty(activeQuery)) {
-          onSearchQueryUpdated(activeQuery);
+        LivePagedData<Long, Conversation> data = pagedData.getValue();
+        if (data == null) {
+          return;
         }
-        pagedData.getController().onDataInvalidated();
+
+        data.getController().onDataInvalidated();
       });
     };
 
-    this.hasNoConversations = LiveDataUtil.mapAsync(pagedData.getData(), conversations -> {
-      pinnedCount = SignalDatabase.threads().getPinnedConversationListCount();
+    this.hasNoConversations = LiveDataUtil.mapAsync(LiveDataUtil.combineLatest(conversationFilterRequest, getConversationList(), Pair::new), filterAndData -> {
+      pinnedCount = SignalDatabase.threads().getPinnedConversationListCount(ConversationFilter.OFF);
 
-      if (conversations.size() > 0) {
+      if (filterAndData.getSecond().size() > 0) {
         return false;
       } else {
-        return SignalDatabase.threads().getArchivedConversationListCount() == 0;
+        return SignalDatabase.threads().getArchivedConversationListCount(filterAndData.getFirst().getFilter()) == 0;
       }
     });
 
@@ -128,20 +125,16 @@ class ConversationListViewModel extends ViewModel {
     return hasNoConversations;
   }
 
-  @NonNull LiveData<SearchResult> getSearchResult() {
-    return searchResult;
-  }
-
   @NonNull LiveData<Megaphone> getMegaphone() {
     return megaphone;
   }
 
   @NonNull LiveData<List<Conversation>> getConversationList() {
-    return pagedData.getData();
+    return Transformations.switchMap(pagedData, LivePagedData::getData);
   }
 
-  @NonNull PagingController getPagingController() {
-    return pagedData.getController();
+  @NonNull LiveData<PagingController<Long>> getPagingController() {
+    return Transformations.map(pagedData, LivePagedData::getController);
   }
 
   @NonNull LiveData<List<NotificationProfile>> getNotificationProfiles() {
@@ -156,6 +149,10 @@ class ConversationListViewModel extends ViewModel {
 
   @NonNull LiveData<Optional<UnreadPayments>> getUnreadPaymentsLiveData() {
     return unreadPaymentsLiveData;
+  }
+
+  @NonNull LiveData<ConversationFilterRequest> getConversationFilterRequest() {
+    return conversationFilterRequest;
   }
 
   public int getPinnedCount() {
@@ -199,6 +196,14 @@ class ConversationListViewModel extends ViewModel {
     setSelection(newSelection);
   }
 
+  void setFiltered(boolean isFiltered, @NonNull ConversationFilterSource conversationFilterSource) {
+    if (isFiltered) {
+      conversationFilterRequest.setValue(new ConversationFilterRequest(ConversationFilter.UNREAD, conversationFilterSource));
+    } else {
+      conversationFilterRequest.setValue(new ConversationFilterRequest(ConversationFilter.OFF, conversationFilterSource));
+    }
+  }
+
   private void setSelection(@NonNull Collection<Conversation> newSelection) {
     internalSelection.clear();
     internalSelection.addAll(newSelection);
@@ -206,8 +211,13 @@ class ConversationListViewModel extends ViewModel {
   }
 
   void onSelectAllClick() {
+    ConversationListDataSource dataSource = conversationListDataSource.getValue();
+    if (dataSource == null) {
+      return;
+    }
+
     disposables.add(
-        Single.fromCallable(() -> conversationListDataSource.load(0, conversationListDataSource.size(), disposables::isDisposed))
+        Single.fromCallable(() -> dataSource.load(0, dataSource.size(), disposables::isDisposed))
               .subscribeOn(Schedulers.io())
               .observeOn(AndroidSchedulers.mainThread())
               .subscribe(this::setSelection)
@@ -232,58 +242,10 @@ class ConversationListViewModel extends ViewModel {
     unreadPaymentsRepository.markAllPaymentsSeen();
   }
 
-  void onSearchQueryUpdated(String query) {
-    activeQuery = query;
-
-    contactSearchDebouncer.publish(() -> {
-      searchRepository.queryThreads(query, result -> {
-        if (!result.getQuery().equals(activeQuery)) {
-          return;
-        }
-
-        if (!activeSearchResult.getQuery().equals(activeQuery)) {
-          activeSearchResult = SearchResult.EMPTY;
-        }
-
-        activeSearchResult = activeSearchResult.merge(result);
-        searchResult.postValue(activeSearchResult);
-      });
-
-      searchRepository.queryContacts(query, result -> {
-        if (!result.getQuery().equals(activeQuery)) {
-          return;
-        }
-
-        if (!activeSearchResult.getQuery().equals(activeQuery)) {
-          activeSearchResult = SearchResult.EMPTY;
-        }
-
-        activeSearchResult = activeSearchResult.merge(result);
-        searchResult.postValue(activeSearchResult);
-      });
-    });
-
-    messageSearchDebouncer.publish(() -> {
-      searchRepository.queryMessages(query, result -> {
-        if (!result.getQuery().equals(activeQuery)) {
-          return;
-        }
-
-        if (!activeSearchResult.getQuery().equals(activeQuery)) {
-          activeSearchResult = SearchResult.EMPTY;
-        }
-
-        activeSearchResult = activeSearchResult.merge(result);
-        searchResult.postValue(activeSearchResult);
-      });
-    });
-  }
-
   @Override
   protected void onCleared() {
     invalidator.invalidate();
     disposables.dispose();
-    messageSearchDebouncer.clear();
     updateDebouncer.clear();
     ApplicationDependencies.getDatabaseObserver().unregisterObserver(observer);
   }
@@ -291,17 +253,15 @@ class ConversationListViewModel extends ViewModel {
   public static class Factory extends ViewModelProvider.NewInstanceFactory {
 
     private final boolean isArchived;
-    private final String  noteToSelfTitle;
 
-    public Factory(boolean isArchived, @NonNull String noteToSelfTitle) {
+    public Factory(boolean isArchived) {
       this.isArchived      = isArchived;
-      this.noteToSelfTitle = noteToSelfTitle;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
       //noinspection ConstantConditions
-      return modelClass.cast(new ConversationListViewModel(ApplicationDependencies.getApplication(), new SearchRepository(noteToSelfTitle), isArchived));
+      return modelClass.cast(new ConversationListViewModel(isArchived));
     }
   }
 }

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <drawable name="paypal_themed">@drawable/paypal_dark</drawable>
+</resources>

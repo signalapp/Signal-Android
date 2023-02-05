@@ -10,7 +10,7 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.thoughtcrime.securesms.database.SessionDatabase;
+import org.thoughtcrime.securesms.database.SessionTable;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 
 import java.io.File;
@@ -74,11 +74,11 @@ public final class SessionStoreMigrationHelper {
 
 
             ContentValues contentValues = new ContentValues();
-            contentValues.put(SessionDatabase.ADDRESS, address);
-            contentValues.put(SessionDatabase.DEVICE, deviceId);
-            contentValues.put(SessionDatabase.RECORD, sessionRecord.serialize());
+            contentValues.put(SessionTable.ADDRESS, address);
+            contentValues.put(SessionTable.DEVICE, deviceId);
+            contentValues.put(SessionTable.RECORD, sessionRecord.serialize());
 
-            database.insert(SessionDatabase.TABLE_NAME, null, contentValues);
+            database.insert(SessionTable.TABLE_NAME, null, contentValues);
           } catch (NumberFormatException | IOException | InvalidMessageException e) {
             Log.w(TAG, e);
           }

@@ -13,21 +13,25 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
+import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
+import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Stripe3DSDialogFragment
-import org.thoughtcrime.securesms.databinding.StripePaymentInProgressFragmentBinding
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorAction
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorActionResult
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.DonationProcessorStage
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.LifecycleDisposable
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_in_progress_fragment) {
+class StripePaymentInProgressFragment : DialogFragment(R.layout.donation_in_progress_fragment) {
 
   companion object {
     private val TAG = Log.tag(StripePaymentInProgressFragment::class.java)
@@ -35,14 +39,14 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     const val REQUEST_KEY = "REQUEST_KEY"
   }
 
-  private val binding by ViewBinderDelegate(StripePaymentInProgressFragmentBinding::bind)
+  private val binding by ViewBinderDelegate(DonationInProgressFragmentBinding::bind)
   private val args: StripePaymentInProgressFragmentArgs by navArgs()
   private val disposables = LifecycleDisposable()
 
   private val viewModel: StripePaymentInProgressViewModel by navGraphViewModels(
     R.id.donate_to_signal,
     factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().donationPaymentRepository)
+      StripePaymentInProgressViewModel.Factory(requireListener<DonationPaymentComponent>().stripeRepository)
     }
   )
 
@@ -57,13 +61,13 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     if (savedInstanceState == null) {
       viewModel.onBeginNewAction()
       when (args.action) {
-        StripeAction.PROCESS_NEW_DONATION -> {
+        DonationProcessorAction.PROCESS_NEW_DONATION -> {
           viewModel.processNewDonation(args.request, this::handleSecure3dsAction)
         }
-        StripeAction.UPDATE_SUBSCRIPTION -> {
+        DonationProcessorAction.UPDATE_SUBSCRIPTION -> {
           viewModel.updateSubscription(args.request)
         }
-        StripeAction.CANCEL_SUBSCRIPTION -> {
+        DonationProcessorAction.CANCEL_SUBSCRIPTION -> {
           viewModel.cancelSubscription()
         }
       }
@@ -75,58 +79,63 @@ class StripePaymentInProgressFragment : DialogFragment(R.layout.stripe_payment_i
     }
   }
 
-  private fun presentUiState(stage: StripeStage) {
+  private fun presentUiState(stage: DonationProcessorStage) {
     when (stage) {
-      StripeStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      StripeStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
-      StripeStage.FAILED -> {
+      DonationProcessorStage.INIT -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
+      DonationProcessorStage.PAYMENT_PIPELINE -> binding.progressCardStatus.setText(R.string.SubscribeFragment__processing_payment)
+      DonationProcessorStage.FAILED -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to StripeActionResult(
+            REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               request = args.request,
-              status = StripeActionResult.Status.FAILURE
+              status = DonationProcessorActionResult.Status.FAILURE
             )
           )
         )
       }
-      StripeStage.COMPLETE -> {
+      DonationProcessorStage.COMPLETE -> {
         viewModel.onEndAction()
         findNavController().popBackStack()
         setFragmentResult(
           REQUEST_KEY,
           bundleOf(
-            REQUEST_KEY to StripeActionResult(
+            REQUEST_KEY to DonationProcessorActionResult(
               action = args.action,
               request = args.request,
-              status = StripeActionResult.Status.SUCCESS
+              status = DonationProcessorActionResult.Status.SUCCESS
             )
           )
         )
       }
-      StripeStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
+      DonationProcessorStage.CANCELLING -> binding.progressCardStatus.setText(R.string.StripePaymentInProgressFragment__cancelling)
     }
   }
 
-  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction): Completable {
+  private fun handleSecure3dsAction(secure3dsAction: StripeApi.Secure3DSAction): Single<StripeIntentAccessor> {
     return when (secure3dsAction) {
       is StripeApi.Secure3DSAction.NotNeeded -> {
         Log.d(TAG, "No 3DS action required.")
-        Completable.complete()
+        Single.just(StripeIntentAccessor.NO_ACTION_REQUIRED)
       }
       is StripeApi.Secure3DSAction.ConfirmRequired -> {
         Log.d(TAG, "3DS action required. Displaying dialog...")
-        Completable.create { emitter ->
-          val listener = FragmentResultListener { _, _ ->
-            emitter.onComplete()
+        Single.create<StripeIntentAccessor> { emitter ->
+          val listener = FragmentResultListener { _, bundle ->
+            val result: StripeIntentAccessor? = bundle.getParcelable(Stripe3DSDialogFragment.REQUEST_KEY)
+            if (result != null) {
+              emitter.onSuccess(result)
+            } else {
+              emitter.onError(DonationError.UserCancelledPaymentError(args.request.donateToSignalType.toErrorSource()))
+            }
           }
 
           parentFragmentManager.setFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY, this, listener)
 
-          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri))
+          findNavController().safeNavigate(StripePaymentInProgressFragmentDirections.actionStripePaymentInProgressFragmentToStripe3dsDialogFragment(secure3dsAction.uri, secure3dsAction.returnUri))
 
           emitter.setCancellable {
             parentFragmentManager.clearFragmentResultListener(Stripe3DSDialogFragment.REQUEST_KEY)

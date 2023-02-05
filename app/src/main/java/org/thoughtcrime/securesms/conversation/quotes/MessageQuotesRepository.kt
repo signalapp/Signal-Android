@@ -27,7 +27,7 @@ class MessageQuotesRepository {
    */
   fun getMessagesInQuoteChain(application: Application, messageId: MessageId): Observable<List<ConversationMessage>> {
     return Observable.create { emitter ->
-      val threadId: Long = SignalDatabase.mmsSms.getThreadId(messageId)
+      val threadId: Long = SignalDatabase.messages.getThreadIdForMessage(messageId.id)
       if (threadId < 0) {
         Log.w(TAG, "Could not find a threadId for $messageId!")
         emitter.onNext(emptyList())
@@ -35,38 +35,43 @@ class MessageQuotesRepository {
       }
 
       val databaseObserver: DatabaseObserver = ApplicationDependencies.getDatabaseObserver()
-      val observer = DatabaseObserver.Observer { emitter.onNext(getMessageInQuoteChainSync(application, messageId)) }
+      val observer = DatabaseObserver.Observer { emitter.onNext(getMessagesInQuoteChainSync(application, messageId)) }
 
       databaseObserver.registerConversationObserver(threadId, observer)
 
       emitter.setCancellable { databaseObserver.unregisterObserver(observer) }
-      emitter.onNext(getMessageInQuoteChainSync(application, messageId))
+      emitter.onNext(getMessagesInQuoteChainSync(application, messageId))
     }
   }
 
   @WorkerThread
-  private fun getMessageInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
-    val originalRecord: MessageRecord? = if (messageId.mms) {
-      SignalDatabase.mms.getMessageRecordOrNull(messageId.id)
-    } else {
-      SignalDatabase.sms.getMessageRecordOrNull(messageId.id)
-    }
+  private fun getMessagesInQuoteChainSync(application: Application, messageId: MessageId): List<ConversationMessage> {
+    val rootMessageId: MessageId = SignalDatabase.messages.getRootOfQuoteChain(messageId)
+
+    var originalRecord: MessageRecord? = SignalDatabase.messages.getMessageRecordOrNull(rootMessageId.id)
 
     if (originalRecord == null) {
       return emptyList()
     }
 
-    val replyRecords: List<MessageRecord> = SignalDatabase.mmsSms.getAllMessagesThatQuote(messageId)
+    var replyRecords: List<MessageRecord> = SignalDatabase.messages.getAllMessagesThatQuote(rootMessageId)
 
-    val replies: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
-      .apply {
-        addAll(replyRecords)
-        fetchReactions()
-      }
-      .buildUpdatedModels(replyRecords)
+    val reactionHelper = ConversationDataSource.ReactionHelper()
+    val attachmentHelper = ConversationDataSource.AttachmentHelper()
+
+    reactionHelper.addAll(replyRecords)
+    attachmentHelper.addAll(replyRecords)
+
+    reactionHelper.fetchReactions()
+    attachmentHelper.fetchAttachments()
+
+    replyRecords = reactionHelper.buildUpdatedModels(replyRecords)
+    replyRecords = attachmentHelper.buildUpdatedModels(ApplicationDependencies.getApplication(), replyRecords)
+
+    val replies: List<ConversationMessage> = replyRecords
       .map { replyRecord ->
         val replyQuote: Quote? = replyRecord.getQuote()
-        if (replyQuote != null && replyQuote.id == originalRecord.dateSent) {
+        if (replyQuote != null && replyQuote.id == originalRecord!!.dateSent) {
           (replyRecord as MediaMmsMessageRecord).withoutQuote()
         } else {
           replyRecord
@@ -74,13 +79,27 @@ class MessageQuotesRepository {
       }
       .map { ConversationMessageFactory.createWithUnresolvedData(application, it) }
 
-    val originalMessage: List<ConversationMessage> = ConversationDataSource.ReactionHelper()
+    if (originalRecord.isPaymentNotification) {
+      originalRecord = SignalDatabase.payments.updateMessageWithPayment(originalRecord)
+    }
+
+    originalRecord = ConversationDataSource.ReactionHelper()
       .apply {
         add(originalRecord)
         fetchReactions()
       }
       .buildUpdatedModels(listOf(originalRecord))
-      .map { ConversationMessageFactory.createWithUnresolvedData(application, it, it.getDisplayBody(application), false) }
+      .get(0)
+
+    originalRecord = ConversationDataSource.AttachmentHelper()
+      .apply {
+        add(originalRecord)
+        fetchAttachments()
+      }
+      .buildUpdatedModels(ApplicationDependencies.getApplication(), listOf(originalRecord))
+      .get(0)
+
+    val originalMessage: ConversationMessage = ConversationMessageFactory.createWithUnresolvedData(application, originalRecord, false)
 
     return replies + originalMessage
   }

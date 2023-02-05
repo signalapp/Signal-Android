@@ -34,7 +34,7 @@ class SignalDatabaseRule(
 
   private fun deleteAllThreads() {
     if (deleteAllThreadsOnEachRun) {
-      SignalDatabase.mms.deleteAllThreads()
+      SignalDatabase.messages.deleteAllThreads()
     }
   }
 }

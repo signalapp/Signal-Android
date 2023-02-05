@@ -16,7 +16,7 @@
         android:layout_height="56dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_2"
@@ -24,7 +24,7 @@
         android:layout_height="80dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_3"
@@ -32,7 +32,7 @@
         android:layout_height="56dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_4"
@@ -40,7 +40,7 @@
         android:layout_height="70dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_5"
@@ -48,7 +48,7 @@
         android:layout_height="64dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_6"
@@ -56,7 +56,7 @@
         android:layout_height="70dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_7"
@@ -64,7 +64,7 @@
         android:layout_height="40dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_8"
@@ -72,7 +72,7 @@
         android:layout_height="70dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24"
+        tools:background="@drawable/symbol_heart_24"
         tools:layout_editor_absoluteX="20dp"
         tools:layout_editor_absoluteY="591dp" />
 
@@ -82,7 +82,7 @@
         android:layout_height="100dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_10"
@@ -90,7 +90,7 @@
         android:layout_height="60dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
     <org.thoughtcrime.securesms.components.emoji.EmojiImageView
         android:id="@+id/emoji_11"
@@ -98,6 +98,6 @@
         android:layout_height="48dp"
         app:forceJumbo="true"
         app:layout_constraintTag="emoji"
-        tools:background="@drawable/ic_heart_24" />
+        tools:background="@drawable/symbol_heart_24" />
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

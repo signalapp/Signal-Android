@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginStart="@dimen/dsl_settings_gutter"
     android:layout_marginTop="10dp"
-    android:layout_marginEnd="@dimen/dsl_settings_gutter">
+    android:layout_marginEnd="@dimen/dsl_settings_gutter"
+    tools:viewBindingIgnore="true">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/boost_1"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:textAppearance="@style/Signal.Text.Body"
         android:textColor="@color/signal_text_primary"
         app:backgroundTint="@color/signal_selectable_button_background_tint"
@@ -29,7 +29,7 @@
         android:id="@+id/boost_2"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:textAppearance="@style/Signal.Text.Body"
@@ -47,7 +47,7 @@
         android:id="@+id/boost_3"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:textAppearance="@style/Signal.Text.Body"
         android:textColor="@color/signal_text_primary"
         app:backgroundTint="@color/signal_selectable_button_background_tint"
@@ -63,7 +63,7 @@
         android:id="@+id/boost_4"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:layout_marginTop="19dp"
         android:textAppearance="@style/Signal.Text.Body"
         android:textColor="@color/signal_text_primary"
@@ -80,7 +80,7 @@
         android:id="@+id/boost_5"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="19dp"
         android:layout_marginEnd="10dp"
@@ -99,7 +99,7 @@
         android:id="@+id/boost_6"
         style="@style/Signal.Widget.Button.Large.Secondary"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:layout_marginTop="19dp"
         android:gravity="center"
         android:textAppearance="@style/Signal.Text.Body"
@@ -116,7 +116,7 @@
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/boost_custom"
         android:layout_width="0dp"
-        android:layout_height="48sp"
+        android:layout_height="58sp"
         android:layout_marginTop="19dp"
         android:background="@drawable/custom_donation_amount_background"
         android:gravity="center"
@@ -129,5 +129,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/boost_4" />
+
+    <TextView
+        android:id="@+id/boost_custom_too_small"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textAppearance="@style/Signal.Text.BodySmall"
+        android:textColor="@color/signal_colorError"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boost_custom"
+        tools:text="@string/Boost__the_minimum_amount_you_can_donate_is_s" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

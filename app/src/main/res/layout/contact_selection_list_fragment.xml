@@ -24,7 +24,7 @@
             android:clipToPadding="false"
             android:scrollbarThumbVertical="@drawable/contact_selection_scrollbar_thumb"
             android:scrollbars="vertical"
-            tools:listitem="@layout/contact_selection_list_item" />
+            tools:listitem="@layout/contact_search_item" />
 
         <TextView
             android:id="@android:id/empty"

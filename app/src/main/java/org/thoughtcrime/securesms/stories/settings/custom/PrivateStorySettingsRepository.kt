@@ -30,9 +30,9 @@ class PrivateStorySettingsRepository {
       Stories.onStorySettingsChanged(distributionListId)
 
       val recipientId = SignalDatabase.recipients.getOrInsertFromDistributionListId(distributionListId)
-      SignalDatabase.mms.getAllStoriesFor(recipientId, -1).use { reader ->
+      SignalDatabase.messages.getAllStoriesFor(recipientId, -1).use { reader ->
         for (record in reader) {
-          MessageSender.sendRemoteDelete(record.id, record.isMms)
+          MessageSender.sendRemoteDelete(record.id)
         }
       }
     }.subscribeOn(Schedulers.io())

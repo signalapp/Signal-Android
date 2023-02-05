@@ -54,6 +54,10 @@ public final class JobSpec {
     return new JobSpec(id, factoryKey, queueKey, createTime, updated, runAttempt, maxAttempts, lifespan, serializedData, serializedInputData, isRunning, memoryOnly);
   }
 
+  public @NonNull JobSpec withData(String updatedSerializedData) {
+    return new JobSpec(id, factoryKey, queueKey, createTime, nextRunAttemptTime, runAttempt, maxAttempts, lifespan, updatedSerializedData, serializedInputData, isRunning, memoryOnly);
+  }
+
   public @NonNull String getId() {
     return id;
   }

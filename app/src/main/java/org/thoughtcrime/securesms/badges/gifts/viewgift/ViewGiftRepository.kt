@@ -4,8 +4,8 @@ import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.badges.models.Badge
+import org.thoughtcrime.securesms.components.settings.app.subscription.getBadge
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
@@ -23,24 +23,24 @@ class ViewGiftRepository {
       .fromCallable {
         ApplicationDependencies
           .getDonationsService()
-          .getGiftBadge(Locale.getDefault(), presentation.receiptLevel)
+          .getDonationsConfiguration(Locale.getDefault())
       }
       .flatMap { it.flattenResult() }
-      .map { Badges.fromServiceBadge(it) }
+      .map { it.getBadge(presentation.receiptLevel.toInt()) }
       .subscribeOn(Schedulers.io())
   }
 
   fun getGiftBadge(messageId: Long): Observable<GiftBadge> {
     return Observable.create { emitter ->
       fun refresh() {
-        val record = SignalDatabase.mms.getMessageRecord(messageId)
+        val record = SignalDatabase.messages.getMessageRecord(messageId)
         val giftBadge: GiftBadge = (record as MmsMessageRecord).giftBadge!!
 
         emitter.onNext(giftBadge)
       }
 
       val messageObserver = DatabaseObserver.MessageObserver {
-        if (it.mms && messageId == it.id) {
+        if (messageId == it.id) {
           refresh()
         }
       }

@@ -8,6 +8,9 @@ on:
     - '4.**'
     - '5.**'
 
+permissions:
+  contents: read # to fetch code (actions/checkout)
+
 jobs:
   build:
 

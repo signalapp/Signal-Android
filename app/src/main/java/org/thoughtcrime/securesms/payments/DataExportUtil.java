@@ -6,7 +6,7 @@ import android.os.Build;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 
-import org.thoughtcrime.securesms.database.PaymentDatabase;
+import org.thoughtcrime.securesms.database.PaymentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -33,8 +33,8 @@ public final class DataExportUtil {
       throw new AssertionError();
     }
 
-    List<PaymentDatabase.PaymentTransaction> paymentTransactions = SignalDatabase.payments().getAll();
-    MobileCoinLedgerWrapper                  ledger              = SignalStore.paymentsValues().liveMobileCoinLedger().getValue();
+    List<PaymentTable.PaymentTransaction> paymentTransactions = SignalDatabase.payments().getAll();
+    MobileCoinLedgerWrapper               ledger              = SignalStore.paymentsValues().liveMobileCoinLedger().getValue();
     List<Payment>                            reconciled          = LedgerReconcile.reconcile(paymentTransactions, Objects.requireNonNull(ledger));
 
     return createTsv(reconciled);

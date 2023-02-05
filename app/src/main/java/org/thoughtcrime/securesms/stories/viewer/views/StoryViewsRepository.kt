@@ -6,7 +6,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.GroupReceiptDatabase
+import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
@@ -25,7 +25,7 @@ class StoryViewsRepository {
 
   fun getStoryRecipient(storyId: Long): Single<Recipient> {
     return Single.fromCallable {
-      val record = SignalDatabase.mms.getMessageRecord(storyId)
+      val record = SignalDatabase.messages.getMessageRecord(storyId)
 
       record.recipient
     }.subscribeOn(Schedulers.io())
@@ -33,7 +33,7 @@ class StoryViewsRepository {
 
   fun getViews(storyId: Long): Observable<List<StoryViewItemData>> {
     return Observable.create<List<StoryViewItemData>> { emitter ->
-      val record: MessageRecord = SignalDatabase.mms.getMessageRecord(storyId)
+      val record: MessageRecord = SignalDatabase.messages.getMessageRecord(storyId)
       val filterIds: Set<RecipientId> = if (record.recipient.isDistributionList) {
         val distributionId: DistributionId = SignalDatabase.distributionLists.getDistributionId(record.recipient.requireDistributionListId())!!
         SignalDatabase.storySends.getRecipientsForDistributionId(storyId, distributionId)
@@ -44,7 +44,7 @@ class StoryViewsRepository {
       fun refresh() {
         emitter.onNext(
           SignalDatabase.groupReceipts.getGroupReceiptInfo(storyId).filter {
-            it.status == GroupReceiptDatabase.STATUS_VIEWED
+            it.status == GroupReceiptTable.STATUS_VIEWED
           }.filter {
             filterIds.isEmpty() || it.recipientId in filterIds
           }.map {

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.receipts.detail
 
-import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
@@ -16,6 +15,7 @@ import com.google.android.material.button.MaterialButton
 import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.SignalProgressDialog
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
@@ -31,7 +31,7 @@ import java.util.Locale
 
 class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.donation_receipt_detail_fragment) {
 
-  private lateinit var progressDialog: ProgressDialog
+  private lateinit var progressDialog: SignalProgressDialog
 
   private val viewModel: DonationReceiptDetailViewModel by viewModels(
     factoryProducer = {
@@ -63,15 +63,14 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
   }
 
   private fun renderPng(record: DonationReceiptRecord, subscriptionName: String) {
-    progressDialog = ProgressDialog(requireContext())
-    progressDialog.show()
+    progressDialog = SignalProgressDialog.show(requireContext())
 
     val today: String = DateUtils.formatDateWithDayOfWeek(Locale.getDefault(), System.currentTimeMillis())
     val amount: String = FiatMoneyUtil.format(resources, record.amount)
     val type: String = when (record.type) {
       DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
       DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
-      DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__gift)
+      DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
     }
     val datePaid: String = DateUtils.formatDate(Locale.getDefault(), record.timestamp)
 
@@ -143,7 +142,7 @@ class DonationReceiptDetailFragment : DSLSettingsFragment(layoutId = R.layout.do
           when (record.type) {
             DonationReceiptRecord.Type.RECURRING -> getString(R.string.DonationReceiptDetailsFragment__s_dash_s, subscriptionName, getString(R.string.DonationReceiptListFragment__recurring))
             DonationReceiptRecord.Type.BOOST -> getString(R.string.DonationReceiptListFragment__one_time)
-            DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__gift)
+            DonationReceiptRecord.Type.GIFT -> getString(R.string.DonationReceiptListFragment__donation_for_a_friend)
           }
         )
       )

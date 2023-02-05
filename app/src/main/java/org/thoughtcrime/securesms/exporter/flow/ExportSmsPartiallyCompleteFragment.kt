@@ -48,7 +48,7 @@ class ExportSmsPartiallyCompleteFragment : LoggingFragment(R.layout.export_sms_p
 
     SimpleTask.runWhenValid(
       viewLifecycleOwner.lifecycle,
-      { SignalDatabase.sms.getUnexportedInsecureMessagesEstimatedSize() + SignalDatabase.mms.getUnexportedInsecureMessagesEstimatedSize() },
+      { SignalDatabase.messages.getUnexportedInsecureMessagesEstimatedSize() + SignalDatabase.messages.getUnexportedInsecureMessagesEstimatedSize() },
       { totalSize ->
         binding.bullet1Text.setText(getString(R.string.ExportSmsPartiallyComplete__ensure_you_have_an_additional_s_free_on_your_phone_to_export_your_messages, Formatter.formatFileSize(requireContext(), totalSize)))
       }

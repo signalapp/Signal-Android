@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.components.settings.app.subscription.SubscriptionsRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.MonthlyDonationRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.util.livedata.Store
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 
 class ManageDonationsViewModel(
-  private val subscriptionsRepository: SubscriptionsRepository
+  private val subscriptionsRepository: MonthlyDonationRepository
 ) : ViewModel() {
 
   private val store = Store(ManageDonationsState())
@@ -77,7 +77,7 @@ class ManageDonationsViewModel(
     disposables += SubscriptionRedemptionJobWatcher.watch().subscribeBy { jobStateOptional ->
       store.update { manageDonationsState ->
         manageDonationsState.copy(
-          subscriptionRedemptionState = jobStateOptional.map { jobState ->
+          subscriptionRedemptionState = jobStateOptional.map { jobState: JobTracker.JobState ->
             when (jobState) {
               JobTracker.JobState.PENDING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
               JobTracker.JobState.RUNNING -> ManageDonationsState.SubscriptionRedemptionState.IN_PROGRESS
@@ -90,7 +90,7 @@ class ManageDonationsViewModel(
       }
     }
 
-    disposables += levelUpdateOperationEdges.flatMapSingle { isProcessing ->
+    disposables += levelUpdateOperationEdges.switchMapSingle { isProcessing ->
       if (isProcessing) {
         Single.just(ManageDonationsState.TransactionState.InTransaction)
       } else {
@@ -122,7 +122,7 @@ class ManageDonationsViewModel(
   }
 
   class Factory(
-    private val subscriptionsRepository: SubscriptionsRepository
+    private val subscriptionsRepository: MonthlyDonationRepository
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(ManageDonationsViewModel(subscriptionsRepository))!!
