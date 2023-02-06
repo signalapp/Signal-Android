@@ -108,7 +108,9 @@ class RegistrationNumberInputController(
     }
     return if (justDigits.isEmpty()) {
       null
-    } else justDigits.toString()
+    } else {
+      justDigits.toString()
+    }
   }
 
   inner class NumberChangedListener : TextWatcher {

@@ -63,7 +63,6 @@ class StoryReactionBar @JvmOverloads constructor(
 
     animatorSet?.cancel()
     animatorSet = AnimatorSet().apply {
-
       playTogether(
         emojiViews.flatMap {
           listOf(ObjectAnimator.ofFloat(it, View.ALPHA, 1f), ObjectAnimator.ofFloat(it, View.TRANSLATION_Y, 0f))

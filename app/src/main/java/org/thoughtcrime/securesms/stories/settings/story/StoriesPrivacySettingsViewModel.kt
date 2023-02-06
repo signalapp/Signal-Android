@@ -48,7 +48,7 @@ class StoriesPrivacySettingsViewModel(
     val configuration = ContactSearchConfiguration.build {
       addSection(
         ContactSearchConfiguration.Section.Stories(
-          includeHeader = false,
+          includeHeader = false
         )
       )
     }

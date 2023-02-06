@@ -20,7 +20,7 @@ import kotlin.math.max
 
 class StoryViewerViewModel(
   private val storyViewerArgs: StoryViewerArgs,
-  private val repository: StoryViewerRepository,
+  private val repository: StoryViewerRepository
 ) : ViewModel() {
 
   private val store = RxStore(

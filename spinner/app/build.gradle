@@ -15,7 +15,7 @@ repositories {
 
 ktlint {
     // Use a newer version to resolve https://github.com/JLLeitschuh/ktlint-gradle/issues/507
-    version = "0.43.2"
+    version = "0.47.1"
 }
 
 android {

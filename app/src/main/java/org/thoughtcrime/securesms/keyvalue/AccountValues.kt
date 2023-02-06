@@ -59,10 +59,13 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
 
     @VisibleForTesting
     const val KEY_E164 = "account.e164"
+
     @VisibleForTesting
     const val KEY_ACI = "account.aci"
+
     @VisibleForTesting
     const val KEY_PNI = "account.pni"
+
     @VisibleForTesting
     const val KEY_IS_REGISTERED = "account.is_registered"
   }
@@ -84,7 +87,7 @@ internal class AccountValues internal constructor(store: KeyValueStore) : Signal
       KEY_ACI_IDENTITY_PUBLIC_KEY,
       KEY_ACI_IDENTITY_PRIVATE_KEY,
       KEY_PNI_IDENTITY_PUBLIC_KEY,
-      KEY_PNI_IDENTITY_PRIVATE_KEY,
+      KEY_PNI_IDENTITY_PRIVATE_KEY
     )
   }
 

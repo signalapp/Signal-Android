@@ -108,7 +108,6 @@ class NotificationsSettingsFragment : DSLSettingsFragment(R.string.preferences__
           }
         )
       } else {
-
         clickPref(
           title = DSLSettingsText.from(R.string.preferences__sound),
           summary = DSLSettingsText.from(getRingtoneSummary(state.messageNotificationsState.sound)),

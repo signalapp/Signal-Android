@@ -20,6 +20,7 @@ dependencyResolutionManagement {
             alias('androidx-compose-material3').to('androidx.compose.material3', 'material3').withoutVersion()
             alias('androidx-compose-ui-tooling-preview').to('androidx.compose.ui', 'ui-tooling-preview').withoutVersion()
             alias('androidx-compose-ui-tooling-core').to('androidx.compose.ui', 'ui-tooling').withoutVersion()
+            alias('ktlint-twitter-compose').to('com.twitter.compose.rules:ktlint:0.0.26')
 
             // Desugaring
             alias('android-tools-desugar').to('com.android.tools:desugar_jdk_libs:1.1.5')

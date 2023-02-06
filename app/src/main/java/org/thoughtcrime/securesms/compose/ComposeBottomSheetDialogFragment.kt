@@ -54,7 +54,7 @@ abstract class ComposeBottomSheetDialogFragment : FixedRoundedCornerBottomSheetD
    * ```
    */
   @Composable
-  fun Handle() {
+  protected fun Handle() {
     Box(
       modifier = Modifier
         .size(width = 48.dp, height = 22.dp)

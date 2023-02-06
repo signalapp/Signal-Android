@@ -561,7 +561,6 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         }
 
         if (recipientSettingsState.selfHasGroups && !state.recipient.isReleaseNotes) {
-
           dividerPref()
 
           val groupsInCommonCount = recipientSettingsState.allGroupsInCommon.size

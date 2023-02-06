@@ -83,7 +83,7 @@ class MessageSendLogTables constructor(context: Context?, databaseHelper: Signal
 
     /** Created for [deleteEntriesForRecipient] */
     val CREATE_INDEXES = arrayOf(
-      "CREATE INDEX msl_payload_date_sent_index ON $TABLE_NAME ($DATE_SENT)",
+      "CREATE INDEX msl_payload_date_sent_index ON $TABLE_NAME ($DATE_SENT)"
     )
 
     val CREATE_TRIGGERS = arrayOf(

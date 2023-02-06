@@ -14,5 +14,5 @@ data class CustomNotificationsSettingsState(
   val messageSound: Uri? = null,
   val callVibrateState: RecipientTable.VibrateState = RecipientTable.VibrateState.DEFAULT,
   val callSound: Uri? = null,
-  val showCallingOptions: Boolean = false,
+  val showCallingOptions: Boolean = false
 )

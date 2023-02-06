@@ -41,7 +41,7 @@ private val DAY_TO_STARTING_LETTER: Map<DayOfWeek, Int> = mapOf(
   DayOfWeek.WEDNESDAY to R.string.EditNotificationProfileSchedule__wednesday_first_letter,
   DayOfWeek.THURSDAY to R.string.EditNotificationProfileSchedule__thursday_first_letter,
   DayOfWeek.FRIDAY to R.string.EditNotificationProfileSchedule__friday_first_letter,
-  DayOfWeek.SATURDAY to R.string.EditNotificationProfileSchedule__saturday_first_letter,
+  DayOfWeek.SATURDAY to R.string.EditNotificationProfileSchedule__saturday_first_letter
 )
 
 /**

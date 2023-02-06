@@ -31,7 +31,8 @@ object ExpiredGiftSheetConfiguration {
     textPref(
       title = DSLSettingsText.from(
         stringId = R.string.ExpiredGiftSheetConfiguration__your_badge_has_expired,
-        DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
+        DSLSettingsText.CenterModifier,
+        DSLSettingsText.TitleLargeModifier
       )
     )
 

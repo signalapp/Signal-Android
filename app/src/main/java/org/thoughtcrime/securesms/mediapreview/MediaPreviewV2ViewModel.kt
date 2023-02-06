@@ -44,7 +44,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
             mediaRecords = result.records,
             messageBodies = result.messageBodies,
             albums = albums,
-            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED
           )
         } else {
           oldState.copy(
@@ -52,7 +52,7 @@ class MediaPreviewV2ViewModel : ViewModel() {
             mediaRecords = result.records.reversed(),
             messageBodies = result.messageBodies,
             albums = albums.mapValues { it.value.reversed() },
-            loadState = MediaPreviewV2State.LoadState.DATA_LOADED,
+            loadState = MediaPreviewV2State.LoadState.DATA_LOADED
           )
         }
       }

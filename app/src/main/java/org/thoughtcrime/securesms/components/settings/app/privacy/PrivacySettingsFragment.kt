@@ -263,7 +263,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
                 val timeoutMinutes = max(TimeUnit.MILLISECONDS.toMinutes(duration).toInt(), 1)
                 viewModel.setObsoletePasswordTimeout(timeoutMinutes)
               },
-              0, TimeDurationPicker.HH_MM
+              0,
+              TimeDurationPicker.HH_MM
             ).show()
           }
         )
@@ -297,7 +298,8 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
                 val timeoutSeconds = TimeUnit.MILLISECONDS.toSeconds(duration)
                 viewModel.setScreenLockTimeout(timeoutSeconds)
               },
-              0, TimeDurationPicker.HH_MM
+              0,
+              TimeDurationPicker.HH_MM
             ).show()
           }
         )
@@ -328,7 +330,7 @@ class PrivacySettingsFragment : DSLSettingsFragment(R.string.preferences__privac
       )
 
       textPref(
-        summary = DSLSettingsText.from(incognitoSummary),
+        summary = DSLSettingsText.from(incognitoSummary)
       )
 
       dividerPref()

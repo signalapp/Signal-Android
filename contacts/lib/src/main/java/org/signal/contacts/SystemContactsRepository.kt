@@ -588,7 +588,7 @@ object SystemContactsRepository {
       ContactsContract.PhoneLookup.NUMBER,
       ContactsContract.PhoneLookup._ID,
       ContactsContract.PhoneLookup.DISPLAY_NAME,
-      ContactsContract.PhoneLookup.TYPE,
+      ContactsContract.PhoneLookup.TYPE
     )
 
     context.contentResolver.query(uri, projection, null, null, null)?.use { contactCursor ->
@@ -719,7 +719,7 @@ object SystemContactsRepository {
             photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
             number = e164Formatter(displayNumber),
             type = cursor.requireInt(ContactsContract.CommonDataKinds.Phone.TYPE),
-            label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL),
+            label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL)
           )
         } else {
           Log.w(TAG, "Skipping phone entry with invalid number!")

@@ -95,7 +95,6 @@ class NotificationProfileDetailsFragment : DSLSettingsFragment() {
     val (profile: NotificationProfile, recipients: List<Recipient>, isOn: Boolean, expanded: Boolean) = state
 
     return configure {
-
       customPref(
         NotificationProfilePreference.Model(
           title = DSLSettingsText.from(profile.name),

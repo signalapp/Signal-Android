@@ -59,7 +59,10 @@ class SqlCipherErrorHandler(private val databaseName: String) : DatabaseErrorHan
 
     try {
       SQLiteDatabase.openOrCreateDatabase(
-        databaseFile.absolutePath, DatabaseSecretProvider.getOrCreateDatabaseSecret(context).asString(), null, null,
+        databaseFile.absolutePath,
+        DatabaseSecretProvider.getOrCreateDatabaseSecret(context).asString(),
+        null,
+        null,
         object : SQLiteDatabaseHook {
           override fun preKey(connection: SQLiteConnection) {}
           override fun postKey(connection: SQLiteConnection) {

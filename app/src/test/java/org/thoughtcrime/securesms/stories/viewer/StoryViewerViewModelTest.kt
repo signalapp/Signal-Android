@@ -104,7 +104,7 @@ class StoryViewerViewModelTest {
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
-        isInHiddenStoryMode = false,
+        isInHiddenStoryMode = false
       ),
       repository
     )
@@ -131,7 +131,7 @@ class StoryViewerViewModelTest {
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
-        isInHiddenStoryMode = false,
+        isInHiddenStoryMode = false
       ),
       repository
     )
@@ -158,7 +158,7 @@ class StoryViewerViewModelTest {
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
-        isInHiddenStoryMode = false,
+        isInHiddenStoryMode = false
       ),
       repository
     )
@@ -185,7 +185,7 @@ class StoryViewerViewModelTest {
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
-        isInHiddenStoryMode = false,
+        isInHiddenStoryMode = false
       ),
       repository
     )
@@ -212,7 +212,7 @@ class StoryViewerViewModelTest {
     val testSubject = StoryViewerViewModel(
       StoryViewerArgs(
         recipientId = startStory,
-        isInHiddenStoryMode = false,
+        isInHiddenStoryMode = false
       ),
       repository
     )

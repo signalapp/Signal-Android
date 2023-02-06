@@ -7,5 +7,5 @@ data class StoriesPrivacySettingsState(
   val areViewReceiptsEnabled: Boolean,
   val isUpdatingEnabledState: Boolean = false,
   val storyContactItems: List<ContactSearchData> = emptyList(),
-  val userHasStories: Boolean = false,
+  val userHasStories: Boolean = false
 )

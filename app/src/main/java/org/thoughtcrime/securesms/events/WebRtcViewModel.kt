@@ -92,6 +92,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val identityChangedParticipants: Set<RecipientId> = state.callInfoState.identityChangedRecipients
   val remoteDevicesCount: OptionalLong = state.callInfoState.remoteDevicesCount
   val participantLimit: Long? = state.callInfoState.participantLimit
+
   @get:JvmName("shouldRingGroup")
   val ringGroup: Boolean = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringGroup
   val ringerRecipient: Recipient = state.getCallSetupState(state.callInfoState.activePeer?.callId).ringerRecipient

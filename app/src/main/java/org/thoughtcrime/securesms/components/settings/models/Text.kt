@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
  * A Text without any padding, allowing for exact padding to be handed in at runtime.
  */
 data class Text(
-  val text: DSLSettingsText,
+  val text: DSLSettingsText
 ) {
 
   companion object {

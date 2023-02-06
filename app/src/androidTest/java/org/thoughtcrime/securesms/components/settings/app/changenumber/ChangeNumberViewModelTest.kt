@@ -113,7 +113,7 @@ class ChangeNumberViewModelTest {
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v1/devices") { MockResponse().success(MockProvider.primaryOnlyDeviceList) },
-      Put("/v1/accounts/number") { MockResponse().failure(500) },
+      Put("/v1/accounts/number") { MockResponse().failure(500) }
     )
 
     // WHEN

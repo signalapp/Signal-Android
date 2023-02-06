@@ -85,7 +85,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   private lateinit var progressWrapper: TouchInterceptingFrameLayout
 
   private val navigator = MediaSelectionNavigator(
-    toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment,
+    toGallery = R.id.action_mediaReviewFragment_to_mediaGalleryFragment
   )
 
   private var animatorSet: AnimatorSet? = null
@@ -502,24 +502,22 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
   }
 
   private fun computeSendButtonAnimators(state: MediaSelectionState): List<Animator> {
-
     val slideIn = listOf(
-      MediaReviewAnimatorController.getSlideInAnimator(sendButton),
+      MediaReviewAnimatorController.getSlideInAnimator(sendButton)
     )
 
     return slideIn + if (state.isTouchEnabled) {
       listOf(
-        MediaReviewAnimatorController.getFadeInAnimator(sendButton, state.canSend),
+        MediaReviewAnimatorController.getFadeInAnimator(sendButton, state.canSend)
       )
     } else {
       listOf(
-        MediaReviewAnimatorController.getFadeOutAnimator(sendButton, state.canSend),
+        MediaReviewAnimatorController.getFadeOutAnimator(sendButton, state.canSend)
       )
     }
   }
 
   private fun computeSaveButtonAnimators(state: MediaSelectionState): List<Animator> {
-
     val slideIn = listOf(
       MediaReviewAnimatorController.getSlideInAnimator(saveButton)
     )

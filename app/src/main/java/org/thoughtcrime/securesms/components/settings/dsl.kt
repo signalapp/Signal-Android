@@ -1,3 +1,5 @@
+@file:Suppress("ktlint:filename")
+
 package org.thoughtcrime.securesms.components.settings
 
 import androidx.annotation.CallSuper
@@ -212,7 +214,7 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
   open val summary: DSLSettingsText? = null,
   open val icon: DSLSettingsIcon? = null,
   open val iconEnd: DSLSettingsIcon? = null,
-  open val isEnabled: Boolean = true,
+  open val isEnabled: Boolean = true
 ) : MappingModel<T> {
   override fun areItemsTheSame(newItem: T): Boolean {
     return when {

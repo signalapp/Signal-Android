@@ -18,7 +18,6 @@ abstract class SettingsWrapperFragment : Fragment(R.layout.settings_wrapper_frag
     private set
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
     toolbar = view.findViewById(R.id.toolbar)
 
     toolbar.setNavigationOnClickListener {

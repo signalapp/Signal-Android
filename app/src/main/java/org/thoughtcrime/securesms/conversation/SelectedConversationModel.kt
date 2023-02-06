@@ -17,5 +17,5 @@ data class SelectedConversationModel(
   val bubbleWidth: Int,
   val audioUri: Uri? = null,
   val isOutgoing: Boolean,
-  val focusedView: View?,
+  val focusedView: View?
 )

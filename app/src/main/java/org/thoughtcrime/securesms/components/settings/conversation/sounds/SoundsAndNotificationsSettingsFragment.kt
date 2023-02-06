@@ -48,7 +48,6 @@ class SoundsAndNotificationsSettingsFragment : DSLSettingsFragment(
 
   private fun getConfiguration(state: SoundsAndNotificationsSettingsState): DSLConfiguration {
     return configure {
-
       val muteSummary = if (state.muteUntil > 0) {
         state.muteUntil.formatMutedUntil(requireContext())
       } else {

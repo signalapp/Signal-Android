@@ -424,7 +424,7 @@ internal class SpinnerServer(
     val tableNames: List<String>,
     val table: String? = null,
     val queryResult: QueryResult? = null,
-    val pagingData: PagingData? = null,
+    val pagingData: PagingData? = null
   ) : PrefixPageData
 
   data class QueryPageModel(
@@ -461,7 +461,7 @@ internal class SpinnerServer(
     val rows: List<List<String>>,
     val rowCount: Int = rows.size,
     val timeToFirstRow: String,
-    val timeToReadRows: String,
+    val timeToReadRows: String
   )
 
   data class TableInfo(

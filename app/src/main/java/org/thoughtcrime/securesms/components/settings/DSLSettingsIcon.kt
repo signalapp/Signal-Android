@@ -32,7 +32,7 @@ sealed class DSLSettingsIcon {
     @ColorRes private val iconTintId: Int,
     @DrawableRes private val backgroundId: Int,
     @ColorRes private val backgroundTint: Int,
-    @Px private val insetPx: Int,
+    @Px private val insetPx: Int
   ) : DSLSettingsIcon() {
     override fun resolve(context: Context): Drawable {
       return LayerDrawable(

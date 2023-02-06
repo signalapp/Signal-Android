@@ -137,11 +137,19 @@ class RecyclerViewColorizer(private val recyclerView: RecyclerView) {
 
         outOfBoundsPaint.color = color
         canvas.drawRect(
-          0f, -parent.height.toFloat(), parent.width.toFloat(), 0f, outOfBoundsPaint
+          0f,
+          -parent.height.toFloat(),
+          parent.width.toFloat(),
+          0f,
+          outOfBoundsPaint
         )
 
         canvas.drawRect(
-          0f, parent.height.toFloat(), parent.width.toFloat(), parent.height * 2f, outOfBoundsPaint
+          0f,
+          parent.height.toFloat(),
+          parent.width.toFloat(),
+          parent.height * 2f,
+          outOfBoundsPaint
         )
       }
     }

@@ -28,7 +28,8 @@ import java.util.Optional
 class MediaRepositoryTest {
 
   @Rule
-  @JvmField val mockitoRule: MockitoRule = MockitoJUnit.rule()
+  @JvmField
+  val mockitoRule: MockitoRule = MockitoJUnit.rule()
 
   @Mock
   private lateinit var staticMediaUtilMock: MockedStatic<MediaUtil>
@@ -129,7 +130,7 @@ class MediaRepositoryTest {
       videoGif,
       bucketId,
       caption,
-      transformProperties,
+      transformProperties
     )
   }
 }

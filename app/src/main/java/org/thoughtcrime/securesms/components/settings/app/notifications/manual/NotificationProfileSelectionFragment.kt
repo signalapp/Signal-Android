@@ -41,7 +41,6 @@ class NotificationProfileSelectionFragment : DSLSettingsBottomSheetFragment() {
     val activeProfile: NotificationProfile? = NotificationProfiles.getActiveProfile(state.notificationProfiles)
 
     return configure {
-
       state.notificationProfiles.sortedDescending().forEach { profile ->
         customPref(
           NotificationProfileSelection.Entry(

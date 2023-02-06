@@ -189,7 +189,7 @@ class CustomChatColorCreatorPageFragment :
             state.degrees,
             intArrayOf(topEdgeColor.getColor(), bottomEdgeColor.getColor()),
             floatArrayOf(0f, 1f)
-          ),
+          )
         )
         preview.setChatColors(chatColor)
         gradientTool.setSelectedEdge(state.selectedEdge)
@@ -255,14 +255,15 @@ class CustomChatColorCreatorPageFragment :
     return listOf(0f, 1f).map {
       ColorUtils.HSLToColor(
         floatArrayOf(
-          hue, it, level
+          hue,
+          it,
+          level
         )
       )
     }.toIntArray()
   }
 
   private fun calculateLightness(hue: Float, valueFor60To80: Float = 0.3f): Float {
-
     val point1 = PointF()
     val point2 = PointF()
 

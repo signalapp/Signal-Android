@@ -1766,11 +1766,13 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     private fun getSnippetUri(cursor: Cursor?): Uri? {
       return if (cursor!!.isNull(cursor.getColumnIndexOrThrow(SNIPPET_URI))) {
         null
-      } else try {
-        Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_URI)))
-      } catch (e: IllegalArgumentException) {
-        Log.w(TAG, e)
-        null
+      } else {
+        try {
+          Uri.parse(cursor.getString(cursor.getColumnIndexOrThrow(SNIPPET_URI)))
+        } catch (e: IllegalArgumentException) {
+          Log.w(TAG, e)
+          null
+        }
       }
     }
 
@@ -1780,17 +1782,39 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   data class Extra(
-    @field:JsonProperty @param:JsonProperty("isRevealable") val isViewOnce: Boolean = false,
-    @field:JsonProperty @param:JsonProperty("isSticker") val isSticker: Boolean = false,
-    @field:JsonProperty @param:JsonProperty("stickerEmoji") val stickerEmoji: String? = null,
-    @field:JsonProperty @param:JsonProperty("isAlbum") val isAlbum: Boolean = false,
-    @field:JsonProperty @param:JsonProperty("isRemoteDelete") val isRemoteDelete: Boolean = false,
-    @field:JsonProperty @param:JsonProperty("isMessageRequestAccepted") val isMessageRequestAccepted: Boolean = true,
-    @field:JsonProperty @param:JsonProperty("isGv2Invite") val isGv2Invite: Boolean = false,
-    @field:JsonProperty @param:JsonProperty("groupAddedBy") val groupAddedBy: String? = null,
-    @field:JsonProperty @param:JsonProperty("individualRecipientId") private val individualRecipientId: String,
-    @field:JsonProperty @param:JsonProperty("bodyRanges") val bodyRanges: String? = null,
-    @field:JsonProperty @param:JsonProperty("isScheduled") val isScheduled: Boolean = false
+    @field:JsonProperty
+    @param:JsonProperty("isRevealable")
+    val isViewOnce: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isSticker")
+    val isSticker: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("stickerEmoji")
+    val stickerEmoji: String? = null,
+    @field:JsonProperty
+    @param:JsonProperty("isAlbum")
+    val isAlbum: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isRemoteDelete")
+    val isRemoteDelete: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isMessageRequestAccepted")
+    val isMessageRequestAccepted: Boolean = true,
+    @field:JsonProperty
+    @param:JsonProperty("isGv2Invite")
+    val isGv2Invite: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("groupAddedBy")
+    val groupAddedBy: String? = null,
+    @field:JsonProperty
+    @param:JsonProperty("individualRecipientId")
+    private val individualRecipientId: String,
+    @field:JsonProperty
+    @param:JsonProperty("bodyRanges")
+    val bodyRanges: String? = null,
+    @field:JsonProperty
+    @param:JsonProperty("isScheduled")
+    val isScheduled: Boolean = false
   ) {
 
     fun getIndividualRecipientId(): String {

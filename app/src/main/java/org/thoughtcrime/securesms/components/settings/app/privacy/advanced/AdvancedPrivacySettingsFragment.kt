@@ -107,7 +107,6 @@ class AdvancedPrivacySettingsFragment : DSLSettingsFragment(R.string.preferences
 
   private fun getConfiguration(state: AdvancedPrivacySettingsState): DSLConfiguration {
     return configure {
-
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__signal_messages_and_calls),
         summary = DSLSettingsText.from(getPushToggleSummary(state.isPushEnabled)),

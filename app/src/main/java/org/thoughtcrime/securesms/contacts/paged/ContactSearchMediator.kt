@@ -49,7 +49,7 @@ class ContactSearchMediator(
   private val callbacks: Callbacks = SimpleCallbacks(),
   performSafetyNumberChecks: Boolean = true,
   adapterFactory: AdapterFactory = DefaultAdapterFactory,
-  arbitraryRepository: ArbitraryRepository? = null,
+  arbitraryRepository: ArbitraryRepository? = null
 ) {
 
   private val queryDebouncer = Debouncer(300, TimeUnit.MILLISECONDS)

@@ -65,7 +65,7 @@ class ContextMenuList(recyclerView: RecyclerView, onItemClick: () -> Unit) {
 
   private class ItemViewHolder(
     itemView: View,
-    private val onItemClick: () -> Unit,
+    private val onItemClick: () -> Unit
   ) : MappingViewHolder<DisplayItem>(itemView) {
     val icon: ImageView = itemView.findViewById(R.id.signal_context_menu_item_icon)
     val title: TextView = itemView.findViewById(R.id.signal_context_menu_item_title)

@@ -34,7 +34,7 @@ import java.util.Optional
 
 sealed class ConversationSettingsViewModel(
   private val repository: ConversationSettingsRepository,
-  specificSettingsState: SpecificSettingsState,
+  specificSettingsState: SpecificSettingsState
 ) : ViewModel() {
 
   private val openedMediaCursors = HashSet<Cursor>()
@@ -407,7 +407,6 @@ sealed class ConversationSettingsViewModel(
     override fun onAddToGroup() {
       repository.getGroupCapacity(groupId) { capacityResult ->
         if (capacityResult.getRemainingCapacity() > 0) {
-
           internalEvents.onNext(
             ConversationSettingsEvent.AddMembersToGroup(
               groupId,
@@ -480,7 +479,7 @@ sealed class ConversationSettingsViewModel(
   class Factory(
     private val recipientId: RecipientId? = null,
     private val groupId: GroupId? = null,
-    private val repository: ConversationSettingsRepository,
+    private val repository: ConversationSettingsRepository
   ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

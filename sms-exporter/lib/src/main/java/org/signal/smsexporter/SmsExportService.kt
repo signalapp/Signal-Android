@@ -228,9 +228,9 @@ abstract class SmsExportService : Service() {
       onMessageExportSucceeded(sms)
       true
     }, onFailure = {
-      onMessageExportFailed(sms)
-      false
-    })
+        onMessageExportFailed(sms)
+        false
+      })
   }
 
   private fun exportMms(smsExportState: SmsExportState, mms: ExportableMessage.Mms<*>): Boolean {

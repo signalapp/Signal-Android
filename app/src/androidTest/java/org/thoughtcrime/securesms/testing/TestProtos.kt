@@ -21,7 +21,7 @@ class TestProtos private constructor() {
   }
 
   fun metadata(
-    address: AddressProto = address().build(),
+    address: AddressProto = address().build()
   ): MetadataProto.Builder {
     return MetadataProto.newBuilder()
       .setAddress(address)

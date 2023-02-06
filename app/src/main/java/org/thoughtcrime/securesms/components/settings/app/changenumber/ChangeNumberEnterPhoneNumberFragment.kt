@@ -161,7 +161,9 @@ class ChangeNumberEnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_c
       ContinueStatus.CAN_CONTINUE -> findNavController().safeNavigate(R.id.action_enterPhoneNumberChangeFragment_to_changePhoneNumberConfirmFragment)
       ContinueStatus.INVALID_NUMBER -> {
         Dialogs.showAlertDialog(
-          context, getString(R.string.RegistrationActivity_invalid_number), String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.number.e164Number)
+          context,
+          getString(R.string.RegistrationActivity_invalid_number),
+          String.format(getString(R.string.RegistrationActivity_the_number_you_specified_s_is_invalid), viewModel.number.e164Number)
         )
       }
       ContinueStatus.OLD_NUMBER_DOESNT_MATCH -> {

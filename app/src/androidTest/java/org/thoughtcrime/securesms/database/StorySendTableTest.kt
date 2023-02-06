@@ -65,17 +65,17 @@ class StorySendTableTest {
 
     messageId1 = MmsHelper.insert(
       recipient = distributionListRecipient1,
-      storyType = StoryType.STORY_WITHOUT_REPLIES,
+      storyType = StoryType.STORY_WITHOUT_REPLIES
     )
 
     messageId2 = MmsHelper.insert(
       recipient = distributionListRecipient2,
-      storyType = StoryType.STORY_WITH_REPLIES,
+      storyType = StoryType.STORY_WITH_REPLIES
     )
 
     messageId3 = MmsHelper.insert(
       recipient = distributionListRecipient3,
-      storyType = StoryType.STORY_WITHOUT_REPLIES,
+      storyType = StoryType.STORY_WITHOUT_REPLIES
     )
 
     recipients6to15 = recipients1to10.takeLast(5) + recipients11to20.take(5)

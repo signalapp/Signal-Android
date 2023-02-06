@@ -434,7 +434,7 @@ class MediaSelectionActivity :
     @JvmStatic
     fun editor(
       context: Context,
-      media: List<Media>,
+      media: List<Media>
     ): Intent {
       return buildIntent(
         context = context,

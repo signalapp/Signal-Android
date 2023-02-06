@@ -214,7 +214,6 @@ class AddMessageDialogFragment : KeyboardEntryDialogFragment(R.layout.v2_media_a
         if (!recipient.isPushV2Group) {
           annotations
         } else {
-
           val validRecipientIds: Set<String> = recipient.participantIds
             .map { id -> MentionAnnotation.idToMentionAnnotationValue(id) }
             .toSet()

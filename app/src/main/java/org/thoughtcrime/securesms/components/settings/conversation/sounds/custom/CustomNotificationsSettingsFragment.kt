@@ -74,7 +74,6 @@ class CustomNotificationsSettingsFragment : DSLSettingsFragment(R.string.CustomN
 
   private fun getConfiguration(state: CustomNotificationsSettingsState): DSLConfiguration {
     return configure {
-
       sectionHeaderPref(R.string.CustomNotificationsDialogFragment__messages)
 
       if (NotificationChannels.supported()) {

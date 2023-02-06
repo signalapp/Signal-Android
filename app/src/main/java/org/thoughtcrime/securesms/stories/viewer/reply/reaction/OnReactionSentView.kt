@@ -45,7 +45,7 @@ class OnReactionSentView @JvmOverloads constructor(
       R.id.emoji_8,
       R.id.emoji_9,
       R.id.emoji_10,
-      R.id.emoji_11,
+      R.id.emoji_11
     ).forEach {
       findViewById<EmojiImageView>(it).setImageEmoji(emoji)
     }

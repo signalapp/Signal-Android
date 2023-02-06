@@ -69,7 +69,7 @@ class PreKeysSyncJobTest {
       Put("/v2/keys/signed?identity=pni") { r ->
         pniSignedPreKey = r.parsedRequestBody()
         MockResponse().success()
-      },
+      }
     )
 
     // WHEN
@@ -107,7 +107,7 @@ class PreKeysSyncJobTest {
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v2/keys?identity=aci") { MockResponse().success(PreKeyStatus(100)) },
-      Get("/v2/keys?identity=pni") { MockResponse().success(PreKeyStatus(100)) },
+      Get("/v2/keys?identity=pni") { MockResponse().success(PreKeyStatus(100)) }
     )
 
     // WHEN
@@ -134,7 +134,7 @@ class PreKeysSyncJobTest {
 
     InstrumentationApplicationDependencyProvider.addMockWebRequestHandlers(
       Get("/v2/keys?identity=aci") { MockResponse().success(PreKeyStatus(100)) },
-      Put("/v2/keys/signed?identity=pni") { MockResponse().success() },
+      Put("/v2/keys/signed?identity=pni") { MockResponse().success() }
     )
 
     // WHEN
@@ -173,7 +173,7 @@ class PreKeysSyncJobTest {
       Put("/v2/keys/?identity=pni") { r ->
         pniPreKeyStateRequest = r.parsedRequestBody()
         MockResponse().success()
-      },
+      }
     )
 
     // WHEN

@@ -13,7 +13,7 @@ class RxTestSchedulerRule(
   val ioTestScheduler: TestScheduler = defaultTestScheduler,
   val computationTestScheduler: TestScheduler = defaultTestScheduler,
   val singleTestScheduler: TestScheduler = defaultTestScheduler,
-  val newThreadTestScheduler: TestScheduler = defaultTestScheduler,
+  val newThreadTestScheduler: TestScheduler = defaultTestScheduler
 ) : ExternalResource() {
 
   override fun before() {

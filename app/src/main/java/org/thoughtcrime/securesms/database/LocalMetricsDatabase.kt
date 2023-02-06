@@ -129,7 +129,8 @@ class LocalMetricsDatabase private constructor(
     try {
       event.splits.forEach { split ->
         db.insert(
-          TABLE_NAME, null,
+          TABLE_NAME,
+          null,
           ContentValues().apply {
             put(CREATED_AT, event.createdAt)
             put(EVENT_ID, event.eventId)

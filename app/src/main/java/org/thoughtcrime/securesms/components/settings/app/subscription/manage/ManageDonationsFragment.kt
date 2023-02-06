@@ -105,7 +105,8 @@ class ManageDonationsFragment :
       noPadTextPref(
         title = DSLSettingsText.from(
           R.string.DonateToSignalFragment__privacy_over_profit,
-          DSLSettingsText.CenterModifier, DSLSettingsText.TitleLargeModifier
+          DSLSettingsText.CenterModifier,
+          DSLSettingsText.TitleLargeModifier
         )
       )
 

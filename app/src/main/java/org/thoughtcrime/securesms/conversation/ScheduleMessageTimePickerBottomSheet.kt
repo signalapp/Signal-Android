@@ -83,7 +83,7 @@ class ScheduleMessageTimePickerBottomSheet : FixedRoundedCornerBottomSheetDialog
       text = getString(
         R.string.ScheduleMessageTimePickerBottomSheet__timezone_disclaimer,
         zoneOffsetFormatter.format(zonedDateTime),
-        zoneNameFormatter.format(zonedDateTime),
+        zoneNameFormatter.format(zonedDateTime)
       )
     }
 

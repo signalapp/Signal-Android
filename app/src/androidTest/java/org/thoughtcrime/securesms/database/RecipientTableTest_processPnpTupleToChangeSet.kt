@@ -296,7 +296,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
       PnpChangeSet(
         id = PnpIdResolver.PnpNoopId(result.id),
         operations = linkedSetOf(
-          PnpOperation.SetE164(result.id, E164_A),
+          PnpOperation.SetE164(result.id, E164_A)
         )
       ),
       result.changeSet
@@ -407,7 +407,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, null, null),
-        Input(null, PNI_A, null),
+        Input(null, PNI_A, null)
       ),
       Update(E164_A, PNI_A, null),
       Output(E164_A, PNI_A, null)
@@ -432,7 +432,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, null, null),
-        Input(null, PNI_A, null),
+        Input(null, PNI_A, null)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -461,7 +461,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, null, null),
-        Input(E164_B, PNI_A, null),
+        Input(E164_B, PNI_A, null)
       ),
       Update(E164_A, PNI_A, null),
       Output(E164_A, PNI_A, null)
@@ -475,7 +475,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
           PnpOperation.SetPni(
             recipientId = result.firstId,
             pni = PNI_A
-          ),
+          )
         )
       ),
       result.changeSet
@@ -487,7 +487,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_B, null),
-        Input(null, PNI_A, null),
+        Input(null, PNI_A, null)
       ),
       Update(E164_A, PNI_A, null),
       Output(E164_A, PNI_A, null)
@@ -501,7 +501,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
           PnpOperation.Merge(
             primaryId = result.firstId,
             secondaryId = result.secondId
-          ),
+          )
         )
       ),
       result.changeSet
@@ -513,7 +513,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_B, null),
-        Input(E164_B, PNI_A, null),
+        Input(E164_B, PNI_A, null)
       ),
       Update(E164_A, PNI_A, null),
       Output(E164_A, PNI_A, null)
@@ -536,7 +536,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_B, null, pniSession = true),
-        Input(E164_B, PNI_A, null, pniSession = true),
+        Input(E164_B, PNI_A, null, pniSession = true)
       ),
       Update(E164_A, PNI_A, null),
       Output(E164_A, PNI_A, null)
@@ -561,7 +561,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_A, null),
-        Input(null, null, ACI_A),
+        Input(null, null, ACI_A)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -574,7 +574,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
           PnpOperation.Merge(
             primaryId = result.secondId,
             secondaryId = result.firstId
-          ),
+          )
         )
       ),
       result.changeSet
@@ -586,7 +586,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_B, PNI_A, null),
-        Input(null, null, ACI_A),
+        Input(null, null, ACI_A)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -599,11 +599,11 @@ class RecipientTableTest_processPnpTupleToChangeSet {
           PnpOperation.RemovePni(result.firstId),
           PnpOperation.SetPni(
             recipientId = result.secondId,
-            pni = PNI_A,
+            pni = PNI_A
           ),
           PnpOperation.SetE164(
             recipientId = result.secondId,
-            e164 = E164_A,
+            e164 = E164_A
           )
         )
       ),
@@ -616,7 +616,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_B, PNI_A, null),
-        Input(E164_C, null, ACI_A),
+        Input(E164_C, null, ACI_A)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -629,11 +629,11 @@ class RecipientTableTest_processPnpTupleToChangeSet {
           PnpOperation.RemovePni(result.firstId),
           PnpOperation.SetPni(
             recipientId = result.secondId,
-            pni = PNI_A,
+            pni = PNI_A
           ),
           PnpOperation.SetE164(
             recipientId = result.secondId,
-            e164 = E164_A,
+            e164 = E164_A
           ),
           PnpOperation.ChangeNumberInsert(
             recipientId = result.secondId,
@@ -651,7 +651,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_A, null),
-        Input(E164_B, PNI_B, ACI_A),
+        Input(E164_B, PNI_B, ACI_A)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -683,7 +683,7 @@ class RecipientTableTest_processPnpTupleToChangeSet {
     val result = applyAndAssert(
       listOf(
         Input(E164_A, PNI_A, null),
-        Input(E164_B, null, ACI_A),
+        Input(E164_B, null, ACI_A)
       ),
       Update(E164_A, PNI_A, ACI_A),
       Output(E164_A, PNI_A, ACI_A)
@@ -726,7 +726,8 @@ class RecipientTableTest_processPnpTupleToChangeSet {
 
   private fun insertMockSessionFor(account: ServiceId, address: ServiceId) {
     SignalDatabase.rawDatabase.insert(
-      SessionTable.TABLE_NAME, null,
+      SessionTable.TABLE_NAME,
+      null,
       contentValuesOf(
         SessionTable.ACCOUNT_ID to account.toString(),
         SessionTable.ADDRESS to address.toString(),

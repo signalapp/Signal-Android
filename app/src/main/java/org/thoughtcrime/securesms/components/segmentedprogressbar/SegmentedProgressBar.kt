@@ -211,6 +211,7 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
           corners[6] = radius.toFloat()
           corners[7] = radius.toFloat()
         }
+
         segments.lastIndex -> {
           corners.indices.forEach { corners[it] = 0f }
           corners[2] = radius.toFloat()
@@ -227,6 +228,7 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
             path.addRoundRect(rectangle, corners, Path.Direction.CW)
             canvas?.drawPath(path, drawingComponents.second[drawingIndex])
           }
+
           else -> canvas?.drawRect(
             rectangle,
             drawingComponents.second[drawingIndex]
@@ -325,12 +327,14 @@ class SegmentedProgressBar : View, ViewPager.OnPageChangeListener, View.OnTouchL
 
     segments.mapIndexed { index, segment ->
       if (offset > 0) {
-        if (index < nextSegmentIndex) segment.animationState =
-          Segment.AnimationState.ANIMATED
+        if (index < nextSegmentIndex) {
+          segment.animationState = Segment.AnimationState.ANIMATED
+        }
       } else if (offset < 0) {
-        if (index > nextSegmentIndex - 1) segment.animationState =
-          Segment.AnimationState.IDLE
-      } else if (offset == 0) {
+        if (index > nextSegmentIndex - 1) {
+          segment.animationState = Segment.AnimationState.IDLE
+        }
+      } else {
         if (index == nextSegmentIndex) segment.animationState = Segment.AnimationState.IDLE
       }
     }

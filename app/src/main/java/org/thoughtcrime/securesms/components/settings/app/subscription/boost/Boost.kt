@@ -108,7 +108,7 @@ data class Boost(
     val isCustomAmountFocused: Boolean,
     val isCustomAmountTooSmall: Boolean,
     val onCustomAmountChanged: (String) -> Unit,
-    val onCustomAmountFocusChanged: (Boolean) -> Unit,
+    val onCustomAmountFocusChanged: (Boolean) -> Unit
   ) : PreferenceModel<SelectionModel>(isEnabled = isEnabled) {
     override fun areItemsTheSame(newItem: SelectionModel): Boolean = true
 
@@ -156,7 +156,8 @@ data class Boost(
       error.text = context.getString(
         R.string.Boost__the_minimum_amount_you_can_donate_is_s,
         FiatMoneyUtil.format(
-          context.resources, model.minimumAmount,
+          context.resources,
+          model.minimumAmount,
           FiatMoneyUtil.formatOptions().trimZerosAfterDecimal()
         )
       )
@@ -253,7 +254,6 @@ data class Boost(
       dstart: Int,
       dend: Int
     ): CharSequence? {
-
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
       val resultWithoutCurrencyPrefix = StringUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
 

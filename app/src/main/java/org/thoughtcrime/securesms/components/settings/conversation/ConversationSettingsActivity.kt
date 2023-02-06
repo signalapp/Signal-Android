@@ -55,7 +55,7 @@ class ConversationSettingsActivity : DSLSettingsActivity(), ConversationSettings
         ActivityOptionsCompat.makeSceneTransitionAnimation(
           context,
           avatar,
-          "avatar",
+          "avatar"
         ).toBundle()
       } else {
         null

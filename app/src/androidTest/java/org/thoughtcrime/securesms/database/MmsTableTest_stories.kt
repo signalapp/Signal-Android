@@ -128,7 +128,7 @@ class MmsTableTest_stories {
           sentTimeMillis = 2,
           serverTimeMillis = 2,
           receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES,
+          storyType = StoryType.STORY_WITH_REPLIES
         ),
         -1L
       ).get().messageId
@@ -160,7 +160,7 @@ class MmsTableTest_stories {
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
           receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES,
+          storyType = StoryType.STORY_WITH_REPLIES
         ),
         -1L
       ).get().messageId
@@ -174,7 +174,7 @@ class MmsTableTest_stories {
           sentTimeMillis = System.currentTimeMillis(),
           serverTimeMillis = 2,
           receivedTimeMillis = 2,
-          storyType = StoryType.STORY_WITH_REPLIES,
+          storyType = StoryType.STORY_WITH_REPLIES
         ),
         -1L
       ).get().messageId
@@ -219,7 +219,7 @@ class MmsTableTest_stories {
         sentTimeMillis = 200,
         serverTimeMillis = 2,
         receivedTimeMillis = 2,
-        storyType = StoryType.STORY_WITH_REPLIES,
+        storyType = StoryType.STORY_WITH_REPLIES
       ),
       -1L
     )

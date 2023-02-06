@@ -50,7 +50,7 @@ data class OutgoingMessage(
   val isEndSession: Boolean = false,
   val isIdentityVerified: Boolean = false,
   val isIdentityDefault: Boolean = false,
-  val scheduledDate: Long = -1,
+  val scheduledDate: Long = -1
 ) {
 
   val isV2Group: Boolean = messageGroupContext != null && GroupV2UpdateMessageUtil.isGroupV2(messageGroupContext)
@@ -344,7 +344,7 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         isIdentityVerified = true,
         isUrgent = false,
-        isSecure = true,
+        isSecure = true
       )
     }
 
@@ -358,7 +358,7 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         isIdentityDefault = true,
         isUrgent = false,
-        isSecure = true,
+        isSecure = true
       )
     }
 
@@ -373,7 +373,7 @@ data class OutgoingMessage(
         sentTimeMillis = sentTimeMillis,
         isEndSession = true,
         isUrgent = false,
-        isSecure = true,
+        isSecure = true
       )
     }
 

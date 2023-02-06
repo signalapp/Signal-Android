@@ -36,7 +36,7 @@ class SignalContextMenu private constructor(
 
   private val contextMenuList = ContextMenuList(
     recyclerView = contentView.findViewById(R.id.signal_context_menu_list),
-    onItemClick = { dismiss() },
+    onItemClick = { dismiss() }
   )
 
   init {

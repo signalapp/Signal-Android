@@ -278,7 +278,7 @@ class InternalConversationSettingsFragment : DSLSettingsFragment(
         ", ",
         colorize("ChangeNumber", capabilities.changeNumberCapability),
         ", ",
-        colorize("Stories", capabilities.storiesCapability),
+        colorize("Stories", capabilities.storiesCapability)
       )
     } else {
       "Recipient not found!"

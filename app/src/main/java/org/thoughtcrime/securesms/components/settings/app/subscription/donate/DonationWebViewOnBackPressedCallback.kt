@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedCallback
  */
 class DonationWebViewOnBackPressedCallback(
   private val dismissAllowingStateLoss: () -> Unit,
-  private val webView: WebView,
+  private val webView: WebView
 ) : OnBackPressedCallback(true) {
   override fun handleOnBackPressed() {
     if (webView.canGoBack()) {

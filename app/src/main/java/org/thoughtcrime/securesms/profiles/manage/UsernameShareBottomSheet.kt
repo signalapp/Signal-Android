@@ -50,7 +50,7 @@ class UsernameShareBottomSheet : DSLSettingsBottomSheetFragment() {
           DSLSettingsText.TextAppearanceModifier(R.style.Signal_Text_BodyMedium),
           DSLSettingsText.CenterModifier,
           DSLSettingsText.ColorModifier(
-            ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant),
+            ContextCompat.getColor(requireContext(), R.color.signal_colorOnSurfaceVariant)
           )
         )
       )

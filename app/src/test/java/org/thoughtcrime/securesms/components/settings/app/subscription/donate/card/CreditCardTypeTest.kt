@@ -38,7 +38,7 @@ class CreditCardTypeTest(
       arrayOf("2223003122003222", CreditCardType.OTHER),
       arrayOf("6011111111111117", CreditCardType.OTHER),
       arrayOf("3056930009020004", CreditCardType.OTHER),
-      arrayOf("3566002020360505", CreditCardType.OTHER),
+      arrayOf("3566002020360505", CreditCardType.OTHER)
     )
   }
 }

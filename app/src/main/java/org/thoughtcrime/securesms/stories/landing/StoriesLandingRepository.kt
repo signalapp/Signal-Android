@@ -122,9 +122,13 @@ class StoriesLandingRepository(context: Context) {
           hasRepliesFromSelf = messageRecords.any { SignalDatabase.messages.hasSelfReplyInStory(it.id) },
           isHidden = sender.shouldHideStory(),
           primaryStory = ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, messageRecords[primaryIndex]),
-          secondaryStory = if (sender.isMyStory) messageRecords.drop(1).firstOrNull()?.let {
-            ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
-          } else null,
+          secondaryStory = if (sender.isMyStory) {
+            messageRecords.drop(1).firstOrNull()?.let {
+              ConversationMessage.ConversationMessageFactory.createWithUnresolvedData(context, it)
+            }
+          } else {
+            null
+          },
           sendingCount = sendingCount,
           failureCount = failureCount
         )

@@ -20,7 +20,7 @@ object ConversationItemSelection {
     conversationItem: ConversationItem,
     list: RecyclerView,
     messageRecord: MessageRecord,
-    videoBitmap: Bitmap?,
+    videoBitmap: Bitmap?
   ): Bitmap {
     val isOutgoing = messageRecord.isOutgoing
     val hasNoBubble = messageRecord.hasNoBubble(conversationItem.context)
@@ -30,7 +30,7 @@ object ConversationItemSelection {
       list = list,
       videoBitmap = videoBitmap,
       drawConversationItem = !isOutgoing || hasNoBubble,
-      hasReaction = messageRecord.reactions.isNotEmpty(),
+      hasReaction = messageRecord.reactions.isNotEmpty()
     )
   }
 
@@ -39,7 +39,7 @@ object ConversationItemSelection {
     list: RecyclerView,
     videoBitmap: Bitmap?,
     drawConversationItem: Boolean,
-    hasReaction: Boolean,
+    hasReaction: Boolean
   ): Bitmap {
     val bodyBubble = conversationItem.bodyBubble
     val reactionsView = conversationItem.reactionsView

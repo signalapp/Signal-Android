@@ -784,7 +784,9 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     return if (result.isNotEmpty()) {
       result[0]
-    } else null
+    } else {
+      null
+    }
   }
 
   fun markNeedsSyncWithoutRefresh(recipientIds: Collection<RecipientId>) {
@@ -2574,7 +2576,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val fullData = partialData.copy(
       e164Record = partialData.byE164?.let { getRecord(it) },
       pniSidRecord = partialData.byPniSid?.let { getRecord(it) },
-      aciSidRecord = partialData.byAciSid?.let { getRecord(it) },
+      aciSidRecord = partialData.byAciSid?.let { getRecord(it) }
     )
 
     check(fullData.commonId == null)
@@ -4032,7 +4034,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       storiesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORIES, Capabilities.BIT_LENGTH).toInt()),
       giftBadgesCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.GIFT_BADGES, Capabilities.BIT_LENGTH).toInt()),
       pnpCapability = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PNP, Capabilities.BIT_LENGTH).toInt()),
-      paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH).toInt()),
+      paymentActivation = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.PAYMENT_ACTIVATION, Capabilities.BIT_LENGTH).toInt())
     )
   }
 
@@ -4551,6 +4553,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val oldIds: Set<RecipientId>,
     val changedNumberId: RecipientId?,
     val operations: List<PnpOperation>,
-    val breadCrumbs: List<String>,
+    val breadCrumbs: List<String>
   )
 }

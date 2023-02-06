@@ -65,6 +65,7 @@ class QrProcessor {
 
   companion object {
     private val TAG = Log.tag(QrProcessor::class.java)
+
     /** For debugging only */
     var listener: ((LuminanceSource) -> Unit)? = null
   }
