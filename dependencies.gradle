@@ -122,7 +122,6 @@ dependencyResolutionManagement {
             alias('roundedimageview').to('com.makeramen:roundedimageview:2.1.0')
             alias('materialish-progress').to('com.pnikosis:materialish-progress:1.5')
             alias('waitingdots').to('pl.tajchert:waitingdots:0.1.0')
-            alias('time-duration-picker').to('mobi.upod:time-duration-picker:1.1.3')
             alias('subsampling-scale-image-view').to('com.davemorrissey.labs:subsampling-scale-image-view:3.10.0')
             alias('android-tooltips').to('com.tomergoldst.android:tooltips:1.0.6')
             alias('android-smsmms').to('com.klinkerapps:android-smsmms:4.0.1')

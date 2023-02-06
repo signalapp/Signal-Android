@@ -523,7 +523,6 @@ dependencies {
     implementation libs.greenrobot.eventbus
     implementation libs.waitingdots
     implementation libs.google.zxing.android.integration
-    implementation libs.time.duration.picker
     implementation libs.google.zxing.core
     implementation libs.google.flexbox
     implementation (libs.subsampling.scale.image.view) {
