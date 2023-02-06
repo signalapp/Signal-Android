@@ -2494,20 +2494,26 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
       return Optional.empty();
     }
 
-    boolean updateThread       = retrieved.getStoryType() == StoryType.NONE;
-    boolean keepThreadArchived = SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(retrieved.getFrom()).isMuted();
-    long    messageId          = insertMediaMessage(threadId,
-                                                    retrieved.getBody(),
-                                                    retrieved.getAttachments(),
-                                                    quoteAttachments,
-                                                    retrieved.getSharedContacts(),
-                                                    retrieved.getLinkPreviews(),
-                                                    retrieved.getMentions(),
-                                                    retrieved.getMessageRanges(),
-                                                    contentValues,
-                                                    null,
-                                                    updateThread,
-                                                    !keepThreadArchived);
+    boolean updateThread = retrieved.getStoryType() == StoryType.NONE;
+
+    RecipientId threadRecipientId = SignalDatabase.threads().getRecipientIdForThreadId(threadId);
+    if (threadRecipientId == null) {
+      threadRecipientId = retrieved.getFrom();
+    }
+    boolean keepThreadArchived = threadRecipientId != null && SignalStore.settings().shouldKeepMutedChatsArchived() && Recipient.resolved(threadRecipientId).isMuted();
+
+    long messageId = insertMediaMessage(threadId,
+                                        retrieved.getBody(),
+                                        retrieved.getAttachments(),
+                                        quoteAttachments,
+                                        retrieved.getSharedContacts(),
+                                        retrieved.getLinkPreviews(),
+                                        retrieved.getMentions(),
+                                        retrieved.getMessageRanges(),
+                                        contentValues,
+                                        null,
+                                        updateThread,
+                                        !keepThreadArchived);
 
     boolean isNotStoryGroupReply = retrieved.getParentStoryId() == null || !retrieved.getParentStoryId().isGroupReply();
     if (!MessageTypes.isPaymentsActivated(mailbox) && !MessageTypes.isPaymentsRequestToActivate(mailbox) && !MessageTypes.isExpirationTimerUpdate(mailbox) && !retrieved.getStoryType().isStory() && isNotStoryGroupReply) {
