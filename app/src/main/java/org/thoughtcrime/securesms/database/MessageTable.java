@@ -1957,12 +1957,13 @@ public class MessageTable extends DatabaseTable implements MessageTypes, Recipie
     ApplicationDependencies.getDatabaseObserver().notifyMessageUpdateObservers(new MessageId(messageId));
   }
 
-  public boolean clearScheduledStatus(long threadId, long messageId) {
+  public boolean clearScheduledStatus(long threadId, long messageId, long expiresIn) {
     SQLiteDatabase database     = databaseHelper.getSignalWritableDatabase();
     ContentValues contentValues = new ContentValues();
     contentValues.put(SCHEDULED_DATE, -1);
     contentValues.put(DATE_SENT, System.currentTimeMillis());
     contentValues.put(DATE_RECEIVED, System.currentTimeMillis());
+    contentValues.put(EXPIRES_IN, expiresIn);
 
     int rowsUpdated = database.update(TABLE_NAME, contentValues, ID_WHERE + " AND " + SCHEDULED_DATE + "!= ?", SqlUtil.buildArgs(messageId, -1));
     ApplicationDependencies.getDatabaseObserver().notifyMessageInsertObservers(threadId, new MessageId(messageId));

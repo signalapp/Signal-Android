@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.ApplicationDependencies
 import org.thoughtcrime.securesms.jobs.IndividualSendJob
 import org.thoughtcrime.securesms.jobs.PushGroupSendJob
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Manages waking up and sending scheduled messages at the correct time
@@ -43,7 +44,7 @@ class ScheduledMessageManager(
   override fun executeEvent(event: Event) {
     val scheduledMessagesToSend = messagesTable.getScheduledMessagesBefore(System.currentTimeMillis())
     for (record in scheduledMessagesToSend) {
-      if (SignalDatabase.messages.clearScheduledStatus(record.threadId, record.id)) {
+      if (messagesTable.clearScheduledStatus(record.threadId, record.id, record.recipient.expiresInSeconds.seconds.inWholeMilliseconds)) {
         if (record.recipient.isPushGroup) {
           PushGroupSendJob.enqueue(application, ApplicationDependencies.getJobManager(), record.id, record.recipient.id, emptySet(), true)
         } else {
