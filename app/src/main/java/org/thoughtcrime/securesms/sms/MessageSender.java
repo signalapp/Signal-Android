@@ -206,7 +206,8 @@ public class MessageSender {
                           recipient,
                           SendType.SIGNAL,
                           messageId,
-                          jobDependencyIds);
+                          jobDependencyIds,
+                          false);
     }
 
     onMessageSent();
@@ -238,7 +239,7 @@ public class MessageSender {
         SignalLocalMetrics.GroupMessageSend.cancel(metricId);
       }
 
-      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
+      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), message.getScheduledDate() > 0);
       onMessageSent();
       threadTable.update(allocatedThreadId, true);
 
@@ -275,7 +276,7 @@ public class MessageSender {
 
       attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
-      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds);
+      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds, false);
       onMessageSent();
       threadTable.update(allocatedThreadId, true);
 
@@ -503,7 +504,7 @@ public class MessageSender {
       sendType = SendType.SIGNAL;
     }
 
-    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
+    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList(), false);
 
     onMessageSent();
   }
@@ -519,9 +520,14 @@ public class MessageSender {
     return outgoingMessage;
   }
 
-  private static void sendMessageInternal(Context context, Recipient recipient, SendType sendType, long messageId, @NonNull Collection<String> uploadJobIds)
+  private static void sendMessageInternal(Context context,
+                                          Recipient recipient,
+                                          SendType sendType,
+                                          long messageId,
+                                          @NonNull Collection<String> uploadJobIds,
+                                          boolean isScheduledSend)
   {
-    if (isLocalSelfSend(context, recipient, sendType)) {
+    if (isLocalSelfSend(context, recipient, sendType) && !isScheduledSend) {
       sendLocalMediaSelf(context, messageId);
     } else if (recipient.isPushGroup()) {
       sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
